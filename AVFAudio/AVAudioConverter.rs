@@ -217,6 +217,10 @@ extern_class!(
     pub struct AVAudioConverter;
 );
 
+unsafe impl Send for AVAudioConverter {}
+
+unsafe impl Sync for AVAudioConverter {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVAudioConverter {}
 );
@@ -246,12 +250,24 @@ impl AVAudioConverter {
 
         #[cfg(feature = "AVAudioFormat")]
         /// The format of the input audio stream. (NB. AVAudioFormat includes the channel layout)
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(inputFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputFormat(&self) -> Retained<AVAudioFormat>;
 
         #[cfg(feature = "AVAudioFormat")]
         /// The format of the output audio stream. (NB. AVAudioFormat includes the channel layout)
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(outputFormat))]
         #[unsafe(method_family = none)]
         pub unsafe fn outputFormat(&self) -> Retained<AVAudioFormat>;
@@ -263,54 +279,104 @@ impl AVAudioConverter {
         /// means that the output channel will have no source and will be silent. Setting a channel map
         /// overrides channel mapping due to any channel layouts in the input and output formats that
         /// may have been supplied.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(channelMap))]
         #[unsafe(method_family = none)]
         pub unsafe fn channelMap(&self) -> Retained<NSArray<NSNumber>>;
 
         /// Setter for [`channelMap`][Self::channelMap].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setChannelMap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setChannelMap(&self, channel_map: &NSArray<NSNumber>);
 
         /// Decoders require some data in the form of a magicCookie in order to decode properly.
         /// Encoders will produce a magicCookie.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(magicCookie))]
         #[unsafe(method_family = none)]
         pub unsafe fn magicCookie(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`magicCookie`][Self::magicCookie].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setMagicCookie:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMagicCookie(&self, magic_cookie: Option<&NSData>);
 
         /// If YES and channel remapping is necessary, then channels will be mixed as
         /// appropriate instead of remapped. Default value is NO.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(downmix))]
         #[unsafe(method_family = none)]
         pub unsafe fn downmix(&self) -> bool;
 
         /// Setter for [`downmix`][Self::downmix].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setDownmix:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDownmix(&self, downmix: bool);
 
         /// Setting YES will turn on dither, if dither makes sense in given the current formats
         /// and settings. Default value is NO.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(dither))]
         #[unsafe(method_family = none)]
         pub unsafe fn dither(&self) -> bool;
 
         /// Setter for [`dither`][Self::dither].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setDither:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDither(&self, dither: bool);
 
         /// An AVAudioQuality value as defined in AVAudioSettings.h.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sampleRateConverterQuality))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleRateConverterQuality(&self) -> NSInteger;
 
         /// Setter for [`sampleRateConverterQuality`][Self::sampleRateConverterQuality].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSampleRateConverterQuality:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSampleRateConverterQuality(
@@ -319,11 +385,21 @@ impl AVAudioConverter {
         );
 
         /// An AVSampleRateConverterAlgorithmKey value as defined in AVAudioSettings.h.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sampleRateConverterAlgorithm))]
         #[unsafe(method_family = none)]
         pub unsafe fn sampleRateConverterAlgorithm(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`sampleRateConverterAlgorithm`][Self::sampleRateConverterAlgorithm].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setSampleRateConverterAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSampleRateConverterAlgorithm(
@@ -332,23 +408,43 @@ impl AVAudioConverter {
         );
 
         /// Indicates the priming method to be used by the sample rate converter or decoder.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(primeMethod))]
         #[unsafe(method_family = none)]
         pub unsafe fn primeMethod(&self) -> AVAudioConverterPrimeMethod;
 
         /// Setter for [`primeMethod`][Self::primeMethod].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPrimeMethod:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimeMethod(&self, prime_method: AVAudioConverterPrimeMethod);
 
         #[cfg(feature = "AVAudioTypes")]
         /// Indicates the the number of priming frames.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(primeInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn primeInfo(&self) -> AVAudioConverterPrimeInfo;
 
         #[cfg(feature = "AVAudioTypes")]
         /// Setter for [`primeInfo`][Self::primeInfo].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setPrimeInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPrimeInfo(&self, prime_info: AVAudioConverterPrimeInfo);
@@ -424,21 +520,41 @@ impl AVAudioConverter {
 impl AVAudioConverter {
     extern_methods!(
         /// bitRate in bits per second. Only applies when encoding.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bitRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn bitRate(&self) -> NSInteger;
 
         /// Setter for [`bitRate`][Self::bitRate].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBitRate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBitRate(&self, bit_rate: NSInteger);
 
         /// When encoding, an AVEncoderBitRateStrategyKey value constant as defined in AVAudioSettings.h. Returns nil if not encoding.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(bitRateStrategy))]
         #[unsafe(method_family = none)]
         pub unsafe fn bitRateStrategy(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`bitRateStrategy`][Self::bitRateStrategy].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(setBitRateStrategy:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBitRateStrategy(&self, bit_rate_strategy: Option<&NSString>);
@@ -446,31 +562,67 @@ impl AVAudioConverter {
         /// The maximum size of an output packet, in bytes.
         ///
         /// When encoding it is useful to know how large a packet can be in order to allocate a buffer to receive the output.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(maximumOutputPacketSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn maximumOutputPacketSize(&self) -> NSInteger;
 
         /// When encoding, an NSArray of NSNumber of all bit rates provided by the codec. Returns nil if not encoding.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(availableEncodeBitRates))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableEncodeBitRates(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// When encoding, an NSArray of NSNumber of bit rates that can be applied based on the current formats and settings. Returns nil if not encoding.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(applicableEncodeBitRates))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicableEncodeBitRates(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// When encoding, an NSArray of NSNumber of all output sample rates provided by the codec. Returns nil if not encoding.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(availableEncodeSampleRates))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableEncodeSampleRates(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// When encoding, an NSArray of NSNumber of output sample rates that can be applied based on the current formats and settings. Returns nil if not encoding.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(applicableEncodeSampleRates))]
         #[unsafe(method_family = none)]
         pub unsafe fn applicableEncodeSampleRates(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// When encoding, an NSArray of NSNumber of all output channel layout tags provided by the codec. Returns nil if not encoding.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(availableEncodeChannelLayoutTags))]
         #[unsafe(method_family = none)]
         pub unsafe fn availableEncodeChannelLayoutTags(

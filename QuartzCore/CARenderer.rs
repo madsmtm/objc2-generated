@@ -30,7 +30,7 @@ impl CARenderer {
         ///
         /// - `ctx` must be a valid pointer.
         /// - `dict` generic should be of the correct type.
-        #[deprecated = "+rendererWithMTLTexture"]
+        #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(rendererWithCGLContext:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rendererWithCGLContext_options(

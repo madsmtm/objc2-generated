@@ -220,6 +220,17 @@ impl PKPaymentRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setMerchantIdentifier(&self, merchant_identifier: &NSString);
 
+        #[unsafe(method(attributionIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn attributionIdentifier(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`attributionIdentifier`][Self::attributionIdentifier].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setAttributionIdentifier:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAttributionIdentifier(&self, attribution_identifier: Option<&NSString>);
+
         #[unsafe(method(countryCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn countryCode(&self) -> Retained<NSString>;

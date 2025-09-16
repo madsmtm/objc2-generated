@@ -16,6 +16,9 @@ impl LACompanionType {
     /// Paired Mac
     #[doc(alias = "LACompanionTypeMac")]
     pub const Mac: Self = Self(2);
+    /// Paired Vision Pro
+    #[doc(alias = "LACompanionTypeVision")]
+    pub const Vision: Self = Self(4);
 }
 
 unsafe impl Encode for LACompanionType {

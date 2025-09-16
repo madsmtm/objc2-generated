@@ -26,5 +26,10 @@ extern_protocol!(
         #[unsafe(method(supportsExtendedDistanceMeasurement))]
         #[unsafe(method_family = none)]
         unsafe fn supportsExtendedDistanceMeasurement(&self) -> bool;
+
+        /// Whether or not this device is capable of participating in a nearby interaction DL-TDOA ranging.
+        #[unsafe(method(supportsDLTDOAMeasurement))]
+        #[unsafe(method_family = none)]
+        unsafe fn supportsDLTDOAMeasurement(&self) -> bool;
     }
 );

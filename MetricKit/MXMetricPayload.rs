@@ -145,6 +145,12 @@ impl MXMetricPayload {
         #[unsafe(method_family = none)]
         pub unsafe fn applicationExitMetrics(&self) -> Option<Retained<MXAppExitMetric>>;
 
+        #[cfg(all(feature = "MXDiskSpaceUsageMetric", feature = "MXMetric"))]
+        /// An object containing disk space usage metrics for this application.
+        #[unsafe(method(diskSpaceUsageMetrics))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn diskSpaceUsageMetrics(&self) -> Option<Retained<MXDiskSpaceUsageMetric>>;
+
         #[cfg(all(feature = "MXMetric", feature = "MXSignpostMetric"))]
         /// An array containing signpost metrics for this application.
         #[unsafe(method(signpostMetrics))]

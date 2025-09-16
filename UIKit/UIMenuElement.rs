@@ -58,6 +58,33 @@ unsafe impl RefEncode for UIMenuElementAttributes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Possible repeat behaviors for a menu element.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelementrepeatbehavior?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UIMenuElementRepeatBehavior(pub NSInteger);
+impl UIMenuElementRepeatBehavior {
+    /// Automatically uses the appropriate repeat behavior for this element.
+    #[doc(alias = "UIMenuElementRepeatBehaviorAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// The element should be allowed to repeat.
+    #[doc(alias = "UIMenuElementRepeatBehaviorRepeatable")]
+    pub const Repeatable: Self = Self(1);
+    /// The element should not be repeatable.
+    #[doc(alias = "UIMenuElementRepeatBehaviorNonRepeatable")]
+    pub const NonRepeatable: Self = Self(2);
+}
+
+unsafe impl Encode for UIMenuElementRepeatBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIMenuElementRepeatBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement?language=objc)
     #[unsafe(super(NSObject))]

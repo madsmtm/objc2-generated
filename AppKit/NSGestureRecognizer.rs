@@ -216,6 +216,22 @@ impl NSGestureRecognizer {
         #[unsafe(method(locationInView:))]
         #[unsafe(method_family = none)]
         pub unsafe fn locationInView(&self, view: Option<&NSView>) -> NSPoint;
+
+        #[unsafe(method(name))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`name`][Self::name].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setName:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setName(&self, name: Option<&NSString>);
+
+        #[cfg(feature = "NSEvent")]
+        #[unsafe(method(modifierFlags))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn modifierFlags(&self) -> NSEventModifierFlags;
     );
 }
 
@@ -392,6 +408,11 @@ impl NSGestureRecognizer {
         #[unsafe(method(otherMouseDragged:))]
         #[unsafe(method_family = none)]
         pub unsafe fn otherMouseDragged(&self, event: &NSEvent);
+
+        #[cfg(feature = "NSEvent")]
+        #[unsafe(method(mouseCancelled:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn mouseCancelled(&self, event: &NSEvent);
 
         #[cfg(feature = "NSEvent")]
         #[unsafe(method(keyDown:))]

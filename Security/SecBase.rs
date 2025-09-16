@@ -29,6 +29,10 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__SecCertificate"> for SecCertificate {}
 );
 
+unsafe impl Send for SecCertificate {}
+
+unsafe impl Sync for SecCertificate {}
+
 /// CFType representing an identity, which contains
 /// a SecKeyRef and an associated SecCertificateRef. See
 /// SecIdentity.h for details.

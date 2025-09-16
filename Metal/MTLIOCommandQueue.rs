@@ -79,7 +79,7 @@ extern_protocol!(
     /// read from handle objects and write to MTLResource objects.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueue?language=objc)
-    pub unsafe trait MTLIOCommandQueue: NSObjectProtocol {
+    pub unsafe trait MTLIOCommandQueue: NSObjectProtocol + Send + Sync {
         /// Inserts a barrier that ensures that all commandBuffers commited
         /// prior are completed before any commandBuffers after start execution.
         ///
@@ -273,7 +273,7 @@ extern_protocol!(
     /// for load commands encoded in a MTLIOCommandBuffer.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtliofilehandle?language=objc)
-    pub unsafe trait MTLIOFileHandle: NSObjectProtocol {
+    pub unsafe trait MTLIOFileHandle: NSObjectProtocol + Send + Sync {
         /// An optional label for this handle.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]

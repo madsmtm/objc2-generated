@@ -11,9 +11,10 @@ use crate::*;
 /// Blend shape locations of a face geometry.
 ///
 /// Each location defines an area of the face that can be displaced with a provided coefficient.
-///
-/// Note: Blend shapes are computed based on the captured image. For example, if the detected person has a closed right eye, the eye on the left side of the captured image will appear closed and reported as
 /// blend shape activation  by ARKit.
+///
+/// Note: Blend shapes are computed based on the captured image. For example, if the detected person has a closed right eye, the eye on the left side of
+/// the captured image will appear closed and reported as blend shape activation  by ARKit.
 ///
 /// See: -[ARFrame capturedImage]
 ///

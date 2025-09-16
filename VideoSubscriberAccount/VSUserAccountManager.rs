@@ -63,6 +63,24 @@ impl VSUserAccountManager {
             options: VSUserAccountQueryOptions,
             completion: &block2::DynBlock<dyn Fn(*mut NSArray<VSUserAccount>, *mut NSError)>,
         );
+
+        #[cfg(all(feature = "VSAutoSignInToken", feature = "block2"))]
+        /// Query the auto sign in token and authorization state.
+        #[unsafe(method(queryAutoSignInTokenWithCompletionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn queryAutoSignInTokenWithCompletionHandler(
+            &self,
+            completion: &block2::DynBlock<dyn Fn(*mut VSAutoSignInToken, *mut NSError)>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Deletes the auto sign in token.
+        #[unsafe(method(deleteAutoSignInTokenWithCompletionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn deleteAutoSignInTokenWithCompletionHandler(
+            &self,
+            completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
+        );
     );
 }
 

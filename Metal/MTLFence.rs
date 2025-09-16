@@ -9,7 +9,7 @@ use crate::*;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfence?language=objc)
-    pub unsafe trait MTLFence: NSObjectProtocol {
+    pub unsafe trait MTLFence: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "MTLDevice")]
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]

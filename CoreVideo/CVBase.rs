@@ -71,6 +71,10 @@ unsafe impl RefEncode for CVSMPTETime {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+unsafe impl Send for CVSMPTETime {}
+
+unsafe impl Sync for CVSMPTETime {}
+
 /// Constants that describe the type of SMPTE time.
 ///
 /// 24 Frame
@@ -123,6 +127,10 @@ unsafe impl RefEncode for CVSMPTETimeType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+unsafe impl Send for CVSMPTETimeType {}
+
+unsafe impl Sync for CVSMPTETimeType {}
+
 /// Flags that describe the SMPTE time state.
 ///
 /// The full time is valid.
@@ -153,6 +161,10 @@ unsafe impl RefEncode for CVSMPTETimeFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+unsafe impl Send for CVSMPTETimeFlags {}
+
+unsafe impl Sync for CVSMPTETimeFlags {}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
@@ -175,6 +187,10 @@ unsafe impl RefEncode for CVTimeFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+unsafe impl Send for CVTimeFlags {}
+
+unsafe impl Sync for CVTimeFlags {}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtime?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -193,6 +209,16 @@ unsafe impl Encode for CVTime {
 #[cfg(feature = "objc2")]
 unsafe impl RefEncode for CVTime {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvzerotime?language=objc)
+    pub static kCVZeroTime: CVTime;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvindefinitetime?language=objc)
+    pub static kCVIndefiniteTime: CVTime;
 }
 
 /// CoreVideo uses a CVTimeStamp structure to store video display time stamps.
@@ -296,12 +322,6 @@ unsafe impl RefEncode for CVTimeStampFlags {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvzerotime?language=objc)
-    pub static kCVZeroTime: CVTime;
-}
+unsafe impl Send for CVTimeStampFlags {}
 
-extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvindefinitetime?language=objc)
-    pub static kCVIndefiniteTime: CVTime;
-}
+unsafe impl Sync for CVTimeStampFlags {}

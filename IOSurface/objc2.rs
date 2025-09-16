@@ -152,6 +152,10 @@ extern_class!(
     pub struct IOSurface;
 );
 
+unsafe impl Send for IOSurface {}
+
+unsafe impl Sync for IOSurface {}
+
 #[cfg(feature = "objc2-foundation")]
 extern_conformance!(
     unsafe impl NSCoding for IOSurface {}
@@ -362,3 +366,7 @@ extern "C" {
     #[deprecated]
     pub static IOSurfacePropertyAllocSizeKey: &'static IOSurfacePropertyKey;
 }
+
+// TODO: pub fn _IOSurfaceRefToObj(r#ref: &IOSurfaceRef,)-> *mut IOSurface;
+
+// TODO: pub fn _IOSurfaceObjToRef(obj: &IOSurface,)-> Option<NonNull<IOSurfaceRef>>;

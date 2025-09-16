@@ -10,6 +10,7 @@ use crate::*;
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpcontacttemplate?language=objc)
     #[unsafe(super(CPTemplate, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CPTemplate")]
     pub struct CPContactTemplate;
@@ -44,7 +45,7 @@ impl CPContactTemplate {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "CPContact")]
         /// Initialize a

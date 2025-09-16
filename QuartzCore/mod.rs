@@ -32,6 +32,9 @@ mod __CAConstraintLayoutManager;
 #[cfg(feature = "CADisplayLink")]
 #[path = "CADisplayLink.rs"]
 mod __CADisplayLink;
+#[cfg(feature = "CAEAGLLayer")]
+#[path = "CAEAGLLayer.rs"]
+mod __CAEAGLLayer;
 #[cfg(feature = "CAEDRMetadata")]
 #[path = "CAEDRMetadata.rs"]
 mod __CAEDRMetadata;
@@ -230,6 +233,8 @@ pub use self::__CAGradientLayer::CAGradientLayer;
 #[cfg(feature = "CAGradientLayer")]
 pub use self::__CAGradientLayer::CAGradientLayerType;
 #[cfg(feature = "CALayer")]
+pub use self::__CALayer::kCAContentsFormatAutomatic;
+#[cfg(feature = "CALayer")]
 pub use self::__CALayer::kCAContentsFormatGray8Uint;
 #[cfg(feature = "CALayer")]
 pub use self::__CALayer::kCAContentsFormatRGBA16Float;
@@ -281,6 +286,16 @@ pub use self::__CALayer::CAAction;
 pub use self::__CALayer::CAAutoresizingMask;
 #[cfg(feature = "CALayer")]
 pub use self::__CALayer::CACornerMask;
+#[cfg(feature = "CALayer")]
+pub use self::__CALayer::CADynamicRange;
+#[cfg(feature = "CALayer")]
+pub use self::__CALayer::CADynamicRangeAutomatic;
+#[cfg(feature = "CALayer")]
+pub use self::__CALayer::CADynamicRangeConstrainedHigh;
+#[cfg(feature = "CALayer")]
+pub use self::__CALayer::CADynamicRangeHigh;
+#[cfg(feature = "CALayer")]
+pub use self::__CALayer::CADynamicRangeStandard;
 #[cfg(feature = "CALayer")]
 pub use self::__CALayer::CAEdgeAntialiasingMask;
 #[cfg(feature = "CALayer")]

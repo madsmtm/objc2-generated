@@ -8,7 +8,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sftranscriptionsegment?language=objc)
+    /// A discrete part of an entire transcription, as identified by the speech recognizer.
+    ///
+    /// Use ``SFTranscriptionSegment`` to get details about a part of an overall ``SFTranscription``. An ``SFTranscriptionSegment`` represents an utterance, which is a vocalized word or group of words that represent a single meaning to the speech recognizer (``SFSpeechRecognizer``).
+    ///
+    /// You don't create transcription object segments directly. Instead, you access them from a transcription's ``SFTranscription/segments`` property.
+    ///
+    /// A transcription segment includes the following information:
+    ///
+    /// - The text of the utterance, plus any alternative interpretations of the spoken word.
+    /// - The character range of the segment within the ``SFTranscription/formattedString`` of its parent ``SFTranscription``.
+    /// - A ``confidence`` value, indicating how likely it is that the specified string matches the audible speech.
+    /// - A ``timestamp`` and ``duration`` value, indicating the position of the segment within the provided audio stream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sftranscriptionsegment?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFTranscriptionSegment;
@@ -36,31 +49,46 @@ extern_conformance!(
 
 impl SFTranscriptionSegment {
     extern_methods!(
+        /// The string representation of the utterance in the transcription segment.
         #[unsafe(method(substring))]
         #[unsafe(method_family = none)]
         pub unsafe fn substring(&self) -> Retained<NSString>;
 
+        /// The range information for the transcription segment's substring, relative to the overall transcription.
+        ///
+        /// Use the range information to find the position of the segment within the ``SFTranscription/formattedString`` property of the ``SFTranscription`` object containing this segment.
         #[unsafe(method(substringRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn substringRange(&self) -> NSRange;
 
+        /// The start time of the segment in the processed audio stream.
+        ///
+        /// The ``timestamp`` is the number of seconds between the beginning of the audio content and when the user spoke the word represented by the segment. For example, if the user said the word "time" one second into the transcription "What time is it", the timestamp would be equal to `1.0`.
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> NSTimeInterval;
 
+        /// The number of seconds it took for the user to speak the utterance represented by the segment.
+        ///
+        /// The ``duration`` contains the number of seconds it took for the user to speak the one or more words (utterance) represented by the segment. For example, the ``SFSpeechRecognizer`` sets ``duration`` to `0.6` if the user took `0.6` seconds to say `“time”` in the transcription of `“What time is it?"`.
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
         pub unsafe fn duration(&self) -> NSTimeInterval;
 
+        /// The level of confidence the speech recognizer has in its recognition of the speech transcribed for the segment.
+        ///
+        /// This property reflects the overall confidence in the recognition of the entire phrase. The value is `0` if there was no recognition, and it is closer to `1` when there is a high certainty that a transcription matches the user's speech exactly. For example, a confidence value of `0.94` represents a very high confidence level, and is more likely to be correct than a transcription with a confidence value of `0.72`.
         #[unsafe(method(confidence))]
         #[unsafe(method_family = none)]
         pub unsafe fn confidence(&self) -> c_float;
 
+        /// An array of alternate interpretations of the utterance in the transcription segment.
         #[unsafe(method(alternativeSubstrings))]
         #[unsafe(method_family = none)]
         pub unsafe fn alternativeSubstrings(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "SFVoiceAnalytics")]
+        /// An analysis of the transcription segment's vocal properties.
         #[deprecated = "voiceAnalytics is moved to SFSpeechRecognitionMetadata"]
         #[unsafe(method(voiceAnalytics))]
         #[unsafe(method_family = none)]

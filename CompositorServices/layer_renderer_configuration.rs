@@ -138,6 +138,86 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    /// Returns the pixel format to apply to the layer’s tracking areas textures.
+    ///
+    /// - Parameters:
+    /// - configuration: The layer configuration type that contains the
+    /// information. The system passes an instance of this type to the
+    /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
+    /// method of your configuration provider.
+    /// - Returns: The pixel format to apply to the layer’s tracking areas textures.
+    ///
+    /// The compositor creates the tracking areas textures using the pixel format
+    /// information you provide.
+    #[cfg(feature = "objc2-metal")]
+    pub fn cp_layer_renderer_configuration_get_tracking_areas_format(
+        configuration: &cp_layer_renderer_configuration_t,
+    ) -> MTLPixelFormat;
+}
+
+extern "C-unwind" {
+    /// Sets the pixel format for the layer’s tracking areas textures to the specified
+    /// value.
+    ///
+    /// - Parameters:
+    /// - configuration: The layer configuration type to modify. The system
+    /// passes an instance of this type to the
+    /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
+    /// method of your configuration provider.
+    /// - tracking_areas_format: The pixel format to apply to the layer’s tracking areas textures.
+    ///
+    /// Use this function to modify the configuration details for your layer. Call the
+    /// ``cp_layer_renderer_capabilities_supported_tracking_areas_format`` function to determine which
+    /// pixel formats the layer’s tracking areas textures supports.
+    #[cfg(feature = "objc2-metal")]
+    pub fn cp_layer_renderer_configuration_set_tracking_areas_format(
+        configuration: &cp_layer_renderer_configuration_t,
+        tracking_areas_format: MTLPixelFormat,
+    );
+}
+
+extern "C-unwind" {
+    /// Returns the texture usage value to apply to the layer’s tracking areas textures.
+    ///
+    /// - Parameters:
+    /// - configuration: The layer configuration type that contains the
+    /// information. The system passes an instance of this type to the
+    /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
+    /// method of your configuration provider.
+    /// - Returns: The Metal texture usage value to apply to the layer’s tracking areas textures.
+    ///
+    /// Metal optimizes texture-related operations based on the texture's usage value.
+    /// The usage value can be a combination of options. For example, a texture
+    /// might be readable and writable. For more information, see
+    /// <doc
+    /// ://com.apple.documentation/documentation/metal/mtltextureusage>.
+    #[cfg(feature = "objc2-metal")]
+    pub fn cp_layer_renderer_configuration_get_tracking_areas_usage(
+        configuration: &cp_layer_renderer_configuration_t,
+    ) -> MTLTextureUsage;
+}
+
+extern "C-unwind" {
+    /// Sets the texture usage for the layer’s tracking areas textures to the specified
+    /// value.
+    ///
+    /// - Parameters:
+    /// - configuration: The layer configuration type to modify. The system
+    /// passes an instance of this type to the
+    /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
+    /// method of your configuration provider.
+    /// - tracking_areas_usage: The usage value to apply to the layer’s
+    /// tracking areas textures.
+    ///
+    /// Use this function to modify the configuration details for your layer.
+    #[cfg(feature = "objc2-metal")]
+    pub fn cp_layer_renderer_configuration_set_tracking_areas_usage(
+        configuration: &cp_layer_renderer_configuration_t,
+        tracking_areas_usage: MTLTextureUsage,
+    );
+}
+
+extern "C-unwind" {
     /// Returns the pixel format to apply to the layer’s depth textures.
     ///
     /// - Parameters:
@@ -360,5 +440,142 @@ extern "C-unwind" {
     pub fn cp_layer_renderer_configuration_set_layout(
         configuration: &cp_layer_renderer_configuration_t,
         layout: cp_layer_renderer_layout,
+    );
+}
+
+extern "C-unwind" {
+    /// Sets the pixel format for the drawable's render context stencil textures to the specified
+    /// value.
+    ///
+    /// - Parameters:
+    /// - configuration: The layer configuration type to modify. The system
+    /// passes an instance of this type to the
+    /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
+    /// method of your configuration provider.
+    /// - stencil_format: The pixel format to apply to the drawable's render context stencil
+    /// textures.
+    #[cfg(feature = "objc2-metal")]
+    pub fn cp_layer_renderer_configuration_set_drawable_render_context_stencil_format(
+        configuration: &cp_layer_renderer_configuration_t,
+        stencil_format: MTLPixelFormat,
+    );
+}
+
+extern "C-unwind" {
+    /// Returns the pixel format to use for the stencil texture in drawable's render context.
+    ///
+    /// - Parameters:
+    /// - configuration: The layer configuration type that contains the
+    /// information. The system passes an instance of this type to the
+    /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
+    /// method of your configuration provider.
+    /// - Returns: The pixel format to use for the drawable's render context stencil textures.
+    #[cfg(feature = "objc2-metal")]
+    pub fn cp_layer_renderer_configuration_get_drawable_render_context_stencil_format(
+        configuration: &cp_layer_renderer_configuration_t,
+    ) -> MTLPixelFormat;
+}
+
+extern "C-unwind" {
+    /// Returns the raster sample count to use in drawable's render context.
+    ///
+    /// - Parameters:
+    /// - configuration: The layer configuration type that contains the
+    /// information. The system passes an instance of this type to the
+    /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
+    /// method of your configuration provider.
+    /// - Returns: The raster sample count to use for the drawable's render context.
+    pub fn cp_layer_renderer_configuration_get_drawable_render_context_raster_sample_count(
+        configuration: &cp_layer_renderer_configuration_t,
+    ) -> c_int;
+}
+
+extern "C-unwind" {
+    /// Sets the raster sample count for the drawable's render context to the specified
+    /// value.
+    ///
+    /// - Parameters:
+    /// - configuration: The layer configuration type to modify. The system
+    /// passes an instance of this type to the
+    /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
+    /// method of your configuration provider.
+    /// - raster_sample_count: The raster sample count to apply to the drawable's render context.
+    pub fn cp_layer_renderer_configuration_set_drawable_render_context_raster_sample_count(
+        configuration: &cp_layer_renderer_configuration_t,
+        raster_sample_count: c_int,
+    );
+}
+
+extern "C-unwind" {
+    /// Get max render quality the layer can use when drawing to the drawables.
+    ///
+    /// - Parameters:
+    /// - configuration: The layer configuration type to modify. The system
+    /// passes an instance of this type to the
+    /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
+    /// method of your configuration provider.
+    /// - Returns: The max render qualityto use for the drawable's.
+    ///
+    /// The max render quality is a value between [0, 1].
+    /// This determines the max render quality at which drawing can happen.
+    ///
+    /// Setting a higher max render quality will impact the resolution that is allocated for the drawable textures.
+    /// This memory will count against the app's memory limit so should only be specified as high as renderer
+    /// can reasonably achieve frame rate at. During runtime, the render quality can be changed on the
+    /// layer renderer but will not impact memory usage, see ``cp_layer_renderer_set_render_quality``.
+    #[cfg(feature = "cp_types")]
+    pub fn cp_layer_renderer_configuration_get_max_render_quality(
+        configuration: &cp_layer_renderer_configuration_t,
+    ) -> cp_render_quality_t;
+}
+
+extern "C-unwind" {
+    /// Set max render quality the layer can use when drawing to the drawables.
+    ///
+    /// - Parameters:
+    /// - configuration: The layer configuration type to modify. The system
+    /// passes an instance of this type to the
+    /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
+    /// method of your configuration provider.
+    /// - render_quality: A value between between [0, 1].
+    /// This determines the max render quality at which drawing can happen.
+    ///
+    /// Setting a higher max render quality will impact the resolution that is allocated for the drawable textures.
+    /// This memory will count against the app's memory limit so should only be specified as high as renderer
+    /// can reasonably achieve frame rate at. During runtime, the render quality can be changed on the
+    /// layer renderer but will not impact memory usage, see ``cp_layer_renderer_set_render_quality``.
+    #[cfg(feature = "cp_types")]
+    pub fn cp_layer_renderer_configuration_set_max_render_quality(
+        configuration: &cp_layer_renderer_configuration_t,
+        render_quality: cp_render_quality_t,
+    );
+}
+
+extern "C-unwind" {
+    /// Get whether the layer can use Metal4 when drawing to the drawables.
+    ///
+    /// - Parameters:
+    /// - configuration: The layer configuration type to modify. The system
+    /// passes an instance of this type to the
+    /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
+    /// method of your configuration provider.
+    /// - Returns: Whether the layer supports using Metal4, otherwise defaults to Metal3.
+    pub fn cp_layer_renderer_configuration_get_supports_mtl4(
+        configuration: &cp_layer_renderer_configuration_t,
+    ) -> bool;
+}
+
+extern "C-unwind" {
+    /// Set whether the layer can use Metal4 when drawing to the drawables.
+    ///
+    /// - Parameters:
+    /// - configuration: The layer configuration type to modify. The system
+    /// passes an instance of this type to the
+    /// ``CompositorLayerConfiguration/makeConfiguration(capabilities:configuration:)``
+    /// method of your configuration provider.
+    /// - supports_mtl4: Whether the layer supports using Metal4, otherwise defaults to Metal3.
+    pub fn cp_layer_renderer_configuration_set_supports_mtl4(
+        configuration: &cp_layer_renderer_configuration_t,
+        supports_mtl4: bool,
     );
 }

@@ -29,7 +29,7 @@ extern_conformance!(
 impl CXCallUpdate {
     extern_methods!(
         #[cfg(feature = "CXHandle")]
-        /// Handle for the remote party (for an incoming call, the caller; for an outgoing call, the callee)
+        /// Handle for the remote party (for an incoming call, the caller; for an outgoing call, the callee).
         #[unsafe(method(remoteHandle))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteHandle(&self) -> Option<Retained<CXHandle>>;

@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardscore?language=objc)
+    /// A `GKLeaderboardScore` object represents a score on a leaderboard for scores you report for challenges or turn-based games.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardscore?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GKLeaderboardScore;
@@ -21,6 +23,7 @@ extern_conformance!(
 impl GKLeaderboardScore {
     extern_methods!(
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer"))]
+        /// The player who earns the score.
         #[unsafe(method(player))]
         #[unsafe(method_family = none)]
         pub unsafe fn player(&self) -> Retained<GKPlayer>;
@@ -31,6 +34,7 @@ impl GKLeaderboardScore {
         #[unsafe(method_family = none)]
         pub unsafe fn setPlayer(&self, player: &GKPlayer);
 
+        /// The score that the player earns.
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
         pub unsafe fn value(&self) -> NSInteger;
@@ -40,6 +44,7 @@ impl GKLeaderboardScore {
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: NSInteger);
 
+        /// An integer value that your game uses.
         #[unsafe(method(context))]
         #[unsafe(method_family = none)]
         pub unsafe fn context(&self) -> NSUInteger;
@@ -49,6 +54,7 @@ impl GKLeaderboardScore {
         #[unsafe(method_family = none)]
         pub unsafe fn setContext(&self, context: NSUInteger);
 
+        /// The ID that Game Center uses for the leaderboard.
         #[unsafe(method(leaderboardID))]
         #[unsafe(method_family = none)]
         pub unsafe fn leaderboardID(&self) -> Retained<NSString>;

@@ -21,7 +21,7 @@ extern_class!(
     #[unsafe(super(CALayer, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "CALayer")]
-    #[deprecated = "OpenGL is deprecated"]
+    #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
     pub struct CAOpenGLLayer;
 );
 
@@ -48,13 +48,13 @@ extern_conformance!(
 #[cfg(feature = "CALayer")]
 impl CAOpenGLLayer {
     extern_methods!(
-        #[deprecated = "OpenGL is deprecated"]
+        #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(isAsynchronous))]
         #[unsafe(method_family = none)]
         pub unsafe fn isAsynchronous(&self) -> bool;
 
         /// Setter for [`isAsynchronous`][Self::isAsynchronous].
-        #[deprecated = "OpenGL is deprecated"]
+        #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setAsynchronous:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAsynchronous(&self, asynchronous: bool);
@@ -70,7 +70,7 @@ impl CAOpenGLLayer {
         /// - `ctx` must be a valid pointer.
         /// - `pf` must be a valid pointer.
         /// - `ts` must be a valid pointer or null.
-        #[deprecated = "OpenGL is deprecated"]
+        #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(canDrawInCGLContext:pixelFormat:forLayerTime:displayTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canDrawInCGLContext_pixelFormat_forLayerTime_displayTime(
@@ -92,7 +92,7 @@ impl CAOpenGLLayer {
         /// - `ctx` must be a valid pointer.
         /// - `pf` must be a valid pointer.
         /// - `ts` must be a valid pointer or null.
-        #[deprecated = "OpenGL is deprecated"]
+        #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(drawInCGLContext:pixelFormat:forLayerTime:displayTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawInCGLContext_pixelFormat_forLayerTime_displayTime(
@@ -105,7 +105,7 @@ impl CAOpenGLLayer {
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
-        #[deprecated = "OpenGL is deprecated"]
+        #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(copyCGLPixelFormatForDisplayMask:))]
         #[unsafe(method_family = none)]
         pub unsafe fn copyCGLPixelFormatForDisplayMask(&self, mask: u32) -> CGLPixelFormatObj;
@@ -115,7 +115,7 @@ impl CAOpenGLLayer {
         /// # Safety
         ///
         /// `pf` must be a valid pointer.
-        #[deprecated = "OpenGL is deprecated"]
+        #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(releaseCGLPixelFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn releaseCGLPixelFormat(&self, pf: CGLPixelFormatObj);
@@ -125,7 +125,7 @@ impl CAOpenGLLayer {
         /// # Safety
         ///
         /// `pf` must be a valid pointer.
-        #[deprecated = "OpenGL is deprecated"]
+        #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(copyCGLContextForPixelFormat:))]
         #[unsafe(method_family = none)]
         pub unsafe fn copyCGLContextForPixelFormat(&self, pf: CGLPixelFormatObj) -> CGLContextObj;
@@ -135,31 +135,29 @@ impl CAOpenGLLayer {
         /// # Safety
         ///
         /// `ctx` must be a valid pointer.
-        #[deprecated = "OpenGL is deprecated"]
+        #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(releaseCGLContext:))]
         #[unsafe(method_family = none)]
         pub unsafe fn releaseCGLContext(&self, ctx: CGLContextObj);
 
         #[cfg(feature = "objc2-core-graphics")]
-        #[deprecated = "OpenGL is deprecated"]
+        #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(colorspace))]
         #[unsafe(method_family = none)]
         pub unsafe fn colorspace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorspace`][Self::colorspace].
-        #[deprecated = "OpenGL is deprecated"]
+        #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setColorspace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorspace(&self, colorspace: Option<&CGColorSpace>);
 
-        #[deprecated = "OpenGL is deprecated"]
         #[unsafe(method(wantsExtendedDynamicRangeContent))]
         #[unsafe(method_family = none)]
         pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;
 
         /// Setter for [`wantsExtendedDynamicRangeContent`][Self::wantsExtendedDynamicRangeContent].
-        #[deprecated = "OpenGL is deprecated"]
         #[unsafe(method(setWantsExtendedDynamicRangeContent:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setWantsExtendedDynamicRangeContent(

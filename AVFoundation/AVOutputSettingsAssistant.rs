@@ -59,6 +59,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresethevc4320x2160?language=objc)
+    pub static AVOutputSettingsPresetHEVC4320x2160: &'static AVOutputSettingsPreset;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresethevc7680x4320?language=objc)
     pub static AVOutputSettingsPresetHEVC7680x4320: &'static AVOutputSettingsPreset;
 }
@@ -71,6 +76,16 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresetmvhevc1440x1440?language=objc)
     pub static AVOutputSettingsPresetMVHEVC1440x1440: &'static AVOutputSettingsPreset;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresetmvhevc4320x4320?language=objc)
+    pub static AVOutputSettingsPresetMVHEVC4320x4320: &'static AVOutputSettingsPreset;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresetmvhevc7680x7680?language=objc)
+    pub static AVOutputSettingsPresetMVHEVC7680x7680: &'static AVOutputSettingsPreset;
 }
 
 extern_class!(

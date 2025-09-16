@@ -2351,6 +2351,42 @@ unsafe impl RefEncode for XCTIssueType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// An enum representing the severity of a test issue.
+///
+/// The numeric values of this enum's cases are comparable. A case which represents
+/// higher severity has a larger numeric value than one which represents lower
+/// severity. Specifying a numeric severity value other than one corresponding to
+/// a case defined below when initializing an ``XCTIssue`` is unsupported.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissueseverity?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct XCTIssueSeverity(pub NSInteger);
+impl XCTIssueSeverity {
+    /// The severity level for an issue which should be noted but is not
+    /// necessarily an error.
+    ///
+    /// An issue with warning severity does not cause the test it's associated
+    /// with to be marked as a failure, but is noted in the results.
+    #[doc(alias = "XCTIssueSeverityWarning")]
+    pub const Warning: Self = Self(4);
+    /// The severity level for an issue which represents an error in a test.
+    ///
+    /// An issue with error severity causes the test it's associated with to be
+    /// marked as a failure.
+    #[doc(alias = "XCTIssueSeverityError")]
+    pub const Error: Self = Self(8);
+}
+
+unsafe impl Encode for XCTIssueSeverity {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for XCTIssueSeverity {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// Encapsulates all data concerning a test failure or other issue.
     ///
@@ -2402,6 +2438,28 @@ impl XCTIssue {
             attachments: &NSArray<XCTAttachment>,
         ) -> Retained<Self>;
 
+        #[unsafe(method(initWithType:compactDescription:detailedDescription:sourceCodeContext:associatedError:attachments:severity:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithType_compactDescription_detailedDescription_sourceCodeContext_associatedError_attachments_severity(
+            this: Allocated<Self>,
+            r#type: XCTIssueType,
+            compact_description: &NSString,
+            detailed_description: Option<&NSString>,
+            source_code_context: &XCTSourceCodeContext,
+            associated_error: Option<&NSError>,
+            attachments: &NSArray<XCTAttachment>,
+            severity: XCTIssueSeverity,
+        ) -> Retained<Self>;
+
+        #[unsafe(method(initWithType:compactDescription:severity:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithType_compactDescription_severity(
+            this: Allocated<Self>,
+            r#type: XCTIssueType,
+            compact_description: &NSString,
+            severity: XCTIssueSeverity,
+        ) -> Retained<Self>;
+
         #[unsafe(method(initWithType:compactDescription:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_compactDescription(
@@ -2449,6 +2507,24 @@ impl XCTIssue {
         #[unsafe(method(attachments))]
         #[unsafe(method_family = none)]
         pub unsafe fn attachments(&self) -> Retained<NSArray<XCTAttachment>>;
+
+        /// The severity of the issue.
+        #[unsafe(method(severity))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn severity(&self) -> XCTIssueSeverity;
+
+        /// Whether or not this issue should cause the test it's associated with to be
+        /// considered a failure.
+        ///
+        /// The value of this property is `YES` for issues which have a severity level of
+        /// ``XCTIssueSeverityError`` or higher.
+        /// Otherwise, the value of this property is `NO`.
+        ///
+        /// Use this property to determine if an issue should be considered a failure, instead of
+        /// directly comparing the value of the ``severity`` property.
+        #[unsafe(method(isFailure))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isFailure(&self) -> bool;
     );
 }
 
@@ -2551,6 +2627,15 @@ impl XCTMutableIssue {
         #[unsafe(method_family = none)]
         pub unsafe fn setAttachments(&self, attachments: &NSArray<XCTAttachment>);
 
+        #[unsafe(method(severity))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn severity(&self) -> XCTIssueSeverity;
+
+        /// Setter for [`severity`][Self::severity].
+        #[unsafe(method(setSeverity:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setSeverity(&self, severity: XCTIssueSeverity);
+
         /// Add an attachment to this issue.
         #[unsafe(method(addAttachment:))]
         #[unsafe(method_family = none)]
@@ -2571,6 +2656,28 @@ impl XCTMutableIssue {
             source_code_context: &XCTSourceCodeContext,
             associated_error: Option<&NSError>,
             attachments: &NSArray<XCTAttachment>,
+        ) -> Retained<Self>;
+
+        #[unsafe(method(initWithType:compactDescription:detailedDescription:sourceCodeContext:associatedError:attachments:severity:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithType_compactDescription_detailedDescription_sourceCodeContext_associatedError_attachments_severity(
+            this: Allocated<Self>,
+            r#type: XCTIssueType,
+            compact_description: &NSString,
+            detailed_description: Option<&NSString>,
+            source_code_context: &XCTSourceCodeContext,
+            associated_error: Option<&NSError>,
+            attachments: &NSArray<XCTAttachment>,
+            severity: XCTIssueSeverity,
+        ) -> Retained<Self>;
+
+        #[unsafe(method(initWithType:compactDescription:severity:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithType_compactDescription_severity(
+            this: Allocated<Self>,
+            r#type: XCTIssueType,
+            compact_description: &NSString,
+            severity: XCTIssueSeverity,
         ) -> Retained<Self>;
 
         #[unsafe(method(initWithType:compactDescription:))]
@@ -3294,6 +3401,43 @@ impl XCTStorageMetric {
 /// Methods declared on superclass `NSObject`.
 impl XCTStorageMetric {
     extern_methods!(
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// A metric which measures the hitches encountered.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xcthitchmetric?language=objc)
+    #[unsafe(super(NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct XCTHitchMetric;
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for XCTHitchMetric {}
+);
+
+unsafe impl CopyingHelper for XCTHitchMetric {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for XCTHitchMetric {}
+);
+
+extern_conformance!(
+    unsafe impl XCTMetric for XCTHitchMetric {}
+);
+
+impl XCTHitchMetric {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new() -> Retained<Self>;
@@ -5018,6 +5162,26 @@ impl XCTMemoryMetric {
 
 /// UIAutomation.
 impl XCTStorageMetric {
+    extern_methods!(
+        #[cfg(feature = "objc2-xc-ui-automation")]
+        /// Creates a metric which will target the process described by the XCUIApplication instance.
+        ///
+        ///
+        /// Parameter `application`: An instance of XCUIApplication which will be targeted to gather measurements.
+        ///
+        ///
+        /// Returns: An initialized metric.
+        #[unsafe(method(initWithApplication:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithApplication(
+            this: Allocated<Self>,
+            application: &XCUIApplication,
+        ) -> Retained<Self>;
+    );
+}
+
+/// UIAutomation.
+impl XCTHitchMetric {
     extern_methods!(
         #[cfg(feature = "objc2-xc-ui-automation")]
         /// Creates a metric which will target the process described by the XCUIApplication instance.

@@ -47,18 +47,16 @@ impl SHRange {
         #[unsafe(method_family = none)]
         pub unsafe fn lowerBound(&self) -> c_double;
 
-        /// The upperBound of this time range, not included in this range
+        /// The range's upper bound.
         #[unsafe(method(upperBound))]
         #[unsafe(method_family = none)]
         pub unsafe fn upperBound(&self) -> c_double;
 
-        /// Convenience constructor for creating a range
+        /// Creates a range with the bounds you specify.
         ///
-        /// Parameter `lowerBound`: The lower bound of this range
-        ///
-        /// Parameter `upperBound`: The upper bound of this range
-        ///
-        /// Note: lowerBound should be less than or equal to upperBound
+        /// - Parameters:
+        /// - lowerBound: The lower bound of the range.
+        /// - upperBound: The upper bound of the range.
         #[unsafe(method(rangeWithLowerBound:upperBound:))]
         #[unsafe(method_family = none)]
         pub unsafe fn rangeWithLowerBound_upperBound(
@@ -66,13 +64,11 @@ impl SHRange {
             upper_bound: c_double,
         ) -> Retained<Self>;
 
-        /// Convenience constructor for creating a range
+        /// Creates a range with the bounds you specify.
         ///
-        /// Parameter `lowerBound`: The lower bound of this range
-        ///
-        /// Parameter `upperBound`: The upper bound of this range
-        ///
-        /// Note: lowerBound should be less than or equal to upperBound
+        /// - Parameters:
+        /// - lowerBound: The lower bound of the range.
+        /// - upperBound: The upper bound of the range.
         #[unsafe(method(initWithLowerBound:upperBound:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithLowerBound_upperBound(

@@ -281,6 +281,25 @@ unsafe impl RefEncode for UIImageDynamicRange {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uihdrheadroomusagelimit?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct UIHDRHeadroomUsageLimit(pub NSInteger);
+impl UIHDRHeadroomUsageLimit {
+    /// Headroom usage limits are not defined
+    #[doc(alias = "UIHDRHeadroomUsageLimitUnspecified")]
+    pub const Unspecified: Self = Self(-1);
+}
+
+unsafe impl Encode for UIHDRHeadroomUsageLimit {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIHDRHeadroomUsageLimit {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// UIColorSystemColors.
 #[cfg(feature = "UIColor")]
 impl UIColor {

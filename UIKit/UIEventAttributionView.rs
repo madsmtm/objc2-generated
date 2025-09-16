@@ -116,6 +116,10 @@ impl UIEventAttributionView {
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
+
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -123,10 +127,6 @@ impl UIEventAttributionView {
 #[cfg(all(feature = "UIResponder", feature = "UIView"))]
 impl UIEventAttributionView {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;

@@ -8,7 +8,7 @@ use crate::*;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlfunctionhandle?language=objc)
-    pub unsafe trait MTLFunctionHandle: NSObjectProtocol {
+    pub unsafe trait MTLFunctionHandle: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "MTLLibrary")]
         #[unsafe(method(functionType))]
         #[unsafe(method_family = none)]
@@ -22,5 +22,13 @@ extern_protocol!(
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
         fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+
+        #[cfg(feature = "MTLTypes")]
+        /// Handle of the GPU resource suitable for storing in an Intersection Function Buffer.
+        ///
+        /// The handle must have been created from an intersection function annotated with the `intersection_function_buffer` tag.
+        #[unsafe(method(gpuResourceID))]
+        #[unsafe(method_family = none)]
+        unsafe fn gpuResourceID(&self) -> MTLResourceID;
     }
 );

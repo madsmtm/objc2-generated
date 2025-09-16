@@ -661,6 +661,48 @@ impl IOUSBHostObject {
         #[unsafe(method_family = none)]
         pub unsafe fn frameNumberWithTime(&self, time: *mut IOUSBHostTime) -> u64;
 
+        #[cfg(feature = "IOUSBHostDefinitions")]
+        /// Return the current microframe number of the USB controller
+        ///
+        /// This method will return the current microframe number of the USB controller.
+        /// This is most useful for scheduling future isochronous requests.
+        ///
+        /// Parameter `time`: If not nil, this will be updated with system time associated with the microframe.
+        ///
+        /// Returns: The current microframe number. Returns 0 on failure, with NSError populated with the IOReturn error code.
+        ///
+        /// # Safety
+        ///
+        /// `time` must be a valid pointer or null.
+        #[unsafe(method(currentMicroframeWithTime:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn currentMicroframeWithTime_error(
+            &self,
+            time: *mut IOUSBHostTime,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> u64;
+
+        #[cfg(feature = "IOUSBHostDefinitions")]
+        /// Return a recent microframe number of the USB controller
+        ///
+        /// This method will return a recent microframe number of the USB controller.
+        /// This is most useful for scheduling future isochronous requests.
+        ///
+        /// Parameter `time`: If not nil, this will be updated with system time associated with the microframe.
+        ///
+        /// Returns: A recent microframe number. Returns 0 on failure, with NSError populated with the IOReturn error code.
+        ///
+        /// # Safety
+        ///
+        /// `time` must be a valid pointer or null.
+        #[unsafe(method(referenceMicroframeWithTime:error:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn referenceMicroframeWithTime_error(
+            &self,
+            time: *mut IOUSBHostTime,
+            error: Option<&mut Option<Retained<NSError>>>,
+        ) -> u64;
+
         /// Allocate a buffer to be used for I/O
         ///
         /// This method will allocate and map an IOBufferMemoryDescriptor optimized for use

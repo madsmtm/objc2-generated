@@ -275,6 +275,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialstoragechangednotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
+    #[deprecated = "Notification is never posted"]
     pub static NSURLCredentialStorageChangedNotification: &'static NSNotificationName;
 }
 

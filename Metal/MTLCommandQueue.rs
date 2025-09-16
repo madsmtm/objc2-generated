@@ -11,7 +11,7 @@ extern_protocol!(
     /// A serial queue of command buffers to be executed by the device.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandqueue?language=objc)
-    pub unsafe trait MTLCommandQueue: NSObjectProtocol {
+    pub unsafe trait MTLCommandQueue: NSObjectProtocol + Send + Sync {
         /// A string to help identify this object
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]

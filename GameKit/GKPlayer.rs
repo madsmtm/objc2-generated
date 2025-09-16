@@ -114,6 +114,9 @@ impl GKPlayer {
     extern_methods!(
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
+        /// Asynchronously load the player's photo. Error will be nil on success.
+        /// Possible reasons for error:
+        /// 1. Communications failure
         #[unsafe(method(loadPhotoForSize:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadPhotoForSize_withCompletionHandler(

@@ -90,6 +90,7 @@ impl CPSessionConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
             &self,
+            mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn CPSessionConfigurationDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
@@ -106,7 +107,9 @@ impl CPSessionConfiguration {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpsessionconfigurationdelegate?language=objc)
-    pub unsafe trait CPSessionConfigurationDelegate: NSObjectProtocol {
+    pub unsafe trait CPSessionConfigurationDelegate:
+        NSObjectProtocol + MainThreadOnly
+    {
         #[optional]
         #[unsafe(method(sessionConfiguration:limitedUserInterfacesChanged:))]
         #[unsafe(method_family = none)]

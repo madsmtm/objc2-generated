@@ -144,8 +144,8 @@ extern_protocol!(
         /// at any point before or during pattern playback.
         ///
         /// This rate factor scales the relative times of all events and parameters as they are played, as well as the
-        /// durations of Continuous events.  It does not affect the pitches of the events.  Any value greater than
-        /// 0.0 is valid; all others are ignored.
+        /// durations of Continuous events and the `loopEnd` time.  It does not affect the pitches of the events.
+        /// Any value greater than 0.0 is valid; all others are ignored.
         #[unsafe(method(playbackRate))]
         #[unsafe(method_family = none)]
         unsafe fn playbackRate(&self) -> c_float;

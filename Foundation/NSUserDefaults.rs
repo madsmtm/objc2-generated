@@ -378,6 +378,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitoususerdefaultsnocloudaccountnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
+    #[deprecated = "Notification is never posted"]
     pub static NSUbiquitousUserDefaultsNoCloudAccountNotification: &'static NSNotificationName;
 }
 
@@ -386,6 +387,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitoususerdefaultsdidchangeaccountsnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
+    #[deprecated = "Notification is never posted"]
     pub static NSUbiquitousUserDefaultsDidChangeAccountsNotification: &'static NSNotificationName;
 }
 
@@ -394,6 +396,7 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitoususerdefaultscompletedinitialsyncnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
+    #[deprecated = "Notification is never posted"]
     pub static NSUbiquitousUserDefaultsCompletedInitialSyncNotification:
         &'static NSNotificationName;
 }

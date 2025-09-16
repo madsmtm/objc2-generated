@@ -21,9 +21,9 @@ extern_protocol!(
     #[cfg(feature = "objc2")]
     pub unsafe trait VTFrameProcessorConfiguration: NSObjectProtocol + Send + Sync {
         /// Returns a Boolean indicating whether the processor supported on the current config.
-        #[unsafe(method(processorSupported))]
+        #[unsafe(method(isSupported))]
         #[unsafe(method_family = none)]
-        unsafe fn processorSupported() -> Boolean;
+        unsafe fn isSupported() -> bool;
 
         #[cfg(feature = "objc2-foundation")]
         /// Returns a list of supported pixel formats for the current configuration
@@ -47,7 +47,8 @@ extern_protocol!(
         /// This might not be thread-safe.
         #[unsafe(method(sourcePixelBufferAttributes))]
         #[unsafe(method_family = none)]
-        unsafe fn sourcePixelBufferAttributes(&self) -> Retained<NSDictionary>;
+        unsafe fn sourcePixelBufferAttributes(&self)
+            -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(feature = "objc2-foundation")]
         /// Returns a dictionary of CVPixelBuffer attributes which output frames passed to the processor must conform to.
@@ -59,7 +60,9 @@ extern_protocol!(
         /// This might not be thread-safe.
         #[unsafe(method(destinationPixelBufferAttributes))]
         #[unsafe(method_family = none)]
-        unsafe fn destinationPixelBufferAttributes(&self) -> Retained<NSDictionary>;
+        unsafe fn destinationPixelBufferAttributes(
+            &self,
+        ) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         /// returns the number of "next" frames that this processor requires for processing.
         ///
@@ -86,14 +89,14 @@ extern_protocol!(
         unsafe fn previousFrameCount(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-core-media")]
-        /// returns the maximum dimension for a sourceFrame for the processor
+        /// returns the maximum dimensions for a sourceFrame for the processor
         #[optional]
         #[unsafe(method(maximumDimensions))]
         #[unsafe(method_family = none)]
         unsafe fn maximumDimensions() -> CMVideoDimensions;
 
         #[cfg(feature = "objc2-core-media")]
-        /// returns the minimum dimension for a sourceFrame for the processor
+        /// returns the minimum dimensions for a sourceFrame for the processor
         #[optional]
         #[unsafe(method(minimumDimensions))]
         #[unsafe(method_family = none)]

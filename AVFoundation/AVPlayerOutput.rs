@@ -16,12 +16,17 @@ extern_class!(
     ///
     /// AVPlayerVideoOutput can be attached to an AVPlayer using AVPlayer's method addVideoOutput:
     /// Note:  An AVPlayerVideoOutput can only be attached to a single player at a time, attempting to attach to multiple player will result in an exception being thrown.
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayervideooutput?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerVideoOutput;
 );
+
+unsafe impl Send for AVPlayerVideoOutput {}
+
+unsafe impl Sync for AVPlayerVideoOutput {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerVideoOutput {}
@@ -324,11 +329,17 @@ impl AVVideoOutputSpecification {
 extern_class!(
     /// An AVPlayerVideoOutputConfiguration carries an identifier for the AVPlayerItem the configuration is associated with as well as presentation settings for that item.
     ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayervideooutputconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerVideoOutputConfiguration;
 );
+
+unsafe impl Send for AVPlayerVideoOutputConfiguration {}
+
+unsafe impl Sync for AVPlayerVideoOutputConfiguration {}
 
 extern_conformance!(
     unsafe impl NSObjectProtocol for AVPlayerVideoOutputConfiguration {}
@@ -348,6 +359,12 @@ impl AVPlayerVideoOutputConfiguration {
         /// The AVPlayerItem which is the source of this configuration.
         ///
         /// This AVPlayerItem can be seen as the source of all samples this configuration vended alongside.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(sourcePlayerItem))]
         #[unsafe(method_family = none)]
         pub unsafe fn sourcePlayerItem(
@@ -358,6 +375,12 @@ impl AVPlayerVideoOutputConfiguration {
         /// List of data channels, represented as CMTagCollections, selected for this configuration.
         ///
         /// Returns an Array of CMTagCollections
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(dataChannelDescriptions))]
         #[unsafe(method_family = none)]
         pub unsafe fn dataChannelDescriptions(&self) -> Retained<NSArray>;
@@ -366,12 +389,24 @@ impl AVPlayerVideoOutputConfiguration {
         /// The preferred transformation of the visual media data vended with this configuration. This transformation is acquired from the AVAssetTrack that was used to source the media data accompanying this configuration.
         ///
         /// If no transform was specified by the source track a default value of CGAffineTransformIdentity is returned.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(preferredTransform))]
         #[unsafe(method_family = none)]
         pub unsafe fn preferredTransform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-media")]
         /// Host time when this configuration became active on the player the vending output is attached to.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(activationTime))]
         #[unsafe(method_family = none)]
         pub unsafe fn activationTime(&self) -> CMTime;

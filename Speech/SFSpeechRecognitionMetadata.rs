@@ -8,7 +8,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata?language=objc)
+    /// The metadata of speech in the audio of a speech recognition request.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechRecognitionMetadata;
@@ -36,23 +38,28 @@ extern_conformance!(
 
 impl SFSpeechRecognitionMetadata {
     extern_methods!(
+        /// The number of words spoken per minute.
         #[unsafe(method(speakingRate))]
         #[unsafe(method_family = none)]
         pub unsafe fn speakingRate(&self) -> c_double;
 
+        /// The average pause duration between words, measured in seconds.
         #[unsafe(method(averagePauseDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn averagePauseDuration(&self) -> NSTimeInterval;
 
+        /// The start timestamp of speech in the audio.
         #[unsafe(method(speechStartTimestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn speechStartTimestamp(&self) -> NSTimeInterval;
 
+        /// The duration in seconds of speech in the audio.
         #[unsafe(method(speechDuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn speechDuration(&self) -> NSTimeInterval;
 
         #[cfg(feature = "SFVoiceAnalytics")]
+        /// An analysis of the transcription segment's vocal properties.
         #[unsafe(method(voiceAnalytics))]
         #[unsafe(method_family = none)]
         pub unsafe fn voiceAnalytics(&self) -> Option<Retained<SFVoiceAnalytics>>;

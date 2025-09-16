@@ -43,6 +43,7 @@ extern_class!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnavigationsession?language=objc)
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPNavigationSession;
 );
@@ -59,7 +60,7 @@ impl CPNavigationSession {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Pause the current trip.
         ///

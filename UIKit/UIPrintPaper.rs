@@ -11,7 +11,6 @@ use crate::*;
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintpaper?language=objc)
     #[unsafe(super(NSObject))]
-    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPrintPaper;
 );
@@ -28,7 +27,6 @@ impl UIPrintPaper {
         pub unsafe fn bestPaperForPageSize_withPapersFromArray(
             content_size: CGSize,
             paper_list: &NSArray<UIPrintPaper>,
-            mtm: MainThreadMarker,
         ) -> Retained<UIPrintPaper>;
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -52,7 +50,7 @@ impl UIPrintPaper {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     );
 }
 

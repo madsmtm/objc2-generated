@@ -733,6 +733,36 @@ extern "C" {
 }
 
 extern "C" {
+    /// A value of type `kCMMetadataBaseDataType_UInt8` indicating whether this movie is intended as a Cinematic Video (1) or not (0).
+    ///
+    /// This movie-level metadata is automatically added (with a value of 1) to a movie recorded using the Cinematic Video API. Clients can override it with a value of 0 to signal that this movie is not to be treated as a Cinematic Video by Apple's software like Photos.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacinematicvideointent?language=objc)
+    pub static AVMetadataIdentifierQuickTimeMetadataCinematicVideoIntent:
+        Option<&'static AVMetadataIdentifier>;
+}
+
+extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating the lens model (e.g. "iPhone 16 Pro back camera 6.765mm f/1.78").
+    ///
+    /// This is track-level metadata for video track that is associated with the camera.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacameralensmodel?language=objc)
+    pub static AVMetadataIdentifierQuickTimeMetadataCameraLensModel:
+        Option<&'static AVMetadataIdentifier>;
+}
+
+extern "C" {
+    /// A value of type kCMMetadataBaseDataType_UTF8 indicating focal length normalized to the 35mm film equivalent value (e.g. "50.00mm").
+    ///
+    /// This is track-level metadata for video track that is associated with the camera.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacamerafocallength35mmequivalent?language=objc)
+    pub static AVMetadataIdentifierQuickTimeMetadataCameraFocalLength35mmEquivalent:
+        Option<&'static AVMetadataIdentifier>;
+}
+
+extern "C" {
     /// A value of type kCMMetadataBaseDataType_UInt8 indicating whether this Live Photo movie was captured in "Auto" mode.
     ///
     /// Clients capturing LivePhoto content may add this movie-level metadata to signify that the movie content should only be used (when swiping between photos, or force-touching a photo) if it's sufficiently dynamic. For instance, photos of static scenes or documents are to be excluded from the Live Photo experience.
@@ -766,7 +796,7 @@ extern "C" {
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_Float32.
     ///
-    /// The video may be scored by a heuristic which considers factors such as exposure and focus.  The value ranges from 0-1, where a score below 0.5 indicates the asset has serious flaws.
+    /// The video may be scored by a heuristic which considers factors such as exposure and focus. The value ranges from 0-1, where a score below 0.5 indicates the asset has serious flaws.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataspatialovercapturequalityscore?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScore:
@@ -790,6 +820,25 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalocationhorizontalaccuracyinmeters?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLocationHorizontalAccuracyInMeters:
+        Option<&'static AVMetadataIdentifier>;
+}
+
+extern "C" {
+    /// A value of type kCMMetadataBaseDataType_RawData
+    ///
+    /// The static presentation metadata, Apple Immersive Media Embedded (AIME), for Apple Immersive Video that originates from ImmersiveMediaSupport framework's VenueDescriptor.aimeData.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataaimedata?language=objc)
+    pub static AVMetadataIdentifierQuickTimeMetadataAIMEData: Option<&'static AVMetadataIdentifier>;
+}
+
+extern "C" {
+    /// A value of type kCMMetadataBaseDataType_RawData
+    ///
+    /// The presentation timed metadata for Apple Immerisve Video. Value is a JSON-encoding of ImmersiveMediaSupport framework's PresentationDescriptor object.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatapresentationimmersivemedia?language=objc)
+    pub static AVMetadataIdentifierQuickTimeMetadataPresentationImmersiveMedia:
         Option<&'static AVMetadataIdentifier>;
 }
 

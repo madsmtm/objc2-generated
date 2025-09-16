@@ -69,6 +69,23 @@ impl PKStrokePoint {
         ) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// Create a new point with the provided properties.
+        #[unsafe(method(initWithLocation:timeOffset:size:opacity:force:azimuth:altitude:secondaryScale:threshold:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithLocation_timeOffset_size_opacity_force_azimuth_altitude_secondaryScale_threshold(
+            this: Allocated<Self>,
+            location: CGPoint,
+            time_offset: NSTimeInterval,
+            size: CGSize,
+            opacity: CGFloat,
+            force: CGFloat,
+            azimuth: CGFloat,
+            altitude: CGFloat,
+            secondary_scale: CGFloat,
+            threshold: CGFloat,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-core-foundation")]
         /// Location of the point.
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
@@ -116,6 +133,15 @@ impl PKStrokePoint {
         #[unsafe(method(secondaryScale))]
         #[unsafe(method_family = none)]
         pub unsafe fn secondaryScale(&self) -> CGFloat;
+
+        #[cfg(feature = "objc2-core-foundation")]
+        /// The threshold for clipping the stroke rendering.
+        ///
+        /// When rendering only pixels with an alpha greater than the threshold are drawn. A threshold of 0 has no affect on rendering,
+        /// a threshold of 1 does not draw anything. Thresholds are only used for some inks, eg. `PKInkIdentifierReed`.
+        #[unsafe(method(threshold))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn threshold(&self) -> CGFloat;
     );
 }
 

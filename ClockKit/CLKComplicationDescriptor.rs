@@ -13,6 +13,10 @@ extern_class!(
     pub struct CLKComplicationDescriptor;
 );
 
+unsafe impl Send for CLKComplicationDescriptor {}
+
+unsafe impl Sync for CLKComplicationDescriptor {}
+
 extern_conformance!(
     unsafe impl NSObjectProtocol for CLKComplicationDescriptor {}
 );
@@ -20,28 +24,58 @@ extern_conformance!(
 impl CLKComplicationDescriptor {
     extern_methods!(
         /// Identifies this complication.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
 
         /// The display name for this complication.
         /// This will be displayed when editing complications of a watch face.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(displayName))]
         #[unsafe(method_family = none)]
         pub unsafe fn displayName(&self) -> Retained<NSString>;
 
         /// An array of `CLKComplicationFamily`s that this complication supports.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(supportedFamilies))]
         #[unsafe(method_family = none)]
         pub unsafe fn supportedFamilies(&self) -> Retained<NSArray<NSNumber>>;
 
         /// An optional dictionary that can be used to pass information back to your extension via CLKComplication.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
         pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// An optional user activity that can be used to pass information back to your extension via CLKComplication.
         /// This activity will be used to launch your app when the complication is tapped on.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
         #[unsafe(method(userActivity))]
         #[unsafe(method_family = none)]
         pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;

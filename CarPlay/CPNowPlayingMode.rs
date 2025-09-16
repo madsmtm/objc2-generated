@@ -11,6 +11,7 @@ use crate::*;
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingmode?language=objc)
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPNowPlayingMode;
 );
@@ -34,7 +35,7 @@ impl CPNowPlayingMode {
         /// the shared system now playing info center.
         #[unsafe(method(defaultNowPlayingMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultNowPlayingMode() -> Retained<CPNowPlayingMode>;
+        pub unsafe fn defaultNowPlayingMode(mtm: MainThreadMarker) -> Retained<CPNowPlayingMode>;
     );
 }
 
@@ -47,7 +48,7 @@ impl CPNowPlayingMode {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -57,6 +58,7 @@ extern_class!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingmodesports?language=objc)
     #[unsafe(super(CPNowPlayingMode, NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPNowPlayingModeSports;
 );
@@ -151,7 +153,7 @@ impl CPNowPlayingModeSports {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -161,6 +163,7 @@ extern_class!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingsportsteam?language=objc)
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPNowPlayingSportsTeam;
 );
@@ -257,7 +260,7 @@ impl CPNowPlayingSportsTeam {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -266,6 +269,7 @@ extern_class!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingsportseventstatus?language=objc)
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPNowPlayingSportsEventStatus;
 );
@@ -349,7 +353,7 @@ impl CPNowPlayingSportsEventStatus {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -363,6 +367,7 @@ extern_class!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingsportsclock?language=objc)
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPNowPlayingSportsClock;
 );
@@ -432,7 +437,7 @@ impl CPNowPlayingSportsClock {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -442,6 +447,7 @@ extern_class!(
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpnowplayingsportsteamlogo?language=objc)
     #[unsafe(super(NSObject))]
+    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CPNowPlayingSportsTeamLogo;
 );
@@ -499,6 +505,6 @@ impl CPNowPlayingSportsTeamLogo {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

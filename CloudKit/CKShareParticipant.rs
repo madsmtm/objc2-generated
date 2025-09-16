@@ -57,12 +57,7 @@ unsafe impl RefEncode for CKShareParticipantPermission {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// The participant type determines whether a participant can modify the list of participants on a share.
-///
-///
-/// - Owners can add private users
-/// - Private users can access the share
-/// - Public users are "self-added" when the participant accesses the shareURL.  Owners cannot add public users.
+/// Shares with ``.administrator`` participants will be returned as read-only to devices running OS versions prior to the ``.administrator`` role being introduced. The ``.administrator`` participants on these read-only shares will be returned as ``.privateUser``.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantrole?language=objc)
 // NS_ENUM
@@ -78,6 +73,8 @@ impl CKShareParticipantRole {
     pub const PrivateUser: Self = Self(3);
     #[doc(alias = "CKShareParticipantRolePublicUser")]
     pub const PublicUser: Self = Self(4);
+    #[doc(alias = "CKShareParticipantRoleAdministrator")]
+    pub const Administrator: Self = Self(2);
 }
 
 unsafe impl Encode for CKShareParticipantRole {
@@ -90,22 +87,17 @@ unsafe impl RefEncode for CKShareParticipantRole {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipanttype?language=objc)
 // NS_ENUM
-#[deprecated]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CKShareParticipantType(pub NSInteger);
 impl CKShareParticipantType {
     #[doc(alias = "CKShareParticipantTypeUnknown")]
-    #[deprecated]
     pub const Unknown: Self = Self(0);
     #[doc(alias = "CKShareParticipantTypeOwner")]
-    #[deprecated]
     pub const Owner: Self = Self(1);
     #[doc(alias = "CKShareParticipantTypePrivateUser")]
-    #[deprecated]
     pub const PrivateUser: Self = Self(3);
     #[doc(alias = "CKShareParticipantTypePublicUser")]
-    #[deprecated]
     pub const PublicUser: Self = Self(4);
 }
 
@@ -173,15 +165,12 @@ impl CKShareParticipant {
         #[unsafe(method_family = none)]
         pub unsafe fn setRole(&self, role: CKShareParticipantRole);
 
-        /// The default participant type is
-        /// `CKShareParticipantTypePrivateUser.`
-        #[deprecated]
+        /// The default participant type is ``CKShareParticipantTypePrivateUser``.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
         pub unsafe fn r#type(&self) -> CKShareParticipantType;
 
         /// Setter for [`type`][Self::type].
-        #[deprecated]
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setType(&self, r#type: CKShareParticipantType);
@@ -205,5 +194,31 @@ impl CKShareParticipant {
         #[unsafe(method(participantID))]
         #[unsafe(method_family = none)]
         pub unsafe fn participantID(&self) -> Retained<NSString>;
+
+        /// `YES` if this participant was a requester before getting added to the share
+        #[unsafe(method(isApprovedRequester))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isApprovedRequester(&self) -> bool;
+
+        /// The timestamp when the participant was added, set when the share is saved to the server.
+        #[unsafe(method(dateAddedToShare))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn dateAddedToShare(&self) -> Option<Retained<NSDate>>;
+
+        /// Generate a unique URL for inviting a participant without knowing their handle
+        ///
+        ///
+        /// When a participant's email address / phone number / userRecordID isn't known up-front, a
+        /// `oneTimeURLParticipant`can be added
+        /// to the share. Once the share is saved, a custom invitation link is available for that
+        /// `oneTimeURLParticipant.`The link is accessed via `-[CKShare oneTimeURLForParticipantID]:)`.
+        /// This custom link can be used by any recipient user to fetch share metadata and accept the share.
+        ///
+        /// Note that a one-time URL participant in the
+        /// `CKShareParticipantAcceptanceStatusPending`state has empty `CKUserIdentity.nameComponents`
+        /// and a nil `CKUserIdentity.lookupInfo`.
+        #[unsafe(method(oneTimeURLParticipant))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn oneTimeURLParticipant() -> Retained<Self>;
     );
 }

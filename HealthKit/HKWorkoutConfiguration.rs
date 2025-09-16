@@ -86,13 +86,13 @@ impl HKWorkoutConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setLocationType(&self, location_type: HKWorkoutSessionLocationType);
 
-        #[cfg(feature = "HKMetadata")]
+        #[cfg(feature = "HKMetadataEnums")]
         /// Indicates the type of swimming location (pool vs. open water) where the workout will take place.
         #[unsafe(method(swimmingLocationType))]
         #[unsafe(method_family = none)]
         pub unsafe fn swimmingLocationType(&self) -> HKWorkoutSwimmingLocationType;
 
-        #[cfg(feature = "HKMetadata")]
+        #[cfg(feature = "HKMetadataEnums")]
         /// Setter for [`swimmingLocationType`][Self::swimmingLocationType].
         #[unsafe(method(setSwimmingLocationType:))]
         #[unsafe(method_family = none)]

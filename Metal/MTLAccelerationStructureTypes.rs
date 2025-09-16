@@ -113,3 +113,32 @@ unsafe impl Encode for MTLComponentTransform {
 unsafe impl RefEncode for MTLComponentTransform {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
+
+/// A struct representing a range of a Metal buffer. The offset into the buffer is included in the address.
+/// The length is generally optional, which a value of (uint64_t)-1 representing the range from the given address to
+/// the end of the buffer. However, providing the length can enable more accurate API validation, especially when
+/// sub-allocating ranges of a buffer.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4bufferrange?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTL4BufferRange {
+    /// Buffer address returned by the gpuAddress property of an MTLBuffer plus any offset into the buffer
+    pub bufferAddress: u64,
+    /// Length of the region which begins at the given address. If the length is not known, a value of
+    /// (uint64_t)-1 represents the range from the given address to the end of the buffer.
+    pub length: u64,
+}
+
+unsafe impl Encode for MTL4BufferRange {
+    const ENCODING: Encoding =
+        Encoding::Struct("MTL4BufferRange", &[<u64>::ENCODING, <u64>::ENCODING]);
+}
+
+unsafe impl RefEncode for MTL4BufferRange {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+impl MTL4BufferRange {
+    // TODO: pub fn MTL4BufferRangeMake(buffer_address: u64,length: u64,) -> MTL4BufferRange;
+}

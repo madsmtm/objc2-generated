@@ -102,6 +102,37 @@ impl cp_layer_renderer_configuration_error_code {
     /// than the supported value.
     #[doc(alias = "cp_layer_renderer_configuration_error_code_unsupported_near_plane_distance")]
     pub const unsupported_near_plane_distance: Self = Self(-104);
+    /// An error that indicates the layer doesn’t support the current
+    /// pixel format for tracking areas textures.
+    ///
+    /// Compare the value the ``cp_layer_renderer_configuration_get_tracking_areas_format``
+    /// function returns and make sure it matches one of the values the
+    /// ``cp_layer_renderer_capabilities_supported_tracking_areas_format`` function returns.
+    #[doc(alias = "cp_layer_renderer_configuration_error_code_unsupported_tracking_areas_format")]
+    pub const unsupported_tracking_areas_format: Self = Self(-21);
+    /// An error that indicates the layer doesn’t support the current
+    /// texture usage for tracking areas textures.
+    ///
+    /// Compare the value the ``cp_layer_renderer_configuration_get_tracking_areas_usage``
+    /// function returns and make sure it has at least `MTLTextureUsageShaderRead`
+    /// and does not contain `MTLTextureUsageShaderAtomic`
+    #[doc(alias = "cp_layer_renderer_configuration_error_code_unsupported_tracking_areas_usage")]
+    pub const unsupported_tracking_areas_usage: Self = Self(-22);
+    /// An error that indicates the layer doesn't support the current
+    /// pixel format for stencil texture.
+    ///
+    /// Compare the value the ``cp_layer_renderer_configuration_get_drawable_render_context_stencil_format``
+    /// function returns and make sure it matches one of the values the
+    /// ``cp_layer_renderer_capabilities_drawable_render_context_supported_stencil_format`` function returns.
+    #[doc(
+        alias = "cp_layer_renderer_configuration_error_code_unsupported_drawable_render_context_stencil_format"
+    )]
+    pub const unsupported_drawable_render_context_stencil_format: Self = Self(-23);
+    /// An error that indicates the configuration's render quality is unsupported.
+    /// This could be because foveation is disabled or the quality is outside of the valid range of [0, 1],
+    /// the error `userInfo` will contain additional information.
+    #[doc(alias = "cp_layer_renderer_configuration_error_code_unsupported_render_quality")]
+    pub const unsupported_render_quality: Self = Self(-18);
 }
 
 #[cfg(feature = "objc2-core-foundation")]

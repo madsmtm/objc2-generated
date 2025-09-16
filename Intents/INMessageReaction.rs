@@ -7,9 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An object that describes a reaction to a message.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagereaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmessagereaction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INMessageReaction;
@@ -38,12 +36,6 @@ extern_conformance!(
 impl INMessageReaction {
     extern_methods!(
         #[cfg(feature = "INMessageReactionType")]
-        /// Creates an INMessageReaction
-        ///
-        /// - Parameters:
-        /// - reactionType: The type of message reaction.
-        /// - reactionDescription: Text that describes the reaction.
-        /// - emoji: The single emoji character used for an emoji reaction.
         #[unsafe(method(initWithReactionType:reactionDescription:emoji:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithReactionType_reactionDescription_emoji(
@@ -54,7 +46,6 @@ impl INMessageReaction {
         ) -> Retained<Self>;
 
         #[cfg(feature = "INMessageReactionType")]
-        /// The type of reaction.
         #[unsafe(method(reactionType))]
         #[unsafe(method_family = none)]
         pub unsafe fn reactionType(&self) -> INMessageReactionType;
@@ -63,7 +54,6 @@ impl INMessageReaction {
         #[unsafe(method_family = none)]
         pub unsafe fn reactionDescription(&self) -> Option<Retained<NSString>>;
 
-        /// The emoji used to react.
         #[unsafe(method(emoji))]
         #[unsafe(method_family = none)]
         pub unsafe fn emoji(&self) -> Option<Retained<NSString>>;

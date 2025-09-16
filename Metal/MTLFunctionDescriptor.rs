@@ -39,6 +39,11 @@ bitflags::bitflags! {
 /// - The function has not been found in the archive
         #[doc(alias = "MTLFunctionOptionFailOnBinaryArchiveMiss")]
         const FailOnBinaryArchiveMiss = 1<<2;
+/// Compiles the function to have its function handles return a constant MTLResourceID across
+/// all pipeline states. The function needs to be linked to the pipeline that will use this function.
+/// This function option can only be used for functions that are compiled with `MTLFunctionOptionCompileToBinary`.
+        #[doc(alias = "MTLFunctionOptionPipelineIndependent")]
+        const PipelineIndependent = 1<<3;
     }
 }
 

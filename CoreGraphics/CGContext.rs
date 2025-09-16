@@ -1129,6 +1129,29 @@ impl CGContext {
         unsafe { CGContextDrawImageApplyingToneMapping(self, r, image, method, options) }
     }
 
+    #[doc(alias = "CGContextGetContentToneMappingInfo")]
+    #[cfg(feature = "CGToneMapping")]
+    #[inline]
+    pub unsafe fn content_tone_mapping_info(&self) -> CGContentToneMappingInfo {
+        extern "C-unwind" {
+            fn CGContextGetContentToneMappingInfo(c: &CGContext) -> CGContentToneMappingInfo;
+        }
+        unsafe { CGContextGetContentToneMappingInfo(self) }
+    }
+
+    /// # Safety
+    ///
+    /// `info` struct field 2 must be a valid pointer.
+    #[doc(alias = "CGContextSetContentToneMappingInfo")]
+    #[cfg(feature = "CGToneMapping")]
+    #[inline]
+    pub unsafe fn set_content_tone_mapping_info(&self, info: CGContentToneMappingInfo) {
+        extern "C-unwind" {
+            fn CGContextSetContentToneMappingInfo(c: &CGContext, info: CGContentToneMappingInfo);
+        }
+        unsafe { CGContextSetContentToneMappingInfo(self, info) }
+    }
+
     #[doc(alias = "CGContextGetInterpolationQuality")]
     #[inline]
     pub unsafe fn interpolation_quality(c: Option<&CGContext>) -> CGInterpolationQuality {
@@ -1418,6 +1441,15 @@ impl CGContext {
             fn CGContextSynchronize(c: Option<&CGContext>);
         }
         unsafe { CGContextSynchronize(c) }
+    }
+
+    #[doc(alias = "CGContextSynchronizeAttributes")]
+    #[inline]
+    pub unsafe fn synchronize_attributes(&self) {
+        extern "C-unwind" {
+            fn CGContextSynchronizeAttributes(c: &CGContext);
+        }
+        unsafe { CGContextSynchronizeAttributes(self) }
     }
 
     #[doc(alias = "CGContextSetShouldAntialias")]
@@ -2251,6 +2283,18 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
+    #[cfg(feature = "CGToneMapping")]
+    #[deprecated = "renamed to `CGContext::content_tone_mapping_info`"]
+    pub fn CGContextGetContentToneMappingInfo(c: &CGContext) -> CGContentToneMappingInfo;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "CGToneMapping")]
+    #[deprecated = "renamed to `CGContext::set_content_tone_mapping_info`"]
+    pub fn CGContextSetContentToneMappingInfo(c: &CGContext, info: CGContentToneMappingInfo);
+}
+
+extern "C-unwind" {
     #[deprecated = "renamed to `CGContext::interpolation_quality`"]
     pub fn CGContextGetInterpolationQuality(c: Option<&CGContext>) -> CGInterpolationQuality;
 }
@@ -2395,6 +2439,11 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[deprecated = "renamed to `CGContext::synchronize`"]
     pub fn CGContextSynchronize(c: Option<&CGContext>);
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `CGContext::synchronize_attributes`"]
+    pub fn CGContextSynchronizeAttributes(c: &CGContext);
 }
 
 extern "C-unwind" {

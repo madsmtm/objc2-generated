@@ -7,6 +7,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// struct containing arguments for intersection function buffers.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionbufferarguments?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct MTLIntersectionFunctionBufferArguments {
+    /// The GPU resource ID of the buffer containing intersection-function handles.
+    /// Required to be aligned to 8 bytes.
+    pub intersectionFunctionBuffer: u64,
+    /// The maximum range in bytes of intersectionFunctionBuffer that can be used
+    /// for ray tracing.
+    pub intersectionFunctionBufferSize: u64,
+    /// The stride between intersection function entries in intersectionFunctionBuffer.
+    /// The stride needs to be either 0 or aligned to 8 bytes. Note that only the first 12
+    /// bits of this value are used by Metal.
+    pub intersectionFunctionStride: u64,
+}
+
+unsafe impl Encode for MTLIntersectionFunctionBufferArguments {
+    const ENCODING: Encoding =
+        Encoding::Struct("?", &[<u64>::ENCODING, <u64>::ENCODING, <u64>::ENCODING]);
+}
+
+unsafe impl RefEncode for MTLIntersectionFunctionBufferArguments {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// Signature defining what data is provided to an intersection function. The signature
 /// must match across the shading language declaration of the intersection function table,
 /// intersection functions in the table, and the intersector using the table.
@@ -53,6 +80,12 @@ bitflags::bitflags! {
 /// as described in the Metal Shading Language Guide.
         #[doc(alias = "MTLIntersectionFunctionSignatureCurveData")]
         const CurveData = 1<<7;
+/// The intersection function will be used with intersection function buffers
+        #[doc(alias = "MTLIntersectionFunctionSignatureIntersectionFunctionBuffer")]
+        const IntersectionFunctionBuffer = 1<<8;
+/// The intersection function uses the intersection function buffer user_data pointer
+        #[doc(alias = "MTLIntersectionFunctionSignatureUserData")]
+        const UserData = 1<<9;
     }
 }
 

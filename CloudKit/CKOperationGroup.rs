@@ -67,6 +67,14 @@ extern_conformance!(
 );
 
 extern_conformance!(
+    unsafe impl NSCopying for CKOperationGroup {}
+);
+
+unsafe impl CopyingHelper for CKOperationGroup {
+    type Result = Self;
+}
+
+extern_conformance!(
     unsafe impl NSObjectProtocol for CKOperationGroup {}
 );
 

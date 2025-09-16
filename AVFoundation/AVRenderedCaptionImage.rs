@@ -15,6 +15,8 @@ extern_class!(
     ///
     /// Display scale is a property of the screen on which the client UI elements are displayed. This value defines the mapping between the logical coordinate space (measured in points) and the physical coordinate space (measured in pixels). Higher scale factors indicate that each point is represented by more than one pixel at render time. For example, if the display scale factor is 2.0 and the bounds of caption rectangle are 50 x 50 points, the size of the CVPixelBufferRef for the caption is 100 x 100 pixels. The client shall provide videoDisplaySize value in pixels only and the position value of the caption image shall also be returned in pixels only.
     ///
+    /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
+    ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avrenderedcaptionimage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]

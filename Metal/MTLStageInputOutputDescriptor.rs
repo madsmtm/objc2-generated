@@ -131,26 +131,6 @@ unsafe impl RefEncode for MTLAttributeFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindextype?language=objc)
-// NS_ENUM
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct MTLIndexType(pub NSUInteger);
-impl MTLIndexType {
-    #[doc(alias = "MTLIndexTypeUInt16")]
-    pub const UInt16: Self = Self(0);
-    #[doc(alias = "MTLIndexTypeUInt32")]
-    pub const UInt32: Self = Self(1);
-}
-
-unsafe impl Encode for MTLIndexType {
-    const ENCODING: Encoding = NSUInteger::ENCODING;
-}
-
-unsafe impl RefEncode for MTLIndexType {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstepfunction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
@@ -430,10 +410,12 @@ impl MTLStageInputOutputDescriptor {
         #[unsafe(method_family = none)]
         pub fn attributes(&self) -> Retained<MTLAttributeDescriptorArray>;
 
+        #[cfg(feature = "MTLArgument")]
         #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
         pub fn indexType(&self) -> MTLIndexType;
 
+        #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]

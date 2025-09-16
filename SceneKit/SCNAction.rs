@@ -44,6 +44,10 @@ extern_protocol!(
 
         #[cfg(feature = "block2")]
         /// Adds an identifiable action to the list of actions executed by the node. Your block is called when the action completes.
+        ///
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(runAction:forKey:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn runAction_forKey_completionHandler(
@@ -318,6 +322,9 @@ impl SCNAction {
         pub unsafe fn removeFromParentNode() -> Retained<SCNAction>;
 
         #[cfg(all(feature = "SCNNode", feature = "block2"))]
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(runBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock(
@@ -325,6 +332,9 @@ impl SCNAction {
         ) -> Retained<SCNAction>;
 
         #[cfg(all(feature = "SCNNode", feature = "block2", feature = "dispatch2"))]
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(runBlock:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock_queue(
@@ -344,6 +354,9 @@ impl SCNAction {
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
+        /// # Safety
+        ///
+        /// `block` block must be sendable.
         #[unsafe(method(customActionWithDuration:actionBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn customActionWithDuration_actionBlock(

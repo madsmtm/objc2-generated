@@ -12,7 +12,6 @@ use crate::*;
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintformatter?language=objc)
     #[unsafe(super(NSObject))]
-    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIPrintFormatter;
 );
@@ -124,14 +123,13 @@ impl UIPrintFormatter {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisimpletextprintformatter?language=objc)
     #[unsafe(super(UIPrintFormatter, NSObject))]
-    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UISimpleTextPrintFormatter;
 );
@@ -227,14 +225,13 @@ impl UISimpleTextPrintFormatter {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimarkuptextprintformatter?language=objc)
     #[unsafe(super(UIPrintFormatter, NSObject))]
-    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIMarkupTextPrintFormatter;
 );
@@ -282,14 +279,13 @@ impl UIMarkupTextPrintFormatter {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewprintformatter?language=objc)
     #[unsafe(super(UIPrintFormatter, NSObject))]
-    #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIViewPrintFormatter;
 );
@@ -311,7 +307,7 @@ impl UIViewPrintFormatter {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
-        pub unsafe fn view(&self) -> Retained<UIView>;
+        pub unsafe fn view(&self, mtm: MainThreadMarker) -> Retained<UIView>;
     );
 }
 
@@ -324,7 +320,7 @@ impl UIViewPrintFormatter {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     );
 }
 

@@ -102,13 +102,13 @@ impl MTLHeapDescriptor {
         #[unsafe(method_family = none)]
         pub fn setCpuCacheMode(&self, cpu_cache_mode: MTLCPUCacheMode);
 
-        #[cfg(feature = "MTLDevice")]
+        #[cfg(feature = "MTLResource")]
         /// The sparse page size to use for resources created from the heap.
         #[unsafe(method(sparsePageSize))]
         #[unsafe(method_family = none)]
         pub unsafe fn sparsePageSize(&self) -> MTLSparsePageSize;
 
-        #[cfg(feature = "MTLDevice")]
+        #[cfg(feature = "MTLResource")]
         /// Setter for [`sparsePageSize`][Self::sparsePageSize].
         #[unsafe(method(setSparsePageSize:))]
         #[unsafe(method_family = none)]
@@ -158,6 +158,28 @@ impl MTLHeapDescriptor {
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
         pub fn setType(&self, r#type: MTLHeapType);
+
+        #[cfg(feature = "MTLResource")]
+        /// Specifies the largest sparse page size that the Metal heap supports.
+        ///
+        /// This parameter only affects the heap if you set the ``type`` property of this descriptor
+        /// to ``MTLHeapType/MTLHeapTypePlacement``.
+        ///
+        /// The value you assign to this property determines the compatibility of the Metal heap with with placement sparse
+        /// resources, because placement sparse resources require that their sparse page size be less than or equal to the
+        /// placement sparse page of the Metal heap that this property controls.
+        #[unsafe(method(maxCompatiblePlacementSparsePageSize))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn maxCompatiblePlacementSparsePageSize(&self) -> MTLSparsePageSize;
+
+        #[cfg(feature = "MTLResource")]
+        /// Setter for [`maxCompatiblePlacementSparsePageSize`][Self::maxCompatiblePlacementSparsePageSize].
+        #[unsafe(method(setMaxCompatiblePlacementSparsePageSize:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMaxCompatiblePlacementSparsePageSize(
+            &self,
+            max_compatible_placement_sparse_page_size: MTLSparsePageSize,
+        );
     );
 }
 

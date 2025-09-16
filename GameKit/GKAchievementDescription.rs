@@ -92,6 +92,16 @@ impl GKAchievementDescription {
         #[unsafe(method(releaseState))]
         #[unsafe(method_family = none)]
         pub unsafe fn releaseState(&self) -> GKReleaseState;
+
+        /// The identifier of the game activity associated with this achievement, as configured by the developer in App Store Connect.
+        #[unsafe(method(activityIdentifier))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn activityIdentifier(&self) -> Retained<NSString>;
+
+        /// The properties when associating this achievement with a game activity, as configured by the developer in App Store Connect.
+        #[unsafe(method(activityProperties))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn activityProperties(&self) -> Retained<NSDictionary<NSString, NSString>>;
     );
 }
 

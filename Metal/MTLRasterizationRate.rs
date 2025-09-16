@@ -381,7 +381,7 @@ extern_protocol!(
     /// Use a rasterization rate map to reduce rendering quality in less-important or less-sampled regions of the framebuffer, such as the periphery of a VR/AR display or a far-away cascade of a shadow map.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrasterizationratemap?language=objc)
-    pub unsafe trait MTLRasterizationRateMap: NSObjectProtocol {
+    pub unsafe trait MTLRasterizationRateMap: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "MTLDevice")]
         /// Returns: The device on which the rasterization rate map was created
         #[unsafe(method(device))]

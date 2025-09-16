@@ -5,7 +5,15 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlallocation?language=objc)
+    /// Base class for Metal allocations.
+    ///
+    /// This protocol provides a common interface for adding Metal resources to ``MTLResidencySet`` instances. Call
+    /// ``MTLResidencySet/addAllocation:`` to add a Metal resource allocation to a residency set.
+    ///
+    /// <doc
+    /// :simplifying-gpu-resource-management-with-residency-sets.md>
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlallocation?language=objc)
     pub unsafe trait MTLAllocation: NSObjectProtocol {
         #[unsafe(method(allocatedSize))]
         #[unsafe(method_family = none)]

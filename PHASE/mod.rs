@@ -253,6 +253,8 @@ pub use self::__PHASETypes::PHASENormalizationMode;
 #[cfg(feature = "PHASETypes")]
 pub use self::__PHASETypes::PHASEPlaybackMode;
 #[cfg(feature = "PHASETypes")]
+pub use self::__PHASETypes::PHASERenderingMode;
+#[cfg(feature = "PHASETypes")]
 pub use self::__PHASETypes::PHASERenderingState;
 #[cfg(feature = "PHASETypes")]
 pub use self::__PHASETypes::PHASEReverbPreset;

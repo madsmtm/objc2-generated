@@ -252,6 +252,8 @@ pub use self::__CFAttributedString::CFAttributedStringGetLength;
 #[cfg(feature = "CFAttributedString")]
 pub use self::__CFAttributedString::CFAttributedStringGetMutableString;
 #[cfg(feature = "CFAttributedString")]
+pub use self::__CFAttributedString::CFAttributedStringGetStatisticalWritingDirections;
+#[cfg(feature = "CFAttributedString")]
 pub use self::__CFAttributedString::CFAttributedStringGetString;
 #[cfg(feature = "CFAttributedString")]
 pub use self::__CFAttributedString::CFAttributedStringRemoveAttribute;
@@ -966,11 +968,17 @@ pub use self::__CFFileSecurity::CFFileSecuritySetOwner;
 #[cfg(all(feature = "CFFileSecurity", feature = "CFUUID"))]
 pub use self::__CFFileSecurity::CFFileSecuritySetOwnerUUID;
 #[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFBanglaCalendar;
+#[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFBuddhistCalendar;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFChineseCalendar;
 #[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFDangiCalendar;
+#[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFGregorianCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFGujaratiCalendar;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFHebrewCalendar;
 #[cfg(feature = "CFLocale")]
@@ -987,6 +995,8 @@ pub use self::__CFLocale::kCFIslamicTabularCalendar;
 pub use self::__CFLocale::kCFIslamicUmmAlQuraCalendar;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFJapaneseCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFKannadaCalendar;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFLocaleAlternateQuotationBeginDelimiterKey;
 #[cfg(feature = "CFLocale")]
@@ -1030,9 +1040,23 @@ pub use self::__CFLocale::kCFLocaleUsesMetricSystem;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFLocaleVariantCode;
 #[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFMalayalamCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFMarathiCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFOdiaCalendar;
+#[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFPersianCalendar;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFRepublicOfChinaCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFTamilCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFTeluguCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFVietnameseCalendar;
+#[cfg(feature = "CFLocale")]
+pub use self::__CFLocale::kCFVikramCalendar;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::CFCalendarIdentifier;
 #[cfg(feature = "CFLocale")]
@@ -2688,6 +2712,8 @@ pub use self::__CFURL::kCFURLUbiquitousItemIsDownloadingKey;
 #[cfg(feature = "CFURL")]
 pub use self::__CFURL::kCFURLUbiquitousItemIsExcludedFromSyncKey;
 #[cfg(feature = "CFURL")]
+pub use self::__CFURL::kCFURLUbiquitousItemIsSyncPausedKey;
+#[cfg(feature = "CFURL")]
 pub use self::__CFURL::kCFURLUbiquitousItemIsUploadedKey;
 #[cfg(feature = "CFURL")]
 pub use self::__CFURL::kCFURLUbiquitousItemIsUploadingKey;
@@ -2695,6 +2721,8 @@ pub use self::__CFURL::kCFURLUbiquitousItemIsUploadingKey;
 pub use self::__CFURL::kCFURLUbiquitousItemPercentDownloadedKey;
 #[cfg(feature = "CFURL")]
 pub use self::__CFURL::kCFURLUbiquitousItemPercentUploadedKey;
+#[cfg(feature = "CFURL")]
+pub use self::__CFURL::kCFURLUbiquitousItemSupportedSyncControlsKey;
 #[cfg(feature = "CFURL")]
 pub use self::__CFURL::kCFURLUbiquitousItemUploadingErrorKey;
 #[cfg(feature = "CFURL")]
@@ -3436,6 +3464,27 @@ impl CFAllocator {
 
     /// # Safety
     ///
+    /// - `allocator` might not allow `None`.
+    /// - `zone` must be a valid pointer.
+    #[doc(alias = "CFAllocatorCreateWithZone")]
+    #[cfg(feature = "libc")]
+    #[inline]
+    pub unsafe fn with_zone(
+        allocator: Option<&CFAllocator>,
+        zone: *mut libc::malloc_zone_t,
+    ) -> Option<CFRetained<CFAllocator>> {
+        extern "C-unwind" {
+            fn CFAllocatorCreateWithZone(
+                allocator: Option<&CFAllocator>,
+                zone: *mut libc::malloc_zone_t,
+            ) -> Option<NonNull<CFAllocator>>;
+        }
+        let ret = unsafe { CFAllocatorCreateWithZone(allocator, zone) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// # Safety
+    ///
     /// `allocator` might not allow `None`.
     #[doc(alias = "CFAllocatorAllocateTyped")]
     #[inline]
@@ -3702,6 +3751,23 @@ pub unsafe extern "C-unwind" fn CFAllocatorCreate(
         ) -> Option<NonNull<CFAllocator>>;
     }
     let ret = unsafe { CFAllocatorCreate(allocator, context) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+#[cfg(feature = "libc")]
+#[deprecated = "renamed to `CFAllocator::with_zone`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CFAllocatorCreateWithZone(
+    allocator: Option<&CFAllocator>,
+    zone: *mut libc::malloc_zone_t,
+) -> Option<CFRetained<CFAllocator>> {
+    extern "C-unwind" {
+        fn CFAllocatorCreateWithZone(
+            allocator: Option<&CFAllocator>,
+            zone: *mut libc::malloc_zone_t,
+        ) -> Option<NonNull<CFAllocator>>;
+    }
+    let ret = unsafe { CFAllocatorCreateWithZone(allocator, zone) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 

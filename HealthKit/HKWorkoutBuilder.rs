@@ -121,6 +121,10 @@ impl HKWorkoutBuilder {
         /// Parameter `startDate`: The start date of the workout.
         ///
         /// Parameter `completion`: Called once data collection has started or has failed to start.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(beginCollectionWithStartDate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn beginCollectionWithStartDate_completion(
@@ -143,6 +147,10 @@ impl HKWorkoutBuilder {
         /// Parameter `completion`: Block to be called when the insertion is complete. If success is YES, the samples were added
         /// to the builder successfully. If success is NO, error will be non-nil and contain the error
         /// encountered while adding the new samples.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(addSamples:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSamples_completion(
@@ -163,6 +171,10 @@ impl HKWorkoutBuilder {
         /// Parameter `completion`: Block to be called when the addition of events to the builder is complete. If success is
         /// YES, the events were added to the builder successfully. If success is NO, error will be
         /// non-null and will contain the error encountered during the insertion operation.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(addWorkoutEvents:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addWorkoutEvents_completion(
@@ -187,7 +199,8 @@ impl HKWorkoutBuilder {
         ///
         /// # Safety
         ///
-        /// `metadata` generic should be of the correct type.
+        /// - `metadata` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(addMetadata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMetadata_completion(
@@ -208,6 +221,10 @@ impl HKWorkoutBuilder {
         /// Parameter `completion`: Block to be called when the addition of the activity to the builder is complete. If success is
         /// YES, the activity was added to the builder successfully. If success is NO, error will be
         /// non-null and will contain the error encountered during the insertion operation.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(addWorkoutActivity:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addWorkoutActivity_completion(
@@ -229,6 +246,10 @@ impl HKWorkoutBuilder {
         /// Parameter `completion`: Block to be called when the update of the end date on the activity is complete. If success is
         /// YES, the end date was set to the actvity successfully. If success is NO, error will be
         /// non-null and will contain the error encountered during the update operation.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(updateActivityWithUUID:endDate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateActivityWithUUID_endDate_completion(
@@ -257,7 +278,8 @@ impl HKWorkoutBuilder {
         ///
         /// # Safety
         ///
-        /// `metadata` generic should be of the correct type.
+        /// - `metadata` generic should be of the correct type.
+        /// - `completion` block must be sendable.
         #[unsafe(method(updateActivityWithUUID:addMedatata:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateActivityWithUUID_addMedatata_completion(
@@ -276,6 +298,10 @@ impl HKWorkoutBuilder {
         /// Parameter `endDate`: The end date of the workout.
         ///
         /// Parameter `completion`: Called once data collection has stopped or has failed to stop.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(endCollectionWithEndDate:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn endCollectionWithEndDate_completion(
@@ -297,6 +323,10 @@ impl HKWorkoutBuilder {
         /// workout is nil, an error may have occurred in which case error will be non-nil. If both
         /// workout and error are nil then finishing the workout succeeded but the workout sample
         /// is not available because the device is locked.
+        ///
+        /// # Safety
+        ///
+        /// `completion` block must be sendable.
         #[unsafe(method(finishWorkoutWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn finishWorkoutWithCompletion(

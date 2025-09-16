@@ -4612,6 +4612,8 @@ pub use self::__hid::kHIDUsage_LED_BatteryOK;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_BatteryOperation;
 #[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_LED_BlueLEDChannel;
+#[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_Busy;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_CAV;
@@ -4654,6 +4656,10 @@ pub use self::__hid::kHIDUsage_LED_Forward;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_GenericIndicator;
 #[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_LED_GoodStatus;
+#[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_LED_GreenLEDChannel;
+#[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_HeadSet;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_HighCutFilter;
@@ -4661,6 +4667,8 @@ pub use self::__hid::kHIDUsage_LED_HighCutFilter;
 pub use self::__hid::kHIDUsage_LED_Hold;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_IndicatorAmber;
+#[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_LED_IndicatorBlue;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_IndicatorFastBlink;
 #[cfg(feature = "hid")]
@@ -4672,11 +4680,15 @@ pub use self::__hid::kHIDUsage_LED_IndicatorOff;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_IndicatorOn;
 #[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_LED_IndicatorOrange;
+#[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_IndicatorRed;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_IndicatorSlowBlink;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_Kana;
+#[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_LED_LEDIntensity;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_LowCutFilter;
 #[cfg(feature = "hid")]
@@ -4724,11 +4736,15 @@ pub use self::__hid::kHIDUsage_LED_PlayerIndicator;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_Power;
 #[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_LED_RGB_LED;
+#[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_Ready;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_Record;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_RecordingFormatDetect;
+#[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_LED_RedLEDChannel;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_Remote;
 #[cfg(feature = "hid")]
@@ -4768,6 +4784,8 @@ pub use self::__hid::kHIDUsage_LED_Stop;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_SurroundOn;
 #[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_LED_SystemMicrophoneMute;
+#[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_SystemSuspend;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_ToneEnable;
@@ -4779,6 +4797,8 @@ pub use self::__hid::kHIDUsage_LED_UsageInUseIndicator;
 pub use self::__hid::kHIDUsage_LED_UsageIndicatorColor;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_LED_UsageMultiModeIndicator;
+#[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_LED_WarningStatus;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_MSR_DeviceReadOnly;
 #[cfg(feature = "hid")]
@@ -5288,6 +5308,8 @@ pub use self::__hid::kHIDUsage_Sim_WingFlaps;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Biometric;
 #[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_Snsr_Biometric_HeartRate;
+#[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Biometric_HumanPresence;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Biometric_HumanProximity;
@@ -5295,6 +5317,8 @@ pub use self::__hid::kHIDUsage_Snsr_Biometric_HumanProximity;
 pub use self::__hid::kHIDUsage_Snsr_Biometric_HumanTouch;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Data_Biometric;
+#[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_Snsr_Data_Biometric_HeartRate;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Data_Biometric_HumanPresence;
 #[cfg(feature = "hid")]
@@ -5808,6 +5832,8 @@ pub use self::__hid::kHIDUsage_Snsr_Motion_Accelerometer2D;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Motion_Accelerometer3D;
 #[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_Snsr_Motion_GravityVector;
+#[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Motion_Gyrometer;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Motion_Gyrometer1D;
@@ -5815,6 +5841,8 @@ pub use self::__hid::kHIDUsage_Snsr_Motion_Gyrometer1D;
 pub use self::__hid::kHIDUsage_Snsr_Motion_Gyrometer2D;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Motion_Gyrometer3D;
+#[cfg(feature = "hid")]
+pub use self::__hid::kHIDUsage_Snsr_Motion_LinearAccelerometer;
 #[cfg(feature = "hid")]
 pub use self::__hid::kHIDUsage_Snsr_Motion_MotionDetector;
 #[cfg(feature = "hid")]
@@ -6472,6 +6500,8 @@ pub use self::__hid::kIOHIDElementVendorSpecificKey;
 #[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDEventDriverHandlesReport;
 #[cfg(feature = "hid")]
+pub use self::__hid::kIOHIDEventServiceSensorControlOptionsKey;
+#[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDHeightKey;
 #[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDIdleTimeMicrosecondsKey;
@@ -6668,6 +6698,8 @@ pub use self::__hid::kIOHIDTransportI2CValue;
 #[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDTransportIAPValue;
 #[cfg(feature = "hid")]
+pub use self::__hid::kIOHIDTransportInductiveInBandValue;
+#[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDTransportKey;
 #[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDTransportSPIValue;
@@ -6677,6 +6709,8 @@ pub use self::__hid::kIOHIDTransportSPUValue;
 pub use self::__hid::kIOHIDTransportSerialValue;
 #[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDTransportUSBValue;
+#[cfg(feature = "hid")]
+pub use self::__hid::kIOHIDTransportVirtualValue;
 #[cfg(feature = "hid")]
 pub use self::__hid::kIOHIDUniqueIDKey;
 #[cfg(feature = "hid")]
@@ -6993,6 +7027,8 @@ pub use self::__hid::IOHIDReportType;
 pub use self::__hid::IOHIDReportWithTimeStampCallback;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDScrollEventOptions;
+#[cfg(feature = "hid")]
+pub use self::__hid::IOHIDServiceSensorControlOptions;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDStandardType;
 #[cfg(feature = "hid")]
@@ -8150,6 +8186,10 @@ pub use self::__pwr_mgt::kIOPMDriverAssertionCreatedTimeKey;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kIOPMDriverAssertionExternalMediaMountedBit;
 #[cfg(feature = "pwr_mgt")]
+pub use self::__pwr_mgt::kIOPMDriverAssertionForceFullWakeupBit;
+#[cfg(feature = "pwr_mgt")]
+pub use self::__pwr_mgt::kIOPMDriverAssertionForceWakeupBit;
+#[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kIOPMDriverAssertionIDKey;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kIOPMDriverAssertionLevelKey;
@@ -8430,6 +8470,8 @@ pub use self::__pwr_mgt::kIOPMStandbyBatteryThresholdKey;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kIOPMStaticPowerValid;
 #[cfg(feature = "pwr_mgt")]
+pub use self::__pwr_mgt::kIOPMSystemCapabilityAOT;
+#[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kIOPMSystemCapabilityAudio;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kIOPMSystemCapabilityCPU;
@@ -8585,6 +8627,8 @@ pub use self::__pwr_mgt::kPMSetClamshellSleepState;
 pub use self::__pwr_mgt::kPMSetDisplayPowerOn;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kPMSetDisplayState;
+#[cfg(feature = "pwr_mgt")]
+pub use self::__pwr_mgt::kPMSetLDMHibernationDisable;
 #[cfg(feature = "pwr_mgt")]
 pub use self::__pwr_mgt::kPMSetMaintenanceWakeCalendar;
 #[cfg(feature = "pwr_mgt")]

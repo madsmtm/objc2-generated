@@ -3,6 +3,8 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-avf-audio")]
+use objc2_avf_audio::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -101,6 +103,33 @@ impl PHASESoundEvent {
             handler: Option<&block2::DynBlock<dyn Fn(PHASESoundEventStartHandlerReason)>>,
         );
 
+        #[cfg(all(
+            feature = "PHASETypes",
+            feature = "block2",
+            feature = "objc2-avf-audio"
+        ))]
+        /// Start the sound event
+        ///
+        /// Parameter `when`: The desired start time based on the engine time retrieved from [PHASEEngine lastRenderTime]
+        /// If the sound event starts immediately with an audible sound, it will begin rendering at this time.  The sound event will otherwise begin operating at this time.
+        /// A nil value will start the sound event immediately
+        /// This time is not scaled by unitsPerSecond.
+        ///
+        /// Parameter `handler`: The block that will be called when the sound event has stopped.
+        ///
+        /// This function notifies the engine to start the sound event, then returns immediately.
+        /// Once the sound event is playing (or has failed to start), you will receive a callback via the completion.
+        /// Playback will begin at the requested time if the sound event has finished preparing in time.
+        /// You may wait for preparation to finish with the [PHASESoundEvent prepare:completion] method before calling startAtTime, to ensure that the sound event will start at the desired time.
+        /// However if the desired time is far enough into the future to allow for preparation to happen, you may skip calling prepare entirely and just call startAtTime.
+        #[unsafe(method(startAtTime:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn startAtTime_completion(
+            &self,
+            when: Option<&AVAudioTime>,
+            handler: Option<&block2::DynBlock<dyn Fn(PHASESoundEventStartHandlerReason)>>,
+        );
+
         #[cfg(all(feature = "PHASETypes", feature = "block2"))]
         /// Seeks all leaf nodes in a PHASESoundEvent to a specified time relative to the start of the sound event.
         ///
@@ -119,6 +148,36 @@ impl PHASESoundEvent {
             handler: Option<&block2::DynBlock<dyn Fn(PHASESoundEventSeekHandlerReason)>>,
         );
 
+        #[cfg(all(
+            feature = "PHASETypes",
+            feature = "block2",
+            feature = "objc2-avf-audio"
+        ))]
+        /// Seeks all leaf nodes in a PHASESoundEvent to the specified time, and automatically resumes playback at the specified engine time.
+        ///
+        /// Parameter `time`: The desired time position in seconds to seek the nodes to.
+        ///
+        /// Parameter `engineTime`: The engine time to resume playback.
+        ///
+        /// Parameter `handler`: The completion callback that will be called when seeking is complete.
+        ///
+        /// This is a low latency convenience method that allows for tight deadlines to be met.  However if the seek fails the node state will not be changed.  You should check the callback and handle the failure appropriately.
+        /// The time parameter will seek the nodes to the equivalent sample position based on the sample rate of the asset.
+        /// The engineTime parameter is the engine timestamp to resume rendering at, based off of [PHASEEngine lastRenderTime].
+        /// If any leaf nodes do not support seeking, those nodes will ignore this command.
+        /// Nodes that have finished playing or have stopped will not seek.
+        /// The time parameter is in seconds and will be scaled by unitsPerSecond.
+        /// The time in the AVAudioTime structure is not scaled by unitsPerSecond.
+        /// The engineTime parameter will use the sample time if valid, if not, then the host time if valid.
+        #[unsafe(method(seekToTime:resumeAtEngineTime:completion:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn seekToTime_resumeAtEngineTime_completion(
+            &self,
+            time: c_double,
+            engine_time: &AVAudioTime,
+            handler: Option<&block2::DynBlock<dyn Fn(PHASESoundEventSeekHandlerReason)>>,
+        );
+
         /// Pause the sound event.
         #[unsafe(method(pause))]
         #[unsafe(method_family = none)]
@@ -128,6 +187,17 @@ impl PHASESoundEvent {
         #[unsafe(method(resume))]
         #[unsafe(method_family = none)]
         pub unsafe fn resume(&self);
+
+        #[cfg(feature = "objc2-avf-audio")]
+        /// Resume the sound event at a specific time
+        ///
+        /// Parameter `time`: The desired start time based on the engine time retrieved from [PHASEEngine lastRenderTime]
+        ///
+        /// A nil time parameter will resume immediately.
+        /// The device time is not scaled by UnitsPerSecond and is in seconds.
+        #[unsafe(method(resumeAtTime:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn resumeAtTime(&self, time: Option<&AVAudioTime>);
 
         /// stop and invalidate the sound event
         #[unsafe(method(stopAndInvalidate))]

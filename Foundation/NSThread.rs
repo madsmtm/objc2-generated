@@ -216,18 +216,21 @@ impl DefaultRetained for NSThread {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswillbecomemultithreadednotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
+    #[deprecated = "This notification does not protect against data races"]
     pub static NSWillBecomeMultiThreadedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdidbecomesinglethreadednotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
+    #[deprecated = "Programs no longer transition to single-threaded mode from threaded environments"]
     pub static NSDidBecomeSingleThreadedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsthreadwillexitnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
+    #[deprecated = "This notification does not protect against data races"]
     pub static NSThreadWillExitNotification: &'static NSNotificationName;
 }
 
