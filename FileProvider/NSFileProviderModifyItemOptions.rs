@@ -23,6 +23,10 @@ bitflags::bitflags! {
 /// NSFileProviderErrorLocalVersionConflictingWithServer error.
         #[doc(alias = "NSFileProviderModifyItemFailOnConflict")]
         const FailOnConflict = 1<<1;
+/// The upload needs to be completed before the completionHandler gets called
+/// in order to let the calling application know when the version is on server.
+        #[doc(alias = "NSFileProviderModifyItemIsImmediateUploadRequestByPresentingApplication")]
+        const IsImmediateUploadRequestByPresentingApplication = 1<<2;
     }
 }
 

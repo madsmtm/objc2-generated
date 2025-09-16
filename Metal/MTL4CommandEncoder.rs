@@ -22,6 +22,12 @@ bitflags::bitflags! {
 /// Flushes caches to the GPU (device) memory coherence point.
         #[doc(alias = "MTL4VisibilityOptionDevice")]
         const Device = 1<<0;
+/// Flushes caches to ensure that aliased virtual addresses are memory consistent.
+///
+/// On some systems this may be the GPU+CPU (system) memory coherence point
+/// and on other systems it may be the GPU (device) memory coherence point.
+        #[doc(alias = "MTL4VisibilityOptionResourceAlias")]
+        const ResourceAlias = 1<<1;
     }
 }
 

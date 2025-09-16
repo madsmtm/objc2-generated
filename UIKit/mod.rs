@@ -5578,6 +5578,8 @@ pub use self::__UITrait::UITraitLegibilityWeight;
 #[cfg(feature = "UITrait")]
 pub use self::__UITrait::UITraitPreferredContentSizeCategory;
 #[cfg(feature = "UITrait")]
+pub use self::__UITrait::UITraitResolvesNaturalAlignmentWithBaseWritingDirection;
+#[cfg(feature = "UITrait")]
 pub use self::__UITrait::UITraitSceneCaptureState;
 #[cfg(feature = "UITrait")]
 pub use self::__UITrait::UITraitToolbarItemPresentationSize;

@@ -9,7 +9,10 @@ use crate::*;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtl4fxtemporaldenoisedscaler?language=objc)
-    #[cfg(feature = "MTLFXTemporalDenoisedScaler")]
+    #[cfg(all(
+        feature = "MTLFXTemporalDenoisedScaler",
+        feature = "MTLFXTemporalScaler"
+    ))]
     pub unsafe trait MTL4FXTemporalDenoisedScaler: MTLFXTemporalDenoisedScalerBase {
         /// Encode this scaler denoiser's work into a command buffer.
         ///

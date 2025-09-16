@@ -93,6 +93,10 @@ pub const kAudioConverterPropertySettings: AudioConverterPropertyID = 0x61637073
 pub const kAudioConverterPropertyBitDepthHint: AudioConverterPropertyID = 0x61636264;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyformatlist?language=objc)
 pub const kAudioConverterPropertyFormatList: AudioConverterPropertyID = 0x666c7374;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertyperformdownmix?language=objc)
+pub const kAudioConverterPropertyPerformDownmix: AudioConverterPropertyID = 0x646d6978;
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertychannelmixmap?language=objc)
+pub const kAudioConverterPropertyChannelMixMap: AudioConverterPropertyID = 0x6d6d6170;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudioconverterpropertydithering?language=objc)
 pub const kAudioConverterPropertyDithering: AudioConverterPropertyID = 0x64697468;

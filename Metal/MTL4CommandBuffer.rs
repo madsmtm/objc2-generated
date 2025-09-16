@@ -279,7 +279,8 @@ extern_protocol!(
         #[cfg(all(
             feature = "MTL4BufferRange",
             feature = "MTL4Counters",
-            feature = "MTLFence"
+            feature = "MTLFence",
+            feature = "MTLGPUAddress"
         ))]
         /// Encodes a command that resolves an opaque counter heap into a buffer.
         ///

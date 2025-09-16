@@ -67,7 +67,8 @@ extern_protocol!(
 pub struct ASAuthorizationControllerRequestOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAuthorizationControllerRequestOptions: NSUInteger {
-/// Tell the authorization controller that it should prefer credentials that are immediately available on the local device.
+/// When used for sign-in requests, tell the authorization controller that it should only be presented if there are credentials immediately available on the local device.
+/// When used for registration requests, tell the authorization controller that it should only be presented if the local device is currently set up to fulfill at least one of the request types.
         #[doc(alias = "ASAuthorizationControllerRequestOptionPreferImmediatelyAvailableCredentials")]
         const PreferImmediatelyAvailableCredentials = 1<<0;
     }

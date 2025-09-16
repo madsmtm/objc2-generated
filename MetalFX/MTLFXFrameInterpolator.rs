@@ -90,70 +90,22 @@ impl MTLFXFrameInterpolatorDescriptor {
         pub unsafe fn setUITextureFormat(&self, ui_texture_format: MTLPixelFormat);
 
         #[cfg(feature = "MTLFXTemporalScaler")]
-        /// An optional temporal scaler for the frame interpolator you create from this descriptor.
         #[unsafe(method(scaler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scaler(&self) -> Option<Retained<ProtocolObject<dyn MTLFXTemporalScaler>>>;
+        pub unsafe fn scaler(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn MTLFXFrameInterpolatableScaler>>>;
 
         #[cfg(feature = "MTLFXTemporalScaler")]
         /// Setter for [`scaler`][Self::scaler].
         #[unsafe(method(setScaler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScaler(&self, scaler: Option<&ProtocolObject<dyn MTLFXTemporalScaler>>);
-
-        #[cfg(feature = "MTLFXTemporalDenoisedScaler")]
-        /// An optional denoiser scaler for the frame interpolator you create from this descriptor.
-        #[unsafe(method(denoiserScaler))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn denoiserScaler(
+        pub unsafe fn setScaler(
             &self,
-        ) -> Option<Retained<ProtocolObject<dyn MTLFXTemporalDenoisedScaler>>>;
-
-        #[cfg(feature = "MTLFXTemporalDenoisedScaler")]
-        /// Setter for [`denoiserScaler`][Self::denoiserScaler].
-        #[unsafe(method(setDenoiserScaler:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setDenoiserScaler(
-            &self,
-            denoiser_scaler: Option<&ProtocolObject<dyn MTLFXTemporalDenoisedScaler>>,
+            scaler: Option<&ProtocolObject<dyn MTLFXFrameInterpolatableScaler>>,
         );
 
-        #[cfg(all(feature = "MTL4FXTemporalScaler", feature = "MTLFXTemporalScaler"))]
-        /// An optional temporal scaler for the frame interpolator you create from this descriptor.
-        #[unsafe(method(scaler4))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn scaler4(&self) -> Option<Retained<ProtocolObject<dyn MTL4FXTemporalScaler>>>;
-
-        #[cfg(all(feature = "MTL4FXTemporalScaler", feature = "MTLFXTemporalScaler"))]
-        /// Setter for [`scaler4`][Self::scaler4].
-        #[unsafe(method(setScaler4:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setScaler4(&self, scaler4: Option<&ProtocolObject<dyn MTL4FXTemporalScaler>>);
-
-        #[cfg(all(
-            feature = "MTL4FXTemporalDenoisedScaler",
-            feature = "MTLFXTemporalDenoisedScaler"
-        ))]
-        /// An optional denoiser scaler for the frame interpolator you create from this descriptor.
-        #[unsafe(method(denoiserScaler4))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn denoiserScaler4(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn MTL4FXTemporalDenoisedScaler>>>;
-
-        #[cfg(all(
-            feature = "MTL4FXTemporalDenoisedScaler",
-            feature = "MTLFXTemporalDenoisedScaler"
-        ))]
-        /// Setter for [`denoiserScaler4`][Self::denoiserScaler4].
-        #[unsafe(method(setDenoiserScaler4:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setDenoiserScaler4(
-            &self,
-            denoiser_scaler4: Option<&ProtocolObject<dyn MTL4FXTemporalDenoisedScaler>>,
-        );
-
-        /// The width, in pixels, of the input color texture for the frame interpolator.
+        /// The width, in pixels, of the input motion and depth texture for the frame interpolator.
         #[unsafe(method(inputWidth))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputWidth(&self) -> NSUInteger;
@@ -163,7 +115,7 @@ impl MTLFXFrameInterpolatorDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setInputWidth(&self, input_width: NSUInteger);
 
-        /// The height, in pixels, of the input color texture for the frame interpolator.
+        /// The height, in pixels, of the input motion and depth texture for the frame interpolator.
         #[unsafe(method(inputHeight))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputHeight(&self) -> NSUInteger;
@@ -267,37 +219,7 @@ impl MTLFXFrameInterpolatorDescriptor {
 }
 
 extern_protocol!(
-    /// A common abstraction to all frame interpolators.
-    ///
-    /// This protocol defines properties common to all frame interpolators. You access these properties through
-    /// any frame interpolator instance you create by calling construction methods such as
-    /// ``MTLFXFrameInterpolatorDescriptor/newFrameInterpolatorWithDevice:``.
-    ///
-    /// ## Conforming to texture usage requirements
-    ///
-    /// Frame interpolator instances expose properties, such as ``colorTextureUsage``, that indicate requirements for
-    /// your textures to be compatible with it. These properties indicate the minimum set of ``MTLTextureUsage`` bits
-    /// that you are responsible for setting in your texture descriptors for this frame interpolator to use them.
-    ///
-    /// Your game or app can set extra usage bits on your textures without losing compatibility, as long at its maintains
-    /// the minimum set the interpolator requests.
-    ///
-    /// ## Assigning input and output textures
-    ///
-    /// When you use an instance of a class that conforms to this protocol, you typically set its input and output textures,
-    /// as well as other properties, and then encode its work to a command buffer.
-    ///
-    /// MetalFX doesn't track that you assign the same texture instances to each property across different batches of work,
-    /// the only requirement is that you provide textures that match the pixel formats and dimensions you specify in the
-    /// ``MTLFXFrameInterpolatorDescriptor`` descriptor instance that creates the scaler instance.
-    ///
-    /// ## Encoding work
-    ///
-    /// Once you configure all properties for the current frame of your game or app, you indicate to the scaler instance
-    /// into which command buffer it encodes its work. You achieve this by calling, for example,
-    /// ``MTLFXFrameInterpolator/encodeToCommandBuffer:``.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxframeinterpolatorbase?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxframeinterpolatorbase?language=objc)
     pub unsafe trait MTLFXFrameInterpolatorBase: NSObjectProtocol {
         /// The minimal texture usage options that your app’s input color texture needs in order to support this frame interpolator.
         #[unsafe(method(colorTextureUsage))]
