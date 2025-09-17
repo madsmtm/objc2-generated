@@ -1133,7 +1133,7 @@ extern "C" {
 ///
 /// Returns: Returns the last error encountered.
 #[inline]
-pub unsafe extern "C-unwind" fn SCCopyLastError() -> CFRetained<CFError> {
+pub extern "C-unwind" fn SCCopyLastError() -> CFRetained<CFError> {
     extern "C-unwind" {
         fn SCCopyLastError() -> Option<NonNull<CFError>>;
     }
@@ -1142,12 +1142,16 @@ pub unsafe extern "C-unwind" fn SCCopyLastError() -> CFRetained<CFError> {
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Returns the most recent status or error code generated
-    /// as the result of calling a System Configuration framework API.
-    ///
-    /// Returns: Returns the last error encountered.
-    pub fn SCError() -> c_int;
+/// Returns the most recent status or error code generated
+/// as the result of calling a System Configuration framework API.
+///
+/// Returns: Returns the last error encountered.
+#[inline]
+pub extern "C-unwind" fn SCError() -> c_int {
+    extern "C-unwind" {
+        fn SCError() -> c_int;
+    }
+    unsafe { SCError() }
 }
 
 /// Returns a pointer to the message string
@@ -1158,7 +1162,7 @@ extern "C-unwind" {
 ///
 /// Returns: Returns a pointer to the error message string.
 #[inline]
-pub unsafe extern "C-unwind" fn SCErrorString(status: c_int) -> NonNull<c_char> {
+pub extern "C-unwind" fn SCErrorString(status: c_int) -> NonNull<c_char> {
     extern "C-unwind" {
         fn SCErrorString(status: c_int) -> Option<NonNull<c_char>>;
     }
