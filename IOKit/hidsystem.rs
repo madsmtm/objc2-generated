@@ -1329,14 +1329,21 @@ pub const kIOHIDOpenedByEventSystem: c_uint = 0x10000;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidopenedbyfastpathclient?language=objc)
 pub const kIOHIDOpenedByFastPathClient: c_uint = 0x20000;
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IOHIDCreateSharedMemory(connect: io_connect_t, version: c_uint) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOHIDCreateSharedMemory(
+    connect: io_connect_t,
+    version: c_uint,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOHIDCreateSharedMemory(connect: io_connect_t, version: c_uint) -> libc::kern_return_t;
+    }
+    unsafe { IOHIDCreateSharedMemory(connect, version) }
 }
 
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDSetEventsEnable(
+pub extern "C-unwind" fn IOHIDSetEventsEnable(
     connect: io_connect_t,
     enable: bool,
 ) -> libc::kern_return_t {
@@ -1352,7 +1359,7 @@ pub unsafe extern "C-unwind" fn IOHIDSetEventsEnable(
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDSetCursorEnable(
+pub extern "C-unwind" fn IOHIDSetCursorEnable(
     connect: io_connect_t,
     enable: bool,
 ) -> libc::kern_return_t {
@@ -1391,10 +1398,18 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn IOHIDSetMouseLocation(connect: io_connect_t, x: c_int, y: c_int) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn IOHIDSetMouseLocation(
+    connect: io_connect_t,
+    x: c_int,
+    y: c_int,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOHIDSetMouseLocation(connect: io_connect_t, x: c_int, y: c_int) -> libc::kern_return_t;
+    }
+    unsafe { IOHIDSetMouseLocation(connect, x, y) }
 }
 
 extern "C-unwind" {
@@ -1422,13 +1437,20 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn IOHIDSetScrollAcceleration(
-        handle: io_connect_t,
-        acceleration: c_double,
-    ) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn IOHIDSetScrollAcceleration(
+    handle: io_connect_t,
+    acceleration: c_double,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOHIDSetScrollAcceleration(
+            handle: io_connect_t,
+            acceleration: c_double,
+        ) -> libc::kern_return_t;
+    }
+    unsafe { IOHIDSetScrollAcceleration(handle, acceleration) }
 }
 
 extern "C-unwind" {
@@ -1443,13 +1465,20 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn IOHIDSetMouseAcceleration(
-        handle: io_connect_t,
-        acceleration: c_double,
-    ) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn IOHIDSetMouseAcceleration(
+    handle: io_connect_t,
+    acceleration: c_double,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOHIDSetMouseAcceleration(
+            handle: io_connect_t,
+            acceleration: c_double,
+        ) -> libc::kern_return_t;
+    }
+    unsafe { IOHIDSetMouseAcceleration(handle, acceleration) }
 }
 
 extern "C-unwind" {
@@ -1461,10 +1490,17 @@ extern "C-unwind" {
     pub fn IOHIDGetMouseButtonMode(handle: io_connect_t, mode: *mut c_int) -> libc::kern_return_t;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn IOHIDSetMouseButtonMode(handle: io_connect_t, mode: c_int) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn IOHIDSetMouseButtonMode(
+    handle: io_connect_t,
+    mode: c_int,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOHIDSetMouseButtonMode(handle: io_connect_t, mode: c_int) -> libc::kern_return_t;
+    }
+    unsafe { IOHIDSetMouseButtonMode(handle, mode) }
 }
 
 extern "C-unwind" {
@@ -1565,13 +1601,21 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IOHIDSetStateForSelector(
-        handle: io_connect_t,
-        selector: c_int,
-        state: u32,
-    ) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOHIDSetStateForSelector(
+    handle: io_connect_t,
+    selector: c_int,
+    state: u32,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOHIDSetStateForSelector(
+            handle: io_connect_t,
+            selector: c_int,
+            state: u32,
+        ) -> libc::kern_return_t;
+    }
+    unsafe { IOHIDSetStateForSelector(handle, selector, state) }
 }
 
 extern "C-unwind" {
@@ -1586,13 +1630,21 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IOHIDSetModifierLockState(
-        handle: io_connect_t,
-        selector: c_int,
-        state: bool,
-    ) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOHIDSetModifierLockState(
+    handle: io_connect_t,
+    selector: c_int,
+    state: bool,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOHIDSetModifierLockState(
+            handle: io_connect_t,
+            selector: c_int,
+            state: bool,
+        ) -> libc::kern_return_t;
+    }
+    unsafe { IOHIDSetModifierLockState(handle, selector, state) }
 }
 
 extern "C-unwind" {
@@ -1607,13 +1659,20 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn IOHIDUnregisterVirtualDisplay(
-        handle: io_connect_t,
-        display_token: u32,
-    ) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn IOHIDUnregisterVirtualDisplay(
+    handle: io_connect_t,
+    display_token: u32,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOHIDUnregisterVirtualDisplay(
+            handle: io_connect_t,
+            display_token: u32,
+        ) -> libc::kern_return_t;
+    }
+    unsafe { IOHIDUnregisterVirtualDisplay(handle, display_token) }
 }
 
 extern "C-unwind" {
@@ -1685,49 +1744,65 @@ unsafe impl RefEncode for IOHIDAccessType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Checks if the process has access to a specific IOHIDRequestType. A process
-    /// may request access by calling the IOHIDRequestAccess function.
-    ///
-    ///
-    /// Parameter `requestType`: The request type defined in the IOHIDRequestType enumerator.
-    ///
-    ///
-    /// Returns: Returns an access type defined in the IOHIDAccessType enumerator.
-    pub fn IOHIDCheckAccess(request_type: IOHIDRequestType) -> IOHIDAccessType;
+/// Checks if the process has access to a specific IOHIDRequestType. A process
+/// may request access by calling the IOHIDRequestAccess function.
+///
+///
+/// Parameter `requestType`: The request type defined in the IOHIDRequestType enumerator.
+///
+///
+/// Returns: Returns an access type defined in the IOHIDAccessType enumerator.
+#[inline]
+pub extern "C-unwind" fn IOHIDCheckAccess(request_type: IOHIDRequestType) -> IOHIDAccessType {
+    extern "C-unwind" {
+        fn IOHIDCheckAccess(request_type: IOHIDRequestType) -> IOHIDAccessType;
+    }
+    unsafe { IOHIDCheckAccess(request_type) }
 }
 
-extern "C-unwind" {
-    /// Requests access from the user for a specific IOHIDRequestType.
-    ///
-    ///
-    /// Processes that wish to post events through the IOHIDPostEvent API, or receive
-    /// reports through the IOHIDManager/IOHIDDevice API must be granted access first
-    /// by the user. If you do not call this API, it will be called on your behalf
-    /// when the API are used.
-    ///
-    ///
-    /// Parameter `requestType`: The request type defined in the IOHIDRequestType enumerator.
-    ///
-    ///
-    /// Returns: Returns true if access was granted.
-    pub fn IOHIDRequestAccess(request_type: IOHIDRequestType) -> bool;
+/// Requests access from the user for a specific IOHIDRequestType.
+///
+///
+/// Processes that wish to post events through the IOHIDPostEvent API, or receive
+/// reports through the IOHIDManager/IOHIDDevice API must be granted access first
+/// by the user. If you do not call this API, it will be called on your behalf
+/// when the API are used.
+///
+///
+/// Parameter `requestType`: The request type defined in the IOHIDRequestType enumerator.
+///
+///
+/// Returns: Returns true if access was granted.
+#[inline]
+pub extern "C-unwind" fn IOHIDRequestAccess(request_type: IOHIDRequestType) -> bool {
+    extern "C-unwind" {
+        fn IOHIDRequestAccess(request_type: IOHIDRequestType) -> bool;
+    }
+    unsafe { IOHIDRequestAccess(request_type) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventhandle?language=objc)
 #[cfg(feature = "libc")]
 pub type NXEventHandle = libc::mach_port_t;
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn NXOpenEventStatus() -> NXEventHandle;
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn NXOpenEventStatus() -> NXEventHandle {
+    extern "C-unwind" {
+        fn NXOpenEventStatus() -> NXEventHandle;
+    }
+    unsafe { NXOpenEventStatus() }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn NXCloseEventStatus(handle: NXEventHandle);
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn NXCloseEventStatus(handle: NXEventHandle) {
+    extern "C-unwind" {
+        fn NXCloseEventStatus(handle: NXEventHandle);
+    }
+    unsafe { NXCloseEventStatus(handle) }
 }
 
 extern "C-unwind" {
@@ -1746,46 +1821,74 @@ extern "C-unwind" {
     ) -> NXEventSystemInfoType;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn NXSetKeyRepeatInterval(handle: NXEventHandle, seconds: c_double);
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn NXSetKeyRepeatInterval(handle: NXEventHandle, seconds: c_double) {
+    extern "C-unwind" {
+        fn NXSetKeyRepeatInterval(handle: NXEventHandle, seconds: c_double);
+    }
+    unsafe { NXSetKeyRepeatInterval(handle, seconds) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn NXKeyRepeatInterval(handle: NXEventHandle) -> c_double;
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn NXKeyRepeatInterval(handle: NXEventHandle) -> c_double {
+    extern "C-unwind" {
+        fn NXKeyRepeatInterval(handle: NXEventHandle) -> c_double;
+    }
+    unsafe { NXKeyRepeatInterval(handle) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn NXSetKeyRepeatThreshold(handle: NXEventHandle, threshold: c_double);
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn NXSetKeyRepeatThreshold(handle: NXEventHandle, threshold: c_double) {
+    extern "C-unwind" {
+        fn NXSetKeyRepeatThreshold(handle: NXEventHandle, threshold: c_double);
+    }
+    unsafe { NXSetKeyRepeatThreshold(handle, threshold) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn NXKeyRepeatThreshold(handle: NXEventHandle) -> c_double;
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn NXKeyRepeatThreshold(handle: NXEventHandle) -> c_double {
+    extern "C-unwind" {
+        fn NXKeyRepeatThreshold(handle: NXEventHandle) -> c_double;
+    }
+    unsafe { NXKeyRepeatThreshold(handle) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn NXResetKeyboard(handle: NXEventHandle);
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn NXResetKeyboard(handle: NXEventHandle) {
+    extern "C-unwind" {
+        fn NXResetKeyboard(handle: NXEventHandle);
+    }
+    unsafe { NXResetKeyboard(handle) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn NXSetClickTime(handle: NXEventHandle, seconds: c_double);
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn NXSetClickTime(handle: NXEventHandle, seconds: c_double) {
+    extern "C-unwind" {
+        fn NXSetClickTime(handle: NXEventHandle, seconds: c_double);
+    }
+    unsafe { NXSetClickTime(handle, seconds) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn NXClickTime(handle: NXEventHandle) -> c_double;
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn NXClickTime(handle: NXEventHandle) -> c_double {
+    extern "C-unwind" {
+        fn NXClickTime(handle: NXEventHandle) -> c_double;
+    }
+    unsafe { NXClickTime(handle) }
 }
 
 extern "C-unwind" {
@@ -1806,10 +1909,14 @@ extern "C-unwind" {
     pub fn NXGetClickSpace(handle: NXEventHandle, area: *mut NXSize);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated]
-    pub fn NXResetMouse(handle: NXEventHandle);
+#[cfg(feature = "libc")]
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn NXResetMouse(handle: NXEventHandle) {
+    extern "C-unwind" {
+        fn NXResetMouse(handle: NXEventHandle);
+    }
+    unsafe { NXResetMouse(handle) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/_nxparsedkeymapping_?language=objc)
@@ -1913,7 +2020,7 @@ impl IOHIDEventSystemClient {
     /// reference to the client if multiple properties need to be set/read.
     #[doc(alias = "IOHIDEventSystemClientCreateSimpleClient")]
     #[inline]
-    pub unsafe fn new_simple_client(
+    pub fn new_simple_client(
         allocator: Option<&CFAllocator>,
     ) -> CFRetained<IOHIDEventSystemClient> {
         extern "C-unwind" {
@@ -1987,7 +2094,7 @@ impl IOHIDEventSystemClient {
     /// Caller is responsible for calling CFRelease on the property.
     #[doc(alias = "IOHIDEventSystemClientCopyProperty")]
     #[inline]
-    pub unsafe fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
+    pub fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn IOHIDEventSystemClientCopyProperty(
                 client: &IOHIDEventSystemClient,
@@ -2042,7 +2149,7 @@ impl IOHIDEventSystemClient {
     /// available to the client. Caller is responsible for releasing the array.
     #[doc(alias = "IOHIDEventSystemClientCopyServices")]
     #[inline]
-    pub unsafe fn services(&self) -> Option<CFRetained<CFArray>> {
+    pub fn services(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn IOHIDEventSystemClientCopyServices(
                 client: &IOHIDEventSystemClient,
@@ -2132,7 +2239,7 @@ impl IOHIDServiceClient {
     /// Caller is responsible for calling CFRelease on the property.
     #[doc(alias = "IOHIDServiceClientCopyProperty")]
     #[inline]
-    pub unsafe fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
+    pub fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn IOHIDServiceClientCopyProperty(
                 service: &IOHIDServiceClient,
@@ -2167,7 +2274,7 @@ impl IOHIDServiceClient {
     /// Returns: Returns a CFTypeRef containing the registry ID for the service.
     #[doc(alias = "IOHIDServiceClientGetRegistryID")]
     #[inline]
-    pub unsafe fn registry_id(&self) -> CFRetained<CFType> {
+    pub fn registry_id(&self) -> CFRetained<CFType> {
         extern "C-unwind" {
             fn IOHIDServiceClientGetRegistryID(
                 service: &IOHIDServiceClient,
@@ -2200,7 +2307,7 @@ impl IOHIDServiceClient {
     #[doc(alias = "IOHIDServiceClientConformsTo")]
     #[cfg(feature = "libc")]
     #[inline]
-    pub unsafe fn conforms_to(&self, usage_page: u32, usage: u32) -> bool {
+    pub fn conforms_to(&self, usage_page: u32, usage: u32) -> bool {
         extern "C-unwind" {
             fn IOHIDServiceClientConformsTo(
                 service: &IOHIDServiceClient,
@@ -2499,7 +2606,7 @@ impl IOHIDUserDevice {
     /// Parameter `device`: Reference to an IOHIDUserDevice.
     #[doc(alias = "IOHIDUserDeviceActivate")]
     #[inline]
-    pub unsafe fn activate(&self) {
+    pub fn activate(&self) {
         extern "C-unwind" {
             fn IOHIDUserDeviceActivate(device: &IOHIDUserDevice);
         }
@@ -2534,7 +2641,7 @@ impl IOHIDUserDevice {
     /// Parameter `device`: Reference to an IOHIDUserDevice
     #[doc(alias = "IOHIDUserDeviceCancel")]
     #[inline]
-    pub unsafe fn cancel(&self) {
+    pub fn cancel(&self) {
         extern "C-unwind" {
             fn IOHIDUserDeviceCancel(device: &IOHIDUserDevice);
         }
@@ -2550,7 +2657,7 @@ impl IOHIDUserDevice {
     /// Returns: Returns the property on success.
     #[doc(alias = "IOHIDUserDeviceCopyProperty")]
     #[inline]
-    pub unsafe fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
+    pub fn property(&self, key: &CFString) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn IOHIDUserDeviceCopyProperty(
                 device: &IOHIDUserDevice,
@@ -2631,7 +2738,7 @@ impl IOHIDUserDevice {
 
 #[deprecated = "renamed to `IOHIDEventSystemClient::new_simple_client`"]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDEventSystemClientCreateSimpleClient(
+pub extern "C-unwind" fn IOHIDEventSystemClientCreateSimpleClient(
     allocator: Option<&CFAllocator>,
 ) -> CFRetained<IOHIDEventSystemClient> {
     extern "C-unwind" {
@@ -2664,7 +2771,7 @@ pub unsafe extern "C-unwind" fn IOHIDEventSystemClientSetProperty(
 
 #[deprecated = "renamed to `IOHIDEventSystemClient::property`"]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDEventSystemClientCopyProperty(
+pub extern "C-unwind" fn IOHIDEventSystemClientCopyProperty(
     client: &IOHIDEventSystemClient,
     key: &CFString,
 ) -> Option<CFRetained<CFType>> {
@@ -2680,7 +2787,7 @@ pub unsafe extern "C-unwind" fn IOHIDEventSystemClientCopyProperty(
 
 #[deprecated = "renamed to `IOHIDEventSystemClient::services`"]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDEventSystemClientCopyServices(
+pub extern "C-unwind" fn IOHIDEventSystemClientCopyServices(
     client: &IOHIDEventSystemClient,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -2712,7 +2819,7 @@ pub unsafe extern "C-unwind" fn IOHIDServiceClientSetProperty(
 
 #[deprecated = "renamed to `IOHIDServiceClient::property`"]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDServiceClientCopyProperty(
+pub extern "C-unwind" fn IOHIDServiceClientCopyProperty(
     service: &IOHIDServiceClient,
     key: &CFString,
 ) -> Option<CFRetained<CFType>> {
@@ -2728,7 +2835,7 @@ pub unsafe extern "C-unwind" fn IOHIDServiceClientCopyProperty(
 
 #[deprecated = "renamed to `IOHIDServiceClient::registry_id`"]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDServiceClientGetRegistryID(
+pub extern "C-unwind" fn IOHIDServiceClientGetRegistryID(
     service: &IOHIDServiceClient,
 ) -> CFRetained<CFType> {
     extern "C-unwind" {
@@ -2743,7 +2850,7 @@ pub unsafe extern "C-unwind" fn IOHIDServiceClientGetRegistryID(
 #[cfg(feature = "libc")]
 #[deprecated = "renamed to `IOHIDServiceClient::conforms_to`"]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDServiceClientConformsTo(
+pub extern "C-unwind" fn IOHIDServiceClientConformsTo(
     service: &IOHIDServiceClient,
     usage_page: u32,
     usage: u32,
@@ -2807,19 +2914,27 @@ extern "C-unwind" {
     pub fn IOHIDUserDeviceSetCancelHandler(device: &IOHIDUserDevice, handler: dispatch_block_t);
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `IOHIDUserDevice::activate`"]
-    pub fn IOHIDUserDeviceActivate(device: &IOHIDUserDevice);
+#[deprecated = "renamed to `IOHIDUserDevice::activate`"]
+#[inline]
+pub extern "C-unwind" fn IOHIDUserDeviceActivate(device: &IOHIDUserDevice) {
+    extern "C-unwind" {
+        fn IOHIDUserDeviceActivate(device: &IOHIDUserDevice);
+    }
+    unsafe { IOHIDUserDeviceActivate(device) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `IOHIDUserDevice::cancel`"]
-    pub fn IOHIDUserDeviceCancel(device: &IOHIDUserDevice);
+#[deprecated = "renamed to `IOHIDUserDevice::cancel`"]
+#[inline]
+pub extern "C-unwind" fn IOHIDUserDeviceCancel(device: &IOHIDUserDevice) {
+    extern "C-unwind" {
+        fn IOHIDUserDeviceCancel(device: &IOHIDUserDevice);
+    }
+    unsafe { IOHIDUserDeviceCancel(device) }
 }
 
 #[deprecated = "renamed to `IOHIDUserDevice::property`"]
 #[inline]
-pub unsafe extern "C-unwind" fn IOHIDUserDeviceCopyProperty(
+pub extern "C-unwind" fn IOHIDUserDeviceCopyProperty(
     device: &IOHIDUserDevice,
     key: &CFString,
 ) -> Option<CFRetained<CFType>> {

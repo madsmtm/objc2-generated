@@ -296,101 +296,109 @@ unsafe impl RefEncode for IOPSLowBatteryWarningLevel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Indicates whether the system is at a low battery warning level.
-    ///
-    ///
-    /// If your app runs in full screen mode and occludes OS X's battery monitor's low
-    /// battery warnings, you should alert the user at least when the system
-    /// is in kIOPSLowBatteryWarnFinal.
-    pub fn IOPSGetBatteryWarningLevel() -> IOPSLowBatteryWarningLevel;
+/// Indicates whether the system is at a low battery warning level.
+///
+///
+/// If your app runs in full screen mode and occludes OS X's battery monitor's low
+/// battery warnings, you should alert the user at least when the system
+/// is in kIOPSLowBatteryWarnFinal.
+#[inline]
+pub extern "C-unwind" fn IOPSGetBatteryWarningLevel() -> IOPSLowBatteryWarningLevel {
+    extern "C-unwind" {
+        fn IOPSGetBatteryWarningLevel() -> IOPSLowBatteryWarningLevel;
+    }
+    unsafe { IOPSGetBatteryWarningLevel() }
 }
 
-extern "C-unwind" {
-    /// Returns the estimated minutes remaining until all power sources
-    /// (battery and/or UPS's) are empty, or returns
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPSTimeRemainingUnlimited
-    /// ```
-    ///
-    /// </code>
-    /// if attached to an unlimited power source.
-    ///
-    ///
-    /// If attached to an "Unlimited" power source, like AC power or any external source, the
-    /// return value is
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPSTimeRemainingUnlimited
-    /// ```
-    ///
-    /// </code>
-    ///
-    /// If the system is on "Limited" power, like a battery or UPS,
-    /// but is still calculating the time remaining, which may
-    /// take several seconds after each system power event
-    /// (e.g. waking from sleep, or unplugging AC Power), the return value is
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPSTimeRemainingUnknown
-    /// ```
-    ///
-    /// </code>
-    ///
-    /// Otherwise, if the system is on "Limited" power and the system has an accurate time
-    /// remaining estimate, the system returns a CFTimeInterval estimate of the time
-    /// remaining until the system is out of battery power.
-    ///
-    /// If you require more detailed battery information, use
-    /// <code>
-    ///
-    /// ```text
-    ///  IOPSCopyPowerSourcesInfo
-    /// ```
-    ///
-    /// >
-    /// </code>
-    /// and
-    /// <code>
-    ///
-    /// ```text
-    ///  IOPSGetPowerSourceDescription
-    /// ```
-    ///
-    /// >
-    /// </code>
-    /// .
-    ///
-    ///
-    /// Returns: Returns
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPSTimeRemainingUnknown
-    /// ```
-    ///
-    /// </code>
-    /// if the
-    /// OS cannot determine the time remaining.
-    ///
-    /// Returns
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPSTimeRemainingUnlimited
-    /// ```
-    ///
-    /// </code>
-    /// if the
-    /// system has an unlimited power source.
-    ///
-    /// Otherwise returns a positive number of type CFTimeInterval, indicating the time
-    /// remaining in seconds until all power sources are depleted.
-    pub fn IOPSGetTimeRemainingEstimate() -> CFTimeInterval;
+/// Returns the estimated minutes remaining until all power sources
+/// (battery and/or UPS's) are empty, or returns
+/// <code>
+///
+/// ```text
+///  kIOPSTimeRemainingUnlimited
+/// ```
+///
+/// </code>
+/// if attached to an unlimited power source.
+///
+///
+/// If attached to an "Unlimited" power source, like AC power or any external source, the
+/// return value is
+/// <code>
+///
+/// ```text
+///  kIOPSTimeRemainingUnlimited
+/// ```
+///
+/// </code>
+///
+/// If the system is on "Limited" power, like a battery or UPS,
+/// but is still calculating the time remaining, which may
+/// take several seconds after each system power event
+/// (e.g. waking from sleep, or unplugging AC Power), the return value is
+/// <code>
+///
+/// ```text
+///  kIOPSTimeRemainingUnknown
+/// ```
+///
+/// </code>
+///
+/// Otherwise, if the system is on "Limited" power and the system has an accurate time
+/// remaining estimate, the system returns a CFTimeInterval estimate of the time
+/// remaining until the system is out of battery power.
+///
+/// If you require more detailed battery information, use
+/// <code>
+///
+/// ```text
+///  IOPSCopyPowerSourcesInfo
+/// ```
+///
+/// >
+/// </code>
+/// and
+/// <code>
+///
+/// ```text
+///  IOPSGetPowerSourceDescription
+/// ```
+///
+/// >
+/// </code>
+/// .
+///
+///
+/// Returns: Returns
+/// <code>
+///
+/// ```text
+///  kIOPSTimeRemainingUnknown
+/// ```
+///
+/// </code>
+/// if the
+/// OS cannot determine the time remaining.
+///
+/// Returns
+/// <code>
+///
+/// ```text
+///  kIOPSTimeRemainingUnlimited
+/// ```
+///
+/// </code>
+/// if the
+/// system has an unlimited power source.
+///
+/// Otherwise returns a positive number of type CFTimeInterval, indicating the time
+/// remaining in seconds until all power sources are depleted.
+#[inline]
+pub extern "C-unwind" fn IOPSGetTimeRemainingEstimate() -> CFTimeInterval {
+    extern "C-unwind" {
+        fn IOPSGetTimeRemainingEstimate() -> CFTimeInterval;
+    }
+    unsafe { IOPSGetTimeRemainingEstimate() }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopowersourcecallbacktype?language=objc)
@@ -407,7 +415,7 @@ pub type IOPowerSourceCallbackType = Option<unsafe extern "C-unwind" fn(*mut c_v
 /// Returns: NULL if errors were encountered, a CFTypeRef otherwise.
 /// Caller must CFRelease() the return value when done accessing it.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPSCopyPowerSourcesInfo() -> Option<CFRetained<CFType>> {
+pub extern "C-unwind" fn IOPSCopyPowerSourcesInfo() -> Option<CFRetained<CFType>> {
     extern "C-unwind" {
         fn IOPSCopyPowerSourcesInfo() -> Option<NonNull<CFType>>;
     }
@@ -630,8 +638,7 @@ pub unsafe extern "C-unwind" fn IOPSCreateLimitedPowerNotification(
 /// Returns: Returns a CFDictionary on success. Caller must release the returned
 /// dictionary. If no adapter is attached, or if there's an error,  returns NULL.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPSCopyExternalPowerAdapterDetails(
-) -> Option<CFRetained<CFDictionary>> {
+pub extern "C-unwind" fn IOPSCopyExternalPowerAdapterDetails() -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
         fn IOPSCopyExternalPowerAdapterDetails() -> Option<NonNull<CFDictionary>>;
     }

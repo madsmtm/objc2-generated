@@ -661,10 +661,14 @@ extern "C-unwind" {
     pub fn IONetworkOpen(obj: io_object_t, con: *mut io_connect_t) -> IOReturn;
 }
 
-extern "C-unwind" {
-    /// Close the connection to an IONetworkInterface object.
-    #[cfg(feature = "libc")]
-    pub fn IONetworkClose(con: io_connect_t) -> IOReturn;
+/// Close the connection to an IONetworkInterface object.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IONetworkClose(con: io_connect_t) -> IOReturn {
+    extern "C-unwind" {
+        fn IONetworkClose(con: io_connect_t) -> IOReturn;
+    }
+    unsafe { IONetworkClose(con) }
 }
 
 extern "C-unwind" {
@@ -720,16 +724,23 @@ extern "C-unwind" {
     ) -> IOReturn;
 }
 
-extern "C-unwind" {
-    /// Fill the buffer of a network data object with zeroes.
-    ///
-    /// Parameter `conObject`: The connection object.
-    ///
-    /// Parameter `dataHandle`: The handle of a network data object.
-    ///
-    /// Returns: kIOReturnSuccess on success, or an error code otherwise.
-    #[cfg(feature = "libc")]
-    pub fn IONetworkResetData(con_object: io_connect_t, data_handle: IONDHandle) -> IOReturn;
+/// Fill the buffer of a network data object with zeroes.
+///
+/// Parameter `conObject`: The connection object.
+///
+/// Parameter `dataHandle`: The handle of a network data object.
+///
+/// Returns: kIOReturnSuccess on success, or an error code otherwise.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IONetworkResetData(
+    con_object: io_connect_t,
+    data_handle: IONDHandle,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IONetworkResetData(con_object: io_connect_t, data_handle: IONDHandle) -> IOReturn;
+    }
+    unsafe { IONetworkResetData(con_object, data_handle) }
 }
 
 extern "C-unwind" {

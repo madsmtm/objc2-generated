@@ -9930,7 +9930,7 @@ impl IONotificationPort {
     #[doc(alias = "IONotificationPortCreate")]
     #[cfg(feature = "libc")]
     #[inline]
-    pub unsafe fn create(main_port: libc::mach_port_t) -> IONotificationPortRef {
+    pub fn create(main_port: libc::mach_port_t) -> IONotificationPortRef {
         extern "C-unwind" {
             fn IONotificationPortCreate(main_port: libc::mach_port_t) -> IONotificationPortRef;
         }
@@ -10119,28 +10119,36 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-extern "C-unwind" {
-    /// Releases an object handle previously returned by IOKitLib.
-    ///
-    /// All objects returned by IOKitLib should be released with this function when access to them is no longer needed. Using the object after it has been released may or may not return an error, depending on how many references the task has to the same object in the kernel.
-    ///
-    /// Parameter `object`: The IOKit object to release.
-    ///
-    /// Returns: A kern_return_t error code.
-    #[cfg(feature = "libc")]
-    pub fn IOObjectRelease(object: io_object_t) -> libc::kern_return_t;
+/// Releases an object handle previously returned by IOKitLib.
+///
+/// All objects returned by IOKitLib should be released with this function when access to them is no longer needed. Using the object after it has been released may or may not return an error, depending on how many references the task has to the same object in the kernel.
+///
+/// Parameter `object`: The IOKit object to release.
+///
+/// Returns: A kern_return_t error code.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOObjectRelease(object: io_object_t) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOObjectRelease(object: io_object_t) -> libc::kern_return_t;
+    }
+    unsafe { IOObjectRelease(object) }
 }
 
-extern "C-unwind" {
-    /// Retains an object handle previously returned by IOKitLib.
-    ///
-    /// Gives the caller an additional reference to an existing object handle previously returned by IOKitLib.
-    ///
-    /// Parameter `object`: The IOKit object to retain.
-    ///
-    /// Returns: A kern_return_t error code.
-    #[cfg(feature = "libc")]
-    pub fn IOObjectRetain(object: io_object_t) -> libc::kern_return_t;
+/// Retains an object handle previously returned by IOKitLib.
+///
+/// Gives the caller an additional reference to an existing object handle previously returned by IOKitLib.
+///
+/// Parameter `object`: The IOKit object to retain.
+///
+/// Returns: A kern_return_t error code.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOObjectRetain(object: io_object_t) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOObjectRetain(object: io_object_t) -> libc::kern_return_t;
+    }
+    unsafe { IOObjectRetain(object) }
 }
 
 extern "C-unwind" {
@@ -10170,9 +10178,7 @@ extern "C-unwind" {
 /// Returns: The resulting CFStringRef. This should be released by the caller. If a valid object is not passed in, then NULL is returned.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOObjectCopyClass(
-    object: io_object_t,
-) -> Option<CFRetained<CFString>> {
+pub extern "C-unwind" fn IOObjectCopyClass(object: io_object_t) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn IOObjectCopyClass(object: io_object_t) -> Option<NonNull<CFString>>;
     }
@@ -10265,10 +10271,7 @@ pub unsafe extern "C-unwind" fn IOObjectConformsTo(
 /// Returns: If both object handles are valid, and represent the same object in the kernel true is returned, otherwise false.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOObjectIsEqualTo(
-    object: io_object_t,
-    an_object: io_object_t,
-) -> bool {
+pub extern "C-unwind" fn IOObjectIsEqualTo(object: io_object_t, an_object: io_object_t) -> bool {
     extern "C-unwind" {
         fn IOObjectIsEqualTo(object: io_object_t, an_object: io_object_t) -> libc::boolean_t;
     }
@@ -10276,62 +10279,82 @@ pub unsafe extern "C-unwind" fn IOObjectIsEqualTo(
     ret != 0
 }
 
-extern "C-unwind" {
-    /// Returns kernel retain count of an IOKit object.
-    ///
-    /// This function may be used in diagnostics to determine the current retain count of the kernel object at the kernel level.
-    ///
-    /// Parameter `object`: An IOKit object.
-    ///
-    /// Returns: If the object handle is valid, the kernel objects retain count is returned, otherwise zero is returned.
-    #[cfg(feature = "libc")]
-    pub fn IOObjectGetKernelRetainCount(object: io_object_t) -> u32;
+/// Returns kernel retain count of an IOKit object.
+///
+/// This function may be used in diagnostics to determine the current retain count of the kernel object at the kernel level.
+///
+/// Parameter `object`: An IOKit object.
+///
+/// Returns: If the object handle is valid, the kernel objects retain count is returned, otherwise zero is returned.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOObjectGetKernelRetainCount(object: io_object_t) -> u32 {
+    extern "C-unwind" {
+        fn IOObjectGetKernelRetainCount(object: io_object_t) -> u32;
+    }
+    unsafe { IOObjectGetKernelRetainCount(object) }
 }
 
-extern "C-unwind" {
-    /// Returns the retain count for the current process of an IOKit object.
-    ///
-    /// This function may be used in diagnostics to determine the current retain count for the calling process of the kernel object.
-    ///
-    /// Parameter `object`: An IOKit object.
-    ///
-    /// Returns: If the object handle is valid, the objects user retain count is returned, otherwise zero is returned.
-    #[cfg(feature = "libc")]
-    pub fn IOObjectGetUserRetainCount(object: io_object_t) -> u32;
+/// Returns the retain count for the current process of an IOKit object.
+///
+/// This function may be used in diagnostics to determine the current retain count for the calling process of the kernel object.
+///
+/// Parameter `object`: An IOKit object.
+///
+/// Returns: If the object handle is valid, the objects user retain count is returned, otherwise zero is returned.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOObjectGetUserRetainCount(object: io_object_t) -> u32 {
+    extern "C-unwind" {
+        fn IOObjectGetUserRetainCount(object: io_object_t) -> u32;
+    }
+    unsafe { IOObjectGetUserRetainCount(object) }
 }
 
-extern "C-unwind" {
-    /// Returns kernel retain count of an IOKit object. Identical to IOObjectGetKernelRetainCount() but available prior to Mac OS 10.6.
-    ///
-    /// This function may be used in diagnostics to determine the current retain count of the kernel object at the kernel level.
-    ///
-    /// Parameter `object`: An IOKit object.
-    ///
-    /// Returns: If the object handle is valid, the kernel objects retain count is returned, otherwise zero is returned.
-    #[cfg(feature = "libc")]
-    pub fn IOObjectGetRetainCount(object: io_object_t) -> u32;
+/// Returns kernel retain count of an IOKit object. Identical to IOObjectGetKernelRetainCount() but available prior to Mac OS 10.6.
+///
+/// This function may be used in diagnostics to determine the current retain count of the kernel object at the kernel level.
+///
+/// Parameter `object`: An IOKit object.
+///
+/// Returns: If the object handle is valid, the kernel objects retain count is returned, otherwise zero is returned.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOObjectGetRetainCount(object: io_object_t) -> u32 {
+    extern "C-unwind" {
+        fn IOObjectGetRetainCount(object: io_object_t) -> u32;
+    }
+    unsafe { IOObjectGetRetainCount(object) }
 }
 
-extern "C-unwind" {
-    /// Returns the next object in an iteration.
-    ///
-    /// This function returns the next object in an iteration, or zero if no more remain or the iterator is invalid.
-    ///
-    /// Parameter `iterator`: An IOKit iterator handle.
-    ///
-    /// Returns: If the iterator handle is valid, the next element in the iteration is returned, otherwise zero is returned. The element should be released by the caller when it is finished.
-    #[cfg(feature = "libc")]
-    pub fn IOIteratorNext(iterator: io_iterator_t) -> io_object_t;
+/// Returns the next object in an iteration.
+///
+/// This function returns the next object in an iteration, or zero if no more remain or the iterator is invalid.
+///
+/// Parameter `iterator`: An IOKit iterator handle.
+///
+/// Returns: If the iterator handle is valid, the next element in the iteration is returned, otherwise zero is returned. The element should be released by the caller when it is finished.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOIteratorNext(iterator: io_iterator_t) -> io_object_t {
+    extern "C-unwind" {
+        fn IOIteratorNext(iterator: io_iterator_t) -> io_object_t;
+    }
+    unsafe { IOIteratorNext(iterator) }
 }
 
-extern "C-unwind" {
-    /// Resets an iteration back to the beginning.
-    ///
-    /// If an iterator is invalid, or if the caller wants to start over, IOIteratorReset will set the iteration back to the beginning.
-    ///
-    /// Parameter `iterator`: An IOKit iterator handle.
-    #[cfg(feature = "libc")]
-    pub fn IOIteratorReset(iterator: io_iterator_t);
+/// Resets an iteration back to the beginning.
+///
+/// If an iterator is invalid, or if the caller wants to start over, IOIteratorReset will set the iteration back to the beginning.
+///
+/// Parameter `iterator`: An IOKit iterator handle.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOIteratorReset(iterator: io_iterator_t) {
+    extern "C-unwind" {
+        fn IOIteratorReset(iterator: io_iterator_t);
+    }
+    unsafe { IOIteratorReset(iterator) }
 }
 
 /// Checks an iterator is still valid.
@@ -10343,7 +10366,7 @@ extern "C-unwind" {
 /// Returns: True if the iterator handle is valid, otherwise false is returned.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOIteratorIsValid(iterator: io_iterator_t) -> bool {
+pub extern "C-unwind" fn IOIteratorIsValid(iterator: io_iterator_t) -> bool {
     extern "C-unwind" {
         fn IOIteratorIsValid(iterator: io_iterator_t) -> libc::boolean_t;
     }
@@ -10506,76 +10529,109 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-extern "C-unwind" {
-    /// A request to rescan a bus for device changes.
-    ///
-    /// A non kernel client may request a bus or controller rescan for added or removed devices, if the bus family does automatically notice such changes. For example, SCSI bus controllers do not notice device changes. The implementation of this routine is family dependent, and the default IOService implementation returns kIOReturnUnsupported.
-    ///
-    /// Parameter `service`: The IOService object to request a rescan, usually obtained via the IOServiceGetMatchingServices or IOServiceAddNotification APIs.
-    ///
-    /// Parameter `options`: An options mask, interpreted only by the IOService's family.
-    ///
-    /// Returns: A return code generated by IOService::requestProbe.
-    #[cfg(feature = "libc")]
-    pub fn IOServiceRequestProbe(service: io_service_t, options: u32) -> libc::kern_return_t;
+/// A request to rescan a bus for device changes.
+///
+/// A non kernel client may request a bus or controller rescan for added or removed devices, if the bus family does automatically notice such changes. For example, SCSI bus controllers do not notice device changes. The implementation of this routine is family dependent, and the default IOService implementation returns kIOReturnUnsupported.
+///
+/// Parameter `service`: The IOService object to request a rescan, usually obtained via the IOServiceGetMatchingServices or IOServiceAddNotification APIs.
+///
+/// Parameter `options`: An options mask, interpreted only by the IOService's family.
+///
+/// Returns: A return code generated by IOService::requestProbe.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOServiceRequestProbe(
+    service: io_service_t,
+    options: u32,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOServiceRequestProbe(service: io_service_t, options: u32) -> libc::kern_return_t;
+    }
+    unsafe { IOServiceRequestProbe(service, options) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioserviceinteractionallowed?language=objc)
 pub const kIOServiceInteractionAllowed: c_uint = 0x00000001;
 
-extern "C-unwind" {
-    /// Authorize access to an IOService.
-    ///
-    /// Determine whether this application is authorized to invoke IOServiceOpen() for a given IOService, either by confirming that it has been previously authorized by the user, or by soliciting the console user.
-    ///
-    /// Parameter `service`: The IOService object to be authorized, usually obtained via the IOServiceGetMatchingServices or IOServiceAddNotification APIs.
-    ///
-    /// Parameter `options`: kIOServiceInteractionAllowed may be set to permit user interaction, if required.
-    ///
-    /// Returns: kIOReturnSuccess if the IOService is authorized, kIOReturnNotPermitted if the IOService is not authorized.
-    #[cfg(feature = "libc")]
-    pub fn IOServiceAuthorize(service: io_service_t, options: u32) -> libc::kern_return_t;
+/// Authorize access to an IOService.
+///
+/// Determine whether this application is authorized to invoke IOServiceOpen() for a given IOService, either by confirming that it has been previously authorized by the user, or by soliciting the console user.
+///
+/// Parameter `service`: The IOService object to be authorized, usually obtained via the IOServiceGetMatchingServices or IOServiceAddNotification APIs.
+///
+/// Parameter `options`: kIOServiceInteractionAllowed may be set to permit user interaction, if required.
+///
+/// Returns: kIOReturnSuccess if the IOService is authorized, kIOReturnNotPermitted if the IOService is not authorized.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOServiceAuthorize(
+    service: io_service_t,
+    options: u32,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOServiceAuthorize(service: io_service_t, options: u32) -> libc::kern_return_t;
+    }
+    unsafe { IOServiceAuthorize(service, options) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IOServiceOpenAsFileDescriptor(service: io_service_t, oflag: c_int) -> c_int;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOServiceOpenAsFileDescriptor(
+    service: io_service_t,
+    oflag: c_int,
+) -> c_int {
+    extern "C-unwind" {
+        fn IOServiceOpenAsFileDescriptor(service: io_service_t, oflag: c_int) -> c_int;
+    }
+    unsafe { IOServiceOpenAsFileDescriptor(service, oflag) }
 }
 
-extern "C-unwind" {
-    /// Close a connection to an IOService and destroy the connect handle.
-    ///
-    /// A connection created with the IOServiceOpen should be closed when the connection is no longer to be used with IOServiceClose.
-    ///
-    /// Parameter `connect`: The connect handle created by IOServiceOpen. It will be destroyed by this function, and should not be released with IOObjectRelease.
-    ///
-    /// Returns: A kern_return_t error code.
-    #[cfg(feature = "libc")]
-    pub fn IOServiceClose(connect: io_connect_t) -> libc::kern_return_t;
+/// Close a connection to an IOService and destroy the connect handle.
+///
+/// A connection created with the IOServiceOpen should be closed when the connection is no longer to be used with IOServiceClose.
+///
+/// Parameter `connect`: The connect handle created by IOServiceOpen. It will be destroyed by this function, and should not be released with IOObjectRelease.
+///
+/// Returns: A kern_return_t error code.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOServiceClose(connect: io_connect_t) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOServiceClose(connect: io_connect_t) -> libc::kern_return_t;
+    }
+    unsafe { IOServiceClose(connect) }
 }
 
-extern "C-unwind" {
-    /// Adds a reference to the connect handle.
-    ///
-    /// Adds a reference to the connect handle.
-    ///
-    /// Parameter `connect`: The connect handle created by IOServiceOpen.
-    ///
-    /// Returns: A kern_return_t error code.
-    #[cfg(feature = "libc")]
-    pub fn IOConnectAddRef(connect: io_connect_t) -> libc::kern_return_t;
+/// Adds a reference to the connect handle.
+///
+/// Adds a reference to the connect handle.
+///
+/// Parameter `connect`: The connect handle created by IOServiceOpen.
+///
+/// Returns: A kern_return_t error code.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOConnectAddRef(connect: io_connect_t) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOConnectAddRef(connect: io_connect_t) -> libc::kern_return_t;
+    }
+    unsafe { IOConnectAddRef(connect) }
 }
 
-extern "C-unwind" {
-    /// Remove a reference to the connect handle.
-    ///
-    /// Removes a reference to the connect handle.  If the last reference is removed an implicit IOServiceClose is performed.
-    ///
-    /// Parameter `connect`: The connect handle created by IOServiceOpen.
-    ///
-    /// Returns: A kern_return_t error code.
-    #[cfg(feature = "libc")]
-    pub fn IOConnectRelease(connect: io_connect_t) -> libc::kern_return_t;
+/// Remove a reference to the connect handle.
+///
+/// Removes a reference to the connect handle.  If the last reference is removed an implicit IOServiceClose is performed.
+///
+/// Parameter `connect`: The connect handle created by IOServiceOpen.
+///
+/// Returns: A kern_return_t error code.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOConnectRelease(connect: io_connect_t) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOConnectRelease(connect: io_connect_t) -> libc::kern_return_t;
+    }
+    unsafe { IOConnectRelease(connect) }
 }
 
 extern "C-unwind" {
@@ -10599,27 +10655,36 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-extern "C-unwind" {
-    /// Set a port to receive family specific notifications.
-    ///
-    /// This is a generic method to pass a mach port send right to be be used by family specific notifications.
-    ///
-    /// Parameter `connect`: The connect handle created by IOServiceOpen.
-    ///
-    /// Parameter `type`: The type of notification requested, not interpreted by IOKit and family defined.
-    ///
-    /// Parameter `port`: The port to which to send notifications.
-    ///
-    /// Parameter `reference`: Some families may support passing a reference parameter for the callers use with the notification.
-    ///
-    /// Returns: A kern_return_t error code.
-    #[cfg(feature = "libc")]
-    pub fn IOConnectSetNotificationPort(
-        connect: io_connect_t,
-        r#type: u32,
-        port: libc::mach_port_t,
-        reference: usize,
-    ) -> libc::kern_return_t;
+/// Set a port to receive family specific notifications.
+///
+/// This is a generic method to pass a mach port send right to be be used by family specific notifications.
+///
+/// Parameter `connect`: The connect handle created by IOServiceOpen.
+///
+/// Parameter `type`: The type of notification requested, not interpreted by IOKit and family defined.
+///
+/// Parameter `port`: The port to which to send notifications.
+///
+/// Parameter `reference`: Some families may support passing a reference parameter for the callers use with the notification.
+///
+/// Returns: A kern_return_t error code.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOConnectSetNotificationPort(
+    connect: io_connect_t,
+    r#type: u32,
+    port: libc::mach_port_t,
+    reference: usize,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOConnectSetNotificationPort(
+            connect: io_connect_t,
+            r#type: u32,
+            port: libc::mach_port_t,
+            reference: usize,
+        ) -> libc::kern_return_t;
+    }
+    unsafe { IOConnectSetNotificationPort(connect, r#type, port, reference) }
 }
 
 extern "C-unwind" {
@@ -10879,100 +10944,180 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IOConnectTrap0(connect: io_connect_t, index: u32) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOConnectTrap0(connect: io_connect_t, index: u32) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOConnectTrap0(connect: io_connect_t, index: u32) -> libc::kern_return_t;
+    }
+    unsafe { IOConnectTrap0(connect, index) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IOConnectTrap1(connect: io_connect_t, index: u32, p1: usize) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOConnectTrap1(
+    connect: io_connect_t,
+    index: u32,
+    p1: usize,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOConnectTrap1(connect: io_connect_t, index: u32, p1: usize) -> libc::kern_return_t;
+    }
+    unsafe { IOConnectTrap1(connect, index, p1) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IOConnectTrap2(
-        connect: io_connect_t,
-        index: u32,
-        p1: usize,
-        p2: usize,
-    ) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOConnectTrap2(
+    connect: io_connect_t,
+    index: u32,
+    p1: usize,
+    p2: usize,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOConnectTrap2(
+            connect: io_connect_t,
+            index: u32,
+            p1: usize,
+            p2: usize,
+        ) -> libc::kern_return_t;
+    }
+    unsafe { IOConnectTrap2(connect, index, p1, p2) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IOConnectTrap3(
-        connect: io_connect_t,
-        index: u32,
-        p1: usize,
-        p2: usize,
-        p3: usize,
-    ) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOConnectTrap3(
+    connect: io_connect_t,
+    index: u32,
+    p1: usize,
+    p2: usize,
+    p3: usize,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOConnectTrap3(
+            connect: io_connect_t,
+            index: u32,
+            p1: usize,
+            p2: usize,
+            p3: usize,
+        ) -> libc::kern_return_t;
+    }
+    unsafe { IOConnectTrap3(connect, index, p1, p2, p3) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IOConnectTrap4(
-        connect: io_connect_t,
-        index: u32,
-        p1: usize,
-        p2: usize,
-        p3: usize,
-        p4: usize,
-    ) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOConnectTrap4(
+    connect: io_connect_t,
+    index: u32,
+    p1: usize,
+    p2: usize,
+    p3: usize,
+    p4: usize,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOConnectTrap4(
+            connect: io_connect_t,
+            index: u32,
+            p1: usize,
+            p2: usize,
+            p3: usize,
+            p4: usize,
+        ) -> libc::kern_return_t;
+    }
+    unsafe { IOConnectTrap4(connect, index, p1, p2, p3, p4) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IOConnectTrap5(
-        connect: io_connect_t,
-        index: u32,
-        p1: usize,
-        p2: usize,
-        p3: usize,
-        p4: usize,
-        p5: usize,
-    ) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOConnectTrap5(
+    connect: io_connect_t,
+    index: u32,
+    p1: usize,
+    p2: usize,
+    p3: usize,
+    p4: usize,
+    p5: usize,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOConnectTrap5(
+            connect: io_connect_t,
+            index: u32,
+            p1: usize,
+            p2: usize,
+            p3: usize,
+            p4: usize,
+            p5: usize,
+        ) -> libc::kern_return_t;
+    }
+    unsafe { IOConnectTrap5(connect, index, p1, p2, p3, p4, p5) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IOConnectTrap6(
-        connect: io_connect_t,
-        index: u32,
-        p1: usize,
-        p2: usize,
-        p3: usize,
-        p4: usize,
-        p5: usize,
-        p6: usize,
-    ) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOConnectTrap6(
+    connect: io_connect_t,
+    index: u32,
+    p1: usize,
+    p2: usize,
+    p3: usize,
+    p4: usize,
+    p5: usize,
+    p6: usize,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOConnectTrap6(
+            connect: io_connect_t,
+            index: u32,
+            p1: usize,
+            p2: usize,
+            p3: usize,
+            p4: usize,
+            p5: usize,
+            p6: usize,
+        ) -> libc::kern_return_t;
+    }
+    unsafe { IOConnectTrap6(connect, index, p1, p2, p3, p4, p5, p6) }
 }
 
-extern "C-unwind" {
-    /// Inform a connection of a second connection.
-    ///
-    /// This is a generic method to inform a family connection of a second connection, and is rarely used.
-    ///
-    /// Parameter `connect`: The connect handle created by IOServiceOpen.
-    ///
-    /// Parameter `client`: Another connect handle created by IOServiceOpen.
-    ///
-    /// Returns: A kern_return_t error code returned by the family.
-    #[cfg(feature = "libc")]
-    pub fn IOConnectAddClient(connect: io_connect_t, client: io_connect_t) -> libc::kern_return_t;
+/// Inform a connection of a second connection.
+///
+/// This is a generic method to inform a family connection of a second connection, and is rarely used.
+///
+/// Parameter `connect`: The connect handle created by IOServiceOpen.
+///
+/// Parameter `client`: Another connect handle created by IOServiceOpen.
+///
+/// Returns: A kern_return_t error code returned by the family.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOConnectAddClient(
+    connect: io_connect_t,
+    client: io_connect_t,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOConnectAddClient(connect: io_connect_t, client: io_connect_t) -> libc::kern_return_t;
+    }
+    unsafe { IOConnectAddClient(connect, client) }
 }
 
-extern "C-unwind" {
-    /// Return a handle to the registry root.
-    ///
-    /// This method provides an accessor to the root of the registry for the machine. The root may be passed to a registry iterator when iterating a plane, and contains properties that describe the available planes, and diagnostic information for IOKit.
-    ///
-    /// Parameter `mainPort`: The main port obtained from IOMainPort(). Pass kIOMainPortDefault to look up the default main port.
-    ///
-    /// Returns: A handle to the IORegistryEntry root instance, to be released with IOObjectRelease by the caller, or MACH_PORT_NULL on failure.
-    #[cfg(feature = "libc")]
-    pub fn IORegistryGetRootEntry(main_port: libc::mach_port_t) -> io_registry_entry_t;
+/// Return a handle to the registry root.
+///
+/// This method provides an accessor to the root of the registry for the machine. The root may be passed to a registry iterator when iterating a plane, and contains properties that describe the available planes, and diagnostic information for IOKit.
+///
+/// Parameter `mainPort`: The main port obtained from IOMainPort(). Pass kIOMainPortDefault to look up the default main port.
+///
+/// Returns: A handle to the IORegistryEntry root instance, to be released with IOObjectRelease by the caller, or MACH_PORT_NULL on failure.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IORegistryGetRootEntry(
+    main_port: libc::mach_port_t,
+) -> io_registry_entry_t {
+    extern "C-unwind" {
+        fn IORegistryGetRootEntry(main_port: libc::mach_port_t) -> io_registry_entry_t;
+    }
+    unsafe { IORegistryGetRootEntry(main_port) }
 }
 
 extern "C-unwind" {
@@ -11082,24 +11227,36 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-extern "C-unwind" {
-    /// Recurse into the current entry in the registry iteration.
-    ///
-    /// This method makes the current entry, ie. the last entry returned by IOIteratorNext, the root in a new level of recursion.
-    ///
-    /// Returns: A kern_return_t error code.
-    #[cfg(feature = "libc")]
-    pub fn IORegistryIteratorEnterEntry(iterator: io_iterator_t) -> libc::kern_return_t;
+/// Recurse into the current entry in the registry iteration.
+///
+/// This method makes the current entry, ie. the last entry returned by IOIteratorNext, the root in a new level of recursion.
+///
+/// Returns: A kern_return_t error code.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IORegistryIteratorEnterEntry(
+    iterator: io_iterator_t,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IORegistryIteratorEnterEntry(iterator: io_iterator_t) -> libc::kern_return_t;
+    }
+    unsafe { IORegistryIteratorEnterEntry(iterator) }
 }
 
-extern "C-unwind" {
-    /// Exits a level of recursion, restoring the current entry.
-    ///
-    /// This method undoes an IORegistryIteratorEnterEntry, restoring the current entry. If there are no more levels of recursion to exit false is returned, otherwise true is returned.
-    ///
-    /// Returns: kIOReturnSuccess if a level of recursion was undone, kIOReturnNoDevice if no recursive levels are left in the iteration.
-    #[cfg(feature = "libc")]
-    pub fn IORegistryIteratorExitEntry(iterator: io_iterator_t) -> libc::kern_return_t;
+/// Exits a level of recursion, restoring the current entry.
+///
+/// This method undoes an IORegistryIteratorEnterEntry, restoring the current entry. If there are no more levels of recursion to exit false is returned, otherwise true is returned.
+///
+/// Returns: kIOReturnSuccess if a level of recursion was undone, kIOReturnNoDevice if no recursive levels are left in the iteration.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IORegistryIteratorExitEntry(
+    iterator: io_iterator_t,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IORegistryIteratorExitEntry(iterator: io_iterator_t) -> libc::kern_return_t;
+    }
+    unsafe { IORegistryIteratorExitEntry(iterator) }
 }
 
 extern "C-unwind" {
@@ -11789,9 +11946,16 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IOCatalogueReset(main_port: libc::mach_port_t, flag: u32) -> libc::kern_return_t;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOCatalogueReset(
+    main_port: libc::mach_port_t,
+    flag: u32,
+) -> libc::kern_return_t {
+    extern "C-unwind" {
+        fn IOCatalogueReset(main_port: libc::mach_port_t, flag: u32) -> libc::kern_return_t;
+    }
+    unsafe { IOCatalogueReset(main_port, flag) }
 }
 
 /// Represents an entry within the data queue
@@ -11936,14 +12100,18 @@ extern "C-unwind" {
     ) -> IOReturn;
 }
 
-extern "C-unwind" {
-    /// Allocates and returns a new mach port able to receive data available notifications from an IODataQueue.
-    ///
-    /// This port is intended to be passed down into the kernel and into an IODataQueue to allow it to send the appropriate notification.  The returned mach port is allocated with a queue limit of one message.  This allows only one mach message to be queued up at a time.  The IODataQueue code is written with the restriction in mind and will only queue up a message if no messages alread have been sent.
-    ///
-    /// Returns: Returns a newly allocated mach port on success.  On failure, it returns MACH_PORT_NULL.
-    #[cfg(feature = "libc")]
-    pub fn IODataQueueAllocateNotificationPort() -> libc::mach_port_t;
+/// Allocates and returns a new mach port able to receive data available notifications from an IODataQueue.
+///
+/// This port is intended to be passed down into the kernel and into an IODataQueue to allow it to send the appropriate notification.  The returned mach port is allocated with a queue limit of one message.  This allows only one mach message to be queued up at a time.  The IODataQueue code is written with the restriction in mind and will only queue up a message if no messages alread have been sent.
+///
+/// Returns: Returns a newly allocated mach port on success.  On failure, it returns MACH_PORT_NULL.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IODataQueueAllocateNotificationPort() -> libc::mach_port_t {
+    extern "C-unwind" {
+        fn IODataQueueAllocateNotificationPort() -> libc::mach_port_t;
+    }
+    unsafe { IODataQueueAllocateNotificationPort() }
 }
 
 extern "C-unwind" {
@@ -12497,10 +12665,16 @@ unsafe impl RefEncode for OSClassDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated = "renamed to `IONotificationPort::create`"]
-    pub fn IONotificationPortCreate(main_port: libc::mach_port_t) -> IONotificationPortRef;
+#[cfg(feature = "libc")]
+#[deprecated = "renamed to `IONotificationPort::create`"]
+#[inline]
+pub extern "C-unwind" fn IONotificationPortCreate(
+    main_port: libc::mach_port_t,
+) -> IONotificationPortRef {
+    extern "C-unwind" {
+        fn IONotificationPortCreate(main_port: libc::mach_port_t) -> IONotificationPortRef;
+    }
+    unsafe { IONotificationPortCreate(main_port) }
 }
 
 extern "C-unwind" {

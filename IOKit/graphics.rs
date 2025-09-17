@@ -3858,7 +3858,7 @@ pub const kIODisplayNoProductName: c_uint = 0x00000400;
 /// Returns: The returned CFDictionary that should be released by the caller with CFRelease().
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IODisplayCreateInfoDictionary(
+pub extern "C-unwind" fn IODisplayCreateInfoDictionary(
     framebuffer: io_service_t,
     options: IOOptionBits,
 ) -> Option<CFRetained<CFDictionary>> {
@@ -3898,12 +3898,19 @@ extern "C-unwind" {
     ) -> i32;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IODisplayForFramebuffer(
-        framebuffer: io_service_t,
-        options: IOOptionBits,
-    ) -> io_service_t;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IODisplayForFramebuffer(
+    framebuffer: io_service_t,
+    options: IOOptionBits,
+) -> io_service_t {
+    extern "C-unwind" {
+        fn IODisplayForFramebuffer(
+            framebuffer: io_service_t,
+            options: IOOptionBits,
+        ) -> io_service_t;
+    }
+    unsafe { IODisplayForFramebuffer(framebuffer, options) }
 }
 
 extern "C-unwind" {
@@ -4001,7 +4008,14 @@ extern "C-unwind" {
     ) -> IOReturn;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    pub fn IODisplayCommitParameters(service: io_service_t, options: IOOptionBits) -> IOReturn;
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IODisplayCommitParameters(
+    service: io_service_t,
+    options: IOOptionBits,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IODisplayCommitParameters(service: io_service_t, options: IOOptionBits) -> IOReturn;
+    }
+    unsafe { IODisplayCommitParameters(service, options) }
 }

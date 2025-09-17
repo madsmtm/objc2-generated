@@ -1040,32 +1040,46 @@ pub const kIOPMSystemCapabilityNetwork: c_uint = 0x08;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilityaot?language=objc)
 pub const kIOPMSystemCapabilityAOT: c_uint = 0x10;
 
-extern "C-unwind" {
-    /// Finds the Root Power Domain IOService.
-    ///
-    /// Parameter `master_device_port`: Just pass in MACH_PORT_NULL for master device port.
-    ///
-    /// Returns: Returns a io_connect_t handle on the root domain. Must be released with IOServiceClose() when done.
-    #[cfg(feature = "libc")]
-    pub fn IOPMFindPowerManagement(master_device_port: libc::mach_port_t) -> io_connect_t;
+/// Finds the Root Power Domain IOService.
+///
+/// Parameter `master_device_port`: Just pass in MACH_PORT_NULL for master device port.
+///
+/// Returns: Returns a io_connect_t handle on the root domain. Must be released with IOServiceClose() when done.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOPMFindPowerManagement(
+    master_device_port: libc::mach_port_t,
+) -> io_connect_t {
+    extern "C-unwind" {
+        fn IOPMFindPowerManagement(master_device_port: libc::mach_port_t) -> io_connect_t;
+    }
+    unsafe { IOPMFindPowerManagement(master_device_port) }
 }
 
-extern "C-unwind" {
-    /// Sets one of the aggressiveness factors in IOKit Power Management.
-    ///
-    /// Parameter `fb`: Representation of the Root Power Domain from IOPMFindPowerManagement.
-    ///
-    /// Parameter `type`: Specifies which aggressiveness factor is being set.
-    ///
-    /// Parameter `aggressiveness`: New value of the aggressiveness factor.
-    ///
-    /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
-    #[cfg(feature = "libc")]
-    pub fn IOPMSetAggressiveness(
-        fb: io_connect_t,
-        r#type: c_ulong,
-        aggressiveness: c_ulong,
-    ) -> IOReturn;
+/// Sets one of the aggressiveness factors in IOKit Power Management.
+///
+/// Parameter `fb`: Representation of the Root Power Domain from IOPMFindPowerManagement.
+///
+/// Parameter `type`: Specifies which aggressiveness factor is being set.
+///
+/// Parameter `aggressiveness`: New value of the aggressiveness factor.
+///
+/// Returns: Returns kIOReturnSuccess or an error condition if request failed.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOPMSetAggressiveness(
+    fb: io_connect_t,
+    r#type: c_ulong,
+    aggressiveness: c_ulong,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMSetAggressiveness(
+            fb: io_connect_t,
+            r#type: c_ulong,
+            aggressiveness: c_ulong,
+        ) -> IOReturn;
+    }
+    unsafe { IOPMSetAggressiveness(fb, r#type, aggressiveness) }
 }
 
 extern "C-unwind" {
@@ -1095,7 +1109,7 @@ extern "C-unwind" {
 /// Returns: Returns true if the system supports sleep, false if some hardware prevents full sleep.
 #[cfg(feature = "libc")]
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMSleepEnabled() -> bool {
+pub extern "C-unwind" fn IOPMSleepEnabled() -> bool {
     extern "C-unwind" {
         fn IOPMSleepEnabled() -> libc::boolean_t;
     }
@@ -1103,16 +1117,20 @@ pub unsafe extern "C-unwind" fn IOPMSleepEnabled() -> bool {
     ret != 0
 }
 
-extern "C-unwind" {
-    /// Request that the system initiate sleep.
-    ///
-    /// For security purposes, caller must be root or the console user.
-    ///
-    /// Parameter `fb`: Port used to communicate to the kernel,  from IOPMFindPowerManagement.
-    ///
-    /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
-    #[cfg(feature = "libc")]
-    pub fn IOPMSleepSystem(fb: io_connect_t) -> IOReturn;
+/// Request that the system initiate sleep.
+///
+/// For security purposes, caller must be root or the console user.
+///
+/// Parameter `fb`: Port used to communicate to the kernel,  from IOPMFindPowerManagement.
+///
+/// Returns: Returns kIOReturnSuccess or an error condition if request failed.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOPMSleepSystem(fb: io_connect_t) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMSleepSystem(fb: io_connect_t) -> IOReturn;
+    }
+    unsafe { IOPMSleepSystem(fb) }
 }
 
 extern "C-unwind" {
@@ -1372,39 +1390,53 @@ extern "C-unwind" {
     pub fn IODeregisterForSystemPower(notifier: *mut io_object_t) -> IOReturn;
 }
 
-extern "C-unwind" {
-    /// The caller acknowledges notification of a power state change on a device it has registered for notifications for via IORegisterForSystemPower or IORegisterApp.
-    ///
-    /// Must be used when handling kIOMessageCanSystemSleep and kIOMessageSystemWillSleep messages from IOPMrootDomain system power. The caller should not call IOAllowPowerChange in response to any messages
-    /// except for these two.
-    ///
-    /// Parameter `kernelPort`: Port used to communicate to the kernel,  from IORegisterApp or IORegisterForSystemPower.
-    ///
-    /// Parameter `notificationID`: A copy of the notification ID which came as part of the power state change notification being acknowledged.
-    ///
-    /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
-    #[cfg(feature = "libc")]
-    pub fn IOAllowPowerChange(kernel_port: io_connect_t, notification_id: isize) -> IOReturn;
+/// The caller acknowledges notification of a power state change on a device it has registered for notifications for via IORegisterForSystemPower or IORegisterApp.
+///
+/// Must be used when handling kIOMessageCanSystemSleep and kIOMessageSystemWillSleep messages from IOPMrootDomain system power. The caller should not call IOAllowPowerChange in response to any messages
+/// except for these two.
+///
+/// Parameter `kernelPort`: Port used to communicate to the kernel,  from IORegisterApp or IORegisterForSystemPower.
+///
+/// Parameter `notificationID`: A copy of the notification ID which came as part of the power state change notification being acknowledged.
+///
+/// Returns: Returns kIOReturnSuccess or an error condition if request failed.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOAllowPowerChange(
+    kernel_port: io_connect_t,
+    notification_id: isize,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOAllowPowerChange(kernel_port: io_connect_t, notification_id: isize) -> IOReturn;
+    }
+    unsafe { IOAllowPowerChange(kernel_port, notification_id) }
 }
 
-extern "C-unwind" {
-    /// The caller denies an idle system sleep power state change.
-    ///
-    /// Should only called in response to kIOMessageCanSystemSleep messages from IOPMrootDomain. IOCancelPowerChange has no meaning for responding to kIOMessageSystemWillSleep (which is non-abortable) or any other messages.
-    ///
-    /// When an app responds to a kIOMessageCanSystemSleep message by calling IOCancelPowerChange, the app
-    /// vetoes the idle sleep request. The system will stay awake.
-    /// The idle timer will elapse again after a period of inactivity, and the system will
-    /// send out the same kIOMessageCanSystemSleep message, and interested applications will respond gain.
-    ///
-    ///
-    /// Parameter `kernelPort`: Port used to communicate to the kernel,  from IORegisterApp or IORegisterForSystemPower.
-    ///
-    /// Parameter `notificationID`: A copy of the notification ID which came as part of the power state change notification being acknowledged.
-    ///
-    /// Returns: Returns kIOReturnSuccess or an error condition if request failed.
-    #[cfg(feature = "libc")]
-    pub fn IOCancelPowerChange(kernel_port: io_connect_t, notification_id: isize) -> IOReturn;
+/// The caller denies an idle system sleep power state change.
+///
+/// Should only called in response to kIOMessageCanSystemSleep messages from IOPMrootDomain. IOCancelPowerChange has no meaning for responding to kIOMessageSystemWillSleep (which is non-abortable) or any other messages.
+///
+/// When an app responds to a kIOMessageCanSystemSleep message by calling IOCancelPowerChange, the app
+/// vetoes the idle sleep request. The system will stay awake.
+/// The idle timer will elapse again after a period of inactivity, and the system will
+/// send out the same kIOMessageCanSystemSleep message, and interested applications will respond gain.
+///
+///
+/// Parameter `kernelPort`: Port used to communicate to the kernel,  from IORegisterApp or IORegisterForSystemPower.
+///
+/// Parameter `notificationID`: A copy of the notification ID which came as part of the power state change notification being acknowledged.
+///
+/// Returns: Returns kIOReturnSuccess or an error condition if request failed.
+#[cfg(feature = "libc")]
+#[inline]
+pub extern "C-unwind" fn IOCancelPowerChange(
+    kernel_port: io_connect_t,
+    notification_id: isize,
+) -> IOReturn {
+    extern "C-unwind" {
+        fn IOCancelPowerChange(kernel_port: io_connect_t, notification_id: isize) -> IOReturn;
+    }
+    unsafe { IOCancelPowerChange(kernel_port, notification_id) }
 }
 
 extern "C-unwind" {
@@ -1501,7 +1533,7 @@ extern "C-unwind" {
 ///
 /// Returns: A CFArray of CFDictionaries of power events. The CFArray must be released by the caller. NULL if there are no scheduled events.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMCopyScheduledPowerEvents() -> Option<CFRetained<CFArray>> {
+pub extern "C-unwind" fn IOPMCopyScheduledPowerEvents() -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
         fn IOPMCopyScheduledPowerEvents() -> Option<NonNull<CFArray>>;
     }
@@ -2004,58 +2036,66 @@ extern "C-unwind" {
     ) -> IOReturn;
 }
 
-extern "C-unwind" {
-    /// Increments the assertion's retain count.
-    ///
-    /// Increments the retain count according to CoreFoundation style retain/release semantics.
-    /// Retain count can be inspected in the assertion's info dictionary at
-    /// key
-    /// <code>
-    ///
-    /// ```text
-    ///  kIOPMAssertionRetainCountKey
-    /// ```
-    ///
-    /// </code>
-    ///
-    /// Parameter `theAssertion`: The assertion ID to retain.
-    pub fn IOPMAssertionRetain(the_assertion: IOPMAssertionID);
+/// Increments the assertion's retain count.
+///
+/// Increments the retain count according to CoreFoundation style retain/release semantics.
+/// Retain count can be inspected in the assertion's info dictionary at
+/// key
+/// <code>
+///
+/// ```text
+///  kIOPMAssertionRetainCountKey
+/// ```
+///
+/// </code>
+///
+/// Parameter `theAssertion`: The assertion ID to retain.
+#[inline]
+pub extern "C-unwind" fn IOPMAssertionRetain(the_assertion: IOPMAssertionID) {
+    extern "C-unwind" {
+        fn IOPMAssertionRetain(the_assertion: IOPMAssertionID);
+    }
+    unsafe { IOPMAssertionRetain(the_assertion) }
 }
 
-extern "C-unwind" {
-    /// Decrements the assertion's retain count.
-    ///
-    ///
-    /// If the retain count becomes zero, then this also frees and deactivates
-    /// the assertion referred to by
-    /// <code>
-    /// assertionID
-    /// </code>
-    ///
-    /// Calls to
-    /// <code>
-    ///
-    /// ```text
-    ///  IOPMAssertionCreate
-    /// ```
-    ///
-    /// </code>
-    /// and
-    /// <code>
-    ///
-    /// ```text
-    ///  IOPMAssertionRetain
-    /// ```
-    ///
-    /// </code>
-    /// must each be paired with calls to IOPMAssertionRelease.
-    ///
-    ///
-    /// Parameter `AssertionID`: The assertion_id, returned from IOPMAssertionCreate, to cancel.
-    ///
-    ///
-    /// Returns: Returns kIOReturnSuccess on success.
-    pub fn IOPMAssertionRelease(assertion_id: IOPMAssertionID) -> IOReturn;
+/// Decrements the assertion's retain count.
+///
+///
+/// If the retain count becomes zero, then this also frees and deactivates
+/// the assertion referred to by
+/// <code>
+/// assertionID
+/// </code>
+///
+/// Calls to
+/// <code>
+///
+/// ```text
+///  IOPMAssertionCreate
+/// ```
+///
+/// </code>
+/// and
+/// <code>
+///
+/// ```text
+///  IOPMAssertionRetain
+/// ```
+///
+/// </code>
+/// must each be paired with calls to IOPMAssertionRelease.
+///
+///
+/// Parameter `AssertionID`: The assertion_id, returned from IOPMAssertionCreate, to cancel.
+///
+///
+/// Returns: Returns kIOReturnSuccess on success.
+#[inline]
+pub extern "C-unwind" fn IOPMAssertionRelease(assertion_id: IOPMAssertionID) -> IOReturn {
+    extern "C-unwind" {
+        fn IOPMAssertionRelease(assertion_id: IOPMAssertionID) -> IOReturn;
+    }
+    unsafe { IOPMAssertionRelease(assertion_id) }
 }
 
 /// Copies details about an
@@ -2077,7 +2117,7 @@ extern "C-unwind" {
 /// .
 /// It's the caller's responsibility to release this dictionary.
 #[inline]
-pub unsafe extern "C-unwind" fn IOPMAssertionCopyProperties(
+pub extern "C-unwind" fn IOPMAssertionCopyProperties(
     the_assertion: IOPMAssertionID,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -2301,36 +2341,40 @@ pub const kIOSystemLoadAdvisoryLevelOK: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemloadadvisorylevelgreat?language=objc)
 pub const kIOSystemLoadAdvisoryLevelGreat: c_uint = 3;
 
-extern "C-unwind" {
-    /// Returns a hint about whether now would be a good time to perform time-insensitive
-    /// work.
-    ///
-    /// Based on user and system load, IOGetSystemLoadAdvisory determines "better" and "worse"
-    /// times to run optional or time-insensitive CPU or disk work.
-    ///
-    /// Applications may use this result to avoid degrading the user experience. If it is a
-    /// "Bad" or "OK" time to perform work, applications should slow down and perform work
-    /// less aggressively.
-    ///
-    /// There is no guarantee that the system will ever be in "Great" condition to perform work -
-    /// all essential work must still be performed even in "Bad", or "OK" times.
-    /// Completely optional work, such as updating caches, may be postponed indefinitely.
-    ///
-    /// Note: You may more efficiently read the SystemLoadAdvisory level using notify_get_state() instead
-    /// of IOGetSystemLoadAdvisory. The results are identical. notify_get_state() requires that you
-    /// pass the token argument received by registering for SystemLoadAdvisory notifications.
-    ///
-    ///
-    /// Returns: IOSystemLoadAdvisoryLevel - one of:
-    /// <ul>
-    /// <li>
-    /// kIOSystemLoadAdvisoryLevelGreat - A Good time to perform time-insensitive work.
-    /// <li>
-    /// kIOSystemLoadAdvisoryLevelOK - An OK time to perform time-insensitive work.
-    /// <li>
-    /// kIOSystemLoadAdvisoryLevelBad - A Bad time to perform time-insensitive work.
-    /// </ul>
-    pub fn IOGetSystemLoadAdvisory() -> IOSystemLoadAdvisoryLevel;
+/// Returns a hint about whether now would be a good time to perform time-insensitive
+/// work.
+///
+/// Based on user and system load, IOGetSystemLoadAdvisory determines "better" and "worse"
+/// times to run optional or time-insensitive CPU or disk work.
+///
+/// Applications may use this result to avoid degrading the user experience. If it is a
+/// "Bad" or "OK" time to perform work, applications should slow down and perform work
+/// less aggressively.
+///
+/// There is no guarantee that the system will ever be in "Great" condition to perform work -
+/// all essential work must still be performed even in "Bad", or "OK" times.
+/// Completely optional work, such as updating caches, may be postponed indefinitely.
+///
+/// Note: You may more efficiently read the SystemLoadAdvisory level using notify_get_state() instead
+/// of IOGetSystemLoadAdvisory. The results are identical. notify_get_state() requires that you
+/// pass the token argument received by registering for SystemLoadAdvisory notifications.
+///
+///
+/// Returns: IOSystemLoadAdvisoryLevel - one of:
+/// <ul>
+/// <li>
+/// kIOSystemLoadAdvisoryLevelGreat - A Good time to perform time-insensitive work.
+/// <li>
+/// kIOSystemLoadAdvisoryLevelOK - An OK time to perform time-insensitive work.
+/// <li>
+/// kIOSystemLoadAdvisoryLevelBad - A Bad time to perform time-insensitive work.
+/// </ul>
+#[inline]
+pub extern "C-unwind" fn IOGetSystemLoadAdvisory() -> IOSystemLoadAdvisoryLevel {
+    extern "C-unwind" {
+        fn IOGetSystemLoadAdvisory() -> IOSystemLoadAdvisoryLevel;
+    }
+    unsafe { IOGetSystemLoadAdvisory() }
 }
 
 /// Indicates how user activity, battery level, and thermal level each
@@ -2342,8 +2386,7 @@ extern "C-unwind" {
 /// Returns: Returns a CFDictionaryRef, or NULL on error. Caller must release the
 /// returned dictionary.
 #[inline]
-pub unsafe extern "C-unwind" fn IOCopySystemLoadAdvisoryDetailed(
-) -> Option<CFRetained<CFDictionary>> {
+pub extern "C-unwind" fn IOCopySystemLoadAdvisoryDetailed() -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
         fn IOCopySystemLoadAdvisoryDetailed() -> Option<NonNull<CFDictionary>>;
     }
