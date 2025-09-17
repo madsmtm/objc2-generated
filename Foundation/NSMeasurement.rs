@@ -62,11 +62,11 @@ impl<UnitType: Message + AsRef<NSUnit>> NSMeasurement<UnitType> {
     extern_methods!(
         #[unsafe(method(unit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unit(&self) -> Retained<UnitType>;
+        pub fn unit(&self) -> Retained<UnitType>;
 
         #[unsafe(method(doubleValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn doubleValue(&self) -> c_double;
+        pub fn doubleValue(&self) -> c_double;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

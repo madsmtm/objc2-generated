@@ -65,7 +65,7 @@ impl NSHTTPCookieStorage {
         /// which will not be shared with other applications.
         #[unsafe(method(sharedHTTPCookieStorage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedHTTPCookieStorage() -> Retained<NSHTTPCookieStorage>;
+        pub fn sharedHTTPCookieStorage() -> Retained<NSHTTPCookieStorage>;
 
         #[cfg(feature = "NSString")]
         /// Get the cookie storage for the container associated with the specified application group identifier
@@ -91,7 +91,7 @@ impl NSHTTPCookieStorage {
         /// Returns: An NSArray of NSHTTPCookies
         #[unsafe(method(cookies))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cookies(&self) -> Option<Retained<NSArray<NSHTTPCookie>>>;
+        pub fn cookies(&self) -> Option<Retained<NSArray<NSHTTPCookie>>>;
 
         #[cfg(feature = "NSHTTPCookie")]
         /// Set a cookie
@@ -168,12 +168,12 @@ impl NSHTTPCookieStorage {
         /// receiver.
         #[unsafe(method(cookieAcceptPolicy))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cookieAcceptPolicy(&self) -> NSHTTPCookieAcceptPolicy;
+        pub fn cookieAcceptPolicy(&self) -> NSHTTPCookieAcceptPolicy;
 
         /// Setter for [`cookieAcceptPolicy`][Self::cookieAcceptPolicy].
         #[unsafe(method(setCookieAcceptPolicy:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCookieAcceptPolicy(&self, cookie_accept_policy: NSHTTPCookieAcceptPolicy);
+        pub fn setCookieAcceptPolicy(&self, cookie_accept_policy: NSHTTPCookieAcceptPolicy);
 
         #[cfg(all(
             feature = "NSArray",

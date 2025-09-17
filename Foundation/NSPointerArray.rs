@@ -77,7 +77,7 @@ impl NSPointerArray {
         #[cfg(feature = "NSPointerFunctions")]
         #[unsafe(method(pointerFunctions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pointerFunctions(&self) -> Retained<NSPointerFunctions>;
+        pub fn pointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
         #[unsafe(method(pointerAtIndex:))]
         #[unsafe(method_family = none)]
@@ -118,12 +118,12 @@ impl NSPointerArray {
 
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
-        pub unsafe fn count(&self) -> NSUInteger;
+        pub fn count(&self) -> NSUInteger;
 
         /// Setter for [`count`][Self::count].
         #[unsafe(method(setCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCount(&self, count: NSUInteger);
+        pub fn setCount(&self, count: NSUInteger);
     );
 }
 
@@ -164,6 +164,6 @@ impl NSPointerArray {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(allObjects))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allObjects(&self) -> Retained<NSArray>;
+        pub fn allObjects(&self) -> Retained<NSArray>;
     );
 }

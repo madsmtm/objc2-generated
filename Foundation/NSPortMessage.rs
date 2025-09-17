@@ -35,17 +35,17 @@ impl NSPortMessage {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(components))]
         #[unsafe(method_family = none)]
-        pub unsafe fn components(&self) -> Option<Retained<NSArray>>;
+        pub fn components(&self) -> Option<Retained<NSArray>>;
 
         #[cfg(feature = "NSPort")]
         #[unsafe(method(receivePort))]
         #[unsafe(method_family = none)]
-        pub unsafe fn receivePort(&self) -> Option<Retained<NSPort>>;
+        pub fn receivePort(&self) -> Option<Retained<NSPort>>;
 
         #[cfg(feature = "NSPort")]
         #[unsafe(method(sendPort))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sendPort(&self) -> Option<Retained<NSPort>>;
+        pub fn sendPort(&self) -> Option<Retained<NSPort>>;
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(sendBeforeDate:))]
@@ -54,12 +54,12 @@ impl NSPortMessage {
 
         #[unsafe(method(msgid))]
         #[unsafe(method_family = none)]
-        pub unsafe fn msgid(&self) -> u32;
+        pub fn msgid(&self) -> u32;
 
         /// Setter for [`msgid`][Self::msgid].
         #[unsafe(method(setMsgid:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMsgid(&self, msgid: u32);
+        pub fn setMsgid(&self, msgid: u32);
     );
 }
 

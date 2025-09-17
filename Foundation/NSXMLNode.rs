@@ -241,13 +241,13 @@ impl NSXMLNode {
         /// Returns an element, attribute, entity, or notation DTD node based on the full XML string.
         #[unsafe(method(kind))]
         #[unsafe(method_family = none)]
-        pub unsafe fn kind(&self) -> NSXMLNodeKind;
+        pub fn kind(&self) -> NSXMLNodeKind;
 
         #[cfg(feature = "NSString")]
         /// Sets the nodes name. Applicable for element, attribute, namespace, processing-instruction, document type declaration, element declaration, attribute declaration, entity declaration, and notation declaration.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
+        pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`name`][Self::name].
@@ -255,12 +255,12 @@ impl NSXMLNode {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setName(&self, name: Option<&NSString>);
+        pub fn setName(&self, name: Option<&NSString>);
 
         /// Sets the content of the node. Setting the objectValue removes all existing children including processing instructions and comments. Setting the object value on an element creates a single text node child.
         #[unsafe(method(objectValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectValue(&self) -> Option<Retained<AnyObject>>;
+        pub fn objectValue(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`objectValue`][Self::objectValue].
         ///
@@ -275,7 +275,7 @@ impl NSXMLNode {
         /// Sets the content of the node. Setting the stringValue removes all existing children including processing instructions and comments. Setting the string value on an element creates a single text node child. The getter returns the string value of the node, which may be either its content or child text nodes, depending on the type of node. Elements are recursed and text nodes concatenated in document order with no intervening spaces.
         #[unsafe(method(stringValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
+        pub fn stringValue(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`stringValue`][Self::stringValue].
@@ -283,7 +283,7 @@ impl NSXMLNode {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setStringValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStringValue(&self, string_value: Option<&NSString>);
+        pub fn setStringValue(&self, string_value: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
         /// Sets the content as with
@@ -300,34 +300,34 @@ impl NSXMLNode {
         /// A node's index amongst its siblings.
         #[unsafe(method(index))]
         #[unsafe(method_family = none)]
-        pub unsafe fn index(&self) -> NSUInteger;
+        pub fn index(&self) -> NSUInteger;
 
         /// The depth of the node within the tree. Documents and standalone nodes are level 0.
         #[unsafe(method(level))]
         #[unsafe(method_family = none)]
-        pub unsafe fn level(&self) -> NSUInteger;
+        pub fn level(&self) -> NSUInteger;
 
         #[cfg(feature = "NSXMLDocument")]
         /// The encompassing document or nil.
         #[unsafe(method(rootDocument))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rootDocument(&self) -> Option<Retained<NSXMLDocument>>;
+        pub fn rootDocument(&self) -> Option<Retained<NSXMLDocument>>;
 
         /// The parent of this node. Documents and standalone Nodes have a nil parent; there is not a 1-to-1 relationship between parent and children, eg a namespace cannot be a child but has a parent element.
         #[unsafe(method(parent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn parent(&self) -> Option<Retained<NSXMLNode>>;
+        pub fn parent(&self) -> Option<Retained<NSXMLNode>>;
 
         /// The amount of children, relevant for documents, elements, and document type declarations. Use this instead of [[self children] count].
         #[unsafe(method(childCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn childCount(&self) -> NSUInteger;
+        pub fn childCount(&self) -> NSUInteger;
 
         #[cfg(feature = "NSArray")]
         /// An immutable array of child nodes. Relevant for documents, elements, and document type declarations.
         #[unsafe(method(children))]
         #[unsafe(method_family = none)]
-        pub unsafe fn children(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
+        pub fn children(&self) -> Option<Retained<NSArray<NSXMLNode>>>;
 
         /// Returns the child node at a particular index.
         #[unsafe(method(childAtIndex:))]
@@ -337,22 +337,22 @@ impl NSXMLNode {
         /// Returns the previous sibling, or nil if there isn't one.
         #[unsafe(method(previousSibling))]
         #[unsafe(method_family = none)]
-        pub unsafe fn previousSibling(&self) -> Option<Retained<NSXMLNode>>;
+        pub fn previousSibling(&self) -> Option<Retained<NSXMLNode>>;
 
         /// Returns the next sibling, or nil if there isn't one.
         #[unsafe(method(nextSibling))]
         #[unsafe(method_family = none)]
-        pub unsafe fn nextSibling(&self) -> Option<Retained<NSXMLNode>>;
+        pub fn nextSibling(&self) -> Option<Retained<NSXMLNode>>;
 
         /// Returns the previous node in document order. This can be used to walk the tree backwards.
         #[unsafe(method(previousNode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn previousNode(&self) -> Option<Retained<NSXMLNode>>;
+        pub fn previousNode(&self) -> Option<Retained<NSXMLNode>>;
 
         /// Returns the next node in document order. This can be used to walk the tree forwards.
         #[unsafe(method(nextNode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn nextNode(&self) -> Option<Retained<NSXMLNode>>;
+        pub fn nextNode(&self) -> Option<Retained<NSXMLNode>>;
 
         /// Detaches this node from its parent.
         #[unsafe(method(detach))]
@@ -363,25 +363,25 @@ impl NSXMLNode {
         /// Returns the XPath to this node, for example foo/bar[2]/baz.
         #[unsafe(method(XPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn XPath(&self) -> Option<Retained<NSString>>;
+        pub fn XPath(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Returns the local name bar if this attribute or element's name is foo:bar
         #[unsafe(method(localName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localName(&self) -> Option<Retained<NSString>>;
+        pub fn localName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Returns the prefix foo if this attribute or element's name if foo:bar
         #[unsafe(method(prefix))]
         #[unsafe(method_family = none)]
-        pub unsafe fn prefix(&self) -> Option<Retained<NSString>>;
+        pub fn prefix(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Set the URI of this element, attribute, or document. For documents it is the URI of document origin. Getter returns the URI of this element, attribute, or document. For documents it is the URI of document origin and is automatically set when using initWithContentsOfURL.
         #[unsafe(method(URI))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URI(&self) -> Option<Retained<NSString>>;
+        pub fn URI(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`URI`][Self::URI].
@@ -389,7 +389,7 @@ impl NSXMLNode {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setURI:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setURI(&self, uri: Option<&NSString>);
+        pub fn setURI(&self, uri: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
         /// Returns the local name bar in foo:bar.
@@ -413,13 +413,13 @@ impl NSXMLNode {
         /// Used for debugging. May give more information than XMLString.
         #[unsafe(method(description))]
         #[unsafe(method_family = none)]
-        pub unsafe fn description(&self) -> Retained<NSString>;
+        pub fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// The representation of this node as it would appear in an XML document.
         #[unsafe(method(XMLString))]
         #[unsafe(method_family = none)]
-        pub unsafe fn XMLString(&self) -> Retained<NSString>;
+        pub fn XMLString(&self) -> Retained<NSString>;
 
         #[cfg(all(feature = "NSString", feature = "NSXMLNodeOptions"))]
         /// The representation of this node as it would appear in an XML document, with various output options available.

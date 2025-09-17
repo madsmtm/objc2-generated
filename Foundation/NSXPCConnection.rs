@@ -83,7 +83,7 @@ impl NSXPCConnection {
         #[cfg(feature = "NSString")]
         #[unsafe(method(serviceName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn serviceName(&self) -> Option<Retained<NSString>>;
+        pub fn serviceName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithMachServiceName:options:))]
@@ -103,20 +103,20 @@ impl NSXPCConnection {
 
         #[unsafe(method(endpoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endpoint(&self) -> Retained<NSXPCListenerEndpoint>;
+        pub fn endpoint(&self) -> Retained<NSXPCListenerEndpoint>;
 
         #[unsafe(method(exportedInterface))]
         #[unsafe(method_family = none)]
-        pub unsafe fn exportedInterface(&self) -> Option<Retained<NSXPCInterface>>;
+        pub fn exportedInterface(&self) -> Option<Retained<NSXPCInterface>>;
 
         /// Setter for [`exportedInterface`][Self::exportedInterface].
         #[unsafe(method(setExportedInterface:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setExportedInterface(&self, exported_interface: Option<&NSXPCInterface>);
+        pub fn setExportedInterface(&self, exported_interface: Option<&NSXPCInterface>);
 
         #[unsafe(method(exportedObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn exportedObject(&self) -> Option<Retained<AnyObject>>;
+        pub fn exportedObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`exportedObject`][Self::exportedObject].
         ///
@@ -129,19 +129,16 @@ impl NSXPCConnection {
 
         #[unsafe(method(remoteObjectInterface))]
         #[unsafe(method_family = none)]
-        pub unsafe fn remoteObjectInterface(&self) -> Option<Retained<NSXPCInterface>>;
+        pub fn remoteObjectInterface(&self) -> Option<Retained<NSXPCInterface>>;
 
         /// Setter for [`remoteObjectInterface`][Self::remoteObjectInterface].
         #[unsafe(method(setRemoteObjectInterface:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRemoteObjectInterface(
-            &self,
-            remote_object_interface: Option<&NSXPCInterface>,
-        );
+        pub fn setRemoteObjectInterface(&self, remote_object_interface: Option<&NSXPCInterface>);
 
         #[unsafe(method(remoteObjectProxy))]
         #[unsafe(method_family = none)]
-        pub unsafe fn remoteObjectProxy(&self) -> Retained<AnyObject>;
+        pub fn remoteObjectProxy(&self) -> Retained<AnyObject>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
         #[unsafe(method(remoteObjectProxyWithErrorHandler:))]
@@ -162,7 +159,7 @@ impl NSXPCConnection {
         #[cfg(feature = "block2")]
         #[unsafe(method(interruptionHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn interruptionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub fn interruptionHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`interruptionHandler`][Self::interruptionHandler].
@@ -170,7 +167,7 @@ impl NSXPCConnection {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setInterruptionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInterruptionHandler(
+        pub fn setInterruptionHandler(
             &self,
             interruption_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
@@ -178,7 +175,7 @@ impl NSXPCConnection {
         #[cfg(feature = "block2")]
         #[unsafe(method(invalidationHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidationHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
+        pub fn invalidationHandler(&self) -> *mut block2::DynBlock<dyn Fn()>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`invalidationHandler`][Self::invalidationHandler].
@@ -186,7 +183,7 @@ impl NSXPCConnection {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setInvalidationHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInvalidationHandler(
+        pub fn setInvalidationHandler(
             &self,
             invalidation_handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
@@ -210,17 +207,17 @@ impl NSXPCConnection {
         #[cfg(feature = "libc")]
         #[unsafe(method(processIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn processIdentifier(&self) -> libc::pid_t;
+        pub fn processIdentifier(&self) -> libc::pid_t;
 
         #[cfg(feature = "libc")]
         #[unsafe(method(effectiveUserIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn effectiveUserIdentifier(&self) -> libc::uid_t;
+        pub fn effectiveUserIdentifier(&self) -> libc::uid_t;
 
         #[cfg(feature = "libc")]
         #[unsafe(method(effectiveGroupIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn effectiveGroupIdentifier(&self) -> libc::gid_t;
+        pub fn effectiveGroupIdentifier(&self) -> libc::gid_t;
 
         #[unsafe(method(currentConnection))]
         #[unsafe(method_family = none)]
@@ -284,23 +281,18 @@ impl NSXPCListener {
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn NSXPCListenerDelegate>>>;
+        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSXPCListenerDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn NSXPCListenerDelegate>>,
-        );
+        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSXPCListenerDelegate>>);
 
         #[unsafe(method(endpoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endpoint(&self) -> Retained<NSXPCListenerEndpoint>;
+        pub fn endpoint(&self) -> Retained<NSXPCListenerEndpoint>;
 
         #[unsafe(method(resume))]
         #[unsafe(method_family = none)]

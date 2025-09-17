@@ -193,7 +193,7 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         #[cfg(feature = "NSString")]
         #[unsafe(method(description))]
         #[unsafe(method_family = none)]
-        pub unsafe fn description(&self) -> Retained<NSString>;
+        pub fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// # Safety
@@ -288,7 +288,7 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         #[cfg(feature = "NSData")]
         #[unsafe(method(sortedArrayHint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sortedArrayHint(&self) -> Retained<NSData>;
+        pub fn sortedArrayHint(&self) -> Retained<NSData>;
 
         /// # Safety
         ///

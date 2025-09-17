@@ -30,7 +30,7 @@ impl NSMethodSignature {
 
         #[unsafe(method(numberOfArguments))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfArguments(&self) -> NSUInteger;
+        pub fn numberOfArguments(&self) -> NSUInteger;
 
         #[unsafe(method(getArgumentTypeAtIndex:))]
         #[unsafe(method_family = none)]
@@ -38,7 +38,7 @@ impl NSMethodSignature {
 
         #[unsafe(method(frameLength))]
         #[unsafe(method_family = none)]
-        pub unsafe fn frameLength(&self) -> NSUInteger;
+        pub fn frameLength(&self) -> NSUInteger;
 
         #[unsafe(method(isOneway))]
         #[unsafe(method_family = none)]
@@ -46,11 +46,11 @@ impl NSMethodSignature {
 
         #[unsafe(method(methodReturnType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn methodReturnType(&self) -> NonNull<c_char>;
+        pub fn methodReturnType(&self) -> NonNull<c_char>;
 
         #[unsafe(method(methodReturnLength))]
         #[unsafe(method_family = none)]
-        pub unsafe fn methodReturnLength(&self) -> NSUInteger;
+        pub fn methodReturnLength(&self) -> NSUInteger;
     );
 }
 

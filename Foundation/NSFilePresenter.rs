@@ -12,18 +12,18 @@ extern_protocol!(
         #[cfg(feature = "NSURL")]
         #[unsafe(method(presentedItemURL))]
         #[unsafe(method_family = none)]
-        unsafe fn presentedItemURL(&self) -> Option<Retained<NSURL>>;
+        fn presentedItemURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSOperation")]
         #[unsafe(method(presentedItemOperationQueue))]
         #[unsafe(method_family = none)]
-        unsafe fn presentedItemOperationQueue(&self) -> Retained<NSOperationQueue>;
+        fn presentedItemOperationQueue(&self) -> Retained<NSOperationQueue>;
 
         #[cfg(feature = "NSURL")]
         #[optional]
         #[unsafe(method(primaryPresentedItemURL))]
         #[unsafe(method_family = none)]
-        unsafe fn primaryPresentedItemURL(&self) -> Option<Retained<NSURL>>;
+        fn primaryPresentedItemURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "block2")]
         /// # Safety
@@ -109,9 +109,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(observedPresentedItemUbiquityAttributes))]
         #[unsafe(method_family = none)]
-        unsafe fn observedPresentedItemUbiquityAttributes(
-            &self,
-        ) -> Retained<NSSet<NSURLResourceKey>>;
+        fn observedPresentedItemUbiquityAttributes(&self) -> Retained<NSSet<NSURLResourceKey>>;
 
         #[cfg(feature = "NSFileVersion")]
         #[optional]

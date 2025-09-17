@@ -23,11 +23,11 @@ impl NSProtocolChecker {
     extern_methods!(
         #[unsafe(method(protocol))]
         #[unsafe(method_family = none)]
-        pub unsafe fn protocol(&self) -> Retained<AnyProtocol>;
+        pub fn protocol(&self) -> Retained<AnyProtocol>;
 
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]
-        pub unsafe fn target(&self) -> Option<Retained<NSObject>>;
+        pub fn target(&self) -> Option<Retained<NSObject>>;
     );
 }
 

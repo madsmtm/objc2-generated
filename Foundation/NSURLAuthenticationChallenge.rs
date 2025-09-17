@@ -138,7 +138,7 @@ impl NSURLAuthenticationChallenge {
         /// Returns: The protection space that needs authentication
         #[unsafe(method(protectionSpace))]
         #[unsafe(method_family = none)]
-        pub unsafe fn protectionSpace(&self) -> Retained<NSURLProtectionSpace>;
+        pub fn protectionSpace(&self) -> Retained<NSURLProtectionSpace>;
 
         #[cfg(feature = "NSURLCredential")]
         /// Get the proposed credential for this challenge
@@ -154,14 +154,14 @@ impl NSURLAuthenticationChallenge {
         /// username the client could use when prompting.
         #[unsafe(method(proposedCredential))]
         #[unsafe(method_family = none)]
-        pub unsafe fn proposedCredential(&self) -> Option<Retained<NSURLCredential>>;
+        pub fn proposedCredential(&self) -> Option<Retained<NSURLCredential>>;
 
         /// Get count of previous failed authentication attempts
         ///
         /// Returns: The count of previous failures
         #[unsafe(method(previousFailureCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn previousFailureCount(&self) -> NSInteger;
+        pub fn previousFailureCount(&self) -> NSInteger;
 
         #[cfg(feature = "NSURLResponse")]
         /// Get the response representing authentication failure.
@@ -174,7 +174,7 @@ impl NSURLAuthenticationChallenge {
         /// return nil.
         #[unsafe(method(failureResponse))]
         #[unsafe(method_family = none)]
-        pub unsafe fn failureResponse(&self) -> Option<Retained<NSURLResponse>>;
+        pub fn failureResponse(&self) -> Option<Retained<NSURLResponse>>;
 
         #[cfg(feature = "NSError")]
         /// Get the error representing authentication failure.
@@ -185,7 +185,7 @@ impl NSURLAuthenticationChallenge {
         /// return nil.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
-        pub unsafe fn error(&self) -> Option<Retained<NSError>>;
+        pub fn error(&self) -> Option<Retained<NSError>>;
 
         /// Get the sender of this challenge
         ///
@@ -194,7 +194,7 @@ impl NSURLAuthenticationChallenge {
         /// The sender is the object you should reply to when done processing the challenge.
         #[unsafe(method(sender))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sender(
+        pub fn sender(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn NSURLAuthenticationChallengeSender>>>;
     );

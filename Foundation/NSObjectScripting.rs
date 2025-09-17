@@ -27,8 +27,7 @@ pub unsafe trait NSObjectNSScripting:
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(scriptingProperties))]
         #[unsafe(method_family = none)]
-        unsafe fn scriptingProperties(&self)
-            -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
+        fn scriptingProperties(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`scriptingProperties`][Self::scriptingProperties].

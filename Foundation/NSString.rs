@@ -538,51 +538,51 @@ impl NSString {
 
         #[unsafe(method(doubleValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn doubleValue(&self) -> c_double;
+        pub fn doubleValue(&self) -> c_double;
 
         #[unsafe(method(floatValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn floatValue(&self) -> c_float;
+        pub fn floatValue(&self) -> c_float;
 
         #[unsafe(method(intValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn intValue(&self) -> c_int;
+        pub fn intValue(&self) -> c_int;
 
         #[unsafe(method(integerValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn integerValue(&self) -> NSInteger;
+        pub fn integerValue(&self) -> NSInteger;
 
         #[unsafe(method(longLongValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn longLongValue(&self) -> c_longlong;
+        pub fn longLongValue(&self) -> c_longlong;
 
         #[unsafe(method(boolValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boolValue(&self) -> bool;
+        pub fn boolValue(&self) -> bool;
 
         #[unsafe(method(uppercaseString))]
         #[unsafe(method_family = none)]
-        pub unsafe fn uppercaseString(&self) -> Retained<NSString>;
+        pub fn uppercaseString(&self) -> Retained<NSString>;
 
         #[unsafe(method(lowercaseString))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lowercaseString(&self) -> Retained<NSString>;
+        pub fn lowercaseString(&self) -> Retained<NSString>;
 
         #[unsafe(method(capitalizedString))]
         #[unsafe(method_family = none)]
-        pub unsafe fn capitalizedString(&self) -> Retained<NSString>;
+        pub fn capitalizedString(&self) -> Retained<NSString>;
 
         #[unsafe(method(localizedUppercaseString))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedUppercaseString(&self) -> Retained<NSString>;
+        pub fn localizedUppercaseString(&self) -> Retained<NSString>;
 
         #[unsafe(method(localizedLowercaseString))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedLowercaseString(&self) -> Retained<NSString>;
+        pub fn localizedLowercaseString(&self) -> Retained<NSString>;
 
         #[unsafe(method(localizedCapitalizedString))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedCapitalizedString(&self) -> Retained<NSString>;
+        pub fn localizedCapitalizedString(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSLocale")]
         #[unsafe(method(uppercaseStringWithLocale:))]
@@ -674,11 +674,11 @@ impl NSString {
 
         #[unsafe(method(fastestEncoding))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fastestEncoding(&self) -> NSStringEncoding;
+        pub fn fastestEncoding(&self) -> NSStringEncoding;
 
         #[unsafe(method(smallestEncoding))]
         #[unsafe(method_family = none)]
-        pub unsafe fn smallestEncoding(&self) -> NSStringEncoding;
+        pub fn smallestEncoding(&self) -> NSStringEncoding;
 
         #[cfg(feature = "NSData")]
         #[unsafe(method(dataUsingEncoding:allowLossyConversion:))]
@@ -747,7 +747,7 @@ impl NSString {
 
         #[unsafe(method(availableStringEncodings))]
         #[unsafe(method_family = none)]
-        pub unsafe fn availableStringEncodings() -> NonNull<NSStringEncoding>;
+        pub fn availableStringEncodings() -> NonNull<NSStringEncoding>;
 
         #[unsafe(method(localizedNameOfStringEncoding:))]
         #[unsafe(method_family = none)]
@@ -757,23 +757,23 @@ impl NSString {
 
         #[unsafe(method(defaultCStringEncoding))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultCStringEncoding() -> NSStringEncoding;
+        pub fn defaultCStringEncoding() -> NSStringEncoding;
 
         #[unsafe(method(decomposedStringWithCanonicalMapping))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decomposedStringWithCanonicalMapping(&self) -> Retained<NSString>;
+        pub fn decomposedStringWithCanonicalMapping(&self) -> Retained<NSString>;
 
         #[unsafe(method(precomposedStringWithCanonicalMapping))]
         #[unsafe(method_family = none)]
-        pub unsafe fn precomposedStringWithCanonicalMapping(&self) -> Retained<NSString>;
+        pub fn precomposedStringWithCanonicalMapping(&self) -> Retained<NSString>;
 
         #[unsafe(method(decomposedStringWithCompatibilityMapping))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decomposedStringWithCompatibilityMapping(&self) -> Retained<NSString>;
+        pub fn decomposedStringWithCompatibilityMapping(&self) -> Retained<NSString>;
 
         #[unsafe(method(precomposedStringWithCompatibilityMapping))]
         #[unsafe(method_family = none)]
-        pub unsafe fn precomposedStringWithCompatibilityMapping(&self) -> Retained<NSString>;
+        pub fn precomposedStringWithCompatibilityMapping(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSArray")]
         #[unsafe(method(componentsSeparatedByString:))]
@@ -875,11 +875,11 @@ impl NSString {
 
         #[unsafe(method(description))]
         #[unsafe(method_family = none)]
-        pub unsafe fn description(&self) -> Retained<NSString>;
+        pub fn description(&self) -> Retained<NSString>;
 
         #[unsafe(method(hash))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hash(&self) -> NSUInteger;
+        pub fn hash(&self) -> NSUInteger;
 
         /// # Safety
         ///

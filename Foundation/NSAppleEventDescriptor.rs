@@ -254,77 +254,77 @@ impl NSAppleEventDescriptor {
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(aeDesc))]
         #[unsafe(method_family = none)]
-        pub unsafe fn aeDesc(&self) -> *const AEDesc;
+        pub fn aeDesc(&self) -> *const AEDesc;
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(descriptorType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn descriptorType(&self) -> DescType;
+        pub fn descriptorType(&self) -> DescType;
 
         #[cfg(feature = "NSData")]
         #[unsafe(method(data))]
         #[unsafe(method_family = none)]
-        pub unsafe fn data(&self) -> Retained<NSData>;
+        pub fn data(&self) -> Retained<NSData>;
 
         #[unsafe(method(booleanValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn booleanValue(&self) -> Boolean;
+        pub fn booleanValue(&self) -> Boolean;
 
         #[unsafe(method(enumCodeValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enumCodeValue(&self) -> OSType;
+        pub fn enumCodeValue(&self) -> OSType;
 
         #[unsafe(method(int32Value))]
         #[unsafe(method_family = none)]
-        pub unsafe fn int32Value(&self) -> i32;
+        pub fn int32Value(&self) -> i32;
 
         #[unsafe(method(doubleValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn doubleValue(&self) -> c_double;
+        pub fn doubleValue(&self) -> c_double;
 
         #[unsafe(method(typeCodeValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn typeCodeValue(&self) -> OSType;
+        pub fn typeCodeValue(&self) -> OSType;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(stringValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
+        pub fn stringValue(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(dateValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dateValue(&self) -> Option<Retained<NSDate>>;
+        pub fn dateValue(&self) -> Option<Retained<NSDate>>;
 
         #[cfg(feature = "NSURL")]
         #[unsafe(method(fileURLValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileURLValue(&self) -> Option<Retained<NSURL>>;
+        pub fn fileURLValue(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(eventClass))]
         #[unsafe(method_family = none)]
-        pub unsafe fn eventClass(&self) -> AEEventClass;
+        pub fn eventClass(&self) -> AEEventClass;
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(eventID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn eventID(&self) -> AEEventID;
+        pub fn eventID(&self) -> AEEventID;
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(returnID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn returnID(&self) -> AEReturnID;
+        pub fn returnID(&self) -> AEReturnID;
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
         #[unsafe(method(transactionID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transactionID(&self) -> AETransactionID;
+        pub fn transactionID(&self) -> AETransactionID;
 
         #[cfg(feature = "objc2-core-services")]
         #[cfg(target_vendor = "apple")]
@@ -381,11 +381,11 @@ impl NSAppleEventDescriptor {
 
         #[unsafe(method(isRecordDescriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isRecordDescriptor(&self) -> bool;
+        pub fn isRecordDescriptor(&self) -> bool;
 
         #[unsafe(method(numberOfItems))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfItems(&self) -> NSInteger;
+        pub fn numberOfItems(&self) -> NSInteger;
 
         #[unsafe(method(insertDescriptor:atIndex:))]
         #[unsafe(method_family = none)]

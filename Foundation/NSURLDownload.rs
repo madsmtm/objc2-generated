@@ -99,7 +99,7 @@ impl NSURLDownload {
         /// Returns: The request of the download.
         #[unsafe(method(request))]
         #[unsafe(method_family = none)]
-        pub unsafe fn request(&self) -> Retained<NSURLRequest>;
+        pub fn request(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSData")]
         /// Returns the resume data of a download that is incomplete.
@@ -113,7 +113,7 @@ impl NSURLDownload {
         /// In order to later resume a download, be sure to call setDeletesFileUponFailure: with NO.
         #[unsafe(method(resumeData))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resumeData(&self) -> Option<Retained<NSData>>;
+        pub fn resumeData(&self) -> Option<Retained<NSData>>;
 
         /// Sets whether or not the downloaded file should be deleted upon failure.
         /// 1
@@ -122,12 +122,12 @@ impl NSURLDownload {
         /// from being deleted. deletesFileUponFailure is YES by default.
         #[unsafe(method(deletesFileUponFailure))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deletesFileUponFailure(&self) -> bool;
+        pub fn deletesFileUponFailure(&self) -> bool;
 
         /// Setter for [`deletesFileUponFailure`][Self::deletesFileUponFailure].
         #[unsafe(method(setDeletesFileUponFailure:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDeletesFileUponFailure(&self, deletes_file_upon_failure: bool);
+        pub fn setDeletesFileUponFailure(&self, deletes_file_upon_failure: bool);
     );
 }
 

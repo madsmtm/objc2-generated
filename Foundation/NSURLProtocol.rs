@@ -183,7 +183,7 @@ impl NSURLProtocol {
         /// Returns: The NSURLProtocolClient of the receiver.
         #[unsafe(method(client))]
         #[unsafe(method_family = none)]
-        pub unsafe fn client(&self) -> Option<Retained<ProtocolObject<dyn NSURLProtocolClient>>>;
+        pub fn client(&self) -> Option<Retained<ProtocolObject<dyn NSURLProtocolClient>>>;
 
         #[cfg(feature = "NSURLRequest")]
         /// Returns the NSURLRequest of the receiver.
@@ -191,7 +191,7 @@ impl NSURLProtocol {
         /// Returns: The NSURLRequest of the receiver.
         #[unsafe(method(request))]
         #[unsafe(method_family = none)]
-        pub unsafe fn request(&self) -> Retained<NSURLRequest>;
+        pub fn request(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLCache")]
         /// Returns the NSCachedURLResponse of the receiver.
@@ -199,7 +199,7 @@ impl NSURLProtocol {
         /// Returns: The NSCachedURLResponse of the receiver.
         #[unsafe(method(cachedResponse))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cachedResponse(&self) -> Option<Retained<NSCachedURLResponse>>;
+        pub fn cachedResponse(&self) -> Option<Retained<NSCachedURLResponse>>;
 
         #[cfg(feature = "NSURLRequest")]
         /// This method determines whether this protocol can handle
@@ -425,6 +425,6 @@ impl NSURLProtocol {
         #[cfg(feature = "NSURLSession")]
         #[unsafe(method(task))]
         #[unsafe(method_family = none)]
-        pub unsafe fn task(&self) -> Option<Retained<NSURLSessionTask>>;
+        pub fn task(&self) -> Option<Retained<NSURLSessionTask>>;
     );
 }

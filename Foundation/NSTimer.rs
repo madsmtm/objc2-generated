@@ -166,7 +166,7 @@ impl NSTimer {
         #[cfg(feature = "NSDate")]
         #[unsafe(method(fireDate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fireDate(&self) -> Retained<NSDate>;
+        pub fn fireDate(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`fireDate`][Self::fireDate].
@@ -174,23 +174,23 @@ impl NSTimer {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setFireDate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFireDate(&self, fire_date: &NSDate);
+        pub fn setFireDate(&self, fire_date: &NSDate);
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(timeInterval))]
         #[unsafe(method_family = none)]
-        pub unsafe fn timeInterval(&self) -> NSTimeInterval;
+        pub fn timeInterval(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
         #[unsafe(method(tolerance))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tolerance(&self) -> NSTimeInterval;
+        pub fn tolerance(&self) -> NSTimeInterval;
 
         #[cfg(feature = "NSDate")]
         /// Setter for [`tolerance`][Self::tolerance].
         #[unsafe(method(setTolerance:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTolerance(&self, tolerance: NSTimeInterval);
+        pub fn setTolerance(&self, tolerance: NSTimeInterval);
 
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
@@ -198,11 +198,11 @@ impl NSTimer {
 
         #[unsafe(method(isValid))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isValid(&self) -> bool;
+        pub fn isValid(&self) -> bool;
 
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userInfo(&self) -> Option<Retained<AnyObject>>;
+        pub fn userInfo(&self) -> Option<Retained<AnyObject>>;
     );
 }
 

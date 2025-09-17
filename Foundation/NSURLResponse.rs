@@ -83,7 +83,7 @@ impl NSURLResponse {
         /// Returns: The URL of the receiver.
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
+        pub fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(feature = "NSString")]
         /// Returns the MIME type of the receiver.
@@ -98,7 +98,7 @@ impl NSURLResponse {
         /// Returns: The MIME type of the receiver.
         #[unsafe(method(MIMEType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn MIMEType(&self) -> Option<Retained<NSString>>;
+        pub fn MIMEType(&self) -> Option<Retained<NSString>>;
 
         /// Returns the expected content length of the receiver.
         ///
@@ -114,7 +114,7 @@ impl NSURLResponse {
         /// content length.
         #[unsafe(method(expectedContentLength))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expectedContentLength(&self) -> c_longlong;
+        pub fn expectedContentLength(&self) -> c_longlong;
 
         #[cfg(feature = "NSString")]
         /// Returns the name of the text encoding of the receiver.
@@ -129,7 +129,7 @@ impl NSURLResponse {
         /// text encoding was specified.
         #[unsafe(method(textEncodingName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textEncodingName(&self) -> Option<Retained<NSString>>;
+        pub fn textEncodingName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Returns a suggested filename if the resource were saved to disk.
@@ -145,7 +145,7 @@ impl NSURLResponse {
         /// Returns: A suggested filename to use if saving the resource to disk.
         #[unsafe(method(suggestedFilename))]
         #[unsafe(method_family = none)]
-        pub unsafe fn suggestedFilename(&self) -> Option<Retained<NSString>>;
+        pub fn suggestedFilename(&self) -> Option<Retained<NSString>>;
     );
 }
 
@@ -233,7 +233,7 @@ impl NSHTTPURLResponse {
         /// Returns: The HTTP status code of the receiver.
         #[unsafe(method(statusCode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn statusCode(&self) -> NSInteger;
+        pub fn statusCode(&self) -> NSInteger;
 
         #[cfg(feature = "NSDictionary")]
         /// Returns a dictionary containing all the HTTP header fields
@@ -248,7 +248,7 @@ impl NSHTTPURLResponse {
         /// receiver.
         #[unsafe(method(allHeaderFields))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allHeaderFields(&self) -> Retained<NSDictionary>;
+        pub fn allHeaderFields(&self) -> Retained<NSDictionary>;
 
         #[cfg(feature = "NSString")]
         /// Returns the value which corresponds to the given header

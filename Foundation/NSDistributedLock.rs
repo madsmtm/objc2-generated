@@ -55,7 +55,7 @@ impl NSDistributedLock {
         #[cfg(feature = "NSDate")]
         #[unsafe(method(lockDate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lockDate(&self) -> Retained<NSDate>;
+        pub fn lockDate(&self) -> Retained<NSDate>;
     );
 }
 

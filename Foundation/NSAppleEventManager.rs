@@ -105,12 +105,12 @@ impl NSAppleEventManager {
         #[cfg(feature = "NSAppleEventDescriptor")]
         #[unsafe(method(currentAppleEvent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentAppleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
+        pub fn currentAppleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         #[cfg(feature = "NSAppleEventDescriptor")]
         #[unsafe(method(currentReplyAppleEvent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentReplyAppleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
+        pub fn currentReplyAppleEvent(&self) -> Option<Retained<NSAppleEventDescriptor>>;
 
         #[unsafe(method(suspendCurrentAppleEvent))]
         #[unsafe(method_family = none)]

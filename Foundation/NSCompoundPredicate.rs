@@ -85,12 +85,12 @@ impl NSCompoundPredicate {
 
         #[unsafe(method(compoundPredicateType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn compoundPredicateType(&self) -> NSCompoundPredicateType;
+        pub fn compoundPredicateType(&self) -> NSCompoundPredicateType;
 
         #[cfg(feature = "NSArray")]
         #[unsafe(method(subpredicates))]
         #[unsafe(method_family = none)]
-        pub unsafe fn subpredicates(&self) -> Retained<NSArray>;
+        pub fn subpredicates(&self) -> Retained<NSArray>;
 
         #[cfg(feature = "NSArray")]
         /// * Convenience Methods **

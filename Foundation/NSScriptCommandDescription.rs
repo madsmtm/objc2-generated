@@ -54,39 +54,39 @@ impl NSScriptCommandDescription {
         #[cfg(feature = "NSString")]
         #[unsafe(method(suiteName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn suiteName(&self) -> Retained<NSString>;
+        pub fn suiteName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(commandName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn commandName(&self) -> Retained<NSString>;
+        pub fn commandName(&self) -> Retained<NSString>;
 
         #[unsafe(method(appleEventClassCode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appleEventClassCode(&self) -> FourCharCode;
+        pub fn appleEventClassCode(&self) -> FourCharCode;
 
         #[unsafe(method(appleEventCode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appleEventCode(&self) -> FourCharCode;
+        pub fn appleEventCode(&self) -> FourCharCode;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(commandClassName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn commandClassName(&self) -> Retained<NSString>;
+        pub fn commandClassName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(returnType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn returnType(&self) -> Option<Retained<NSString>>;
+        pub fn returnType(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(appleEventCodeForReturnType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appleEventCodeForReturnType(&self) -> FourCharCode;
+        pub fn appleEventCodeForReturnType(&self) -> FourCharCode;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(argumentNames))]
         #[unsafe(method_family = none)]
-        pub unsafe fn argumentNames(&self) -> Retained<NSArray<NSString>>;
+        pub fn argumentNames(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(typeForArgumentWithName:))]

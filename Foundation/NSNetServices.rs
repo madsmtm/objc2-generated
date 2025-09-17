@@ -161,46 +161,46 @@ impl NSNetService {
 
         #[unsafe(method(includesPeerToPeer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn includesPeerToPeer(&self) -> bool;
+        pub fn includesPeerToPeer(&self) -> bool;
 
         /// Setter for [`includesPeerToPeer`][Self::includesPeerToPeer].
         #[unsafe(method(setIncludesPeerToPeer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
+        pub fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Retained<NSString>;
+        pub fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        pub unsafe fn r#type(&self) -> Retained<NSString>;
+        pub fn r#type(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[unsafe(method(domain))]
         #[unsafe(method_family = none)]
-        pub unsafe fn domain(&self) -> Retained<NSString>;
+        pub fn domain(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[unsafe(method(hostName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hostName(&self) -> Option<Retained<NSString>>;
+        pub fn hostName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSData"))]
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[unsafe(method(addresses))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addresses(&self) -> Option<Retained<NSArray<NSData>>>;
+        pub fn addresses(&self) -> Option<Retained<NSArray<NSData>>>;
 
         #[unsafe(method(port))]
         #[unsafe(method_family = none)]
-        pub unsafe fn port(&self) -> NSInteger;
+        pub fn port(&self) -> NSInteger;
 
         #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
         #[unsafe(method(publish))]
@@ -338,12 +338,12 @@ impl NSNetServiceBrowser {
 
         #[unsafe(method(includesPeerToPeer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn includesPeerToPeer(&self) -> bool;
+        pub fn includesPeerToPeer(&self) -> bool;
 
         /// Setter for [`includesPeerToPeer`][Self::includesPeerToPeer].
         #[unsafe(method(setIncludesPeerToPeer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
+        pub fn setIncludesPeerToPeer(&self, includes_peer_to_peer: bool);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRunLoop", feature = "NSString"))]
         /// # Safety

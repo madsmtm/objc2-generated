@@ -145,12 +145,12 @@ impl NSURLConnection {
         #[cfg(feature = "NSURLRequest")]
         #[unsafe(method(originalRequest))]
         #[unsafe(method_family = none)]
-        pub unsafe fn originalRequest(&self) -> Retained<NSURLRequest>;
+        pub fn originalRequest(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "NSURLRequest")]
         #[unsafe(method(currentRequest))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentRequest(&self) -> Retained<NSURLRequest>;
+        pub fn currentRequest(&self) -> Retained<NSURLRequest>;
 
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]

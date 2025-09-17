@@ -21,7 +21,7 @@ impl NSUbiquitousKeyValueStore {
     extern_methods!(
         #[unsafe(method(defaultStore))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultStore() -> Retained<NSUbiquitousKeyValueStore>;
+        pub fn defaultStore() -> Retained<NSUbiquitousKeyValueStore>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(objectForKey:))]
@@ -127,9 +127,7 @@ impl NSUbiquitousKeyValueStore {
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(dictionaryRepresentation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dictionaryRepresentation(
-            &self,
-        ) -> Retained<NSDictionary<NSString, AnyObject>>;
+        pub fn dictionaryRepresentation(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[unsafe(method(synchronize))]
         #[unsafe(method_family = none)]

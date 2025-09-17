@@ -32,7 +32,7 @@ extern_protocol!(
     pub unsafe trait NSSecureCoding: NSCoding {
         #[unsafe(method(supportsSecureCoding))]
         #[unsafe(method_family = none)]
-        unsafe fn supportsSecureCoding() -> bool;
+        fn supportsSecureCoding() -> bool;
     }
 );
 
@@ -58,7 +58,7 @@ pub unsafe trait NSObjectNSCoderMethods:
 
         #[unsafe(method(classForCoder))]
         #[unsafe(method_family = none)]
-        unsafe fn classForCoder(&self) -> &'static AnyClass;
+        fn classForCoder(&self) -> &'static AnyClass;
 
         #[cfg(feature = "NSCoder")]
         /// # Safety
@@ -108,7 +108,7 @@ pub unsafe trait NSObjectNSDiscardableContentProxy:
     extern_methods!(
         #[unsafe(method(autoContentAccessingProxy))]
         #[unsafe(method_family = none)]
-        unsafe fn autoContentAccessingProxy(&self) -> Retained<AnyObject>;
+        fn autoContentAccessingProxy(&self) -> Retained<AnyObject>;
     );
 }
 

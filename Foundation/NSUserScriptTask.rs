@@ -34,7 +34,7 @@ impl NSUserScriptTask {
         #[cfg(feature = "NSURL")]
         #[unsafe(method(scriptURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scriptURL(&self) -> Retained<NSURL>;
+        pub fn scriptURL(&self) -> Retained<NSURL>;
 
         #[cfg(all(feature = "NSError", feature = "block2"))]
         /// # Safety
@@ -82,35 +82,35 @@ impl NSUserUnixTask {
         #[cfg(feature = "NSFileHandle")]
         #[unsafe(method(standardInput))]
         #[unsafe(method_family = none)]
-        pub unsafe fn standardInput(&self) -> Option<Retained<NSFileHandle>>;
+        pub fn standardInput(&self) -> Option<Retained<NSFileHandle>>;
 
         #[cfg(feature = "NSFileHandle")]
         /// Setter for [`standardInput`][Self::standardInput].
         #[unsafe(method(setStandardInput:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStandardInput(&self, standard_input: Option<&NSFileHandle>);
+        pub fn setStandardInput(&self, standard_input: Option<&NSFileHandle>);
 
         #[cfg(feature = "NSFileHandle")]
         #[unsafe(method(standardOutput))]
         #[unsafe(method_family = none)]
-        pub unsafe fn standardOutput(&self) -> Option<Retained<NSFileHandle>>;
+        pub fn standardOutput(&self) -> Option<Retained<NSFileHandle>>;
 
         #[cfg(feature = "NSFileHandle")]
         /// Setter for [`standardOutput`][Self::standardOutput].
         #[unsafe(method(setStandardOutput:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStandardOutput(&self, standard_output: Option<&NSFileHandle>);
+        pub fn setStandardOutput(&self, standard_output: Option<&NSFileHandle>);
 
         #[cfg(feature = "NSFileHandle")]
         #[unsafe(method(standardError))]
         #[unsafe(method_family = none)]
-        pub unsafe fn standardError(&self) -> Option<Retained<NSFileHandle>>;
+        pub fn standardError(&self) -> Option<Retained<NSFileHandle>>;
 
         #[cfg(feature = "NSFileHandle")]
         /// Setter for [`standardError`][Self::standardError].
         #[unsafe(method(setStandardError:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStandardError(&self, standard_error: Option<&NSFileHandle>);
+        pub fn setStandardError(&self, standard_error: Option<&NSFileHandle>);
 
         #[cfg(all(
             feature = "NSArray",
@@ -244,7 +244,7 @@ impl NSUserAutomatorTask {
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(variables))]
         #[unsafe(method_family = none)]
-        pub unsafe fn variables(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
+        pub fn variables(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`variables`][Self::variables].

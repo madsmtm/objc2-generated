@@ -81,11 +81,11 @@ impl NSAppleScript {
         #[cfg(feature = "NSString")]
         #[unsafe(method(source))]
         #[unsafe(method_family = none)]
-        pub unsafe fn source(&self) -> Option<Retained<NSString>>;
+        pub fn source(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(isCompiled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isCompiled(&self) -> bool;
+        pub fn isCompiled(&self) -> bool;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// # Safety

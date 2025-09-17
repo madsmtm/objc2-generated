@@ -527,7 +527,7 @@ impl NSHTTPCookie {
         /// Returns: The dictionary representation of the receiver.
         #[unsafe(method(properties))]
         #[unsafe(method_family = none)]
-        pub unsafe fn properties(
+        pub fn properties(
             &self,
         ) -> Option<Retained<NSDictionary<NSHTTPCookiePropertyKey, AnyObject>>>;
 
@@ -539,7 +539,7 @@ impl NSHTTPCookie {
         /// Returns: the version of the receiver.
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
-        pub unsafe fn version(&self) -> NSUInteger;
+        pub fn version(&self) -> NSUInteger;
 
         #[cfg(feature = "NSString")]
         /// Returns the name of the receiver.
@@ -547,7 +547,7 @@ impl NSHTTPCookie {
         /// Returns: the name of the receiver.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Retained<NSString>;
+        pub fn name(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Returns the value of the receiver.
@@ -555,7 +555,7 @@ impl NSHTTPCookie {
         /// Returns: the value of the receiver.
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
-        pub unsafe fn value(&self) -> Retained<NSString>;
+        pub fn value(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSDate")]
         /// Returns the expires date of the receiver.
@@ -569,7 +569,7 @@ impl NSHTTPCookie {
         /// Returns: The expires date of the receiver.
         #[unsafe(method(expiresDate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expiresDate(&self) -> Option<Retained<NSDate>>;
+        pub fn expiresDate(&self) -> Option<Retained<NSDate>>;
 
         /// Returns whether the receiver is session-only.
         ///
@@ -578,7 +578,7 @@ impl NSHTTPCookie {
         /// be discarded at the end of the session.
         #[unsafe(method(isSessionOnly))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSessionOnly(&self) -> bool;
+        pub fn isSessionOnly(&self) -> bool;
 
         #[cfg(feature = "NSString")]
         /// Returns the domain of the receiver.
@@ -591,7 +591,7 @@ impl NSHTTPCookie {
         /// Returns: The domain of the receiver.
         #[unsafe(method(domain))]
         #[unsafe(method_family = none)]
-        pub unsafe fn domain(&self) -> Retained<NSString>;
+        pub fn domain(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// Returns the path of the receiver.
@@ -603,7 +603,7 @@ impl NSHTTPCookie {
         /// Returns: The path of the receiver.
         #[unsafe(method(path))]
         #[unsafe(method_family = none)]
-        pub unsafe fn path(&self) -> Retained<NSString>;
+        pub fn path(&self) -> Retained<NSString>;
 
         /// Returns whether the receiver should be sent only over
         /// secure channels
@@ -617,7 +617,7 @@ impl NSHTTPCookie {
         /// NO otherwise.
         #[unsafe(method(isSecure))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSecure(&self) -> bool;
+        pub fn isSecure(&self) -> bool;
 
         /// Returns whether the receiver should only be sent to HTTP servers
         /// per RFC 2965
@@ -632,7 +632,7 @@ impl NSHTTPCookie {
         /// NO otherwise.
         #[unsafe(method(isHTTPOnly))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isHTTPOnly(&self) -> bool;
+        pub fn isHTTPOnly(&self) -> bool;
 
         #[cfg(feature = "NSString")]
         /// Returns the comment of the receiver.
@@ -645,7 +645,7 @@ impl NSHTTPCookie {
         /// comment.
         #[unsafe(method(comment))]
         #[unsafe(method_family = none)]
-        pub unsafe fn comment(&self) -> Option<Retained<NSString>>;
+        pub fn comment(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSURL")]
         /// Returns the comment URL of the receiver.
@@ -658,7 +658,7 @@ impl NSHTTPCookie {
         /// has no comment URL.
         #[unsafe(method(commentURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn commentURL(&self) -> Option<Retained<NSURL>>;
+        pub fn commentURL(&self) -> Option<Retained<NSURL>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
         /// Returns the list ports to which the receiver should be
@@ -673,7 +673,7 @@ impl NSHTTPCookie {
         /// port.
         #[unsafe(method(portList))]
         #[unsafe(method_family = none)]
-        pub unsafe fn portList(&self) -> Option<Retained<NSArray<NSNumber>>>;
+        pub fn portList(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         #[cfg(feature = "NSString")]
         /// Returns the value of the same site attribute on the cookie.
@@ -688,7 +688,7 @@ impl NSHTTPCookie {
         /// cookie will be sent along with all cross-site requests.
         #[unsafe(method(sameSitePolicy))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sameSitePolicy(&self) -> Option<Retained<NSHTTPCookieStringPolicy>>;
+        pub fn sameSitePolicy(&self) -> Option<Retained<NSHTTPCookieStringPolicy>>;
     );
 }
 

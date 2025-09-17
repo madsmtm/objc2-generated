@@ -124,11 +124,11 @@ impl<ObjectType: Message> NSHashTable<ObjectType> {
         #[cfg(feature = "NSPointerFunctions")]
         #[unsafe(method(pointerFunctions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pointerFunctions(&self) -> Retained<NSPointerFunctions>;
+        pub fn pointerFunctions(&self) -> Retained<NSPointerFunctions>;
 
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
-        pub unsafe fn count(&self) -> NSUInteger;
+        pub fn count(&self) -> NSUInteger;
 
         #[unsafe(method(member:))]
         #[unsafe(method_family = none)]
@@ -154,11 +154,11 @@ impl<ObjectType: Message> NSHashTable<ObjectType> {
         #[cfg(feature = "NSArray")]
         #[unsafe(method(allObjects))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allObjects(&self) -> Retained<NSArray<ObjectType>>;
+        pub fn allObjects(&self) -> Retained<NSArray<ObjectType>>;
 
         #[unsafe(method(anyObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn anyObject(&self) -> Option<Retained<ObjectType>>;
+        pub fn anyObject(&self) -> Option<Retained<ObjectType>>;
 
         #[unsafe(method(containsObject:))]
         #[unsafe(method_family = none)]
@@ -191,7 +191,7 @@ impl<ObjectType: Message> NSHashTable<ObjectType> {
         #[cfg(feature = "NSSet")]
         #[unsafe(method(setRepresentation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRepresentation(&self) -> Retained<NSSet<ObjectType>>;
+        pub fn setRepresentation(&self) -> Retained<NSSet<ObjectType>>;
     );
 }
 

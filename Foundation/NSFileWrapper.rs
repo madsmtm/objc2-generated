@@ -127,20 +127,20 @@ impl NSFileWrapper {
 
         #[unsafe(method(isDirectory))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDirectory(&self) -> bool;
+        pub fn isDirectory(&self) -> bool;
 
         #[unsafe(method(isRegularFile))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isRegularFile(&self) -> bool;
+        pub fn isRegularFile(&self) -> bool;
 
         #[unsafe(method(isSymbolicLink))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSymbolicLink(&self) -> bool;
+        pub fn isSymbolicLink(&self) -> bool;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(preferredFilename))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredFilename(&self) -> Option<Retained<NSString>>;
+        pub fn preferredFilename(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`preferredFilename`][Self::preferredFilename].
@@ -148,12 +148,12 @@ impl NSFileWrapper {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPreferredFilename:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreferredFilename(&self, preferred_filename: Option<&NSString>);
+        pub fn setPreferredFilename(&self, preferred_filename: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(filename))]
         #[unsafe(method_family = none)]
-        pub unsafe fn filename(&self) -> Option<Retained<NSString>>;
+        pub fn filename(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`filename`][Self::filename].
@@ -161,12 +161,12 @@ impl NSFileWrapper {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setFilename:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFilename(&self, filename: Option<&NSString>);
+        pub fn setFilename(&self, filename: Option<&NSString>);
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(fileAttributes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileAttributes(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
+        pub fn fileAttributes(&self) -> Retained<NSDictionary<NSString, AnyObject>>;
 
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         /// Setter for [`fileAttributes`][Self::fileAttributes].
@@ -207,7 +207,7 @@ impl NSFileWrapper {
         #[cfg(feature = "NSData")]
         #[unsafe(method(serializedRepresentation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn serializedRepresentation(&self) -> Option<Retained<NSData>>;
+        pub fn serializedRepresentation(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(addFileWrapper:))]
@@ -230,9 +230,7 @@ impl NSFileWrapper {
         #[cfg(all(feature = "NSDictionary", feature = "NSString"))]
         #[unsafe(method(fileWrappers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileWrappers(
-            &self,
-        ) -> Option<Retained<NSDictionary<NSString, NSFileWrapper>>>;
+        pub fn fileWrappers(&self) -> Option<Retained<NSDictionary<NSString, NSFileWrapper>>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(keyForFileWrapper:))]
@@ -243,12 +241,12 @@ impl NSFileWrapper {
         #[cfg(feature = "NSData")]
         #[unsafe(method(regularFileContents))]
         #[unsafe(method_family = none)]
-        pub unsafe fn regularFileContents(&self) -> Option<Retained<NSData>>;
+        pub fn regularFileContents(&self) -> Option<Retained<NSData>>;
 
         #[cfg(feature = "NSURL")]
         #[unsafe(method(symbolicLinkDestinationURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn symbolicLinkDestinationURL(&self) -> Option<Retained<NSURL>>;
+        pub fn symbolicLinkDestinationURL(&self) -> Option<Retained<NSURL>>;
     );
 }
 

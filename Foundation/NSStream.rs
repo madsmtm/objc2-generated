@@ -158,12 +158,12 @@ impl NSStream {
 
         #[unsafe(method(streamStatus))]
         #[unsafe(method_family = none)]
-        pub unsafe fn streamStatus(&self) -> NSStreamStatus;
+        pub fn streamStatus(&self) -> NSStreamStatus;
 
         #[cfg(feature = "NSError")]
         #[unsafe(method(streamError))]
         #[unsafe(method_family = none)]
-        pub unsafe fn streamError(&self) -> Option<Retained<NSError>>;
+        pub fn streamError(&self) -> Option<Retained<NSError>>;
     );
 }
 
@@ -230,7 +230,7 @@ impl NSInputStream {
 
         #[unsafe(method(hasBytesAvailable))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasBytesAvailable(&self) -> bool;
+        pub fn hasBytesAvailable(&self) -> bool;
 
         #[cfg(feature = "NSData")]
         #[unsafe(method(initWithData:))]
@@ -295,7 +295,7 @@ impl NSOutputStream {
 
         #[unsafe(method(hasSpaceAvailable))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasSpaceAvailable(&self) -> bool;
+        pub fn hasSpaceAvailable(&self) -> bool;
 
         #[unsafe(method(initToMemory))]
         #[unsafe(method_family = init)]

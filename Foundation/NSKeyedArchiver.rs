@@ -141,19 +141,19 @@ impl NSKeyedArchiver {
         #[cfg(feature = "NSPropertyList")]
         #[unsafe(method(outputFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn outputFormat(&self) -> NSPropertyListFormat;
+        pub fn outputFormat(&self) -> NSPropertyListFormat;
 
         #[cfg(feature = "NSPropertyList")]
         /// Setter for [`outputFormat`][Self::outputFormat].
         #[unsafe(method(setOutputFormat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOutputFormat(&self, output_format: NSPropertyListFormat);
+        pub fn setOutputFormat(&self, output_format: NSPropertyListFormat);
 
         #[cfg(feature = "NSData")]
         /// If encoding has not yet finished, then invoking this property will call finishEncoding and return the data. If you initialized the keyed archiver with a specific mutable data instance, then it will be returned from this property after finishEncoding is called.
         #[unsafe(method(encodedData))]
         #[unsafe(method_family = none)]
-        pub unsafe fn encodedData(&self) -> Retained<NSData>;
+        pub fn encodedData(&self) -> Retained<NSData>;
 
         #[unsafe(method(finishEncoding))]
         #[unsafe(method_family = none)]
@@ -256,12 +256,12 @@ impl NSKeyedArchiver {
 
         #[unsafe(method(requiresSecureCoding))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requiresSecureCoding(&self) -> bool;
+        pub fn requiresSecureCoding(&self) -> bool;
 
         /// Setter for [`requiresSecureCoding`][Self::requiresSecureCoding].
         #[unsafe(method(setRequiresSecureCoding:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRequiresSecureCoding(&self, requires_secure_coding: bool);
+        pub fn setRequiresSecureCoding(&self, requires_secure_coding: bool);
     );
 }
 
@@ -752,7 +752,7 @@ pub unsafe trait NSObjectNSKeyedArchiverObjectSubstitution:
     extern_methods!(
         #[unsafe(method(classForKeyedArchiver))]
         #[unsafe(method_family = none)]
-        unsafe fn classForKeyedArchiver(&self) -> Option<&'static AnyClass>;
+        fn classForKeyedArchiver(&self) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "NSCoder")]
         #[unsafe(method(replacementObjectForKeyedArchiver:))]

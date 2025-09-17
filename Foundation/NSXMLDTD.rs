@@ -69,7 +69,7 @@ impl NSXMLDTD {
         /// Sets the public id. This identifier should be in the default catalog in /etc/xml/catalog or in a path specified by the environment variable XML_CATALOG_FILES. When the public id is set the system id must also be set.
         #[unsafe(method(publicID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn publicID(&self) -> Option<Retained<NSString>>;
+        pub fn publicID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`publicID`][Self::publicID].
@@ -77,13 +77,13 @@ impl NSXMLDTD {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setPublicID:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPublicID(&self, public_id: Option<&NSString>);
+        pub fn setPublicID(&self, public_id: Option<&NSString>);
 
         #[cfg(feature = "NSString")]
         /// Sets the system id. This should be a URL that points to a valid DTD.
         #[unsafe(method(systemID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn systemID(&self) -> Option<Retained<NSString>>;
+        pub fn systemID(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`systemID`][Self::systemID].
@@ -91,7 +91,7 @@ impl NSXMLDTD {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setSystemID:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSystemID(&self, system_id: Option<&NSString>);
+        pub fn setSystemID(&self, system_id: Option<&NSString>);
 
         /// Inserts a child at a particular index.
         #[unsafe(method(insertChild:atIndex:))]

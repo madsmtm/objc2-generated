@@ -80,33 +80,33 @@ impl NSThread {
 
         #[unsafe(method(threadPriority))]
         #[unsafe(method_family = none)]
-        pub unsafe fn threadPriority(&self) -> c_double;
+        pub fn threadPriority(&self) -> c_double;
 
         /// Setter for [`threadPriority`][Self::threadPriority].
         #[unsafe(method(setThreadPriority:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setThreadPriority(&self, thread_priority: c_double);
+        pub fn setThreadPriority(&self, thread_priority: c_double);
 
         #[cfg(feature = "NSObjCRuntime")]
         #[unsafe(method(qualityOfService))]
         #[unsafe(method_family = none)]
-        pub unsafe fn qualityOfService(&self) -> NSQualityOfService;
+        pub fn qualityOfService(&self) -> NSQualityOfService;
 
         #[cfg(feature = "NSObjCRuntime")]
         /// Setter for [`qualityOfService`][Self::qualityOfService].
         #[unsafe(method(setQualityOfService:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
+        pub fn setQualityOfService(&self, quality_of_service: NSQualityOfService);
 
         #[cfg(all(feature = "NSArray", feature = "NSValue"))]
         #[unsafe(method(callStackReturnAddresses))]
         #[unsafe(method_family = none)]
-        pub unsafe fn callStackReturnAddresses() -> Retained<NSArray<NSNumber>>;
+        pub fn callStackReturnAddresses() -> Retained<NSArray<NSNumber>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(callStackSymbols))]
         #[unsafe(method_family = none)]
-        pub unsafe fn callStackSymbols() -> Retained<NSArray<NSString>>;
+        pub fn callStackSymbols() -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(name))]
@@ -119,16 +119,16 @@ impl NSThread {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setName(&self, name: Option<&NSString>);
+        pub fn setName(&self, name: Option<&NSString>);
 
         #[unsafe(method(stackSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stackSize(&self) -> NSUInteger;
+        pub fn stackSize(&self) -> NSUInteger;
 
         /// Setter for [`stackSize`][Self::stackSize].
         #[unsafe(method(setStackSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStackSize(&self, stack_size: NSUInteger);
+        pub fn setStackSize(&self, stack_size: NSUInteger);
 
         #[unsafe(method(isMainThread))]
         #[unsafe(method_family = none)]
@@ -173,15 +173,15 @@ impl NSThread {
 
         #[unsafe(method(isExecuting))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isExecuting(&self) -> bool;
+        pub fn isExecuting(&self) -> bool;
 
         #[unsafe(method(isFinished))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isFinished(&self) -> bool;
+        pub fn isFinished(&self) -> bool;
 
         #[unsafe(method(isCancelled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isCancelled(&self) -> bool;
+        pub fn isCancelled(&self) -> bool;
 
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]

@@ -56,13 +56,13 @@ extern_protocol!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(writableTypeIdentifiersForItemProvider))]
         #[unsafe(method_family = none)]
-        unsafe fn writableTypeIdentifiersForItemProvider_class() -> Retained<NSArray<NSString>>;
+        fn writableTypeIdentifiersForItemProvider_class() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[optional]
         #[unsafe(method(writableTypeIdentifiersForItemProvider))]
         #[unsafe(method_family = none)]
-        unsafe fn writableTypeIdentifiersForItemProvider(&self) -> Retained<NSArray<NSString>>;
+        fn writableTypeIdentifiersForItemProvider(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(feature = "NSString")]
         #[optional]
@@ -107,7 +107,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(readableTypeIdentifiersForItemProvider))]
         #[unsafe(method_family = none)]
-        unsafe fn readableTypeIdentifiersForItemProvider() -> Retained<NSArray<NSString>>;
+        fn readableTypeIdentifiersForItemProvider() -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError", feature = "NSString"))]
         #[unsafe(method(objectWithItemProviderData:typeIdentifier:error:_))]
@@ -212,7 +212,7 @@ impl NSItemProvider {
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(registeredTypeIdentifiers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registeredTypeIdentifiers(&self) -> Retained<NSArray<NSString>>;
+        pub fn registeredTypeIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         #[unsafe(method(registeredTypeIdentifiersWithFileOptions:))]
@@ -293,7 +293,7 @@ impl NSItemProvider {
         #[cfg(feature = "NSString")]
         #[unsafe(method(suggestedName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn suggestedName(&self) -> Option<Retained<NSString>>;
+        pub fn suggestedName(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "NSString")]
         /// Setter for [`suggestedName`][Self::suggestedName].
@@ -301,7 +301,7 @@ impl NSItemProvider {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setSuggestedName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSuggestedName(&self, suggested_name: Option<&NSString>);
+        pub fn setSuggestedName(&self, suggested_name: Option<&NSString>);
 
         #[unsafe(method(initWithObject:))]
         #[unsafe(method_family = init)]

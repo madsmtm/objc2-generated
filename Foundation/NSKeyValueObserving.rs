@@ -441,7 +441,7 @@ pub unsafe trait NSObjectNSKeyValueObservingCustomization:
 
         #[unsafe(method(observationInfo))]
         #[unsafe(method_family = none)]
-        unsafe fn observationInfo(&self) -> *mut c_void;
+        fn observationInfo(&self) -> *mut c_void;
 
         /// Setter for [`observationInfo`][Self::observationInfo].
         ///

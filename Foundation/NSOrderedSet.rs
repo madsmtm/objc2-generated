@@ -72,7 +72,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
     extern_methods!(
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
-        pub unsafe fn count(&self) -> NSUInteger;
+        pub fn count(&self) -> NSUInteger;
 
         #[unsafe(method(objectAtIndex:))]
         #[unsafe(method_family = none)]
@@ -140,11 +140,11 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 
         #[unsafe(method(firstObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn firstObject(&self) -> Option<Retained<ObjectType>>;
+        pub fn firstObject(&self) -> Option<Retained<ObjectType>>;
 
         #[unsafe(method(lastObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lastObject(&self) -> Option<Retained<ObjectType>>;
+        pub fn lastObject(&self) -> Option<Retained<ObjectType>>;
 
         #[unsafe(method(isEqualToOrderedSet:))]
         #[unsafe(method_family = none)]
@@ -188,17 +188,17 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
 
         #[unsafe(method(reversedOrderedSet))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reversedOrderedSet(&self) -> Retained<NSOrderedSet<ObjectType>>;
+        pub fn reversedOrderedSet(&self) -> Retained<NSOrderedSet<ObjectType>>;
 
         #[cfg(feature = "NSArray")]
         #[unsafe(method(array))]
         #[unsafe(method_family = none)]
-        pub unsafe fn array(&self) -> Retained<NSArray<ObjectType>>;
+        pub fn array(&self) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(feature = "NSSet")]
         #[unsafe(method(set))]
         #[unsafe(method_family = none)]
-        pub unsafe fn set(&self) -> Retained<NSSet<ObjectType>>;
+        pub fn set(&self) -> Retained<NSSet<ObjectType>>;
 
         #[cfg(feature = "block2")]
         #[unsafe(method(enumerateObjectsUsingBlock:))]
@@ -338,7 +338,7 @@ impl<ObjectType: Message> NSOrderedSet<ObjectType> {
         #[cfg(feature = "NSString")]
         #[unsafe(method(description))]
         #[unsafe(method_family = none)]
-        pub unsafe fn description(&self) -> Retained<NSString>;
+        pub fn description(&self) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
         /// # Safety

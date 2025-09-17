@@ -95,7 +95,7 @@ pub unsafe trait NSObjectNSKeyValueCoding:
     extern_methods!(
         #[unsafe(method(accessInstanceVariablesDirectly))]
         #[unsafe(method_family = none)]
-        unsafe fn accessInstanceVariablesDirectly() -> bool;
+        fn accessInstanceVariablesDirectly() -> bool;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(valueForKey:))]

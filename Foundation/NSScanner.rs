@@ -32,21 +32,21 @@ impl NSScanner {
         #[cfg(feature = "NSString")]
         #[unsafe(method(string))]
         #[unsafe(method_family = none)]
-        pub unsafe fn string(&self) -> Retained<NSString>;
+        pub fn string(&self) -> Retained<NSString>;
 
         #[unsafe(method(scanLocation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scanLocation(&self) -> NSUInteger;
+        pub fn scanLocation(&self) -> NSUInteger;
 
         /// Setter for [`scanLocation`][Self::scanLocation].
         #[unsafe(method(setScanLocation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScanLocation(&self, scan_location: NSUInteger);
+        pub fn setScanLocation(&self, scan_location: NSUInteger);
 
         #[cfg(feature = "NSCharacterSet")]
         #[unsafe(method(charactersToBeSkipped))]
         #[unsafe(method_family = none)]
-        pub unsafe fn charactersToBeSkipped(&self) -> Option<Retained<NSCharacterSet>>;
+        pub fn charactersToBeSkipped(&self) -> Option<Retained<NSCharacterSet>>;
 
         #[cfg(feature = "NSCharacterSet")]
         /// Setter for [`charactersToBeSkipped`][Self::charactersToBeSkipped].
@@ -54,23 +54,20 @@ impl NSScanner {
         /// This is [copied][crate::NSCopying::copy] when set.
         #[unsafe(method(setCharactersToBeSkipped:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCharactersToBeSkipped(
-            &self,
-            characters_to_be_skipped: Option<&NSCharacterSet>,
-        );
+        pub fn setCharactersToBeSkipped(&self, characters_to_be_skipped: Option<&NSCharacterSet>);
 
         #[unsafe(method(caseSensitive))]
         #[unsafe(method_family = none)]
-        pub unsafe fn caseSensitive(&self) -> bool;
+        pub fn caseSensitive(&self) -> bool;
 
         /// Setter for [`caseSensitive`][Self::caseSensitive].
         #[unsafe(method(setCaseSensitive:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCaseSensitive(&self, case_sensitive: bool);
+        pub fn setCaseSensitive(&self, case_sensitive: bool);
 
         #[unsafe(method(locale))]
         #[unsafe(method_family = none)]
-        pub unsafe fn locale(&self) -> Option<Retained<AnyObject>>;
+        pub fn locale(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`locale`][Self::locale].
         ///
@@ -212,7 +209,7 @@ impl NSScanner {
 
         #[unsafe(method(isAtEnd))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isAtEnd(&self) -> bool;
+        pub fn isAtEnd(&self) -> bool;
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(scannerWithString:))]

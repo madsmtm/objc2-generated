@@ -35,16 +35,16 @@ impl NSRunLoop {
     extern_methods!(
         #[unsafe(method(currentRunLoop))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentRunLoop() -> Retained<NSRunLoop>;
+        pub fn currentRunLoop() -> Retained<NSRunLoop>;
 
         #[unsafe(method(mainRunLoop))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mainRunLoop() -> Retained<NSRunLoop>;
+        pub fn mainRunLoop() -> Retained<NSRunLoop>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
         #[unsafe(method(currentMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentMode(&self) -> Option<Retained<NSRunLoopMode>>;
+        pub fn currentMode(&self) -> Option<Retained<NSRunLoopMode>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(getCFRunLoop))]
