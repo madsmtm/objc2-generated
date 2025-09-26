@@ -2427,6 +2427,10 @@ impl IOHIDUserDevice {
     ///
     ///
     /// Parameter `queue`: The dispatch queue to which the event handler block will be submitted.
+    ///
+    /// # Safety
+    ///
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "IOHIDUserDeviceSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

@@ -122,6 +122,10 @@ impl VZVirtualMachine {
         /// Parameter `queue`: The serial queue on which the virtual machine operates.
         /// Every operation on the virtual machine must be done on that queue. The callbacks and delegate methods are invoked on that queue.
         /// If the queue is not serial, the behavior is undefined.
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithConfiguration:queue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConfiguration_queue(

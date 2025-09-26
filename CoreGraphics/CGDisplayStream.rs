@@ -449,6 +449,7 @@ impl CGDisplayStream {
     /// # Safety
     ///
     /// - `properties` generics must be of the correct type.
+    /// - `queue` possibly has additional threading requirements.
     /// - `handler` must be a valid pointer or null.
     #[doc(alias = "CGDisplayStreamCreateWithDispatchQueue")]
     #[cfg(all(

@@ -54,6 +54,10 @@ impl AVCaptureVideoDataOutput {
         /// Clients that need to minimize the chances of frames being dropped should specify a queue on which a sufficiently small amount of processing is being done outside of receiving sample buffers. However, if such clients migrate extra processing to another queue, they are responsible for ensuring that memory usage does not grow without bound from frames that have not been processed.
         ///
         /// A serial dispatch queue must be used to guarantee that video frames will be delivered in order. The sampleBufferCallbackQueue parameter may not be NULL, except when setting the sampleBufferDelegate to nil otherwise -setSampleBufferDelegate:queue: throws an NSInvalidArgumentException.
+        ///
+        /// # Safety
+        ///
+        /// `sample_buffer_callback_queue` possibly has additional threading requirements.
         #[unsafe(method(setSampleBufferDelegate:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSampleBufferDelegate_queue(

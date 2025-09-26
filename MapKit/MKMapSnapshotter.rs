@@ -49,7 +49,8 @@ impl MKMapSnapshotter {
         #[cfg(all(feature = "MKMapSnapshot", feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `completion_handler` must be a valid pointer.
         #[unsafe(method(startWithQueue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithQueue_completionHandler(

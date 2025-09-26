@@ -349,7 +349,8 @@ extern "C" {
 impl DispatchQueue {
     /// # Safety
     ///
-    /// `block` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
+    /// - `block` must be a valid pointer.
     #[doc(alias = "dispatch_async")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -382,6 +383,7 @@ impl DispatchQueue {
     ///
     /// # Safety
     ///
+    /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_async_f")]
@@ -399,7 +401,8 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// `block` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
+    /// - `block` must be a valid pointer.
     #[doc(alias = "dispatch_sync")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -430,6 +433,7 @@ impl DispatchQueue {
     ///
     /// # Safety
     ///
+    /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_sync_f")]
@@ -447,7 +451,8 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// `block` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
+    /// - `block` must be a valid pointer.
     #[doc(alias = "dispatch_async_and_wait")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -478,6 +483,7 @@ impl DispatchQueue {
     ///
     /// # Safety
     ///
+    /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_async_and_wait_f")]
@@ -536,6 +542,7 @@ impl DispatchQueue {
     ///
     /// # Safety
     ///
+    /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_apply_f")]
@@ -977,7 +984,8 @@ impl DispatchQueue {
     ///
     /// # Safety
     ///
-    /// `label` must be a valid pointer or null.
+    /// - `label` must be a valid pointer or null.
+    /// - `target` possibly has additional threading requirements.
     #[doc(alias = "dispatch_queue_create_with_target")]
     #[must_use]
     #[inline]
@@ -1120,7 +1128,8 @@ impl DispatchQueue {
     ///
     /// # Safety
     ///
-    /// `relative_priority_ptr` must be a valid pointer or null.
+    /// - `queue` possibly has additional threading requirements.
+    /// - `relative_priority_ptr` must be a valid pointer or null.
     #[doc(alias = "dispatch_queue_get_qos_class")]
     #[must_use]
     #[inline]
@@ -1195,7 +1204,8 @@ extern "C" {
     ///
     /// # Safety
     ///
-    /// `object` must be a valid pointer.
+    /// - `object` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
     pub fn dispatch_set_target_queue(
         object: NonNull<dispatch_object_s>,
         queue: Option<&DispatchQueue>,
@@ -1205,7 +1215,8 @@ extern "C" {
 impl DispatchQueue {
     /// # Safety
     ///
-    /// `block` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
+    /// - `block` must be a valid pointer.
     #[doc(alias = "dispatch_after")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1243,6 +1254,7 @@ impl DispatchQueue {
     ///
     /// # Safety
     ///
+    /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_after_f")]
@@ -1266,7 +1278,8 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// `block` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
+    /// - `block` must be a valid pointer.
     #[doc(alias = "dispatch_barrier_async")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1304,6 +1317,7 @@ impl DispatchQueue {
     ///
     /// # Safety
     ///
+    /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_barrier_async_f")]
@@ -1321,7 +1335,8 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// `block` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
+    /// - `block` must be a valid pointer.
     #[doc(alias = "dispatch_barrier_sync")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1355,6 +1370,7 @@ impl DispatchQueue {
     ///
     /// # Safety
     ///
+    /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_barrier_sync_f")]
@@ -1372,7 +1388,8 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// `block` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
+    /// - `block` must be a valid pointer.
     #[doc(alias = "dispatch_barrier_async_and_wait")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -1407,6 +1424,7 @@ impl DispatchQueue {
     ///
     /// # Safety
     ///
+    /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_barrier_async_and_wait_f")]
@@ -1451,6 +1469,7 @@ extern "C" {
     ///
     /// # Safety
     ///
+    /// - `queue` possibly has additional threading requirements.
     /// - `key` must be a valid pointer.
     /// - `context` must be a valid pointer or null.
     /// - `destructor` must be implemented correctly.
@@ -1484,7 +1503,8 @@ impl DispatchQueue {
     ///
     /// # Safety
     ///
-    /// `key` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
+    /// - `key` must be a valid pointer.
     #[doc(alias = "dispatch_queue_get_specific")]
     #[must_use]
     #[inline]
@@ -2323,6 +2343,7 @@ extern "C" {
     /// # Safety
     ///
     /// - `block` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
     /// - `notification_block` must be a valid pointer.
     #[cfg(feature = "block2")]
     pub fn dispatch_block_notify(
@@ -2486,7 +2507,8 @@ impl DispatchSource {
     ///
     /// # Safety
     ///
-    /// `type` must be a valid pointer.
+    /// - `type` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_source_create")]
     #[must_use]
     #[inline]
@@ -2877,7 +2899,8 @@ impl DispatchGroup {
 
     /// # Safety
     ///
-    /// `block` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
+    /// - `block` must be a valid pointer.
     #[doc(alias = "dispatch_group_async")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -2916,6 +2939,7 @@ impl DispatchGroup {
     ///
     /// # Safety
     ///
+    /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_group_async_f")]
@@ -2978,7 +3002,8 @@ pub extern "C" fn dispatch_group_wait(group: &DispatchGroup, timeout: DispatchTi
 impl DispatchGroup {
     /// # Safety
     ///
-    /// `block` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
+    /// - `block` must be a valid pointer.
     #[doc(alias = "dispatch_group_notify")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -3013,6 +3038,7 @@ impl DispatchGroup {
     ///
     /// # Safety
     ///
+    /// - `queue` possibly has additional threading requirements.
     /// - `context` must be a valid pointer or null.
     /// - `work` must be implemented correctly.
     #[doc(alias = "dispatch_group_notify_f")]
@@ -3235,6 +3261,7 @@ impl DispatchData {
     /// # Safety
     ///
     /// - `buffer` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
     /// - `destructor` must be a valid pointer or null.
     #[doc(alias = "dispatch_data_create")]
     #[cfg(feature = "block2")]
@@ -3527,6 +3554,10 @@ extern "C" {
     /// param data    The data read from the file descriptor.
     /// param error    An errno condition for the read operation or
     /// zero if the read was successful.
+    ///
+    /// # Safety
+    ///
+    /// `queue` possibly has additional threading requirements.
     #[cfg(feature = "block2")]
     pub fn dispatch_read(
         fd: dispatch_fd_t,
@@ -3568,6 +3599,10 @@ extern "C" {
     /// channel, or NULL.
     /// param error    An errno condition for the write operation or
     /// zero if the write was successful.
+    ///
+    /// # Safety
+    ///
+    /// `queue` possibly has additional threading requirements.
     #[cfg(feature = "block2")]
     pub fn dispatch_write(
         fd: dispatch_fd_t,
@@ -3605,6 +3640,10 @@ impl DispatchIO {
     ///
     /// Returns: The newly created dispatch I/O channel or NULL if an error
     /// occurred (invalid type specified).
+    ///
+    /// # Safety
+    ///
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_io_create")]
     #[cfg(feature = "block2")]
     #[must_use]
@@ -3663,7 +3702,8 @@ impl DispatchIO {
     ///
     /// # Safety
     ///
-    /// `path` must be a valid pointer.
+    /// - `path` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_io_create_with_path")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[must_use]
@@ -3813,7 +3853,8 @@ impl DispatchIO {
     ///
     /// # Safety
     ///
-    /// `io_handler` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
+    /// - `io_handler` must be a valid pointer.
     #[doc(alias = "dispatch_io_read")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[inline]
@@ -3884,7 +3925,8 @@ impl DispatchIO {
     ///
     /// # Safety
     ///
-    /// `io_handler` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
+    /// - `io_handler` must be a valid pointer.
     #[doc(alias = "dispatch_io_write")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[inline]

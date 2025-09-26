@@ -353,7 +353,8 @@ impl AVPlayerItemIntegratedTimeline {
         ///
         /// # Safety
         ///
-        /// `block` block must be sendable.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `block` block must be sendable.
         #[unsafe(method(addPeriodicTimeObserverForInterval:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPeriodicTimeObserverForInterval_queue_usingBlock(
@@ -380,6 +381,7 @@ impl AVPlayerItemIntegratedTimeline {
         /// # Safety
         ///
         /// - `offsets_into_segment` generic should be of the correct type.
+        /// - `queue` possibly has additional threading requirements.
         /// - `block` block must be sendable.
         #[unsafe(method(addBoundaryTimeObserverForSegment:offsetsIntoSegment:queue:usingBlock:))]
         #[unsafe(method_family = none)]

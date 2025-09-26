@@ -301,6 +301,10 @@ impl MPSGraphCompilationDescriptor {
 
         #[cfg(feature = "dispatch2")]
         /// Setter for [`dispatchQueue`][Self::dispatchQueue].
+        ///
+        /// # Safety
+        ///
+        /// `dispatch_queue` possibly has additional threading requirements.
         #[unsafe(method(setDispatchQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDispatchQueue(&self, dispatch_queue: &DispatchQueue);

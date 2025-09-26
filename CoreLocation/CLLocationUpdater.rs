@@ -130,6 +130,9 @@ impl CLLocationUpdater {
         pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(liveUpdaterWithQueue:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn liveUpdaterWithQueue_handler(
@@ -138,6 +141,9 @@ impl CLLocationUpdater {
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(liveUpdaterWithConfiguration:queue:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn liveUpdaterWithConfiguration_queue_handler(

@@ -29,6 +29,10 @@ impl CXCallController {
 
         #[cfg(feature = "dispatch2")]
         /// Initialize call controller with specified queue, which is used for calling completion blocks.
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithQueue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQueue(this: Allocated<Self>, queue: &DispatchQueue)

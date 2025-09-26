@@ -140,6 +140,7 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `out_listener` must be a valid pointer.
+    /// - `in_dispatch_queue` possibly has additional threading requirements.
     /// - `in_block` must be a valid pointer.
     #[cfg(all(
         feature = "AUComponent",

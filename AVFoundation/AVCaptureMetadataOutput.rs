@@ -54,6 +54,10 @@ impl AVCaptureMetadataOutput {
         /// Clients that need to minimize the chances of metadata being dropped should specify a queue on which a sufficiently small amount of processing is performed along with receiving metadata objects.
         ///
         /// A serial dispatch queue must be used to guarantee that metadata objects will be delivered in order. The objectsCallbackQueue parameter may not be NULL, except when setting the objectsDelegate to nil otherwise -setMetadataObjectsDelegate:queue: throws an NSInvalidArgumentException.
+        ///
+        /// # Safety
+        ///
+        /// `objects_callback_queue` possibly has additional threading requirements.
         #[unsafe(method(setMetadataObjectsDelegate:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMetadataObjectsDelegate_queue(

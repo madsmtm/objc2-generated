@@ -574,6 +574,10 @@ impl NFCTagReaderSession {
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithPollingOption:delegate:queue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPollingOption_delegate_queue(
@@ -788,6 +792,10 @@ impl NFCNDEFReaderSession {
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithDelegate:queue:invalidateAfterFirstRead:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate_queue_invalidateAfterFirstRead(
@@ -2082,6 +2090,10 @@ impl NFCISO15693ReaderSession {
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[deprecated = "No longer supported"]
         #[unsafe(method(initWithDelegate:queue:))]
         #[unsafe(method_family = init)]
@@ -3483,6 +3495,10 @@ impl NFCVASReaderSession {
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithVASCommandConfigurations:delegate:queue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithVASCommandConfigurations_delegate_queue(
@@ -3557,6 +3573,10 @@ impl NFCPaymentTagReaderSession {
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithDelegate:queue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate_queue(
@@ -3588,6 +3608,10 @@ impl NFCPaymentTagReaderSession {
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithPollingOption:delegate:queue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithPollingOption_delegate_queue(

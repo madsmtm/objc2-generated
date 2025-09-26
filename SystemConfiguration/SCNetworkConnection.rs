@@ -659,6 +659,10 @@ impl SCNetworkConnection {
     /// Returns: Returns TRUE if the notifications have been enabled/disabled as desired;
     /// FALSE if not.
     /// The error can be retrieved using the SCError function.
+    ///
+    /// # Safety
+    ///
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "SCNetworkConnectionSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

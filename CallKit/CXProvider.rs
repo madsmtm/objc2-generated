@@ -232,6 +232,10 @@ impl CXProvider {
         #[cfg(feature = "dispatch2")]
         /// Set delegate and optional queue for delegate callbacks to be performed on.
         /// A nil queue implies that delegate callbacks should happen on the main queue. The delegate is stored weakly
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(setDelegate:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate_queue(

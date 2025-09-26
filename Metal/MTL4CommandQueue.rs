@@ -155,7 +155,8 @@ impl MTL4CommandQueueDescriptor {
         ///
         /// # Safety
         ///
-        /// This is unretained, you must ensure the object is kept alive while in use.
+        /// - `feedback_queue` possibly has additional threading requirements.
+        /// - This is unretained, you must ensure the object is kept alive while in use.
         #[unsafe(method(setFeedbackQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFeedbackQueue(&self, feedback_queue: Option<&DispatchQueue>);

@@ -304,7 +304,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `stream_ref` must be a valid pointer.
+    /// - `stream_ref` must be a valid pointer.
+    /// - `q` possibly has additional threading requirements.
     #[cfg(feature = "dispatch2")]
     pub fn FSEventStreamSetDispatchQueue(stream_ref: FSEventStreamRef, q: Option<&DispatchQueue>);
 }

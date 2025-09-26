@@ -677,7 +677,8 @@ impl AVPlayer {
         ///
         /// # Safety
         ///
-        /// `block` block must be sendable.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `block` block must be sendable.
         #[unsafe(method(addPeriodicTimeObserverForInterval:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addPeriodicTimeObserverForInterval_queue_usingBlock(
@@ -702,7 +703,8 @@ impl AVPlayer {
         ///
         /// # Safety
         ///
-        /// `block` block must be sendable.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `block` block must be sendable.
         #[unsafe(method(addBoundaryTimeObserverForTimes:queue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addBoundaryTimeObserverForTimes_queue_usingBlock(

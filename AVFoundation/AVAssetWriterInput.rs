@@ -276,7 +276,8 @@ impl AVAssetWriterInput {
         ///
         /// # Safety
         ///
-        /// `block` block must be sendable.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `block` block must be sendable.
         #[unsafe(method(requestMediaDataWhenReadyOnQueue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestMediaDataWhenReadyOnQueue_usingBlock(
@@ -703,7 +704,8 @@ impl AVAssetWriterInput {
         ///
         /// # Safety
         ///
-        /// `block` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `block` must be a valid pointer.
         #[unsafe(method(respondToEachPassDescriptionOnQueue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn respondToEachPassDescriptionOnQueue_usingBlock(

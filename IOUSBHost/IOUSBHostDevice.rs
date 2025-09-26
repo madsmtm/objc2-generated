@@ -185,7 +185,8 @@ impl IOUSBHostDevice {
         ///
         /// # Safety
         ///
-        /// `interest_handler` must be a valid pointer or null.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `interest_handler` must be a valid pointer or null.
         #[unsafe(method(initWithIOService:options:queue:error:interestHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIOService_options_queue_error_interestHandler(
@@ -225,7 +226,8 @@ impl IOUSBHostDevice {
         ///
         /// # Safety
         ///
-        /// `interest_handler` must be a valid pointer or null.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `interest_handler` must be a valid pointer or null.
         #[unsafe(method(initWithIOService:queue:error:interestHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIOService_queue_error_interestHandler(

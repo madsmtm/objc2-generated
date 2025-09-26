@@ -99,6 +99,10 @@ impl AVPlayerItemMetadataCollector {
         /// Parameter `delegate`: An object conforming to AVPlayerItemMetadataCollectorPushDelegate protocol.
         ///
         /// Parameter `delegateQueue`: A dispatch queue on which all delegate methods will be called.
+        ///
+        /// # Safety
+        ///
+        /// `delegate_queue` possibly has additional threading requirements.
         #[unsafe(method(setDelegate:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate_queue(

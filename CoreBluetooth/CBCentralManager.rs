@@ -166,6 +166,10 @@ impl CBCentralManager {
         /// nil
         /// </i>
         /// , the main queue will be used.
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithDelegate:queue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate_queue(
@@ -196,7 +200,8 @@ impl CBCentralManager {
         ///
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `options` generic should be of the correct type.
         #[unsafe(method(initWithDelegate:queue:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate_queue_options(

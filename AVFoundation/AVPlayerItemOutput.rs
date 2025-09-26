@@ -218,6 +218,10 @@ impl AVPlayerItemVideoOutput {
         /// Parameter `delegate`: An object conforming to AVPlayerItemOutputPullDelegate protocol.
         ///
         /// Parameter `delegateQueue`: A dispatch queue on which all delegate methods will be called.
+        ///
+        /// # Safety
+        ///
+        /// `delegate_queue` possibly has additional threading requirements.
         #[unsafe(method(setDelegate:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate_queue(
@@ -328,6 +332,10 @@ impl AVPlayerItemLegibleOutput {
         /// Parameter `delegateQueue`: A dispatch queue on which all delegate methods will be called.
         ///
         /// The delegate is held using a zeroing-weak reference, so it is safe to deallocate the delegate while the receiver still has a reference to it.
+        ///
+        /// # Safety
+        ///
+        /// `delegate_queue` possibly has additional threading requirements.
         #[unsafe(method(setDelegate:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate_queue(
@@ -587,6 +595,10 @@ impl AVPlayerItemMetadataOutput {
         /// Parameter `delegate`: An object conforming to AVPlayerItemMetadataOutputPushDelegate protocol.
         ///
         /// Parameter `delegateQueue`: A dispatch queue on which all delegate methods will be called.
+        ///
+        /// # Safety
+        ///
+        /// `delegate_queue` possibly has additional threading requirements.
         #[unsafe(method(setDelegate:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate_queue(
@@ -749,6 +761,10 @@ impl AVPlayerItemRenderedLegibleOutput {
         /// Parameter `delegateQueue`: A dispatch queue on which all delegate methods will be called.
         ///
         /// The delegate is held using a zeroing-weak reference, so it is safe to deallocate the delegate while the receiver still has a reference to it.
+        ///
+        /// # Safety
+        ///
+        /// `delegate_queue` possibly has additional threading requirements.
         #[unsafe(method(setDelegate:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate_queue(

@@ -33,6 +33,10 @@ extern_protocol!(
 
         #[cfg(feature = "dispatch2")]
         /// Setter for [`handlerQueue`][Self::handlerQueue].
+        ///
+        /// # Safety
+        ///
+        /// `handler_queue` possibly has additional threading requirements.
         #[unsafe(method(setHandlerQueue:))]
         #[unsafe(method_family = none)]
         unsafe fn setHandlerQueue(&self, handler_queue: &DispatchQueue);

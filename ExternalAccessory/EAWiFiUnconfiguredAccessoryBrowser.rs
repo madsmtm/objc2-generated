@@ -120,6 +120,10 @@ impl EAWiFiUnconfiguredAccessoryBrowser {
         ///
         ///
         /// Returns: Instance object
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithDelegate:queue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDelegate_queue(

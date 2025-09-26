@@ -129,6 +129,10 @@ impl PGDisplayDescriptor {
 
         #[cfg(feature = "dispatch2")]
         /// Setter for [`queue`][Self::queue].
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(setQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQueue(&self, queue: Option<&DispatchQueue>);

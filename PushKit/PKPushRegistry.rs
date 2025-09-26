@@ -213,6 +213,10 @@ impl PKPushRegistry {
         ///
         /// - Returns: A `PKPushRegistry` object that you can use to register for push tokens and use to
         /// receive notifications.
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithQueue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithQueue(

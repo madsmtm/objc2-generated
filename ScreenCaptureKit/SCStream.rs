@@ -912,6 +912,10 @@ impl SCStream {
         /// Parameter `error`: the error pertaining to the add stream output
         ///
         /// An SCStreamOutput protocol object instance can only be added to a session using -addStreamOutput: Returns a BOOL denoting if the add was successful
+        ///
+        /// # Safety
+        ///
+        /// `sample_handler_queue` possibly has additional threading requirements.
         #[unsafe(method(addStreamOutput:type:sampleHandlerQueue:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn addStreamOutput_type_sampleHandlerQueue_error(

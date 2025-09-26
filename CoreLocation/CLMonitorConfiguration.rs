@@ -59,6 +59,9 @@ impl CLMonitorConfiguration {
             feature = "block2",
             feature = "dispatch2"
         ))]
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(configWithMonitorName:queue:eventHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn configWithMonitorName_queue_eventHandler(

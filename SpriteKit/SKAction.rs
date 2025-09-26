@@ -917,7 +917,8 @@ impl SKAction {
         ///
         /// # Safety
         ///
-        /// `block` must be a valid pointer.
+        /// - `block` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
         #[unsafe(method(runBlock:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock_queue(

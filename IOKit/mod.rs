@@ -10078,6 +10078,7 @@ impl IONotificationPort {
     /// # Safety
     ///
     /// - `notify` must be a valid pointer.
+    /// - `queue` possibly has additional threading requirements.
     /// - `queue` might not allow `None`.
     #[doc(alias = "IONotificationPortSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]

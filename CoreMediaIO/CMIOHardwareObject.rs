@@ -392,6 +392,7 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `address` must be a valid pointer.
+    /// - `dispatch_queue` possibly has additional threading requirements.
     /// - `dispatch_queue` might not allow `None`.
     /// - `listener` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
@@ -421,6 +422,7 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `address` must be a valid pointer.
+    /// - `dispatch_queue` possibly has additional threading requirements.
     /// - `dispatch_queue` might not allow `None`.
     /// - `listener` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "dispatch2"))]

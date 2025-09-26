@@ -105,6 +105,10 @@ impl ARSession {
 
         #[cfg(feature = "dispatch2")]
         /// Setter for [`delegateQueue`][Self::delegateQueue].
+        ///
+        /// # Safety
+        ///
+        /// `delegate_queue` possibly has additional threading requirements.
         #[unsafe(method(setDelegateQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegateQueue(&self, delegate_queue: Option<&DispatchQueue>);

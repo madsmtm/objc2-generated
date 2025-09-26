@@ -108,7 +108,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `block` block must be sendable.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `block` block must be sendable.
         #[unsafe(method(requestMediaDataWhenReadyOnQueue:usingBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn requestMediaDataWhenReadyOnQueue_usingBlock(

@@ -199,6 +199,10 @@ impl AVCaptureSlider {
         /// MainThreadOnly`, `action` is always called on an internal `DispatchSerialQueue` targeted at `actionQueue`.
         ///
         /// If `action` modifies a property of the camera system, `actionQueue` must represent the same exclusive execution context as the camera system (see `isSameExclusiveExecutionContext`).
+        ///
+        /// # Safety
+        ///
+        /// `action_queue` possibly has additional threading requirements.
         #[unsafe(method(setActionQueue:action:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActionQueue_action(

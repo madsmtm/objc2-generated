@@ -412,6 +412,10 @@ impl AVCaptureSession {
         /// Users can interact with an `AVCaptureSession`'s controls by performing specific gestures to enable their visibility. A delegate may be specified to be informed when the controls can be interacted with and are dismissed. All delegate methods will be called on the specified dispatch queue.
         ///
         /// A serial dispatch queue must be used to guarantee that delegate callbacks will be delivered in order. The `controlsDelegateCallbackQueue` parameter may not be `NULL`, except when setting the `controlsDelegate` to `nil` otherwise `-setControlsDelegate:queue:` throws an `NSInvalidArgumentException`.
+        ///
+        /// # Safety
+        ///
+        /// `controls_delegate_callback_queue` possibly has additional threading requirements.
         #[unsafe(method(setControlsDelegate:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setControlsDelegate_queue(
@@ -787,6 +791,10 @@ impl AVCaptureSession {
         ///
         /// - Parameter deferredStartDelegate: An object conforming to the ``AVCaptureSessionDeferredStartDelegate`` protocol that receives events about deferred start.
         /// - Parameter deferredStartDelegateCallbackQueue: A dispatch queue on which deferredStart delegate methods are called.
+        ///
+        /// # Safety
+        ///
+        /// `deferred_start_delegate_callback_queue` possibly has additional threading requirements.
         #[unsafe(method(setDeferredStartDelegate:deferredStartDelegateCallbackQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDeferredStartDelegate_deferredStartDelegateCallbackQueue(

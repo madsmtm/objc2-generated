@@ -334,7 +334,8 @@ impl SCNAction {
         #[cfg(all(feature = "SCNNode", feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// `block` block must be sendable.
+        /// - `block` block must be sendable.
+        /// - `queue` possibly has additional threading requirements.
         #[unsafe(method(runBlock:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock_queue(

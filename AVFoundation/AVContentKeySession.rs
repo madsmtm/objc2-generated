@@ -132,6 +132,10 @@ impl AVContentKeySession {
         ///
         /// - Parameter delegate: An object conforming to the AVContentKeySessionDelegate protocol.
         /// - Parameter delegateQueue: A dispatch queue on which delegate methods will be invoked whenever processes requiring content keys are executed asynchronously. Passing a value of nil for the delegateQueue parameter along with a non-nil value for the delegate parameter will result in an invalid argument exception.
+        ///
+        /// # Safety
+        ///
+        /// `delegate_queue` possibly has additional threading requirements.
         #[unsafe(method(setDelegate:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate_queue(

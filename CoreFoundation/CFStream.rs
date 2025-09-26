@@ -874,7 +874,8 @@ impl CFWriteStream {
 impl CFReadStream {
     /// # Safety
     ///
-    /// `q` might not allow `None`.
+    /// - `q` possibly has additional threading requirements.
+    /// - `q` might not allow `None`.
     #[doc(alias = "CFReadStreamSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -889,7 +890,8 @@ impl CFReadStream {
 impl CFWriteStream {
     /// # Safety
     ///
-    /// `q` might not allow `None`.
+    /// - `q` possibly has additional threading requirements.
+    /// - `q` might not allow `None`.
     #[doc(alias = "CFWriteStreamSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

@@ -5260,7 +5260,8 @@ impl NEHotspotHelper {
         ///
         /// # Safety
         ///
-        /// `handler` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `handler` must be a valid pointer.
         #[deprecated = "Use NEHotspotManager API"]
         #[unsafe(method(registerWithOptions:queue:handler:))]
         #[unsafe(method_family = none)]

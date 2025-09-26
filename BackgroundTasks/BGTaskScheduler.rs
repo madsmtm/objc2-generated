@@ -141,6 +141,10 @@ impl BGTaskScheduler {
         /// <doc
         /// ://com.apple.documentation/documentation/bundleresources/information_property_list/bgtaskschedulerpermittedidentifiers> `Info.plist`.
         /// - Important: Register each task identifier only once. The system kills the app on the second registration of the same task identifier.
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(registerForTaskWithIdentifier:usingQueue:launchHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerForTaskWithIdentifier_usingQueue_launchHandler(

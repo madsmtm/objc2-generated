@@ -78,6 +78,10 @@ impl AVMetricEventStream {
         ///
         /// - Parameter subscriber: A subscriber delegate object conforming to AVMetricEventStreamSubscriber.
         /// - Parameter queue: Dispatch queue for the delegate callbacks.
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(setSubscriber:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubscriber_queue(

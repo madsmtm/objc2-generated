@@ -56,6 +56,9 @@ impl MTLSharedEventListener {
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "dispatch2")]
+        /// # Safety
+        ///
+        /// `dispatch_queue` possibly has additional threading requirements.
         #[unsafe(method(initWithDispatchQueue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDispatchQueue(

@@ -103,6 +103,7 @@ impl QLThumbnail {
 
     /// # Safety
     ///
+    /// - `queue` possibly has additional threading requirements.
     /// - `queue` might not allow `None`.
     /// - `completion` must be a valid pointer.
     #[doc(alias = "QLThumbnailDispatchAsync")]

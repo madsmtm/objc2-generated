@@ -453,6 +453,10 @@ impl SCNetworkReachability {
     ///
     /// Returns: Returns TRUE if the target is scheduled or unscheduled successfully;
     /// FALSE otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "SCNetworkReachabilitySetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[deprecated]

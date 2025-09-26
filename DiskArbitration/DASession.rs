@@ -112,6 +112,10 @@ impl DASession {
     /// Parameter `session`: The session which is being scheduled.
     ///
     /// Parameter `queue`: The dispatch queue on which the session should be scheduled.  Pass NULL to unschedule.
+    ///
+    /// # Safety
+    ///
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "DASessionSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

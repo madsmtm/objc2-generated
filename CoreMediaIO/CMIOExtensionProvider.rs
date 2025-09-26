@@ -261,6 +261,10 @@ impl CMIOExtensionProvider {
         /// Parameter `clientQueue`: The client dispatch queue, or nil for the default dispatch queue.
         ///
         /// Returns: A CMIOExtensionProvider instance.
+        ///
+        /// # Safety
+        ///
+        /// `client_queue` possibly has additional threading requirements.
         #[unsafe(method(providerWithSource:clientQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn providerWithSource_clientQueue(
@@ -276,6 +280,10 @@ impl CMIOExtensionProvider {
         /// Parameter `clientQueue`: The client dispatch queue, or nil for the default dispatch queue.
         ///
         /// Returns: A CMIOExtensionProvider instance.
+        ///
+        /// # Safety
+        ///
+        /// `client_queue` possibly has additional threading requirements.
         #[unsafe(method(initWithSource:clientQueue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSource_clientQueue(

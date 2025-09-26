@@ -119,6 +119,9 @@ impl CLServiceSession {
         ) -> Retained<CLServiceSession>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(sessionRequiringAuthorization:queue:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionRequiringAuthorization_queue_handler(
@@ -135,6 +138,9 @@ impl CLServiceSession {
         ) -> Retained<CLServiceSession>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(sessionRequiringAuthorization:fullAccuracyPurposeKey:queue:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionRequiringAuthorization_fullAccuracyPurposeKey_queue_handler(

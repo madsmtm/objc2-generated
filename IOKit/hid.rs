@@ -1303,6 +1303,10 @@ impl IOHIDQueue {
     ///
     ///
     /// Parameter `dispatchQueue`: The dispatch queue to which the event handler block will be submitted.
+    ///
+    /// # Safety
+    ///
+    /// `dispatch_queue` possibly has additional threading requirements.
     #[doc(alias = "IOHIDQueueSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -1800,6 +1804,10 @@ impl IOHIDDevice {
     /// Parameter `device`: Reference to an IOHIDDevice
     ///
     /// Parameter `queue`: The dispatch queue to which the event handler block will be submitted.
+    ///
+    /// # Safety
+    ///
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "IOHIDDeviceSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
@@ -4295,6 +4303,10 @@ impl IOHIDManager {
     ///
     ///
     /// Parameter `queue`: The dispatch queue to which the event handler block will be submitted.
+    ///
+    /// # Safety
+    ///
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "IOHIDManagerSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

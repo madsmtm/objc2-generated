@@ -945,6 +945,7 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_address` must be a valid pointer.
+    /// - `in_dispatch_queue` possibly has additional threading requirements.
     /// - `in_listener` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn AudioObjectAddPropertyListenerBlock(
@@ -973,6 +974,7 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_address` must be a valid pointer.
+    /// - `in_dispatch_queue` possibly has additional threading requirements.
     /// - `in_listener` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn AudioObjectRemovePropertyListenerBlock(
@@ -1489,6 +1491,7 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `out_io_proc_id` must be a valid pointer.
+    /// - `in_dispatch_queue` possibly has additional threading requirements.
     /// - `in_io_block` must be a valid pointer.
     #[cfg(all(
         feature = "block2",

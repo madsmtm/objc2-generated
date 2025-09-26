@@ -306,6 +306,10 @@ impl SCDynamicStore {
     /// Pass NULL to disable notifications, and release the queue.
     ///
     /// Returns: Returns TRUE on success, FALSE on failure.
+    ///
+    /// # Safety
+    ///
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "SCDynamicStoreSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

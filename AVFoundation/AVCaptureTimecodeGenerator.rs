@@ -372,6 +372,10 @@ impl AVCaptureTimecodeGenerator {
         /// - Parameter callbackQueue: The dispatch queue on which the delegate methods are invoked. The `callbackQueue` parameter may not be `nil`, except when setting the ``AVCaptureTimecodeGeneratorDelegate`` to `nil`, otherwise ``setDelegate:queue:`` throws an `NSInvalidArgumentException`.
         ///
         /// Use this method to configure a delegate that handles timecode updates. The specified `queue` ensures thread-safe invocation of delegate methods.
+        ///
+        /// # Safety
+        ///
+        /// `callback_queue` possibly has additional threading requirements.
         #[unsafe(method(setDelegate:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate_queue(

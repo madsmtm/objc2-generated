@@ -95,6 +95,7 @@ impl IOUSBHostControllerInterface {
         ///
         /// # Safety
         ///
+        /// - `queue` possibly has additional threading requirements.
         /// - `command_handler` must be a valid pointer.
         /// - `doorbell_handler` must be a valid pointer.
         /// - `interest_handler` must be implemented correctly.

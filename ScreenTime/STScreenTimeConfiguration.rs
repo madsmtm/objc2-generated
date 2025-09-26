@@ -65,6 +65,10 @@ impl STScreenTimeConfigurationObserver {
         ///
         /// - Parameters:
         /// - updateQueue: The queue on which to report updates.
+        ///
+        /// # Safety
+        ///
+        /// `update_queue` possibly has additional threading requirements.
         #[unsafe(method(initWithUpdateQueue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUpdateQueue(

@@ -297,7 +297,8 @@ impl CFMessagePort {
 
     /// # Safety
     ///
-    /// `queue` might not allow `None`.
+    /// - `queue` possibly has additional threading requirements.
+    /// - `queue` might not allow `None`.
     #[doc(alias = "CFMessagePortSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

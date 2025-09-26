@@ -207,6 +207,10 @@ impl OSSystemExtensionRequest {
         /// replacing an existing extension that required a reboot in order to deactivate.
         /// The most recently activated extension will then become active when the system
         /// is next rebooted.
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(activationRequestForExtension:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn activationRequestForExtension_queue(
@@ -232,6 +236,10 @@ impl OSSystemExtensionRequest {
         /// Note: It is possible for an extension to require a reboot before it is fully
         /// deactivated. If a request succeeds and indicates a reboot is required, the
         /// extension may still appear to be operational until that time.
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(deactivationRequestForExtension:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deactivationRequestForExtension_queue(
@@ -251,6 +259,10 @@ impl OSSystemExtensionRequest {
         ///
         ///
         /// Parameter `queue`: The dispatch queue to use when calling delegate methods.
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(propertiesRequestForExtension:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertiesRequestForExtension_queue(

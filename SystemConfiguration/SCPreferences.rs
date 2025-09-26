@@ -565,6 +565,10 @@ impl SCPreferences {
     ///
     /// Returns: Returns TRUE if the notifications are successfully scheduled;
     /// FALSE otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "SCPreferencesSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

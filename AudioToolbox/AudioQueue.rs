@@ -792,6 +792,7 @@ extern "C-unwind" {
     ///
     /// - `out_aq` must be a valid pointer.
     /// - `in_format` must be a valid pointer.
+    /// - `in_callback_dispatch_queue` possibly has additional threading requirements.
     /// - `in_callback_block` must be a valid pointer.
     #[cfg(all(
         feature = "block2",
@@ -837,6 +838,7 @@ extern "C-unwind" {
     ///
     /// - `out_aq` must be a valid pointer.
     /// - `in_format` must be a valid pointer.
+    /// - `in_callback_dispatch_queue` possibly has additional threading requirements.
     /// - `in_callback_block` must be a valid pointer.
     #[cfg(all(
         feature = "block2",
