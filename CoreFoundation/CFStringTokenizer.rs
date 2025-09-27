@@ -26,10 +26,7 @@ impl CFStringTokenizer {
     /// characters are required to reliably guess the language of a string.
     #[doc(alias = "CFStringTokenizerCopyBestStringLanguage")]
     #[inline]
-    pub unsafe fn best_string_language(
-        string: &CFString,
-        range: CFRange,
-    ) -> Option<CFRetained<CFString>> {
+    pub fn best_string_language(string: &CFString, range: CFRange) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFStringTokenizerCopyBestStringLanguage(
                 string: &CFString,
@@ -264,7 +261,7 @@ impl CFStringTokenizer {
     /// (or) derived subtokens can be obtained by calling CFStringTokenizerGetCurrentSubTokens.
     #[doc(alias = "CFStringTokenizerGoToTokenAtIndex")]
     #[inline]
-    pub unsafe fn go_to_token_at_index(&self, index: CFIndex) -> CFStringTokenizerTokenType {
+    pub fn go_to_token_at_index(&self, index: CFIndex) -> CFStringTokenizerTokenType {
         extern "C-unwind" {
             fn CFStringTokenizerGoToTokenAtIndex(
                 tokenizer: &CFStringTokenizer,
@@ -297,7 +294,7 @@ impl CFStringTokenizer {
     /// (or) derived subtokens can be obtained by calling CFStringTokenizerGetCurrentSubTokens.
     #[doc(alias = "CFStringTokenizerAdvanceToNextToken")]
     #[inline]
-    pub unsafe fn advance_to_next_token(&self) -> CFStringTokenizerTokenType {
+    pub fn advance_to_next_token(&self) -> CFStringTokenizerTokenType {
         extern "C-unwind" {
             fn CFStringTokenizerAdvanceToNextToken(
                 tokenizer: &CFStringTokenizer,
@@ -314,7 +311,7 @@ impl CFStringTokenizer {
     /// Returns: Range of current token, or {kCFNotFound,0} if there is no current token.
     #[doc(alias = "CFStringTokenizerGetCurrentTokenRange")]
     #[inline]
-    pub unsafe fn current_token_range(&self) -> CFRange {
+    pub fn current_token_range(&self) -> CFRange {
         extern "C-unwind" {
             fn CFStringTokenizerGetCurrentTokenRange(tokenizer: &CFStringTokenizer) -> CFRange;
         }
@@ -334,10 +331,7 @@ impl CFStringTokenizer {
     /// attribute or if there is no current token.
     #[doc(alias = "CFStringTokenizerCopyCurrentTokenAttribute")]
     #[inline]
-    pub unsafe fn current_token_attribute(
-        &self,
-        attribute: CFOptionFlags,
-    ) -> Option<CFRetained<CFType>> {
+    pub fn current_token_attribute(&self, attribute: CFOptionFlags) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CFStringTokenizerCopyCurrentTokenAttribute(
                 tokenizer: &CFStringTokenizer,
@@ -406,7 +400,7 @@ impl CFStringTokenizer {
 
 #[deprecated = "renamed to `CFStringTokenizer::best_string_language`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStringTokenizerCopyBestStringLanguage(
+pub extern "C-unwind" fn CFStringTokenizerCopyBestStringLanguage(
     string: &CFString,
     range: CFRange,
 ) -> Option<CFRetained<CFString>> {
@@ -452,29 +446,48 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFStringTokenizer::go_to_token_at_index`"]
-    pub fn CFStringTokenizerGoToTokenAtIndex(
-        tokenizer: &CFStringTokenizer,
-        index: CFIndex,
-    ) -> CFStringTokenizerTokenType;
+#[deprecated = "renamed to `CFStringTokenizer::go_to_token_at_index`"]
+#[inline]
+pub extern "C-unwind" fn CFStringTokenizerGoToTokenAtIndex(
+    tokenizer: &CFStringTokenizer,
+    index: CFIndex,
+) -> CFStringTokenizerTokenType {
+    extern "C-unwind" {
+        fn CFStringTokenizerGoToTokenAtIndex(
+            tokenizer: &CFStringTokenizer,
+            index: CFIndex,
+        ) -> CFStringTokenizerTokenType;
+    }
+    unsafe { CFStringTokenizerGoToTokenAtIndex(tokenizer, index) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFStringTokenizer::advance_to_next_token`"]
-    pub fn CFStringTokenizerAdvanceToNextToken(
-        tokenizer: &CFStringTokenizer,
-    ) -> CFStringTokenizerTokenType;
+#[deprecated = "renamed to `CFStringTokenizer::advance_to_next_token`"]
+#[inline]
+pub extern "C-unwind" fn CFStringTokenizerAdvanceToNextToken(
+    tokenizer: &CFStringTokenizer,
+) -> CFStringTokenizerTokenType {
+    extern "C-unwind" {
+        fn CFStringTokenizerAdvanceToNextToken(
+            tokenizer: &CFStringTokenizer,
+        ) -> CFStringTokenizerTokenType;
+    }
+    unsafe { CFStringTokenizerAdvanceToNextToken(tokenizer) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFStringTokenizer::current_token_range`"]
-    pub fn CFStringTokenizerGetCurrentTokenRange(tokenizer: &CFStringTokenizer) -> CFRange;
+#[deprecated = "renamed to `CFStringTokenizer::current_token_range`"]
+#[inline]
+pub extern "C-unwind" fn CFStringTokenizerGetCurrentTokenRange(
+    tokenizer: &CFStringTokenizer,
+) -> CFRange {
+    extern "C-unwind" {
+        fn CFStringTokenizerGetCurrentTokenRange(tokenizer: &CFStringTokenizer) -> CFRange;
+    }
+    unsafe { CFStringTokenizerGetCurrentTokenRange(tokenizer) }
 }
 
 #[deprecated = "renamed to `CFStringTokenizer::current_token_attribute`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFStringTokenizerCopyCurrentTokenAttribute(
+pub extern "C-unwind" fn CFStringTokenizerCopyCurrentTokenAttribute(
     tokenizer: &CFStringTokenizer,
     attribute: CFOptionFlags,
 ) -> Option<CFRetained<CFType>> {

@@ -105,7 +105,7 @@ impl CFNumberFormatter {
     #[doc(alias = "CFNumberFormatterGetLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub unsafe fn locale(&self) -> Option<CFRetained<CFLocale>> {
+    pub fn locale(&self) -> Option<CFRetained<CFLocale>> {
         extern "C-unwind" {
             fn CFNumberFormatterGetLocale(
                 formatter: &CFNumberFormatter,
@@ -117,7 +117,7 @@ impl CFNumberFormatter {
 
     #[doc(alias = "CFNumberFormatterGetStyle")]
     #[inline]
-    pub unsafe fn style(&self) -> CFNumberFormatterStyle {
+    pub fn style(&self) -> CFNumberFormatterStyle {
         extern "C-unwind" {
             fn CFNumberFormatterGetStyle(formatter: &CFNumberFormatter) -> CFNumberFormatterStyle;
         }
@@ -126,7 +126,7 @@ impl CFNumberFormatter {
 
     #[doc(alias = "CFNumberFormatterGetFormat")]
     #[inline]
-    pub unsafe fn format(&self) -> Option<CFRetained<CFString>> {
+    pub fn format(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFNumberFormatterGetFormat(
                 formatter: &CFNumberFormatter,
@@ -632,7 +632,7 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterCreate(
 #[cfg(feature = "CFLocale")]
 #[deprecated = "renamed to `CFNumberFormatter::locale`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFNumberFormatterGetLocale(
+pub extern "C-unwind" fn CFNumberFormatterGetLocale(
     formatter: &CFNumberFormatter,
 ) -> Option<CFRetained<CFLocale>> {
     extern "C-unwind" {
@@ -642,14 +642,20 @@ pub unsafe extern "C-unwind" fn CFNumberFormatterGetLocale(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFNumberFormatter::style`"]
-    pub fn CFNumberFormatterGetStyle(formatter: &CFNumberFormatter) -> CFNumberFormatterStyle;
+#[deprecated = "renamed to `CFNumberFormatter::style`"]
+#[inline]
+pub extern "C-unwind" fn CFNumberFormatterGetStyle(
+    formatter: &CFNumberFormatter,
+) -> CFNumberFormatterStyle {
+    extern "C-unwind" {
+        fn CFNumberFormatterGetStyle(formatter: &CFNumberFormatter) -> CFNumberFormatterStyle;
+    }
+    unsafe { CFNumberFormatterGetStyle(formatter) }
 }
 
 #[deprecated = "renamed to `CFNumberFormatter::format`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFNumberFormatterGetFormat(
+pub extern "C-unwind" fn CFNumberFormatterGetFormat(
     formatter: &CFNumberFormatter,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {

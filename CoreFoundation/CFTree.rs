@@ -175,7 +175,7 @@ impl CFTree {
     /// Returns: The parent of the tree.
     #[doc(alias = "CFTreeGetParent")]
     #[inline]
-    pub unsafe fn parent(&self) -> Option<CFRetained<CFTree>> {
+    pub fn parent(&self) -> Option<CFRetained<CFTree>> {
         extern "C-unwind" {
             fn CFTreeGetParent(tree: &CFTree) -> Option<NonNull<CFTree>>;
         }
@@ -191,7 +191,7 @@ impl CFTree {
     /// Returns: The next sibling of the tree.
     #[doc(alias = "CFTreeGetNextSibling")]
     #[inline]
-    pub unsafe fn next_sibling(&self) -> Option<CFRetained<CFTree>> {
+    pub fn next_sibling(&self) -> Option<CFRetained<CFTree>> {
         extern "C-unwind" {
             fn CFTreeGetNextSibling(tree: &CFTree) -> Option<NonNull<CFTree>>;
         }
@@ -207,7 +207,7 @@ impl CFTree {
     /// Returns: The first child of the tree.
     #[doc(alias = "CFTreeGetFirstChild")]
     #[inline]
-    pub unsafe fn first_child(&self) -> Option<CFRetained<CFTree>> {
+    pub fn first_child(&self) -> Option<CFRetained<CFTree>> {
         extern "C-unwind" {
             fn CFTreeGetFirstChild(tree: &CFTree) -> Option<NonNull<CFTree>>;
         }
@@ -246,7 +246,7 @@ impl CFTree {
     /// Returns: The number of children.
     #[doc(alias = "CFTreeGetChildCount")]
     #[inline]
-    pub unsafe fn child_count(&self) -> CFIndex {
+    pub fn child_count(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFTreeGetChildCount(tree: &CFTree) -> CFIndex;
         }
@@ -265,7 +265,7 @@ impl CFTree {
     /// Returns: A reference to the specified child tree.
     #[doc(alias = "CFTreeGetChildAtIndex")]
     #[inline]
-    pub unsafe fn child_at_index(&self, idx: CFIndex) -> Option<CFRetained<CFTree>> {
+    pub fn child_at_index(&self, idx: CFIndex) -> Option<CFRetained<CFTree>> {
         extern "C-unwind" {
             fn CFTreeGetChildAtIndex(tree: &CFTree, idx: CFIndex) -> Option<NonNull<CFTree>>;
         }
@@ -342,7 +342,7 @@ impl CFTree {
     /// Returns: A reference to the root of the tree.
     #[doc(alias = "CFTreeFindRoot")]
     #[inline]
-    pub unsafe fn find_root(&self) -> Option<CFRetained<CFTree>> {
+    pub fn find_root(&self) -> Option<CFRetained<CFTree>> {
         extern "C-unwind" {
             fn CFTreeFindRoot(tree: &CFTree) -> Option<NonNull<CFTree>>;
         }
@@ -450,7 +450,7 @@ impl CFTree {
     /// CFTree, the behavior is undefined.
     #[doc(alias = "CFTreeRemove")]
     #[inline]
-    pub unsafe fn remove(&self) {
+    pub fn remove(&self) {
         extern "C-unwind" {
             fn CFTreeRemove(tree: &CFTree);
         }
@@ -463,7 +463,7 @@ impl CFTree {
     /// CFTree, the behavior is undefined.
     #[doc(alias = "CFTreeRemoveAllChildren")]
     #[inline]
-    pub unsafe fn remove_all_children(&self) {
+    pub fn remove_all_children(&self) {
         extern "C-unwind" {
             fn CFTreeRemoveAllChildren(tree: &CFTree);
         }
@@ -524,7 +524,7 @@ pub unsafe extern "C-unwind" fn CFTreeCreate(
 
 #[deprecated = "renamed to `CFTree::parent`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTreeGetParent(tree: &CFTree) -> Option<CFRetained<CFTree>> {
+pub extern "C-unwind" fn CFTreeGetParent(tree: &CFTree) -> Option<CFRetained<CFTree>> {
     extern "C-unwind" {
         fn CFTreeGetParent(tree: &CFTree) -> Option<NonNull<CFTree>>;
     }
@@ -534,7 +534,7 @@ pub unsafe extern "C-unwind" fn CFTreeGetParent(tree: &CFTree) -> Option<CFRetai
 
 #[deprecated = "renamed to `CFTree::next_sibling`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTreeGetNextSibling(tree: &CFTree) -> Option<CFRetained<CFTree>> {
+pub extern "C-unwind" fn CFTreeGetNextSibling(tree: &CFTree) -> Option<CFRetained<CFTree>> {
     extern "C-unwind" {
         fn CFTreeGetNextSibling(tree: &CFTree) -> Option<NonNull<CFTree>>;
     }
@@ -544,7 +544,7 @@ pub unsafe extern "C-unwind" fn CFTreeGetNextSibling(tree: &CFTree) -> Option<CF
 
 #[deprecated = "renamed to `CFTree::first_child`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTreeGetFirstChild(tree: &CFTree) -> Option<CFRetained<CFTree>> {
+pub extern "C-unwind" fn CFTreeGetFirstChild(tree: &CFTree) -> Option<CFRetained<CFTree>> {
     extern "C-unwind" {
         fn CFTreeGetFirstChild(tree: &CFTree) -> Option<NonNull<CFTree>>;
     }
@@ -557,14 +557,18 @@ extern "C-unwind" {
     pub fn CFTreeGetContext(tree: &CFTree, context: *mut CFTreeContext);
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFTree::child_count`"]
-    pub fn CFTreeGetChildCount(tree: &CFTree) -> CFIndex;
+#[deprecated = "renamed to `CFTree::child_count`"]
+#[inline]
+pub extern "C-unwind" fn CFTreeGetChildCount(tree: &CFTree) -> CFIndex {
+    extern "C-unwind" {
+        fn CFTreeGetChildCount(tree: &CFTree) -> CFIndex;
+    }
+    unsafe { CFTreeGetChildCount(tree) }
 }
 
 #[deprecated = "renamed to `CFTree::child_at_index`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTreeGetChildAtIndex(
+pub extern "C-unwind" fn CFTreeGetChildAtIndex(
     tree: &CFTree,
     idx: CFIndex,
 ) -> Option<CFRetained<CFTree>> {
@@ -591,7 +595,7 @@ extern "C-unwind" {
 
 #[deprecated = "renamed to `CFTree::find_root`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFTreeFindRoot(tree: &CFTree) -> Option<CFRetained<CFTree>> {
+pub extern "C-unwind" fn CFTreeFindRoot(tree: &CFTree) -> Option<CFRetained<CFTree>> {
     extern "C-unwind" {
         fn CFTreeFindRoot(tree: &CFTree) -> Option<NonNull<CFTree>>;
     }
@@ -619,14 +623,22 @@ extern "C-unwind" {
     pub fn CFTreeInsertSibling(tree: &CFTree, new_sibling: Option<&CFTree>);
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFTree::remove`"]
-    pub fn CFTreeRemove(tree: &CFTree);
+#[deprecated = "renamed to `CFTree::remove`"]
+#[inline]
+pub extern "C-unwind" fn CFTreeRemove(tree: &CFTree) {
+    extern "C-unwind" {
+        fn CFTreeRemove(tree: &CFTree);
+    }
+    unsafe { CFTreeRemove(tree) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFTree::remove_all_children`"]
-    pub fn CFTreeRemoveAllChildren(tree: &CFTree);
+#[deprecated = "renamed to `CFTree::remove_all_children`"]
+#[inline]
+pub extern "C-unwind" fn CFTreeRemoveAllChildren(tree: &CFTree) {
+    extern "C-unwind" {
+        fn CFTreeRemoveAllChildren(tree: &CFTree);
+    }
+    unsafe { CFTreeRemoveAllChildren(tree) }
 }
 
 extern "C-unwind" {

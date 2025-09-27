@@ -246,7 +246,7 @@ impl CFGregorianDate {
     #[doc(alias = "CFGregorianDateIsValid")]
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     #[inline]
-    pub unsafe fn is_valid(self, unit_flags: CFOptionFlags) -> bool {
+    pub fn is_valid(self, unit_flags: CFOptionFlags) -> bool {
         extern "C-unwind" {
             fn CFGregorianDateIsValid(gdate: CFGregorianDate, unit_flags: CFOptionFlags)
                 -> Boolean;
@@ -383,7 +383,7 @@ extern "C-unwind" {
 
 #[deprecated = "renamed to `CFGregorianDate::is_valid`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFGregorianDateIsValid(
+pub extern "C-unwind" fn CFGregorianDateIsValid(
     gdate: CFGregorianDate,
     unit_flags: CFOptionFlags,
 ) -> bool {

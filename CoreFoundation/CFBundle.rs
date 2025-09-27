@@ -887,7 +887,7 @@ impl CFBundle {
     #[doc(alias = "CFBundleOpenBundleResourceMap")]
     #[deprecated = "The Carbon Resource Manager is deprecated. This should only be used to access Resource Manager-style resources in old bundles."]
     #[inline]
-    pub unsafe fn open_bundle_resource_map(&self) -> CFBundleRefNum {
+    pub fn open_bundle_resource_map(&self) -> CFBundleRefNum {
         extern "C-unwind" {
             fn CFBundleOpenBundleResourceMap(bundle: &CFBundle) -> CFBundleRefNum;
         }
@@ -919,7 +919,7 @@ impl CFBundle {
     #[doc(alias = "CFBundleCloseBundleResourceMap")]
     #[deprecated = "The Carbon Resource Manager is deprecated. This should only be used to access Resource Manager-style resources in old bundles."]
     #[inline]
-    pub unsafe fn close_bundle_resource_map(&self, ref_num: CFBundleRefNum) {
+    pub fn close_bundle_resource_map(&self, ref_num: CFBundleRefNum) {
         extern "C-unwind" {
             fn CFBundleCloseBundleResourceMap(bundle: &CFBundle, ref_num: CFBundleRefNum);
         }
@@ -1667,9 +1667,13 @@ pub extern "C-unwind" fn CFBundleGetPlugIn(bundle: &CFBundle) -> Option<CFRetain
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFBundle::open_bundle_resource_map`"]
-    pub fn CFBundleOpenBundleResourceMap(bundle: &CFBundle) -> CFBundleRefNum;
+#[deprecated = "renamed to `CFBundle::open_bundle_resource_map`"]
+#[inline]
+pub extern "C-unwind" fn CFBundleOpenBundleResourceMap(bundle: &CFBundle) -> CFBundleRefNum {
+    extern "C-unwind" {
+        fn CFBundleOpenBundleResourceMap(bundle: &CFBundle) -> CFBundleRefNum;
+    }
+    unsafe { CFBundleOpenBundleResourceMap(bundle) }
 }
 
 extern "C-unwind" {
@@ -1681,7 +1685,14 @@ extern "C-unwind" {
     ) -> i32;
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFBundle::close_bundle_resource_map`"]
-    pub fn CFBundleCloseBundleResourceMap(bundle: &CFBundle, ref_num: CFBundleRefNum);
+#[deprecated = "renamed to `CFBundle::close_bundle_resource_map`"]
+#[inline]
+pub extern "C-unwind" fn CFBundleCloseBundleResourceMap(
+    bundle: &CFBundle,
+    ref_num: CFBundleRefNum,
+) {
+    extern "C-unwind" {
+        fn CFBundleCloseBundleResourceMap(bundle: &CFBundle, ref_num: CFBundleRefNum);
+    }
+    unsafe { CFBundleCloseBundleResourceMap(bundle, ref_num) }
 }

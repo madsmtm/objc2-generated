@@ -198,7 +198,7 @@ extern "C-unwind" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CFPreferencesSynchronize(
+pub extern "C-unwind" fn CFPreferencesSynchronize(
     application_id: &CFString,
     user_name: &CFString,
     host_name: &CFString,
@@ -217,7 +217,7 @@ pub unsafe extern "C-unwind" fn CFPreferencesSynchronize(
 #[cfg(feature = "CFArray")]
 #[deprecated = "Unsupported API"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFPreferencesCopyApplicationList(
+pub extern "C-unwind" fn CFPreferencesCopyApplicationList(
     user_name: &CFString,
     host_name: &CFString,
 ) -> Option<CFRetained<CFArray>> {

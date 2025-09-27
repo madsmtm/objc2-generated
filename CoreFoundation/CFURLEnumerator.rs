@@ -178,7 +178,7 @@ impl CFURLEnumerator {
 
     #[doc(alias = "CFURLEnumeratorSkipDescendents")]
     #[inline]
-    pub unsafe fn skip_descendents(&self) {
+    pub fn skip_descendents(&self) {
         extern "C-unwind" {
             fn CFURLEnumeratorSkipDescendents(enumerator: &CFURLEnumerator);
         }
@@ -187,7 +187,7 @@ impl CFURLEnumerator {
 
     #[doc(alias = "CFURLEnumeratorGetDescendentLevel")]
     #[inline]
-    pub unsafe fn descendent_level(&self) -> CFIndex {
+    pub fn descendent_level(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFURLEnumeratorGetDescendentLevel(enumerator: &CFURLEnumerator) -> CFIndex;
         }
@@ -197,7 +197,7 @@ impl CFURLEnumerator {
     #[doc(alias = "CFURLEnumeratorGetSourceDidChange")]
     #[deprecated = "Use File System Events API instead"]
     #[inline]
-    pub unsafe fn source_did_change(&self) -> bool {
+    pub fn source_did_change(&self) -> bool {
         extern "C-unwind" {
             fn CFURLEnumeratorGetSourceDidChange(enumerator: &CFURLEnumerator) -> Boolean;
         }
@@ -258,21 +258,29 @@ extern "C-unwind" {
     ) -> CFURLEnumeratorResult;
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFURLEnumerator::skip_descendents`"]
-    pub fn CFURLEnumeratorSkipDescendents(enumerator: &CFURLEnumerator);
+#[deprecated = "renamed to `CFURLEnumerator::skip_descendents`"]
+#[inline]
+pub extern "C-unwind" fn CFURLEnumeratorSkipDescendents(enumerator: &CFURLEnumerator) {
+    extern "C-unwind" {
+        fn CFURLEnumeratorSkipDescendents(enumerator: &CFURLEnumerator);
+    }
+    unsafe { CFURLEnumeratorSkipDescendents(enumerator) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFURLEnumerator::descendent_level`"]
-    pub fn CFURLEnumeratorGetDescendentLevel(enumerator: &CFURLEnumerator) -> CFIndex;
+#[deprecated = "renamed to `CFURLEnumerator::descendent_level`"]
+#[inline]
+pub extern "C-unwind" fn CFURLEnumeratorGetDescendentLevel(
+    enumerator: &CFURLEnumerator,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CFURLEnumeratorGetDescendentLevel(enumerator: &CFURLEnumerator) -> CFIndex;
+    }
+    unsafe { CFURLEnumeratorGetDescendentLevel(enumerator) }
 }
 
 #[deprecated = "renamed to `CFURLEnumerator::source_did_change`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFURLEnumeratorGetSourceDidChange(
-    enumerator: &CFURLEnumerator,
-) -> bool {
+pub extern "C-unwind" fn CFURLEnumeratorGetSourceDidChange(enumerator: &CFURLEnumerator) -> bool {
     extern "C-unwind" {
         fn CFURLEnumeratorGetSourceDidChange(enumerator: &CFURLEnumerator) -> Boolean;
     }

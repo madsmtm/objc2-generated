@@ -907,7 +907,7 @@ impl CFReadStream {
     #[doc(alias = "CFReadStreamCopyDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn dispatch_queue(&self) -> Option<DispatchRetained<DispatchQueue>> {
+    pub fn dispatch_queue(&self) -> Option<DispatchRetained<DispatchQueue>> {
         extern "C-unwind" {
             fn CFReadStreamCopyDispatchQueue(
                 stream: &CFReadStream,
@@ -922,7 +922,7 @@ impl CFWriteStream {
     #[doc(alias = "CFWriteStreamCopyDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn dispatch_queue(&self) -> Option<DispatchRetained<DispatchQueue>> {
+    pub fn dispatch_queue(&self) -> Option<DispatchRetained<DispatchQueue>> {
         extern "C-unwind" {
             fn CFWriteStreamCopyDispatchQueue(
                 stream: &CFWriteStream,
@@ -1391,7 +1391,7 @@ extern "C-unwind" {
 #[cfg(feature = "dispatch2")]
 #[deprecated = "renamed to `CFReadStream::dispatch_queue`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFReadStreamCopyDispatchQueue(
+pub extern "C-unwind" fn CFReadStreamCopyDispatchQueue(
     stream: &CFReadStream,
 ) -> Option<DispatchRetained<DispatchQueue>> {
     extern "C-unwind" {
@@ -1404,7 +1404,7 @@ pub unsafe extern "C-unwind" fn CFReadStreamCopyDispatchQueue(
 #[cfg(feature = "dispatch2")]
 #[deprecated = "renamed to `CFWriteStream::dispatch_queue`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFWriteStreamCopyDispatchQueue(
+pub extern "C-unwind" fn CFWriteStreamCopyDispatchQueue(
     stream: &CFWriteStream,
 ) -> Option<DispatchRetained<DispatchQueue>> {
     extern "C-unwind" {

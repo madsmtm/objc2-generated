@@ -194,7 +194,7 @@ impl CFDateFormatter {
     #[doc(alias = "CFDateFormatterGetLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub unsafe fn locale(&self) -> Option<CFRetained<CFLocale>> {
+    pub fn locale(&self) -> Option<CFRetained<CFLocale>> {
         extern "C-unwind" {
             fn CFDateFormatterGetLocale(formatter: &CFDateFormatter) -> Option<NonNull<CFLocale>>;
         }
@@ -204,7 +204,7 @@ impl CFDateFormatter {
 
     #[doc(alias = "CFDateFormatterGetDateStyle")]
     #[inline]
-    pub unsafe fn date_style(&self) -> CFDateFormatterStyle {
+    pub fn date_style(&self) -> CFDateFormatterStyle {
         extern "C-unwind" {
             fn CFDateFormatterGetDateStyle(formatter: &CFDateFormatter) -> CFDateFormatterStyle;
         }
@@ -213,7 +213,7 @@ impl CFDateFormatter {
 
     #[doc(alias = "CFDateFormatterGetTimeStyle")]
     #[inline]
-    pub unsafe fn time_style(&self) -> CFDateFormatterStyle {
+    pub fn time_style(&self) -> CFDateFormatterStyle {
         extern "C-unwind" {
             fn CFDateFormatterGetTimeStyle(formatter: &CFDateFormatter) -> CFDateFormatterStyle;
         }
@@ -222,7 +222,7 @@ impl CFDateFormatter {
 
     #[doc(alias = "CFDateFormatterGetFormat")]
     #[inline]
-    pub unsafe fn format(&self) -> Option<CFRetained<CFString>> {
+    pub fn format(&self) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFDateFormatterGetFormat(formatter: &CFDateFormatter) -> Option<NonNull<CFString>>;
         }
@@ -589,7 +589,7 @@ pub unsafe extern "C-unwind" fn CFDateFormatterCreate(
 #[cfg(feature = "CFLocale")]
 #[deprecated = "renamed to `CFDateFormatter::locale`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFDateFormatterGetLocale(
+pub extern "C-unwind" fn CFDateFormatterGetLocale(
     formatter: &CFDateFormatter,
 ) -> Option<CFRetained<CFLocale>> {
     extern "C-unwind" {
@@ -599,19 +599,31 @@ pub unsafe extern "C-unwind" fn CFDateFormatterGetLocale(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFDateFormatter::date_style`"]
-    pub fn CFDateFormatterGetDateStyle(formatter: &CFDateFormatter) -> CFDateFormatterStyle;
+#[deprecated = "renamed to `CFDateFormatter::date_style`"]
+#[inline]
+pub extern "C-unwind" fn CFDateFormatterGetDateStyle(
+    formatter: &CFDateFormatter,
+) -> CFDateFormatterStyle {
+    extern "C-unwind" {
+        fn CFDateFormatterGetDateStyle(formatter: &CFDateFormatter) -> CFDateFormatterStyle;
+    }
+    unsafe { CFDateFormatterGetDateStyle(formatter) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFDateFormatter::time_style`"]
-    pub fn CFDateFormatterGetTimeStyle(formatter: &CFDateFormatter) -> CFDateFormatterStyle;
+#[deprecated = "renamed to `CFDateFormatter::time_style`"]
+#[inline]
+pub extern "C-unwind" fn CFDateFormatterGetTimeStyle(
+    formatter: &CFDateFormatter,
+) -> CFDateFormatterStyle {
+    extern "C-unwind" {
+        fn CFDateFormatterGetTimeStyle(formatter: &CFDateFormatter) -> CFDateFormatterStyle;
+    }
+    unsafe { CFDateFormatterGetTimeStyle(formatter) }
 }
 
 #[deprecated = "renamed to `CFDateFormatter::format`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFDateFormatterGetFormat(
+pub extern "C-unwind" fn CFDateFormatterGetFormat(
     formatter: &CFDateFormatter,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {

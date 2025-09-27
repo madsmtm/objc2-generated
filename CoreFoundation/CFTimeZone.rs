@@ -34,7 +34,7 @@ impl CFTimeZone {
 
     #[doc(alias = "CFTimeZoneResetSystem")]
     #[inline]
-    pub unsafe fn reset_system() {
+    pub fn reset_system() {
         extern "C-unwind" {
             fn CFTimeZoneResetSystem();
         }
@@ -311,9 +311,13 @@ pub extern "C-unwind" fn CFTimeZoneCopySystem() -> Option<CFRetained<CFTimeZone>
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFTimeZone::reset_system`"]
-    pub fn CFTimeZoneResetSystem();
+#[deprecated = "renamed to `CFTimeZone::reset_system`"]
+#[inline]
+pub extern "C-unwind" fn CFTimeZoneResetSystem() {
+    extern "C-unwind" {
+        fn CFTimeZoneResetSystem();
+    }
+    unsafe { CFTimeZoneResetSystem() }
 }
 
 #[cfg(feature = "CFDate")]

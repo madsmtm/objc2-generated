@@ -123,7 +123,7 @@ impl CFCharacterSet {
     /// This instance is owned by CF.
     #[doc(alias = "CFCharacterSetGetPredefined")]
     #[inline]
-    pub unsafe fn predefined(
+    pub fn predefined(
         the_set_identifier: CFCharacterSetPredefinedSet,
     ) -> Option<CFRetained<CFCharacterSet>> {
         extern "C-unwind" {
@@ -446,7 +446,7 @@ impl CFCharacterSet {
     /// Returns: true, if the value is in the character set, otherwise false.
     #[doc(alias = "CFCharacterSetIsCharacterMember")]
     #[inline]
-    pub unsafe fn is_character_member(&self, the_char: UniChar) -> bool {
+    pub fn is_character_member(&self, the_char: UniChar) -> bool {
         extern "C-unwind" {
             fn CFCharacterSetIsCharacterMember(
                 the_set: &CFCharacterSet,
@@ -468,7 +468,7 @@ impl CFCharacterSet {
     /// Returns: true, if the value is in the character set, otherwise false.
     #[doc(alias = "CFCharacterSetIsLongCharacterMember")]
     #[inline]
-    pub unsafe fn is_long_character_member(&self, the_char: UTF32Char) -> bool {
+    pub fn is_long_character_member(&self, the_char: UTF32Char) -> bool {
         extern "C-unwind" {
             fn CFCharacterSetIsLongCharacterMember(
                 the_set: &CFCharacterSet,
@@ -718,7 +718,7 @@ impl CFMutableCharacterSet {
 
 #[deprecated = "renamed to `CFCharacterSet::predefined`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFCharacterSetGetPredefined(
+pub extern "C-unwind" fn CFCharacterSetGetPredefined(
     the_set_identifier: CFCharacterSetPredefinedSet,
 ) -> Option<CFRetained<CFCharacterSet>> {
     extern "C-unwind" {
@@ -872,7 +872,7 @@ pub unsafe extern "C-unwind" fn CFCharacterSetCreateMutableCopy(
 
 #[deprecated = "renamed to `CFCharacterSet::is_character_member`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFCharacterSetIsCharacterMember(
+pub extern "C-unwind" fn CFCharacterSetIsCharacterMember(
     the_set: &CFCharacterSet,
     the_char: UniChar,
 ) -> bool {
@@ -885,7 +885,7 @@ pub unsafe extern "C-unwind" fn CFCharacterSetIsCharacterMember(
 
 #[deprecated = "renamed to `CFCharacterSet::is_long_character_member`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFCharacterSetIsLongCharacterMember(
+pub extern "C-unwind" fn CFCharacterSetIsLongCharacterMember(
     the_set: &CFCharacterSet,
     the_char: UTF32Char,
 ) -> bool {

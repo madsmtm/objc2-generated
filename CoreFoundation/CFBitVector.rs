@@ -145,7 +145,7 @@ impl CFMutableBitVector {
 impl CFBitVector {
     #[doc(alias = "CFBitVectorGetCount")]
     #[inline]
-    pub unsafe fn count(&self) -> CFIndex {
+    pub fn count(&self) -> CFIndex {
         extern "C-unwind" {
             fn CFBitVectorGetCount(bv: &CFBitVector) -> CFIndex;
         }
@@ -154,7 +154,7 @@ impl CFBitVector {
 
     #[doc(alias = "CFBitVectorGetCountOfBit")]
     #[inline]
-    pub unsafe fn count_of_bit(&self, range: CFRange, value: CFBit) -> CFIndex {
+    pub fn count_of_bit(&self, range: CFRange, value: CFBit) -> CFIndex {
         extern "C-unwind" {
             fn CFBitVectorGetCountOfBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> CFIndex;
         }
@@ -163,7 +163,7 @@ impl CFBitVector {
 
     #[doc(alias = "CFBitVectorContainsBit")]
     #[inline]
-    pub unsafe fn contains_bit(&self, range: CFRange, value: CFBit) -> bool {
+    pub fn contains_bit(&self, range: CFRange, value: CFBit) -> bool {
         extern "C-unwind" {
             fn CFBitVectorContainsBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> Boolean;
         }
@@ -173,7 +173,7 @@ impl CFBitVector {
 
     #[doc(alias = "CFBitVectorGetBitAtIndex")]
     #[inline]
-    pub unsafe fn bit_at_index(&self, idx: CFIndex) -> CFBit {
+    pub fn bit_at_index(&self, idx: CFIndex) -> CFBit {
         extern "C-unwind" {
             fn CFBitVectorGetBitAtIndex(bv: &CFBitVector, idx: CFIndex) -> CFBit;
         }
@@ -194,7 +194,7 @@ impl CFBitVector {
 
     #[doc(alias = "CFBitVectorGetFirstIndexOfBit")]
     #[inline]
-    pub unsafe fn first_index_of_bit(&self, range: CFRange, value: CFBit) -> CFIndex {
+    pub fn first_index_of_bit(&self, range: CFRange, value: CFBit) -> CFIndex {
         extern "C-unwind" {
             fn CFBitVectorGetFirstIndexOfBit(
                 bv: &CFBitVector,
@@ -207,7 +207,7 @@ impl CFBitVector {
 
     #[doc(alias = "CFBitVectorGetLastIndexOfBit")]
     #[inline]
-    pub unsafe fn last_index_of_bit(&self, range: CFRange, value: CFBit) -> CFIndex {
+    pub fn last_index_of_bit(&self, range: CFRange, value: CFBit) -> CFIndex {
         extern "C-unwind" {
             fn CFBitVectorGetLastIndexOfBit(
                 bv: &CFBitVector,
@@ -365,19 +365,31 @@ pub unsafe extern "C-unwind" fn CFBitVectorCreateMutableCopy(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFBitVector::count`"]
-    pub fn CFBitVectorGetCount(bv: &CFBitVector) -> CFIndex;
+#[deprecated = "renamed to `CFBitVector::count`"]
+#[inline]
+pub extern "C-unwind" fn CFBitVectorGetCount(bv: &CFBitVector) -> CFIndex {
+    extern "C-unwind" {
+        fn CFBitVectorGetCount(bv: &CFBitVector) -> CFIndex;
+    }
+    unsafe { CFBitVectorGetCount(bv) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFBitVector::count_of_bit`"]
-    pub fn CFBitVectorGetCountOfBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> CFIndex;
+#[deprecated = "renamed to `CFBitVector::count_of_bit`"]
+#[inline]
+pub extern "C-unwind" fn CFBitVectorGetCountOfBit(
+    bv: &CFBitVector,
+    range: CFRange,
+    value: CFBit,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CFBitVectorGetCountOfBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> CFIndex;
+    }
+    unsafe { CFBitVectorGetCountOfBit(bv, range, value) }
 }
 
 #[deprecated = "renamed to `CFBitVector::contains_bit`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CFBitVectorContainsBit(
+pub extern "C-unwind" fn CFBitVectorContainsBit(
     bv: &CFBitVector,
     range: CFRange,
     value: CFBit,
@@ -389,9 +401,13 @@ pub unsafe extern "C-unwind" fn CFBitVectorContainsBit(
     ret != 0
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFBitVector::bit_at_index`"]
-    pub fn CFBitVectorGetBitAtIndex(bv: &CFBitVector, idx: CFIndex) -> CFBit;
+#[deprecated = "renamed to `CFBitVector::bit_at_index`"]
+#[inline]
+pub extern "C-unwind" fn CFBitVectorGetBitAtIndex(bv: &CFBitVector, idx: CFIndex) -> CFBit {
+    extern "C-unwind" {
+        fn CFBitVectorGetBitAtIndex(bv: &CFBitVector, idx: CFIndex) -> CFBit;
+    }
+    unsafe { CFBitVectorGetBitAtIndex(bv, idx) }
 }
 
 extern "C-unwind" {
@@ -399,15 +415,31 @@ extern "C-unwind" {
     pub fn CFBitVectorGetBits(bv: &CFBitVector, range: CFRange, bytes: *mut u8);
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFBitVector::first_index_of_bit`"]
-    pub fn CFBitVectorGetFirstIndexOfBit(bv: &CFBitVector, range: CFRange, value: CFBit)
-        -> CFIndex;
+#[deprecated = "renamed to `CFBitVector::first_index_of_bit`"]
+#[inline]
+pub extern "C-unwind" fn CFBitVectorGetFirstIndexOfBit(
+    bv: &CFBitVector,
+    range: CFRange,
+    value: CFBit,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CFBitVectorGetFirstIndexOfBit(bv: &CFBitVector, range: CFRange, value: CFBit)
+            -> CFIndex;
+    }
+    unsafe { CFBitVectorGetFirstIndexOfBit(bv, range, value) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFBitVector::last_index_of_bit`"]
-    pub fn CFBitVectorGetLastIndexOfBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> CFIndex;
+#[deprecated = "renamed to `CFBitVector::last_index_of_bit`"]
+#[inline]
+pub extern "C-unwind" fn CFBitVectorGetLastIndexOfBit(
+    bv: &CFBitVector,
+    range: CFRange,
+    value: CFBit,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CFBitVectorGetLastIndexOfBit(bv: &CFBitVector, range: CFRange, value: CFBit) -> CFIndex;
+    }
+    unsafe { CFBitVectorGetLastIndexOfBit(bv, range, value) }
 }
 
 extern "C-unwind" {
