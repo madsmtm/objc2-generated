@@ -36,7 +36,7 @@ impl UIDragPreview {
         ))]
         #[unsafe(method(initWithView:parameters:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithView_parameters(
+        pub fn initWithView_parameters(
             this: Allocated<Self>,
             view: &UIView,
             parameters: &UIDragPreviewParameters,
@@ -45,24 +45,24 @@ impl UIDragPreview {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(initWithView:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
+        pub fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
-        pub unsafe fn view(&self) -> Retained<UIView>;
+        pub fn view(&self) -> Retained<UIView>;
 
         #[cfg(all(feature = "UIDragPreviewParameters", feature = "UIPreviewParameters"))]
         #[unsafe(method(parameters))]
         #[unsafe(method_family = none)]
-        pub unsafe fn parameters(&self) -> Retained<UIDragPreviewParameters>;
+        pub fn parameters(&self) -> Retained<UIDragPreviewParameters>;
     );
 }

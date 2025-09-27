@@ -75,14 +75,14 @@ impl UIWindowSceneActivationAction {
         /// The actions title. Set to nil to use the default title.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
-        pub unsafe fn title(&self) -> Retained<NSString>;
+        pub fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTitle(&self, title: Option<&NSString>);
+        pub fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(all(feature = "UIWindowSceneActivationConfiguration", feature = "block2"))]
         /// Returns a new
@@ -140,11 +140,11 @@ impl UIWindowSceneActivationAction {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 

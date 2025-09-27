@@ -87,7 +87,7 @@ extern "C" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn UIContentSizeCategoryIsAccessibilityCategory(
+pub extern "C-unwind" fn UIContentSizeCategoryIsAccessibilityCategory(
     category: &UIContentSizeCategory,
 ) -> bool {
     extern "C-unwind" {
@@ -96,9 +96,16 @@ pub unsafe extern "C-unwind" fn UIContentSizeCategoryIsAccessibilityCategory(
     unsafe { UIContentSizeCategoryIsAccessibilityCategory(category) }.as_bool()
 }
 
-extern "C-unwind" {
-    pub fn UIContentSizeCategoryCompareToCategory(
-        lhs: &UIContentSizeCategory,
-        rhs: &UIContentSizeCategory,
-    ) -> NSComparisonResult;
+#[inline]
+pub extern "C-unwind" fn UIContentSizeCategoryCompareToCategory(
+    lhs: &UIContentSizeCategory,
+    rhs: &UIContentSizeCategory,
+) -> NSComparisonResult {
+    extern "C-unwind" {
+        fn UIContentSizeCategoryCompareToCategory(
+            lhs: &UIContentSizeCategory,
+            rhs: &UIContentSizeCategory,
+        ) -> NSComparisonResult;
+    }
+    unsafe { UIContentSizeCategoryCompareToCategory(lhs, rhs) }
 }

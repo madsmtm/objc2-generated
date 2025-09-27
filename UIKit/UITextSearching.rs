@@ -43,7 +43,7 @@ extern_protocol!(
         /// `foundRange:forSearchString:.`
         #[unsafe(method(allFoundRanges))]
         #[unsafe(method_family = none)]
-        unsafe fn allFoundRanges(&self) -> Retained<NSOrderedSet<UITextRange>>;
+        fn allFoundRanges(&self) -> Retained<NSOrderedSet<UITextRange>>;
 
         #[cfg(feature = "UITextInput")]
         /// Call this method when a range of text is found in your document.
@@ -95,12 +95,12 @@ extern_protocol!(
         /// it's current state, and may trigger a new search using `performTextSearchWithQueryString:` immediately after.
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
-        unsafe fn invalidate(&self);
+        fn invalidate(&self);
 
         /// Call this method after all documents have been searched.
         #[unsafe(method(finishedSearching))]
         #[unsafe(method_family = none)]
-        unsafe fn finishedSearching(&self);
+        fn finishedSearching(&self);
     }
 );
 
@@ -111,7 +111,7 @@ extern_protocol!(
         /// Overlap from UITextInput: Returns the currently selected text range, if applicable. Nil otherwise.
         #[unsafe(method(selectedTextRange))]
         #[unsafe(method_family = none)]
-        unsafe fn selectedTextRange(&self) -> Option<Retained<UITextRange>>;
+        fn selectedTextRange(&self) -> Option<Retained<UITextRange>>;
 
         #[cfg(feature = "UITextInput")]
         /// Provide a comparison result comparing developer-provided
@@ -155,7 +155,7 @@ extern_protocol!(
         /// so you may send it messages on other threads.
         #[unsafe(method(performTextSearchWithQueryString:usingOptions:resultAggregator:))]
         #[unsafe(method_family = none)]
-        unsafe fn performTextSearchWithQueryString_usingOptions_resultAggregator(
+        fn performTextSearchWithQueryString_usingOptions_resultAggregator(
             &self,
             string: &NSString,
             options: &UITextSearchOptions,
@@ -193,14 +193,14 @@ extern_protocol!(
         /// `decorateFoundTextRange:usingStyle:`are cleared.
         #[unsafe(method(clearAllDecoratedFoundText))]
         #[unsafe(method_family = none)]
-        unsafe fn clearAllDecoratedFoundText(&self);
+        fn clearAllDecoratedFoundText(&self);
 
         /// Return YES if your searchable item also supports replacement. If this method is unimplemented, it is
         /// assumed that text replacement is not supported.
         #[optional]
         #[unsafe(method(supportsTextReplacement))]
         #[unsafe(method_family = none)]
-        unsafe fn supportsTextReplacement(&self) -> bool;
+        fn supportsTextReplacement(&self) -> bool;
 
         #[cfg(feature = "UITextInput")]
         /// Optionally return NO to disallow the replacement of a particular result
@@ -264,7 +264,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(replaceAllOccurrencesOfQueryString:usingOptions:withText:))]
         #[unsafe(method_family = none)]
-        unsafe fn replaceAllOccurrencesOfQueryString_usingOptions_withText(
+        fn replaceAllOccurrencesOfQueryString_usingOptions_withText(
             &self,
             query_string: &NSString,
             options: &UITextSearchOptions,
@@ -312,9 +312,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(selectedTextSearchDocument))]
         #[unsafe(method_family = none)]
-        unsafe fn selectedTextSearchDocument(
-            &self,
-        ) -> Option<Retained<UITextSearchDocumentIdentifier>>;
+        fn selectedTextSearchDocument(&self) -> Option<Retained<UITextSearchDocumentIdentifier>>;
 
         /// Returns the visible ordering from `fromDocument` to `toDocument`. If your document identifiers
         /// are index paths, for example, this would yield the same result as `-[NSIndexPath compare:]`.

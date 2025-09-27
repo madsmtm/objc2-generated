@@ -35,23 +35,23 @@ impl UISliderTick {
     extern_methods!(
         #[unsafe(method(position))]
         #[unsafe(method_family = none)]
-        pub unsafe fn position(&self) -> c_float;
+        pub fn position(&self) -> c_float;
 
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
-        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
+        pub fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTitle(&self, title: Option<&NSString>);
+        pub fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "UIImage")]
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
-        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
+        pub fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`image`][Self::image].
@@ -59,12 +59,12 @@ impl UISliderTick {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImage(&self, image: Option<&UIImage>);
+        pub fn setImage(&self, image: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
         #[unsafe(method(tickWithPosition:title:image:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tickWithPosition_title_image(
+        pub fn tickWithPosition_title_image(
             position: c_float,
             title: Option<&NSString>,
             image: Option<&UIImage>,
@@ -73,11 +73,11 @@ impl UISliderTick {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -109,64 +109,64 @@ impl UISliderTrackConfiguration {
     extern_methods!(
         #[unsafe(method(allowsTickValuesOnly))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsTickValuesOnly(&self) -> bool;
+        pub fn allowsTickValuesOnly(&self) -> bool;
 
         /// Setter for [`allowsTickValuesOnly`][Self::allowsTickValuesOnly].
         #[unsafe(method(setAllowsTickValuesOnly:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsTickValuesOnly(&self, allows_tick_values_only: bool);
+        pub fn setAllowsTickValuesOnly(&self, allows_tick_values_only: bool);
 
         #[unsafe(method(neutralValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn neutralValue(&self) -> c_float;
+        pub fn neutralValue(&self) -> c_float;
 
         /// Setter for [`neutralValue`][Self::neutralValue].
         #[unsafe(method(setNeutralValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNeutralValue(&self, neutral_value: c_float);
+        pub fn setNeutralValue(&self, neutral_value: c_float);
 
         #[unsafe(method(minimumEnabledValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumEnabledValue(&self) -> c_float;
+        pub fn minimumEnabledValue(&self) -> c_float;
 
         /// Setter for [`minimumEnabledValue`][Self::minimumEnabledValue].
         #[unsafe(method(setMinimumEnabledValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinimumEnabledValue(&self, minimum_enabled_value: c_float);
+        pub fn setMinimumEnabledValue(&self, minimum_enabled_value: c_float);
 
         #[unsafe(method(maximumEnabledValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumEnabledValue(&self) -> c_float;
+        pub fn maximumEnabledValue(&self) -> c_float;
 
         /// Setter for [`maximumEnabledValue`][Self::maximumEnabledValue].
         #[unsafe(method(setMaximumEnabledValue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumEnabledValue(&self, maximum_enabled_value: c_float);
+        pub fn setMaximumEnabledValue(&self, maximum_enabled_value: c_float);
 
         #[unsafe(method(ticks))]
         #[unsafe(method_family = none)]
-        pub unsafe fn ticks(&self) -> Retained<NSArray<UISliderTick>>;
+        pub fn ticks(&self) -> Retained<NSArray<UISliderTick>>;
 
         #[unsafe(method(configurationWithTicks:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithTicks(
+        pub fn configurationWithTicks(
             ticks: &NSArray<UISliderTick>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[unsafe(method(configurationWithNumberOfTicks:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithNumberOfTicks(
+        pub fn configurationWithNumberOfTicks(
             ticks: NSInteger,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }

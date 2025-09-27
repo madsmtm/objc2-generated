@@ -189,7 +189,7 @@ impl UIPageViewController {
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPageViewControllerDelegate>>>;
 
@@ -198,14 +198,14 @@ impl UIPageViewController {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
+        pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIPageViewControllerDelegate>>,
         );
 
         #[unsafe(method(dataSource))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dataSource(
+        pub fn dataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPageViewControllerDataSource>>>;
 
@@ -214,45 +214,45 @@ impl UIPageViewController {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDataSource:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDataSource(
+        pub fn setDataSource(
             &self,
             data_source: Option<&ProtocolObject<dyn UIPageViewControllerDataSource>>,
         );
 
         #[unsafe(method(transitionStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transitionStyle(&self) -> UIPageViewControllerTransitionStyle;
+        pub fn transitionStyle(&self) -> UIPageViewControllerTransitionStyle;
 
         #[unsafe(method(navigationOrientation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn navigationOrientation(&self) -> UIPageViewControllerNavigationOrientation;
+        pub fn navigationOrientation(&self) -> UIPageViewControllerNavigationOrientation;
 
         #[unsafe(method(spineLocation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn spineLocation(&self) -> UIPageViewControllerSpineLocation;
+        pub fn spineLocation(&self) -> UIPageViewControllerSpineLocation;
 
         #[unsafe(method(isDoubleSided))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDoubleSided(&self) -> bool;
+        pub fn isDoubleSided(&self) -> bool;
 
         /// Setter for [`isDoubleSided`][Self::isDoubleSided].
         #[unsafe(method(setDoubleSided:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDoubleSided(&self, double_sided: bool);
+        pub fn setDoubleSided(&self, double_sided: bool);
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[unsafe(method(gestureRecognizers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn gestureRecognizers(&self) -> Retained<NSArray<UIGestureRecognizer>>;
+        pub fn gestureRecognizers(&self) -> Retained<NSArray<UIGestureRecognizer>>;
 
         #[unsafe(method(viewControllers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn viewControllers(&self) -> Option<Retained<NSArray<UIViewController>>>;
+        pub fn viewControllers(&self) -> Option<Retained<NSArray<UIViewController>>>;
 
         #[cfg(feature = "block2")]
         #[unsafe(method(setViewControllers:direction:animated:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setViewControllers_direction_animated_completion(
+        pub fn setViewControllers_direction_animated_completion(
             &self,
             view_controllers: Option<&NSArray<UIViewController>>,
             direction: UIPageViewControllerNavigationDirection,
@@ -268,7 +268,7 @@ impl UIPageViewController {
     extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
+        pub fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
@@ -282,11 +282,11 @@ impl UIPageViewController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -299,7 +299,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(pageViewController:willTransitionToViewControllers:))]
         #[unsafe(method_family = none)]
-        unsafe fn pageViewController_willTransitionToViewControllers(
+        fn pageViewController_willTransitionToViewControllers(
             &self,
             page_view_controller: &UIPageViewController,
             pending_view_controllers: &NSArray<UIViewController>,
@@ -309,7 +309,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:))]
         #[unsafe(method_family = none)]
-        unsafe fn pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted(
+        fn pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted(
             &self,
             page_view_controller: &UIPageViewController,
             finished: bool,
@@ -325,7 +325,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(pageViewController:spineLocationForInterfaceOrientation:))]
         #[unsafe(method_family = none)]
-        unsafe fn pageViewController_spineLocationForInterfaceOrientation(
+        fn pageViewController_spineLocationForInterfaceOrientation(
             &self,
             page_view_controller: &UIPageViewController,
             orientation: UIInterfaceOrientation,
@@ -339,7 +339,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(pageViewControllerSupportedInterfaceOrientations:))]
         #[unsafe(method_family = none)]
-        unsafe fn pageViewControllerSupportedInterfaceOrientations(
+        fn pageViewControllerSupportedInterfaceOrientations(
             &self,
             page_view_controller: &UIPageViewController,
         ) -> UIInterfaceOrientationMask;
@@ -352,7 +352,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(pageViewControllerPreferredInterfaceOrientationForPresentation:))]
         #[unsafe(method_family = none)]
-        unsafe fn pageViewControllerPreferredInterfaceOrientationForPresentation(
+        fn pageViewControllerPreferredInterfaceOrientationForPresentation(
             &self,
             page_view_controller: &UIPageViewController,
         ) -> UIInterfaceOrientation;
@@ -367,7 +367,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[unsafe(method(pageViewController:viewControllerBeforeViewController:))]
         #[unsafe(method_family = none)]
-        unsafe fn pageViewController_viewControllerBeforeViewController(
+        fn pageViewController_viewControllerBeforeViewController(
             &self,
             page_view_controller: &UIPageViewController,
             view_controller: &UIViewController,
@@ -376,7 +376,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[unsafe(method(pageViewController:viewControllerAfterViewController:))]
         #[unsafe(method_family = none)]
-        unsafe fn pageViewController_viewControllerAfterViewController(
+        fn pageViewController_viewControllerAfterViewController(
             &self,
             page_view_controller: &UIPageViewController,
             view_controller: &UIViewController,
@@ -386,7 +386,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(presentationCountForPageViewController:))]
         #[unsafe(method_family = none)]
-        unsafe fn presentationCountForPageViewController(
+        fn presentationCountForPageViewController(
             &self,
             page_view_controller: &UIPageViewController,
         ) -> NSInteger;
@@ -395,7 +395,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(presentationIndexForPageViewController:))]
         #[unsafe(method_family = none)]
-        unsafe fn presentationIndexForPageViewController(
+        fn presentationIndexForPageViewController(
             &self,
             page_view_controller: &UIPageViewController,
         ) -> NSInteger;

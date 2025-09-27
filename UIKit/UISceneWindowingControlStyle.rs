@@ -27,21 +27,21 @@ impl UISceneWindowingControlStyle {
         /// Windowing controls will use the default system style
         #[unsafe(method(automaticStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn automaticStyle() -> Retained<UISceneWindowingControlStyle>;
+        pub fn automaticStyle() -> Retained<UISceneWindowingControlStyle>;
 
         /// Windowing controls will appear as part of the scene's content
         #[unsafe(method(unifiedStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unifiedStyle() -> Retained<UISceneWindowingControlStyle>;
+        pub fn unifiedStyle() -> Retained<UISceneWindowingControlStyle>;
 
         /// Windowing controls will occupy as little of the scene's space as possible
         #[unsafe(method(minimalStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimalStyle() -> Retained<UISceneWindowingControlStyle>;
+        pub fn minimalStyle() -> Retained<UISceneWindowingControlStyle>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -50,6 +50,13 @@ impl UISceneWindowingControlStyle {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UISceneWindowingControlStyle {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

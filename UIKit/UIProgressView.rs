@@ -120,7 +120,7 @@ impl UIProgressView {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -134,85 +134,85 @@ impl UIProgressView {
 
         #[unsafe(method(initWithProgressViewStyle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithProgressViewStyle(
+        pub fn initWithProgressViewStyle(
             this: Allocated<Self>,
             style: UIProgressViewStyle,
         ) -> Retained<Self>;
 
         #[unsafe(method(progressViewStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progressViewStyle(&self) -> UIProgressViewStyle;
+        pub fn progressViewStyle(&self) -> UIProgressViewStyle;
 
         /// Setter for [`progressViewStyle`][Self::progressViewStyle].
         #[unsafe(method(setProgressViewStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setProgressViewStyle(&self, progress_view_style: UIProgressViewStyle);
+        pub fn setProgressViewStyle(&self, progress_view_style: UIProgressViewStyle);
 
         #[unsafe(method(progress))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progress(&self) -> c_float;
+        pub fn progress(&self) -> c_float;
 
         /// Setter for [`progress`][Self::progress].
         #[unsafe(method(setProgress:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setProgress(&self, progress: c_float);
+        pub fn setProgress(&self, progress: c_float);
 
         #[cfg(feature = "UIColor")]
         #[unsafe(method(progressTintColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progressTintColor(&self) -> Option<Retained<UIColor>>;
+        pub fn progressTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`progressTintColor`][Self::progressTintColor].
         #[unsafe(method(setProgressTintColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setProgressTintColor(&self, progress_tint_color: Option<&UIColor>);
+        pub fn setProgressTintColor(&self, progress_tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
         #[unsafe(method(trackTintColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn trackTintColor(&self) -> Option<Retained<UIColor>>;
+        pub fn trackTintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`trackTintColor`][Self::trackTintColor].
         #[unsafe(method(setTrackTintColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTrackTintColor(&self, track_tint_color: Option<&UIColor>);
+        pub fn setTrackTintColor(&self, track_tint_color: Option<&UIColor>);
 
         #[cfg(feature = "UIImage")]
         #[unsafe(method(progressImage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progressImage(&self) -> Option<Retained<UIImage>>;
+        pub fn progressImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`progressImage`][Self::progressImage].
         #[unsafe(method(setProgressImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setProgressImage(&self, progress_image: Option<&UIImage>);
+        pub fn setProgressImage(&self, progress_image: Option<&UIImage>);
 
         #[cfg(feature = "UIImage")]
         #[unsafe(method(trackImage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn trackImage(&self) -> Option<Retained<UIImage>>;
+        pub fn trackImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`trackImage`][Self::trackImage].
         #[unsafe(method(setTrackImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTrackImage(&self, track_image: Option<&UIImage>);
+        pub fn setTrackImage(&self, track_image: Option<&UIImage>);
 
         #[unsafe(method(setProgress:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setProgress_animated(&self, progress: c_float, animated: bool);
+        pub fn setProgress_animated(&self, progress: c_float, animated: bool);
 
         #[unsafe(method(observedProgress))]
         #[unsafe(method_family = none)]
-        pub unsafe fn observedProgress(&self) -> Option<Retained<NSProgress>>;
+        pub fn observedProgress(&self) -> Option<Retained<NSProgress>>;
 
         /// Setter for [`observedProgress`][Self::observedProgress].
         #[unsafe(method(setObservedProgress:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObservedProgress(&self, observed_progress: Option<&NSProgress>);
+        pub fn setObservedProgress(&self, observed_progress: Option<&NSProgress>);
     );
 }
 
@@ -222,7 +222,7 @@ impl UIProgressView {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -232,6 +232,6 @@ impl UIProgressView {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

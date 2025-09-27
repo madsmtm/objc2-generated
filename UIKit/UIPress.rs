@@ -92,30 +92,30 @@ impl UIPress {
     extern_methods!(
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
-        pub unsafe fn timestamp(&self) -> NSTimeInterval;
+        pub fn timestamp(&self) -> NSTimeInterval;
 
         #[unsafe(method(phase))]
         #[unsafe(method_family = none)]
-        pub unsafe fn phase(&self) -> UIPressPhase;
+        pub fn phase(&self) -> UIPressPhase;
 
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        pub unsafe fn r#type(&self) -> UIPressType;
+        pub fn r#type(&self) -> UIPressType;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
         #[unsafe(method(window))]
         #[unsafe(method_family = none)]
-        pub unsafe fn window(&self, mtm: MainThreadMarker) -> Option<Retained<UIWindow>>;
+        pub fn window(&self, mtm: MainThreadMarker) -> Option<Retained<UIWindow>>;
 
         #[cfg(feature = "UIResponder")]
         #[unsafe(method(responder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn responder(&self, mtm: MainThreadMarker) -> Option<Retained<UIResponder>>;
+        pub fn responder(&self, mtm: MainThreadMarker) -> Option<Retained<UIResponder>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[unsafe(method(gestureRecognizers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn gestureRecognizers(
+        pub fn gestureRecognizers(
             &self,
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSArray<UIGestureRecognizer>>>;
@@ -123,14 +123,14 @@ impl UIPress {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(force))]
         #[unsafe(method_family = none)]
-        pub unsafe fn force(&self) -> CGFloat;
+        pub fn force(&self) -> CGFloat;
 
         #[cfg(feature = "UIKey")]
         /// For presses that originate from a hardware keyboard, contains a UIKey object describing the key being acted upon.
         /// This property is nil if the press did not originate from a hardware keyboard.
         #[unsafe(method(key))]
         #[unsafe(method_family = none)]
-        pub unsafe fn key(&self, mtm: MainThreadMarker) -> Option<Retained<UIKey>>;
+        pub fn key(&self, mtm: MainThreadMarker) -> Option<Retained<UIKey>>;
     );
 }
 
@@ -139,10 +139,17 @@ impl UIPress {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIPress {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

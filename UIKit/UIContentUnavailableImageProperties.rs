@@ -46,9 +46,7 @@ impl UIContentUnavailableImageProperties {
         /// The symbol configuration to use.
         #[unsafe(method(preferredSymbolConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredSymbolConfiguration(
-            &self,
-        ) -> Option<Retained<UIImageSymbolConfiguration>>;
+        pub fn preferredSymbolConfiguration(&self) -> Option<Retained<UIImageSymbolConfiguration>>;
 
         #[cfg(all(
             feature = "UIImageConfiguration",
@@ -59,7 +57,7 @@ impl UIContentUnavailableImageProperties {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreferredSymbolConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreferredSymbolConfiguration(
+        pub fn setPreferredSymbolConfiguration(
             &self,
             preferred_symbol_configuration: Option<&UIImageSymbolConfiguration>,
         );
@@ -68,13 +66,13 @@ impl UIContentUnavailableImageProperties {
         /// The tint color to apply to the image view. Nil will use the image view's normal inherited tint color.
         #[unsafe(method(tintColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
+        pub fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tintColor`][Self::tintColor].
         #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
+        pub fn setTintColor(&self, tint_color: Option<&UIColor>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The preferred corner radius (using a continuous corner curve) for the image.
@@ -82,13 +80,13 @@ impl UIContentUnavailableImageProperties {
         /// and radius will be adjusted to fit.
         #[unsafe(method(cornerRadius))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cornerRadius(&self) -> CGFloat;
+        pub fn cornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`cornerRadius`][Self::cornerRadius].
         #[unsafe(method(setCornerRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
+        pub fn setCornerRadius(&self, corner_radius: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Enforces a maximum size for the image. The default value is CGSizeZero. A zero width or
@@ -96,23 +94,23 @@ impl UIContentUnavailableImageProperties {
         /// on either dimension, its size will be reduced proportionately (maintaining aspect ratio).
         #[unsafe(method(maximumSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumSize(&self) -> CGSize;
+        pub fn maximumSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumSize`][Self::maximumSize].
         #[unsafe(method(setMaximumSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumSize(&self, maximum_size: CGSize);
+        pub fn setMaximumSize(&self, maximum_size: CGSize);
 
         /// Prevents the image from inverting its colors when the accessibility setting is enabled.
         #[unsafe(method(accessibilityIgnoresInvertColors))]
         #[unsafe(method_family = none)]
-        pub unsafe fn accessibilityIgnoresInvertColors(&self) -> bool;
+        pub fn accessibilityIgnoresInvertColors(&self) -> bool;
 
         /// Setter for [`accessibilityIgnoresInvertColors`][Self::accessibilityIgnoresInvertColors].
         #[unsafe(method(setAccessibilityIgnoresInvertColors:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAccessibilityIgnoresInvertColors(
+        pub fn setAccessibilityIgnoresInvertColors(
             &self,
             accessibility_ignores_invert_colors: bool,
         );
@@ -124,10 +122,10 @@ impl UIContentUnavailableImageProperties {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

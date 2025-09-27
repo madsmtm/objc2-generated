@@ -49,7 +49,7 @@ impl UIZoomTransitionOptions {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setInteractiveDismissShouldBegin:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInteractiveDismissShouldBegin(
+        pub fn setInteractiveDismissShouldBegin(
             &self,
             interactive_dismiss_should_begin: Option<
                 &block2::DynBlock<dyn Fn(NonNull<UIZoomTransitionInteractionContext>) -> Bool>,
@@ -75,7 +75,7 @@ impl UIZoomTransitionOptions {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAlignmentRectProvider:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAlignmentRectProvider(
+        pub fn setAlignmentRectProvider(
             &self,
             alignment_rect_provider: Option<
                 &block2::DynBlock<dyn Fn(NonNull<UIZoomTransitionAlignmentRectContext>) -> CGRect>,
@@ -86,28 +86,25 @@ impl UIZoomTransitionOptions {
         /// Dimming color to apply to the content behind the zoomed in view. Set to nil to use the default.
         #[unsafe(method(dimmingColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dimmingColor(&self) -> Option<Retained<UIColor>>;
+        pub fn dimmingColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`dimmingColor`][Self::dimmingColor].
         #[unsafe(method(setDimmingColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDimmingColor(&self, dimming_color: Option<&UIColor>);
+        pub fn setDimmingColor(&self, dimming_color: Option<&UIColor>);
 
         #[cfg(all(feature = "UIBlurEffect", feature = "UIVisualEffect"))]
         /// Visual effect to apply to the content behind the zoomed in view. Defaults to nil.
         #[unsafe(method(dimmingVisualEffect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dimmingVisualEffect(
-            &self,
-            mtm: MainThreadMarker,
-        ) -> Option<Retained<UIBlurEffect>>;
+        pub fn dimmingVisualEffect(&self, mtm: MainThreadMarker) -> Option<Retained<UIBlurEffect>>;
 
         #[cfg(all(feature = "UIBlurEffect", feature = "UIVisualEffect"))]
         /// Setter for [`dimmingVisualEffect`][Self::dimmingVisualEffect].
         #[unsafe(method(setDimmingVisualEffect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDimmingVisualEffect(&self, dimming_visual_effect: Option<&UIBlurEffect>);
+        pub fn setDimmingVisualEffect(&self, dimming_visual_effect: Option<&UIBlurEffect>);
     );
 }
 
@@ -116,12 +113,19 @@ impl UIZoomTransitionOptions {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIZoomTransitionOptions {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -141,18 +145,18 @@ impl UIZoomTransitionInteractionContext {
         /// Location of the interaction in the displayed view controller's view's coordinate space.
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
-        pub unsafe fn location(&self) -> CGPoint;
+        pub fn location(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The interaction's velocity.
         #[unsafe(method(velocity))]
         #[unsafe(method_family = none)]
-        pub unsafe fn velocity(&self) -> CGVector;
+        pub fn velocity(&self) -> CGVector;
 
         /// Whether the interaction would begin under the current conditions by default.
         #[unsafe(method(willBegin))]
         #[unsafe(method_family = none)]
-        pub unsafe fn willBegin(&self) -> bool;
+        pub fn willBegin(&self) -> bool;
     );
 }
 
@@ -161,12 +165,19 @@ impl UIZoomTransitionInteractionContext {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIZoomTransitionInteractionContext {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -186,16 +197,13 @@ impl UIZoomTransitionAlignmentRectContext {
         /// The transition's source view.
         #[unsafe(method(sourceView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sourceView(&self, mtm: MainThreadMarker) -> Retained<UIView>;
+        pub fn sourceView(&self, mtm: MainThreadMarker) -> Retained<UIView>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         /// The zoomed view controller.
         #[unsafe(method(zoomedViewController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn zoomedViewController(
-            &self,
-            mtm: MainThreadMarker,
-        ) -> Retained<UIViewController>;
+        pub fn zoomedViewController(&self, mtm: MainThreadMarker) -> Retained<UIViewController>;
     );
 }
 
@@ -204,10 +212,17 @@ impl UIZoomTransitionAlignmentRectContext {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIZoomTransitionAlignmentRectContext {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

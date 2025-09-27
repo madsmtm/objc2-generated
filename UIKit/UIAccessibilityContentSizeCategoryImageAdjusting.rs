@@ -12,12 +12,12 @@ extern_protocol!(
     {
         #[unsafe(method(adjustsImageSizeForAccessibilityContentSizeCategory))]
         #[unsafe(method_family = none)]
-        unsafe fn adjustsImageSizeForAccessibilityContentSizeCategory(&self) -> bool;
+        fn adjustsImageSizeForAccessibilityContentSizeCategory(&self) -> bool;
 
         /// Setter for [`adjustsImageSizeForAccessibilityContentSizeCategory`][Self::adjustsImageSizeForAccessibilityContentSizeCategory].
         #[unsafe(method(setAdjustsImageSizeForAccessibilityContentSizeCategory:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAdjustsImageSizeForAccessibilityContentSizeCategory(
+        fn setAdjustsImageSizeForAccessibilityContentSizeCategory(
             &self,
             adjusts_image_size_for_accessibility_content_size_category: bool,
         );

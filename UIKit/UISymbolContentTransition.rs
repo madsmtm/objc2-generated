@@ -71,7 +71,7 @@ impl UISymbolContentTransition {
         /// Initializes a `UISymbolContentTransition` with a symbol content transition.
         #[unsafe(method(transitionWithContentTransition:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transitionWithContentTransition(
+        pub fn transitionWithContentTransition(
             content_transition: &NSSymbolContentTransition,
         ) -> Retained<Self>;
 
@@ -79,17 +79,24 @@ impl UISymbolContentTransition {
         /// Initializes a `UISymbolContentTransition` with a symbol content transition and options.
         #[unsafe(method(transitionWithContentTransition:options:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transitionWithContentTransition_options(
+        pub fn transitionWithContentTransition_options(
             content_transition: &NSSymbolContentTransition,
             options: &NSSymbolEffectOptions,
         ) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UISymbolContentTransition {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

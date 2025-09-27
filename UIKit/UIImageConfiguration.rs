@@ -60,7 +60,7 @@ impl UIImageConfiguration {
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(configurationWithTraitCollection:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithTraitCollection(
+        pub fn configurationWithTraitCollection(
             &self,
             trait_collection: Option<&UITraitCollection>,
         ) -> Retained<Self>;
@@ -68,7 +68,7 @@ impl UIImageConfiguration {
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(configurationWithTraitCollection:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithTraitCollection_class(
+        pub fn configurationWithTraitCollection_class(
             trait_collection: Option<&UITraitCollection>,
         ) -> Retained<Self>;
 
@@ -83,15 +83,15 @@ impl UIImageConfiguration {
 
         #[unsafe(method(configurationWithLocale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithLocale(&self, locale: Option<&NSLocale>) -> Retained<Self>;
+        pub fn configurationWithLocale(&self, locale: Option<&NSLocale>) -> Retained<Self>;
 
         #[unsafe(method(configurationWithLocale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithLocale_class(locale: Option<&NSLocale>) -> Retained<Self>;
+        pub fn configurationWithLocale_class(locale: Option<&NSLocale>) -> Retained<Self>;
 
         #[unsafe(method(configurationByApplyingConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationByApplyingConfiguration(
+        pub fn configurationByApplyingConfiguration(
             &self,
             other_configuration: Option<&UIImageConfiguration>,
         ) -> Retained<Self>;

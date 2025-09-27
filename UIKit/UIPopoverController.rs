@@ -33,7 +33,7 @@ impl UIPopoverController {
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(initWithContentViewController:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContentViewController(
+        pub fn initWithContentViewController(
             this: Allocated<Self>,
             view_controller: &UIViewController,
         ) -> Retained<Self>;
@@ -41,9 +41,8 @@ impl UIPopoverController {
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn UIPopoverControllerDelegate>>>;
+        pub fn delegate(&self)
+            -> Option<Retained<ProtocolObject<dyn UIPopoverControllerDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
@@ -51,7 +50,7 @@ impl UIPopoverController {
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
+        pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIPopoverControllerDelegate>>,
         );
@@ -60,20 +59,20 @@ impl UIPopoverController {
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(contentViewController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentViewController(&self) -> Retained<UIViewController>;
+        pub fn contentViewController(&self) -> Retained<UIViewController>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         /// Setter for [`contentViewController`][Self::contentViewController].
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(setContentViewController:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentViewController(&self, content_view_controller: &UIViewController);
+        pub fn setContentViewController(&self, content_view_controller: &UIViewController);
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(setContentViewController:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentViewController_animated(
+        pub fn setContentViewController_animated(
             &self,
             view_controller: &UIViewController,
             animated: bool,
@@ -83,37 +82,37 @@ impl UIPopoverController {
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(popoverContentSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn popoverContentSize(&self) -> CGSize;
+        pub fn popoverContentSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`popoverContentSize`][Self::popoverContentSize].
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(setPopoverContentSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPopoverContentSize(&self, popover_content_size: CGSize);
+        pub fn setPopoverContentSize(&self, popover_content_size: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(setPopoverContentSize:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPopoverContentSize_animated(&self, size: CGSize, animated: bool);
+        pub fn setPopoverContentSize_animated(&self, size: CGSize, animated: bool);
 
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(isPopoverVisible))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isPopoverVisible(&self) -> bool;
+        pub fn isPopoverVisible(&self) -> bool;
 
         #[cfg(feature = "UIPopoverSupport")]
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(popoverArrowDirection))]
         #[unsafe(method_family = none)]
-        pub unsafe fn popoverArrowDirection(&self) -> UIPopoverArrowDirection;
+        pub fn popoverArrowDirection(&self) -> UIPopoverArrowDirection;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(passthroughViews))]
         #[unsafe(method_family = none)]
-        pub unsafe fn passthroughViews(&self) -> Option<Retained<NSArray<UIView>>>;
+        pub fn passthroughViews(&self) -> Option<Retained<NSArray<UIView>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Setter for [`passthroughViews`][Self::passthroughViews].
@@ -122,7 +121,7 @@ impl UIPopoverController {
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(setPassthroughViews:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPassthroughViews(&self, passthrough_views: Option<&NSArray<UIView>>);
+        pub fn setPassthroughViews(&self, passthrough_views: Option<&NSArray<UIView>>);
 
         #[cfg(all(
             feature = "UIPopoverSupport",
@@ -133,7 +132,7 @@ impl UIPopoverController {
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(presentPopoverFromRect:inView:permittedArrowDirections:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn presentPopoverFromRect_inView_permittedArrowDirections_animated(
+        pub fn presentPopoverFromRect_inView_permittedArrowDirections_animated(
             &self,
             rect: CGRect,
             view: &UIView,
@@ -149,7 +148,7 @@ impl UIPopoverController {
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(presentPopoverFromBarButtonItem:permittedArrowDirections:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn presentPopoverFromBarButtonItem_permittedArrowDirections_animated(
+        pub fn presentPopoverFromBarButtonItem_permittedArrowDirections_animated(
             &self,
             item: &UIBarButtonItem,
             arrow_directions: UIPopoverArrowDirection,
@@ -159,12 +158,12 @@ impl UIPopoverController {
         #[deprecated = "UIPopoverController is deprecated. Popovers are now implemented as UIViewController presentations. Use a modal presentation style of UIModalPresentationPopover and UIPopoverPresentationController."]
         #[unsafe(method(dismissPopoverAnimated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dismissPopoverAnimated(&self, animated: bool);
+        pub fn dismissPopoverAnimated(&self, animated: bool);
 
         #[cfg(feature = "UIColor")]
         #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
+        pub fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
@@ -172,22 +171,22 @@ impl UIPopoverController {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
+        pub fn setBackgroundColor(&self, background_color: Option<&UIColor>);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[unsafe(method(popoverLayoutMargins))]
         #[unsafe(method_family = none)]
-        pub unsafe fn popoverLayoutMargins(&self) -> UIEdgeInsets;
+        pub fn popoverLayoutMargins(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`popoverLayoutMargins`][Self::popoverLayoutMargins].
         #[unsafe(method(setPopoverLayoutMargins:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPopoverLayoutMargins(&self, popover_layout_margins: UIEdgeInsets);
+        pub fn setPopoverLayoutMargins(&self, popover_layout_margins: UIEdgeInsets);
 
         #[unsafe(method(popoverBackgroundViewClass))]
         #[unsafe(method_family = none)]
-        pub unsafe fn popoverBackgroundViewClass(&self) -> Option<&'static AnyClass>;
+        pub fn popoverBackgroundViewClass(&self) -> Option<&'static AnyClass>;
 
         /// Setter for [`popoverBackgroundViewClass`][Self::popoverBackgroundViewClass].
         ///
@@ -208,11 +207,11 @@ impl UIPopoverController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -223,7 +222,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(popoverControllerShouldDismissPopover:))]
         #[unsafe(method_family = none)]
-        unsafe fn popoverControllerShouldDismissPopover(
+        fn popoverControllerShouldDismissPopover(
             &self,
             popover_controller: &UIPopoverController,
         ) -> bool;
@@ -232,10 +231,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(popoverControllerDidDismissPopover:))]
         #[unsafe(method_family = none)]
-        unsafe fn popoverControllerDidDismissPopover(
-            &self,
-            popover_controller: &UIPopoverController,
-        );
+        fn popoverControllerDidDismissPopover(&self, popover_controller: &UIPopoverController);
 
         #[cfg(all(
             feature = "UIResponder",

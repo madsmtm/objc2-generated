@@ -27,19 +27,19 @@ impl UICalendarSelectionMultiDate {
         /// The currently selected dates in the Calendar view.
         #[unsafe(method(selectedDates))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedDates(&self) -> Retained<NSArray<NSDateComponents>>;
+        pub fn selectedDates(&self) -> Retained<NSArray<NSDateComponents>>;
 
         /// Setter for [`selectedDates`][Self::selectedDates].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedDates:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectedDates(&self, selected_dates: &NSArray<NSDateComponents>);
+        pub fn setSelectedDates(&self, selected_dates: &NSArray<NSDateComponents>);
 
         /// Sets the dates to display in the calendar, with an option to animate the setting.
         #[unsafe(method(setSelectedDates:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectedDates_animated(
+        pub fn setSelectedDates_animated(
             &self,
             selected_dates: &NSArray<NSDateComponents>,
             animated: bool,
@@ -48,14 +48,14 @@ impl UICalendarSelectionMultiDate {
         /// The object that acts as the delegate of the calendar view selection
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UICalendarSelectionMultiDateDelegate>>>;
 
         /// Creates a new multi-date selection with the specified delegate.
         #[unsafe(method(initWithDelegate:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDelegate(
+        pub fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn UICalendarSelectionMultiDateDelegate>>,
         ) -> Retained<Self>;
@@ -68,11 +68,11 @@ impl UICalendarSelectionMultiDate {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -90,7 +90,7 @@ extern_protocol!(
         /// Parameter `dateComponents`: The date that was selected by the user.
         #[unsafe(method(multiDateSelection:didSelectDate:))]
         #[unsafe(method_family = none)]
-        unsafe fn multiDateSelection_didSelectDate(
+        fn multiDateSelection_didSelectDate(
             &self,
             selection: &UICalendarSelectionMultiDate,
             date_components: &NSDateComponents,
@@ -105,7 +105,7 @@ extern_protocol!(
         /// Parameter `dateComponents`: The date that was deselected by the user.
         #[unsafe(method(multiDateSelection:didDeselectDate:))]
         #[unsafe(method_family = none)]
-        unsafe fn multiDateSelection_didDeselectDate(
+        fn multiDateSelection_didDeselectDate(
             &self,
             selection: &UICalendarSelectionMultiDate,
             date_components: &NSDateComponents,
@@ -124,7 +124,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(multiDateSelection:canSelectDate:))]
         #[unsafe(method_family = none)]
-        unsafe fn multiDateSelection_canSelectDate(
+        fn multiDateSelection_canSelectDate(
             &self,
             selection: &UICalendarSelectionMultiDate,
             date_components: &NSDateComponents,
@@ -143,7 +143,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(multiDateSelection:canDeselectDate:))]
         #[unsafe(method_family = none)]
-        unsafe fn multiDateSelection_canDeselectDate(
+        fn multiDateSelection_canDeselectDate(
             &self,
             selection: &UICalendarSelectionMultiDate,
             date_components: &NSDateComponents,

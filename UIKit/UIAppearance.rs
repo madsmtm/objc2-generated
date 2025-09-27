@@ -16,7 +16,7 @@ extern_protocol!(
     pub unsafe trait UIAppearance: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(appearance))]
         #[unsafe(method_family = none)]
-        unsafe fn appearance(mtm: MainThreadMarker) -> Retained<Self>;
+        fn appearance(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -31,7 +31,7 @@ extern_protocol!(
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(appearanceForTraitCollection:))]
         #[unsafe(method_family = none)]
-        unsafe fn appearanceForTraitCollection(
+        fn appearanceForTraitCollection(
             r#trait: &UITraitCollection,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;

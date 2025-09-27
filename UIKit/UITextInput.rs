@@ -15,15 +15,15 @@ extern_protocol!(
     pub unsafe trait UIKeyInput: UITextInputTraits + MainThreadOnly {
         #[unsafe(method(hasText))]
         #[unsafe(method_family = none)]
-        unsafe fn hasText(&self) -> bool;
+        fn hasText(&self) -> bool;
 
         #[unsafe(method(insertText:))]
         #[unsafe(method_family = none)]
-        unsafe fn insertText(&self, text: &NSString);
+        fn insertText(&self, text: &NSString);
 
         #[unsafe(method(deleteBackward))]
         #[unsafe(method_family = none)]
-        unsafe fn deleteBackward(&self);
+        fn deleteBackward(&self);
     }
 );
 
@@ -119,11 +119,11 @@ impl UIDictationPhrase {
     extern_methods!(
         #[unsafe(method(text))]
         #[unsafe(method_family = none)]
-        pub unsafe fn text(&self) -> Retained<NSString>;
+        pub fn text(&self) -> Retained<NSString>;
 
         #[unsafe(method(alternativeInterpretations))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alternativeInterpretations(&self) -> Option<Retained<NSArray<NSString>>>;
+        pub fn alternativeInterpretations(&self) -> Option<Retained<NSArray<NSString>>>;
     );
 }
 
@@ -132,11 +132,11 @@ impl UIDictationPhrase {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -157,18 +157,18 @@ impl UITextInputAssistantItem {
         /// Default is YES, controls if the user is allowed to hide the shortcuts bar. Does not influence the built in auto-hiding logic.
         #[unsafe(method(allowsHidingShortcuts))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsHidingShortcuts(&self) -> bool;
+        pub fn allowsHidingShortcuts(&self) -> bool;
 
         /// Setter for [`allowsHidingShortcuts`][Self::allowsHidingShortcuts].
         #[unsafe(method(setAllowsHidingShortcuts:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsHidingShortcuts(&self, allows_hiding_shortcuts: bool);
+        pub fn setAllowsHidingShortcuts(&self, allows_hiding_shortcuts: bool);
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Contains UIBarButtonItemGroups that should be displayed in the leading position on the keyboard's assistant bar.
         #[unsafe(method(leadingBarButtonGroups))]
         #[unsafe(method_family = none)]
-        pub unsafe fn leadingBarButtonGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
+        pub fn leadingBarButtonGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Setter for [`leadingBarButtonGroups`][Self::leadingBarButtonGroups].
@@ -176,7 +176,7 @@ impl UITextInputAssistantItem {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLeadingBarButtonGroups:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLeadingBarButtonGroups(
+        pub fn setLeadingBarButtonGroups(
             &self,
             leading_bar_button_groups: &NSArray<UIBarButtonItemGroup>,
         );
@@ -185,7 +185,7 @@ impl UITextInputAssistantItem {
         /// Contains UIBarButtonItemGroups that should be displayed in the trailing position on the keyboard's assistant bar.
         #[unsafe(method(trailingBarButtonGroups))]
         #[unsafe(method_family = none)]
-        pub unsafe fn trailingBarButtonGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
+        pub fn trailingBarButtonGroups(&self) -> Retained<NSArray<UIBarButtonItemGroup>>;
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// Setter for [`trailingBarButtonGroups`][Self::trailingBarButtonGroups].
@@ -193,7 +193,7 @@ impl UITextInputAssistantItem {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTrailingBarButtonGroups:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTrailingBarButtonGroups(
+        pub fn setTrailingBarButtonGroups(
             &self,
             trailing_bar_button_groups: &NSArray<UIBarButtonItemGroup>,
         );
@@ -202,13 +202,13 @@ impl UITextInputAssistantItem {
         /// A button that appears next to the text preview in the keyboard on visionOS.
         #[unsafe(method(keyboardActionButtonItem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyboardActionButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
+        pub fn keyboardActionButtonItem(&self) -> Option<Retained<UIBarButtonItem>>;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         /// Setter for [`keyboardActionButtonItem`][Self::keyboardActionButtonItem].
         #[unsafe(method(setKeyboardActionButtonItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setKeyboardActionButtonItem(
+        pub fn setKeyboardActionButtonItem(
             &self,
             keyboard_action_button_item: Option<&UIBarButtonItem>,
         );
@@ -220,11 +220,11 @@ impl UITextInputAssistantItem {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -244,7 +244,7 @@ impl UITextPlaceholder {
     extern_methods!(
         #[unsafe(method(rects))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rects(&self) -> Retained<NSArray<UITextSelectionRect>>;
+        pub fn rects(&self) -> Retained<NSArray<UITextSelectionRect>>;
     );
 }
 
@@ -253,11 +253,11 @@ impl UITextPlaceholder {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -287,30 +287,30 @@ extern_protocol!(
     pub unsafe trait UITextInput: UIKeyInput + MainThreadOnly {
         #[unsafe(method(textInRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn textInRange(&self, range: &UITextRange) -> Option<Retained<NSString>>;
+        fn textInRange(&self, range: &UITextRange) -> Option<Retained<NSString>>;
 
         #[unsafe(method(replaceRange:withText:))]
         #[unsafe(method_family = none)]
-        unsafe fn replaceRange_withText(&self, range: &UITextRange, text: &NSString);
+        fn replaceRange_withText(&self, range: &UITextRange, text: &NSString);
 
         #[unsafe(method(selectedTextRange))]
         #[unsafe(method_family = none)]
-        unsafe fn selectedTextRange(&self) -> Option<Retained<UITextRange>>;
+        fn selectedTextRange(&self) -> Option<Retained<UITextRange>>;
 
         /// Setter for [`selectedTextRange`][Self::selectedTextRange].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedTextRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSelectedTextRange(&self, selected_text_range: Option<&UITextRange>);
+        fn setSelectedTextRange(&self, selected_text_range: Option<&UITextRange>);
 
         #[unsafe(method(markedTextRange))]
         #[unsafe(method_family = none)]
-        unsafe fn markedTextRange(&self) -> Option<Retained<UITextRange>>;
+        fn markedTextRange(&self) -> Option<Retained<UITextRange>>;
 
         #[unsafe(method(markedTextStyle))]
         #[unsafe(method_family = none)]
-        unsafe fn markedTextStyle(
+        fn markedTextStyle(
             &self,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
@@ -330,7 +330,7 @@ extern_protocol!(
 
         #[unsafe(method(setMarkedText:selectedRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setMarkedText_selectedRange(
+        fn setMarkedText_selectedRange(
             &self,
             marked_text: Option<&NSString>,
             selected_range: NSRange,
@@ -338,19 +338,19 @@ extern_protocol!(
 
         #[unsafe(method(unmarkText))]
         #[unsafe(method_family = none)]
-        unsafe fn unmarkText(&self);
+        fn unmarkText(&self);
 
         #[unsafe(method(beginningOfDocument))]
         #[unsafe(method_family = none)]
-        unsafe fn beginningOfDocument(&self) -> Retained<UITextPosition>;
+        fn beginningOfDocument(&self) -> Retained<UITextPosition>;
 
         #[unsafe(method(endOfDocument))]
         #[unsafe(method_family = none)]
-        unsafe fn endOfDocument(&self) -> Retained<UITextPosition>;
+        fn endOfDocument(&self) -> Retained<UITextPosition>;
 
         #[unsafe(method(textRangeFromPosition:toPosition:))]
         #[unsafe(method_family = none)]
-        unsafe fn textRangeFromPosition_toPosition(
+        fn textRangeFromPosition_toPosition(
             &self,
             from_position: &UITextPosition,
             to_position: &UITextPosition,
@@ -358,7 +358,7 @@ extern_protocol!(
 
         #[unsafe(method(positionFromPosition:offset:))]
         #[unsafe(method_family = none)]
-        unsafe fn positionFromPosition_offset(
+        fn positionFromPosition_offset(
             &self,
             position: &UITextPosition,
             offset: NSInteger,
@@ -366,7 +366,7 @@ extern_protocol!(
 
         #[unsafe(method(positionFromPosition:inDirection:offset:))]
         #[unsafe(method_family = none)]
-        unsafe fn positionFromPosition_inDirection_offset(
+        fn positionFromPosition_inDirection_offset(
             &self,
             position: &UITextPosition,
             direction: UITextLayoutDirection,
@@ -375,7 +375,7 @@ extern_protocol!(
 
         #[unsafe(method(comparePosition:toPosition:))]
         #[unsafe(method_family = none)]
-        unsafe fn comparePosition_toPosition(
+        fn comparePosition_toPosition(
             &self,
             position: &UITextPosition,
             other: &UITextPosition,
@@ -383,7 +383,7 @@ extern_protocol!(
 
         #[unsafe(method(offsetFromPosition:toPosition:))]
         #[unsafe(method_family = none)]
-        unsafe fn offsetFromPosition_toPosition(
+        fn offsetFromPosition_toPosition(
             &self,
             from: &UITextPosition,
             to_position: &UITextPosition,
@@ -391,26 +391,25 @@ extern_protocol!(
 
         #[unsafe(method(inputDelegate))]
         #[unsafe(method_family = none)]
-        unsafe fn inputDelegate(&self)
-            -> Option<Retained<ProtocolObject<dyn UITextInputDelegate>>>;
+        fn inputDelegate(&self) -> Option<Retained<ProtocolObject<dyn UITextInputDelegate>>>;
 
         /// Setter for [`inputDelegate`][Self::inputDelegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setInputDelegate:))]
         #[unsafe(method_family = none)]
-        unsafe fn setInputDelegate(
+        fn setInputDelegate(
             &self,
             input_delegate: Option<&ProtocolObject<dyn UITextInputDelegate>>,
         );
 
         #[unsafe(method(tokenizer))]
         #[unsafe(method_family = none)]
-        unsafe fn tokenizer(&self) -> Retained<ProtocolObject<dyn UITextInputTokenizer>>;
+        fn tokenizer(&self) -> Retained<ProtocolObject<dyn UITextInputTokenizer>>;
 
         #[unsafe(method(positionWithinRange:farthestInDirection:))]
         #[unsafe(method_family = none)]
-        unsafe fn positionWithinRange_farthestInDirection(
+        fn positionWithinRange_farthestInDirection(
             &self,
             range: &UITextRange,
             direction: UITextLayoutDirection,
@@ -418,7 +417,7 @@ extern_protocol!(
 
         #[unsafe(method(characterRangeByExtendingPosition:inDirection:))]
         #[unsafe(method_family = none)]
-        unsafe fn characterRangeByExtendingPosition_inDirection(
+        fn characterRangeByExtendingPosition_inDirection(
             &self,
             position: &UITextPosition,
             direction: UITextLayoutDirection,
@@ -427,7 +426,7 @@ extern_protocol!(
         #[cfg(feature = "NSText")]
         #[unsafe(method(baseWritingDirectionForPosition:inDirection:))]
         #[unsafe(method_family = none)]
-        unsafe fn baseWritingDirectionForPosition_inDirection(
+        fn baseWritingDirectionForPosition_inDirection(
             &self,
             position: &UITextPosition,
             direction: UITextStorageDirection,
@@ -436,7 +435,7 @@ extern_protocol!(
         #[cfg(feature = "NSText")]
         #[unsafe(method(setBaseWritingDirection:forRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setBaseWritingDirection_forRange(
+        fn setBaseWritingDirection_forRange(
             &self,
             writing_direction: NSWritingDirection,
             range: &UITextRange,
@@ -445,16 +444,16 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(firstRectForRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn firstRectForRange(&self, range: &UITextRange) -> CGRect;
+        fn firstRectForRange(&self, range: &UITextRange) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(caretRectForPosition:))]
         #[unsafe(method_family = none)]
-        unsafe fn caretRectForPosition(&self, position: &UITextPosition) -> CGRect;
+        fn caretRectForPosition(&self, position: &UITextPosition) -> CGRect;
 
         #[unsafe(method(selectionRectsForRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn selectionRectsForRange(
+        fn selectionRectsForRange(
             &self,
             range: &UITextRange,
         ) -> Retained<NSArray<UITextSelectionRect>>;
@@ -462,13 +461,12 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(closestPositionToPoint:))]
         #[unsafe(method_family = none)]
-        unsafe fn closestPositionToPoint(&self, point: CGPoint)
-            -> Option<Retained<UITextPosition>>;
+        fn closestPositionToPoint(&self, point: CGPoint) -> Option<Retained<UITextPosition>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(closestPositionToPoint:withinRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn closestPositionToPoint_withinRange(
+        fn closestPositionToPoint_withinRange(
             &self,
             point: CGPoint,
             range: &UITextRange,
@@ -477,12 +475,12 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(characterRangeAtPoint:))]
         #[unsafe(method_family = none)]
-        unsafe fn characterRangeAtPoint(&self, point: CGPoint) -> Option<Retained<UITextRange>>;
+        fn characterRangeAtPoint(&self, point: CGPoint) -> Option<Retained<UITextRange>>;
 
         #[optional]
         #[unsafe(method(shouldChangeTextInRange:replacementText:))]
         #[unsafe(method_family = none)]
-        unsafe fn shouldChangeTextInRange_replacementText(
+        fn shouldChangeTextInRange_replacementText(
             &self,
             range: &UITextRange,
             text: &NSString,
@@ -491,7 +489,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(textStylingAtPosition:inDirection:))]
         #[unsafe(method_family = none)]
-        unsafe fn textStylingAtPosition_inDirection(
+        fn textStylingAtPosition_inDirection(
             &self,
             position: &UITextPosition,
             direction: UITextStorageDirection,
@@ -500,7 +498,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(positionWithinRange:atCharacterOffset:))]
         #[unsafe(method_family = none)]
-        unsafe fn positionWithinRange_atCharacterOffset(
+        fn positionWithinRange_atCharacterOffset(
             &self,
             range: &UITextRange,
             offset: NSInteger,
@@ -509,7 +507,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(characterOffsetOfPosition:withinRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn characterOffsetOfPosition_withinRange(
+        fn characterOffsetOfPosition_withinRange(
             &self,
             position: &UITextPosition,
             range: &UITextRange,
@@ -519,38 +517,38 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(textInputView))]
         #[unsafe(method_family = none)]
-        unsafe fn textInputView(&self) -> Retained<UIView>;
+        fn textInputView(&self) -> Retained<UIView>;
 
         #[optional]
         #[unsafe(method(selectionAffinity))]
         #[unsafe(method_family = none)]
-        unsafe fn selectionAffinity(&self) -> UITextStorageDirection;
+        fn selectionAffinity(&self) -> UITextStorageDirection;
 
         /// Setter for [`selectionAffinity`][Self::selectionAffinity].
         #[optional]
         #[unsafe(method(setSelectionAffinity:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSelectionAffinity(&self, selection_affinity: UITextStorageDirection);
+        fn setSelectionAffinity(&self, selection_affinity: UITextStorageDirection);
 
         #[optional]
         #[unsafe(method(insertDictationResult:))]
         #[unsafe(method_family = none)]
-        unsafe fn insertDictationResult(&self, dictation_result: &NSArray<UIDictationPhrase>);
+        fn insertDictationResult(&self, dictation_result: &NSArray<UIDictationPhrase>);
 
         #[optional]
         #[unsafe(method(dictationRecordingDidEnd))]
         #[unsafe(method_family = none)]
-        unsafe fn dictationRecordingDidEnd(&self);
+        fn dictationRecordingDidEnd(&self);
 
         #[optional]
         #[unsafe(method(dictationRecognitionFailed))]
         #[unsafe(method_family = none)]
-        unsafe fn dictationRecognitionFailed(&self);
+        fn dictationRecognitionFailed(&self);
 
         #[optional]
         #[unsafe(method(insertDictationResultPlaceholder))]
         #[unsafe(method_family = none)]
-        unsafe fn insertDictationResultPlaceholder(&self) -> Retained<AnyObject>;
+        fn insertDictationResultPlaceholder(&self) -> Retained<AnyObject>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// # Safety
@@ -576,7 +574,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(insertText:alternatives:style:))]
         #[unsafe(method_family = none)]
-        unsafe fn insertText_alternatives_style(
+        fn insertText_alternatives_style(
             &self,
             text: &NSString,
             alternatives: &NSArray<NSString>,
@@ -586,7 +584,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(setAttributedMarkedText:selectedRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAttributedMarkedText_selectedRange(
+        fn setAttributedMarkedText_selectedRange(
             &self,
             marked_text: Option<&NSAttributedString>,
             selected_range: NSRange,
@@ -596,30 +594,29 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(insertTextPlaceholderWithSize:))]
         #[unsafe(method_family = none)]
-        unsafe fn insertTextPlaceholderWithSize(&self, size: CGSize)
-            -> Retained<UITextPlaceholder>;
+        fn insertTextPlaceholderWithSize(&self, size: CGSize) -> Retained<UITextPlaceholder>;
 
         #[optional]
         #[unsafe(method(removeTextPlaceholder:))]
         #[unsafe(method_family = none)]
-        unsafe fn removeTextPlaceholder(&self, text_placeholder: &UITextPlaceholder);
+        fn removeTextPlaceholder(&self, text_placeholder: &UITextPlaceholder);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
         #[unsafe(method(beginFloatingCursorAtPoint:))]
         #[unsafe(method_family = none)]
-        unsafe fn beginFloatingCursorAtPoint(&self, point: CGPoint);
+        fn beginFloatingCursorAtPoint(&self, point: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
         #[unsafe(method(updateFloatingCursorAtPoint:))]
         #[unsafe(method_family = none)]
-        unsafe fn updateFloatingCursorAtPoint(&self, point: CGPoint);
+        fn updateFloatingCursorAtPoint(&self, point: CGPoint);
 
         #[optional]
         #[unsafe(method(endFloatingCursor))]
         #[unsafe(method_family = none)]
-        unsafe fn endFloatingCursor(&self);
+        fn endFloatingCursor(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Similar to `-caretRectForPosition:`, optionally provide a transform for the caret at `position`. As with all geometry information in this protocol,
@@ -627,7 +624,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(caretTransformForPosition:))]
         #[unsafe(method_family = none)]
-        unsafe fn caretTransformForPosition(&self, position: &UITextPosition) -> CGAffineTransform;
+        fn caretTransformForPosition(&self, position: &UITextPosition) -> CGAffineTransform;
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]
         /// Called when the text input is preparing an edit menu presentation for the specified text range.
@@ -643,7 +640,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(editMenuForTextRange:suggestedActions:))]
         #[unsafe(method_family = none)]
-        unsafe fn editMenuForTextRange_suggestedActions(
+        fn editMenuForTextRange_suggestedActions(
             &self,
             text_range: &UITextRange,
             suggested_actions: &NSArray<UIMenuElement>,
@@ -653,7 +650,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(willPresentEditMenuWithAnimator:))]
         #[unsafe(method_family = none)]
-        unsafe fn willPresentEditMenuWithAnimator(
+        fn willPresentEditMenuWithAnimator(
             &self,
             animator: &ProtocolObject<dyn UIEditMenuInteractionAnimating>,
         );
@@ -662,7 +659,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(willDismissEditMenuWithAnimator:))]
         #[unsafe(method_family = none)]
-        unsafe fn willDismissEditMenuWithAnimator(
+        fn willDismissEditMenuWithAnimator(
             &self,
             animator: &ProtocolObject<dyn UIEditMenuInteractionAnimating>,
         );
@@ -670,19 +667,19 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(supportsAdaptiveImageGlyph))]
         #[unsafe(method_family = none)]
-        unsafe fn supportsAdaptiveImageGlyph(&self) -> bool;
+        fn supportsAdaptiveImageGlyph(&self) -> bool;
 
         /// Setter for [`supportsAdaptiveImageGlyph`][Self::supportsAdaptiveImageGlyph].
         #[optional]
         #[unsafe(method(setSupportsAdaptiveImageGlyph:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSupportsAdaptiveImageGlyph(&self, supports_adaptive_image_glyph: bool);
+        fn setSupportsAdaptiveImageGlyph(&self, supports_adaptive_image_glyph: bool);
 
         #[cfg(feature = "NSAdaptiveImageGlyph")]
         #[optional]
         #[unsafe(method(insertAdaptiveImageGlyph:replacementRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn insertAdaptiveImageGlyph_replacementRange(
+        fn insertAdaptiveImageGlyph_replacementRange(
             &self,
             adaptive_image_glyph: &NSAdaptiveImageGlyph,
             replacement_range: &UITextRange,
@@ -691,23 +688,22 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(isEditable))]
         #[unsafe(method_family = none)]
-        unsafe fn isEditable(&self) -> bool;
+        fn isEditable(&self) -> bool;
 
         #[optional]
         #[unsafe(method(insertAttributedText:))]
         #[unsafe(method_family = none)]
-        unsafe fn insertAttributedText(&self, string: &NSAttributedString);
+        fn insertAttributedText(&self, string: &NSAttributedString);
 
         #[optional]
         #[unsafe(method(attributedTextInRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn attributedTextInRange(&self, range: &UITextRange)
-            -> Retained<NSAttributedString>;
+        fn attributedTextInRange(&self, range: &UITextRange) -> Retained<NSAttributedString>;
 
         #[optional]
         #[unsafe(method(replaceRange:withAttributedText:))]
         #[unsafe(method_family = none)]
-        unsafe fn replaceRange_withAttributedText(
+        fn replaceRange_withAttributedText(
             &self,
             range: &UITextRange,
             attributed_text: &NSAttributedString,
@@ -716,19 +712,19 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(willPresentWritingTools))]
         #[unsafe(method_family = none)]
-        unsafe fn willPresentWritingTools(&self);
+        fn willPresentWritingTools(&self);
 
         #[optional]
         #[unsafe(method(didDismissWritingTools))]
         #[unsafe(method_family = none)]
-        unsafe fn didDismissWritingTools(&self);
+        fn didDismissWritingTools(&self);
 
         #[cfg(feature = "UIInputSuggestion")]
         /// Inserts the user or system’s input suggestion into the document.
         #[optional]
         #[unsafe(method(insertInputSuggestion:))]
         #[unsafe(method_family = none)]
-        unsafe fn insertInputSuggestion(&self, input_suggestion: &UIInputSuggestion);
+        fn insertInputSuggestion(&self, input_suggestion: &UIInputSuggestion);
     }
 );
 
@@ -771,11 +767,11 @@ impl UITextPosition {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -795,15 +791,15 @@ impl UITextRange {
     extern_methods!(
         #[unsafe(method(isEmpty))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEmpty(&self) -> bool;
+        pub fn isEmpty(&self) -> bool;
 
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]
-        pub unsafe fn start(&self) -> Retained<UITextPosition>;
+        pub fn start(&self) -> Retained<UITextPosition>;
 
         #[unsafe(method(end))]
         #[unsafe(method_family = none)]
-        pub unsafe fn end(&self) -> Retained<UITextPosition>;
+        pub fn end(&self) -> Retained<UITextPosition>;
     );
 }
 
@@ -812,11 +808,11 @@ impl UITextRange {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -837,24 +833,24 @@ impl UITextSelectionRect {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(rect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rect(&self) -> CGRect;
+        pub fn rect(&self) -> CGRect;
 
         #[cfg(feature = "NSText")]
         #[unsafe(method(writingDirection))]
         #[unsafe(method_family = none)]
-        pub unsafe fn writingDirection(&self) -> NSWritingDirection;
+        pub fn writingDirection(&self) -> NSWritingDirection;
 
         #[unsafe(method(containsStart))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containsStart(&self) -> bool;
+        pub fn containsStart(&self) -> bool;
 
         #[unsafe(method(containsEnd))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containsEnd(&self) -> bool;
+        pub fn containsEnd(&self) -> bool;
 
         #[unsafe(method(isVertical))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isVertical(&self) -> bool;
+        pub fn isVertical(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Custom transform for highlight rects.
@@ -862,7 +858,7 @@ impl UITextSelectionRect {
         /// Default is CGAffineTransformIdentity (no transform applied).
         #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transform(&self) -> CGAffineTransform;
+        pub fn transform(&self) -> CGAffineTransform;
     );
 }
 
@@ -871,11 +867,11 @@ impl UITextSelectionRect {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -885,28 +881,28 @@ extern_protocol!(
         #[cfg(feature = "UITextInputTraits")]
         #[unsafe(method(selectionWillChange:))]
         #[unsafe(method_family = none)]
-        unsafe fn selectionWillChange(&self, text_input: Option<&ProtocolObject<dyn UITextInput>>);
+        fn selectionWillChange(&self, text_input: Option<&ProtocolObject<dyn UITextInput>>);
 
         #[cfg(feature = "UITextInputTraits")]
         #[unsafe(method(selectionDidChange:))]
         #[unsafe(method_family = none)]
-        unsafe fn selectionDidChange(&self, text_input: Option<&ProtocolObject<dyn UITextInput>>);
+        fn selectionDidChange(&self, text_input: Option<&ProtocolObject<dyn UITextInput>>);
 
         #[cfg(feature = "UITextInputTraits")]
         #[unsafe(method(textWillChange:))]
         #[unsafe(method_family = none)]
-        unsafe fn textWillChange(&self, text_input: Option<&ProtocolObject<dyn UITextInput>>);
+        fn textWillChange(&self, text_input: Option<&ProtocolObject<dyn UITextInput>>);
 
         #[cfg(feature = "UITextInputTraits")]
         #[unsafe(method(textDidChange:))]
         #[unsafe(method_family = none)]
-        unsafe fn textDidChange(&self, text_input: Option<&ProtocolObject<dyn UITextInput>>);
+        fn textDidChange(&self, text_input: Option<&ProtocolObject<dyn UITextInput>>);
 
         #[cfg(all(feature = "UIConversationContext", feature = "UITextInputTraits"))]
         /// Tells the input delegate when text has changed in the input object for a conversation.
         #[unsafe(method(conversationContext:didChange:))]
         #[unsafe(method_family = none)]
-        unsafe fn conversationContext_didChange(
+        fn conversationContext_didChange(
             &self,
             context: Option<&UIConversationContext>,
             text_input: Option<&ProtocolObject<dyn UITextInput>>,
@@ -919,7 +915,7 @@ extern_protocol!(
     pub unsafe trait UITextInputTokenizer: NSObjectProtocol + MainThreadOnly {
         #[unsafe(method(rangeEnclosingPosition:withGranularity:inDirection:))]
         #[unsafe(method_family = none)]
-        unsafe fn rangeEnclosingPosition_withGranularity_inDirection(
+        fn rangeEnclosingPosition_withGranularity_inDirection(
             &self,
             position: &UITextPosition,
             granularity: UITextGranularity,
@@ -928,7 +924,7 @@ extern_protocol!(
 
         #[unsafe(method(isPosition:atBoundary:inDirection:))]
         #[unsafe(method_family = none)]
-        unsafe fn isPosition_atBoundary_inDirection(
+        fn isPosition_atBoundary_inDirection(
             &self,
             position: &UITextPosition,
             granularity: UITextGranularity,
@@ -937,7 +933,7 @@ extern_protocol!(
 
         #[unsafe(method(positionFromPosition:toBoundary:inDirection:))]
         #[unsafe(method_family = none)]
-        unsafe fn positionFromPosition_toBoundary_inDirection(
+        fn positionFromPosition_toBoundary_inDirection(
             &self,
             position: &UITextPosition,
             granularity: UITextGranularity,
@@ -946,7 +942,7 @@ extern_protocol!(
 
         #[unsafe(method(isPosition:withinTextUnit:inDirection:))]
         #[unsafe(method_family = none)]
-        unsafe fn isPosition_withinTextUnit_inDirection(
+        fn isPosition_withinTextUnit_inDirection(
             &self,
             position: &UITextPosition,
             granularity: UITextGranularity,
@@ -991,11 +987,11 @@ impl UITextInputStringTokenizer {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -1023,17 +1019,16 @@ impl UITextInputMode {
     extern_methods!(
         #[unsafe(method(primaryLanguage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn primaryLanguage(&self) -> Option<Retained<NSString>>;
+        pub fn primaryLanguage(&self) -> Option<Retained<NSString>>;
 
         #[deprecated]
         #[unsafe(method(currentInputMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentInputMode(mtm: MainThreadMarker) -> Option<Retained<UITextInputMode>>;
+        pub fn currentInputMode(mtm: MainThreadMarker) -> Option<Retained<UITextInputMode>>;
 
         #[unsafe(method(activeInputModes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activeInputModes(mtm: MainThreadMarker)
-            -> Retained<NSArray<UITextInputMode>>;
+        pub fn activeInputModes(mtm: MainThreadMarker) -> Retained<NSArray<UITextInputMode>>;
     );
 }
 
@@ -1042,11 +1037,11 @@ impl UITextInputMode {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 

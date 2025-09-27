@@ -30,7 +30,7 @@ impl UIHoverGestureRecognizer {
         /// don't support z offset.
         #[unsafe(method(zOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn zOffset(&self) -> CGFloat;
+        pub fn zOffset(&self) -> CGFloat;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -41,7 +41,7 @@ impl UIHoverGestureRecognizer {
         /// returned for devices that don't support azimuth.
         #[unsafe(method(azimuthAngleInView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn azimuthAngleInView(&self, view: Option<&UIView>) -> CGFloat;
+        pub fn azimuthAngleInView(&self, view: Option<&UIView>) -> CGFloat;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -52,18 +52,18 @@ impl UIHoverGestureRecognizer {
         /// An empty vector is returned for devices that don't support azimuth.
         #[unsafe(method(azimuthUnitVectorInView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn azimuthUnitVectorInView(&self, view: Option<&UIView>) -> CGVector;
+        pub fn azimuthUnitVectorInView(&self, view: Option<&UIView>) -> CGVector;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The altitude angle of the current device. 0 is returned for devices that don't support altitude.
         #[unsafe(method(altitudeAngle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn altitudeAngle(&self) -> CGFloat;
+        pub fn altitudeAngle(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(rollAngle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rollAngle(&self) -> CGFloat;
+        pub fn rollAngle(&self) -> CGFloat;
     );
 }
 
@@ -85,7 +85,7 @@ impl UIHoverGestureRecognizer {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -105,6 +105,6 @@ impl UIHoverGestureRecognizer {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

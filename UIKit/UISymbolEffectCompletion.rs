@@ -37,12 +37,12 @@ impl UISymbolEffectCompletionContext {
         /// This will be YES for effects that have successfully run to completion.
         #[unsafe(method(isFinished))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isFinished(&self) -> bool;
+        pub fn isFinished(&self) -> bool;
 
         /// The object (such as an image view) that the symbol effect was added to.
         #[unsafe(method(sender))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
+        pub fn sender(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "objc2-symbols")]
         /// The symbol effect that has completed.
@@ -50,7 +50,7 @@ impl UISymbolEffectCompletionContext {
         /// This will be `nil` if a symbol content transition was added instead.
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn effect(&self) -> Option<Retained<NSSymbolEffect>>;
+        pub fn effect(&self) -> Option<Retained<NSSymbolEffect>>;
 
         #[cfg(feature = "objc2-symbols")]
         /// The symbol content transition that has completed.
@@ -58,14 +58,14 @@ impl UISymbolEffectCompletionContext {
         /// This will be `nil` if a symbol effect was added instead.
         #[unsafe(method(contentTransition))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentTransition(&self) -> Option<Retained<NSSymbolContentTransition>>;
+        pub fn contentTransition(&self) -> Option<Retained<NSSymbolContentTransition>>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

@@ -12,7 +12,7 @@ impl UIResponder {
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
         #[unsafe(method(activityItemsConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activityItemsConfiguration(
+        pub fn activityItemsConfiguration(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIActivityItemsConfigurationReading>>>;
 
@@ -20,7 +20,7 @@ impl UIResponder {
         /// Setter for [`activityItemsConfiguration`][Self::activityItemsConfiguration].
         #[unsafe(method(setActivityItemsConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setActivityItemsConfiguration(
+        pub fn setActivityItemsConfiguration(
             &self,
             activity_items_configuration: Option<
                 &ProtocolObject<dyn UIActivityItemsConfigurationReading>,

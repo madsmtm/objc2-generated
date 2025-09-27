@@ -12,11 +12,11 @@ impl UIDragPreview {
     extern_methods!(
         #[unsafe(method(previewForURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn previewForURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn previewForURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(previewForURL:title:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn previewForURL_title(
+        pub fn previewForURL_title(
             url: &NSURL,
             title: Option<&NSString>,
             mtm: MainThreadMarker,
@@ -30,14 +30,11 @@ impl UITargetedDragPreview {
     extern_methods!(
         #[unsafe(method(previewForURL:target:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn previewForURL_target(
-            url: &NSURL,
-            target: &UIDragPreviewTarget,
-        ) -> Retained<Self>;
+        pub fn previewForURL_target(url: &NSURL, target: &UIDragPreviewTarget) -> Retained<Self>;
 
         #[unsafe(method(previewForURL:title:target:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn previewForURL_title_target(
+        pub fn previewForURL_title_target(
             url: &NSURL,
             title: Option<&NSString>,
             target: &UIDragPreviewTarget,

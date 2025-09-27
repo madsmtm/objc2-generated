@@ -40,7 +40,7 @@ impl UISceneConfiguration {
         #[cfg(feature = "UISceneDefinitions")]
         #[unsafe(method(configurationWithName:sessionRole:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithName_sessionRole(
+        pub fn configurationWithName_sessionRole(
             name: Option<&NSString>,
             session_role: &UISceneSessionRole,
             mtm: MainThreadMarker,
@@ -49,7 +49,7 @@ impl UISceneConfiguration {
         #[cfg(feature = "UISceneDefinitions")]
         #[unsafe(method(initWithName:sessionRole:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithName_sessionRole(
+        pub fn initWithName_sessionRole(
             this: Allocated<Self>,
             name: Option<&NSString>,
             session_role: &UISceneSessionRole,
@@ -57,16 +57,16 @@ impl UISceneConfiguration {
 
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
+        pub fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UISceneDefinitions")]
         #[unsafe(method(role))]
         #[unsafe(method_family = none)]
-        pub unsafe fn role(&self) -> Retained<UISceneSessionRole>;
+        pub fn role(&self) -> Retained<UISceneSessionRole>;
 
         #[unsafe(method(sceneClass))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sceneClass(&self) -> Option<&'static AnyClass>;
+        pub fn sceneClass(&self) -> Option<&'static AnyClass>;
 
         /// Setter for [`sceneClass`][Self::sceneClass].
         ///
@@ -79,7 +79,7 @@ impl UISceneConfiguration {
 
         #[unsafe(method(delegateClass))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegateClass(&self) -> Option<&'static AnyClass>;
+        pub fn delegateClass(&self) -> Option<&'static AnyClass>;
 
         /// Setter for [`delegateClass`][Self::delegateClass].
         ///
@@ -93,13 +93,13 @@ impl UISceneConfiguration {
         #[cfg(feature = "UIStoryboard")]
         #[unsafe(method(storyboard))]
         #[unsafe(method_family = none)]
-        pub unsafe fn storyboard(&self) -> Option<Retained<UIStoryboard>>;
+        pub fn storyboard(&self) -> Option<Retained<UIStoryboard>>;
 
         #[cfg(feature = "UIStoryboard")]
         /// Setter for [`storyboard`][Self::storyboard].
         #[unsafe(method(setStoryboard:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStoryboard(&self, storyboard: Option<&UIStoryboard>);
+        pub fn setStoryboard(&self, storyboard: Option<&UIStoryboard>);
     );
 }
 
@@ -108,10 +108,10 @@ impl UISceneConfiguration {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

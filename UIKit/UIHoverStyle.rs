@@ -37,44 +37,44 @@ impl UIHoverStyle {
         /// to apply a system-default effect to the view.
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn effect(&self) -> Retained<ProtocolObject<dyn UIHoverEffect>>;
+        pub fn effect(&self) -> Retained<ProtocolObject<dyn UIHoverEffect>>;
 
         #[cfg(feature = "UIHoverEffect")]
         /// Setter for [`effect`][Self::effect].
         #[unsafe(method(setEffect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEffect(&self, effect: &ProtocolObject<dyn UIHoverEffect>);
+        pub fn setEffect(&self, effect: &ProtocolObject<dyn UIHoverEffect>);
 
         #[cfg(feature = "UIShape")]
         /// The shape to use for the hover effect. If a `nil` shape is used, a
         /// system-default shape will be chosen based on the view.
         #[unsafe(method(shape))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shape(&self) -> Option<Retained<UIShape>>;
+        pub fn shape(&self) -> Option<Retained<UIShape>>;
 
         #[cfg(feature = "UIShape")]
         /// Setter for [`shape`][Self::shape].
         #[unsafe(method(setShape:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShape(&self, shape: Option<&UIShape>);
+        pub fn setShape(&self, shape: Option<&UIShape>);
 
         /// Whether the effect to apply to the view with this style is enabled.
         /// Use this property to temporarily disable a view's hover effect without
         /// removing it from the view entirely.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEnabled(&self) -> bool;
+        pub fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEnabled(&self, enabled: bool);
+        pub fn setEnabled(&self, enabled: bool);
 
         #[cfg(all(feature = "UIHoverEffect", feature = "UIShape"))]
         /// Creates a hover style with the provided effect and shape.
         #[unsafe(method(styleWithEffect:shape:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn styleWithEffect_shape(
+        pub fn styleWithEffect_shape(
             effect: &ProtocolObject<dyn UIHoverEffect>,
             shape: Option<&UIShape>,
         ) -> Retained<Self>;
@@ -83,23 +83,20 @@ impl UIHoverStyle {
         /// Creates a hover style with the provided shape and a `UIHoverAutomaticEffect`.
         #[unsafe(method(styleWithShape:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn styleWithShape(
-            shape: Option<&UIShape>,
-            mtm: MainThreadMarker,
-        ) -> Retained<Self>;
+        pub fn styleWithShape(shape: Option<&UIShape>, mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Creates a hover style with the default shape and a `UIHoverAutomaticEffect`.
         #[unsafe(method(automaticStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn automaticStyle(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn automaticStyle(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -112,13 +109,13 @@ impl UIView {
         /// Subclasses may configure this style to use a different default value.
         #[unsafe(method(hoverStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hoverStyle(&self) -> Option<Retained<UIHoverStyle>>;
+        pub fn hoverStyle(&self) -> Option<Retained<UIHoverStyle>>;
 
         /// Setter for [`hoverStyle`][Self::hoverStyle].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHoverStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHoverStyle(&self, hover_style: Option<&UIHoverStyle>);
+        pub fn setHoverStyle(&self, hover_style: Option<&UIHoverStyle>);
     );
 }

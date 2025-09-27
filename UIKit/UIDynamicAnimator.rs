@@ -15,12 +15,12 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(dynamicAnimatorWillResume:))]
         #[unsafe(method_family = none)]
-        unsafe fn dynamicAnimatorWillResume(&self, animator: &UIDynamicAnimator);
+        fn dynamicAnimatorWillResume(&self, animator: &UIDynamicAnimator);
 
         #[optional]
         #[unsafe(method(dynamicAnimatorDidPause:))]
         #[unsafe(method_family = none)]
-        unsafe fn dynamicAnimatorDidPause(&self, animator: &UIDynamicAnimator);
+        fn dynamicAnimatorDidPause(&self, animator: &UIDynamicAnimator);
     }
 );
 
@@ -40,40 +40,36 @@ impl UIDynamicAnimator {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(initWithReferenceView:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithReferenceView(this: Allocated<Self>, view: &UIView)
-            -> Retained<Self>;
+        pub fn initWithReferenceView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
         #[cfg(feature = "UIDynamicBehavior")]
         #[unsafe(method(addBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addBehavior(&self, behavior: &UIDynamicBehavior);
+        pub fn addBehavior(&self, behavior: &UIDynamicBehavior);
 
         #[cfg(feature = "UIDynamicBehavior")]
         #[unsafe(method(removeBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeBehavior(&self, behavior: &UIDynamicBehavior);
+        pub fn removeBehavior(&self, behavior: &UIDynamicBehavior);
 
         #[unsafe(method(removeAllBehaviors))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeAllBehaviors(&self);
+        pub fn removeAllBehaviors(&self);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(referenceView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn referenceView(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
+        pub fn referenceView(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIDynamicBehavior")]
         #[unsafe(method(behaviors))]
         #[unsafe(method_family = none)]
-        pub unsafe fn behaviors(
-            &self,
-            mtm: MainThreadMarker,
-        ) -> Retained<NSArray<UIDynamicBehavior>>;
+        pub fn behaviors(&self, mtm: MainThreadMarker) -> Retained<NSArray<UIDynamicBehavior>>;
 
         #[cfg(all(feature = "UIDynamicBehavior", feature = "objc2-core-foundation"))]
         #[unsafe(method(itemsInRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn itemsInRect(
+        pub fn itemsInRect(
             &self,
             rect: CGRect,
             mtm: MainThreadMarker,
@@ -82,19 +78,19 @@ impl UIDynamicAnimator {
         #[cfg(feature = "UIDynamicBehavior")]
         #[unsafe(method(updateItemUsingCurrentState:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateItemUsingCurrentState(&self, item: &ProtocolObject<dyn UIDynamicItem>);
+        pub fn updateItemUsingCurrentState(&self, item: &ProtocolObject<dyn UIDynamicItem>);
 
         #[unsafe(method(isRunning))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isRunning(&self) -> bool;
+        pub fn isRunning(&self) -> bool;
 
         #[unsafe(method(elapsedTime))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elapsedTime(&self) -> NSTimeInterval;
+        pub fn elapsedTime(&self) -> NSTimeInterval;
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
             mtm: MainThreadMarker,
         ) -> Option<Retained<ProtocolObject<dyn UIDynamicAnimatorDelegate>>>;
@@ -104,10 +100,7 @@ impl UIDynamicAnimator {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn UIDynamicAnimatorDelegate>>,
-        );
+        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UIDynamicAnimatorDelegate>>);
     );
 }
 
@@ -116,12 +109,19 @@ impl UIDynamicAnimator {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIDynamicAnimator {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// UICollectionViewAdditions.
@@ -130,7 +130,7 @@ impl UIDynamicAnimator {
         #[cfg(feature = "UICollectionViewLayout")]
         #[unsafe(method(initWithCollectionViewLayout:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCollectionViewLayout(
+        pub fn initWithCollectionViewLayout(
             this: Allocated<Self>,
             layout: &UICollectionViewLayout,
         ) -> Retained<Self>;
@@ -138,7 +138,7 @@ impl UIDynamicAnimator {
         #[cfg(feature = "UICollectionViewLayout")]
         #[unsafe(method(layoutAttributesForCellAtIndexPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutAttributesForCellAtIndexPath(
+        pub fn layoutAttributesForCellAtIndexPath(
             &self,
             index_path: &NSIndexPath,
             mtm: MainThreadMarker,
@@ -147,7 +147,7 @@ impl UIDynamicAnimator {
         #[cfg(feature = "UICollectionViewLayout")]
         #[unsafe(method(layoutAttributesForSupplementaryViewOfKind:atIndexPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutAttributesForSupplementaryViewOfKind_atIndexPath(
+        pub fn layoutAttributesForSupplementaryViewOfKind_atIndexPath(
             &self,
             kind: &NSString,
             index_path: &NSIndexPath,
@@ -157,7 +157,7 @@ impl UIDynamicAnimator {
         #[cfg(feature = "UICollectionViewLayout")]
         #[unsafe(method(layoutAttributesForDecorationViewOfKind:atIndexPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutAttributesForDecorationViewOfKind_atIndexPath(
+        pub fn layoutAttributesForDecorationViewOfKind_atIndexPath(
             &self,
             decoration_view_kind: &NSString,
             index_path: &NSIndexPath,

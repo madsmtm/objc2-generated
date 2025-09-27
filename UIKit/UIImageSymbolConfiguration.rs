@@ -130,16 +130,22 @@ unsafe impl Send for UIImageSymbolColorRenderingMode {}
 
 unsafe impl Sync for UIImageSymbolColorRenderingMode {}
 
-extern "C-unwind" {
-    #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
-    pub fn UIFontWeightForImageSymbolWeight(symbol_weight: UIImageSymbolWeight) -> UIFontWeight;
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
+#[inline]
+pub extern "C-unwind" fn UIFontWeightForImageSymbolWeight(
+    symbol_weight: UIImageSymbolWeight,
+) -> UIFontWeight {
+    extern "C-unwind" {
+        fn UIFontWeightForImageSymbolWeight(symbol_weight: UIImageSymbolWeight) -> UIFontWeight;
+    }
+    unsafe { UIFontWeightForImageSymbolWeight(symbol_weight) }
 }
 
 impl UIImageSymbolWeight {
     #[doc(alias = "UIImageSymbolWeightForFontWeight")]
     #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
     #[inline]
-    pub unsafe fn for_font_weight(font_weight: UIFontWeight) -> UIImageSymbolWeight {
+    pub fn for_font_weight(font_weight: UIFontWeight) -> UIImageSymbolWeight {
         extern "C-unwind" {
             fn UIImageSymbolWeightForFontWeight(font_weight: UIFontWeight) -> UIImageSymbolWeight;
         }
@@ -191,25 +197,25 @@ impl UIImageSymbolConfiguration {
     extern_methods!(
         #[unsafe(method(unspecifiedConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unspecifiedConfiguration() -> Retained<UIImageSymbolConfiguration>;
+        pub fn unspecifiedConfiguration() -> Retained<UIImageSymbolConfiguration>;
 
         #[unsafe(method(configurationWithScale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithScale(scale: UIImageSymbolScale) -> Retained<Self>;
+        pub fn configurationWithScale(scale: UIImageSymbolScale) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(configurationWithPointSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithPointSize(point_size: CGFloat) -> Retained<Self>;
+        pub fn configurationWithPointSize(point_size: CGFloat) -> Retained<Self>;
 
         #[unsafe(method(configurationWithWeight:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithWeight(weight: UIImageSymbolWeight) -> Retained<Self>;
+        pub fn configurationWithWeight(weight: UIImageSymbolWeight) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(configurationWithPointSize:weight:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithPointSize_weight(
+        pub fn configurationWithPointSize_weight(
             point_size: CGFloat,
             weight: UIImageSymbolWeight,
         ) -> Retained<Self>;
@@ -217,7 +223,7 @@ impl UIImageSymbolConfiguration {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(configurationWithPointSize:weight:scale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithPointSize_weight_scale(
+        pub fn configurationWithPointSize_weight_scale(
             point_size: CGFloat,
             weight: UIImageSymbolWeight,
             scale: UIImageSymbolScale,
@@ -226,12 +232,12 @@ impl UIImageSymbolConfiguration {
         #[cfg(feature = "UIFontDescriptor")]
         #[unsafe(method(configurationWithTextStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithTextStyle(text_style: &UIFontTextStyle) -> Retained<Self>;
+        pub fn configurationWithTextStyle(text_style: &UIFontTextStyle) -> Retained<Self>;
 
         #[cfg(feature = "UIFontDescriptor")]
         #[unsafe(method(configurationWithTextStyle:scale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithTextStyle_scale(
+        pub fn configurationWithTextStyle_scale(
             text_style: &UIFontTextStyle,
             scale: UIImageSymbolScale,
         ) -> Retained<Self>;
@@ -239,12 +245,12 @@ impl UIImageSymbolConfiguration {
         #[cfg(feature = "UIFont")]
         #[unsafe(method(configurationWithFont:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithFont(font: &UIFont) -> Retained<Self>;
+        pub fn configurationWithFont(font: &UIFont) -> Retained<Self>;
 
         #[cfg(feature = "UIFont")]
         #[unsafe(method(configurationWithFont:scale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithFont_scale(
+        pub fn configurationWithFont_scale(
             font: &UIFont,
             scale: UIImageSymbolScale,
         ) -> Retained<Self>;
@@ -252,58 +258,54 @@ impl UIImageSymbolConfiguration {
         #[cfg(feature = "UIColor")]
         #[unsafe(method(configurationWithHierarchicalColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithHierarchicalColor(
-            hierarchical_color: &UIColor,
-        ) -> Retained<Self>;
+        pub fn configurationWithHierarchicalColor(hierarchical_color: &UIColor) -> Retained<Self>;
 
         #[cfg(feature = "UIColor")]
         #[unsafe(method(configurationWithPaletteColors:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithPaletteColors(
-            palette_colors: &NSArray<UIColor>,
-        ) -> Retained<Self>;
+        pub fn configurationWithPaletteColors(palette_colors: &NSArray<UIColor>) -> Retained<Self>;
 
         #[unsafe(method(configurationPreferringMulticolor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationPreferringMulticolor() -> Retained<Self>;
+        pub fn configurationPreferringMulticolor() -> Retained<Self>;
 
         #[unsafe(method(configurationPreferringMonochrome))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationPreferringMonochrome() -> Retained<Self>;
+        pub fn configurationPreferringMonochrome() -> Retained<Self>;
 
         /// Initializes a symbol configuration with a preferred variable value mode.
         #[unsafe(method(configurationWithVariableValueMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithVariableValueMode(
+        pub fn configurationWithVariableValueMode(
             variable_value_mode: UIImageSymbolVariableValueMode,
         ) -> Retained<Self>;
 
         /// Initializes a symbol configuration with a preferred color rendering mode.
         #[unsafe(method(configurationWithColorRenderingMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithColorRenderingMode(
+        pub fn configurationWithColorRenderingMode(
             mode: UIImageSymbolColorRenderingMode,
         ) -> Retained<Self>;
 
         #[unsafe(method(configurationWithoutTextStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithoutTextStyle(&self) -> Retained<Self>;
+        pub fn configurationWithoutTextStyle(&self) -> Retained<Self>;
 
         #[unsafe(method(configurationWithoutScale))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithoutScale(&self) -> Retained<Self>;
+        pub fn configurationWithoutScale(&self) -> Retained<Self>;
 
         #[unsafe(method(configurationWithoutWeight))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithoutWeight(&self) -> Retained<Self>;
+        pub fn configurationWithoutWeight(&self) -> Retained<Self>;
 
         #[unsafe(method(configurationWithoutPointSizeAndWeight))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithoutPointSizeAndWeight(&self) -> Retained<Self>;
+        pub fn configurationWithoutPointSizeAndWeight(&self) -> Retained<Self>;
 
         #[unsafe(method(isEqualToConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEqualToConfiguration(
+        pub fn isEqualToConfiguration(
             &self,
             other_configuration: Option<&UIImageSymbolConfiguration>,
         ) -> bool;
@@ -325,18 +327,24 @@ impl UIImageSymbolConfiguration {
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(configurationWithTraitCollection:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithTraitCollection(
+        pub fn configurationWithTraitCollection(
             trait_collection: Option<&UITraitCollection>,
         ) -> Retained<Self>;
 
         #[unsafe(method(configurationWithLocale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithLocale(locale: Option<&NSLocale>) -> Retained<Self>;
+        pub fn configurationWithLocale(locale: Option<&NSLocale>) -> Retained<Self>;
     );
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
-    #[deprecated = "renamed to `UIImageSymbolWeight::for_font_weight`"]
-    pub fn UIImageSymbolWeightForFontWeight(font_weight: UIFontWeight) -> UIImageSymbolWeight;
+#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
+#[deprecated = "renamed to `UIImageSymbolWeight::for_font_weight`"]
+#[inline]
+pub extern "C-unwind" fn UIImageSymbolWeightForFontWeight(
+    font_weight: UIFontWeight,
+) -> UIImageSymbolWeight {
+    extern "C-unwind" {
+        fn UIImageSymbolWeightForFontWeight(font_weight: UIFontWeight) -> UIImageSymbolWeight;
+    }
+    unsafe { UIImageSymbolWeightForFontWeight(font_weight) }
 }

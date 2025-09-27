@@ -27,43 +27,43 @@ impl UISceneConnectionOptions {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIOpenURLContext")]
         #[unsafe(method(URLContexts))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLContexts(&self) -> Retained<NSSet<UIOpenURLContext>>;
+        pub fn URLContexts(&self) -> Retained<NSSet<UIOpenURLContext>>;
 
         #[unsafe(method(sourceApplication))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sourceApplication(&self) -> Option<Retained<NSString>>;
+        pub fn sourceApplication(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(handoffUserActivityType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn handoffUserActivityType(&self) -> Option<Retained<NSString>>;
+        pub fn handoffUserActivityType(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(userActivities))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userActivities(&self) -> Retained<NSSet<NSUserActivity>>;
+        pub fn userActivities(&self) -> Retained<NSSet<NSUserActivity>>;
 
         #[cfg(feature = "objc2-user-notifications")]
         #[unsafe(method(notificationResponse))]
         #[unsafe(method_family = none)]
-        pub unsafe fn notificationResponse(&self) -> Option<Retained<UNNotificationResponse>>;
+        pub fn notificationResponse(&self) -> Option<Retained<UNNotificationResponse>>;
 
         #[cfg(feature = "UIApplicationShortcutItem")]
         #[unsafe(method(shortcutItem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shortcutItem(&self) -> Option<Retained<UIApplicationShortcutItem>>;
+        pub fn shortcutItem(&self) -> Option<Retained<UIApplicationShortcutItem>>;
 
         #[cfg(feature = "objc2-cloud-kit")]
         #[unsafe(method(cloudKitShareMetadata))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cloudKitShareMetadata(&self) -> Option<Retained<CKShareMetadata>>;
+        pub fn cloudKitShareMetadata(&self) -> Option<Retained<CKShareMetadata>>;
     );
 }
 
@@ -83,28 +83,28 @@ impl UISceneOpenURLOptions {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(sourceApplication))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sourceApplication(&self) -> Option<Retained<NSString>>;
+        pub fn sourceApplication(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(annotation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn annotation(&self) -> Option<Retained<AnyObject>>;
+        pub fn annotation(&self) -> Option<Retained<AnyObject>>;
 
         #[unsafe(method(openInPlace))]
         #[unsafe(method_family = none)]
-        pub unsafe fn openInPlace(&self) -> bool;
+        pub fn openInPlace(&self) -> bool;
 
         #[cfg(feature = "UIEventAttribution")]
         #[unsafe(method(eventAttribution))]
         #[unsafe(method_family = none)]
-        pub unsafe fn eventAttribution(&self) -> Option<Retained<UIEventAttribution>>;
+        pub fn eventAttribution(&self) -> Option<Retained<UIEventAttribution>>;
     );
 }
 
@@ -124,17 +124,17 @@ impl UISceneOpenExternalURLOptions {
     extern_methods!(
         #[unsafe(method(universalLinksOnly))]
         #[unsafe(method_family = none)]
-        pub unsafe fn universalLinksOnly(&self) -> bool;
+        pub fn universalLinksOnly(&self) -> bool;
 
         /// Setter for [`universalLinksOnly`][Self::universalLinksOnly].
         #[unsafe(method(setUniversalLinksOnly:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUniversalLinksOnly(&self, universal_links_only: bool);
+        pub fn setUniversalLinksOnly(&self, universal_links_only: bool);
 
         #[cfg(feature = "UIEventAttribution")]
         #[unsafe(method(eventAttribution))]
         #[unsafe(method_family = none)]
-        pub unsafe fn eventAttribution(&self) -> Option<Retained<UIEventAttribution>>;
+        pub fn eventAttribution(&self) -> Option<Retained<UIEventAttribution>>;
 
         #[cfg(feature = "UIEventAttribution")]
         /// Setter for [`eventAttribution`][Self::eventAttribution].
@@ -142,7 +142,7 @@ impl UISceneOpenExternalURLOptions {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEventAttribution:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEventAttribution(&self, event_attribution: Option<&UIEventAttribution>);
+        pub fn setEventAttribution(&self, event_attribution: Option<&UIEventAttribution>);
     );
 }
 
@@ -151,11 +151,11 @@ impl UISceneOpenExternalURLOptions {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -200,22 +200,22 @@ impl UISceneActivationRequestOptions {
         #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
         #[unsafe(method(requestingScene))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestingScene(&self) -> Option<Retained<UIScene>>;
+        pub fn requestingScene(&self) -> Option<Retained<UIScene>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
         /// Setter for [`requestingScene`][Self::requestingScene].
         #[unsafe(method(setRequestingScene:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRequestingScene(&self, requesting_scene: Option<&UIScene>);
+        pub fn setRequestingScene(&self, requesting_scene: Option<&UIScene>);
 
         #[unsafe(method(collectionJoinBehavior))]
         #[unsafe(method_family = none)]
-        pub unsafe fn collectionJoinBehavior(&self) -> UISceneCollectionJoinBehavior;
+        pub fn collectionJoinBehavior(&self) -> UISceneCollectionJoinBehavior;
 
         /// Setter for [`collectionJoinBehavior`][Self::collectionJoinBehavior].
         #[unsafe(method(setCollectionJoinBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCollectionJoinBehavior(
+        pub fn setCollectionJoinBehavior(
             &self,
             collection_join_behavior: UISceneCollectionJoinBehavior,
         );
@@ -227,11 +227,11 @@ impl UISceneActivationRequestOptions {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -256,10 +256,10 @@ impl UISceneDestructionRequestOptions {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

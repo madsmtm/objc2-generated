@@ -24,16 +24,16 @@ impl UIAccessibilityLocationDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(initWithName:view:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithName_view(
+        pub fn initWithName_view(
             this: Allocated<Self>,
             name: &NSString,
             view: &UIView,
@@ -46,7 +46,7 @@ impl UIAccessibilityLocationDescriptor {
         ))]
         #[unsafe(method(initWithName:point:inView:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithName_point_inView(
+        pub fn initWithName_point_inView(
             this: Allocated<Self>,
             name: &NSString,
             point: CGPoint,
@@ -60,7 +60,7 @@ impl UIAccessibilityLocationDescriptor {
         ))]
         #[unsafe(method(initWithAttributedName:point:inView:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithAttributedName_point_inView(
+        pub fn initWithAttributedName_point_inView(
             this: Allocated<Self>,
             attributed_name: &NSAttributedString,
             point: CGPoint,
@@ -70,19 +70,19 @@ impl UIAccessibilityLocationDescriptor {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
-        pub unsafe fn view(&self) -> Option<Retained<UIView>>;
+        pub fn view(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(point))]
         #[unsafe(method_family = none)]
-        pub unsafe fn point(&self) -> CGPoint;
+        pub fn point(&self) -> CGPoint;
 
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Retained<NSString>;
+        pub fn name(&self) -> Retained<NSString>;
 
         #[unsafe(method(attributedName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
+        pub fn attributedName(&self) -> Retained<NSAttributedString>;
     );
 }

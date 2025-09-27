@@ -23,14 +23,14 @@ impl UICalendarSelection {
         /// Called to refresh the selectable dates in the calendar view.
         #[unsafe(method(updateSelectableDates))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateSelectableDates(&self);
+        pub fn updateSelectableDates(&self);
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

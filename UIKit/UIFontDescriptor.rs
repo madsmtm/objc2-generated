@@ -174,7 +174,7 @@ impl UIFontDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -226,7 +226,7 @@ impl UIFontDescriptor {
 
         #[unsafe(method(objectForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectForKey(
+        pub fn objectForKey(
             &self,
             an_attribute: &UIFontDescriptorAttributeName,
         ) -> Option<Retained<AnyObject>>;
@@ -244,7 +244,7 @@ impl UIFontDescriptor {
 
         #[unsafe(method(matchingFontDescriptorsWithMandatoryKeys:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn matchingFontDescriptorsWithMandatoryKeys(
+        pub fn matchingFontDescriptorsWithMandatoryKeys(
             &self,
             mandatory_keys: Option<&NSSet<UIFontDescriptorAttributeName>>,
         ) -> Retained<NSArray<UIFontDescriptor>>;
@@ -261,7 +261,7 @@ impl UIFontDescriptor {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(fontDescriptorWithName:size:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fontDescriptorWithName_size(
+        pub fn fontDescriptorWithName_size(
             font_name: &NSString,
             size: CGFloat,
         ) -> Retained<UIFontDescriptor>;
@@ -269,21 +269,21 @@ impl UIFontDescriptor {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(fontDescriptorWithName:matrix:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fontDescriptorWithName_matrix(
+        pub fn fontDescriptorWithName_matrix(
             font_name: &NSString,
             matrix: CGAffineTransform,
         ) -> Retained<UIFontDescriptor>;
 
         #[unsafe(method(preferredFontDescriptorWithTextStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredFontDescriptorWithTextStyle(
+        pub fn preferredFontDescriptorWithTextStyle(
             style: &UIFontTextStyle,
         ) -> Retained<UIFontDescriptor>;
 
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(preferredFontDescriptorWithTextStyle:compatibleWithTraitCollection:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredFontDescriptorWithTextStyle_compatibleWithTraitCollection(
+        pub fn preferredFontDescriptorWithTextStyle_compatibleWithTraitCollection(
             style: &UIFontTextStyle,
             trait_collection: Option<&UITraitCollection>,
         ) -> Retained<UIFontDescriptor>;
@@ -311,43 +311,36 @@ impl UIFontDescriptor {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(fontDescriptorWithSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fontDescriptorWithSize(
-            &self,
-            new_point_size: CGFloat,
-        ) -> Retained<UIFontDescriptor>;
+        pub fn fontDescriptorWithSize(&self, new_point_size: CGFloat)
+            -> Retained<UIFontDescriptor>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(fontDescriptorWithMatrix:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fontDescriptorWithMatrix(
+        pub fn fontDescriptorWithMatrix(
             &self,
             matrix: CGAffineTransform,
         ) -> Retained<UIFontDescriptor>;
 
         #[unsafe(method(fontDescriptorWithFace:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fontDescriptorWithFace(
-            &self,
-            new_face: &NSString,
-        ) -> Retained<UIFontDescriptor>;
+        pub fn fontDescriptorWithFace(&self, new_face: &NSString) -> Retained<UIFontDescriptor>;
 
         #[unsafe(method(fontDescriptorWithFamily:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fontDescriptorWithFamily(
-            &self,
-            new_family: &NSString,
-        ) -> Retained<UIFontDescriptor>;
+        pub fn fontDescriptorWithFamily(&self, new_family: &NSString)
+            -> Retained<UIFontDescriptor>;
 
         #[unsafe(method(fontDescriptorWithSymbolicTraits:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fontDescriptorWithSymbolicTraits(
+        pub fn fontDescriptorWithSymbolicTraits(
             &self,
             symbolic_traits: UIFontDescriptorSymbolicTraits,
         ) -> Option<Retained<UIFontDescriptor>>;
 
         #[unsafe(method(fontDescriptorWithDesign:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fontDescriptorWithDesign(
+        pub fn fontDescriptorWithDesign(
             &self,
             design: &UIFontDescriptorSystemDesign,
         ) -> Option<Retained<UIFontDescriptor>>;
@@ -359,8 +352,15 @@ impl UIFontDescriptor {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIFontDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {

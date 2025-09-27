@@ -15,7 +15,7 @@ extern_protocol!(
         #[cfg(feature = "UIDragItem")]
         #[unsafe(method(items))]
         #[unsafe(method_family = none)]
-        unsafe fn items(&self) -> Retained<NSArray<UIDragItem>>;
+        fn items(&self) -> Retained<NSArray<UIDragItem>>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -24,22 +24,20 @@ extern_protocol!(
         ))]
         #[unsafe(method(locationInView:))]
         #[unsafe(method_family = none)]
-        unsafe fn locationInView(&self, view: &UIView) -> CGPoint;
+        fn locationInView(&self, view: &UIView) -> CGPoint;
 
         #[unsafe(method(allowsMoveOperation))]
         #[unsafe(method_family = none)]
-        unsafe fn allowsMoveOperation(&self) -> bool;
+        fn allowsMoveOperation(&self) -> bool;
 
         #[unsafe(method(isRestrictedToDraggingApplication))]
         #[unsafe(method_family = none)]
-        unsafe fn isRestrictedToDraggingApplication(&self) -> bool;
+        fn isRestrictedToDraggingApplication(&self) -> bool;
 
         #[unsafe(method(hasItemsConformingToTypeIdentifiers:))]
         #[unsafe(method_family = none)]
-        unsafe fn hasItemsConformingToTypeIdentifiers(
-            &self,
-            type_identifiers: &NSArray<NSString>,
-        ) -> bool;
+        fn hasItemsConformingToTypeIdentifiers(&self, type_identifiers: &NSArray<NSString>)
+            -> bool;
 
         /// # Safety
         ///
@@ -55,7 +53,7 @@ extern_protocol!(
     pub unsafe trait UIDragSession: UIDragDropSession + MainThreadOnly {
         #[unsafe(method(localContext))]
         #[unsafe(method_family = none)]
-        unsafe fn localContext(&self) -> Option<Retained<AnyObject>>;
+        fn localContext(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`localContext`][Self::localContext].
         ///
@@ -95,16 +93,16 @@ extern_protocol!(
     {
         #[unsafe(method(localDragSession))]
         #[unsafe(method_family = none)]
-        unsafe fn localDragSession(&self) -> Option<Retained<ProtocolObject<dyn UIDragSession>>>;
+        fn localDragSession(&self) -> Option<Retained<ProtocolObject<dyn UIDragSession>>>;
 
         #[unsafe(method(progressIndicatorStyle))]
         #[unsafe(method_family = none)]
-        unsafe fn progressIndicatorStyle(&self) -> UIDropSessionProgressIndicatorStyle;
+        fn progressIndicatorStyle(&self) -> UIDropSessionProgressIndicatorStyle;
 
         /// Setter for [`progressIndicatorStyle`][Self::progressIndicatorStyle].
         #[unsafe(method(setProgressIndicatorStyle:))]
         #[unsafe(method_family = none)]
-        unsafe fn setProgressIndicatorStyle(
+        fn setProgressIndicatorStyle(
             &self,
             progress_indicator_style: UIDropSessionProgressIndicatorStyle,
         );

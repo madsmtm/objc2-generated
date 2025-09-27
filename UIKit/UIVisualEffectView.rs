@@ -104,12 +104,12 @@ impl UIVisualEffectView {
     extern_methods!(
         #[unsafe(method(contentView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentView(&self) -> Retained<UIView>;
+        pub fn contentView(&self) -> Retained<UIView>;
 
         #[cfg(feature = "UIVisualEffect")]
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn effect(&self) -> Option<Retained<UIVisualEffect>>;
+        pub fn effect(&self) -> Option<Retained<UIVisualEffect>>;
 
         #[cfg(feature = "UIVisualEffect")]
         /// Setter for [`effect`][Self::effect].
@@ -117,12 +117,12 @@ impl UIVisualEffectView {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setEffect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEffect(&self, effect: Option<&UIVisualEffect>);
+        pub fn setEffect(&self, effect: Option<&UIVisualEffect>);
 
         #[cfg(feature = "UIVisualEffect")]
         #[unsafe(method(initWithEffect:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithEffect(
+        pub fn initWithEffect(
             this: Allocated<Self>,
             effect: Option<&UIVisualEffect>,
         ) -> Retained<Self>;
@@ -146,11 +146,11 @@ impl UIVisualEffectView {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -160,6 +160,6 @@ impl UIVisualEffectView {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

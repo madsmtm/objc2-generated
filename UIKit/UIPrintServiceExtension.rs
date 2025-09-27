@@ -31,40 +31,40 @@ impl UIPrinterDestination {
     extern_methods!(
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
+        pub fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URL(&self) -> Retained<NSURL>;
+        pub fn URL(&self) -> Retained<NSURL>;
 
         /// Setter for [`URL`][Self::URL].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setURL(&self, url: &NSURL);
+        pub fn setURL(&self, url: &NSURL);
 
         #[unsafe(method(displayName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
+        pub fn displayName(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`displayName`][Self::displayName].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDisplayName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDisplayName(&self, display_name: Option<&NSString>);
+        pub fn setDisplayName(&self, display_name: Option<&NSString>);
 
         #[unsafe(method(txtRecord))]
         #[unsafe(method_family = none)]
-        pub unsafe fn txtRecord(&self) -> Option<Retained<NSData>>;
+        pub fn txtRecord(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`txtRecord`][Self::txtRecord].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTxtRecord:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTxtRecord(&self, txt_record: Option<&NSData>);
+        pub fn setTxtRecord(&self, txt_record: Option<&NSData>);
     );
 }
 
@@ -73,11 +73,11 @@ impl UIPrinterDestination {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -98,7 +98,7 @@ impl UIPrintServiceExtension {
         #[cfg(feature = "UIPrintInfo")]
         #[unsafe(method(printerDestinationsForPrintInfo:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printerDestinationsForPrintInfo(
+        pub fn printerDestinationsForPrintInfo(
             &self,
             print_info: &UIPrintInfo,
         ) -> Retained<NSArray<UIPrinterDestination>>;
@@ -110,10 +110,10 @@ impl UIPrintServiceExtension {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

@@ -146,20 +146,20 @@ impl UIActivity {
     extern_methods!(
         #[unsafe(method(activityCategory))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activityCategory() -> UIActivityCategory;
+        pub fn activityCategory() -> UIActivityCategory;
 
         #[unsafe(method(activityType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activityType(&self) -> Option<Retained<UIActivityType>>;
+        pub fn activityType(&self) -> Option<Retained<UIActivityType>>;
 
         #[unsafe(method(activityTitle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activityTitle(&self) -> Option<Retained<NSString>>;
+        pub fn activityTitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIImage")]
         #[unsafe(method(activityImage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activityImage(&self) -> Option<Retained<UIImage>>;
+        pub fn activityImage(&self) -> Option<Retained<UIImage>>;
 
         /// # Safety
         ///
@@ -178,18 +178,18 @@ impl UIActivity {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[unsafe(method(activityViewController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activityViewController(
+        pub fn activityViewController(
             &self,
             mtm: MainThreadMarker,
         ) -> Option<Retained<UIViewController>>;
 
         #[unsafe(method(performActivity))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performActivity(&self);
+        pub fn performActivity(&self);
 
         #[unsafe(method(activityDidFinish:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activityDidFinish(&self, completed: bool);
+        pub fn activityDidFinish(&self, completed: bool);
     );
 }
 
@@ -198,10 +198,17 @@ impl UIActivity {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIActivity {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

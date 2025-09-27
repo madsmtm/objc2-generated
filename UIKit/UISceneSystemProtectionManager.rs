@@ -30,11 +30,11 @@ impl UISceneSystemProtectionManager {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// `YES`if the system requires requires device owner authentication challenges to reveal the
         /// content of the scene associated with this manager, else
@@ -44,7 +44,7 @@ impl UISceneSystemProtectionManager {
         /// the moment, but whether protection is enabled in general.
         #[unsafe(method(isUserAuthenticationEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isUserAuthenticationEnabled(&self) -> bool;
+        pub fn isUserAuthenticationEnabled(&self) -> bool;
     );
 }
 
@@ -54,8 +54,6 @@ impl UIScene {
     extern_methods!(
         #[unsafe(method(systemProtectionManager))]
         #[unsafe(method_family = none)]
-        pub unsafe fn systemProtectionManager(
-            &self,
-        ) -> Option<Retained<UISceneSystemProtectionManager>>;
+        pub fn systemProtectionManager(&self) -> Option<Retained<UISceneSystemProtectionManager>>;
     );
 }

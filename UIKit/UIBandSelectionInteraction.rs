@@ -54,29 +54,29 @@ impl UIBandSelectionInteraction {
         /// Indicates whether the interaction is enabled. Defaults to YES.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEnabled(&self) -> bool;
+        pub fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEnabled(&self, enabled: bool);
+        pub fn setEnabled(&self, enabled: bool);
 
         /// The interaction's current state.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
-        pub unsafe fn state(&self) -> UIBandSelectionInteractionState;
+        pub fn state(&self) -> UIBandSelectionInteractionState;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The current selection rect. Returns CGRectNull when the interaction is inactive.
         #[unsafe(method(selectionRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectionRect(&self) -> CGRect;
+        pub fn selectionRect(&self) -> CGRect;
 
         #[cfg(feature = "UICommand")]
         /// Modifier keys held at the beginning of the interaction.
         #[unsafe(method(initialModifierFlags))]
         #[unsafe(method_family = none)]
-        pub unsafe fn initialModifierFlags(&self) -> UIKeyModifierFlags;
+        pub fn initialModifierFlags(&self) -> UIKeyModifierFlags;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Called when the interaction is about to begin.
@@ -97,7 +97,7 @@ impl UIBandSelectionInteraction {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setShouldBeginHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShouldBeginHandler(
+        pub fn setShouldBeginHandler(
             &self,
             should_begin_handler: Option<
                 &block2::DynBlock<dyn Fn(NonNull<UIBandSelectionInteraction>, CGPoint) -> Bool>,
@@ -111,17 +111,17 @@ impl UIBandSelectionInteraction {
         /// Parameter `selectionHandler`: Called when the interaction's state and/or selection rect change.
         #[unsafe(method(initWithSelectionHandler:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSelectionHandler(
+        pub fn initWithSelectionHandler(
             this: Allocated<Self>,
             selection_handler: &block2::DynBlock<dyn Fn(NonNull<UIBandSelectionInteraction>)>,
         ) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

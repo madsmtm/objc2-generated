@@ -33,46 +33,46 @@ impl UIImageReaderConfiguration {
         /// For image types that may decode as either SDR or HDR, prefer the HDR variant. Images that may only decode as either SDR or HDR are unaffected. Default depends on system capabilities.
         #[unsafe(method(prefersHighDynamicRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn prefersHighDynamicRange(&self) -> bool;
+        pub fn prefersHighDynamicRange(&self) -> bool;
 
         /// Setter for [`prefersHighDynamicRange`][Self::prefersHighDynamicRange].
         #[unsafe(method(setPrefersHighDynamicRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPrefersHighDynamicRange(&self, prefers_high_dynamic_range: bool);
+        pub fn setPrefersHighDynamicRange(&self, prefers_high_dynamic_range: bool);
 
         /// If set, images vended by the loader are automatically prepared for display. Default is NO.
         #[unsafe(method(preparesImagesForDisplay))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preparesImagesForDisplay(&self) -> bool;
+        pub fn preparesImagesForDisplay(&self) -> bool;
 
         /// Setter for [`preparesImagesForDisplay`][Self::preparesImagesForDisplay].
         #[unsafe(method(setPreparesImagesForDisplay:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreparesImagesForDisplay(&self, prepares_images_for_display: bool);
+        pub fn setPreparesImagesForDisplay(&self, prepares_images_for_display: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// If set, images loaded will be thumbnails of approximately the given size. Default value is CGSizeZero, indicating that thumb-nailing is disabled. This size is always in pixels.
         #[unsafe(method(preferredThumbnailSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredThumbnailSize(&self) -> CGSize;
+        pub fn preferredThumbnailSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`preferredThumbnailSize`][Self::preferredThumbnailSize].
         #[unsafe(method(setPreferredThumbnailSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreferredThumbnailSize(&self, preferred_thumbnail_size: CGSize);
+        pub fn setPreferredThumbnailSize(&self, preferred_thumbnail_size: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// If non-zero when generating images, image metadata information (if present) will be used to determine the scale to assign to the image. If zero all images will be assigned a scale of 1.0. Always assigns integral scales. Defaults to 0.
         #[unsafe(method(pixelsPerInch))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pixelsPerInch(&self) -> CGFloat;
+        pub fn pixelsPerInch(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`pixelsPerInch`][Self::pixelsPerInch].
         #[unsafe(method(setPixelsPerInch:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPixelsPerInch(&self, pixels_per_inch: CGFloat);
+        pub fn setPixelsPerInch(&self, pixels_per_inch: CGFloat);
     );
 }
 
@@ -81,12 +81,19 @@ impl UIImageReaderConfiguration {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIImageReaderConfiguration {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -105,36 +112,36 @@ impl UIImageReader {
         /// Returns a reader that uses the default configuration options. This method is thread safe.
         #[unsafe(method(defaultReader))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultReader() -> Retained<UIImageReader>;
+        pub fn defaultReader() -> Retained<UIImageReader>;
 
         /// Returns a loader of the given configuration. Loaders are thread safe and sharable.
         #[unsafe(method(readerWithConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn readerWithConfiguration(
+        pub fn readerWithConfiguration(
             configuration: &UIImageReaderConfiguration,
         ) -> Retained<Self>;
 
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configuration(&self) -> Retained<UIImageReaderConfiguration>;
+        pub fn configuration(&self) -> Retained<UIImageReaderConfiguration>;
 
         #[cfg(feature = "UIImage")]
         /// Synchronously generate an image from the given file URL. If an image could not be generated, returns nil.
         #[unsafe(method(imageWithContentsOfFileURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageWithContentsOfFileURL(&self, url: &NSURL) -> Retained<UIImage>;
+        pub fn imageWithContentsOfFileURL(&self, url: &NSURL) -> Retained<UIImage>;
 
         #[cfg(feature = "UIImage")]
         /// Synchronously generate an image from the given data. If an image could not be generated, returns nil.
         #[unsafe(method(imageWithData:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageWithData(&self, data: &NSData) -> Retained<UIImage>;
+        pub fn imageWithData(&self, data: &NSData) -> Retained<UIImage>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
         /// Asynchronously generate an image from the given file URL. If an image could not be generated, the completion will be called with nil.
         #[unsafe(method(imageWithContentsOfFileURL:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageWithContentsOfFileURL_completion(
+        pub fn imageWithContentsOfFileURL_completion(
             &self,
             url: &NSURL,
             completion: &block2::DynBlock<dyn Fn(*mut UIImage)>,
@@ -144,7 +151,7 @@ impl UIImageReader {
         /// Asynchronously generate an image from the given data. If an image could not be generated, the completion will be called with nil.
         #[unsafe(method(imageWithData:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageWithData_completion(
+        pub fn imageWithData_completion(
             &self,
             data: &NSData,
             completion: &block2::DynBlock<dyn Fn(*mut UIImage)>,
@@ -157,10 +164,17 @@ impl UIImageReader {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIImageReader {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

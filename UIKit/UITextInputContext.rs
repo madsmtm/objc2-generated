@@ -21,44 +21,48 @@ impl UITextInputContext {
     extern_methods!(
         #[unsafe(method(isPencilInputExpected))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isPencilInputExpected(&self) -> bool;
+        pub fn isPencilInputExpected(&self) -> bool;
 
         /// Setter for [`isPencilInputExpected`][Self::isPencilInputExpected].
         #[unsafe(method(setPencilInputExpected:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPencilInputExpected(&self, pencil_input_expected: bool);
+        pub fn setPencilInputExpected(&self, pencil_input_expected: bool);
 
         #[unsafe(method(isDictationInputExpected))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDictationInputExpected(&self) -> bool;
+        pub fn isDictationInputExpected(&self) -> bool;
 
         /// Setter for [`isDictationInputExpected`][Self::isDictationInputExpected].
         #[unsafe(method(setDictationInputExpected:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDictationInputExpected(&self, dictation_input_expected: bool);
+        pub fn setDictationInputExpected(&self, dictation_input_expected: bool);
 
         #[unsafe(method(isHardwareKeyboardInputExpected))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isHardwareKeyboardInputExpected(&self) -> bool;
+        pub fn isHardwareKeyboardInputExpected(&self) -> bool;
 
         /// Setter for [`isHardwareKeyboardInputExpected`][Self::isHardwareKeyboardInputExpected].
         #[unsafe(method(setHardwareKeyboardInputExpected:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHardwareKeyboardInputExpected(
-            &self,
-            hardware_keyboard_input_expected: bool,
-        );
+        pub fn setHardwareKeyboardInputExpected(&self, hardware_keyboard_input_expected: bool);
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[unsafe(method(current))]
         #[unsafe(method_family = none)]
-        pub unsafe fn current() -> Option<Retained<UITextInputContext>>;
+        pub fn current() -> Option<Retained<UITextInputContext>>;
     );
+}
+
+impl DefaultRetained for UITextInputContext {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

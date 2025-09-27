@@ -17,7 +17,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(pickerView:accessibilityLabelForComponent:))]
         #[unsafe(method_family = none)]
-        unsafe fn pickerView_accessibilityLabelForComponent(
+        fn pickerView_accessibilityLabelForComponent(
             &self,
             picker_view: &UIPickerView,
             component: NSInteger,
@@ -27,7 +27,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(pickerView:accessibilityHintForComponent:))]
         #[unsafe(method_family = none)]
-        unsafe fn pickerView_accessibilityHintForComponent(
+        fn pickerView_accessibilityHintForComponent(
             &self,
             picker_view: &UIPickerView,
             component: NSInteger,
@@ -37,7 +37,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(pickerView:accessibilityUserInputLabelsForComponent:))]
         #[unsafe(method_family = none)]
-        unsafe fn pickerView_accessibilityUserInputLabelsForComponent(
+        fn pickerView_accessibilityUserInputLabelsForComponent(
             &self,
             picker_view: &UIPickerView,
             component: NSInteger,
@@ -47,7 +47,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(pickerView:accessibilityAttributedLabelForComponent:))]
         #[unsafe(method_family = none)]
-        unsafe fn pickerView_accessibilityAttributedLabelForComponent(
+        fn pickerView_accessibilityAttributedLabelForComponent(
             &self,
             picker_view: &UIPickerView,
             component: NSInteger,
@@ -57,7 +57,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(pickerView:accessibilityAttributedHintForComponent:))]
         #[unsafe(method_family = none)]
-        unsafe fn pickerView_accessibilityAttributedHintForComponent(
+        fn pickerView_accessibilityAttributedHintForComponent(
             &self,
             picker_view: &UIPickerView,
             component: NSInteger,
@@ -67,7 +67,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(pickerView:accessibilityAttributedUserInputLabelsForComponent:))]
         #[unsafe(method_family = none)]
-        unsafe fn pickerView_accessibilityAttributedUserInputLabelsForComponent(
+        fn pickerView_accessibilityAttributedUserInputLabelsForComponent(
             &self,
             picker_view: &UIPickerView,
             component: NSInteger,
@@ -85,7 +85,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(accessibilityScrollStatusForScrollView:))]
         #[unsafe(method_family = none)]
-        unsafe fn accessibilityScrollStatusForScrollView(
+        fn accessibilityScrollStatusForScrollView(
             &self,
             scroll_view: &UIScrollView,
         ) -> Option<Retained<NSString>>;
@@ -94,7 +94,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(accessibilityAttributedScrollStatusForScrollView:))]
         #[unsafe(method_family = none)]
-        unsafe fn accessibilityAttributedScrollStatusForScrollView(
+        fn accessibilityAttributedScrollStatusForScrollView(
             &self,
             scroll_view: &UIScrollView,
         ) -> Option<Retained<NSAttributedString>>;
@@ -107,12 +107,12 @@ impl UIView {
     extern_methods!(
         #[unsafe(method(accessibilityIgnoresInvertColors))]
         #[unsafe(method_family = none)]
-        pub unsafe fn accessibilityIgnoresInvertColors(&self) -> bool;
+        pub fn accessibilityIgnoresInvertColors(&self) -> bool;
 
         /// Setter for [`accessibilityIgnoresInvertColors`][Self::accessibilityIgnoresInvertColors].
         #[unsafe(method(setAccessibilityIgnoresInvertColors:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAccessibilityIgnoresInvertColors(
+        pub fn setAccessibilityIgnoresInvertColors(
             &self,
             accessibility_ignores_invert_colors: bool,
         );

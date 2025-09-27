@@ -26,7 +26,7 @@ impl UITextDragPreviewRenderer {
         #[cfg(feature = "NSLayoutManager")]
         #[unsafe(method(initWithLayoutManager:range:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLayoutManager_range(
+        pub fn initWithLayoutManager_range(
             this: Allocated<Self>,
             layout_manager: &NSLayoutManager,
             range: NSRange,
@@ -35,7 +35,7 @@ impl UITextDragPreviewRenderer {
         #[cfg(feature = "NSLayoutManager")]
         #[unsafe(method(initWithLayoutManager:range:unifyRects:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLayoutManager_range_unifyRects(
+        pub fn initWithLayoutManager_range_unifyRects(
             this: Allocated<Self>,
             layout_manager: &NSLayoutManager,
             range: NSRange,
@@ -44,36 +44,36 @@ impl UITextDragPreviewRenderer {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "NSLayoutManager")]
         #[unsafe(method(layoutManager))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutManager(&self) -> Retained<NSLayoutManager>;
+        pub fn layoutManager(&self) -> Retained<NSLayoutManager>;
 
         #[cfg(feature = "UIImage")]
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
-        pub unsafe fn image(&self) -> Retained<UIImage>;
+        pub fn image(&self) -> Retained<UIImage>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(firstLineRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn firstLineRect(&self) -> CGRect;
+        pub fn firstLineRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(bodyRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bodyRect(&self) -> CGRect;
+        pub fn bodyRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(lastLineRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lastLineRect(&self) -> CGRect;
+        pub fn lastLineRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// # Safety

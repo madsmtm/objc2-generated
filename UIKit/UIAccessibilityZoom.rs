@@ -26,19 +26,31 @@ unsafe impl RefEncode for UIAccessibilityZoomType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(all(
-        feature = "UIResponder",
-        feature = "UIView",
-        feature = "objc2-core-foundation"
-    ))]
-    pub fn UIAccessibilityZoomFocusChanged(
-        r#type: UIAccessibilityZoomType,
-        frame: CGRect,
-        view: &UIView,
-    );
+#[cfg(all(
+    feature = "UIResponder",
+    feature = "UIView",
+    feature = "objc2-core-foundation"
+))]
+#[inline]
+pub extern "C-unwind" fn UIAccessibilityZoomFocusChanged(
+    r#type: UIAccessibilityZoomType,
+    frame: CGRect,
+    view: &UIView,
+) {
+    extern "C-unwind" {
+        fn UIAccessibilityZoomFocusChanged(
+            r#type: UIAccessibilityZoomType,
+            frame: CGRect,
+            view: &UIView,
+        );
+    }
+    unsafe { UIAccessibilityZoomFocusChanged(r#type, frame, view) }
 }
 
-extern "C-unwind" {
-    pub fn UIAccessibilityRegisterGestureConflictWithZoom();
+#[inline]
+pub extern "C-unwind" fn UIAccessibilityRegisterGestureConflictWithZoom() {
+    extern "C-unwind" {
+        fn UIAccessibilityRegisterGestureConflictWithZoom();
+    }
+    unsafe { UIAccessibilityRegisterGestureConflictWithZoom() }
 }

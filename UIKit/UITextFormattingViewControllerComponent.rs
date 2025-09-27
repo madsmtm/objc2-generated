@@ -154,12 +154,12 @@ impl UITextFormattingViewControllerComponent {
         /// Unique key that identifies text formatting view component.
         #[unsafe(method(componentKey))]
         #[unsafe(method_family = none)]
-        pub unsafe fn componentKey(&self) -> Retained<UITextFormattingViewControllerComponentKey>;
+        pub fn componentKey(&self) -> Retained<UITextFormattingViewControllerComponentKey>;
 
         /// Specifies preferred size of the component in text formatting view.
         #[unsafe(method(preferredSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredSize(&self) -> UITextFormattingViewControllerComponentSize;
+        pub fn preferredSize(&self) -> UITextFormattingViewControllerComponentSize;
 
         /// Creates a text formatting view component configuration with component key and preferred size.
         ///
@@ -168,7 +168,7 @@ impl UITextFormattingViewControllerComponent {
         /// - preferredSize: Preferred size of component in text formatting view.
         #[unsafe(method(initWithComponentKey:preferredSize:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithComponentKey_preferredSize(
+        pub fn initWithComponentKey_preferredSize(
             this: Allocated<Self>,
             component_key: &UITextFormattingViewControllerComponentKey,
             preferred_size: UITextFormattingViewControllerComponentSize,
@@ -176,12 +176,19 @@ impl UITextFormattingViewControllerComponent {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UITextFormattingViewControllerComponent {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -218,25 +225,30 @@ impl UITextFormattingViewControllerComponentGroup {
         /// Components in group.
         #[unsafe(method(components))]
         #[unsafe(method_family = none)]
-        pub unsafe fn components(
-            &self,
-        ) -> Retained<NSArray<UITextFormattingViewControllerComponent>>;
+        pub fn components(&self) -> Retained<NSArray<UITextFormattingViewControllerComponent>>;
 
         /// Creates a group of components.
         /// - Parameter components: Components to be included in the group.
         #[unsafe(method(initWithComponents:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithComponents(
+        pub fn initWithComponents(
             this: Allocated<Self>,
             components: &NSArray<UITextFormattingViewControllerComponent>,
         ) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UITextFormattingViewControllerComponentGroup {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

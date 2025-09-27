@@ -51,7 +51,7 @@ impl UIDeferredMenuElement {
         /// The identifier of this deferred menu element.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Retained<UIDeferredMenuElementIdentifier>;
+        pub fn identifier(&self) -> Retained<UIDeferredMenuElementIdentifier>;
 
         #[cfg(feature = "block2")]
         /// Returns a placeholder menu element that is replaced with the result of the block's
@@ -113,7 +113,7 @@ impl UIDeferredMenuElement {
         /// `NO`asks the responder chain for elements every time the element is displayed.
         #[unsafe(method(elementUsingFocusWithIdentifier:shouldCacheItems:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementUsingFocusWithIdentifier_shouldCacheItems(
+        pub fn elementUsingFocusWithIdentifier_shouldCacheItems(
             identifier: &UIDeferredMenuElementIdentifier,
             should_cache_items: bool,
             mtm: MainThreadMarker,
@@ -137,11 +137,11 @@ impl UIDeferredMenuElement {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -184,10 +184,10 @@ impl UIDeferredMenuElementProvider {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

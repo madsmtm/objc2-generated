@@ -59,11 +59,11 @@ extern_protocol!(
     {
         #[unsafe(method(guidedAccessRestrictionIdentifiers))]
         #[unsafe(method_family = none)]
-        unsafe fn guidedAccessRestrictionIdentifiers(&self) -> Option<Retained<NSArray<NSString>>>;
+        fn guidedAccessRestrictionIdentifiers(&self) -> Option<Retained<NSArray<NSString>>>;
 
         #[unsafe(method(guidedAccessRestrictionWithIdentifier:didChangeState:))]
         #[unsafe(method_family = none)]
-        unsafe fn guidedAccessRestrictionWithIdentifier_didChangeState(
+        fn guidedAccessRestrictionWithIdentifier_didChangeState(
             &self,
             restriction_identifier: &NSString,
             new_restriction_state: UIGuidedAccessRestrictionState,
@@ -71,7 +71,7 @@ extern_protocol!(
 
         #[unsafe(method(textForGuidedAccessRestrictionWithIdentifier:))]
         #[unsafe(method_family = none)]
-        unsafe fn textForGuidedAccessRestrictionWithIdentifier(
+        fn textForGuidedAccessRestrictionWithIdentifier(
             &self,
             restriction_identifier: &NSString,
         ) -> Option<Retained<NSString>>;
@@ -79,7 +79,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(detailTextForGuidedAccessRestrictionWithIdentifier:))]
         #[unsafe(method_family = none)]
-        unsafe fn detailTextForGuidedAccessRestrictionWithIdentifier(
+        fn detailTextForGuidedAccessRestrictionWithIdentifier(
             &self,
             restriction_identifier: &NSString,
         ) -> Option<Retained<NSString>>;
@@ -89,9 +89,7 @@ extern_protocol!(
 impl UIGuidedAccessRestrictionState {
     #[doc(alias = "UIGuidedAccessRestrictionStateForIdentifier")]
     #[inline]
-    pub unsafe fn for_identifier(
-        restriction_identifier: &NSString,
-    ) -> UIGuidedAccessRestrictionState {
+    pub fn for_identifier(restriction_identifier: &NSString) -> UIGuidedAccessRestrictionState {
         extern "C-unwind" {
             fn UIGuidedAccessRestrictionStateForIdentifier(
                 restriction_identifier: &NSString,
@@ -131,7 +129,7 @@ unsafe impl RefEncode for UIGuidedAccessAccessibilityFeature {
 
 #[cfg(feature = "block2")]
 #[inline]
-pub unsafe extern "C-unwind" fn UIGuidedAccessConfigureAccessibilityFeatures(
+pub extern "C-unwind" fn UIGuidedAccessConfigureAccessibilityFeatures(
     features: UIGuidedAccessAccessibilityFeature,
     enabled: bool,
     completion: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
@@ -148,9 +146,15 @@ pub unsafe extern "C-unwind" fn UIGuidedAccessConfigureAccessibilityFeatures(
     }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `UIGuidedAccessRestrictionState::for_identifier`"]
-    pub fn UIGuidedAccessRestrictionStateForIdentifier(
-        restriction_identifier: &NSString,
-    ) -> UIGuidedAccessRestrictionState;
+#[deprecated = "renamed to `UIGuidedAccessRestrictionState::for_identifier`"]
+#[inline]
+pub extern "C-unwind" fn UIGuidedAccessRestrictionStateForIdentifier(
+    restriction_identifier: &NSString,
+) -> UIGuidedAccessRestrictionState {
+    extern "C-unwind" {
+        fn UIGuidedAccessRestrictionStateForIdentifier(
+            restriction_identifier: &NSString,
+        ) -> UIGuidedAccessRestrictionState;
+    }
+    unsafe { UIGuidedAccessRestrictionStateForIdentifier(restriction_identifier) }
 }

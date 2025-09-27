@@ -134,40 +134,40 @@ impl UIAccessibilityCustomAction {
 
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Retained<NSString>;
+        pub fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setName(&self, name: &NSString);
+        pub fn setName(&self, name: &NSString);
 
         #[cfg(feature = "UIImage")]
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
-        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
+        pub fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`image`][Self::image].
         #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImage(&self, image: Option<&UIImage>);
+        pub fn setImage(&self, image: Option<&UIImage>);
 
         #[unsafe(method(attributedName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributedName(&self) -> Retained<NSAttributedString>;
+        pub fn attributedName(&self) -> Retained<NSAttributedString>;
 
         /// Setter for [`attributedName`][Self::attributedName].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAttributedName(&self, attributed_name: &NSAttributedString);
+        pub fn setAttributedName(&self, attributed_name: &NSAttributedString);
 
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]
-        pub unsafe fn target(&self) -> Option<Retained<AnyObject>>;
+        pub fn target(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`target`][Self::target].
         ///
@@ -219,14 +219,14 @@ impl UIAccessibilityCustomAction {
 
         #[unsafe(method(category))]
         #[unsafe(method_family = none)]
-        pub unsafe fn category(&self) -> Option<Retained<NSString>>;
+        pub fn category(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`category`][Self::category].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCategory:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCategory(&self, category: Option<&NSString>);
+        pub fn setCategory(&self, category: Option<&NSString>);
     );
 }
 
@@ -235,11 +235,11 @@ impl UIAccessibilityCustomAction {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 

@@ -13,39 +13,35 @@ extern_protocol!(
     pub unsafe trait UITextDocumentProxy: UIKeyInput + MainThreadOnly {
         #[unsafe(method(documentContextBeforeInput))]
         #[unsafe(method_family = none)]
-        unsafe fn documentContextBeforeInput(&self) -> Option<Retained<NSString>>;
+        fn documentContextBeforeInput(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(documentContextAfterInput))]
         #[unsafe(method_family = none)]
-        unsafe fn documentContextAfterInput(&self) -> Option<Retained<NSString>>;
+        fn documentContextAfterInput(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(selectedText))]
         #[unsafe(method_family = none)]
-        unsafe fn selectedText(&self) -> Option<Retained<NSString>>;
+        fn selectedText(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(documentInputMode))]
         #[unsafe(method_family = none)]
-        unsafe fn documentInputMode(&self) -> Option<Retained<UITextInputMode>>;
+        fn documentInputMode(&self) -> Option<Retained<UITextInputMode>>;
 
         #[unsafe(method(documentIdentifier))]
         #[unsafe(method_family = none)]
-        unsafe fn documentIdentifier(&self) -> Retained<NSUUID>;
+        fn documentIdentifier(&self) -> Retained<NSUUID>;
 
         #[unsafe(method(adjustTextPositionByCharacterOffset:))]
         #[unsafe(method_family = none)]
-        unsafe fn adjustTextPositionByCharacterOffset(&self, offset: NSInteger);
+        fn adjustTextPositionByCharacterOffset(&self, offset: NSInteger);
 
         #[unsafe(method(setMarkedText:selectedRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn setMarkedText_selectedRange(
-            &self,
-            marked_text: &NSString,
-            selected_range: NSRange,
-        );
+        fn setMarkedText_selectedRange(&self, marked_text: &NSString, selected_range: NSRange);
 
         #[unsafe(method(unmarkText))]
         #[unsafe(method_family = none)]
-        unsafe fn unmarkText(&self);
+        fn unmarkText(&self);
     }
 );
 
@@ -120,65 +116,64 @@ impl UIInputViewController {
         #[cfg(all(feature = "UIInputView", feature = "UIView"))]
         #[unsafe(method(inputView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inputView(&self) -> Option<Retained<UIInputView>>;
+        pub fn inputView(&self) -> Option<Retained<UIInputView>>;
 
         #[cfg(all(feature = "UIInputView", feature = "UIView"))]
         /// Setter for [`inputView`][Self::inputView].
         #[unsafe(method(setInputView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInputView(&self, input_view: Option<&UIInputView>);
+        pub fn setInputView(&self, input_view: Option<&UIInputView>);
 
         #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
         #[unsafe(method(textDocumentProxy))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textDocumentProxy(&self)
-            -> Retained<ProtocolObject<dyn UITextDocumentProxy>>;
+        pub fn textDocumentProxy(&self) -> Retained<ProtocolObject<dyn UITextDocumentProxy>>;
 
         #[unsafe(method(primaryLanguage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn primaryLanguage(&self) -> Option<Retained<NSString>>;
+        pub fn primaryLanguage(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`primaryLanguage`][Self::primaryLanguage].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrimaryLanguage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPrimaryLanguage(&self, primary_language: Option<&NSString>);
+        pub fn setPrimaryLanguage(&self, primary_language: Option<&NSString>);
 
         #[unsafe(method(hasDictationKey))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasDictationKey(&self) -> bool;
+        pub fn hasDictationKey(&self) -> bool;
 
         /// Setter for [`hasDictationKey`][Self::hasDictationKey].
         #[unsafe(method(setHasDictationKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHasDictationKey(&self, has_dictation_key: bool);
+        pub fn setHasDictationKey(&self, has_dictation_key: bool);
 
         #[unsafe(method(hasFullAccess))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasFullAccess(&self) -> bool;
+        pub fn hasFullAccess(&self) -> bool;
 
         #[unsafe(method(needsInputModeSwitchKey))]
         #[unsafe(method_family = none)]
-        pub unsafe fn needsInputModeSwitchKey(&self) -> bool;
+        pub fn needsInputModeSwitchKey(&self) -> bool;
 
         #[unsafe(method(dismissKeyboard))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dismissKeyboard(&self);
+        pub fn dismissKeyboard(&self);
 
         #[unsafe(method(advanceToNextInputMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn advanceToNextInputMode(&self);
+        pub fn advanceToNextInputMode(&self);
 
         #[cfg(all(feature = "UIEvent", feature = "UIView"))]
         #[unsafe(method(handleInputModeListFromView:withEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn handleInputModeListFromView_withEvent(&self, view: &UIView, event: &UIEvent);
+        pub fn handleInputModeListFromView_withEvent(&self, view: &UIView, event: &UIEvent);
 
         #[cfg(all(feature = "UILexicon", feature = "block2"))]
         #[unsafe(method(requestSupplementaryLexiconWithCompletion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestSupplementaryLexiconWithCompletion(
+        pub fn requestSupplementaryLexiconWithCompletion(
             &self,
             completion_handler: &block2::DynBlock<dyn Fn(NonNull<UILexicon>)>,
         );
@@ -191,7 +186,7 @@ impl UIInputViewController {
     extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
+        pub fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
@@ -215,10 +210,10 @@ impl UIInputViewController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

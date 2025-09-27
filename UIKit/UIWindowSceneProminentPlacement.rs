@@ -37,7 +37,7 @@ impl UIWindowSceneProminentPlacement {
         /// Creates a prominent placement.
         #[unsafe(method(prominentPlacement))]
         #[unsafe(method_family = none)]
-        pub unsafe fn prominentPlacement() -> Retained<Self>;
+        pub fn prominentPlacement() -> Retained<Self>;
     );
 }
 
@@ -47,10 +47,18 @@ impl UIWindowSceneProminentPlacement {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "UIWindowScenePlacement")]
+impl DefaultRetained for UIWindowSceneProminentPlacement {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

@@ -30,7 +30,7 @@ impl UIActivityItemsConfiguration {
     extern_methods!(
         #[unsafe(method(localObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
+        pub fn localObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`localObject`][Self::localObject].
         ///
@@ -44,7 +44,7 @@ impl UIActivityItemsConfiguration {
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
         #[unsafe(method(supportedInteractions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportedInteractions(
+        pub fn supportedInteractions(
             &self,
         ) -> Retained<NSArray<UIActivityItemsConfigurationInteraction>>;
 
@@ -54,7 +54,7 @@ impl UIActivityItemsConfiguration {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSupportedInteractions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSupportedInteractions(
+        pub fn setSupportedInteractions(
             &self,
             supported_interactions: &NSArray<UIActivityItemsConfigurationInteraction>,
         );
@@ -168,7 +168,7 @@ impl UIActivityItemsConfiguration {
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
         #[unsafe(method(applicationActivitiesProvider))]
         #[unsafe(method_family = none)]
-        pub unsafe fn applicationActivitiesProvider(
+        pub fn applicationActivitiesProvider(
             &self,
         ) -> *mut block2::DynBlock<dyn Fn() -> NonNull<NSArray<UIActivity>>>;
 
@@ -189,38 +189,38 @@ impl UIActivityItemsConfiguration {
 
         #[unsafe(method(activityItemsConfigurationWithObjects:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activityItemsConfigurationWithObjects(
+        pub fn activityItemsConfigurationWithObjects(
             objects: &NSArray<ProtocolObject<dyn NSItemProviderWriting>>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[unsafe(method(activityItemsConfigurationWithItemProviders:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activityItemsConfigurationWithItemProviders(
+        pub fn activityItemsConfigurationWithItemProviders(
             item_providers: &NSArray<NSItemProvider>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
         #[unsafe(method(initWithObjects:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithObjects(
+        pub fn initWithObjects(
             this: Allocated<Self>,
             objects: &NSArray<ProtocolObject<dyn NSItemProviderWriting>>,
         ) -> Retained<Self>;
 
         #[unsafe(method(initWithItemProviders:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithItemProviders(
+        pub fn initWithItemProviders(
             this: Allocated<Self>,
             item_providers: &NSArray<NSItemProvider>,
         ) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

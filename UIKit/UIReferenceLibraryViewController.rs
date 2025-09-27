@@ -68,15 +68,12 @@ impl UIReferenceLibraryViewController {
         /// Returns YES if any installed dictionary has a definition for the provided term.
         #[unsafe(method(dictionaryHasDefinitionForTerm:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dictionaryHasDefinitionForTerm(
-            term: &NSString,
-            mtm: MainThreadMarker,
-        ) -> bool;
+        pub fn dictionaryHasDefinitionForTerm(term: &NSString, mtm: MainThreadMarker) -> bool;
 
         /// Initializes an instance of a UIReferenceLibraryViewController with the term provided.
         #[unsafe(method(initWithTerm:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithTerm(this: Allocated<Self>, term: &NSString) -> Retained<Self>;
+        pub fn initWithTerm(this: Allocated<Self>, term: &NSString) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -87,7 +84,7 @@ impl UIReferenceLibraryViewController {
 
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
+        pub fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
@@ -95,7 +92,7 @@ impl UIReferenceLibraryViewController {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -105,6 +102,6 @@ impl UIReferenceLibraryViewController {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

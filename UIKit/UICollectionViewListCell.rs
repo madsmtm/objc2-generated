@@ -159,47 +159,47 @@ impl UICollectionViewListCell {
         /// Returns a default list content configuration for the cell's style.
         #[unsafe(method(defaultContentConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultContentConfiguration(&self) -> Retained<UIListContentConfiguration>;
+        pub fn defaultContentConfiguration(&self) -> Retained<UIListContentConfiguration>;
 
         /// Defines the level of indentation for this cell. This is set automatically when using a hierarchical data source.
         #[unsafe(method(indentationLevel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indentationLevel(&self) -> NSInteger;
+        pub fn indentationLevel(&self) -> NSInteger;
 
         /// Setter for [`indentationLevel`][Self::indentationLevel].
         #[unsafe(method(setIndentationLevel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndentationLevel(&self, indentation_level: NSInteger);
+        pub fn setIndentationLevel(&self, indentation_level: NSInteger);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The width of an indentation level. The overall indentation will be indentationWidth * indentationLevel.
         #[unsafe(method(indentationWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indentationWidth(&self) -> CGFloat;
+        pub fn indentationWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`indentationWidth`][Self::indentationWidth].
         #[unsafe(method(setIndentationWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndentationWidth(&self, indentation_width: CGFloat);
+        pub fn setIndentationWidth(&self, indentation_width: CGFloat);
 
         /// Defines whether accessories on the leading side are indented as well. If NO, only the content view will be indented.
         /// Defaults to YES.
         #[unsafe(method(indentsAccessories))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indentsAccessories(&self) -> bool;
+        pub fn indentsAccessories(&self) -> bool;
 
         /// Setter for [`indentsAccessories`][Self::indentsAccessories].
         #[unsafe(method(setIndentsAccessories:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndentsAccessories(&self, indents_accessories: bool);
+        pub fn setIndentsAccessories(&self, indents_accessories: bool);
 
         #[cfg(feature = "UICellAccessory")]
         /// All the accessories that should be decorating the cell. The order and whether an accessory is
         /// rendered on the leading or trailing side of the cell is defined by the system.
         #[unsafe(method(accessories))]
         #[unsafe(method_family = none)]
-        pub unsafe fn accessories(&self) -> Retained<NSArray<UICellAccessory>>;
+        pub fn accessories(&self) -> Retained<NSArray<UICellAccessory>>;
 
         #[cfg(feature = "UICellAccessory")]
         /// Setter for [`accessories`][Self::accessories].
@@ -207,7 +207,7 @@ impl UICollectionViewListCell {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessories:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAccessories(&self, accessories: &NSArray<UICellAccessory>);
+        pub fn setAccessories(&self, accessories: &NSArray<UICellAccessory>);
 
         #[cfg(feature = "UILayoutGuide")]
         /// When used in a section that supports separators, this guide can be used to adjust the preferred
@@ -218,7 +218,7 @@ impl UICollectionViewListCell {
         /// See: UICollectionLayoutListConfiguration
         #[unsafe(method(separatorLayoutGuide))]
         #[unsafe(method_family = none)]
-        pub unsafe fn separatorLayoutGuide(&self) -> Retained<UILayoutGuide>;
+        pub fn separatorLayoutGuide(&self) -> Retained<UILayoutGuide>;
     );
 }
 
@@ -233,7 +233,7 @@ impl UICollectionViewListCell {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -247,7 +247,7 @@ impl UICollectionViewListCell {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -261,6 +261,6 @@ impl UICollectionViewListCell {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

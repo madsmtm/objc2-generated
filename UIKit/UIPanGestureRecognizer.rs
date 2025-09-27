@@ -122,7 +122,7 @@ impl UIPanGestureRecognizer {
         /// Setter for [`allowedScrollTypesMask`][Self::allowedScrollTypesMask].
         #[unsafe(method(setAllowedScrollTypesMask:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowedScrollTypesMask(&self, allowed_scroll_types_mask: UIScrollTypeMask);
+        pub fn setAllowedScrollTypesMask(&self, allowed_scroll_types_mask: UIScrollTypeMask);
     );
 }
 
@@ -144,7 +144,7 @@ impl UIPanGestureRecognizer {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -164,6 +164,6 @@ impl UIPanGestureRecognizer {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

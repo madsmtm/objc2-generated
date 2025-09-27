@@ -38,21 +38,21 @@ impl UIManagedDocument {
     extern_methods!(
         #[unsafe(method(persistentStoreName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn persistentStoreName(mtm: MainThreadMarker) -> Retained<NSString>;
+        pub fn persistentStoreName(mtm: MainThreadMarker) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-data")]
         #[unsafe(method(managedObjectContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn managedObjectContext(&self) -> Retained<NSManagedObjectContext>;
+        pub fn managedObjectContext(&self) -> Retained<NSManagedObjectContext>;
 
         #[cfg(feature = "objc2-core-data")]
         #[unsafe(method(managedObjectModel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn managedObjectModel(&self) -> Retained<NSManagedObjectModel>;
+        pub fn managedObjectModel(&self) -> Retained<NSManagedObjectModel>;
 
         #[unsafe(method(persistentStoreOptions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn persistentStoreOptions(&self) -> Option<Retained<NSDictionary>>;
+        pub fn persistentStoreOptions(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`persistentStoreOptions`][Self::persistentStoreOptions].
         ///
@@ -70,14 +70,14 @@ impl UIManagedDocument {
 
         #[unsafe(method(modelConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn modelConfiguration(&self) -> Option<Retained<NSString>>;
+        pub fn modelConfiguration(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`modelConfiguration`][Self::modelConfiguration].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setModelConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setModelConfiguration(&self, model_configuration: Option<&NSString>);
+        pub fn setModelConfiguration(&self, model_configuration: Option<&NSString>);
 
         /// # Safety
         ///
@@ -94,21 +94,18 @@ impl UIManagedDocument {
 
         #[unsafe(method(persistentStoreTypeForFileType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn persistentStoreTypeForFileType(
-            &self,
-            file_type: &NSString,
-        ) -> Retained<NSString>;
+        pub fn persistentStoreTypeForFileType(&self, file_type: &NSString) -> Retained<NSString>;
 
         #[unsafe(method(readAdditionalContentFromURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn readAdditionalContentFromURL_error(
+        pub fn readAdditionalContentFromURL_error(
             &self,
             absolute_url: &NSURL,
         ) -> Result<(), Retained<NSError>>;
 
         #[unsafe(method(additionalContentForURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn additionalContentForURL_error(
+        pub fn additionalContentForURL_error(
             &self,
             absolute_url: &NSURL,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
@@ -133,7 +130,7 @@ impl UIManagedDocument {
     extern_methods!(
         #[unsafe(method(initWithFileURL:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFileURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
+        pub fn initWithFileURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
     );
 }
 
@@ -143,10 +140,10 @@ impl UIManagedDocument {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

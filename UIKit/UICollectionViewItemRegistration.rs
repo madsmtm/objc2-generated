@@ -70,12 +70,12 @@ impl UICollectionViewCellRegistration {
 
         #[unsafe(method(cellClass))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cellClass(&self) -> Option<&'static AnyClass>;
+        pub fn cellClass(&self) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "UINib")]
         #[unsafe(method(cellNib))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cellNib(&self) -> Option<Retained<UINib>>;
+        pub fn cellNib(&self) -> Option<Retained<UINib>>;
 
         #[cfg(all(
             feature = "UICollectionViewCell",
@@ -101,11 +101,11 @@ impl UICollectionViewCellRegistration {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -174,16 +174,16 @@ impl UICollectionViewSupplementaryRegistration {
 
         #[unsafe(method(supplementaryClass))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supplementaryClass(&self) -> Option<&'static AnyClass>;
+        pub fn supplementaryClass(&self) -> Option<&'static AnyClass>;
 
         #[cfg(feature = "UINib")]
         #[unsafe(method(supplementaryNib))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supplementaryNib(&self) -> Option<Retained<UINib>>;
+        pub fn supplementaryNib(&self) -> Option<Retained<UINib>>;
 
         #[unsafe(method(elementKind))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementKind(&self) -> Retained<NSString>;
+        pub fn elementKind(&self) -> Retained<NSString>;
 
         #[cfg(all(
             feature = "UICollectionViewCell",
@@ -209,10 +209,10 @@ impl UICollectionViewSupplementaryRegistration {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

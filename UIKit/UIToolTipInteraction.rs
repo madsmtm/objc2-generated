@@ -31,7 +31,7 @@ impl UIToolTipInteraction {
         /// The interaction's delegate.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIToolTipInteractionDelegate>>>;
 
@@ -40,7 +40,7 @@ impl UIToolTipInteraction {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
+        pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIToolTipInteractionDelegate>>,
         );
@@ -48,33 +48,33 @@ impl UIToolTipInteraction {
         /// Indicates whether the interaction is enabled. Defaults to YES.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEnabled(&self) -> bool;
+        pub fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEnabled(&self, enabled: bool);
+        pub fn setEnabled(&self, enabled: bool);
 
         /// The interaction's default tool tip string.
         #[unsafe(method(defaultToolTip))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultToolTip(&self) -> Option<Retained<NSString>>;
+        pub fn defaultToolTip(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`defaultToolTip`][Self::defaultToolTip].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDefaultToolTip:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDefaultToolTip(&self, default_tool_tip: Option<&NSString>);
+        pub fn setDefaultToolTip(&self, default_tool_tip: Option<&NSString>);
 
         /// Creates a UIToolTipInteraction.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(initWithDefaultToolTip:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDefaultToolTip(
+        pub fn initWithDefaultToolTip(
             this: Allocated<Self>,
             default_tool_tip: &NSString,
         ) -> Retained<Self>;
@@ -86,7 +86,7 @@ impl UIToolTipInteraction {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -107,18 +107,18 @@ impl UIToolTipConfiguration {
         /// The string to annotate the contents at a given point.
         #[unsafe(method(toolTip))]
         #[unsafe(method_family = none)]
-        pub unsafe fn toolTip(&self) -> Retained<NSString>;
+        pub fn toolTip(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The rectangle containing the contents being annotated by the tool tip. Value is CGRectNull if the tool tip applies to the entire view.
         #[unsafe(method(sourceRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sourceRect(&self) -> CGRect;
+        pub fn sourceRect(&self) -> CGRect;
 
         /// Creates a UIToolTipConfiguration with the provided string, applied to the entire view.
         #[unsafe(method(configurationWithToolTip:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithToolTip(
+        pub fn configurationWithToolTip(
             tool_tip: &NSString,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
@@ -127,7 +127,7 @@ impl UIToolTipConfiguration {
         /// Creates a UIToolTipConfiguration with the provided string, applied to the specified region.
         #[unsafe(method(configurationWithToolTip:inRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithToolTip_inRect(
+        pub fn configurationWithToolTip_inRect(
             tool_tip: &NSString,
             source_rect: CGRect,
             mtm: MainThreadMarker,
@@ -135,11 +135,11 @@ impl UIToolTipConfiguration {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -159,7 +159,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(toolTipInteraction:configurationAtPoint:))]
         #[unsafe(method_family = none)]
-        unsafe fn toolTipInteraction_configurationAtPoint(
+        fn toolTipInteraction_configurationAtPoint(
             &self,
             interaction: &UIToolTipInteraction,
             point: CGPoint,

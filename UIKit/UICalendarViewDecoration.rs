@@ -44,7 +44,7 @@ impl UICalendarViewDecoration {
         /// Creates a default decoration with a circle image.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UIColor", feature = "UIImage"))]
         /// Creates a new image-based decoration with the specified image, color, and size.
@@ -59,7 +59,7 @@ impl UICalendarViewDecoration {
         /// Parameter `size`: The preferred size of the decoration. The default is UICalendarViewDecorationSizeMedium
         #[unsafe(method(initWithImage:color:size:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithImage_color_size(
+        pub fn initWithImage_color_size(
             this: Allocated<Self>,
             image: Option<&UIImage>,
             color: Option<&UIColor>,
@@ -85,7 +85,7 @@ impl UICalendarViewDecoration {
         /// Creates a default image accessory with a circle image, and the specified color and size.
         #[unsafe(method(decorationWithColor:size:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decorationWithColor_size(
+        pub fn decorationWithColor_size(
             color: Option<&UIColor>,
             size: UICalendarViewDecorationSize,
             mtm: MainThreadMarker,
@@ -95,7 +95,7 @@ impl UICalendarViewDecoration {
         /// Creates an accessory with the specified image, and default color, and size.
         #[unsafe(method(decorationWithImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decorationWithImage(
+        pub fn decorationWithImage(
             image: Option<&UIImage>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
@@ -104,7 +104,7 @@ impl UICalendarViewDecoration {
         /// Creates an accessory with the specified image, color, and size.
         #[unsafe(method(decorationWithImage:color:size:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decorationWithImage_color_size(
+        pub fn decorationWithImage_color_size(
             image: Option<&UIImage>,
             color: Option<&UIColor>,
             size: UICalendarViewDecorationSize,
@@ -133,6 +133,6 @@ impl UICalendarViewDecoration {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

@@ -33,13 +33,13 @@ impl UITabSidebarItem {
         /// The tab that the receiver represents. Only one of `tab` or `action` will be valid for an item.
         #[unsafe(method(tab))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tab(&self) -> Option<Retained<UITab>>;
+        pub fn tab(&self) -> Option<Retained<UITab>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// The action that the receiver represents. Only one of `tab` or `action` will be valid for an item.
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
-        pub unsafe fn action(&self) -> Option<Retained<UIAction>>;
+        pub fn action(&self) -> Option<Retained<UIAction>>;
 
         #[cfg(all(
             feature = "UICellConfigurationState",
@@ -48,15 +48,13 @@ impl UITabSidebarItem {
         /// The current configuration state of the sidebar item.
         #[unsafe(method(configurationState))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationState(&self) -> Retained<UICellConfigurationState>;
+        pub fn configurationState(&self) -> Retained<UICellConfigurationState>;
 
         #[cfg(feature = "UIContentConfiguration")]
         /// The content configuration to use when displaying this item.
         #[unsafe(method(contentConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentConfiguration(
-            &self,
-        ) -> Retained<ProtocolObject<dyn UIContentConfiguration>>;
+        pub fn contentConfiguration(&self) -> Retained<ProtocolObject<dyn UIContentConfiguration>>;
 
         #[cfg(feature = "UIContentConfiguration")]
         /// Setter for [`contentConfiguration`][Self::contentConfiguration].
@@ -64,7 +62,7 @@ impl UITabSidebarItem {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentConfiguration(
+        pub fn setContentConfiguration(
             &self,
             content_configuration: &ProtocolObject<dyn UIContentConfiguration>,
         );
@@ -73,7 +71,7 @@ impl UITabSidebarItem {
         /// The background configuration to use when displaying this item.
         #[unsafe(method(backgroundConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
+        pub fn backgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Setter for [`backgroundConfiguration`][Self::backgroundConfiguration].
@@ -81,7 +79,7 @@ impl UITabSidebarItem {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBackgroundConfiguration(
+        pub fn setBackgroundConfiguration(
             &self,
             background_configuration: &UIBackgroundConfiguration,
         );
@@ -90,7 +88,7 @@ impl UITabSidebarItem {
         /// Cell accessories to use when displaying this item. Some accessories may not be shown if it conflicts with system default accessories.
         #[unsafe(method(accessories))]
         #[unsafe(method_family = none)]
-        pub unsafe fn accessories(&self) -> Retained<NSArray<UICellAccessory>>;
+        pub fn accessories(&self) -> Retained<NSArray<UICellAccessory>>;
 
         #[cfg(feature = "UICellAccessory")]
         /// Setter for [`accessories`][Self::accessories].
@@ -98,32 +96,32 @@ impl UITabSidebarItem {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAccessories:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAccessories(&self, accessories: &NSArray<UICellAccessory>);
+        pub fn setAccessories(&self, accessories: &NSArray<UICellAccessory>);
 
         #[cfg(feature = "UIListContentConfiguration")]
         /// Returns the default content configuration for this item and the configuration state.
         #[unsafe(method(defaultContentConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultContentConfiguration(&self) -> Retained<UIListContentConfiguration>;
+        pub fn defaultContentConfiguration(&self) -> Retained<UIListContentConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Returns the default background configuration for this item and the configuration state.
         #[unsafe(method(defaultBackgroundConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultBackgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
+        pub fn defaultBackgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
 
         /// Creates a sidebar item from the specified request. The sidebar item will be preconfigured with the appropriate defaults for its content.
         #[unsafe(method(itemFromRequest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn itemFromRequest(request: &UITabSidebarItemRequest) -> Retained<Self>;
+        pub fn itemFromRequest(request: &UITabSidebarItemRequest) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -145,20 +143,20 @@ impl UITabSidebarItemRequest {
         /// The tab that the receiver represents. Only one of `tab` or `action` will be valid for an item.
         #[unsafe(method(tab))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tab(&self) -> Option<Retained<UITab>>;
+        pub fn tab(&self) -> Option<Retained<UITab>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// The action that the receiver represents. Only one of `tab` or `action` will be valid for an item.
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
-        pub unsafe fn action(&self) -> Option<Retained<UIAction>>;
+        pub fn action(&self) -> Option<Retained<UIAction>>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

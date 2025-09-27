@@ -42,7 +42,7 @@ extern_protocol!(
         #[deprecated = "UIDocumentMenuDelegate is deprecated. Use UIDocumentPickerViewController directly."]
         #[unsafe(method(documentMenu:didPickDocumentPicker:))]
         #[unsafe(method_family = none)]
-        unsafe fn documentMenu_didPickDocumentPicker(
+        fn documentMenu_didPickDocumentPicker(
             &self,
             document_menu: &UIDocumentMenuViewController,
             document_picker: &UIDocumentPickerViewController,
@@ -53,7 +53,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(documentMenuWasCancelled:))]
         #[unsafe(method_family = none)]
-        unsafe fn documentMenuWasCancelled(&self, document_menu: &UIDocumentMenuViewController);
+        fn documentMenuWasCancelled(&self, document_menu: &UIDocumentMenuViewController);
     }
 );
 
@@ -121,7 +121,7 @@ impl UIDocumentMenuViewController {
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
         #[unsafe(method(initWithDocumentTypes:inMode:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDocumentTypes_inMode(
+        pub fn initWithDocumentTypes_inMode(
             this: Allocated<Self>,
             allowed_ut_is: &NSArray<NSString>,
             mode: UIDocumentPickerMode,
@@ -131,7 +131,7 @@ impl UIDocumentMenuViewController {
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
         #[unsafe(method(initWithURL:inMode:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithURL_inMode(
+        pub fn initWithURL_inMode(
             this: Allocated<Self>,
             url: &NSURL,
             mode: UIDocumentPickerMode,
@@ -152,7 +152,7 @@ impl UIDocumentMenuViewController {
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
         #[unsafe(method(addOptionWithTitle:image:order:handler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addOptionWithTitle_image_order_handler(
+        pub fn addOptionWithTitle_image_order_handler(
             &self,
             title: &NSString,
             image: Option<&UIImage>,
@@ -163,9 +163,7 @@ impl UIDocumentMenuViewController {
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn UIDocumentMenuDelegate>>>;
+        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UIDocumentMenuDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
@@ -173,10 +171,7 @@ impl UIDocumentMenuViewController {
         #[deprecated = "UIDocumentMenuViewController is deprecated. Use UIDocumentPickerViewController directly."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn UIDocumentMenuDelegate>>,
-        );
+        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UIDocumentMenuDelegate>>);
     );
 }
 
@@ -186,7 +181,7 @@ impl UIDocumentMenuViewController {
     extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
+        pub fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
@@ -200,10 +195,10 @@ impl UIDocumentMenuViewController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

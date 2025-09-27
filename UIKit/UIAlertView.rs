@@ -126,7 +126,7 @@ impl UIAlertView {
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -142,7 +142,7 @@ impl UIAlertView {
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(&self) -> Option<Retained<AnyObject>>;
+        pub fn delegate(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
@@ -159,7 +159,7 @@ impl UIAlertView {
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
-        pub unsafe fn title(&self) -> Retained<NSString>;
+        pub fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         ///
@@ -167,12 +167,12 @@ impl UIAlertView {
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTitle(&self, title: &NSString);
+        pub fn setTitle(&self, title: &NSString);
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(message))]
         #[unsafe(method_family = none)]
-        pub unsafe fn message(&self) -> Option<Retained<NSString>>;
+        pub fn message(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`message`][Self::message].
         ///
@@ -180,56 +180,53 @@ impl UIAlertView {
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(setMessage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMessage(&self, message: Option<&NSString>);
+        pub fn setMessage(&self, message: Option<&NSString>);
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(addButtonWithTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addButtonWithTitle(&self, title: Option<&NSString>) -> NSInteger;
+        pub fn addButtonWithTitle(&self, title: Option<&NSString>) -> NSInteger;
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(buttonTitleAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn buttonTitleAtIndex(
-            &self,
-            button_index: NSInteger,
-        ) -> Option<Retained<NSString>>;
+        pub fn buttonTitleAtIndex(&self, button_index: NSInteger) -> Option<Retained<NSString>>;
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(numberOfButtons))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfButtons(&self) -> NSInteger;
+        pub fn numberOfButtons(&self) -> NSInteger;
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(cancelButtonIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancelButtonIndex(&self) -> NSInteger;
+        pub fn cancelButtonIndex(&self) -> NSInteger;
 
         /// Setter for [`cancelButtonIndex`][Self::cancelButtonIndex].
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(setCancelButtonIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCancelButtonIndex(&self, cancel_button_index: NSInteger);
+        pub fn setCancelButtonIndex(&self, cancel_button_index: NSInteger);
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(firstOtherButtonIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn firstOtherButtonIndex(&self) -> NSInteger;
+        pub fn firstOtherButtonIndex(&self) -> NSInteger;
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(isVisible))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isVisible(&self) -> bool;
+        pub fn isVisible(&self) -> bool;
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(show))]
         #[unsafe(method_family = none)]
-        pub unsafe fn show(&self);
+        pub fn show(&self);
 
         #[deprecated = "UIAlertView is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleAlert instead"]
         #[unsafe(method(dismissWithClickedButtonIndex:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dismissWithClickedButtonIndex_animated(
+        pub fn dismissWithClickedButtonIndex_animated(
             &self,
             button_index: NSInteger,
             animated: bool,
@@ -237,17 +234,17 @@ impl UIAlertView {
 
         #[unsafe(method(alertViewStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alertViewStyle(&self) -> UIAlertViewStyle;
+        pub fn alertViewStyle(&self) -> UIAlertViewStyle;
 
         /// Setter for [`alertViewStyle`][Self::alertViewStyle].
         #[unsafe(method(setAlertViewStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAlertViewStyle(&self, alert_view_style: UIAlertViewStyle);
+        pub fn setAlertViewStyle(&self, alert_view_style: UIAlertViewStyle);
 
         #[cfg(all(feature = "UIControl", feature = "UITextField"))]
         #[unsafe(method(textFieldAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textFieldAtIndex(
+        pub fn textFieldAtIndex(
             &self,
             text_field_index: NSInteger,
         ) -> Option<Retained<UITextField>>;
@@ -260,7 +257,7 @@ impl UIAlertView {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -270,7 +267,7 @@ impl UIAlertView {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -282,39 +279,35 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(alertView:clickedButtonAtIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn alertView_clickedButtonAtIndex(
-            &self,
-            alert_view: &UIAlertView,
-            button_index: NSInteger,
-        );
+        fn alertView_clickedButtonAtIndex(&self, alert_view: &UIAlertView, button_index: NSInteger);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "Use UIAlertController instead."]
         #[optional]
         #[unsafe(method(alertViewCancel:))]
         #[unsafe(method_family = none)]
-        unsafe fn alertViewCancel(&self, alert_view: &UIAlertView);
+        fn alertViewCancel(&self, alert_view: &UIAlertView);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "Use UIAlertController instead."]
         #[optional]
         #[unsafe(method(willPresentAlertView:))]
         #[unsafe(method_family = none)]
-        unsafe fn willPresentAlertView(&self, alert_view: &UIAlertView);
+        fn willPresentAlertView(&self, alert_view: &UIAlertView);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "Use UIAlertController instead."]
         #[optional]
         #[unsafe(method(didPresentAlertView:))]
         #[unsafe(method_family = none)]
-        unsafe fn didPresentAlertView(&self, alert_view: &UIAlertView);
+        fn didPresentAlertView(&self, alert_view: &UIAlertView);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "Use UIAlertController instead."]
         #[optional]
         #[unsafe(method(alertView:willDismissWithButtonIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn alertView_willDismissWithButtonIndex(
+        fn alertView_willDismissWithButtonIndex(
             &self,
             alert_view: &UIAlertView,
             button_index: NSInteger,
@@ -325,7 +318,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(alertView:didDismissWithButtonIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn alertView_didDismissWithButtonIndex(
+        fn alertView_didDismissWithButtonIndex(
             &self,
             alert_view: &UIAlertView,
             button_index: NSInteger,
@@ -336,6 +329,6 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(alertViewShouldEnableFirstOtherButton:))]
         #[unsafe(method_family = none)]
-        unsafe fn alertViewShouldEnableFirstOtherButton(&self, alert_view: &UIAlertView) -> bool;
+        fn alertViewShouldEnableFirstOtherButton(&self, alert_view: &UIAlertView) -> bool;
     }
 );

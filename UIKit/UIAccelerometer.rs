@@ -29,22 +29,22 @@ impl UIAcceleration {
         #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
-        pub unsafe fn timestamp(&self) -> NSTimeInterval;
+        pub fn timestamp(&self) -> NSTimeInterval;
 
         #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
         #[unsafe(method(x))]
         #[unsafe(method_family = none)]
-        pub unsafe fn x(&self) -> UIAccelerationValue;
+        pub fn x(&self) -> UIAccelerationValue;
 
         #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
         #[unsafe(method(y))]
         #[unsafe(method_family = none)]
-        pub unsafe fn y(&self) -> UIAccelerationValue;
+        pub fn y(&self) -> UIAccelerationValue;
 
         #[deprecated = "UIAcceleration has been replaced by the CoreMotion framework"]
         #[unsafe(method(z))]
         #[unsafe(method_family = none)]
-        pub unsafe fn z(&self) -> UIAccelerationValue;
+        pub fn z(&self) -> UIAccelerationValue;
     );
 }
 
@@ -53,11 +53,11 @@ impl UIAcceleration {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -79,25 +79,23 @@ impl UIAccelerometer {
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
         #[unsafe(method(sharedAccelerometer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedAccelerometer(mtm: MainThreadMarker) -> Retained<UIAccelerometer>;
+        pub fn sharedAccelerometer(mtm: MainThreadMarker) -> Retained<UIAccelerometer>;
 
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
         #[unsafe(method(updateInterval))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateInterval(&self) -> NSTimeInterval;
+        pub fn updateInterval(&self) -> NSTimeInterval;
 
         /// Setter for [`updateInterval`][Self::updateInterval].
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
         #[unsafe(method(setUpdateInterval:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUpdateInterval(&self, update_interval: NSTimeInterval);
+        pub fn setUpdateInterval(&self, update_interval: NSTimeInterval);
 
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn UIAccelerometerDelegate>>>;
+        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UIAccelerometerDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
@@ -105,10 +103,7 @@ impl UIAccelerometer {
         #[deprecated = "UIAccelerometer has been replaced by the CoreMotion framework"]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn UIAccelerometerDelegate>>,
-        );
+        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UIAccelerometerDelegate>>);
     );
 }
 
@@ -117,11 +112,11 @@ impl UIAccelerometer {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -133,7 +128,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(accelerometer:didAccelerate:))]
         #[unsafe(method_family = none)]
-        unsafe fn accelerometer_didAccelerate(
+        fn accelerometer_didAccelerate(
             &self,
             accelerometer: &UIAccelerometer,
             acceleration: &UIAcceleration,

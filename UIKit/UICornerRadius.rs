@@ -35,25 +35,32 @@ impl UICornerRadius {
         /// A fixed corner radius in points.
         #[unsafe(method(fixedRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fixedRadius(radius: CGFloat) -> Retained<Self>;
+        pub fn fixedRadius(radius: CGFloat) -> Retained<Self>;
 
         /// A dynamic corner radius calculated using the geometry of the view and its container.
         #[unsafe(method(containerConcentricRadius))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containerConcentricRadius() -> Retained<Self>;
+        pub fn containerConcentricRadius() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// A dynamic corner radius calculated using the geometry of the view and its container limited to a minimum radius.
         #[unsafe(method(containerConcentricRadiusWithMinimum:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containerConcentricRadiusWithMinimum(minimum: CGFloat) -> Retained<Self>;
+        pub fn containerConcentricRadiusWithMinimum(minimum: CGFloat) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UICornerRadius {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

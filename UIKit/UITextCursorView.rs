@@ -16,16 +16,16 @@ extern_protocol!(
         /// Enables the blink animation. Disabled by default.
         #[unsafe(method(isBlinking))]
         #[unsafe(method_family = none)]
-        unsafe fn isBlinking(&self) -> bool;
+        fn isBlinking(&self) -> bool;
 
         /// Setter for [`isBlinking`][Self::isBlinking].
         #[unsafe(method(setBlinking:))]
         #[unsafe(method_family = none)]
-        unsafe fn setBlinking(&self, blinking: bool);
+        fn setBlinking(&self, blinking: bool);
 
         /// Call this when the cursor is moving (i.e., during typing) to make sure the cursor doesn't blink while text is being inserted.
         #[unsafe(method(resetBlinkAnimation))]
         #[unsafe(method_family = none)]
-        unsafe fn resetBlinkAnimation(&self);
+        fn resetBlinkAnimation(&self);
     }
 );

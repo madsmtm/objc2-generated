@@ -100,7 +100,7 @@ impl UIWritingToolsCoordinatorContext {
         /// location of the text in your view’s text storage.
         #[unsafe(method(initWithAttributedString:range:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithAttributedString_range(
+        pub fn initWithAttributedString_range(
             this: Allocated<Self>,
             attributed_string: &NSAttributedString,
             range: NSRange,
@@ -108,7 +108,7 @@ impl UIWritingToolsCoordinatorContext {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The portion of your view’s text to evaluate.
         ///
@@ -196,6 +196,13 @@ impl UIWritingToolsCoordinatorContext {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIWritingToolsCoordinatorContext {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

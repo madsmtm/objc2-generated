@@ -42,28 +42,35 @@ impl UIViewLayoutRegion {
     extern_methods!(
         #[unsafe(method(safeAreaLayoutRegionWithCornerAdaptation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn safeAreaLayoutRegionWithCornerAdaptation(
+        pub fn safeAreaLayoutRegionWithCornerAdaptation(
             adaptivity_axis: UIViewLayoutRegionAdaptivityAxis,
         ) -> Retained<UIViewLayoutRegion>;
 
         #[unsafe(method(marginsLayoutRegionWithCornerAdaptation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn marginsLayoutRegionWithCornerAdaptation(
+        pub fn marginsLayoutRegionWithCornerAdaptation(
             adaptivity_axis: UIViewLayoutRegionAdaptivityAxis,
         ) -> Retained<UIViewLayoutRegion>;
 
         #[unsafe(method(readableContentLayoutRegionWithCornerAdaptation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn readableContentLayoutRegionWithCornerAdaptation(
+        pub fn readableContentLayoutRegionWithCornerAdaptation(
             adaptivity_axis: UIViewLayoutRegionAdaptivityAxis,
         ) -> Retained<UIViewLayoutRegion>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIViewLayoutRegion {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

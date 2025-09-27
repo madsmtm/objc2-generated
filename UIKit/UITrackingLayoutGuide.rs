@@ -35,7 +35,7 @@ impl UITrackingLayoutGuide {
         /// Parameter `edge`: When the tracking layout guide is close to this edge, specified constraints will change
         #[unsafe(method(setConstraints:activeWhenNearEdge:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setConstraints_activeWhenNearEdge(
+        pub fn setConstraints_activeWhenNearEdge(
             &self,
             tracking_constraints: &NSArray<NSLayoutConstraint>,
             edge: NSDirectionalRectEdge,
@@ -44,7 +44,7 @@ impl UITrackingLayoutGuide {
         #[cfg(all(feature = "NSLayoutConstraint", feature = "UIGeometry"))]
         #[unsafe(method(constraintsActiveWhenNearEdge:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn constraintsActiveWhenNearEdge(
+        pub fn constraintsActiveWhenNearEdge(
             &self,
             edge: NSDirectionalRectEdge,
         ) -> Retained<NSArray<NSLayoutConstraint>>;
@@ -55,7 +55,7 @@ impl UITrackingLayoutGuide {
         /// Parameter `edge`: When the tracking layout guide is close to this edge, specified constraints will change
         #[unsafe(method(setConstraints:activeWhenAwayFromEdge:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setConstraints_activeWhenAwayFromEdge(
+        pub fn setConstraints_activeWhenAwayFromEdge(
             &self,
             tracking_constraints: &NSArray<NSLayoutConstraint>,
             edge: NSDirectionalRectEdge,
@@ -64,7 +64,7 @@ impl UITrackingLayoutGuide {
         #[cfg(all(feature = "NSLayoutConstraint", feature = "UIGeometry"))]
         #[unsafe(method(constraintsActiveWhenAwayFromEdge:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn constraintsActiveWhenAwayFromEdge(
+        pub fn constraintsActiveWhenAwayFromEdge(
             &self,
             edge: NSDirectionalRectEdge,
         ) -> Retained<NSArray<NSLayoutConstraint>>;
@@ -72,7 +72,7 @@ impl UITrackingLayoutGuide {
         /// Manually remove all constraints from this guide's tracking.
         #[unsafe(method(removeAllTrackedConstraints))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeAllTrackedConstraints(&self);
+        pub fn removeAllTrackedConstraints(&self);
     );
 }
 
@@ -82,10 +82,10 @@ impl UITrackingLayoutGuide {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

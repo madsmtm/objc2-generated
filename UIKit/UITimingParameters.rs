@@ -42,21 +42,21 @@ impl UICubicTimingParameters {
         #[cfg(feature = "UIView")]
         #[unsafe(method(animationCurve))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animationCurve(&self) -> UIViewAnimationCurve;
+        pub fn animationCurve(&self) -> UIViewAnimationCurve;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(controlPoint1))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controlPoint1(&self) -> CGPoint;
+        pub fn controlPoint1(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(controlPoint2))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controlPoint2(&self) -> CGPoint;
+        pub fn controlPoint2(&self) -> CGPoint;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -71,7 +71,7 @@ impl UICubicTimingParameters {
         #[cfg(feature = "UIView")]
         #[unsafe(method(initWithAnimationCurve:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithAnimationCurve(
+        pub fn initWithAnimationCurve(
             this: Allocated<Self>,
             curve: UIViewAnimationCurve,
         ) -> Retained<Self>;
@@ -79,7 +79,7 @@ impl UICubicTimingParameters {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithControlPoint1:controlPoint2:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithControlPoint1_controlPoint2(
+        pub fn initWithControlPoint1_controlPoint2(
             this: Allocated<Self>,
             point1: CGPoint,
             point2: CGPoint,
@@ -92,7 +92,7 @@ impl UICubicTimingParameters {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -130,11 +130,11 @@ impl UISpringTimingParameters {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initialVelocity))]
         #[unsafe(method_family = none)]
-        pub unsafe fn initialVelocity(&self) -> CGVector;
+        pub fn initialVelocity(&self) -> CGVector;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -149,7 +149,7 @@ impl UISpringTimingParameters {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithDampingRatio:initialVelocity:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDampingRatio_initialVelocity(
+        pub fn initWithDampingRatio_initialVelocity(
             this: Allocated<Self>,
             ratio: CGFloat,
             velocity: CGVector,
@@ -158,7 +158,7 @@ impl UISpringTimingParameters {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithMass:stiffness:damping:initialVelocity:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithMass_stiffness_damping_initialVelocity(
+        pub fn initWithMass_stiffness_damping_initialVelocity(
             this: Allocated<Self>,
             mass: CGFloat,
             stiffness: CGFloat,
@@ -169,13 +169,12 @@ impl UISpringTimingParameters {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithDampingRatio:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDampingRatio(this: Allocated<Self>, ratio: CGFloat)
-            -> Retained<Self>;
+        pub fn initWithDampingRatio(this: Allocated<Self>, ratio: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithDuration:bounce:initialVelocity:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDuration_bounce_initialVelocity(
+        pub fn initWithDuration_bounce_initialVelocity(
             this: Allocated<Self>,
             duration: NSTimeInterval,
             bounce: CGFloat,
@@ -185,7 +184,7 @@ impl UISpringTimingParameters {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithDuration:bounce:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDuration_bounce(
+        pub fn initWithDuration_bounce(
             this: Allocated<Self>,
             duration: NSTimeInterval,
             bounce: CGFloat,
@@ -198,6 +197,6 @@ impl UISpringTimingParameters {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

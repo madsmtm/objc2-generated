@@ -81,78 +81,78 @@ impl UIDevice {
 
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Retained<NSString>;
+        pub fn name(&self) -> Retained<NSString>;
 
         #[unsafe(method(model))]
         #[unsafe(method_family = none)]
-        pub unsafe fn model(&self) -> Retained<NSString>;
+        pub fn model(&self) -> Retained<NSString>;
 
         #[unsafe(method(localizedModel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedModel(&self) -> Retained<NSString>;
+        pub fn localizedModel(&self) -> Retained<NSString>;
 
         #[unsafe(method(systemName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn systemName(&self) -> Retained<NSString>;
+        pub fn systemName(&self) -> Retained<NSString>;
 
         #[unsafe(method(systemVersion))]
         #[unsafe(method_family = none)]
-        pub unsafe fn systemVersion(&self) -> Retained<NSString>;
+        pub fn systemVersion(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UIOrientation")]
         #[unsafe(method(orientation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orientation(&self) -> UIDeviceOrientation;
+        pub fn orientation(&self) -> UIDeviceOrientation;
 
         #[unsafe(method(identifierForVendor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifierForVendor(&self) -> Option<Retained<NSUUID>>;
+        pub fn identifierForVendor(&self) -> Option<Retained<NSUUID>>;
 
         #[unsafe(method(isGeneratingDeviceOrientationNotifications))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isGeneratingDeviceOrientationNotifications(&self) -> bool;
+        pub fn isGeneratingDeviceOrientationNotifications(&self) -> bool;
 
         #[unsafe(method(beginGeneratingDeviceOrientationNotifications))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beginGeneratingDeviceOrientationNotifications(&self);
+        pub fn beginGeneratingDeviceOrientationNotifications(&self);
 
         #[unsafe(method(endGeneratingDeviceOrientationNotifications))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endGeneratingDeviceOrientationNotifications(&self);
+        pub fn endGeneratingDeviceOrientationNotifications(&self);
 
         #[unsafe(method(isBatteryMonitoringEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isBatteryMonitoringEnabled(&self) -> bool;
+        pub fn isBatteryMonitoringEnabled(&self) -> bool;
 
         /// Setter for [`isBatteryMonitoringEnabled`][Self::isBatteryMonitoringEnabled].
         #[unsafe(method(setBatteryMonitoringEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBatteryMonitoringEnabled(&self, battery_monitoring_enabled: bool);
+        pub fn setBatteryMonitoringEnabled(&self, battery_monitoring_enabled: bool);
 
         #[unsafe(method(batteryState))]
         #[unsafe(method_family = none)]
-        pub unsafe fn batteryState(&self) -> UIDeviceBatteryState;
+        pub fn batteryState(&self) -> UIDeviceBatteryState;
 
         #[unsafe(method(batteryLevel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn batteryLevel(&self) -> c_float;
+        pub fn batteryLevel(&self) -> c_float;
 
         #[unsafe(method(isProximityMonitoringEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isProximityMonitoringEnabled(&self) -> bool;
+        pub fn isProximityMonitoringEnabled(&self) -> bool;
 
         /// Setter for [`isProximityMonitoringEnabled`][Self::isProximityMonitoringEnabled].
         #[unsafe(method(setProximityMonitoringEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setProximityMonitoringEnabled(&self, proximity_monitoring_enabled: bool);
+        pub fn setProximityMonitoringEnabled(&self, proximity_monitoring_enabled: bool);
 
         #[unsafe(method(proximityState))]
         #[unsafe(method_family = none)]
-        pub unsafe fn proximityState(&self) -> bool;
+        pub fn proximityState(&self) -> bool;
 
         #[unsafe(method(isMultitaskingSupported))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isMultitaskingSupported(&self) -> bool;
+        pub fn isMultitaskingSupported(&self) -> bool;
 
         #[unsafe(method(userInterfaceIdiom))]
         #[unsafe(method_family = none)]
@@ -160,7 +160,7 @@ impl UIDevice {
 
         #[unsafe(method(playInputClick))]
         #[unsafe(method_family = none)]
-        pub unsafe fn playInputClick(&self);
+        pub fn playInputClick(&self);
     );
 }
 
@@ -169,11 +169,11 @@ impl UIDevice {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -183,7 +183,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(enableInputClicksWhenVisible))]
         #[unsafe(method_family = none)]
-        unsafe fn enableInputClicksWhenVisible(&self) -> bool;
+        fn enableInputClicksWhenVisible(&self) -> bool;
     }
 );
 

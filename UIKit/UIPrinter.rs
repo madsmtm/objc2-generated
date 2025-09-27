@@ -69,7 +69,7 @@ impl UIPrinter {
         /// on the network.
         #[unsafe(method(printerWithURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printerWithURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<UIPrinter>;
+        pub fn printerWithURL(url: &NSURL, mtm: MainThreadMarker) -> Retained<UIPrinter>;
 
         /// Return the URL of the printer.
         ///
@@ -78,14 +78,14 @@ impl UIPrinter {
         /// printer.
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URL(&self) -> Retained<NSURL>;
+        pub fn URL(&self) -> Retained<NSURL>;
 
         /// Return a human-readable printer name.
         ///
         /// This method returns the printer name suitable for displaying in the UI.
         #[unsafe(method(displayName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn displayName(&self) -> Retained<NSString>;
+        pub fn displayName(&self) -> Retained<NSString>;
 
         /// Return a human-readable location.
         ///
@@ -96,7 +96,7 @@ impl UIPrinter {
         /// completed successfully.
         #[unsafe(method(displayLocation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn displayLocation(&self) -> Option<Retained<NSString>>;
+        pub fn displayLocation(&self) -> Option<Retained<NSString>>;
 
         /// Returns the supported job types of this printer.
         ///
@@ -106,7 +106,7 @@ impl UIPrinter {
         /// completed successfully.
         #[unsafe(method(supportedJobTypes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportedJobTypes(&self) -> UIPrinterJobTypes;
+        pub fn supportedJobTypes(&self) -> UIPrinterJobTypes;
 
         /// Return make (manufacturer) and model of the printer.
         ///
@@ -116,7 +116,7 @@ impl UIPrinter {
         /// completed successfully.
         #[unsafe(method(makeAndModel))]
         #[unsafe(method_family = none)]
-        pub unsafe fn makeAndModel(&self) -> Option<Retained<NSString>>;
+        pub fn makeAndModel(&self) -> Option<Retained<NSString>>;
 
         /// Return whether this printer supports color printing.
         ///
@@ -126,7 +126,7 @@ impl UIPrinter {
         /// completed successfully.
         #[unsafe(method(supportsColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportsColor(&self) -> bool;
+        pub fn supportsColor(&self) -> bool;
 
         /// Return whether this printer supports duplex (double-sided) printing.
         ///
@@ -136,7 +136,7 @@ impl UIPrinter {
         /// completed successfully.
         #[unsafe(method(supportsDuplex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportsDuplex(&self) -> bool;
+        pub fn supportsDuplex(&self) -> bool;
 
         #[cfg(feature = "block2")]
         /// Check if printer is reachable, and update printer information.
@@ -147,10 +147,7 @@ impl UIPrinter {
         /// The operation can take up to 30 seconds.
         #[unsafe(method(contactPrinter:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contactPrinter(
-            &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
-        );
+        pub fn contactPrinter(&self, completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>);
     );
 }
 
@@ -159,10 +156,10 @@ impl UIPrinter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

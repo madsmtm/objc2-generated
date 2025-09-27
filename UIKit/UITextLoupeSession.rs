@@ -38,7 +38,7 @@ impl UITextLoupeSession {
         /// Parameter `view`: The coordinate space that all subsequent movement updates are provided in.
         #[unsafe(method(beginLoupeSessionAtPoint:fromSelectionWidgetView:inView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beginLoupeSessionAtPoint_fromSelectionWidgetView_inView(
+        pub fn beginLoupeSessionAtPoint_fromSelectionWidgetView_inView(
             point: CGPoint,
             selection_widget: Option<&UIView>,
             interaction_view: &UIView,
@@ -55,7 +55,7 @@ impl UITextLoupeSession {
         /// Parameter `trackingCaret`: Provide YES if the loupe should track the caret instead of the touch.
         #[unsafe(method(moveToPoint:withCaretRect:trackingCaret:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn moveToPoint_withCaretRect_trackingCaret(
+        pub fn moveToPoint_withCaretRect_trackingCaret(
             &self,
             point: CGPoint,
             caret_rect: CGRect,
@@ -65,7 +65,7 @@ impl UITextLoupeSession {
         /// Invalidates the loupe session. Hides the loupe and cleans up transient state.
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidate(&self);
+        pub fn invalidate(&self);
     );
 }
 
@@ -74,10 +74,10 @@ impl UITextLoupeSession {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

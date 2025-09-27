@@ -60,67 +60,67 @@ impl UIPasteControlConfiguration {
     extern_methods!(
         #[unsafe(method(displayMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn displayMode(&self) -> UIPasteControlDisplayMode;
+        pub fn displayMode(&self) -> UIPasteControlDisplayMode;
 
         /// Setter for [`displayMode`][Self::displayMode].
         #[unsafe(method(setDisplayMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDisplayMode(&self, display_mode: UIPasteControlDisplayMode);
+        pub fn setDisplayMode(&self, display_mode: UIPasteControlDisplayMode);
 
         #[cfg(feature = "UIButtonConfiguration")]
         #[unsafe(method(cornerStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cornerStyle(&self) -> UIButtonConfigurationCornerStyle;
+        pub fn cornerStyle(&self) -> UIButtonConfigurationCornerStyle;
 
         #[cfg(feature = "UIButtonConfiguration")]
         /// Setter for [`cornerStyle`][Self::cornerStyle].
         #[unsafe(method(setCornerStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCornerStyle(&self, corner_style: UIButtonConfigurationCornerStyle);
+        pub fn setCornerStyle(&self, corner_style: UIButtonConfigurationCornerStyle);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(cornerRadius))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cornerRadius(&self) -> CGFloat;
+        pub fn cornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`cornerRadius`][Self::cornerRadius].
         #[unsafe(method(setCornerRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCornerRadius(&self, corner_radius: CGFloat);
+        pub fn setCornerRadius(&self, corner_radius: CGFloat);
 
         #[cfg(feature = "UIGeometry")]
         #[unsafe(method(imagePlacement))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imagePlacement(&self) -> NSDirectionalRectEdge;
+        pub fn imagePlacement(&self) -> NSDirectionalRectEdge;
 
         #[cfg(feature = "UIGeometry")]
         /// Setter for [`imagePlacement`][Self::imagePlacement].
         #[unsafe(method(setImagePlacement:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImagePlacement(&self, image_placement: NSDirectionalRectEdge);
+        pub fn setImagePlacement(&self, image_placement: NSDirectionalRectEdge);
 
         #[cfg(feature = "UIColor")]
         #[unsafe(method(baseForegroundColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseForegroundColor(&self) -> Option<Retained<UIColor>>;
+        pub fn baseForegroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`baseForegroundColor`][Self::baseForegroundColor].
         #[unsafe(method(setBaseForegroundColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBaseForegroundColor(&self, base_foreground_color: Option<&UIColor>);
+        pub fn setBaseForegroundColor(&self, base_foreground_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
         #[unsafe(method(baseBackgroundColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baseBackgroundColor(&self) -> Option<Retained<UIColor>>;
+        pub fn baseBackgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`baseBackgroundColor`][Self::baseBackgroundColor].
         #[unsafe(method(setBaseBackgroundColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBaseBackgroundColor(&self, base_background_color: Option<&UIColor>);
+        pub fn setBaseBackgroundColor(&self, base_background_color: Option<&UIColor>);
     );
 }
 
@@ -129,11 +129,11 @@ impl UIPasteControlConfiguration {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -252,12 +252,12 @@ impl UIPasteControl {
     extern_methods!(
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configuration(&self) -> Retained<UIPasteControlConfiguration>;
+        pub fn configuration(&self) -> Retained<UIPasteControlConfiguration>;
 
         #[cfg(feature = "UIPasteConfigurationSupporting")]
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]
-        pub unsafe fn target(
+        pub fn target(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPasteConfigurationSupporting>>>;
 
@@ -267,14 +267,14 @@ impl UIPasteControl {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setTarget:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTarget(
+        pub fn setTarget(
             &self,
             target: Option<&ProtocolObject<dyn UIPasteConfigurationSupporting>>,
         );
 
         #[unsafe(method(initWithConfiguration:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithConfiguration(
+        pub fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &UIPasteControlConfiguration,
         ) -> Retained<Self>;
@@ -292,7 +292,7 @@ impl UIPasteControl {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
     );
 }
 
@@ -308,7 +308,7 @@ impl UIPasteControl {
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
         #[unsafe(method(initWithFrame:primaryAction:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame_primaryAction(
+        pub fn initWithFrame_primaryAction(
             this: Allocated<Self>,
             frame: CGRect,
             primary_action: Option<&UIAction>,
@@ -322,7 +322,7 @@ impl UIPasteControl {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -332,6 +332,6 @@ impl UIPasteControl {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

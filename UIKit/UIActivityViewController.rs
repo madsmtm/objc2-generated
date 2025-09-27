@@ -99,11 +99,11 @@ impl UIActivityViewController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
+        pub fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
@@ -186,7 +186,7 @@ impl UIActivityViewController {
         #[cfg(feature = "UIActivity")]
         #[unsafe(method(excludedActivityTypes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn excludedActivityTypes(&self) -> Option<Retained<NSArray<UIActivityType>>>;
+        pub fn excludedActivityTypes(&self) -> Option<Retained<NSArray<UIActivityType>>>;
 
         #[cfg(feature = "UIActivity")]
         /// Setter for [`excludedActivityTypes`][Self::excludedActivityTypes].
@@ -194,7 +194,7 @@ impl UIActivityViewController {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExcludedActivityTypes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setExcludedActivityTypes(
+        pub fn setExcludedActivityTypes(
             &self,
             excluded_activity_types: Option<&NSArray<UIActivityType>>,
         );
@@ -202,12 +202,12 @@ impl UIActivityViewController {
         /// Hides some sections of the activity view controller. Default is none
         #[unsafe(method(excludedActivitySectionTypes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn excludedActivitySectionTypes(&self) -> UIActivitySectionTypes;
+        pub fn excludedActivitySectionTypes(&self) -> UIActivitySectionTypes;
 
         /// Setter for [`excludedActivitySectionTypes`][Self::excludedActivitySectionTypes].
         #[unsafe(method(setExcludedActivitySectionTypes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setExcludedActivitySectionTypes(
+        pub fn setExcludedActivitySectionTypes(
             &self,
             excluded_activity_section_types: UIActivitySectionTypes,
         );
@@ -217,12 +217,12 @@ impl UIActivityViewController {
         /// Defaults to YES.
         #[unsafe(method(allowsProminentActivity))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsProminentActivity(&self) -> bool;
+        pub fn allowsProminentActivity(&self) -> bool;
 
         /// Setter for [`allowsProminentActivity`][Self::allowsProminentActivity].
         #[unsafe(method(setAllowsProminentActivity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsProminentActivity(&self, allows_prominent_activity: bool);
+        pub fn setAllowsProminentActivity(&self, allows_prominent_activity: bool);
     );
 }
 
@@ -232,7 +232,7 @@ impl UIActivityViewController {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -243,7 +243,7 @@ impl UIActivityViewController {
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
         #[unsafe(method(initWithActivityItemsConfiguration:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithActivityItemsConfiguration(
+        pub fn initWithActivityItemsConfiguration(
             this: Allocated<Self>,
             activity_items_configuration: &ProtocolObject<dyn UIActivityItemsConfigurationReading>,
         ) -> Retained<Self>;

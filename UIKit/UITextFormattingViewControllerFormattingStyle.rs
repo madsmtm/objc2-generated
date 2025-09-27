@@ -40,20 +40,19 @@ impl UITextFormattingViewControllerFormattingStyle {
         /// Formatting style key.
         #[unsafe(method(styleKey))]
         #[unsafe(method_family = none)]
-        pub unsafe fn styleKey(&self) -> Retained<NSString>;
+        pub fn styleKey(&self) -> Retained<NSString>;
 
         /// Style title displayed in UI.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
-        pub unsafe fn title(&self) -> Retained<NSString>;
+        pub fn title(&self) -> Retained<NSString>;
 
         /// Attributes corresponding to this formatting style.
         ///
         /// Alongside `title`, these may be used to create a preview for this formatting style.
         #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributes(&self)
-            -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
+        pub fn attributes(&self) -> Retained<NSDictionary<NSAttributedStringKey, AnyObject>>;
 
         /// # Safety
         ///
@@ -74,10 +73,17 @@ impl UITextFormattingViewControllerFormattingStyle {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UITextFormattingViewControllerFormattingStyle {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

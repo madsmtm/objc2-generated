@@ -55,7 +55,7 @@ impl UIImpactFeedbackGenerator {
         /// set a style on the feedback generator and attach it to the provided view as an interaction.
         #[unsafe(method(feedbackGeneratorWithStyle:forView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn feedbackGeneratorWithStyle_forView(
+        pub fn feedbackGeneratorWithStyle_forView(
             style: UIImpactFeedbackStyle,
             view: &UIView,
         ) -> Retained<Self>;
@@ -63,35 +63,29 @@ impl UIImpactFeedbackGenerator {
         /// call when your UI element impacts something else
         #[unsafe(method(impactOccurred))]
         #[unsafe(method_family = none)]
-        pub unsafe fn impactOccurred(&self);
+        pub fn impactOccurred(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(impactOccurredAtLocation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn impactOccurredAtLocation(&self, location: CGPoint);
+        pub fn impactOccurredAtLocation(&self, location: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// call when your UI element impacts something else with a specific intensity [0.0, 1.0]
         #[unsafe(method(impactOccurredWithIntensity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn impactOccurredWithIntensity(&self, intensity: CGFloat);
+        pub fn impactOccurredWithIntensity(&self, intensity: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(impactOccurredWithIntensity:atLocation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn impactOccurredWithIntensity_atLocation(
-            &self,
-            intensity: CGFloat,
-            location: CGPoint,
-        );
+        pub fn impactOccurredWithIntensity_atLocation(&self, intensity: CGFloat, location: CGPoint);
 
         #[deprecated]
         #[unsafe(method(initWithStyle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithStyle(
-            this: Allocated<Self>,
-            style: UIImpactFeedbackStyle,
-        ) -> Retained<Self>;
+        pub fn initWithStyle(this: Allocated<Self>, style: UIImpactFeedbackStyle)
+            -> Retained<Self>;
     );
 }
 
@@ -103,12 +97,12 @@ impl UIImpactFeedbackGenerator {
         /// initalize the generator with a view to attach it to the provided view as an interaction.
         #[unsafe(method(feedbackGeneratorForView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
+        pub fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
 
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -118,6 +112,6 @@ impl UIImpactFeedbackGenerator {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

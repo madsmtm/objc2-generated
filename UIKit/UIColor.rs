@@ -74,12 +74,12 @@ impl UIColor {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(colorWithWhite:alpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorWithWhite_alpha(white: CGFloat, alpha: CGFloat) -> Retained<UIColor>;
+        pub fn colorWithWhite_alpha(white: CGFloat, alpha: CGFloat) -> Retained<UIColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(colorWithHue:saturation:brightness:alpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorWithHue_saturation_brightness_alpha(
+        pub fn colorWithHue_saturation_brightness_alpha(
             hue: CGFloat,
             saturation: CGFloat,
             brightness: CGFloat,
@@ -89,7 +89,7 @@ impl UIColor {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(colorWithRed:green:blue:alpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorWithRed_green_blue_alpha(
+        pub fn colorWithRed_green_blue_alpha(
             red: CGFloat,
             green: CGFloat,
             blue: CGFloat,
@@ -99,7 +99,7 @@ impl UIColor {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(colorWithDisplayP3Red:green:blue:alpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorWithDisplayP3Red_green_blue_alpha(
+        pub fn colorWithDisplayP3Red_green_blue_alpha(
             display_p3_red: CGFloat,
             green: CGFloat,
             blue: CGFloat,
@@ -109,23 +109,23 @@ impl UIColor {
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(colorWithCGColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorWithCGColor(cg_color: &CGColor) -> Retained<UIColor>;
+        pub fn colorWithCGColor(cg_color: &CGColor) -> Retained<UIColor>;
 
         #[cfg(feature = "UIImage")]
         #[unsafe(method(colorWithPatternImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorWithPatternImage(image: &UIImage) -> Retained<UIColor>;
+        pub fn colorWithPatternImage(image: &UIImage) -> Retained<UIColor>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
         #[unsafe(method(colorWithCIColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorWithCIColor(ci_color: &CIColor) -> Retained<UIColor>;
+        pub fn colorWithCIColor(ci_color: &CIColor) -> Retained<UIColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithWhite:alpha:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithWhite_alpha(
+        pub fn initWithWhite_alpha(
             this: Allocated<Self>,
             white: CGFloat,
             alpha: CGFloat,
@@ -134,7 +134,7 @@ impl UIColor {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithHue:saturation:brightness:alpha:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithHue_saturation_brightness_alpha(
+        pub fn initWithHue_saturation_brightness_alpha(
             this: Allocated<Self>,
             hue: CGFloat,
             saturation: CGFloat,
@@ -145,7 +145,7 @@ impl UIColor {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithRed:green:blue:alpha:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithRed_green_blue_alpha(
+        pub fn initWithRed_green_blue_alpha(
             this: Allocated<Self>,
             red: CGFloat,
             green: CGFloat,
@@ -156,7 +156,7 @@ impl UIColor {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithDisplayP3Red:green:blue:alpha:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDisplayP3Red_green_blue_alpha(
+        pub fn initWithDisplayP3Red_green_blue_alpha(
             this: Allocated<Self>,
             display_p3_red: CGFloat,
             green: CGFloat,
@@ -167,33 +167,24 @@ impl UIColor {
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(initWithCGColor:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCGColor(
-            this: Allocated<Self>,
-            cg_color: &CGColor,
-        ) -> Retained<UIColor>;
+        pub fn initWithCGColor(this: Allocated<Self>, cg_color: &CGColor) -> Retained<UIColor>;
 
         #[cfg(feature = "UIImage")]
         #[unsafe(method(initWithPatternImage:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithPatternImage(
-            this: Allocated<Self>,
-            image: &UIImage,
-        ) -> Retained<UIColor>;
+        pub fn initWithPatternImage(this: Allocated<Self>, image: &UIImage) -> Retained<UIColor>;
 
         #[cfg(feature = "objc2-core-image")]
         #[cfg(not(target_os = "watchos"))]
         #[unsafe(method(initWithCIColor:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCIColor(
-            this: Allocated<Self>,
-            ci_color: &CIColor,
-        ) -> Retained<UIColor>;
+        pub fn initWithCIColor(this: Allocated<Self>, ci_color: &CIColor) -> Retained<UIColor>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Generates an HDR color by applying an exposure to the SDR color defined by the red, green, and blue components. The `red`, `green`, and `blue` components have a nominal range of [0..1], `exposure` is a value >= 0. To produce an HDR color, we process the given color in a linear color space, multiplying component values by `2^exposure`. The produced color will have a `contentHeadroom` equal to the linearized exposure value. Each whole value of exposure produces a color that is twice as bright.
         #[unsafe(method(initWithRed:green:blue:alpha:exposure:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithRed_green_blue_alpha_exposure(
+        pub fn initWithRed_green_blue_alpha_exposure(
             this: Allocated<Self>,
             red: CGFloat,
             green: CGFloat,
@@ -205,7 +196,7 @@ impl UIColor {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(colorWithRed:green:blue:alpha:exposure:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorWithRed_green_blue_alpha_exposure(
+        pub fn colorWithRed_green_blue_alpha_exposure(
             red: CGFloat,
             green: CGFloat,
             blue: CGFloat,
@@ -217,7 +208,7 @@ impl UIColor {
         /// Generates an HDR color by applying an exposure to the SDR color defined by the red, green, and blue components. The `red`, `green`, and `blue` components have a nominal range of [0..1], `linearExposure` is a value >= 1. To produce an HDR color, we process the given color in a linear color space, multiplying component values by `linearExposure `. The produced color will have a `contentHeadroom` equal to `linearExposure`. Each doubling of `linearExposure` produces a color that is twice as bright.
         #[unsafe(method(initWithRed:green:blue:alpha:linearExposure:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithRed_green_blue_alpha_linearExposure(
+        pub fn initWithRed_green_blue_alpha_linearExposure(
             this: Allocated<Self>,
             red: CGFloat,
             green: CGFloat,
@@ -229,7 +220,7 @@ impl UIColor {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(colorWithRed:green:blue:alpha:linearExposure:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorWithRed_green_blue_alpha_linearExposure(
+        pub fn colorWithRed_green_blue_alpha_linearExposure(
             red: CGFloat,
             green: CGFloat,
             blue: CGFloat,
@@ -241,82 +232,82 @@ impl UIColor {
         /// Reinterpret the color by applying a new `contentHeadroom` without changing the color components. Changing the `contentHeadroom` redefines the color relative to a different peak white, changing its behavior under tone mapping and the result of calling `standardDynamicRangeColor`. The new color will have a `contentHeadroom` >= 1.0.
         #[unsafe(method(colorByApplyingContentHeadroom:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorByApplyingContentHeadroom(
+        pub fn colorByApplyingContentHeadroom(
             &self,
             content_headroom: CGFloat,
         ) -> Retained<UIColor>;
 
         #[unsafe(method(blackColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn blackColor() -> Retained<UIColor>;
+        pub fn blackColor() -> Retained<UIColor>;
 
         #[unsafe(method(darkGrayColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn darkGrayColor() -> Retained<UIColor>;
+        pub fn darkGrayColor() -> Retained<UIColor>;
 
         #[unsafe(method(lightGrayColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lightGrayColor() -> Retained<UIColor>;
+        pub fn lightGrayColor() -> Retained<UIColor>;
 
         #[unsafe(method(whiteColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn whiteColor() -> Retained<UIColor>;
+        pub fn whiteColor() -> Retained<UIColor>;
 
         #[unsafe(method(grayColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn grayColor() -> Retained<UIColor>;
+        pub fn grayColor() -> Retained<UIColor>;
 
         #[unsafe(method(redColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn redColor() -> Retained<UIColor>;
+        pub fn redColor() -> Retained<UIColor>;
 
         #[unsafe(method(greenColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn greenColor() -> Retained<UIColor>;
+        pub fn greenColor() -> Retained<UIColor>;
 
         #[unsafe(method(blueColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn blueColor() -> Retained<UIColor>;
+        pub fn blueColor() -> Retained<UIColor>;
 
         #[unsafe(method(cyanColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cyanColor() -> Retained<UIColor>;
+        pub fn cyanColor() -> Retained<UIColor>;
 
         #[unsafe(method(yellowColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn yellowColor() -> Retained<UIColor>;
+        pub fn yellowColor() -> Retained<UIColor>;
 
         #[unsafe(method(magentaColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn magentaColor() -> Retained<UIColor>;
+        pub fn magentaColor() -> Retained<UIColor>;
 
         #[unsafe(method(orangeColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn orangeColor() -> Retained<UIColor>;
+        pub fn orangeColor() -> Retained<UIColor>;
 
         #[unsafe(method(purpleColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn purpleColor() -> Retained<UIColor>;
+        pub fn purpleColor() -> Retained<UIColor>;
 
         #[unsafe(method(brownColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn brownColor() -> Retained<UIColor>;
+        pub fn brownColor() -> Retained<UIColor>;
 
         #[unsafe(method(clearColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clearColor() -> Retained<UIColor>;
+        pub fn clearColor() -> Retained<UIColor>;
 
         #[unsafe(method(set))]
         #[unsafe(method_family = none)]
-        pub unsafe fn set(&self);
+        pub fn set(&self);
 
         #[unsafe(method(setFill))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFill(&self);
+        pub fn setFill(&self);
 
         #[unsafe(method(setStroke))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStroke(&self);
+        pub fn setStroke(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// # Safety
@@ -364,7 +355,7 @@ impl UIColor {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(colorWithAlphaComponent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorWithAlphaComponent(&self, alpha: CGFloat) -> Retained<UIColor>;
+        pub fn colorWithAlphaComponent(&self, alpha: CGFloat) -> Retained<UIColor>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// This property is not atomic.
@@ -417,12 +408,19 @@ impl UIColor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIColor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// UINSItemProvider.
@@ -450,7 +448,7 @@ pub unsafe trait CIColorUIKitAdditions:
     extern_methods!(
         #[unsafe(method(initWithColor:))]
         #[unsafe(method_family = init)]
-        unsafe fn initWithColor(this: Allocated<Self>, color: &UIColor) -> Retained<Self>;
+        fn initWithColor(this: Allocated<Self>, color: &UIColor) -> Retained<Self>;
     );
 }
 
@@ -466,12 +464,12 @@ impl UIColor {
     extern_methods!(
         #[unsafe(method(colorNamed:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorNamed(name: &NSString) -> Option<Retained<UIColor>>;
+        pub fn colorNamed(name: &NSString) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(colorNamed:inBundle:compatibleWithTraitCollection:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorNamed_inBundle_compatibleWithTraitCollection(
+        pub fn colorNamed_inBundle_compatibleWithTraitCollection(
             name: &NSString,
             bundle: Option<&NSBundle>,
             trait_collection: Option<&UITraitCollection>,
@@ -510,7 +508,7 @@ impl UIColor {
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(resolvedColorWithTraitCollection:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resolvedColorWithTraitCollection(
+        pub fn resolvedColorWithTraitCollection(
             &self,
             trait_collection: &UITraitCollection,
         ) -> Retained<UIColor>;
@@ -522,10 +520,7 @@ impl UIColor {
     extern_methods!(
         #[unsafe(method(colorWithProminence:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorWithProminence(
-            &self,
-            prominence: UIColorProminence,
-        ) -> Retained<UIColor>;
+        pub fn colorWithProminence(&self, prominence: UIColorProminence) -> Retained<UIColor>;
 
         /// This property is not atomic.
         ///

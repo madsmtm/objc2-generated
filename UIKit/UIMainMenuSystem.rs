@@ -29,7 +29,7 @@ impl UIMainMenuSystem {
         /// The shared main menu system.
         #[unsafe(method(sharedSystem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedSystem(mtm: MainThreadMarker) -> Retained<UIMainMenuSystem>;
+        pub fn sharedSystem(mtm: MainThreadMarker) -> Retained<UIMainMenuSystem>;
 
         #[cfg(all(feature = "UIMenuBuilder", feature = "block2"))]
         /// Specifies that the main menu system should be built using the specified configuration.
@@ -39,7 +39,7 @@ impl UIMainMenuSystem {
         /// It is a developer error to set the `configuration` while the main menu system is building. Doing so will assert.
         #[unsafe(method(setBuildConfiguration:buildHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBuildConfiguration_buildHandler(
+        pub fn setBuildConfiguration_buildHandler(
             &self,
             configuration: &UIMainMenuSystemConfiguration,
             build_handler: Option<
@@ -49,11 +49,11 @@ impl UIMainMenuSystem {
 
         #[unsafe(method(mainSystem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mainSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
+        pub fn mainSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
 
         #[unsafe(method(contextSystem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
+        pub fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
     );
 }
 
@@ -63,11 +63,11 @@ impl UIMainMenuSystem {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -100,13 +100,13 @@ impl UIMainMenuSystemConfiguration {
         /// Specifies a preference for new scene elements in the main menu.
         #[unsafe(method(newScenePreference))]
         #[unsafe(method_family = none)]
-        pub unsafe fn newScenePreference(&self) -> UIMenuSystemElementGroupPreference;
+        pub fn newScenePreference(&self) -> UIMenuSystemElementGroupPreference;
 
         #[cfg(feature = "UIMenuSystem")]
         /// Setter for [`newScenePreference`][Self::newScenePreference].
         #[unsafe(method(setNewScenePreference:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNewScenePreference(
+        pub fn setNewScenePreference(
             &self,
             new_scene_preference: UIMenuSystemElementGroupPreference,
         );
@@ -115,13 +115,13 @@ impl UIMainMenuSystemConfiguration {
         /// Specifies a preference for document elements in the main menu.
         #[unsafe(method(documentPreference))]
         #[unsafe(method_family = none)]
-        pub unsafe fn documentPreference(&self) -> UIMenuSystemElementGroupPreference;
+        pub fn documentPreference(&self) -> UIMenuSystemElementGroupPreference;
 
         #[cfg(feature = "UIMenuSystem")]
         /// Setter for [`documentPreference`][Self::documentPreference].
         #[unsafe(method(setDocumentPreference:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDocumentPreference(
+        pub fn setDocumentPreference(
             &self,
             document_preference: UIMenuSystemElementGroupPreference,
         );
@@ -130,13 +130,13 @@ impl UIMainMenuSystemConfiguration {
         /// Specifies a preference for printing elements in the main menu.
         #[unsafe(method(printingPreference))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printingPreference(&self) -> UIMenuSystemElementGroupPreference;
+        pub fn printingPreference(&self) -> UIMenuSystemElementGroupPreference;
 
         #[cfg(feature = "UIMenuSystem")]
         /// Setter for [`printingPreference`][Self::printingPreference].
         #[unsafe(method(setPrintingPreference:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPrintingPreference(
+        pub fn setPrintingPreference(
             &self,
             printing_preference: UIMenuSystemElementGroupPreference,
         );
@@ -145,66 +145,55 @@ impl UIMainMenuSystemConfiguration {
         /// Specifies a preference for finding elements in the main menu.
         #[unsafe(method(findingPreference))]
         #[unsafe(method_family = none)]
-        pub unsafe fn findingPreference(&self) -> UIMenuSystemElementGroupPreference;
+        pub fn findingPreference(&self) -> UIMenuSystemElementGroupPreference;
 
         #[cfg(feature = "UIMenuSystem")]
         /// Setter for [`findingPreference`][Self::findingPreference].
         #[unsafe(method(setFindingPreference:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFindingPreference(
-            &self,
-            finding_preference: UIMenuSystemElementGroupPreference,
-        );
+        pub fn setFindingPreference(&self, finding_preference: UIMenuSystemElementGroupPreference);
 
         #[cfg(feature = "UIMenuSystem")]
         /// Configuration for the find elements should they be present in the main menu.
         #[unsafe(method(findingConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn findingConfiguration(
-            &self,
-        ) -> Retained<UIMenuSystemFindElementGroupConfiguration>;
+        pub fn findingConfiguration(&self) -> Retained<UIMenuSystemFindElementGroupConfiguration>;
 
         #[cfg(feature = "UIMenuSystem")]
         /// Specifies a preference for toolbar elements in the main menu.
         #[unsafe(method(toolbarPreference))]
         #[unsafe(method_family = none)]
-        pub unsafe fn toolbarPreference(&self) -> UIMenuSystemElementGroupPreference;
+        pub fn toolbarPreference(&self) -> UIMenuSystemElementGroupPreference;
 
         #[cfg(feature = "UIMenuSystem")]
         /// Setter for [`toolbarPreference`][Self::toolbarPreference].
         #[unsafe(method(setToolbarPreference:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setToolbarPreference(
-            &self,
-            toolbar_preference: UIMenuSystemElementGroupPreference,
-        );
+        pub fn setToolbarPreference(&self, toolbar_preference: UIMenuSystemElementGroupPreference);
 
         #[cfg(feature = "UIMenuSystem")]
         /// Specifies a preference for sidebar elements in the main menu.
         #[unsafe(method(sidebarPreference))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sidebarPreference(&self) -> UIMenuSystemElementGroupPreference;
+        pub fn sidebarPreference(&self) -> UIMenuSystemElementGroupPreference;
 
         #[cfg(feature = "UIMenuSystem")]
         /// Setter for [`sidebarPreference`][Self::sidebarPreference].
         #[unsafe(method(setSidebarPreference:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSidebarPreference(
-            &self,
-            sidebar_preference: UIMenuSystemElementGroupPreference,
-        );
+        pub fn setSidebarPreference(&self, sidebar_preference: UIMenuSystemElementGroupPreference);
 
         #[cfg(feature = "UIMenuSystem")]
         /// Specifies a preference for inspector elements in the main menu.
         #[unsafe(method(inspectorPreference))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inspectorPreference(&self) -> UIMenuSystemElementGroupPreference;
+        pub fn inspectorPreference(&self) -> UIMenuSystemElementGroupPreference;
 
         #[cfg(feature = "UIMenuSystem")]
         /// Setter for [`inspectorPreference`][Self::inspectorPreference].
         #[unsafe(method(setInspectorPreference:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInspectorPreference(
+        pub fn setInspectorPreference(
             &self,
             inspector_preference: UIMenuSystemElementGroupPreference,
         );
@@ -213,13 +202,13 @@ impl UIMainMenuSystemConfiguration {
         /// Specifies a preference for text formatting elements in the main menu.
         #[unsafe(method(textFormattingPreference))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textFormattingPreference(&self) -> UIMenuSystemElementGroupPreference;
+        pub fn textFormattingPreference(&self) -> UIMenuSystemElementGroupPreference;
 
         #[cfg(feature = "UIMenuSystem")]
         /// Setter for [`textFormattingPreference`][Self::textFormattingPreference].
         #[unsafe(method(setTextFormattingPreference:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTextFormattingPreference(
+        pub fn setTextFormattingPreference(
             &self,
             text_formatting_preference: UIMenuSystemElementGroupPreference,
         );
@@ -231,10 +220,10 @@ impl UIMainMenuSystemConfiguration {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

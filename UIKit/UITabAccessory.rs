@@ -23,24 +23,21 @@ impl UITabAccessory {
         /// The content view of the accessory.
         #[unsafe(method(contentView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentView(&self) -> Retained<UIView>;
+        pub fn contentView(&self) -> Retained<UIView>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Creates a new accessory with the specified content view.
         #[unsafe(method(initWithContentView:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContentView(
-            this: Allocated<Self>,
-            content_view: &UIView,
-        ) -> Retained<Self>;
+        pub fn initWithContentView(this: Allocated<Self>, content_view: &UIView) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -110,10 +107,10 @@ impl UITraitTabAccessoryEnvironment {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

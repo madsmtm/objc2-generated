@@ -130,61 +130,61 @@ impl UIColorWell {
         /// Should explain what kind of color to pick. Example values are "Stroke Color" or "Fill Color".
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
-        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
+        pub fn title(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`title`][Self::title].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTitle(&self, title: Option<&NSString>);
+        pub fn setTitle(&self, title: Option<&NSString>);
 
         /// Controls whether alpha is supported or not.
         ///
         /// If set to `NO` users are only able to pick fully opaque colors.
         #[unsafe(method(supportsAlpha))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportsAlpha(&self) -> bool;
+        pub fn supportsAlpha(&self) -> bool;
 
         /// Setter for [`supportsAlpha`][Self::supportsAlpha].
         #[unsafe(method(setSupportsAlpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSupportsAlpha(&self, supports_alpha: bool);
+        pub fn setSupportsAlpha(&self, supports_alpha: bool);
 
         #[cfg(feature = "UIColor")]
         /// Sets the selected color on the color picker and is updated when the user changes the selection.
         /// Does support KVO and does send `UIControlEventValueChanged`.
         #[unsafe(method(selectedColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedColor(&self) -> Option<Retained<UIColor>>;
+        pub fn selectedColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`selectedColor`][Self::selectedColor].
         #[unsafe(method(setSelectedColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectedColor(&self, selected_color: Option<&UIColor>);
+        pub fn setSelectedColor(&self, selected_color: Option<&UIColor>);
 
         /// If set to `NO` the eyedropper functionality is not supported for this color well.
         #[unsafe(method(supportsEyedropper))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportsEyedropper(&self) -> bool;
+        pub fn supportsEyedropper(&self) -> bool;
 
         /// Setter for [`supportsEyedropper`][Self::supportsEyedropper].
         #[unsafe(method(setSupportsEyedropper:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSupportsEyedropper(&self, supports_eyedropper: bool);
+        pub fn setSupportsEyedropper(&self, supports_eyedropper: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The maximum exposure to apply to a color when returned by the color well.
         #[unsafe(method(maximumLinearExposure))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumLinearExposure(&self) -> CGFloat;
+        pub fn maximumLinearExposure(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumLinearExposure`][Self::maximumLinearExposure].
         #[unsafe(method(setMaximumLinearExposure:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumLinearExposure(&self, maximum_linear_exposure: CGFloat);
+        pub fn setMaximumLinearExposure(&self, maximum_linear_exposure: CGFloat);
     );
 }
 
@@ -195,7 +195,7 @@ impl UIColorWell {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -215,7 +215,7 @@ impl UIColorWell {
         /// Initializes the control and adds primaryAction for the UIControlEventPrimaryActionTriggered control event. Subclasses of UIControl may alter or add behaviors around the usage of primaryAction, see subclass documentation of this initializer for additional information.
         #[unsafe(method(initWithFrame:primaryAction:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame_primaryAction(
+        pub fn initWithFrame_primaryAction(
             this: Allocated<Self>,
             frame: CGRect,
             primary_action: Option<&UIAction>,
@@ -229,7 +229,7 @@ impl UIColorWell {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -239,6 +239,6 @@ impl UIColorWell {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

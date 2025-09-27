@@ -35,16 +35,16 @@ impl UIGraphicsRendererFormat {
         #[deprecated]
         #[unsafe(method(defaultFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultFormat() -> Retained<Self>;
+        pub fn defaultFormat() -> Retained<Self>;
 
         #[unsafe(method(preferredFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredFormat() -> Retained<Self>;
+        pub fn preferredFormat() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bounds(&self) -> CGRect;
+        pub fn bounds(&self) -> CGRect;
     );
 }
 
@@ -53,12 +53,19 @@ impl UIGraphicsRendererFormat {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIGraphicsRendererFormat {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -77,36 +84,36 @@ impl UIGraphicsRendererContext {
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(CGContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn CGContext(&self) -> Retained<CGContext>;
+        pub fn CGContext(&self) -> Retained<CGContext>;
 
         #[unsafe(method(format))]
         #[unsafe(method_family = none)]
-        pub unsafe fn format(&self) -> Retained<UIGraphicsRendererFormat>;
+        pub fn format(&self) -> Retained<UIGraphicsRendererFormat>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(fillRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fillRect(&self, rect: CGRect);
+        pub fn fillRect(&self, rect: CGRect);
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[unsafe(method(fillRect:blendMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fillRect_blendMode(&self, rect: CGRect, blend_mode: CGBlendMode);
+        pub fn fillRect_blendMode(&self, rect: CGRect, blend_mode: CGBlendMode);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(strokeRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn strokeRect(&self, rect: CGRect);
+        pub fn strokeRect(&self, rect: CGRect);
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[unsafe(method(strokeRect:blendMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn strokeRect_blendMode(&self, rect: CGRect, blend_mode: CGBlendMode);
+        pub fn strokeRect_blendMode(&self, rect: CGRect, blend_mode: CGBlendMode);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(clipToRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clipToRect(&self, rect: CGRect);
+        pub fn clipToRect(&self, rect: CGRect);
     );
 }
 
@@ -115,12 +122,19 @@ impl UIGraphicsRendererContext {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIGraphicsRendererContext {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -139,12 +153,12 @@ impl UIGraphicsRenderer {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithBounds:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithBounds(this: Allocated<Self>, bounds: CGRect) -> Retained<Self>;
+        pub fn initWithBounds(this: Allocated<Self>, bounds: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithBounds:format:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithBounds_format(
+        pub fn initWithBounds_format(
             this: Allocated<Self>,
             bounds: CGRect,
             format: &UIGraphicsRendererFormat,
@@ -152,11 +166,11 @@ impl UIGraphicsRenderer {
 
         #[unsafe(method(format))]
         #[unsafe(method_family = none)]
-        pub unsafe fn format(&self) -> Retained<UIGraphicsRendererFormat>;
+        pub fn format(&self) -> Retained<UIGraphicsRendererFormat>;
 
         #[unsafe(method(allowsImageOutput))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsImageOutput(&self) -> bool;
+        pub fn allowsImageOutput(&self) -> bool;
     );
 }
 
@@ -165,10 +179,17 @@ impl UIGraphicsRenderer {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIGraphicsRenderer {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

@@ -110,12 +110,12 @@ impl UIBackgroundExtensionView {
         /// customize the layout.
         #[unsafe(method(contentView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentView(&self) -> Option<Retained<UIView>>;
+        pub fn contentView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`contentView`][Self::contentView].
         #[unsafe(method(setContentView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentView(&self, content_view: Option<&UIView>);
+        pub fn setContentView(&self, content_view: Option<&UIView>);
 
         /// Controls the automatic safe area placement of the `contentView` within the
         /// container.
@@ -127,15 +127,12 @@ impl UIBackgroundExtensionView {
         /// Defaults to `YES`.
         #[unsafe(method(automaticallyPlacesContentView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn automaticallyPlacesContentView(&self) -> bool;
+        pub fn automaticallyPlacesContentView(&self) -> bool;
 
         /// Setter for [`automaticallyPlacesContentView`][Self::automaticallyPlacesContentView].
         #[unsafe(method(setAutomaticallyPlacesContentView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAutomaticallyPlacesContentView(
-            &self,
-            automatically_places_content_view: bool,
-        );
+        pub fn setAutomaticallyPlacesContentView(&self, automatically_places_content_view: bool);
     );
 }
 
@@ -146,7 +143,7 @@ impl UIBackgroundExtensionView {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -160,7 +157,7 @@ impl UIBackgroundExtensionView {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -170,6 +167,6 @@ impl UIBackgroundExtensionView {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

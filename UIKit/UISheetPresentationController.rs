@@ -39,12 +39,12 @@ extern_protocol!(
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(containerTraitCollection))]
         #[unsafe(method_family = none)]
-        unsafe fn containerTraitCollection(&self) -> Retained<UITraitCollection>;
+        fn containerTraitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(maximumDetentValue))]
         #[unsafe(method_family = none)]
-        unsafe fn maximumDetentValue(&self) -> CGFloat;
+        fn maximumDetentValue(&self) -> CGFloat;
     }
 );
 
@@ -64,24 +64,24 @@ impl UISheetPresentationControllerDetent {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(mediumDetent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mediumDetent(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn mediumDetent(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(largeDetent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn largeDetent(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn largeDetent(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[unsafe(method(customDetentWithIdentifier:resolver:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn customDetentWithIdentifier_resolver(
+        pub fn customDetentWithIdentifier_resolver(
             identifier: Option<&UISheetPresentationControllerDetentIdentifier>,
             resolver: &block2::DynBlock<
                 dyn Fn(
@@ -95,12 +95,12 @@ impl UISheetPresentationControllerDetent {
 
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Retained<UISheetPresentationControllerDetentIdentifier>;
+        pub fn identifier(&self) -> Retained<UISheetPresentationControllerDetentIdentifier>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(resolvedValueInContext:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resolvedValueInContext(
+        pub fn resolvedValueInContext(
             &self,
             context: &ProtocolObject<dyn UISheetPresentationControllerDetentResolutionContext>,
         ) -> CGFloat;
@@ -122,7 +122,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(sheetPresentationControllerDidChangeSelectedDetentIdentifier:))]
         #[unsafe(method_family = none)]
-        unsafe fn sheetPresentationControllerDidChangeSelectedDetentIdentifier(
+        fn sheetPresentationControllerDidChangeSelectedDetentIdentifier(
             &self,
             sheet_presentation_controller: &UISheetPresentationController,
         );
@@ -168,7 +168,7 @@ impl UISheetPresentationController {
     extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UISheetPresentationControllerDelegate>>>;
 
@@ -177,7 +177,7 @@ impl UISheetPresentationController {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
+        pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UISheetPresentationControllerDelegate>>,
         );
@@ -185,85 +185,85 @@ impl UISheetPresentationController {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(sourceView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sourceView(&self) -> Option<Retained<UIView>>;
+        pub fn sourceView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Setter for [`sourceView`][Self::sourceView].
         #[unsafe(method(setSourceView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSourceView(&self, source_view: Option<&UIView>);
+        pub fn setSourceView(&self, source_view: Option<&UIView>);
 
         #[unsafe(method(prefersPageSizing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn prefersPageSizing(&self) -> bool;
+        pub fn prefersPageSizing(&self) -> bool;
 
         /// Setter for [`prefersPageSizing`][Self::prefersPageSizing].
         #[unsafe(method(setPrefersPageSizing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPrefersPageSizing(&self, prefers_page_sizing: bool);
+        pub fn setPrefersPageSizing(&self, prefers_page_sizing: bool);
 
         #[unsafe(method(prefersEdgeAttachedInCompactHeight))]
         #[unsafe(method_family = none)]
-        pub unsafe fn prefersEdgeAttachedInCompactHeight(&self) -> bool;
+        pub fn prefersEdgeAttachedInCompactHeight(&self) -> bool;
 
         /// Setter for [`prefersEdgeAttachedInCompactHeight`][Self::prefersEdgeAttachedInCompactHeight].
         #[unsafe(method(setPrefersEdgeAttachedInCompactHeight:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPrefersEdgeAttachedInCompactHeight(
+        pub fn setPrefersEdgeAttachedInCompactHeight(
             &self,
             prefers_edge_attached_in_compact_height: bool,
         );
 
         #[unsafe(method(widthFollowsPreferredContentSizeWhenEdgeAttached))]
         #[unsafe(method_family = none)]
-        pub unsafe fn widthFollowsPreferredContentSizeWhenEdgeAttached(&self) -> bool;
+        pub fn widthFollowsPreferredContentSizeWhenEdgeAttached(&self) -> bool;
 
         /// Setter for [`widthFollowsPreferredContentSizeWhenEdgeAttached`][Self::widthFollowsPreferredContentSizeWhenEdgeAttached].
         #[unsafe(method(setWidthFollowsPreferredContentSizeWhenEdgeAttached:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWidthFollowsPreferredContentSizeWhenEdgeAttached(
+        pub fn setWidthFollowsPreferredContentSizeWhenEdgeAttached(
             &self,
             width_follows_preferred_content_size_when_edge_attached: bool,
         );
 
         #[unsafe(method(prefersGrabberVisible))]
         #[unsafe(method_family = none)]
-        pub unsafe fn prefersGrabberVisible(&self) -> bool;
+        pub fn prefersGrabberVisible(&self) -> bool;
 
         /// Setter for [`prefersGrabberVisible`][Self::prefersGrabberVisible].
         #[unsafe(method(setPrefersGrabberVisible:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPrefersGrabberVisible(&self, prefers_grabber_visible: bool);
+        pub fn setPrefersGrabberVisible(&self, prefers_grabber_visible: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(preferredCornerRadius))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredCornerRadius(&self) -> CGFloat;
+        pub fn preferredCornerRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`preferredCornerRadius`][Self::preferredCornerRadius].
         #[unsafe(method(setPreferredCornerRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreferredCornerRadius(&self, preferred_corner_radius: CGFloat);
+        pub fn setPreferredCornerRadius(&self, preferred_corner_radius: CGFloat);
 
         #[unsafe(method(detents))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detents(&self) -> Retained<NSArray<UISheetPresentationControllerDetent>>;
+        pub fn detents(&self) -> Retained<NSArray<UISheetPresentationControllerDetent>>;
 
         /// Setter for [`detents`][Self::detents].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDetents:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDetents(&self, detents: &NSArray<UISheetPresentationControllerDetent>);
+        pub fn setDetents(&self, detents: &NSArray<UISheetPresentationControllerDetent>);
 
         #[unsafe(method(invalidateDetents))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidateDetents(&self);
+        pub fn invalidateDetents(&self);
 
         #[unsafe(method(selectedDetentIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedDetentIdentifier(
+        pub fn selectedDetentIdentifier(
             &self,
         ) -> Option<Retained<UISheetPresentationControllerDetentIdentifier>>;
 
@@ -272,14 +272,14 @@ impl UISheetPresentationController {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSelectedDetentIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectedDetentIdentifier(
+        pub fn setSelectedDetentIdentifier(
             &self,
             selected_detent_identifier: Option<&UISheetPresentationControllerDetentIdentifier>,
         );
 
         #[unsafe(method(largestUndimmedDetentIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn largestUndimmedDetentIdentifier(
+        pub fn largestUndimmedDetentIdentifier(
             &self,
         ) -> Option<Retained<UISheetPresentationControllerDetentIdentifier>>;
 
@@ -288,7 +288,7 @@ impl UISheetPresentationController {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLargestUndimmedDetentIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLargestUndimmedDetentIdentifier(
+        pub fn setLargestUndimmedDetentIdentifier(
             &self,
             largest_undimmed_detent_identifier: Option<
                 &UISheetPresentationControllerDetentIdentifier,
@@ -297,12 +297,12 @@ impl UISheetPresentationController {
 
         #[unsafe(method(prefersScrollingExpandsWhenScrolledToEdge))]
         #[unsafe(method_family = none)]
-        pub unsafe fn prefersScrollingExpandsWhenScrolledToEdge(&self) -> bool;
+        pub fn prefersScrollingExpandsWhenScrolledToEdge(&self) -> bool;
 
         /// Setter for [`prefersScrollingExpandsWhenScrolledToEdge`][Self::prefersScrollingExpandsWhenScrolledToEdge].
         #[unsafe(method(setPrefersScrollingExpandsWhenScrolledToEdge:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPrefersScrollingExpandsWhenScrolledToEdge(
+        pub fn setPrefersScrollingExpandsWhenScrolledToEdge(
             &self,
             prefers_scrolling_expands_when_scrolled_to_edge: bool,
         );
@@ -310,7 +310,7 @@ impl UISheetPresentationController {
         #[cfg(feature = "block2")]
         #[unsafe(method(animateChanges:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animateChanges(&self, changes: &block2::DynBlock<dyn Fn() + '_>);
+        pub fn animateChanges(&self, changes: &block2::DynBlock<dyn Fn() + '_>);
     );
 }
 
@@ -321,7 +321,7 @@ impl UISheetPresentationController {
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[unsafe(method(initWithPresentedViewController:presentingViewController:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithPresentedViewController_presentingViewController(
+        pub fn initWithPresentedViewController_presentingViewController(
             this: Allocated<Self>,
             presented_view_controller: &UIViewController,
             presenting_view_controller: Option<&UIViewController>,
@@ -329,7 +329,7 @@ impl UISheetPresentationController {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -339,6 +339,6 @@ impl UISheetPresentationController {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

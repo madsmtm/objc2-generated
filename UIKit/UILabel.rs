@@ -137,19 +137,19 @@ impl UILabel {
     extern_methods!(
         #[unsafe(method(text))]
         #[unsafe(method_family = none)]
-        pub unsafe fn text(&self) -> Option<Retained<NSString>>;
+        pub fn text(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`text`][Self::text].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setText:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setText(&self, text: Option<&NSString>);
+        pub fn setText(&self, text: Option<&NSString>);
 
         #[cfg(feature = "UIFont")]
         #[unsafe(method(font))]
         #[unsafe(method_family = none)]
-        pub unsafe fn font(&self) -> Option<Retained<UIFont>>;
+        pub fn font(&self) -> Option<Retained<UIFont>>;
 
         #[cfg(feature = "UIFont")]
         /// Setter for [`font`][Self::font].
@@ -164,7 +164,7 @@ impl UILabel {
         #[cfg(feature = "UIColor")]
         #[unsafe(method(textColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textColor(&self) -> Option<Retained<UIColor>>;
+        pub fn textColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`textColor`][Self::textColor].
@@ -178,154 +178,154 @@ impl UILabel {
 
         #[unsafe(method(preferredVibrancy))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredVibrancy(&self) -> UILabelVibrancy;
+        pub fn preferredVibrancy(&self) -> UILabelVibrancy;
 
         /// Setter for [`preferredVibrancy`][Self::preferredVibrancy].
         #[unsafe(method(setPreferredVibrancy:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreferredVibrancy(&self, preferred_vibrancy: UILabelVibrancy);
+        pub fn setPreferredVibrancy(&self, preferred_vibrancy: UILabelVibrancy);
 
         #[cfg(feature = "UIColor")]
         #[unsafe(method(shadowColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shadowColor(&self) -> Option<Retained<UIColor>>;
+        pub fn shadowColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`shadowColor`][Self::shadowColor].
         #[unsafe(method(setShadowColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShadowColor(&self, shadow_color: Option<&UIColor>);
+        pub fn setShadowColor(&self, shadow_color: Option<&UIColor>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(shadowOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shadowOffset(&self) -> CGSize;
+        pub fn shadowOffset(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`shadowOffset`][Self::shadowOffset].
         #[unsafe(method(setShadowOffset:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShadowOffset(&self, shadow_offset: CGSize);
+        pub fn setShadowOffset(&self, shadow_offset: CGSize);
 
         #[cfg(feature = "NSText")]
         #[unsafe(method(textAlignment))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textAlignment(&self) -> NSTextAlignment;
+        pub fn textAlignment(&self) -> NSTextAlignment;
 
         #[cfg(feature = "NSText")]
         /// Setter for [`textAlignment`][Self::textAlignment].
         #[unsafe(method(setTextAlignment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTextAlignment(&self, text_alignment: NSTextAlignment);
+        pub fn setTextAlignment(&self, text_alignment: NSTextAlignment);
 
         #[cfg(feature = "NSParagraphStyle")]
         #[unsafe(method(lineBreakMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lineBreakMode(&self) -> NSLineBreakMode;
+        pub fn lineBreakMode(&self) -> NSLineBreakMode;
 
         #[cfg(feature = "NSParagraphStyle")]
         /// Setter for [`lineBreakMode`][Self::lineBreakMode].
         #[unsafe(method(setLineBreakMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
+        pub fn setLineBreakMode(&self, line_break_mode: NSLineBreakMode);
 
         #[unsafe(method(attributedText))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
+        pub fn attributedText(&self) -> Option<Retained<NSAttributedString>>;
 
         /// Setter for [`attributedText`][Self::attributedText].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttributedText:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
+        pub fn setAttributedText(&self, attributed_text: Option<&NSAttributedString>);
 
         #[cfg(feature = "UIColor")]
         #[unsafe(method(highlightedTextColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn highlightedTextColor(&self) -> Option<Retained<UIColor>>;
+        pub fn highlightedTextColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`highlightedTextColor`][Self::highlightedTextColor].
         #[unsafe(method(setHighlightedTextColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHighlightedTextColor(&self, highlighted_text_color: Option<&UIColor>);
+        pub fn setHighlightedTextColor(&self, highlighted_text_color: Option<&UIColor>);
 
         #[unsafe(method(isHighlighted))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isHighlighted(&self) -> bool;
+        pub fn isHighlighted(&self) -> bool;
 
         /// Setter for [`isHighlighted`][Self::isHighlighted].
         #[unsafe(method(setHighlighted:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHighlighted(&self, highlighted: bool);
+        pub fn setHighlighted(&self, highlighted: bool);
 
         #[unsafe(method(isUserInteractionEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isUserInteractionEnabled(&self) -> bool;
+        pub fn isUserInteractionEnabled(&self) -> bool;
 
         /// Setter for [`isUserInteractionEnabled`][Self::isUserInteractionEnabled].
         #[unsafe(method(setUserInteractionEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUserInteractionEnabled(&self, user_interaction_enabled: bool);
+        pub fn setUserInteractionEnabled(&self, user_interaction_enabled: bool);
 
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEnabled(&self) -> bool;
+        pub fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEnabled(&self, enabled: bool);
+        pub fn setEnabled(&self, enabled: bool);
 
         #[unsafe(method(numberOfLines))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfLines(&self) -> NSInteger;
+        pub fn numberOfLines(&self) -> NSInteger;
 
         /// Setter for [`numberOfLines`][Self::numberOfLines].
         #[unsafe(method(setNumberOfLines:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNumberOfLines(&self, number_of_lines: NSInteger);
+        pub fn setNumberOfLines(&self, number_of_lines: NSInteger);
 
         #[unsafe(method(adjustsFontSizeToFitWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn adjustsFontSizeToFitWidth(&self) -> bool;
+        pub fn adjustsFontSizeToFitWidth(&self) -> bool;
 
         /// Setter for [`adjustsFontSizeToFitWidth`][Self::adjustsFontSizeToFitWidth].
         #[unsafe(method(setAdjustsFontSizeToFitWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAdjustsFontSizeToFitWidth(&self, adjusts_font_size_to_fit_width: bool);
+        pub fn setAdjustsFontSizeToFitWidth(&self, adjusts_font_size_to_fit_width: bool);
 
         #[cfg(feature = "UIStringDrawing")]
         #[unsafe(method(baselineAdjustment))]
         #[unsafe(method_family = none)]
-        pub unsafe fn baselineAdjustment(&self) -> UIBaselineAdjustment;
+        pub fn baselineAdjustment(&self) -> UIBaselineAdjustment;
 
         #[cfg(feature = "UIStringDrawing")]
         /// Setter for [`baselineAdjustment`][Self::baselineAdjustment].
         #[unsafe(method(setBaselineAdjustment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBaselineAdjustment(&self, baseline_adjustment: UIBaselineAdjustment);
+        pub fn setBaselineAdjustment(&self, baseline_adjustment: UIBaselineAdjustment);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(minimumScaleFactor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumScaleFactor(&self) -> CGFloat;
+        pub fn minimumScaleFactor(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumScaleFactor`][Self::minimumScaleFactor].
         #[unsafe(method(setMinimumScaleFactor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinimumScaleFactor(&self, minimum_scale_factor: CGFloat);
+        pub fn setMinimumScaleFactor(&self, minimum_scale_factor: CGFloat);
 
         #[unsafe(method(allowsDefaultTighteningForTruncation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsDefaultTighteningForTruncation(&self) -> bool;
+        pub fn allowsDefaultTighteningForTruncation(&self) -> bool;
 
         /// Setter for [`allowsDefaultTighteningForTruncation`][Self::allowsDefaultTighteningForTruncation].
         #[unsafe(method(setAllowsDefaultTighteningForTruncation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsDefaultTighteningForTruncation(
+        pub fn setAllowsDefaultTighteningForTruncation(
             &self,
             allows_default_tightening_for_truncation: bool,
         );
@@ -333,18 +333,18 @@ impl UILabel {
         #[cfg(feature = "NSParagraphStyle")]
         #[unsafe(method(lineBreakStrategy))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
+        pub fn lineBreakStrategy(&self) -> NSLineBreakStrategy;
 
         #[cfg(feature = "NSParagraphStyle")]
         /// Setter for [`lineBreakStrategy`][Self::lineBreakStrategy].
         #[unsafe(method(setLineBreakStrategy:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLineBreakStrategy(&self, line_break_strategy: NSLineBreakStrategy);
+        pub fn setLineBreakStrategy(&self, line_break_strategy: NSLineBreakStrategy);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(textRectForBounds:limitedToNumberOfLines:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textRectForBounds_limitedToNumberOfLines(
+        pub fn textRectForBounds_limitedToNumberOfLines(
             &self,
             bounds: CGRect,
             number_of_lines: NSInteger,
@@ -353,27 +353,27 @@ impl UILabel {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawTextInRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawTextInRect(&self, rect: CGRect);
+        pub fn drawTextInRect(&self, rect: CGRect);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(preferredMaxLayoutWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredMaxLayoutWidth(&self) -> CGFloat;
+        pub fn preferredMaxLayoutWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`preferredMaxLayoutWidth`][Self::preferredMaxLayoutWidth].
         #[unsafe(method(setPreferredMaxLayoutWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreferredMaxLayoutWidth(&self, preferred_max_layout_width: CGFloat);
+        pub fn setPreferredMaxLayoutWidth(&self, preferred_max_layout_width: CGFloat);
 
         #[unsafe(method(enablesMarqueeWhenAncestorFocused))]
         #[unsafe(method_family = none)]
-        pub unsafe fn enablesMarqueeWhenAncestorFocused(&self) -> bool;
+        pub fn enablesMarqueeWhenAncestorFocused(&self) -> bool;
 
         /// Setter for [`enablesMarqueeWhenAncestorFocused`][Self::enablesMarqueeWhenAncestorFocused].
         #[unsafe(method(setEnablesMarqueeWhenAncestorFocused:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEnablesMarqueeWhenAncestorFocused(
+        pub fn setEnablesMarqueeWhenAncestorFocused(
             &self,
             enables_marquee_when_ancestor_focused: bool,
         );
@@ -381,42 +381,36 @@ impl UILabel {
         /// Indicates whether expansion text will be shown when the view is too small to show all the contents. Defaults to NO.
         #[unsafe(method(showsExpansionTextWhenTruncated))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showsExpansionTextWhenTruncated(&self) -> bool;
+        pub fn showsExpansionTextWhenTruncated(&self) -> bool;
 
         /// Setter for [`showsExpansionTextWhenTruncated`][Self::showsExpansionTextWhenTruncated].
         #[unsafe(method(setShowsExpansionTextWhenTruncated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShowsExpansionTextWhenTruncated(
-            &self,
-            shows_expansion_text_when_truncated: bool,
-        );
+        pub fn setShowsExpansionTextWhenTruncated(&self, shows_expansion_text_when_truncated: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[unsafe(method(minimumFontSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumFontSize(&self) -> CGFloat;
+        pub fn minimumFontSize(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumFontSize`][Self::minimumFontSize].
         #[deprecated]
         #[unsafe(method(setMinimumFontSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinimumFontSize(&self, minimum_font_size: CGFloat);
+        pub fn setMinimumFontSize(&self, minimum_font_size: CGFloat);
 
         #[deprecated]
         #[unsafe(method(adjustsLetterSpacingToFitWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn adjustsLetterSpacingToFitWidth(&self) -> bool;
+        pub fn adjustsLetterSpacingToFitWidth(&self) -> bool;
 
         /// Setter for [`adjustsLetterSpacingToFitWidth`][Self::adjustsLetterSpacingToFitWidth].
         #[deprecated]
         #[unsafe(method(setAdjustsLetterSpacingToFitWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAdjustsLetterSpacingToFitWidth(
-            &self,
-            adjusts_letter_spacing_to_fit_width: bool,
-        );
+        pub fn setAdjustsLetterSpacingToFitWidth(&self, adjusts_letter_spacing_to_fit_width: bool);
     );
 }
 
@@ -427,7 +421,7 @@ impl UILabel {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -441,7 +435,7 @@ impl UILabel {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -451,6 +445,6 @@ impl UILabel {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

@@ -45,65 +45,62 @@ impl UIBarButtonItemBadge {
         /// when the app’s locale changes.
         #[unsafe(method(badgeWithCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn badgeWithCount(count: NSUInteger, mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn badgeWithCount(count: NSUInteger, mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Creates a badge with the specified `string`.
         #[unsafe(method(badgeWithString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn badgeWithString(
-            string_value: &NSString,
-            mtm: MainThreadMarker,
-        ) -> Retained<Self>;
+        pub fn badgeWithString(string_value: &NSString, mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Creates a badge that's empty, and just renders the badge background
         /// with no content.
         #[unsafe(method(indicatorBadge))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indicatorBadge(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn indicatorBadge(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(stringValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringValue(&self) -> Option<Retained<NSString>>;
+        pub fn stringValue(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIColor")]
         /// The badge's background color. A `nil` value will be treated as an indication to use the system default.
         #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
+        pub fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
+        pub fn setBackgroundColor(&self, background_color: Option<&UIColor>);
 
         #[cfg(feature = "UIColor")]
         /// The badge's foreground color. A `nil` value will be treated as an indication to use the system default.
         #[unsafe(method(foregroundColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn foregroundColor(&self) -> Option<Retained<UIColor>>;
+        pub fn foregroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`foregroundColor`][Self::foregroundColor].
         #[unsafe(method(setForegroundColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setForegroundColor(&self, foreground_color: Option<&UIColor>);
+        pub fn setForegroundColor(&self, foreground_color: Option<&UIColor>);
 
         #[cfg(feature = "UIFont")]
         /// The font to use for the badge. A `nil` value will be treated as an indication to use the system default.
         #[unsafe(method(font))]
         #[unsafe(method_family = none)]
-        pub unsafe fn font(&self) -> Option<Retained<UIFont>>;
+        pub fn font(&self) -> Option<Retained<UIFont>>;
 
         #[cfg(feature = "UIFont")]
         /// Setter for [`font`][Self::font].
         #[unsafe(method(setFont:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFont(&self, font: Option<&UIFont>);
+        pub fn setFont(&self, font: Option<&UIFont>);
     );
 }
 
@@ -112,7 +109,7 @@ impl UIBarButtonItemBadge {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -123,11 +120,11 @@ impl UIBarButtonItem {
         /// Sets a badge on the bar button item. Currently only supported in navigation bars.
         #[unsafe(method(badge))]
         #[unsafe(method_family = none)]
-        pub unsafe fn badge(&self) -> Option<Retained<UIBarButtonItemBadge>>;
+        pub fn badge(&self) -> Option<Retained<UIBarButtonItemBadge>>;
 
         /// Setter for [`badge`][Self::badge].
         #[unsafe(method(setBadge:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBadge(&self, badge: Option<&UIBarButtonItemBadge>);
+        pub fn setBadge(&self, badge: Option<&UIBarButtonItemBadge>);
     );
 }

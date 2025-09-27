@@ -42,11 +42,11 @@ impl UIUpdateActionPhase {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Phase that runs after UI update was scheduled and its timing information is know. This is a good place for things
         /// that only rely on UI update timing and don't need user input events. Running at this stage allows to utilize time
@@ -54,13 +54,13 @@ impl UIUpdateActionPhase {
         /// non-interactive simulations should go here.
         #[unsafe(method(afterUpdateScheduled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn afterUpdateScheduled(mtm: MainThreadMarker) -> Retained<UIUpdateActionPhase>;
+        pub fn afterUpdateScheduled(mtm: MainThreadMarker) -> Retained<UIUpdateActionPhase>;
 
         /// Before `UIEvent` and `UIGestureRecognizer` handlers run. Use this phase to prepare resources and data structures
         /// required to process user input events.
         #[unsafe(method(beforeEventDispatch))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beforeEventDispatch(mtm: MainThreadMarker) -> Retained<UIUpdateActionPhase>;
+        pub fn beforeEventDispatch(mtm: MainThreadMarker) -> Retained<UIUpdateActionPhase>;
 
         /// After `UIEvent` and `UIGestureRecognizer` handlers run. Past this point, there will be no new user input events sent
         /// to the application. If low-latency event delivery was requested, more events might be dispatched in
@@ -69,28 +69,22 @@ impl UIUpdateActionPhase {
         /// out low-rate event stream, use this phase to detect that certain events were not received to extrapolate them.
         #[unsafe(method(afterEventDispatch))]
         #[unsafe(method_family = none)]
-        pub unsafe fn afterEventDispatch(mtm: MainThreadMarker) -> Retained<UIUpdateActionPhase>;
+        pub fn afterEventDispatch(mtm: MainThreadMarker) -> Retained<UIUpdateActionPhase>;
 
         /// Before `CADisplayLink` callbacks run.
         #[unsafe(method(beforeCADisplayLinkDispatch))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beforeCADisplayLinkDispatch(
-            mtm: MainThreadMarker,
-        ) -> Retained<UIUpdateActionPhase>;
+        pub fn beforeCADisplayLinkDispatch(mtm: MainThreadMarker) -> Retained<UIUpdateActionPhase>;
 
         /// After `CADisplayLink` callbacks run.
         #[unsafe(method(afterCADisplayLinkDispatch))]
         #[unsafe(method_family = none)]
-        pub unsafe fn afterCADisplayLinkDispatch(
-            mtm: MainThreadMarker,
-        ) -> Retained<UIUpdateActionPhase>;
+        pub fn afterCADisplayLinkDispatch(mtm: MainThreadMarker) -> Retained<UIUpdateActionPhase>;
 
         /// Before `CATransaction` is flushed.
         #[unsafe(method(beforeCATransactionCommit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beforeCATransactionCommit(
-            mtm: MainThreadMarker,
-        ) -> Retained<UIUpdateActionPhase>;
+        pub fn beforeCATransactionCommit(mtm: MainThreadMarker) -> Retained<UIUpdateActionPhase>;
 
         /// After `CATransaction` is flushed. Any changes to CoreAnimation layer tree made here (or later) will not appear on
         /// screen with the current UI update (they will go on screen with the next UI update). There are few exceptions to
@@ -102,15 +96,13 @@ impl UIUpdateActionPhase {
         /// or during `LowLatencyCATransactionCommit` phase will appear on screen with this UI update.
         #[unsafe(method(afterCATransactionCommit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn afterCATransactionCommit(
-            mtm: MainThreadMarker,
-        ) -> Retained<UIUpdateActionPhase>;
+        pub fn afterCATransactionCommit(mtm: MainThreadMarker) -> Retained<UIUpdateActionPhase>;
 
         /// Before `UIEvent` and `UIGestureRecognizer` handlers run for low-latency eligible events. This stage is
         /// off by default (skipped) and must be requested explicitly.
         #[unsafe(method(beforeLowLatencyEventDispatch))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beforeLowLatencyEventDispatch(
+        pub fn beforeLowLatencyEventDispatch(
             mtm: MainThreadMarker,
         ) -> Retained<UIUpdateActionPhase>;
 
@@ -118,14 +110,13 @@ impl UIUpdateActionPhase {
         /// off by default (skipped) and must be requested explicitly.
         #[unsafe(method(afterLowLatencyEventDispatch))]
         #[unsafe(method_family = none)]
-        pub unsafe fn afterLowLatencyEventDispatch(
-            mtm: MainThreadMarker,
-        ) -> Retained<UIUpdateActionPhase>;
+        pub fn afterLowLatencyEventDispatch(mtm: MainThreadMarker)
+            -> Retained<UIUpdateActionPhase>;
 
         /// Before `CATransaction` is flushed. Only runs when low-latency event dispatch was requested.
         #[unsafe(method(beforeLowLatencyCATransactionCommit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beforeLowLatencyCATransactionCommit(
+        pub fn beforeLowLatencyCATransactionCommit(
             mtm: MainThreadMarker,
         ) -> Retained<UIUpdateActionPhase>;
 
@@ -133,7 +124,7 @@ impl UIUpdateActionPhase {
         /// CoreAnimation layer tree made here (or later) will not appear on screen with the current UI update.
         #[unsafe(method(afterLowLatencyCATransactionCommit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn afterLowLatencyCATransactionCommit(
+        pub fn afterLowLatencyCATransactionCommit(
             mtm: MainThreadMarker,
         ) -> Retained<UIUpdateActionPhase>;
 
@@ -142,6 +133,6 @@ impl UIUpdateActionPhase {
         /// also a good place to record last presented state, for things like on-screen velocity computations.
         #[unsafe(method(afterUpdateComplete))]
         #[unsafe(method_family = none)]
-        pub unsafe fn afterUpdateComplete(mtm: MainThreadMarker) -> Retained<UIUpdateActionPhase>;
+        pub fn afterUpdateComplete(mtm: MainThreadMarker) -> Retained<UIUpdateActionPhase>;
     );
 }

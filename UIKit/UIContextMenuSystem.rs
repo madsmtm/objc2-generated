@@ -27,15 +27,15 @@ impl UIContextMenuSystem {
         /// The shared context menu system.
         #[unsafe(method(sharedSystem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedSystem(mtm: MainThreadMarker) -> Retained<UIContextMenuSystem>;
+        pub fn sharedSystem(mtm: MainThreadMarker) -> Retained<UIContextMenuSystem>;
 
         #[unsafe(method(mainSystem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mainSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
+        pub fn mainSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
 
         #[unsafe(method(contextSystem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
+        pub fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
     );
 }
 
@@ -45,10 +45,10 @@ impl UIContextMenuSystem {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }

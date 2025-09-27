@@ -24,7 +24,7 @@ impl UIPrintPaper {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(bestPaperForPageSize:withPapersFromArray:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bestPaperForPageSize_withPapersFromArray(
+        pub fn bestPaperForPageSize_withPapersFromArray(
             content_size: CGSize,
             paper_list: &NSArray<UIPrintPaper>,
         ) -> Retained<UIPrintPaper>;
@@ -32,12 +32,12 @@ impl UIPrintPaper {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(paperSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn paperSize(&self) -> CGSize;
+        pub fn paperSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(printableRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printableRect(&self) -> CGRect;
+        pub fn printableRect(&self) -> CGRect;
     );
 }
 
@@ -46,12 +46,19 @@ impl UIPrintPaper {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIPrintPaper {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// Deprecated_Nonfunctional.
@@ -60,6 +67,6 @@ impl UIPrintPaper {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(printRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printRect(&self) -> CGRect;
+        pub fn printRect(&self) -> CGRect;
     );
 }

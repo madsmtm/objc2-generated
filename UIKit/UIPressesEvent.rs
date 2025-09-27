@@ -26,12 +26,12 @@ impl UIPressesEvent {
         #[cfg(feature = "UIPress")]
         #[unsafe(method(allPresses))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allPresses(&self) -> Retained<NSSet<UIPress>>;
+        pub fn allPresses(&self) -> Retained<NSSet<UIPress>>;
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPress"))]
         #[unsafe(method(pressesForGestureRecognizer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressesForGestureRecognizer(
+        pub fn pressesForGestureRecognizer(
             &self,
             gesture: &UIGestureRecognizer,
         ) -> Retained<NSSet<UIPress>>;
@@ -44,10 +44,10 @@ impl UIPressesEvent {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

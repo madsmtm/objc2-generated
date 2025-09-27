@@ -137,18 +137,18 @@ impl UIPasteboard {
     extern_methods!(
         #[unsafe(method(generalPasteboard))]
         #[unsafe(method_family = none)]
-        pub unsafe fn generalPasteboard() -> Retained<UIPasteboard>;
+        pub fn generalPasteboard() -> Retained<UIPasteboard>;
 
         #[unsafe(method(pasteboardWithName:create:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pasteboardWithName_create(
+        pub fn pasteboardWithName_create(
             pasteboard_name: &UIPasteboardName,
             create: bool,
         ) -> Option<Retained<UIPasteboard>>;
 
         #[unsafe(method(pasteboardWithUniqueName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pasteboardWithUniqueName() -> Retained<UIPasteboard>;
+        pub fn pasteboardWithUniqueName() -> Retained<UIPasteboard>;
 
         /// This property is not atomic.
         ///
@@ -161,7 +161,7 @@ impl UIPasteboard {
 
         #[unsafe(method(removePasteboardWithName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removePasteboardWithName(pasteboard_name: &UIPasteboardName);
+        pub fn removePasteboardWithName(pasteboard_name: &UIPasteboardName);
 
         /// This property is not atomic.
         ///
@@ -175,7 +175,7 @@ impl UIPasteboard {
         #[deprecated = "Do not set persistence on pasteboards. This property is set automatically."]
         #[unsafe(method(setPersistent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPersistent(&self, persistent: bool);
+        pub fn setPersistent(&self, persistent: bool);
 
         /// This property is not atomic.
         ///
@@ -208,7 +208,7 @@ impl UIPasteboard {
 
         #[unsafe(method(setItemProviders:localOnly:expirationDate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setItemProviders_localOnly_expirationDate(
+        pub fn setItemProviders_localOnly_expirationDate(
             &self,
             item_providers: &NSArray<NSItemProvider>,
             local_only: bool,
@@ -217,14 +217,11 @@ impl UIPasteboard {
 
         #[unsafe(method(setObjects:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObjects(
-            &self,
-            objects: &NSArray<ProtocolObject<dyn NSItemProviderWriting>>,
-        );
+        pub fn setObjects(&self, objects: &NSArray<ProtocolObject<dyn NSItemProviderWriting>>);
 
         #[unsafe(method(setObjects:localOnly:expirationDate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObjects_localOnly_expirationDate(
+        pub fn setObjects_localOnly_expirationDate(
             &self,
             objects: &NSArray<ProtocolObject<dyn NSItemProviderWriting>>,
             local_only: bool,
@@ -242,18 +239,16 @@ impl UIPasteboard {
 
         #[unsafe(method(containsPasteboardTypes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containsPasteboardTypes(&self, pasteboard_types: &NSArray<NSString>) -> bool;
+        pub fn containsPasteboardTypes(&self, pasteboard_types: &NSArray<NSString>) -> bool;
 
         #[unsafe(method(dataForPasteboardType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dataForPasteboardType(
-            &self,
-            pasteboard_type: &NSString,
-        ) -> Option<Retained<NSData>>;
+        pub fn dataForPasteboardType(&self, pasteboard_type: &NSString)
+            -> Option<Retained<NSData>>;
 
         #[unsafe(method(valueForPasteboardType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueForPasteboardType(
+        pub fn valueForPasteboardType(
             &self,
             pasteboard_type: &NSString,
         ) -> Option<Retained<AnyObject>>;
@@ -271,7 +266,7 @@ impl UIPasteboard {
 
         #[unsafe(method(setData:forPasteboardType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setData_forPasteboardType(&self, data: &NSData, pasteboard_type: &NSString);
+        pub fn setData_forPasteboardType(&self, data: &NSData, pasteboard_type: &NSString);
 
         /// This property is not atomic.
         ///
@@ -284,14 +279,14 @@ impl UIPasteboard {
 
         #[unsafe(method(pasteboardTypesForItemSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pasteboardTypesForItemSet(
+        pub fn pasteboardTypesForItemSet(
             &self,
             item_set: Option<&NSIndexSet>,
         ) -> Option<Retained<NSArray<NSArray<NSString>>>>;
 
         #[unsafe(method(containsPasteboardTypes:inItemSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containsPasteboardTypes_inItemSet(
+        pub fn containsPasteboardTypes_inItemSet(
             &self,
             pasteboard_types: &NSArray<NSString>,
             item_set: Option<&NSIndexSet>,
@@ -299,14 +294,14 @@ impl UIPasteboard {
 
         #[unsafe(method(itemSetWithPasteboardTypes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn itemSetWithPasteboardTypes(
+        pub fn itemSetWithPasteboardTypes(
             &self,
             pasteboard_types: &NSArray<NSString>,
         ) -> Option<Retained<NSIndexSet>>;
 
         #[unsafe(method(valuesForPasteboardType:inItemSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valuesForPasteboardType_inItemSet(
+        pub fn valuesForPasteboardType_inItemSet(
             &self,
             pasteboard_type: &NSString,
             item_set: Option<&NSIndexSet>,
@@ -314,7 +309,7 @@ impl UIPasteboard {
 
         #[unsafe(method(dataForPasteboardType:inItemSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dataForPasteboardType_inItemSet(
+        pub fn dataForPasteboardType_inItemSet(
             &self,
             pasteboard_type: &NSString,
             item_set: Option<&NSIndexSet>,
@@ -573,7 +568,7 @@ impl UIPasteboard {
         /// Parameter `completionHandler`: Receives which patterns were detected, or an error.
         #[unsafe(method(detectPatternsForPatterns:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detectPatternsForPatterns_completionHandler(
+        pub fn detectPatternsForPatterns_completionHandler(
             &self,
             patterns: &NSSet<UIPasteboardDetectionPattern>,
             completion_handler: &block2::DynBlock<
@@ -593,7 +588,7 @@ impl UIPasteboard {
         /// or an error.
         #[unsafe(method(detectPatternsForPatterns:inItemSet:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detectPatternsForPatterns_inItemSet_completionHandler(
+        pub fn detectPatternsForPatterns_inItemSet_completionHandler(
             &self,
             patterns: &NSSet<UIPasteboardDetectionPattern>,
             item_set: Option<&NSIndexSet>,
@@ -611,7 +606,7 @@ impl UIPasteboard {
         /// Parameter `completionHandler`: Receives which patterns and values were detected, or an error.
         #[unsafe(method(detectValuesForPatterns:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detectValuesForPatterns_completionHandler(
+        pub fn detectValuesForPatterns_completionHandler(
             &self,
             patterns: &NSSet<UIPasteboardDetectionPattern>,
             completion_handler: &block2::DynBlock<
@@ -631,7 +626,7 @@ impl UIPasteboard {
         /// or an error.
         #[unsafe(method(detectValuesForPatterns:inItemSet:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detectValuesForPatterns_inItemSet_completionHandler(
+        pub fn detectValuesForPatterns_inItemSet_completionHandler(
             &self,
             patterns: &NSSet<UIPasteboardDetectionPattern>,
             item_set: Option<&NSIndexSet>,
@@ -650,12 +645,19 @@ impl UIPasteboard {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIPasteboard {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {

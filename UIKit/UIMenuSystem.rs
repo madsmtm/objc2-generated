@@ -25,30 +25,30 @@ impl UIMenuSystem {
         /// The main menu system. This is identical to `UIMainMenuSystem.sharedSystem`.
         #[unsafe(method(mainSystem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mainSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
+        pub fn mainSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
 
         /// The context menu system. This is identical to `UIContextMenuSystem.sharedSystem`.
         #[unsafe(method(contextSystem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
+        pub fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Trigger a rebuild of this system at a suitable time.
         #[unsafe(method(setNeedsRebuild))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNeedsRebuild(&self);
+        pub fn setNeedsRebuild(&self);
 
         /// Trigger a revalidate of this system at a suitable time.
         #[unsafe(method(setNeedsRevalidate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNeedsRevalidate(&self);
+        pub fn setNeedsRevalidate(&self);
     );
 }
 
@@ -135,19 +135,19 @@ impl UIMenuSystemFindElementGroupConfiguration {
         /// Specifies a preference for the style of Find elements in the main menu.
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]
-        pub unsafe fn style(&self) -> UIMenuSystemFindElementGroupConfigurationStyle;
+        pub fn style(&self) -> UIMenuSystemFindElementGroupConfigurationStyle;
 
         /// Setter for [`style`][Self::style].
         #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStyle(&self, style: UIMenuSystemFindElementGroupConfigurationStyle);
+        pub fn setStyle(&self, style: UIMenuSystemFindElementGroupConfigurationStyle);
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

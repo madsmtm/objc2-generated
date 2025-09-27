@@ -55,7 +55,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(modelIdentifierForElementAtIndexPath:inView:))]
         #[unsafe(method_family = none)]
-        unsafe fn modelIdentifierForElementAtIndexPath_inView(
+        fn modelIdentifierForElementAtIndexPath_inView(
             &self,
             idx: &NSIndexPath,
             view: &UIView,
@@ -64,7 +64,7 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(indexPathForElementWithModelIdentifier:inView:))]
         #[unsafe(method_family = none)]
-        unsafe fn indexPathForElementWithModelIdentifier_inView(
+        fn indexPathForElementWithModelIdentifier_inView(
             &self,
             identifier: &NSString,
             view: &UIView,
@@ -78,14 +78,12 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(restorationParent))]
         #[unsafe(method_family = none)]
-        unsafe fn restorationParent(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn UIStateRestoring>>>;
+        fn restorationParent(&self) -> Option<Retained<ProtocolObject<dyn UIStateRestoring>>>;
 
         #[optional]
         #[unsafe(method(objectRestorationClass))]
         #[unsafe(method_family = none)]
-        unsafe fn objectRestorationClass(&self) -> Option<&'static AnyClass>;
+        fn objectRestorationClass(&self) -> Option<&'static AnyClass>;
 
         /// # Safety
         ///
@@ -106,7 +104,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(applicationFinishedRestoringState))]
         #[unsafe(method_family = none)]
-        unsafe fn applicationFinishedRestoringState(&self);
+        fn applicationFinishedRestoringState(&self);
     }
 );
 

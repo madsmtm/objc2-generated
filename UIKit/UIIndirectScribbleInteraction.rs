@@ -35,15 +35,15 @@ impl UIIndirectScribbleInteraction {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(initWithDelegate:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDelegate(
+        pub fn initWithDelegate(
             this: Allocated<Self>,
             delegate: &ProtocolObject<dyn UIIndirectScribbleInteractionDelegate>,
         ) -> Retained<Self>;
@@ -51,14 +51,14 @@ impl UIIndirectScribbleInteraction {
         /// The delegate for the interaction, to supply and customize writable elements in the interaction's view.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIIndirectScribbleInteractionDelegate>>>;
 
         /// : Indicates if the user is actively writing. It will be set to YES in between calls to -indirectScribbleInteraction:willBeginWritingInElement: and -indirectScribbleInteraction:didFinishWritingInElement: calls.
         #[unsafe(method(isHandlingWriting))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isHandlingWriting(&self) -> bool;
+        pub fn isHandlingWriting(&self) -> bool;
     );
 }
 
@@ -84,7 +84,7 @@ extern_protocol!(
         /// Parameter `completion`: You must call the completion handler, synchronously or asynchronously, with an array of identifiers of the available elements, or an empty array if no elements are available.
         #[unsafe(method(indirectScribbleInteraction:requestElementsInRect:completion:))]
         #[unsafe(method_family = none)]
-        unsafe fn indirectScribbleInteraction_requestElementsInRect_completion(
+        fn indirectScribbleInteraction_requestElementsInRect_completion(
             &self,
             interaction: &UIIndirectScribbleInteraction,
             rect: CGRect,

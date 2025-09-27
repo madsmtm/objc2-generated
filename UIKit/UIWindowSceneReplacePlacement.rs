@@ -44,9 +44,7 @@ impl UIWindowSceneReplacePlacement {
         #[deprecated = "UIWindowSceneReplacePlacement has been replaced with UIWindowScenePushPlacement"]
         #[unsafe(method(placementToReplaceSceneSession:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn placementToReplaceSceneSession(
-            scene_session: &UISceneSession,
-        ) -> Retained<Self>;
+        pub fn placementToReplaceSceneSession(scene_session: &UISceneSession) -> Retained<Self>;
     );
 }
 
@@ -56,10 +54,18 @@ impl UIWindowSceneReplacePlacement {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "UIWindowScenePlacement")]
+impl DefaultRetained for UIWindowSceneReplacePlacement {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

@@ -46,7 +46,7 @@ impl UITextFormattingCoordinator {
     extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITextFormattingCoordinatorDelegate>>>;
 
@@ -55,14 +55,14 @@ impl UITextFormattingCoordinator {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
+        pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UITextFormattingCoordinatorDelegate>>,
         );
 
         #[unsafe(method(isFontPanelVisible))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isFontPanelVisible(mtm: MainThreadMarker) -> bool;
+        pub fn isFontPanelVisible(mtm: MainThreadMarker) -> bool;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -71,7 +71,7 @@ impl UITextFormattingCoordinator {
         ))]
         #[unsafe(method(textFormattingCoordinatorForWindowScene:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textFormattingCoordinatorForWindowScene(
+        pub fn textFormattingCoordinatorForWindowScene(
             window_scene: &UIWindowScene,
         ) -> Retained<Self>;
 
@@ -82,14 +82,14 @@ impl UITextFormattingCoordinator {
         ))]
         #[unsafe(method(initWithWindowScene:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithWindowScene(
+        pub fn initWithWindowScene(
             this: Allocated<Self>,
             window_scene: &UIWindowScene,
         ) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -116,6 +116,6 @@ impl UITextFormattingCoordinator {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

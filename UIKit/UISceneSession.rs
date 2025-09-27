@@ -31,46 +31,46 @@ impl UISceneSession {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
         #[unsafe(method(scene))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scene(&self) -> Option<Retained<UIScene>>;
+        pub fn scene(&self) -> Option<Retained<UIScene>>;
 
         #[cfg(feature = "UISceneDefinitions")]
         #[unsafe(method(role))]
         #[unsafe(method_family = none)]
-        pub unsafe fn role(&self) -> Retained<UISceneSessionRole>;
+        pub fn role(&self) -> Retained<UISceneSessionRole>;
 
         #[cfg(feature = "UISceneConfiguration")]
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configuration(&self) -> Retained<UISceneConfiguration>;
+        pub fn configuration(&self) -> Retained<UISceneConfiguration>;
 
         #[unsafe(method(persistentIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn persistentIdentifier(&self) -> Retained<NSString>;
+        pub fn persistentIdentifier(&self) -> Retained<NSString>;
 
         #[unsafe(method(stateRestorationActivity))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stateRestorationActivity(&self) -> Option<Retained<NSUserActivity>>;
+        pub fn stateRestorationActivity(&self) -> Option<Retained<NSUserActivity>>;
 
         /// Setter for [`stateRestorationActivity`][Self::stateRestorationActivity].
         #[unsafe(method(setStateRestorationActivity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStateRestorationActivity(
+        pub fn setStateRestorationActivity(
             &self,
             state_restoration_activity: Option<&NSUserActivity>,
         );
 
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
+        pub fn userInfo(&self) -> Option<Retained<NSDictionary<NSString, AnyObject>>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
         ///

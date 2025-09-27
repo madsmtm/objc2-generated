@@ -17,31 +17,31 @@ extern_protocol!(
         /// For this property to take effect, the item or an ancestor view must have a UILargeContentViewerInteraction.
         #[unsafe(method(showsLargeContentViewer))]
         #[unsafe(method_family = none)]
-        unsafe fn showsLargeContentViewer(&self) -> bool;
+        fn showsLargeContentViewer(&self) -> bool;
 
         /// Returns a title that should be shown in the large content viewer.
         #[unsafe(method(largeContentTitle))]
         #[unsafe(method_family = none)]
-        unsafe fn largeContentTitle(&self) -> Option<Retained<NSString>>;
+        fn largeContentTitle(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "UIImage")]
         /// Returns an image that should be shown in the large content viewer.
         #[unsafe(method(largeContentImage))]
         #[unsafe(method_family = none)]
-        unsafe fn largeContentImage(&self) -> Option<Retained<UIImage>>;
+        fn largeContentImage(&self) -> Option<Retained<UIImage>>;
 
         /// Returns whether the image should be scaled to a larger size appropriate for the viewer.
         /// If not, the image will be shown at its intrinsic size.
         /// For best results when scaling, use a PDF asset with its "Preserve Vector Data" checkbox checked.
         #[unsafe(method(scalesLargeContentImage))]
         #[unsafe(method_family = none)]
-        unsafe fn scalesLargeContentImage(&self) -> bool;
+        fn scalesLargeContentImage(&self) -> bool;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Returns insets appropriate for positioning the image in the viewer so that it appears visually centered.
         #[unsafe(method(largeContentImageInsets))]
         #[unsafe(method_family = none)]
-        unsafe fn largeContentImageInsets(&self) -> UIEdgeInsets;
+        fn largeContentImageInsets(&self) -> UIEdgeInsets;
     }
 );
 
@@ -51,54 +51,54 @@ impl UIView {
     extern_methods!(
         #[unsafe(method(showsLargeContentViewer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showsLargeContentViewer(&self) -> bool;
+        pub fn showsLargeContentViewer(&self) -> bool;
 
         /// Setter for [`showsLargeContentViewer`][Self::showsLargeContentViewer].
         #[unsafe(method(setShowsLargeContentViewer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShowsLargeContentViewer(&self, shows_large_content_viewer: bool);
+        pub fn setShowsLargeContentViewer(&self, shows_large_content_viewer: bool);
 
         #[unsafe(method(largeContentTitle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn largeContentTitle(&self) -> Option<Retained<NSString>>;
+        pub fn largeContentTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`largeContentTitle`][Self::largeContentTitle].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLargeContentTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLargeContentTitle(&self, large_content_title: Option<&NSString>);
+        pub fn setLargeContentTitle(&self, large_content_title: Option<&NSString>);
 
         #[cfg(feature = "UIImage")]
         #[unsafe(method(largeContentImage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn largeContentImage(&self) -> Option<Retained<UIImage>>;
+        pub fn largeContentImage(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`largeContentImage`][Self::largeContentImage].
         #[unsafe(method(setLargeContentImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLargeContentImage(&self, large_content_image: Option<&UIImage>);
+        pub fn setLargeContentImage(&self, large_content_image: Option<&UIImage>);
 
         #[unsafe(method(scalesLargeContentImage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scalesLargeContentImage(&self) -> bool;
+        pub fn scalesLargeContentImage(&self) -> bool;
 
         /// Setter for [`scalesLargeContentImage`][Self::scalesLargeContentImage].
         #[unsafe(method(setScalesLargeContentImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScalesLargeContentImage(&self, scales_large_content_image: bool);
+        pub fn setScalesLargeContentImage(&self, scales_large_content_image: bool);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[unsafe(method(largeContentImageInsets))]
         #[unsafe(method_family = none)]
-        pub unsafe fn largeContentImageInsets(&self) -> UIEdgeInsets;
+        pub fn largeContentImageInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`largeContentImageInsets`][Self::largeContentImageInsets].
         #[unsafe(method(setLargeContentImageInsets:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLargeContentImageInsets(&self, large_content_image_insets: UIEdgeInsets);
+        pub fn setLargeContentImageInsets(&self, large_content_image_insets: UIEdgeInsets);
     );
 }
 
@@ -133,14 +133,14 @@ impl UILargeContentViewerInteraction {
     extern_methods!(
         #[unsafe(method(initWithDelegate:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDelegate(
+        pub fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn UILargeContentViewerInteractionDelegate>>,
         ) -> Retained<Self>;
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UILargeContentViewerInteractionDelegate>>>;
 
@@ -148,9 +148,7 @@ impl UILargeContentViewerInteraction {
         /// Returns a gesture recognizer that can be used to set up simultaneous recognition or failure relationships with other gesture recognizers.
         #[unsafe(method(gestureRecognizerForExclusionRelationship))]
         #[unsafe(method_family = none)]
-        pub unsafe fn gestureRecognizerForExclusionRelationship(
-            &self,
-        ) -> Retained<UIGestureRecognizer>;
+        pub fn gestureRecognizerForExclusionRelationship(&self) -> Retained<UIGestureRecognizer>;
 
         /// Returns whether the large content viewer is enabled on the device.
         /// It is not necessary to check this value before adding a UILargeContentViewerInteraction to a view,
@@ -159,7 +157,7 @@ impl UILargeContentViewerInteraction {
         /// so that a user can read text in the large content viewer first.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEnabled(mtm: MainThreadMarker) -> bool;
+        pub fn isEnabled(mtm: MainThreadMarker) -> bool;
     );
 }
 
@@ -168,11 +166,11 @@ impl UILargeContentViewerInteraction {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -190,7 +188,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(largeContentViewerInteraction:didEndOnItem:atPoint:))]
         #[unsafe(method_family = none)]
-        unsafe fn largeContentViewerInteraction_didEndOnItem_atPoint(
+        fn largeContentViewerInteraction_didEndOnItem_atPoint(
             &self,
             interaction: &UILargeContentViewerInteraction,
             item: Option<&ProtocolObject<dyn UILargeContentViewerItem>>,
@@ -203,7 +201,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(largeContentViewerInteraction:itemAtPoint:))]
         #[unsafe(method_family = none)]
-        unsafe fn largeContentViewerInteraction_itemAtPoint(
+        fn largeContentViewerInteraction_itemAtPoint(
             &self,
             interaction: &UILargeContentViewerInteraction,
             point: CGPoint,
@@ -215,7 +213,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(viewControllerForLargeContentViewerInteraction:))]
         #[unsafe(method_family = none)]
-        unsafe fn viewControllerForLargeContentViewerInteraction(
+        fn viewControllerForLargeContentViewerInteraction(
             &self,
             interaction: &UILargeContentViewerInteraction,
         ) -> Retained<UIViewController>;

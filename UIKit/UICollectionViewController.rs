@@ -97,14 +97,14 @@ impl UICollectionViewController {
         #[cfg(feature = "UICollectionViewLayout")]
         #[unsafe(method(initWithCollectionViewLayout:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCollectionViewLayout(
+        pub fn initWithCollectionViewLayout(
             this: Allocated<Self>,
             layout: &UICollectionViewLayout,
         ) -> Retained<Self>;
 
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
+        pub fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
@@ -127,7 +127,7 @@ impl UICollectionViewController {
         ))]
         #[unsafe(method(collectionView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn collectionView(&self) -> Option<Retained<UICollectionView>>;
+        pub fn collectionView(&self) -> Option<Retained<UICollectionView>>;
 
         #[cfg(all(
             feature = "UICollectionView",
@@ -145,24 +145,24 @@ impl UICollectionViewController {
 
         #[unsafe(method(clearsSelectionOnViewWillAppear))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clearsSelectionOnViewWillAppear(&self) -> bool;
+        pub fn clearsSelectionOnViewWillAppear(&self) -> bool;
 
         /// Setter for [`clearsSelectionOnViewWillAppear`][Self::clearsSelectionOnViewWillAppear].
         #[unsafe(method(setClearsSelectionOnViewWillAppear:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setClearsSelectionOnViewWillAppear(
+        pub fn setClearsSelectionOnViewWillAppear(
             &self,
             clears_selection_on_view_will_appear: bool,
         );
 
         #[unsafe(method(useLayoutToLayoutNavigationTransitions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn useLayoutToLayoutNavigationTransitions(&self) -> bool;
+        pub fn useLayoutToLayoutNavigationTransitions(&self) -> bool;
 
         /// Setter for [`useLayoutToLayoutNavigationTransitions`][Self::useLayoutToLayoutNavigationTransitions].
         #[unsafe(method(setUseLayoutToLayoutNavigationTransitions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUseLayoutToLayoutNavigationTransitions(
+        pub fn setUseLayoutToLayoutNavigationTransitions(
             &self,
             use_layout_to_layout_navigation_transitions: bool,
         );
@@ -170,16 +170,16 @@ impl UICollectionViewController {
         #[cfg(feature = "UICollectionViewLayout")]
         #[unsafe(method(collectionViewLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn collectionViewLayout(&self) -> Retained<UICollectionViewLayout>;
+        pub fn collectionViewLayout(&self) -> Retained<UICollectionViewLayout>;
 
         #[unsafe(method(installsStandardGestureForInteractiveMovement))]
         #[unsafe(method_family = none)]
-        pub unsafe fn installsStandardGestureForInteractiveMovement(&self) -> bool;
+        pub fn installsStandardGestureForInteractiveMovement(&self) -> bool;
 
         /// Setter for [`installsStandardGestureForInteractiveMovement`][Self::installsStandardGestureForInteractiveMovement].
         #[unsafe(method(setInstallsStandardGestureForInteractiveMovement:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInstallsStandardGestureForInteractiveMovement(
+        pub fn setInstallsStandardGestureForInteractiveMovement(
             &self,
             installs_standard_gesture_for_interactive_movement: bool,
         );
@@ -192,10 +192,10 @@ impl UICollectionViewController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

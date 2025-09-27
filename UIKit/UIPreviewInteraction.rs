@@ -25,20 +25,20 @@ impl UIPreviewInteraction {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(initWithView:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
+        pub fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
-        pub unsafe fn view(&self) -> Option<Retained<UIView>>;
+        pub fn view(&self) -> Option<Retained<UIView>>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIPreviewInteractionDelegate>>>;
 
@@ -47,7 +47,7 @@ impl UIPreviewInteraction {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
+        pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIPreviewInteractionDelegate>>,
         );
@@ -55,14 +55,14 @@ impl UIPreviewInteraction {
         #[cfg(all(feature = "UIView", feature = "objc2-core-foundation"))]
         #[unsafe(method(locationInCoordinateSpace:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn locationInCoordinateSpace(
+        pub fn locationInCoordinateSpace(
             &self,
             coordinate_space: Option<&ProtocolObject<dyn UICoordinateSpace>>,
         ) -> CGPoint;
 
         #[unsafe(method(cancelInteraction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cancelInteraction(&self);
+        pub fn cancelInteraction(&self);
     );
 }
 
@@ -71,7 +71,7 @@ impl UIPreviewInteraction {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -83,7 +83,7 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(previewInteraction:didUpdatePreviewTransition:ended:))]
         #[unsafe(method_family = none)]
-        unsafe fn previewInteraction_didUpdatePreviewTransition_ended(
+        fn previewInteraction_didUpdatePreviewTransition_ended(
             &self,
             preview_interaction: &UIPreviewInteraction,
             transition_progress: CGFloat,
@@ -92,21 +92,19 @@ extern_protocol!(
 
         #[unsafe(method(previewInteractionDidCancel:))]
         #[unsafe(method_family = none)]
-        unsafe fn previewInteractionDidCancel(&self, preview_interaction: &UIPreviewInteraction);
+        fn previewInteractionDidCancel(&self, preview_interaction: &UIPreviewInteraction);
 
         #[optional]
         #[unsafe(method(previewInteractionShouldBegin:))]
         #[unsafe(method_family = none)]
-        unsafe fn previewInteractionShouldBegin(
-            &self,
-            preview_interaction: &UIPreviewInteraction,
-        ) -> bool;
+        fn previewInteractionShouldBegin(&self, preview_interaction: &UIPreviewInteraction)
+            -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[optional]
         #[unsafe(method(previewInteraction:didUpdateCommitTransition:ended:))]
         #[unsafe(method_family = none)]
-        unsafe fn previewInteraction_didUpdateCommitTransition_ended(
+        fn previewInteraction_didUpdateCommitTransition_ended(
             &self,
             preview_interaction: &UIPreviewInteraction,
             transition_progress: CGFloat,

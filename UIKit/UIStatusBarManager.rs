@@ -23,25 +23,25 @@ impl UIStatusBarManager {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UIApplication")]
         #[unsafe(method(statusBarStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn statusBarStyle(&self) -> UIStatusBarStyle;
+        pub fn statusBarStyle(&self) -> UIStatusBarStyle;
 
         #[unsafe(method(isStatusBarHidden))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isStatusBarHidden(&self) -> bool;
+        pub fn isStatusBarHidden(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(statusBarFrame))]
         #[unsafe(method_family = none)]
-        pub unsafe fn statusBarFrame(&self) -> CGRect;
+        pub fn statusBarFrame(&self) -> CGRect;
     );
 }
 
@@ -55,6 +55,6 @@ impl UIWindowScene {
     extern_methods!(
         #[unsafe(method(statusBarManager))]
         #[unsafe(method_family = none)]
-        pub unsafe fn statusBarManager(&self) -> Option<Retained<UIStatusBarManager>>;
+        pub fn statusBarManager(&self) -> Option<Retained<UIStatusBarManager>>;
     );
 }

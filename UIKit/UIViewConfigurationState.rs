@@ -46,7 +46,7 @@ impl UIViewConfigurationState {
         /// Returns a new instance with the specified trait collection.
         #[unsafe(method(initWithTraitCollection:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithTraitCollection(
+        pub fn initWithTraitCollection(
             this: Allocated<Self>,
             trait_collection: &UITraitCollection,
         ) -> Retained<Self>;
@@ -63,66 +63,66 @@ impl UIViewConfigurationState {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(traitCollection))]
         #[unsafe(method_family = none)]
-        pub unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
+        pub fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITraitCollection")]
         /// Setter for [`traitCollection`][Self::traitCollection].
         #[unsafe(method(setTraitCollection:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTraitCollection(&self, trait_collection: &UITraitCollection);
+        pub fn setTraitCollection(&self, trait_collection: &UITraitCollection);
 
         #[unsafe(method(isDisabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDisabled(&self) -> bool;
+        pub fn isDisabled(&self) -> bool;
 
         /// Setter for [`isDisabled`][Self::isDisabled].
         #[unsafe(method(setDisabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDisabled(&self, disabled: bool);
+        pub fn setDisabled(&self, disabled: bool);
 
         #[unsafe(method(isHighlighted))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isHighlighted(&self) -> bool;
+        pub fn isHighlighted(&self) -> bool;
 
         /// Setter for [`isHighlighted`][Self::isHighlighted].
         #[unsafe(method(setHighlighted:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHighlighted(&self, highlighted: bool);
+        pub fn setHighlighted(&self, highlighted: bool);
 
         #[unsafe(method(isSelected))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSelected(&self) -> bool;
+        pub fn isSelected(&self) -> bool;
 
         /// Setter for [`isSelected`][Self::isSelected].
         #[unsafe(method(setSelected:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelected(&self, selected: bool);
+        pub fn setSelected(&self, selected: bool);
 
         #[unsafe(method(isFocused))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isFocused(&self) -> bool;
+        pub fn isFocused(&self) -> bool;
 
         /// Setter for [`isFocused`][Self::isFocused].
         #[unsafe(method(setFocused:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFocused(&self, focused: bool);
+        pub fn setFocused(&self, focused: bool);
 
         #[unsafe(method(isPinned))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isPinned(&self) -> bool;
+        pub fn isPinned(&self) -> bool;
 
         /// Setter for [`isPinned`][Self::isPinned].
         #[unsafe(method(setPinned:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPinned(&self, pinned: bool);
+        pub fn setPinned(&self, pinned: bool);
     );
 }

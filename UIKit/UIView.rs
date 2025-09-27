@@ -416,25 +416,25 @@ impl UIView {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(isUserInteractionEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isUserInteractionEnabled(&self) -> bool;
+        pub fn isUserInteractionEnabled(&self) -> bool;
 
         /// Setter for [`isUserInteractionEnabled`][Self::isUserInteractionEnabled].
         #[unsafe(method(setUserInteractionEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUserInteractionEnabled(&self, user_interaction_enabled: bool);
+        pub fn setUserInteractionEnabled(&self, user_interaction_enabled: bool);
 
         #[unsafe(method(tag))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tag(&self) -> NSInteger;
+        pub fn tag(&self) -> NSInteger;
 
         /// Setter for [`tag`][Self::tag].
         #[unsafe(method(setTag:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTag(&self, tag: NSInteger);
+        pub fn setTag(&self, tag: NSInteger);
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
@@ -444,42 +444,42 @@ impl UIView {
 
         #[unsafe(method(canBecomeFocused))]
         #[unsafe(method_family = none)]
-        pub unsafe fn canBecomeFocused(&self) -> bool;
+        pub fn canBecomeFocused(&self) -> bool;
 
         #[unsafe(method(isFocused))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isFocused(&self) -> bool;
+        pub fn isFocused(&self) -> bool;
 
         /// The identifier of the focus group that this view belongs to. If this is nil, subviews inherit their superview's focus group.
         #[unsafe(method(focusGroupIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn focusGroupIdentifier(&self) -> Option<Retained<NSString>>;
+        pub fn focusGroupIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`focusGroupIdentifier`][Self::focusGroupIdentifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFocusGroupIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFocusGroupIdentifier(&self, focus_group_identifier: Option<&NSString>);
+        pub fn setFocusGroupIdentifier(&self, focus_group_identifier: Option<&NSString>);
 
         #[cfg(feature = "UIFocus")]
         /// The priority this item has in its focus group. The higher the priority, the more likely it is to get picked when focus moves into this group.
         /// Note: this method can only be used to increase an item's priority, not decrease it. For example if an item is currently selected, the actual priority of this item will be determined by MAX(focusGroupPriority, UIFocusGroupPrioritySelected).
         #[unsafe(method(focusGroupPriority))]
         #[unsafe(method_family = none)]
-        pub unsafe fn focusGroupPriority(&self) -> UIFocusGroupPriority;
+        pub fn focusGroupPriority(&self) -> UIFocusGroupPriority;
 
         #[cfg(feature = "UIFocus")]
         /// Setter for [`focusGroupPriority`][Self::focusGroupPriority].
         #[unsafe(method(setFocusGroupPriority:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFocusGroupPriority(&self, focus_group_priority: UIFocusGroupPriority);
+        pub fn setFocusGroupPriority(&self, focus_group_priority: UIFocusGroupPriority);
 
         #[cfg(feature = "UIFocusEffect")]
         /// Describes a visual effect to apply when this item is focused. If this property is nil no effect will be applied when this view becomes focused.
         #[unsafe(method(focusEffect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn focusEffect(&self) -> Option<Retained<UIFocusEffect>>;
+        pub fn focusEffect(&self) -> Option<Retained<UIFocusEffect>>;
 
         #[cfg(feature = "UIFocusEffect")]
         /// Setter for [`focusEffect`][Self::focusEffect].
@@ -487,16 +487,16 @@ impl UIView {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFocusEffect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFocusEffect(&self, focus_effect: Option<&UIFocusEffect>);
+        pub fn setFocusEffect(&self, focus_effect: Option<&UIFocusEffect>);
 
         #[unsafe(method(semanticContentAttribute))]
         #[unsafe(method_family = none)]
-        pub unsafe fn semanticContentAttribute(&self) -> UISemanticContentAttribute;
+        pub fn semanticContentAttribute(&self) -> UISemanticContentAttribute;
 
         /// Setter for [`semanticContentAttribute`][Self::semanticContentAttribute].
         #[unsafe(method(setSemanticContentAttribute:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSemanticContentAttribute(
+        pub fn setSemanticContentAttribute(
             &self,
             semantic_content_attribute: UISemanticContentAttribute,
         );
@@ -504,7 +504,7 @@ impl UIView {
         #[cfg(feature = "UIInterface")]
         #[unsafe(method(userInterfaceLayoutDirectionForSemanticContentAttribute:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userInterfaceLayoutDirectionForSemanticContentAttribute(
+        pub fn userInterfaceLayoutDirectionForSemanticContentAttribute(
             attribute: UISemanticContentAttribute,
             mtm: MainThreadMarker,
         ) -> UIUserInterfaceLayoutDirection;
@@ -512,7 +512,7 @@ impl UIView {
         #[cfg(feature = "UIInterface")]
         #[unsafe(method(userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userInterfaceLayoutDirectionForSemanticContentAttribute_relativeToLayoutDirection(
+        pub fn userInterfaceLayoutDirectionForSemanticContentAttribute_relativeToLayoutDirection(
             semantic_content_attribute: UISemanticContentAttribute,
             layout_direction: UIUserInterfaceLayoutDirection,
             mtm: MainThreadMarker,
@@ -521,9 +521,7 @@ impl UIView {
         #[cfg(feature = "UIInterface")]
         #[unsafe(method(effectiveUserInterfaceLayoutDirection))]
         #[unsafe(method_family = none)]
-        pub unsafe fn effectiveUserInterfaceLayoutDirection(
-            &self,
-        ) -> UIUserInterfaceLayoutDirection;
+        pub fn effectiveUserInterfaceLayoutDirection(&self) -> UIUserInterfaceLayoutDirection;
     );
 }
 
@@ -533,7 +531,7 @@ impl UIView {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -566,37 +564,37 @@ impl UIView {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(center))]
         #[unsafe(method_family = none)]
-        pub unsafe fn center(&self) -> CGPoint;
+        pub fn center(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`center`][Self::center].
         #[unsafe(method(setCenter:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCenter(&self, center: CGPoint);
+        pub fn setCenter(&self, center: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(transform))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transform(&self) -> CGAffineTransform;
+        pub fn transform(&self) -> CGAffineTransform;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`transform`][Self::transform].
         #[unsafe(method(setTransform:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTransform(&self, transform: CGAffineTransform);
+        pub fn setTransform(&self, transform: CGAffineTransform);
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         #[unsafe(method(transform3D))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transform3D(&self) -> CATransform3D;
+        pub fn transform3D(&self) -> CATransform3D;
 
         #[cfg(feature = "objc2-quartz-core")]
         #[cfg(not(target_os = "watchos"))]
         /// Setter for [`transform3D`][Self::transform3D].
         #[unsafe(method(setTransform3D:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTransform3D(&self, transform3_d: CATransform3D);
+        pub fn setTransform3D(&self, transform3_d: CATransform3D);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(contentScaleFactor))]
@@ -612,17 +610,17 @@ impl UIView {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(anchorPoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn anchorPoint(&self) -> CGPoint;
+        pub fn anchorPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`anchorPoint`][Self::anchorPoint].
         #[unsafe(method(setAnchorPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnchorPoint(&self, anchor_point: CGPoint);
+        pub fn setAnchorPoint(&self, anchor_point: CGPoint);
 
         #[unsafe(method(isMultipleTouchEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isMultipleTouchEnabled(&self) -> bool;
+        pub fn isMultipleTouchEnabled(&self) -> bool;
 
         /// Setter for [`isMultipleTouchEnabled`][Self::isMultipleTouchEnabled].
         #[unsafe(method(setMultipleTouchEnabled:))]
@@ -631,17 +629,17 @@ impl UIView {
 
         #[unsafe(method(isExclusiveTouch))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isExclusiveTouch(&self) -> bool;
+        pub fn isExclusiveTouch(&self) -> bool;
 
         /// Setter for [`isExclusiveTouch`][Self::isExclusiveTouch].
         #[unsafe(method(setExclusiveTouch:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setExclusiveTouch(&self, exclusive_touch: bool);
+        pub fn setExclusiveTouch(&self, exclusive_touch: bool);
 
         #[cfg(all(feature = "UIEvent", feature = "objc2-core-foundation"))]
         #[unsafe(method(hitTest:withEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hitTest_withEvent(
+        pub fn hitTest_withEvent(
             &self,
             point: CGPoint,
             event: Option<&UIEvent>,
@@ -650,59 +648,54 @@ impl UIView {
         #[cfg(all(feature = "UIEvent", feature = "objc2-core-foundation"))]
         #[unsafe(method(pointInside:withEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pointInside_withEvent(&self, point: CGPoint, event: Option<&UIEvent>)
-            -> bool;
+        pub fn pointInside_withEvent(&self, point: CGPoint, event: Option<&UIEvent>) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(convertPoint:toView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn convertPoint_toView(&self, point: CGPoint, view: Option<&UIView>) -> CGPoint;
+        pub fn convertPoint_toView(&self, point: CGPoint, view: Option<&UIView>) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(convertPoint:fromView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn convertPoint_fromView(
-            &self,
-            point: CGPoint,
-            view: Option<&UIView>,
-        ) -> CGPoint;
+        pub fn convertPoint_fromView(&self, point: CGPoint, view: Option<&UIView>) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(convertRect:toView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn convertRect_toView(&self, rect: CGRect, view: Option<&UIView>) -> CGRect;
+        pub fn convertRect_toView(&self, rect: CGRect, view: Option<&UIView>) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(convertRect:fromView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn convertRect_fromView(&self, rect: CGRect, view: Option<&UIView>) -> CGRect;
+        pub fn convertRect_fromView(&self, rect: CGRect, view: Option<&UIView>) -> CGRect;
 
         #[unsafe(method(autoresizesSubviews))]
         #[unsafe(method_family = none)]
-        pub unsafe fn autoresizesSubviews(&self) -> bool;
+        pub fn autoresizesSubviews(&self) -> bool;
 
         /// Setter for [`autoresizesSubviews`][Self::autoresizesSubviews].
         #[unsafe(method(setAutoresizesSubviews:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAutoresizesSubviews(&self, autoresizes_subviews: bool);
+        pub fn setAutoresizesSubviews(&self, autoresizes_subviews: bool);
 
         #[unsafe(method(autoresizingMask))]
         #[unsafe(method_family = none)]
-        pub unsafe fn autoresizingMask(&self) -> UIViewAutoresizing;
+        pub fn autoresizingMask(&self) -> UIViewAutoresizing;
 
         /// Setter for [`autoresizingMask`][Self::autoresizingMask].
         #[unsafe(method(setAutoresizingMask:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAutoresizingMask(&self, autoresizing_mask: UIViewAutoresizing);
+        pub fn setAutoresizingMask(&self, autoresizing_mask: UIViewAutoresizing);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(sizeThatFits:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sizeThatFits(&self, size: CGSize) -> CGSize;
+        pub fn sizeThatFits(&self, size: CGSize) -> CGSize;
 
         #[unsafe(method(sizeToFit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sizeToFit(&self);
+        pub fn sizeToFit(&self);
     );
 }
 
@@ -725,15 +718,15 @@ impl UIView {
 
         #[unsafe(method(removeFromSuperview))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeFromSuperview(&self);
+        pub fn removeFromSuperview(&self);
 
         #[unsafe(method(insertSubview:atIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertSubview_atIndex(&self, view: &UIView, index: NSInteger);
+        pub fn insertSubview_atIndex(&self, view: &UIView, index: NSInteger);
 
         #[unsafe(method(exchangeSubviewAtIndex:withSubviewAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn exchangeSubviewAtIndex_withSubviewAtIndex(
+        pub fn exchangeSubviewAtIndex_withSubviewAtIndex(
             &self,
             index1: NSInteger,
             index2: NSInteger,
@@ -741,139 +734,136 @@ impl UIView {
 
         #[unsafe(method(addSubview:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addSubview(&self, view: &UIView);
+        pub fn addSubview(&self, view: &UIView);
 
         #[unsafe(method(insertSubview:belowSubview:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertSubview_belowSubview(&self, view: &UIView, sibling_subview: &UIView);
+        pub fn insertSubview_belowSubview(&self, view: &UIView, sibling_subview: &UIView);
 
         #[unsafe(method(insertSubview:aboveSubview:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertSubview_aboveSubview(&self, view: &UIView, sibling_subview: &UIView);
+        pub fn insertSubview_aboveSubview(&self, view: &UIView, sibling_subview: &UIView);
 
         #[unsafe(method(bringSubviewToFront:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bringSubviewToFront(&self, view: &UIView);
+        pub fn bringSubviewToFront(&self, view: &UIView);
 
         #[unsafe(method(sendSubviewToBack:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sendSubviewToBack(&self, view: &UIView);
+        pub fn sendSubviewToBack(&self, view: &UIView);
 
         #[unsafe(method(didAddSubview:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn didAddSubview(&self, subview: &UIView);
+        pub fn didAddSubview(&self, subview: &UIView);
 
         #[unsafe(method(willRemoveSubview:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn willRemoveSubview(&self, subview: &UIView);
+        pub fn willRemoveSubview(&self, subview: &UIView);
 
         #[unsafe(method(willMoveToSuperview:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn willMoveToSuperview(&self, new_superview: Option<&UIView>);
+        pub fn willMoveToSuperview(&self, new_superview: Option<&UIView>);
 
         #[unsafe(method(didMoveToSuperview))]
         #[unsafe(method_family = none)]
-        pub unsafe fn didMoveToSuperview(&self);
+        pub fn didMoveToSuperview(&self);
 
         #[cfg(feature = "UIWindow")]
         #[unsafe(method(willMoveToWindow:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn willMoveToWindow(&self, new_window: Option<&UIWindow>);
+        pub fn willMoveToWindow(&self, new_window: Option<&UIWindow>);
 
         #[unsafe(method(didMoveToWindow))]
         #[unsafe(method_family = none)]
-        pub unsafe fn didMoveToWindow(&self);
+        pub fn didMoveToWindow(&self);
 
         #[unsafe(method(isDescendantOfView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDescendantOfView(&self, view: &UIView) -> bool;
+        pub fn isDescendantOfView(&self, view: &UIView) -> bool;
 
         #[unsafe(method(viewWithTag:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn viewWithTag(&self, tag: NSInteger) -> Option<Retained<UIView>>;
+        pub fn viewWithTag(&self, tag: NSInteger) -> Option<Retained<UIView>>;
 
         /// Call to manually request a properties update for the view.
         /// Multiple requests may be coalesced into a single update alongside the next layout pass.
         #[unsafe(method(setNeedsUpdateProperties))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNeedsUpdateProperties(&self);
+        pub fn setNeedsUpdateProperties(&self);
 
         /// Override point for subclasses to update properties of this view.
         /// Never call this method directly; use `setNeedsUpdateProperties` to schedule an update.
         #[unsafe(method(updateProperties))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateProperties(&self);
+        pub fn updateProperties(&self);
 
         /// Forces an immediate properties update for this view (and its view controller, if applicable)
         /// and any subviews, including any view controllers or views in its subtree.
         #[unsafe(method(updatePropertiesIfNeeded))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updatePropertiesIfNeeded(&self);
+        pub fn updatePropertiesIfNeeded(&self);
 
         #[unsafe(method(setNeedsLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNeedsLayout(&self);
+        pub fn setNeedsLayout(&self);
 
         #[unsafe(method(layoutIfNeeded))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutIfNeeded(&self);
+        pub fn layoutIfNeeded(&self);
 
         #[unsafe(method(layoutSubviews))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutSubviews(&self);
+        pub fn layoutSubviews(&self);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[unsafe(method(layoutMargins))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutMargins(&self) -> UIEdgeInsets;
+        pub fn layoutMargins(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`layoutMargins`][Self::layoutMargins].
         #[unsafe(method(setLayoutMargins:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLayoutMargins(&self, layout_margins: UIEdgeInsets);
+        pub fn setLayoutMargins(&self, layout_margins: UIEdgeInsets);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[unsafe(method(directionalLayoutMargins))]
         #[unsafe(method_family = none)]
-        pub unsafe fn directionalLayoutMargins(&self) -> NSDirectionalEdgeInsets;
+        pub fn directionalLayoutMargins(&self) -> NSDirectionalEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`directionalLayoutMargins`][Self::directionalLayoutMargins].
         #[unsafe(method(setDirectionalLayoutMargins:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDirectionalLayoutMargins(
+        pub fn setDirectionalLayoutMargins(
             &self,
             directional_layout_margins: NSDirectionalEdgeInsets,
         );
 
         #[unsafe(method(preservesSuperviewLayoutMargins))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preservesSuperviewLayoutMargins(&self) -> bool;
+        pub fn preservesSuperviewLayoutMargins(&self) -> bool;
 
         /// Setter for [`preservesSuperviewLayoutMargins`][Self::preservesSuperviewLayoutMargins].
         #[unsafe(method(setPreservesSuperviewLayoutMargins:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreservesSuperviewLayoutMargins(
-            &self,
-            preserves_superview_layout_margins: bool,
-        );
+        pub fn setPreservesSuperviewLayoutMargins(&self, preserves_superview_layout_margins: bool);
 
         #[unsafe(method(insetsLayoutMarginsFromSafeArea))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insetsLayoutMarginsFromSafeArea(&self) -> bool;
+        pub fn insetsLayoutMarginsFromSafeArea(&self) -> bool;
 
         /// Setter for [`insetsLayoutMarginsFromSafeArea`][Self::insetsLayoutMarginsFromSafeArea].
         #[unsafe(method(setInsetsLayoutMarginsFromSafeArea:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInsetsLayoutMarginsFromSafeArea(
+        pub fn setInsetsLayoutMarginsFromSafeArea(
             &self,
             insets_layout_margins_from_safe_area: bool,
         );
 
         #[unsafe(method(layoutMarginsDidChange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutMarginsDidChange(&self);
+        pub fn layoutMarginsDidChange(&self);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[unsafe(method(safeAreaInsets))]
@@ -882,23 +872,23 @@ impl UIView {
 
         #[unsafe(method(safeAreaInsetsDidChange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn safeAreaInsetsDidChange(&self);
+        pub fn safeAreaInsetsDidChange(&self);
 
         #[cfg(feature = "UILayoutGuide")]
         #[unsafe(method(layoutMarginsGuide))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutMarginsGuide(&self) -> Retained<UILayoutGuide>;
+        pub fn layoutMarginsGuide(&self) -> Retained<UILayoutGuide>;
 
         #[cfg(feature = "UILayoutGuide")]
         /// This content guide provides a layout area that you can use to place text and related content whose width should generally be constrained to a size that is easy for the user to read. This guide provides a centered region that you can place content within to get this behavior for this view.
         #[unsafe(method(readableContentGuide))]
         #[unsafe(method_family = none)]
-        pub unsafe fn readableContentGuide(&self) -> Retained<UILayoutGuide>;
+        pub fn readableContentGuide(&self) -> Retained<UILayoutGuide>;
 
         #[cfg(feature = "UILayoutGuide")]
         #[unsafe(method(safeAreaLayoutGuide))]
         #[unsafe(method_family = none)]
-        pub unsafe fn safeAreaLayoutGuide(&self) -> Retained<UILayoutGuide>;
+        pub fn safeAreaLayoutGuide(&self) -> Retained<UILayoutGuide>;
 
         #[cfg(all(
             feature = "UIKeyboardLayoutGuide",
@@ -908,7 +898,7 @@ impl UIView {
         /// Follows the keyboard when on screen and docked. See UIKeyboardLayoutGuide.h for additional options.
         #[unsafe(method(keyboardLayoutGuide))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyboardLayoutGuide(&self) -> Retained<UIKeyboardLayoutGuide>;
+        pub fn keyboardLayoutGuide(&self) -> Retained<UIKeyboardLayoutGuide>;
     );
 }
 
@@ -919,7 +909,7 @@ impl UIView {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawRect(&self, rect: CGRect);
+        pub fn drawRect(&self, rect: CGRect);
 
         #[unsafe(method(setNeedsDisplay))]
         #[unsafe(method_family = none)]
@@ -928,16 +918,16 @@ impl UIView {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setNeedsDisplayInRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNeedsDisplayInRect(&self, rect: CGRect);
+        pub fn setNeedsDisplayInRect(&self, rect: CGRect);
 
         #[unsafe(method(clipsToBounds))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clipsToBounds(&self) -> bool;
+        pub fn clipsToBounds(&self) -> bool;
 
         /// Setter for [`clipsToBounds`][Self::clipsToBounds].
         #[unsafe(method(setClipsToBounds:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setClipsToBounds(&self, clips_to_bounds: bool);
+        pub fn setClipsToBounds(&self, clips_to_bounds: bool);
 
         #[cfg(feature = "UIColor")]
         #[unsafe(method(backgroundColor))]
@@ -955,31 +945,31 @@ impl UIView {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(alpha))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alpha(&self) -> CGFloat;
+        pub fn alpha(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`alpha`][Self::alpha].
         #[unsafe(method(setAlpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAlpha(&self, alpha: CGFloat);
+        pub fn setAlpha(&self, alpha: CGFloat);
 
         #[unsafe(method(isOpaque))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isOpaque(&self) -> bool;
+        pub fn isOpaque(&self) -> bool;
 
         /// Setter for [`isOpaque`][Self::isOpaque].
         #[unsafe(method(setOpaque:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOpaque(&self, opaque: bool);
+        pub fn setOpaque(&self, opaque: bool);
 
         #[unsafe(method(clearsContextBeforeDrawing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clearsContextBeforeDrawing(&self) -> bool;
+        pub fn clearsContextBeforeDrawing(&self) -> bool;
 
         /// Setter for [`clearsContextBeforeDrawing`][Self::clearsContextBeforeDrawing].
         #[unsafe(method(setClearsContextBeforeDrawing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setClearsContextBeforeDrawing(&self, clears_context_before_drawing: bool);
+        pub fn setClearsContextBeforeDrawing(&self, clears_context_before_drawing: bool);
 
         #[unsafe(method(isHidden))]
         #[unsafe(method_family = none)]
@@ -992,39 +982,39 @@ impl UIView {
 
         #[unsafe(method(contentMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentMode(&self) -> UIViewContentMode;
+        pub fn contentMode(&self) -> UIViewContentMode;
 
         /// Setter for [`contentMode`][Self::contentMode].
         #[unsafe(method(setContentMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentMode(&self, content_mode: UIViewContentMode);
+        pub fn setContentMode(&self, content_mode: UIViewContentMode);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[unsafe(method(contentStretch))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentStretch(&self) -> CGRect;
+        pub fn contentStretch(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentStretch`][Self::contentStretch].
         #[deprecated]
         #[unsafe(method(setContentStretch:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentStretch(&self, content_stretch: CGRect);
+        pub fn setContentStretch(&self, content_stretch: CGRect);
 
         #[unsafe(method(maskView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maskView(&self) -> Option<Retained<UIView>>;
+        pub fn maskView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`maskView`][Self::maskView].
         #[unsafe(method(setMaskView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaskView(&self, mask_view: Option<&UIView>);
+        pub fn setMaskView(&self, mask_view: Option<&UIView>);
 
         #[cfg(feature = "UIColor")]
         #[unsafe(method(tintColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
+        pub fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tintColor`][Self::tintColor].
@@ -1038,16 +1028,16 @@ impl UIView {
 
         #[unsafe(method(tintAdjustmentMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tintAdjustmentMode(&self) -> UIViewTintAdjustmentMode;
+        pub fn tintAdjustmentMode(&self) -> UIViewTintAdjustmentMode;
 
         /// Setter for [`tintAdjustmentMode`][Self::tintAdjustmentMode].
         #[unsafe(method(setTintAdjustmentMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTintAdjustmentMode(&self, tint_adjustment_mode: UIViewTintAdjustmentMode);
+        pub fn setTintAdjustmentMode(&self, tint_adjustment_mode: UIViewTintAdjustmentMode);
 
         #[unsafe(method(tintColorDidChange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tintColorDidChange(&self);
+        pub fn tintColorDidChange(&self);
     );
 }
 
@@ -1057,23 +1047,23 @@ impl UIView {
     extern_methods!(
         #[unsafe(method(setAnimationsEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnimationsEnabled(enabled: bool, mtm: MainThreadMarker);
+        pub fn setAnimationsEnabled(enabled: bool, mtm: MainThreadMarker);
 
         #[unsafe(method(areAnimationsEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn areAnimationsEnabled(mtm: MainThreadMarker) -> bool;
+        pub fn areAnimationsEnabled(mtm: MainThreadMarker) -> bool;
 
         #[cfg(feature = "block2")]
         #[unsafe(method(performWithoutAnimation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performWithoutAnimation(
+        pub fn performWithoutAnimation(
             actions_without_animation: &block2::DynBlock<dyn Fn() + '_>,
             mtm: MainThreadMarker,
         );
 
         #[unsafe(method(inheritedAnimationDuration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inheritedAnimationDuration(mtm: MainThreadMarker) -> NSTimeInterval;
+        pub fn inheritedAnimationDuration(mtm: MainThreadMarker) -> NSTimeInterval;
     );
 }
 
@@ -1084,7 +1074,7 @@ impl UIView {
         #[cfg(feature = "block2")]
         #[unsafe(method(animateWithDuration:delay:options:animations:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animateWithDuration_delay_options_animations_completion(
+        pub fn animateWithDuration_delay_options_animations_completion(
             duration: NSTimeInterval,
             delay: NSTimeInterval,
             options: UIViewAnimationOptions,
@@ -1096,7 +1086,7 @@ impl UIView {
         #[cfg(feature = "block2")]
         #[unsafe(method(animateWithDuration:animations:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animateWithDuration_animations_completion(
+        pub fn animateWithDuration_animations_completion(
             duration: NSTimeInterval,
             animations: &block2::DynBlock<dyn Fn()>,
             completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
@@ -1106,7 +1096,7 @@ impl UIView {
         #[cfg(feature = "block2")]
         #[unsafe(method(animateWithDuration:animations:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animateWithDuration_animations(
+        pub fn animateWithDuration_animations(
             duration: NSTimeInterval,
             animations: &block2::DynBlock<dyn Fn()>,
             mtm: MainThreadMarker,
@@ -1115,7 +1105,7 @@ impl UIView {
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[unsafe(method(animateWithSpringDuration:bounce:initialSpringVelocity:delay:options:animations:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animateWithSpringDuration_bounce_initialSpringVelocity_delay_options_animations_completion(
+        pub fn animateWithSpringDuration_bounce_initialSpringVelocity_delay_options_animations_completion(
             duration: NSTimeInterval,
             bounce: CGFloat,
             velocity: CGFloat,
@@ -1129,7 +1119,7 @@ impl UIView {
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[unsafe(method(animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion(
+        pub fn animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion(
             duration: NSTimeInterval,
             delay: NSTimeInterval,
             damping_ratio: CGFloat,
@@ -1143,7 +1133,7 @@ impl UIView {
         #[cfg(feature = "block2")]
         #[unsafe(method(transitionWithView:duration:options:animations:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transitionWithView_duration_options_animations_completion(
+        pub fn transitionWithView_duration_options_animations_completion(
             view: &UIView,
             duration: NSTimeInterval,
             options: UIViewAnimationOptions,
@@ -1154,7 +1144,7 @@ impl UIView {
         #[cfg(feature = "block2")]
         #[unsafe(method(transitionFromView:toView:duration:options:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transitionFromView_toView_duration_options_completion(
+        pub fn transitionFromView_toView_duration_options_completion(
             from_view: &UIView,
             to_view: &UIView,
             duration: NSTimeInterval,
@@ -1165,7 +1155,7 @@ impl UIView {
         #[cfg(feature = "block2")]
         #[unsafe(method(performSystemAnimation:onViews:options:animations:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performSystemAnimation_onViews_options_animations_completion(
+        pub fn performSystemAnimation_onViews_options_animations_completion(
             animation: UISystemAnimation,
             views: &NSArray<UIView>,
             options: UIViewAnimationOptions,
@@ -1177,7 +1167,7 @@ impl UIView {
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[unsafe(method(modifyAnimationsWithRepeatCount:autoreverses:animations:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn modifyAnimationsWithRepeatCount_autoreverses_animations(
+        pub fn modifyAnimationsWithRepeatCount_autoreverses_animations(
             count: CGFloat,
             autoreverses: bool,
             animations: &block2::DynBlock<dyn Fn() + '_>,
@@ -1193,7 +1183,7 @@ impl UIView {
         #[cfg(feature = "block2")]
         #[unsafe(method(animateKeyframesWithDuration:delay:options:animations:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animateKeyframesWithDuration_delay_options_animations_completion(
+        pub fn animateKeyframesWithDuration_delay_options_animations_completion(
             duration: NSTimeInterval,
             delay: NSTimeInterval,
             options: UIViewKeyframeAnimationOptions,
@@ -1205,7 +1195,7 @@ impl UIView {
         #[cfg(feature = "block2")]
         #[unsafe(method(addKeyframeWithRelativeStartTime:relativeDuration:animations:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addKeyframeWithRelativeStartTime_relativeDuration_animations(
+        pub fn addKeyframeWithRelativeStartTime_relativeDuration_animations(
             frame_start_time: c_double,
             frame_duration: c_double,
             animations: &block2::DynBlock<dyn Fn()>,
@@ -1229,7 +1219,7 @@ impl UIView {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setGestureRecognizers:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setGestureRecognizers(
+        pub fn setGestureRecognizers(
             &self,
             gesture_recognizers: Option<&NSArray<UIGestureRecognizer>>,
         );
@@ -1266,19 +1256,19 @@ impl UIView {
         /// context.
         #[unsafe(method(addMotionEffect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addMotionEffect(&self, effect: &UIMotionEffect);
+        pub fn addMotionEffect(&self, effect: &UIMotionEffect);
 
         #[cfg(feature = "UIMotionEffect")]
         /// Stops applying `effect` to the receiver. Any affected presentation values will animate to
         /// their post-removal values using the present UIView animation context.
         #[unsafe(method(removeMotionEffect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeMotionEffect(&self, effect: &UIMotionEffect);
+        pub fn removeMotionEffect(&self, effect: &UIMotionEffect);
 
         #[cfg(feature = "UIMotionEffect")]
         #[unsafe(method(motionEffects))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionEffects(&self) -> Retained<NSArray<UIMotionEffect>>;
+        pub fn motionEffects(&self) -> Retained<NSArray<UIMotionEffect>>;
 
         #[cfg(feature = "UIMotionEffect")]
         /// Setter for [`motionEffects`][Self::motionEffects].
@@ -1286,7 +1276,7 @@ impl UIView {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMotionEffects:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMotionEffects(&self, motion_effects: &NSArray<UIMotionEffect>);
+        pub fn setMotionEffects(&self, motion_effects: &NSArray<UIMotionEffect>);
     );
 }
 
@@ -1317,27 +1307,27 @@ impl UIView {
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(constraints))]
         #[unsafe(method_family = none)]
-        pub unsafe fn constraints(&self) -> Retained<NSArray<NSLayoutConstraint>>;
+        pub fn constraints(&self) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(addConstraint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addConstraint(&self, constraint: &NSLayoutConstraint);
+        pub fn addConstraint(&self, constraint: &NSLayoutConstraint);
 
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(addConstraints:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
+        pub fn addConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
 
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(removeConstraint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeConstraint(&self, constraint: &NSLayoutConstraint);
+        pub fn removeConstraint(&self, constraint: &NSLayoutConstraint);
 
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(removeConstraints:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
+        pub fn removeConstraints(&self, constraints: &NSArray<NSLayoutConstraint>);
     );
 }
 
@@ -1347,19 +1337,19 @@ impl UIView {
     extern_methods!(
         #[unsafe(method(updateConstraintsIfNeeded))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateConstraintsIfNeeded(&self);
+        pub fn updateConstraintsIfNeeded(&self);
 
         #[unsafe(method(updateConstraints))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateConstraints(&self);
+        pub fn updateConstraints(&self);
 
         #[unsafe(method(needsUpdateConstraints))]
         #[unsafe(method_family = none)]
-        pub unsafe fn needsUpdateConstraints(&self) -> bool;
+        pub fn needsUpdateConstraints(&self) -> bool;
 
         #[unsafe(method(setNeedsUpdateConstraints))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNeedsUpdateConstraints(&self);
+        pub fn setNeedsUpdateConstraints(&self);
     );
 }
 
@@ -1369,19 +1359,19 @@ impl UIView {
     extern_methods!(
         #[unsafe(method(translatesAutoresizingMaskIntoConstraints))]
         #[unsafe(method_family = none)]
-        pub unsafe fn translatesAutoresizingMaskIntoConstraints(&self) -> bool;
+        pub fn translatesAutoresizingMaskIntoConstraints(&self) -> bool;
 
         /// Setter for [`translatesAutoresizingMaskIntoConstraints`][Self::translatesAutoresizingMaskIntoConstraints].
         #[unsafe(method(setTranslatesAutoresizingMaskIntoConstraints:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTranslatesAutoresizingMaskIntoConstraints(
+        pub fn setTranslatesAutoresizingMaskIntoConstraints(
             &self,
             translates_autoresizing_mask_into_constraints: bool,
         );
 
         #[unsafe(method(requiresConstraintBasedLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requiresConstraintBasedLayout(mtm: MainThreadMarker) -> bool;
+        pub fn requiresConstraintBasedLayout(mtm: MainThreadMarker) -> bool;
     );
 }
 
@@ -1398,44 +1388,44 @@ impl UIView {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(alignmentRectForFrame:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alignmentRectForFrame(&self, frame: CGRect) -> CGRect;
+        pub fn alignmentRectForFrame(&self, frame: CGRect) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(frameForAlignmentRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn frameForAlignmentRect(&self, alignment_rect: CGRect) -> CGRect;
+        pub fn frameForAlignmentRect(&self, alignment_rect: CGRect) -> CGRect;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[unsafe(method(alignmentRectInsets))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alignmentRectInsets(&self) -> UIEdgeInsets;
+        pub fn alignmentRectInsets(&self) -> UIEdgeInsets;
 
         #[deprecated = "Override -viewForFirstBaselineLayout or -viewForLastBaselineLayout as appropriate, instead"]
         #[unsafe(method(viewForBaselineLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn viewForBaselineLayout(&self) -> Retained<UIView>;
+        pub fn viewForBaselineLayout(&self) -> Retained<UIView>;
 
         #[unsafe(method(viewForFirstBaselineLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn viewForFirstBaselineLayout(&self) -> Retained<UIView>;
+        pub fn viewForFirstBaselineLayout(&self) -> Retained<UIView>;
 
         #[unsafe(method(viewForLastBaselineLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn viewForLastBaselineLayout(&self) -> Retained<UIView>;
+        pub fn viewForLastBaselineLayout(&self) -> Retained<UIView>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(intrinsicContentSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn intrinsicContentSize(&self) -> CGSize;
+        pub fn intrinsicContentSize(&self) -> CGSize;
 
         #[unsafe(method(invalidateIntrinsicContentSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidateIntrinsicContentSize(&self);
+        pub fn invalidateIntrinsicContentSize(&self);
 
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(contentHuggingPriorityForAxis:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentHuggingPriorityForAxis(
+        pub fn contentHuggingPriorityForAxis(
             &self,
             axis: UILayoutConstraintAxis,
         ) -> UILayoutPriority;
@@ -1443,7 +1433,7 @@ impl UIView {
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(setContentHuggingPriority:forAxis:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentHuggingPriority_forAxis(
+        pub fn setContentHuggingPriority_forAxis(
             &self,
             priority: UILayoutPriority,
             axis: UILayoutConstraintAxis,
@@ -1452,7 +1442,7 @@ impl UIView {
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(contentCompressionResistancePriorityForAxis:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentCompressionResistancePriorityForAxis(
+        pub fn contentCompressionResistancePriorityForAxis(
             &self,
             axis: UILayoutConstraintAxis,
         ) -> UILayoutPriority;
@@ -1460,7 +1450,7 @@ impl UIView {
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(setContentCompressionResistancePriority:forAxis:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentCompressionResistancePriority_forAxis(
+        pub fn setContentCompressionResistancePriority_forAxis(
             &self,
             priority: UILayoutPriority,
             axis: UILayoutConstraintAxis,
@@ -1487,12 +1477,12 @@ impl UIView {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(systemLayoutSizeFittingSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn systemLayoutSizeFittingSize(&self, target_size: CGSize) -> CGSize;
+        pub fn systemLayoutSizeFittingSize(&self, target_size: CGSize) -> CGSize;
 
         #[cfg(all(feature = "NSLayoutConstraint", feature = "objc2-core-foundation"))]
         #[unsafe(method(systemLayoutSizeFittingSize:withHorizontalFittingPriority:verticalFittingPriority:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn systemLayoutSizeFittingSize_withHorizontalFittingPriority_verticalFittingPriority(
+        pub fn systemLayoutSizeFittingSize_withHorizontalFittingPriority_verticalFittingPriority(
             &self,
             target_size: CGSize,
             horizontal_fitting_priority: UILayoutPriority,
@@ -1508,17 +1498,17 @@ impl UIView {
         #[cfg(feature = "UILayoutGuide")]
         #[unsafe(method(layoutGuides))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutGuides(&self) -> Retained<NSArray<UILayoutGuide>>;
+        pub fn layoutGuides(&self) -> Retained<NSArray<UILayoutGuide>>;
 
         #[cfg(feature = "UILayoutGuide")]
         #[unsafe(method(addLayoutGuide:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addLayoutGuide(&self, layout_guide: &UILayoutGuide);
+        pub fn addLayoutGuide(&self, layout_guide: &UILayoutGuide);
 
         #[cfg(feature = "UILayoutGuide")]
         #[unsafe(method(removeLayoutGuide:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeLayoutGuide(&self, layout_guide: &UILayoutGuide);
+        pub fn removeLayoutGuide(&self, layout_guide: &UILayoutGuide);
     );
 }
 
@@ -1529,62 +1519,62 @@ impl UIView {
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(leadingAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn leadingAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
+        pub fn leadingAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(trailingAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn trailingAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
+        pub fn trailingAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(leftAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn leftAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
+        pub fn leftAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(rightAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rightAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
+        pub fn rightAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(topAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn topAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
+        pub fn topAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(bottomAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bottomAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
+        pub fn bottomAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(widthAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn widthAnchor(&self) -> Retained<NSLayoutDimension>;
+        pub fn widthAnchor(&self) -> Retained<NSLayoutDimension>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(heightAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn heightAnchor(&self) -> Retained<NSLayoutDimension>;
+        pub fn heightAnchor(&self) -> Retained<NSLayoutDimension>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(centerXAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn centerXAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
+        pub fn centerXAnchor(&self) -> Retained<NSLayoutXAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(centerYAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn centerYAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
+        pub fn centerYAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(firstBaselineAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn firstBaselineAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
+        pub fn firstBaselineAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
 
         #[cfg(feature = "NSLayoutAnchor")]
         #[unsafe(method(lastBaselineAnchor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lastBaselineAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
+        pub fn lastBaselineAnchor(&self) -> Retained<NSLayoutYAxisAnchor>;
     );
 }
 
@@ -1595,18 +1585,18 @@ impl UIView {
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(constraintsAffectingLayoutForAxis:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn constraintsAffectingLayoutForAxis(
+        pub fn constraintsAffectingLayoutForAxis(
             &self,
             axis: UILayoutConstraintAxis,
         ) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[unsafe(method(hasAmbiguousLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasAmbiguousLayout(&self) -> bool;
+        pub fn hasAmbiguousLayout(&self) -> bool;
 
         #[unsafe(method(exerciseAmbiguityInLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn exerciseAmbiguityInLayout(&self);
+        pub fn exerciseAmbiguityInLayout(&self);
     );
 }
 
@@ -1617,14 +1607,14 @@ impl UILayoutGuide {
         #[cfg(feature = "NSLayoutConstraint")]
         #[unsafe(method(constraintsAffectingLayoutForAxis:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn constraintsAffectingLayoutForAxis(
+        pub fn constraintsAffectingLayoutForAxis(
             &self,
             axis: UILayoutConstraintAxis,
         ) -> Retained<NSArray<NSLayoutConstraint>>;
 
         #[unsafe(method(hasAmbiguousLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasAmbiguousLayout(&self) -> bool;
+        pub fn hasAmbiguousLayout(&self) -> bool;
     );
 }
 
@@ -1634,14 +1624,14 @@ impl UIView {
     extern_methods!(
         #[unsafe(method(restorationIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn restorationIdentifier(&self) -> Option<Retained<NSString>>;
+        pub fn restorationIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`restorationIdentifier`][Self::restorationIdentifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRestorationIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRestorationIdentifier(&self, restoration_identifier: Option<&NSString>);
+        pub fn setRestorationIdentifier(&self, restoration_identifier: Option<&NSString>);
 
         /// # Safety
         ///
@@ -1665,7 +1655,7 @@ impl UIView {
     extern_methods!(
         #[unsafe(method(snapshotViewAfterScreenUpdates:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn snapshotViewAfterScreenUpdates(
+        pub fn snapshotViewAfterScreenUpdates(
             &self,
             after_updates: bool,
         ) -> Option<Retained<UIView>>;
@@ -1673,7 +1663,7 @@ impl UIView {
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[unsafe(method(resizableSnapshotViewFromRect:afterScreenUpdates:withCapInsets:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resizableSnapshotViewFromRect_afterScreenUpdates_withCapInsets(
+        pub fn resizableSnapshotViewFromRect_afterScreenUpdates_withCapInsets(
             &self,
             rect: CGRect,
             after_updates: bool,
@@ -1683,7 +1673,7 @@ impl UIView {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawViewHierarchyInRect:afterScreenUpdates:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawViewHierarchyInRect_afterScreenUpdates(
+        pub fn drawViewHierarchyInRect_afterScreenUpdates(
             &self,
             rect: CGRect,
             after_updates: bool,
@@ -1710,7 +1700,7 @@ impl UIView {
         #[deprecated = "Use the block-based animation API instead"]
         #[unsafe(method(commitAnimations))]
         #[unsafe(method_family = none)]
-        pub unsafe fn commitAnimations(mtm: MainThreadMarker);
+        pub fn commitAnimations(mtm: MainThreadMarker);
 
         /// # Safety
         ///
@@ -1739,48 +1729,42 @@ impl UIView {
         #[deprecated = "Use the block-based animation API instead"]
         #[unsafe(method(setAnimationDuration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnimationDuration(duration: NSTimeInterval, mtm: MainThreadMarker);
+        pub fn setAnimationDuration(duration: NSTimeInterval, mtm: MainThreadMarker);
 
         #[deprecated = "Use the block-based animation API instead"]
         #[unsafe(method(setAnimationDelay:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnimationDelay(delay: NSTimeInterval, mtm: MainThreadMarker);
+        pub fn setAnimationDelay(delay: NSTimeInterval, mtm: MainThreadMarker);
 
         #[deprecated = "Use the block-based animation API instead"]
         #[unsafe(method(setAnimationStartDate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnimationStartDate(start_date: &NSDate, mtm: MainThreadMarker);
+        pub fn setAnimationStartDate(start_date: &NSDate, mtm: MainThreadMarker);
 
         #[deprecated = "Use the block-based animation API instead"]
         #[unsafe(method(setAnimationCurve:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnimationCurve(curve: UIViewAnimationCurve, mtm: MainThreadMarker);
+        pub fn setAnimationCurve(curve: UIViewAnimationCurve, mtm: MainThreadMarker);
 
         #[deprecated = "Use the block-based animation API instead"]
         #[unsafe(method(setAnimationRepeatCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnimationRepeatCount(repeat_count: c_float, mtm: MainThreadMarker);
+        pub fn setAnimationRepeatCount(repeat_count: c_float, mtm: MainThreadMarker);
 
         #[deprecated = "Use the block-based animation API instead"]
         #[unsafe(method(setAnimationRepeatAutoreverses:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnimationRepeatAutoreverses(
-            repeat_autoreverses: bool,
-            mtm: MainThreadMarker,
-        );
+        pub fn setAnimationRepeatAutoreverses(repeat_autoreverses: bool, mtm: MainThreadMarker);
 
         #[deprecated = "Use the block-based animation API instead"]
         #[unsafe(method(setAnimationBeginsFromCurrentState:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnimationBeginsFromCurrentState(
-            from_current_state: bool,
-            mtm: MainThreadMarker,
-        );
+        pub fn setAnimationBeginsFromCurrentState(from_current_state: bool, mtm: MainThreadMarker);
 
         #[deprecated = "Use the block-based animation API instead"]
         #[unsafe(method(setAnimationTransition:forView:cache:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnimationTransition_forView_cache(
+        pub fn setAnimationTransition_forView_cache(
             transition: UIViewAnimationTransition,
             view: &UIView,
             cache: bool,
@@ -1795,13 +1779,13 @@ impl UIView {
         #[cfg(feature = "UIInterface")]
         #[unsafe(method(overrideUserInterfaceStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn overrideUserInterfaceStyle(&self) -> UIUserInterfaceStyle;
+        pub fn overrideUserInterfaceStyle(&self) -> UIUserInterfaceStyle;
 
         #[cfg(feature = "UIInterface")]
         /// Setter for [`overrideUserInterfaceStyle`][Self::overrideUserInterfaceStyle].
         #[unsafe(method(setOverrideUserInterfaceStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOverrideUserInterfaceStyle(
+        pub fn setOverrideUserInterfaceStyle(
             &self,
             override_user_interface_style: UIUserInterfaceStyle,
         );
@@ -1829,7 +1813,7 @@ impl UIView {
         /// view.maximumContentSizeCategory = UIContentSizeCategoryAccessibilityExtraLarge;
         #[unsafe(method(minimumContentSizeCategory))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumContentSizeCategory(&self) -> Option<Retained<UIContentSizeCategory>>;
+        pub fn minimumContentSizeCategory(&self) -> Option<Retained<UIContentSizeCategory>>;
 
         #[cfg(feature = "UIContentSizeCategory")]
         /// Setter for [`minimumContentSizeCategory`][Self::minimumContentSizeCategory].
@@ -1837,7 +1821,7 @@ impl UIView {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMinimumContentSizeCategory:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinimumContentSizeCategory(
+        pub fn setMinimumContentSizeCategory(
             &self,
             minimum_content_size_category: Option<&UIContentSizeCategory>,
         );
@@ -1845,7 +1829,7 @@ impl UIView {
         #[cfg(feature = "UIContentSizeCategory")]
         #[unsafe(method(maximumContentSizeCategory))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumContentSizeCategory(&self) -> Option<Retained<UIContentSizeCategory>>;
+        pub fn maximumContentSizeCategory(&self) -> Option<Retained<UIContentSizeCategory>>;
 
         #[cfg(feature = "UIContentSizeCategory")]
         /// Setter for [`maximumContentSizeCategory`][Self::maximumContentSizeCategory].
@@ -1853,7 +1837,7 @@ impl UIView {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMaximumContentSizeCategory:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumContentSizeCategory(
+        pub fn setMaximumContentSizeCategory(
             &self,
             maximum_content_size_category: Option<&UIContentSizeCategory>,
         );
@@ -1863,7 +1847,7 @@ impl UIView {
         /// This is for debugging purposes only.
         #[unsafe(method(appliedContentSizeCategoryLimitsDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appliedContentSizeCategoryLimitsDescription(&self) -> Retained<NSString>;
+        pub fn appliedContentSizeCategoryLimitsDescription(&self) -> Retained<NSString>;
     );
 }
 
@@ -1873,13 +1857,13 @@ impl UIView {
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(traitOverrides))]
         #[unsafe(method_family = none)]
-        pub unsafe fn traitOverrides(&self) -> Retained<ProtocolObject<dyn UITraitOverrides>>;
+        pub fn traitOverrides(&self) -> Retained<ProtocolObject<dyn UITraitOverrides>>;
 
         /// Forces an immediate trait update for this view (and its view controller, if applicable) and any subviews,
         /// including any view controllers or views in its subtree. Any trait change callbacks are sent synchronously.
         #[unsafe(method(updateTraitsIfNeeded))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateTraitsIfNeeded(&self);
+        pub fn updateTraitsIfNeeded(&self);
     );
 }
 
@@ -1895,7 +1879,7 @@ impl UIView {
         #[cfg(all(feature = "UILayoutGuide", feature = "UIViewLayoutRegion"))]
         #[unsafe(method(layoutGuideForLayoutRegion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutGuideForLayoutRegion(
+        pub fn layoutGuideForLayoutRegion(
             &self,
             layout_region: &UIViewLayoutRegion,
         ) -> Retained<UILayoutGuide>;
@@ -1907,10 +1891,8 @@ impl UIView {
         ))]
         #[unsafe(method(edgeInsetsForLayoutRegion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn edgeInsetsForLayoutRegion(
-            &self,
-            layout_region: &UIViewLayoutRegion,
-        ) -> UIEdgeInsets;
+        pub fn edgeInsetsForLayoutRegion(&self, layout_region: &UIViewLayoutRegion)
+            -> UIEdgeInsets;
 
         #[cfg(all(
             feature = "UIGeometry",
@@ -1919,7 +1901,7 @@ impl UIView {
         ))]
         #[unsafe(method(directionalEdgeInsetsForLayoutRegion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn directionalEdgeInsetsForLayoutRegion(
+        pub fn directionalEdgeInsetsForLayoutRegion(
             &self,
             layout_region: &UIViewLayoutRegion,
         ) -> NSDirectionalEdgeInsets;
@@ -1934,7 +1916,7 @@ impl UIView {
         /// A configuration that defines the corners of the view.
         #[unsafe(method(cornerConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cornerConfiguration(&self) -> Retained<UICornerConfiguration>;
+        pub fn cornerConfiguration(&self) -> Retained<UICornerConfiguration>;
 
         #[cfg(feature = "UICornerConfiguration")]
         /// Setter for [`cornerConfiguration`][Self::cornerConfiguration].
@@ -1942,7 +1924,7 @@ impl UIView {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCornerConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCornerConfiguration(&self, corner_configuration: &UICornerConfiguration);
+        pub fn setCornerConfiguration(&self, corner_configuration: &UICornerConfiguration);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Returns the effective radius for the given `corner`, calculated using the view's current `cornerConfiguration`.
@@ -1954,6 +1936,6 @@ impl UIView {
         /// - Returns: The effective radius.
         #[unsafe(method(effectiveRadiusForCorner:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn effectiveRadiusForCorner(&self, corner: UIRectCorner) -> CGFloat;
+        pub fn effectiveRadiusForCorner(&self, corner: UIRectCorner) -> CGFloat;
     );
 }

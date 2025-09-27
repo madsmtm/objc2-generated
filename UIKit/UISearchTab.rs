@@ -30,12 +30,12 @@ impl UISearchTab {
         /// the previously selected tab in the tab bar will be restored and selected. The default value is `NO`.
         #[unsafe(method(automaticallyActivatesSearch))]
         #[unsafe(method_family = none)]
-        pub unsafe fn automaticallyActivatesSearch(&self) -> bool;
+        pub fn automaticallyActivatesSearch(&self) -> bool;
 
         /// Setter for [`automaticallyActivatesSearch`][Self::automaticallyActivatesSearch].
         #[unsafe(method(setAutomaticallyActivatesSearch:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAutomaticallyActivatesSearch(&self, automatically_activates_search: bool);
+        pub fn setAutomaticallyActivatesSearch(&self, automatically_activates_search: bool);
 
         #[cfg(all(
             feature = "UIResponder",
@@ -89,10 +89,10 @@ impl UISearchTab {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

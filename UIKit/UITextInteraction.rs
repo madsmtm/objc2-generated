@@ -36,7 +36,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(interactionShouldBegin:atPoint:))]
         #[unsafe(method_family = none)]
-        unsafe fn interactionShouldBegin_atPoint(
+        fn interactionShouldBegin_atPoint(
             &self,
             interaction: &UITextInteraction,
             point: CGPoint,
@@ -45,12 +45,12 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(interactionWillBegin:))]
         #[unsafe(method_family = none)]
-        unsafe fn interactionWillBegin(&self, interaction: &UITextInteraction);
+        fn interactionWillBegin(&self, interaction: &UITextInteraction);
 
         #[optional]
         #[unsafe(method(interactionDidEnd:))]
         #[unsafe(method_family = none)]
-        unsafe fn interactionDidEnd(&self, interaction: &UITextInteraction);
+        fn interactionDidEnd(&self, interaction: &UITextInteraction);
     }
 );
 
@@ -75,19 +75,14 @@ impl UITextInteraction {
     extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn UITextInteractionDelegate>>>;
+        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UITextInteractionDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn UITextInteractionDelegate>>,
-        );
+        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UITextInteractionDelegate>>);
 
         #[cfg(all(
             feature = "UIResponder",
@@ -96,7 +91,7 @@ impl UITextInteraction {
         ))]
         #[unsafe(method(textInput))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textInput(&self) -> Option<Retained<UIResponder>>;
+        pub fn textInput(&self) -> Option<Retained<UIResponder>>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -116,18 +111,16 @@ impl UITextInteraction {
 
         #[unsafe(method(textInteractionMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textInteractionMode(&self) -> UITextInteractionMode;
+        pub fn textInteractionMode(&self) -> UITextInteractionMode;
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[unsafe(method(gesturesForFailureRequirements))]
         #[unsafe(method_family = none)]
-        pub unsafe fn gesturesForFailureRequirements(
-            &self,
-        ) -> Retained<NSArray<UIGestureRecognizer>>;
+        pub fn gesturesForFailureRequirements(&self) -> Retained<NSArray<UIGestureRecognizer>>;
 
         #[unsafe(method(textInteractionForMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textInteractionForMode(
+        pub fn textInteractionForMode(
             mode: UITextInteractionMode,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
@@ -139,10 +132,10 @@ impl UITextInteraction {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

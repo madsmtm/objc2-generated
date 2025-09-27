@@ -23,28 +23,28 @@ impl UIDragItem {
     extern_methods!(
         #[unsafe(method(initWithItemProvider:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithItemProvider(
+        pub fn initWithItemProvider(
             this: Allocated<Self>,
             item_provider: &NSItemProvider,
         ) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(itemProvider))]
         #[unsafe(method_family = none)]
-        pub unsafe fn itemProvider(&self) -> Retained<NSItemProvider>;
+        pub fn itemProvider(&self) -> Retained<NSItemProvider>;
 
         /// Use `localObject` to attach additional information to
         /// this drag item, visible only inside the app that started the drag.
         #[unsafe(method(localObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localObject(&self) -> Option<Retained<AnyObject>>;
+        pub fn localObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`localObject`][Self::localObject].
         ///
@@ -70,9 +70,7 @@ impl UIDragItem {
         /// To hide the preview, set `previewProvider` to a block that returns nil.
         #[unsafe(method(previewProvider))]
         #[unsafe(method_family = none)]
-        pub unsafe fn previewProvider(
-            &self,
-        ) -> *mut block2::DynBlock<dyn Fn() -> *mut UIDragPreview>;
+        pub fn previewProvider(&self) -> *mut block2::DynBlock<dyn Fn() -> *mut UIDragPreview>;
 
         #[cfg(all(feature = "UIDragPreview", feature = "block2"))]
         /// Setter for [`previewProvider`][Self::previewProvider].
@@ -93,6 +91,6 @@ impl UIDragItem {
         /// If no active drop animation is in progress for the specified item, then nothing happens.
         #[unsafe(method(setNeedsDropPreviewUpdate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNeedsDropPreviewUpdate(&self);
+        pub fn setNeedsDropPreviewUpdate(&self);
     );
 }

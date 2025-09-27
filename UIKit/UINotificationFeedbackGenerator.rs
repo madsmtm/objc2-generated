@@ -50,12 +50,12 @@ impl UINotificationFeedbackGenerator {
         /// call when a notification is displayed, passing the corresponding type
         #[unsafe(method(notificationOccurred:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn notificationOccurred(&self, notification_type: UINotificationFeedbackType);
+        pub fn notificationOccurred(&self, notification_type: UINotificationFeedbackType);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(notificationOccurred:atLocation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn notificationOccurred_atLocation(
+        pub fn notificationOccurred_atLocation(
             &self,
             notification_type: UINotificationFeedbackType,
             location: CGPoint,
@@ -71,12 +71,12 @@ impl UINotificationFeedbackGenerator {
         /// initalize the generator with a view to attach it to the provided view as an interaction.
         #[unsafe(method(feedbackGeneratorForView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
+        pub fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
 
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -86,6 +86,6 @@ impl UINotificationFeedbackGenerator {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

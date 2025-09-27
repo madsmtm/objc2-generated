@@ -19,7 +19,7 @@ pub unsafe trait UNNotificationResponseUIKitAdditions:
         #[cfg(all(feature = "UIResponder", feature = "UIScene"))]
         #[unsafe(method(targetScene))]
         #[unsafe(method_family = none)]
-        unsafe fn targetScene(&self, mtm: MainThreadMarker) -> Option<Retained<UIScene>>;
+        fn targetScene(&self, mtm: MainThreadMarker) -> Option<Retained<UIScene>>;
     );
 }
 

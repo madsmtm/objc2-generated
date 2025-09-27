@@ -15,7 +15,7 @@ impl UIFocusSystem {
         /// Registers a sound file for a given identifier.
         #[unsafe(method(registerURL:forSoundIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registerURL_forSoundIdentifier(
+        pub fn registerURL_forSoundIdentifier(
             sound_file_url: &NSURL,
             identifier: &UIFocusSoundIdentifier,
             mtm: MainThreadMarker,
@@ -35,6 +35,6 @@ impl UIWindowScene {
         /// Returns the focus system that is responsible for this scene or nil if this scene does not support focus.
         #[unsafe(method(focusSystem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn focusSystem(&self) -> Option<Retained<UIFocusSystem>>;
+        pub fn focusSystem(&self) -> Option<Retained<UIFocusSystem>>;
     );
 }

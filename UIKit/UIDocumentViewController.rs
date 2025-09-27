@@ -68,7 +68,7 @@ impl UIDocumentViewController {
         #[cfg(feature = "UIDocument")]
         #[unsafe(method(initWithDocument:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDocument(
+        pub fn initWithDocument(
             this: Allocated<Self>,
             document: Option<&UIDocument>,
         ) -> Retained<Self>;
@@ -76,33 +76,30 @@ impl UIDocumentViewController {
         #[cfg(feature = "UIDocument")]
         #[unsafe(method(document))]
         #[unsafe(method_family = none)]
-        pub unsafe fn document(&self) -> Option<Retained<UIDocument>>;
+        pub fn document(&self) -> Option<Retained<UIDocument>>;
 
         #[cfg(feature = "UIDocument")]
         /// Setter for [`document`][Self::document].
         #[unsafe(method(setDocument:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDocument(&self, document: Option<&UIDocument>);
+        pub fn setDocument(&self, document: Option<&UIDocument>);
 
         #[cfg(feature = "UIDocumentViewControllerLaunchOptions")]
         /// Properties to configure the view controller when no document is open.
         #[unsafe(method(launchOptions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn launchOptions(&self) -> Retained<UIDocumentViewControllerLaunchOptions>;
+        pub fn launchOptions(&self) -> Retained<UIDocumentViewControllerLaunchOptions>;
 
         #[cfg(feature = "UIDocumentViewControllerLaunchOptions")]
         /// Setter for [`launchOptions`][Self::launchOptions].
         #[unsafe(method(setLaunchOptions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLaunchOptions(
-            &self,
-            launch_options: &UIDocumentViewControllerLaunchOptions,
-        );
+        pub fn setLaunchOptions(&self, launch_options: &UIDocumentViewControllerLaunchOptions);
 
         /// When this view controller updates its navigation item, this method will be called, allowing subclasses to apply any kind of customization you might want.
         #[unsafe(method(navigationItemDidUpdate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn navigationItemDidUpdate(&self);
+        pub fn navigationItemDidUpdate(&self);
 
         #[cfg(feature = "block2")]
         /// Opens the current document.
@@ -110,7 +107,7 @@ impl UIDocumentViewController {
         /// If the document is already opened, the completion handler will be called as if opening the document succeeded.
         #[unsafe(method(openDocumentWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn openDocumentWithCompletionHandler(
+        pub fn openDocumentWithCompletionHandler(
             &self,
             completion_handler: &block2::DynBlock<dyn Fn(Bool)>,
         );
@@ -119,13 +116,13 @@ impl UIDocumentViewController {
         /// opening the document initially or after the presented document was changed.
         #[unsafe(method(documentDidOpen))]
         #[unsafe(method_family = none)]
-        pub unsafe fn documentDidOpen(&self);
+        pub fn documentDidOpen(&self);
 
         #[cfg(feature = "UIBarButtonItemGroup")]
         /// MARK: Custom Navigation Items
         #[unsafe(method(undoRedoItemGroup))]
         #[unsafe(method_family = none)]
-        pub unsafe fn undoRedoItemGroup(&self) -> Retained<UIBarButtonItemGroup>;
+        pub fn undoRedoItemGroup(&self) -> Retained<UIBarButtonItemGroup>;
     );
 }
 
@@ -135,7 +132,7 @@ impl UIDocumentViewController {
     extern_methods!(
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
+        pub fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
@@ -159,10 +156,10 @@ impl UIDocumentViewController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

@@ -158,15 +158,15 @@ impl UICollectionLayoutListConfiguration {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(initWithAppearance:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithAppearance(
+        pub fn initWithAppearance(
             this: Allocated<Self>,
             appearance: UICollectionLayoutListAppearance,
         ) -> Retained<Self>;
@@ -174,25 +174,25 @@ impl UICollectionLayoutListConfiguration {
         /// The overall appearance of the section.
         #[unsafe(method(appearance))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appearance(&self) -> UICollectionLayoutListAppearance;
+        pub fn appearance(&self) -> UICollectionLayoutListAppearance;
 
         /// Whether this section shows separators or not. For additional control, see separatorConfiguration.
         /// Note that when this property is NO, the separatorConfiguration is ineffective.
         #[unsafe(method(showsSeparators))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showsSeparators(&self) -> bool;
+        pub fn showsSeparators(&self) -> bool;
 
         /// Setter for [`showsSeparators`][Self::showsSeparators].
         #[unsafe(method(setShowsSeparators:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShowsSeparators(&self, shows_separators: bool);
+        pub fn setShowsSeparators(&self, shows_separators: bool);
 
         #[cfg(feature = "UIListSeparatorConfiguration")]
         /// The preferred configuration for separators. Used as a baseline for a section in a list using this
         /// `UICollectionLayoutListConfiguration`
         #[unsafe(method(separatorConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn separatorConfiguration(&self) -> Retained<UIListSeparatorConfiguration>;
+        pub fn separatorConfiguration(&self) -> Retained<UIListSeparatorConfiguration>;
 
         #[cfg(feature = "UIListSeparatorConfiguration")]
         /// Setter for [`separatorConfiguration`][Self::separatorConfiguration].
@@ -200,7 +200,7 @@ impl UICollectionLayoutListConfiguration {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSeparatorConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSeparatorConfiguration(
+        pub fn setSeparatorConfiguration(
             &self,
             separator_configuration: &UIListSeparatorConfiguration,
         );
@@ -238,13 +238,13 @@ impl UICollectionLayoutListConfiguration {
         /// Defaults to nil, indicating the system background color for the specified appearance is used.
         #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundColor(&self) -> Option<Retained<UIColor>>;
+        pub fn backgroundColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBackgroundColor(&self, background_color: Option<&UIColor>);
+        pub fn setBackgroundColor(&self, background_color: Option<&UIColor>);
 
         #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
         /// Called when list is about to show leading swipe actions for a particular index path.
@@ -305,34 +305,34 @@ impl UICollectionLayoutListConfiguration {
         /// Defines whether the section has a header. Defaults to UICollectionLayoutListHeaderModeNone.
         #[unsafe(method(headerMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn headerMode(&self) -> UICollectionLayoutListHeaderMode;
+        pub fn headerMode(&self) -> UICollectionLayoutListHeaderMode;
 
         /// Setter for [`headerMode`][Self::headerMode].
         #[unsafe(method(setHeaderMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHeaderMode(&self, header_mode: UICollectionLayoutListHeaderMode);
+        pub fn setHeaderMode(&self, header_mode: UICollectionLayoutListHeaderMode);
 
         /// Defines whether the section has a footer. Defaults to UICollectionLayoutListFooterModeNone.
         #[unsafe(method(footerMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn footerMode(&self) -> UICollectionLayoutListFooterMode;
+        pub fn footerMode(&self) -> UICollectionLayoutListFooterMode;
 
         /// Setter for [`footerMode`][Self::footerMode].
         #[unsafe(method(setFooterMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFooterMode(&self, footer_mode: UICollectionLayoutListFooterMode);
+        pub fn setFooterMode(&self, footer_mode: UICollectionLayoutListFooterMode);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Padding above each section header. The default value is `UICollectionViewLayoutAutomaticDimension`
         #[unsafe(method(headerTopPadding))]
         #[unsafe(method_family = none)]
-        pub unsafe fn headerTopPadding(&self) -> CGFloat;
+        pub fn headerTopPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`headerTopPadding`][Self::headerTopPadding].
         #[unsafe(method(setHeaderTopPadding:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHeaderTopPadding(&self, header_top_padding: CGFloat);
+        pub fn setHeaderTopPadding(&self, header_top_padding: CGFloat);
 
         /// Determines the type of items that will tightly hug their content.
         ///
@@ -340,13 +340,12 @@ impl UICollectionLayoutListConfiguration {
         /// When the value of this property is `UICollectionLayoutListContentHuggingElementsSupplementaryHeader`, the header view will not stretch the width of the collection view if its content's intrinsic content size is less than the collection view's width.
         #[unsafe(method(contentHuggingElements))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentHuggingElements(&self)
-            -> UICollectionLayoutListContentHuggingElements;
+        pub fn contentHuggingElements(&self) -> UICollectionLayoutListContentHuggingElements;
 
         /// Setter for [`contentHuggingElements`][Self::contentHuggingElements].
         #[unsafe(method(setContentHuggingElements:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentHuggingElements(
+        pub fn setContentHuggingElements(
             &self,
             content_hugging_elements: UICollectionLayoutListContentHuggingElements,
         );
@@ -360,7 +359,7 @@ impl NSCollectionLayoutSection {
         /// Creates a list section using the specified configuration. You should pass the layoutEnvironment from inside the UICollectionViewCompositionalLayoutSectionProvider.
         #[unsafe(method(sectionWithListConfiguration:layoutEnvironment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sectionWithListConfiguration_layoutEnvironment(
+        pub fn sectionWithListConfiguration_layoutEnvironment(
             configuration: &UICollectionLayoutListConfiguration,
             layout_environment: &ProtocolObject<dyn NSCollectionLayoutEnvironment>,
         ) -> Retained<Self>;
@@ -377,7 +376,7 @@ impl UICollectionViewCompositionalLayout {
         /// Creates a compositional layout containing only list sections of the specified configuration.
         #[unsafe(method(layoutWithListConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutWithListConfiguration(
+        pub fn layoutWithListConfiguration(
             configuration: &UICollectionLayoutListConfiguration,
         ) -> Retained<Self>;
     );

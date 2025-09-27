@@ -34,24 +34,24 @@ impl UIPointerRegion {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(rect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rect(&self) -> CGRect;
+        pub fn rect(&self) -> CGRect;
 
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
+        pub fn identifier(&self) -> Option<Retained<ProtocolObject<dyn NSObjectProtocol>>>;
 
         #[cfg(feature = "UIGeometry")]
         /// Axes along which this region latches when the primary mouse button is pressed.
         /// When set, the UIPointerStyle associated with this region will "lock in" and allow free-form movement along the specified axes.
         #[unsafe(method(latchingAxes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn latchingAxes(&self) -> UIAxis;
+        pub fn latchingAxes(&self) -> UIAxis;
 
         #[cfg(feature = "UIGeometry")]
         /// Setter for [`latchingAxes`][Self::latchingAxes].
         #[unsafe(method(setLatchingAxes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLatchingAxes(&self, latching_axes: UIAxis);
+        pub fn setLatchingAxes(&self, latching_axes: UIAxis);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates a UIPointerRegion with the supplied rect and optional identifier.
@@ -62,7 +62,7 @@ impl UIPointerRegion {
         /// Parameter `identifier`: Optional identifier that may be used to identify this region in subsequent pointer interaction delegate calls.
         #[unsafe(method(regionWithRect:identifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn regionWithRect_identifier(
+        pub fn regionWithRect_identifier(
             rect: CGRect,
             identifier: Option<&ProtocolObject<dyn NSObjectProtocol>>,
             mtm: MainThreadMarker,
@@ -70,10 +70,10 @@ impl UIPointerRegion {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

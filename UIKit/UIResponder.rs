@@ -354,73 +354,57 @@ impl UIResponder {
     extern_methods!(
         #[unsafe(method(nextResponder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn nextResponder(&self) -> Option<Retained<UIResponder>>;
+        pub fn nextResponder(&self) -> Option<Retained<UIResponder>>;
 
         #[unsafe(method(canBecomeFirstResponder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn canBecomeFirstResponder(&self) -> bool;
+        pub fn canBecomeFirstResponder(&self) -> bool;
 
         #[unsafe(method(becomeFirstResponder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn becomeFirstResponder(&self) -> bool;
+        pub fn becomeFirstResponder(&self) -> bool;
 
         #[unsafe(method(canResignFirstResponder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn canResignFirstResponder(&self) -> bool;
+        pub fn canResignFirstResponder(&self) -> bool;
 
         #[unsafe(method(resignFirstResponder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resignFirstResponder(&self) -> bool;
+        pub fn resignFirstResponder(&self) -> bool;
 
         #[unsafe(method(isFirstResponder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isFirstResponder(&self) -> bool;
+        pub fn isFirstResponder(&self) -> bool;
 
         #[cfg(all(feature = "UIEvent", feature = "UITouch"))]
         #[unsafe(method(touchesBegan:withEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchesBegan_withEvent(
-            &self,
-            touches: &NSSet<UITouch>,
-            event: Option<&UIEvent>,
-        );
+        pub fn touchesBegan_withEvent(&self, touches: &NSSet<UITouch>, event: Option<&UIEvent>);
 
         #[cfg(all(feature = "UIEvent", feature = "UITouch"))]
         #[unsafe(method(touchesMoved:withEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchesMoved_withEvent(
-            &self,
-            touches: &NSSet<UITouch>,
-            event: Option<&UIEvent>,
-        );
+        pub fn touchesMoved_withEvent(&self, touches: &NSSet<UITouch>, event: Option<&UIEvent>);
 
         #[cfg(all(feature = "UIEvent", feature = "UITouch"))]
         #[unsafe(method(touchesEnded:withEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchesEnded_withEvent(
-            &self,
-            touches: &NSSet<UITouch>,
-            event: Option<&UIEvent>,
-        );
+        pub fn touchesEnded_withEvent(&self, touches: &NSSet<UITouch>, event: Option<&UIEvent>);
 
         #[cfg(all(feature = "UIEvent", feature = "UITouch"))]
         #[unsafe(method(touchesCancelled:withEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchesCancelled_withEvent(
-            &self,
-            touches: &NSSet<UITouch>,
-            event: Option<&UIEvent>,
-        );
+        pub fn touchesCancelled_withEvent(&self, touches: &NSSet<UITouch>, event: Option<&UIEvent>);
 
         #[cfg(feature = "UITouch")]
         #[unsafe(method(touchesEstimatedPropertiesUpdated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchesEstimatedPropertiesUpdated(&self, touches: &NSSet<UITouch>);
+        pub fn touchesEstimatedPropertiesUpdated(&self, touches: &NSSet<UITouch>);
 
         #[cfg(all(feature = "UIEvent", feature = "UIPress", feature = "UIPressesEvent"))]
         #[unsafe(method(pressesBegan:withEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressesBegan_withEvent(
+        pub fn pressesBegan_withEvent(
             &self,
             presses: &NSSet<UIPress>,
             event: Option<&UIPressesEvent>,
@@ -429,7 +413,7 @@ impl UIResponder {
         #[cfg(all(feature = "UIEvent", feature = "UIPress", feature = "UIPressesEvent"))]
         #[unsafe(method(pressesChanged:withEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressesChanged_withEvent(
+        pub fn pressesChanged_withEvent(
             &self,
             presses: &NSSet<UIPress>,
             event: Option<&UIPressesEvent>,
@@ -438,7 +422,7 @@ impl UIResponder {
         #[cfg(all(feature = "UIEvent", feature = "UIPress", feature = "UIPressesEvent"))]
         #[unsafe(method(pressesEnded:withEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressesEnded_withEvent(
+        pub fn pressesEnded_withEvent(
             &self,
             presses: &NSSet<UIPress>,
             event: Option<&UIPressesEvent>,
@@ -447,7 +431,7 @@ impl UIResponder {
         #[cfg(all(feature = "UIEvent", feature = "UIPress", feature = "UIPressesEvent"))]
         #[unsafe(method(pressesCancelled:withEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressesCancelled_withEvent(
+        pub fn pressesCancelled_withEvent(
             &self,
             presses: &NSSet<UIPress>,
             event: Option<&UIPressesEvent>,
@@ -456,26 +440,22 @@ impl UIResponder {
         #[cfg(feature = "UIEvent")]
         #[unsafe(method(motionBegan:withEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionBegan_withEvent(&self, motion: UIEventSubtype, event: Option<&UIEvent>);
+        pub fn motionBegan_withEvent(&self, motion: UIEventSubtype, event: Option<&UIEvent>);
 
         #[cfg(feature = "UIEvent")]
         #[unsafe(method(motionEnded:withEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionEnded_withEvent(&self, motion: UIEventSubtype, event: Option<&UIEvent>);
+        pub fn motionEnded_withEvent(&self, motion: UIEventSubtype, event: Option<&UIEvent>);
 
         #[cfg(feature = "UIEvent")]
         #[unsafe(method(motionCancelled:withEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionCancelled_withEvent(
-            &self,
-            motion: UIEventSubtype,
-            event: Option<&UIEvent>,
-        );
+        pub fn motionCancelled_withEvent(&self, motion: UIEventSubtype, event: Option<&UIEvent>);
 
         #[cfg(feature = "UIEvent")]
         #[unsafe(method(remoteControlReceivedWithEvent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn remoteControlReceivedWithEvent(&self, event: Option<&UIEvent>);
+        pub fn remoteControlReceivedWithEvent(&self, event: Option<&UIEvent>);
 
         /// # Safety
         ///
@@ -504,12 +484,12 @@ impl UIResponder {
         #[cfg(feature = "UIMenuBuilder")]
         #[unsafe(method(buildMenuWithBuilder:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn buildMenuWithBuilder(&self, builder: &ProtocolObject<dyn UIMenuBuilder>);
+        pub fn buildMenuWithBuilder(&self, builder: &ProtocolObject<dyn UIMenuBuilder>);
 
         #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
         #[unsafe(method(validateCommand:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn validateCommand(&self, command: &UICommand);
+        pub fn validateCommand(&self, command: &UICommand);
 
         #[cfg(all(feature = "UIDeferredMenuElement", feature = "UIMenuElement"))]
         /// Asks the responder for an element provider to fulfill the given focus-based deferred element.
@@ -518,18 +498,18 @@ impl UIResponder {
         /// elements for this fulfillment of the deferred element.
         #[unsafe(method(providerForDeferredMenuElement:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn providerForDeferredMenuElement(
+        pub fn providerForDeferredMenuElement(
             &self,
             deferred_element: &UIDeferredMenuElement,
         ) -> Option<Retained<UIDeferredMenuElementProvider>>;
 
         #[unsafe(method(undoManager))]
         #[unsafe(method_family = none)]
-        pub unsafe fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
+        pub fn undoManager(&self) -> Option<Retained<NSUndoManager>>;
 
         #[unsafe(method(editingInteractionConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn editingInteractionConfiguration(&self) -> UIEditingInteractionConfiguration;
+        pub fn editingInteractionConfiguration(&self) -> UIEditingInteractionConfiguration;
     );
 }
 
@@ -538,11 +518,11 @@ impl UIResponder {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -556,7 +536,7 @@ impl UIResponder {
         ))]
         #[unsafe(method(keyCommands))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyCommands(&self) -> Option<Retained<NSArray<UIKeyCommand>>>;
+        pub fn keyCommands(&self) -> Option<Retained<NSArray<UIKeyCommand>>>;
     );
 }
 
@@ -566,12 +546,12 @@ impl UIResponder {
         #[cfg(feature = "UIView")]
         #[unsafe(method(inputView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inputView(&self) -> Option<Retained<UIView>>;
+        pub fn inputView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UIView")]
         #[unsafe(method(inputAccessoryView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inputAccessoryView(&self) -> Option<Retained<UIView>>;
+        pub fn inputAccessoryView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(feature = "UITextInput")]
         /// This method is for clients that wish to put buttons on the Shortcuts Bar, shown on top of the keyboard.
@@ -580,36 +560,34 @@ impl UIResponder {
         /// This method should not be overridden. Goes up the responder chain.
         #[unsafe(method(inputAssistantItem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inputAssistantItem(&self) -> Retained<UITextInputAssistantItem>;
+        pub fn inputAssistantItem(&self) -> Retained<UITextInputAssistantItem>;
 
         #[cfg(all(feature = "UIInputViewController", feature = "UIViewController"))]
         #[unsafe(method(inputViewController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inputViewController(&self) -> Option<Retained<UIInputViewController>>;
+        pub fn inputViewController(&self) -> Option<Retained<UIInputViewController>>;
 
         #[cfg(all(feature = "UIInputViewController", feature = "UIViewController"))]
         #[unsafe(method(inputAccessoryViewController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inputAccessoryViewController(
-            &self,
-        ) -> Option<Retained<UIInputViewController>>;
+        pub fn inputAccessoryViewController(&self) -> Option<Retained<UIInputViewController>>;
 
         #[cfg(feature = "UITextInput")]
         #[unsafe(method(textInputMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textInputMode(&self) -> Option<Retained<UITextInputMode>>;
+        pub fn textInputMode(&self) -> Option<Retained<UITextInputMode>>;
 
         #[unsafe(method(textInputContextIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textInputContextIdentifier(&self) -> Option<Retained<NSString>>;
+        pub fn textInputContextIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(clearTextInputContextIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clearTextInputContextIdentifier(identifier: &NSString, mtm: MainThreadMarker);
+        pub fn clearTextInputContextIdentifier(identifier: &NSString, mtm: MainThreadMarker);
 
         #[unsafe(method(reloadInputViews))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reloadInputViews(&self);
+        pub fn reloadInputViews(&self);
     );
 }
 
@@ -723,20 +701,20 @@ impl UIResponder {
     extern_methods!(
         #[unsafe(method(userActivity))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
+        pub fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
         /// Setter for [`userActivity`][Self::userActivity].
         #[unsafe(method(setUserActivity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUserActivity(&self, user_activity: Option<&NSUserActivity>);
+        pub fn setUserActivity(&self, user_activity: Option<&NSUserActivity>);
 
         #[unsafe(method(updateUserActivityState:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateUserActivityState(&self, activity: &NSUserActivity);
+        pub fn updateUserActivityState(&self, activity: &NSUserActivity);
 
         #[unsafe(method(restoreUserActivityState:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn restoreUserActivityState(&self, activity: &NSUserActivity);
+        pub fn restoreUserActivityState(&self, activity: &NSUserActivity);
     );
 }
 

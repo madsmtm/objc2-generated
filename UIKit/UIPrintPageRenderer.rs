@@ -45,43 +45,43 @@ impl UIPrintPageRenderer {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(headerHeight))]
         #[unsafe(method_family = none)]
-        pub unsafe fn headerHeight(&self) -> CGFloat;
+        pub fn headerHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`headerHeight`][Self::headerHeight].
         #[unsafe(method(setHeaderHeight:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHeaderHeight(&self, header_height: CGFloat);
+        pub fn setHeaderHeight(&self, header_height: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(footerHeight))]
         #[unsafe(method_family = none)]
-        pub unsafe fn footerHeight(&self) -> CGFloat;
+        pub fn footerHeight(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`footerHeight`][Self::footerHeight].
         #[unsafe(method(setFooterHeight:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFooterHeight(&self, footer_height: CGFloat);
+        pub fn setFooterHeight(&self, footer_height: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(paperRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn paperRect(&self) -> CGRect;
+        pub fn paperRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(printableRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printableRect(&self) -> CGRect;
+        pub fn printableRect(&self) -> CGRect;
 
         #[unsafe(method(numberOfPages))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfPages(&self) -> NSInteger;
+        pub fn numberOfPages(&self) -> NSInteger;
 
         #[cfg(feature = "UIPrintFormatter")]
         #[unsafe(method(printFormatters))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printFormatters(&self) -> Option<Retained<NSArray<UIPrintFormatter>>>;
+        pub fn printFormatters(&self) -> Option<Retained<NSArray<UIPrintFormatter>>>;
 
         #[cfg(feature = "UIPrintFormatter")]
         /// Setter for [`printFormatters`][Self::printFormatters].
@@ -89,15 +89,12 @@ impl UIPrintPageRenderer {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPrintFormatters:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPrintFormatters(
-            &self,
-            print_formatters: Option<&NSArray<UIPrintFormatter>>,
-        );
+        pub fn setPrintFormatters(&self, print_formatters: Option<&NSArray<UIPrintFormatter>>);
 
         #[cfg(feature = "UIPrintFormatter")]
         #[unsafe(method(printFormattersForPageAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printFormattersForPageAtIndex(
+        pub fn printFormattersForPageAtIndex(
             &self,
             page_index: NSInteger,
         ) -> Option<Retained<NSArray<UIPrintFormatter>>>;
@@ -105,7 +102,7 @@ impl UIPrintPageRenderer {
         #[cfg(feature = "UIPrintFormatter")]
         #[unsafe(method(addPrintFormatter:startingAtPageAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addPrintFormatter_startingAtPageAtIndex(
+        pub fn addPrintFormatter_startingAtPageAtIndex(
             &self,
             formatter: &UIPrintFormatter,
             page_index: NSInteger,
@@ -113,24 +110,24 @@ impl UIPrintPageRenderer {
 
         #[unsafe(method(currentRenderingQualityForRequestedRenderingQuality:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentRenderingQualityForRequestedRenderingQuality(
+        pub fn currentRenderingQualityForRequestedRenderingQuality(
             &self,
             requested_rendering_quality: UIPrintRenderingQuality,
         ) -> UIPrintRenderingQuality;
 
         #[unsafe(method(prepareForDrawingPages:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn prepareForDrawingPages(&self, range: NSRange);
+        pub fn prepareForDrawingPages(&self, range: NSRange);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawPageAtIndex:inRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawPageAtIndex_inRect(&self, page_index: NSInteger, printable_rect: CGRect);
+        pub fn drawPageAtIndex_inRect(&self, page_index: NSInteger, printable_rect: CGRect);
 
         #[cfg(feature = "UIPrintFormatter")]
         #[unsafe(method(drawPrintFormatter:forPageAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawPrintFormatter_forPageAtIndex(
+        pub fn drawPrintFormatter_forPageAtIndex(
             &self,
             print_formatter: &UIPrintFormatter,
             page_index: NSInteger,
@@ -139,29 +136,17 @@ impl UIPrintPageRenderer {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawHeaderForPageAtIndex:inRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawHeaderForPageAtIndex_inRect(
-            &self,
-            page_index: NSInteger,
-            header_rect: CGRect,
-        );
+        pub fn drawHeaderForPageAtIndex_inRect(&self, page_index: NSInteger, header_rect: CGRect);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawContentForPageAtIndex:inRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawContentForPageAtIndex_inRect(
-            &self,
-            page_index: NSInteger,
-            content_rect: CGRect,
-        );
+        pub fn drawContentForPageAtIndex_inRect(&self, page_index: NSInteger, content_rect: CGRect);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(drawFooterForPageAtIndex:inRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawFooterForPageAtIndex_inRect(
-            &self,
-            page_index: NSInteger,
-            footer_rect: CGRect,
-        );
+        pub fn drawFooterForPageAtIndex_inRect(&self, page_index: NSInteger, footer_rect: CGRect);
     );
 }
 
@@ -170,10 +155,17 @@ impl UIPrintPageRenderer {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIPrintPageRenderer {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

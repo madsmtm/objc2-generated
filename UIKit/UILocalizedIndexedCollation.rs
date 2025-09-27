@@ -22,22 +22,20 @@ impl UILocalizedIndexedCollation {
     extern_methods!(
         #[unsafe(method(currentCollation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentCollation(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn currentCollation(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(sectionTitles))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sectionTitles(&self) -> Retained<NSArray<NSString>>;
+        pub fn sectionTitles(&self) -> Retained<NSArray<NSString>>;
 
         #[unsafe(method(sectionIndexTitles))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sectionIndexTitles(&self) -> Retained<NSArray<NSString>>;
+        pub fn sectionIndexTitles(&self) -> Retained<NSArray<NSString>>;
 
         #[unsafe(method(sectionForSectionIndexTitleAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sectionForSectionIndexTitleAtIndex(
-            &self,
-            index_title_index: NSInteger,
-        ) -> NSInteger;
+        pub fn sectionForSectionIndexTitleAtIndex(&self, index_title_index: NSInteger)
+            -> NSInteger;
 
         /// # Safety
         ///
@@ -70,10 +68,10 @@ impl UILocalizedIndexedCollation {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

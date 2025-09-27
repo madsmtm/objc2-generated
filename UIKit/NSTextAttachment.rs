@@ -61,7 +61,7 @@ extern_protocol!(
         ))]
         #[unsafe(method(viewProviderForParentView:location:textContainer:))]
         #[unsafe(method_family = none)]
-        unsafe fn viewProviderForParentView_location_textContainer(
+        fn viewProviderForParentView_location_textContainer(
             &self,
             parent_view: Option<&UIView>,
             location: &ProtocolObject<dyn NSTextLocation>,
@@ -98,7 +98,7 @@ impl NSTextAttachment {
         /// ************************** Initialization ***************************
         #[unsafe(method(initWithData:ofType:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithData_ofType(
+        pub fn initWithData_ofType(
             this: Allocated<Self>,
             content_data: Option<&NSData>,
             uti: Option<&NSString>,
@@ -107,73 +107,73 @@ impl NSTextAttachment {
         /// ************************** Content properties ***************************
         #[unsafe(method(contents))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contents(&self) -> Option<Retained<NSData>>;
+        pub fn contents(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`contents`][Self::contents].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContents:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContents(&self, contents: Option<&NSData>);
+        pub fn setContents(&self, contents: Option<&NSData>);
 
         #[unsafe(method(fileType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileType(&self) -> Option<Retained<NSString>>;
+        pub fn fileType(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`fileType`][Self::fileType].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFileType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFileType(&self, file_type: Option<&NSString>);
+        pub fn setFileType(&self, file_type: Option<&NSString>);
 
         #[cfg(feature = "UIImage")]
         /// ************************** Rendering/layout properties ***************************
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
-        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
+        pub fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`image`][Self::image].
         #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImage(&self, image: Option<&UIImage>);
+        pub fn setImage(&self, image: Option<&UIImage>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bounds(&self) -> CGRect;
+        pub fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`bounds`][Self::bounds].
         #[unsafe(method(setBounds:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBounds(&self, bounds: CGRect);
+        pub fn setBounds(&self, bounds: CGRect);
 
         /// ************************** Non-image contents properties ***************************
         #[unsafe(method(fileWrapper))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileWrapper(&self) -> Option<Retained<NSFileWrapper>>;
+        pub fn fileWrapper(&self) -> Option<Retained<NSFileWrapper>>;
 
         /// Setter for [`fileWrapper`][Self::fileWrapper].
         #[unsafe(method(setFileWrapper:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFileWrapper(&self, file_wrapper: Option<&NSFileWrapper>);
+        pub fn setFileWrapper(&self, file_wrapper: Option<&NSFileWrapper>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(lineLayoutPadding))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lineLayoutPadding(&self) -> CGFloat;
+        pub fn lineLayoutPadding(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`lineLayoutPadding`][Self::lineLayoutPadding].
         #[unsafe(method(setLineLayoutPadding:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLineLayoutPadding(&self, line_layout_padding: CGFloat);
+        pub fn setLineLayoutPadding(&self, line_layout_padding: CGFloat);
 
         #[unsafe(method(textAttachmentViewProviderClassForFileType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textAttachmentViewProviderClassForFileType(
+        pub fn textAttachmentViewProviderClassForFileType(
             file_type: &NSString,
         ) -> Option<&'static AnyClass>;
 
@@ -189,16 +189,16 @@ impl NSTextAttachment {
 
         #[unsafe(method(allowsTextAttachmentView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsTextAttachmentView(&self) -> bool;
+        pub fn allowsTextAttachmentView(&self) -> bool;
 
         /// Setter for [`allowsTextAttachmentView`][Self::allowsTextAttachmentView].
         #[unsafe(method(setAllowsTextAttachmentView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsTextAttachmentView(&self, allows_text_attachment_view: bool);
+        pub fn setAllowsTextAttachmentView(&self, allows_text_attachment_view: bool);
 
         #[unsafe(method(usesTextAttachmentView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn usesTextAttachmentView(&self) -> bool;
+        pub fn usesTextAttachmentView(&self) -> bool;
     );
 }
 
@@ -207,12 +207,19 @@ impl NSTextAttachment {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSTextAttachment {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 mod private_NSAttributedStringAttachmentConveniences {
@@ -226,7 +233,7 @@ pub unsafe trait NSAttributedStringAttachmentConveniences:
     extern_methods!(
         #[unsafe(method(attributedStringWithAttachment:))]
         #[unsafe(method_family = none)]
-        unsafe fn attributedStringWithAttachment(
+        fn attributedStringWithAttachment(
             attachment: &NSTextAttachment,
         ) -> Retained<NSAttributedString>;
 
@@ -266,7 +273,7 @@ impl NSTextAttachmentViewProvider {
         ))]
         #[unsafe(method(initWithTextAttachment:parentView:textLayoutManager:location:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithTextAttachment_parentView_textLayoutManager_location(
+        pub fn initWithTextAttachment_parentView_textLayoutManager_location(
             this: Allocated<Self>,
             text_attachment: &NSTextAttachment,
             parent_view: Option<&UIView>,
@@ -276,52 +283,49 @@ impl NSTextAttachmentViewProvider {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[unsafe(method(textAttachment))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textAttachment(&self) -> Option<Retained<NSTextAttachment>>;
+        pub fn textAttachment(&self) -> Option<Retained<NSTextAttachment>>;
 
         #[cfg(feature = "NSTextLayoutManager")]
         #[unsafe(method(textLayoutManager))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
+        pub fn textLayoutManager(&self) -> Option<Retained<NSTextLayoutManager>>;
 
         #[cfg(feature = "NSTextRange")]
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
-        pub unsafe fn location(&self) -> Retained<ProtocolObject<dyn NSTextLocation>>;
+        pub fn location(&self) -> Retained<ProtocolObject<dyn NSTextLocation>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(view))]
         #[unsafe(method_family = none)]
-        pub unsafe fn view(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
+        pub fn view(&self, mtm: MainThreadMarker) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Setter for [`view`][Self::view].
         #[unsafe(method(setView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setView(&self, view: Option<&UIView>);
+        pub fn setView(&self, view: Option<&UIView>);
 
         #[unsafe(method(loadView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn loadView(&self);
+        pub fn loadView(&self);
 
         #[unsafe(method(tracksTextAttachmentViewBounds))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tracksTextAttachmentViewBounds(&self) -> bool;
+        pub fn tracksTextAttachmentViewBounds(&self) -> bool;
 
         /// Setter for [`tracksTextAttachmentViewBounds`][Self::tracksTextAttachmentViewBounds].
         #[unsafe(method(setTracksTextAttachmentViewBounds:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTracksTextAttachmentViewBounds(
-            &self,
-            tracks_text_attachment_view_bounds: bool,
-        );
+        pub fn setTracksTextAttachmentViewBounds(&self, tracks_text_attachment_view_bounds: bool);
 
         #[cfg(all(
             feature = "NSTextContainer",
@@ -344,6 +348,13 @@ impl NSTextAttachmentViewProvider {
     );
 }
 
+impl DefaultRetained for NSTextAttachmentViewProvider {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
+}
+
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextattachmentcontainer?language=objc)
     pub unsafe trait NSTextAttachmentContainer: NSObjectProtocol {
@@ -354,7 +365,7 @@ extern_protocol!(
         ))]
         #[unsafe(method(imageForBounds:textContainer:characterIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn imageForBounds_textContainer_characterIndex(
+        fn imageForBounds_textContainer_characterIndex(
             &self,
             image_bounds: CGRect,
             text_container: Option<&NSTextContainer>,
@@ -364,7 +375,7 @@ extern_protocol!(
         #[cfg(all(feature = "NSTextContainer", feature = "objc2-core-foundation"))]
         #[unsafe(method(attachmentBoundsForTextContainer:proposedLineFragment:glyphPosition:characterIndex:))]
         #[unsafe(method_family = none)]
-        unsafe fn attachmentBoundsForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
+        fn attachmentBoundsForTextContainer_proposedLineFragment_glyphPosition_characterIndex(
             &self,
             text_container: Option<&NSTextContainer>,
             line_frag: CGRect,

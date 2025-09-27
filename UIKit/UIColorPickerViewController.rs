@@ -20,7 +20,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(colorPickerViewControllerDidSelectColor:))]
         #[unsafe(method_family = none)]
-        unsafe fn colorPickerViewControllerDidSelectColor(
+        fn colorPickerViewControllerDidSelectColor(
             &self,
             view_controller: &UIColorPickerViewController,
         );
@@ -42,7 +42,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(colorPickerViewController:didSelectColor:continuously:))]
         #[unsafe(method_family = none)]
-        unsafe fn colorPickerViewController_didSelectColor_continuously(
+        fn colorPickerViewController_didSelectColor_continuously(
             &self,
             view_controller: &UIColorPickerViewController,
             color: &UIColor,
@@ -56,10 +56,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(colorPickerViewControllerDidFinish:))]
         #[unsafe(method_family = none)]
-        unsafe fn colorPickerViewControllerDidFinish(
-            &self,
-            view_controller: &UIColorPickerViewController,
-        );
+        fn colorPickerViewControllerDidFinish(&self, view_controller: &UIColorPickerViewController);
     }
 );
 
@@ -124,7 +121,7 @@ impl UIColorPickerViewController {
     extern_methods!(
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIColorPickerViewControllerDelegate>>>;
 
@@ -133,7 +130,7 @@ impl UIColorPickerViewController {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
+        pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIColorPickerViewControllerDelegate>>,
         );
@@ -143,51 +140,51 @@ impl UIColorPickerViewController {
         /// Does support KVO.
         #[unsafe(method(selectedColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedColor(&self) -> Retained<UIColor>;
+        pub fn selectedColor(&self) -> Retained<UIColor>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`selectedColor`][Self::selectedColor].
         #[unsafe(method(setSelectedColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectedColor(&self, selected_color: &UIColor);
+        pub fn setSelectedColor(&self, selected_color: &UIColor);
 
         /// Controls whether the color picker shows an alpha slider or not.
         ///
         /// If set to `NO` users are only able to pick fully opaque colors.
         #[unsafe(method(supportsAlpha))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportsAlpha(&self) -> bool;
+        pub fn supportsAlpha(&self) -> bool;
 
         /// Setter for [`supportsAlpha`][Self::supportsAlpha].
         #[unsafe(method(setSupportsAlpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSupportsAlpha(&self, supports_alpha: bool);
+        pub fn setSupportsAlpha(&self, supports_alpha: bool);
 
         /// If set to `NO` the eyedropper functionality is not supported for this color picker.
         #[unsafe(method(supportsEyedropper))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportsEyedropper(&self) -> bool;
+        pub fn supportsEyedropper(&self) -> bool;
 
         /// Setter for [`supportsEyedropper`][Self::supportsEyedropper].
         #[unsafe(method(setSupportsEyedropper:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSupportsEyedropper(&self, supports_eyedropper: bool);
+        pub fn setSupportsEyedropper(&self, supports_eyedropper: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The maximum exposure to apply to a color when returned by the color picker.
         #[unsafe(method(maximumLinearExposure))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumLinearExposure(&self) -> CGFloat;
+        pub fn maximumLinearExposure(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumLinearExposure`][Self::maximumLinearExposure].
         #[unsafe(method(setMaximumLinearExposure:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumLinearExposure(&self, maximum_linear_exposure: CGFloat);
+        pub fn setMaximumLinearExposure(&self, maximum_linear_exposure: CGFloat);
 
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
+        pub fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
@@ -195,7 +192,7 @@ impl UIColorPickerViewController {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -221,6 +218,6 @@ impl UIColorPickerViewController {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

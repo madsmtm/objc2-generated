@@ -26,20 +26,20 @@ impl UIFocusSystem {
         /// The currently focused item in this focus system.
         #[unsafe(method(focusedItem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn focusedItem(&self) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
+        pub fn focusedItem(&self) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "UIFocus")]
         #[unsafe(method(focusSystemForEnvironment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn focusSystemForEnvironment(
+        pub fn focusSystemForEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
         ) -> Option<Retained<UIFocusSystem>>;
 
@@ -48,7 +48,7 @@ impl UIFocusSystem {
         /// in the next run loop cycle.
         #[unsafe(method(requestFocusUpdateToEnvironment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestFocusUpdateToEnvironment(
+        pub fn requestFocusUpdateToEnvironment(
             &self,
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
         );
@@ -56,13 +56,13 @@ impl UIFocusSystem {
         /// Forces any pending focus update to be committed immediately.
         #[unsafe(method(updateFocusIfNeeded))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateFocusIfNeeded(&self);
+        pub fn updateFocusIfNeeded(&self);
 
         #[cfg(feature = "UIFocus")]
         /// Returns true if `environment` is an ancestor of `otherEnvironment`, or false if otherwise.
         #[unsafe(method(environment:containsEnvironment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn environment_containsEnvironment(
+        pub fn environment_containsEnvironment(
             environment: &ProtocolObject<dyn UIFocusEnvironment>,
             other_environment: &ProtocolObject<dyn UIFocusEnvironment>,
         ) -> bool;

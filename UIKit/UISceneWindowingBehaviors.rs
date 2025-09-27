@@ -22,28 +22,28 @@ impl UISceneWindowingBehaviors {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(isClosable))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isClosable(&self) -> bool;
+        pub fn isClosable(&self) -> bool;
 
         /// Setter for [`isClosable`][Self::isClosable].
         #[unsafe(method(setClosable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setClosable(&self, closable: bool);
+        pub fn setClosable(&self, closable: bool);
 
         #[unsafe(method(isMiniaturizable))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isMiniaturizable(&self) -> bool;
+        pub fn isMiniaturizable(&self) -> bool;
 
         /// Setter for [`isMiniaturizable`][Self::isMiniaturizable].
         #[unsafe(method(setMiniaturizable:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMiniaturizable(&self, miniaturizable: bool);
+        pub fn setMiniaturizable(&self, miniaturizable: bool);
     );
 }

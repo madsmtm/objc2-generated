@@ -84,7 +84,7 @@ impl UIHoverEffectLayer {
         /// style will be selected instead.
         #[unsafe(method(hoverStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hoverStyle(&self) -> Retained<UIHoverStyle>;
+        pub fn hoverStyle(&self) -> Retained<UIHoverStyle>;
 
         #[cfg(feature = "UIHoverStyle")]
         /// Setter for [`hoverStyle`][Self::hoverStyle].
@@ -92,7 +92,7 @@ impl UIHoverEffectLayer {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setHoverStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHoverStyle(&self, hover_style: &UIHoverStyle);
+        pub fn setHoverStyle(&self, hover_style: &UIHoverStyle);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// The ``UIView`` in which this layer is contained. This view is used to
@@ -107,7 +107,7 @@ impl UIHoverEffectLayer {
         /// may no longer work correctly.
         #[unsafe(method(containerView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containerView(&self) -> Option<Retained<UIView>>;
+        pub fn containerView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         /// Setter for [`containerView`][Self::containerView].
@@ -115,7 +115,7 @@ impl UIHoverEffectLayer {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setContainerView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContainerView(&self, container_view: Option<&UIView>);
+        pub fn setContainerView(&self, container_view: Option<&UIView>);
 
         #[cfg(all(feature = "UIHoverStyle", feature = "UIResponder", feature = "UIView"))]
         /// Creates a ``UIHoverEffectLayer`` with the provided `containerView`
@@ -123,7 +123,7 @@ impl UIHoverEffectLayer {
         /// be used instead.
         #[unsafe(method(initWithContainerView:style:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContainerView_style(
+        pub fn initWithContainerView_style(
             this: Allocated<Self>,
             container_view: &UIView,
             style: Option<&UIHoverStyle>,
@@ -139,11 +139,11 @@ impl UIHoverEffectLayer {
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layer(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn layer(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -161,6 +161,6 @@ impl UIHoverEffectLayer {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

@@ -30,13 +30,13 @@ impl UIScreenEdgePanGestureRecognizer {
         #[cfg(feature = "UIGeometry")]
         #[unsafe(method(edges))]
         #[unsafe(method_family = none)]
-        pub unsafe fn edges(&self) -> UIRectEdge;
+        pub fn edges(&self) -> UIRectEdge;
 
         #[cfg(feature = "UIGeometry")]
         /// Setter for [`edges`][Self::edges].
         #[unsafe(method(setEdges:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEdges(&self, edges: UIRectEdge);
+        pub fn setEdges(&self, edges: UIRectEdge);
     );
 }
 
@@ -58,7 +58,7 @@ impl UIScreenEdgePanGestureRecognizer {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -78,6 +78,6 @@ impl UIScreenEdgePanGestureRecognizer {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

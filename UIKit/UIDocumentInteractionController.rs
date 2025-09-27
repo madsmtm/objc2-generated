@@ -30,14 +30,14 @@ impl UIDocumentInteractionController {
     extern_methods!(
         #[unsafe(method(interactionControllerWithURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn interactionControllerWithURL(
+        pub fn interactionControllerWithURL(
             url: &NSURL,
             mtm: MainThreadMarker,
         ) -> Retained<UIDocumentInteractionController>;
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIDocumentInteractionControllerDelegate>>>;
 
@@ -46,50 +46,50 @@ impl UIDocumentInteractionController {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
+        pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIDocumentInteractionControllerDelegate>>,
         );
 
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URL(&self) -> Option<Retained<NSURL>>;
+        pub fn URL(&self) -> Option<Retained<NSURL>>;
 
         /// Setter for [`URL`][Self::URL].
         #[unsafe(method(setURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setURL(&self, url: Option<&NSURL>);
+        pub fn setURL(&self, url: Option<&NSURL>);
 
         #[unsafe(method(UTI))]
         #[unsafe(method_family = none)]
-        pub unsafe fn UTI(&self) -> Option<Retained<NSString>>;
+        pub fn UTI(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`UTI`][Self::UTI].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setUTI:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUTI(&self, uti: Option<&NSString>);
+        pub fn setUTI(&self, uti: Option<&NSString>);
 
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
+        pub fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setName(&self, name: Option<&NSString>);
+        pub fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "UIImage")]
         #[unsafe(method(icons))]
         #[unsafe(method_family = none)]
-        pub unsafe fn icons(&self) -> Retained<NSArray<UIImage>>;
+        pub fn icons(&self) -> Retained<NSArray<UIImage>>;
 
         #[unsafe(method(annotation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn annotation(&self) -> Option<Retained<AnyObject>>;
+        pub fn annotation(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`annotation`][Self::annotation].
         ///
@@ -107,7 +107,7 @@ impl UIDocumentInteractionController {
         ))]
         #[unsafe(method(presentOptionsMenuFromRect:inView:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn presentOptionsMenuFromRect_inView_animated(
+        pub fn presentOptionsMenuFromRect_inView_animated(
             &self,
             rect: CGRect,
             view: &UIView,
@@ -117,7 +117,7 @@ impl UIDocumentInteractionController {
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[unsafe(method(presentOptionsMenuFromBarButtonItem:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn presentOptionsMenuFromBarButtonItem_animated(
+        pub fn presentOptionsMenuFromBarButtonItem_animated(
             &self,
             item: &UIBarButtonItem,
             animated: bool,
@@ -125,7 +125,7 @@ impl UIDocumentInteractionController {
 
         #[unsafe(method(presentPreviewAnimated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn presentPreviewAnimated(&self, animated: bool) -> bool;
+        pub fn presentPreviewAnimated(&self, animated: bool) -> bool;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -134,7 +134,7 @@ impl UIDocumentInteractionController {
         ))]
         #[unsafe(method(presentOpenInMenuFromRect:inView:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn presentOpenInMenuFromRect_inView_animated(
+        pub fn presentOpenInMenuFromRect_inView_animated(
             &self,
             rect: CGRect,
             view: &UIView,
@@ -144,7 +144,7 @@ impl UIDocumentInteractionController {
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
         #[unsafe(method(presentOpenInMenuFromBarButtonItem:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn presentOpenInMenuFromBarButtonItem_animated(
+        pub fn presentOpenInMenuFromBarButtonItem_animated(
             &self,
             item: &UIBarButtonItem,
             animated: bool,
@@ -152,16 +152,16 @@ impl UIDocumentInteractionController {
 
         #[unsafe(method(dismissPreviewAnimated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dismissPreviewAnimated(&self, animated: bool);
+        pub fn dismissPreviewAnimated(&self, animated: bool);
 
         #[unsafe(method(dismissMenuAnimated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dismissMenuAnimated(&self, animated: bool);
+        pub fn dismissMenuAnimated(&self, animated: bool);
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[unsafe(method(gestureRecognizers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn gestureRecognizers(&self) -> Retained<NSArray<UIGestureRecognizer>>;
+        pub fn gestureRecognizers(&self) -> Retained<NSArray<UIGestureRecognizer>>;
     );
 }
 
@@ -170,11 +170,11 @@ impl UIDocumentInteractionController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -185,7 +185,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(documentInteractionControllerViewControllerForPreview:))]
         #[unsafe(method_family = none)]
-        unsafe fn documentInteractionControllerViewControllerForPreview(
+        fn documentInteractionControllerViewControllerForPreview(
             &self,
             controller: &UIDocumentInteractionController,
         ) -> Retained<UIViewController>;
@@ -194,7 +194,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(documentInteractionControllerRectForPreview:))]
         #[unsafe(method_family = none)]
-        unsafe fn documentInteractionControllerRectForPreview(
+        fn documentInteractionControllerRectForPreview(
             &self,
             controller: &UIDocumentInteractionController,
         ) -> CGRect;
@@ -203,7 +203,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(documentInteractionControllerViewForPreview:))]
         #[unsafe(method_family = none)]
-        unsafe fn documentInteractionControllerViewForPreview(
+        fn documentInteractionControllerViewForPreview(
             &self,
             controller: &UIDocumentInteractionController,
         ) -> Option<Retained<UIView>>;
@@ -211,7 +211,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(documentInteractionControllerWillBeginPreview:))]
         #[unsafe(method_family = none)]
-        unsafe fn documentInteractionControllerWillBeginPreview(
+        fn documentInteractionControllerWillBeginPreview(
             &self,
             controller: &UIDocumentInteractionController,
         );
@@ -219,7 +219,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(documentInteractionControllerDidEndPreview:))]
         #[unsafe(method_family = none)]
-        unsafe fn documentInteractionControllerDidEndPreview(
+        fn documentInteractionControllerDidEndPreview(
             &self,
             controller: &UIDocumentInteractionController,
         );
@@ -227,7 +227,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(documentInteractionControllerWillPresentOptionsMenu:))]
         #[unsafe(method_family = none)]
-        unsafe fn documentInteractionControllerWillPresentOptionsMenu(
+        fn documentInteractionControllerWillPresentOptionsMenu(
             &self,
             controller: &UIDocumentInteractionController,
         );
@@ -235,7 +235,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(documentInteractionControllerDidDismissOptionsMenu:))]
         #[unsafe(method_family = none)]
-        unsafe fn documentInteractionControllerDidDismissOptionsMenu(
+        fn documentInteractionControllerDidDismissOptionsMenu(
             &self,
             controller: &UIDocumentInteractionController,
         );
@@ -243,7 +243,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(documentInteractionControllerWillPresentOpenInMenu:))]
         #[unsafe(method_family = none)]
-        unsafe fn documentInteractionControllerWillPresentOpenInMenu(
+        fn documentInteractionControllerWillPresentOpenInMenu(
             &self,
             controller: &UIDocumentInteractionController,
         );
@@ -251,7 +251,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(documentInteractionControllerDidDismissOpenInMenu:))]
         #[unsafe(method_family = none)]
-        unsafe fn documentInteractionControllerDidDismissOpenInMenu(
+        fn documentInteractionControllerDidDismissOpenInMenu(
             &self,
             controller: &UIDocumentInteractionController,
         );
@@ -259,7 +259,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(documentInteractionController:willBeginSendingToApplication:))]
         #[unsafe(method_family = none)]
-        unsafe fn documentInteractionController_willBeginSendingToApplication(
+        fn documentInteractionController_willBeginSendingToApplication(
             &self,
             controller: &UIDocumentInteractionController,
             application: Option<&NSString>,
@@ -268,7 +268,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(documentInteractionController:didEndSendingToApplication:))]
         #[unsafe(method_family = none)]
-        unsafe fn documentInteractionController_didEndSendingToApplication(
+        fn documentInteractionController_didEndSendingToApplication(
             &self,
             controller: &UIDocumentInteractionController,
             application: Option<&NSString>,

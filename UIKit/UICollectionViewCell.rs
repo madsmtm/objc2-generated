@@ -121,24 +121,21 @@ impl UICollectionReusableView {
     extern_methods!(
         #[unsafe(method(reuseIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reuseIdentifier(&self) -> Option<Retained<NSString>>;
+        pub fn reuseIdentifier(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(prepareForReuse))]
         #[unsafe(method_family = none)]
-        pub unsafe fn prepareForReuse(&self);
+        pub fn prepareForReuse(&self);
 
         #[cfg(feature = "UICollectionViewLayout")]
         #[unsafe(method(applyLayoutAttributes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn applyLayoutAttributes(
-            &self,
-            layout_attributes: &UICollectionViewLayoutAttributes,
-        );
+        pub fn applyLayoutAttributes(&self, layout_attributes: &UICollectionViewLayoutAttributes);
 
         #[cfg(feature = "UICollectionViewLayout")]
         #[unsafe(method(willTransitionFromLayout:toLayout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn willTransitionFromLayout_toLayout(
+        pub fn willTransitionFromLayout_toLayout(
             &self,
             old_layout: &UICollectionViewLayout,
             new_layout: &UICollectionViewLayout,
@@ -147,7 +144,7 @@ impl UICollectionReusableView {
         #[cfg(feature = "UICollectionViewLayout")]
         #[unsafe(method(didTransitionFromLayout:toLayout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn didTransitionFromLayout_toLayout(
+        pub fn didTransitionFromLayout_toLayout(
             &self,
             old_layout: &UICollectionViewLayout,
             new_layout: &UICollectionViewLayout,
@@ -156,7 +153,7 @@ impl UICollectionReusableView {
         #[cfg(feature = "UICollectionViewLayout")]
         #[unsafe(method(preferredLayoutAttributesFittingAttributes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredLayoutAttributesFittingAttributes(
+        pub fn preferredLayoutAttributesFittingAttributes(
             &self,
             layout_attributes: &UICollectionViewLayoutAttributes,
         ) -> Retained<UICollectionViewLayoutAttributes>;
@@ -170,7 +167,7 @@ impl UICollectionReusableView {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -184,7 +181,7 @@ impl UICollectionReusableView {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -194,7 +191,7 @@ impl UICollectionReusableView {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -303,14 +300,14 @@ impl UICollectionViewCell {
         /// system properties set, then set your own custom states as desired.
         #[unsafe(method(configurationState))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationState(&self) -> Retained<UICellConfigurationState>;
+        pub fn configurationState(&self) -> Retained<UICellConfigurationState>;
 
         /// Requests the cell update its configuration for its current state. This method is called automatically
         /// when the cell's `configurationState` may have changed, as well as in other circumstances where an
         /// update may be required. Multiple requests may be coalesced into a single update at the appropriate time.
         #[unsafe(method(setNeedsUpdateConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNeedsUpdateConfiguration(&self);
+        pub fn setNeedsUpdateConfiguration(&self);
 
         #[cfg(all(
             feature = "UICellConfigurationState",
@@ -320,7 +317,7 @@ impl UICollectionViewCell {
         /// This method should not be called directly, use `setNeedsUpdateConfiguration` to request an update.
         #[unsafe(method(updateConfigurationUsingState:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn updateConfigurationUsingState(&self, state: &UICellConfigurationState);
+        pub fn updateConfigurationUsingState(&self, state: &UICellConfigurationState);
 
         #[cfg(all(
             feature = "UICellConfigurationState",
@@ -365,7 +362,7 @@ impl UICollectionViewCell {
         /// The default value is nil. After a configuration has been set, setting this property to nil will replace the current content view with a new content view.
         #[unsafe(method(contentConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentConfiguration(
+        pub fn contentConfiguration(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIContentConfiguration>>>;
 
@@ -375,7 +372,7 @@ impl UICollectionViewCell {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setContentConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentConfiguration(
+        pub fn setContentConfiguration(
             &self,
             content_configuration: Option<&ProtocolObject<dyn UIContentConfiguration>>,
         );
@@ -384,55 +381,54 @@ impl UICollectionViewCell {
         /// configuration state changes, and apply the updated configuration back to the cell. The default value is YES.
         #[unsafe(method(automaticallyUpdatesContentConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn automaticallyUpdatesContentConfiguration(&self) -> bool;
+        pub fn automaticallyUpdatesContentConfiguration(&self) -> bool;
 
         /// Setter for [`automaticallyUpdatesContentConfiguration`][Self::automaticallyUpdatesContentConfiguration].
         #[unsafe(method(setAutomaticallyUpdatesContentConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAutomaticallyUpdatesContentConfiguration(
+        pub fn setAutomaticallyUpdatesContentConfiguration(
             &self,
             automatically_updates_content_configuration: bool,
         );
 
         #[unsafe(method(contentView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentView(&self) -> Retained<UIView>;
+        pub fn contentView(&self) -> Retained<UIView>;
 
         #[unsafe(method(isSelected))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSelected(&self) -> bool;
+        pub fn isSelected(&self) -> bool;
 
         /// Setter for [`isSelected`][Self::isSelected].
         #[unsafe(method(setSelected:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelected(&self, selected: bool);
+        pub fn setSelected(&self, selected: bool);
 
         #[unsafe(method(isHighlighted))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isHighlighted(&self) -> bool;
+        pub fn isHighlighted(&self) -> bool;
 
         /// Setter for [`isHighlighted`][Self::isHighlighted].
         #[unsafe(method(setHighlighted:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHighlighted(&self, highlighted: bool);
+        pub fn setHighlighted(&self, highlighted: bool);
 
         #[unsafe(method(dragStateDidChange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dragStateDidChange(&self, drag_state: UICollectionViewCellDragState);
+        pub fn dragStateDidChange(&self, drag_state: UICollectionViewCellDragState);
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Returns a default background configuration for the cell's style.
         /// This background configuration represents the default appearance that the cell will use.
         #[unsafe(method(defaultBackgroundConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultBackgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
+        pub fn defaultBackgroundConfiguration(&self) -> Retained<UIBackgroundConfiguration>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Setting a background configuration supersedes the cell's backgroundView and selectedBackgroundView. The default value is nil.
         #[unsafe(method(backgroundConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundConfiguration(&self)
-            -> Option<Retained<UIBackgroundConfiguration>>;
+        pub fn backgroundConfiguration(&self) -> Option<Retained<UIBackgroundConfiguration>>;
 
         #[cfg(feature = "UIBackgroundConfiguration")]
         /// Setter for [`backgroundConfiguration`][Self::backgroundConfiguration].
@@ -440,7 +436,7 @@ impl UICollectionViewCell {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBackgroundConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBackgroundConfiguration(
+        pub fn setBackgroundConfiguration(
             &self,
             background_configuration: Option<&UIBackgroundConfiguration>,
         );
@@ -449,33 +445,33 @@ impl UICollectionViewCell {
         /// configuration state changes, and apply the updated configuration back to the cell. The default value is YES.
         #[unsafe(method(automaticallyUpdatesBackgroundConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn automaticallyUpdatesBackgroundConfiguration(&self) -> bool;
+        pub fn automaticallyUpdatesBackgroundConfiguration(&self) -> bool;
 
         /// Setter for [`automaticallyUpdatesBackgroundConfiguration`][Self::automaticallyUpdatesBackgroundConfiguration].
         #[unsafe(method(setAutomaticallyUpdatesBackgroundConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAutomaticallyUpdatesBackgroundConfiguration(
+        pub fn setAutomaticallyUpdatesBackgroundConfiguration(
             &self,
             automatically_updates_background_configuration: bool,
         );
 
         #[unsafe(method(backgroundView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundView(&self) -> Option<Retained<UIView>>;
+        pub fn backgroundView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`backgroundView`][Self::backgroundView].
         #[unsafe(method(setBackgroundView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBackgroundView(&self, background_view: Option<&UIView>);
+        pub fn setBackgroundView(&self, background_view: Option<&UIView>);
 
         #[unsafe(method(selectedBackgroundView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedBackgroundView(&self) -> Option<Retained<UIView>>;
+        pub fn selectedBackgroundView(&self) -> Option<Retained<UIView>>;
 
         /// Setter for [`selectedBackgroundView`][Self::selectedBackgroundView].
         #[unsafe(method(setSelectedBackgroundView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectedBackgroundView(&self, selected_background_view: Option<&UIView>);
+        pub fn setSelectedBackgroundView(&self, selected_background_view: Option<&UIView>);
     );
 }
 
@@ -486,7 +482,7 @@ impl UICollectionViewCell {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -500,7 +496,7 @@ impl UICollectionViewCell {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -510,6 +506,6 @@ impl UICollectionViewCell {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

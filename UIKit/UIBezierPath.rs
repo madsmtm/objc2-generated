@@ -42,22 +42,22 @@ impl UIBezierPath {
     extern_methods!(
         #[unsafe(method(bezierPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bezierPath() -> Retained<Self>;
+        pub fn bezierPath() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(bezierPathWithRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bezierPathWithRect(rect: CGRect) -> Retained<Self>;
+        pub fn bezierPathWithRect(rect: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(bezierPathWithOvalInRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bezierPathWithOvalInRect(rect: CGRect) -> Retained<Self>;
+        pub fn bezierPathWithOvalInRect(rect: CGRect) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(bezierPathWithRoundedRect:cornerRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bezierPathWithRoundedRect_cornerRadius(
+        pub fn bezierPathWithRoundedRect_cornerRadius(
             rect: CGRect,
             corner_radius: CGFloat,
         ) -> Retained<Self>;
@@ -65,7 +65,7 @@ impl UIBezierPath {
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[unsafe(method(bezierPathWithRoundedRect:byRoundingCorners:cornerRadii:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bezierPathWithRoundedRect_byRoundingCorners_cornerRadii(
+        pub fn bezierPathWithRoundedRect_byRoundingCorners_cornerRadii(
             rect: CGRect,
             corners: UIRectCorner,
             corner_radii: CGSize,
@@ -74,7 +74,7 @@ impl UIBezierPath {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(bezierPathWithArcCenter:radius:startAngle:endAngle:clockwise:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bezierPathWithArcCenter_radius_startAngle_endAngle_clockwise(
+        pub fn bezierPathWithArcCenter_radius_startAngle_endAngle_clockwise(
             center: CGPoint,
             radius: CGFloat,
             start_angle: CGFloat,
@@ -85,11 +85,11 @@ impl UIBezierPath {
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(bezierPathWithCGPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bezierPathWithCGPath(cg_path: &CGPath) -> Retained<Self>;
+        pub fn bezierPathWithCGPath(cg_path: &CGPath) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -104,28 +104,28 @@ impl UIBezierPath {
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(CGPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn CGPath(&self) -> Retained<CGPath>;
+        pub fn CGPath(&self) -> Retained<CGPath>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`CGPath`][Self::CGPath].
         #[unsafe(method(setCGPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCGPath(&self, cg_path: &CGPath);
+        pub fn setCGPath(&self, cg_path: &CGPath);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(moveToPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn moveToPoint(&self, point: CGPoint);
+        pub fn moveToPoint(&self, point: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(addLineToPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addLineToPoint(&self, point: CGPoint);
+        pub fn addLineToPoint(&self, point: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(addCurveToPoint:controlPoint1:controlPoint2:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addCurveToPoint_controlPoint1_controlPoint2(
+        pub fn addCurveToPoint_controlPoint1_controlPoint2(
             &self,
             end_point: CGPoint,
             control_point1: CGPoint,
@@ -135,16 +135,12 @@ impl UIBezierPath {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(addQuadCurveToPoint:controlPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addQuadCurveToPoint_controlPoint(
-            &self,
-            end_point: CGPoint,
-            control_point: CGPoint,
-        );
+        pub fn addQuadCurveToPoint_controlPoint(&self, end_point: CGPoint, control_point: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(addArcWithCenter:radius:startAngle:endAngle:clockwise:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addArcWithCenter_radius_startAngle_endAngle_clockwise(
+        pub fn addArcWithCenter_radius_startAngle_endAngle_clockwise(
             &self,
             center: CGPoint,
             radius: CGFloat,
@@ -155,107 +151,107 @@ impl UIBezierPath {
 
         #[unsafe(method(closePath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn closePath(&self);
+        pub fn closePath(&self);
 
         #[unsafe(method(removeAllPoints))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeAllPoints(&self);
+        pub fn removeAllPoints(&self);
 
         #[unsafe(method(appendPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appendPath(&self, bezier_path: &UIBezierPath);
+        pub fn appendPath(&self, bezier_path: &UIBezierPath);
 
         #[unsafe(method(bezierPathByReversingPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bezierPathByReversingPath(&self) -> Retained<UIBezierPath>;
+        pub fn bezierPathByReversingPath(&self) -> Retained<UIBezierPath>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(applyTransform:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn applyTransform(&self, transform: CGAffineTransform);
+        pub fn applyTransform(&self, transform: CGAffineTransform);
 
         #[unsafe(method(isEmpty))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEmpty(&self) -> bool;
+        pub fn isEmpty(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(bounds))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bounds(&self) -> CGRect;
+        pub fn bounds(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(currentPoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentPoint(&self) -> CGPoint;
+        pub fn currentPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(containsPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containsPoint(&self, point: CGPoint) -> bool;
+        pub fn containsPoint(&self, point: CGPoint) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(lineWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lineWidth(&self) -> CGFloat;
+        pub fn lineWidth(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`lineWidth`][Self::lineWidth].
         #[unsafe(method(setLineWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLineWidth(&self, line_width: CGFloat);
+        pub fn setLineWidth(&self, line_width: CGFloat);
 
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(lineCapStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lineCapStyle(&self) -> CGLineCap;
+        pub fn lineCapStyle(&self) -> CGLineCap;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`lineCapStyle`][Self::lineCapStyle].
         #[unsafe(method(setLineCapStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLineCapStyle(&self, line_cap_style: CGLineCap);
+        pub fn setLineCapStyle(&self, line_cap_style: CGLineCap);
 
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(lineJoinStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lineJoinStyle(&self) -> CGLineJoin;
+        pub fn lineJoinStyle(&self) -> CGLineJoin;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`lineJoinStyle`][Self::lineJoinStyle].
         #[unsafe(method(setLineJoinStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLineJoinStyle(&self, line_join_style: CGLineJoin);
+        pub fn setLineJoinStyle(&self, line_join_style: CGLineJoin);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(miterLimit))]
         #[unsafe(method_family = none)]
-        pub unsafe fn miterLimit(&self) -> CGFloat;
+        pub fn miterLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`miterLimit`][Self::miterLimit].
         #[unsafe(method(setMiterLimit:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMiterLimit(&self, miter_limit: CGFloat);
+        pub fn setMiterLimit(&self, miter_limit: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(flatness))]
         #[unsafe(method_family = none)]
-        pub unsafe fn flatness(&self) -> CGFloat;
+        pub fn flatness(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`flatness`][Self::flatness].
         #[unsafe(method(setFlatness:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFlatness(&self, flatness: CGFloat);
+        pub fn setFlatness(&self, flatness: CGFloat);
 
         #[unsafe(method(usesEvenOddFillRule))]
         #[unsafe(method_family = none)]
-        pub unsafe fn usesEvenOddFillRule(&self) -> bool;
+        pub fn usesEvenOddFillRule(&self) -> bool;
 
         /// Setter for [`usesEvenOddFillRule`][Self::usesEvenOddFillRule].
         #[unsafe(method(setUsesEvenOddFillRule:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUsesEvenOddFillRule(&self, uses_even_odd_fill_rule: bool);
+        pub fn setUsesEvenOddFillRule(&self, uses_even_odd_fill_rule: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// # Safety
@@ -287,25 +283,25 @@ impl UIBezierPath {
 
         #[unsafe(method(fill))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fill(&self);
+        pub fn fill(&self);
 
         #[unsafe(method(stroke))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stroke(&self);
+        pub fn stroke(&self);
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[unsafe(method(fillWithBlendMode:alpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fillWithBlendMode_alpha(&self, blend_mode: CGBlendMode, alpha: CGFloat);
+        pub fn fillWithBlendMode_alpha(&self, blend_mode: CGBlendMode, alpha: CGFloat);
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         #[unsafe(method(strokeWithBlendMode:alpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn strokeWithBlendMode_alpha(&self, blend_mode: CGBlendMode, alpha: CGFloat);
+        pub fn strokeWithBlendMode_alpha(&self, blend_mode: CGBlendMode, alpha: CGFloat);
 
         #[unsafe(method(addClip))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addClip(&self);
+        pub fn addClip(&self);
     );
 }
 
@@ -314,6 +310,13 @@ impl UIBezierPath {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIBezierPath {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

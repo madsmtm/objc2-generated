@@ -39,7 +39,7 @@ impl UIScrollEdgeElementContainerInteraction {
         /// The scroll view to affect
         #[unsafe(method(scrollView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollView(&self) -> Option<Retained<UIScrollView>>;
+        pub fn scrollView(&self) -> Option<Retained<UIScrollView>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIScrollView", feature = "UIView"))]
         /// Setter for [`scrollView`][Self::scrollView].
@@ -47,19 +47,19 @@ impl UIScrollEdgeElementContainerInteraction {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setScrollView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScrollView(&self, scroll_view: Option<&UIScrollView>);
+        pub fn setScrollView(&self, scroll_view: Option<&UIScrollView>);
 
         #[cfg(feature = "UIGeometry")]
         /// The edge of the scroll view to affect
         #[unsafe(method(edge))]
         #[unsafe(method_family = none)]
-        pub unsafe fn edge(&self) -> UIRectEdge;
+        pub fn edge(&self) -> UIRectEdge;
 
         #[cfg(feature = "UIGeometry")]
         /// Setter for [`edge`][Self::edge].
         #[unsafe(method(setEdge:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEdge(&self, edge: UIRectEdge);
+        pub fn setEdge(&self, edge: UIRectEdge);
     );
 }
 
@@ -68,10 +68,10 @@ impl UIScrollEdgeElementContainerInteraction {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

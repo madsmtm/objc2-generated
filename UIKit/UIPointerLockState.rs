@@ -22,18 +22,18 @@ impl UIPointerLockState {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// The status of the pointer lock for this scene as determined by the system.
         /// The preferred pointer lock value specified by a view controller is only a request, which may or may not be honored.
         /// This property is key-value observable and UIPointerLockState.didChangeNotification is posted when it changes.
         #[unsafe(method(isLocked))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isLocked(&self) -> bool;
+        pub fn isLocked(&self) -> bool;
     );
 }
 
@@ -43,7 +43,7 @@ impl UIScene {
     extern_methods!(
         #[unsafe(method(pointerLockState))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pointerLockState(&self) -> Option<Retained<UIPointerLockState>>;
+        pub fn pointerLockState(&self) -> Option<Retained<UIPointerLockState>>;
     );
 }
 

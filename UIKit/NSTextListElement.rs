@@ -39,7 +39,7 @@ impl NSTextListElement {
 
         #[unsafe(method(initWithAttributedString:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithAttributedString(
+        pub fn initWithAttributedString(
             this: Allocated<Self>,
             attributed_string: Option<&NSAttributedString>,
         ) -> Retained<Self>;
@@ -60,7 +60,7 @@ impl NSTextListElement {
         #[cfg(feature = "NSTextList")]
         #[unsafe(method(textListElementWithChildElements:textList:nestingLevel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textListElementWithChildElements_textList_nestingLevel(
+        pub fn textListElementWithChildElements_textList_nestingLevel(
             children: &NSArray<NSTextListElement>,
             text_list: &NSTextList,
             nesting_level: NSInteger,
@@ -69,29 +69,29 @@ impl NSTextListElement {
         #[cfg(feature = "NSTextList")]
         #[unsafe(method(textList))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textList(&self) -> Retained<NSTextList>;
+        pub fn textList(&self) -> Retained<NSTextList>;
 
         #[unsafe(method(contents))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contents(&self) -> Option<Retained<NSAttributedString>>;
+        pub fn contents(&self) -> Option<Retained<NSAttributedString>>;
 
         #[unsafe(method(markerAttributes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn markerAttributes(
+        pub fn markerAttributes(
             &self,
         ) -> Option<Retained<NSDictionary<NSAttributedStringKey, AnyObject>>>;
 
         #[unsafe(method(attributedString))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributedString(&self) -> Retained<NSAttributedString>;
+        pub fn attributedString(&self) -> Retained<NSAttributedString>;
 
         #[unsafe(method(childElements))]
         #[unsafe(method_family = none)]
-        pub unsafe fn childElements(&self) -> Retained<NSArray<NSTextListElement>>;
+        pub fn childElements(&self) -> Retained<NSArray<NSTextListElement>>;
 
         #[unsafe(method(parentElement))]
         #[unsafe(method_family = none)]
-        pub unsafe fn parentElement(&self) -> Option<Retained<NSTextListElement>>;
+        pub fn parentElement(&self) -> Option<Retained<NSTextListElement>>;
     );
 }
 
@@ -102,7 +102,7 @@ impl NSTextListElement {
         #[cfg(feature = "NSTextContentManager")]
         #[unsafe(method(initWithTextContentManager:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithTextContentManager(
+        pub fn initWithTextContentManager(
             this: Allocated<Self>,
             text_content_manager: Option<&NSTextContentManager>,
         ) -> Retained<Self>;
@@ -115,10 +115,18 @@ impl NSTextListElement {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "NSTextElement")]
+impl DefaultRetained for NSTextListElement {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

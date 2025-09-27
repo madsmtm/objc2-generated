@@ -73,18 +73,18 @@ impl UIGlassEffect {
         /// Enables interactive behavior for the glass effect.
         #[unsafe(method(isInteractive))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isInteractive(&self) -> bool;
+        pub fn isInteractive(&self) -> bool;
 
         /// Setter for [`isInteractive`][Self::isInteractive].
         #[unsafe(method(setInteractive:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInteractive(&self, interactive: bool);
+        pub fn setInteractive(&self, interactive: bool);
 
         #[cfg(feature = "UIColor")]
         /// A tint color applied to the glass.
         #[unsafe(method(tintColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tintColor(&self) -> Option<Retained<UIColor>>;
+        pub fn tintColor(&self) -> Option<Retained<UIColor>>;
 
         #[cfg(feature = "UIColor")]
         /// Setter for [`tintColor`][Self::tintColor].
@@ -92,12 +92,12 @@ impl UIGlassEffect {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTintColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTintColor(&self, tint_color: Option<&UIColor>);
+        pub fn setTintColor(&self, tint_color: Option<&UIColor>);
 
         /// Creates a glass effect with the specified style.
         #[unsafe(method(effectWithStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn effectWithStyle(
+        pub fn effectWithStyle(
             style: UIGlassEffectStyle,
             mtm: MainThreadMarker,
         ) -> Retained<UIGlassEffect>;
@@ -110,11 +110,11 @@ impl UIGlassEffect {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -166,13 +166,13 @@ impl UIGlassContainerEffect {
         /// The spacing specifies the distance between elements at which they begin to merge.
         #[unsafe(method(spacing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn spacing(&self) -> CGFloat;
+        pub fn spacing(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`spacing`][Self::spacing].
         #[unsafe(method(setSpacing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSpacing(&self, spacing: CGFloat);
+        pub fn setSpacing(&self, spacing: CGFloat);
     );
 }
 
@@ -182,10 +182,10 @@ impl UIGlassContainerEffect {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

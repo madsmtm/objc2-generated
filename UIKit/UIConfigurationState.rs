@@ -20,7 +20,7 @@ extern_protocol!(
         /// Returns a new instance with the specified trait collection.
         #[unsafe(method(initWithTraitCollection:))]
         #[unsafe(method_family = init)]
-        unsafe fn initWithTraitCollection(
+        fn initWithTraitCollection(
             this: Allocated<Self>,
             trait_collection: &UITraitCollection,
         ) -> Retained<Self>;
@@ -28,18 +28,18 @@ extern_protocol!(
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(traitCollection))]
         #[unsafe(method_family = none)]
-        unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
+        fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "UITraitCollection")]
         /// Setter for [`traitCollection`][Self::traitCollection].
         #[unsafe(method(setTraitCollection:))]
         #[unsafe(method_family = none)]
-        unsafe fn setTraitCollection(&self, trait_collection: &UITraitCollection);
+        fn setTraitCollection(&self, trait_collection: &UITraitCollection);
 
         /// Returns the custom state for the specified key.
         #[unsafe(method(customStateForKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn customStateForKey(
+        fn customStateForKey(
             &self,
             key: &UIConfigurationStateCustomKey,
         ) -> Option<Retained<AnyObject>>;
@@ -59,7 +59,7 @@ extern_protocol!(
 
         #[unsafe(method(objectForKeyedSubscript:))]
         #[unsafe(method_family = none)]
-        unsafe fn objectForKeyedSubscript(
+        fn objectForKeyedSubscript(
             &self,
             key: &UIConfigurationStateCustomKey,
         ) -> Option<Retained<AnyObject>>;

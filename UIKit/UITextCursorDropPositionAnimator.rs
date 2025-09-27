@@ -34,7 +34,7 @@ impl UITextCursorDropPositionAnimator {
         /// The cursor view to be animated.
         #[unsafe(method(cursorView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cursorView(&self) -> Option<Retained<UIView>>;
+        pub fn cursorView(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -45,7 +45,7 @@ impl UITextCursorDropPositionAnimator {
         /// The object that implements the UITextInput protocol, used to query for geometry information regarding cursor placement.
         #[unsafe(method(textInput))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textInput(&self) -> Option<Retained<UIView>>;
+        pub fn textInput(&self) -> Option<Retained<UIView>>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -73,7 +73,7 @@ impl UITextCursorDropPositionAnimator {
         /// Controls the visibility of the cursor.
         #[unsafe(method(setCursorVisible:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCursorVisible_animated(&self, visible: bool, animated: bool);
+        pub fn setCursorVisible_animated(&self, visible: bool, animated: bool);
 
         #[cfg(feature = "UITextInput")]
         /// Controls the placement of the cursor, using
@@ -95,7 +95,7 @@ impl UITextCursorDropPositionAnimator {
         /// Optionally, provide an animation block or completion block to run alongside cursor appearance or position update animations.
         #[unsafe(method(animateAlongsideChanges:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animateAlongsideChanges_completion(
+        pub fn animateAlongsideChanges_completion(
             &self,
             animation: Option<&block2::DynBlock<dyn Fn()>>,
             completion: Option<&block2::DynBlock<dyn Fn()>>,
@@ -103,7 +103,7 @@ impl UITextCursorDropPositionAnimator {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -112,6 +112,6 @@ impl UITextCursorDropPositionAnimator {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

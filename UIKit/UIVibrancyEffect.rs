@@ -46,8 +46,7 @@ impl UIVibrancyEffect {
         #[cfg(feature = "UIBlurEffect")]
         #[unsafe(method(effectForBlurEffect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn effectForBlurEffect(blur_effect: &UIBlurEffect)
-            -> Retained<UIVibrancyEffect>;
+        pub fn effectForBlurEffect(blur_effect: &UIBlurEffect) -> Retained<UIVibrancyEffect>;
     );
 }
 
@@ -57,11 +56,11 @@ impl UIVibrancyEffect {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -104,7 +103,7 @@ impl UIVibrancyEffect {
         #[cfg(feature = "UIBlurEffect")]
         #[unsafe(method(effectForBlurEffect:style:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn effectForBlurEffect_style(
+        pub fn effectForBlurEffect_style(
             blur_effect: &UIBlurEffect,
             style: UIVibrancyEffectStyle,
         ) -> Retained<UIVibrancyEffect>;

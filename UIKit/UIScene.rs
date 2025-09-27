@@ -31,16 +31,16 @@ impl UIScene {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UISceneOptions", feature = "UISceneSession"))]
         #[unsafe(method(initWithSession:connectionOptions:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSession_connectionOptions(
+        pub fn initWithSession_connectionOptions(
             this: Allocated<Self>,
             session: &UISceneSession,
             connection_options: &UISceneConnectionOptions,
@@ -49,26 +49,26 @@ impl UIScene {
         #[cfg(feature = "UISceneSession")]
         #[unsafe(method(session))]
         #[unsafe(method_family = none)]
-        pub unsafe fn session(&self) -> Retained<UISceneSession>;
+        pub fn session(&self) -> Retained<UISceneSession>;
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UISceneDelegate>>>;
+        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UISceneDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UISceneDelegate>>);
+        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UISceneDelegate>>);
 
         #[cfg(feature = "UISceneDefinitions")]
         #[unsafe(method(activationState))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activationState(&self) -> UISceneActivationState;
+        pub fn activationState(&self) -> UISceneActivationState;
 
         #[cfg(all(feature = "UISceneOptions", feature = "block2"))]
         #[unsafe(method(openURL:options:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn openURL_options_completionHandler(
+        pub fn openURL_options_completionHandler(
             &self,
             url: &NSURL,
             options: Option<&UISceneOpenExternalURLOptions>,
@@ -77,44 +77,41 @@ impl UIScene {
 
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
-        pub unsafe fn title(&self) -> Retained<NSString>;
+        pub fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTitle(&self, title: Option<&NSString>);
+        pub fn setTitle(&self, title: Option<&NSString>);
 
         #[unsafe(method(subtitle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn subtitle(&self) -> Retained<NSString>;
+        pub fn subtitle(&self) -> Retained<NSString>;
 
         /// Setter for [`subtitle`][Self::subtitle].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubtitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSubtitle(&self, subtitle: &NSString);
+        pub fn setSubtitle(&self, subtitle: &NSString);
 
         #[cfg(feature = "UISceneActivationConditions")]
         #[unsafe(method(activationConditions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activationConditions(&self) -> Retained<UISceneActivationConditions>;
+        pub fn activationConditions(&self) -> Retained<UISceneActivationConditions>;
 
         #[cfg(feature = "UISceneActivationConditions")]
         /// Setter for [`activationConditions`][Self::activationConditions].
         #[unsafe(method(setActivationConditions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setActivationConditions(
-            &self,
-            activation_conditions: &UISceneActivationConditions,
-        );
+        pub fn setActivationConditions(&self, activation_conditions: &UISceneActivationConditions);
 
         #[cfg(feature = "UISceneDestructionCondition")]
         #[unsafe(method(destructionConditions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn destructionConditions(&self) -> Retained<NSSet<UISceneDestructionCondition>>;
+        pub fn destructionConditions(&self) -> Retained<NSSet<UISceneDestructionCondition>>;
 
         #[cfg(feature = "UISceneDestructionCondition")]
         /// Setter for [`destructionConditions`][Self::destructionConditions].
@@ -122,7 +119,7 @@ impl UIScene {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDestructionConditions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDestructionConditions(
+        pub fn setDestructionConditions(
             &self,
             destruction_conditions: &NSSet<UISceneDestructionCondition>,
         );
@@ -140,7 +137,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(scene:willConnectToSession:options:))]
         #[unsafe(method_family = none)]
-        unsafe fn scene_willConnectToSession_options(
+        fn scene_willConnectToSession_options(
             &self,
             scene: &UIScene,
             session: &UISceneSession,
@@ -151,47 +148,43 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(sceneDidDisconnect:))]
         #[unsafe(method_family = none)]
-        unsafe fn sceneDidDisconnect(&self, scene: &UIScene);
+        fn sceneDidDisconnect(&self, scene: &UIScene);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[unsafe(method(sceneDidBecomeActive:))]
         #[unsafe(method_family = none)]
-        unsafe fn sceneDidBecomeActive(&self, scene: &UIScene);
+        fn sceneDidBecomeActive(&self, scene: &UIScene);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[unsafe(method(sceneWillResignActive:))]
         #[unsafe(method_family = none)]
-        unsafe fn sceneWillResignActive(&self, scene: &UIScene);
+        fn sceneWillResignActive(&self, scene: &UIScene);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[unsafe(method(sceneWillEnterForeground:))]
         #[unsafe(method_family = none)]
-        unsafe fn sceneWillEnterForeground(&self, scene: &UIScene);
+        fn sceneWillEnterForeground(&self, scene: &UIScene);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[unsafe(method(sceneDidEnterBackground:))]
         #[unsafe(method_family = none)]
-        unsafe fn sceneDidEnterBackground(&self, scene: &UIScene);
+        fn sceneDidEnterBackground(&self, scene: &UIScene);
 
         #[cfg(all(feature = "UIOpenURLContext", feature = "UIResponder"))]
         #[optional]
         #[unsafe(method(scene:openURLContexts:))]
         #[unsafe(method_family = none)]
-        unsafe fn scene_openURLContexts(
-            &self,
-            scene: &UIScene,
-            url_contexts: &NSSet<UIOpenURLContext>,
-        );
+        fn scene_openURLContexts(&self, scene: &UIScene, url_contexts: &NSSet<UIOpenURLContext>);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[unsafe(method(stateRestorationActivityForScene:))]
         #[unsafe(method_family = none)]
-        unsafe fn stateRestorationActivityForScene(
+        fn stateRestorationActivityForScene(
             &self,
             scene: &UIScene,
         ) -> Option<Retained<NSUserActivity>>;
@@ -200,7 +193,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(scene:restoreInteractionStateWithUserActivity:))]
         #[unsafe(method_family = none)]
-        unsafe fn scene_restoreInteractionStateWithUserActivity(
+        fn scene_restoreInteractionStateWithUserActivity(
             &self,
             scene: &UIScene,
             state_restoration_activity: &NSUserActivity,
@@ -210,7 +203,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(scene:willContinueUserActivityWithType:))]
         #[unsafe(method_family = none)]
-        unsafe fn scene_willContinueUserActivityWithType(
+        fn scene_willContinueUserActivityWithType(
             &self,
             scene: &UIScene,
             user_activity_type: &NSString,
@@ -220,17 +213,13 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(scene:continueUserActivity:))]
         #[unsafe(method_family = none)]
-        unsafe fn scene_continueUserActivity(
-            &self,
-            scene: &UIScene,
-            user_activity: &NSUserActivity,
-        );
+        fn scene_continueUserActivity(&self, scene: &UIScene, user_activity: &NSUserActivity);
 
         #[cfg(feature = "UIResponder")]
         #[optional]
         #[unsafe(method(scene:didFailToContinueUserActivityWithType:error:))]
         #[unsafe(method_family = none)]
-        unsafe fn scene_didFailToContinueUserActivityWithType_error(
+        fn scene_didFailToContinueUserActivityWithType_error(
             &self,
             scene: &UIScene,
             user_activity_type: &NSString,
@@ -241,11 +230,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(scene:didUpdateUserActivity:))]
         #[unsafe(method_family = none)]
-        unsafe fn scene_didUpdateUserActivity(
-            &self,
-            scene: &UIScene,
-            user_activity: &NSUserActivity,
-        );
+        fn scene_didUpdateUserActivity(&self, scene: &UIScene, user_activity: &NSUserActivity);
     }
 );
 

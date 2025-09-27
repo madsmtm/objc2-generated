@@ -24,7 +24,7 @@ impl UISwipeActionsConfiguration {
         #[cfg(feature = "UIContextualAction")]
         #[unsafe(method(configurationWithActions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithActions(
+        pub fn configurationWithActions(
             actions: &NSArray<UIContextualAction>,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
@@ -32,16 +32,16 @@ impl UISwipeActionsConfiguration {
         #[cfg(feature = "UIContextualAction")]
         #[unsafe(method(actions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn actions(&self) -> Retained<NSArray<UIContextualAction>>;
+        pub fn actions(&self) -> Retained<NSArray<UIContextualAction>>;
 
         #[unsafe(method(performsFirstActionWithFullSwipe))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performsFirstActionWithFullSwipe(&self) -> bool;
+        pub fn performsFirstActionWithFullSwipe(&self) -> bool;
 
         /// Setter for [`performsFirstActionWithFullSwipe`][Self::performsFirstActionWithFullSwipe].
         #[unsafe(method(setPerformsFirstActionWithFullSwipe:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPerformsFirstActionWithFullSwipe(
+        pub fn setPerformsFirstActionWithFullSwipe(
             &self,
             performs_first_action_with_full_swipe: bool,
         );
@@ -53,10 +53,10 @@ impl UISwipeActionsConfiguration {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

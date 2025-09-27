@@ -31,7 +31,7 @@ impl UISearchDisplayController {
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[unsafe(method(initWithSearchBar:contentsController:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSearchBar_contentsController(
+        pub fn initWithSearchBar_contentsController(
             this: Allocated<Self>,
             search_bar: &UISearchBar,
             view_controller: &UIViewController,
@@ -63,30 +63,30 @@ impl UISearchDisplayController {
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isActive(&self) -> bool;
+        pub fn isActive(&self) -> bool;
 
         /// Setter for [`isActive`][Self::isActive].
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[unsafe(method(setActive:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setActive(&self, active: bool);
+        pub fn setActive(&self, active: bool);
 
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[unsafe(method(setActive:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setActive_animated(&self, visible: bool, animated: bool);
+        pub fn setActive_animated(&self, visible: bool, animated: bool);
 
         #[cfg(all(feature = "UIResponder", feature = "UISearchBar", feature = "UIView"))]
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[unsafe(method(searchBar))]
         #[unsafe(method_family = none)]
-        pub unsafe fn searchBar(&self) -> Retained<UISearchBar>;
+        pub fn searchBar(&self) -> Retained<UISearchBar>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[unsafe(method(searchContentsController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn searchContentsController(&self) -> Retained<UIViewController>;
+        pub fn searchContentsController(&self) -> Retained<UIViewController>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -97,13 +97,13 @@ impl UISearchDisplayController {
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[unsafe(method(searchResultsTableView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn searchResultsTableView(&self) -> Retained<UITableView>;
+        pub fn searchResultsTableView(&self) -> Retained<UITableView>;
 
         #[cfg(feature = "UITableView")]
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[unsafe(method(searchResultsDataSource))]
         #[unsafe(method_family = none)]
-        pub unsafe fn searchResultsDataSource(
+        pub fn searchResultsDataSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDataSource>>>;
 
@@ -114,7 +114,7 @@ impl UISearchDisplayController {
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[unsafe(method(setSearchResultsDataSource:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSearchResultsDataSource(
+        pub fn setSearchResultsDataSource(
             &self,
             search_results_data_source: Option<&ProtocolObject<dyn UITableViewDataSource>>,
         );
@@ -123,7 +123,7 @@ impl UISearchDisplayController {
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[unsafe(method(searchResultsDelegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn searchResultsDelegate(
+        pub fn searchResultsDelegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITableViewDelegate>>>;
 
@@ -134,30 +134,30 @@ impl UISearchDisplayController {
         #[deprecated = "UISearchDisplayController has been replaced with UISearchController"]
         #[unsafe(method(setSearchResultsDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSearchResultsDelegate(
+        pub fn setSearchResultsDelegate(
             &self,
             search_results_delegate: Option<&ProtocolObject<dyn UITableViewDelegate>>,
         );
 
         #[unsafe(method(searchResultsTitle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn searchResultsTitle(&self) -> Option<Retained<NSString>>;
+        pub fn searchResultsTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`searchResultsTitle`][Self::searchResultsTitle].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSearchResultsTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSearchResultsTitle(&self, search_results_title: Option<&NSString>);
+        pub fn setSearchResultsTitle(&self, search_results_title: Option<&NSString>);
 
         #[unsafe(method(displaysSearchBarInNavigationBar))]
         #[unsafe(method_family = none)]
-        pub unsafe fn displaysSearchBarInNavigationBar(&self) -> bool;
+        pub fn displaysSearchBarInNavigationBar(&self) -> bool;
 
         /// Setter for [`displaysSearchBarInNavigationBar`][Self::displaysSearchBarInNavigationBar].
         #[unsafe(method(setDisplaysSearchBarInNavigationBar:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDisplaysSearchBarInNavigationBar(
+        pub fn setDisplaysSearchBarInNavigationBar(
             &self,
             displays_search_bar_in_navigation_bar: bool,
         );
@@ -165,7 +165,7 @@ impl UISearchDisplayController {
         #[cfg(feature = "UINavigationItem")]
         #[unsafe(method(navigationItem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn navigationItem(&self) -> Option<Retained<UINavigationItem>>;
+        pub fn navigationItem(&self) -> Option<Retained<UINavigationItem>>;
     );
 }
 
@@ -174,11 +174,11 @@ impl UISearchDisplayController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -189,37 +189,25 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(searchDisplayControllerWillBeginSearch:))]
         #[unsafe(method_family = none)]
-        unsafe fn searchDisplayControllerWillBeginSearch(
-            &self,
-            controller: &UISearchDisplayController,
-        );
+        fn searchDisplayControllerWillBeginSearch(&self, controller: &UISearchDisplayController);
 
         #[deprecated]
         #[optional]
         #[unsafe(method(searchDisplayControllerDidBeginSearch:))]
         #[unsafe(method_family = none)]
-        unsafe fn searchDisplayControllerDidBeginSearch(
-            &self,
-            controller: &UISearchDisplayController,
-        );
+        fn searchDisplayControllerDidBeginSearch(&self, controller: &UISearchDisplayController);
 
         #[deprecated]
         #[optional]
         #[unsafe(method(searchDisplayControllerWillEndSearch:))]
         #[unsafe(method_family = none)]
-        unsafe fn searchDisplayControllerWillEndSearch(
-            &self,
-            controller: &UISearchDisplayController,
-        );
+        fn searchDisplayControllerWillEndSearch(&self, controller: &UISearchDisplayController);
 
         #[deprecated]
         #[optional]
         #[unsafe(method(searchDisplayControllerDidEndSearch:))]
         #[unsafe(method_family = none)]
-        unsafe fn searchDisplayControllerDidEndSearch(
-            &self,
-            controller: &UISearchDisplayController,
-        );
+        fn searchDisplayControllerDidEndSearch(&self, controller: &UISearchDisplayController);
 
         #[cfg(all(
             feature = "UIResponder",
@@ -231,7 +219,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(searchDisplayController:didLoadSearchResultsTableView:))]
         #[unsafe(method_family = none)]
-        unsafe fn searchDisplayController_didLoadSearchResultsTableView(
+        fn searchDisplayController_didLoadSearchResultsTableView(
             &self,
             controller: &UISearchDisplayController,
             table_view: &UITableView,
@@ -247,7 +235,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(searchDisplayController:willUnloadSearchResultsTableView:))]
         #[unsafe(method_family = none)]
-        unsafe fn searchDisplayController_willUnloadSearchResultsTableView(
+        fn searchDisplayController_willUnloadSearchResultsTableView(
             &self,
             controller: &UISearchDisplayController,
             table_view: &UITableView,
@@ -263,7 +251,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(searchDisplayController:willShowSearchResultsTableView:))]
         #[unsafe(method_family = none)]
-        unsafe fn searchDisplayController_willShowSearchResultsTableView(
+        fn searchDisplayController_willShowSearchResultsTableView(
             &self,
             controller: &UISearchDisplayController,
             table_view: &UITableView,
@@ -279,7 +267,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(searchDisplayController:didShowSearchResultsTableView:))]
         #[unsafe(method_family = none)]
-        unsafe fn searchDisplayController_didShowSearchResultsTableView(
+        fn searchDisplayController_didShowSearchResultsTableView(
             &self,
             controller: &UISearchDisplayController,
             table_view: &UITableView,
@@ -295,7 +283,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(searchDisplayController:willHideSearchResultsTableView:))]
         #[unsafe(method_family = none)]
-        unsafe fn searchDisplayController_willHideSearchResultsTableView(
+        fn searchDisplayController_willHideSearchResultsTableView(
             &self,
             controller: &UISearchDisplayController,
             table_view: &UITableView,
@@ -311,7 +299,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(searchDisplayController:didHideSearchResultsTableView:))]
         #[unsafe(method_family = none)]
-        unsafe fn searchDisplayController_didHideSearchResultsTableView(
+        fn searchDisplayController_didHideSearchResultsTableView(
             &self,
             controller: &UISearchDisplayController,
             table_view: &UITableView,
@@ -321,7 +309,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(searchDisplayController:shouldReloadTableForSearchString:))]
         #[unsafe(method_family = none)]
-        unsafe fn searchDisplayController_shouldReloadTableForSearchString(
+        fn searchDisplayController_shouldReloadTableForSearchString(
             &self,
             controller: &UISearchDisplayController,
             search_string: Option<&NSString>,
@@ -331,7 +319,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(searchDisplayController:shouldReloadTableForSearchScope:))]
         #[unsafe(method_family = none)]
-        unsafe fn searchDisplayController_shouldReloadTableForSearchScope(
+        fn searchDisplayController_shouldReloadTableForSearchScope(
             &self,
             controller: &UISearchDisplayController,
             search_option: NSInteger,

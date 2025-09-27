@@ -118,25 +118,25 @@ impl UIMenuElement {
         /// The element's title.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
-        pub unsafe fn title(&self) -> Retained<NSString>;
+        pub fn title(&self) -> Retained<NSString>;
 
         /// The element's subtitle.
         #[unsafe(method(subtitle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn subtitle(&self) -> Option<Retained<NSString>>;
+        pub fn subtitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`subtitle`][Self::subtitle].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSubtitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSubtitle(&self, subtitle: Option<&NSString>);
+        pub fn setSubtitle(&self, subtitle: Option<&NSString>);
 
         #[cfg(feature = "UIImage")]
         /// Image to be displayed alongside the element's title.
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
-        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
+        pub fn image(&self) -> Option<Retained<UIImage>>;
 
         /// # Safety
         ///
@@ -150,10 +150,10 @@ impl UIMenuElement {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

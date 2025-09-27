@@ -28,45 +28,45 @@ impl UISceneSizeRestrictions {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The preferred minimum size of the scene
         #[unsafe(method(minimumSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumSize(&self) -> CGSize;
+        pub fn minimumSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumSize`][Self::minimumSize].
         #[unsafe(method(setMinimumSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinimumSize(&self, minimum_size: CGSize);
+        pub fn setMinimumSize(&self, minimum_size: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The preferred maximum size of the scene
         #[unsafe(method(maximumSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumSize(&self) -> CGSize;
+        pub fn maximumSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumSize`][Self::maximumSize].
         #[unsafe(method(setMaximumSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumSize(&self, maximum_size: CGSize);
+        pub fn setMaximumSize(&self, maximum_size: CGSize);
 
         /// Whether the scene supports full screen or not
         /// - Note: Currently only honored on Mac Catalyst
         #[unsafe(method(allowsFullScreen))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsFullScreen(&self) -> bool;
+        pub fn allowsFullScreen(&self) -> bool;
 
         /// Setter for [`allowsFullScreen`][Self::allowsFullScreen].
         #[unsafe(method(setAllowsFullScreen:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsFullScreen(&self, allows_full_screen: bool);
+        pub fn setAllowsFullScreen(&self, allows_full_screen: bool);
     );
 }

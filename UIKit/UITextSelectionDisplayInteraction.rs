@@ -19,7 +19,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(selectionContainerViewBelowTextForSelectionDisplayInteraction:))]
         #[unsafe(method_family = none)]
-        unsafe fn selectionContainerViewBelowTextForSelectionDisplayInteraction(
+        fn selectionContainerViewBelowTextForSelectionDisplayInteraction(
             &self,
             interaction: &UITextSelectionDisplayInteraction,
         ) -> Option<Retained<UIView>>;
@@ -55,24 +55,24 @@ impl UITextSelectionDisplayInteraction {
         /// Controls both the hidden sate of contained selection views as well as interactions that follow.
         #[unsafe(method(isActivated))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isActivated(&self) -> bool;
+        pub fn isActivated(&self) -> bool;
 
         /// Setter for [`isActivated`][Self::isActivated].
         #[unsafe(method(setActivated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setActivated(&self, activated: bool);
+        pub fn setActivated(&self, activated: bool);
 
         #[cfg(all(feature = "UITextInput", feature = "UITextInputTraits"))]
         /// The object the selection is being managed for.
         #[unsafe(method(textInput))]
         #[unsafe(method_family = none)]
-        pub unsafe fn textInput(&self) -> Option<Retained<ProtocolObject<dyn UITextInput>>>;
+        pub fn textInput(&self) -> Option<Retained<ProtocolObject<dyn UITextInput>>>;
 
         /// See
         /// `UITextSelectionDisplayInteractionDelegate.`
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UITextSelectionDisplayInteractionDelegate>>>;
 
@@ -84,7 +84,7 @@ impl UITextSelectionDisplayInteraction {
         /// The cursor view (also known as "caret" view). Shown when the selection is not ranged.
         #[unsafe(method(cursorView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cursorView(&self) -> Retained<UIView>;
+        pub fn cursorView(&self) -> Retained<UIView>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -108,7 +108,7 @@ impl UITextSelectionDisplayInteraction {
         /// The highlight view. This is the blue/tinted highlight drawn behind the rendered text.
         #[unsafe(method(highlightView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn highlightView(&self) -> Retained<UIView>;
+        pub fn highlightView(&self) -> Retained<UIView>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -136,7 +136,7 @@ impl UITextSelectionDisplayInteraction {
         /// and another to be used as the trailing handle.
         #[unsafe(method(handleViews))]
         #[unsafe(method_family = none)]
-        pub unsafe fn handleViews(&self) -> Retained<NSArray<UIView>>;
+        pub fn handleViews(&self) -> Retained<NSArray<UIView>>;
 
         #[cfg(all(
             feature = "UIResponder",
@@ -157,7 +157,7 @@ impl UITextSelectionDisplayInteraction {
         /// `textInput` may be the same as the view this interaction is installed onto.
         #[unsafe(method(initWithTextInput:delegate:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithTextInput_delegate(
+        pub fn initWithTextInput_delegate(
             this: Allocated<Self>,
             text_input: &ProtocolObject<dyn UITextInput>,
             delegate: &ProtocolObject<dyn UITextSelectionDisplayInteractionDelegate>,
@@ -166,19 +166,19 @@ impl UITextSelectionDisplayInteraction {
         /// Loads the selection from `-[UITextInput selectedTextRange]` and applies the selection to all managed subviews.
         #[unsafe(method(layoutManagedSubviews))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutManagedSubviews(&self);
+        pub fn layoutManagedSubviews(&self);
 
         /// Call this whenever the selection changes, or needs to be re-laid out.
         #[unsafe(method(setNeedsSelectionUpdate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNeedsSelectionUpdate(&self);
+        pub fn setNeedsSelectionUpdate(&self);
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

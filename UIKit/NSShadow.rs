@@ -40,7 +40,7 @@ impl NSShadow {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -55,28 +55,28 @@ impl NSShadow {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(shadowOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shadowOffset(&self) -> CGSize;
+        pub fn shadowOffset(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`shadowOffset`][Self::shadowOffset].
         #[unsafe(method(setShadowOffset:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShadowOffset(&self, shadow_offset: CGSize);
+        pub fn setShadowOffset(&self, shadow_offset: CGSize);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(shadowBlurRadius))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shadowBlurRadius(&self) -> CGFloat;
+        pub fn shadowBlurRadius(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`shadowBlurRadius`][Self::shadowBlurRadius].
         #[unsafe(method(setShadowBlurRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShadowBlurRadius(&self, shadow_blur_radius: CGFloat);
+        pub fn setShadowBlurRadius(&self, shadow_blur_radius: CGFloat);
 
         #[unsafe(method(shadowColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shadowColor(&self) -> Option<Retained<AnyObject>>;
+        pub fn shadowColor(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`shadowColor`][Self::shadowColor].
         ///
@@ -94,6 +94,13 @@ impl NSShadow {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSShadow {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

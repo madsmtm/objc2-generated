@@ -87,20 +87,20 @@ impl UIAction {
         /// Short display title.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
-        pub unsafe fn title(&self) -> Retained<NSString>;
+        pub fn title(&self) -> Retained<NSString>;
 
         /// Setter for [`title`][Self::title].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTitle(&self, title: &NSString);
+        pub fn setTitle(&self, title: &NSString);
 
         #[cfg(feature = "UIImage")]
         /// Image that can appear next to this action.
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
-        pub unsafe fn image(&self) -> Option<Retained<UIImage>>;
+        pub fn image(&self) -> Option<Retained<UIImage>>;
 
         #[cfg(feature = "UIImage")]
         /// Setter for [`image`][Self::image].
@@ -108,49 +108,49 @@ impl UIAction {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImage(&self, image: Option<&UIImage>);
+        pub fn setImage(&self, image: Option<&UIImage>);
 
         /// Elaborated title used in keyboard shortcut overlay.
         #[unsafe(method(discoverabilityTitle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
+        pub fn discoverabilityTitle(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`discoverabilityTitle`][Self::discoverabilityTitle].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDiscoverabilityTitle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDiscoverabilityTitle(&self, discoverability_title: Option<&NSString>);
+        pub fn setDiscoverabilityTitle(&self, discoverability_title: Option<&NSString>);
 
         /// This action's identifier.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Retained<UIActionIdentifier>;
+        pub fn identifier(&self) -> Retained<UIActionIdentifier>;
 
         /// This action's style.
         #[unsafe(method(attributes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attributes(&self) -> UIMenuElementAttributes;
+        pub fn attributes(&self) -> UIMenuElementAttributes;
 
         /// Setter for [`attributes`][Self::attributes].
         #[unsafe(method(setAttributes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAttributes(&self, attributes: UIMenuElementAttributes);
+        pub fn setAttributes(&self, attributes: UIMenuElementAttributes);
 
         /// State that can appear next to this action.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
-        pub unsafe fn state(&self) -> UIMenuElementState;
+        pub fn state(&self) -> UIMenuElementState;
 
         /// Setter for [`state`][Self::state].
         #[unsafe(method(setState:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setState(&self, state: UIMenuElementState);
+        pub fn setState(&self, state: UIMenuElementState);
 
         /// If available, the object on behalf of which the actionHandler is called.
         #[unsafe(method(sender))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
+        pub fn sender(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "block2")]
         /// Creates a UIAction with an empty title, nil image, and automatically generated identifier
@@ -201,11 +201,11 @@ impl UIAction {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 

@@ -34,29 +34,29 @@ impl UIWindowScene {
         #[cfg(feature = "UIScreen")]
         #[unsafe(method(screen))]
         #[unsafe(method_family = none)]
-        pub unsafe fn screen(&self) -> Retained<UIScreen>;
+        pub fn screen(&self) -> Retained<UIScreen>;
 
         #[cfg(feature = "UIOrientation")]
         #[deprecated = "Use effectiveGeometry.interfaceOrientation instead."]
         #[unsafe(method(interfaceOrientation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn interfaceOrientation(&self) -> UIInterfaceOrientation;
+        pub fn interfaceOrientation(&self) -> UIInterfaceOrientation;
 
         #[cfg(feature = "UIView")]
         #[deprecated = "Use effectiveGeometry.coordinateSpace instead."]
         #[unsafe(method(coordinateSpace))]
         #[unsafe(method_family = none)]
-        pub unsafe fn coordinateSpace(&self) -> Retained<ProtocolObject<dyn UICoordinateSpace>>;
+        pub fn coordinateSpace(&self) -> Retained<ProtocolObject<dyn UICoordinateSpace>>;
 
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(traitCollection))]
         #[unsafe(method_family = none)]
-        pub unsafe fn traitCollection(&self) -> Retained<UITraitCollection>;
+        pub fn traitCollection(&self) -> Retained<UITraitCollection>;
 
         #[cfg(all(feature = "UIWindowSceneGeometryPreferences", feature = "block2"))]
         #[unsafe(method(requestGeometryUpdateWithPreferences:errorHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestGeometryUpdateWithPreferences_errorHandler(
+        pub fn requestGeometryUpdateWithPreferences_errorHandler(
             &self,
             geometry_preferences: &UIWindowSceneGeometryPreferences,
             error_handler: Option<&block2::DynBlock<dyn Fn(NonNull<NSError>)>>,
@@ -65,24 +65,24 @@ impl UIWindowScene {
         #[cfg(feature = "UIWindowSceneGeometry")]
         #[unsafe(method(effectiveGeometry))]
         #[unsafe(method_family = none)]
-        pub unsafe fn effectiveGeometry(&self) -> Retained<UIWindowSceneGeometry>;
+        pub fn effectiveGeometry(&self) -> Retained<UIWindowSceneGeometry>;
 
         #[cfg(feature = "UISceneSizeRestrictions")]
         /// Preferences the system should evaluate when resizing the scene. If non `nil`, returns a mutable instance that the client may customize.
         /// - Note: This property will be `nil` on platforms that don't support scene resizing.
         #[unsafe(method(sizeRestrictions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sizeRestrictions(&self) -> Option<Retained<UISceneSizeRestrictions>>;
+        pub fn sizeRestrictions(&self) -> Option<Retained<UISceneSizeRestrictions>>;
 
         #[cfg(all(feature = "UIView", feature = "UIWindow"))]
         #[unsafe(method(windows))]
         #[unsafe(method_family = none)]
-        pub unsafe fn windows(&self) -> Retained<NSArray<UIWindow>>;
+        pub fn windows(&self) -> Retained<NSArray<UIWindow>>;
 
         #[cfg(all(feature = "UIView", feature = "UIWindow"))]
         #[unsafe(method(keyWindow))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyWindow(&self) -> Option<Retained<UIWindow>>;
+        pub fn keyWindow(&self) -> Option<Retained<UIWindow>>;
 
         #[cfg(feature = "UIActivityItemsConfigurationReading")]
         /// An optional object used as a source of scene-level activity items configuration
@@ -93,7 +93,7 @@ impl UIWindowScene {
         /// of the scene's key window will be used for scene-level sharing and activities.
         #[unsafe(method(activityItemsConfigurationSource))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activityItemsConfigurationSource(
+        pub fn activityItemsConfigurationSource(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIActivityItemsConfigurationProviding>>>;
 
@@ -103,7 +103,7 @@ impl UIWindowScene {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setActivityItemsConfigurationSource:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setActivityItemsConfigurationSource(
+        pub fn setActivityItemsConfigurationSource(
             &self,
             activity_items_configuration_source: Option<
                 &ProtocolObject<dyn UIActivityItemsConfigurationProviding>,
@@ -114,11 +114,11 @@ impl UIWindowScene {
         /// Additional window behaviors which may be platform specific. This property will be nil on unsupported platforms, otherwise will provide a mutable object for window behavior customization.
         #[unsafe(method(windowingBehaviors))]
         #[unsafe(method_family = none)]
-        pub unsafe fn windowingBehaviors(&self) -> Option<Retained<UISceneWindowingBehaviors>>;
+        pub fn windowingBehaviors(&self) -> Option<Retained<UISceneWindowingBehaviors>>;
 
         #[unsafe(method(isFullScreen))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isFullScreen(&self) -> bool;
+        pub fn isFullScreen(&self) -> bool;
     );
 }
 
@@ -128,16 +128,16 @@ impl UIWindowScene {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UISceneOptions", feature = "UISceneSession"))]
         #[unsafe(method(initWithSession:connectionOptions:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSession_connectionOptions(
+        pub fn initWithSession_connectionOptions(
             this: Allocated<Self>,
             session: &UISceneSession,
             connection_options: &UISceneConnectionOptions,
@@ -151,7 +151,7 @@ impl UIWindowScene {
         #[cfg(feature = "UITraitCollection")]
         #[unsafe(method(traitOverrides))]
         #[unsafe(method_family = none)]
-        pub unsafe fn traitOverrides(&self) -> Retained<ProtocolObject<dyn UITraitOverrides>>;
+        pub fn traitOverrides(&self) -> Retained<ProtocolObject<dyn UITraitOverrides>>;
     );
 }
 
@@ -181,14 +181,14 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(window))]
         #[unsafe(method_family = none)]
-        unsafe fn window(&self) -> Option<Retained<UIWindow>>;
+        fn window(&self) -> Option<Retained<UIWindow>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "UIWindow"))]
         /// Setter for [`window`][Self::window].
         #[optional]
         #[unsafe(method(setWindow:))]
         #[unsafe(method_family = none)]
-        unsafe fn setWindow(&self, window: Option<&UIWindow>);
+        fn setWindow(&self, window: Option<&UIWindow>);
 
         #[cfg(all(
             feature = "UIOrientation",
@@ -203,7 +203,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(windowScene:didUpdateCoordinateSpace:interfaceOrientation:traitCollection:))]
         #[unsafe(method_family = none)]
-        unsafe fn windowScene_didUpdateCoordinateSpace_interfaceOrientation_traitCollection(
+        fn windowScene_didUpdateCoordinateSpace_interfaceOrientation_traitCollection(
             &self,
             window_scene: &UIWindowScene,
             previous_coordinate_space: &ProtocolObject<dyn UICoordinateSpace>,
@@ -218,7 +218,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(windowScene:didUpdateEffectiveGeometry:))]
         #[unsafe(method_family = none)]
-        unsafe fn windowScene_didUpdateEffectiveGeometry(
+        fn windowScene_didUpdateEffectiveGeometry(
             &self,
             window_scene: &UIWindowScene,
             previous_effective_geometry: &UIWindowSceneGeometry,
@@ -232,7 +232,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(windowScene:performActionForShortcutItem:completionHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn windowScene_performActionForShortcutItem_completionHandler(
+        fn windowScene_performActionForShortcutItem_completionHandler(
             &self,
             window_scene: &UIWindowScene,
             shortcut_item: &UIApplicationShortcutItem,
@@ -243,7 +243,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(windowScene:userDidAcceptCloudKitShareWithMetadata:))]
         #[unsafe(method_family = none)]
-        unsafe fn windowScene_userDidAcceptCloudKitShareWithMetadata(
+        fn windowScene_userDidAcceptCloudKitShareWithMetadata(
             &self,
             window_scene: &UIWindowScene,
             cloud_kit_share_metadata: &CKShareMetadata,
@@ -255,7 +255,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(preferredWindowingControlStyleForScene:))]
         #[unsafe(method_family = none)]
-        unsafe fn preferredWindowingControlStyleForScene(
+        fn preferredWindowingControlStyleForScene(
             &self,
             window_scene: &UIWindowScene,
         ) -> Retained<UISceneWindowingControlStyle>;
@@ -334,12 +334,12 @@ impl UIWindowSceneDestructionRequestOptions {
     extern_methods!(
         #[unsafe(method(windowDismissalAnimation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn windowDismissalAnimation(&self) -> UIWindowSceneDismissalAnimation;
+        pub fn windowDismissalAnimation(&self) -> UIWindowSceneDismissalAnimation;
 
         /// Setter for [`windowDismissalAnimation`][Self::windowDismissalAnimation].
         #[unsafe(method(setWindowDismissalAnimation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWindowDismissalAnimation(
+        pub fn setWindowDismissalAnimation(
             &self,
             window_dismissal_animation: UIWindowSceneDismissalAnimation,
         );
@@ -352,10 +352,10 @@ impl UIWindowSceneDestructionRequestOptions {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

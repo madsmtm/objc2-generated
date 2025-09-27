@@ -28,41 +28,41 @@ impl UILongPressGestureRecognizer {
     extern_methods!(
         #[unsafe(method(numberOfTapsRequired))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfTapsRequired(&self) -> NSUInteger;
+        pub fn numberOfTapsRequired(&self) -> NSUInteger;
 
         /// Setter for [`numberOfTapsRequired`][Self::numberOfTapsRequired].
         #[unsafe(method(setNumberOfTapsRequired:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNumberOfTapsRequired(&self, number_of_taps_required: NSUInteger);
+        pub fn setNumberOfTapsRequired(&self, number_of_taps_required: NSUInteger);
 
         #[unsafe(method(numberOfTouchesRequired))]
         #[unsafe(method_family = none)]
-        pub unsafe fn numberOfTouchesRequired(&self) -> NSUInteger;
+        pub fn numberOfTouchesRequired(&self) -> NSUInteger;
 
         /// Setter for [`numberOfTouchesRequired`][Self::numberOfTouchesRequired].
         #[unsafe(method(setNumberOfTouchesRequired:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSUInteger);
+        pub fn setNumberOfTouchesRequired(&self, number_of_touches_required: NSUInteger);
 
         #[unsafe(method(minimumPressDuration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumPressDuration(&self) -> NSTimeInterval;
+        pub fn minimumPressDuration(&self) -> NSTimeInterval;
 
         /// Setter for [`minimumPressDuration`][Self::minimumPressDuration].
         #[unsafe(method(setMinimumPressDuration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinimumPressDuration(&self, minimum_press_duration: NSTimeInterval);
+        pub fn setMinimumPressDuration(&self, minimum_press_duration: NSTimeInterval);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(allowableMovement))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowableMovement(&self) -> CGFloat;
+        pub fn allowableMovement(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`allowableMovement`][Self::allowableMovement].
         #[unsafe(method(setAllowableMovement:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowableMovement(&self, allowable_movement: CGFloat);
+        pub fn setAllowableMovement(&self, allowable_movement: CGFloat);
     );
 }
 
@@ -84,7 +84,7 @@ impl UILongPressGestureRecognizer {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -104,6 +104,6 @@ impl UILongPressGestureRecognizer {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

@@ -29,7 +29,7 @@ impl UIStoryboardSegue {
         ))]
         #[unsafe(method(segueWithIdentifier:source:destination:performHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn segueWithIdentifier_source_destination_performHandler(
+        pub fn segueWithIdentifier_source_destination_performHandler(
             identifier: Option<&NSString>,
             source: &UIViewController,
             destination: &UIViewController,
@@ -40,7 +40,7 @@ impl UIStoryboardSegue {
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(initWithIdentifier:source:destination:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithIdentifier_source_destination(
+        pub fn initWithIdentifier_source_destination(
             this: Allocated<Self>,
             identifier: Option<&NSString>,
             source: &UIViewController,
@@ -50,31 +50,31 @@ impl UIStoryboardSegue {
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Option<Retained<NSString>>;
+        pub fn identifier(&self) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(sourceViewController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sourceViewController(&self) -> Retained<UIViewController>;
+        pub fn sourceViewController(&self) -> Retained<UIViewController>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(destinationViewController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn destinationViewController(&self) -> Retained<UIViewController>;
+        pub fn destinationViewController(&self) -> Retained<UIViewController>;
 
         /// Subclasses can override this method to augment or replace the effect of this segue. For example, to animate alongside the effect of a Modal Presentation segue, an override of this method can call super, then send -animateAlongsideTransition:completion: to the transitionCoordinator of the destinationViewController.
         /// The segue runtime will call +[UIView setAnimationsAreEnabled:] prior to invoking this method, based on the value of the Animates checkbox in the Properties Inspector for the segue.
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(perform))]
         #[unsafe(method_family = none)]
-        pub unsafe fn perform(&self);
+        pub fn perform(&self);
     );
 }
 
@@ -83,7 +83,7 @@ impl UIStoryboardSegue {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -106,20 +106,20 @@ impl UIStoryboardUnwindSegueSource {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[unsafe(method(sourceViewController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sourceViewController(&self) -> Retained<UIViewController>;
+        pub fn sourceViewController(&self) -> Retained<UIViewController>;
 
         #[unsafe(method(unwindAction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unwindAction(&self) -> Sel;
+        pub fn unwindAction(&self) -> Sel;
 
         #[unsafe(method(sender))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sender(&self) -> Option<Retained<AnyObject>>;
+        pub fn sender(&self) -> Option<Retained<AnyObject>>;
     );
 }
 
@@ -128,6 +128,6 @@ impl UIStoryboardUnwindSegueSource {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

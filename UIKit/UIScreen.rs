@@ -165,7 +165,7 @@ impl UIScreen {
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[unsafe(method(overscanCompensationInsets))]
         #[unsafe(method_family = none)]
-        pub unsafe fn overscanCompensationInsets(&self) -> UIEdgeInsets;
+        pub fn overscanCompensationInsets(&self) -> UIEdgeInsets;
 
         #[unsafe(method(mirroredScreen))]
         #[unsafe(method_family = none)]
@@ -174,27 +174,27 @@ impl UIScreen {
         #[deprecated = "Use the sceneCaptureState in UITraitCollection instead."]
         #[unsafe(method(isCaptured))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isCaptured(&self) -> bool;
+        pub fn isCaptured(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(brightness))]
         #[unsafe(method_family = none)]
-        pub unsafe fn brightness(&self) -> CGFloat;
+        pub fn brightness(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`brightness`][Self::brightness].
         #[unsafe(method(setBrightness:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBrightness(&self, brightness: CGFloat);
+        pub fn setBrightness(&self, brightness: CGFloat);
 
         #[unsafe(method(wantsSoftwareDimming))]
         #[unsafe(method_family = none)]
-        pub unsafe fn wantsSoftwareDimming(&self) -> bool;
+        pub fn wantsSoftwareDimming(&self) -> bool;
 
         /// Setter for [`wantsSoftwareDimming`][Self::wantsSoftwareDimming].
         #[unsafe(method(setWantsSoftwareDimming:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWantsSoftwareDimming(&self, wants_software_dimming: bool);
+        pub fn setWantsSoftwareDimming(&self, wants_software_dimming: bool);
 
         #[cfg(feature = "UIView")]
         #[unsafe(method(coordinateSpace))]
@@ -204,9 +204,7 @@ impl UIScreen {
         #[cfg(feature = "UIView")]
         #[unsafe(method(fixedCoordinateSpace))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fixedCoordinateSpace(
-            &self,
-        ) -> Retained<ProtocolObject<dyn UICoordinateSpace>>;
+        pub fn fixedCoordinateSpace(&self) -> Retained<ProtocolObject<dyn UICoordinateSpace>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(nativeBounds))]
@@ -239,44 +237,44 @@ impl UIScreen {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(calibratedLatency))]
         #[unsafe(method_family = none)]
-        pub unsafe fn calibratedLatency(&self) -> CFTimeInterval;
+        pub fn calibratedLatency(&self) -> CFTimeInterval;
 
         #[unsafe(method(referenceDisplayModeStatus))]
         #[unsafe(method_family = none)]
-        pub unsafe fn referenceDisplayModeStatus(&self) -> UIScreenReferenceDisplayModeStatus;
+        pub fn referenceDisplayModeStatus(&self) -> UIScreenReferenceDisplayModeStatus;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(currentEDRHeadroom))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentEDRHeadroom(&self) -> CGFloat;
+        pub fn currentEDRHeadroom(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(potentialEDRHeadroom))]
         #[unsafe(method_family = none)]
-        pub unsafe fn potentialEDRHeadroom(&self) -> CGFloat;
+        pub fn potentialEDRHeadroom(&self) -> CGFloat;
 
         #[cfg(feature = "UIFocus")]
         #[deprecated = "Use -[UIWindowScene focusSystem].focusedItem instead"]
         #[unsafe(method(focusedItem))]
         #[unsafe(method_family = none)]
-        pub unsafe fn focusedItem(&self) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
+        pub fn focusedItem(&self) -> Option<Retained<ProtocolObject<dyn UIFocusItem>>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[deprecated = "Use -[UIWindowScene focusSystem].focusedItem instead"]
         #[unsafe(method(focusedView))]
         #[unsafe(method_family = none)]
-        pub unsafe fn focusedView(&self) -> Option<Retained<UIView>>;
+        pub fn focusedView(&self) -> Option<Retained<UIView>>;
 
         #[deprecated = "Use -[UIWindowScene focusSystem] != nil instead"]
         #[unsafe(method(supportsFocus))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportsFocus(&self) -> bool;
+        pub fn supportsFocus(&self) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[deprecated]
         #[unsafe(method(applicationFrame))]
         #[unsafe(method_family = none)]
-        pub unsafe fn applicationFrame(&self) -> CGRect;
+        pub fn applicationFrame(&self) -> CGRect;
     );
 }
 
@@ -285,11 +283,11 @@ impl UIScreen {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -299,9 +297,6 @@ impl UIScreen {
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(snapshotViewAfterScreenUpdates:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn snapshotViewAfterScreenUpdates(
-            &self,
-            after_updates: bool,
-        ) -> Retained<UIView>;
+        pub fn snapshotViewAfterScreenUpdates(&self, after_updates: bool) -> Retained<UIView>;
     );
 }

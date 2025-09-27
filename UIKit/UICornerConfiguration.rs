@@ -38,13 +38,13 @@ impl UICornerConfiguration {
         /// corner to resolve to different radii.
         #[unsafe(method(configurationWithRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithRadius(radius: &UICornerRadius) -> Retained<Self>;
+        pub fn configurationWithRadius(radius: &UICornerRadius) -> Retained<Self>;
 
         #[cfg(feature = "UICornerRadius")]
         /// A configuration with independent radii for each corner.
         #[unsafe(method(configurationWithTopLeftRadius:topRightRadius:bottomLeftRadius:bottomRightRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithTopLeftRadius_topRightRadius_bottomLeftRadius_bottomRightRadius(
+        pub fn configurationWithTopLeftRadius_topRightRadius_bottomLeftRadius_bottomRightRadius(
             top_left_radius: Option<&UICornerRadius>,
             top_right_radius: Option<&UICornerRadius>,
             bottom_left_radius: Option<&UICornerRadius>,
@@ -54,27 +54,25 @@ impl UICornerConfiguration {
         /// A configuration that rounds the corners into a capsule shape, scaling with the view's size.
         #[unsafe(method(capsuleConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn capsuleConfiguration() -> Retained<Self>;
+        pub fn capsuleConfiguration() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// A configuration that rounds the corners into a capsule shape, scaling with the view's size and clamped to the `maximumRadius`.
         #[unsafe(method(capsuleConfigurationWithMaximumRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn capsuleConfigurationWithMaximumRadius(
-            maximum_radius: CGFloat,
-        ) -> Retained<Self>;
+        pub fn capsuleConfigurationWithMaximumRadius(maximum_radius: CGFloat) -> Retained<Self>;
 
         #[cfg(feature = "UICornerRadius")]
         /// A configuration that applies the given radius uniformly to all corners.
         #[unsafe(method(configurationWithUniformRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithUniformRadius(radius: &UICornerRadius) -> Retained<Self>;
+        pub fn configurationWithUniformRadius(radius: &UICornerRadius) -> Retained<Self>;
 
         #[cfg(feature = "UICornerRadius")]
         /// A configuration that applies the `topRadius` uniformly to the top-left and top-right corners, and the `bottomRadius` uniformly to the bottom-left and bottom-right corners.
         #[unsafe(method(configurationWithUniformTopRadius:uniformBottomRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithUniformTopRadius_uniformBottomRadius(
+        pub fn configurationWithUniformTopRadius_uniformBottomRadius(
             top_radius: &UICornerRadius,
             bottom_radius: &UICornerRadius,
         ) -> Retained<Self>;
@@ -83,7 +81,7 @@ impl UICornerConfiguration {
         /// A configuration that applies the `leftRadius` uniformly to the top-left and bottom-left corners, and the `rightRadius` uniformly to the top-right and bottom-right corners.
         #[unsafe(method(configurationWithUniformLeftRadius:uniformRightRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithUniformLeftRadius_uniformRightRadius(
+        pub fn configurationWithUniformLeftRadius_uniformRightRadius(
             left_radius: &UICornerRadius,
             right_radius: &UICornerRadius,
         ) -> Retained<Self>;
@@ -92,7 +90,7 @@ impl UICornerConfiguration {
         /// A configuration that applies the `topRadius` uniformly to the top-left and top-right corners, with optional independent radii for the bottom-left and bottom-right corners.
         #[unsafe(method(configurationWithUniformTopRadius:bottomLeftRadius:bottomRightRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithUniformTopRadius_bottomLeftRadius_bottomRightRadius(
+        pub fn configurationWithUniformTopRadius_bottomLeftRadius_bottomRightRadius(
             top_radius: &UICornerRadius,
             bottom_left_radius: Option<&UICornerRadius>,
             bottom_right_radius: Option<&UICornerRadius>,
@@ -102,7 +100,7 @@ impl UICornerConfiguration {
         /// A configuration that applies the `bottomRadius` uniformly to the bottom-left and bottom-right corners, with optional independent radii for the top-left and top-right corners.
         #[unsafe(method(configurationWithUniformBottomRadius:topLeftRadius:topRightRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithUniformBottomRadius_topLeftRadius_topRightRadius(
+        pub fn configurationWithUniformBottomRadius_topLeftRadius_topRightRadius(
             bottom_radius: &UICornerRadius,
             top_left_radius: Option<&UICornerRadius>,
             top_right_radius: Option<&UICornerRadius>,
@@ -112,7 +110,7 @@ impl UICornerConfiguration {
         /// A configuration that applies the `leftRadius` uniformly to the top-left and bottom-left corners, with optional independent radii for the top-right and bottom-right corners.
         #[unsafe(method(configurationWithUniformLeftRadius:topRightRadius:bottomRightRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithUniformLeftRadius_topRightRadius_bottomRightRadius(
+        pub fn configurationWithUniformLeftRadius_topRightRadius_bottomRightRadius(
             left_radius: &UICornerRadius,
             top_right_radius: Option<&UICornerRadius>,
             bottom_right_radius: Option<&UICornerRadius>,
@@ -122,7 +120,7 @@ impl UICornerConfiguration {
         /// A configuration that applies the `rightRadius` uniformly to the top-right and bottom-right corners, with optional independent radii for the top-left and bottom-left corners.
         #[unsafe(method(configurationWithUniformRightRadius:topLeftRadius:bottomLeftRadius:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithUniformRightRadius_topLeftRadius_bottomLeftRadius(
+        pub fn configurationWithUniformRightRadius_topLeftRadius_bottomLeftRadius(
             right_radius: &UICornerRadius,
             top_left_radius: Option<&UICornerRadius>,
             bottom_left_radius: Option<&UICornerRadius>,
@@ -130,10 +128,17 @@ impl UICornerConfiguration {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UICornerConfiguration {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

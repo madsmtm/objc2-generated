@@ -78,31 +78,38 @@ impl UIViewControllerTransition {
         /// View slides up from the bottom of the screen. Same as `UIModalTransitionStyle.coverVertical`.
         #[unsafe(method(coverVerticalTransition))]
         #[unsafe(method_family = none)]
-        pub unsafe fn coverVerticalTransition() -> Retained<Self>;
+        pub fn coverVerticalTransition() -> Retained<Self>;
 
         /// View flips horizontally in 3D. Same as `UIModalTransitionStyle.flipHorizontal`.
         #[unsafe(method(flipHorizontalTransition))]
         #[unsafe(method_family = none)]
-        pub unsafe fn flipHorizontalTransition() -> Retained<Self>;
+        pub fn flipHorizontalTransition() -> Retained<Self>;
 
         /// Fades out the current view while fading in the new view. Same as `UIModalTransitionStyle.crossDissolve`.
         #[unsafe(method(crossDissolveTransition))]
         #[unsafe(method_family = none)]
-        pub unsafe fn crossDissolveTransition() -> Retained<Self>;
+        pub fn crossDissolveTransition() -> Retained<Self>;
 
         /// One corner of the current view curls up to reveal the presented view underneath. Same as `UIModalTransitionStyle.partialCurl`.
         #[unsafe(method(partialCurlTransition))]
         #[unsafe(method_family = none)]
-        pub unsafe fn partialCurlTransition() -> Retained<Self>;
+        pub fn partialCurlTransition() -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIViewControllerTransition {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -122,26 +129,27 @@ impl UIZoomTransitionSourceViewProviderContext {
         /// View controller that is the source of the zoom transition.
         #[unsafe(method(sourceViewController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sourceViewController(
-            &self,
-            mtm: MainThreadMarker,
-        ) -> Retained<UIViewController>;
+        pub fn sourceViewController(&self, mtm: MainThreadMarker) -> Retained<UIViewController>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         /// The view controller being zoomed into by the transition.
         #[unsafe(method(zoomedViewController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn zoomedViewController(
-            &self,
-            mtm: MainThreadMarker,
-        ) -> Retained<UIViewController>;
+        pub fn zoomedViewController(&self, mtm: MainThreadMarker) -> Retained<UIViewController>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for UIZoomTransitionSourceViewProviderContext {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

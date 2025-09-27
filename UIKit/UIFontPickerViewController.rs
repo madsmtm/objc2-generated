@@ -16,19 +16,13 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(fontPickerViewControllerDidCancel:))]
         #[unsafe(method_family = none)]
-        unsafe fn fontPickerViewControllerDidCancel(
-            &self,
-            view_controller: &UIFontPickerViewController,
-        );
+        fn fontPickerViewControllerDidCancel(&self, view_controller: &UIFontPickerViewController);
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[optional]
         #[unsafe(method(fontPickerViewControllerDidPickFont:))]
         #[unsafe(method_family = none)]
-        unsafe fn fontPickerViewControllerDidPickFont(
-            &self,
-            view_controller: &UIFontPickerViewController,
-        );
+        fn fontPickerViewControllerDidPickFont(&self, view_controller: &UIFontPickerViewController);
     }
 );
 
@@ -94,7 +88,7 @@ impl UIFontPickerViewController {
         #[cfg(feature = "UIFontPickerViewControllerConfiguration")]
         #[unsafe(method(initWithConfiguration:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithConfiguration(
+        pub fn initWithConfiguration(
             this: Allocated<Self>,
             configuration: &UIFontPickerViewControllerConfiguration,
         ) -> Retained<Self>;
@@ -102,11 +96,11 @@ impl UIFontPickerViewController {
         #[cfg(feature = "UIFontPickerViewControllerConfiguration")]
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configuration(&self) -> Retained<UIFontPickerViewControllerConfiguration>;
+        pub fn configuration(&self) -> Retained<UIFontPickerViewControllerConfiguration>;
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(
+        pub fn delegate(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn UIFontPickerViewControllerDelegate>>>;
 
@@ -115,7 +109,7 @@ impl UIFontPickerViewController {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
+        pub fn setDelegate(
             &self,
             delegate: Option<&ProtocolObject<dyn UIFontPickerViewControllerDelegate>>,
         );
@@ -123,20 +117,20 @@ impl UIFontPickerViewController {
         #[cfg(feature = "UIFontDescriptor")]
         #[unsafe(method(selectedFontDescriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedFontDescriptor(&self) -> Option<Retained<UIFontDescriptor>>;
+        pub fn selectedFontDescriptor(&self) -> Option<Retained<UIFontDescriptor>>;
 
         #[cfg(feature = "UIFontDescriptor")]
         /// Setter for [`selectedFontDescriptor`][Self::selectedFontDescriptor].
         #[unsafe(method(setSelectedFontDescriptor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectedFontDescriptor(
+        pub fn setSelectedFontDescriptor(
             &self,
             selected_font_descriptor: Option<&UIFontDescriptor>,
         );
 
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
+        pub fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
@@ -166,10 +160,10 @@ impl UIFontPickerViewController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

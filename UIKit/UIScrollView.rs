@@ -139,26 +139,26 @@ impl UIScrollEdgeEffectStyle {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// The automatic scroll edge effect style.
         #[unsafe(method(automaticStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn automaticStyle(mtm: MainThreadMarker) -> Retained<UIScrollEdgeEffectStyle>;
+        pub fn automaticStyle(mtm: MainThreadMarker) -> Retained<UIScrollEdgeEffectStyle>;
 
         /// A soft-edged scroll edge effect.
         #[unsafe(method(softStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn softStyle(mtm: MainThreadMarker) -> Retained<UIScrollEdgeEffectStyle>;
+        pub fn softStyle(mtm: MainThreadMarker) -> Retained<UIScrollEdgeEffectStyle>;
 
         /// A scroll edge effect with a hard cutoff and dividing line.
         #[unsafe(method(hardStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hardStyle(mtm: MainThreadMarker) -> Retained<UIScrollEdgeEffectStyle>;
+        pub fn hardStyle(mtm: MainThreadMarker) -> Retained<UIScrollEdgeEffectStyle>;
     );
 }
 
@@ -180,32 +180,32 @@ impl UIScrollEdgeEffect {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// The style of this edge effect.
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]
-        pub unsafe fn style(&self) -> Retained<UIScrollEdgeEffectStyle>;
+        pub fn style(&self) -> Retained<UIScrollEdgeEffectStyle>;
 
         /// Setter for [`style`][Self::style].
         #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStyle(&self, style: &UIScrollEdgeEffectStyle);
+        pub fn setStyle(&self, style: &UIScrollEdgeEffectStyle);
 
         /// Whether this edge effect is hidden.
         /// Default: false
         #[unsafe(method(isHidden))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isHidden(&self) -> bool;
+        pub fn isHidden(&self) -> bool;
 
         /// Setter for [`isHidden`][Self::isHidden].
         #[unsafe(method(setHidden:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHidden(&self, hidden: bool);
+        pub fn setHidden(&self, hidden: bool);
     );
 }
 
@@ -302,78 +302,76 @@ impl UIScrollView {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(contentOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentOffset(&self) -> CGPoint;
+        pub fn contentOffset(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentOffset`][Self::contentOffset].
         #[unsafe(method(setContentOffset:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentOffset(&self, content_offset: CGPoint);
+        pub fn setContentOffset(&self, content_offset: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(contentSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentSize(&self) -> CGSize;
+        pub fn contentSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentSize`][Self::contentSize].
         #[unsafe(method(setContentSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentSize(&self, content_size: CGSize);
+        pub fn setContentSize(&self, content_size: CGSize);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[unsafe(method(contentInset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentInset(&self) -> UIEdgeInsets;
+        pub fn contentInset(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`contentInset`][Self::contentInset].
         #[unsafe(method(setContentInset:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentInset(&self, content_inset: UIEdgeInsets);
+        pub fn setContentInset(&self, content_inset: UIEdgeInsets);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(contentAlignmentPoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentAlignmentPoint(&self) -> CGPoint;
+        pub fn contentAlignmentPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentAlignmentPoint`][Self::contentAlignmentPoint].
         #[unsafe(method(setContentAlignmentPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentAlignmentPoint(&self, content_alignment_point: CGPoint);
+        pub fn setContentAlignmentPoint(&self, content_alignment_point: CGPoint);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[unsafe(method(adjustedContentInset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn adjustedContentInset(&self) -> UIEdgeInsets;
+        pub fn adjustedContentInset(&self) -> UIEdgeInsets;
 
         #[unsafe(method(adjustedContentInsetDidChange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn adjustedContentInsetDidChange(&self);
+        pub fn adjustedContentInsetDidChange(&self);
 
         #[unsafe(method(contentInsetAdjustmentBehavior))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentInsetAdjustmentBehavior(
-            &self,
-        ) -> UIScrollViewContentInsetAdjustmentBehavior;
+        pub fn contentInsetAdjustmentBehavior(&self) -> UIScrollViewContentInsetAdjustmentBehavior;
 
         /// Setter for [`contentInsetAdjustmentBehavior`][Self::contentInsetAdjustmentBehavior].
         #[unsafe(method(setContentInsetAdjustmentBehavior:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentInsetAdjustmentBehavior(
+        pub fn setContentInsetAdjustmentBehavior(
             &self,
             content_inset_adjustment_behavior: UIScrollViewContentInsetAdjustmentBehavior,
         );
 
         #[unsafe(method(automaticallyAdjustsScrollIndicatorInsets))]
         #[unsafe(method_family = none)]
-        pub unsafe fn automaticallyAdjustsScrollIndicatorInsets(&self) -> bool;
+        pub fn automaticallyAdjustsScrollIndicatorInsets(&self) -> bool;
 
         /// Setter for [`automaticallyAdjustsScrollIndicatorInsets`][Self::automaticallyAdjustsScrollIndicatorInsets].
         #[unsafe(method(setAutomaticallyAdjustsScrollIndicatorInsets:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAutomaticallyAdjustsScrollIndicatorInsets(
+        pub fn setAutomaticallyAdjustsScrollIndicatorInsets(
             &self,
             automatically_adjusts_scroll_indicator_insets: bool,
         );
@@ -381,164 +379,157 @@ impl UIScrollView {
         #[cfg(feature = "UILayoutGuide")]
         #[unsafe(method(contentLayoutGuide))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentLayoutGuide(&self) -> Retained<UILayoutGuide>;
+        pub fn contentLayoutGuide(&self) -> Retained<UILayoutGuide>;
 
         #[cfg(feature = "UILayoutGuide")]
         #[unsafe(method(frameLayoutGuide))]
         #[unsafe(method_family = none)]
-        pub unsafe fn frameLayoutGuide(&self) -> Retained<UILayoutGuide>;
+        pub fn frameLayoutGuide(&self) -> Retained<UILayoutGuide>;
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(&self)
-            -> Option<Retained<ProtocolObject<dyn UIScrollViewDelegate>>>;
+        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn UIScrollViewDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(
-            &self,
-            delegate: Option<&ProtocolObject<dyn UIScrollViewDelegate>>,
-        );
+        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UIScrollViewDelegate>>);
 
         #[unsafe(method(isDirectionalLockEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDirectionalLockEnabled(&self) -> bool;
+        pub fn isDirectionalLockEnabled(&self) -> bool;
 
         /// Setter for [`isDirectionalLockEnabled`][Self::isDirectionalLockEnabled].
         #[unsafe(method(setDirectionalLockEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDirectionalLockEnabled(&self, directional_lock_enabled: bool);
+        pub fn setDirectionalLockEnabled(&self, directional_lock_enabled: bool);
 
         #[unsafe(method(bounces))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bounces(&self) -> bool;
+        pub fn bounces(&self) -> bool;
 
         /// Setter for [`bounces`][Self::bounces].
         #[unsafe(method(setBounces:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBounces(&self, bounces: bool);
+        pub fn setBounces(&self, bounces: bool);
 
         #[unsafe(method(bouncesHorizontally))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bouncesHorizontally(&self) -> bool;
+        pub fn bouncesHorizontally(&self) -> bool;
 
         /// Setter for [`bouncesHorizontally`][Self::bouncesHorizontally].
         #[unsafe(method(setBouncesHorizontally:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBouncesHorizontally(&self, bounces_horizontally: bool);
+        pub fn setBouncesHorizontally(&self, bounces_horizontally: bool);
 
         #[unsafe(method(bouncesVertically))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bouncesVertically(&self) -> bool;
+        pub fn bouncesVertically(&self) -> bool;
 
         /// Setter for [`bouncesVertically`][Self::bouncesVertically].
         #[unsafe(method(setBouncesVertically:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBouncesVertically(&self, bounces_vertically: bool);
+        pub fn setBouncesVertically(&self, bounces_vertically: bool);
 
         #[unsafe(method(alwaysBounceVertical))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alwaysBounceVertical(&self) -> bool;
+        pub fn alwaysBounceVertical(&self) -> bool;
 
         /// Setter for [`alwaysBounceVertical`][Self::alwaysBounceVertical].
         #[unsafe(method(setAlwaysBounceVertical:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAlwaysBounceVertical(&self, always_bounce_vertical: bool);
+        pub fn setAlwaysBounceVertical(&self, always_bounce_vertical: bool);
 
         #[unsafe(method(alwaysBounceHorizontal))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alwaysBounceHorizontal(&self) -> bool;
+        pub fn alwaysBounceHorizontal(&self) -> bool;
 
         /// Setter for [`alwaysBounceHorizontal`][Self::alwaysBounceHorizontal].
         #[unsafe(method(setAlwaysBounceHorizontal:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAlwaysBounceHorizontal(&self, always_bounce_horizontal: bool);
+        pub fn setAlwaysBounceHorizontal(&self, always_bounce_horizontal: bool);
 
         #[unsafe(method(isPagingEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isPagingEnabled(&self) -> bool;
+        pub fn isPagingEnabled(&self) -> bool;
 
         /// Setter for [`isPagingEnabled`][Self::isPagingEnabled].
         #[unsafe(method(setPagingEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPagingEnabled(&self, paging_enabled: bool);
+        pub fn setPagingEnabled(&self, paging_enabled: bool);
 
         #[unsafe(method(isScrollEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isScrollEnabled(&self) -> bool;
+        pub fn isScrollEnabled(&self) -> bool;
 
         /// Setter for [`isScrollEnabled`][Self::isScrollEnabled].
         #[unsafe(method(setScrollEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScrollEnabled(&self, scroll_enabled: bool);
+        pub fn setScrollEnabled(&self, scroll_enabled: bool);
 
         #[unsafe(method(transfersHorizontalScrollingToParent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transfersHorizontalScrollingToParent(&self) -> bool;
+        pub fn transfersHorizontalScrollingToParent(&self) -> bool;
 
         /// Setter for [`transfersHorizontalScrollingToParent`][Self::transfersHorizontalScrollingToParent].
         #[unsafe(method(setTransfersHorizontalScrollingToParent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTransfersHorizontalScrollingToParent(
+        pub fn setTransfersHorizontalScrollingToParent(
             &self,
             transfers_horizontal_scrolling_to_parent: bool,
         );
 
         #[unsafe(method(transfersVerticalScrollingToParent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transfersVerticalScrollingToParent(&self) -> bool;
+        pub fn transfersVerticalScrollingToParent(&self) -> bool;
 
         /// Setter for [`transfersVerticalScrollingToParent`][Self::transfersVerticalScrollingToParent].
         #[unsafe(method(setTransfersVerticalScrollingToParent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTransfersVerticalScrollingToParent(
+        pub fn setTransfersVerticalScrollingToParent(
             &self,
             transfers_vertical_scrolling_to_parent: bool,
         );
 
         #[unsafe(method(showsVerticalScrollIndicator))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showsVerticalScrollIndicator(&self) -> bool;
+        pub fn showsVerticalScrollIndicator(&self) -> bool;
 
         /// Setter for [`showsVerticalScrollIndicator`][Self::showsVerticalScrollIndicator].
         #[unsafe(method(setShowsVerticalScrollIndicator:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShowsVerticalScrollIndicator(&self, shows_vertical_scroll_indicator: bool);
+        pub fn setShowsVerticalScrollIndicator(&self, shows_vertical_scroll_indicator: bool);
 
         #[unsafe(method(showsHorizontalScrollIndicator))]
         #[unsafe(method_family = none)]
-        pub unsafe fn showsHorizontalScrollIndicator(&self) -> bool;
+        pub fn showsHorizontalScrollIndicator(&self) -> bool;
 
         /// Setter for [`showsHorizontalScrollIndicator`][Self::showsHorizontalScrollIndicator].
         #[unsafe(method(setShowsHorizontalScrollIndicator:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShowsHorizontalScrollIndicator(
-            &self,
-            shows_horizontal_scroll_indicator: bool,
-        );
+        pub fn setShowsHorizontalScrollIndicator(&self, shows_horizontal_scroll_indicator: bool);
 
         #[unsafe(method(indicatorStyle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indicatorStyle(&self) -> UIScrollViewIndicatorStyle;
+        pub fn indicatorStyle(&self) -> UIScrollViewIndicatorStyle;
 
         /// Setter for [`indicatorStyle`][Self::indicatorStyle].
         #[unsafe(method(setIndicatorStyle:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndicatorStyle(&self, indicator_style: UIScrollViewIndicatorStyle);
+        pub fn setIndicatorStyle(&self, indicator_style: UIScrollViewIndicatorStyle);
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[unsafe(method(verticalScrollIndicatorInsets))]
         #[unsafe(method_family = none)]
-        pub unsafe fn verticalScrollIndicatorInsets(&self) -> UIEdgeInsets;
+        pub fn verticalScrollIndicatorInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`verticalScrollIndicatorInsets`][Self::verticalScrollIndicatorInsets].
         #[unsafe(method(setVerticalScrollIndicatorInsets:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVerticalScrollIndicatorInsets(
+        pub fn setVerticalScrollIndicatorInsets(
             &self,
             vertical_scroll_indicator_insets: UIEdgeInsets,
         );
@@ -546,13 +537,13 @@ impl UIScrollView {
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[unsafe(method(horizontalScrollIndicatorInsets))]
         #[unsafe(method_family = none)]
-        pub unsafe fn horizontalScrollIndicatorInsets(&self) -> UIEdgeInsets;
+        pub fn horizontalScrollIndicatorInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`horizontalScrollIndicatorInsets`][Self::horizontalScrollIndicatorInsets].
         #[unsafe(method(setHorizontalScrollIndicatorInsets:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHorizontalScrollIndicatorInsets(
+        pub fn setHorizontalScrollIndicatorInsets(
             &self,
             horizontal_scroll_indicator_insets: UIEdgeInsets,
         );
@@ -560,52 +551,52 @@ impl UIScrollView {
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         #[unsafe(method(scrollIndicatorInsets))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollIndicatorInsets(&self) -> UIEdgeInsets;
+        pub fn scrollIndicatorInsets(&self) -> UIEdgeInsets;
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
         /// Setter for [`scrollIndicatorInsets`][Self::scrollIndicatorInsets].
         #[unsafe(method(setScrollIndicatorInsets:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScrollIndicatorInsets(&self, scroll_indicator_insets: UIEdgeInsets);
+        pub fn setScrollIndicatorInsets(&self, scroll_indicator_insets: UIEdgeInsets);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(decelerationRate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decelerationRate(&self) -> UIScrollViewDecelerationRate;
+        pub fn decelerationRate(&self) -> UIScrollViewDecelerationRate;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`decelerationRate`][Self::decelerationRate].
         #[unsafe(method(setDecelerationRate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDecelerationRate(&self, deceleration_rate: UIScrollViewDecelerationRate);
+        pub fn setDecelerationRate(&self, deceleration_rate: UIScrollViewDecelerationRate);
 
         #[unsafe(method(indexDisplayMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexDisplayMode(&self) -> UIScrollViewIndexDisplayMode;
+        pub fn indexDisplayMode(&self) -> UIScrollViewIndexDisplayMode;
 
         /// Setter for [`indexDisplayMode`][Self::indexDisplayMode].
         #[unsafe(method(setIndexDisplayMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndexDisplayMode(&self, index_display_mode: UIScrollViewIndexDisplayMode);
+        pub fn setIndexDisplayMode(&self, index_display_mode: UIScrollViewIndexDisplayMode);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setContentOffset:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentOffset_animated(&self, content_offset: CGPoint, animated: bool);
+        pub fn setContentOffset_animated(&self, content_offset: CGPoint, animated: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scrollRectToVisible:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollRectToVisible_animated(&self, rect: CGRect, animated: bool);
+        pub fn scrollRectToVisible_animated(&self, rect: CGRect, animated: bool);
 
         #[unsafe(method(flashScrollIndicators))]
         #[unsafe(method_family = none)]
-        pub unsafe fn flashScrollIndicators(&self);
+        pub fn flashScrollIndicators(&self);
 
         #[cfg(feature = "block2")]
         #[unsafe(method(withScrollIndicatorsShownForContentOffsetChanges:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn withScrollIndicatorsShownForContentOffsetChanges(
+        pub fn withScrollIndicatorsShownForContentOffsetChanges(
             &self,
             changes: &block2::DynBlock<dyn Fn() + '_>,
         );
@@ -613,61 +604,61 @@ impl UIScrollView {
         /// The effect for the top edge of the scroll view.
         #[unsafe(method(topEdgeEffect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn topEdgeEffect(&self) -> Retained<UIScrollEdgeEffect>;
+        pub fn topEdgeEffect(&self) -> Retained<UIScrollEdgeEffect>;
 
         /// The effect for the left edge of the scroll view.
         #[unsafe(method(leftEdgeEffect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn leftEdgeEffect(&self) -> Retained<UIScrollEdgeEffect>;
+        pub fn leftEdgeEffect(&self) -> Retained<UIScrollEdgeEffect>;
 
         /// The effect for the bottom edge of the scroll view.
         #[unsafe(method(bottomEdgeEffect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bottomEdgeEffect(&self) -> Retained<UIScrollEdgeEffect>;
+        pub fn bottomEdgeEffect(&self) -> Retained<UIScrollEdgeEffect>;
 
         /// The effect for the right edge of the scroll view.
         #[unsafe(method(rightEdgeEffect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rightEdgeEffect(&self) -> Retained<UIScrollEdgeEffect>;
+        pub fn rightEdgeEffect(&self) -> Retained<UIScrollEdgeEffect>;
 
         #[unsafe(method(isTracking))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isTracking(&self) -> bool;
+        pub fn isTracking(&self) -> bool;
 
         #[unsafe(method(isDragging))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDragging(&self) -> bool;
+        pub fn isDragging(&self) -> bool;
 
         #[unsafe(method(isDecelerating))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDecelerating(&self) -> bool;
+        pub fn isDecelerating(&self) -> bool;
 
         #[unsafe(method(isScrollAnimating))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isScrollAnimating(&self) -> bool;
+        pub fn isScrollAnimating(&self) -> bool;
 
         #[unsafe(method(delaysContentTouches))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delaysContentTouches(&self) -> bool;
+        pub fn delaysContentTouches(&self) -> bool;
 
         /// Setter for [`delaysContentTouches`][Self::delaysContentTouches].
         #[unsafe(method(setDelaysContentTouches:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelaysContentTouches(&self, delays_content_touches: bool);
+        pub fn setDelaysContentTouches(&self, delays_content_touches: bool);
 
         #[unsafe(method(canCancelContentTouches))]
         #[unsafe(method_family = none)]
-        pub unsafe fn canCancelContentTouches(&self) -> bool;
+        pub fn canCancelContentTouches(&self) -> bool;
 
         /// Setter for [`canCancelContentTouches`][Self::canCancelContentTouches].
         #[unsafe(method(setCanCancelContentTouches:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCanCancelContentTouches(&self, can_cancel_content_touches: bool);
+        pub fn setCanCancelContentTouches(&self, can_cancel_content_touches: bool);
 
         #[cfg(all(feature = "UIEvent", feature = "UITouch"))]
         #[unsafe(method(touchesShouldBegin:withEvent:inContentView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchesShouldBegin_withEvent_inContentView(
+        pub fn touchesShouldBegin_withEvent_inContentView(
             &self,
             touches: &NSSet<UITouch>,
             event: Option<&UIEvent>,
@@ -676,109 +667,109 @@ impl UIScrollView {
 
         #[unsafe(method(touchesShouldCancelInContentView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchesShouldCancelInContentView(&self, view: &UIView) -> bool;
+        pub fn touchesShouldCancelInContentView(&self, view: &UIView) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(minimumZoomScale))]
         #[unsafe(method_family = none)]
-        pub unsafe fn minimumZoomScale(&self) -> CGFloat;
+        pub fn minimumZoomScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`minimumZoomScale`][Self::minimumZoomScale].
         #[unsafe(method(setMinimumZoomScale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMinimumZoomScale(&self, minimum_zoom_scale: CGFloat);
+        pub fn setMinimumZoomScale(&self, minimum_zoom_scale: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(maximumZoomScale))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maximumZoomScale(&self) -> CGFloat;
+        pub fn maximumZoomScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`maximumZoomScale`][Self::maximumZoomScale].
         #[unsafe(method(setMaximumZoomScale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaximumZoomScale(&self, maximum_zoom_scale: CGFloat);
+        pub fn setMaximumZoomScale(&self, maximum_zoom_scale: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(zoomScale))]
         #[unsafe(method_family = none)]
-        pub unsafe fn zoomScale(&self) -> CGFloat;
+        pub fn zoomScale(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`zoomScale`][Self::zoomScale].
         #[unsafe(method(setZoomScale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setZoomScale(&self, zoom_scale: CGFloat);
+        pub fn setZoomScale(&self, zoom_scale: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(setZoomScale:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setZoomScale_animated(&self, scale: CGFloat, animated: bool);
+        pub fn setZoomScale_animated(&self, scale: CGFloat, animated: bool);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(zoomToRect:animated:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn zoomToRect_animated(&self, rect: CGRect, animated: bool);
+        pub fn zoomToRect_animated(&self, rect: CGRect, animated: bool);
 
         #[unsafe(method(bouncesZoom))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bouncesZoom(&self) -> bool;
+        pub fn bouncesZoom(&self) -> bool;
 
         /// Setter for [`bouncesZoom`][Self::bouncesZoom].
         #[unsafe(method(setBouncesZoom:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBouncesZoom(&self, bounces_zoom: bool);
+        pub fn setBouncesZoom(&self, bounces_zoom: bool);
 
         #[unsafe(method(isZooming))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isZooming(&self) -> bool;
+        pub fn isZooming(&self) -> bool;
 
         #[unsafe(method(isZoomBouncing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isZoomBouncing(&self) -> bool;
+        pub fn isZoomBouncing(&self) -> bool;
 
         #[unsafe(method(isZoomAnimating))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isZoomAnimating(&self) -> bool;
+        pub fn isZoomAnimating(&self) -> bool;
 
         #[unsafe(method(scrollsToTop))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollsToTop(&self) -> bool;
+        pub fn scrollsToTop(&self) -> bool;
 
         /// Setter for [`scrollsToTop`][Self::scrollsToTop].
         #[unsafe(method(setScrollsToTop:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScrollsToTop(&self, scrolls_to_top: bool);
+        pub fn setScrollsToTop(&self, scrolls_to_top: bool);
 
         #[unsafe(method(stopScrollingAndZooming))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stopScrollingAndZooming(&self);
+        pub fn stopScrollingAndZooming(&self);
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPanGestureRecognizer"))]
         #[unsafe(method(panGestureRecognizer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn panGestureRecognizer(&self) -> Retained<UIPanGestureRecognizer>;
+        pub fn panGestureRecognizer(&self) -> Retained<UIPanGestureRecognizer>;
 
         #[cfg(all(feature = "UIGestureRecognizer", feature = "UIPinchGestureRecognizer"))]
         #[unsafe(method(pinchGestureRecognizer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pinchGestureRecognizer(&self) -> Option<Retained<UIPinchGestureRecognizer>>;
+        pub fn pinchGestureRecognizer(&self) -> Option<Retained<UIPinchGestureRecognizer>>;
 
         #[cfg(feature = "UIGestureRecognizer")]
         #[deprecated = "Configuring the panGestureRecognizer for indirect scrolling automatically supports directional presses now, so this property is no longer useful."]
         #[unsafe(method(directionalPressGestureRecognizer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn directionalPressGestureRecognizer(&self) -> Retained<UIGestureRecognizer>;
+        pub fn directionalPressGestureRecognizer(&self) -> Retained<UIGestureRecognizer>;
 
         #[unsafe(method(keyboardDismissMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyboardDismissMode(&self) -> UIScrollViewKeyboardDismissMode;
+        pub fn keyboardDismissMode(&self) -> UIScrollViewKeyboardDismissMode;
 
         /// Setter for [`keyboardDismissMode`][Self::keyboardDismissMode].
         #[unsafe(method(setKeyboardDismissMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setKeyboardDismissMode(
+        pub fn setKeyboardDismissMode(
             &self,
             keyboard_dismiss_mode: UIScrollViewKeyboardDismissMode,
         );
@@ -786,37 +777,37 @@ impl UIScrollView {
         #[cfg(all(feature = "UIControl", feature = "UIRefreshControl"))]
         #[unsafe(method(refreshControl))]
         #[unsafe(method_family = none)]
-        pub unsafe fn refreshControl(&self) -> Option<Retained<UIRefreshControl>>;
+        pub fn refreshControl(&self) -> Option<Retained<UIRefreshControl>>;
 
         #[cfg(all(feature = "UIControl", feature = "UIRefreshControl"))]
         /// Setter for [`refreshControl`][Self::refreshControl].
         #[unsafe(method(setRefreshControl:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRefreshControl(&self, refresh_control: Option<&UIRefreshControl>);
+        pub fn setRefreshControl(&self, refresh_control: Option<&UIRefreshControl>);
 
         /// Set this to YES to make the scroll view animate its content offset in response to keys like Page Up/Down, Home/End, and the arrow keys.
         /// The scroll view must be focused or first responder in order to receive these key events. Default is YES for apps linked after iOS 17.0.
         #[unsafe(method(allowsKeyboardScrolling))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsKeyboardScrolling(&self) -> bool;
+        pub fn allowsKeyboardScrolling(&self) -> bool;
 
         /// Setter for [`allowsKeyboardScrolling`][Self::allowsKeyboardScrolling].
         #[unsafe(method(setAllowsKeyboardScrolling:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsKeyboardScrolling(&self, allows_keyboard_scrolling: bool);
+        pub fn setAllowsKeyboardScrolling(&self, allows_keyboard_scrolling: bool);
 
         #[cfg(feature = "UIGeometry")]
         /// Defines which axes are considered for Look to Scroll.
         /// Does not affect when isPagingEnabled is true.
         #[unsafe(method(lookToScrollAxes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lookToScrollAxes(&self) -> UIAxis;
+        pub fn lookToScrollAxes(&self) -> UIAxis;
 
         #[cfg(feature = "UIGeometry")]
         /// Setter for [`lookToScrollAxes`][Self::lookToScrollAxes].
         #[unsafe(method(setLookToScrollAxes:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLookToScrollAxes(&self, look_to_scroll_axes: UIAxis);
+        pub fn setLookToScrollAxes(&self, look_to_scroll_axes: UIAxis);
     );
 }
 
@@ -827,7 +818,7 @@ impl UIScrollView {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+        pub fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -841,7 +832,7 @@ impl UIScrollView {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -851,7 +842,7 @@ impl UIScrollView {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -862,19 +853,19 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(scrollViewDidScroll:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollViewDidScroll(&self, scroll_view: &UIScrollView);
+        fn scrollViewDidScroll(&self, scroll_view: &UIScrollView);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
         #[unsafe(method(scrollViewDidZoom:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollViewDidZoom(&self, scroll_view: &UIScrollView);
+        fn scrollViewDidZoom(&self, scroll_view: &UIScrollView);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
         #[unsafe(method(scrollViewWillBeginDragging:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollViewWillBeginDragging(&self, scroll_view: &UIScrollView);
+        fn scrollViewWillBeginDragging(&self, scroll_view: &UIScrollView);
 
         #[cfg(all(
             feature = "UIResponder",
@@ -898,7 +889,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(scrollViewDidEndDragging:willDecelerate:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollViewDidEndDragging_willDecelerate(
+        fn scrollViewDidEndDragging_willDecelerate(
             &self,
             scroll_view: &UIScrollView,
             decelerate: bool,
@@ -908,25 +899,25 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(scrollViewWillBeginDecelerating:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollViewWillBeginDecelerating(&self, scroll_view: &UIScrollView);
+        fn scrollViewWillBeginDecelerating(&self, scroll_view: &UIScrollView);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
         #[unsafe(method(scrollViewDidEndDecelerating:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollViewDidEndDecelerating(&self, scroll_view: &UIScrollView);
+        fn scrollViewDidEndDecelerating(&self, scroll_view: &UIScrollView);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
         #[unsafe(method(scrollViewDidEndScrollingAnimation:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollViewDidEndScrollingAnimation(&self, scroll_view: &UIScrollView);
+        fn scrollViewDidEndScrollingAnimation(&self, scroll_view: &UIScrollView);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
         #[unsafe(method(viewForZoomingInScrollView:))]
         #[unsafe(method_family = none)]
-        unsafe fn viewForZoomingInScrollView(
+        fn viewForZoomingInScrollView(
             &self,
             scroll_view: &UIScrollView,
         ) -> Option<Retained<UIView>>;
@@ -935,7 +926,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(scrollViewWillBeginZooming:withView:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollViewWillBeginZooming_withView(
+        fn scrollViewWillBeginZooming_withView(
             &self,
             scroll_view: &UIScrollView,
             view: Option<&UIView>,
@@ -949,7 +940,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(scrollViewDidEndZooming:withView:atScale:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollViewDidEndZooming_withView_atScale(
+        fn scrollViewDidEndZooming_withView_atScale(
             &self,
             scroll_view: &UIScrollView,
             view: Option<&UIView>,
@@ -960,18 +951,18 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(scrollViewShouldScrollToTop:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollViewShouldScrollToTop(&self, scroll_view: &UIScrollView) -> bool;
+        fn scrollViewShouldScrollToTop(&self, scroll_view: &UIScrollView) -> bool;
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
         #[unsafe(method(scrollViewDidScrollToTop:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollViewDidScrollToTop(&self, scroll_view: &UIScrollView);
+        fn scrollViewDidScrollToTop(&self, scroll_view: &UIScrollView);
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[optional]
         #[unsafe(method(scrollViewDidChangeAdjustedContentInset:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollViewDidChangeAdjustedContentInset(&self, scroll_view: &UIScrollView);
+        fn scrollViewDidChangeAdjustedContentInset(&self, scroll_view: &UIScrollView);
     }
 );

@@ -37,7 +37,7 @@ impl UIWindowSceneStandardPlacement {
         /// Creates a standard placement.
         #[unsafe(method(standardPlacement))]
         #[unsafe(method_family = none)]
-        pub unsafe fn standardPlacement() -> Retained<Self>;
+        pub fn standardPlacement() -> Retained<Self>;
     );
 }
 
@@ -47,10 +47,18 @@ impl UIWindowSceneStandardPlacement {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "UIWindowScenePlacement")]
+impl DefaultRetained for UIWindowSceneStandardPlacement {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

@@ -53,79 +53,76 @@ impl UITabGroup {
         /// The currently selected tab. The tab must be part of `children`.
         #[unsafe(method(selectedChild))]
         #[unsafe(method_family = none)]
-        pub unsafe fn selectedChild(&self) -> Option<Retained<UITab>>;
+        pub fn selectedChild(&self) -> Option<Retained<UITab>>;
 
         /// Setter for [`selectedChild`][Self::selectedChild].
         #[unsafe(method(setSelectedChild:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSelectedChild(&self, selected_child: Option<&UITab>);
+        pub fn setSelectedChild(&self, selected_child: Option<&UITab>);
 
         /// The default child tab to select for when a selection is required and `selectedChild` is nil.
         /// If this is nil, then the default selected element is the first element of `children`. Default is nil.
         #[unsafe(method(defaultChildIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultChildIdentifier(&self) -> Option<Retained<NSString>>;
+        pub fn defaultChildIdentifier(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`defaultChildIdentifier`][Self::defaultChildIdentifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDefaultChildIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDefaultChildIdentifier(&self, default_child_identifier: Option<&NSString>);
+        pub fn setDefaultChildIdentifier(&self, default_child_identifier: Option<&NSString>);
 
         /// Child tabs of the tab group. Default is an empty array.
         #[unsafe(method(children))]
         #[unsafe(method_family = none)]
-        pub unsafe fn children(&self) -> Retained<NSArray<UITab>>;
+        pub fn children(&self) -> Retained<NSArray<UITab>>;
 
         /// Setter for [`children`][Self::children].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setChildren:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setChildren(&self, children: &NSArray<UITab>);
+        pub fn setChildren(&self, children: &NSArray<UITab>);
 
         /// The display order of the children, represented by the identifiers. Default is empty.
         /// Any tab in `children` not contained in `displayOrderIdentifiers` will be appended after
         /// sorted items. Identifiers that do not match tabs in `children` will be ignored.
         #[unsafe(method(displayOrderIdentifiers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn displayOrderIdentifiers(&self) -> Retained<NSArray<NSString>>;
+        pub fn displayOrderIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`displayOrderIdentifiers`][Self::displayOrderIdentifiers].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDisplayOrderIdentifiers:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDisplayOrderIdentifiers(
-            &self,
-            display_order_identifiers: &NSArray<NSString>,
-        );
+        pub fn setDisplayOrderIdentifiers(&self, display_order_identifiers: &NSArray<NSString>);
 
         /// Determines if elements in `children` can be reordered from the sidebar. Default is NO.
         /// Changes in the display order are notified via `tabBarController:didCustomizeDisplayOrderForGroup:`
         /// in `UITabBarControllerDelegate`.
         #[unsafe(method(allowsReordering))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowsReordering(&self) -> bool;
+        pub fn allowsReordering(&self) -> bool;
 
         /// Setter for [`allowsReordering`][Self::allowsReordering].
         #[unsafe(method(setAllowsReordering:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowsReordering(&self, allows_reordering: bool);
+        pub fn setAllowsReordering(&self, allows_reordering: bool);
 
         /// Returns the `children` array sorted by `displayOrderIdentifiers` if it is specified.
         /// Any tab in `children` not contained in the identifiers will be appended after
         /// sorted items. Identifiers that do not match tabs in `children` will be ignored.
         #[unsafe(method(displayOrder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn displayOrder(&self) -> Retained<NSArray<UITab>>;
+        pub fn displayOrder(&self) -> Retained<NSArray<UITab>>;
 
         /// Returns the `tab` matching the specified `identifier` in the group's children and its descendants.
         /// Returns nil if no tab is found matching the `identifier`.
         #[unsafe(method(tabForIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tabForIdentifier(&self, identifier: &NSString) -> Option<Retained<UITab>>;
+        pub fn tabForIdentifier(&self, identifier: &NSString) -> Option<Retained<UITab>>;
 
         #[cfg(all(
             feature = "UINavigationController",
@@ -146,9 +143,7 @@ impl UITabGroup {
         /// on `UITabBarControllerDelegate`, which will propose a set of view controllers per level.
         #[unsafe(method(managingNavigationController))]
         #[unsafe(method_family = none)]
-        pub unsafe fn managingNavigationController(
-            &self,
-        ) -> Option<Retained<UINavigationController>>;
+        pub fn managingNavigationController(&self) -> Option<Retained<UINavigationController>>;
 
         #[cfg(all(
             feature = "UINavigationController",
@@ -158,7 +153,7 @@ impl UITabGroup {
         /// Setter for [`managingNavigationController`][Self::managingNavigationController].
         #[unsafe(method(setManagingNavigationController:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setManagingNavigationController(
+        pub fn setManagingNavigationController(
             &self,
             managing_navigation_controller: Option<&UINavigationController>,
         );
@@ -167,7 +162,7 @@ impl UITabGroup {
         /// Actions to display in the sidebar, after all tabs. Default is nil.
         #[unsafe(method(sidebarActions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sidebarActions(&self) -> Retained<NSArray<UIAction>>;
+        pub fn sidebarActions(&self) -> Retained<NSArray<UIAction>>;
 
         #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]
         /// Setter for [`sidebarActions`][Self::sidebarActions].
@@ -175,17 +170,17 @@ impl UITabGroup {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSidebarActions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSidebarActions(&self, sidebar_actions: &NSArray<UIAction>);
+        pub fn setSidebarActions(&self, sidebar_actions: &NSArray<UIAction>);
 
         /// The preferred appearance of the group and its children in the sidebar. Default is `automatic`
         #[unsafe(method(sidebarAppearance))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sidebarAppearance(&self) -> UITabGroupSidebarAppearance;
+        pub fn sidebarAppearance(&self) -> UITabGroupSidebarAppearance;
 
         /// Setter for [`sidebarAppearance`][Self::sidebarAppearance].
         #[unsafe(method(setSidebarAppearance:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSidebarAppearance(&self, sidebar_appearance: UITabGroupSidebarAppearance);
+        pub fn setSidebarAppearance(&self, sidebar_appearance: UITabGroupSidebarAppearance);
 
         #[cfg(all(
             feature = "UIImage",
@@ -244,10 +239,10 @@ impl UITabGroup {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

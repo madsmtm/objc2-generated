@@ -30,7 +30,7 @@ impl UICanvasFeedbackGenerator {
         /// - Parameter location: The location in the feedback's view where the alignment occured.
         #[unsafe(method(alignmentOccurredAtLocation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn alignmentOccurredAtLocation(&self, location: CGPoint);
+        pub fn alignmentOccurredAtLocation(&self, location: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Provide user feedback that a path has been completed and/or recognized.
@@ -38,7 +38,7 @@ impl UICanvasFeedbackGenerator {
         /// - Parameter location: The location in the feedback's view where the completion occured.
         #[unsafe(method(pathCompletedAtLocation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pathCompletedAtLocation(&self, location: CGPoint);
+        pub fn pathCompletedAtLocation(&self, location: CGPoint);
     );
 }
 
@@ -50,12 +50,12 @@ impl UICanvasFeedbackGenerator {
         /// initalize the generator with a view to attach it to the provided view as an interaction.
         #[unsafe(method(feedbackGeneratorForView:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
+        pub fn feedbackGeneratorForView(view: &UIView) -> Retained<Self>;
 
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -65,6 +65,6 @@ impl UICanvasFeedbackGenerator {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
