@@ -347,26 +347,44 @@ extern "C" {
     pub static kCVImageBufferPostDecodeProcessingFrameMetadataKey: Option<&'static CFString>;
 }
 
-extern "C-unwind" {
-    pub fn CVYCbCrMatrixGetIntegerCodePointForString(
-        y_cb_cr_matrix_string: Option<&CFString>,
-    ) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn CVColorPrimariesGetIntegerCodePointForString(
-        color_primaries_string: Option<&CFString>,
-    ) -> c_int;
-}
-
-extern "C-unwind" {
-    pub fn CVTransferFunctionGetIntegerCodePointForString(
-        transfer_function_string: Option<&CFString>,
-    ) -> c_int;
+#[inline]
+pub extern "C-unwind" fn CVYCbCrMatrixGetIntegerCodePointForString(
+    y_cb_cr_matrix_string: Option<&CFString>,
+) -> c_int {
+    extern "C-unwind" {
+        fn CVYCbCrMatrixGetIntegerCodePointForString(
+            y_cb_cr_matrix_string: Option<&CFString>,
+        ) -> c_int;
+    }
+    unsafe { CVYCbCrMatrixGetIntegerCodePointForString(y_cb_cr_matrix_string) }
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CVYCbCrMatrixGetStringForIntegerCodePoint(
+pub extern "C-unwind" fn CVColorPrimariesGetIntegerCodePointForString(
+    color_primaries_string: Option<&CFString>,
+) -> c_int {
+    extern "C-unwind" {
+        fn CVColorPrimariesGetIntegerCodePointForString(
+            color_primaries_string: Option<&CFString>,
+        ) -> c_int;
+    }
+    unsafe { CVColorPrimariesGetIntegerCodePointForString(color_primaries_string) }
+}
+
+#[inline]
+pub extern "C-unwind" fn CVTransferFunctionGetIntegerCodePointForString(
+    transfer_function_string: Option<&CFString>,
+) -> c_int {
+    extern "C-unwind" {
+        fn CVTransferFunctionGetIntegerCodePointForString(
+            transfer_function_string: Option<&CFString>,
+        ) -> c_int;
+    }
+    unsafe { CVTransferFunctionGetIntegerCodePointForString(transfer_function_string) }
+}
+
+#[inline]
+pub extern "C-unwind" fn CVYCbCrMatrixGetStringForIntegerCodePoint(
     y_cb_cr_matrix_code_point: c_int,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -379,7 +397,7 @@ pub unsafe extern "C-unwind" fn CVYCbCrMatrixGetStringForIntegerCodePoint(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CVColorPrimariesGetStringForIntegerCodePoint(
+pub extern "C-unwind" fn CVColorPrimariesGetStringForIntegerCodePoint(
     color_primaries_code_point: c_int,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -392,7 +410,7 @@ pub unsafe extern "C-unwind" fn CVColorPrimariesGetStringForIntegerCodePoint(
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CVTransferFunctionGetStringForIntegerCodePoint(
+pub extern "C-unwind" fn CVTransferFunctionGetStringForIntegerCodePoint(
     transfer_function_code_point: c_int,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -412,42 +430,54 @@ pub unsafe extern "C-unwind" fn CVTransferFunctionGetStringForIntegerCodePoint(
 #[cfg(feature = "CVBuffer")]
 pub type CVImageBuffer = CVBuffer;
 
-extern "C-unwind" {
-    /// Returns the full encoded dimensions of a CVImageBuffer.  For example, for an NTSC DV frame this would be 720x480
-    ///
-    /// Parameter `imageBuffer`: A CVImageBuffer that you wish to retrieve the encoded size from.
-    ///
-    /// Returns: A CGSize returning the full encoded size of the buffer
-    /// Returns zero size if called with a non-CVImageBufferRef type or NULL.
-    #[cfg(feature = "CVBuffer")]
-    pub fn CVImageBufferGetEncodedSize(image_buffer: &CVImageBuffer) -> CGSize;
+/// Returns the full encoded dimensions of a CVImageBuffer.  For example, for an NTSC DV frame this would be 720x480
+///
+/// Parameter `imageBuffer`: A CVImageBuffer that you wish to retrieve the encoded size from.
+///
+/// Returns: A CGSize returning the full encoded size of the buffer
+/// Returns zero size if called with a non-CVImageBufferRef type or NULL.
+#[cfg(feature = "CVBuffer")]
+#[inline]
+pub extern "C-unwind" fn CVImageBufferGetEncodedSize(image_buffer: &CVImageBuffer) -> CGSize {
+    extern "C-unwind" {
+        fn CVImageBufferGetEncodedSize(image_buffer: &CVImageBuffer) -> CGSize;
+    }
+    unsafe { CVImageBufferGetEncodedSize(image_buffer) }
 }
 
-extern "C-unwind" {
-    /// Returns the nominal output display size (in square pixels) of a CVImageBuffer.
-    /// For example, for an NTSC DV frame this would be 640x480
-    ///
-    /// Parameter `imageBuffer`: A CVImageBuffer that you wish to retrieve the display size from.
-    ///
-    /// Returns: A CGSize returning the nominal display size of the buffer
-    /// Returns zero size if called with a non-CVImageBufferRef type or NULL.
-    #[cfg(feature = "CVBuffer")]
-    pub fn CVImageBufferGetDisplaySize(image_buffer: &CVImageBuffer) -> CGSize;
+/// Returns the nominal output display size (in square pixels) of a CVImageBuffer.
+/// For example, for an NTSC DV frame this would be 640x480
+///
+/// Parameter `imageBuffer`: A CVImageBuffer that you wish to retrieve the display size from.
+///
+/// Returns: A CGSize returning the nominal display size of the buffer
+/// Returns zero size if called with a non-CVImageBufferRef type or NULL.
+#[cfg(feature = "CVBuffer")]
+#[inline]
+pub extern "C-unwind" fn CVImageBufferGetDisplaySize(image_buffer: &CVImageBuffer) -> CGSize {
+    extern "C-unwind" {
+        fn CVImageBufferGetDisplaySize(image_buffer: &CVImageBuffer) -> CGSize;
+    }
+    unsafe { CVImageBufferGetDisplaySize(image_buffer) }
 }
 
-extern "C-unwind" {
-    /// Returns the source rectangle of a CVImageBuffer that represents the clean aperture
-    /// of the buffer in encoded pixels.    For example, an NTSC DV frame would return a CGRect with an
-    /// origin of 8,0 and a size of 704,480.
-    /// Note that the origin of this rect always the lower left    corner.   This is the same coordinate system as
-    /// used by CoreImage.
-    ///
-    /// Parameter `imageBuffer`: A CVImageBuffer that you wish to retrieve the display size from.
-    ///
-    /// Returns: A CGSize returning the nominal display size of the buffer
-    /// Returns zero rect if called with a non-CVImageBufferRef type or NULL.
-    #[cfg(feature = "CVBuffer")]
-    pub fn CVImageBufferGetCleanRect(image_buffer: &CVImageBuffer) -> CGRect;
+/// Returns the source rectangle of a CVImageBuffer that represents the clean aperture
+/// of the buffer in encoded pixels.    For example, an NTSC DV frame would return a CGRect with an
+/// origin of 8,0 and a size of 704,480.
+/// Note that the origin of this rect always the lower left    corner.   This is the same coordinate system as
+/// used by CoreImage.
+///
+/// Parameter `imageBuffer`: A CVImageBuffer that you wish to retrieve the display size from.
+///
+/// Returns: A CGSize returning the nominal display size of the buffer
+/// Returns zero rect if called with a non-CVImageBufferRef type or NULL.
+#[cfg(feature = "CVBuffer")]
+#[inline]
+pub extern "C-unwind" fn CVImageBufferGetCleanRect(image_buffer: &CVImageBuffer) -> CGRect {
+    extern "C-unwind" {
+        fn CVImageBufferGetCleanRect(image_buffer: &CVImageBuffer) -> CGRect;
+    }
+    unsafe { CVImageBufferGetCleanRect(image_buffer) }
 }
 
 /// Returns whether the image is flipped vertically or not.
@@ -457,7 +487,7 @@ extern "C-unwind" {
 /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left.
 #[cfg(feature = "CVBuffer")]
 #[inline]
-pub unsafe extern "C-unwind" fn CVImageBufferIsFlipped(image_buffer: &CVImageBuffer) -> bool {
+pub extern "C-unwind" fn CVImageBufferIsFlipped(image_buffer: &CVImageBuffer) -> bool {
     extern "C-unwind" {
         fn CVImageBufferIsFlipped(image_buffer: &CVImageBuffer) -> Boolean;
     }
@@ -473,7 +503,7 @@ pub unsafe extern "C-unwind" fn CVImageBufferIsFlipped(image_buffer: &CVImageBuf
 /// Returns NULL if called with a non-CVImageBufferRef type or NULL.
 #[cfg(all(feature = "CVBuffer", feature = "objc2-core-graphics"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CVImageBufferGetColorSpace(
+pub extern "C-unwind" fn CVImageBufferGetColorSpace(
     image_buffer: &CVImageBuffer,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {

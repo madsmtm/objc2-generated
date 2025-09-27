@@ -97,7 +97,7 @@ impl CVPixelBufferPool {
     /// Returns: Returns the pool attributes dictionary, or NULL on failure.
     #[doc(alias = "CVPixelBufferPoolGetAttributes")]
     #[inline]
-    pub unsafe fn attributes(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn attributes(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CVPixelBufferPoolGetAttributes(
                 pool: &CVPixelBufferPool,
@@ -117,7 +117,7 @@ impl CVPixelBufferPool {
     /// Returns: Returns the pixel buffer attributes dictionary, or NULL on failure.
     #[doc(alias = "CVPixelBufferPoolGetPixelBufferAttributes")]
     #[inline]
-    pub unsafe fn pixel_buffer_attributes(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn pixel_buffer_attributes(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CVPixelBufferPoolGetPixelBufferAttributes(
                 pool: &CVPixelBufferPool,
@@ -256,7 +256,7 @@ impl CVPixelBufferPool {
     #[doc(alias = "CVPixelBufferPoolFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]
-    pub unsafe fn flush(&self, options: CVPixelBufferPoolFlushFlags) {
+    pub fn flush(&self, options: CVPixelBufferPoolFlushFlags) {
         extern "C-unwind" {
             fn CVPixelBufferPoolFlush(
                 pool: &CVPixelBufferPool,
@@ -280,7 +280,7 @@ extern "C-unwind" {
 
 #[deprecated = "renamed to `CVPixelBufferPool::attributes`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CVPixelBufferPoolGetAttributes(
+pub extern "C-unwind" fn CVPixelBufferPoolGetAttributes(
     pool: &CVPixelBufferPool,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -294,7 +294,7 @@ pub unsafe extern "C-unwind" fn CVPixelBufferPoolGetAttributes(
 
 #[deprecated = "renamed to `CVPixelBufferPool::pixel_buffer_attributes`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CVPixelBufferPoolGetPixelBufferAttributes(
+pub extern "C-unwind" fn CVPixelBufferPoolGetPixelBufferAttributes(
     pool: &CVPixelBufferPool,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -337,8 +337,15 @@ extern "C-unwind" {
     ) -> CVReturn;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CVBase")]
-    #[deprecated = "renamed to `CVPixelBufferPool::flush`"]
-    pub fn CVPixelBufferPoolFlush(pool: &CVPixelBufferPool, options: CVPixelBufferPoolFlushFlags);
+#[cfg(feature = "CVBase")]
+#[deprecated = "renamed to `CVPixelBufferPool::flush`"]
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferPoolFlush(
+    pool: &CVPixelBufferPool,
+    options: CVPixelBufferPoolFlushFlags,
+) {
+    extern "C-unwind" {
+        fn CVPixelBufferPoolFlush(pool: &CVPixelBufferPool, options: CVPixelBufferPoolFlushFlags);
+    }
+    unsafe { CVPixelBufferPoolFlush(pool, options) }
 }

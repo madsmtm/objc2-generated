@@ -24,36 +24,44 @@ pub extern "C-unwind" fn CVOpenGLTextureGetTypeID() -> CFTypeID {
     unsafe { CVOpenGLTextureGetTypeID() }
 }
 
-extern "C-unwind" {
-    /// Returns the texture target (eg. 2D vs. rect texture extension) of the CVOpenGLTexture
-    ///
-    /// Parameter `image`: Target CVOpenGLTexture
-    ///
-    /// Returns: OpenGL texture target
-    #[cfg(all(
-        feature = "CVBuffer",
-        feature = "CVImageBuffer",
-        feature = "objc2-open-gl"
-    ))]
-    #[cfg(target_os = "macos")]
-    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLTextureGetTarget(image: &CVOpenGLTexture) -> GLenum;
+/// Returns the texture target (eg. 2D vs. rect texture extension) of the CVOpenGLTexture
+///
+/// Parameter `image`: Target CVOpenGLTexture
+///
+/// Returns: OpenGL texture target
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "objc2-open-gl"
+))]
+#[cfg(target_os = "macos")]
+#[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+#[inline]
+pub extern "C-unwind" fn CVOpenGLTextureGetTarget(image: &CVOpenGLTexture) -> GLenum {
+    extern "C-unwind" {
+        fn CVOpenGLTextureGetTarget(image: &CVOpenGLTexture) -> GLenum;
+    }
+    unsafe { CVOpenGLTextureGetTarget(image) }
 }
 
-extern "C-unwind" {
-    /// Returns the texture target name of the CVOpenGLTexture
-    ///
-    /// Parameter `image`: Target CVOpenGLTexture
-    ///
-    /// Returns: OpenGL texture target name
-    #[cfg(all(
-        feature = "CVBuffer",
-        feature = "CVImageBuffer",
-        feature = "objc2-open-gl"
-    ))]
-    #[cfg(target_os = "macos")]
-    #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
-    pub fn CVOpenGLTextureGetName(image: &CVOpenGLTexture) -> GLuint;
+/// Returns the texture target name of the CVOpenGLTexture
+///
+/// Parameter `image`: Target CVOpenGLTexture
+///
+/// Returns: OpenGL texture target name
+#[cfg(all(
+    feature = "CVBuffer",
+    feature = "CVImageBuffer",
+    feature = "objc2-open-gl"
+))]
+#[cfg(target_os = "macos")]
+#[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
+#[inline]
+pub extern "C-unwind" fn CVOpenGLTextureGetName(image: &CVOpenGLTexture) -> GLuint {
+    extern "C-unwind" {
+        fn CVOpenGLTextureGetName(image: &CVOpenGLTexture) -> GLuint;
+    }
+    unsafe { CVOpenGLTextureGetName(image) }
 }
 
 /// Returns whether the image is flipped vertically or not.
@@ -64,7 +72,7 @@ extern "C-unwind" {
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
 #[inline]
-pub unsafe extern "C-unwind" fn CVOpenGLTextureIsFlipped(image: &CVOpenGLTexture) -> bool {
+pub extern "C-unwind" fn CVOpenGLTextureIsFlipped(image: &CVOpenGLTexture) -> bool {
     extern "C-unwind" {
         fn CVOpenGLTextureIsFlipped(image: &CVOpenGLTexture) -> Boolean;
     }

@@ -41,7 +41,7 @@ pub extern "C-unwind" fn CVMetalTextureGetTypeID() -> CFTypeID {
 ))]
 #[cfg(not(target_os = "watchos"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CVMetalTextureGetTexture(
+pub extern "C-unwind" fn CVMetalTextureGetTexture(
     image: &CVMetalTexture,
 ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>> {
     extern "C-unwind" {
@@ -58,7 +58,7 @@ pub unsafe extern "C-unwind" fn CVMetalTextureGetTexture(
 /// Returns: True if 0,0 in the texture is upper left, false if 0,0 is lower left
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CVMetalTextureIsFlipped(image: &CVMetalTexture) -> bool {
+pub extern "C-unwind" fn CVMetalTextureIsFlipped(image: &CVMetalTexture) -> bool {
     extern "C-unwind" {
         fn CVMetalTextureIsFlipped(image: &CVMetalTexture) -> Boolean;
     }

@@ -88,7 +88,7 @@ extern "C-unwind" {
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
 #[inline]
-pub unsafe extern "C-unwind" fn CVOpenGLBufferGetAttributes(
+pub extern "C-unwind" fn CVOpenGLBufferGetAttributes(
     open_gl_buffer: &CVOpenGLBuffer,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {

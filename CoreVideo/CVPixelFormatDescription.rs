@@ -225,7 +225,7 @@ extern "C" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CVPixelFormatDescriptionCreateWithPixelFormatType(
+pub extern "C-unwind" fn CVPixelFormatDescriptionCreateWithPixelFormatType(
     allocator: Option<&CFAllocator>,
     pixel_format: OSType,
 ) -> Option<CFRetained<CFDictionary>> {
@@ -240,7 +240,7 @@ pub unsafe extern "C-unwind" fn CVPixelFormatDescriptionCreateWithPixelFormatTyp
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(
+pub extern "C-unwind" fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(
     allocator: Option<&CFAllocator>,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -268,7 +268,7 @@ extern "C-unwind" {
 ///
 /// Returns: A string with a user displayable conversion of a pixel format.
 #[inline]
-pub unsafe extern "C-unwind" fn CVPixelFormatTypeCopyFourCharCodeString(
+pub extern "C-unwind" fn CVPixelFormatTypeCopyFourCharCodeString(
     pixel_format: OSType,
 ) -> CFRetained<CFString> {
     extern "C-unwind" {
@@ -287,9 +287,7 @@ pub unsafe extern "C-unwind" fn CVPixelFormatTypeCopyFourCharCodeString(
 ///
 /// Returns: True if pixel format is supported on the current platform.
 #[inline]
-pub unsafe extern "C-unwind" fn CVIsCompressedPixelFormatAvailable(
-    pixel_format_type: OSType,
-) -> bool {
+pub extern "C-unwind" fn CVIsCompressedPixelFormatAvailable(pixel_format_type: OSType) -> bool {
     extern "C-unwind" {
         fn CVIsCompressedPixelFormatAvailable(pixel_format_type: OSType) -> Boolean;
     }

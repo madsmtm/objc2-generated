@@ -771,70 +771,94 @@ extern "C-unwind" {
     ) -> CVReturn;
 }
 
-extern "C-unwind" {
-    /// Returns the width of the PixelBuffer.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    ///
-    /// Returns: Width in pixels.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferGetWidth(pixel_buffer: &CVPixelBuffer) -> usize;
+/// Returns the width of the PixelBuffer.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// Returns: Width in pixels.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferGetWidth(pixel_buffer: &CVPixelBuffer) -> usize {
+    extern "C-unwind" {
+        fn CVPixelBufferGetWidth(pixel_buffer: &CVPixelBuffer) -> usize;
+    }
+    unsafe { CVPixelBufferGetWidth(pixel_buffer) }
 }
 
-extern "C-unwind" {
-    /// Returns the height of the PixelBuffer.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    ///
-    /// Returns: Height in pixels.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferGetHeight(pixel_buffer: &CVPixelBuffer) -> usize;
+/// Returns the height of the PixelBuffer.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// Returns: Height in pixels.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferGetHeight(pixel_buffer: &CVPixelBuffer) -> usize {
+    extern "C-unwind" {
+        fn CVPixelBufferGetHeight(pixel_buffer: &CVPixelBuffer) -> usize;
+    }
+    unsafe { CVPixelBufferGetHeight(pixel_buffer) }
 }
 
-extern "C-unwind" {
-    /// Returns the PixelFormatType of the PixelBuffer.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    ///
-    /// Returns: OSType identifying the pixel format by its type.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferGetPixelFormatType(pixel_buffer: &CVPixelBuffer) -> OSType;
+/// Returns the PixelFormatType of the PixelBuffer.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// Returns: OSType identifying the pixel format by its type.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferGetPixelFormatType(pixel_buffer: &CVPixelBuffer) -> OSType {
+    extern "C-unwind" {
+        fn CVPixelBufferGetPixelFormatType(pixel_buffer: &CVPixelBuffer) -> OSType;
+    }
+    unsafe { CVPixelBufferGetPixelFormatType(pixel_buffer) }
 }
 
-extern "C-unwind" {
-    /// Returns the base address of the PixelBuffer.
-    ///
-    /// Retrieving the base address for a PixelBuffer requires that the buffer base address be locked
-    /// via a successful call to CVPixelBufferLockBaseAddress.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    ///
-    /// Returns: Base address of the pixels.
-    /// For chunky buffers, this will return a pointer to the pixel at 0,0 in the buffer
-    /// For planar buffers this will return a pointer to a PlanarComponentInfo struct (defined in QuickTime).
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferGetBaseAddress(pixel_buffer: &CVPixelBuffer) -> *mut c_void;
+/// Returns the base address of the PixelBuffer.
+///
+/// Retrieving the base address for a PixelBuffer requires that the buffer base address be locked
+/// via a successful call to CVPixelBufferLockBaseAddress.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// Returns: Base address of the pixels.
+/// For chunky buffers, this will return a pointer to the pixel at 0,0 in the buffer
+/// For planar buffers this will return a pointer to a PlanarComponentInfo struct (defined in QuickTime).
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferGetBaseAddress(pixel_buffer: &CVPixelBuffer) -> *mut c_void {
+    extern "C-unwind" {
+        fn CVPixelBufferGetBaseAddress(pixel_buffer: &CVPixelBuffer) -> *mut c_void;
+    }
+    unsafe { CVPixelBufferGetBaseAddress(pixel_buffer) }
 }
 
-extern "C-unwind" {
-    /// Returns the rowBytes of the PixelBuffer.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    ///
-    /// Returns: Bytes per row of the image data.   For planar buffers this will return a rowBytes value such that bytesPerRow * height
-    /// will cover the entire image including all planes.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferGetBytesPerRow(pixel_buffer: &CVPixelBuffer) -> usize;
+/// Returns the rowBytes of the PixelBuffer.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// Returns: Bytes per row of the image data.   For planar buffers this will return a rowBytes value such that bytesPerRow * height
+/// will cover the entire image including all planes.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferGetBytesPerRow(pixel_buffer: &CVPixelBuffer) -> usize {
+    extern "C-unwind" {
+        fn CVPixelBufferGetBytesPerRow(pixel_buffer: &CVPixelBuffer) -> usize;
+    }
+    unsafe { CVPixelBufferGetBytesPerRow(pixel_buffer) }
 }
 
-extern "C-unwind" {
-    /// Returns the data size for contigous planes of the PixelBuffer.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    ///
-    /// Returns: Data size used in CVPixelBufferCreateWithPlanarBytes.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferGetDataSize(pixel_buffer: &CVPixelBuffer) -> usize;
+/// Returns the data size for contigous planes of the PixelBuffer.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// Returns: Data size used in CVPixelBufferCreateWithPlanarBytes.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferGetDataSize(pixel_buffer: &CVPixelBuffer) -> usize {
+    extern "C-unwind" {
+        fn CVPixelBufferGetDataSize(pixel_buffer: &CVPixelBuffer) -> usize;
+    }
+    unsafe { CVPixelBufferGetDataSize(pixel_buffer) }
 }
 
 /// Returns if the PixelBuffer is planar.
@@ -844,7 +868,7 @@ extern "C-unwind" {
 /// Returns: True if the PixelBuffer was created using CVPixelBufferCreateWithPlanarBytes.
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CVPixelBufferIsPlanar(pixel_buffer: &CVPixelBuffer) -> bool {
+pub extern "C-unwind" fn CVPixelBufferIsPlanar(pixel_buffer: &CVPixelBuffer) -> bool {
     extern "C-unwind" {
         fn CVPixelBufferIsPlanar(pixel_buffer: &CVPixelBuffer) -> Boolean;
     }
@@ -852,82 +876,114 @@ pub unsafe extern "C-unwind" fn CVPixelBufferIsPlanar(pixel_buffer: &CVPixelBuff
     ret != 0
 }
 
-extern "C-unwind" {
-    /// Returns number of planes of the PixelBuffer.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    ///
-    /// Returns: Number of planes.  Returns 0 for non-planar CVPixelBufferRefs.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferGetPlaneCount(pixel_buffer: &CVPixelBuffer) -> usize;
+/// Returns number of planes of the PixelBuffer.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// Returns: Number of planes.  Returns 0 for non-planar CVPixelBufferRefs.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferGetPlaneCount(pixel_buffer: &CVPixelBuffer) -> usize {
+    extern "C-unwind" {
+        fn CVPixelBufferGetPlaneCount(pixel_buffer: &CVPixelBuffer) -> usize;
+    }
+    unsafe { CVPixelBufferGetPlaneCount(pixel_buffer) }
 }
 
-extern "C-unwind" {
-    /// Returns the width of the plane at planeIndex in the PixelBuffer.
-    ///
-    /// On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
-    /// function with a non-planar buffer will have undefined behavior.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    ///
-    /// Parameter `planeIndex`: Identifying the plane.
-    ///
-    /// Returns: Width in pixels, or 0 for non-planar CVPixelBufferRefs.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferGetWidthOfPlane(pixel_buffer: &CVPixelBuffer, plane_index: usize) -> usize;
+/// Returns the width of the plane at planeIndex in the PixelBuffer.
+///
+/// On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
+/// function with a non-planar buffer will have undefined behavior.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// Parameter `planeIndex`: Identifying the plane.
+///
+/// Returns: Width in pixels, or 0 for non-planar CVPixelBufferRefs.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferGetWidthOfPlane(
+    pixel_buffer: &CVPixelBuffer,
+    plane_index: usize,
+) -> usize {
+    extern "C-unwind" {
+        fn CVPixelBufferGetWidthOfPlane(pixel_buffer: &CVPixelBuffer, plane_index: usize) -> usize;
+    }
+    unsafe { CVPixelBufferGetWidthOfPlane(pixel_buffer, plane_index) }
 }
 
-extern "C-unwind" {
-    /// Returns the height of the plane at planeIndex in the PixelBuffer.
-    ///
-    /// On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
-    /// function with a non-planar buffer will have undefined behavior.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    ///
-    /// Parameter `planeIndex`: Identifying the plane.
-    ///
-    /// Returns: Height in pixels, or 0 for non-planar CVPixelBufferRefs.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferGetHeightOfPlane(pixel_buffer: &CVPixelBuffer, plane_index: usize)
-        -> usize;
+/// Returns the height of the plane at planeIndex in the PixelBuffer.
+///
+/// On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
+/// function with a non-planar buffer will have undefined behavior.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// Parameter `planeIndex`: Identifying the plane.
+///
+/// Returns: Height in pixels, or 0 for non-planar CVPixelBufferRefs.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferGetHeightOfPlane(
+    pixel_buffer: &CVPixelBuffer,
+    plane_index: usize,
+) -> usize {
+    extern "C-unwind" {
+        fn CVPixelBufferGetHeightOfPlane(pixel_buffer: &CVPixelBuffer, plane_index: usize)
+            -> usize;
+    }
+    unsafe { CVPixelBufferGetHeightOfPlane(pixel_buffer, plane_index) }
 }
 
-extern "C-unwind" {
-    /// Returns the base address of the plane at planeIndex in the PixelBuffer.
-    ///
-    /// Retrieving the base address for a PixelBuffer requires that the buffer base address be locked
-    /// via a successful call to CVPixelBufferLockBaseAddress. On OSX 10.10 and earlier, or iOS 8 and
-    /// earlier, calling this function with a non-planar buffer will have undefined behavior.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    ///
-    /// Parameter `planeIndex`: Identifying the plane.
-    ///
-    /// Returns: Base address of the plane, or NULL for non-planar CVPixelBufferRefs.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferGetBaseAddressOfPlane(
-        pixel_buffer: &CVPixelBuffer,
-        plane_index: usize,
-    ) -> *mut c_void;
+/// Returns the base address of the plane at planeIndex in the PixelBuffer.
+///
+/// Retrieving the base address for a PixelBuffer requires that the buffer base address be locked
+/// via a successful call to CVPixelBufferLockBaseAddress. On OSX 10.10 and earlier, or iOS 8 and
+/// earlier, calling this function with a non-planar buffer will have undefined behavior.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// Parameter `planeIndex`: Identifying the plane.
+///
+/// Returns: Base address of the plane, or NULL for non-planar CVPixelBufferRefs.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferGetBaseAddressOfPlane(
+    pixel_buffer: &CVPixelBuffer,
+    plane_index: usize,
+) -> *mut c_void {
+    extern "C-unwind" {
+        fn CVPixelBufferGetBaseAddressOfPlane(
+            pixel_buffer: &CVPixelBuffer,
+            plane_index: usize,
+        ) -> *mut c_void;
+    }
+    unsafe { CVPixelBufferGetBaseAddressOfPlane(pixel_buffer, plane_index) }
 }
 
-extern "C-unwind" {
-    /// Returns the row bytes of the plane at planeIndex in the PixelBuffer.
-    ///
-    /// On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
-    /// function with a non-planar buffer will have undefined behavior.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    ///
-    /// Parameter `planeIndex`: Identifying the plane.
-    ///
-    /// Returns: Row bytes of the plane, or NULL for non-planar CVPixelBufferRefs.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferGetBytesPerRowOfPlane(
-        pixel_buffer: &CVPixelBuffer,
-        plane_index: usize,
-    ) -> usize;
+/// Returns the row bytes of the plane at planeIndex in the PixelBuffer.
+///
+/// On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
+/// function with a non-planar buffer will have undefined behavior.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// Parameter `planeIndex`: Identifying the plane.
+///
+/// Returns: Row bytes of the plane, or NULL for non-planar CVPixelBufferRefs.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferGetBytesPerRowOfPlane(
+    pixel_buffer: &CVPixelBuffer,
+    plane_index: usize,
+) -> usize {
+    extern "C-unwind" {
+        fn CVPixelBufferGetBytesPerRowOfPlane(
+            pixel_buffer: &CVPixelBuffer,
+            plane_index: usize,
+        ) -> usize;
+    }
+    unsafe { CVPixelBufferGetBytesPerRowOfPlane(pixel_buffer, plane_index) }
 }
 
 extern "C-unwind" {
@@ -962,12 +1018,16 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    /// Fills the extended pixels of the PixelBuffer.   This function replicates edge pixels to fill the entire extended region of the image.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
-    pub fn CVPixelBufferFillExtendedPixels(pixel_buffer: &CVPixelBuffer) -> CVReturn;
+/// Fills the extended pixels of the PixelBuffer.   This function replicates edge pixels to fill the entire extended region of the image.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferFillExtendedPixels(pixel_buffer: &CVPixelBuffer) -> CVReturn {
+    extern "C-unwind" {
+        fn CVPixelBufferFillExtendedPixels(pixel_buffer: &CVPixelBuffer) -> CVReturn;
+    }
+    unsafe { CVPixelBufferFillExtendedPixels(pixel_buffer) }
 }
 
 /// Returns a copy of pixelBufferAttributes dictionary used to create the PixelBuffer.
@@ -977,7 +1037,7 @@ extern "C-unwind" {
 /// Parameter `pixelBuffer`: Target PixelBuffer.
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CVPixelBufferCopyCreationAttributes(
+pub extern "C-unwind" fn CVPixelBufferCopyCreationAttributes(
     pixel_buffer: &CVPixelBuffer,
 ) -> CFRetained<CFDictionary> {
     extern "C-unwind" {

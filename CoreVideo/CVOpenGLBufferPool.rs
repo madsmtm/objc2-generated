@@ -104,7 +104,7 @@ impl CVOpenGLBufferPool {
     #[doc(alias = "CVOpenGLBufferPoolGetAttributes")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    pub unsafe fn attributes(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn attributes(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CVOpenGLBufferPoolGetAttributes(
                 pool: &CVOpenGLBufferPool,
@@ -125,7 +125,7 @@ impl CVOpenGLBufferPool {
     #[doc(alias = "CVOpenGLBufferPoolGetOpenGLBufferAttributes")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    pub unsafe fn open_gl_buffer_attributes(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn open_gl_buffer_attributes(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
                 pool: &CVOpenGLBufferPool,
@@ -190,7 +190,7 @@ extern "C-unwind" {
 
 #[deprecated = "renamed to `CVOpenGLBufferPool::attributes`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CVOpenGLBufferPoolGetAttributes(
+pub extern "C-unwind" fn CVOpenGLBufferPoolGetAttributes(
     pool: &CVOpenGLBufferPool,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -204,7 +204,7 @@ pub unsafe extern "C-unwind" fn CVOpenGLBufferPoolGetAttributes(
 
 #[deprecated = "renamed to `CVOpenGLBufferPool::open_gl_buffer_attributes`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
+pub extern "C-unwind" fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
     pool: &CVOpenGLBufferPool,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {

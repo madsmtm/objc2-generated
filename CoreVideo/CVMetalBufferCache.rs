@@ -146,7 +146,7 @@ impl CVMetalBufferCache {
     #[doc(alias = "CVMetalBufferCacheFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]
-    pub unsafe fn flush(&self, options: CVOptionFlags) {
+    pub fn flush(&self, options: CVOptionFlags) {
         extern "C-unwind" {
             fn CVMetalBufferCacheFlush(buffer_cache: &CVMetalBufferCache, options: CVOptionFlags);
         }
@@ -182,8 +182,15 @@ extern "C-unwind" {
     ) -> CVReturn;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CVBase")]
-    #[deprecated = "renamed to `CVMetalBufferCache::flush`"]
-    pub fn CVMetalBufferCacheFlush(buffer_cache: &CVMetalBufferCache, options: CVOptionFlags);
+#[cfg(feature = "CVBase")]
+#[deprecated = "renamed to `CVMetalBufferCache::flush`"]
+#[inline]
+pub extern "C-unwind" fn CVMetalBufferCacheFlush(
+    buffer_cache: &CVMetalBufferCache,
+    options: CVOptionFlags,
+) {
+    extern "C-unwind" {
+        fn CVMetalBufferCacheFlush(buffer_cache: &CVMetalBufferCache, options: CVOptionFlags);
+    }
+    unsafe { CVMetalBufferCacheFlush(buffer_cache, options) }
 }

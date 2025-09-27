@@ -36,7 +36,7 @@ pub extern "C-unwind" fn CVMetalBufferGetTypeID() -> CFTypeID {
 #[cfg(all(feature = "CVBuffer", feature = "objc2", feature = "objc2-metal"))]
 #[cfg(not(target_os = "watchos"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CVMetalBufferGetBuffer(
+pub extern "C-unwind" fn CVMetalBufferGetBuffer(
     buffer: &CVMetalBuffer,
 ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>> {
     extern "C-unwind" {

@@ -44,7 +44,7 @@ extern "C" {
 ))]
 #[cfg(not(target_os = "watchos"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CVPixelBufferGetIOSurface(
+pub extern "C-unwind" fn CVPixelBufferGetIOSurface(
     pixel_buffer: Option<&CVPixelBuffer>,
 ) -> Option<CFRetained<IOSurfaceRef>> {
     extern "C-unwind" {

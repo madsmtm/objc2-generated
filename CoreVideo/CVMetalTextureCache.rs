@@ -217,7 +217,7 @@ impl CVMetalTextureCache {
     #[doc(alias = "CVMetalTextureCacheFlush")]
     #[cfg(feature = "CVBase")]
     #[inline]
-    pub unsafe fn flush(&self, options: CVOptionFlags) {
+    pub fn flush(&self, options: CVOptionFlags) {
         extern "C-unwind" {
             fn CVMetalTextureCacheFlush(
                 texture_cache: &CVMetalTextureCache,
@@ -264,8 +264,15 @@ extern "C-unwind" {
     ) -> CVReturn;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CVBase")]
-    #[deprecated = "renamed to `CVMetalTextureCache::flush`"]
-    pub fn CVMetalTextureCacheFlush(texture_cache: &CVMetalTextureCache, options: CVOptionFlags);
+#[cfg(feature = "CVBase")]
+#[deprecated = "renamed to `CVMetalTextureCache::flush`"]
+#[inline]
+pub extern "C-unwind" fn CVMetalTextureCacheFlush(
+    texture_cache: &CVMetalTextureCache,
+    options: CVOptionFlags,
+) {
+    extern "C-unwind" {
+        fn CVMetalTextureCacheFlush(texture_cache: &CVMetalTextureCache, options: CVOptionFlags);
+    }
+    unsafe { CVMetalTextureCacheFlush(texture_cache, options) }
 }
