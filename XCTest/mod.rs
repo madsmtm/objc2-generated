@@ -81,33 +81,33 @@ impl XCTest {
         /// Number of test cases. Must be overridden by subclasses.
         #[unsafe(method(testCaseCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn testCaseCount(&self) -> NSUInteger;
+        pub fn testCaseCount(&self) -> NSUInteger;
 
         /// Test's name. Must be overridden by subclasses.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Retained<NSString>;
+        pub fn name(&self) -> Retained<NSString>;
 
         /// The XCTestRun subclass that will be instantiated when the test is run to hold
         /// the test's results. Must be overridden by subclasses.
         #[unsafe(method(testRunClass))]
         #[unsafe(method_family = none)]
-        pub unsafe fn testRunClass(&self) -> Option<&'static AnyClass>;
+        pub fn testRunClass(&self) -> Option<&'static AnyClass>;
 
         /// The test run object that executed the test, an instance of testRunClass. If the test has not yet been run, this will be nil.
         #[unsafe(method(testRun))]
         #[unsafe(method_family = none)]
-        pub unsafe fn testRun(&self) -> Option<Retained<XCTestRun>>;
+        pub fn testRun(&self) -> Option<Retained<XCTestRun>>;
 
         /// The method through which tests are executed. Must be overridden by subclasses.
         #[unsafe(method(performTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performTest(&self, run: &XCTestRun);
+        pub fn performTest(&self, run: &XCTestRun);
 
         /// Creates an instance of the testRunClass and passes it as a parameter to -performTest:.
         #[unsafe(method(runTest))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runTest(&self);
+        pub fn runTest(&self);
 
         #[cfg(feature = "block2")]
         /// Asynchronous set up method called before the invocation of each test method in the class.
@@ -119,7 +119,7 @@ impl XCTest {
         /// is recorded as a thrown error issue.
         #[unsafe(method(setUpWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUpWithCompletionHandler(
+        pub fn setUpWithCompletionHandler(
             &self,
             completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
@@ -127,23 +127,23 @@ impl XCTest {
         /// This method is called before invoking `setUp` and the test method.
         #[unsafe(method(setUpWithError:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUpWithError(&self) -> Result<(), Retained<NSError>>;
+        pub fn setUpWithError(&self) -> Result<(), Retained<NSError>>;
 
         /// Setup method called before the invocation of each test method in the class.
         #[unsafe(method(setUp))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUp(&self);
+        pub fn setUp(&self);
 
         /// Teardown method called after the invocation of each test method in the class.
         #[unsafe(method(tearDown))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tearDown(&self);
+        pub fn tearDown(&self);
 
         /// This method is called after invoking the test method (if applicable) and
         /// `tearDown`.
         #[unsafe(method(tearDownWithError:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tearDownWithError(&self) -> Result<(), Retained<NSError>>;
+        pub fn tearDownWithError(&self) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
         /// Asynchronous tear down method called after invoking the test method.
@@ -156,7 +156,7 @@ impl XCTest {
         /// is recorded as a thrown error issue.
         #[unsafe(method(tearDownWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tearDownWithCompletionHandler(
+        pub fn tearDownWithCompletionHandler(
             &self,
             completion: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
@@ -168,12 +168,19 @@ impl XCTest {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTest {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -229,16 +236,23 @@ impl _XCTestCaseInterruptionException {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
 }
 
+impl DefaultRetained for _XCTestCaseInterruptionException {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
+}
+
 #[inline]
-pub(crate) unsafe extern "C-unwind" fn _XCTPreformattedFailureHandler(
+pub(crate) extern "C-unwind" fn _XCTPreformattedFailureHandler(
     test: Option<&XCTestCase>,
     expected: bool,
     file_path: &NSString,
@@ -333,7 +347,7 @@ unsafe impl RefEncode for _XCTAssertionType {
 }
 
 #[inline]
-pub(crate) unsafe extern "C-unwind" fn _XCTFailureFormat(
+pub(crate) extern "C-unwind" fn _XCTFailureFormat(
     assertion_type: _XCTAssertionType,
     format_index: NSUInteger,
 ) -> Retained<NSString> {
@@ -349,9 +363,7 @@ pub(crate) unsafe extern "C-unwind" fn _XCTFailureFormat(
 }
 
 #[inline]
-pub(crate) unsafe extern "C-unwind" fn _XCTDescriptionForValue(
-    value: &NSValue,
-) -> Retained<NSString> {
+pub(crate) extern "C-unwind" fn _XCTDescriptionForValue(value: &NSValue) -> Retained<NSString> {
     extern "C-unwind" {
         fn _XCTDescriptionForValue(value: &NSValue) -> *mut NSString;
     }
@@ -361,7 +373,7 @@ pub(crate) unsafe extern "C-unwind" fn _XCTDescriptionForValue(
 }
 
 #[inline]
-pub(crate) unsafe extern "C-unwind" fn _XCTGetCurrentExceptionReasonWithFallback(
+pub(crate) extern "C-unwind" fn _XCTGetCurrentExceptionReasonWithFallback(
     fallback: Option<&NSString>,
 ) -> Retained<NSString> {
     extern "C-unwind" {
@@ -380,13 +392,13 @@ extern_protocol!(
         /// Human-readable name of the activity, given at creation time.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        unsafe fn name(&self) -> Retained<NSString>;
+        fn name(&self) -> Retained<NSString>;
 
         /// Adds an attachment which is always kept by Xcode, regardless of the test result.
         /// Thread-safe, attachments can be added from any thread, are reported in the order they are added.
         #[unsafe(method(addAttachment:))]
         #[unsafe(method_family = none)]
-        unsafe fn addAttachment(&self, attachment: &XCTAttachment);
+        fn addAttachment(&self, attachment: &XCTAttachment);
     }
 );
 
@@ -495,7 +507,7 @@ impl XCTestCase {
         /// should not be called directly.
         #[unsafe(method(invokeTest))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invokeTest(&self);
+        pub fn invokeTest(&self);
 
         /// Determines whether the test method continues execution after an XCTAssert fails.
         ///
@@ -508,12 +520,12 @@ impl XCTestCase {
         /// noise in the test report for these kinds of tests.
         #[unsafe(method(continueAfterFailure))]
         #[unsafe(method_family = none)]
-        pub unsafe fn continueAfterFailure(&self) -> bool;
+        pub fn continueAfterFailure(&self) -> bool;
 
         /// Setter for [`continueAfterFailure`][Self::continueAfterFailure].
         #[unsafe(method(setContinueAfterFailure:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContinueAfterFailure(&self, continue_after_failure: bool);
+        pub fn setContinueAfterFailure(&self, continue_after_failure: bool);
 
         /// Records a failure or other issue in the execution of the test and is used by all test assertions.
         /// Overrides of this method should call super unless they wish to suppress the issue.
@@ -523,12 +535,12 @@ impl XCTestCase {
         /// Parameter `issue`: Object with all details related to the issue.
         #[unsafe(method(recordIssue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn recordIssue(&self, issue: &XCTIssue);
+        pub fn recordIssue(&self, issue: &XCTIssue);
 
         /// Invocations for each test method in the test case.
         #[unsafe(method(testInvocations))]
         #[unsafe(method_family = none)]
-        pub unsafe fn testInvocations() -> Retained<NSArray<NSInvocation>>;
+        pub fn testInvocations() -> Retained<NSArray<NSInvocation>>;
 
         #[cfg(feature = "block2")]
         /// Registers a block to be run at the end of a test.
@@ -545,7 +557,7 @@ impl XCTestCase {
         /// Parameter `block`: A block to enqueue for future execution.
         #[unsafe(method(addTeardownBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addTeardownBlock(&self, block: &block2::DynBlock<dyn Fn()>);
+        pub fn addTeardownBlock(&self, block: &block2::DynBlock<dyn Fn()>);
 
         #[cfg(feature = "block2")]
         /// Registers an async block to be run at the end of a test.
@@ -585,12 +597,12 @@ impl XCTestCase {
         /// The default value is 10 minutes.
         #[unsafe(method(executionTimeAllowance))]
         #[unsafe(method_family = none)]
-        pub unsafe fn executionTimeAllowance(&self) -> NSTimeInterval;
+        pub fn executionTimeAllowance(&self) -> NSTimeInterval;
 
         /// Setter for [`executionTimeAllowance`][Self::executionTimeAllowance].
         #[unsafe(method(setExecutionTimeAllowance:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setExecutionTimeAllowance(&self, execution_time_allowance: NSTimeInterval);
+        pub fn setExecutionTimeAllowance(&self, execution_time_allowance: NSTimeInterval);
     );
 }
 
@@ -599,12 +611,19 @@ impl XCTestCase {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTestCase {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// XCTestSuiteExtensions.
@@ -613,19 +632,19 @@ impl XCTestCase {
         /// Returns a test suite containing test cases for all of the tests in the class.
         #[unsafe(method(defaultTestSuite))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultTestSuite() -> Retained<XCTestSuite>;
+        pub fn defaultTestSuite() -> Retained<XCTestSuite>;
 
         /// Suite-level setup method called before the class begins to run any of its test methods or their associated
         /// per-instance setUp methods.
         #[unsafe(method(setUp))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUp();
+        pub fn setUp();
 
         /// Suite-level teardown method called after the class has finished running all of its test methods and their
         /// associated per-instance tearDown methods and teardown blocks.
         #[unsafe(method(tearDown))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tearDown();
+        pub fn tearDown();
     );
 }
 
@@ -672,7 +691,7 @@ impl XCTestCase {
         /// The names of the performance metrics to measure when invoking -measureBlock:. Returns XCTPerformanceMetric_WallClockTime by default. Subclasses can override this to change the behavior of -measureBlock:
         #[unsafe(method(defaultPerformanceMetrics))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultPerformanceMetrics() -> Retained<NSArray<XCTPerformanceMetric>>;
+        pub fn defaultPerformanceMetrics() -> Retained<NSArray<XCTPerformanceMetric>>;
 
         #[cfg(feature = "block2")]
         /// Call from a test method to measure resources (+defaultPerformanceMetrics) used by the
@@ -690,7 +709,7 @@ impl XCTestCase {
         /// Parameter `block`: A block whose performance to measure.
         #[unsafe(method(measureBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn measureBlock(&self, block: &block2::DynBlock<dyn Fn() + '_>);
+        pub fn measureBlock(&self, block: &block2::DynBlock<dyn Fn() + '_>);
 
         #[cfg(feature = "block2")]
         /// Call from a test method to measure resources (XCTPerformanceMetrics) used by the
@@ -734,7 +753,7 @@ impl XCTestCase {
         /// Parameter `block`: A block whose performance to measure.
         #[unsafe(method(measureMetrics:automaticallyStartMeasuring:forBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn measureMetrics_automaticallyStartMeasuring_forBlock(
+        pub fn measureMetrics_automaticallyStartMeasuring_forBlock(
             &self,
             metrics: &NSArray<XCTPerformanceMetric>,
             automatically_start_measuring: bool,
@@ -745,23 +764,23 @@ impl XCTestCase {
         /// Measurement of metrics will start at this point.
         #[unsafe(method(startMeasuring))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startMeasuring(&self);
+        pub fn startMeasuring(&self);
 
         /// Call this from within a measure block to set the ending of the critical section.
         /// Measurement of metrics will stop at this point.
         #[unsafe(method(stopMeasuring))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stopMeasuring(&self);
+        pub fn stopMeasuring(&self);
 
         /// A collection of metrics to be taken by default when -measureBlock or -measureWithOptions:block: is called.
         #[unsafe(method(defaultMetrics))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultMetrics() -> Retained<NSArray<ProtocolObject<dyn XCTMetric>>>;
+        pub fn defaultMetrics() -> Retained<NSArray<ProtocolObject<dyn XCTMetric>>>;
 
         /// Collection of configurable settings to change how measurements are taken.
         #[unsafe(method(defaultMeasureOptions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultMeasureOptions() -> Retained<XCTMeasureOptions>;
+        pub fn defaultMeasureOptions() -> Retained<XCTMeasureOptions>;
 
         #[cfg(feature = "block2")]
         /// Measures the block using the provided metrics and the default options from your XCTestCase class.
@@ -772,7 +791,7 @@ impl XCTestCase {
         /// Parameter `block`: The block to be measured.
         #[unsafe(method(measureWithMetrics:block:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn measureWithMetrics_block(
+        pub fn measureWithMetrics_block(
             &self,
             metrics: &NSArray<ProtocolObject<dyn XCTMetric>>,
             block: &block2::DynBlock<dyn Fn() + '_>,
@@ -790,7 +809,7 @@ impl XCTestCase {
         /// See also: XCTMeasureOptions
         #[unsafe(method(measureWithOptions:block:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn measureWithOptions_block(
+        pub fn measureWithOptions_block(
             &self,
             options: &XCTMeasureOptions,
             block: &block2::DynBlock<dyn Fn() + '_>,
@@ -807,7 +826,7 @@ impl XCTestCase {
         /// Parameter `block`: The block to be measured.
         #[unsafe(method(measureWithMetrics:options:block:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn measureWithMetrics_options_block(
+        pub fn measureWithMetrics_options_block(
             &self,
             metrics: &NSArray<ProtocolObject<dyn XCTMetric>>,
             options: &XCTMeasureOptions,
@@ -848,7 +867,7 @@ impl XCTestCase {
         #[deprecated]
         #[unsafe(method(recordFailureWithDescription:inFile:atLine:expected:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn recordFailureWithDescription_inFile_atLine_expected(
+        pub fn recordFailureWithDescription_inFile_atLine_expected(
             &self,
             description: &NSString,
             file_path: &NSString,
@@ -892,7 +911,7 @@ impl XCTestRun {
         /// Returns: A test run for the provided test.
         #[unsafe(method(testRunWithTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn testRunWithTest(test: &XCTest) -> Retained<Self>;
+        pub fn testRunWithTest(test: &XCTest) -> Retained<Self>;
 
         /// Designated initializer for the XCTestRun class.
         ///
@@ -903,82 +922,82 @@ impl XCTestRun {
         /// Returns: A test run for the provided test.
         #[unsafe(method(initWithTest:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithTest(this: Allocated<Self>, test: &XCTest) -> Retained<Self>;
+        pub fn initWithTest(this: Allocated<Self>, test: &XCTest) -> Retained<Self>;
 
         /// The test instance provided when the test run was initialized.
         #[unsafe(method(test))]
         #[unsafe(method_family = none)]
-        pub unsafe fn test(&self) -> Retained<XCTest>;
+        pub fn test(&self) -> Retained<XCTest>;
 
         /// Start a test run. Must not be called more than once.
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]
-        pub unsafe fn start(&self);
+        pub fn start(&self);
 
         /// Stop a test run. Must not be called unless the run has been started. Must not be called more than once.
         #[unsafe(method(stop))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stop(&self);
+        pub fn stop(&self);
 
         /// The time at which the test run was started, or nil.
         #[unsafe(method(startDate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startDate(&self) -> Option<Retained<NSDate>>;
+        pub fn startDate(&self) -> Option<Retained<NSDate>>;
 
         /// The time at which the test run was stopped, or nil.
         #[unsafe(method(stopDate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stopDate(&self) -> Option<Retained<NSDate>>;
+        pub fn stopDate(&self) -> Option<Retained<NSDate>>;
 
         /// The number of seconds that elapsed between when the run was started and when it was stopped.
         #[unsafe(method(totalDuration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn totalDuration(&self) -> NSTimeInterval;
+        pub fn totalDuration(&self) -> NSTimeInterval;
 
         /// The number of seconds that elapsed between when the run was started and when it was stopped.
         #[unsafe(method(testDuration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn testDuration(&self) -> NSTimeInterval;
+        pub fn testDuration(&self) -> NSTimeInterval;
 
         /// The number of tests in the run.
         #[unsafe(method(testCaseCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn testCaseCount(&self) -> NSUInteger;
+        pub fn testCaseCount(&self) -> NSUInteger;
 
         /// The number of test executions recorded during the run.
         #[unsafe(method(executionCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn executionCount(&self) -> NSUInteger;
+        pub fn executionCount(&self) -> NSUInteger;
 
         /// The number of test skips recorded during the run.
         #[unsafe(method(skipCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn skipCount(&self) -> NSUInteger;
+        pub fn skipCount(&self) -> NSUInteger;
 
         /// The number of test failures recorded during the run.
         #[unsafe(method(failureCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn failureCount(&self) -> NSUInteger;
+        pub fn failureCount(&self) -> NSUInteger;
 
         /// The number of uncaught exceptions recorded during the run.
         #[unsafe(method(unexpectedExceptionCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unexpectedExceptionCount(&self) -> NSUInteger;
+        pub fn unexpectedExceptionCount(&self) -> NSUInteger;
 
         /// The total number of test failures and uncaught exceptions recorded during the run.
         #[unsafe(method(totalFailureCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn totalFailureCount(&self) -> NSUInteger;
+        pub fn totalFailureCount(&self) -> NSUInteger;
 
         /// YES if all tests in the run completed their execution without recording any failures, otherwise NO.
         #[unsafe(method(hasSucceeded))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasSucceeded(&self) -> bool;
+        pub fn hasSucceeded(&self) -> bool;
 
         /// YES if the test was skipped, otherwise NO.
         #[unsafe(method(hasBeenSkipped))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hasBeenSkipped(&self) -> bool;
+        pub fn hasBeenSkipped(&self) -> bool;
 
         /// Records a failure or other  issue in the execution of the test and is used by all test assertions.
         /// Overrides of this method should call super unless they wish to suppress the issue.
@@ -988,7 +1007,7 @@ impl XCTestRun {
         /// Parameter `issue`: Object with all details related to the issue.
         #[unsafe(method(recordIssue:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn recordIssue(&self, issue: &XCTIssue);
+        pub fn recordIssue(&self, issue: &XCTIssue);
     );
 }
 
@@ -1025,7 +1044,7 @@ impl XCTestRun {
         #[deprecated]
         #[unsafe(method(recordFailureWithDescription:inFile:atLine:expected:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn recordFailureWithDescription_inFile_atLine_expected(
+        pub fn recordFailureWithDescription_inFile_atLine_expected(
             &self,
             description: &NSString,
             file_path: Option<&NSString>,
@@ -1051,7 +1070,7 @@ impl XCTestCaseRun {
         #[deprecated]
         #[unsafe(method(recordFailureInTest:withDescription:inFile:atLine:expected:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn recordFailureInTest_withDescription_inFile_atLine_expected(
+        pub fn recordFailureInTest_withDescription_inFile_atLine_expected(
             &self,
             test_case: &XCTestCase,
             description: &NSString,
@@ -1082,7 +1101,7 @@ impl XCTestCaseRun {
         /// Returns: A test run for the provided test.
         #[unsafe(method(testRunWithTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn testRunWithTest(test: &XCTest) -> Retained<Self>;
+        pub fn testRunWithTest(test: &XCTest) -> Retained<Self>;
 
         /// Designated initializer for the XCTestRun class.
         ///
@@ -1093,7 +1112,7 @@ impl XCTestCaseRun {
         /// Returns: A test run for the provided test.
         #[unsafe(method(initWithTest:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithTest(this: Allocated<Self>, test: &XCTest) -> Retained<Self>;
+        pub fn initWithTest(this: Allocated<Self>, test: &XCTest) -> Retained<Self>;
     );
 }
 
@@ -1115,11 +1134,11 @@ impl XCTestObserver {
     extern_methods!(
         #[unsafe(method(startObserving))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startObserving(&self);
+        pub fn startObserving(&self);
 
         #[unsafe(method(stopObserving))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stopObserving(&self);
+        pub fn stopObserving(&self);
 
         /// # Safety
         ///
@@ -1171,12 +1190,19 @@ impl XCTestObserver {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTestObserver {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {
@@ -1203,7 +1229,7 @@ impl XCTestLog {
     extern_methods!(
         #[unsafe(method(logFileHandle))]
         #[unsafe(method_family = none)]
-        pub unsafe fn logFileHandle(&self) -> Option<Retained<NSFileHandle>>;
+        pub fn logFileHandle(&self) -> Option<Retained<NSFileHandle>>;
     );
 }
 
@@ -1212,12 +1238,19 @@ impl XCTestLog {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTestLog {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -1244,7 +1277,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(testBundleWillStart:))]
         #[unsafe(method_family = none)]
-        unsafe fn testBundleWillStart(&self, test_bundle: &NSBundle);
+        fn testBundleWillStart(&self, test_bundle: &NSBundle);
 
         /// Sent immediately after all tests have finished as a hook for any post-testing activity. The test process will generally
         /// exit after this method returns, so if there is long running and/or asynchronous work to be done after testing, be sure
@@ -1255,7 +1288,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(testBundleDidFinish:))]
         #[unsafe(method_family = none)]
-        unsafe fn testBundleDidFinish(&self, test_bundle: &NSBundle);
+        fn testBundleDidFinish(&self, test_bundle: &NSBundle);
 
         /// Sent when a test suite starts executing.
         ///
@@ -1264,7 +1297,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(testSuiteWillStart:))]
         #[unsafe(method_family = none)]
-        unsafe fn testSuiteWillStart(&self, test_suite: &XCTestSuite);
+        fn testSuiteWillStart(&self, test_suite: &XCTestSuite);
 
         /// Sent when a test suite reports an issue. Suite issues are most commonly reported during suite-level setup and teardown
         /// whereas issues during tests are reported for the test case alone and are not reported as suite issues.
@@ -1276,7 +1309,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(testSuite:didRecordIssue:))]
         #[unsafe(method_family = none)]
-        unsafe fn testSuite_didRecordIssue(&self, test_suite: &XCTestSuite, issue: &XCTIssue);
+        fn testSuite_didRecordIssue(&self, test_suite: &XCTestSuite, issue: &XCTIssue);
 
         /// Sent when a test suite records an expected failure.
         ///
@@ -1287,7 +1320,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(testSuite:didRecordExpectedFailure:))]
         #[unsafe(method_family = none)]
-        unsafe fn testSuite_didRecordExpectedFailure(
+        fn testSuite_didRecordExpectedFailure(
             &self,
             test_suite: &XCTestSuite,
             expected_failure: &XCTExpectedFailure,
@@ -1300,7 +1333,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(testSuiteDidFinish:))]
         #[unsafe(method_family = none)]
-        unsafe fn testSuiteDidFinish(&self, test_suite: &XCTestSuite);
+        fn testSuiteDidFinish(&self, test_suite: &XCTestSuite);
 
         /// Sent when a test case starts executing.
         ///
@@ -1309,7 +1342,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(testCaseWillStart:))]
         #[unsafe(method_family = none)]
-        unsafe fn testCaseWillStart(&self, test_case: &XCTestCase);
+        fn testCaseWillStart(&self, test_case: &XCTestCase);
 
         /// Sent when a test case reports an issue.
         ///
@@ -1320,7 +1353,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(testCase:didRecordIssue:))]
         #[unsafe(method_family = none)]
-        unsafe fn testCase_didRecordIssue(&self, test_case: &XCTestCase, issue: &XCTIssue);
+        fn testCase_didRecordIssue(&self, test_case: &XCTestCase, issue: &XCTIssue);
 
         /// Sent when a test case records an expected failure.
         ///
@@ -1331,7 +1364,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(testCase:didRecordExpectedFailure:))]
         #[unsafe(method_family = none)]
-        unsafe fn testCase_didRecordExpectedFailure(
+        fn testCase_didRecordExpectedFailure(
             &self,
             test_case: &XCTestCase,
             expected_failure: &XCTExpectedFailure,
@@ -1344,7 +1377,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(testCaseDidFinish:))]
         #[unsafe(method_family = none)]
-        unsafe fn testCaseDidFinish(&self, test_case: &XCTestCase);
+        fn testCaseDidFinish(&self, test_case: &XCTestCase);
 
         /// Sent when a test suite reports a failure. Suite failures are most commonly reported during suite-level setup and teardown
         /// whereas failures during tests are reported for the test case alone and are not reported as suite failures.
@@ -1371,7 +1404,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(testSuite:didFailWithDescription:inFile:atLine:))]
         #[unsafe(method_family = none)]
-        unsafe fn testSuite_didFailWithDescription_inFile_atLine(
+        fn testSuite_didFailWithDescription_inFile_atLine(
             &self,
             test_suite: &XCTestSuite,
             description: &NSString,
@@ -1403,7 +1436,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(testCase:didFailWithDescription:inFile:atLine:))]
         #[unsafe(method_family = none)]
-        unsafe fn testCase_didFailWithDescription_inFile_atLine(
+        fn testCase_didFailWithDescription_inFile_atLine(
             &self,
             test_case: &XCTestCase,
             description: &NSString,
@@ -1441,7 +1474,7 @@ impl XCTestObservationCenter {
         /// Returns: The shared XCTestObservationCenter singleton instance.
         #[unsafe(method(sharedTestObservationCenter))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedTestObservationCenter() -> Retained<XCTestObservationCenter>;
+        pub fn sharedTestObservationCenter() -> Retained<XCTestObservationCenter>;
 
         /// Register an object conforming to XCTestObservation as an observer for the current test session. Observers may be added
         /// at any time, but will not receive events that occurred before they were registered. The observation center maintains a strong
@@ -1451,15 +1484,12 @@ impl XCTestObservationCenter {
         /// or after B. Any ordering dependencies or serialization requirements must be managed by clients.
         #[unsafe(method(addTestObserver:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addTestObserver(&self, test_observer: &ProtocolObject<dyn XCTestObservation>);
+        pub fn addTestObserver(&self, test_observer: &ProtocolObject<dyn XCTestObservation>);
 
         /// Unregister an object conforming to XCTestObservation as an observer for the current test session.
         #[unsafe(method(removeTestObserver:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeTestObserver(
-            &self,
-            test_observer: &ProtocolObject<dyn XCTestObservation>,
-        );
+        pub fn removeTestObserver(&self, test_observer: &ProtocolObject<dyn XCTestObservation>);
     );
 }
 
@@ -1468,17 +1498,28 @@ impl XCTestObservationCenter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
 }
 
-extern "C-unwind" {
-    #[deprecated]
-    pub fn XCTSelfTestMain() -> c_int;
+impl DefaultRetained for XCTestObservationCenter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
+}
+
+#[deprecated]
+#[inline]
+pub extern "C-unwind" fn XCTSelfTestMain() -> c_int {
+    extern "C-unwind" {
+        fn XCTSelfTestMain() -> c_int;
+    }
+    unsafe { XCTSelfTestMain() }
 }
 
 extern_class!(
@@ -1497,7 +1538,7 @@ impl XCTestProbe {
     extern_methods!(
         #[unsafe(method(isTesting))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isTesting() -> bool;
+        pub fn isTesting() -> bool;
     );
 }
 
@@ -1506,12 +1547,19 @@ impl XCTestProbe {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTestProbe {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {
@@ -1603,12 +1651,19 @@ impl _XCTSkipFailureException {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for _XCTSkipFailureException {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1659,15 +1714,15 @@ impl XCTestSuite {
     extern_methods!(
         #[unsafe(method(defaultTestSuite))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultTestSuite() -> Retained<XCTestSuite>;
+        pub fn defaultTestSuite() -> Retained<XCTestSuite>;
 
         #[unsafe(method(testSuiteForBundlePath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn testSuiteForBundlePath(bundle_path: &NSString) -> Retained<Self>;
+        pub fn testSuiteForBundlePath(bundle_path: &NSString) -> Retained<Self>;
 
         #[unsafe(method(testSuiteForTestCaseWithName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn testSuiteForTestCaseWithName(name: &NSString) -> Retained<Self>;
+        pub fn testSuiteForTestCaseWithName(name: &NSString) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -1678,11 +1733,11 @@ impl XCTestSuite {
 
         #[unsafe(method(testSuiteWithName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn testSuiteWithName(name: &NSString) -> Retained<Self>;
+        pub fn testSuiteWithName(name: &NSString) -> Retained<Self>;
 
         #[unsafe(method(initWithName:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
+        pub fn initWithName(this: Allocated<Self>, name: &NSString) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -1694,11 +1749,11 @@ impl XCTestSuite {
 
         #[unsafe(method(addTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addTest(&self, test: &XCTest);
+        pub fn addTest(&self, test: &XCTest);
 
         #[unsafe(method(tests))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tests(&self) -> Retained<NSArray<XCTest>>;
+        pub fn tests(&self) -> Retained<NSArray<XCTest>>;
     );
 }
 
@@ -1717,11 +1772,11 @@ impl XCTestSuiteRun {
     extern_methods!(
         #[unsafe(method(testRuns))]
         #[unsafe(method_family = none)]
-        pub unsafe fn testRuns(&self) -> Retained<NSArray<XCTestRun>>;
+        pub fn testRuns(&self) -> Retained<NSArray<XCTestRun>>;
 
         #[unsafe(method(addTestRun:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addTestRun(&self, test_run: &XCTestRun);
+        pub fn addTestRun(&self, test_run: &XCTestRun);
     );
 }
 
@@ -1745,7 +1800,7 @@ impl XCTestSuiteRun {
         /// Returns: A test run for the provided test.
         #[unsafe(method(testRunWithTest:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn testRunWithTest(test: &XCTest) -> Retained<Self>;
+        pub fn testRunWithTest(test: &XCTest) -> Retained<Self>;
 
         /// Designated initializer for the XCTestRun class.
         ///
@@ -1756,7 +1811,7 @@ impl XCTestSuiteRun {
         /// Returns: A test run for the provided test.
         #[unsafe(method(initWithTest:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithTest(this: Allocated<Self>, test: &XCTest) -> Retained<Self>;
+        pub fn initWithTest(this: Allocated<Self>, test: &XCTest) -> Retained<Self>;
     );
 }
 
@@ -1891,24 +1946,24 @@ impl XCTAttachment {
         /// Examples: "public.png", "public.jpeg", "public.plain-text", "public.data", "com.apple.xml-property-list".
         #[unsafe(method(uniformTypeIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn uniformTypeIdentifier(&self) -> Retained<NSString>;
+        pub fn uniformTypeIdentifier(&self) -> Retained<NSString>;
 
         /// Attachment name.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
+        pub fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setName(&self, name: Option<&NSString>);
+        pub fn setName(&self, name: Option<&NSString>);
 
         /// Container for additional metadata, such as pixel density with images.
         #[unsafe(method(userInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn userInfo(&self) -> Option<Retained<NSDictionary>>;
+        pub fn userInfo(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`userInfo`][Self::userInfo].
         ///
@@ -1923,12 +1978,12 @@ impl XCTAttachment {
 
         #[unsafe(method(lifetime))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lifetime(&self) -> XCTAttachmentLifetime;
+        pub fn lifetime(&self) -> XCTAttachmentLifetime;
 
         /// Setter for [`lifetime`][Self::lifetime].
         #[unsafe(method(setLifetime:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLifetime(&self, lifetime: XCTAttachmentLifetime);
+        pub fn setLifetime(&self, lifetime: XCTAttachmentLifetime);
     );
 }
 
@@ -1960,12 +2015,12 @@ impl XCTAttachment {
         /// Creates a new data attachment (type "public.data") with the specified payload.
         #[unsafe(method(attachmentWithData:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachmentWithData(payload: &NSData) -> Retained<Self>;
+        pub fn attachmentWithData(payload: &NSData) -> Retained<Self>;
 
         /// Creates a new attachment with the specified payload and type.
         #[unsafe(method(attachmentWithData:uniformTypeIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachmentWithData_uniformTypeIdentifier(
+        pub fn attachmentWithData_uniformTypeIdentifier(
             payload: &NSData,
             identifier: &NSString,
         ) -> Retained<Self>;
@@ -1973,20 +2028,20 @@ impl XCTAttachment {
         /// Creates a new plain UTF-8 encoded text attachment (type "public.plain-text") with the specified string.
         #[unsafe(method(attachmentWithString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachmentWithString(string: &NSString) -> Retained<Self>;
+        pub fn attachmentWithString(string: &NSString) -> Retained<Self>;
 
         /// Creates an attachment with an object that can be encoded with NSSecureCoding.
         /// Defaults to type "public.data".
         #[unsafe(method(attachmentWithArchivableObject:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachmentWithArchivableObject(
+        pub fn attachmentWithArchivableObject(
             object: &ProtocolObject<dyn NSSecureCoding>,
         ) -> Retained<Self>;
 
         /// Creates an attachment with an object that can be encoded with NSSecureCoding and type.
         #[unsafe(method(attachmentWithArchivableObject:uniformTypeIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachmentWithArchivableObject_uniformTypeIdentifier(
+        pub fn attachmentWithArchivableObject_uniformTypeIdentifier(
             object: &ProtocolObject<dyn NSSecureCoding>,
             identifier: &NSString,
         ) -> Retained<Self>;
@@ -2006,14 +2061,14 @@ impl XCTAttachment {
         /// Note: Only works for files, not directories.
         #[unsafe(method(attachmentWithContentsOfFileAtURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachmentWithContentsOfFileAtURL(url: &NSURL) -> Retained<Self>;
+        pub fn attachmentWithContentsOfFileAtURL(url: &NSURL) -> Retained<Self>;
 
         /// Creates an attachment with an existing file on disk and type.
         ///
         /// Note: Only works for files, not directories.
         #[unsafe(method(attachmentWithContentsOfFileAtURL:uniformTypeIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachmentWithContentsOfFileAtURL_uniformTypeIdentifier(
+        pub fn attachmentWithContentsOfFileAtURL_uniformTypeIdentifier(
             url: &NSURL,
             identifier: &NSString,
         ) -> Retained<Self>;
@@ -2021,21 +2076,19 @@ impl XCTAttachment {
         /// Creates an attachment with an existing directory on disk. Automatically zips the directory, the content type is "public.zip-archive".
         #[unsafe(method(attachmentWithCompressedContentsOfDirectoryAtURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachmentWithCompressedContentsOfDirectoryAtURL(
-            url: &NSURL,
-        ) -> Retained<Self>;
+        pub fn attachmentWithCompressedContentsOfDirectoryAtURL(url: &NSURL) -> Retained<Self>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[unsafe(method(attachmentWithImage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachmentWithImage(image: &NSImage) -> Retained<Self>;
+        pub fn attachmentWithImage(image: &NSImage) -> Retained<Self>;
 
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         #[unsafe(method(attachmentWithImage:quality:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachmentWithImage_quality(
+        pub fn attachmentWithImage_quality(
             image: &NSImage,
             quality: XCTImageQuality,
         ) -> Retained<Self>;
@@ -2106,68 +2159,94 @@ impl XCTContext {
         /// Parameter `block`: A block whose contents are wrapped in the new activity.
         #[unsafe(method(runActivityNamed:block:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runActivityNamed_block(
+        pub fn runActivityNamed_block(
             name: &NSString,
             block: &block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn XCTActivity>>) + '_>,
         );
     );
 }
 
-extern "C-unwind" {
-    /// Declares that the test is expected to fail at some point beyond the call. This can be used to both document and
-    /// suppress a known issue when immediate resolution is not possible. Issues caught by XCTExpectFailure do not
-    /// impact the aggregate results of the test suites which own them.
-    ///
-    /// This function may be invoked repeatedly and has stack semantics. Failures are associated with the closest
-    /// matching expected failure and the stack is cleaned up by the test after it runs. If a failure is expected
-    /// but none is recorded, a distinct failure for the unmatched expected failure will be recorded instead.
-    ///
-    /// Threading considerations: when XCTExpectFailure is called on the test's primary thread it will match against
-    /// any issue recorded on any thread. When XCTExpectFailure is called on any other thread, it will only match
-    /// against issues recorded on the same thread.
-    ///
-    ///
-    /// Parameter `failureReason`: Explanation of the issue being suppressed. If it contains
-    /// a URL, that URL can be extracted and presented as a link in reporting UI (Xcode and CI).
-    pub fn XCTExpectFailure(failure_reason: Option<&NSString>);
+/// Declares that the test is expected to fail at some point beyond the call. This can be used to both document and
+/// suppress a known issue when immediate resolution is not possible. Issues caught by XCTExpectFailure do not
+/// impact the aggregate results of the test suites which own them.
+///
+/// This function may be invoked repeatedly and has stack semantics. Failures are associated with the closest
+/// matching expected failure and the stack is cleaned up by the test after it runs. If a failure is expected
+/// but none is recorded, a distinct failure for the unmatched expected failure will be recorded instead.
+///
+/// Threading considerations: when XCTExpectFailure is called on the test's primary thread it will match against
+/// any issue recorded on any thread. When XCTExpectFailure is called on any other thread, it will only match
+/// against issues recorded on the same thread.
+///
+///
+/// Parameter `failureReason`: Explanation of the issue being suppressed. If it contains
+/// a URL, that URL can be extracted and presented as a link in reporting UI (Xcode and CI).
+#[inline]
+pub extern "C-unwind" fn XCTExpectFailure(failure_reason: Option<&NSString>) {
+    extern "C-unwind" {
+        fn XCTExpectFailure(failure_reason: Option<&NSString>);
+    }
+    unsafe { XCTExpectFailure(failure_reason) }
 }
 
-extern "C-unwind" {
-    /// Like XCTExpectFailure, but takes an options object that can be used to customize the behavior.
-    ///
-    ///
-    /// Parameter `options`: The options can include a custom issue matching block as well as the ability to
-    /// disable "strict" behavior, which relaxes the requirement that a call to XCTExpectFailure must be matched
-    /// against at least one recorded issue.
-    pub fn XCTExpectFailureWithOptions(
-        failure_reason: Option<&NSString>,
-        options: &XCTExpectedFailureOptions,
-    );
+/// Like XCTExpectFailure, but takes an options object that can be used to customize the behavior.
+///
+///
+/// Parameter `options`: The options can include a custom issue matching block as well as the ability to
+/// disable "strict" behavior, which relaxes the requirement that a call to XCTExpectFailure must be matched
+/// against at least one recorded issue.
+#[inline]
+pub extern "C-unwind" fn XCTExpectFailureWithOptions(
+    failure_reason: Option<&NSString>,
+    options: &XCTExpectedFailureOptions,
+) {
+    extern "C-unwind" {
+        fn XCTExpectFailureWithOptions(
+            failure_reason: Option<&NSString>,
+            options: &XCTExpectedFailureOptions,
+        );
+    }
+    unsafe { XCTExpectFailureWithOptions(failure_reason, options) }
 }
 
-extern "C-unwind" {
-    /// Like XCTExpectFailure, but limits the scope in which issues are matched.
-    ///
-    ///
-    /// Parameter `failingBlock`: The scope of code in which the failure is expected. Note that this will only
-    /// match against failures in that scope on the same thread; failures in dispatch callouts or other code
-    /// running on a different thread will not be matched.
-    #[cfg(feature = "block2")]
-    pub fn XCTExpectFailureInBlock(
-        failure_reason: Option<&NSString>,
-        failing_block: &block2::DynBlock<dyn Fn()>,
-    );
+/// Like XCTExpectFailure, but limits the scope in which issues are matched.
+///
+///
+/// Parameter `failingBlock`: The scope of code in which the failure is expected. Note that this will only
+/// match against failures in that scope on the same thread; failures in dispatch callouts or other code
+/// running on a different thread will not be matched.
+#[cfg(feature = "block2")]
+#[inline]
+pub extern "C-unwind" fn XCTExpectFailureInBlock(
+    failure_reason: Option<&NSString>,
+    failing_block: &block2::DynBlock<dyn Fn()>,
+) {
+    extern "C-unwind" {
+        fn XCTExpectFailureInBlock(
+            failure_reason: Option<&NSString>,
+            failing_block: &block2::DynBlock<dyn Fn()>,
+        );
+    }
+    unsafe { XCTExpectFailureInBlock(failure_reason, failing_block) }
 }
 
-extern "C-unwind" {
-    /// Like XCTExpectFailure, but takes an options object that can be used to customize the behavior and
-    /// limits the scope in which issues are matched.
-    #[cfg(feature = "block2")]
-    pub fn XCTExpectFailureWithOptionsInBlock(
-        failure_reason: Option<&NSString>,
-        options: &XCTExpectedFailureOptions,
-        failing_block: &block2::DynBlock<dyn Fn()>,
-    );
+/// Like XCTExpectFailure, but takes an options object that can be used to customize the behavior and
+/// limits the scope in which issues are matched.
+#[cfg(feature = "block2")]
+#[inline]
+pub extern "C-unwind" fn XCTExpectFailureWithOptionsInBlock(
+    failure_reason: Option<&NSString>,
+    options: &XCTExpectedFailureOptions,
+    failing_block: &block2::DynBlock<dyn Fn()>,
+) {
+    extern "C-unwind" {
+        fn XCTExpectFailureWithOptionsInBlock(
+            failure_reason: Option<&NSString>,
+            options: &XCTExpectedFailureOptions,
+            failing_block: &block2::DynBlock<dyn Fn()>,
+        );
+    }
+    unsafe { XCTExpectFailureWithOptionsInBlock(failure_reason, options, failing_block) }
 }
 
 extern_class!(
@@ -2223,7 +2302,7 @@ impl XCTExpectedFailureOptions {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setIssueMatcher:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIssueMatcher(
+        pub fn setIssueMatcher(
             &self,
             issue_matcher: &block2::DynBlock<dyn Fn(NonNull<XCTIssue>) -> Bool>,
         );
@@ -2233,28 +2312,28 @@ impl XCTExpectedFailureOptions {
         /// will be executed normally. Defaults to YES/true.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEnabled(&self) -> bool;
+        pub fn isEnabled(&self) -> bool;
 
         /// Setter for [`isEnabled`][Self::isEnabled].
         #[unsafe(method(setEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEnabled(&self, enabled: bool);
+        pub fn setEnabled(&self, enabled: bool);
 
         /// If true (the default) and no issue is matched to the expected failure, then an issue will be
         /// recorded for the unmatched expected failure itself.
         #[unsafe(method(isStrict))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isStrict(&self) -> bool;
+        pub fn isStrict(&self) -> bool;
 
         /// Setter for [`isStrict`][Self::isStrict].
         #[unsafe(method(setStrict:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStrict(&self, strict: bool);
+        pub fn setStrict(&self, strict: bool);
 
         /// Convenience factory method which returns a new instance of XCTExpectedFailureOptions that has `isStrict` set to NO, with every other value set to its default.
         #[unsafe(method(nonStrictOptions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn nonStrictOptions() -> Retained<XCTExpectedFailureOptions>;
+        pub fn nonStrictOptions() -> Retained<XCTExpectedFailureOptions>;
     );
 }
 
@@ -2263,12 +2342,19 @@ impl XCTExpectedFailureOptions {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTExpectedFailureOptions {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -2306,12 +2392,12 @@ impl XCTExpectedFailure {
         /// Explanation of the problem requiring the issue to be suppressed.
         #[unsafe(method(failureReason))]
         #[unsafe(method_family = none)]
-        pub unsafe fn failureReason(&self) -> Option<Retained<NSString>>;
+        pub fn failureReason(&self) -> Option<Retained<NSString>>;
 
         /// The issue being suppressed.
         #[unsafe(method(issue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn issue(&self) -> Retained<XCTIssue>;
+        pub fn issue(&self) -> Retained<XCTIssue>;
     );
 }
 
@@ -2428,7 +2514,7 @@ impl XCTIssue {
     extern_methods!(
         #[unsafe(method(initWithType:compactDescription:detailedDescription:sourceCodeContext:associatedError:attachments:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithType_compactDescription_detailedDescription_sourceCodeContext_associatedError_attachments(
+        pub fn initWithType_compactDescription_detailedDescription_sourceCodeContext_associatedError_attachments(
             this: Allocated<Self>,
             r#type: XCTIssueType,
             compact_description: &NSString,
@@ -2440,7 +2526,7 @@ impl XCTIssue {
 
         #[unsafe(method(initWithType:compactDescription:detailedDescription:sourceCodeContext:associatedError:attachments:severity:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithType_compactDescription_detailedDescription_sourceCodeContext_associatedError_attachments_severity(
+        pub fn initWithType_compactDescription_detailedDescription_sourceCodeContext_associatedError_attachments_severity(
             this: Allocated<Self>,
             r#type: XCTIssueType,
             compact_description: &NSString,
@@ -2453,7 +2539,7 @@ impl XCTIssue {
 
         #[unsafe(method(initWithType:compactDescription:severity:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithType_compactDescription_severity(
+        pub fn initWithType_compactDescription_severity(
             this: Allocated<Self>,
             r#type: XCTIssueType,
             compact_description: &NSString,
@@ -2462,7 +2548,7 @@ impl XCTIssue {
 
         #[unsafe(method(initWithType:compactDescription:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithType_compactDescription(
+        pub fn initWithType_compactDescription(
             this: Allocated<Self>,
             r#type: XCTIssueType,
             compact_description: &NSString,
@@ -2479,39 +2565,39 @@ impl XCTIssue {
         /// The type of the issue.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        pub unsafe fn r#type(&self) -> XCTIssueType;
+        pub fn r#type(&self) -> XCTIssueType;
 
         /// A concise description of the issue, expected to be free of transient data and suitable for use in test run
         /// summaries and for aggregation of results across multiple test runs.
         #[unsafe(method(compactDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn compactDescription(&self) -> Retained<NSString>;
+        pub fn compactDescription(&self) -> Retained<NSString>;
 
         /// A detailed description of the issue designed to help diagnose the issue. May include transient data such as
         /// numbers, object identifiers, timestamps, etc.
         #[unsafe(method(detailedDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detailedDescription(&self) -> Option<Retained<NSString>>;
+        pub fn detailedDescription(&self) -> Option<Retained<NSString>>;
 
         /// The source code location (file and line number) and the call stack associated with the issue.
         #[unsafe(method(sourceCodeContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sourceCodeContext(&self) -> Retained<XCTSourceCodeContext>;
+        pub fn sourceCodeContext(&self) -> Retained<XCTSourceCodeContext>;
 
         /// Error associated with the issue.
         #[unsafe(method(associatedError))]
         #[unsafe(method_family = none)]
-        pub unsafe fn associatedError(&self) -> Option<Retained<NSError>>;
+        pub fn associatedError(&self) -> Option<Retained<NSError>>;
 
         /// All attachments associated with the issue.
         #[unsafe(method(attachments))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachments(&self) -> Retained<NSArray<XCTAttachment>>;
+        pub fn attachments(&self) -> Retained<NSArray<XCTAttachment>>;
 
         /// The severity of the issue.
         #[unsafe(method(severity))]
         #[unsafe(method_family = none)]
-        pub unsafe fn severity(&self) -> XCTIssueSeverity;
+        pub fn severity(&self) -> XCTIssueSeverity;
 
         /// Whether or not this issue should cause the test it's associated with to be
         /// considered a failure.
@@ -2524,7 +2610,7 @@ impl XCTIssue {
         /// directly comparing the value of the ``severity`` property.
         #[unsafe(method(isFailure))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isFailure(&self) -> bool;
+        pub fn isFailure(&self) -> bool;
     );
 }
 
@@ -2569,77 +2655,77 @@ impl XCTMutableIssue {
     extern_methods!(
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        pub unsafe fn r#type(&self) -> XCTIssueType;
+        pub fn r#type(&self) -> XCTIssueType;
 
         /// Setter for [`type`][Self::type].
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setType(&self, r#type: XCTIssueType);
+        pub fn setType(&self, r#type: XCTIssueType);
 
         #[unsafe(method(compactDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn compactDescription(&self) -> Retained<NSString>;
+        pub fn compactDescription(&self) -> Retained<NSString>;
 
         /// Setter for [`compactDescription`][Self::compactDescription].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setCompactDescription:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCompactDescription(&self, compact_description: &NSString);
+        pub fn setCompactDescription(&self, compact_description: &NSString);
 
         #[unsafe(method(detailedDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detailedDescription(&self) -> Option<Retained<NSString>>;
+        pub fn detailedDescription(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`detailedDescription`][Self::detailedDescription].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDetailedDescription:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDetailedDescription(&self, detailed_description: Option<&NSString>);
+        pub fn setDetailedDescription(&self, detailed_description: Option<&NSString>);
 
         #[unsafe(method(sourceCodeContext))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sourceCodeContext(&self) -> Retained<XCTSourceCodeContext>;
+        pub fn sourceCodeContext(&self) -> Retained<XCTSourceCodeContext>;
 
         /// Setter for [`sourceCodeContext`][Self::sourceCodeContext].
         #[unsafe(method(setSourceCodeContext:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSourceCodeContext(&self, source_code_context: &XCTSourceCodeContext);
+        pub fn setSourceCodeContext(&self, source_code_context: &XCTSourceCodeContext);
 
         #[unsafe(method(associatedError))]
         #[unsafe(method_family = none)]
-        pub unsafe fn associatedError(&self) -> Option<Retained<NSError>>;
+        pub fn associatedError(&self) -> Option<Retained<NSError>>;
 
         /// Setter for [`associatedError`][Self::associatedError].
         #[unsafe(method(setAssociatedError:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAssociatedError(&self, associated_error: Option<&NSError>);
+        pub fn setAssociatedError(&self, associated_error: Option<&NSError>);
 
         #[unsafe(method(attachments))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachments(&self) -> Retained<NSArray<XCTAttachment>>;
+        pub fn attachments(&self) -> Retained<NSArray<XCTAttachment>>;
 
         /// Setter for [`attachments`][Self::attachments].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setAttachments:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAttachments(&self, attachments: &NSArray<XCTAttachment>);
+        pub fn setAttachments(&self, attachments: &NSArray<XCTAttachment>);
 
         #[unsafe(method(severity))]
         #[unsafe(method_family = none)]
-        pub unsafe fn severity(&self) -> XCTIssueSeverity;
+        pub fn severity(&self) -> XCTIssueSeverity;
 
         /// Setter for [`severity`][Self::severity].
         #[unsafe(method(setSeverity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSeverity(&self, severity: XCTIssueSeverity);
+        pub fn setSeverity(&self, severity: XCTIssueSeverity);
 
         /// Add an attachment to this issue.
         #[unsafe(method(addAttachment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addAttachment(&self, attachment: &XCTAttachment);
+        pub fn addAttachment(&self, attachment: &XCTAttachment);
     );
 }
 
@@ -2648,7 +2734,7 @@ impl XCTMutableIssue {
     extern_methods!(
         #[unsafe(method(initWithType:compactDescription:detailedDescription:sourceCodeContext:associatedError:attachments:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithType_compactDescription_detailedDescription_sourceCodeContext_associatedError_attachments(
+        pub fn initWithType_compactDescription_detailedDescription_sourceCodeContext_associatedError_attachments(
             this: Allocated<Self>,
             r#type: XCTIssueType,
             compact_description: &NSString,
@@ -2660,7 +2746,7 @@ impl XCTMutableIssue {
 
         #[unsafe(method(initWithType:compactDescription:detailedDescription:sourceCodeContext:associatedError:attachments:severity:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithType_compactDescription_detailedDescription_sourceCodeContext_associatedError_attachments_severity(
+        pub fn initWithType_compactDescription_detailedDescription_sourceCodeContext_associatedError_attachments_severity(
             this: Allocated<Self>,
             r#type: XCTIssueType,
             compact_description: &NSString,
@@ -2673,7 +2759,7 @@ impl XCTMutableIssue {
 
         #[unsafe(method(initWithType:compactDescription:severity:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithType_compactDescription_severity(
+        pub fn initWithType_compactDescription_severity(
             this: Allocated<Self>,
             r#type: XCTIssueType,
             compact_description: &NSString,
@@ -2682,7 +2768,7 @@ impl XCTMutableIssue {
 
         #[unsafe(method(initWithType:compactDescription:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithType_compactDescription(
+        pub fn initWithType_compactDescription(
             this: Allocated<Self>,
             r#type: XCTIssueType,
             compact_description: &NSString,
@@ -2743,32 +2829,29 @@ impl XCTMeasureOptions {
         /// Returns: An object which represents a set of default configuration options for measuring.
         #[unsafe(method(defaultOptions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultOptions() -> Retained<XCTMeasureOptions>;
+        pub fn defaultOptions() -> Retained<XCTMeasureOptions>;
 
         /// Set of options which configure how measurements are taken. The default option is XCTMeasurementInvocationNone.
         #[unsafe(method(invocationOptions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invocationOptions(&self) -> XCTMeasurementInvocationOptions;
+        pub fn invocationOptions(&self) -> XCTMeasurementInvocationOptions;
 
         /// Setter for [`invocationOptions`][Self::invocationOptions].
         #[unsafe(method(setInvocationOptions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInvocationOptions(
-            &self,
-            invocation_options: XCTMeasurementInvocationOptions,
-        );
+        pub fn setInvocationOptions(&self, invocation_options: XCTMeasurementInvocationOptions);
 
         /// The number of times the block being measured should be invoked. The default value is 5.
         /// Note that the block is actually invoked `iterationCount` + 1 times, and the first iteration
         /// is discarded. This is done to reduce the chance that the first iteration will be an outlier.
         #[unsafe(method(iterationCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn iterationCount(&self) -> NSUInteger;
+        pub fn iterationCount(&self) -> NSUInteger;
 
         /// Setter for [`iterationCount`][Self::iterationCount].
         #[unsafe(method(setIterationCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIterationCount(&self, iteration_count: NSUInteger);
+        pub fn setIterationCount(&self, iteration_count: NSUInteger);
     );
 }
 
@@ -2777,12 +2860,19 @@ impl XCTMeasureOptions {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTMeasureOptions {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemeasurementpolarity?language=objc)
@@ -2828,22 +2918,22 @@ impl XCTPerformanceMeasurementTimestamp {
         /// The timestamp recorded using mach_absolute_time().
         #[unsafe(method(absoluteTime))]
         #[unsafe(method_family = none)]
-        pub unsafe fn absoluteTime(&self) -> u64;
+        pub fn absoluteTime(&self) -> u64;
 
         /// Nanoseconds since an arbitrary point, does not increment while the system is asleep.
         #[unsafe(method(absoluteTimeNanoSeconds))]
         #[unsafe(method_family = none)]
-        pub unsafe fn absoluteTimeNanoSeconds(&self) -> u64;
+        pub fn absoluteTimeNanoSeconds(&self) -> u64;
 
         /// The timestamp recorded using an NSDate.
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
-        pub unsafe fn date(&self) -> Retained<NSDate>;
+        pub fn date(&self) -> Retained<NSDate>;
 
         /// Initializes an object with the given mach absolute time and NSDate instance.
         #[unsafe(method(initWithAbsoluteTime:date:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithAbsoluteTime_date(
+        pub fn initWithAbsoluteTime_date(
             this: Allocated<Self>,
             absolute_time: u64,
             date: &NSDate,
@@ -2852,7 +2942,7 @@ impl XCTPerformanceMeasurementTimestamp {
         /// Initializes an object which represents a timestamp at the current time.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -2861,8 +2951,15 @@ impl XCTPerformanceMeasurementTimestamp {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTPerformanceMeasurementTimestamp {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -2883,32 +2980,32 @@ impl XCTPerformanceMeasurement {
         /// A unique identifier for this measurement such as "com.apple.XCTPerformanceMetric_WallClockTime".
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Retained<NSString>;
+        pub fn identifier(&self) -> Retained<NSString>;
 
         /// The human-readable name for this measurement, such as "Wall Clock Time".
         #[unsafe(method(displayName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn displayName(&self) -> Retained<NSString>;
+        pub fn displayName(&self) -> Retained<NSString>;
 
         /// The value of the measurement.
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
-        pub unsafe fn value(&self) -> Retained<NSMeasurement>;
+        pub fn value(&self) -> Retained<NSMeasurement>;
 
         /// The double value of the measurement.
         #[unsafe(method(doubleValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn doubleValue(&self) -> c_double;
+        pub fn doubleValue(&self) -> c_double;
 
         /// A string describing the unit the value is in.
         #[unsafe(method(unitSymbol))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unitSymbol(&self) -> Retained<NSString>;
+        pub fn unitSymbol(&self) -> Retained<NSString>;
 
         /// An enum value representing in which direction measurements should be compared against their baselines.
         #[unsafe(method(polarity))]
         #[unsafe(method_family = none)]
-        pub unsafe fn polarity(&self) -> XCTPerformanceMeasurementPolarity;
+        pub fn polarity(&self) -> XCTPerformanceMeasurementPolarity;
 
         /// Initializes an object which encapsulates the measurement for a metric during a single iteration.
         ///
@@ -2943,7 +3040,7 @@ impl XCTPerformanceMeasurement {
         /// Parameter `unitSymbol`: A string describing the unit the value is in.
         #[unsafe(method(initWithIdentifier:displayName:doubleValue:unitSymbol:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithIdentifier_displayName_doubleValue_unitSymbol(
+        pub fn initWithIdentifier_displayName_doubleValue_unitSymbol(
             this: Allocated<Self>,
             identifier: &NSString,
             display_name: &NSString,
@@ -2989,7 +3086,7 @@ impl XCTPerformanceMeasurement {
         /// Parameter `polarity`: An enum value representing in which direction measurements should be compared against their baselines.
         #[unsafe(method(initWithIdentifier:displayName:doubleValue:unitSymbol:polarity:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithIdentifier_displayName_doubleValue_unitSymbol_polarity(
+        pub fn initWithIdentifier_displayName_doubleValue_unitSymbol_polarity(
             this: Allocated<Self>,
             identifier: &NSString,
             display_name: &NSString,
@@ -3024,7 +3121,7 @@ extern_protocol!(
         /// accurate as possible with the start and end times.
         #[unsafe(method(reportMeasurementsFromStartTime:toEndTime:error:_))]
         #[unsafe(method_family = none)]
-        unsafe fn reportMeasurementsFromStartTime_toEndTime_error(
+        fn reportMeasurementsFromStartTime_toEndTime_error(
             &self,
             start_time: &XCTPerformanceMeasurementTimestamp,
             end_time: &XCTPerformanceMeasurementTimestamp,
@@ -3035,14 +3132,14 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(willBeginMeasuring))]
         #[unsafe(method_family = none)]
-        unsafe fn willBeginMeasuring(&self);
+        fn willBeginMeasuring(&self);
 
         /// Called after the measure block's invocation. You should stop measuring when
         /// this is called.
         #[optional]
         #[unsafe(method(didStopMeasuring))]
         #[unsafe(method_family = none)]
-        unsafe fn didStopMeasuring(&self);
+        fn didStopMeasuring(&self);
     }
 );
 
@@ -3079,7 +3176,7 @@ impl XCTClockMetric {
         /// Returns: A new instance of a metric which will measure time.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -3088,8 +3185,15 @@ impl XCTClockMetric {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTClockMetric {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -3138,7 +3242,7 @@ impl XCTOSSignpostMetric {
         /// Returns: A signpost metric describing the target signpost.
         #[unsafe(method(initWithSubsystem:category:name:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithSubsystem_category_name(
+        pub fn initWithSubsystem_category_name(
             this: Allocated<Self>,
             subsystem: &NSString,
             category: &NSString,
@@ -3164,34 +3268,34 @@ impl XCTOSSignpostMetric {
         #[deprecated = "Use XCTApplicationLaunchMetric instead"]
         #[unsafe(method(applicationLaunchMetric))]
         #[unsafe(method_family = none)]
-        pub unsafe fn applicationLaunchMetric() -> Retained<XCTOSSignpostMetric>;
+        pub fn applicationLaunchMetric() -> Retained<XCTOSSignpostMetric>;
 
         /// The XCTMetric object covering navigation transitions between views
         #[unsafe(method(navigationTransitionMetric))]
         #[unsafe(method_family = none)]
-        pub unsafe fn navigationTransitionMetric() -> Retained<ProtocolObject<dyn XCTMetric>>;
+        pub fn navigationTransitionMetric() -> Retained<ProtocolObject<dyn XCTMetric>>;
 
         /// The XCTMetric object covering custom navigation transitions between views
         #[unsafe(method(customNavigationTransitionMetric))]
         #[unsafe(method_family = none)]
-        pub unsafe fn customNavigationTransitionMetric() -> Retained<ProtocolObject<dyn XCTMetric>>;
+        pub fn customNavigationTransitionMetric() -> Retained<ProtocolObject<dyn XCTMetric>>;
 
         /// The XCTMetric object covering both the scroll and deceleration animations
         #[unsafe(method(scrollingAndDecelerationMetric))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollingAndDecelerationMetric() -> Retained<ProtocolObject<dyn XCTMetric>>;
+        pub fn scrollingAndDecelerationMetric() -> Retained<ProtocolObject<dyn XCTMetric>>;
 
         /// The XCTMetric object covering scroll deceleration animations
         #[deprecated]
         #[unsafe(method(scrollDecelerationMetric))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollDecelerationMetric() -> Retained<ProtocolObject<dyn XCTMetric>>;
+        pub fn scrollDecelerationMetric() -> Retained<ProtocolObject<dyn XCTMetric>>;
 
         /// The XCTMetric object covering scroll dragging animations
         #[deprecated]
         #[unsafe(method(scrollDraggingMetric))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollDraggingMetric() -> Retained<ProtocolObject<dyn XCTMetric>>;
+        pub fn scrollDraggingMetric() -> Retained<ProtocolObject<dyn XCTMetric>>;
     );
 }
 
@@ -3226,7 +3330,7 @@ impl XCTApplicationLaunchMetric {
         /// application takes to display its first frame to screen.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Initializes an application launch metric that measures the amount of time it takes
         /// for an application to display its first frame to screen and for its main thread to be
@@ -3237,7 +3341,7 @@ impl XCTApplicationLaunchMetric {
         /// interval to be when the application's main thread is responsive to user input.
         #[unsafe(method(initWithWaitUntilResponsive:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithWaitUntilResponsive(
+        pub fn initWithWaitUntilResponsive(
             this: Allocated<Self>,
             wait_until_responsive: bool,
         ) -> Retained<Self>;
@@ -3249,8 +3353,15 @@ impl XCTApplicationLaunchMetric {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTApplicationLaunchMetric {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -3291,7 +3402,7 @@ impl XCTCPUMetric {
         /// Returns: An initialized metric.
         #[unsafe(method(initLimitingToCurrentThread:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initLimitingToCurrentThread(
+        pub fn initLimitingToCurrentThread(
             this: Allocated<Self>,
             limit_to_current_thread: bool,
         ) -> Retained<Self>;
@@ -3302,7 +3413,7 @@ impl XCTCPUMetric {
         /// Returns: An initialized metric.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -3311,8 +3422,15 @@ impl XCTCPUMetric {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTCPUMetric {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -3348,7 +3466,7 @@ impl XCTMemoryMetric {
         /// Returns: An initialized metric.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -3357,8 +3475,15 @@ impl XCTMemoryMetric {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTMemoryMetric {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -3394,7 +3519,7 @@ impl XCTStorageMetric {
         /// Returns: An initialized metric.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -3403,8 +3528,15 @@ impl XCTStorageMetric {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTStorageMetric {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -3436,12 +3568,19 @@ impl XCTHitchMetric {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTHitchMetric {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -3469,7 +3608,7 @@ impl XCTSourceCodeLocation {
     extern_methods!(
         #[unsafe(method(initWithFileURL:lineNumber:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFileURL_lineNumber(
+        pub fn initWithFileURL_lineNumber(
             this: Allocated<Self>,
             file_url: &NSURL,
             line_number: NSInteger,
@@ -3477,7 +3616,7 @@ impl XCTSourceCodeLocation {
 
         #[unsafe(method(initWithFilePath:lineNumber:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithFilePath_lineNumber(
+        pub fn initWithFilePath_lineNumber(
             this: Allocated<Self>,
             file_path: &NSString,
             line_number: NSInteger,
@@ -3493,11 +3632,11 @@ impl XCTSourceCodeLocation {
 
         #[unsafe(method(fileURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileURL(&self) -> Retained<NSURL>;
+        pub fn fileURL(&self) -> Retained<NSURL>;
 
         #[unsafe(method(lineNumber))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lineNumber(&self) -> NSInteger;
+        pub fn lineNumber(&self) -> NSInteger;
     );
 }
 
@@ -3526,7 +3665,7 @@ impl XCTSourceCodeSymbolInfo {
     extern_methods!(
         #[unsafe(method(initWithImageName:symbolName:location:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithImageName_symbolName_location(
+        pub fn initWithImageName_symbolName_location(
             this: Allocated<Self>,
             image_name: &NSString,
             symbol_name: &NSString,
@@ -3543,15 +3682,15 @@ impl XCTSourceCodeSymbolInfo {
 
         #[unsafe(method(imageName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageName(&self) -> Retained<NSString>;
+        pub fn imageName(&self) -> Retained<NSString>;
 
         #[unsafe(method(symbolName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn symbolName(&self) -> Retained<NSString>;
+        pub fn symbolName(&self) -> Retained<NSString>;
 
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
-        pub unsafe fn location(&self) -> Option<Retained<XCTSourceCodeLocation>>;
+        pub fn location(&self) -> Option<Retained<XCTSourceCodeLocation>>;
     );
 }
 
@@ -3580,7 +3719,7 @@ impl XCTSourceCodeFrame {
     extern_methods!(
         #[unsafe(method(initWithAddress:symbolInfo:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithAddress_symbolInfo(
+        pub fn initWithAddress_symbolInfo(
             this: Allocated<Self>,
             address: u64,
             symbol_info: Option<&XCTSourceCodeSymbolInfo>,
@@ -3588,7 +3727,7 @@ impl XCTSourceCodeFrame {
 
         #[unsafe(method(initWithAddress:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithAddress(this: Allocated<Self>, address: u64) -> Retained<Self>;
+        pub fn initWithAddress(this: Allocated<Self>, address: u64) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -3600,23 +3739,23 @@ impl XCTSourceCodeFrame {
 
         #[unsafe(method(address))]
         #[unsafe(method_family = none)]
-        pub unsafe fn address(&self) -> u64;
+        pub fn address(&self) -> u64;
 
         #[unsafe(method(symbolInfo))]
         #[unsafe(method_family = none)]
-        pub unsafe fn symbolInfo(&self) -> Option<Retained<XCTSourceCodeSymbolInfo>>;
+        pub fn symbolInfo(&self) -> Option<Retained<XCTSourceCodeSymbolInfo>>;
 
         /// Error previously returned for symbolication attempt. This is not serialized when the frame is encoded.
         #[unsafe(method(symbolicationError))]
         #[unsafe(method_family = none)]
-        pub unsafe fn symbolicationError(&self) -> Option<Retained<NSError>>;
+        pub fn symbolicationError(&self) -> Option<Retained<NSError>>;
 
         /// method -symbolInfoWithError:
         /// Attempts to get symbol information for the address. This can fail if required symbol data is not available. Only
         /// one attempt will be made and the error will be stored and returned for future requests.
         #[unsafe(method(symbolInfoWithError:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn symbolInfoWithError(
+        pub fn symbolInfoWithError(
             &self,
         ) -> Result<Retained<XCTSourceCodeSymbolInfo>, Retained<NSError>>;
     );
@@ -3648,7 +3787,7 @@ impl XCTSourceCodeContext {
     extern_methods!(
         #[unsafe(method(initWithCallStack:location:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCallStack_location(
+        pub fn initWithCallStack_location(
             this: Allocated<Self>,
             call_stack: &NSArray<XCTSourceCodeFrame>,
             location: Option<&XCTSourceCodeLocation>,
@@ -3658,7 +3797,7 @@ impl XCTSourceCodeContext {
         /// NSException.callStackReturnAddresses, or another source.
         #[unsafe(method(initWithCallStackAddresses:location:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCallStackAddresses_location(
+        pub fn initWithCallStackAddresses_location(
             this: Allocated<Self>,
             call_stack_addresses: &NSArray<NSNumber>,
             location: Option<&XCTSourceCodeLocation>,
@@ -3667,7 +3806,7 @@ impl XCTSourceCodeContext {
         /// Initializes a new instance with call stack derived from NSThread.callStackReturnAddresses and the specified location.
         #[unsafe(method(initWithLocation:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLocation(
+        pub fn initWithLocation(
             this: Allocated<Self>,
             location: Option<&XCTSourceCodeLocation>,
         ) -> Retained<Self>;
@@ -3675,15 +3814,15 @@ impl XCTSourceCodeContext {
         /// Initializes a new instance with call stack derived from NSThread.callStackReturnAddresses and a nil location.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(callStack))]
         #[unsafe(method_family = none)]
-        pub unsafe fn callStack(&self) -> Retained<NSArray<XCTSourceCodeFrame>>;
+        pub fn callStack(&self) -> Retained<NSArray<XCTSourceCodeFrame>>;
 
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
-        pub unsafe fn location(&self) -> Option<Retained<XCTSourceCodeLocation>>;
+        pub fn location(&self) -> Option<Retained<XCTSourceCodeLocation>>;
     );
 }
 
@@ -3692,8 +3831,15 @@ impl XCTSourceCodeContext {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTSourceCodeContext {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// Values returned by a waiter when it completes, times out, or is interrupted due to another waiter
@@ -3754,7 +3900,7 @@ impl XCTWaiter {
         /// Creates a new waiter with the specified delegate.
         #[unsafe(method(initWithDelegate:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDelegate(
+        pub fn initWithDelegate(
             this: Allocated<Self>,
             delegate: Option<&ProtocolObject<dyn XCTWaiterDelegate>>,
         ) -> Retained<Self>;
@@ -3764,14 +3910,14 @@ impl XCTWaiter {
         /// >.
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn XCTWaiterDelegate>>>;
+        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn XCTWaiterDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn XCTWaiterDelegate>>);
+        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn XCTWaiterDelegate>>);
 
         /// Returns an array containing the expectations that were fulfilled, in that order, up until the waiter
         /// stopped waiting. Expectations fulfilled after the waiter stopped waiting will not be in the array.
@@ -3780,7 +3926,7 @@ impl XCTWaiter {
         /// fulfilled expectations from each wait operation.
         #[unsafe(method(fulfilledExpectations))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fulfilledExpectations(&self) -> Retained<NSArray<XCTestExpectation>>;
+        pub fn fulfilledExpectations(&self) -> Retained<NSArray<XCTestExpectation>>;
 
         /// Waits on a group of expectations indefinitely.
         ///
@@ -3803,7 +3949,7 @@ impl XCTWaiter {
         /// _expectations._
         #[unsafe(method(waitForExpectations:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForExpectations(
+        pub fn waitForExpectations(
             &self,
             expectations: &NSArray<XCTestExpectation>,
         ) -> XCTWaiterResult;
@@ -3825,7 +3971,7 @@ impl XCTWaiter {
         /// _expectations._
         #[unsafe(method(waitForExpectations:timeout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForExpectations_timeout(
+        pub fn waitForExpectations_timeout(
             &self,
             expectations: &NSArray<XCTestExpectation>,
             seconds: NSTimeInterval,
@@ -3859,7 +4005,7 @@ impl XCTWaiter {
         /// _expectations._
         #[unsafe(method(waitForExpectations:enforceOrder:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForExpectations_enforceOrder(
+        pub fn waitForExpectations_enforceOrder(
             &self,
             expectations: &NSArray<XCTestExpectation>,
             enforce_order_of_fulfillment: bool,
@@ -3889,7 +4035,7 @@ impl XCTWaiter {
         /// _expectations._
         #[unsafe(method(waitForExpectations:timeout:enforceOrder:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForExpectations_timeout_enforceOrder(
+        pub fn waitForExpectations_timeout_enforceOrder(
             &self,
             expectations: &NSArray<XCTestExpectation>,
             seconds: NSTimeInterval,
@@ -3920,7 +4066,7 @@ impl XCTWaiter {
         #[must_use]
         #[unsafe(method(waitForExpectations:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForExpectations_class(
+        pub fn waitForExpectations_class(
             expectations: &NSArray<XCTestExpectation>,
         ) -> XCTWaiterResult;
 
@@ -3945,7 +4091,7 @@ impl XCTWaiter {
         #[must_use]
         #[unsafe(method(waitForExpectations:timeout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForExpectations_timeout_class(
+        pub fn waitForExpectations_timeout_class(
             expectations: &NSArray<XCTestExpectation>,
             seconds: NSTimeInterval,
         ) -> XCTWaiterResult;
@@ -3981,7 +4127,7 @@ impl XCTWaiter {
         #[must_use]
         #[unsafe(method(waitForExpectations:enforceOrder:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForExpectations_enforceOrder_class(
+        pub fn waitForExpectations_enforceOrder_class(
             expectations: &NSArray<XCTestExpectation>,
             enforce_order_of_fulfillment: bool,
         ) -> XCTWaiterResult;
@@ -4013,7 +4159,7 @@ impl XCTWaiter {
         #[must_use]
         #[unsafe(method(waitForExpectations:timeout:enforceOrder:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForExpectations_timeout_enforceOrder_class(
+        pub fn waitForExpectations_timeout_enforceOrder_class(
             expectations: &NSArray<XCTestExpectation>,
             seconds: NSTimeInterval,
             enforce_order_of_fulfillment: bool,
@@ -4026,12 +4172,19 @@ impl XCTWaiter {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTWaiter {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -4048,7 +4201,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(waiter:didTimeoutWithUnfulfilledExpectations:))]
         #[unsafe(method_family = none)]
-        unsafe fn waiter_didTimeoutWithUnfulfilledExpectations(
+        fn waiter_didTimeoutWithUnfulfilledExpectations(
             &self,
             waiter: &XCTWaiter,
             unfulfilled_expectations: &NSArray<XCTestExpectation>,
@@ -4060,7 +4213,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(waiter:fulfillmentDidViolateOrderingConstraintsForExpectation:requiredExpectation:))]
         #[unsafe(method_family = none)]
-        unsafe fn waiter_fulfillmentDidViolateOrderingConstraintsForExpectation_requiredExpectation(
+        fn waiter_fulfillmentDidViolateOrderingConstraintsForExpectation_requiredExpectation(
             &self,
             waiter: &XCTWaiter,
             expectation: &XCTestExpectation,
@@ -4072,7 +4225,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(waiter:didFulfillInvertedExpectation:))]
         #[unsafe(method_family = none)]
-        unsafe fn waiter_didFulfillInvertedExpectation(
+        fn waiter_didFulfillInvertedExpectation(
             &self,
             waiter: &XCTWaiter,
             expectation: &XCTestExpectation,
@@ -4084,7 +4237,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(nestedWaiter:wasInterruptedByTimedOutWaiter:))]
         #[unsafe(method_family = none)]
-        unsafe fn nestedWaiter_wasInterruptedByTimedOutWaiter(
+        fn nestedWaiter_wasInterruptedByTimedOutWaiter(
             &self,
             waiter: &XCTWaiter,
             outer_waiter: &XCTWaiter,
@@ -4114,7 +4267,7 @@ impl XCTestExpectation {
         /// Designated initializer, requires a nonnull description of the condition the expectation is checking.
         #[unsafe(method(initWithDescription:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDescription(
+        pub fn initWithDescription(
             this: Allocated<Self>,
             expectation_description: &NSString,
         ) -> Retained<Self>;
@@ -4122,14 +4275,14 @@ impl XCTestExpectation {
         /// The human readable string used to describe the expectation in log output and test reports.
         #[unsafe(method(expectationDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expectationDescription(&self) -> Retained<NSString>;
+        pub fn expectationDescription(&self) -> Retained<NSString>;
 
         /// Setter for [`expectationDescription`][Self::expectationDescription].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setExpectationDescription:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setExpectationDescription(&self, expectation_description: &NSString);
+        pub fn setExpectationDescription(&self, expectation_description: &NSString);
 
         /// If an expectation is set to have inverted behavior, then fulfilling it will have a similar effect that
         /// failing to fulfill a conventional expectation has, as handled by the waiter and its delegate. Furthermore,
@@ -4137,12 +4290,12 @@ impl XCTestExpectation {
         /// timeout to the delegate if it is not fulfilled.
         #[unsafe(method(isInverted))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isInverted(&self) -> bool;
+        pub fn isInverted(&self) -> bool;
 
         /// Setter for [`isInverted`][Self::isInverted].
         #[unsafe(method(setInverted:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInverted(&self, inverted: bool);
+        pub fn setInverted(&self, inverted: bool);
 
         /// The expectedFulfillmentCount is the number of times -fulfill must be called on the expectation in order for it
         /// to report complete fulfillment to its waiter. By default, expectations have an expectedFufillmentCount of 1.
@@ -4196,7 +4349,7 @@ impl XCTestExpectation {
         /// of these occur, -fulfill will raise an exception.
         #[unsafe(method(fulfill))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fulfill(&self);
+        pub fn fulfill(&self);
     );
 }
 
@@ -4205,12 +4358,19 @@ impl XCTestExpectation {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for XCTestExpectation {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// A block to be invoked when a change is observed for the keyPath of the observed object.
@@ -4317,22 +4477,22 @@ impl XCTKVOExpectation {
         /// Returns the key path that is being monitored for the KVO change.
         #[unsafe(method(keyPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyPath(&self) -> Retained<NSString>;
+        pub fn keyPath(&self) -> Retained<NSString>;
 
         /// Returns the object that is being monitored for the KVO change.
         #[unsafe(method(observedObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn observedObject(&self) -> Retained<AnyObject>;
+        pub fn observedObject(&self) -> Retained<AnyObject>;
 
         /// Returns the value that the expectation is waiting for the observed object/key path to have.
         #[unsafe(method(expectedValue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expectedValue(&self) -> Option<Retained<AnyObject>>;
+        pub fn expectedValue(&self) -> Option<Retained<AnyObject>>;
 
         /// The KVO options used when the expectation registered for observation.
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
-        pub unsafe fn options(&self) -> NSKeyValueObservingOptions;
+        pub fn options(&self) -> NSKeyValueObservingOptions;
 
         #[cfg(feature = "block2")]
         /// Allows the caller to install a special handler to do custom evaluation of the change to the value
@@ -4436,7 +4596,7 @@ impl XCTNSNotificationExpectation {
         /// the default notification center.
         #[unsafe(method(initWithName:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithName(
+        pub fn initWithName(
             this: Allocated<Self>,
             notification_name: &NSNotificationName,
         ) -> Retained<Self>;
@@ -4444,17 +4604,17 @@ impl XCTNSNotificationExpectation {
         /// Returns the name of the notification being waited on.
         #[unsafe(method(notificationName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn notificationName(&self) -> Retained<NSNotificationName>;
+        pub fn notificationName(&self) -> Retained<NSNotificationName>;
 
         /// Returns the object that will post the notification.
         #[unsafe(method(observedObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn observedObject(&self) -> Option<Retained<AnyObject>>;
+        pub fn observedObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Returns the notification center that is being used.
         #[unsafe(method(notificationCenter))]
         #[unsafe(method_family = none)]
-        pub unsafe fn notificationCenter(&self) -> Retained<NSNotificationCenter>;
+        pub fn notificationCenter(&self) -> Retained<NSNotificationCenter>;
 
         #[cfg(feature = "block2")]
         /// Allows the caller to install a special handler to do custom evaluation of received notifications
@@ -4545,12 +4705,12 @@ impl XCTNSPredicateExpectation {
         /// Returns the predicate used by the expectation.
         #[unsafe(method(predicate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn predicate(&self) -> Retained<NSPredicate>;
+        pub fn predicate(&self) -> Retained<NSPredicate>;
 
         /// Returns the object against which the predicate is evaluated.
         #[unsafe(method(object))]
         #[unsafe(method_family = none)]
-        pub unsafe fn object(&self) -> Option<Retained<AnyObject>>;
+        pub fn object(&self) -> Option<Retained<AnyObject>>;
 
         #[cfg(feature = "block2")]
         /// Allows the caller to install a special handler to do custom evaluation of predicate and its object.
@@ -4625,7 +4785,7 @@ impl XCTestCase {
         #[must_use]
         #[unsafe(method(expectationWithDescription:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expectationWithDescription(
+        pub fn expectationWithDescription(
             &self,
             description: &NSString,
         ) -> Retained<XCTestExpectation>;
@@ -4675,7 +4835,7 @@ impl XCTestCase {
         /// runaway expectation from hanging the test.
         #[unsafe(method(waitForExpectations:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForExpectations(&self, expectations: &NSArray<XCTestExpectation>);
+        pub fn waitForExpectations(&self, expectations: &NSArray<XCTestExpectation>);
 
         /// Waits on a group of expectations for up to the specified timeout.
         ///
@@ -4690,7 +4850,7 @@ impl XCTestCase {
         /// early based on fulfillment of the provided expectations.
         #[unsafe(method(waitForExpectations:timeout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForExpectations_timeout(
+        pub fn waitForExpectations_timeout(
             &self,
             expectations: &NSArray<XCTestExpectation>,
             seconds: NSTimeInterval,
@@ -4720,7 +4880,7 @@ impl XCTestCase {
         /// runaway expectation from hanging the test.
         #[unsafe(method(waitForExpectations:enforceOrder:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForExpectations_enforceOrder(
+        pub fn waitForExpectations_enforceOrder(
             &self,
             expectations: &NSArray<XCTestExpectation>,
             enforce_order_of_fulfillment: bool,
@@ -4746,7 +4906,7 @@ impl XCTestCase {
         /// early based on fulfillment of the provided expectations.
         #[unsafe(method(waitForExpectations:timeout:enforceOrder:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForExpectations_timeout_enforceOrder(
+        pub fn waitForExpectations_timeout_enforceOrder(
             &self,
             expectations: &NSArray<XCTestExpectation>,
             seconds: NSTimeInterval,
@@ -4959,7 +5119,7 @@ impl XCTDarwinNotificationExpectation {
         /// Initializes an expectation that waits for a Darwin notification to be posted.
         #[unsafe(method(initWithNotificationName:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithNotificationName(
+        pub fn initWithNotificationName(
             this: Allocated<Self>,
             notification_name: &NSString,
         ) -> Retained<Self>;
@@ -4967,7 +5127,7 @@ impl XCTDarwinNotificationExpectation {
         /// Returns the value of the notification name that was provided to the initializer.
         #[unsafe(method(notificationName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn notificationName(&self) -> Retained<NSString>;
+        pub fn notificationName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "block2")]
         /// Allows the caller to install a special handler to do custom evaluation when the notification is posted.
@@ -5000,13 +5160,13 @@ impl XCTAttachment {
         /// Creates an attachment with a screenshot and the specified quality.
         #[unsafe(method(attachmentWithScreenshot:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachmentWithScreenshot(screenshot: &XCUIScreenshot) -> Retained<Self>;
+        pub fn attachmentWithScreenshot(screenshot: &XCUIScreenshot) -> Retained<Self>;
 
         #[cfg(feature = "objc2-xc-ui-automation")]
         /// Creates an attachment with a screenshot and the specified quality.
         #[unsafe(method(attachmentWithScreenshot:quality:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn attachmentWithScreenshot_quality(
+        pub fn attachmentWithScreenshot_quality(
             screenshot: &XCUIScreenshot,
             quality: XCTImageQuality,
         ) -> Retained<Self>;
@@ -5033,7 +5193,7 @@ impl XCTestCase {
         /// test will run. The UI configuration is used automatically when calling `XCUIApplication.launch()` in each test.
         #[unsafe(method(runsForEachTargetApplicationUIConfiguration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runsForEachTargetApplicationUIConfiguration() -> bool;
+        pub fn runsForEachTargetApplicationUIConfiguration() -> bool;
     );
 }
 
@@ -5101,7 +5261,7 @@ impl XCTestCase {
         /// the interruption. In some cases, a default monitor may handle interruptions.
         #[unsafe(method(addUIInterruptionMonitorWithDescription:handler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addUIInterruptionMonitorWithDescription_handler(
+        pub fn addUIInterruptionMonitorWithDescription_handler(
             &self,
             handler_description: &NSString,
             handler: &block2::DynBlock<dyn Fn(NonNull<XCUIElement>) -> Bool>,
@@ -5113,10 +5273,7 @@ impl XCTestCase {
         /// Parameter `monitor`: The token representing the monitor returned from the call to addUIInterruptionMonitorWithDescription:handler: where it was registered.
         #[unsafe(method(removeUIInterruptionMonitor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeUIInterruptionMonitor(
-            &self,
-            monitor: &ProtocolObject<dyn NSObjectProtocol>,
-        );
+        pub fn removeUIInterruptionMonitor(&self, monitor: &ProtocolObject<dyn NSObjectProtocol>);
     );
 }
 
@@ -5133,7 +5290,7 @@ impl XCTCPUMetric {
         /// Returns: An initialized metric.
         #[unsafe(method(initWithApplication:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithApplication(
+        pub fn initWithApplication(
             this: Allocated<Self>,
             application: &XCUIApplication,
         ) -> Retained<Self>;
@@ -5153,7 +5310,7 @@ impl XCTMemoryMetric {
         /// Returns: An initialized metric.
         #[unsafe(method(initWithApplication:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithApplication(
+        pub fn initWithApplication(
             this: Allocated<Self>,
             application: &XCUIApplication,
         ) -> Retained<Self>;
@@ -5173,7 +5330,7 @@ impl XCTStorageMetric {
         /// Returns: An initialized metric.
         #[unsafe(method(initWithApplication:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithApplication(
+        pub fn initWithApplication(
             this: Allocated<Self>,
             application: &XCUIApplication,
         ) -> Retained<Self>;
@@ -5193,7 +5350,7 @@ impl XCTHitchMetric {
         /// Returns: An initialized metric.
         #[unsafe(method(initWithApplication:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithApplication(
+        pub fn initWithApplication(
             this: Allocated<Self>,
             application: &XCUIApplication,
         ) -> Retained<Self>;

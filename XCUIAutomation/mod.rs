@@ -239,58 +239,58 @@ extern_protocol!(
         /// The accessibility identifier.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        unsafe fn identifier(&self) -> Retained<NSString>;
+        fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The frame of the element in the screen coordinate space.
         #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
-        unsafe fn frame(&self) -> CGRect;
+        fn frame(&self) -> CGRect;
 
         /// The raw value attribute of the element. Depending on the element, the actual type can vary.
         #[unsafe(method(value))]
         #[unsafe(method_family = none)]
-        unsafe fn value(&self) -> Option<Retained<AnyObject>>;
+        fn value(&self) -> Option<Retained<AnyObject>>;
 
         /// The title attribute of the element.
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
-        unsafe fn title(&self) -> Retained<NSString>;
+        fn title(&self) -> Retained<NSString>;
 
         /// The label attribute of the element.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        unsafe fn label(&self) -> Retained<NSString>;
+        fn label(&self) -> Retained<NSString>;
 
         /// The type of the element. /seealso XCUIElementType.
         #[unsafe(method(elementType))]
         #[unsafe(method_family = none)]
-        unsafe fn elementType(&self) -> XCUIElementType;
+        fn elementType(&self) -> XCUIElementType;
 
         /// Whether or not the element is enabled for user interaction.
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
-        unsafe fn isEnabled(&self) -> bool;
+        fn isEnabled(&self) -> bool;
 
         /// The horizontal size class of the element.
         #[unsafe(method(horizontalSizeClass))]
         #[unsafe(method_family = none)]
-        unsafe fn horizontalSizeClass(&self) -> XCUIUserInterfaceSizeClass;
+        fn horizontalSizeClass(&self) -> XCUIUserInterfaceSizeClass;
 
         /// The vertical size class of the element.
         #[unsafe(method(verticalSizeClass))]
         #[unsafe(method_family = none)]
-        unsafe fn verticalSizeClass(&self) -> XCUIUserInterfaceSizeClass;
+        fn verticalSizeClass(&self) -> XCUIUserInterfaceSizeClass;
 
         /// The value that is displayed when the element has no value.
         #[unsafe(method(placeholderValue))]
         #[unsafe(method_family = none)]
-        unsafe fn placeholderValue(&self) -> Option<Retained<NSString>>;
+        fn placeholderValue(&self) -> Option<Retained<NSString>>;
 
         /// Whether or not the element is selected.
         #[unsafe(method(isSelected))]
         #[unsafe(method_family = none)]
-        unsafe fn isSelected(&self) -> bool;
+        fn isSelected(&self) -> bool;
     }
 );
 
@@ -396,331 +396,331 @@ extern_protocol!(
     pub unsafe trait XCUIElementTypeQueryProvider: MainThreadOnly {
         #[unsafe(method(touchBars))]
         #[unsafe(method_family = none)]
-        unsafe fn touchBars(&self) -> Retained<XCUIElementQuery>;
+        fn touchBars(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(groups))]
         #[unsafe(method_family = none)]
-        unsafe fn groups(&self) -> Retained<XCUIElementQuery>;
+        fn groups(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(windows))]
         #[unsafe(method_family = none)]
-        unsafe fn windows(&self) -> Retained<XCUIElementQuery>;
+        fn windows(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(sheets))]
         #[unsafe(method_family = none)]
-        unsafe fn sheets(&self) -> Retained<XCUIElementQuery>;
+        fn sheets(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(drawers))]
         #[unsafe(method_family = none)]
-        unsafe fn drawers(&self) -> Retained<XCUIElementQuery>;
+        fn drawers(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(alerts))]
         #[unsafe(method_family = none)]
-        unsafe fn alerts(&self) -> Retained<XCUIElementQuery>;
+        fn alerts(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(dialogs))]
         #[unsafe(method_family = none)]
-        unsafe fn dialogs(&self) -> Retained<XCUIElementQuery>;
+        fn dialogs(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(buttons))]
         #[unsafe(method_family = none)]
-        unsafe fn buttons(&self) -> Retained<XCUIElementQuery>;
+        fn buttons(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(radioButtons))]
         #[unsafe(method_family = none)]
-        unsafe fn radioButtons(&self) -> Retained<XCUIElementQuery>;
+        fn radioButtons(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(radioGroups))]
         #[unsafe(method_family = none)]
-        unsafe fn radioGroups(&self) -> Retained<XCUIElementQuery>;
+        fn radioGroups(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(checkBoxes))]
         #[unsafe(method_family = none)]
-        unsafe fn checkBoxes(&self) -> Retained<XCUIElementQuery>;
+        fn checkBoxes(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(disclosureTriangles))]
         #[unsafe(method_family = none)]
-        unsafe fn disclosureTriangles(&self) -> Retained<XCUIElementQuery>;
+        fn disclosureTriangles(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(popUpButtons))]
         #[unsafe(method_family = none)]
-        unsafe fn popUpButtons(&self) -> Retained<XCUIElementQuery>;
+        fn popUpButtons(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(comboBoxes))]
         #[unsafe(method_family = none)]
-        unsafe fn comboBoxes(&self) -> Retained<XCUIElementQuery>;
+        fn comboBoxes(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(menuButtons))]
         #[unsafe(method_family = none)]
-        unsafe fn menuButtons(&self) -> Retained<XCUIElementQuery>;
+        fn menuButtons(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(toolbarButtons))]
         #[unsafe(method_family = none)]
-        unsafe fn toolbarButtons(&self) -> Retained<XCUIElementQuery>;
+        fn toolbarButtons(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(popovers))]
         #[unsafe(method_family = none)]
-        unsafe fn popovers(&self) -> Retained<XCUIElementQuery>;
+        fn popovers(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(keyboards))]
         #[unsafe(method_family = none)]
-        unsafe fn keyboards(&self) -> Retained<XCUIElementQuery>;
+        fn keyboards(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(keys))]
         #[unsafe(method_family = none)]
-        unsafe fn keys(&self) -> Retained<XCUIElementQuery>;
+        fn keys(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(navigationBars))]
         #[unsafe(method_family = none)]
-        unsafe fn navigationBars(&self) -> Retained<XCUIElementQuery>;
+        fn navigationBars(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(tabBars))]
         #[unsafe(method_family = none)]
-        unsafe fn tabBars(&self) -> Retained<XCUIElementQuery>;
+        fn tabBars(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(tabGroups))]
         #[unsafe(method_family = none)]
-        unsafe fn tabGroups(&self) -> Retained<XCUIElementQuery>;
+        fn tabGroups(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(toolbars))]
         #[unsafe(method_family = none)]
-        unsafe fn toolbars(&self) -> Retained<XCUIElementQuery>;
+        fn toolbars(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(statusBars))]
         #[unsafe(method_family = none)]
-        unsafe fn statusBars(&self) -> Retained<XCUIElementQuery>;
+        fn statusBars(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(tables))]
         #[unsafe(method_family = none)]
-        unsafe fn tables(&self) -> Retained<XCUIElementQuery>;
+        fn tables(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(tableRows))]
         #[unsafe(method_family = none)]
-        unsafe fn tableRows(&self) -> Retained<XCUIElementQuery>;
+        fn tableRows(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(tableColumns))]
         #[unsafe(method_family = none)]
-        unsafe fn tableColumns(&self) -> Retained<XCUIElementQuery>;
+        fn tableColumns(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(outlines))]
         #[unsafe(method_family = none)]
-        unsafe fn outlines(&self) -> Retained<XCUIElementQuery>;
+        fn outlines(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(outlineRows))]
         #[unsafe(method_family = none)]
-        unsafe fn outlineRows(&self) -> Retained<XCUIElementQuery>;
+        fn outlineRows(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(disclosedChildRows))]
         #[unsafe(method_family = none)]
-        unsafe fn disclosedChildRows(&self) -> Retained<XCUIElementQuery>;
+        fn disclosedChildRows(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(browsers))]
         #[unsafe(method_family = none)]
-        unsafe fn browsers(&self) -> Retained<XCUIElementQuery>;
+        fn browsers(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(collectionViews))]
         #[unsafe(method_family = none)]
-        unsafe fn collectionViews(&self) -> Retained<XCUIElementQuery>;
+        fn collectionViews(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(sliders))]
         #[unsafe(method_family = none)]
-        unsafe fn sliders(&self) -> Retained<XCUIElementQuery>;
+        fn sliders(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(pageIndicators))]
         #[unsafe(method_family = none)]
-        unsafe fn pageIndicators(&self) -> Retained<XCUIElementQuery>;
+        fn pageIndicators(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(progressIndicators))]
         #[unsafe(method_family = none)]
-        unsafe fn progressIndicators(&self) -> Retained<XCUIElementQuery>;
+        fn progressIndicators(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(activityIndicators))]
         #[unsafe(method_family = none)]
-        unsafe fn activityIndicators(&self) -> Retained<XCUIElementQuery>;
+        fn activityIndicators(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(segmentedControls))]
         #[unsafe(method_family = none)]
-        unsafe fn segmentedControls(&self) -> Retained<XCUIElementQuery>;
+        fn segmentedControls(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(pickers))]
         #[unsafe(method_family = none)]
-        unsafe fn pickers(&self) -> Retained<XCUIElementQuery>;
+        fn pickers(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(pickerWheels))]
         #[unsafe(method_family = none)]
-        unsafe fn pickerWheels(&self) -> Retained<XCUIElementQuery>;
+        fn pickerWheels(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(switches))]
         #[unsafe(method_family = none)]
-        unsafe fn switches(&self) -> Retained<XCUIElementQuery>;
+        fn switches(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(toggles))]
         #[unsafe(method_family = none)]
-        unsafe fn toggles(&self) -> Retained<XCUIElementQuery>;
+        fn toggles(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(links))]
         #[unsafe(method_family = none)]
-        unsafe fn links(&self) -> Retained<XCUIElementQuery>;
+        fn links(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(images))]
         #[unsafe(method_family = none)]
-        unsafe fn images(&self) -> Retained<XCUIElementQuery>;
+        fn images(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(icons))]
         #[unsafe(method_family = none)]
-        unsafe fn icons(&self) -> Retained<XCUIElementQuery>;
+        fn icons(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(searchFields))]
         #[unsafe(method_family = none)]
-        unsafe fn searchFields(&self) -> Retained<XCUIElementQuery>;
+        fn searchFields(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(scrollViews))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollViews(&self) -> Retained<XCUIElementQuery>;
+        fn scrollViews(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(scrollBars))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollBars(&self) -> Retained<XCUIElementQuery>;
+        fn scrollBars(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(staticTexts))]
         #[unsafe(method_family = none)]
-        unsafe fn staticTexts(&self) -> Retained<XCUIElementQuery>;
+        fn staticTexts(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(textFields))]
         #[unsafe(method_family = none)]
-        unsafe fn textFields(&self) -> Retained<XCUIElementQuery>;
+        fn textFields(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(secureTextFields))]
         #[unsafe(method_family = none)]
-        unsafe fn secureTextFields(&self) -> Retained<XCUIElementQuery>;
+        fn secureTextFields(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(datePickers))]
         #[unsafe(method_family = none)]
-        unsafe fn datePickers(&self) -> Retained<XCUIElementQuery>;
+        fn datePickers(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(textViews))]
         #[unsafe(method_family = none)]
-        unsafe fn textViews(&self) -> Retained<XCUIElementQuery>;
+        fn textViews(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(menus))]
         #[unsafe(method_family = none)]
-        unsafe fn menus(&self) -> Retained<XCUIElementQuery>;
+        fn menus(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(menuItems))]
         #[unsafe(method_family = none)]
-        unsafe fn menuItems(&self) -> Retained<XCUIElementQuery>;
+        fn menuItems(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(menuBars))]
         #[unsafe(method_family = none)]
-        unsafe fn menuBars(&self) -> Retained<XCUIElementQuery>;
+        fn menuBars(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(menuBarItems))]
         #[unsafe(method_family = none)]
-        unsafe fn menuBarItems(&self) -> Retained<XCUIElementQuery>;
+        fn menuBarItems(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(maps))]
         #[unsafe(method_family = none)]
-        unsafe fn maps(&self) -> Retained<XCUIElementQuery>;
+        fn maps(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(webViews))]
         #[unsafe(method_family = none)]
-        unsafe fn webViews(&self) -> Retained<XCUIElementQuery>;
+        fn webViews(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(steppers))]
         #[unsafe(method_family = none)]
-        unsafe fn steppers(&self) -> Retained<XCUIElementQuery>;
+        fn steppers(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(incrementArrows))]
         #[unsafe(method_family = none)]
-        unsafe fn incrementArrows(&self) -> Retained<XCUIElementQuery>;
+        fn incrementArrows(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(decrementArrows))]
         #[unsafe(method_family = none)]
-        unsafe fn decrementArrows(&self) -> Retained<XCUIElementQuery>;
+        fn decrementArrows(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(tabs))]
         #[unsafe(method_family = none)]
-        unsafe fn tabs(&self) -> Retained<XCUIElementQuery>;
+        fn tabs(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(timelines))]
         #[unsafe(method_family = none)]
-        unsafe fn timelines(&self) -> Retained<XCUIElementQuery>;
+        fn timelines(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(ratingIndicators))]
         #[unsafe(method_family = none)]
-        unsafe fn ratingIndicators(&self) -> Retained<XCUIElementQuery>;
+        fn ratingIndicators(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(valueIndicators))]
         #[unsafe(method_family = none)]
-        unsafe fn valueIndicators(&self) -> Retained<XCUIElementQuery>;
+        fn valueIndicators(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(splitGroups))]
         #[unsafe(method_family = none)]
-        unsafe fn splitGroups(&self) -> Retained<XCUIElementQuery>;
+        fn splitGroups(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(splitters))]
         #[unsafe(method_family = none)]
-        unsafe fn splitters(&self) -> Retained<XCUIElementQuery>;
+        fn splitters(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(relevanceIndicators))]
         #[unsafe(method_family = none)]
-        unsafe fn relevanceIndicators(&self) -> Retained<XCUIElementQuery>;
+        fn relevanceIndicators(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(colorWells))]
         #[unsafe(method_family = none)]
-        unsafe fn colorWells(&self) -> Retained<XCUIElementQuery>;
+        fn colorWells(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(helpTags))]
         #[unsafe(method_family = none)]
-        unsafe fn helpTags(&self) -> Retained<XCUIElementQuery>;
+        fn helpTags(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(mattes))]
         #[unsafe(method_family = none)]
-        unsafe fn mattes(&self) -> Retained<XCUIElementQuery>;
+        fn mattes(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(dockItems))]
         #[unsafe(method_family = none)]
-        unsafe fn dockItems(&self) -> Retained<XCUIElementQuery>;
+        fn dockItems(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(rulers))]
         #[unsafe(method_family = none)]
-        unsafe fn rulers(&self) -> Retained<XCUIElementQuery>;
+        fn rulers(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(rulerMarkers))]
         #[unsafe(method_family = none)]
-        unsafe fn rulerMarkers(&self) -> Retained<XCUIElementQuery>;
+        fn rulerMarkers(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(grids))]
         #[unsafe(method_family = none)]
-        unsafe fn grids(&self) -> Retained<XCUIElementQuery>;
+        fn grids(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(levelIndicators))]
         #[unsafe(method_family = none)]
-        unsafe fn levelIndicators(&self) -> Retained<XCUIElementQuery>;
+        fn levelIndicators(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(cells))]
         #[unsafe(method_family = none)]
-        unsafe fn cells(&self) -> Retained<XCUIElementQuery>;
+        fn cells(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(layoutAreas))]
         #[unsafe(method_family = none)]
-        unsafe fn layoutAreas(&self) -> Retained<XCUIElementQuery>;
+        fn layoutAreas(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(layoutItems))]
         #[unsafe(method_family = none)]
-        unsafe fn layoutItems(&self) -> Retained<XCUIElementQuery>;
+        fn layoutItems(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(handles))]
         #[unsafe(method_family = none)]
-        unsafe fn handles(&self) -> Retained<XCUIElementQuery>;
+        fn handles(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(otherElements))]
         #[unsafe(method_family = none)]
-        unsafe fn otherElements(&self) -> Retained<XCUIElementQuery>;
+        fn otherElements(&self) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(statusItems))]
         #[unsafe(method_family = none)]
-        unsafe fn statusItems(&self) -> Retained<XCUIElementQuery>;
+        fn statusItems(&self) -> Retained<XCUIElementQuery>;
 
         /// Returns an element that will use the query for resolution. This changes how the query is resolved
         /// at runtime; instead of evaluating against every element in the user interface, `firstMatch` stops
@@ -729,7 +729,7 @@ extern_protocol!(
         /// matches will not be detected.
         #[unsafe(method(firstMatch))]
         #[unsafe(method_family = none)]
-        unsafe fn firstMatch(&self) -> Retained<XCUIElement>;
+        fn firstMatch(&self) -> Retained<XCUIElement>;
     }
 );
 
@@ -980,7 +980,7 @@ extern_protocol!(
         /// the occluded window is captured, the front window will be visible in the screenshot.
         #[unsafe(method(screenshot))]
         #[unsafe(method_family = none)]
-        unsafe fn screenshot(&self) -> Retained<XCUIScreenshot>;
+        fn screenshot(&self) -> Retained<XCUIScreenshot>;
     }
 );
 
@@ -1079,28 +1079,28 @@ impl XCUIElement {
         /// Test to determine if the element exists.
         #[unsafe(method(exists))]
         #[unsafe(method_family = none)]
-        pub unsafe fn exists(&self) -> bool;
+        pub fn exists(&self) -> bool;
 
         /// Waits the specified amount of time for the element's exist property to be true and returns false if the timeout expires without the element coming into existence.
         #[must_use]
         #[unsafe(method(waitForExistenceWithTimeout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForExistenceWithTimeout(&self, timeout: NSTimeInterval) -> bool;
+        pub fn waitForExistenceWithTimeout(&self, timeout: NSTimeInterval) -> bool;
 
         /// Waits the specified amount of time for the element's exist property to be false and returns false if the timeout expires without the element disappearing.
         #[unsafe(method(waitForNonExistenceWithTimeout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForNonExistenceWithTimeout(&self, timeout: NSTimeInterval) -> bool;
+        pub fn waitForNonExistenceWithTimeout(&self, timeout: NSTimeInterval) -> bool;
 
         /// Whether or not a hit point can be computed for the element for the purpose of synthesizing events.
         #[unsafe(method(isHittable))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isHittable(&self) -> bool;
+        pub fn isHittable(&self) -> bool;
 
         /// Returns a query for all descendants of the element matching the specified type.
         #[unsafe(method(descendantsMatchingType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn descendantsMatchingType(
+        pub fn descendantsMatchingType(
             &self,
             r#type: XCUIElementType,
         ) -> Retained<XCUIElementQuery>;
@@ -1108,16 +1108,13 @@ impl XCUIElement {
         /// Returns a query for direct children of the element matching the specified type.
         #[unsafe(method(childrenMatchingType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn childrenMatchingType(
-            &self,
-            r#type: XCUIElementType,
-        ) -> Retained<XCUIElementQuery>;
+        pub fn childrenMatchingType(&self, r#type: XCUIElementType) -> Retained<XCUIElementQuery>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates and returns a new coordinate that will compute its screen point by adding the offset multiplied by the size of the element’s frame to the origin of the element’s frame.
         #[unsafe(method(coordinateWithNormalizedOffset:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn coordinateWithNormalizedOffset(
+        pub fn coordinateWithNormalizedOffset(
             &self,
             normalized_offset: CGVector,
         ) -> Retained<XCUICoordinate>;
@@ -1130,7 +1127,7 @@ impl XCUIElement {
         /// This data should be used for debugging only - depending on any of the data as part of a test is unsupported.
         #[unsafe(method(debugDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn debugDescription(&self) -> Retained<NSString>;
+        pub fn debugDescription(&self) -> Retained<NSString>;
     );
 }
 
@@ -1156,7 +1153,7 @@ impl XCUIElement {
         /// it strictly interprets the provided text. To input keys with modifier flags, use  -typeKey:modifierFlags:.
         #[unsafe(method(typeText:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn typeText(&self, text: &NSString);
+        pub fn typeText(&self, text: &NSString);
 
         #[cfg(feature = "block2")]
         /// Hold modifier keys while the given block runs. This method pushes and pops the modifiers as global state
@@ -1164,7 +1161,7 @@ impl XCUIElement {
         /// from, typed into, etc.
         #[unsafe(method(performWithKeyModifiers:block:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performWithKeyModifiers_block(
+        pub fn performWithKeyModifiers_block(
             flags: XCUIKeyModifierFlags,
             block: &block2::DynBlock<dyn Fn() + '_>,
             mtm: MainThreadMarker,
@@ -1176,7 +1173,7 @@ impl XCUIElement {
         /// command, control, option, and function keys can be typed using constants defined for them in XCUIKeyboardKeys.h
         #[unsafe(method(typeKey:modifierFlags:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn typeKey_modifierFlags(&self, key: &NSString, flags: XCUIKeyModifierFlags);
+        pub fn typeKey_modifierFlags(&self, key: &NSString, flags: XCUIKeyModifierFlags);
     );
 }
 
@@ -1186,12 +1183,12 @@ impl XCUIElement {
         /// Sends a tap event to a hittable point computed for the element.
         #[unsafe(method(tap))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tap(&self);
+        pub fn tap(&self);
 
         /// Sends a double tap event to a hittable point computed for the element.
         #[unsafe(method(doubleTap))]
         #[unsafe(method_family = none)]
-        pub unsafe fn doubleTap(&self);
+        pub fn doubleTap(&self);
 
         /// Sends a long press gesture to a hittable point computed for the element, holding for the specified duration.
         ///
@@ -1199,7 +1196,7 @@ impl XCUIElement {
         /// Parameter `duration`: Duration in seconds.
         #[unsafe(method(pressForDuration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressForDuration(&self, duration: NSTimeInterval);
+        pub fn pressForDuration(&self, duration: NSTimeInterval);
 
         /// Initiates a press-and-hold gesture that then drags to another element, suitable for table cell reordering and similar operations.
         ///
@@ -1208,7 +1205,7 @@ impl XCUIElement {
         /// Parameter `otherElement`: The element to finish the drag gesture over. In the example of table cell reordering, this would be the reorder element of the destination row.
         #[unsafe(method(pressForDuration:thenDragToElement:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressForDuration_thenDragToElement(
+        pub fn pressForDuration_thenDragToElement(
             &self,
             duration: NSTimeInterval,
             other_element: &XCUIElement,
@@ -1226,7 +1223,7 @@ impl XCUIElement {
         /// Parameter `holdDuration`: The duration of the final hold.
         #[unsafe(method(pressForDuration:thenDragToElement:withVelocity:thenHoldForDuration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressForDuration_thenDragToElement_withVelocity_thenHoldForDuration(
+        pub fn pressForDuration_thenDragToElement_withVelocity_thenHoldForDuration(
             &self,
             duration: NSTimeInterval,
             other_element: &XCUIElement,
@@ -1237,22 +1234,22 @@ impl XCUIElement {
         /// Sends a swipe-up gesture.
         #[unsafe(method(swipeUp))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeUp(&self);
+        pub fn swipeUp(&self);
 
         /// Sends a swipe-down gesture.
         #[unsafe(method(swipeDown))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeDown(&self);
+        pub fn swipeDown(&self);
 
         /// Sends a swipe-left gesture.
         #[unsafe(method(swipeLeft))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeLeft(&self);
+        pub fn swipeLeft(&self);
 
         /// Sends a swipe-right gesture.
         #[unsafe(method(swipeRight))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeRight(&self);
+        pub fn swipeRight(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Sends a swipe in the specified direction with a specified velocity.
@@ -1260,22 +1257,22 @@ impl XCUIElement {
         /// Parameter `velocity`: The velocity pixels per second at which to perform the swipe at.
         #[unsafe(method(swipeUpWithVelocity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeUpWithVelocity(&self, velocity: XCUIGestureVelocity);
+        pub fn swipeUpWithVelocity(&self, velocity: XCUIGestureVelocity);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(swipeDownWithVelocity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeDownWithVelocity(&self, velocity: XCUIGestureVelocity);
+        pub fn swipeDownWithVelocity(&self, velocity: XCUIGestureVelocity);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(swipeLeftWithVelocity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeLeftWithVelocity(&self, velocity: XCUIGestureVelocity);
+        pub fn swipeLeftWithVelocity(&self, velocity: XCUIGestureVelocity);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(swipeRightWithVelocity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeRightWithVelocity(&self, velocity: XCUIGestureVelocity);
+        pub fn swipeRightWithVelocity(&self, velocity: XCUIGestureVelocity);
     );
 }
 
@@ -1285,28 +1282,28 @@ impl XCUIElement {
         /// Moves the cursor over the element.
         #[unsafe(method(hover))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hover(&self);
+        pub fn hover(&self);
 
         /// Sends a click event to a hittable point computed for the element.
         #[unsafe(method(click))]
         #[unsafe(method_family = none)]
-        pub unsafe fn click(&self);
+        pub fn click(&self);
 
         /// Sends a double click event to a hittable point computed for the element.
         #[unsafe(method(doubleClick))]
         #[unsafe(method_family = none)]
-        pub unsafe fn doubleClick(&self);
+        pub fn doubleClick(&self);
 
         /// Sends a right click event to a hittable point computed for the element.
         #[unsafe(method(rightClick))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rightClick(&self);
+        pub fn rightClick(&self);
 
         /// Clicks and holds for a specified duration (generally long enough to start a drag operation) then drags
         /// to the other element.
         #[unsafe(method(clickForDuration:thenDragToElement:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clickForDuration_thenDragToElement(
+        pub fn clickForDuration_thenDragToElement(
             &self,
             duration: NSTimeInterval,
             other_element: &XCUIElement,
@@ -1324,7 +1321,7 @@ impl XCUIElement {
         /// Parameter `holdDuration`: The duration of the final hold.
         #[unsafe(method(clickForDuration:thenDragToElement:withVelocity:thenHoldForDuration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clickForDuration_thenDragToElement_withVelocity_thenHoldForDuration(
+        pub fn clickForDuration_thenDragToElement_withVelocity_thenHoldForDuration(
             &self,
             duration: NSTimeInterval,
             other_element: &XCUIElement,
@@ -1336,7 +1333,7 @@ impl XCUIElement {
         /// Scroll the view the specified pixels, x and y.
         #[unsafe(method(scrollByDeltaX:deltaY:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollByDeltaX_deltaY(&self, delta_x: CGFloat, delta_y: CGFloat);
+        pub fn scrollByDeltaX_deltaY(&self, delta_x: CGFloat, delta_y: CGFloat);
     );
 }
 
@@ -1349,13 +1346,13 @@ impl XCUIElement {
         /// Manipulates the UI to change the displayed value of the slider to one based on a normalized position. 0 corresponds to the minimum value of the slider, 1 corresponds to its maximum value. The adjustment is a "best effort" to move the indicator to the desired position; absolute fidelity is not guaranteed.
         #[unsafe(method(adjustToNormalizedSliderPosition:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn adjustToNormalizedSliderPosition(&self, normalized_slider_position: CGFloat);
+        pub fn adjustToNormalizedSliderPosition(&self, normalized_slider_position: CGFloat);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Returns the position of the slider's indicator as a normalized value where 0 corresponds to the minimum value of the slider and 1 corresponds to its maximum value.
         #[unsafe(method(normalizedSliderPosition))]
         #[unsafe(method_family = none)]
-        pub unsafe fn normalizedSliderPosition(&self) -> CGFloat;
+        pub fn normalizedSliderPosition(&self) -> CGFloat;
     );
 }
 
@@ -1364,14 +1361,14 @@ extern_protocol!(
     pub unsafe trait XCUIElementSnapshot: XCUIElementAttributes + MainThreadOnly {
         #[unsafe(method(children))]
         #[unsafe(method_family = none)]
-        unsafe fn children(&self) -> Retained<NSArray<ProtocolObject<dyn XCUIElementSnapshot>>>;
+        fn children(&self) -> Retained<NSArray<ProtocolObject<dyn XCUIElementSnapshot>>>;
 
         /// Returns a hierarchical dictionary representation with standard attributes for the element and all
         /// of its descendants. The dictionary keys are of type XCUIElementAttributeName. If the value for a given
         /// attribute is null, the key will not be present, but empty strings may be found in the dictionary.
         #[unsafe(method(dictionaryRepresentation))]
         #[unsafe(method_family = none)]
-        unsafe fn dictionaryRepresentation(
+        fn dictionaryRepresentation(
             &self,
         ) -> Retained<NSDictionary<XCUIElementAttributeName, AnyObject>>;
     }
@@ -1385,7 +1382,7 @@ extern_protocol!(
         /// Returns a hierarchical data structure with standard attributes for the element and its children.
         #[unsafe(method(snapshotWithError:_))]
         #[unsafe(method_family = none)]
-        unsafe fn snapshotWithError(
+        fn snapshotWithError(
             &self,
         ) -> Result<Retained<ProtocolObject<dyn XCUIElementSnapshot>>, Retained<NSError>>;
     }
@@ -1503,22 +1500,22 @@ impl XCUIAccessibilityAuditIssue {
         /// The element associated with the issue.
         #[unsafe(method(element))]
         #[unsafe(method_family = none)]
-        pub unsafe fn element(&self, mtm: MainThreadMarker) -> Option<Retained<XCUIElement>>;
+        pub fn element(&self, mtm: MainThreadMarker) -> Option<Retained<XCUIElement>>;
 
         /// A short description about the issue.
         #[unsafe(method(compactDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn compactDescription(&self) -> Retained<NSString>;
+        pub fn compactDescription(&self) -> Retained<NSString>;
 
         /// A longer description of the issue with more details about the failure.
         #[unsafe(method(detailedDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn detailedDescription(&self) -> Retained<NSString>;
+        pub fn detailedDescription(&self) -> Retained<NSString>;
 
         /// The type of audit which generated the issue.
         #[unsafe(method(auditType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn auditType(&self) -> XCUIAccessibilityAuditType;
+        pub fn auditType(&self) -> XCUIAccessibilityAuditType;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -1581,16 +1578,16 @@ impl XCUIApplication {
         /// Returns a proxy for the application specified by the "Target Application" target setting.
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         /// Returns a proxy for an application associated with the specified bundle identifier.
         #[unsafe(method(initWithBundleIdentifier:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithBundleIdentifier(
+        pub fn initWithBundleIdentifier(
             this: Allocated<Self>,
             bundle_identifier: &NSString,
         ) -> Retained<Self>;
@@ -1598,7 +1595,7 @@ impl XCUIApplication {
         /// Returns a proxy for the application at the specified file system URL.
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
+        pub fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
 
         /// Launches the application synchronously. On return the application ready to handle events. If the
         /// application is already running, the existing instance will be terminated to ensure a clean state
@@ -1608,7 +1605,7 @@ impl XCUIApplication {
         /// at that point.
         #[unsafe(method(launch))]
         #[unsafe(method_family = none)]
-        pub unsafe fn launch(&self);
+        pub fn launch(&self);
 
         /// Launches the application synchronously using the provided URL. On return the application is ready
         /// to handle events, similar to the behavior of -launch.
@@ -1617,7 +1614,7 @@ impl XCUIApplication {
         /// test failure and the test will be halted at that point.
         #[unsafe(method(openURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn openURL(&self, url: &NSURL);
+        pub fn openURL(&self, url: &NSURL);
 
         /// Activates the application synchronously. On return the application is ready to handle events.
         /// If the application was not running prior, it will be launched automatically. If the application
@@ -1631,14 +1628,14 @@ impl XCUIApplication {
         /// will be halted at that point.
         #[unsafe(method(activate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activate(&self);
+        pub fn activate(&self);
 
         /// Terminates any running instance of the application. If the application has an existing debug session
         /// via Xcode, the termination is implemented as a halt via that debug connection. Otherwise, a SIGKILL
         /// is sent to the process.
         #[unsafe(method(terminate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn terminate(&self);
+        pub fn terminate(&self);
 
         /// The arguments that will be passed to the application on launch. If not modified, these are the
         /// arguments that Xcode will pass on launch. Those arguments can be changed, added to, or removed.
@@ -1647,14 +1644,14 @@ impl XCUIApplication {
         /// is launched.
         #[unsafe(method(launchArguments))]
         #[unsafe(method_family = none)]
-        pub unsafe fn launchArguments(&self) -> Retained<NSArray<NSString>>;
+        pub fn launchArguments(&self) -> Retained<NSArray<NSString>>;
 
         /// Setter for [`launchArguments`][Self::launchArguments].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLaunchArguments:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLaunchArguments(&self, launch_arguments: &NSArray<NSString>);
+        pub fn setLaunchArguments(&self, launch_arguments: &NSArray<NSString>);
 
         /// The environment that will be passed to the application on launch. If not modified, this is the
         /// environment that Xcode will pass on launch. Those variables can be changed, added to, or removed.
@@ -1663,17 +1660,14 @@ impl XCUIApplication {
         /// is launched.
         #[unsafe(method(launchEnvironment))]
         #[unsafe(method_family = none)]
-        pub unsafe fn launchEnvironment(&self) -> Retained<NSDictionary<NSString, NSString>>;
+        pub fn launchEnvironment(&self) -> Retained<NSDictionary<NSString, NSString>>;
 
         /// Setter for [`launchEnvironment`][Self::launchEnvironment].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLaunchEnvironment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLaunchEnvironment(
-            &self,
-            launch_environment: &NSDictionary<NSString, NSString>,
-        );
+        pub fn setLaunchEnvironment(&self, launch_environment: &NSDictionary<NSString, NSString>);
 
         /// The most recently observed state of the application. Applications are passively monitored to update
         /// this property as they change state. Consequently, updates to this property are inherently asynchronous.
@@ -1689,7 +1683,7 @@ impl XCUIApplication {
         /// XCUIApplicationStateNotRunning.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
-        pub unsafe fn state(&self) -> XCUIApplicationState;
+        pub fn state(&self) -> XCUIApplicationState;
 
         /// Waits for the application to become a specific state, giving up after a number of seconds.
         ///
@@ -1698,7 +1692,7 @@ impl XCUIApplication {
         #[must_use]
         #[unsafe(method(waitForState:timeout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn waitForState_timeout(
+        pub fn waitForState_timeout(
             &self,
             state: XCUIApplicationState,
             timeout: NSTimeInterval,
@@ -1717,7 +1711,7 @@ impl XCUIApplication {
         /// ```
         #[unsafe(method(resetAuthorizationStatusForResource:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resetAuthorizationStatusForResource(&self, resource: XCUIProtectedResource);
+        pub fn resetAuthorizationStatusForResource(&self, resource: XCUIProtectedResource);
 
         #[cfg(feature = "block2")]
         /// Runs an accessibility audit on the current view. Generates XCTIssue objects for each issue returned by the audit, and fails the test case by recording each of these issues. Returns an error if the audit failed to run.
@@ -1728,7 +1722,7 @@ impl XCUIApplication {
         /// Parameter `block`: An optional filter can be used to determine whether or not an issue should be recorded. To prevent an issue from recorded, return YES to handle it yourself.
         #[unsafe(method(performAccessibilityAuditWithAuditTypes:issueHandler:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn performAccessibilityAuditWithAuditTypes_issueHandler_error(
+        pub fn performAccessibilityAuditWithAuditTypes_issueHandler_error(
             &self,
             audit_types: XCUIAccessibilityAuditType,
             block: Option<
@@ -1773,22 +1767,19 @@ impl XCUICoordinate {
         /// The element that the coordinate is based on, either directly or via the coordinate from which it was derived.
         #[unsafe(method(referencedElement))]
         #[unsafe(method_family = none)]
-        pub unsafe fn referencedElement(&self) -> Retained<XCUIElement>;
+        pub fn referencedElement(&self) -> Retained<XCUIElement>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The dynamically computed value of the coordinate's location on screen. Note that this value is dependent on the current frame of the referenced element; if the element's frame changes, so will the value returned by this property. If the referenced element does exist when this is called, it will fail the test; check the referenced element's exists property if the element may not be present.
         #[unsafe(method(screenPoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn screenPoint(&self) -> CGPoint;
+        pub fn screenPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates a new coordinate with an absolute offset in points from the original coordinate.
         #[unsafe(method(coordinateWithOffset:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn coordinateWithOffset(
-            &self,
-            offset_vector: CGVector,
-        ) -> Retained<XCUICoordinate>;
+        pub fn coordinateWithOffset(&self, offset_vector: CGVector) -> Retained<XCUICoordinate>;
     );
 }
 
@@ -1797,19 +1788,19 @@ impl XCUICoordinate {
     extern_methods!(
         #[unsafe(method(tap))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tap(&self);
+        pub fn tap(&self);
 
         #[unsafe(method(doubleTap))]
         #[unsafe(method_family = none)]
-        pub unsafe fn doubleTap(&self);
+        pub fn doubleTap(&self);
 
         #[unsafe(method(pressForDuration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressForDuration(&self, duration: NSTimeInterval);
+        pub fn pressForDuration(&self, duration: NSTimeInterval);
 
         #[unsafe(method(pressForDuration:thenDragToCoordinate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressForDuration_thenDragToCoordinate(
+        pub fn pressForDuration_thenDragToCoordinate(
             &self,
             duration: NSTimeInterval,
             other_coordinate: &XCUICoordinate,
@@ -1818,7 +1809,7 @@ impl XCUICoordinate {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(pressForDuration:thenDragToCoordinate:withVelocity:thenHoldForDuration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pressForDuration_thenDragToCoordinate_withVelocity_thenHoldForDuration(
+        pub fn pressForDuration_thenDragToCoordinate_withVelocity_thenHoldForDuration(
             &self,
             duration: NSTimeInterval,
             other_coordinate: &XCUICoordinate,
@@ -1829,22 +1820,22 @@ impl XCUICoordinate {
         /// Sends a swipe-up gesture.
         #[unsafe(method(swipeUp))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeUp(&self);
+        pub fn swipeUp(&self);
 
         /// Sends a swipe-down gesture.
         #[unsafe(method(swipeDown))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeDown(&self);
+        pub fn swipeDown(&self);
 
         /// Sends a swipe-left gesture.
         #[unsafe(method(swipeLeft))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeLeft(&self);
+        pub fn swipeLeft(&self);
 
         /// Sends a swipe-right gesture.
         #[unsafe(method(swipeRight))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeRight(&self);
+        pub fn swipeRight(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Sends a swipe in the specified direction with a specified velocity.
@@ -1852,22 +1843,22 @@ impl XCUICoordinate {
         /// Parameter `velocity`: The velocity pixels per second at which to perform the swipe at.
         #[unsafe(method(swipeUpWithVelocity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeUpWithVelocity(&self, velocity: XCUIGestureVelocity);
+        pub fn swipeUpWithVelocity(&self, velocity: XCUIGestureVelocity);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(swipeDownWithVelocity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeDownWithVelocity(&self, velocity: XCUIGestureVelocity);
+        pub fn swipeDownWithVelocity(&self, velocity: XCUIGestureVelocity);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(swipeLeftWithVelocity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeLeftWithVelocity(&self, velocity: XCUIGestureVelocity);
+        pub fn swipeLeftWithVelocity(&self, velocity: XCUIGestureVelocity);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(swipeRightWithVelocity:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn swipeRightWithVelocity(&self, velocity: XCUIGestureVelocity);
+        pub fn swipeRightWithVelocity(&self, velocity: XCUIGestureVelocity);
     );
 }
 
@@ -1876,23 +1867,23 @@ impl XCUICoordinate {
     extern_methods!(
         #[unsafe(method(hover))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hover(&self);
+        pub fn hover(&self);
 
         #[unsafe(method(click))]
         #[unsafe(method_family = none)]
-        pub unsafe fn click(&self);
+        pub fn click(&self);
 
         #[unsafe(method(doubleClick))]
         #[unsafe(method_family = none)]
-        pub unsafe fn doubleClick(&self);
+        pub fn doubleClick(&self);
 
         #[unsafe(method(rightClick))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rightClick(&self);
+        pub fn rightClick(&self);
 
         #[unsafe(method(clickForDuration:thenDragToCoordinate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clickForDuration_thenDragToCoordinate(
+        pub fn clickForDuration_thenDragToCoordinate(
             &self,
             duration: NSTimeInterval,
             other_coordinate: &XCUICoordinate,
@@ -1901,7 +1892,7 @@ impl XCUICoordinate {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(clickForDuration:thenDragToCoordinate:withVelocity:thenHoldForDuration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn clickForDuration_thenDragToCoordinate_withVelocity_thenHoldForDuration(
+        pub fn clickForDuration_thenDragToCoordinate_withVelocity_thenHoldForDuration(
             &self,
             duration: NSTimeInterval,
             other_coordinate: &XCUICoordinate,
@@ -1912,7 +1903,7 @@ impl XCUICoordinate {
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(scrollByDeltaX:deltaY:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scrollByDeltaX_deltaY(&self, delta_x: CGFloat, delta_y: CGFloat);
+        pub fn scrollByDeltaX_deltaY(&self, delta_x: CGFloat, delta_y: CGFloat);
     );
 }
 
@@ -1943,21 +1934,18 @@ impl XCUILocation {
         #[cfg(feature = "objc2-core-location")]
         #[unsafe(method(initWithLocation:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithLocation(
-            this: Allocated<Self>,
-            location: &CLLocation,
-        ) -> Retained<Self>;
+        pub fn initWithLocation(this: Allocated<Self>, location: &CLLocation) -> Retained<Self>;
 
         /// Provides debugging information about the underlying CLLocation wrapped by this object.
         #[unsafe(method(debugDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn debugDescription(&self) -> Retained<NSString>;
+        pub fn debugDescription(&self) -> Retained<NSString>;
 
         #[cfg(feature = "objc2-core-location")]
         /// Provides access to the CLLocation object stored by this XCUILocation instance.
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
-        pub unsafe fn location(&self) -> Retained<CLLocation>;
+        pub fn location(&self) -> Retained<CLLocation>;
     );
 }
 
@@ -2008,7 +1996,7 @@ impl XCUIDevice {
         /// The current device.
         #[unsafe(method(sharedDevice))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedDevice(mtm: MainThreadMarker) -> Retained<XCUIDevice>;
+        pub fn sharedDevice(mtm: MainThreadMarker) -> Retained<XCUIDevice>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
@@ -2017,32 +2005,32 @@ impl XCUIDevice {
         #[deprecated]
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// The location currently being simulated by the device, if any.
         #[unsafe(method(location))]
         #[unsafe(method_family = none)]
-        pub unsafe fn location(&self) -> Option<Retained<XCUILocation>>;
+        pub fn location(&self) -> Option<Retained<XCUILocation>>;
 
         /// Setter for [`location`][Self::location].
         #[unsafe(method(setLocation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLocation(&self, location: Option<&XCUILocation>);
+        pub fn setLocation(&self, location: Option<&XCUILocation>);
 
         /// Get or set the UI style of the device. Uses the `XCUIDeviceAppearance` enum to describe the UI style.
         #[unsafe(method(appearance))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appearance(&self) -> XCUIDeviceAppearance;
+        pub fn appearance(&self) -> XCUIDeviceAppearance;
 
         /// Setter for [`appearance`][Self::appearance].
         #[unsafe(method(setAppearance:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAppearance(&self, appearance: XCUIDeviceAppearance);
+        pub fn setAppearance(&self, appearance: XCUIDeviceAppearance);
 
         /// Access system features of the device, such as its running applications, or the ability to open files on it.
         #[unsafe(method(system))]
         #[unsafe(method_family = none)]
-        pub unsafe fn system(&self) -> Retained<XCUISystem>;
+        pub fn system(&self) -> Retained<XCUISystem>;
     );
 }
 
@@ -2097,38 +2085,35 @@ impl XCUIElementQuery {
         /// Returns an element that will use the query for resolution.
         #[unsafe(method(element))]
         #[unsafe(method_family = none)]
-        pub unsafe fn element(&self) -> Retained<XCUIElement>;
+        pub fn element(&self) -> Retained<XCUIElement>;
 
         /// Evaluates the query at the time it is called and returns the number of matches found.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
-        pub unsafe fn count(&self) -> NSUInteger;
+        pub fn count(&self) -> NSUInteger;
 
         /// Returns an element that will resolve to the index into the query's result set.
         #[deprecated]
         #[unsafe(method(elementAtIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementAtIndex(&self, index: NSUInteger) -> Retained<XCUIElement>;
+        pub fn elementAtIndex(&self, index: NSUInteger) -> Retained<XCUIElement>;
 
         /// Returns an element that will use the index into the query's results to determine which underlying accessibility element it is matched with.
         #[unsafe(method(elementBoundByIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementBoundByIndex(&self, index: NSUInteger) -> Retained<XCUIElement>;
+        pub fn elementBoundByIndex(&self, index: NSUInteger) -> Retained<XCUIElement>;
 
         /// Returns an element that matches the predicate. The predicate will be evaluated against objects of type id
         /// <XCUIElementAttributes
         /// >.
         #[unsafe(method(elementMatchingPredicate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementMatchingPredicate(
-            &self,
-            predicate: &NSPredicate,
-        ) -> Retained<XCUIElement>;
+        pub fn elementMatchingPredicate(&self, predicate: &NSPredicate) -> Retained<XCUIElement>;
 
         /// Returns an element that matches the type and identifier.
         #[unsafe(method(elementMatchingType:identifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn elementMatchingType_identifier(
+        pub fn elementMatchingType_identifier(
             &self,
             element_type: XCUIElementType,
             identifier: Option<&NSString>,
@@ -2137,24 +2122,22 @@ impl XCUIElementQuery {
         /// Keyed subscripting is implemented as a shortcut for matching an identifier only. For example, app.descendants["Foo"] -> XCUIElement.
         #[unsafe(method(objectForKeyedSubscript:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectForKeyedSubscript(&self, key: &NSString) -> Retained<XCUIElement>;
+        pub fn objectForKeyedSubscript(&self, key: &NSString) -> Retained<XCUIElement>;
 
         /// Immediately evaluates the query and returns an array of elements bound to the resulting accessibility elements.
         #[unsafe(method(allElementsBoundByAccessibilityElement))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allElementsBoundByAccessibilityElement(
-            &self,
-        ) -> Retained<NSArray<XCUIElement>>;
+        pub fn allElementsBoundByAccessibilityElement(&self) -> Retained<NSArray<XCUIElement>>;
 
         /// Immediately evaluates the query and returns an array of elements bound by the index of each result.
         #[unsafe(method(allElementsBoundByIndex))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allElementsBoundByIndex(&self) -> Retained<NSArray<XCUIElement>>;
+        pub fn allElementsBoundByIndex(&self) -> Retained<NSArray<XCUIElement>>;
 
         /// Returns a new query that finds the descendants of all the elements found by the receiver.
         #[unsafe(method(descendantsMatchingType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn descendantsMatchingType(
+        pub fn descendantsMatchingType(
             &self,
             r#type: XCUIElementType,
         ) -> Retained<XCUIElementQuery>;
@@ -2162,24 +2145,18 @@ impl XCUIElementQuery {
         /// Returns a new query that finds the direct children of all the elements found by the receiver.
         #[unsafe(method(childrenMatchingType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn childrenMatchingType(
-            &self,
-            r#type: XCUIElementType,
-        ) -> Retained<XCUIElementQuery>;
+        pub fn childrenMatchingType(&self, r#type: XCUIElementType) -> Retained<XCUIElementQuery>;
 
         /// Returns a new query that applies the specified attributes or predicate to the receiver. The predicate will be evaluated against objects of type id
         /// <XCUIElementAttributes
         /// >.
         #[unsafe(method(matchingPredicate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn matchingPredicate(
-            &self,
-            predicate: &NSPredicate,
-        ) -> Retained<XCUIElementQuery>;
+        pub fn matchingPredicate(&self, predicate: &NSPredicate) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(matchingType:identifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn matchingType_identifier(
+        pub fn matchingType_identifier(
             &self,
             element_type: XCUIElementType,
             identifier: Option<&NSString>,
@@ -2187,24 +2164,18 @@ impl XCUIElementQuery {
 
         #[unsafe(method(matchingIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn matchingIdentifier(
-            &self,
-            identifier: &NSString,
-        ) -> Retained<XCUIElementQuery>;
+        pub fn matchingIdentifier(&self, identifier: &NSString) -> Retained<XCUIElementQuery>;
 
         /// Returns a new query for finding elements that contain a descendant matching the specification. The predicate will be evaluated against objects of type id
         /// <XCUIElementAttributes
         /// >.
         #[unsafe(method(containingPredicate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containingPredicate(
-            &self,
-            predicate: &NSPredicate,
-        ) -> Retained<XCUIElementQuery>;
+        pub fn containingPredicate(&self, predicate: &NSPredicate) -> Retained<XCUIElementQuery>;
 
         #[unsafe(method(containingType:identifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containingType_identifier(
+        pub fn containingType_identifier(
             &self,
             element_type: XCUIElementType,
             identifier: Option<&NSString>,
@@ -2217,7 +2188,7 @@ impl XCUIElementQuery {
         /// This data should be used for debugging only - depending on any of the data as part of a test is unsupported.
         #[unsafe(method(debugDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn debugDescription(&self) -> Retained<NSString>;
+        pub fn debugDescription(&self) -> Retained<NSString>;
     );
 }
 
@@ -2302,13 +2273,13 @@ impl XCUIScreen {
         /// Returns the current device's main screen.
         #[unsafe(method(mainScreen))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mainScreen(mtm: MainThreadMarker) -> Retained<XCUIScreen>;
+        pub fn mainScreen(mtm: MainThreadMarker) -> Retained<XCUIScreen>;
 
         /// Returns the list of active screens.
         /// The first screen returned in the list is the main screen.
         #[unsafe(method(screens))]
         #[unsafe(method_family = none)]
-        pub unsafe fn screens(mtm: MainThreadMarker) -> Retained<NSArray<XCUIScreen>>;
+        pub fn screens(mtm: MainThreadMarker) -> Retained<NSArray<XCUIScreen>>;
     );
 }
 
@@ -2340,12 +2311,12 @@ impl XCUIScreenshot {
         #[cfg(target_os = "macos")]
         #[unsafe(method(image))]
         #[unsafe(method_family = none)]
-        pub unsafe fn image(&self) -> Retained<NSImage>;
+        pub fn image(&self) -> Retained<NSImage>;
 
         /// PNG image data of the underlying image.
         #[unsafe(method(PNGRepresentation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn PNGRepresentation(&self) -> Retained<NSData>;
+        pub fn PNGRepresentation(&self) -> Retained<NSData>;
     );
 }
 
@@ -2376,6 +2347,6 @@ impl XCUISystem {
         /// Open a URL on the system using the default application for it.
         #[unsafe(method(openURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn openURL(&self, url: &NSURL);
+        pub fn openURL(&self, url: &NSURL);
     );
 }
