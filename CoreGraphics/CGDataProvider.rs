@@ -207,7 +207,7 @@ impl CGDataProvider {
 
     #[doc(alias = "CGDataProviderCreateWithCFData")]
     #[inline]
-    pub unsafe fn with_cf_data(data: Option<&CFData>) -> Option<CFRetained<CGDataProvider>> {
+    pub fn with_cf_data(data: Option<&CFData>) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
             fn CGDataProviderCreateWithCFData(
                 data: Option<&CFData>,
@@ -219,7 +219,7 @@ impl CGDataProvider {
 
     #[doc(alias = "CGDataProviderCreateWithURL")]
     #[inline]
-    pub unsafe fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGDataProvider>> {
+    pub fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
             fn CGDataProviderCreateWithURL(url: Option<&CFURL>) -> Option<NonNull<CGDataProvider>>;
         }
@@ -244,7 +244,7 @@ impl CGDataProvider {
 
     #[doc(alias = "CGDataProviderCopyData")]
     #[inline]
-    pub unsafe fn data(provider: Option<&CGDataProvider>) -> Option<CFRetained<CFData>> {
+    pub fn data(provider: Option<&CGDataProvider>) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CGDataProviderCopyData(provider: Option<&CGDataProvider>)
                 -> Option<NonNull<CFData>>;
@@ -255,7 +255,7 @@ impl CGDataProvider {
 
     #[doc(alias = "CGDataProviderGetInfo")]
     #[inline]
-    pub unsafe fn info(provider: Option<&CGDataProvider>) -> *mut c_void {
+    pub fn info(provider: Option<&CGDataProvider>) -> *mut c_void {
         extern "C-unwind" {
             fn CGDataProviderGetInfo(provider: Option<&CGDataProvider>) -> *mut c_void;
         }
@@ -321,7 +321,7 @@ pub unsafe extern "C-unwind" fn CGDataProviderCreateWithData(
 
 #[deprecated = "renamed to `CGDataProvider::with_cf_data`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDataProviderCreateWithCFData(
+pub extern "C-unwind" fn CGDataProviderCreateWithCFData(
     data: Option<&CFData>,
 ) -> Option<CFRetained<CGDataProvider>> {
     extern "C-unwind" {
@@ -334,7 +334,7 @@ pub unsafe extern "C-unwind" fn CGDataProviderCreateWithCFData(
 
 #[deprecated = "renamed to `CGDataProvider::with_url`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDataProviderCreateWithURL(
+pub extern "C-unwind" fn CGDataProviderCreateWithURL(
     url: Option<&CFURL>,
 ) -> Option<CFRetained<CGDataProvider>> {
     extern "C-unwind" {
@@ -360,7 +360,7 @@ pub unsafe extern "C-unwind" fn CGDataProviderCreateWithFilename(
 
 #[deprecated = "renamed to `CGDataProvider::data`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDataProviderCopyData(
+pub extern "C-unwind" fn CGDataProviderCopyData(
     provider: Option<&CGDataProvider>,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
@@ -370,7 +370,11 @@ pub unsafe extern "C-unwind" fn CGDataProviderCopyData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGDataProvider::info`"]
-    pub fn CGDataProviderGetInfo(provider: Option<&CGDataProvider>) -> *mut c_void;
+#[deprecated = "renamed to `CGDataProvider::info`"]
+#[inline]
+pub extern "C-unwind" fn CGDataProviderGetInfo(provider: Option<&CGDataProvider>) -> *mut c_void {
+    extern "C-unwind" {
+        fn CGDataProviderGetInfo(provider: Option<&CGDataProvider>) -> *mut c_void;
+    }
+    unsafe { CGDataProviderGetInfo(provider) }
 }

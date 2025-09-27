@@ -50,14 +50,20 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGError")]
-    pub fn CGReleaseDisplayFadeReservation(token: CGDisplayFadeReservationToken) -> CGError;
+#[cfg(feature = "CGError")]
+#[inline]
+pub extern "C-unwind" fn CGReleaseDisplayFadeReservation(
+    token: CGDisplayFadeReservationToken,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGReleaseDisplayFadeReservation(token: CGDisplayFadeReservationToken) -> CGError;
+    }
+    unsafe { CGReleaseDisplayFadeReservation(token) }
 }
 
 #[cfg(all(feature = "CGError", feature = "libc"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayFade(
+pub extern "C-unwind" fn CGDisplayFade(
     token: CGDisplayFadeReservationToken,
     duration: CGDisplayFadeInterval,
     start_blend: CGDisplayBlendFraction,
@@ -96,7 +102,7 @@ pub unsafe extern "C-unwind" fn CGDisplayFade(
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayFadeOperationInProgress() -> bool {
+pub extern "C-unwind" fn CGDisplayFadeOperationInProgress() -> bool {
     extern "C-unwind" {
         fn CGDisplayFadeOperationInProgress() -> libc::boolean_t;
     }

@@ -30,7 +30,7 @@ impl CGPDFContentStream {
     #[doc(alias = "CGPDFContentStreamCreateWithPage")]
     #[cfg(feature = "CGPDFPage")]
     #[inline]
-    pub unsafe fn create_with_page(page: &CGPDFPage) -> CGPDFContentStreamRef {
+    pub fn create_with_page(page: &CGPDFPage) -> CGPDFContentStreamRef {
         extern "C-unwind" {
             fn CGPDFContentStreamCreateWithPage(page: &CGPDFPage) -> CGPDFContentStreamRef;
         }
@@ -121,10 +121,16 @@ impl CGPDFContentStream {
     }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGPDFPage")]
-    #[deprecated = "renamed to `CGPDFContentStream::create_with_page`"]
-    pub fn CGPDFContentStreamCreateWithPage(page: &CGPDFPage) -> CGPDFContentStreamRef;
+#[cfg(feature = "CGPDFPage")]
+#[deprecated = "renamed to `CGPDFContentStream::create_with_page`"]
+#[inline]
+pub extern "C-unwind" fn CGPDFContentStreamCreateWithPage(
+    page: &CGPDFPage,
+) -> CGPDFContentStreamRef {
+    extern "C-unwind" {
+        fn CGPDFContentStreamCreateWithPage(page: &CGPDFPage) -> CGPDFContentStreamRef;
+    }
+    unsafe { CGPDFContentStreamCreateWithPage(page) }
 }
 
 extern "C-unwind" {

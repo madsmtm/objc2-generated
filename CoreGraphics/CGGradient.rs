@@ -142,7 +142,7 @@ impl CGGradient {
 
     #[doc(alias = "CGGradientGetContentHeadroom")]
     #[inline]
-    pub unsafe fn content_headroom(gradient: Option<&CGGradient>) -> c_float {
+    pub fn content_headroom(gradient: Option<&CGGradient>) -> c_float {
         extern "C-unwind" {
             fn CGGradientGetContentHeadroom(gradient: Option<&CGGradient>) -> c_float;
         }
@@ -215,7 +215,11 @@ pub unsafe extern "C-unwind" fn CGGradientCreateWithColors(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGGradient::content_headroom`"]
-    pub fn CGGradientGetContentHeadroom(gradient: Option<&CGGradient>) -> c_float;
+#[deprecated = "renamed to `CGGradient::content_headroom`"]
+#[inline]
+pub extern "C-unwind" fn CGGradientGetContentHeadroom(gradient: Option<&CGGradient>) -> c_float {
+    extern "C-unwind" {
+        fn CGGradientGetContentHeadroom(gradient: Option<&CGGradient>) -> c_float;
+    }
+    unsafe { CGGradientGetContentHeadroom(gradient) }
 }

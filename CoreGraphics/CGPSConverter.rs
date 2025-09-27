@@ -136,7 +136,7 @@ impl CGPSConverter {
 
     #[doc(alias = "CGPSConverterAbort")]
     #[inline]
-    pub unsafe fn abort(&self) -> bool {
+    pub fn abort(&self) -> bool {
         extern "C-unwind" {
             fn CGPSConverterAbort(converter: &CGPSConverter) -> bool;
         }
@@ -145,7 +145,7 @@ impl CGPSConverter {
 
     #[doc(alias = "CGPSConverterIsConverting")]
     #[inline]
-    pub unsafe fn is_converting(&self) -> bool {
+    pub fn is_converting(&self) -> bool {
         extern "C-unwind" {
             fn CGPSConverterIsConverting(converter: &CGPSConverter) -> bool;
         }
@@ -193,12 +193,20 @@ extern "C-unwind" {
     ) -> bool;
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGPSConverter::abort`"]
-    pub fn CGPSConverterAbort(converter: &CGPSConverter) -> bool;
+#[deprecated = "renamed to `CGPSConverter::abort`"]
+#[inline]
+pub extern "C-unwind" fn CGPSConverterAbort(converter: &CGPSConverter) -> bool {
+    extern "C-unwind" {
+        fn CGPSConverterAbort(converter: &CGPSConverter) -> bool;
+    }
+    unsafe { CGPSConverterAbort(converter) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGPSConverter::is_converting`"]
-    pub fn CGPSConverterIsConverting(converter: &CGPSConverter) -> bool;
+#[deprecated = "renamed to `CGPSConverter::is_converting`"]
+#[inline]
+pub extern "C-unwind" fn CGPSConverterIsConverting(converter: &CGPSConverter) -> bool {
+    extern "C-unwind" {
+        fn CGPSConverterIsConverting(converter: &CGPSConverter) -> bool;
+    }
+    unsafe { CGPSConverterIsConverting(converter) }
 }

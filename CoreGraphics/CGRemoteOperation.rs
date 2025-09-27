@@ -184,7 +184,7 @@ extern "C-unwind" {
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGCursorIsVisible() -> bool {
+pub extern "C-unwind" fn CGCursorIsVisible() -> bool {
     extern "C-unwind" {
         fn CGCursorIsVisible() -> libc::boolean_t;
     }
@@ -195,7 +195,7 @@ pub unsafe extern "C-unwind" fn CGCursorIsVisible() -> bool {
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGCursorIsDrawnInFramebuffer() -> bool {
+pub extern "C-unwind" fn CGCursorIsDrawnInFramebuffer() -> bool {
     extern "C-unwind" {
         fn CGCursorIsDrawnInFramebuffer() -> libc::boolean_t;
     }
@@ -203,14 +203,18 @@ pub unsafe extern "C-unwind" fn CGCursorIsDrawnInFramebuffer() -> bool {
     ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGError")]
-    pub fn CGWarpMouseCursorPosition(new_cursor_position: CGPoint) -> CGError;
+#[cfg(feature = "CGError")]
+#[inline]
+pub extern "C-unwind" fn CGWarpMouseCursorPosition(new_cursor_position: CGPoint) -> CGError {
+    extern "C-unwind" {
+        fn CGWarpMouseCursorPosition(new_cursor_position: CGPoint) -> CGError;
+    }
+    unsafe { CGWarpMouseCursorPosition(new_cursor_position) }
 }
 
 #[cfg(all(feature = "CGError", feature = "libc"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGAssociateMouseAndMouseCursorPosition(connected: bool) -> CGError {
+pub extern "C-unwind" fn CGAssociateMouseAndMouseCursorPosition(connected: bool) -> CGError {
     extern "C-unwind" {
         fn CGAssociateMouseAndMouseCursorPosition(connected: libc::boolean_t) -> CGError;
     }
@@ -218,7 +222,7 @@ pub unsafe extern "C-unwind" fn CGAssociateMouseAndMouseCursorPosition(connected
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CGWindowServerCreateServerPort() -> Option<CFRetained<CFMachPort>> {
+pub extern "C-unwind" fn CGWindowServerCreateServerPort() -> Option<CFRetained<CFMachPort>> {
     extern "C-unwind" {
         fn CGWindowServerCreateServerPort() -> Option<NonNull<CFMachPort>>;
     }
@@ -229,7 +233,7 @@ pub unsafe extern "C-unwind" fn CGWindowServerCreateServerPort() -> Option<CFRet
 #[cfg(all(feature = "CGError", feature = "libc"))]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGEnableEventStateCombining(combine_state: bool) -> CGError {
+pub extern "C-unwind" fn CGEnableEventStateCombining(combine_state: bool) -> CGError {
     extern "C-unwind" {
         fn CGEnableEventStateCombining(combine_state: libc::boolean_t) -> CGError;
     }
@@ -239,7 +243,7 @@ pub unsafe extern "C-unwind" fn CGEnableEventStateCombining(combine_state: bool)
 #[cfg(all(feature = "CGError", feature = "libc"))]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGInhibitLocalEvents(inhibit: bool) -> CGError {
+pub extern "C-unwind" fn CGInhibitLocalEvents(inhibit: bool) -> CGError {
     extern "C-unwind" {
         fn CGInhibitLocalEvents(inhibit: libc::boolean_t) -> CGError;
     }
@@ -249,7 +253,7 @@ pub unsafe extern "C-unwind" fn CGInhibitLocalEvents(inhibit: bool) -> CGError {
 #[cfg(all(feature = "CGError", feature = "libc"))]
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGPostKeyboardEvent(
+pub extern "C-unwind" fn CGPostKeyboardEvent(
     key_char: CGCharCode,
     virtual_key: CGKeyCode,
     key_down: bool,
@@ -314,24 +318,35 @@ unsafe impl RefEncode for CGEventSuppressionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGError")]
-    #[deprecated = "No longer supported"]
-    pub fn CGSetLocalEventsFilterDuringSuppressionState(
-        filter: CGEventFilterMask,
-        state: CGEventSuppressionState,
-    ) -> CGError;
+#[cfg(feature = "CGError")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub extern "C-unwind" fn CGSetLocalEventsFilterDuringSuppressionState(
+    filter: CGEventFilterMask,
+    state: CGEventSuppressionState,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGSetLocalEventsFilterDuringSuppressionState(
+            filter: CGEventFilterMask,
+            state: CGEventSuppressionState,
+        ) -> CGError;
+    }
+    unsafe { CGSetLocalEventsFilterDuringSuppressionState(filter, state) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGError")]
-    #[deprecated = "No longer supported"]
-    pub fn CGSetLocalEventsSuppressionInterval(seconds: CFTimeInterval) -> CGError;
+#[cfg(feature = "CGError")]
+#[deprecated = "No longer supported"]
+#[inline]
+pub extern "C-unwind" fn CGSetLocalEventsSuppressionInterval(seconds: CFTimeInterval) -> CGError {
+    extern "C-unwind" {
+        fn CGSetLocalEventsSuppressionInterval(seconds: CFTimeInterval) -> CGError;
+    }
+    unsafe { CGSetLocalEventsSuppressionInterval(seconds) }
 }
 
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGWindowServerCFMachPort() -> Option<CFRetained<CFMachPort>> {
+pub extern "C-unwind" fn CGWindowServerCFMachPort() -> Option<CFRetained<CFMachPort>> {
     extern "C-unwind" {
         fn CGWindowServerCFMachPort() -> Option<NonNull<CFMachPort>>;
     }

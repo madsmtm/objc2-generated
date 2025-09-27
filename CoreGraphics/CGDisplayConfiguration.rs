@@ -140,8 +140,12 @@ extern "C-unwind" {
     ) -> CGError;
 }
 
-extern "C-unwind" {
-    pub fn CGRestorePermanentDisplayConfiguration();
+#[inline]
+pub extern "C-unwind" fn CGRestorePermanentDisplayConfiguration() {
+    extern "C-unwind" {
+        fn CGRestorePermanentDisplayConfiguration();
+    }
+    unsafe { CGRestorePermanentDisplayConfiguration() }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags?language=objc)
@@ -218,7 +222,7 @@ extern "C-unwind" {
 
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError", feature = "libc"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplaySetStereoOperation(
+pub extern "C-unwind" fn CGDisplaySetStereoOperation(
     display: CGDirectDisplayID,
     stereo: bool,
     force_blue_line: bool,
@@ -237,7 +241,7 @@ pub unsafe extern "C-unwind" fn CGDisplaySetStereoOperation(
 
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayIsActive(display: CGDirectDisplayID) -> bool {
+pub extern "C-unwind" fn CGDisplayIsActive(display: CGDirectDisplayID) -> bool {
     extern "C-unwind" {
         fn CGDisplayIsActive(display: CGDirectDisplayID) -> libc::boolean_t;
     }
@@ -247,7 +251,7 @@ pub unsafe extern "C-unwind" fn CGDisplayIsActive(display: CGDirectDisplayID) ->
 
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayIsAsleep(display: CGDirectDisplayID) -> bool {
+pub extern "C-unwind" fn CGDisplayIsAsleep(display: CGDirectDisplayID) -> bool {
     extern "C-unwind" {
         fn CGDisplayIsAsleep(display: CGDirectDisplayID) -> libc::boolean_t;
     }
@@ -257,7 +261,7 @@ pub unsafe extern "C-unwind" fn CGDisplayIsAsleep(display: CGDirectDisplayID) ->
 
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayIsOnline(display: CGDirectDisplayID) -> bool {
+pub extern "C-unwind" fn CGDisplayIsOnline(display: CGDirectDisplayID) -> bool {
     extern "C-unwind" {
         fn CGDisplayIsOnline(display: CGDirectDisplayID) -> libc::boolean_t;
     }
@@ -267,7 +271,7 @@ pub unsafe extern "C-unwind" fn CGDisplayIsOnline(display: CGDirectDisplayID) ->
 
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayIsMain(display: CGDirectDisplayID) -> bool {
+pub extern "C-unwind" fn CGDisplayIsMain(display: CGDirectDisplayID) -> bool {
     extern "C-unwind" {
         fn CGDisplayIsMain(display: CGDirectDisplayID) -> libc::boolean_t;
     }
@@ -277,7 +281,7 @@ pub unsafe extern "C-unwind" fn CGDisplayIsMain(display: CGDirectDisplayID) -> b
 
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayIsBuiltin(display: CGDirectDisplayID) -> bool {
+pub extern "C-unwind" fn CGDisplayIsBuiltin(display: CGDirectDisplayID) -> bool {
     extern "C-unwind" {
         fn CGDisplayIsBuiltin(display: CGDirectDisplayID) -> libc::boolean_t;
     }
@@ -287,7 +291,7 @@ pub unsafe extern "C-unwind" fn CGDisplayIsBuiltin(display: CGDirectDisplayID) -
 
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayIsInMirrorSet(display: CGDirectDisplayID) -> bool {
+pub extern "C-unwind" fn CGDisplayIsInMirrorSet(display: CGDirectDisplayID) -> bool {
     extern "C-unwind" {
         fn CGDisplayIsInMirrorSet(display: CGDirectDisplayID) -> libc::boolean_t;
     }
@@ -297,7 +301,7 @@ pub unsafe extern "C-unwind" fn CGDisplayIsInMirrorSet(display: CGDirectDisplayI
 
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayIsAlwaysInMirrorSet(display: CGDirectDisplayID) -> bool {
+pub extern "C-unwind" fn CGDisplayIsAlwaysInMirrorSet(display: CGDirectDisplayID) -> bool {
     extern "C-unwind" {
         fn CGDisplayIsAlwaysInMirrorSet(display: CGDirectDisplayID) -> libc::boolean_t;
     }
@@ -307,7 +311,7 @@ pub unsafe extern "C-unwind" fn CGDisplayIsAlwaysInMirrorSet(display: CGDirectDi
 
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayIsInHWMirrorSet(display: CGDirectDisplayID) -> bool {
+pub extern "C-unwind" fn CGDisplayIsInHWMirrorSet(display: CGDirectDisplayID) -> bool {
     extern "C-unwind" {
         fn CGDisplayIsInHWMirrorSet(display: CGDirectDisplayID) -> libc::boolean_t;
     }
@@ -315,16 +319,18 @@ pub unsafe extern "C-unwind" fn CGDisplayIsInHWMirrorSet(display: CGDirectDispla
     ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGDirectDisplay")]
-    pub fn CGDisplayMirrorsDisplay(display: CGDirectDisplayID) -> CGDirectDisplayID;
+#[cfg(feature = "CGDirectDisplay")]
+#[inline]
+pub extern "C-unwind" fn CGDisplayMirrorsDisplay(display: CGDirectDisplayID) -> CGDirectDisplayID {
+    extern "C-unwind" {
+        fn CGDisplayMirrorsDisplay(display: CGDirectDisplayID) -> CGDirectDisplayID;
+    }
+    unsafe { CGDisplayMirrorsDisplay(display) }
 }
 
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayUsesOpenGLAcceleration(
-    display: CGDirectDisplayID,
-) -> bool {
+pub extern "C-unwind" fn CGDisplayUsesOpenGLAcceleration(display: CGDirectDisplayID) -> bool {
     extern "C-unwind" {
         fn CGDisplayUsesOpenGLAcceleration(display: CGDirectDisplayID) -> libc::boolean_t;
     }
@@ -334,7 +340,7 @@ pub unsafe extern "C-unwind" fn CGDisplayUsesOpenGLAcceleration(
 
 #[cfg(all(feature = "CGDirectDisplay", feature = "libc"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayIsStereo(display: CGDirectDisplayID) -> bool {
+pub extern "C-unwind" fn CGDisplayIsStereo(display: CGDirectDisplayID) -> bool {
     extern "C-unwind" {
         fn CGDisplayIsStereo(display: CGDirectDisplayID) -> libc::boolean_t;
     }
@@ -342,44 +348,72 @@ pub unsafe extern "C-unwind" fn CGDisplayIsStereo(display: CGDirectDisplayID) ->
     ret != 0
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGDirectDisplay")]
-    pub fn CGDisplayPrimaryDisplay(display: CGDirectDisplayID) -> CGDirectDisplayID;
+#[cfg(feature = "CGDirectDisplay")]
+#[inline]
+pub extern "C-unwind" fn CGDisplayPrimaryDisplay(display: CGDirectDisplayID) -> CGDirectDisplayID {
+    extern "C-unwind" {
+        fn CGDisplayPrimaryDisplay(display: CGDirectDisplayID) -> CGDirectDisplayID;
+    }
+    unsafe { CGDisplayPrimaryDisplay(display) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGDirectDisplay")]
-    pub fn CGDisplayUnitNumber(display: CGDirectDisplayID) -> u32;
+#[cfg(feature = "CGDirectDisplay")]
+#[inline]
+pub extern "C-unwind" fn CGDisplayUnitNumber(display: CGDirectDisplayID) -> u32 {
+    extern "C-unwind" {
+        fn CGDisplayUnitNumber(display: CGDirectDisplayID) -> u32;
+    }
+    unsafe { CGDisplayUnitNumber(display) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGDirectDisplay")]
-    pub fn CGDisplayVendorNumber(display: CGDirectDisplayID) -> u32;
+#[cfg(feature = "CGDirectDisplay")]
+#[inline]
+pub extern "C-unwind" fn CGDisplayVendorNumber(display: CGDirectDisplayID) -> u32 {
+    extern "C-unwind" {
+        fn CGDisplayVendorNumber(display: CGDirectDisplayID) -> u32;
+    }
+    unsafe { CGDisplayVendorNumber(display) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGDirectDisplay")]
-    pub fn CGDisplayModelNumber(display: CGDirectDisplayID) -> u32;
+#[cfg(feature = "CGDirectDisplay")]
+#[inline]
+pub extern "C-unwind" fn CGDisplayModelNumber(display: CGDirectDisplayID) -> u32 {
+    extern "C-unwind" {
+        fn CGDisplayModelNumber(display: CGDirectDisplayID) -> u32;
+    }
+    unsafe { CGDisplayModelNumber(display) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGDirectDisplay")]
-    pub fn CGDisplaySerialNumber(display: CGDirectDisplayID) -> u32;
+#[cfg(feature = "CGDirectDisplay")]
+#[inline]
+pub extern "C-unwind" fn CGDisplaySerialNumber(display: CGDirectDisplayID) -> u32 {
+    extern "C-unwind" {
+        fn CGDisplaySerialNumber(display: CGDirectDisplayID) -> u32;
+    }
+    unsafe { CGDisplaySerialNumber(display) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGDirectDisplay")]
-    pub fn CGDisplayScreenSize(display: CGDirectDisplayID) -> CGSize;
+#[cfg(feature = "CGDirectDisplay")]
+#[inline]
+pub extern "C-unwind" fn CGDisplayScreenSize(display: CGDirectDisplayID) -> CGSize {
+    extern "C-unwind" {
+        fn CGDisplayScreenSize(display: CGDirectDisplayID) -> CGSize;
+    }
+    unsafe { CGDisplayScreenSize(display) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGDirectDisplay")]
-    pub fn CGDisplayRotation(display: CGDirectDisplayID) -> c_double;
+#[cfg(feature = "CGDirectDisplay")]
+#[inline]
+pub extern "C-unwind" fn CGDisplayRotation(display: CGDirectDisplayID) -> c_double {
+    extern "C-unwind" {
+        fn CGDisplayRotation(display: CGDirectDisplayID) -> c_double;
+    }
+    unsafe { CGDisplayRotation(display) }
 }
 
 #[cfg(all(feature = "CGColorSpace", feature = "CGDirectDisplay"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayCopyColorSpace(
+pub extern "C-unwind" fn CGDisplayCopyColorSpace(
     display: CGDirectDisplayID,
 ) -> CFRetained<CGColorSpace> {
     extern "C-unwind" {

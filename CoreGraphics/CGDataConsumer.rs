@@ -92,7 +92,7 @@ impl CGDataConsumer {
 
     #[doc(alias = "CGDataConsumerCreateWithURL")]
     #[inline]
-    pub unsafe fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGDataConsumer>> {
+    pub fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGDataConsumer>> {
         extern "C-unwind" {
             fn CGDataConsumerCreateWithURL(url: Option<&CFURL>) -> Option<NonNull<CGDataConsumer>>;
         }
@@ -102,7 +102,7 @@ impl CGDataConsumer {
 
     #[doc(alias = "CGDataConsumerCreateWithCFData")]
     #[inline]
-    pub unsafe fn with_cf_data(data: Option<&CFMutableData>) -> Option<CFRetained<CGDataConsumer>> {
+    pub fn with_cf_data(data: Option<&CFMutableData>) -> Option<CFRetained<CGDataConsumer>> {
         extern "C-unwind" {
             fn CGDataConsumerCreateWithCFData(
                 data: Option<&CFMutableData>,
@@ -131,7 +131,7 @@ pub unsafe extern "C-unwind" fn CGDataConsumerCreate(
 
 #[deprecated = "renamed to `CGDataConsumer::with_url`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDataConsumerCreateWithURL(
+pub extern "C-unwind" fn CGDataConsumerCreateWithURL(
     url: Option<&CFURL>,
 ) -> Option<CFRetained<CGDataConsumer>> {
     extern "C-unwind" {
@@ -143,7 +143,7 @@ pub unsafe extern "C-unwind" fn CGDataConsumerCreateWithURL(
 
 #[deprecated = "renamed to `CGDataConsumer::with_cf_data`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDataConsumerCreateWithCFData(
+pub extern "C-unwind" fn CGDataConsumerCreateWithCFData(
     data: Option<&CFMutableData>,
 ) -> Option<CFRetained<CGDataConsumer>> {
     extern "C-unwind" {

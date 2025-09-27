@@ -31,7 +31,7 @@ pub type CGPDFOperatorCallback = Option<unsafe extern "C-unwind" fn(CGPDFScanner
 impl CGPDFOperatorTable {
     #[doc(alias = "CGPDFOperatorTableCreate")]
     #[inline]
-    pub unsafe fn create() -> CGPDFOperatorTableRef {
+    pub fn create() -> CGPDFOperatorTableRef {
         extern "C-unwind" {
             fn CGPDFOperatorTableCreate() -> CGPDFOperatorTableRef;
         }
@@ -86,9 +86,13 @@ impl CGPDFOperatorTable {
     }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGPDFOperatorTable::create`"]
-    pub fn CGPDFOperatorTableCreate() -> CGPDFOperatorTableRef;
+#[deprecated = "renamed to `CGPDFOperatorTable::create`"]
+#[inline]
+pub extern "C-unwind" fn CGPDFOperatorTableCreate() -> CGPDFOperatorTableRef {
+    extern "C-unwind" {
+        fn CGPDFOperatorTableCreate() -> CGPDFOperatorTableRef;
+    }
+    unsafe { CGPDFOperatorTableCreate() }
 }
 
 extern "C-unwind" {

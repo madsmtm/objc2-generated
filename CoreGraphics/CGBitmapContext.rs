@@ -286,39 +286,63 @@ extern "C" {
     pub static kCGAdaptiveMaximumBitDepth: &'static CFString;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGBitmapContextGetData(context: Option<&CGContext>) -> *mut c_void;
+#[cfg(feature = "CGContext")]
+#[inline]
+pub extern "C-unwind" fn CGBitmapContextGetData(context: Option<&CGContext>) -> *mut c_void {
+    extern "C-unwind" {
+        fn CGBitmapContextGetData(context: Option<&CGContext>) -> *mut c_void;
+    }
+    unsafe { CGBitmapContextGetData(context) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGBitmapContextGetWidth(context: Option<&CGContext>) -> usize;
+#[cfg(feature = "CGContext")]
+#[inline]
+pub extern "C-unwind" fn CGBitmapContextGetWidth(context: Option<&CGContext>) -> usize {
+    extern "C-unwind" {
+        fn CGBitmapContextGetWidth(context: Option<&CGContext>) -> usize;
+    }
+    unsafe { CGBitmapContextGetWidth(context) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGBitmapContextGetHeight(context: Option<&CGContext>) -> usize;
+#[cfg(feature = "CGContext")]
+#[inline]
+pub extern "C-unwind" fn CGBitmapContextGetHeight(context: Option<&CGContext>) -> usize {
+    extern "C-unwind" {
+        fn CGBitmapContextGetHeight(context: Option<&CGContext>) -> usize;
+    }
+    unsafe { CGBitmapContextGetHeight(context) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGBitmapContextGetBitsPerComponent(context: Option<&CGContext>) -> usize;
+#[cfg(feature = "CGContext")]
+#[inline]
+pub extern "C-unwind" fn CGBitmapContextGetBitsPerComponent(context: Option<&CGContext>) -> usize {
+    extern "C-unwind" {
+        fn CGBitmapContextGetBitsPerComponent(context: Option<&CGContext>) -> usize;
+    }
+    unsafe { CGBitmapContextGetBitsPerComponent(context) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGBitmapContextGetBitsPerPixel(context: Option<&CGContext>) -> usize;
+#[cfg(feature = "CGContext")]
+#[inline]
+pub extern "C-unwind" fn CGBitmapContextGetBitsPerPixel(context: Option<&CGContext>) -> usize {
+    extern "C-unwind" {
+        fn CGBitmapContextGetBitsPerPixel(context: Option<&CGContext>) -> usize;
+    }
+    unsafe { CGBitmapContextGetBitsPerPixel(context) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGBitmapContextGetBytesPerRow(context: Option<&CGContext>) -> usize;
+#[cfg(feature = "CGContext")]
+#[inline]
+pub extern "C-unwind" fn CGBitmapContextGetBytesPerRow(context: Option<&CGContext>) -> usize {
+    extern "C-unwind" {
+        fn CGBitmapContextGetBytesPerRow(context: Option<&CGContext>) -> usize;
+    }
+    unsafe { CGBitmapContextGetBytesPerRow(context) }
 }
 
 #[cfg(all(feature = "CGColorSpace", feature = "CGContext"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGBitmapContextGetColorSpace(
+pub extern "C-unwind" fn CGBitmapContextGetColorSpace(
     context: Option<&CGContext>,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
@@ -330,19 +354,29 @@ pub unsafe extern "C-unwind" fn CGBitmapContextGetColorSpace(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(all(feature = "CGContext", feature = "CGImage"))]
-    pub fn CGBitmapContextGetAlphaInfo(context: Option<&CGContext>) -> CGImageAlphaInfo;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "CGContext", feature = "CGImage"))]
-    pub fn CGBitmapContextGetBitmapInfo(context: Option<&CGContext>) -> CGBitmapInfo;
+#[cfg(all(feature = "CGContext", feature = "CGImage"))]
+#[inline]
+pub extern "C-unwind" fn CGBitmapContextGetAlphaInfo(
+    context: Option<&CGContext>,
+) -> CGImageAlphaInfo {
+    extern "C-unwind" {
+        fn CGBitmapContextGetAlphaInfo(context: Option<&CGContext>) -> CGImageAlphaInfo;
+    }
+    unsafe { CGBitmapContextGetAlphaInfo(context) }
 }
 
 #[cfg(all(feature = "CGContext", feature = "CGImage"))]
 #[inline]
-pub unsafe extern "C-unwind" fn CGBitmapContextCreateImage(
+pub extern "C-unwind" fn CGBitmapContextGetBitmapInfo(context: Option<&CGContext>) -> CGBitmapInfo {
+    extern "C-unwind" {
+        fn CGBitmapContextGetBitmapInfo(context: Option<&CGContext>) -> CGBitmapInfo;
+    }
+    unsafe { CGBitmapContextGetBitmapInfo(context) }
+}
+
+#[cfg(all(feature = "CGContext", feature = "CGImage"))]
+#[inline]
+pub extern "C-unwind" fn CGBitmapContextCreateImage(
     context: Option<&CGContext>,
 ) -> Option<CFRetained<CGImage>> {
     extern "C-unwind" {

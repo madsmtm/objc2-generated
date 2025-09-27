@@ -184,7 +184,7 @@ impl CGDisplayStreamUpdate {
     #[doc(alias = "CGDisplayStreamUpdateCreateMergedUpdate")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    pub unsafe fn new_merged_update(
+    pub fn new_merged_update(
         first_update: Option<&CGDisplayStreamUpdate>,
         second_update: Option<&CGDisplayStreamUpdate>,
     ) -> Option<CFRetained<CGDisplayStreamUpdate>> {
@@ -241,7 +241,7 @@ impl CGDisplayStreamUpdate {
     #[doc(alias = "CGDisplayStreamUpdateGetDropCount")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    pub unsafe fn drop_count(update_ref: Option<&CGDisplayStreamUpdate>) -> usize {
+    pub fn drop_count(update_ref: Option<&CGDisplayStreamUpdate>) -> usize {
         extern "C-unwind" {
             fn CGDisplayStreamUpdateGetDropCount(
                 update_ref: Option<&CGDisplayStreamUpdate>,
@@ -504,7 +504,7 @@ impl CGDisplayStream {
     #[cfg(feature = "CGError")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    pub unsafe fn start(display_stream: Option<&CGDisplayStream>) -> CGError {
+    pub fn start(display_stream: Option<&CGDisplayStream>) -> CGError {
         extern "C-unwind" {
             fn CGDisplayStreamStart(display_stream: Option<&CGDisplayStream>) -> CGError;
         }
@@ -524,7 +524,7 @@ impl CGDisplayStream {
     #[cfg(feature = "CGError")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    pub unsafe fn stop(display_stream: Option<&CGDisplayStream>) -> CGError {
+    pub fn stop(display_stream: Option<&CGDisplayStream>) -> CGError {
         extern "C-unwind" {
             fn CGDisplayStreamStop(display_stream: Option<&CGDisplayStream>) -> CGError;
         }
@@ -564,7 +564,7 @@ extern "C-unwind" {
 
 #[deprecated = "renamed to `CGDisplayStreamUpdate::new_merged_update`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGDisplayStreamUpdateCreateMergedUpdate(
+pub extern "C-unwind" fn CGDisplayStreamUpdateCreateMergedUpdate(
     first_update: Option<&CGDisplayStreamUpdate>,
     second_update: Option<&CGDisplayStreamUpdate>,
 ) -> Option<CFRetained<CGDisplayStreamUpdate>> {
@@ -587,9 +587,15 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGDisplayStreamUpdate::drop_count`"]
-    pub fn CGDisplayStreamUpdateGetDropCount(update_ref: Option<&CGDisplayStreamUpdate>) -> usize;
+#[deprecated = "renamed to `CGDisplayStreamUpdate::drop_count`"]
+#[inline]
+pub extern "C-unwind" fn CGDisplayStreamUpdateGetDropCount(
+    update_ref: Option<&CGDisplayStreamUpdate>,
+) -> usize {
+    extern "C-unwind" {
+        fn CGDisplayStreamUpdateGetDropCount(update_ref: Option<&CGDisplayStreamUpdate>) -> usize;
+    }
+    unsafe { CGDisplayStreamUpdateGetDropCount(update_ref) }
 }
 
 #[cfg(all(
@@ -674,16 +680,24 @@ pub unsafe extern "C-unwind" fn CGDisplayStreamCreateWithDispatchQueue(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGError")]
-    #[deprecated = "renamed to `CGDisplayStream::start`"]
-    pub fn CGDisplayStreamStart(display_stream: Option<&CGDisplayStream>) -> CGError;
+#[cfg(feature = "CGError")]
+#[deprecated = "renamed to `CGDisplayStream::start`"]
+#[inline]
+pub extern "C-unwind" fn CGDisplayStreamStart(display_stream: Option<&CGDisplayStream>) -> CGError {
+    extern "C-unwind" {
+        fn CGDisplayStreamStart(display_stream: Option<&CGDisplayStream>) -> CGError;
+    }
+    unsafe { CGDisplayStreamStart(display_stream) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGError")]
-    #[deprecated = "renamed to `CGDisplayStream::stop`"]
-    pub fn CGDisplayStreamStop(display_stream: Option<&CGDisplayStream>) -> CGError;
+#[cfg(feature = "CGError")]
+#[deprecated = "renamed to `CGDisplayStream::stop`"]
+#[inline]
+pub extern "C-unwind" fn CGDisplayStreamStop(display_stream: Option<&CGDisplayStream>) -> CGError {
+    extern "C-unwind" {
+        fn CGDisplayStreamStop(display_stream: Option<&CGDisplayStream>) -> CGError;
+    }
+    unsafe { CGDisplayStreamStop(display_stream) }
 }
 
 #[deprecated = "renamed to `CGDisplayStream::run_loop_source`"]

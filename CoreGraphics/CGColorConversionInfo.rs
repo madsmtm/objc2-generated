@@ -65,7 +65,7 @@ impl CGColorConversionInfo {
     #[doc(alias = "CGColorConversionInfoCreate")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
-    pub unsafe fn new(
+    pub fn new(
         src: Option<&CGColorSpace>,
         dst: Option<&CGColorSpace>,
     ) -> Option<CFRetained<CGColorConversionInfo>> {
@@ -226,7 +226,7 @@ extern "C" {
 #[cfg(feature = "CGColorSpace")]
 #[deprecated = "renamed to `CGColorConversionInfo::new`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorConversionInfoCreate(
+pub extern "C-unwind" fn CGColorConversionInfoCreate(
     src: Option<&CGColorSpace>,
     dst: Option<&CGColorSpace>,
 ) -> Option<CFRetained<CGColorConversionInfo>> {

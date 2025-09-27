@@ -58,9 +58,7 @@ impl CGRenderingBufferProvider {
 
     #[doc(alias = "CGRenderingBufferProviderCreateWithCFData")]
     #[inline]
-    pub unsafe fn with_cf_data(
-        data: &CFMutableData,
-    ) -> Option<CFRetained<CGRenderingBufferProvider>> {
+    pub fn with_cf_data(data: &CFMutableData) -> Option<CFRetained<CGRenderingBufferProvider>> {
         extern "C-unwind" {
             fn CGRenderingBufferProviderCreateWithCFData(
                 data: &CFMutableData,
@@ -72,7 +70,7 @@ impl CGRenderingBufferProvider {
 
     #[doc(alias = "CGRenderingBufferProviderGetSize")]
     #[inline]
-    pub unsafe fn size(&self) -> usize {
+    pub fn size(&self) -> usize {
         extern "C-unwind" {
             fn CGRenderingBufferProviderGetSize(provider: &CGRenderingBufferProvider) -> usize;
         }
@@ -80,12 +78,22 @@ impl CGRenderingBufferProvider {
     }
 }
 
-extern "C-unwind" {
-    pub fn CGRenderingBufferLockBytePtr(provider: &CGRenderingBufferProvider) -> *mut c_void;
+#[inline]
+pub extern "C-unwind" fn CGRenderingBufferLockBytePtr(
+    provider: &CGRenderingBufferProvider,
+) -> *mut c_void {
+    extern "C-unwind" {
+        fn CGRenderingBufferLockBytePtr(provider: &CGRenderingBufferProvider) -> *mut c_void;
+    }
+    unsafe { CGRenderingBufferLockBytePtr(provider) }
 }
 
-extern "C-unwind" {
-    pub fn CGRenderingBufferUnlockBytePtr(provider: &CGRenderingBufferProvider);
+#[inline]
+pub extern "C-unwind" fn CGRenderingBufferUnlockBytePtr(provider: &CGRenderingBufferProvider) {
+    extern "C-unwind" {
+        fn CGRenderingBufferUnlockBytePtr(provider: &CGRenderingBufferProvider);
+    }
+    unsafe { CGRenderingBufferUnlockBytePtr(provider) }
 }
 
 unsafe impl ConcreteType for CGRenderingBufferProvider {
@@ -126,7 +134,7 @@ pub unsafe extern "C-unwind" fn CGRenderingBufferProviderCreate(
 
 #[deprecated = "renamed to `CGRenderingBufferProvider::with_cf_data`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGRenderingBufferProviderCreateWithCFData(
+pub extern "C-unwind" fn CGRenderingBufferProviderCreateWithCFData(
     data: &CFMutableData,
 ) -> Option<CFRetained<CGRenderingBufferProvider>> {
     extern "C-unwind" {
@@ -138,7 +146,13 @@ pub unsafe extern "C-unwind" fn CGRenderingBufferProviderCreateWithCFData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGRenderingBufferProvider::size`"]
-    pub fn CGRenderingBufferProviderGetSize(provider: &CGRenderingBufferProvider) -> usize;
+#[deprecated = "renamed to `CGRenderingBufferProvider::size`"]
+#[inline]
+pub extern "C-unwind" fn CGRenderingBufferProviderGetSize(
+    provider: &CGRenderingBufferProvider,
+) -> usize {
+    extern "C-unwind" {
+        fn CGRenderingBufferProviderGetSize(provider: &CGRenderingBufferProvider) -> usize;
+    }
+    unsafe { CGRenderingBufferProviderGetSize(provider) }
 }

@@ -39,90 +39,170 @@ extern "C" {
 
 // TODO: pub fn CGRectMake(x: CGFloat,y: CGFloat,width: CGFloat,height: CGFloat,) -> CGRect;
 
-extern "C-unwind" {
-    pub fn CGRectGetMinX(rect: CGRect) -> CGFloat;
+#[inline]
+pub extern "C-unwind" fn CGRectGetMinX(rect: CGRect) -> CGFloat {
+    extern "C-unwind" {
+        fn CGRectGetMinX(rect: CGRect) -> CGFloat;
+    }
+    unsafe { CGRectGetMinX(rect) }
 }
 
-extern "C-unwind" {
-    pub fn CGRectGetMidX(rect: CGRect) -> CGFloat;
+#[inline]
+pub extern "C-unwind" fn CGRectGetMidX(rect: CGRect) -> CGFloat {
+    extern "C-unwind" {
+        fn CGRectGetMidX(rect: CGRect) -> CGFloat;
+    }
+    unsafe { CGRectGetMidX(rect) }
 }
 
-extern "C-unwind" {
-    pub fn CGRectGetMaxX(rect: CGRect) -> CGFloat;
+#[inline]
+pub extern "C-unwind" fn CGRectGetMaxX(rect: CGRect) -> CGFloat {
+    extern "C-unwind" {
+        fn CGRectGetMaxX(rect: CGRect) -> CGFloat;
+    }
+    unsafe { CGRectGetMaxX(rect) }
 }
 
-extern "C-unwind" {
-    pub fn CGRectGetMinY(rect: CGRect) -> CGFloat;
+#[inline]
+pub extern "C-unwind" fn CGRectGetMinY(rect: CGRect) -> CGFloat {
+    extern "C-unwind" {
+        fn CGRectGetMinY(rect: CGRect) -> CGFloat;
+    }
+    unsafe { CGRectGetMinY(rect) }
 }
 
-extern "C-unwind" {
-    pub fn CGRectGetMidY(rect: CGRect) -> CGFloat;
+#[inline]
+pub extern "C-unwind" fn CGRectGetMidY(rect: CGRect) -> CGFloat {
+    extern "C-unwind" {
+        fn CGRectGetMidY(rect: CGRect) -> CGFloat;
+    }
+    unsafe { CGRectGetMidY(rect) }
 }
 
-extern "C-unwind" {
-    pub fn CGRectGetMaxY(rect: CGRect) -> CGFloat;
+#[inline]
+pub extern "C-unwind" fn CGRectGetMaxY(rect: CGRect) -> CGFloat {
+    extern "C-unwind" {
+        fn CGRectGetMaxY(rect: CGRect) -> CGFloat;
+    }
+    unsafe { CGRectGetMaxY(rect) }
 }
 
-extern "C-unwind" {
-    pub fn CGRectGetWidth(rect: CGRect) -> CGFloat;
+#[inline]
+pub extern "C-unwind" fn CGRectGetWidth(rect: CGRect) -> CGFloat {
+    extern "C-unwind" {
+        fn CGRectGetWidth(rect: CGRect) -> CGFloat;
+    }
+    unsafe { CGRectGetWidth(rect) }
 }
 
-extern "C-unwind" {
-    pub fn CGRectGetHeight(rect: CGRect) -> CGFloat;
+#[inline]
+pub extern "C-unwind" fn CGRectGetHeight(rect: CGRect) -> CGFloat {
+    extern "C-unwind" {
+        fn CGRectGetHeight(rect: CGRect) -> CGFloat;
+    }
+    unsafe { CGRectGetHeight(rect) }
 }
 
-extern "C-unwind" {
-    pub fn CGPointEqualToPoint(point1: CGPoint, point2: CGPoint) -> bool;
+#[inline]
+pub extern "C-unwind" fn CGPointEqualToPoint(point1: CGPoint, point2: CGPoint) -> bool {
+    extern "C-unwind" {
+        fn CGPointEqualToPoint(point1: CGPoint, point2: CGPoint) -> bool;
+    }
+    unsafe { CGPointEqualToPoint(point1, point2) }
 }
 
-extern "C-unwind" {
-    pub fn CGSizeEqualToSize(size1: CGSize, size2: CGSize) -> bool;
+#[inline]
+pub extern "C-unwind" fn CGSizeEqualToSize(size1: CGSize, size2: CGSize) -> bool {
+    extern "C-unwind" {
+        fn CGSizeEqualToSize(size1: CGSize, size2: CGSize) -> bool;
+    }
+    unsafe { CGSizeEqualToSize(size1, size2) }
 }
 
-extern "C-unwind" {
-    pub fn CGRectEqualToRect(rect1: CGRect, rect2: CGRect) -> bool;
+#[inline]
+pub extern "C-unwind" fn CGRectEqualToRect(rect1: CGRect, rect2: CGRect) -> bool {
+    extern "C-unwind" {
+        fn CGRectEqualToRect(rect1: CGRect, rect2: CGRect) -> bool;
+    }
+    unsafe { CGRectEqualToRect(rect1, rect2) }
 }
 
-extern "C-unwind" {
-    #[must_use]
-    pub fn CGRectStandardize(rect: CGRect) -> CGRect;
+#[must_use]
+#[inline]
+pub extern "C-unwind" fn CGRectStandardize(rect: CGRect) -> CGRect {
+    extern "C-unwind" {
+        fn CGRectStandardize(rect: CGRect) -> CGRect;
+    }
+    unsafe { CGRectStandardize(rect) }
 }
 
-extern "C-unwind" {
-    pub fn CGRectIsEmpty(rect: CGRect) -> bool;
+#[inline]
+pub extern "C-unwind" fn CGRectIsEmpty(rect: CGRect) -> bool {
+    extern "C-unwind" {
+        fn CGRectIsEmpty(rect: CGRect) -> bool;
+    }
+    unsafe { CGRectIsEmpty(rect) }
 }
 
-extern "C-unwind" {
-    pub fn CGRectIsNull(rect: CGRect) -> bool;
+#[inline]
+pub extern "C-unwind" fn CGRectIsNull(rect: CGRect) -> bool {
+    extern "C-unwind" {
+        fn CGRectIsNull(rect: CGRect) -> bool;
+    }
+    unsafe { CGRectIsNull(rect) }
 }
 
-extern "C-unwind" {
-    pub fn CGRectIsInfinite(rect: CGRect) -> bool;
+#[inline]
+pub extern "C-unwind" fn CGRectIsInfinite(rect: CGRect) -> bool {
+    extern "C-unwind" {
+        fn CGRectIsInfinite(rect: CGRect) -> bool;
+    }
+    unsafe { CGRectIsInfinite(rect) }
 }
 
-extern "C-unwind" {
-    #[must_use]
-    pub fn CGRectInset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect;
+#[must_use]
+#[inline]
+pub extern "C-unwind" fn CGRectInset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect {
+    extern "C-unwind" {
+        fn CGRectInset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect;
+    }
+    unsafe { CGRectInset(rect, dx, dy) }
 }
 
-extern "C-unwind" {
-    #[must_use]
-    pub fn CGRectIntegral(rect: CGRect) -> CGRect;
+#[must_use]
+#[inline]
+pub extern "C-unwind" fn CGRectIntegral(rect: CGRect) -> CGRect {
+    extern "C-unwind" {
+        fn CGRectIntegral(rect: CGRect) -> CGRect;
+    }
+    unsafe { CGRectIntegral(rect) }
 }
 
-extern "C-unwind" {
-    #[must_use]
-    pub fn CGRectUnion(r1: CGRect, r2: CGRect) -> CGRect;
+#[must_use]
+#[inline]
+pub extern "C-unwind" fn CGRectUnion(r1: CGRect, r2: CGRect) -> CGRect {
+    extern "C-unwind" {
+        fn CGRectUnion(r1: CGRect, r2: CGRect) -> CGRect;
+    }
+    unsafe { CGRectUnion(r1, r2) }
 }
 
-extern "C-unwind" {
-    #[must_use]
-    pub fn CGRectIntersection(r1: CGRect, r2: CGRect) -> CGRect;
+#[must_use]
+#[inline]
+pub extern "C-unwind" fn CGRectIntersection(r1: CGRect, r2: CGRect) -> CGRect {
+    extern "C-unwind" {
+        fn CGRectIntersection(r1: CGRect, r2: CGRect) -> CGRect;
+    }
+    unsafe { CGRectIntersection(r1, r2) }
 }
 
-extern "C-unwind" {
-    #[must_use]
-    pub fn CGRectOffset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect;
+#[must_use]
+#[inline]
+pub extern "C-unwind" fn CGRectOffset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect {
+    extern "C-unwind" {
+        fn CGRectOffset(rect: CGRect, dx: CGFloat, dy: CGFloat) -> CGRect;
+    }
+    unsafe { CGRectOffset(rect, dx, dy) }
 }
 
 extern "C-unwind" {
@@ -139,21 +219,33 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    pub fn CGRectContainsPoint(rect: CGRect, point: CGPoint) -> bool;
+#[inline]
+pub extern "C-unwind" fn CGRectContainsPoint(rect: CGRect, point: CGPoint) -> bool {
+    extern "C-unwind" {
+        fn CGRectContainsPoint(rect: CGRect, point: CGPoint) -> bool;
+    }
+    unsafe { CGRectContainsPoint(rect, point) }
 }
 
-extern "C-unwind" {
-    pub fn CGRectContainsRect(rect1: CGRect, rect2: CGRect) -> bool;
+#[inline]
+pub extern "C-unwind" fn CGRectContainsRect(rect1: CGRect, rect2: CGRect) -> bool {
+    extern "C-unwind" {
+        fn CGRectContainsRect(rect1: CGRect, rect2: CGRect) -> bool;
+    }
+    unsafe { CGRectContainsRect(rect1, rect2) }
 }
 
-extern "C-unwind" {
-    pub fn CGRectIntersectsRect(rect1: CGRect, rect2: CGRect) -> bool;
+#[inline]
+pub extern "C-unwind" fn CGRectIntersectsRect(rect1: CGRect, rect2: CGRect) -> bool {
+    extern "C-unwind" {
+        fn CGRectIntersectsRect(rect1: CGRect, rect2: CGRect) -> bool;
+    }
+    unsafe { CGRectIntersectsRect(rect1, rect2) }
 }
 
 /// * Persistent representations. **
 #[inline]
-pub unsafe extern "C-unwind" fn CGPointCreateDictionaryRepresentation(
+pub extern "C-unwind" fn CGPointCreateDictionaryRepresentation(
     point: CGPoint,
 ) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
@@ -176,7 +268,7 @@ extern "C-unwind" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CGSizeCreateDictionaryRepresentation(
+pub extern "C-unwind" fn CGSizeCreateDictionaryRepresentation(
     size: CGSize,
 ) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
@@ -199,7 +291,7 @@ extern "C-unwind" {
 }
 
 #[inline]
-pub unsafe extern "C-unwind" fn CGRectCreateDictionaryRepresentation(
+pub extern "C-unwind" fn CGRectCreateDictionaryRepresentation(
     param1: CGRect,
 ) -> CFRetained<CFDictionary> {
     extern "C-unwind" {

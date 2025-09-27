@@ -292,7 +292,7 @@ extern "C" {
 impl CGColorSpace {
     #[doc(alias = "CGColorSpaceCreateDeviceGray")]
     #[inline]
-    pub unsafe fn new_device_gray() -> Option<CFRetained<CGColorSpace>> {
+    pub fn new_device_gray() -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreateDeviceGray() -> Option<NonNull<CGColorSpace>>;
         }
@@ -302,7 +302,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceCreateDeviceRGB")]
     #[inline]
-    pub unsafe fn new_device_rgb() -> Option<CFRetained<CGColorSpace>> {
+    pub fn new_device_rgb() -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreateDeviceRGB() -> Option<NonNull<CGColorSpace>>;
         }
@@ -312,7 +312,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceCreateDeviceCMYK")]
     #[inline]
-    pub unsafe fn new_device_cmyk() -> Option<CFRetained<CGColorSpace>> {
+    pub fn new_device_cmyk() -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreateDeviceCMYK() -> Option<NonNull<CGColorSpace>>;
         }
@@ -382,9 +382,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceCreatePattern")]
     #[inline]
-    pub unsafe fn new_pattern(
-        base_space: Option<&CGColorSpace>,
-    ) -> Option<CFRetained<CGColorSpace>> {
+    pub fn new_pattern(base_space: Option<&CGColorSpace>) -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreatePattern(
                 base_space: Option<&CGColorSpace>,
@@ -403,7 +401,7 @@ extern "C" {
 impl CGColorSpace {
     #[doc(alias = "CGColorSpaceCreateWithName")]
     #[inline]
-    pub unsafe fn with_name(name: Option<&CFString>) -> Option<CFRetained<CGColorSpace>> {
+    pub fn with_name(name: Option<&CFString>) -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreateWithName(name: Option<&CFString>)
                 -> Option<NonNull<CGColorSpace>>;
@@ -414,7 +412,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceGetName")]
     #[inline]
-    pub unsafe fn get_name(space: Option<&CGColorSpace>) -> Option<CFRetained<CFString>> {
+    pub fn get_name(space: Option<&CGColorSpace>) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CGColorSpaceGetName(space: Option<&CGColorSpace>) -> Option<NonNull<CFString>>;
         }
@@ -424,7 +422,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceCopyName")]
     #[inline]
-    pub unsafe fn name(space: Option<&CGColorSpace>) -> Option<CFRetained<CFString>> {
+    pub fn name(space: Option<&CGColorSpace>) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CGColorSpaceCopyName(space: Option<&CGColorSpace>) -> Option<NonNull<CFString>>;
         }
@@ -447,7 +445,7 @@ unsafe impl ConcreteType for CGColorSpace {
 impl CGColorSpace {
     #[doc(alias = "CGColorSpaceGetNumberOfComponents")]
     #[inline]
-    pub unsafe fn number_of_components(space: Option<&CGColorSpace>) -> usize {
+    pub fn number_of_components(space: Option<&CGColorSpace>) -> usize {
         extern "C-unwind" {
             fn CGColorSpaceGetNumberOfComponents(space: Option<&CGColorSpace>) -> usize;
         }
@@ -456,7 +454,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceGetModel")]
     #[inline]
-    pub unsafe fn model(space: Option<&CGColorSpace>) -> CGColorSpaceModel {
+    pub fn model(space: Option<&CGColorSpace>) -> CGColorSpaceModel {
         extern "C-unwind" {
             fn CGColorSpaceGetModel(space: Option<&CGColorSpace>) -> CGColorSpaceModel;
         }
@@ -465,9 +463,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceGetBaseColorSpace")]
     #[inline]
-    pub unsafe fn base_color_space(
-        space: Option<&CGColorSpace>,
-    ) -> Option<CFRetained<CGColorSpace>> {
+    pub fn base_color_space(space: Option<&CGColorSpace>) -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceGetBaseColorSpace(
                 space: Option<&CGColorSpace>,
@@ -479,7 +475,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceCopyBaseColorSpace")]
     #[inline]
-    pub unsafe fn copy_base_color_space(&self) -> CFRetained<CGColorSpace> {
+    pub fn copy_base_color_space(&self) -> CFRetained<CGColorSpace> {
         extern "C-unwind" {
             fn CGColorSpaceCopyBaseColorSpace(
                 space: &CGColorSpace,
@@ -493,7 +489,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceGetColorTableCount")]
     #[inline]
-    pub unsafe fn color_table_count(space: Option<&CGColorSpace>) -> usize {
+    pub fn color_table_count(space: Option<&CGColorSpace>) -> usize {
         extern "C-unwind" {
             fn CGColorSpaceGetColorTableCount(space: Option<&CGColorSpace>) -> usize;
         }
@@ -514,7 +510,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceCopyICCData")]
     #[inline]
-    pub unsafe fn icc_data(space: Option<&CGColorSpace>) -> Option<CFRetained<CFData>> {
+    pub fn icc_data(space: Option<&CGColorSpace>) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CGColorSpaceCopyICCData(space: Option<&CGColorSpace>) -> Option<NonNull<CFData>>;
         }
@@ -524,7 +520,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceIsWideGamutRGB")]
     #[inline]
-    pub unsafe fn is_wide_gamut_rgb(&self) -> bool {
+    pub fn is_wide_gamut_rgb(&self) -> bool {
         extern "C-unwind" {
             fn CGColorSpaceIsWideGamutRGB(param1: &CGColorSpace) -> bool;
         }
@@ -533,7 +529,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceIsHDR")]
     #[inline]
-    pub unsafe fn is_hdr(&self) -> bool {
+    pub fn is_hdr(&self) -> bool {
         extern "C-unwind" {
             fn CGColorSpaceIsHDR(param1: &CGColorSpace) -> bool;
         }
@@ -542,7 +538,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceUsesITUR_2100TF")]
     #[inline]
-    pub unsafe fn uses_itur_2100_tf(&self) -> bool {
+    pub fn uses_itur_2100_tf(&self) -> bool {
         extern "C-unwind" {
             fn CGColorSpaceUsesITUR_2100TF(param1: &CGColorSpace) -> bool;
         }
@@ -551,7 +547,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceIsPQBased")]
     #[inline]
-    pub unsafe fn is_pq_based(&self) -> bool {
+    pub fn is_pq_based(&self) -> bool {
         extern "C-unwind" {
             fn CGColorSpaceIsPQBased(s: &CGColorSpace) -> bool;
         }
@@ -560,7 +556,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceIsHLGBased")]
     #[inline]
-    pub unsafe fn is_hlg_based(&self) -> bool {
+    pub fn is_hlg_based(&self) -> bool {
         extern "C-unwind" {
             fn CGColorSpaceIsHLGBased(s: &CGColorSpace) -> bool;
         }
@@ -569,7 +565,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceSupportsOutput")]
     #[inline]
-    pub unsafe fn supports_output(&self) -> bool {
+    pub fn supports_output(&self) -> bool {
         extern "C-unwind" {
             fn CGColorSpaceSupportsOutput(space: &CGColorSpace) -> bool;
         }
@@ -578,7 +574,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceCopyPropertyList")]
     #[inline]
-    pub unsafe fn property_list(&self) -> Option<CFRetained<CFPropertyList>> {
+    pub fn property_list(&self) -> Option<CFRetained<CFPropertyList>> {
         extern "C-unwind" {
             fn CGColorSpaceCopyPropertyList(
                 space: &CGColorSpace,
@@ -605,7 +601,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceUsesExtendedRange")]
     #[inline]
-    pub unsafe fn uses_extended_range(&self) -> bool {
+    pub fn uses_extended_range(&self) -> bool {
         extern "C-unwind" {
             fn CGColorSpaceUsesExtendedRange(space: &CGColorSpace) -> bool;
         }
@@ -614,7 +610,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceCreateLinearized")]
     #[inline]
-    pub unsafe fn linearized(&self) -> Option<CFRetained<CGColorSpace>> {
+    pub fn linearized(&self) -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreateLinearized(space: &CGColorSpace) -> Option<NonNull<CGColorSpace>>;
         }
@@ -624,7 +620,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceCreateExtended")]
     #[inline]
-    pub unsafe fn extended(&self) -> Option<CFRetained<CGColorSpace>> {
+    pub fn extended(&self) -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreateExtended(space: &CGColorSpace) -> Option<NonNull<CGColorSpace>>;
         }
@@ -634,7 +630,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceCreateExtendedLinearized")]
     #[inline]
-    pub unsafe fn extended_linearized(&self) -> Option<CFRetained<CGColorSpace>> {
+    pub fn extended_linearized(&self) -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreateExtendedLinearized(
                 space: &CGColorSpace,
@@ -646,7 +642,7 @@ impl CGColorSpace {
 
     #[doc(alias = "CGColorSpaceCreateCopyWithStandardRange")]
     #[inline]
-    pub unsafe fn copy_with_standard_range(&self) -> CFRetained<CGColorSpace> {
+    pub fn copy_with_standard_range(&self) -> CFRetained<CGColorSpace> {
         extern "C-unwind" {
             fn CGColorSpaceCreateCopyWithStandardRange(
                 s: &CGColorSpace,
@@ -661,7 +657,7 @@ impl CGColorSpace {
     #[doc(alias = "CGColorSpaceCreateWithICCProfile")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn with_icc_profile(data: Option<&CFData>) -> Option<CFRetained<CGColorSpace>> {
+    pub fn with_icc_profile(data: Option<&CFData>) -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreateWithICCProfile(
                 data: Option<&CFData>,
@@ -674,7 +670,7 @@ impl CGColorSpace {
     #[doc(alias = "CGColorSpaceCopyICCProfile")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn icc_profile(space: Option<&CGColorSpace>) -> Option<CFRetained<CFData>> {
+    pub fn icc_profile(space: Option<&CGColorSpace>) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CGColorSpaceCopyICCProfile(space: Option<&CGColorSpace>) -> Option<NonNull<CFData>>;
         }
@@ -703,7 +699,7 @@ impl CGColorSpace {
 
 #[deprecated = "renamed to `CGColorSpace::new_device_gray`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCreateDeviceGray() -> Option<CFRetained<CGColorSpace>> {
+pub extern "C-unwind" fn CGColorSpaceCreateDeviceGray() -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
         fn CGColorSpaceCreateDeviceGray() -> Option<NonNull<CGColorSpace>>;
     }
@@ -713,7 +709,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateDeviceGray() -> Option<CFRetai
 
 #[deprecated = "renamed to `CGColorSpace::new_device_rgb`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCreateDeviceRGB() -> Option<CFRetained<CGColorSpace>> {
+pub extern "C-unwind" fn CGColorSpaceCreateDeviceRGB() -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
         fn CGColorSpaceCreateDeviceRGB() -> Option<NonNull<CGColorSpace>>;
     }
@@ -723,7 +719,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateDeviceRGB() -> Option<CFRetain
 
 #[deprecated = "renamed to `CGColorSpace::new_device_cmyk`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCreateDeviceCMYK() -> Option<CFRetained<CGColorSpace>> {
+pub extern "C-unwind" fn CGColorSpaceCreateDeviceCMYK() -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
         fn CGColorSpaceCreateDeviceCMYK() -> Option<NonNull<CGColorSpace>>;
     }
@@ -784,7 +780,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateIndexed(
 
 #[deprecated = "renamed to `CGColorSpace::new_pattern`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCreatePattern(
+pub extern "C-unwind" fn CGColorSpaceCreatePattern(
     base_space: Option<&CGColorSpace>,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
@@ -798,7 +794,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreatePattern(
 
 #[deprecated = "renamed to `CGColorSpace::with_name`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCreateWithName(
+pub extern "C-unwind" fn CGColorSpaceCreateWithName(
     name: Option<&CFString>,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
@@ -810,7 +806,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateWithName(
 
 #[deprecated = "renamed to `CGColorSpace::get_name`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceGetName(
+pub extern "C-unwind" fn CGColorSpaceGetName(
     space: Option<&CGColorSpace>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -822,7 +818,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceGetName(
 
 #[deprecated = "renamed to `CGColorSpace::name`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCopyName(
+pub extern "C-unwind" fn CGColorSpaceCopyName(
     space: Option<&CGColorSpace>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
@@ -832,19 +828,27 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCopyName(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGColorSpace::number_of_components`"]
-    pub fn CGColorSpaceGetNumberOfComponents(space: Option<&CGColorSpace>) -> usize;
+#[deprecated = "renamed to `CGColorSpace::number_of_components`"]
+#[inline]
+pub extern "C-unwind" fn CGColorSpaceGetNumberOfComponents(space: Option<&CGColorSpace>) -> usize {
+    extern "C-unwind" {
+        fn CGColorSpaceGetNumberOfComponents(space: Option<&CGColorSpace>) -> usize;
+    }
+    unsafe { CGColorSpaceGetNumberOfComponents(space) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGColorSpace::model`"]
-    pub fn CGColorSpaceGetModel(space: Option<&CGColorSpace>) -> CGColorSpaceModel;
+#[deprecated = "renamed to `CGColorSpace::model`"]
+#[inline]
+pub extern "C-unwind" fn CGColorSpaceGetModel(space: Option<&CGColorSpace>) -> CGColorSpaceModel {
+    extern "C-unwind" {
+        fn CGColorSpaceGetModel(space: Option<&CGColorSpace>) -> CGColorSpaceModel;
+    }
+    unsafe { CGColorSpaceGetModel(space) }
 }
 
 #[deprecated = "renamed to `CGColorSpace::base_color_space`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceGetBaseColorSpace(
+pub extern "C-unwind" fn CGColorSpaceGetBaseColorSpace(
     space: Option<&CGColorSpace>,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
@@ -858,7 +862,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceGetBaseColorSpace(
 
 #[deprecated = "renamed to `CGColorSpace::copy_base_color_space`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCopyBaseColorSpace(
+pub extern "C-unwind" fn CGColorSpaceCopyBaseColorSpace(
     space: &CGColorSpace,
 ) -> CFRetained<CGColorSpace> {
     extern "C-unwind" {
@@ -869,9 +873,13 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCopyBaseColorSpace(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGColorSpace::color_table_count`"]
-    pub fn CGColorSpaceGetColorTableCount(space: Option<&CGColorSpace>) -> usize;
+#[deprecated = "renamed to `CGColorSpace::color_table_count`"]
+#[inline]
+pub extern "C-unwind" fn CGColorSpaceGetColorTableCount(space: Option<&CGColorSpace>) -> usize {
+    extern "C-unwind" {
+        fn CGColorSpaceGetColorTableCount(space: Option<&CGColorSpace>) -> usize;
+    }
+    unsafe { CGColorSpaceGetColorTableCount(space) }
 }
 
 extern "C-unwind" {
@@ -881,7 +889,7 @@ extern "C-unwind" {
 
 #[deprecated = "renamed to `CGColorSpace::icc_data`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCopyICCData(
+pub extern "C-unwind" fn CGColorSpaceCopyICCData(
     space: Option<&CGColorSpace>,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
@@ -891,39 +899,63 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCopyICCData(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGColorSpace::is_wide_gamut_rgb`"]
-    pub fn CGColorSpaceIsWideGamutRGB(param1: &CGColorSpace) -> bool;
+#[deprecated = "renamed to `CGColorSpace::is_wide_gamut_rgb`"]
+#[inline]
+pub extern "C-unwind" fn CGColorSpaceIsWideGamutRGB(param1: &CGColorSpace) -> bool {
+    extern "C-unwind" {
+        fn CGColorSpaceIsWideGamutRGB(param1: &CGColorSpace) -> bool;
+    }
+    unsafe { CGColorSpaceIsWideGamutRGB(param1) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGColorSpace::is_hdr`"]
-    pub fn CGColorSpaceIsHDR(param1: &CGColorSpace) -> bool;
+#[deprecated = "renamed to `CGColorSpace::is_hdr`"]
+#[inline]
+pub extern "C-unwind" fn CGColorSpaceIsHDR(param1: &CGColorSpace) -> bool {
+    extern "C-unwind" {
+        fn CGColorSpaceIsHDR(param1: &CGColorSpace) -> bool;
+    }
+    unsafe { CGColorSpaceIsHDR(param1) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGColorSpace::uses_itur_2100_tf`"]
-    pub fn CGColorSpaceUsesITUR_2100TF(param1: &CGColorSpace) -> bool;
+#[deprecated = "renamed to `CGColorSpace::uses_itur_2100_tf`"]
+#[inline]
+pub extern "C-unwind" fn CGColorSpaceUsesITUR_2100TF(param1: &CGColorSpace) -> bool {
+    extern "C-unwind" {
+        fn CGColorSpaceUsesITUR_2100TF(param1: &CGColorSpace) -> bool;
+    }
+    unsafe { CGColorSpaceUsesITUR_2100TF(param1) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGColorSpace::is_pq_based`"]
-    pub fn CGColorSpaceIsPQBased(s: &CGColorSpace) -> bool;
+#[deprecated = "renamed to `CGColorSpace::is_pq_based`"]
+#[inline]
+pub extern "C-unwind" fn CGColorSpaceIsPQBased(s: &CGColorSpace) -> bool {
+    extern "C-unwind" {
+        fn CGColorSpaceIsPQBased(s: &CGColorSpace) -> bool;
+    }
+    unsafe { CGColorSpaceIsPQBased(s) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGColorSpace::is_hlg_based`"]
-    pub fn CGColorSpaceIsHLGBased(s: &CGColorSpace) -> bool;
+#[deprecated = "renamed to `CGColorSpace::is_hlg_based`"]
+#[inline]
+pub extern "C-unwind" fn CGColorSpaceIsHLGBased(s: &CGColorSpace) -> bool {
+    extern "C-unwind" {
+        fn CGColorSpaceIsHLGBased(s: &CGColorSpace) -> bool;
+    }
+    unsafe { CGColorSpaceIsHLGBased(s) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGColorSpace::supports_output`"]
-    pub fn CGColorSpaceSupportsOutput(space: &CGColorSpace) -> bool;
+#[deprecated = "renamed to `CGColorSpace::supports_output`"]
+#[inline]
+pub extern "C-unwind" fn CGColorSpaceSupportsOutput(space: &CGColorSpace) -> bool {
+    extern "C-unwind" {
+        fn CGColorSpaceSupportsOutput(space: &CGColorSpace) -> bool;
+    }
+    unsafe { CGColorSpaceSupportsOutput(space) }
 }
 
 #[deprecated = "renamed to `CGColorSpace::property_list`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCopyPropertyList(
+pub extern "C-unwind" fn CGColorSpaceCopyPropertyList(
     space: &CGColorSpace,
 ) -> Option<CFRetained<CFPropertyList>> {
     extern "C-unwind" {
@@ -947,14 +979,18 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateWithPropertyList(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGColorSpace::uses_extended_range`"]
-    pub fn CGColorSpaceUsesExtendedRange(space: &CGColorSpace) -> bool;
+#[deprecated = "renamed to `CGColorSpace::uses_extended_range`"]
+#[inline]
+pub extern "C-unwind" fn CGColorSpaceUsesExtendedRange(space: &CGColorSpace) -> bool {
+    extern "C-unwind" {
+        fn CGColorSpaceUsesExtendedRange(space: &CGColorSpace) -> bool;
+    }
+    unsafe { CGColorSpaceUsesExtendedRange(space) }
 }
 
 #[deprecated = "renamed to `CGColorSpace::linearized`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCreateLinearized(
+pub extern "C-unwind" fn CGColorSpaceCreateLinearized(
     space: &CGColorSpace,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
@@ -966,7 +1002,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateLinearized(
 
 #[deprecated = "renamed to `CGColorSpace::extended`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCreateExtended(
+pub extern "C-unwind" fn CGColorSpaceCreateExtended(
     space: &CGColorSpace,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
@@ -978,7 +1014,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateExtended(
 
 #[deprecated = "renamed to `CGColorSpace::extended_linearized`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCreateExtendedLinearized(
+pub extern "C-unwind" fn CGColorSpaceCreateExtendedLinearized(
     space: &CGColorSpace,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
@@ -992,7 +1028,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateExtendedLinearized(
 
 #[deprecated = "renamed to `CGColorSpace::copy_with_standard_range`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCreateCopyWithStandardRange(
+pub extern "C-unwind" fn CGColorSpaceCreateCopyWithStandardRange(
     s: &CGColorSpace,
 ) -> CFRetained<CGColorSpace> {
     extern "C-unwind" {
@@ -1007,7 +1043,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateCopyWithStandardRange(
 
 #[deprecated = "renamed to `CGColorSpace::with_icc_profile`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCreateWithICCProfile(
+pub extern "C-unwind" fn CGColorSpaceCreateWithICCProfile(
     data: Option<&CFData>,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
@@ -1020,7 +1056,7 @@ pub unsafe extern "C-unwind" fn CGColorSpaceCreateWithICCProfile(
 
 #[deprecated = "renamed to `CGColorSpace::icc_profile`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGColorSpaceCopyICCProfile(
+pub extern "C-unwind" fn CGColorSpaceCopyICCProfile(
     space: Option<&CGColorSpace>,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {

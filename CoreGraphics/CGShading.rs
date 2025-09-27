@@ -41,7 +41,7 @@ impl CGShading {
     #[doc(alias = "CGShadingCreateAxial")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
-    pub unsafe fn new_axial(
+    pub fn new_axial(
         space: Option<&CGColorSpace>,
         start: CGPoint,
         end: CGPoint,
@@ -67,7 +67,7 @@ impl CGShading {
     #[doc(alias = "CGShadingCreateAxialWithContentHeadroom")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
-    pub unsafe fn new_axial_with_content_headroom(
+    pub fn new_axial_with_content_headroom(
         headroom: c_float,
         space: Option<&CGColorSpace>,
         start: CGPoint,
@@ -104,7 +104,7 @@ impl CGShading {
     #[doc(alias = "CGShadingCreateRadial")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
-    pub unsafe fn new_radial(
+    pub fn new_radial(
         space: Option<&CGColorSpace>,
         start: CGPoint,
         start_radius: CGFloat,
@@ -144,7 +144,7 @@ impl CGShading {
     #[doc(alias = "CGShadingCreateRadialWithContentHeadroom")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
-    pub unsafe fn new_radial_with_content_headroom(
+    pub fn new_radial_with_content_headroom(
         headroom: c_float,
         space: Option<&CGColorSpace>,
         start: CGPoint,
@@ -186,7 +186,7 @@ impl CGShading {
 
     #[doc(alias = "CGShadingGetContentHeadroom")]
     #[inline]
-    pub unsafe fn content_headroom(shading: Option<&CGShading>) -> c_float {
+    pub fn content_headroom(shading: Option<&CGShading>) -> c_float {
         extern "C-unwind" {
             fn CGShadingGetContentHeadroom(shading: Option<&CGShading>) -> c_float;
         }
@@ -197,7 +197,7 @@ impl CGShading {
 #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
 #[deprecated = "renamed to `CGShading::new_axial`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGShadingCreateAxial(
+pub extern "C-unwind" fn CGShadingCreateAxial(
     space: Option<&CGColorSpace>,
     start: CGPoint,
     end: CGPoint,
@@ -223,7 +223,7 @@ pub unsafe extern "C-unwind" fn CGShadingCreateAxial(
 #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
 #[deprecated = "renamed to `CGShading::new_axial_with_content_headroom`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGShadingCreateAxialWithContentHeadroom(
+pub extern "C-unwind" fn CGShadingCreateAxialWithContentHeadroom(
     headroom: c_float,
     space: Option<&CGColorSpace>,
     start: CGPoint,
@@ -260,7 +260,7 @@ pub unsafe extern "C-unwind" fn CGShadingCreateAxialWithContentHeadroom(
 #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
 #[deprecated = "renamed to `CGShading::new_radial`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGShadingCreateRadial(
+pub extern "C-unwind" fn CGShadingCreateRadial(
     space: Option<&CGColorSpace>,
     start: CGPoint,
     start_radius: CGFloat,
@@ -300,7 +300,7 @@ pub unsafe extern "C-unwind" fn CGShadingCreateRadial(
 #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
 #[deprecated = "renamed to `CGShading::new_radial_with_content_headroom`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CGShadingCreateRadialWithContentHeadroom(
+pub extern "C-unwind" fn CGShadingCreateRadialWithContentHeadroom(
     headroom: c_float,
     space: Option<&CGColorSpace>,
     start: CGPoint,
@@ -340,7 +340,11 @@ pub unsafe extern "C-unwind" fn CGShadingCreateRadialWithContentHeadroom(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGShading::content_headroom`"]
-    pub fn CGShadingGetContentHeadroom(shading: Option<&CGShading>) -> c_float;
+#[deprecated = "renamed to `CGShading::content_headroom`"]
+#[inline]
+pub extern "C-unwind" fn CGShadingGetContentHeadroom(shading: Option<&CGShading>) -> c_float {
+    extern "C-unwind" {
+        fn CGShadingGetContentHeadroom(shading: Option<&CGShading>) -> c_float;
+    }
+    unsafe { CGShadingGetContentHeadroom(shading) }
 }

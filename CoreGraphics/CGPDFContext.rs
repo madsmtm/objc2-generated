@@ -52,9 +52,13 @@ pub unsafe extern "C-unwind" fn CGPDFContextCreateWithURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextClose(context: Option<&CGContext>);
+#[cfg(feature = "CGContext")]
+#[inline]
+pub extern "C-unwind" fn CGPDFContextClose(context: Option<&CGContext>) {
+    extern "C-unwind" {
+        fn CGPDFContextClose(context: Option<&CGContext>);
+    }
+    unsafe { CGPDFContextClose(context) }
 }
 
 extern "C-unwind" {
@@ -65,14 +69,25 @@ extern "C-unwind" {
     pub fn CGPDFContextBeginPage(context: Option<&CGContext>, page_info: Option<&CFDictionary>);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextEndPage(context: Option<&CGContext>);
+#[cfg(feature = "CGContext")]
+#[inline]
+pub extern "C-unwind" fn CGPDFContextEndPage(context: Option<&CGContext>) {
+    extern "C-unwind" {
+        fn CGPDFContextEndPage(context: Option<&CGContext>);
+    }
+    unsafe { CGPDFContextEndPage(context) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextAddDocumentMetadata(context: Option<&CGContext>, metadata: Option<&CFData>);
+#[cfg(feature = "CGContext")]
+#[inline]
+pub extern "C-unwind" fn CGPDFContextAddDocumentMetadata(
+    context: Option<&CGContext>,
+    metadata: Option<&CFData>,
+) {
+    extern "C-unwind" {
+        fn CGPDFContextAddDocumentMetadata(context: Option<&CGContext>, metadata: Option<&CFData>);
+    }
+    unsafe { CGPDFContextAddDocumentMetadata(context, metadata) }
 }
 
 extern "C-unwind" {
@@ -108,27 +123,51 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextSetURLForRect(context: Option<&CGContext>, url: &CFURL, rect: CGRect);
+#[cfg(feature = "CGContext")]
+#[inline]
+pub extern "C-unwind" fn CGPDFContextSetURLForRect(
+    context: Option<&CGContext>,
+    url: &CFURL,
+    rect: CGRect,
+) {
+    extern "C-unwind" {
+        fn CGPDFContextSetURLForRect(context: Option<&CGContext>, url: &CFURL, rect: CGRect);
+    }
+    unsafe { CGPDFContextSetURLForRect(context, url, rect) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextAddDestinationAtPoint(
-        context: Option<&CGContext>,
-        name: &CFString,
-        point: CGPoint,
-    );
+#[cfg(feature = "CGContext")]
+#[inline]
+pub extern "C-unwind" fn CGPDFContextAddDestinationAtPoint(
+    context: Option<&CGContext>,
+    name: &CFString,
+    point: CGPoint,
+) {
+    extern "C-unwind" {
+        fn CGPDFContextAddDestinationAtPoint(
+            context: Option<&CGContext>,
+            name: &CFString,
+            point: CGPoint,
+        );
+    }
+    unsafe { CGPDFContextAddDestinationAtPoint(context, name, point) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextSetDestinationForRect(
-        context: Option<&CGContext>,
-        name: &CFString,
-        rect: CGRect,
-    );
+#[cfg(feature = "CGContext")]
+#[inline]
+pub extern "C-unwind" fn CGPDFContextSetDestinationForRect(
+    context: Option<&CGContext>,
+    name: &CFString,
+    rect: CGRect,
+) {
+    extern "C-unwind" {
+        fn CGPDFContextSetDestinationForRect(
+            context: Option<&CGContext>,
+            name: &CFString,
+            rect: CGRect,
+        );
+    }
+    unsafe { CGPDFContextSetDestinationForRect(context, name, rect) }
 }
 
 extern "C" {
@@ -390,7 +429,7 @@ unsafe impl RefEncode for CGPDFTagType {
 impl CGPDFTagType {
     #[doc(alias = "CGPDFTagTypeGetName")]
     #[inline]
-    pub unsafe fn name(self) -> *const c_char {
+    pub fn name(self) -> *const c_char {
         extern "C-unwind" {
             fn CGPDFTagTypeGetName(tag_type: CGPDFTagType) -> *const c_char;
         }
@@ -434,12 +473,20 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextEndTag(context: &CGContext);
+#[cfg(feature = "CGContext")]
+#[inline]
+pub extern "C-unwind" fn CGPDFContextEndTag(context: &CGContext) {
+    extern "C-unwind" {
+        fn CGPDFContextEndTag(context: &CGContext);
+    }
+    unsafe { CGPDFContextEndTag(context) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGPDFTagType::name`"]
-    pub fn CGPDFTagTypeGetName(tag_type: CGPDFTagType) -> *const c_char;
+#[deprecated = "renamed to `CGPDFTagType::name`"]
+#[inline]
+pub extern "C-unwind" fn CGPDFTagTypeGetName(tag_type: CGPDFTagType) -> *const c_char {
+    extern "C-unwind" {
+        fn CGPDFTagTypeGetName(tag_type: CGPDFTagType) -> *const c_char;
+    }
+    unsafe { CGPDFTagTypeGetName(tag_type) }
 }
