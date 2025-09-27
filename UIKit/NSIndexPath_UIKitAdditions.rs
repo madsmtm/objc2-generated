@@ -18,24 +18,23 @@ pub unsafe trait NSIndexPathUIKitAdditions:
     extern_methods!(
         #[unsafe(method(indexPathForRow:inSection:))]
         #[unsafe(method_family = none)]
-        unsafe fn indexPathForRow_inSection(row: NSInteger, section: NSInteger) -> Retained<Self>;
+        fn indexPathForRow_inSection(row: NSInteger, section: NSInteger) -> Retained<Self>;
 
         #[unsafe(method(indexPathForItem:inSection:))]
         #[unsafe(method_family = none)]
-        unsafe fn indexPathForItem_inSection(item: NSInteger, section: NSInteger)
-            -> Retained<Self>;
+        fn indexPathForItem_inSection(item: NSInteger, section: NSInteger) -> Retained<Self>;
 
         #[unsafe(method(section))]
         #[unsafe(method_family = none)]
-        unsafe fn section(&self) -> NSInteger;
+        fn section(&self) -> NSInteger;
 
         #[unsafe(method(row))]
         #[unsafe(method_family = none)]
-        unsafe fn row(&self) -> NSInteger;
+        fn row(&self) -> NSInteger;
 
         #[unsafe(method(item))]
         #[unsafe(method_family = none)]
-        unsafe fn item(&self) -> NSInteger;
+        fn item(&self) -> NSInteger;
     );
 }
 

@@ -52,15 +52,15 @@ impl<ItemIdentifierType: Message> NSDiffableDataSourceSectionSnapshot<ItemIdenti
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(appendItems:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appendItems(&self, items: &NSArray<ItemIdentifierType>);
+        pub fn appendItems(&self, items: &NSArray<ItemIdentifierType>);
 
         #[unsafe(method(appendItems:intoParentItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appendItems_intoParentItem(
+        pub fn appendItems_intoParentItem(
             &self,
             items: &NSArray<ItemIdentifierType>,
             parent_item: Option<&ItemIdentifierType>,
@@ -68,7 +68,7 @@ impl<ItemIdentifierType: Message> NSDiffableDataSourceSectionSnapshot<ItemIdenti
 
         #[unsafe(method(insertItems:beforeItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertItems_beforeItem(
+        pub fn insertItems_beforeItem(
             &self,
             items: &NSArray<ItemIdentifierType>,
             before_identifier: &ItemIdentifierType,
@@ -76,7 +76,7 @@ impl<ItemIdentifierType: Message> NSDiffableDataSourceSectionSnapshot<ItemIdenti
 
         #[unsafe(method(insertItems:afterItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertItems_afterItem(
+        pub fn insertItems_afterItem(
             &self,
             items: &NSArray<ItemIdentifierType>,
             after_identifier: &ItemIdentifierType,
@@ -84,23 +84,23 @@ impl<ItemIdentifierType: Message> NSDiffableDataSourceSectionSnapshot<ItemIdenti
 
         #[unsafe(method(deleteItems:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deleteItems(&self, items: &NSArray<ItemIdentifierType>);
+        pub fn deleteItems(&self, items: &NSArray<ItemIdentifierType>);
 
         #[unsafe(method(deleteAllItems))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deleteAllItems(&self);
+        pub fn deleteAllItems(&self);
 
         #[unsafe(method(expandItems:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expandItems(&self, items: &NSArray<ItemIdentifierType>);
+        pub fn expandItems(&self, items: &NSArray<ItemIdentifierType>);
 
         #[unsafe(method(collapseItems:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn collapseItems(&self, items: &NSArray<ItemIdentifierType>);
+        pub fn collapseItems(&self, items: &NSArray<ItemIdentifierType>);
 
         #[unsafe(method(replaceChildrenOfParentItem:withSnapshot:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn replaceChildrenOfParentItem_withSnapshot(
+        pub fn replaceChildrenOfParentItem_withSnapshot(
             &self,
             parent_item: &ItemIdentifierType,
             snapshot: &NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>,
@@ -108,7 +108,7 @@ impl<ItemIdentifierType: Message> NSDiffableDataSourceSectionSnapshot<ItemIdenti
 
         #[unsafe(method(insertSnapshot:beforeItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertSnapshot_beforeItem(
+        pub fn insertSnapshot_beforeItem(
             &self,
             snapshot: &NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>,
             item: &ItemIdentifierType,
@@ -116,7 +116,7 @@ impl<ItemIdentifierType: Message> NSDiffableDataSourceSectionSnapshot<ItemIdenti
 
         #[unsafe(method(insertSnapshot:afterItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn insertSnapshot_afterItem(
+        pub fn insertSnapshot_afterItem(
             &self,
             snapshot: &NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>,
             item: &ItemIdentifierType,
@@ -124,45 +124,45 @@ impl<ItemIdentifierType: Message> NSDiffableDataSourceSectionSnapshot<ItemIdenti
 
         #[unsafe(method(isExpanded:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isExpanded(&self, item: &ItemIdentifierType) -> bool;
+        pub fn isExpanded(&self, item: &ItemIdentifierType) -> bool;
 
         #[unsafe(method(isVisible:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isVisible(&self, item: &ItemIdentifierType) -> bool;
+        pub fn isVisible(&self, item: &ItemIdentifierType) -> bool;
 
         #[unsafe(method(containsItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn containsItem(&self, item: &ItemIdentifierType) -> bool;
+        pub fn containsItem(&self, item: &ItemIdentifierType) -> bool;
 
         #[unsafe(method(levelOfItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn levelOfItem(&self, item: &ItemIdentifierType) -> NSInteger;
+        pub fn levelOfItem(&self, item: &ItemIdentifierType) -> NSInteger;
 
         #[unsafe(method(indexOfItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexOfItem(&self, item: &ItemIdentifierType) -> NSInteger;
+        pub fn indexOfItem(&self, item: &ItemIdentifierType) -> NSInteger;
 
         #[unsafe(method(expandedItems))]
         #[unsafe(method_family = none)]
-        pub unsafe fn expandedItems(&self) -> Retained<NSArray<ItemIdentifierType>>;
+        pub fn expandedItems(&self) -> Retained<NSArray<ItemIdentifierType>>;
 
         #[unsafe(method(parentOfChildItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn parentOfChildItem(
+        pub fn parentOfChildItem(
             &self,
             child_item: &ItemIdentifierType,
         ) -> Option<Retained<ItemIdentifierType>>;
 
         #[unsafe(method(snapshotOfParentItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn snapshotOfParentItem(
+        pub fn snapshotOfParentItem(
             &self,
             parent_item: &ItemIdentifierType,
         ) -> Retained<NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>>;
 
         #[unsafe(method(snapshotOfParentItem:includingParentItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn snapshotOfParentItem_includingParentItem(
+        pub fn snapshotOfParentItem_includingParentItem(
             &self,
             parent_item: &ItemIdentifierType,
             including_parent_item: bool,
@@ -170,15 +170,15 @@ impl<ItemIdentifierType: Message> NSDiffableDataSourceSectionSnapshot<ItemIdenti
 
         #[unsafe(method(rootItems))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rootItems(&self) -> Retained<NSArray<ItemIdentifierType>>;
+        pub fn rootItems(&self) -> Retained<NSArray<ItemIdentifierType>>;
 
         #[unsafe(method(visibleItems))]
         #[unsafe(method_family = none)]
-        pub unsafe fn visibleItems(&self) -> Retained<NSArray<ItemIdentifierType>>;
+        pub fn visibleItems(&self) -> Retained<NSArray<ItemIdentifierType>>;
 
         #[unsafe(method(visualDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn visualDescription(&self) -> Retained<NSString>;
+        pub fn visualDescription(&self) -> Retained<NSString>;
     );
 }
 
@@ -187,6 +187,15 @@ impl<ItemIdentifierType: Message> NSDiffableDataSourceSectionSnapshot<ItemIdenti
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl<ItemIdentifierType: Message> DefaultRetained
+    for NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>
+{
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

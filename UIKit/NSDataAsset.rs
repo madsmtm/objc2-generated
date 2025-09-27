@@ -44,7 +44,7 @@ impl NSDataAsset {
         /// Equivalent to -initWithName:name bundle:[NSBundle mainBundle];
         #[unsafe(method(initWithName:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithName(
+        pub fn initWithName(
             this: Allocated<Self>,
             name: &NSDataAssetName,
         ) -> Option<Retained<Self>>;
@@ -52,7 +52,7 @@ impl NSDataAsset {
         /// Create a data asset with the given name from the given bundle. Returns nil if the asset was not found.
         #[unsafe(method(initWithName:bundle:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithName_bundle(
+        pub fn initWithName_bundle(
             this: Allocated<Self>,
             name: &NSDataAssetName,
             bundle: &NSBundle,
@@ -98,6 +98,13 @@ impl NSDataAsset {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for NSDataAsset {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

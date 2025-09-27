@@ -1523,11 +1523,11 @@ impl NSURL {
 
         #[unsafe(method(startAccessingSecurityScopedResource))]
         #[unsafe(method_family = none)]
-        pub fn startAccessingSecurityScopedResource(&self) -> bool;
+        pub unsafe fn startAccessingSecurityScopedResource(&self) -> bool;
 
         #[unsafe(method(stopAccessingSecurityScopedResource))]
         #[unsafe(method_family = none)]
-        pub fn stopAccessingSecurityScopedResource(&self);
+        pub unsafe fn stopAccessingSecurityScopedResource(&self);
     );
 }
 

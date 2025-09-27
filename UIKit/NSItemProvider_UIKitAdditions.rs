@@ -43,34 +43,34 @@ pub unsafe trait NSItemProviderUIKitAdditions:
     extern_methods!(
         #[unsafe(method(teamData))]
         #[unsafe(method_family = none)]
-        unsafe fn teamData(&self) -> Option<Retained<NSData>>;
+        fn teamData(&self) -> Option<Retained<NSData>>;
 
         /// Setter for [`teamData`][Self::teamData].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTeamData:))]
         #[unsafe(method_family = none)]
-        unsafe fn setTeamData(&self, team_data: Option<&NSData>);
+        fn setTeamData(&self, team_data: Option<&NSData>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(preferredPresentationSize))]
         #[unsafe(method_family = none)]
-        unsafe fn preferredPresentationSize(&self) -> CGSize;
+        fn preferredPresentationSize(&self) -> CGSize;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`preferredPresentationSize`][Self::preferredPresentationSize].
         #[unsafe(method(setPreferredPresentationSize:))]
         #[unsafe(method_family = none)]
-        unsafe fn setPreferredPresentationSize(&self, preferred_presentation_size: CGSize);
+        fn setPreferredPresentationSize(&self, preferred_presentation_size: CGSize);
 
         #[unsafe(method(preferredPresentationStyle))]
         #[unsafe(method_family = none)]
-        unsafe fn preferredPresentationStyle(&self) -> UIPreferredPresentationStyle;
+        fn preferredPresentationStyle(&self) -> UIPreferredPresentationStyle;
 
         /// Setter for [`preferredPresentationStyle`][Self::preferredPresentationStyle].
         #[unsafe(method(setPreferredPresentationStyle:))]
         #[unsafe(method_family = none)]
-        unsafe fn setPreferredPresentationStyle(
+        fn setPreferredPresentationStyle(
             &self,
             preferred_presentation_style: UIPreferredPresentationStyle,
         );
@@ -88,7 +88,7 @@ extern_protocol!(
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(preferredPresentationSizeForItemProvider))]
         #[unsafe(method_family = none)]
-        unsafe fn preferredPresentationSizeForItemProvider(&self) -> CGSize;
+        fn preferredPresentationSizeForItemProvider(&self) -> CGSize;
     }
 );
 
@@ -108,13 +108,11 @@ extern_protocol!(
 
         #[unsafe(method(additionalLeadingReadableTypeIdentifiersForItemProvider))]
         #[unsafe(method_family = none)]
-        unsafe fn additionalLeadingReadableTypeIdentifiersForItemProvider(
-        ) -> Retained<NSArray<NSString>>;
+        fn additionalLeadingReadableTypeIdentifiersForItemProvider() -> Retained<NSArray<NSString>>;
 
         #[unsafe(method(additionalTrailingReadableTypeIdentifiersForItemProvider))]
         #[unsafe(method_family = none)]
-        unsafe fn additionalTrailingReadableTypeIdentifiersForItemProvider(
-        ) -> Retained<NSArray<NSString>>;
+        fn additionalTrailingReadableTypeIdentifiersForItemProvider() -> Retained<NSArray<NSString>>;
     }
 );
 
@@ -125,6 +123,6 @@ extern_protocol!(
     {
         #[unsafe(method(_ui_augmentingNSItemProviderReadingClass))]
         #[unsafe(method_family = none)]
-        unsafe fn _ui_augmentingNSItemProviderReadingClass() -> &'static AnyClass;
+        fn _ui_augmentingNSItemProviderReadingClass() -> &'static AnyClass;
     }
 );

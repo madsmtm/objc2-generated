@@ -249,7 +249,7 @@ pub unsafe trait NSAttributedStringAttributeFixing:
     extern_methods!(
         #[unsafe(method(fixAttributesInRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn fixAttributesInRange(&self, range: NSRange);
+        fn fixAttributesInRange(&self, range: NSRange);
     );
 }
 
@@ -576,11 +576,11 @@ pub unsafe trait NSAttributedStringKitAdditions:
     extern_methods!(
         #[unsafe(method(containsAttachmentsInRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn containsAttachmentsInRange(&self, range: NSRange) -> bool;
+        fn containsAttachmentsInRange(&self, range: NSRange) -> bool;
 
         #[unsafe(method(prefersRTFDInRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn prefersRTFDInRange(&self, range: NSRange) -> bool;
+        fn prefersRTFDInRange(&self, range: NSRange) -> bool;
     );
 }
 
