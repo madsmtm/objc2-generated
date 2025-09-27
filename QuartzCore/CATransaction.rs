@@ -82,7 +82,7 @@ impl CATransaction {
 
         #[unsafe(method(valueForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
+        pub fn valueForKey(key: &NSString) -> Option<Retained<AnyObject>>;
 
         /// # Safety
         ///

@@ -213,11 +213,11 @@ impl CALayer {
 
         #[unsafe(method(needsDisplayForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn needsDisplayForKey(key: &NSString) -> bool;
+        pub fn needsDisplayForKey(key: &NSString) -> bool;
 
         #[unsafe(method(shouldArchiveValueForKey:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shouldArchiveValueForKey(&self, key: &NSString) -> bool;
+        pub fn shouldArchiveValueForKey(&self, key: &NSString) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Geometry and layer hierarchy properties. *
@@ -525,58 +525,58 @@ impl CALayer {
         #[deprecated = "Use preferredDynamicRange instead"]
         #[unsafe(method(wantsExtendedDynamicRangeContent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;
+        pub fn wantsExtendedDynamicRangeContent(&self) -> bool;
 
         /// Setter for [`wantsExtendedDynamicRangeContent`][Self::wantsExtendedDynamicRangeContent].
         #[deprecated = "Use preferredDynamicRange instead"]
         #[unsafe(method(setWantsExtendedDynamicRangeContent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWantsExtendedDynamicRangeContent(
+        pub fn setWantsExtendedDynamicRangeContent(
             &self,
             wants_extended_dynamic_range_content: bool,
         );
 
         #[unsafe(method(toneMapMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn toneMapMode(&self) -> Retained<CAToneMapMode>;
+        pub fn toneMapMode(&self) -> Retained<CAToneMapMode>;
 
         /// Setter for [`toneMapMode`][Self::toneMapMode].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setToneMapMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setToneMapMode(&self, tone_map_mode: &CAToneMapMode);
+        pub fn setToneMapMode(&self, tone_map_mode: &CAToneMapMode);
 
         #[unsafe(method(preferredDynamicRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredDynamicRange(&self) -> Retained<CADynamicRange>;
+        pub fn preferredDynamicRange(&self) -> Retained<CADynamicRange>;
 
         /// Setter for [`preferredDynamicRange`][Self::preferredDynamicRange].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreferredDynamicRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreferredDynamicRange(&self, preferred_dynamic_range: &CADynamicRange);
+        pub fn setPreferredDynamicRange(&self, preferred_dynamic_range: &CADynamicRange);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(contentsHeadroom))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentsHeadroom(&self) -> CGFloat;
+        pub fn contentsHeadroom(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`contentsHeadroom`][Self::contentsHeadroom].
         #[unsafe(method(setContentsHeadroom:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setContentsHeadroom(&self, contents_headroom: CGFloat);
+        pub fn setContentsHeadroom(&self, contents_headroom: CGFloat);
 
         #[unsafe(method(wantsDynamicContentScaling))]
         #[unsafe(method_family = none)]
-        pub unsafe fn wantsDynamicContentScaling(&self) -> bool;
+        pub fn wantsDynamicContentScaling(&self) -> bool;
 
         /// Setter for [`wantsDynamicContentScaling`][Self::wantsDynamicContentScaling].
         #[unsafe(method(setWantsDynamicContentScaling:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWantsDynamicContentScaling(&self, wants_dynamic_content_scaling: bool);
+        pub fn setWantsDynamicContentScaling(&self, wants_dynamic_content_scaling: bool);
 
         #[unsafe(method(minificationFilter))]
         #[unsafe(method_family = none)]
@@ -660,13 +660,13 @@ impl CALayer {
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(drawInContext:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawInContext(&self, ctx: &CGContext);
+        pub fn drawInContext(&self, ctx: &CGContext);
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Rendering properties and methods. *
         #[unsafe(method(renderInContext:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn renderInContext(&self, ctx: &CGContext);
+        pub fn renderInContext(&self, ctx: &CGContext);
 
         #[unsafe(method(edgeAntialiasingMask))]
         #[unsafe(method_family = none)]
@@ -689,13 +689,13 @@ impl CALayer {
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(backgroundColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundColor(&self) -> Option<Retained<CGColor>>;
+        pub fn backgroundColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`backgroundColor`][Self::backgroundColor].
         #[unsafe(method(setBackgroundColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBackgroundColor(&self, background_color: Option<&CGColor>);
+        pub fn setBackgroundColor(&self, background_color: Option<&CGColor>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(cornerRadius))]
@@ -747,13 +747,13 @@ impl CALayer {
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(borderColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn borderColor(&self) -> Option<Retained<CGColor>>;
+        pub fn borderColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`borderColor`][Self::borderColor].
         #[unsafe(method(setBorderColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBorderColor(&self, border_color: Option<&CGColor>);
+        pub fn setBorderColor(&self, border_color: Option<&CGColor>);
 
         #[unsafe(method(opacity))]
         #[unsafe(method_family = none)]
@@ -775,7 +775,7 @@ impl CALayer {
 
         #[unsafe(method(compositingFilter))]
         #[unsafe(method_family = none)]
-        pub unsafe fn compositingFilter(&self) -> Option<Retained<AnyObject>>;
+        pub fn compositingFilter(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`compositingFilter`][Self::compositingFilter].
         ///
@@ -788,7 +788,7 @@ impl CALayer {
 
         #[unsafe(method(filters))]
         #[unsafe(method_family = none)]
-        pub unsafe fn filters(&self) -> Option<Retained<NSArray>>;
+        pub fn filters(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`filters`][Self::filters].
         ///
@@ -803,7 +803,7 @@ impl CALayer {
 
         #[unsafe(method(backgroundFilters))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundFilters(&self) -> Option<Retained<NSArray>>;
+        pub fn backgroundFilters(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`backgroundFilters`][Self::backgroundFilters].
         ///
@@ -840,13 +840,13 @@ impl CALayer {
         /// Shadow properties. *
         #[unsafe(method(shadowColor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shadowColor(&self) -> Option<Retained<CGColor>>;
+        pub fn shadowColor(&self) -> Option<Retained<CGColor>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`shadowColor`][Self::shadowColor].
         #[unsafe(method(setShadowColor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShadowColor(&self, shadow_color: Option<&CGColor>);
+        pub fn setShadowColor(&self, shadow_color: Option<&CGColor>);
 
         #[unsafe(method(shadowOpacity))]
         #[unsafe(method_family = none)]
@@ -882,13 +882,13 @@ impl CALayer {
         #[cfg(feature = "objc2-core-graphics")]
         #[unsafe(method(shadowPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shadowPath(&self) -> Option<Retained<CGPath>>;
+        pub fn shadowPath(&self) -> Option<Retained<CGPath>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`shadowPath`][Self::shadowPath].
         #[unsafe(method(setShadowPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShadowPath(&self, shadow_path: Option<&CGPath>);
+        pub fn setShadowPath(&self, shadow_path: Option<&CGPath>);
 
         /// Layout methods. *
         #[unsafe(method(autoresizingMask))]
@@ -1021,7 +1021,7 @@ impl CALayer {
 
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]
-        pub unsafe fn style(&self) -> Option<Retained<NSDictionary>>;
+        pub fn style(&self) -> Option<Retained<NSDictionary>>;
 
         /// Setter for [`style`][Self::style].
         ///
@@ -1061,17 +1061,17 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(preferredSizeOfLayer:))]
         #[unsafe(method_family = none)]
-        unsafe fn preferredSizeOfLayer(&self, layer: &CALayer) -> CGSize;
+        fn preferredSizeOfLayer(&self, layer: &CALayer) -> CGSize;
 
         #[optional]
         #[unsafe(method(invalidateLayoutOfLayer:))]
         #[unsafe(method_family = none)]
-        unsafe fn invalidateLayoutOfLayer(&self, layer: &CALayer);
+        fn invalidateLayoutOfLayer(&self, layer: &CALayer);
 
         #[optional]
         #[unsafe(method(layoutSublayersOfLayer:))]
         #[unsafe(method_family = none)]
-        unsafe fn layoutSublayersOfLayer(&self, layer: &CALayer);
+        fn layoutSublayersOfLayer(&self, layer: &CALayer);
     }
 );
 
@@ -1107,28 +1107,28 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(displayLayer:))]
         #[unsafe(method_family = none)]
-        unsafe fn displayLayer(&self, layer: &CALayer);
+        fn displayLayer(&self, layer: &CALayer);
 
         #[cfg(feature = "objc2-core-graphics")]
         #[optional]
         #[unsafe(method(drawLayer:inContext:))]
         #[unsafe(method_family = none)]
-        unsafe fn drawLayer_inContext(&self, layer: &CALayer, ctx: &CGContext);
+        fn drawLayer_inContext(&self, layer: &CALayer, ctx: &CGContext);
 
         #[optional]
         #[unsafe(method(layerWillDraw:))]
         #[unsafe(method_family = none)]
-        unsafe fn layerWillDraw(&self, layer: &CALayer);
+        fn layerWillDraw(&self, layer: &CALayer);
 
         #[optional]
         #[unsafe(method(layoutSublayersOfLayer:))]
         #[unsafe(method_family = none)]
-        unsafe fn layoutSublayersOfLayer(&self, layer: &CALayer);
+        fn layoutSublayersOfLayer(&self, layer: &CALayer);
 
         #[optional]
         #[unsafe(method(actionForLayer:forKey:))]
         #[unsafe(method_family = none)]
-        unsafe fn actionForLayer_forKey(
+        fn actionForLayer_forKey(
             &self,
             layer: &CALayer,
             event: &NSString,

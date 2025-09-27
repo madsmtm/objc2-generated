@@ -51,67 +51,64 @@ impl CADisplayLink {
 
         #[unsafe(method(invalidate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidate(&self);
+        pub fn invalidate(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
-        pub unsafe fn timestamp(&self) -> CFTimeInterval;
+        pub fn timestamp(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(duration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn duration(&self) -> CFTimeInterval;
+        pub fn duration(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(targetTimestamp))]
         #[unsafe(method_family = none)]
-        pub unsafe fn targetTimestamp(&self) -> CFTimeInterval;
+        pub fn targetTimestamp(&self) -> CFTimeInterval;
 
         #[unsafe(method(isPaused))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isPaused(&self) -> bool;
+        pub fn isPaused(&self) -> bool;
 
         /// Setter for [`isPaused`][Self::isPaused].
         #[unsafe(method(setPaused:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPaused(&self, paused: bool);
+        pub fn setPaused(&self, paused: bool);
 
         #[deprecated = "preferredFramesPerSecond"]
         #[unsafe(method(frameInterval))]
         #[unsafe(method_family = none)]
-        pub unsafe fn frameInterval(&self) -> NSInteger;
+        pub fn frameInterval(&self) -> NSInteger;
 
         /// Setter for [`frameInterval`][Self::frameInterval].
         #[deprecated = "preferredFramesPerSecond"]
         #[unsafe(method(setFrameInterval:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFrameInterval(&self, frame_interval: NSInteger);
+        pub fn setFrameInterval(&self, frame_interval: NSInteger);
 
         #[deprecated]
         #[unsafe(method(preferredFramesPerSecond))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredFramesPerSecond(&self) -> NSInteger;
+        pub fn preferredFramesPerSecond(&self) -> NSInteger;
 
         /// Setter for [`preferredFramesPerSecond`][Self::preferredFramesPerSecond].
         #[deprecated]
         #[unsafe(method(setPreferredFramesPerSecond:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreferredFramesPerSecond(&self, preferred_frames_per_second: NSInteger);
+        pub fn setPreferredFramesPerSecond(&self, preferred_frames_per_second: NSInteger);
 
         #[cfg(feature = "CAFrameRateRange")]
         #[unsafe(method(preferredFrameRateRange))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredFrameRateRange(&self) -> CAFrameRateRange;
+        pub fn preferredFrameRateRange(&self) -> CAFrameRateRange;
 
         #[cfg(feature = "CAFrameRateRange")]
         /// Setter for [`preferredFrameRateRange`][Self::preferredFrameRateRange].
         #[unsafe(method(setPreferredFrameRateRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreferredFrameRateRange(
-            &self,
-            preferred_frame_rate_range: CAFrameRateRange,
-        );
+        pub fn setPreferredFrameRateRange(&self, preferred_frame_rate_range: CAFrameRateRange);
     );
 }
 
@@ -120,10 +117,17 @@ impl CADisplayLink {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for CADisplayLink {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

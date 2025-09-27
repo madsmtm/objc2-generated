@@ -51,13 +51,13 @@ impl CAOpenGLLayer {
         #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(isAsynchronous))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isAsynchronous(&self) -> bool;
+        pub fn isAsynchronous(&self) -> bool;
 
         /// Setter for [`isAsynchronous`][Self::isAsynchronous].
         #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setAsynchronous:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAsynchronous(&self, asynchronous: bool);
+        pub fn setAsynchronous(&self, asynchronous: bool);
 
         #[cfg(all(
             feature = "objc2-core-foundation",
@@ -108,7 +108,7 @@ impl CAOpenGLLayer {
         #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(copyCGLPixelFormatForDisplayMask:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn copyCGLPixelFormatForDisplayMask(&self, mask: u32) -> CGLPixelFormatObj;
+        pub fn copyCGLPixelFormatForDisplayMask(&self, mask: u32) -> CGLPixelFormatObj;
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
@@ -144,23 +144,23 @@ impl CAOpenGLLayer {
         #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(colorspace))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorspace(&self) -> Option<Retained<CGColorSpace>>;
+        pub fn colorspace(&self) -> Option<Retained<CGColorSpace>>;
 
         #[cfg(feature = "objc2-core-graphics")]
         /// Setter for [`colorspace`][Self::colorspace].
         #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(setColorspace:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setColorspace(&self, colorspace: Option<&CGColorSpace>);
+        pub fn setColorspace(&self, colorspace: Option<&CGColorSpace>);
 
         #[unsafe(method(wantsExtendedDynamicRangeContent))]
         #[unsafe(method_family = none)]
-        pub unsafe fn wantsExtendedDynamicRangeContent(&self) -> bool;
+        pub fn wantsExtendedDynamicRangeContent(&self) -> bool;
 
         /// Setter for [`wantsExtendedDynamicRangeContent`][Self::wantsExtendedDynamicRangeContent].
         #[unsafe(method(setWantsExtendedDynamicRangeContent:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setWantsExtendedDynamicRangeContent(
+        pub fn setWantsExtendedDynamicRangeContent(
             &self,
             wants_extended_dynamic_range_content: bool,
         );
@@ -174,11 +174,11 @@ impl CAOpenGLLayer {
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layer() -> Retained<Self>;
+        pub fn layer() -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -195,6 +195,14 @@ impl CAOpenGLLayer {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "CALayer")]
+impl DefaultRetained for CAOpenGLLayer {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

@@ -46,7 +46,7 @@ impl CAGradientLayer {
     extern_methods!(
         #[unsafe(method(colors))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colors(&self) -> Option<Retained<NSArray>>;
+        pub fn colors(&self) -> Option<Retained<NSArray>>;
 
         /// Setter for [`colors`][Self::colors].
         ///
@@ -61,47 +61,47 @@ impl CAGradientLayer {
 
         #[unsafe(method(locations))]
         #[unsafe(method_family = none)]
-        pub unsafe fn locations(&self) -> Option<Retained<NSArray<NSNumber>>>;
+        pub fn locations(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
         /// Setter for [`locations`][Self::locations].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLocations:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLocations(&self, locations: Option<&NSArray<NSNumber>>);
+        pub fn setLocations(&self, locations: Option<&NSArray<NSNumber>>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(startPoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startPoint(&self) -> CGPoint;
+        pub fn startPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`startPoint`][Self::startPoint].
         #[unsafe(method(setStartPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStartPoint(&self, start_point: CGPoint);
+        pub fn setStartPoint(&self, start_point: CGPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(endPoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endPoint(&self) -> CGPoint;
+        pub fn endPoint(&self) -> CGPoint;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Setter for [`endPoint`][Self::endPoint].
         #[unsafe(method(setEndPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setEndPoint(&self, end_point: CGPoint);
+        pub fn setEndPoint(&self, end_point: CGPoint);
 
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        pub unsafe fn r#type(&self) -> Retained<CAGradientLayerType>;
+        pub fn r#type(&self) -> Retained<CAGradientLayerType>;
 
         /// Setter for [`type`][Self::type].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setType(&self, r#type: &CAGradientLayerType);
+        pub fn setType(&self, r#type: &CAGradientLayerType);
     );
 }
 
@@ -112,11 +112,11 @@ impl CAGradientLayer {
         /// Layer creation and initialization. *
         #[unsafe(method(layer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layer() -> Retained<Self>;
+        pub fn layer() -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// # Safety
         ///
@@ -133,8 +133,16 @@ impl CAGradientLayer {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "CALayer")]
+impl DefaultRetained for CAGradientLayer {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {

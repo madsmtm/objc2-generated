@@ -38,15 +38,15 @@ impl CAEDRMetadata {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn HDR10MetadataWithDisplayInfo_contentInfo_opticalOutputScale(
+        pub fn HDR10MetadataWithDisplayInfo_contentInfo_opticalOutputScale(
             display_data: Option<&NSData>,
             content_data: Option<&NSData>,
             scale: c_float,
@@ -54,7 +54,7 @@ impl CAEDRMetadata {
 
         #[unsafe(method(HDR10MetadataWithMinLuminance:maxLuminance:opticalOutputScale:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn HDR10MetadataWithMinLuminance_maxLuminance_opticalOutputScale(
+        pub fn HDR10MetadataWithMinLuminance_maxLuminance_opticalOutputScale(
             min_nits: c_float,
             max_nits: c_float,
             scale: c_float,
@@ -62,16 +62,21 @@ impl CAEDRMetadata {
 
         #[unsafe(method(HLGMetadataWithAmbientViewingEnvironment:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn HLGMetadataWithAmbientViewingEnvironment(
-            data: &NSData,
-        ) -> Retained<CAEDRMetadata>;
+        pub fn HLGMetadataWithAmbientViewingEnvironment(data: &NSData) -> Retained<CAEDRMetadata>;
 
         #[unsafe(method(HLGMetadata))]
         #[unsafe(method_family = none)]
-        pub unsafe fn HLGMetadata() -> Retained<CAEDRMetadata>;
+        pub fn HLGMetadata() -> Retained<CAEDRMetadata>;
 
         #[unsafe(method(isAvailable))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isAvailable() -> bool;
+        pub fn isAvailable() -> bool;
     );
+}
+
+impl DefaultRetained for CAEDRMetadata {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
