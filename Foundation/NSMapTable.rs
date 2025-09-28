@@ -194,11 +194,17 @@ impl<KeyType: Message, ObjectType: Message> NSMapTable<KeyType, ObjectType> {
         pub fn count(&self) -> NSUInteger;
 
         #[cfg(feature = "NSEnumerator")]
+        /// # Safety
+        ///
+        /// The returned enumerator's underlying collection should not be mutated while in use.
         #[unsafe(method(keyEnumerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyEnumerator(&self) -> Retained<NSEnumerator<KeyType>>;
 
         #[cfg(feature = "NSEnumerator")]
+        /// # Safety
+        ///
+        /// The returned enumerator's underlying collection should not be mutated while in use.
         #[unsafe(method(objectEnumerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectEnumerator(&self) -> Option<Retained<NSEnumerator<ObjectType>>>;

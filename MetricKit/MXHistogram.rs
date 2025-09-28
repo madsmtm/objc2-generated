@@ -128,6 +128,10 @@ impl<UnitType: Message + AsRef<NSUnit>> MXHistogram<UnitType> {
         pub unsafe fn totalBucketCount(&self) -> NSUInteger;
 
         /// An NSEnumerator that can be used to enumerate the buckets of this histogram.
+        ///
+        /// # Safety
+        ///
+        /// The returned enumerator's underlying collection should not be mutated while in use.
         #[unsafe(method(bucketEnumerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn bucketEnumerator(

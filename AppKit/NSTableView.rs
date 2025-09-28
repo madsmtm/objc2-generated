@@ -1757,11 +1757,17 @@ impl NSTableView {
         #[unsafe(method_family = none)]
         pub unsafe fn selectRow_byExtendingSelection(&self, row: NSInteger, extend: bool);
 
+        /// # Safety
+        ///
+        /// The returned enumerator's underlying collection should not be mutated while in use.
         #[deprecated]
         #[unsafe(method(selectedColumnEnumerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn selectedColumnEnumerator(&self) -> Retained<NSEnumerator>;
 
+        /// # Safety
+        ///
+        /// The returned enumerator's underlying collection should not be mutated while in use.
         #[deprecated]
         #[unsafe(method(selectedRowEnumerator))]
         #[unsafe(method_family = none)]

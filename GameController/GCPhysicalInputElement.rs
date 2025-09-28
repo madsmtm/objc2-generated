@@ -122,6 +122,9 @@ impl<Key: Message + AsRef<NSString>, Element: Message + GCPhysicalInputElement>
         #[unsafe(method_family = none)]
         pub unsafe fn objectForKeyedSubscript(&self, key: &Key) -> Option<Retained<Element>>;
 
+        /// # Safety
+        ///
+        /// The returned enumerator's underlying collection should not be mutated while in use.
         #[unsafe(method(elementEnumerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn elementEnumerator(&self) -> Retained<NSEnumerator<Element>>;

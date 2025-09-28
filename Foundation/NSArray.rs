@@ -269,11 +269,17 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         pub fn lastObject(&self) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
+        /// # Safety
+        ///
+        /// The returned enumerator's underlying collection should not be mutated while in use.
         #[unsafe(method(objectEnumerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
+        /// # Safety
+        ///
+        /// The returned enumerator's underlying collection should not be mutated while in use.
         #[unsafe(method(reverseObjectEnumerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn reverseObjectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;

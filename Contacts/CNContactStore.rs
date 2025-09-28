@@ -211,6 +211,10 @@ impl CNContactStore {
         ///
         /// Returns: An enumerator of the records matching the result, or
         /// `nil`if there was an error.
+        ///
+        /// # Safety
+        ///
+        /// The returned generic enumerator's underlying collection should not be mutated while in use.
         #[unsafe(method(enumeratorForContactFetchRequest:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumeratorForContactFetchRequest_error(
@@ -242,6 +246,10 @@ impl CNContactStore {
         ///
         /// Returns: An enumerator of the events matching the result, or
         /// `nil`if there was an error.
+        ///
+        /// # Safety
+        ///
+        /// The returned generic enumerator's underlying collection should not be mutated while in use.
         #[unsafe(method(enumeratorForChangeHistoryFetchRequest:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumeratorForChangeHistoryFetchRequest_error(

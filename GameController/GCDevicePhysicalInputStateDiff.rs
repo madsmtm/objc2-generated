@@ -66,6 +66,10 @@ extern_protocol!(
         /// `nil`if the changed elements could not be determined -
         /// typically because the input state queue filled up and older input state
         /// snapshots were dropped.
+        ///
+        /// # Safety
+        ///
+        /// The returned enumerator's underlying collection should not be mutated while in use.
         #[unsafe(method(changedElements))]
         #[unsafe(method_family = none)]
         unsafe fn changedElements(

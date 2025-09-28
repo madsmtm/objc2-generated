@@ -95,6 +95,9 @@ impl<ObjectType: Message> NSSet<ObjectType> {
         pub fn member(&self, object: &ObjectType) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
+        /// # Safety
+        ///
+        /// The returned enumerator's underlying collection should not be mutated while in use.
         #[unsafe(method(objectEnumerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
@@ -603,6 +606,9 @@ impl<ObjectType: Message> NSCountedSet<ObjectType> {
         pub fn countForObject(&self, object: &ObjectType) -> NSUInteger;
 
         #[cfg(feature = "NSEnumerator")]
+        /// # Safety
+        ///
+        /// The returned enumerator's underlying collection should not be mutated while in use.
         #[unsafe(method(objectEnumerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;

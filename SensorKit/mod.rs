@@ -2852,7 +2852,8 @@ impl SRWristTemperatureSession {
         ///
         /// # Safety
         ///
-        /// This might not be thread-safe.
+        /// - The returned enumerator's underlying collection should not be mutated while in use.
+        /// - This might not be thread-safe.
         #[unsafe(method(temperatures))]
         #[unsafe(method_family = none)]
         pub unsafe fn temperatures(&self) -> Retained<NSEnumerator<SRWristTemperature>>;

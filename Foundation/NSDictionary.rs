@@ -120,6 +120,9 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         pub fn objectForKey(&self, a_key: &KeyType) -> Option<Retained<ObjectType>>;
 
         #[cfg(feature = "NSEnumerator")]
+        /// # Safety
+        ///
+        /// The returned enumerator's underlying collection should not be mutated while in use.
         #[unsafe(method(keyEnumerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyEnumerator(&self) -> Retained<NSEnumerator<KeyType>>;
@@ -230,6 +233,9 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         ) -> bool;
 
         #[cfg(feature = "NSEnumerator")]
+        /// # Safety
+        ///
+        /// The returned enumerator's underlying collection should not be mutated while in use.
         #[unsafe(method(objectEnumerator))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectEnumerator(&self) -> Retained<NSEnumerator<ObjectType>>;
