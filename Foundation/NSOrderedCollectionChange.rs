@@ -115,13 +115,6 @@ impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub fn new() -> Retained<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     );
-}
-
-impl<ObjectType: Message> DefaultRetained for NSOrderedCollectionChange<ObjectType> {
-    #[inline]
-    fn default_retained() -> Retained<Self> {
-        Self::new()
-    }
 }

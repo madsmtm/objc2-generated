@@ -83,15 +83,8 @@ impl NSAdaptiveImageGlyph {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub fn new() -> Retained<Self>;
+        pub unsafe fn new() -> Retained<Self>;
     );
-}
-
-impl DefaultRetained for NSAdaptiveImageGlyph {
-    #[inline]
-    fn default_retained() -> Retained<Self> {
-        Self::new()
-    }
 }
 
 mod private_NSAttributedStringAdaptiveImageGlyphConveniences {
