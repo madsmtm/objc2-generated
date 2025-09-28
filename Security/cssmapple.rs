@@ -1250,50 +1250,6 @@ pub const CSSM_CERT_STATUS_TRUST_SETTINGS_DENY: c_uint = 1024;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_status_trust_settings_ignored_error?language=objc)
 pub const CSSM_CERT_STATUS_TRUST_SETTINGS_IGNORED_ERROR: c_uint = 2048;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_apple_evidence_info?language=objc)
-#[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-#[deprecated]
-#[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
-pub struct CSSM_TP_APPLE_EVIDENCE_INFO {
-    pub StatusBits: CSSM_TP_APPLE_CERT_STATUS,
-    pub NumStatusCodes: uint32,
-    pub StatusCodes: *mut CSSM_RETURN,
-    pub Index: uint32,
-    pub DlDbHandle: CSSM_DL_DB_HANDLE,
-    pub UniqueRecord: CSSM_DB_UNIQUE_RECORD_PTR,
-}
-
-#[cfg(all(
-    feature = "SecAsn1Types",
-    feature = "cssmconfig",
-    feature = "cssmtype",
-    feature = "objc2"
-))]
-unsafe impl Encode for CSSM_TP_APPLE_EVIDENCE_INFO {
-    const ENCODING: Encoding = Encoding::Struct(
-        "?",
-        &[
-            <CSSM_TP_APPLE_CERT_STATUS>::ENCODING,
-            <uint32>::ENCODING,
-            <*mut CSSM_RETURN>::ENCODING,
-            <uint32>::ENCODING,
-            <CSSM_DL_DB_HANDLE>::ENCODING,
-            <CSSM_DB_UNIQUE_RECORD_PTR>::ENCODING,
-        ],
-    );
-}
-
-#[cfg(all(
-    feature = "SecAsn1Types",
-    feature = "cssmconfig",
-    feature = "cssmtype",
-    feature = "objc2"
-))]
-unsafe impl RefEncode for CSSM_TP_APPLE_EVIDENCE_INFO {
-    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_apple_evidence_header?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]

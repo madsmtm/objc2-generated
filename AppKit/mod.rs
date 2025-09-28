@@ -4611,6 +4611,8 @@ pub use self::__NSImage::NSImageNameUserGroup;
 #[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageNameUserGuest;
 #[cfg(feature = "NSImage")]
+pub use self::__NSImage::NSImageResizingMode;
+#[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageSymbolColorRenderingMode;
 #[cfg(feature = "NSImage")]
 pub use self::__NSImage::NSImageSymbolConfiguration;
@@ -6606,6 +6608,8 @@ pub use self::__NSText::NSTabCharacter;
 pub use self::__NSText::NSTabTextMovement;
 #[cfg(all(feature = "NSResponder", feature = "NSText", feature = "NSView"))]
 pub use self::__NSText::NSText;
+#[cfg(feature = "NSText")]
+pub use self::__NSText::NSTextAlignment;
 #[cfg(feature = "NSText")]
 pub use self::__NSText::NSTextDelegate;
 #[cfg(feature = "NSText")]

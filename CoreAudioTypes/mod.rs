@@ -717,10 +717,6 @@ pub use self::__CoreAudioBaseTypes::kAudioFormatFlagIsSignedInteger;
 #[cfg(feature = "CoreAudioBaseTypes")]
 pub use self::__CoreAudioBaseTypes::kAudioFormatFlagsAreAllClear;
 #[cfg(feature = "CoreAudioBaseTypes")]
-pub use self::__CoreAudioBaseTypes::kAudioFormatFlagsAudioUnitCanonical;
-#[cfg(feature = "CoreAudioBaseTypes")]
-pub use self::__CoreAudioBaseTypes::kAudioFormatFlagsCanonical;
-#[cfg(feature = "CoreAudioBaseTypes")]
 pub use self::__CoreAudioBaseTypes::kAudioFormatFlagsNativeEndian;
 #[cfg(feature = "CoreAudioBaseTypes")]
 pub use self::__CoreAudioBaseTypes::kAudioFormatFlagsNativeFloatPacked;
@@ -845,8 +841,6 @@ pub use self::__CoreAudioBaseTypes::AudioFormatID;
 #[cfg(feature = "CoreAudioBaseTypes")]
 pub use self::__CoreAudioBaseTypes::AudioFormatListItem;
 #[cfg(feature = "CoreAudioBaseTypes")]
-pub use self::__CoreAudioBaseTypes::AudioSampleType;
-#[cfg(feature = "CoreAudioBaseTypes")]
 pub use self::__CoreAudioBaseTypes::AudioStreamBasicDescription;
 #[cfg(feature = "CoreAudioBaseTypes")]
 pub use self::__CoreAudioBaseTypes::AudioStreamPacketDependencyDescription;
@@ -856,8 +850,6 @@ pub use self::__CoreAudioBaseTypes::AudioStreamPacketDescription;
 pub use self::__CoreAudioBaseTypes::AudioTimeStamp;
 #[cfg(feature = "CoreAudioBaseTypes")]
 pub use self::__CoreAudioBaseTypes::AudioTimeStampFlags;
-#[cfg(feature = "CoreAudioBaseTypes")]
-pub use self::__CoreAudioBaseTypes::AudioUnitSampleType;
 #[cfg(feature = "CoreAudioBaseTypes")]
 pub use self::__CoreAudioBaseTypes::AudioValueRange;
 #[cfg(feature = "CoreAudioBaseTypes")]

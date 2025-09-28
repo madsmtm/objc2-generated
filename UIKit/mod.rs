@@ -1618,6 +1618,8 @@ pub use self::__NSStringDrawing::NSStringDrawingOptions;
 #[cfg(feature = "NSStringDrawing")]
 pub use self::__NSStringDrawing::NSStringNSExtendedStringDrawing;
 #[cfg(feature = "NSText")]
+pub use self::__NSText::NSTextAlignment;
+#[cfg(feature = "NSText")]
 pub use self::__NSText::NSWritingDirection;
 #[cfg(feature = "NSTextAttachment")]
 pub use self::__NSTextAttachment::NSAttachmentCharacter;

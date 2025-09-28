@@ -51,12 +51,7 @@ unsafe impl RefEncode for UIImageOrientation {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct UIImageResizingMode(pub NSInteger);
-impl UIImageResizingMode {
-    #[doc(alias = "UIImageResizingModeTile")]
-    pub const Tile: Self = Self(0);
-    #[doc(alias = "UIImageResizingModeStretch")]
-    pub const Stretch: Self = Self(1);
-}
+impl UIImageResizingMode {}
 
 unsafe impl Encode for UIImageResizingMode {
     const ENCODING: Encoding = NSInteger::ENCODING;

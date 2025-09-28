@@ -83,6 +83,21 @@ unsafe impl RefEncode for NSImageCacheMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageresizingmode?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct NSImageResizingMode(pub NSInteger);
+impl NSImageResizingMode {}
+
+unsafe impl Encode for NSImageResizingMode {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for NSImageResizingMode {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage?language=objc)
     #[unsafe(super(NSObject))]

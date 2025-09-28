@@ -739,8 +739,6 @@ pub use self::__CSCommon::SecRequirementType;
 #[cfg(feature = "CSCommon")]
 pub use self::__CSCommon::SecStaticCode;
 #[cfg(feature = "CipherSuite")]
-pub use self::__CipherSuite::SSLCipherSuite;
-#[cfg(feature = "CipherSuite")]
 pub use self::__CipherSuite::SSLCiphersuiteGroup;
 #[cfg(feature = "CipherSuite")]
 pub use self::__CipherSuite::SSL_DH_anon_EXPORT_WITH_DES40_CBC_SHA;
@@ -6857,13 +6855,6 @@ pub use self::__cssmapple::CSSM_TP_ACTION_TRUST_SETTINGS;
 pub use self::__cssmapple::CSSM_TP_APPLE_CERT_STATUS;
 #[cfg(all(feature = "cssmapple", feature = "cssmconfig"))]
 pub use self::__cssmapple::CSSM_TP_APPLE_EVIDENCE_HEADER;
-#[cfg(all(
-    feature = "SecAsn1Types",
-    feature = "cssmapple",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__cssmapple::CSSM_TP_APPLE_EVIDENCE_INFO;
 #[cfg(feature = "cssmapple")]
 pub use self::__cssmapple::CSSM_TP_APPLE_EVIDENCE_VERSION;
 #[cfg(feature = "cssmapple")]

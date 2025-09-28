@@ -147,14 +147,6 @@ unsafe impl RefEncode for AudioBufferList {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiosampletype?language=objc)
-#[deprecated]
-pub type AudioSampleType = f32;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiounitsampletype?language=objc)
-#[deprecated]
-pub type AudioUnitSampleType = f32;
-
 /// A four char code indicating the general kind of data in the stream.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audioformatid?language=objc)
@@ -378,16 +370,6 @@ pub const kAppleLosslessFormatFlag_32BitSourceData: AudioFormatFlags = 4;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsnativeendian?language=objc)
 pub const kAudioFormatFlagsNativeEndian: AudioFormatFlags = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagscanonical?language=objc)
-#[deprecated]
-pub const kAudioFormatFlagsCanonical: AudioFormatFlags =
-    kAudioFormatFlagIsFloat | kAudioFormatFlagsNativeEndian | kAudioFormatFlagIsPacked;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsaudiounitcanonical?language=objc)
-#[deprecated]
-pub const kAudioFormatFlagsAudioUnitCanonical: AudioFormatFlags = kAudioFormatFlagIsFloat
-    | kAudioFormatFlagsNativeEndian
-    | kAudioFormatFlagIsPacked
-    | kAudioFormatFlagIsNonInterleaved;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudioformatflagsnativefloatpacked?language=objc)
 pub const kAudioFormatFlagsNativeFloatPacked: AudioFormatFlags =
     kAudioFormatFlagIsFloat | kAudioFormatFlagsNativeEndian | kAudioFormatFlagIsPacked;

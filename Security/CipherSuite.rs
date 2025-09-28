@@ -6,9 +6,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sslciphersuite?language=objc)
-pub type SSLCipherSuite = u16;
-
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ssl_null_with_null_null?language=objc)
 pub const SSL_NULL_WITH_NULL_NULL: SSLCipherSuite = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ssl_rsa_with_null_md5?language=objc)
