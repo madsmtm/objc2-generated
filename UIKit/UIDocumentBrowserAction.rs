@@ -46,7 +46,7 @@ impl UIDocumentBrowserAction {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         #[unsafe(method(initWithIdentifier:localizedTitle:availability:handler:))]

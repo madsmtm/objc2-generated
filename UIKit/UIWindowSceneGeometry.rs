@@ -60,11 +60,11 @@ impl UIWindowSceneGeometry {
         /// Geometry objects are readonly and should only be created by the framework. To set a window scene's geometry, see UIWindowSceneGeometryPreferences and -[UIWindowScene requestGeometryUpdateWithPreferences:].
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub fn new() -> Retained<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(systemFrame))]
@@ -113,11 +113,4 @@ impl UIWindowSceneGeometry {
         #[unsafe(method_family = none)]
         pub fn isInteractivelyResizing(&self) -> bool;
     );
-}
-
-impl DefaultRetained for UIWindowSceneGeometry {
-    #[inline]
-    fn default_retained() -> Retained<Self> {
-        Self::new()
-    }
 }

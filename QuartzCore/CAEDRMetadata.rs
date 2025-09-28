@@ -38,11 +38,11 @@ impl CAEDRMetadata {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub fn new() -> Retained<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:))]
         #[unsafe(method_family = none)]
@@ -72,11 +72,4 @@ impl CAEDRMetadata {
         #[unsafe(method_family = none)]
         pub fn isAvailable() -> bool;
     );
-}
-
-impl DefaultRetained for CAEDRMetadata {
-    #[inline]
-    fn default_retained() -> Retained<Self> {
-        Self::new()
-    }
 }

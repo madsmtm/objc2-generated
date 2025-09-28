@@ -42,11 +42,11 @@ impl UIUpdateActionPhase {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// Phase that runs after UI update was scheduled and its timing information is know. This is a good place for things
         /// that only rely on UI update timing and don't need user input events. Running at this stage allows to utilize time

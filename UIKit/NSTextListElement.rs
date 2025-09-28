@@ -39,7 +39,7 @@ impl NSTextListElement {
 
         #[unsafe(method(initWithAttributedString:))]
         #[unsafe(method_family = init)]
-        pub fn initWithAttributedString(
+        pub unsafe fn initWithAttributedString(
             this: Allocated<Self>,
             attributed_string: Option<&NSAttributedString>,
         ) -> Retained<Self>;

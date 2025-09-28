@@ -69,11 +69,11 @@ impl NSTextViewportLayoutController {
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub fn new() -> Retained<Self>;
+        pub unsafe fn new() -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -123,11 +123,4 @@ impl NSTextViewportLayoutController {
         #[unsafe(method_family = none)]
         pub fn adjustViewportByVerticalOffset(&self, vertical_offset: CGFloat);
     );
-}
-
-impl DefaultRetained for NSTextViewportLayoutController {
-    #[inline]
-    fn default_retained() -> Retained<Self> {
-        Self::new()
-    }
 }

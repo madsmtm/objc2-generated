@@ -161,7 +161,7 @@ impl UIDocumentBrowserViewController {
         /// Please use the designated initializers above instead.
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
-        pub fn initWithNibName_bundle(
+        pub unsafe fn initWithNibName_bundle(
             this: Allocated<Self>,
             nib_name: Option<&NSString>,
             bundle: Option<&NSBundle>,
@@ -547,7 +547,7 @@ impl UIDocumentBrowserTransitionController {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
         /// An optional progress can be displayed on the document thumbnail while the document is loading (during opening).
         #[unsafe(method(loadingProgress))]

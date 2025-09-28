@@ -49,11 +49,11 @@ impl UIMainMenuSystem {
 
         #[unsafe(method(mainSystem))]
         #[unsafe(method_family = none)]
-        pub fn mainSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
+        pub unsafe fn mainSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
 
         #[unsafe(method(contextSystem))]
         #[unsafe(method_family = none)]
-        pub fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
+        pub unsafe fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
     );
 }
 
@@ -63,11 +63,11 @@ impl UIMainMenuSystem {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
