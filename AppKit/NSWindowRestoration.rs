@@ -122,7 +122,8 @@ impl NSResponder {
 
         /// # Safety
         ///
-        /// `coder` possibly has further requirements.
+        /// - `coder` possibly has further requirements.
+        /// - `queue` possibly has additional threading requirements.
         #[unsafe(method(encodeRestorableStateWithCoder:backgroundQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRestorableStateWithCoder_backgroundQueue(
@@ -202,7 +203,8 @@ impl NSDocument {
 
         /// # Safety
         ///
-        /// `coder` possibly has further requirements.
+        /// - `coder` possibly has further requirements.
+        /// - `queue` possibly has additional threading requirements.
         #[unsafe(method(encodeRestorableStateWithCoder:backgroundQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRestorableStateWithCoder_backgroundQueue(

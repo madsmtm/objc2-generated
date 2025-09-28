@@ -82,7 +82,8 @@ impl CMHeadphoneActivityManager {
         ))]
         /// # Safety
         ///
-        /// `handler` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `handler` must be a valid pointer.
         #[unsafe(method(startActivityUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startActivityUpdatesToQueue_withHandler(
@@ -98,7 +99,8 @@ impl CMHeadphoneActivityManager {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `handler` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `handler` must be a valid pointer.
         #[unsafe(method(startStatusUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startStatusUpdatesToQueue_withHandler(

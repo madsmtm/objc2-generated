@@ -72,7 +72,8 @@ impl CMHeadphoneMotionManager {
         #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem", feature = "block2"))]
         /// # Safety
         ///
-        /// `handler` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `handler` must be a valid pointer.
         #[unsafe(method(startDeviceMotionUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDeviceMotionUpdatesToQueue_withHandler(

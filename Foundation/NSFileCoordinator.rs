@@ -177,7 +177,8 @@ impl NSFileCoordinator {
         ))]
         /// # Safety
         ///
-        /// `accessor` block must be sendable.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `accessor` block must be sendable.
         #[unsafe(method(coordinateAccessWithIntents:queue:byAccessor:))]
         #[unsafe(method_family = none)]
         pub unsafe fn coordinateAccessWithIntents_queue_byAccessor(

@@ -228,7 +228,8 @@ impl ODQuery {
         ///
         /// # Safety
         ///
-        /// `operation_queue` might not allow `None`.
+        /// - `operation_queue` possibly has additional threading requirements.
+        /// - `operation_queue` might not allow `None`.
         #[unsafe(method(setOperationQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOperationQueue(&self, operation_queue: Option<&NSOperationQueue>);

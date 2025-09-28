@@ -642,6 +642,10 @@ impl AVAssetDownloadURLSession {
         /// - Parameter configuration: The configuration for this URLSession. Must be a background configuration.
         /// - Parameter delegate: The delegate object to handle asset download progress updates and other session related events.
         /// - Parameter delegateQueue: The queue to receive delegate callbacks on. If nil, a serial queue will be provided.
+        ///
+        /// # Safety
+        ///
+        /// `delegate_queue` possibly has additional threading requirements.
         #[unsafe(method(sessionWithConfiguration:assetDownloadDelegate:delegateQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionWithConfiguration_assetDownloadDelegate_delegateQueue(
@@ -752,6 +756,9 @@ impl AVAssetDownloadURLSession {
             configuration: &NSURLSessionConfiguration,
         ) -> Retained<NSURLSession>;
 
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(sessionWithConfiguration:delegate:delegateQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionWithConfiguration_delegate_delegateQueue(

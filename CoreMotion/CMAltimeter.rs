@@ -45,7 +45,8 @@ impl CMAltimeter {
         #[cfg(all(feature = "CMAltitude", feature = "CMLogItem", feature = "block2"))]
         /// # Safety
         ///
-        /// `handler` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `handler` must be a valid pointer.
         #[unsafe(method(startRelativeAltitudeUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startRelativeAltitudeUpdatesToQueue_withHandler(
@@ -69,7 +70,8 @@ impl CMAltimeter {
         ))]
         /// # Safety
         ///
-        /// `handler` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `handler` must be a valid pointer.
         #[unsafe(method(startAbsoluteAltitudeUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startAbsoluteAltitudeUpdatesToQueue_withHandler(

@@ -40,7 +40,8 @@ impl NSFilePromiseReceiver {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `options` generic should be of the correct type.
+        /// - `operation_queue` possibly has additional threading requirements.
         #[unsafe(method(receivePromisedFilesAtDestination:options:operationQueue:reader:))]
         #[unsafe(method_family = none)]
         pub unsafe fn receivePromisedFilesAtDestination_options_operationQueue_reader(

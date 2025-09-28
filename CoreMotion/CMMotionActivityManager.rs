@@ -53,7 +53,8 @@ impl CMMotionActivityManager {
         ))]
         /// # Safety
         ///
-        /// `handler` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `handler` must be a valid pointer.
         #[unsafe(method(queryActivityStartingFromDate:toDate:toQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryActivityStartingFromDate_toDate_toQueue_withHandler(
@@ -71,7 +72,8 @@ impl CMMotionActivityManager {
         ))]
         /// # Safety
         ///
-        /// `handler` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `handler` must be a valid pointer.
         #[unsafe(method(startActivityUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startActivityUpdatesToQueue_withHandler(

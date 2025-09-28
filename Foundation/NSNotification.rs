@@ -205,6 +205,7 @@ impl NSNotificationCenter {
         /// # Safety
         ///
         /// - `obj` should be of the correct type.
+        /// - `queue` possibly has additional threading requirements.
         /// - `block` block must be sendable.
         #[unsafe(method(addObserverForName:object:queue:usingBlock:))]
         #[unsafe(method_family = none)]

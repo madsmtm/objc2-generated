@@ -150,9 +150,13 @@ impl NSTextLayoutFragment {
         pub fn layoutQueue(&self) -> Option<Retained<NSOperationQueue>>;
 
         /// Setter for [`layoutQueue`][Self::layoutQueue].
+        ///
+        /// # Safety
+        ///
+        /// `layout_queue` possibly has additional threading requirements.
         #[unsafe(method(setLayoutQueue:))]
         #[unsafe(method_family = none)]
-        pub fn setLayoutQueue(&self, layout_queue: Option<&NSOperationQueue>);
+        pub unsafe fn setLayoutQueue(&self, layout_queue: Option<&NSOperationQueue>);
 
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]

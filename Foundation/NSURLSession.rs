@@ -39,9 +39,12 @@ impl NSURLSession {
         ) -> Retained<NSURLSession>;
 
         #[cfg(feature = "NSOperation")]
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(sessionWithConfiguration:delegate:delegateQueue:))]
         #[unsafe(method_family = none)]
-        pub fn sessionWithConfiguration_delegate_delegateQueue(
+        pub unsafe fn sessionWithConfiguration_delegate_delegateQueue(
             configuration: &NSURLSessionConfiguration,
             delegate: Option<&ProtocolObject<dyn NSURLSessionDelegate>>,
             queue: Option<&NSOperationQueue>,

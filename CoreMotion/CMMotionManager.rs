@@ -70,7 +70,8 @@ impl CMMotionManager {
         #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem", feature = "block2"))]
         /// # Safety
         ///
-        /// `handler` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `handler` must be a valid pointer.
         #[unsafe(method(startAccelerometerUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startAccelerometerUpdatesToQueue_withHandler(
@@ -112,7 +113,8 @@ impl CMMotionManager {
         #[cfg(all(feature = "CMGyro", feature = "CMLogItem", feature = "block2"))]
         /// # Safety
         ///
-        /// `handler` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `handler` must be a valid pointer.
         #[unsafe(method(startGyroUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startGyroUpdatesToQueue_withHandler(
@@ -157,7 +159,8 @@ impl CMMotionManager {
         #[cfg(all(feature = "CMLogItem", feature = "CMMagnetometer", feature = "block2"))]
         /// # Safety
         ///
-        /// `handler` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `handler` must be a valid pointer.
         #[unsafe(method(startMagnetometerUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startMagnetometerUpdatesToQueue_withHandler(
@@ -212,7 +215,8 @@ impl CMMotionManager {
         #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem", feature = "block2"))]
         /// # Safety
         ///
-        /// `handler` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `handler` must be a valid pointer.
         #[unsafe(method(startDeviceMotionUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDeviceMotionUpdatesToQueue_withHandler(
@@ -237,7 +241,8 @@ impl CMMotionManager {
         ))]
         /// # Safety
         ///
-        /// `handler` must be a valid pointer.
+        /// - `queue` possibly has additional threading requirements.
+        /// - `handler` must be a valid pointer.
         #[unsafe(method(startDeviceMotionUpdatesUsingReferenceFrame:toQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDeviceMotionUpdatesUsingReferenceFrame_toQueue_withHandler(

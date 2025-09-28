@@ -185,9 +185,12 @@ impl NSURLConnection {
         );
 
         #[cfg(feature = "NSOperation")]
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(setDelegateQueue:))]
         #[unsafe(method_family = none)]
-        pub fn setDelegateQueue(&self, queue: Option<&NSOperationQueue>);
+        pub unsafe fn setDelegateQueue(&self, queue: Option<&NSOperationQueue>);
 
         #[cfg(feature = "NSURLRequest")]
         /// Performs a "preflight" operation that performs
@@ -654,10 +657,14 @@ impl NSURLConnection {
         ///
         ///
         /// Parameter `handler`: A block which receives the results of the resource load.
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[deprecated = "Use [NSURLSession dataTaskWithRequest:completionHandler:] (see NSURLSession.h"]
         #[unsafe(method(sendAsynchronousRequest:queue:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub fn sendAsynchronousRequest_queue_completionHandler(
+        pub unsafe fn sendAsynchronousRequest_queue_completionHandler(
             request: &NSURLRequest,
             queue: &NSOperationQueue,
             handler: &block2::DynBlock<dyn Fn(*mut NSURLResponse, *mut NSData, *mut NSError)>,

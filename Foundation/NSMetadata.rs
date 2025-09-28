@@ -147,9 +147,13 @@ impl NSMetadataQuery {
 
         #[cfg(feature = "NSOperation")]
         /// Setter for [`operationQueue`][Self::operationQueue].
+        ///
+        /// # Safety
+        ///
+        /// `operation_queue` possibly has additional threading requirements.
         #[unsafe(method(setOperationQueue:))]
         #[unsafe(method_family = none)]
-        pub fn setOperationQueue(&self, operation_queue: Option<&NSOperationQueue>);
+        pub unsafe fn setOperationQueue(&self, operation_queue: Option<&NSOperationQueue>);
 
         #[unsafe(method(startQuery))]
         #[unsafe(method_family = none)]

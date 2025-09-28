@@ -274,6 +274,10 @@ impl SFSpeechRecognizer {
         pub unsafe fn queue(&self) -> Retained<NSOperationQueue>;
 
         /// Setter for [`queue`][Self::queue].
+        ///
+        /// # Safety
+        ///
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(setQueue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setQueue(&self, queue: &NSOperationQueue);
