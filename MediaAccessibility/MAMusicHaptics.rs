@@ -68,6 +68,9 @@ impl MAMusicHapticsManager {
         ) -> Option<Retained<ProtocolObject<dyn NSCopying>>>;
 
         #[cfg(feature = "objc2-foundation")]
+        /// # Safety
+        ///
+        /// `registration_token` should be of the correct type.
         #[unsafe(method(removeStatusObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeStatusObserver(

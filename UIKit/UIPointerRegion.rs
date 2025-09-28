@@ -60,9 +60,13 @@ impl UIPointerRegion {
         /// Parameter `rect`: This region's rect. Must be in the pointer interaction's view's coordinate space.
         ///
         /// Parameter `identifier`: Optional identifier that may be used to identify this region in subsequent pointer interaction delegate calls.
+        ///
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[unsafe(method(regionWithRect:identifier:))]
         #[unsafe(method_family = none)]
-        pub fn regionWithRect_identifier(
+        pub unsafe fn regionWithRect_identifier(
             rect: CGRect,
             identifier: Option<&ProtocolObject<dyn NSObjectProtocol>>,
             mtm: MainThreadMarker,

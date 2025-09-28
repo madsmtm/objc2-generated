@@ -235,6 +235,9 @@ impl CSCustomAttributeKey {
 /// CSCustomAttributes.
 impl CSSearchableItemAttributeSet {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:forCustomKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forCustomKey(

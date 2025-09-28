@@ -225,10 +225,14 @@ extern_protocol!(
         /// Parameter `configuration`: Configuration of the menu that will be presented if the interaction proceeds.
         ///
         /// Parameter `identifier`: Identifier for the item whose preview is being requested.
+        ///
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[optional]
         #[unsafe(method(contextMenuInteraction:configuration:highlightPreviewForItemWithIdentifier:))]
         #[unsafe(method_family = none)]
-        fn contextMenuInteraction_configuration_highlightPreviewForItemWithIdentifier(
+        unsafe fn contextMenuInteraction_configuration_highlightPreviewForItemWithIdentifier(
             &self,
             interaction: &UIContextMenuInteraction,
             configuration: &UIContextMenuConfiguration,
@@ -244,10 +248,14 @@ extern_protocol!(
         /// Parameter `configuration`: Configuration of the menu being dismissed.
         ///
         /// Parameter `identifier`: Identifier for the item whose preview is being requested.
+        ///
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[optional]
         #[unsafe(method(contextMenuInteraction:configuration:dismissalPreviewForItemWithIdentifier:))]
         #[unsafe(method_family = none)]
-        fn contextMenuInteraction_configuration_dismissalPreviewForItemWithIdentifier(
+        unsafe fn contextMenuInteraction_configuration_dismissalPreviewForItemWithIdentifier(
             &self,
             interaction: &UIContextMenuInteraction,
             configuration: &UIContextMenuConfiguration,

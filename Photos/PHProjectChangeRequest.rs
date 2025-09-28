@@ -75,6 +75,10 @@ impl PHProjectChangeRequest {
         /// Removes the specified assets from the project.
         ///
         /// Parameter `assets`: A collection of PHAsset objects to be removed from the project.
+        ///
+        /// # Safety
+        ///
+        /// `assets` should be of the correct type.
         #[unsafe(method(removeAssets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);

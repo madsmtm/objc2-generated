@@ -50,7 +50,8 @@ impl IOBluetoothSDPServiceAttribute {
         ///
         /// # Safety
         ///
-        /// `attribute_element_value` might not allow `None`.
+        /// - `attribute_element_value` should be of the correct type.
+        /// - `attribute_element_value` might not allow `None`.
         #[unsafe(method(withID:attributeElementValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withID_attributeElementValue(
@@ -94,7 +95,8 @@ impl IOBluetoothSDPServiceAttribute {
         ///
         /// # Safety
         ///
-        /// `attribute_element_value` might not allow `None`.
+        /// - `attribute_element_value` should be of the correct type.
+        /// - `attribute_element_value` might not allow `None`.
         #[unsafe(method(initWithID:attributeElementValue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithID_attributeElementValue(

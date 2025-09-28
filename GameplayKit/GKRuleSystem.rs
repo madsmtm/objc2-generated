@@ -137,6 +137,10 @@ impl GKRuleSystem {
         ///
         ///
         /// Returns: The membership grade of the given fact, in the range [0.0, 1.0].
+        ///
+        /// # Safety
+        ///
+        /// `fact` should be of the correct type.
         #[unsafe(method(gradeForFact:))]
         #[unsafe(method_family = none)]
         pub unsafe fn gradeForFact(&self, fact: &ProtocolObject<dyn NSObjectProtocol>) -> c_float;
@@ -182,6 +186,10 @@ impl GKRuleSystem {
         /// See: evaluate
         ///
         /// See: NSObject.isEqual:
+        ///
+        /// # Safety
+        ///
+        /// `fact` should be of the correct type.
         #[unsafe(method(assertFact:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assertFact(&self, fact: &ProtocolObject<dyn NSObjectProtocol>);
@@ -193,6 +201,10 @@ impl GKRuleSystem {
         ///
         ///
         /// See: evaluate
+        ///
+        /// # Safety
+        ///
+        /// `fact` should be of the correct type.
         #[unsafe(method(assertFact:grade:))]
         #[unsafe(method_family = none)]
         pub unsafe fn assertFact_grade(
@@ -212,6 +224,10 @@ impl GKRuleSystem {
         /// See: retractFact:grade:
         ///
         /// See: evaluate
+        ///
+        /// # Safety
+        ///
+        /// `fact` should be of the correct type.
         #[unsafe(method(retractFact:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retractFact(&self, fact: &ProtocolObject<dyn NSObjectProtocol>);
@@ -224,6 +240,10 @@ impl GKRuleSystem {
         ///
         ///
         /// See: evaluate
+        ///
+        /// # Safety
+        ///
+        /// `fact` should be of the correct type.
         #[unsafe(method(retractFact:grade:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retractFact_grade(
@@ -314,6 +334,10 @@ impl GKRule {
         pub unsafe fn performActionWithSystem(&self, system: &GKRuleSystem);
 
         /// Create a data-driven rule that uses NSPredicate and a single assert as the action.
+        ///
+        /// # Safety
+        ///
+        /// `fact` should be of the correct type.
         #[unsafe(method(ruleWithPredicate:assertingFact:grade:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ruleWithPredicate_assertingFact_grade(
@@ -323,6 +347,10 @@ impl GKRule {
         ) -> Retained<Self>;
 
         /// Short hand for data-driven rule that uses NSPredicate and a single retract as the action.
+        ///
+        /// # Safety
+        ///
+        /// `fact` should be of the correct type.
         #[unsafe(method(ruleWithPredicate:retractingFact:grade:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ruleWithPredicate_retractingFact_grade(
@@ -404,6 +432,10 @@ impl GKNSPredicateRule {
 impl GKNSPredicateRule {
     extern_methods!(
         /// Create a data-driven rule that uses NSPredicate and a single assert as the action.
+        ///
+        /// # Safety
+        ///
+        /// `fact` should be of the correct type.
         #[unsafe(method(ruleWithPredicate:assertingFact:grade:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ruleWithPredicate_assertingFact_grade(
@@ -413,6 +445,10 @@ impl GKNSPredicateRule {
         ) -> Retained<Self>;
 
         /// Short hand for data-driven rule that uses NSPredicate and a single retract as the action.
+        ///
+        /// # Safety
+        ///
+        /// `fact` should be of the correct type.
         #[unsafe(method(ruleWithPredicate:retractingFact:grade:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ruleWithPredicate_retractingFact_grade(

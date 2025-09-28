@@ -127,6 +127,10 @@ impl NSRulerMarker {
         pub unsafe fn representedObject(&self) -> Option<Retained<ProtocolObject<dyn NSCopying>>>;
 
         /// Setter for [`representedObject`][Self::representedObject].
+        ///
+        /// # Safety
+        ///
+        /// `represented_object` should be of the correct type.
         #[unsafe(method(setRepresentedObject:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRepresentedObject(

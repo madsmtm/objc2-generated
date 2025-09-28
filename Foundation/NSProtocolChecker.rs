@@ -37,7 +37,8 @@ impl NSProtocolChecker {
     extern_methods!(
         /// # Safety
         ///
-        /// `a_protocol` possibly has further requirements.
+        /// - `an_object` should be of the correct type.
+        /// - `a_protocol` possibly has further requirements.
         #[unsafe(method(protocolCheckerWithTarget:protocol:))]
         #[unsafe(method_family = none)]
         pub unsafe fn protocolCheckerWithTarget_protocol(
@@ -47,7 +48,8 @@ impl NSProtocolChecker {
 
         /// # Safety
         ///
-        /// `a_protocol` possibly has further requirements.
+        /// - `an_object` should be of the correct type.
+        /// - `a_protocol` possibly has further requirements.
         #[unsafe(method(initWithTarget:protocol:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTarget_protocol(

@@ -259,9 +259,12 @@ impl NSProcessInfo {
             reason: &NSString,
         ) -> Retained<ProtocolObject<dyn NSObjectProtocol>>;
 
+        /// # Safety
+        ///
+        /// `activity` should be of the correct type.
         #[unsafe(method(endActivity:))]
         #[unsafe(method_family = none)]
-        pub fn endActivity(&self, activity: &ProtocolObject<dyn NSObjectProtocol>);
+        pub unsafe fn endActivity(&self, activity: &ProtocolObject<dyn NSObjectProtocol>);
 
         #[cfg(all(feature = "NSString", feature = "block2"))]
         #[unsafe(method(performActivityWithOptions:reason:usingBlock:))]

@@ -1731,7 +1731,8 @@ impl AUAudioUnitBusArray {
         ///
         /// # Safety
         ///
-        /// `context` must be a valid pointer or null.
+        /// - `observer` should be of the correct type.
+        /// - `context` must be a valid pointer or null.
         #[unsafe(method(addObserverToAllBusses:forKeyPath:options:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserverToAllBusses_forKeyPath_options_context(
@@ -1746,7 +1747,8 @@ impl AUAudioUnitBusArray {
         ///
         /// # Safety
         ///
-        /// `context` must be a valid pointer or null.
+        /// - `observer` should be of the correct type.
+        /// - `context` must be a valid pointer or null.
         #[unsafe(method(removeObserverFromAllBusses:forKeyPath:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeObserverFromAllBusses_forKeyPath_context(

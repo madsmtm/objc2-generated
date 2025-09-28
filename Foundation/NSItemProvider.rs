@@ -319,9 +319,12 @@ impl NSItemProvider {
         );
 
         #[cfg(all(feature = "NSObject", feature = "NSString"))]
+        /// # Safety
+        ///
+        /// `item` should be of the correct type.
         #[unsafe(method(initWithItem:typeIdentifier:))]
         #[unsafe(method_family = init)]
-        pub fn initWithItem_typeIdentifier(
+        pub unsafe fn initWithItem_typeIdentifier(
             this: Allocated<Self>,
             item: Option<&ProtocolObject<dyn NSSecureCoding>>,
             type_identifier: Option<&NSString>,

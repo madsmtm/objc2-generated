@@ -60,10 +60,13 @@ extern_protocol!(
         );
 
         #[cfg(all(feature = "UIDynamicBehavior", feature = "objc2-core-foundation"))]
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[optional]
         #[unsafe(method(collisionBehavior:beganContactForItem:withBoundaryIdentifier:atPoint:))]
         #[unsafe(method_family = none)]
-        fn collisionBehavior_beganContactForItem_withBoundaryIdentifier_atPoint(
+        unsafe fn collisionBehavior_beganContactForItem_withBoundaryIdentifier_atPoint(
             &self,
             behavior: &UICollisionBehavior,
             item: &ProtocolObject<dyn UIDynamicItem>,
@@ -72,10 +75,13 @@ extern_protocol!(
         );
 
         #[cfg(feature = "UIDynamicBehavior")]
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[optional]
         #[unsafe(method(collisionBehavior:endedContactForItem:withBoundaryIdentifier:))]
         #[unsafe(method_family = none)]
-        fn collisionBehavior_endedContactForItem_withBoundaryIdentifier(
+        unsafe fn collisionBehavior_endedContactForItem_withBoundaryIdentifier(
             &self,
             behavior: &UICollisionBehavior,
             item: &ProtocolObject<dyn UIDynamicItem>,
@@ -147,18 +153,24 @@ impl UICollisionBehavior {
         pub fn setTranslatesReferenceBoundsIntoBoundaryWithInsets(&self, insets: UIEdgeInsets);
 
         #[cfg(feature = "UIBezierPath")]
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[unsafe(method(addBoundaryWithIdentifier:forPath:))]
         #[unsafe(method_family = none)]
-        pub fn addBoundaryWithIdentifier_forPath(
+        pub unsafe fn addBoundaryWithIdentifier_forPath(
             &self,
             identifier: &ProtocolObject<dyn NSCopying>,
             bezier_path: &UIBezierPath,
         );
 
         #[cfg(feature = "objc2-core-foundation")]
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[unsafe(method(addBoundaryWithIdentifier:fromPoint:toPoint:))]
         #[unsafe(method_family = none)]
-        pub fn addBoundaryWithIdentifier_fromPoint_toPoint(
+        pub unsafe fn addBoundaryWithIdentifier_fromPoint_toPoint(
             &self,
             identifier: &ProtocolObject<dyn NSCopying>,
             p1: CGPoint,
@@ -166,16 +178,25 @@ impl UICollisionBehavior {
         );
 
         #[cfg(feature = "UIBezierPath")]
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[unsafe(method(boundaryWithIdentifier:))]
         #[unsafe(method_family = none)]
-        pub fn boundaryWithIdentifier(
+        pub unsafe fn boundaryWithIdentifier(
             &self,
             identifier: &ProtocolObject<dyn NSCopying>,
         ) -> Option<Retained<UIBezierPath>>;
 
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[unsafe(method(removeBoundaryWithIdentifier:))]
         #[unsafe(method_family = none)]
-        pub fn removeBoundaryWithIdentifier(&self, identifier: &ProtocolObject<dyn NSCopying>);
+        pub unsafe fn removeBoundaryWithIdentifier(
+            &self,
+            identifier: &ProtocolObject<dyn NSCopying>,
+        );
 
         #[unsafe(method(boundaryIdentifiers))]
         #[unsafe(method_family = none)]

@@ -51,6 +51,9 @@ impl PHAssetChangeRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderForCreatedAsset(&self) -> Option<Retained<PHObjectPlaceholder>>;
 
+        /// # Safety
+        ///
+        /// `assets` should be of the correct type.
         #[unsafe(method(deleteAssets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAssets(assets: &ProtocolObject<dyn NSFastEnumeration>);

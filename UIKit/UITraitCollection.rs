@@ -505,7 +505,8 @@ extern_protocol!(
         #[cfg(feature = "UITrait")]
         /// # Safety
         ///
-        /// `trait` must implement UIObjectTraitDefinition.
+        /// - `object` should be of the correct type.
+        /// - `trait` must implement UIObjectTraitDefinition.
         #[unsafe(method(setObject:forTrait:))]
         #[unsafe(method_family = none)]
         unsafe fn setObject_forTrait(
@@ -863,7 +864,8 @@ impl UITraitCollection {
         #[cfg(feature = "UITrait")]
         /// # Safety
         ///
-        /// `trait` must implement UIObjectTraitDefinition.
+        /// - `object` should be of the correct type.
+        /// - `trait` must implement UIObjectTraitDefinition.
         #[unsafe(method(traitCollectionWithObject:forTrait:))]
         #[unsafe(method_family = none)]
         pub unsafe fn traitCollectionWithObject_forTrait(
@@ -874,7 +876,8 @@ impl UITraitCollection {
         #[cfg(feature = "UITrait")]
         /// # Safety
         ///
-        /// `trait` must implement UIObjectTraitDefinition.
+        /// - `object` should be of the correct type.
+        /// - `trait` must implement UIObjectTraitDefinition.
         #[unsafe(method(traitCollectionByReplacingObject:forTrait:))]
         #[unsafe(method_family = none)]
         pub unsafe fn traitCollectionByReplacingObject_forTrait(

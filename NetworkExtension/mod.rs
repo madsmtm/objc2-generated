@@ -3598,6 +3598,10 @@ impl NEFilterControlProvider {
         /// Setter for [`remediationMap`][Self::remediationMap].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `remediation_map` generic generic should be of the correct type.
         #[unsafe(method(setRemediationMap:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRemediationMap(
@@ -5260,6 +5264,7 @@ impl NEHotspotHelper {
         ///
         /// # Safety
         ///
+        /// - `options` generic should be of the correct type.
         /// - `queue` possibly has additional threading requirements.
         /// - `handler` must be a valid pointer.
         #[deprecated = "Use NEHotspotManager API"]
@@ -6835,6 +6840,10 @@ impl NEPacketTunnelProvider {
         /// Parameter `options`: A dictionary containing keys and values passed by the provider's containing app. If the containing app did not start the tunnel then this parameter will be nil.
         ///
         /// Parameter `completionHandler`: A block that must be called when the process of starting the tunnel is complete. If the tunnel cannot be established then the subclass' implementation of this method must pass a non-nil NSError object to this block. A value of nil passed to the completion handler indicates that the tunnel was successfully established.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(startTunnelWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startTunnelWithOptions_completionHandler(
@@ -8422,6 +8431,10 @@ impl NEVPNConnection {
         /// 2. NEVPNErrorConfigurationDisabled
         ///
         /// Returns: YES if the VPN tunnel was started successfully, NO if an error occurred.
+        ///
+        /// # Safety
+        ///
+        /// `options` generic should be of the correct type.
         #[unsafe(method(startVPNTunnelWithOptions:andReturnError:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn startVPNTunnelWithOptions_andReturnError(

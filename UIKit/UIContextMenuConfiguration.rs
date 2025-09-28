@@ -81,9 +81,13 @@ impl UIContextMenuConfiguration {
         /// Setter for [`secondaryItemIdentifiers`][Self::secondaryItemIdentifiers].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `secondary_item_identifiers` generic should be of the correct type.
         #[unsafe(method(setSecondaryItemIdentifiers:))]
         #[unsafe(method_family = none)]
-        pub fn setSecondaryItemIdentifiers(
+        pub unsafe fn setSecondaryItemIdentifiers(
             &self,
             secondary_item_identifiers: &NSSet<ProtocolObject<dyn NSCopying>>,
         );
@@ -131,6 +135,7 @@ impl UIContextMenuConfiguration {
         ///
         /// # Safety
         ///
+        /// - `identifier` should be of the correct type.
         /// - `preview_provider` must be a valid pointer or null.
         /// - `action_provider` must be a valid pointer or null.
         #[unsafe(method(configurationWithIdentifier:previewProvider:actionProvider:))]

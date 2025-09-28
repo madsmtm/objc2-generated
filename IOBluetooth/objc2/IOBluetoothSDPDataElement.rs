@@ -98,7 +98,8 @@ impl IOBluetoothSDPDataElement {
         ///
         /// # Safety
         ///
-        /// `element` might not allow `None`.
+        /// - `element` should be of the correct type.
+        /// - `element` might not allow `None`.
         #[unsafe(method(withElementValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withElementValue(element: Option<&NSObject>) -> Option<Retained<Self>>;
@@ -126,7 +127,8 @@ impl IOBluetoothSDPDataElement {
         ///
         /// # Safety
         ///
-        /// `new_value` might not allow `None`.
+        /// - `new_value` should be of the correct type.
+        /// - `new_value` might not allow `None`.
         #[unsafe(method(withType:sizeDescriptor:size:value:))]
         #[unsafe(method_family = none)]
         pub unsafe fn withType_sizeDescriptor_size_value(
@@ -163,7 +165,8 @@ impl IOBluetoothSDPDataElement {
         ///
         /// # Safety
         ///
-        /// `element` might not allow `None`.
+        /// - `element` should be of the correct type.
+        /// - `element` might not allow `None`.
         #[unsafe(method(initWithElementValue:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithElementValue(
@@ -192,7 +195,8 @@ impl IOBluetoothSDPDataElement {
         ///
         /// # Safety
         ///
-        /// `new_value` might not allow `None`.
+        /// - `new_value` should be of the correct type.
+        /// - `new_value` might not allow `None`.
         #[unsafe(method(initWithType:sizeDescriptor:size:value:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_sizeDescriptor_size_value(
@@ -330,7 +334,8 @@ impl IOBluetoothSDPDataElement {
         ///
         /// # Safety
         ///
-        /// `cmp_value` might not allow `None`.
+        /// - `cmp_value` should be of the correct type.
+        /// - `cmp_value` might not allow `None`.
         #[unsafe(method(containsValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn containsValue(&self, cmp_value: Option<&NSObject>) -> bool;

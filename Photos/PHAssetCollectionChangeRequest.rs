@@ -34,6 +34,9 @@ impl PHAssetCollectionChangeRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderForCreatedAssetCollection(&self) -> Retained<PHObjectPlaceholder>;
 
+        /// # Safety
+        ///
+        /// `asset_collections` should be of the correct type.
         #[unsafe(method(deleteAssetCollections:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteAssetCollections(
@@ -69,10 +72,16 @@ impl PHAssetCollectionChangeRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
+        /// # Safety
+        ///
+        /// `assets` should be of the correct type.
         #[unsafe(method(addAssets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
 
+        /// # Safety
+        ///
+        /// `assets` should be of the correct type.
         #[unsafe(method(insertAssets:atIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertAssets_atIndexes(
@@ -81,6 +90,9 @@ impl PHAssetCollectionChangeRequest {
             indexes: &NSIndexSet,
         );
 
+        /// # Safety
+        ///
+        /// `assets` should be of the correct type.
         #[unsafe(method(removeAssets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAssets(&self, assets: &ProtocolObject<dyn NSFastEnumeration>);
@@ -89,6 +101,9 @@ impl PHAssetCollectionChangeRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn removeAssetsAtIndexes(&self, indexes: &NSIndexSet);
 
+        /// # Safety
+        ///
+        /// `assets` should be of the correct type.
         #[unsafe(method(replaceAssetsAtIndexes:withAssets:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceAssetsAtIndexes_withAssets(

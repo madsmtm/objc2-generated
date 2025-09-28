@@ -421,6 +421,9 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         pub fn dictionary() -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
+        /// # Safety
+        ///
+        /// `key` should be of the correct type.
         #[unsafe(method(dictionaryWithObject:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithObject_forKey(
@@ -447,6 +450,9 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
             -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
+        /// # Safety
+        ///
+        /// `keys` generic should be of the correct type.
         #[unsafe(method(dictionaryWithObjects:forKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithObjects_forKeys(
@@ -470,6 +476,9 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
+        /// # Safety
+        ///
+        /// `keys` generic should be of the correct type.
         #[unsafe(method(initWithObjects:forKeys:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_forKeys(
@@ -490,6 +499,9 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
         pub fn dictionary() -> Retained<Self>;
 
         #[cfg(feature = "NSObject")]
+        /// # Safety
+        ///
+        /// `key` should be of the correct type.
         #[unsafe(method(dictionaryWithObject:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithObject_forKey(
@@ -516,6 +528,9 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
             -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
+        /// # Safety
+        ///
+        /// `keys` generic should be of the correct type.
         #[unsafe(method(dictionaryWithObjects:forKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dictionaryWithObjects_forKeys(
@@ -539,6 +554,9 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
+        /// # Safety
+        ///
+        /// `keys` generic should be of the correct type.
         #[unsafe(method(initWithObjects:forKeys:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithObjects_forKeys(
@@ -662,6 +680,9 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
         pub fn removeObjectForKey(&self, a_key: &KeyType);
 
         #[cfg(feature = "NSObject")]
+        /// # Safety
+        ///
+        /// `a_key` should be of the correct type.
         #[unsafe(method(setObject:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKey(
@@ -752,6 +773,9 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
         pub fn setDictionary(&self, other_dictionary: &NSDictionary<KeyType, ObjectType>);
 
         #[cfg(feature = "NSObject")]
+        /// # Safety
+        ///
+        /// `key` should be of the correct type.
         #[unsafe(method(setObject:forKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKeyedSubscript(
@@ -805,6 +829,9 @@ impl<KeyType: Message, ObjectType: Message> NSMutableDictionary<KeyType, ObjectT
 impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
     extern_methods!(
         #[cfg(all(feature = "NSArray", feature = "NSObject"))]
+        /// # Safety
+        ///
+        /// `keys` generic should be of the correct type.
         #[unsafe(method(sharedKeySetForKeys:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sharedKeySetForKeys(

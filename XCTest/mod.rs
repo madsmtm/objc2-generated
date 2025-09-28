@@ -2032,16 +2032,24 @@ impl XCTAttachment {
 
         /// Creates an attachment with an object that can be encoded with NSSecureCoding.
         /// Defaults to type "public.data".
+        ///
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(attachmentWithArchivableObject:))]
         #[unsafe(method_family = none)]
-        pub fn attachmentWithArchivableObject(
+        pub unsafe fn attachmentWithArchivableObject(
             object: &ProtocolObject<dyn NSSecureCoding>,
         ) -> Retained<Self>;
 
         /// Creates an attachment with an object that can be encoded with NSSecureCoding and type.
+        ///
+        /// # Safety
+        ///
+        /// `object` should be of the correct type.
         #[unsafe(method(attachmentWithArchivableObject:uniformTypeIdentifier:))]
         #[unsafe(method_family = none)]
-        pub fn attachmentWithArchivableObject_uniformTypeIdentifier(
+        pub unsafe fn attachmentWithArchivableObject_uniformTypeIdentifier(
             object: &ProtocolObject<dyn NSSecureCoding>,
             identifier: &NSString,
         ) -> Retained<Self>;
@@ -5271,9 +5279,16 @@ impl XCTestCase {
         ///
         ///
         /// Parameter `monitor`: The token representing the monitor returned from the call to addUIInterruptionMonitorWithDescription:handler: where it was registered.
+        ///
+        /// # Safety
+        ///
+        /// `monitor` should be of the correct type.
         #[unsafe(method(removeUIInterruptionMonitor:))]
         #[unsafe(method_family = none)]
-        pub fn removeUIInterruptionMonitor(&self, monitor: &ProtocolObject<dyn NSObjectProtocol>);
+        pub unsafe fn removeUIInterruptionMonitor(
+            &self,
+            monitor: &ProtocolObject<dyn NSObjectProtocol>,
+        );
     );
 }
 

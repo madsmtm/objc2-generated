@@ -87,7 +87,8 @@ impl NSKeyValueSharedObservers {
         ///
         /// # Safety
         ///
-        /// `context` must be a valid pointer or null.
+        /// - `observer` should be of the correct type.
+        /// - `context` must be a valid pointer or null.
         #[unsafe(method(addSharedObserver:forKey:options:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSharedObserver_forKey_options_context(
@@ -101,7 +102,8 @@ impl NSKeyValueSharedObservers {
         #[cfg(all(feature = "NSKeyValueObserving", feature = "NSString"))]
         /// # Safety
         ///
-        /// `context` must be a valid pointer or null.
+        /// - `observer` should be of the correct type.
+        /// - `context` must be a valid pointer or null.
         #[unsafe(method(addObserver:forKeyPath:options:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addObserver_forKeyPath_options_context(

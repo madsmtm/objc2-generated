@@ -121,6 +121,10 @@ pub unsafe extern "C-unwind" fn MTLCopyAllDevicesWithObserver(
 
 extern "C-unwind" {
     /// Removes a previously installed observer for device change notifications.
+    ///
+    /// # Safety
+    ///
+    /// `observer` should be of the correct type.
     pub fn MTLRemoveDeviceObserver(observer: &ProtocolObject<dyn NSObjectProtocol>);
 }
 

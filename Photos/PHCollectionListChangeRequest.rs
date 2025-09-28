@@ -33,6 +33,9 @@ impl PHCollectionListChangeRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn placeholderForCreatedCollectionList(&self) -> Retained<PHObjectPlaceholder>;
 
+        /// # Safety
+        ///
+        /// `collection_lists` should be of the correct type.
         #[unsafe(method(deleteCollectionLists:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteCollectionLists(
@@ -78,6 +81,9 @@ impl PHCollectionListChangeRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setTitle(&self, title: &NSString);
 
+        /// # Safety
+        ///
+        /// `collections` should be of the correct type.
         #[unsafe(method(addChildCollections:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addChildCollections(
@@ -85,6 +91,9 @@ impl PHCollectionListChangeRequest {
             collections: &ProtocolObject<dyn NSFastEnumeration>,
         );
 
+        /// # Safety
+        ///
+        /// `collections` should be of the correct type.
         #[unsafe(method(insertChildCollections:atIndexes:))]
         #[unsafe(method_family = none)]
         pub unsafe fn insertChildCollections_atIndexes(
@@ -93,6 +102,9 @@ impl PHCollectionListChangeRequest {
             indexes: &NSIndexSet,
         );
 
+        /// # Safety
+        ///
+        /// `collections` should be of the correct type.
         #[unsafe(method(removeChildCollections:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeChildCollections(
@@ -104,6 +116,9 @@ impl PHCollectionListChangeRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn removeChildCollectionsAtIndexes(&self, indexes: &NSIndexSet);
 
+        /// # Safety
+        ///
+        /// `collections` should be of the correct type.
         #[unsafe(method(replaceChildCollectionsAtIndexes:withChildCollections:))]
         #[unsafe(method_family = none)]
         pub unsafe fn replaceChildCollectionsAtIndexes_withChildCollections(

@@ -440,7 +440,8 @@ impl SCNTechnique {
 
         /// # Safety
         ///
-        /// `obj` should be of the correct type.
+        /// - `obj` should be of the correct type.
+        /// - `key` should be of the correct type.
         #[unsafe(method(setObject:forKeyedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_forKeyedSubscript(

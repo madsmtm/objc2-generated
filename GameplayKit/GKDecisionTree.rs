@@ -28,6 +28,10 @@ impl GKDecisionNode {
         /// Parameter `attribute`: The attribute of the created node
         ///
         /// Returns: The node lead to by the branch
+        ///
+        /// # Safety
+        ///
+        /// `attribute` should be of the correct type.
         #[unsafe(method(createBranchWithValue:attribute:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createBranchWithValue_attribute(
@@ -44,6 +48,10 @@ impl GKDecisionNode {
         /// Parameter `attribute`: The attribute of the created node
         ///
         /// Returns: The node lead to by the branch
+        ///
+        /// # Safety
+        ///
+        /// `attribute` should be of the correct type.
         #[unsafe(method(createBranchWithPredicate:attribute:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createBranchWithPredicate_attribute(
@@ -63,6 +71,10 @@ impl GKDecisionNode {
         ///
         ///
         /// See: GKDecisionTree
+        ///
+        /// # Safety
+        ///
+        /// `attribute` should be of the correct type.
         #[unsafe(method(createBranchWithWeight:attribute:))]
         #[unsafe(method_family = none)]
         pub unsafe fn createBranchWithWeight_attribute(
@@ -135,6 +147,10 @@ impl GKDecisionTree {
         /// Parameter `attribute`: The attribute to be contained at the root of the tree
         ///
         /// Returns: GKDecisionTree with the set root
+        ///
+        /// # Safety
+        ///
+        /// `attribute` should be of the correct type.
         #[unsafe(method(initWithAttribute:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttribute(
@@ -171,6 +187,12 @@ impl GKDecisionTree {
         ///
         ///
         /// Returns: GKDecisionTree created by learning from the provided examples for the provided attributes
+        ///
+        /// # Safety
+        ///
+        /// - `examples` generic generic should be of the correct type.
+        /// - `actions` generic should be of the correct type.
+        /// - `attributes` generic should be of the correct type.
         #[unsafe(method(initWithExamples:actions:attributes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithExamples_actions_attributes(
@@ -210,6 +232,11 @@ impl GKDecisionTree {
         /// Parameter `answers`: The dictionary of attributes (keys) and their answers (values)
         ///
         /// Returns: The attribute found by traversing the tree given the provided answers
+        ///
+        /// # Safety
+        ///
+        /// - `answers` generic should be of the correct type.
+        /// - `answers` generic should be of the correct type.
         #[unsafe(method(findActionForAnswers:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findActionForAnswers(

@@ -325,9 +325,12 @@ extern_conformance!(
 impl UIAccessibilityCustomRotorItemResult {
     extern_methods!(
         #[cfg(feature = "UITextInput")]
+        /// # Safety
+        ///
+        /// `target_element` should be of the correct type.
         #[unsafe(method(initWithTargetElement:targetRange:))]
         #[unsafe(method_family = init)]
-        pub fn initWithTargetElement_targetRange(
+        pub unsafe fn initWithTargetElement_targetRange(
             this: Allocated<Self>,
             target_element: &ProtocolObject<dyn NSObjectProtocol>,
             target_range: Option<&UITextRange>,
@@ -340,9 +343,13 @@ impl UIAccessibilityCustomRotorItemResult {
         /// Setter for [`targetElement`][Self::targetElement].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
+        ///
+        /// # Safety
+        ///
+        /// `target_element` should be of the correct type.
         #[unsafe(method(setTargetElement:))]
         #[unsafe(method_family = none)]
-        pub fn setTargetElement(
+        pub unsafe fn setTargetElement(
             &self,
             target_element: Option<&ProtocolObject<dyn NSObjectProtocol>>,
         );

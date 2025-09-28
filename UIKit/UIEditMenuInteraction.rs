@@ -79,9 +79,13 @@ impl UIEditMenuConfiguration {
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Creates a new configuration with the specified source location.
+        ///
+        /// # Safety
+        ///
+        /// `identifier` should be of the correct type.
         #[unsafe(method(configurationWithIdentifier:sourcePoint:))]
         #[unsafe(method_family = none)]
-        pub fn configurationWithIdentifier_sourcePoint(
+        pub unsafe fn configurationWithIdentifier_sourcePoint(
             identifier: Option<&ProtocolObject<dyn NSCopying>>,
             source_point: CGPoint,
             mtm: MainThreadMarker,

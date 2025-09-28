@@ -69,6 +69,9 @@ impl NSPersistentStoreDescription {
         #[unsafe(method_family = none)]
         pub unsafe fn options(&self) -> Retained<NSDictionary<NSString, NSObject>>;
 
+        /// # Safety
+        ///
+        /// `option` should be of the correct type.
         #[unsafe(method(setOption:forKey:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOption_forKey(&self, option: Option<&NSObject>, key: &NSString);
@@ -95,6 +98,9 @@ impl NSPersistentStoreDescription {
         #[unsafe(method_family = none)]
         pub unsafe fn sqlitePragmas(&self) -> Retained<NSDictionary<NSString, NSObject>>;
 
+        /// # Safety
+        ///
+        /// `value` should be of the correct type.
         #[unsafe(method(setValue:forPragmaNamed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forPragmaNamed(&self, value: Option<&NSObject>, name: &NSString);

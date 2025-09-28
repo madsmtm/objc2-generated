@@ -169,9 +169,12 @@ impl UIApplicationShortcutItem {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(initWithType:localizedTitle:localizedSubtitle:icon:userInfo:))]
         #[unsafe(method_family = init)]
-        pub fn initWithType_localizedTitle_localizedSubtitle_icon_userInfo(
+        pub unsafe fn initWithType_localizedTitle_localizedSubtitle_icon_userInfo(
             this: Allocated<Self>,
             r#type: &NSString,
             localized_title: &NSString,
@@ -314,9 +317,13 @@ impl UIMutableApplicationShortcutItem {
         /// Setter for [`userInfo`][Self::userInfo].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(setUserInfo:))]
         #[unsafe(method_family = none)]
-        pub fn setUserInfo(
+        pub unsafe fn setUserInfo(
             &self,
             user_info: Option<&NSDictionary<NSString, ProtocolObject<dyn NSSecureCoding>>>,
         );
@@ -348,9 +355,12 @@ impl UIMutableApplicationShortcutItem {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// # Safety
+        ///
+        /// `user_info` generic should be of the correct type.
         #[unsafe(method(initWithType:localizedTitle:localizedSubtitle:icon:userInfo:))]
         #[unsafe(method_family = init)]
-        pub fn initWithType_localizedTitle_localizedSubtitle_icon_userInfo(
+        pub unsafe fn initWithType_localizedTitle_localizedSubtitle_icon_userInfo(
             this: Allocated<Self>,
             r#type: &NSString,
             localized_title: &NSString,

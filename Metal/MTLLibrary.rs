@@ -585,6 +585,10 @@ impl MTLCompileOptions {
         /// Setter for [`preprocessorMacros`][Self::preprocessorMacros].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// `preprocessor_macros` generic should be of the correct type.
         #[unsafe(method(setPreprocessorMacros:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreprocessorMacros(

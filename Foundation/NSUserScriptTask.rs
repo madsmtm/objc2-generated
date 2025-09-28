@@ -282,7 +282,8 @@ impl NSUserAutomatorTask {
         #[cfg(all(feature = "NSError", feature = "NSObject", feature = "block2"))]
         /// # Safety
         ///
-        /// `handler` must be a valid pointer or null.
+        /// - `input` should be of the correct type.
+        /// - `handler` must be a valid pointer or null.
         #[unsafe(method(executeWithInput:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeWithInput_completionHandler(

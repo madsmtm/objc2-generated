@@ -166,6 +166,10 @@ impl RPBroadcastSampleHandler {
         /// Method is called when the RPBroadcastController startBroadcast method is called from the broadcasting application.
         ///
         /// Parameter `setupInfo`: Dictionary that can be supplied by the UI extension to the sample handler.
+        ///
+        /// # Safety
+        ///
+        /// `setup_info` generic should be of the correct type.
         #[unsafe(method(broadcastStartedWithSetupInfo:))]
         #[unsafe(method_family = none)]
         pub unsafe fn broadcastStartedWithSetupInfo(

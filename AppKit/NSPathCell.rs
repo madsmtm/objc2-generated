@@ -118,6 +118,9 @@ impl NSPathCell {
         #[unsafe(method_family = none)]
         pub unsafe fn setURL(&self, url: Option<&NSURL>);
 
+        /// # Safety
+        ///
+        /// `obj` should be of the correct type.
         #[unsafe(method(setObjectValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectValue(&self, obj: Option<&ProtocolObject<dyn NSCopying>>);
