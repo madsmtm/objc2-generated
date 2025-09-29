@@ -74,7 +74,7 @@ impl UTType {
         /// `nil`if the type identifier is not known to the system.
         #[unsafe(method(typeWithIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn typeWithIdentifier(identifier: &NSString) -> Option<Retained<Self>>;
+        pub fn typeWithIdentifier(identifier: &NSString) -> Option<Retained<Self>>;
 
         /// Create a type given a filename extension that conforms to
         /// `UTTypeData.`
@@ -98,9 +98,7 @@ impl UTType {
         /// solely on its path extension.
         #[unsafe(method(typeWithFilenameExtension:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn typeWithFilenameExtension(
-            filename_extension: &NSString,
-        ) -> Option<Retained<Self>>;
+        pub fn typeWithFilenameExtension(filename_extension: &NSString) -> Option<Retained<Self>>;
 
         /// Create a type given a filename extension.
         ///
@@ -128,7 +126,7 @@ impl UTType {
         /// solely on its path extension.
         #[unsafe(method(typeWithFilenameExtension:conformingToType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn typeWithFilenameExtension_conformingToType(
+        pub fn typeWithFilenameExtension_conformingToType(
             filename_extension: &NSString,
             supertype: &UTType,
         ) -> Option<Retained<Self>>;
@@ -150,7 +148,7 @@ impl UTType {
         /// ```
         #[unsafe(method(typeWithMIMEType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn typeWithMIMEType(mime_type: &NSString) -> Option<Retained<Self>>;
+        pub fn typeWithMIMEType(mime_type: &NSString) -> Option<Retained<Self>>;
 
         /// Create a type given a MIME type.
         ///
@@ -172,7 +170,7 @@ impl UTType {
         /// ```
         #[unsafe(method(typeWithMIMEType:conformingToType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn typeWithMIMEType_conformingToType(
+        pub fn typeWithMIMEType_conformingToType(
             mime_type: &NSString,
             supertype: &UTType,
         ) -> Option<Retained<Self>>;
@@ -189,7 +187,7 @@ impl UTType {
         /// consistently used across Apple's documentation.
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Retained<NSString>;
+        pub fn identifier(&self) -> Retained<NSString>;
 
         /// If available, the preferred (first available) tag of class
         /// `UTTagClassFilenameExtension.`
@@ -204,7 +202,7 @@ impl UTType {
         /// ```
         #[unsafe(method(preferredFilenameExtension))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredFilenameExtension(&self) -> Option<Retained<NSString>>;
+        pub fn preferredFilenameExtension(&self) -> Option<Retained<NSString>>;
 
         /// If available, the preferred (first available) tag of class
         /// `UTTagClassMIMEType.`
@@ -218,7 +216,7 @@ impl UTType {
         /// ```
         #[unsafe(method(preferredMIMEType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preferredMIMEType(&self) -> Option<Retained<NSString>>;
+        pub fn preferredMIMEType(&self) -> Option<Retained<NSString>>;
 
         /// The localized description of the type.
         ///
@@ -227,14 +225,14 @@ impl UTType {
         /// their supertypes do.
         #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localizedDescription(&self) -> Option<Retained<NSString>>;
+        pub fn localizedDescription(&self) -> Option<Retained<NSString>>;
 
         /// The type's version.
         ///
         /// Most types do not specify a version.
         #[unsafe(method(version))]
         #[unsafe(method_family = none)]
-        pub unsafe fn version(&self) -> Option<Retained<NSNumber>>;
+        pub fn version(&self) -> Option<Retained<NSNumber>>;
 
         /// The reference URL of the type.
         ///
@@ -246,7 +244,7 @@ impl UTType {
         /// scheme or structure guaranteed in any way.
         #[unsafe(method(referenceURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn referenceURL(&self) -> Option<Retained<NSURL>>;
+        pub fn referenceURL(&self) -> Option<Retained<NSURL>>;
 
         /// Whether or not the receiver is a dynamically generated type.
         ///
@@ -258,7 +256,7 @@ impl UTType {
         /// _and_dynamic.
         #[unsafe(method(isDynamic))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDynamic(&self) -> bool;
+        pub fn isDynamic(&self) -> bool;
 
         /// Whether or not the receiver is a type known to the system.
         ///
@@ -266,7 +264,7 @@ impl UTType {
         /// _and_dynamic.
         #[unsafe(method(isDeclared))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isDeclared(&self) -> bool;
+        pub fn isDeclared(&self) -> bool;
 
         /// Whether or not the type is in the public domain.
         ///
@@ -276,7 +274,7 @@ impl UTType {
         /// dynamic.
         #[unsafe(method(isPublicType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isPublicType(&self) -> bool;
+        pub fn isPublicType(&self) -> bool;
     );
 }
 
@@ -303,7 +301,7 @@ impl UTType {
         /// See also: -isSubtypeOfType:
         #[unsafe(method(conformsToType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn conformsToType(&self, r#type: &UTType) -> bool;
+        pub fn conformsToType(&self, r#type: &UTType) -> bool;
 
         /// Tests if the receiver is a supertype of another type.
         ///
@@ -322,7 +320,7 @@ impl UTType {
         /// See also: -isSubtypeOfType:
         #[unsafe(method(isSupertypeOfType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSupertypeOfType(&self, r#type: &UTType) -> bool;
+        pub fn isSupertypeOfType(&self, r#type: &UTType) -> bool;
 
         /// Tests if the receiver is a subtype of another type.
         ///
@@ -341,7 +339,7 @@ impl UTType {
         /// See also: -isSupertypeOfType:
         #[unsafe(method(isSubtypeOfType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isSubtypeOfType(&self, r#type: &UTType) -> bool;
+        pub fn isSubtypeOfType(&self, r#type: &UTType) -> bool;
 
         /// The set of types to which the receiving type conforms, directly or
         /// indirectly.
@@ -351,7 +349,7 @@ impl UTType {
         /// `-conformsToType:`than this property.
         #[unsafe(method(supertypes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supertypes(&self) -> Retained<NSSet<UTType>>;
+        pub fn supertypes(&self) -> Retained<NSSet<UTType>>;
     );
 }
 
@@ -375,7 +373,7 @@ impl UTType {
         /// `nil.`
         #[unsafe(method(typeWithTag:tagClass:conformingToType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn typeWithTag_tagClass_conformingToType(
+        pub fn typeWithTag_tagClass_conformingToType(
             tag: &NSString,
             tag_class: &NSString,
             supertype: Option<&UTType>,
@@ -398,7 +396,7 @@ impl UTType {
         /// but the inputs were otherwise valid, a dynamic type may be provided.
         #[unsafe(method(typesWithTag:tagClass:conformingToType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn typesWithTag_tagClass_conformingToType(
+        pub fn typesWithTag_tagClass_conformingToType(
             tag: &NSString,
             tag_class: &NSString,
             supertype: Option<&UTType>,
@@ -432,7 +430,7 @@ impl UTType {
         /// respectively.
         #[unsafe(method(tags))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tags(&self) -> Retained<NSDictionary<NSString, NSArray<NSString>>>;
+        pub fn tags(&self) -> Retained<NSDictionary<NSString, NSArray<NSString>>>;
     );
 }
 
@@ -473,7 +471,7 @@ impl UTType {
         /// ```
         #[unsafe(method(exportedTypeWithIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn exportedTypeWithIdentifier(identifier: &NSString) -> Retained<UTType>;
+        pub fn exportedTypeWithIdentifier(identifier: &NSString) -> Retained<UTType>;
 
         /// Gets an active
         /// `UTType`corresponding to a type that is declared as
@@ -508,7 +506,7 @@ impl UTType {
         /// ```
         #[unsafe(method(exportedTypeWithIdentifier:conformingToType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn exportedTypeWithIdentifier_conformingToType(
+        pub fn exportedTypeWithIdentifier_conformingToType(
             identifier: &NSString,
             parent_type: &UTType,
         ) -> Retained<UTType>;
@@ -551,7 +549,7 @@ impl UTType {
         /// substituted.
         #[unsafe(method(importedTypeWithIdentifier:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn importedTypeWithIdentifier(identifier: &NSString) -> Retained<UTType>;
+        pub fn importedTypeWithIdentifier(identifier: &NSString) -> Retained<UTType>;
 
         /// Gets an active
         /// `UTType`corresponding to a type that is declared as
@@ -590,7 +588,7 @@ impl UTType {
         /// substituted.
         #[unsafe(method(importedTypeWithIdentifier:conformingToType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn importedTypeWithIdentifier_conformingToType(
+        pub fn importedTypeWithIdentifier_conformingToType(
             identifier: &NSString,
             parent_type: &UTType,
         ) -> Retained<UTType>;

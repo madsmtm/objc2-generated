@@ -41,7 +41,7 @@ pub unsafe trait NSItemProviderUTType:
         /// Parameter `visibility`: The visibility of this representation.
         #[unsafe(method(initWithContentsOfURL:contentType:openInPlace:coordinated:visibility:))]
         #[unsafe(method_family = init)]
-        unsafe fn initWithContentsOfURL_contentType_openInPlace_coordinated_visibility(
+        fn initWithContentsOfURL_contentType_openInPlace_coordinated_visibility(
             this: Allocated<Self>,
             file_url: &NSURL,
             content_type: Option<&UTType>,
@@ -129,13 +129,13 @@ pub unsafe trait NSItemProviderUTType:
         /// in the array.
         #[unsafe(method(registeredContentTypes))]
         #[unsafe(method_family = none)]
-        unsafe fn registeredContentTypes(&self) -> Retained<NSArray<UTType>>;
+        fn registeredContentTypes(&self) -> Retained<NSArray<UTType>>;
 
         #[cfg(feature = "UTType")]
         /// Registered content types that can be loaded as files opened in place
         #[unsafe(method(registeredContentTypesForOpenInPlace))]
         #[unsafe(method_family = none)]
-        unsafe fn registeredContentTypesForOpenInPlace(&self) -> Retained<NSArray<UTType>>;
+        fn registeredContentTypesForOpenInPlace(&self) -> Retained<NSArray<UTType>>;
 
         #[cfg(feature = "UTType")]
         /// Return an array of registered content types that conform to a given content type.
@@ -144,7 +144,7 @@ pub unsafe trait NSItemProviderUTType:
         /// in the array.
         #[unsafe(method(registeredContentTypesConformingToContentType:))]
         #[unsafe(method_family = none)]
-        unsafe fn registeredContentTypesConformingToContentType(
+        fn registeredContentTypesConformingToContentType(
             &self,
             content_type: &UTType,
         ) -> Retained<NSArray<UTType>>;

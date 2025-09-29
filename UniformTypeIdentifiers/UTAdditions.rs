@@ -56,7 +56,7 @@ pub unsafe trait NSStringUTAdditions:
         /// `self`.
         #[unsafe(method(stringByAppendingPathComponent:conformingToType:))]
         #[unsafe(method_family = none)]
-        unsafe fn stringByAppendingPathComponent_conformingToType(
+        fn stringByAppendingPathComponent_conformingToType(
             &self,
             partial_name: &NSString,
             content_type: &UTType,
@@ -100,7 +100,7 @@ pub unsafe trait NSStringUTAdditions:
         /// `self`.
         #[unsafe(method(stringByAppendingPathExtensionForType:))]
         #[unsafe(method_family = none)]
-        unsafe fn stringByAppendingPathExtensionForType(
+        fn stringByAppendingPathExtensionForType(
             &self,
             content_type: &UTType,
         ) -> Retained<NSString>;
@@ -166,7 +166,7 @@ pub unsafe trait NSURLUTAdditions:
         /// `UTTypeDirectory`.
         #[unsafe(method(URLByAppendingPathComponent:conformingToType:))]
         #[unsafe(method_family = none)]
-        unsafe fn URLByAppendingPathComponent_conformingToType(
+        fn URLByAppendingPathComponent_conformingToType(
             &self,
             partial_name: &NSString,
             content_type: &UTType,
@@ -216,10 +216,7 @@ pub unsafe trait NSURLUTAdditions:
         /// `UTTypeDirectory`.
         #[unsafe(method(URLByAppendingPathExtensionForType:))]
         #[unsafe(method_family = none)]
-        unsafe fn URLByAppendingPathExtensionForType(
-            &self,
-            content_type: &UTType,
-        ) -> Retained<NSURL>;
+        fn URLByAppendingPathExtensionForType(&self, content_type: &UTType) -> Retained<NSURL>;
     );
 }
 
