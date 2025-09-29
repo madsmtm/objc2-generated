@@ -1220,6 +1220,11 @@ extern_protocol!(
             feature = "MTLLibrary"
         ))]
         /// Create and compile a new MTLComputePipelineState object synchronously.
+        ///
+        /// # Safety
+        ///
+        /// - `compute_function` must be safe to call.
+        /// - `compute_function` must have the correct argument and return types.
         #[unsafe(method(newComputePipelineStateWithFunction:options:reflection:error:_))]
         #[unsafe(method_family = new)]
         unsafe fn newComputePipelineStateWithFunction_options_reflection_error(
@@ -1239,7 +1244,9 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer.
+        /// - `compute_function` must be safe to call.
+        /// - `compute_function` must have the correct argument and return types.
+        /// - `completion_handler` must be a valid pointer.
         #[unsafe(method(newComputePipelineStateWithFunction:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn newComputePipelineStateWithFunction_completionHandler(
@@ -1258,7 +1265,9 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer.
+        /// - `compute_function` must be safe to call.
+        /// - `compute_function` must have the correct argument and return types.
+        /// - `completion_handler` must be a valid pointer.
         #[unsafe(method(newComputePipelineStateWithFunction:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn newComputePipelineStateWithFunction_options_completionHandler(
@@ -1981,6 +1990,11 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLFunctionHandle", feature = "MTLLibrary"))]
         /// Returns the function handle for a function that was compiled with MTLFunctionOptionPipelineIndependent and MTLFunctionOptionCompileToBinary.
+        ///
+        /// # Safety
+        ///
+        /// - `function` must be safe to call.
+        /// - `function` must have the correct argument and return types.
         #[unsafe(method(functionHandleWithFunction:))]
         #[unsafe(method_family = none)]
         unsafe fn functionHandleWithFunction(

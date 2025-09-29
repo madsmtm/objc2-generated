@@ -383,6 +383,11 @@ impl MTLStitchedLibraryDescriptor {
         /// Setter for [`functions`][Self::functions].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// - `functions` generic must be safe to call.
+        /// - `functions` generic must have the correct argument and return types.
         #[unsafe(method(setFunctions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFunctions(&self, functions: &NSArray<ProtocolObject<dyn MTLFunction>>);

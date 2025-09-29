@@ -1014,6 +1014,11 @@ impl MTLRenderPipelineFunctionsDescriptor {
         /// Setter for [`vertexAdditionalBinaryFunctions`][Self::vertexAdditionalBinaryFunctions].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// - `vertex_additional_binary_functions` generic must be safe to call.
+        /// - `vertex_additional_binary_functions` generic must have the correct argument and return types.
         #[unsafe(method(setVertexAdditionalBinaryFunctions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVertexAdditionalBinaryFunctions(
@@ -1033,6 +1038,11 @@ impl MTLRenderPipelineFunctionsDescriptor {
         /// Setter for [`fragmentAdditionalBinaryFunctions`][Self::fragmentAdditionalBinaryFunctions].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// - `fragment_additional_binary_functions` generic must be safe to call.
+        /// - `fragment_additional_binary_functions` generic must have the correct argument and return types.
         #[unsafe(method(setFragmentAdditionalBinaryFunctions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFragmentAdditionalBinaryFunctions(
@@ -1052,6 +1062,11 @@ impl MTLRenderPipelineFunctionsDescriptor {
         /// Setter for [`tileAdditionalBinaryFunctions`][Self::tileAdditionalBinaryFunctions].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        ///
+        /// # Safety
+        ///
+        /// - `tile_additional_binary_functions` generic must be safe to call.
+        /// - `tile_additional_binary_functions` generic must have the correct argument and return types.
         #[unsafe(method(setTileAdditionalBinaryFunctions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTileAdditionalBinaryFunctions(
@@ -1252,6 +1267,11 @@ extern_protocol!(
             feature = "MTLRenderCommandEncoder"
         ))]
         /// Gets the function handle for the specified function on the specified stage of the pipeline.
+        ///
+        /// # Safety
+        ///
+        /// - `function` must be safe to call.
+        /// - `function` must have the correct argument and return types.
         #[unsafe(method(functionHandleWithFunction:stage:))]
         #[unsafe(method_family = none)]
         unsafe fn functionHandleWithFunction_stage(
@@ -1511,6 +1531,11 @@ impl MTLTileRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`tileFunction`][Self::tileFunction].
+        ///
+        /// # Safety
+        ///
+        /// - `tile_function` must be safe to call.
+        /// - `tile_function` must have the correct argument and return types.
         #[unsafe(method(setTileFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTileFunction(&self, tile_function: &ProtocolObject<dyn MTLFunction>);
@@ -1743,6 +1768,11 @@ impl MTLMeshRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`objectFunction`][Self::objectFunction].
+        ///
+        /// # Safety
+        ///
+        /// - `object_function` must be safe to call.
+        /// - `object_function` must have the correct argument and return types.
         #[unsafe(method(setObjectFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObjectFunction(
@@ -1759,6 +1789,11 @@ impl MTLMeshRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`meshFunction`][Self::meshFunction].
+        ///
+        /// # Safety
+        ///
+        /// - `mesh_function` must be safe to call.
+        /// - `mesh_function` must have the correct argument and return types.
         #[unsafe(method(setMeshFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMeshFunction(
@@ -1775,6 +1810,11 @@ impl MTLMeshRenderPipelineDescriptor {
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`fragmentFunction`][Self::fragmentFunction].
+        ///
+        /// # Safety
+        ///
+        /// - `fragment_function` must be safe to call.
+        /// - `fragment_function` must have the correct argument and return types.
         #[unsafe(method(setFragmentFunction:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFragmentFunction(
