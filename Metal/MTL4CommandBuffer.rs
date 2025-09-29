@@ -39,13 +39,13 @@ impl MTL4CommandBufferOptions {
         /// Shader functions log messages until the command buffer ends.
         #[unsafe(method(logState))]
         #[unsafe(method_family = none)]
-        pub unsafe fn logState(&self) -> Option<Retained<ProtocolObject<dyn MTLLogState>>>;
+        pub fn logState(&self) -> Option<Retained<ProtocolObject<dyn MTLLogState>>>;
 
         #[cfg(feature = "MTLLogState")]
         /// Setter for [`logState`][Self::logState].
         #[unsafe(method(setLogState:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLogState(&self, log_state: Option<&ProtocolObject<dyn MTLLogState>>);
+        pub fn setLogState(&self, log_state: Option<&ProtocolObject<dyn MTLLogState>>);
     );
 }
 
@@ -54,12 +54,19 @@ impl MTL4CommandBufferOptions {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTL4CommandBufferOptions {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -71,19 +78,19 @@ extern_protocol!(
         /// Returns the GPU device that this command buffer belongs to.
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// Assigns an optional label with this command buffer.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        unsafe fn label(&self) -> Option<Retained<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        unsafe fn setLabel(&self, label: Option<&NSString>);
+        fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTL4CommandAllocator")]
         /// Prepares a command buffer for encoding.
@@ -105,7 +112,7 @@ extern_protocol!(
         /// - Parameter allocator: ``MTL4CommandAllocator`` to attach to.
         #[unsafe(method(beginCommandBufferWithAllocator:))]
         #[unsafe(method_family = none)]
-        unsafe fn beginCommandBufferWithAllocator(
+        fn beginCommandBufferWithAllocator(
             &self,
             allocator: &ProtocolObject<dyn MTL4CommandAllocator>,
         );
@@ -135,7 +142,7 @@ extern_protocol!(
         /// - options: ``MTL4CommandBufferOptions`` to configure the command buffer.
         #[unsafe(method(beginCommandBufferWithAllocator:options:))]
         #[unsafe(method_family = none)]
-        unsafe fn beginCommandBufferWithAllocator_options(
+        fn beginCommandBufferWithAllocator_options(
             &self,
             allocator: &ProtocolObject<dyn MTL4CommandAllocator>,
             options: &MTL4CommandBufferOptions,
@@ -148,7 +155,7 @@ extern_protocol!(
         /// method.
         #[unsafe(method(endCommandBuffer))]
         #[unsafe(method_family = none)]
-        unsafe fn endCommandBuffer(&self);
+        fn endCommandBuffer(&self);
 
         #[cfg(all(
             feature = "MTL4CommandEncoder",
@@ -162,7 +169,7 @@ extern_protocol!(
         /// - Returns: The created ``MTL4RenderCommandEncoder`` instance, or `nil` if the function failed.
         #[unsafe(method(renderCommandEncoderWithDescriptor:))]
         #[unsafe(method_family = none)]
-        unsafe fn renderCommandEncoderWithDescriptor(
+        fn renderCommandEncoderWithDescriptor(
             &self,
             descriptor: &MTL4RenderPassDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTL4RenderCommandEncoder>>>;
@@ -186,7 +193,7 @@ extern_protocol!(
         /// - Returns: The created ``MTL4RenderCommandEncoder`` instance, or `nil` if the function fails.
         #[unsafe(method(renderCommandEncoderWithDescriptor:options:))]
         #[unsafe(method_family = none)]
-        unsafe fn renderCommandEncoderWithDescriptor_options(
+        fn renderCommandEncoderWithDescriptor_options(
             &self,
             descriptor: &MTL4RenderPassDescriptor,
             options: MTL4RenderEncoderOptions,
@@ -198,7 +205,7 @@ extern_protocol!(
         /// - Returns: The created ``MTL4ComputeCommandEncoder`` instance, or `nil` if the function fails.
         #[unsafe(method(computeCommandEncoder))]
         #[unsafe(method_family = none)]
-        unsafe fn computeCommandEncoder(
+        fn computeCommandEncoder(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTL4ComputeCommandEncoder>>>;
 
@@ -211,7 +218,7 @@ extern_protocol!(
         /// - Returns: The created ``MTL4MachineLearningCommandEncoder`` instance , or `nil` if the function fails.
         #[unsafe(method(machineLearningCommandEncoder))]
         #[unsafe(method_family = none)]
-        unsafe fn machineLearningCommandEncoder(
+        fn machineLearningCommandEncoder(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTL4MachineLearningCommandEncoder>>>;
 
@@ -223,7 +230,7 @@ extern_protocol!(
         /// - Parameter residencySet: ``MTLResidencySet`` instance to mark resident.
         #[unsafe(method(useResidencySet:))]
         #[unsafe(method_family = none)]
-        unsafe fn useResidencySet(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
+        fn useResidencySet(&self, residency_set: &ProtocolObject<dyn MTLResidencySet>);
 
         #[cfg(feature = "MTLResidencySet")]
         /// Marks an array of residency sets as part of the command buffer's execution.
@@ -251,12 +258,12 @@ extern_protocol!(
         /// - Parameter string: The string to push.
         #[unsafe(method(pushDebugGroup:))]
         #[unsafe(method_family = none)]
-        unsafe fn pushDebugGroup(&self, string: &NSString);
+        fn pushDebugGroup(&self, string: &NSString);
 
         /// Pops the latest string from the stack of debug groups for this command buffer.
         #[unsafe(method(popDebugGroup))]
         #[unsafe(method_family = none)]
-        unsafe fn popDebugGroup(&self);
+        fn popDebugGroup(&self);
 
         #[cfg(feature = "MTL4Counters")]
         /// Writes a GPU timestamp into the given counter heap.

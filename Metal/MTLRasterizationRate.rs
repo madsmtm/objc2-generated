@@ -51,12 +51,19 @@ impl MTLRasterizationRateSampleArray {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRasterizationRateSampleArray {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -93,7 +100,7 @@ impl MTLRasterizationRateLayerDescriptor {
         /// Do not use, instead use initWithNumSamples:
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(feature = "MTLTypes")]
         /// Initialize a descriptor for a layer with the given number of quality samples on the horizontal and vertical axis.
@@ -141,7 +148,7 @@ impl MTLRasterizationRateLayerDescriptor {
         /// Returns: The maximum number of quality samples that this descriptor can use to describe its function, for the horizontal and vertical axis, this is the sampleCount that the descriptor was initialized with. The depth component of the returned MTLSize is always 0.
         #[unsafe(method(maxSampleCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxSampleCount(&self) -> MTLSize;
+        pub fn maxSampleCount(&self) -> MTLSize;
 
         /// Provide direct access to the quality samples stored in the descriptor.
         ///
@@ -150,7 +157,7 @@ impl MTLRasterizationRateLayerDescriptor {
         /// The returned pointer points to the first element of an array of sampleCount.width elements.
         #[unsafe(method(horizontalSampleStorage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn horizontalSampleStorage(&self) -> NonNull<c_float>;
+        pub fn horizontalSampleStorage(&self) -> NonNull<c_float>;
 
         /// Provide direct access to the quality samples stored in the descriptor.
         ///
@@ -159,21 +166,21 @@ impl MTLRasterizationRateLayerDescriptor {
         /// The returned pointer points to the first element of an array of sampleCount.height elements.
         #[unsafe(method(verticalSampleStorage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn verticalSampleStorage(&self) -> NonNull<c_float>;
+        pub fn verticalSampleStorage(&self) -> NonNull<c_float>;
 
         /// Provide convenient bounds-checked access to the quality samples stored in the descriptor.
         ///
         /// Returns: Returns a syntactic sugar helper to get or set sample values on the horizontal axis.
         #[unsafe(method(horizontal))]
         #[unsafe(method_family = none)]
-        pub unsafe fn horizontal(&self) -> Retained<MTLRasterizationRateSampleArray>;
+        pub fn horizontal(&self) -> Retained<MTLRasterizationRateSampleArray>;
 
         /// Provide convenient bounds-checked access to the quality samples stored in the descriptor.
         ///
         /// Returns: Returns a syntactic sugar helper to get or set sample values on the vertical axis.
         #[unsafe(method(vertical))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vertical(&self) -> Retained<MTLRasterizationRateSampleArray>;
+        pub fn vertical(&self) -> Retained<MTLRasterizationRateSampleArray>;
     );
 }
 
@@ -182,8 +189,15 @@ impl MTLRasterizationRateLayerDescriptor {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRasterizationRateLayerDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 impl MTLRasterizationRateLayerDescriptor {
@@ -251,12 +265,19 @@ impl MTLRasterizationRateLayerArray {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRasterizationRateLayerArray {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -292,7 +313,7 @@ impl MTLRasterizationRateMapDescriptor {
         /// Returns: A descriptor containing no layers. Add or remove layers using setObject:atIndexedSubscript:.
         #[unsafe(method(rasterizationRateMapDescriptorWithScreenSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rasterizationRateMapDescriptorWithScreenSize(
+        pub fn rasterizationRateMapDescriptorWithScreenSize(
             screen_size: MTLSize,
         ) -> Retained<MTLRasterizationRateMapDescriptor>;
 
@@ -306,7 +327,7 @@ impl MTLRasterizationRateMapDescriptor {
         /// Returns: A descriptor containing a single layer. Add or remove layers using setObject:atIndexedSubscript:.
         #[unsafe(method(rasterizationRateMapDescriptorWithScreenSize:layer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rasterizationRateMapDescriptorWithScreenSize_layer(
+        pub fn rasterizationRateMapDescriptorWithScreenSize_layer(
             screen_size: MTLSize,
             layer: &MTLRasterizationRateLayerDescriptor,
         ) -> Retained<MTLRasterizationRateMapDescriptor>;
@@ -349,7 +370,7 @@ impl MTLRasterizationRateMapDescriptor {
         /// Syntactic sugar around "layerAtIndex:" and "setLayer:atIndex:"
         #[unsafe(method(layers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layers(&self) -> Retained<MTLRasterizationRateLayerArray>;
+        pub fn layers(&self) -> Retained<MTLRasterizationRateLayerArray>;
 
         #[cfg(feature = "MTLTypes")]
         /// Returns: The dimensions, in screen space pixels, of the region where variable rasterization is applied.
@@ -358,34 +379,34 @@ impl MTLRasterizationRateMapDescriptor {
         /// The depth component of MTLSize is ignored.
         #[unsafe(method(screenSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn screenSize(&self) -> MTLSize;
+        pub fn screenSize(&self) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// Setter for [`screenSize`][Self::screenSize].
         #[unsafe(method(setScreenSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setScreenSize(&self, screen_size: MTLSize);
+        pub fn setScreenSize(&self, screen_size: MTLSize);
 
         /// A string to help identify this object.
         ///
         /// The default value is nil.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+        pub fn setLabel(&self, label: Option<&NSString>);
 
         /// Returns: The number of subsequent non-nil layer instances stored in the descriptor, starting at index 0.
         ///
         /// This property is modified by setting new layer instances using setLayer:atIndex: or assigning to layers[X]
         #[unsafe(method(layerCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layerCount(&self) -> NSUInteger;
+        pub fn layerCount(&self) -> NSUInteger;
     );
 }
 
@@ -394,12 +415,19 @@ impl MTLRasterizationRateMapDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRasterizationRateMapDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -419,12 +447,12 @@ extern_protocol!(
         /// Returns: The device on which the rasterization rate map was created
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// A string to help identify this object.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        unsafe fn label(&self) -> Option<Retained<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLTypes")]
         /// Returns: The dimensions, in screen space pixels, of the region where variable rasterization is applied.
@@ -433,7 +461,7 @@ extern_protocol!(
         /// The depth component of the returned MTLSize is always 0.
         #[unsafe(method(screenSize))]
         #[unsafe(method_family = none)]
-        unsafe fn screenSize(&self) -> MTLSize;
+        fn screenSize(&self) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// Returns: The granularity, in physical pixels, at which variable rasterization rate varies.
@@ -442,7 +470,7 @@ extern_protocol!(
         /// The depth component of the returned MTLSize is always 0.
         #[unsafe(method(physicalGranularity))]
         #[unsafe(method_family = none)]
-        unsafe fn physicalGranularity(&self) -> MTLSize;
+        fn physicalGranularity(&self) -> MTLSize;
 
         /// Returns: The number of different configured layers in the rasterization map.
         ///
@@ -450,7 +478,7 @@ extern_protocol!(
         /// The rasterization rate layer for a primitive is selected on the [[render_target_layer_index]].
         #[unsafe(method(layerCount))]
         #[unsafe(method_family = none)]
-        unsafe fn layerCount(&self) -> NSUInteger;
+        fn layerCount(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLDevice")]
         /// Returns the size and alignment requirements of the parameter buffer for this rate map.
@@ -458,7 +486,7 @@ extern_protocol!(
         /// The parameter data can be copied into a buffer with this size and alignment using copyParameterDataToBuffer:offset:
         #[unsafe(method(parameterBufferSizeAndAlign))]
         #[unsafe(method_family = none)]
-        unsafe fn parameterBufferSizeAndAlign(&self) -> MTLSizeAndAlign;
+        fn parameterBufferSizeAndAlign(&self) -> MTLSizeAndAlign;
 
         #[cfg(all(
             feature = "MTLAllocation",

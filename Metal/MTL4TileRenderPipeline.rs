@@ -39,7 +39,7 @@ impl MTL4TileRenderPipelineDescriptor {
         /// Configures the tile function that the render pipeline executes for each tile in the tile shader stage.
         #[unsafe(method(tileFunctionDescriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tileFunctionDescriptor(&self) -> Option<Retained<MTL4FunctionDescriptor>>;
+        pub fn tileFunctionDescriptor(&self) -> Option<Retained<MTL4FunctionDescriptor>>;
 
         #[cfg(feature = "MTL4FunctionDescriptor")]
         /// Setter for [`tileFunctionDescriptor`][Self::tileFunctionDescriptor].
@@ -47,7 +47,7 @@ impl MTL4TileRenderPipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setTileFunctionDescriptor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTileFunctionDescriptor(
+        pub fn setTileFunctionDescriptor(
             &self,
             tile_function_descriptor: Option<&MTL4FunctionDescriptor>,
         );
@@ -55,7 +55,7 @@ impl MTL4TileRenderPipelineDescriptor {
         /// Configures the number of samples per pixel used for multisampling.
         #[unsafe(method(rasterSampleCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rasterSampleCount(&self) -> NSUInteger;
+        pub fn rasterSampleCount(&self) -> NSUInteger;
 
         /// Setter for [`rasterSampleCount`][Self::rasterSampleCount].
         ///
@@ -71,33 +71,30 @@ impl MTL4TileRenderPipelineDescriptor {
         /// pipeline.
         #[unsafe(method(colorAttachments))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorAttachments(
+        pub fn colorAttachments(
             &self,
         ) -> Retained<MTLTileRenderPipelineColorAttachmentDescriptorArray>;
 
         /// Indicating whether the size of the threadgroup matches the size of a tile in the render pipeline.
         #[unsafe(method(threadgroupSizeMatchesTileSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn threadgroupSizeMatchesTileSize(&self) -> bool;
+        pub fn threadgroupSizeMatchesTileSize(&self) -> bool;
 
         /// Setter for [`threadgroupSizeMatchesTileSize`][Self::threadgroupSizeMatchesTileSize].
         #[unsafe(method(setThreadgroupSizeMatchesTileSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setThreadgroupSizeMatchesTileSize(
-            &self,
-            threadgroup_size_matches_tile_size: bool,
-        );
+        pub fn setThreadgroupSizeMatchesTileSize(&self, threadgroup_size_matches_tile_size: bool);
 
         /// Sets the maximum number of threads that the GPU can execute simultaneously within a single threadgroup in
         /// the tile render pipeline.
         #[unsafe(method(maxTotalThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
+        pub fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
 
         /// Setter for [`maxTotalThreadsPerThreadgroup`][Self::maxTotalThreadsPerThreadgroup].
         #[unsafe(method(setMaxTotalThreadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaxTotalThreadsPerThreadgroup(
+        pub fn setMaxTotalThreadsPerThreadgroup(
             &self,
             max_total_threads_per_threadgroup: NSUInteger,
         );
@@ -113,23 +110,20 @@ impl MTL4TileRenderPipelineDescriptor {
         /// Setting this value to a size of 0 in every dimension disables this property.
         #[unsafe(method(requiredThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
+        pub fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// Setter for [`requiredThreadsPerThreadgroup`][Self::requiredThreadsPerThreadgroup].
         #[unsafe(method(setRequiredThreadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRequiredThreadsPerThreadgroup(
-            &self,
-            required_threads_per_threadgroup: MTLSize,
-        );
+        pub fn setRequiredThreadsPerThreadgroup(&self, required_threads_per_threadgroup: MTLSize);
 
         #[cfg(feature = "MTL4LinkingDescriptor")]
         /// Configures an object that contains information about functions to link to the tile render pipeline
         /// when Metal builds it.
         #[unsafe(method(staticLinkingDescriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn staticLinkingDescriptor(&self) -> Retained<MTL4StaticLinkingDescriptor>;
+        pub fn staticLinkingDescriptor(&self) -> Retained<MTL4StaticLinkingDescriptor>;
 
         #[cfg(feature = "MTL4LinkingDescriptor")]
         /// Setter for [`staticLinkingDescriptor`][Self::staticLinkingDescriptor].
@@ -137,7 +131,7 @@ impl MTL4TileRenderPipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStaticLinkingDescriptor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStaticLinkingDescriptor(
+        pub fn setStaticLinkingDescriptor(
             &self,
             static_linking_descriptor: Option<&MTL4StaticLinkingDescriptor>,
         );
@@ -145,17 +139,17 @@ impl MTL4TileRenderPipelineDescriptor {
         /// Indicates whether the pipeline supports linking binary functions.
         #[unsafe(method(supportBinaryLinking))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportBinaryLinking(&self) -> bool;
+        pub fn supportBinaryLinking(&self) -> bool;
 
         /// Setter for [`supportBinaryLinking`][Self::supportBinaryLinking].
         #[unsafe(method(setSupportBinaryLinking:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSupportBinaryLinking(&self, support_binary_linking: bool);
+        pub fn setSupportBinaryLinking(&self, support_binary_linking: bool);
 
         /// Resets the descriptor to the default state.
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reset(&self);
+        pub fn reset(&self);
     );
 }
 
@@ -165,10 +159,18 @@ impl MTL4TileRenderPipelineDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "MTL4PipelineState")]
+impl DefaultRetained for MTL4TileRenderPipelineDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

@@ -166,23 +166,23 @@ impl MTL4PipelineOptions {
         /// Controls whether to enable or disable Metal Shader Validation for the pipeline.
         #[unsafe(method(shaderValidation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shaderValidation(&self) -> MTLShaderValidation;
+        pub fn shaderValidation(&self) -> MTLShaderValidation;
 
         #[cfg(feature = "MTLPipeline")]
         /// Setter for [`shaderValidation`][Self::shaderValidation].
         #[unsafe(method(setShaderValidation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
+        pub fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
 
         /// Controls whether to include Metal shader reflection in this pipeline.
         #[unsafe(method(shaderReflection))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shaderReflection(&self) -> MTL4ShaderReflection;
+        pub fn shaderReflection(&self) -> MTL4ShaderReflection;
 
         /// Setter for [`shaderReflection`][Self::shaderReflection].
         #[unsafe(method(setShaderReflection:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShaderReflection(&self, shader_reflection: MTL4ShaderReflection);
+        pub fn setShaderReflection(&self, shader_reflection: MTL4ShaderReflection);
     );
 }
 
@@ -191,12 +191,19 @@ impl MTL4PipelineOptions {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTL4PipelineOptions {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -227,24 +234,24 @@ impl MTL4PipelineDescriptor {
         /// After you provide this label, you can use it to look up a pipeline state object by name in a binary archive.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+        pub fn setLabel(&self, label: Option<&NSString>);
 
         /// Provides compile-time options when you build the pipeline.
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
-        pub unsafe fn options(&self) -> Option<Retained<MTL4PipelineOptions>>;
+        pub fn options(&self) -> Option<Retained<MTL4PipelineOptions>>;
 
         /// Setter for [`options`][Self::options].
         #[unsafe(method(setOptions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOptions(&self, options: Option<&MTL4PipelineOptions>);
+        pub fn setOptions(&self, options: Option<&MTL4PipelineOptions>);
     );
 }
 
@@ -253,10 +260,17 @@ impl MTL4PipelineDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTL4PipelineDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

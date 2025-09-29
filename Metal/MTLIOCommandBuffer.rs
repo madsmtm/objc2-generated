@@ -143,71 +143,71 @@ extern_protocol!(
         /// Commit a command buffer so it can be executed as soon as possible.
         #[unsafe(method(commit))]
         #[unsafe(method_family = none)]
-        unsafe fn commit(&self);
+        fn commit(&self);
 
         /// Synchronously wait for this command buffer to complete.
         #[unsafe(method(waitUntilCompleted))]
         #[unsafe(method_family = none)]
-        unsafe fn waitUntilCompleted(&self);
+        fn waitUntilCompleted(&self);
 
         /// request a cancellation of an in-flight command buffer.
         #[unsafe(method(tryCancel))]
         #[unsafe(method_family = none)]
-        unsafe fn tryCancel(&self);
+        fn tryCancel(&self);
 
         /// add a barrier that starts subsequent commands after all
         /// the previously encoded commands have completed.
         #[unsafe(method(addBarrier))]
         #[unsafe(method_family = none)]
-        unsafe fn addBarrier(&self);
+        fn addBarrier(&self);
 
         /// Push a new named string onto a stack of string labels.
         #[unsafe(method(pushDebugGroup:))]
         #[unsafe(method_family = none)]
-        unsafe fn pushDebugGroup(&self, string: &NSString);
+        fn pushDebugGroup(&self, string: &NSString);
 
         /// Pop the latest named string off of the stack.
         #[unsafe(method(popDebugGroup))]
         #[unsafe(method_family = none)]
-        unsafe fn popDebugGroup(&self);
+        fn popDebugGroup(&self);
 
         /// Append this command buffer to the end of its MTLCommandQueue.
         #[unsafe(method(enqueue))]
         #[unsafe(method_family = none)]
-        unsafe fn enqueue(&self);
+        fn enqueue(&self);
 
         #[cfg(feature = "MTLEvent")]
         /// Encodes a command that pauses execution of this command buffer until the specified event reaches a given value.
         #[unsafe(method(waitForEvent:value:))]
         #[unsafe(method_family = none)]
-        unsafe fn waitForEvent_value(&self, event: &ProtocolObject<dyn MTLSharedEvent>, value: u64);
+        fn waitForEvent_value(&self, event: &ProtocolObject<dyn MTLSharedEvent>, value: u64);
 
         #[cfg(feature = "MTLEvent")]
         /// Encodes a command that signals an event with a given value.
         #[unsafe(method(signalEvent:value:))]
         #[unsafe(method_family = none)]
-        unsafe fn signalEvent_value(&self, event: &ProtocolObject<dyn MTLSharedEvent>, value: u64);
+        fn signalEvent_value(&self, event: &ProtocolObject<dyn MTLSharedEvent>, value: u64);
 
         /// An optional label for this handle.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        unsafe fn label(&self) -> Option<Retained<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        unsafe fn setLabel(&self, label: Option<&NSString>);
+        fn setLabel(&self, label: Option<&NSString>);
 
         /// status reports the completion status of the MTLIOCommandBuffer, pending, cancelled, error or complete.
         #[unsafe(method(status))]
         #[unsafe(method_family = none)]
-        unsafe fn status(&self) -> MTLIOStatus;
+        fn status(&self) -> MTLIOStatus;
 
         /// If an error occurred during execution, the NSError may contain more details about the problem.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
-        unsafe fn error(&self) -> Option<Retained<NSError>>;
+        fn error(&self) -> Option<Retained<NSError>>;
     }
 );

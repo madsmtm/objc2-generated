@@ -78,15 +78,12 @@ impl MTL4PipelineDataSetSerializerDescriptor {
         /// serialize to a binary archive by calling ``serializeAsArchiveAndFlushToURL:error::``.
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configuration(&self) -> MTL4PipelineDataSetSerializerConfiguration;
+        pub fn configuration(&self) -> MTL4PipelineDataSetSerializerConfiguration;
 
         /// Setter for [`configuration`][Self::configuration].
         #[unsafe(method(setConfiguration:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setConfiguration(
-            &self,
-            configuration: MTL4PipelineDataSetSerializerConfiguration,
-        );
+        pub fn setConfiguration(&self, configuration: MTL4PipelineDataSetSerializerConfiguration);
     );
 }
 
@@ -95,12 +92,19 @@ impl MTL4PipelineDataSetSerializerDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTL4PipelineDataSetSerializerDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -131,7 +135,7 @@ extern_protocol!(
         /// - Returns: a boolean indicating whether the operation was successful.
         #[unsafe(method(serializeAsArchiveAndFlushToURL:error:_))]
         #[unsafe(method_family = none)]
-        unsafe fn serializeAsArchiveAndFlushToURL_error(
+        fn serializeAsArchiveAndFlushToURL_error(
             &self,
             url: &NSURL,
         ) -> Result<(), Retained<NSError>>;
@@ -143,7 +147,7 @@ extern_protocol!(
         /// - Returns: an `NSData` instance containing the pipeline script.
         #[unsafe(method(serializeAsPipelinesScriptWithError:_))]
         #[unsafe(method_family = none)]
-        unsafe fn serializeAsPipelinesScriptWithError(
+        fn serializeAsPipelinesScriptWithError(
             &self,
         ) -> Result<Retained<NSData>, Retained<NSError>>;
     }

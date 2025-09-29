@@ -121,13 +121,13 @@ impl MTLIntersectionFunctionTableDescriptor {
         /// Create an autoreleased intersection function table descriptor
         #[unsafe(method(intersectionFunctionTableDescriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn intersectionFunctionTableDescriptor(
+        pub fn intersectionFunctionTableDescriptor(
         ) -> Retained<MTLIntersectionFunctionTableDescriptor>;
 
         /// The number of functions in the table.
         #[unsafe(method(functionCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn functionCount(&self) -> NSUInteger;
+        pub fn functionCount(&self) -> NSUInteger;
 
         /// Setter for [`functionCount`][Self::functionCount].
         #[unsafe(method(setFunctionCount:))]
@@ -194,7 +194,7 @@ extern_protocol!(
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
-        unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        fn gpuResourceID(&self) -> MTLResourceID;
 
         #[cfg(feature = "MTLFunctionHandle")]
         #[unsafe(method(setFunction:atIndex:))]

@@ -127,12 +127,12 @@ impl MTLIndirectCommandBufferDescriptor {
         /// ://com.apple.documentation/documentation/swift/true>.
         #[unsafe(method(inheritDepthStencilState))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inheritDepthStencilState(&self) -> bool;
+        pub fn inheritDepthStencilState(&self) -> bool;
 
         /// Setter for [`inheritDepthStencilState`][Self::inheritDepthStencilState].
         #[unsafe(method(setInheritDepthStencilState:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInheritDepthStencilState(&self, inherit_depth_stencil_state: bool);
+        pub fn setInheritDepthStencilState(&self, inherit_depth_stencil_state: bool);
 
         /// Configures whether the indirect command buffer inherits the depth bias from the encoder.
         ///
@@ -141,12 +141,12 @@ impl MTLIndirectCommandBufferDescriptor {
         /// ://com.apple.documentation/documentation/swift/true>.
         #[unsafe(method(inheritDepthBias))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inheritDepthBias(&self) -> bool;
+        pub fn inheritDepthBias(&self) -> bool;
 
         /// Setter for [`inheritDepthBias`][Self::inheritDepthBias].
         #[unsafe(method(setInheritDepthBias:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInheritDepthBias(&self, inherit_depth_bias: bool);
+        pub fn setInheritDepthBias(&self, inherit_depth_bias: bool);
 
         /// Configures whether the indirect command buffer inherits the depth clip mode from the encoder.
         ///
@@ -155,12 +155,12 @@ impl MTLIndirectCommandBufferDescriptor {
         /// ://com.apple.documentation/documentation/swift/true>.
         #[unsafe(method(inheritDepthClipMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inheritDepthClipMode(&self) -> bool;
+        pub fn inheritDepthClipMode(&self) -> bool;
 
         /// Setter for [`inheritDepthClipMode`][Self::inheritDepthClipMode].
         #[unsafe(method(setInheritDepthClipMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInheritDepthClipMode(&self, inherit_depth_clip_mode: bool);
+        pub fn setInheritDepthClipMode(&self, inherit_depth_clip_mode: bool);
 
         /// Configures whether the indirect command buffer inherits the cull mode from the encoder.
         ///
@@ -169,12 +169,12 @@ impl MTLIndirectCommandBufferDescriptor {
         /// ://com.apple.documentation/documentation/swift/true>.
         #[unsafe(method(inheritCullMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inheritCullMode(&self) -> bool;
+        pub fn inheritCullMode(&self) -> bool;
 
         /// Setter for [`inheritCullMode`][Self::inheritCullMode].
         #[unsafe(method(setInheritCullMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInheritCullMode(&self, inherit_cull_mode: bool);
+        pub fn setInheritCullMode(&self, inherit_cull_mode: bool);
 
         /// Configures whether the indirect command buffer inherits the front facing winding from the encoder.
         ///
@@ -183,12 +183,12 @@ impl MTLIndirectCommandBufferDescriptor {
         /// ://com.apple.documentation/documentation/swift/true>.
         #[unsafe(method(inheritFrontFacingWinding))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inheritFrontFacingWinding(&self) -> bool;
+        pub fn inheritFrontFacingWinding(&self) -> bool;
 
         /// Setter for [`inheritFrontFacingWinding`][Self::inheritFrontFacingWinding].
         #[unsafe(method(setInheritFrontFacingWinding:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInheritFrontFacingWinding(&self, inherit_front_facing_winding: bool);
+        pub fn setInheritFrontFacingWinding(&self, inherit_front_facing_winding: bool);
 
         /// Configures whether the indirect command buffer inherits the triangle fill mode from the encoder.
         ///
@@ -197,12 +197,12 @@ impl MTLIndirectCommandBufferDescriptor {
         /// ://com.apple.documentation/documentation/swift/true>.
         #[unsafe(method(inheritTriangleFillMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inheritTriangleFillMode(&self) -> bool;
+        pub fn inheritTriangleFillMode(&self) -> bool;
 
         /// Setter for [`inheritTriangleFillMode`][Self::inheritTriangleFillMode].
         #[unsafe(method(setInheritTriangleFillMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInheritTriangleFillMode(&self, inherit_triangle_fill_mode: bool);
+        pub fn setInheritTriangleFillMode(&self, inherit_triangle_fill_mode: bool);
 
         /// The maximum bind index of vertex argument buffers that can be set per command.
         #[unsafe(method(maxVertexBufferBindCount))]
@@ -238,7 +238,7 @@ impl MTLIndirectCommandBufferDescriptor {
         /// The default value is 31.
         #[unsafe(method(maxKernelThreadgroupMemoryBindCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxKernelThreadgroupMemoryBindCount(&self) -> NSUInteger;
+        pub fn maxKernelThreadgroupMemoryBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxKernelThreadgroupMemoryBindCount`][Self::maxKernelThreadgroupMemoryBindCount].
         ///
@@ -255,7 +255,7 @@ impl MTLIndirectCommandBufferDescriptor {
         /// The maximum bind index of object stage buffers that can be set per render command.
         #[unsafe(method(maxObjectBufferBindCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxObjectBufferBindCount(&self) -> NSUInteger;
+        pub fn maxObjectBufferBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxObjectBufferBindCount`][Self::maxObjectBufferBindCount].
         ///
@@ -269,7 +269,7 @@ impl MTLIndirectCommandBufferDescriptor {
         /// The maximum bind index of mesh stage buffers that can be set per render command.
         #[unsafe(method(maxMeshBufferBindCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxMeshBufferBindCount(&self) -> NSUInteger;
+        pub fn maxMeshBufferBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxMeshBufferBindCount`][Self::maxMeshBufferBindCount].
         ///
@@ -284,7 +284,7 @@ impl MTLIndirectCommandBufferDescriptor {
         /// The default value is 0.
         #[unsafe(method(maxObjectThreadgroupMemoryBindCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxObjectThreadgroupMemoryBindCount(&self) -> NSUInteger;
+        pub fn maxObjectThreadgroupMemoryBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxObjectThreadgroupMemoryBindCount`][Self::maxObjectThreadgroupMemoryBindCount].
         ///
@@ -301,12 +301,12 @@ impl MTLIndirectCommandBufferDescriptor {
         /// Whether the render or compute commands can use ray tracing. Default value is NO.
         #[unsafe(method(supportRayTracing))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportRayTracing(&self) -> bool;
+        pub fn supportRayTracing(&self) -> bool;
 
         /// Setter for [`supportRayTracing`][Self::supportRayTracing].
         #[unsafe(method(setSupportRayTracing:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSupportRayTracing(&self, support_ray_tracing: bool);
+        pub fn setSupportRayTracing(&self, support_ray_tracing: bool);
 
         /// allows binding pipelines that have at least one MTLBufferLayout with a
         /// stride of `MTLBufferLayoutStrideDynamic`
@@ -315,28 +315,22 @@ impl MTLIndirectCommandBufferDescriptor {
         /// calls
         #[unsafe(method(supportDynamicAttributeStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportDynamicAttributeStride(&self) -> bool;
+        pub fn supportDynamicAttributeStride(&self) -> bool;
 
         /// Setter for [`supportDynamicAttributeStride`][Self::supportDynamicAttributeStride].
         #[unsafe(method(setSupportDynamicAttributeStride:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSupportDynamicAttributeStride(
-            &self,
-            support_dynamic_attribute_stride: bool,
-        );
+        pub fn setSupportDynamicAttributeStride(&self, support_dynamic_attribute_stride: bool);
 
         /// Specifies if the indirect command buffer should support color attachment mapping.
         #[unsafe(method(supportColorAttachmentMapping))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportColorAttachmentMapping(&self) -> bool;
+        pub fn supportColorAttachmentMapping(&self) -> bool;
 
         /// Setter for [`supportColorAttachmentMapping`][Self::supportColorAttachmentMapping].
         #[unsafe(method(setSupportColorAttachmentMapping:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSupportColorAttachmentMapping(
-            &self,
-            support_color_attachment_mapping: bool,
-        );
+        pub fn setSupportColorAttachmentMapping(&self, support_color_attachment_mapping: bool);
     );
 }
 
@@ -345,12 +339,19 @@ impl MTLIndirectCommandBufferDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLIndirectCommandBufferDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -365,7 +366,7 @@ extern_protocol!(
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
-        unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        fn gpuResourceID(&self) -> MTLResourceID;
 
         /// # Safety
         ///

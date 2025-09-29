@@ -107,19 +107,19 @@ impl MTL4CounterHeapDescriptor {
         /// Assigns the type of data that the heap contains.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        pub unsafe fn r#type(&self) -> MTL4CounterHeapType;
+        pub fn r#type(&self) -> MTL4CounterHeapType;
 
         /// Setter for [`type`][Self::type].
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setType(&self, r#type: MTL4CounterHeapType);
+        pub fn setType(&self, r#type: MTL4CounterHeapType);
 
         /// Assigns the number of entries in the heap.
         ///
         /// Each entry represents one item in the heap. The size of the individual entries depends on the heap type.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
-        pub unsafe fn count(&self) -> NSUInteger;
+        pub fn count(&self) -> NSUInteger;
 
         /// Setter for [`count`][Self::count].
         ///
@@ -137,12 +137,19 @@ impl MTL4CounterHeapDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTL4CounterHeapDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -155,24 +162,24 @@ extern_protocol!(
         /// Assigns a label for later inspection or visualization.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        unsafe fn label(&self) -> Option<Retained<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        unsafe fn setLabel(&self, label: Option<&NSString>);
+        fn setLabel(&self, label: Option<&NSString>);
 
         /// Queries the number of entries in the heap.
         #[unsafe(method(count))]
         #[unsafe(method_family = none)]
-        unsafe fn count(&self) -> NSUInteger;
+        fn count(&self) -> NSUInteger;
 
         /// Queries the type of the heap.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        unsafe fn r#type(&self) -> MTL4CounterHeapType;
+        fn r#type(&self) -> MTL4CounterHeapType;
 
         /// Resolves heap data on the CPU timeline.
         ///

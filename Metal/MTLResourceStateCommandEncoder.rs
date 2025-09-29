@@ -111,7 +111,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(updateTextureMapping:mode:region:mipLevel:slice:))]
         #[unsafe(method_family = none)]
-        unsafe fn updateTextureMapping_mode_region_mipLevel_slice(
+        fn updateTextureMapping_mode_region_mipLevel_slice(
             &self,
             texture: &ProtocolObject<dyn MTLTexture>,
             mode: MTLSparseTextureMappingMode,
@@ -155,7 +155,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(updateFence:))]
         #[unsafe(method_family = none)]
-        unsafe fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
+        fn updateFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
         #[cfg(feature = "MTLFence")]
         /// Prevent further GPU work until the fence is reached.
@@ -165,7 +165,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(waitForFence:))]
         #[unsafe(method_family = none)]
-        unsafe fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
+        fn waitForFence(&self, fence: &ProtocolObject<dyn MTLFence>);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -180,7 +180,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]
         #[unsafe(method_family = none)]
-        unsafe fn moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
+        fn moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
             &self,
             source_texture: &ProtocolObject<dyn MTLTexture>,
             source_slice: NSUInteger,

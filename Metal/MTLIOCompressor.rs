@@ -29,8 +29,12 @@ unsafe impl RefEncode for MTLIOCompressionStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressioncontext?language=objc)
 pub type MTLIOCompressionContext = *mut c_void;
 
-extern "C-unwind" {
-    pub fn MTLIOCompressionContextDefaultChunkSize() -> usize;
+#[inline]
+pub extern "C-unwind" fn MTLIOCompressionContextDefaultChunkSize() -> usize {
+    extern "C-unwind" {
+        fn MTLIOCompressionContextDefaultChunkSize() -> usize;
+    }
+    unsafe { MTLIOCompressionContextDefaultChunkSize() }
 }
 
 extern "C-unwind" {

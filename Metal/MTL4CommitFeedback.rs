@@ -31,18 +31,18 @@ extern_protocol!(
         /// A description of an error when the GPU encounters an issue as it runs the committed command buffers.
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
-        unsafe fn error(&self) -> Option<Retained<NSError>>;
+        fn error(&self) -> Option<Retained<NSError>>;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The host time, in seconds, when the GPU starts execution of the committed command buffers.
         #[unsafe(method(GPUStartTime))]
         #[unsafe(method_family = none)]
-        unsafe fn GPUStartTime(&self) -> CFTimeInterval;
+        fn GPUStartTime(&self) -> CFTimeInterval;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The host time, in seconds, when the GPU finishes execution of the committed command buffers.
         #[unsafe(method(GPUEndTime))]
         #[unsafe(method_family = none)]
-        unsafe fn GPUEndTime(&self) -> CFTimeInterval;
+        fn GPUEndTime(&self) -> CFTimeInterval;
     }
 );

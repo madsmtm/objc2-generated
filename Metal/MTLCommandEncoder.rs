@@ -129,7 +129,7 @@ extern_protocol!(
         /// The device this resource was created against.
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// A string to help identify this object.
         #[unsafe(method(label))]
@@ -170,7 +170,7 @@ extern_protocol!(
         /// This argument applies to work you encode in the current command encoder.
         #[unsafe(method(barrierAfterQueueStages:beforeStages:))]
         #[unsafe(method_family = none)]
-        unsafe fn barrierAfterQueueStages_beforeStages(
+        fn barrierAfterQueueStages_beforeStages(
             &self,
             after_queue_stages: MTLStages,
             before_stages: MTLStages,

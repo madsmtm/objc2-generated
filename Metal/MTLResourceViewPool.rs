@@ -33,7 +33,7 @@ impl MTLResourceViewPoolDescriptor {
         /// Configures the number of resource views with which Metal creates the resource view pool.
         #[unsafe(method(resourceViewCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resourceViewCount(&self) -> NSUInteger;
+        pub fn resourceViewCount(&self) -> NSUInteger;
 
         /// Setter for [`resourceViewCount`][Self::resourceViewCount].
         ///
@@ -47,14 +47,14 @@ impl MTLResourceViewPoolDescriptor {
         /// Assigns an optional label you to the resource view pool for debugging purposes.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+        pub fn setLabel(&self, label: Option<&NSString>);
     );
 }
 
@@ -63,12 +63,19 @@ impl MTLResourceViewPoolDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLResourceViewPoolDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -80,23 +87,23 @@ extern_protocol!(
         /// Obtains the resource ID corresponding to the resource view at index 0 in this resource view pool.
         #[unsafe(method(baseResourceID))]
         #[unsafe(method_family = none)]
-        unsafe fn baseResourceID(&self) -> MTLResourceID;
+        fn baseResourceID(&self) -> MTLResourceID;
 
         /// Queries the number of resource views that this pool contains.
         #[unsafe(method(resourceViewCount))]
         #[unsafe(method_family = none)]
-        unsafe fn resourceViewCount(&self) -> NSUInteger;
+        fn resourceViewCount(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLDevice")]
         /// Obtains a reference to the GPU device this pool belongs to.
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// Queries the optional debug label of this resource view pool.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        unsafe fn label(&self) -> Option<Retained<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLTypes")]
         /// Copies a range of resource views from a source view pool to a destination location in this view pool.

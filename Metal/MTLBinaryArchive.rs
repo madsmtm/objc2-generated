@@ -172,7 +172,7 @@ extern_protocol!(
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[unsafe(method(addTileRenderPipelineFunctionsWithDescriptor:error:_))]
         #[unsafe(method_family = none)]
-        unsafe fn addTileRenderPipelineFunctionsWithDescriptor_error(
+        fn addTileRenderPipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLTileRenderPipelineDescriptor,
         ) -> Result<(), Retained<NSError>>;
@@ -187,7 +187,7 @@ extern_protocol!(
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[unsafe(method(addMeshRenderPipelineFunctionsWithDescriptor:error:_))]
         #[unsafe(method_family = none)]
-        unsafe fn addMeshRenderPipelineFunctionsWithDescriptor_error(
+        fn addMeshRenderPipelineFunctionsWithDescriptor_error(
             &self,
             descriptor: &MTLMeshRenderPipelineDescriptor,
         ) -> Result<(), Retained<NSError>>;
@@ -202,7 +202,7 @@ extern_protocol!(
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[unsafe(method(addLibraryWithDescriptor:error:_))]
         #[unsafe(method_family = none)]
-        unsafe fn addLibraryWithDescriptor_error(
+        fn addLibraryWithDescriptor_error(
             &self,
             descriptor: &MTLStitchedLibraryDescriptor,
         ) -> Result<(), Retained<NSError>>;
@@ -232,7 +232,7 @@ extern_protocol!(
         /// Returns: Whether or not the addition succeeded. Functions referenced multiple times are silently accepted.
         #[unsafe(method(addFunctionWithDescriptor:library:error:_))]
         #[unsafe(method_family = none)]
-        unsafe fn addFunctionWithDescriptor_library_error(
+        fn addFunctionWithDescriptor_library_error(
             &self,
             descriptor: &MTLFunctionDescriptor,
             library: &ProtocolObject<dyn MTLLibrary>,

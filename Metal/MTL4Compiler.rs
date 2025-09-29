@@ -33,20 +33,20 @@ impl MTL4CompilerDescriptor {
         /// Assigns an optional descriptor label to the compiler for debugging purposes.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+        pub fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTL4PipelineDataSetSerializer")]
         /// Assigns a pipeline data set serializer into which this compiler stores data for all pipelines it creates.
         #[unsafe(method(pipelineDataSetSerializer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pipelineDataSetSerializer(
+        pub fn pipelineDataSetSerializer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTL4PipelineDataSetSerializer>>>;
 
@@ -54,7 +54,7 @@ impl MTL4CompilerDescriptor {
         /// Setter for [`pipelineDataSetSerializer`][Self::pipelineDataSetSerializer].
         #[unsafe(method(setPipelineDataSetSerializer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPipelineDataSetSerializer(
+        pub fn setPipelineDataSetSerializer(
             &self,
             pipeline_data_set_serializer: Option<
                 &ProtocolObject<dyn MTL4PipelineDataSetSerializer>,
@@ -68,12 +68,19 @@ impl MTL4CompilerDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTL4CompilerDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -103,9 +110,7 @@ impl MTL4CompilerTaskOptions {
         /// In case of a match in the archive, the compiler can skip one or more compilation tasks, speeding up the build process.
         #[unsafe(method(lookupArchives))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lookupArchives(
-            &self,
-        ) -> Option<Retained<NSArray<ProtocolObject<dyn MTL4Archive>>>>;
+        pub fn lookupArchives(&self) -> Option<Retained<NSArray<ProtocolObject<dyn MTL4Archive>>>>;
 
         #[cfg(feature = "MTL4Archive")]
         /// Setter for [`lookupArchives`][Self::lookupArchives].
@@ -113,7 +118,7 @@ impl MTL4CompilerTaskOptions {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLookupArchives:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLookupArchives(
+        pub fn setLookupArchives(
             &self,
             lookup_archives: Option<&NSArray<ProtocolObject<dyn MTL4Archive>>>,
         );
@@ -125,12 +130,19 @@ impl MTL4CompilerTaskOptions {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTL4CompilerTaskOptions {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// Provides a signature for a callback block that Metal calls when the compiler finishes a build task for a binary function.
@@ -161,18 +173,18 @@ extern_protocol!(
         /// Returns the device that this compiler belongs to.
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// Returns the optional label you specify at creation time.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        unsafe fn label(&self) -> Option<Retained<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTL4PipelineDataSetSerializer")]
         /// Returns the pipeline data set serializer into which this compiler stores data for all pipelines it creates.
         #[unsafe(method(pipelineDataSetSerializer))]
         #[unsafe(method_family = none)]
-        unsafe fn pipelineDataSetSerializer(
+        fn pipelineDataSetSerializer(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTL4PipelineDataSetSerializer>>>;
 
@@ -186,7 +198,7 @@ extern_protocol!(
         /// - Returns: a Metal library instance upon success, `nil` otherwise.
         #[unsafe(method(newLibraryWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newLibraryWithDescriptor_error(
+        fn newLibraryWithDescriptor_error(
             &self,
             descriptor: &MTL4LibraryDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLLibrary>>, Retained<NSError>>;
@@ -201,7 +213,7 @@ extern_protocol!(
         /// - Returns: A new dynamic Metal library upon success, `nil` otherwise.
         #[unsafe(method(newDynamicLibrary:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newDynamicLibrary_error(
+        fn newDynamicLibrary_error(
             &self,
             library: &ProtocolObject<dyn MTLLibrary>,
         ) -> Result<Retained<ProtocolObject<dyn MTLDynamicLibrary>>, Retained<NSError>>;
@@ -216,7 +228,7 @@ extern_protocol!(
         /// - Returns: A new dynamic Metal library upon success, `nil` otherwise.
         #[unsafe(method(newDynamicLibraryWithURL:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newDynamicLibraryWithURL_error(
+        fn newDynamicLibraryWithURL_error(
             &self,
             url: &NSURL,
         ) -> Result<Retained<ProtocolObject<dyn MTLDynamicLibrary>>, Retained<NSError>>;
@@ -238,7 +250,7 @@ extern_protocol!(
         /// - Returns: A new compute pipeline state object upon success, `nil` otherwise.
         #[unsafe(method(newComputePipelineStateWithDescriptor:compilerTaskOptions:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newComputePipelineStateWithDescriptor_compilerTaskOptions_error(
+        fn newComputePipelineStateWithDescriptor_compilerTaskOptions_error(
             &self,
             descriptor: &MTL4ComputePipelineDescriptor,
             compiler_task_options: Option<&MTL4CompilerTaskOptions>,
@@ -263,7 +275,7 @@ extern_protocol!(
         /// - Returns: A new compute pipeline state object upon success, `nil` otherwise.
         #[unsafe(method(newComputePipelineStateWithDescriptor:dynamicLinkingDescriptor:compilerTaskOptions:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newComputePipelineStateWithDescriptor_dynamicLinkingDescriptor_compilerTaskOptions_error(
+        fn newComputePipelineStateWithDescriptor_dynamicLinkingDescriptor_compilerTaskOptions_error(
             &self,
             descriptor: &MTL4ComputePipelineDescriptor,
             dynamic_linking_descriptor: Option<&MTL4PipelineStageDynamicLinkingDescriptor>,
@@ -291,7 +303,7 @@ extern_protocol!(
         /// - Returns: A new render pipeline state object upon success, `nil` otherwise.
         #[unsafe(method(newRenderPipelineStateWithDescriptor:compilerTaskOptions:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newRenderPipelineStateWithDescriptor_compilerTaskOptions_error(
+        fn newRenderPipelineStateWithDescriptor_compilerTaskOptions_error(
             &self,
             descriptor: &MTL4PipelineDescriptor,
             compiler_task_options: Option<&MTL4CompilerTaskOptions>,
@@ -320,7 +332,7 @@ extern_protocol!(
         /// - Returns: A new render pipeline state object upon success, `nil` otherwise.
         #[unsafe(method(newRenderPipelineStateWithDescriptor:dynamicLinkingDescriptor:compilerTaskOptions:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newRenderPipelineStateWithDescriptor_dynamicLinkingDescriptor_compilerTaskOptions_error(
+        fn newRenderPipelineStateWithDescriptor_dynamicLinkingDescriptor_compilerTaskOptions_error(
             &self,
             descriptor: &MTL4PipelineDescriptor,
             dynamic_linking_descriptor: Option<&MTL4RenderPipelineDynamicLinkingDescriptor>,
@@ -351,7 +363,7 @@ extern_protocol!(
         /// - Returns: a fully-specialized pipeline state object.
         #[unsafe(method(newRenderPipelineStateBySpecializationWithDescriptor:pipeline:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newRenderPipelineStateBySpecializationWithDescriptor_pipeline_error(
+        fn newRenderPipelineStateBySpecializationWithDescriptor_pipeline_error(
             &self,
             descriptor: &MTL4PipelineDescriptor,
             pipeline: &ProtocolObject<dyn MTLRenderPipelineState>,
@@ -372,7 +384,7 @@ extern_protocol!(
         /// - Returns: a new binary function upon success, `nil` otherwise.
         #[unsafe(method(newBinaryFunctionWithDescriptor:compilerTaskOptions:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newBinaryFunctionWithDescriptor_compilerTaskOptions_error(
+        fn newBinaryFunctionWithDescriptor_compilerTaskOptions_error(
             &self,
             descriptor: &MTL4BinaryFunctionDescriptor,
             compiler_task_options: Option<&MTL4CompilerTaskOptions>,
@@ -669,7 +681,7 @@ extern_protocol!(
         /// - Returns: A machine learning pipeline state if operation is successful, otherwise `nil`.
         #[unsafe(method(newMachineLearningPipelineStateWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newMachineLearningPipelineStateWithDescriptor_error(
+        fn newMachineLearningPipelineStateWithDescriptor_error(
             &self,
             descriptor: &MTL4MachineLearningPipelineDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTL4MachineLearningPipelineState>>, Retained<NSError>>;

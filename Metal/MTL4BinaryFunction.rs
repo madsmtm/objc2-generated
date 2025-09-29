@@ -15,12 +15,12 @@ extern_protocol!(
         /// Obtains the optional name of this binary function.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        unsafe fn name(&self) -> Option<Retained<NSString>>;
+        fn name(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLLibrary")]
         /// Describes the type of this binary function.
         #[unsafe(method(functionType))]
         #[unsafe(method_family = none)]
-        unsafe fn functionType(&self) -> MTLFunctionType;
+        fn functionType(&self) -> MTLFunctionType;
     }
 );

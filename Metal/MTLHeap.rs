@@ -106,13 +106,13 @@ impl MTLHeapDescriptor {
         /// The sparse page size to use for resources created from the heap.
         #[unsafe(method(sparsePageSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sparsePageSize(&self) -> MTLSparsePageSize;
+        pub fn sparsePageSize(&self) -> MTLSparsePageSize;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`sparsePageSize`][Self::sparsePageSize].
         #[unsafe(method(setSparsePageSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSparsePageSize(&self, sparse_page_size: MTLSparsePageSize);
+        pub fn setSparsePageSize(&self, sparse_page_size: MTLSparsePageSize);
 
         #[cfg(feature = "MTLResource")]
         /// Set hazard tracking mode for the heap. The default value is MTLHazardTrackingModeDefault.
@@ -152,12 +152,12 @@ impl MTLHeapDescriptor {
         /// This constrains the resource creation functions that are available.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        pub unsafe fn r#type(&self) -> MTLHeapType;
+        pub fn r#type(&self) -> MTLHeapType;
 
         /// Setter for [`type`][Self::type].
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
-        pub fn setType(&self, r#type: MTLHeapType);
+        pub unsafe fn setType(&self, r#type: MTLHeapType);
 
         #[cfg(feature = "MTLResource")]
         /// Specifies the largest sparse page size that the Metal heap supports.
@@ -170,13 +170,13 @@ impl MTLHeapDescriptor {
         /// placement sparse page of the Metal heap that this property controls.
         #[unsafe(method(maxCompatiblePlacementSparsePageSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxCompatiblePlacementSparsePageSize(&self) -> MTLSparsePageSize;
+        pub fn maxCompatiblePlacementSparsePageSize(&self) -> MTLSparsePageSize;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`maxCompatiblePlacementSparsePageSize`][Self::maxCompatiblePlacementSparsePageSize].
         #[unsafe(method(setMaxCompatiblePlacementSparsePageSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaxCompatiblePlacementSparsePageSize(
+        pub fn setMaxCompatiblePlacementSparsePageSize(
             &self,
             max_compatible_placement_sparse_page_size: MTLSparsePageSize,
         );
@@ -188,12 +188,19 @@ impl MTLHeapDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLHeapDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -312,7 +319,7 @@ extern_protocol!(
         /// This constrains the resource creation functions that are available on the heap.
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        unsafe fn r#type(&self) -> MTLHeapType;
+        fn r#type(&self) -> MTLHeapType;
 
         #[cfg(all(feature = "MTLBuffer", feature = "MTLResource"))]
         /// Create a new buffer backed by heap memory at the specified placement offset.
@@ -371,7 +378,7 @@ extern_protocol!(
         /// Returns: The acceleration structure or nil if heap is full. Note that the MTLAccelerationStructure merely represents storage for an acceleration structure. It will still need to be populated via a build, copy, refit, etc.
         #[unsafe(method(newAccelerationStructureWithSize:))]
         #[unsafe(method_family = new)]
-        unsafe fn newAccelerationStructureWithSize(
+        fn newAccelerationStructureWithSize(
             &self,
             size: NSUInteger,
         ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
@@ -384,7 +391,7 @@ extern_protocol!(
         /// Returns: The acceleration structure or nil if heap is full. Note that the MTLAccelerationStructure merely represents storage for an acceleration structure. It will still need to be populated via a build, copy, refit, etc.
         #[unsafe(method(newAccelerationStructureWithDescriptor:))]
         #[unsafe(method_family = new)]
-        unsafe fn newAccelerationStructureWithDescriptor(
+        fn newAccelerationStructureWithDescriptor(
             &self,
             descriptor: &MTLAccelerationStructureDescriptor,
         ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;

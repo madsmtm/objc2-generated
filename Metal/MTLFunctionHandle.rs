@@ -29,6 +29,6 @@ extern_protocol!(
         /// The handle must have been created from an intersection function annotated with the `intersection_function_buffer` tag.
         #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
-        unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        fn gpuResourceID(&self) -> MTLResourceID;
     }
 );

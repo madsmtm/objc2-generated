@@ -135,7 +135,7 @@ impl MTLFunctionDescriptor {
         /// Binary archives to be searched for precompiled functions during the compilation of this function.
         #[unsafe(method(binaryArchives))]
         #[unsafe(method_family = none)]
-        pub unsafe fn binaryArchives(
+        pub fn binaryArchives(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
@@ -145,7 +145,7 @@ impl MTLFunctionDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBinaryArchives:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBinaryArchives(
+        pub fn setBinaryArchives(
             &self,
             binary_archives: Option<&NSArray<ProtocolObject<dyn MTLBinaryArchive>>>,
         );
@@ -200,10 +200,17 @@ impl MTLIntersectionFunctionDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLIntersectionFunctionDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

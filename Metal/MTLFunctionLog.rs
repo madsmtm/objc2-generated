@@ -33,19 +33,19 @@ extern_protocol!(
     pub unsafe trait MTLFunctionLogDebugLocation: NSObjectProtocol {
         #[unsafe(method(functionName))]
         #[unsafe(method_family = none)]
-        unsafe fn functionName(&self) -> Option<Retained<NSString>>;
+        fn functionName(&self) -> Option<Retained<NSString>>;
 
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
-        unsafe fn URL(&self) -> Option<Retained<NSURL>>;
+        fn URL(&self) -> Option<Retained<NSURL>>;
 
         #[unsafe(method(line))]
         #[unsafe(method_family = none)]
-        unsafe fn line(&self) -> NSUInteger;
+        fn line(&self) -> NSUInteger;
 
         #[unsafe(method(column))]
         #[unsafe(method_family = none)]
-        unsafe fn column(&self) -> NSUInteger;
+        fn column(&self) -> NSUInteger;
     }
 );
 
@@ -54,20 +54,20 @@ extern_protocol!(
     pub unsafe trait MTLFunctionLog: NSObjectProtocol {
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        unsafe fn r#type(&self) -> MTLFunctionLogType;
+        fn r#type(&self) -> MTLFunctionLogType;
 
         #[unsafe(method(encoderLabel))]
         #[unsafe(method_family = none)]
-        unsafe fn encoderLabel(&self) -> Option<Retained<NSString>>;
+        fn encoderLabel(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLLibrary")]
         #[unsafe(method(function))]
         #[unsafe(method_family = none)]
-        unsafe fn function(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
+        fn function(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
 
         #[unsafe(method(debugLocation))]
         #[unsafe(method_family = none)]
-        unsafe fn debugLocation(
+        fn debugLocation(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLFunctionLogDebugLocation>>>;
     }

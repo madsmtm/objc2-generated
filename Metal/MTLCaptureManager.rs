@@ -93,7 +93,7 @@ impl MTLCaptureDescriptor {
         /// MTLCaptureScope captures between the next begin and end of the scope.
         #[unsafe(method(captureObject))]
         #[unsafe(method_family = none)]
-        pub unsafe fn captureObject(&self) -> Option<Retained<AnyObject>>;
+        pub fn captureObject(&self) -> Option<Retained<AnyObject>>;
 
         /// Setter for [`captureObject`][Self::captureObject].
         ///
@@ -173,7 +173,7 @@ impl MTLCaptureManager {
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[cfg(all(feature = "MTLCaptureScope", feature = "MTLDevice"))]
         #[unsafe(method(newCaptureScopeWithDevice:))]
@@ -194,7 +194,7 @@ impl MTLCaptureManager {
         #[cfg(all(feature = "MTL4CommandQueue", feature = "MTLCaptureScope"))]
         #[unsafe(method(newCaptureScopeWithMTL4CommandQueue:))]
         #[unsafe(method_family = new)]
-        pub unsafe fn newCaptureScopeWithMTL4CommandQueue(
+        pub fn newCaptureScopeWithMTL4CommandQueue(
             &self,
             command_queue: &ProtocolObject<dyn MTL4CommandQueue>,
         ) -> Retained<ProtocolObject<dyn MTLCaptureScope>>;
@@ -269,6 +269,13 @@ impl MTLCaptureManager {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLCaptureManager {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

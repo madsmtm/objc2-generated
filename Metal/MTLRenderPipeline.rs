@@ -367,12 +367,19 @@ impl MTLRenderPipelineColorAttachmentDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRenderPipelineColorAttachmentDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -430,7 +437,7 @@ impl MTLLogicalToPhysicalColorAttachmentMap {
 
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reset(&self);
+        pub fn reset(&self);
     );
 }
 
@@ -439,12 +446,19 @@ impl MTLLogicalToPhysicalColorAttachmentMap {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLLogicalToPhysicalColorAttachmentMap {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -467,27 +481,27 @@ impl MTLRenderPipelineReflection {
         #[cfg(feature = "MTLArgument")]
         #[unsafe(method(vertexBindings))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vertexBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
+        pub fn vertexBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
         #[cfg(feature = "MTLArgument")]
         #[unsafe(method(fragmentBindings))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fragmentBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
+        pub fn fragmentBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
         #[cfg(feature = "MTLArgument")]
         #[unsafe(method(tileBindings))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tileBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
+        pub fn tileBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
         #[cfg(feature = "MTLArgument")]
         #[unsafe(method(objectBindings))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
+        pub fn objectBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
         #[cfg(feature = "MTLArgument")]
         #[unsafe(method(meshBindings))]
         #[unsafe(method_family = none)]
-        pub unsafe fn meshBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
+        pub fn meshBindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
         #[cfg(feature = "MTLArgument")]
         #[deprecated]
@@ -514,12 +528,19 @@ impl MTLRenderPipelineReflection {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRenderPipelineReflection {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -968,13 +989,13 @@ impl MTLRenderPipelineDescriptor {
         /// The value can be overridden using `MTL_SHADER_VALIDATION_ENABLE_PIPELINES` or `MTL_SHADER_VALIDATION_DISABLE_PIPELINES` Environment Variables.
         #[unsafe(method(shaderValidation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shaderValidation(&self) -> MTLShaderValidation;
+        pub fn shaderValidation(&self) -> MTLShaderValidation;
 
         #[cfg(feature = "MTLPipeline")]
         /// Setter for [`shaderValidation`][Self::shaderValidation].
         #[unsafe(method(setShaderValidation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
+        pub fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
     );
 }
 
@@ -1023,7 +1044,7 @@ impl MTLRenderPipelineFunctionsDescriptor {
         /// The set of additional binary functions to be accessed from the vertex function in an incrementally created pipeline state.
         #[unsafe(method(vertexAdditionalBinaryFunctions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vertexAdditionalBinaryFunctions(
+        pub fn vertexAdditionalBinaryFunctions(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
@@ -1047,7 +1068,7 @@ impl MTLRenderPipelineFunctionsDescriptor {
         /// The set of additional binary functions to be accessed from the fragment function in an incrementally created pipeline state.
         #[unsafe(method(fragmentAdditionalBinaryFunctions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fragmentAdditionalBinaryFunctions(
+        pub fn fragmentAdditionalBinaryFunctions(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
@@ -1071,7 +1092,7 @@ impl MTLRenderPipelineFunctionsDescriptor {
         /// The set of additional binary functions to be accessed from the tile function in an incrementally created pipeline state.
         #[unsafe(method(tileAdditionalBinaryFunctions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tileAdditionalBinaryFunctions(
+        pub fn tileAdditionalBinaryFunctions(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLFunction>>>>;
 
@@ -1098,12 +1119,19 @@ impl MTLRenderPipelineFunctionsDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRenderPipelineFunctionsDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -1119,19 +1147,19 @@ extern_protocol!(
     {
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        unsafe fn label(&self) -> Option<Retained<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLDevice")]
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// Obtains a reflection object for this render pipeline.
         ///
         /// When you create the pipeline through an ``MTLDevice`` instance, reflection is `nil`.
         #[unsafe(method(reflection))]
         #[unsafe(method_family = none)]
-        unsafe fn reflection(&self) -> Option<Retained<MTLRenderPipelineReflection>>;
+        fn reflection(&self) -> Option<Retained<MTLRenderPipelineReflection>>;
 
         #[cfg(all(feature = "MTLFunctionHandle", feature = "MTLRenderCommandEncoder"))]
         /// Obtains a function handle for the a specific function this pipeline links at the Metal IR level.
@@ -1143,7 +1171,7 @@ extern_protocol!(
         /// - Returns: a function handle representing the function if present, otherwise `nil`.
         #[unsafe(method(functionHandleWithName:stage:))]
         #[unsafe(method_family = none)]
-        unsafe fn functionHandleWithName_stage(
+        fn functionHandleWithName_stage(
             &self,
             name: &NSString,
             stage: MTLRenderStages,
@@ -1163,7 +1191,7 @@ extern_protocol!(
         /// - Returns: a function handle representing the function if present, otherwise `nil`.
         #[unsafe(method(functionHandleWithBinaryFunction:stage:))]
         #[unsafe(method_family = none)]
-        unsafe fn functionHandleWithBinaryFunction_stage(
+        fn functionHandleWithBinaryFunction_stage(
             &self,
             function: &ProtocolObject<dyn MTL4BinaryFunction>,
             stage: MTLRenderStages,
@@ -1180,7 +1208,7 @@ extern_protocol!(
         /// - Returns: A new render pipeline state upon success, otherwise `nil`.
         #[unsafe(method(newRenderPipelineStateWithBinaryFunctions:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newRenderPipelineStateWithBinaryFunctions_error(
+        fn newRenderPipelineStateWithBinaryFunctions_error(
             &self,
             binary_functions_descriptor: &MTL4RenderPipelineBinaryFunctionsDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
@@ -1205,78 +1233,74 @@ extern_protocol!(
         /// - Returns: a new pipeline descriptor that you use for pipeline state specialization.
         #[unsafe(method(newRenderPipelineDescriptorForSpecialization))]
         #[unsafe(method_family = new)]
-        unsafe fn newRenderPipelineDescriptorForSpecialization(
-            &self,
-        ) -> Retained<MTL4PipelineDescriptor>;
+        fn newRenderPipelineDescriptorForSpecialization(&self) -> Retained<MTL4PipelineDescriptor>;
 
         /// The maximum total number of threads that can be in a single tile shader threadgroup.
         #[unsafe(method(maxTotalThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        unsafe fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
+        fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
 
         /// Returns true when the pipeline state requires a tile shader threadgroup size equal to the tile size
         #[unsafe(method(threadgroupSizeMatchesTileSize))]
         #[unsafe(method_family = none)]
-        unsafe fn threadgroupSizeMatchesTileSize(&self) -> bool;
+        fn threadgroupSizeMatchesTileSize(&self) -> bool;
 
         /// Returns imageblock memory length used by a single sample when rendered using this pipeline.
         #[unsafe(method(imageblockSampleLength))]
         #[unsafe(method_family = none)]
-        unsafe fn imageblockSampleLength(&self) -> NSUInteger;
+        fn imageblockSampleLength(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLTypes")]
         /// Returns imageblock memory length for given image block dimensions. Dimensions must be valid tile dimensions.
         #[unsafe(method(imageblockMemoryLengthForDimensions:))]
         #[unsafe(method_family = none)]
-        unsafe fn imageblockMemoryLengthForDimensions(
-            &self,
-            imageblock_dimensions: MTLSize,
-        ) -> NSUInteger;
+        fn imageblockMemoryLengthForDimensions(&self, imageblock_dimensions: MTLSize)
+            -> NSUInteger;
 
         #[unsafe(method(supportIndirectCommandBuffers))]
         #[unsafe(method_family = none)]
-        unsafe fn supportIndirectCommandBuffers(&self) -> bool;
+        fn supportIndirectCommandBuffers(&self) -> bool;
 
         /// The maximum total number of threads that can be in a single object shader threadgroup.
         ///
         /// This value is set in MTLMeshRenderPipelineDescriptor.
         #[unsafe(method(maxTotalThreadsPerObjectThreadgroup))]
         #[unsafe(method_family = none)]
-        unsafe fn maxTotalThreadsPerObjectThreadgroup(&self) -> NSUInteger;
+        fn maxTotalThreadsPerObjectThreadgroup(&self) -> NSUInteger;
 
         /// The maximum total number of threads that can be in a single mesh shader threadgroup.
         ///
         /// This value is set in MTLMeshRenderPipelineDescriptor.
         #[unsafe(method(maxTotalThreadsPerMeshThreadgroup))]
         #[unsafe(method_family = none)]
-        unsafe fn maxTotalThreadsPerMeshThreadgroup(&self) -> NSUInteger;
+        fn maxTotalThreadsPerMeshThreadgroup(&self) -> NSUInteger;
 
         /// The number of threads in a SIMD group of the object shader.
         ///
         /// This value is also available in the shader with the [[threads_per_simdgroup]] attribute.
         #[unsafe(method(objectThreadExecutionWidth))]
         #[unsafe(method_family = none)]
-        unsafe fn objectThreadExecutionWidth(&self) -> NSUInteger;
+        fn objectThreadExecutionWidth(&self) -> NSUInteger;
 
         /// The number of threads in a SIMD group of the mesh shader.
         ///
         /// This value is also available in the shader with the [[threads_per_simdgroup]] attribute.
         #[unsafe(method(meshThreadExecutionWidth))]
         #[unsafe(method_family = none)]
-        unsafe fn meshThreadExecutionWidth(&self) -> NSUInteger;
+        fn meshThreadExecutionWidth(&self) -> NSUInteger;
 
         /// The maximum total number of threadgroups that can be in a single mesh shader grid.
         ///
         /// This value is set in MTLMeshRenderPipelineDescriptor.
         #[unsafe(method(maxTotalThreadgroupsPerMeshGrid))]
         #[unsafe(method_family = none)]
-        unsafe fn maxTotalThreadgroupsPerMeshGrid(&self) -> NSUInteger;
+        fn maxTotalThreadgroupsPerMeshGrid(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLTypes")]
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
-        unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        fn gpuResourceID(&self) -> MTLResourceID;
 
         #[cfg(all(
             feature = "MTLFunctionHandle",
@@ -1305,7 +1329,7 @@ extern_protocol!(
         /// Allocate a visible function table for the specified stage of the pipeline with the provided descriptor.
         #[unsafe(method(newVisibleFunctionTableWithDescriptor:stage:))]
         #[unsafe(method_family = new)]
-        unsafe fn newVisibleFunctionTableWithDescriptor_stage(
+        fn newVisibleFunctionTableWithDescriptor_stage(
             &self,
             descriptor: &MTLVisibleFunctionTableDescriptor,
             stage: MTLRenderStages,
@@ -1319,7 +1343,7 @@ extern_protocol!(
         /// Allocate an intersection function table for the specified stage of the pipeline with the provided descriptor.
         #[unsafe(method(newIntersectionFunctionTableWithDescriptor:stage:))]
         #[unsafe(method_family = new)]
-        unsafe fn newIntersectionFunctionTableWithDescriptor_stage(
+        fn newIntersectionFunctionTableWithDescriptor_stage(
             &self,
             descriptor: &MTLIntersectionFunctionTableDescriptor,
             stage: MTLRenderStages,
@@ -1328,7 +1352,7 @@ extern_protocol!(
         /// Allocate a new render pipeline state by adding binary functions for each stage of this pipeline state.
         #[unsafe(method(newRenderPipelineStateWithAdditionalBinaryFunctions:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newRenderPipelineStateWithAdditionalBinaryFunctions_error(
+        fn newRenderPipelineStateWithAdditionalBinaryFunctions_error(
             &self,
             additional_binary_functions: &MTLRenderPipelineFunctionsDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
@@ -1349,7 +1373,7 @@ extern_protocol!(
         /// The required size of every tile shader threadgroup.
         #[unsafe(method(requiredThreadsPerTileThreadgroup))]
         #[unsafe(method_family = none)]
-        unsafe fn requiredThreadsPerTileThreadgroup(&self) -> MTLSize;
+        fn requiredThreadsPerTileThreadgroup(&self) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// The required size of every object shader threadgroup.
@@ -1357,7 +1381,7 @@ extern_protocol!(
         /// This value is set in MTLMeshRenderPipelineDescriptor.
         #[unsafe(method(requiredThreadsPerObjectThreadgroup))]
         #[unsafe(method_family = none)]
-        unsafe fn requiredThreadsPerObjectThreadgroup(&self) -> MTLSize;
+        fn requiredThreadsPerObjectThreadgroup(&self) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// The required size of every mesh shader threadgroup.
@@ -1365,7 +1389,7 @@ extern_protocol!(
         /// This value is set in MTLMeshRenderPipelineDescriptor.
         #[unsafe(method(requiredThreadsPerMeshThreadgroup))]
         #[unsafe(method_family = none)]
-        unsafe fn requiredThreadsPerMeshThreadgroup(&self) -> MTLSize;
+        fn requiredThreadsPerMeshThreadgroup(&self) -> MTLSize;
     }
 );
 
@@ -1410,12 +1434,19 @@ impl MTLRenderPipelineColorAttachmentDescriptorArray {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRenderPipelineColorAttachmentDescriptorArray {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1443,13 +1474,13 @@ impl MTLTileRenderPipelineColorAttachmentDescriptor {
         /// Pixel format.  Defaults to MTLPixelFormatInvalid
         #[unsafe(method(pixelFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pixelFormat(&self) -> MTLPixelFormat;
+        pub fn pixelFormat(&self) -> MTLPixelFormat;
 
         #[cfg(feature = "MTLPixelFormat")]
         /// Setter for [`pixelFormat`][Self::pixelFormat].
         #[unsafe(method(setPixelFormat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
+        pub fn setPixelFormat(&self, pixel_format: MTLPixelFormat);
     );
 }
 
@@ -1458,12 +1489,19 @@ impl MTLTileRenderPipelineColorAttachmentDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLTileRenderPipelineColorAttachmentDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1507,12 +1545,19 @@ impl MTLTileRenderPipelineColorAttachmentDescriptorArray {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLTileRenderPipelineColorAttachmentDescriptorArray {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1539,14 +1584,14 @@ impl MTLTileRenderPipelineDescriptor {
         /// The descriptor label.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+        pub fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLLibrary")]
         /// The kernel or fragment function that serves as the tile shader for this pipeline.
@@ -1556,7 +1601,7 @@ impl MTLTileRenderPipelineDescriptor {
         /// Fragment-based pipelines will only wait until all prior access to the fragment's location completes.
         #[unsafe(method(tileFunction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tileFunction(&self) -> Retained<ProtocolObject<dyn MTLFunction>>;
+        pub fn tileFunction(&self) -> Retained<ProtocolObject<dyn MTLFunction>>;
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`tileFunction`][Self::tileFunction].
@@ -1571,7 +1616,7 @@ impl MTLTileRenderPipelineDescriptor {
 
         #[unsafe(method(rasterSampleCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rasterSampleCount(&self) -> NSUInteger;
+        pub fn rasterSampleCount(&self) -> NSUInteger;
 
         /// Setter for [`rasterSampleCount`][Self::rasterSampleCount].
         ///
@@ -1584,7 +1629,7 @@ impl MTLTileRenderPipelineDescriptor {
 
         #[unsafe(method(colorAttachments))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorAttachments(
+        pub fn colorAttachments(
             &self,
         ) -> Retained<MTLTileRenderPipelineColorAttachmentDescriptorArray>;
 
@@ -1593,30 +1638,27 @@ impl MTLTileRenderPipelineDescriptor {
         /// Metal can optimize code generation for this case.
         #[unsafe(method(threadgroupSizeMatchesTileSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn threadgroupSizeMatchesTileSize(&self) -> bool;
+        pub fn threadgroupSizeMatchesTileSize(&self) -> bool;
 
         /// Setter for [`threadgroupSizeMatchesTileSize`][Self::threadgroupSizeMatchesTileSize].
         #[unsafe(method(setThreadgroupSizeMatchesTileSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setThreadgroupSizeMatchesTileSize(
-            &self,
-            threadgroup_size_matches_tile_size: bool,
-        );
+        pub fn setThreadgroupSizeMatchesTileSize(&self, threadgroup_size_matches_tile_size: bool);
 
         #[cfg(feature = "MTLPipeline")]
         #[unsafe(method(tileBuffers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tileBuffers(&self) -> Retained<MTLPipelineBufferDescriptorArray>;
+        pub fn tileBuffers(&self) -> Retained<MTLPipelineBufferDescriptorArray>;
 
         /// Optional property. Set the maxTotalThreadsPerThreadgroup. If it is not set, returns zero.
         #[unsafe(method(maxTotalThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
+        pub fn maxTotalThreadsPerThreadgroup(&self) -> NSUInteger;
 
         /// Setter for [`maxTotalThreadsPerThreadgroup`][Self::maxTotalThreadsPerThreadgroup].
         #[unsafe(method(setMaxTotalThreadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaxTotalThreadsPerThreadgroup(
+        pub fn setMaxTotalThreadsPerThreadgroup(
             &self,
             max_total_threads_per_threadgroup: NSUInteger,
         );
@@ -1629,7 +1671,7 @@ impl MTLTileRenderPipelineDescriptor {
         /// See: MTLBinaryArchive
         #[unsafe(method(binaryArchives))]
         #[unsafe(method_family = none)]
-        pub unsafe fn binaryArchives(
+        pub fn binaryArchives(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
@@ -1639,7 +1681,7 @@ impl MTLTileRenderPipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBinaryArchives:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBinaryArchives(
+        pub fn setBinaryArchives(
             &self,
             binary_archives: Option<&NSArray<ProtocolObject<dyn MTLBinaryArchive>>>,
         );
@@ -1654,7 +1696,7 @@ impl MTLTileRenderPipelineDescriptor {
         /// See: MTLDynamicLibrary
         #[unsafe(method(preloadedLibraries))]
         #[unsafe(method_family = none)]
-        pub unsafe fn preloadedLibraries(
+        pub fn preloadedLibraries(
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn MTLDynamicLibrary>>>;
 
@@ -1664,7 +1706,7 @@ impl MTLTileRenderPipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setPreloadedLibraries:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPreloadedLibraries(
+        pub fn setPreloadedLibraries(
             &self,
             preloaded_libraries: &NSArray<ProtocolObject<dyn MTLDynamicLibrary>>,
         );
@@ -1675,7 +1717,7 @@ impl MTLTileRenderPipelineDescriptor {
         /// See: MTLLinkedFunctions
         #[unsafe(method(linkedFunctions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn linkedFunctions(&self) -> Retained<MTLLinkedFunctions>;
+        pub fn linkedFunctions(&self) -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLinkedFunctions")]
         /// Setter for [`linkedFunctions`][Self::linkedFunctions].
@@ -1683,31 +1725,31 @@ impl MTLTileRenderPipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLinkedFunctions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLinkedFunctions(&self, linked_functions: Option<&MTLLinkedFunctions>);
+        pub fn setLinkedFunctions(&self, linked_functions: Option<&MTLLinkedFunctions>);
 
         /// This flag makes this pipeline support creating a new pipeline by adding binary functions.
         #[unsafe(method(supportAddingBinaryFunctions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportAddingBinaryFunctions(&self) -> bool;
+        pub fn supportAddingBinaryFunctions(&self) -> bool;
 
         /// Setter for [`supportAddingBinaryFunctions`][Self::supportAddingBinaryFunctions].
         #[unsafe(method(setSupportAddingBinaryFunctions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSupportAddingBinaryFunctions(&self, support_adding_binary_functions: bool);
+        pub fn setSupportAddingBinaryFunctions(&self, support_adding_binary_functions: bool);
 
         /// The maximum depth of the call stack in stack frames from the tile function. Defaults to 1 additional stack frame.
         #[unsafe(method(maxCallStackDepth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxCallStackDepth(&self) -> NSUInteger;
+        pub fn maxCallStackDepth(&self) -> NSUInteger;
 
         /// Setter for [`maxCallStackDepth`][Self::maxCallStackDepth].
         #[unsafe(method(setMaxCallStackDepth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaxCallStackDepth(&self, max_call_stack_depth: NSUInteger);
+        pub fn setMaxCallStackDepth(&self, max_call_stack_depth: NSUInteger);
 
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reset(&self);
+        pub fn reset(&self);
 
         #[cfg(feature = "MTLPipeline")]
         /// Toggle that determines whether Metal Shader Validation should be enabled or disabled for the pipeline.
@@ -1715,13 +1757,13 @@ impl MTLTileRenderPipelineDescriptor {
         /// The value can be overridden using `MTL_SHADER_VALIDATION_ENABLE_PIPELINES` or `MTL_SHADER_VALIDATION_DISABLE_PIPELINES` Environment Variables.
         #[unsafe(method(shaderValidation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shaderValidation(&self) -> MTLShaderValidation;
+        pub fn shaderValidation(&self) -> MTLShaderValidation;
 
         #[cfg(feature = "MTLPipeline")]
         /// Setter for [`shaderValidation`][Self::shaderValidation].
         #[unsafe(method(setShaderValidation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
+        pub fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
 
         #[cfg(feature = "MTLTypes")]
         /// Sets the required threads-per-threadgroup during tile dispatches. The `threadsPerTile` argument of any tile dispatch must match to this value if it is set.
@@ -1729,16 +1771,13 @@ impl MTLTileRenderPipelineDescriptor {
         /// Setting this to a size of 0 in every dimension disables this property
         #[unsafe(method(requiredThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
+        pub fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// Setter for [`requiredThreadsPerThreadgroup`][Self::requiredThreadsPerThreadgroup].
         #[unsafe(method(setRequiredThreadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRequiredThreadsPerThreadgroup(
-            &self,
-            required_threads_per_threadgroup: MTLSize,
-        );
+        pub fn setRequiredThreadsPerThreadgroup(&self, required_threads_per_threadgroup: MTLSize);
     );
 }
 
@@ -1747,12 +1786,19 @@ impl MTLTileRenderPipelineDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLTileRenderPipelineDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1782,14 +1828,14 @@ impl MTLMeshRenderPipelineDescriptor {
         /// The default value is nil.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+        pub fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLLibrary")]
         /// Optional shader function responsible for determining how many threadgroups of the mesh shader to run, can optionally provide payload data for the mesh stage.
@@ -1797,7 +1843,7 @@ impl MTLMeshRenderPipelineDescriptor {
         /// The default value is nil.
         #[unsafe(method(objectFunction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectFunction(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
+        pub fn objectFunction(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`objectFunction`][Self::objectFunction].
@@ -1818,7 +1864,7 @@ impl MTLMeshRenderPipelineDescriptor {
         /// The default value is nil.
         #[unsafe(method(meshFunction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn meshFunction(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
+        pub fn meshFunction(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`meshFunction`][Self::meshFunction].
@@ -1839,7 +1885,7 @@ impl MTLMeshRenderPipelineDescriptor {
         /// The default value is nil. To create a pipeline, you must either set fragmentFunction to non-nil, or set rasterizationEnabled to NO.
         #[unsafe(method(fragmentFunction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fragmentFunction(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
+        pub fn fragmentFunction(&self) -> Option<Retained<ProtocolObject<dyn MTLFunction>>>;
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`fragmentFunction`][Self::fragmentFunction].
@@ -1862,12 +1908,12 @@ impl MTLMeshRenderPipelineDescriptor {
         /// Any value specified cannot exceed the device limit as documented in the "Metal Feature Set Tables" for "Maximum threads per threadgroup".
         #[unsafe(method(maxTotalThreadsPerObjectThreadgroup))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxTotalThreadsPerObjectThreadgroup(&self) -> NSUInteger;
+        pub fn maxTotalThreadsPerObjectThreadgroup(&self) -> NSUInteger;
 
         /// Setter for [`maxTotalThreadsPerObjectThreadgroup`][Self::maxTotalThreadsPerObjectThreadgroup].
         #[unsafe(method(setMaxTotalThreadsPerObjectThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaxTotalThreadsPerObjectThreadgroup(
+        pub fn setMaxTotalThreadsPerObjectThreadgroup(
             &self,
             max_total_threads_per_object_threadgroup: NSUInteger,
         );
@@ -1879,12 +1925,12 @@ impl MTLMeshRenderPipelineDescriptor {
         /// Any value specified cannot exceed the device limit as documented in the "Metal Feature Set Tables" for "Maximum threads per threadgroup".
         #[unsafe(method(maxTotalThreadsPerMeshThreadgroup))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxTotalThreadsPerMeshThreadgroup(&self) -> NSUInteger;
+        pub fn maxTotalThreadsPerMeshThreadgroup(&self) -> NSUInteger;
 
         /// Setter for [`maxTotalThreadsPerMeshThreadgroup`][Self::maxTotalThreadsPerMeshThreadgroup].
         #[unsafe(method(setMaxTotalThreadsPerMeshThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaxTotalThreadsPerMeshThreadgroup(
+        pub fn setMaxTotalThreadsPerMeshThreadgroup(
             &self,
             max_total_threads_per_mesh_threadgroup: NSUInteger,
         );
@@ -1894,12 +1940,12 @@ impl MTLMeshRenderPipelineDescriptor {
         /// The default value is NO.
         #[unsafe(method(objectThreadgroupSizeIsMultipleOfThreadExecutionWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectThreadgroupSizeIsMultipleOfThreadExecutionWidth(&self) -> bool;
+        pub fn objectThreadgroupSizeIsMultipleOfThreadExecutionWidth(&self) -> bool;
 
         /// Setter for [`objectThreadgroupSizeIsMultipleOfThreadExecutionWidth`][Self::objectThreadgroupSizeIsMultipleOfThreadExecutionWidth].
         #[unsafe(method(setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth(
+        pub fn setObjectThreadgroupSizeIsMultipleOfThreadExecutionWidth(
             &self,
             object_threadgroup_size_is_multiple_of_thread_execution_width: bool,
         );
@@ -1909,12 +1955,12 @@ impl MTLMeshRenderPipelineDescriptor {
         /// The default value is NO.
         #[unsafe(method(meshThreadgroupSizeIsMultipleOfThreadExecutionWidth))]
         #[unsafe(method_family = none)]
-        pub unsafe fn meshThreadgroupSizeIsMultipleOfThreadExecutionWidth(&self) -> bool;
+        pub fn meshThreadgroupSizeIsMultipleOfThreadExecutionWidth(&self) -> bool;
 
         /// Setter for [`meshThreadgroupSizeIsMultipleOfThreadExecutionWidth`][Self::meshThreadgroupSizeIsMultipleOfThreadExecutionWidth].
         #[unsafe(method(setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth(
+        pub fn setMeshThreadgroupSizeIsMultipleOfThreadExecutionWidth(
             &self,
             mesh_threadgroup_size_is_multiple_of_thread_execution_width: bool,
         );
@@ -1924,12 +1970,12 @@ impl MTLMeshRenderPipelineDescriptor {
         /// The default value is 0.
         #[unsafe(method(payloadMemoryLength))]
         #[unsafe(method_family = none)]
-        pub unsafe fn payloadMemoryLength(&self) -> NSUInteger;
+        pub fn payloadMemoryLength(&self) -> NSUInteger;
 
         /// Setter for [`payloadMemoryLength`][Self::payloadMemoryLength].
         #[unsafe(method(setPayloadMemoryLength:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPayloadMemoryLength(&self, payload_memory_length: NSUInteger);
+        pub fn setPayloadMemoryLength(&self, payload_memory_length: NSUInteger);
 
         /// The maximum value of the product of vector elements that the object shader may pass to the mesh_grid_properties::set_threadgroups_per_grid built-in function.
         /// The default value is 0, which means that the value specified with the [[max_total_threadgroups_per_mesh_grid(N)]] specified on objectFunction will be used.
@@ -1938,12 +1984,12 @@ impl MTLMeshRenderPipelineDescriptor {
         /// Specifying this value is optional; it may be used to improve scheduling of the workload. If neither this value nor the shader attribute are used, the device's maximum supported value is used instead.
         #[unsafe(method(maxTotalThreadgroupsPerMeshGrid))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxTotalThreadgroupsPerMeshGrid(&self) -> NSUInteger;
+        pub fn maxTotalThreadgroupsPerMeshGrid(&self) -> NSUInteger;
 
         /// Setter for [`maxTotalThreadgroupsPerMeshGrid`][Self::maxTotalThreadgroupsPerMeshGrid].
         #[unsafe(method(setMaxTotalThreadgroupsPerMeshGrid:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaxTotalThreadgroupsPerMeshGrid(
+        pub fn setMaxTotalThreadgroupsPerMeshGrid(
             &self,
             max_total_threadgroups_per_mesh_grid: NSUInteger,
         );
@@ -1954,7 +2000,7 @@ impl MTLMeshRenderPipelineDescriptor {
         /// Specifying these values is optional; it may be used to optimize the shader code.
         #[unsafe(method(objectBuffers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectBuffers(&self) -> Retained<MTLPipelineBufferDescriptorArray>;
+        pub fn objectBuffers(&self) -> Retained<MTLPipelineBufferDescriptorArray>;
 
         #[cfg(feature = "MTLPipeline")]
         /// Provide mutability information on the buffers used by meshFunction.
@@ -1962,7 +2008,7 @@ impl MTLMeshRenderPipelineDescriptor {
         /// Specifying these values is optional; it may be used to optimize the shader code.
         #[unsafe(method(meshBuffers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn meshBuffers(&self) -> Retained<MTLPipelineBufferDescriptorArray>;
+        pub fn meshBuffers(&self) -> Retained<MTLPipelineBufferDescriptorArray>;
 
         #[cfg(feature = "MTLPipeline")]
         /// Provide mutability information on the buffers used by fragmentFunction.
@@ -1970,12 +2016,12 @@ impl MTLMeshRenderPipelineDescriptor {
         /// Specifying these values is optional; it may be used to optimize the shader code.
         #[unsafe(method(fragmentBuffers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fragmentBuffers(&self) -> Retained<MTLPipelineBufferDescriptorArray>;
+        pub fn fragmentBuffers(&self) -> Retained<MTLPipelineBufferDescriptorArray>;
 
         /// The number of samples per fragment of the render pass in which this pipeline will be used.
         #[unsafe(method(rasterSampleCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rasterSampleCount(&self) -> NSUInteger;
+        pub fn rasterSampleCount(&self) -> NSUInteger;
 
         /// Setter for [`rasterSampleCount`][Self::rasterSampleCount].
         ///
@@ -1991,43 +2037,43 @@ impl MTLMeshRenderPipelineDescriptor {
         /// The default value is NO.
         #[unsafe(method(isAlphaToCoverageEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isAlphaToCoverageEnabled(&self) -> bool;
+        pub fn isAlphaToCoverageEnabled(&self) -> bool;
 
         /// Setter for [`isAlphaToCoverageEnabled`][Self::isAlphaToCoverageEnabled].
         #[unsafe(method(setAlphaToCoverageEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAlphaToCoverageEnabled(&self, alpha_to_coverage_enabled: bool);
+        pub fn setAlphaToCoverageEnabled(&self, alpha_to_coverage_enabled: bool);
 
         /// Whether the alpha value exported by the fragment shader for all color attachments is modified to 1 (after evaluating alphaToCoverage).
         ///
         /// The default value is NO.
         #[unsafe(method(isAlphaToOneEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isAlphaToOneEnabled(&self) -> bool;
+        pub fn isAlphaToOneEnabled(&self) -> bool;
 
         /// Setter for [`isAlphaToOneEnabled`][Self::isAlphaToOneEnabled].
         #[unsafe(method(setAlphaToOneEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAlphaToOneEnabled(&self, alpha_to_one_enabled: bool);
+        pub fn setAlphaToOneEnabled(&self, alpha_to_one_enabled: bool);
 
         /// Whether rasterization is disabled, all primitives are dropped prior to rasterization.
         ///
         /// The default value is YES.
         #[unsafe(method(isRasterizationEnabled))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isRasterizationEnabled(&self) -> bool;
+        pub fn isRasterizationEnabled(&self) -> bool;
 
         /// Setter for [`isRasterizationEnabled`][Self::isRasterizationEnabled].
         #[unsafe(method(setRasterizationEnabled:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRasterizationEnabled(&self, rasterization_enabled: bool);
+        pub fn setRasterizationEnabled(&self, rasterization_enabled: bool);
 
         /// The maximum value that can be passed to setVertexAmplificationCount when using this pipeline.
         ///
         /// The default value is 1. The value must be supported by the device, which can be checked with supportsVertexAmplificationCount.
         #[unsafe(method(maxVertexAmplificationCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxVertexAmplificationCount(&self) -> NSUInteger;
+        pub fn maxVertexAmplificationCount(&self) -> NSUInteger;
 
         /// Setter for [`maxVertexAmplificationCount`][Self::maxVertexAmplificationCount].
         ///
@@ -2044,9 +2090,8 @@ impl MTLMeshRenderPipelineDescriptor {
         /// Describes the color attachments of the render pass in which this pipeline will be used.
         #[unsafe(method(colorAttachments))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorAttachments(
-            &self,
-        ) -> Retained<MTLRenderPipelineColorAttachmentDescriptorArray>;
+        pub fn colorAttachments(&self)
+            -> Retained<MTLRenderPipelineColorAttachmentDescriptorArray>;
 
         #[cfg(feature = "MTLPixelFormat")]
         /// The pixel format of the depth attachment of the render pass in which this pipeline will be used.
@@ -2054,16 +2099,13 @@ impl MTLMeshRenderPipelineDescriptor {
         /// The default value is MTLPixelFormatInvalid; indicating no depth attachment will be used.
         #[unsafe(method(depthAttachmentPixelFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn depthAttachmentPixelFormat(&self) -> MTLPixelFormat;
+        pub fn depthAttachmentPixelFormat(&self) -> MTLPixelFormat;
 
         #[cfg(feature = "MTLPixelFormat")]
         /// Setter for [`depthAttachmentPixelFormat`][Self::depthAttachmentPixelFormat].
         #[unsafe(method(setDepthAttachmentPixelFormat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDepthAttachmentPixelFormat(
-            &self,
-            depth_attachment_pixel_format: MTLPixelFormat,
-        );
+        pub fn setDepthAttachmentPixelFormat(&self, depth_attachment_pixel_format: MTLPixelFormat);
 
         #[cfg(feature = "MTLPixelFormat")]
         /// The pixel format of the stencil attachment of the render pass in which this pipeline will be used.
@@ -2071,13 +2113,13 @@ impl MTLMeshRenderPipelineDescriptor {
         /// The default value is MTLPixelFormatInvalid; indicating no stencil attachment will be used.
         #[unsafe(method(stencilAttachmentPixelFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stencilAttachmentPixelFormat(&self) -> MTLPixelFormat;
+        pub fn stencilAttachmentPixelFormat(&self) -> MTLPixelFormat;
 
         #[cfg(feature = "MTLPixelFormat")]
         /// Setter for [`stencilAttachmentPixelFormat`][Self::stencilAttachmentPixelFormat].
         #[unsafe(method(setStencilAttachmentPixelFormat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStencilAttachmentPixelFormat(
+        pub fn setStencilAttachmentPixelFormat(
             &self,
             stencil_attachment_pixel_format: MTLPixelFormat,
         );
@@ -2087,15 +2129,12 @@ impl MTLMeshRenderPipelineDescriptor {
         /// The default value is NO.
         #[unsafe(method(supportIndirectCommandBuffers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportIndirectCommandBuffers(&self) -> bool;
+        pub fn supportIndirectCommandBuffers(&self) -> bool;
 
         /// Setter for [`supportIndirectCommandBuffers`][Self::supportIndirectCommandBuffers].
         #[unsafe(method(setSupportIndirectCommandBuffers:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSupportIndirectCommandBuffers(
-            &self,
-            support_indirect_command_buffers: bool,
-        );
+        pub fn setSupportIndirectCommandBuffers(&self, support_indirect_command_buffers: bool);
 
         #[cfg(feature = "MTLBinaryArchive")]
         /// The set of MTLBinaryArchive to search for compiled code when creating the pipeline state.
@@ -2105,7 +2144,7 @@ impl MTLMeshRenderPipelineDescriptor {
         /// See: MTLBinaryArchive
         #[unsafe(method(binaryArchives))]
         #[unsafe(method_family = none)]
-        pub unsafe fn binaryArchives(
+        pub fn binaryArchives(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLBinaryArchive>>>>;
 
@@ -2115,7 +2154,7 @@ impl MTLMeshRenderPipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBinaryArchives:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBinaryArchives(
+        pub fn setBinaryArchives(
             &self,
             binary_archives: Option<&NSArray<ProtocolObject<dyn MTLBinaryArchive>>>,
         );
@@ -2126,7 +2165,7 @@ impl MTLMeshRenderPipelineDescriptor {
         /// See: MTLLinkedFunctions
         #[unsafe(method(objectLinkedFunctions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn objectLinkedFunctions(&self) -> Retained<MTLLinkedFunctions>;
+        pub fn objectLinkedFunctions(&self) -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLinkedFunctions")]
         /// Setter for [`objectLinkedFunctions`][Self::objectLinkedFunctions].
@@ -2134,7 +2173,7 @@ impl MTLMeshRenderPipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setObjectLinkedFunctions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setObjectLinkedFunctions(
+        pub fn setObjectLinkedFunctions(
             &self,
             object_linked_functions: Option<&MTLLinkedFunctions>,
         );
@@ -2145,7 +2184,7 @@ impl MTLMeshRenderPipelineDescriptor {
         /// See: MTLLinkedFunctions
         #[unsafe(method(meshLinkedFunctions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn meshLinkedFunctions(&self) -> Retained<MTLLinkedFunctions>;
+        pub fn meshLinkedFunctions(&self) -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLinkedFunctions")]
         /// Setter for [`meshLinkedFunctions`][Self::meshLinkedFunctions].
@@ -2153,10 +2192,7 @@ impl MTLMeshRenderPipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMeshLinkedFunctions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMeshLinkedFunctions(
-            &self,
-            mesh_linked_functions: Option<&MTLLinkedFunctions>,
-        );
+        pub fn setMeshLinkedFunctions(&self, mesh_linked_functions: Option<&MTLLinkedFunctions>);
 
         #[cfg(feature = "MTLLinkedFunctions")]
         /// The set of functions to be linked with the pipeline state and accessed from the fragment function.
@@ -2164,7 +2200,7 @@ impl MTLMeshRenderPipelineDescriptor {
         /// See: MTLLinkedFunctions
         #[unsafe(method(fragmentLinkedFunctions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fragmentLinkedFunctions(&self) -> Retained<MTLLinkedFunctions>;
+        pub fn fragmentLinkedFunctions(&self) -> Retained<MTLLinkedFunctions>;
 
         #[cfg(feature = "MTLLinkedFunctions")]
         /// Setter for [`fragmentLinkedFunctions`][Self::fragmentLinkedFunctions].
@@ -2172,7 +2208,7 @@ impl MTLMeshRenderPipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFragmentLinkedFunctions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFragmentLinkedFunctions(
+        pub fn setFragmentLinkedFunctions(
             &self,
             fragment_linked_functions: Option<&MTLLinkedFunctions>,
         );
@@ -2180,7 +2216,7 @@ impl MTLMeshRenderPipelineDescriptor {
         /// Restore all mesh pipeline descriptor properties to their default values.
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reset(&self);
+        pub fn reset(&self);
 
         #[cfg(feature = "MTLPipeline")]
         /// Toggle that determines whether Metal Shader Validation should be enabled or disabled for the pipeline.
@@ -2188,13 +2224,13 @@ impl MTLMeshRenderPipelineDescriptor {
         /// The value can be overridden using `MTL_SHADER_VALIDATION_ENABLE_PIPELINES` or `MTL_SHADER_VALIDATION_DISABLE_PIPELINES` Environment Variables.
         #[unsafe(method(shaderValidation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shaderValidation(&self) -> MTLShaderValidation;
+        pub fn shaderValidation(&self) -> MTLShaderValidation;
 
         #[cfg(feature = "MTLPipeline")]
         /// Setter for [`shaderValidation`][Self::shaderValidation].
         #[unsafe(method(setShaderValidation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
+        pub fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
 
         #[cfg(feature = "MTLTypes")]
         /// Sets the required object threads-per-threadgroup during mesh draws. The `threadsPerObjectThreadgroup` argument of any draw must match to this value if it is set.
@@ -2202,13 +2238,13 @@ impl MTLMeshRenderPipelineDescriptor {
         /// Setting this to a size of 0 in every dimension disables this property
         #[unsafe(method(requiredThreadsPerObjectThreadgroup))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requiredThreadsPerObjectThreadgroup(&self) -> MTLSize;
+        pub fn requiredThreadsPerObjectThreadgroup(&self) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// Setter for [`requiredThreadsPerObjectThreadgroup`][Self::requiredThreadsPerObjectThreadgroup].
         #[unsafe(method(setRequiredThreadsPerObjectThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRequiredThreadsPerObjectThreadgroup(
+        pub fn setRequiredThreadsPerObjectThreadgroup(
             &self,
             required_threads_per_object_threadgroup: MTLSize,
         );
@@ -2219,13 +2255,13 @@ impl MTLMeshRenderPipelineDescriptor {
         /// Setting this to a size of 0 in every dimension disables this property
         #[unsafe(method(requiredThreadsPerMeshThreadgroup))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requiredThreadsPerMeshThreadgroup(&self) -> MTLSize;
+        pub fn requiredThreadsPerMeshThreadgroup(&self) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// Setter for [`requiredThreadsPerMeshThreadgroup`][Self::requiredThreadsPerMeshThreadgroup].
         #[unsafe(method(setRequiredThreadsPerMeshThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRequiredThreadsPerMeshThreadgroup(
+        pub fn setRequiredThreadsPerMeshThreadgroup(
             &self,
             required_threads_per_mesh_threadgroup: MTLSize,
         );
@@ -2237,10 +2273,17 @@ impl MTLMeshRenderPipelineDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLMeshRenderPipelineDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

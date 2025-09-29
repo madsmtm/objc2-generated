@@ -86,7 +86,7 @@ impl MTLTensorExtents {
         /// The rank represents the number of dimensions.
         #[unsafe(method(rank))]
         #[unsafe(method_family = none)]
-        pub unsafe fn rank(&self) -> NSUInteger;
+        pub fn rank(&self) -> NSUInteger;
 
         /// Returns the extent at an index.
         ///
@@ -108,12 +108,19 @@ impl MTLTensorExtents {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLTensorExtents {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {
@@ -210,14 +217,14 @@ impl MTLTensorDescriptor {
         /// The default value of this property is a rank one extents with size one.
         #[unsafe(method(dimensions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dimensions(&self) -> Retained<MTLTensorExtents>;
+        pub fn dimensions(&self) -> Retained<MTLTensorExtents>;
 
         /// Setter for [`dimensions`][Self::dimensions].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setDimensions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDimensions(&self, dimensions: &MTLTensorExtents);
+        pub fn setDimensions(&self, dimensions: &MTLTensorExtents);
 
         /// An array of strides, in elements, one for each dimension in the tensors you create with this descriptor, if applicable.
         ///
@@ -228,26 +235,26 @@ impl MTLTensorDescriptor {
         /// - If `usage` contains ``MTLTensorUsage/MTLTensorUsageMachineLearning``, the second element of `strides` is aligned to 64 bytes, and for any `i` larger than one, `strides[i]` is equal to `strides[i-1] * dimensions[i-1]`.
         #[unsafe(method(strides))]
         #[unsafe(method_family = none)]
-        pub unsafe fn strides(&self) -> Option<Retained<MTLTensorExtents>>;
+        pub fn strides(&self) -> Option<Retained<MTLTensorExtents>>;
 
         /// Setter for [`strides`][Self::strides].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setStrides:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStrides(&self, strides: Option<&MTLTensorExtents>);
+        pub fn setStrides(&self, strides: Option<&MTLTensorExtents>);
 
         /// A data format for the tensors you create with this descriptor.
         ///
         /// The default value of this property is ``MTLTensorDataType/MTLTensorDataTypeFloat32``.
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dataType(&self) -> MTLTensorDataType;
+        pub fn dataType(&self) -> MTLTensorDataType;
 
         /// Setter for [`dataType`][Self::dataType].
         #[unsafe(method(setDataType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDataType(&self, data_type: MTLTensorDataType);
+        pub fn setDataType(&self, data_type: MTLTensorDataType);
 
         /// A set of contexts in which you can use tensors you create with this descriptor.
         ///
@@ -256,24 +263,24 @@ impl MTLTensorDescriptor {
         /// - ``MTLTensorUsage/MTLTensorUsageCompute``
         #[unsafe(method(usage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn usage(&self) -> MTLTensorUsage;
+        pub fn usage(&self) -> MTLTensorUsage;
 
         /// Setter for [`usage`][Self::usage].
         #[unsafe(method(setUsage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUsage(&self, usage: MTLTensorUsage);
+        pub fn setUsage(&self, usage: MTLTensorUsage);
 
         #[cfg(feature = "MTLResource")]
         /// A packed set of the `storageMode`, `cpuCacheMode` and `hazardTrackingMode` properties.
         #[unsafe(method(resourceOptions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resourceOptions(&self) -> MTLResourceOptions;
+        pub fn resourceOptions(&self) -> MTLResourceOptions;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`resourceOptions`][Self::resourceOptions].
         #[unsafe(method(setResourceOptions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setResourceOptions(&self, resource_options: MTLResourceOptions);
+        pub fn setResourceOptions(&self, resource_options: MTLResourceOptions);
 
         #[cfg(feature = "MTLResource")]
         /// A value that configures the cache mode of CPU mapping of tensors you create with this descriptor.
@@ -281,13 +288,13 @@ impl MTLTensorDescriptor {
         /// The default value of this property is ``MTLCPUCacheMode/MTLCPUCacheModeDefaultCache``.
         #[unsafe(method(cpuCacheMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cpuCacheMode(&self) -> MTLCPUCacheMode;
+        pub fn cpuCacheMode(&self) -> MTLCPUCacheMode;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`cpuCacheMode`][Self::cpuCacheMode].
         #[unsafe(method(setCpuCacheMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCpuCacheMode(&self, cpu_cache_mode: MTLCPUCacheMode);
+        pub fn setCpuCacheMode(&self, cpu_cache_mode: MTLCPUCacheMode);
 
         #[cfg(feature = "MTLResource")]
         /// A value that configures the memory location and access permissions of tensors you create with this descriptor.
@@ -295,13 +302,13 @@ impl MTLTensorDescriptor {
         /// The default value of this property defaults to ``MTLStorageMode/MTLStorageModeShared``.
         #[unsafe(method(storageMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn storageMode(&self) -> MTLStorageMode;
+        pub fn storageMode(&self) -> MTLStorageMode;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`storageMode`][Self::storageMode].
         #[unsafe(method(setStorageMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStorageMode(&self, storage_mode: MTLStorageMode);
+        pub fn setStorageMode(&self, storage_mode: MTLStorageMode);
 
         #[cfg(feature = "MTLResource")]
         /// A value that configures the hazard tracking of tensors you create with this descriptor.
@@ -309,7 +316,7 @@ impl MTLTensorDescriptor {
         /// The default value of this property is ``MTLHazardTrackingMode/MTLHazardTrackingModeDefault``.
         #[unsafe(method(hazardTrackingMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
+        pub fn hazardTrackingMode(&self) -> MTLHazardTrackingMode;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`hazardTrackingMode`][Self::hazardTrackingMode].
@@ -324,12 +331,19 @@ impl MTLTensorDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLTensorDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -342,40 +356,40 @@ extern_protocol!(
         /// A handle that represents the GPU resource, which you can store in an argument buffer.
         #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
-        unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        fn gpuResourceID(&self) -> MTLResourceID;
 
         #[cfg(feature = "MTLBuffer")]
         /// A buffer instance this tensor shares its storage with or nil if this tensor does not wrap an underlying buffer.
         #[unsafe(method(buffer))]
         #[unsafe(method_family = none)]
-        unsafe fn buffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        fn buffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// An offset, in bytes, into the buffer instance this tensor shares its storage with, or zero if this tensor does not wrap an underlying buffer.
         #[unsafe(method(bufferOffset))]
         #[unsafe(method_family = none)]
-        unsafe fn bufferOffset(&self) -> NSUInteger;
+        fn bufferOffset(&self) -> NSUInteger;
 
         /// An array of strides, in elements, one for each dimension of this tensor.
         ///
         /// This property only applies if this tensor shares its storage with a buffer, otherwise it's nil.
         #[unsafe(method(strides))]
         #[unsafe(method_family = none)]
-        unsafe fn strides(&self) -> Option<Retained<MTLTensorExtents>>;
+        fn strides(&self) -> Option<Retained<MTLTensorExtents>>;
 
         /// An array of sizes, in elements, one for each dimension of this tensor.
         #[unsafe(method(dimensions))]
         #[unsafe(method_family = none)]
-        unsafe fn dimensions(&self) -> Retained<MTLTensorExtents>;
+        fn dimensions(&self) -> Retained<MTLTensorExtents>;
 
         /// An underlying data format of this tensor.
         #[unsafe(method(dataType))]
         #[unsafe(method_family = none)]
-        unsafe fn dataType(&self) -> MTLTensorDataType;
+        fn dataType(&self) -> MTLTensorDataType;
 
         /// A set of contexts in which you can use this tensor.
         #[unsafe(method(usage))]
         #[unsafe(method_family = none)]
-        unsafe fn usage(&self) -> MTLTensorUsage;
+        fn usage(&self) -> MTLTensorUsage;
 
         /// Replaces the contents of a slice of this tensor with data you provide.
         ///

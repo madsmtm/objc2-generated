@@ -786,7 +786,7 @@ extern_protocol!(
         /// - maxBound: A maximum bound for depth testing, which discards fragments with a stored depth that is greater than `maxBound`.
         #[unsafe(method(setDepthTestMinBound:maxBound:))]
         #[unsafe(method_family = none)]
-        unsafe fn setDepthTestMinBound_maxBound(&self, min_bound: c_float, max_bound: c_float);
+        fn setDepthTestMinBound_maxBound(&self, min_bound: c_float, max_bound: c_float);
 
         /// Specifies a rectangle for a fragment scissor test.  All fragments outside of this rectangle are discarded.
         #[unsafe(method(setScissorRect:))]
@@ -1141,14 +1141,14 @@ extern_protocol!(
         /// setDepthStoreAction: must be used to finalize the store action before endEncoding is called.
         #[unsafe(method(setDepthStoreAction:))]
         #[unsafe(method_family = none)]
-        unsafe fn setDepthStoreAction(&self, store_action: MTLStoreAction);
+        fn setDepthStoreAction(&self, store_action: MTLStoreAction);
 
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for the stencil attachment was set to MTLStoreActionUnknown when the render command encoder was created,
         /// setStencilStoreAction: must be used to finalize the store action before endEncoding is called.
         #[unsafe(method(setStencilStoreAction:))]
         #[unsafe(method_family = none)]
-        unsafe fn setStencilStoreAction(&self, store_action: MTLStoreAction);
+        fn setStencilStoreAction(&self, store_action: MTLStoreAction);
 
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for a given color attachment was set to MTLStoreActionUnknown when the render command encoder was created,
@@ -1174,14 +1174,14 @@ extern_protocol!(
         /// setDepthStoreActionOptions: may be used to finalize the store action options before endEncoding is called.
         #[unsafe(method(setDepthStoreActionOptions:))]
         #[unsafe(method_family = none)]
-        unsafe fn setDepthStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
+        fn setDepthStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
 
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for the stencil attachment was set to MTLStoreActionUnknown when the render command encoder was created,
         /// setStencilStoreActionOptions: may be used to finalize the store action options before endEncoding is called.
         #[unsafe(method(setStencilStoreActionOptions:))]
         #[unsafe(method_family = none)]
-        unsafe fn setStencilStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
+        fn setStencilStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
 
         /// Set the data (by copy) for a given object shader buffer binding point.  This will remove any existing MTLBuffer from the binding point.
         ///
@@ -1544,7 +1544,7 @@ extern_protocol!(
         /// Parameter `threadsPerMeshThreadgroup`: The number of threads in one mesh shader threadgroup.
         #[unsafe(method(drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:))]
         #[unsafe(method_family = none)]
-        unsafe fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
+        fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
             threadgroups_per_grid: MTLSize,
             threads_per_object_threadgroup: MTLSize,
@@ -1565,7 +1565,7 @@ extern_protocol!(
         /// Parameter `threadsPerMeshThreadgroup`: The number of threads in one mesh shader threadgroup.
         #[unsafe(method(drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:))]
         #[unsafe(method_family = none)]
-        unsafe fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
+        fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
             threads_per_grid: MTLSize,
             threads_per_object_threadgroup: MTLSize,
@@ -1874,7 +1874,7 @@ extern_protocol!(
         #[deprecated]
         #[unsafe(method(textureBarrier))]
         #[unsafe(method_family = none)]
-        unsafe fn textureBarrier(&self);
+        fn textureBarrier(&self);
 
         #[cfg(feature = "MTLFence")]
         /// Update the fence to capture all GPU work so far enqueued by this encoder for the given stages.
@@ -1929,7 +1929,7 @@ extern_protocol!(
 
         #[unsafe(method(setTessellationFactorScale:))]
         #[unsafe(method_family = none)]
-        unsafe fn setTessellationFactorScale(&self, scale: c_float);
+        fn setTessellationFactorScale(&self, scale: c_float);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -2032,12 +2032,12 @@ extern_protocol!(
         /// The width of the tile for this render pass.
         #[unsafe(method(tileWidth))]
         #[unsafe(method_family = none)]
-        unsafe fn tileWidth(&self) -> NSUInteger;
+        fn tileWidth(&self) -> NSUInteger;
 
         /// The height of the tile for this render pass.
         #[unsafe(method(tileHeight))]
         #[unsafe(method_family = none)]
-        unsafe fn tileHeight(&self) -> NSUInteger;
+        fn tileHeight(&self) -> NSUInteger;
 
         /// Set the data (by copy) for a given tile buffer binding point.  This will remove any existing MTLBuffer from the binding point.
         ///
@@ -2305,7 +2305,7 @@ extern_protocol!(
         /// dispatch threads to perform a mid-render compute operation.
         #[unsafe(method(dispatchThreadsPerTile:))]
         #[unsafe(method_family = none)]
-        unsafe fn dispatchThreadsPerTile(&self, threads_per_tile: MTLSize);
+        fn dispatchThreadsPerTile(&self, threads_per_tile: MTLSize);
 
         /// Set the size of the threadgroup memory argument at the given bind point index and offset.
         ///
@@ -2503,7 +2503,7 @@ extern_protocol!(
         /// The barrier makes stores coherent that 1) are to a resource with a type in the given scope, and 2) happen at (or before) the stage given by afterStages. Only affects loads that happen at (or after) the stage given by beforeStages.
         #[unsafe(method(memoryBarrierWithScope:afterStages:beforeStages:))]
         #[unsafe(method_family = none)]
-        unsafe fn memoryBarrierWithScope_afterStages_beforeStages(
+        fn memoryBarrierWithScope_afterStages_beforeStages(
             &self,
             scope: MTLBarrierScope,
             after: MTLRenderStages,
@@ -2571,9 +2571,6 @@ extern_protocol!(
         /// - Parameter mapping: Mapping from logical shader outputs to physical outputs.
         #[unsafe(method(setColorAttachmentMap:))]
         #[unsafe(method_family = none)]
-        unsafe fn setColorAttachmentMap(
-            &self,
-            mapping: Option<&MTLLogicalToPhysicalColorAttachmentMap>,
-        );
+        fn setColorAttachmentMap(&self, mapping: Option<&MTLLogicalToPhysicalColorAttachmentMap>);
     }
 );

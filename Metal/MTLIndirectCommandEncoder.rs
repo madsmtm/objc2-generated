@@ -12,7 +12,7 @@ extern_protocol!(
         #[cfg(all(feature = "MTLAllocation", feature = "MTLRenderPipeline"))]
         #[unsafe(method(setRenderPipelineState:))]
         #[unsafe(method_family = none)]
-        unsafe fn setRenderPipelineState(
+        fn setRenderPipelineState(
             &self,
             pipeline_state: &ProtocolObject<dyn MTLRenderPipelineState>,
         );
@@ -230,7 +230,7 @@ extern_protocol!(
         #[cfg(feature = "MTLTypes")]
         #[unsafe(method(drawMeshThreadgroups:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:))]
         #[unsafe(method_family = none)]
-        unsafe fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
+        fn drawMeshThreadgroups_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
             threadgroups_per_grid: MTLSize,
             threads_per_object_threadgroup: MTLSize,
@@ -240,7 +240,7 @@ extern_protocol!(
         #[cfg(feature = "MTLTypes")]
         #[unsafe(method(drawMeshThreads:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:))]
         #[unsafe(method_family = none)]
-        unsafe fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
+        fn drawMeshThreads_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
             &self,
             threads_per_grid: MTLSize,
             threads_per_object_threadgroup: MTLSize,
@@ -249,23 +249,23 @@ extern_protocol!(
 
         #[unsafe(method(setBarrier))]
         #[unsafe(method_family = none)]
-        unsafe fn setBarrier(&self);
+        fn setBarrier(&self);
 
         #[unsafe(method(clearBarrier))]
         #[unsafe(method_family = none)]
-        unsafe fn clearBarrier(&self);
+        fn clearBarrier(&self);
 
         #[cfg(feature = "MTLDepthStencil")]
         #[unsafe(method(setDepthStencilState:))]
         #[unsafe(method_family = none)]
-        unsafe fn setDepthStencilState(
+        fn setDepthStencilState(
             &self,
             depth_stencil_state: Option<&ProtocolObject<dyn MTLDepthStencilState>>,
         );
 
         #[unsafe(method(setDepthBias:slopeScale:clamp:))]
         #[unsafe(method_family = none)]
-        unsafe fn setDepthBias_slopeScale_clamp(
+        fn setDepthBias_slopeScale_clamp(
             &self,
             depth_bias: c_float,
             slope_scale: c_float,
@@ -275,26 +275,26 @@ extern_protocol!(
         #[cfg(feature = "MTLRenderCommandEncoder")]
         #[unsafe(method(setDepthClipMode:))]
         #[unsafe(method_family = none)]
-        unsafe fn setDepthClipMode(&self, depth_clip_mode: MTLDepthClipMode);
+        fn setDepthClipMode(&self, depth_clip_mode: MTLDepthClipMode);
 
         #[cfg(feature = "MTLRenderCommandEncoder")]
         #[unsafe(method(setCullMode:))]
         #[unsafe(method_family = none)]
-        unsafe fn setCullMode(&self, cull_mode: MTLCullMode);
+        fn setCullMode(&self, cull_mode: MTLCullMode);
 
         #[cfg(feature = "MTLRenderCommandEncoder")]
         #[unsafe(method(setFrontFacingWinding:))]
         #[unsafe(method_family = none)]
-        unsafe fn setFrontFacingWinding(&self, front_facing_windning: MTLWinding);
+        fn setFrontFacingWinding(&self, front_facing_windning: MTLWinding);
 
         #[cfg(feature = "MTLRenderCommandEncoder")]
         #[unsafe(method(setTriangleFillMode:))]
         #[unsafe(method_family = none)]
-        unsafe fn setTriangleFillMode(&self, fill_mode: MTLTriangleFillMode);
+        fn setTriangleFillMode(&self, fill_mode: MTLTriangleFillMode);
 
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
-        unsafe fn reset(&self);
+        fn reset(&self);
     }
 );
 
@@ -304,7 +304,7 @@ extern_protocol!(
         #[cfg(all(feature = "MTLAllocation", feature = "MTLComputePipeline"))]
         #[unsafe(method(setComputePipelineState:))]
         #[unsafe(method_family = none)]
-        unsafe fn setComputePipelineState(
+        fn setComputePipelineState(
             &self,
             pipeline_state: &ProtocolObject<dyn MTLComputePipelineState>,
         );
@@ -353,7 +353,7 @@ extern_protocol!(
         #[cfg(feature = "MTLTypes")]
         #[unsafe(method(concurrentDispatchThreadgroups:threadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        unsafe fn concurrentDispatchThreadgroups_threadsPerThreadgroup(
+        fn concurrentDispatchThreadgroups_threadsPerThreadgroup(
             &self,
             threadgroups_per_grid: MTLSize,
             threads_per_threadgroup: MTLSize,
@@ -362,7 +362,7 @@ extern_protocol!(
         #[cfg(feature = "MTLTypes")]
         #[unsafe(method(concurrentDispatchThreads:threadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        unsafe fn concurrentDispatchThreads_threadsPerThreadgroup(
+        fn concurrentDispatchThreads_threadsPerThreadgroup(
             &self,
             threads_per_grid: MTLSize,
             threads_per_threadgroup: MTLSize,
@@ -370,19 +370,19 @@ extern_protocol!(
 
         #[unsafe(method(setBarrier))]
         #[unsafe(method_family = none)]
-        unsafe fn setBarrier(&self);
+        fn setBarrier(&self);
 
         #[unsafe(method(clearBarrier))]
         #[unsafe(method_family = none)]
-        unsafe fn clearBarrier(&self);
+        fn clearBarrier(&self);
 
         #[unsafe(method(setImageblockWidth:height:))]
         #[unsafe(method_family = none)]
-        unsafe fn setImageblockWidth_height(&self, width: NSUInteger, height: NSUInteger);
+        fn setImageblockWidth_height(&self, width: NSUInteger, height: NSUInteger);
 
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
-        unsafe fn reset(&self);
+        fn reset(&self);
 
         /// # Safety
         ///
@@ -394,6 +394,6 @@ extern_protocol!(
         #[cfg(feature = "MTLTypes")]
         #[unsafe(method(setStageInRegion:))]
         #[unsafe(method_family = none)]
-        unsafe fn setStageInRegion(&self, region: MTLRegion);
+        fn setStageInRegion(&self, region: MTLRegion);
     }
 );

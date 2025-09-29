@@ -30,24 +30,23 @@ extern_protocol!(
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        unsafe fn setLabel(&self, label: Option<&NSString>);
+        fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTLDevice")]
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[cfg(feature = "MTLCommandQueue")]
         /// If set, this scope will only capture Metal commands from the associated command queue. Defaults to nil (all command queues from the associated device are captured).
         #[unsafe(method(commandQueue))]
         #[unsafe(method_family = none)]
-        unsafe fn commandQueue(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
+        fn commandQueue(&self) -> Option<Retained<ProtocolObject<dyn MTLCommandQueue>>>;
 
         #[cfg(feature = "MTL4CommandQueue")]
         /// If set, this scope will only capture Metal commands from the associated Metal 4 command queue. Defaults to nil (all command queues from the associated device are captured).
         #[unsafe(method(mtl4CommandQueue))]
         #[unsafe(method_family = none)]
-        unsafe fn mtl4CommandQueue(&self)
-            -> Option<Retained<ProtocolObject<dyn MTL4CommandQueue>>>;
+        fn mtl4CommandQueue(&self) -> Option<Retained<ProtocolObject<dyn MTL4CommandQueue>>>;
     }
 );

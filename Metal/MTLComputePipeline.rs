@@ -27,7 +27,7 @@ impl MTLComputePipelineReflection {
         #[cfg(feature = "MTLArgument")]
         #[unsafe(method(bindings))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
+        pub fn bindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
 
         #[cfg(feature = "MTLArgument")]
         #[deprecated]
@@ -42,12 +42,19 @@ impl MTLComputePipelineReflection {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLComputePipelineReflection {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -279,13 +286,13 @@ impl MTLComputePipelineDescriptor {
         /// The value can be overridden using `MTL_SHADER_VALIDATION_ENABLE_PIPELINES` or `MTL_SHADER_VALIDATION_DISABLE_PIPELINES` Environment Variables.
         #[unsafe(method(shaderValidation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn shaderValidation(&self) -> MTLShaderValidation;
+        pub fn shaderValidation(&self) -> MTLShaderValidation;
 
         #[cfg(feature = "MTLPipeline")]
         /// Setter for [`shaderValidation`][Self::shaderValidation].
         #[unsafe(method(setShaderValidation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
+        pub fn setShaderValidation(&self, shader_validation: MTLShaderValidation);
 
         #[cfg(feature = "MTLTypes")]
         /// Sets the required threads-per-threadgroup during dispatches. The `threadsPerThreadgroup` argument of any dispatch must match this value if it is set.
@@ -293,16 +300,13 @@ impl MTLComputePipelineDescriptor {
         /// Setting this to a size of 0 in every dimension disables this property
         #[unsafe(method(requiredThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
+        pub fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
 
         #[cfg(feature = "MTLTypes")]
         /// Setter for [`requiredThreadsPerThreadgroup`][Self::requiredThreadsPerThreadgroup].
         #[unsafe(method(setRequiredThreadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRequiredThreadsPerThreadgroup(
-            &self,
-            required_threads_per_threadgroup: MTLSize,
-        );
+        pub fn setRequiredThreadsPerThreadgroup(&self, required_threads_per_threadgroup: MTLSize);
     );
 }
 
@@ -345,7 +349,7 @@ extern_protocol!(
         /// Reflection is `nil` if you create the pipeline state object directly from the ``MTLDevice`` protocol.
         #[unsafe(method(reflection))]
         #[unsafe(method_family = none)]
-        unsafe fn reflection(&self) -> Option<Retained<MTLComputePipelineReflection>>;
+        fn reflection(&self) -> Option<Retained<MTLComputePipelineReflection>>;
 
         #[cfg(feature = "MTLFunctionHandle")]
         /// Gets the function handle for a function this pipeline links at the Metal IR level by name.
@@ -357,7 +361,7 @@ extern_protocol!(
         /// otherwise `nil`.
         #[unsafe(method(functionHandleWithName:))]
         #[unsafe(method_family = none)]
-        unsafe fn functionHandleWithName(
+        fn functionHandleWithName(
             &self,
             name: &NSString,
         ) -> Option<Retained<ProtocolObject<dyn MTLFunctionHandle>>>;
@@ -372,7 +376,7 @@ extern_protocol!(
         /// pipeline state, otherwise `nil`.
         #[unsafe(method(functionHandleWithBinaryFunction:))]
         #[unsafe(method_family = none)]
-        unsafe fn functionHandleWithBinaryFunction(
+        fn functionHandleWithBinaryFunction(
             &self,
             function: &ProtocolObject<dyn MTL4BinaryFunction>,
         ) -> Option<Retained<ProtocolObject<dyn MTLFunctionHandle>>>;
@@ -387,7 +391,7 @@ extern_protocol!(
         /// - Returns: A new compute pipeline state upon success, otherwise `nil`.
         #[unsafe(method(newComputePipelineStateWithBinaryFunctions:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newComputePipelineStateWithBinaryFunctions_error(
+        fn newComputePipelineStateWithBinaryFunctions_error(
             &self,
             additional_binary_functions: &NSArray<ProtocolObject<dyn MTL4BinaryFunction>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
@@ -431,7 +435,7 @@ extern_protocol!(
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
-        unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        fn gpuResourceID(&self) -> MTLResourceID;
 
         #[cfg(all(feature = "MTLFunctionHandle", feature = "MTLLibrary"))]
         /// Get the function handle for the specified function from the pipeline state.
@@ -485,6 +489,6 @@ extern_protocol!(
         /// The required size of every compute threadgroup.
         #[unsafe(method(requiredThreadsPerThreadgroup))]
         #[unsafe(method_family = none)]
-        unsafe fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
+        fn requiredThreadsPerThreadgroup(&self) -> MTLSize;
     }
 );
