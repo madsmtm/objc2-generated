@@ -37,22 +37,22 @@ impl UNNotificationRequest {
     extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Retained<NSString>;
+        pub fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UNNotificationContent")]
         #[unsafe(method(content))]
         #[unsafe(method_family = none)]
-        pub unsafe fn content(&self) -> Retained<UNNotificationContent>;
+        pub fn content(&self) -> Retained<UNNotificationContent>;
 
         #[cfg(feature = "UNNotificationTrigger")]
         #[unsafe(method(trigger))]
         #[unsafe(method_family = none)]
-        pub unsafe fn trigger(&self) -> Option<Retained<UNNotificationTrigger>>;
+        pub fn trigger(&self) -> Option<Retained<UNNotificationTrigger>>;
 
         #[cfg(all(feature = "UNNotificationContent", feature = "UNNotificationTrigger"))]
         #[unsafe(method(requestWithIdentifier:content:trigger:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn requestWithIdentifier_content_trigger(
+        pub fn requestWithIdentifier_content_trigger(
             identifier: &NSString,
             content: &UNNotificationContent,
             trigger: Option<&UNNotificationTrigger>,

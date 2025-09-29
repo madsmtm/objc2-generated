@@ -70,24 +70,24 @@ impl UNNotificationCategory {
     extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Retained<NSString>;
+        pub fn identifier(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UNNotificationAction")]
         #[unsafe(method(actions))]
         #[unsafe(method_family = none)]
-        pub unsafe fn actions(&self) -> Retained<NSArray<UNNotificationAction>>;
+        pub fn actions(&self) -> Retained<NSArray<UNNotificationAction>>;
 
         #[unsafe(method(intentIdentifiers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn intentIdentifiers(&self) -> Retained<NSArray<NSString>>;
+        pub fn intentIdentifiers(&self) -> Retained<NSArray<NSString>>;
 
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
-        pub unsafe fn options(&self) -> UNNotificationCategoryOptions;
+        pub fn options(&self) -> UNNotificationCategoryOptions;
 
         #[unsafe(method(hiddenPreviewsBodyPlaceholder))]
         #[unsafe(method_family = none)]
-        pub unsafe fn hiddenPreviewsBodyPlaceholder(&self) -> Retained<NSString>;
+        pub fn hiddenPreviewsBodyPlaceholder(&self) -> Retained<NSString>;
 
         /// A format string for a summary description when notifications from this category are grouped together.
         /// It should contain descriptive text and format arguments that will be replaced with the information
@@ -97,12 +97,12 @@ impl UNNotificationCategory {
         /// The arguments list is optional, "%u new messages" is also accepted.
         #[unsafe(method(categorySummaryFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn categorySummaryFormat(&self) -> Retained<NSString>;
+        pub fn categorySummaryFormat(&self) -> Retained<NSString>;
 
         #[cfg(feature = "UNNotificationAction")]
         #[unsafe(method(categoryWithIdentifier:actions:intentIdentifiers:options:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn categoryWithIdentifier_actions_intentIdentifiers_options(
+        pub fn categoryWithIdentifier_actions_intentIdentifiers_options(
             identifier: &NSString,
             actions: &NSArray<UNNotificationAction>,
             intent_identifiers: &NSArray<NSString>,
@@ -112,7 +112,7 @@ impl UNNotificationCategory {
         #[cfg(feature = "UNNotificationAction")]
         #[unsafe(method(categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:options:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn categoryWithIdentifier_actions_intentIdentifiers_hiddenPreviewsBodyPlaceholder_options(
+        pub fn categoryWithIdentifier_actions_intentIdentifiers_hiddenPreviewsBodyPlaceholder_options(
             identifier: &NSString,
             actions: &NSArray<UNNotificationAction>,
             intent_identifiers: &NSArray<NSString>,
@@ -123,7 +123,7 @@ impl UNNotificationCategory {
         #[cfg(feature = "UNNotificationAction")]
         #[unsafe(method(categoryWithIdentifier:actions:intentIdentifiers:hiddenPreviewsBodyPlaceholder:categorySummaryFormat:options:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn categoryWithIdentifier_actions_intentIdentifiers_hiddenPreviewsBodyPlaceholder_categorySummaryFormat_options(
+        pub fn categoryWithIdentifier_actions_intentIdentifiers_hiddenPreviewsBodyPlaceholder_categorySummaryFormat_options(
             identifier: &NSString,
             actions: &NSArray<UNNotificationAction>,
             intent_identifiers: &NSArray<NSString>,

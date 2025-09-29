@@ -39,7 +39,7 @@ impl UNNotificationTrigger {
     extern_methods!(
         #[unsafe(method(repeats))]
         #[unsafe(method_family = none)]
-        pub unsafe fn repeats(&self) -> bool;
+        pub fn repeats(&self) -> bool;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -136,18 +136,18 @@ impl UNTimeIntervalNotificationTrigger {
     extern_methods!(
         #[unsafe(method(timeInterval))]
         #[unsafe(method_family = none)]
-        pub unsafe fn timeInterval(&self) -> NSTimeInterval;
+        pub fn timeInterval(&self) -> NSTimeInterval;
 
         #[unsafe(method(triggerWithTimeInterval:repeats:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn triggerWithTimeInterval_repeats(
+        pub fn triggerWithTimeInterval_repeats(
             time_interval: NSTimeInterval,
             repeats: bool,
         ) -> Retained<Self>;
 
         #[unsafe(method(nextTriggerDate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn nextTriggerDate(&self) -> Option<Retained<NSDate>>;
+        pub fn nextTriggerDate(&self) -> Option<Retained<NSDate>>;
     );
 }
 
@@ -200,18 +200,18 @@ impl UNCalendarNotificationTrigger {
     extern_methods!(
         #[unsafe(method(dateComponents))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dateComponents(&self) -> Retained<NSDateComponents>;
+        pub fn dateComponents(&self) -> Retained<NSDateComponents>;
 
         #[unsafe(method(triggerWithDateMatchingComponents:repeats:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn triggerWithDateMatchingComponents_repeats(
+        pub fn triggerWithDateMatchingComponents_repeats(
             date_components: &NSDateComponents,
             repeats: bool,
         ) -> Retained<Self>;
 
         #[unsafe(method(nextTriggerDate))]
         #[unsafe(method_family = none)]
-        pub unsafe fn nextTriggerDate(&self) -> Option<Retained<NSDate>>;
+        pub fn nextTriggerDate(&self) -> Option<Retained<NSDate>>;
     );
 }
 
@@ -265,13 +265,12 @@ impl UNLocationNotificationTrigger {
         #[cfg(feature = "objc2-core-location")]
         #[unsafe(method(region))]
         #[unsafe(method_family = none)]
-        pub unsafe fn region(&self) -> Retained<CLRegion>;
+        pub fn region(&self) -> Retained<CLRegion>;
 
         #[cfg(feature = "objc2-core-location")]
         #[unsafe(method(triggerWithRegion:repeats:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn triggerWithRegion_repeats(region: &CLRegion, repeats: bool)
-            -> Retained<Self>;
+        pub fn triggerWithRegion_repeats(region: &CLRegion, repeats: bool) -> Retained<Self>;
     );
 }
 

@@ -37,12 +37,12 @@ impl UNNotification {
     extern_methods!(
         #[unsafe(method(date))]
         #[unsafe(method_family = none)]
-        pub unsafe fn date(&self) -> Retained<NSDate>;
+        pub fn date(&self) -> Retained<NSDate>;
 
         #[cfg(feature = "UNNotificationRequest")]
         #[unsafe(method(request))]
         #[unsafe(method_family = none)]
-        pub unsafe fn request(&self) -> Retained<UNNotificationRequest>;
+        pub fn request(&self) -> Retained<UNNotificationRequest>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]

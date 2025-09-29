@@ -37,15 +37,15 @@ impl UNNotificationAttachment {
     extern_methods!(
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn identifier(&self) -> Retained<NSString>;
+        pub fn identifier(&self) -> Retained<NSString>;
 
         #[unsafe(method(URL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URL(&self) -> Retained<NSURL>;
+        pub fn URL(&self) -> Retained<NSURL>;
 
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        pub unsafe fn r#type(&self) -> Retained<NSString>;
+        pub fn r#type(&self) -> Retained<NSString>;
 
         /// # Safety
         ///
