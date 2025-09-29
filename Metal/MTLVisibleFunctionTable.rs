@@ -69,6 +69,10 @@ extern_protocol!(
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
         #[cfg(feature = "MTLFunctionHandle")]
+        /// # Safety
+        ///
+        /// - `function` must be safe to call.
+        /// - `function` must have the correct argument and return types.
         #[unsafe(method(setFunction:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFunction_atIndex(
