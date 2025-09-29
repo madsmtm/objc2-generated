@@ -97,6 +97,10 @@ impl MTL4AccelerationStructureGeometryDescriptor {
         pub unsafe fn intersectionFunctionTableOffset(&self) -> NSUInteger;
 
         /// Setter for [`intersectionFunctionTableOffset`][Self::intersectionFunctionTableOffset].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setIntersectionFunctionTableOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIntersectionFunctionTableOffset(
@@ -320,6 +324,10 @@ impl MTL4PrimitiveAccelerationStructureDescriptor {
         pub unsafe fn motionKeyframeCount(&self) -> NSUInteger;
 
         /// Setter for [`motionKeyframeCount`][Self::motionKeyframeCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMotionKeyframeCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMotionKeyframeCount(&self, motion_keyframe_count: NSUInteger);
@@ -422,6 +430,10 @@ impl MTL4AccelerationStructureTriangleGeometryDescriptor {
 
         #[cfg(all(feature = "MTL4BufferRange", feature = "MTLGPUAddress"))]
         /// Setter for [`indexBuffer`][Self::indexBuffer].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexBuffer(&self, index_buffer: MTL4BufferRange);
@@ -434,6 +446,10 @@ impl MTL4AccelerationStructureTriangleGeometryDescriptor {
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
@@ -444,6 +460,10 @@ impl MTL4AccelerationStructureTriangleGeometryDescriptor {
         pub unsafe fn triangleCount(&self) -> NSUInteger;
 
         /// Setter for [`triangleCount`][Self::triangleCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setTriangleCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTriangleCount(&self, triangle_count: NSUInteger);
@@ -567,6 +587,10 @@ impl MTL4AccelerationStructureBoundingBoxGeometryDescriptor {
         pub unsafe fn boundingBoxCount(&self) -> NSUInteger;
 
         /// Setter for [`boundingBoxCount`][Self::boundingBoxCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setBoundingBoxCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBoundingBoxCount(&self, bounding_box_count: NSUInteger);
@@ -675,6 +699,10 @@ impl MTL4AccelerationStructureMotionTriangleGeometryDescriptor {
 
         #[cfg(all(feature = "MTL4BufferRange", feature = "MTLGPUAddress"))]
         /// Setter for [`indexBuffer`][Self::indexBuffer].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexBuffer(&self, index_buffer: MTL4BufferRange);
@@ -687,6 +715,10 @@ impl MTL4AccelerationStructureMotionTriangleGeometryDescriptor {
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
@@ -699,6 +731,10 @@ impl MTL4AccelerationStructureMotionTriangleGeometryDescriptor {
         pub unsafe fn triangleCount(&self) -> NSUInteger;
 
         /// Setter for [`triangleCount`][Self::triangleCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setTriangleCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTriangleCount(&self, triangle_count: NSUInteger);
@@ -831,6 +867,10 @@ impl MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor {
         pub unsafe fn boundingBoxCount(&self) -> NSUInteger;
 
         /// Setter for [`boundingBoxCount`][Self::boundingBoxCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setBoundingBoxCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBoundingBoxCount(&self, bounding_box_count: NSUInteger);
@@ -899,6 +939,10 @@ impl MTL4AccelerationStructureCurveGeometryDescriptor {
         pub unsafe fn controlPointCount(&self) -> NSUInteger;
 
         /// Setter for [`controlPointCount`][Self::controlPointCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setControlPointCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setControlPointCount(&self, control_point_count: NSUInteger);
@@ -988,6 +1032,10 @@ impl MTL4AccelerationStructureCurveGeometryDescriptor {
 
         #[cfg(all(feature = "MTL4BufferRange", feature = "MTLGPUAddress"))]
         /// Setter for [`indexBuffer`][Self::indexBuffer].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexBuffer(&self, index_buffer: MTL4BufferRange);
@@ -1000,6 +1048,10 @@ impl MTL4AccelerationStructureCurveGeometryDescriptor {
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
@@ -1010,6 +1062,10 @@ impl MTL4AccelerationStructureCurveGeometryDescriptor {
         pub unsafe fn segmentCount(&self) -> NSUInteger;
 
         /// Setter for [`segmentCount`][Self::segmentCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSegmentCount(&self, segment_count: NSUInteger);
@@ -1022,6 +1078,10 @@ impl MTL4AccelerationStructureCurveGeometryDescriptor {
         pub unsafe fn segmentControlPointCount(&self) -> NSUInteger;
 
         /// Setter for [`segmentControlPointCount`][Self::segmentControlPointCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setSegmentControlPointCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSegmentControlPointCount(&self, segment_control_point_count: NSUInteger);
@@ -1136,6 +1196,10 @@ impl MTL4AccelerationStructureMotionCurveGeometryDescriptor {
         pub unsafe fn controlPointCount(&self) -> NSUInteger;
 
         /// Setter for [`controlPointCount`][Self::controlPointCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setControlPointCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setControlPointCount(&self, control_point_count: NSUInteger);
@@ -1235,6 +1299,10 @@ impl MTL4AccelerationStructureMotionCurveGeometryDescriptor {
 
         #[cfg(all(feature = "MTL4BufferRange", feature = "MTLGPUAddress"))]
         /// Setter for [`indexBuffer`][Self::indexBuffer].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexBuffer(&self, index_buffer: MTL4BufferRange);
@@ -1247,6 +1315,10 @@ impl MTL4AccelerationStructureMotionCurveGeometryDescriptor {
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
@@ -1259,6 +1331,10 @@ impl MTL4AccelerationStructureMotionCurveGeometryDescriptor {
         pub unsafe fn segmentCount(&self) -> NSUInteger;
 
         /// Setter for [`segmentCount`][Self::segmentCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setSegmentCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSegmentCount(&self, segment_count: NSUInteger);
@@ -1271,6 +1347,10 @@ impl MTL4AccelerationStructureMotionCurveGeometryDescriptor {
         pub unsafe fn segmentControlPointCount(&self) -> NSUInteger;
 
         /// Setter for [`segmentControlPointCount`][Self::segmentControlPointCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setSegmentControlPointCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSegmentControlPointCount(&self, segment_control_point_count: NSUInteger);
@@ -1414,6 +1494,10 @@ impl MTL4InstanceAccelerationStructureDescriptor {
         pub unsafe fn instanceCount(&self) -> NSUInteger;
 
         /// Setter for [`instanceCount`][Self::instanceCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setInstanceCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstanceCount(&self, instance_count: NSUInteger);
@@ -1462,6 +1546,10 @@ impl MTL4InstanceAccelerationStructureDescriptor {
         pub unsafe fn motionTransformCount(&self) -> NSUInteger;
 
         /// Setter for [`motionTransformCount`][Self::motionTransformCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMotionTransformCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMotionTransformCount(&self, motion_transform_count: NSUInteger);
@@ -1618,6 +1706,10 @@ impl MTL4IndirectInstanceAccelerationStructureDescriptor {
         pub unsafe fn maxInstanceCount(&self) -> NSUInteger;
 
         /// Setter for [`maxInstanceCount`][Self::maxInstanceCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMaxInstanceCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxInstanceCount(&self, max_instance_count: NSUInteger);
@@ -1634,6 +1726,10 @@ impl MTL4IndirectInstanceAccelerationStructureDescriptor {
 
         #[cfg(all(feature = "MTL4BufferRange", feature = "MTLGPUAddress"))]
         /// Setter for [`instanceCountBuffer`][Self::instanceCountBuffer].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setInstanceCountBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInstanceCountBuffer(&self, instance_count_buffer: MTL4BufferRange);
@@ -1685,6 +1781,10 @@ impl MTL4IndirectInstanceAccelerationStructureDescriptor {
         pub unsafe fn maxMotionTransformCount(&self) -> NSUInteger;
 
         /// Setter for [`maxMotionTransformCount`][Self::maxMotionTransformCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMaxMotionTransformCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxMotionTransformCount(&self, max_motion_transform_count: NSUInteger);
@@ -1701,6 +1801,10 @@ impl MTL4IndirectInstanceAccelerationStructureDescriptor {
 
         #[cfg(all(feature = "MTL4BufferRange", feature = "MTLGPUAddress"))]
         /// Setter for [`motionTransformCountBuffer`][Self::motionTransformCountBuffer].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMotionTransformCountBuffer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMotionTransformCountBuffer(

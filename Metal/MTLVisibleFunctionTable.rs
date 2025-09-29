@@ -39,6 +39,10 @@ impl MTLVisibleFunctionTableDescriptor {
         pub unsafe fn functionCount(&self) -> NSUInteger;
 
         /// Setter for [`functionCount`][Self::functionCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setFunctionCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFunctionCount(&self, function_count: NSUInteger);
@@ -73,6 +77,7 @@ extern_protocol!(
         ///
         /// - `function` must be safe to call.
         /// - `function` must have the correct argument and return types.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setFunction:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFunction_atIndex(
@@ -84,7 +89,8 @@ extern_protocol!(
         #[cfg(feature = "MTLFunctionHandle")]
         /// # Safety
         ///
-        /// `functions` must be a valid pointer.
+        /// - `functions` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setFunctions:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setFunctions_withRange(

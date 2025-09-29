@@ -241,6 +241,10 @@ impl MTLIndirectCommandBufferDescriptor {
         pub unsafe fn maxKernelThreadgroupMemoryBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxKernelThreadgroupMemoryBindCount`][Self::maxKernelThreadgroupMemoryBindCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMaxKernelThreadgroupMemoryBindCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxKernelThreadgroupMemoryBindCount(
@@ -254,6 +258,10 @@ impl MTLIndirectCommandBufferDescriptor {
         pub unsafe fn maxObjectBufferBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxObjectBufferBindCount`][Self::maxObjectBufferBindCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMaxObjectBufferBindCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxObjectBufferBindCount(&self, max_object_buffer_bind_count: NSUInteger);
@@ -264,6 +272,10 @@ impl MTLIndirectCommandBufferDescriptor {
         pub unsafe fn maxMeshBufferBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxMeshBufferBindCount`][Self::maxMeshBufferBindCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMaxMeshBufferBindCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxMeshBufferBindCount(&self, max_mesh_buffer_bind_count: NSUInteger);
@@ -275,6 +287,10 @@ impl MTLIndirectCommandBufferDescriptor {
         pub unsafe fn maxObjectThreadgroupMemoryBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxObjectThreadgroupMemoryBindCount`][Self::maxObjectThreadgroupMemoryBindCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMaxObjectThreadgroupMemoryBindCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxObjectThreadgroupMemoryBindCount(
@@ -351,11 +367,17 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn gpuResourceID(&self) -> MTLResourceID;
 
+        /// # Safety
+        ///
+        /// `range` might not be bounds-checked.
         #[unsafe(method(resetWithRange:))]
         #[unsafe(method_family = none)]
         unsafe fn resetWithRange(&self, range: NSRange);
 
         #[cfg(feature = "MTLIndirectCommandEncoder")]
+        /// # Safety
+        ///
+        /// `commandIndex` might not be bounds-checked.
         #[unsafe(method(indirectRenderCommandAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn indirectRenderCommandAtIndex(
@@ -364,6 +386,9 @@ extern_protocol!(
         ) -> Retained<ProtocolObject<dyn MTLIndirectRenderCommand>>;
 
         #[cfg(feature = "MTLIndirectCommandEncoder")]
+        /// # Safety
+        ///
+        /// `commandIndex` might not be bounds-checked.
         #[unsafe(method(indirectComputeCommandAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn indirectComputeCommandAtIndex(

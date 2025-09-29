@@ -52,6 +52,10 @@ extern_protocol!(
         /// - length: The size of the threadgroup memory, in bytes. Use a multiple of `16` bytes.
         /// - index: An integer that corresponds to the index of the argument you annotate with attribute `[[threadgroup(index)]]`
         /// in the shader function.
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setThreadgroupMemoryLength:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setThreadgroupMemoryLength_atIndex(&self, length: NSUInteger, index: NSUInteger);
@@ -146,6 +150,10 @@ extern_protocol!(
         /// - Parameters:
         /// - indirectCommandBuffer: ``MTLIndirectCommandBuffer`` instance containing the commands to execute.
         /// - executionRange:        The range of commands to execute.
+        ///
+        /// # Safety
+        ///
+        /// `executionRange` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_withRange(
@@ -171,6 +179,10 @@ extern_protocol!(
         /// - indirectRangeBuffer:   GPUAddress of a ``MTLBuffer`` containing the execution range. Lay out the data
         /// in this buffer as described in the ``MTLIndirectCommandBufferExecutionRange``
         /// structure. This address requires 4-byte alignment.
+        ///
+        /// # Safety
+        ///
+        /// `indirectRangeBuffer` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:indirectBuffer:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_indirectBuffer(
@@ -234,6 +246,11 @@ extern_protocol!(
         /// conditions that the sum of `sourceLevel` and `levelCount` doesn’t exceed the
         /// number of mipmap levels in `sourceTexture` and the sum of `destinationLevel`
         /// and `levelCount` doesn’t exceed the number of mipmap levels in `destinationTexture`.
+        ///
+        /// # Safety
+        ///
+        /// - `sliceCount` might not be bounds-checked.
+        /// - `levelCount` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_toTexture_destinationSlice_destinationLevel_sliceCount_levelCount(
@@ -346,6 +363,10 @@ extern_protocol!(
         /// - destinationBytesPerImage: The number of bytes between each 2D image of a 3D texture. This value must
         /// be a multiple of `sourceTexture's` pixel size, in bytes. Set this value to
         /// `0` if `sourceSize's` ``MTLSize/depth`` value is `1`.
+        ///
+        /// # Safety
+        ///
+        /// `destinationOffset` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage(
@@ -412,6 +433,10 @@ extern_protocol!(
         /// ``MTLBlitOption/MTLBlitOptionStencilFromDepthStencil``, but not both.
         /// If `sourceTexture's` ``MTLTexture/pixelFormat`` is a PVRTC format, set
         /// `options` to ``MTLBlitOption/MTLBlitOptionRowLinearPVRTC``.
+        ///
+        /// # Safety
+        ///
+        /// `destinationOffset` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_options(
@@ -441,6 +466,11 @@ extern_protocol!(
         /// - destinationBuffer: An ``MTLBuffer`` instance the command copies data to.
         /// - destinationOffset: A byte offset within `destinationBuffer` the command copies to.
         /// - size:              The number of bytes the command copies from `sourceBuffer` to `destinationBuffer`.
+        ///
+        /// # Safety
+        ///
+        /// - `sourceOffset` might not be bounds-checked.
+        /// - `destinationOffset` might not be bounds-checked.
         #[unsafe(method(copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size(
@@ -492,6 +522,10 @@ extern_protocol!(
         /// - destinationOrigin:   An ``MTLOrigin`` instance that represents a location within `destinationTexture`
         /// that the command begins copying data to. Assign `0` to each dimension that’s not
         /// relevant to `destinationTexture`.
+        ///
+        /// # Safety
+        ///
+        /// `sourceOffset` might not be bounds-checked.
         #[unsafe(method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
@@ -555,6 +589,10 @@ extern_protocol!(
         /// ``MTLBlitOption/MTLBlitOptionStencilFromDepthStencil``, but not both.
         /// If `destinationTexture's` ``MTLTexture/pixelFormat`` is a PVRTC format, set
         /// `options` to ``MTLBlitOption/MTLBlitOptionRowLinearPVRTC``.
+        ///
+        /// # Safety
+        ///
+        /// `sourceOffset` might not be bounds-checked.
         #[unsafe(method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options(
@@ -627,6 +665,10 @@ extern_protocol!(
         /// - range:  A range of bytes within `buffer` the command assigns value to. When calling this method, pass in a
         /// range with a length greater than `0`.
         /// - value:  The value to write to each byte.
+        ///
+        /// # Safety
+        ///
+        /// `range` might not be bounds-checked.
         #[unsafe(method(fillBuffer:range:value:))]
         #[unsafe(method_family = none)]
         unsafe fn fillBuffer_range_value(
@@ -746,6 +788,10 @@ extern_protocol!(
         /// - Parameters:
         /// - buffer: An ``MTLIndirectCommandBuffer`` the command resets.
         /// - range: A range of commands within `buffer`.
+        ///
+        /// # Safety
+        ///
+        /// `range` might not be bounds-checked.
         #[unsafe(method(resetCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn resetCommandsInBuffer_withRange(
@@ -769,6 +815,11 @@ extern_protocol!(
         /// - destinationIndex: An index in `destination` into where the command copies content to. The copy operation requires
         /// that the destination index is a valid execution point with enough space left in `destination`
         /// to accommodate `sourceRange.count` commands.
+        ///
+        /// # Safety
+        ///
+        /// - `sourceRange` might not be bounds-checked.
+        /// - `destinationIndex` might not be bounds-checked.
         #[unsafe(method(copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn copyIndirectCommandBuffer_sourceRange_destination_destinationIndex(
@@ -789,6 +840,10 @@ extern_protocol!(
         /// - Parameters:
         /// - indirectCommandBuffer: An ``MTLIndirectCommandBuffer`` instance that this command optimizes.
         /// - range:                 A range of commands within `indirectCommandBuffer`.
+        ///
+        /// # Safety
+        ///
+        /// `range` might not be bounds-checked.
         #[unsafe(method(optimizeIndirectCommandBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn optimizeIndirectCommandBuffer_withRange(
@@ -1058,6 +1113,11 @@ extern_protocol!(
         /// - granularity: ``MTL4TimestampGranularity`` hint to Metal about acceptable the level of precision.
         /// - counterHeap: ``MTL4CounterHeap`` to write timestamps into.
         /// - index:       The index value into which Metal writes the timestamp.
+        ///
+        /// # Safety
+        ///
+        /// - `counterHeap` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(writeTimestampWithGranularity:intoHeap:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn writeTimestampWithGranularity_intoHeap_atIndex(

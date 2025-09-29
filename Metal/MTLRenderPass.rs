@@ -536,6 +536,9 @@ extern_conformance!(
 
 impl MTLRenderPassColorAttachmentDescriptorArray {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -543,6 +546,9 @@ impl MTLRenderPassColorAttachmentDescriptorArray {
             attachment_index: NSUInteger,
         ) -> Retained<MTLRenderPassColorAttachmentDescriptor>;
 
+        /// # Safety
+        ///
+        /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -617,6 +623,10 @@ impl MTLRenderPassSampleBufferAttachmentDescriptor {
         pub fn startOfVertexSampleIndex(&self) -> NSUInteger;
 
         /// Setter for [`startOfVertexSampleIndex`][Self::startOfVertexSampleIndex].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setStartOfVertexSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartOfVertexSampleIndex(&self, start_of_vertex_sample_index: NSUInteger);
@@ -632,6 +642,10 @@ impl MTLRenderPassSampleBufferAttachmentDescriptor {
         pub fn endOfVertexSampleIndex(&self) -> NSUInteger;
 
         /// Setter for [`endOfVertexSampleIndex`][Self::endOfVertexSampleIndex].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setEndOfVertexSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndOfVertexSampleIndex(&self, end_of_vertex_sample_index: NSUInteger);
@@ -647,6 +661,10 @@ impl MTLRenderPassSampleBufferAttachmentDescriptor {
         pub fn startOfFragmentSampleIndex(&self) -> NSUInteger;
 
         /// Setter for [`startOfFragmentSampleIndex`][Self::startOfFragmentSampleIndex].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setStartOfFragmentSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartOfFragmentSampleIndex(
@@ -665,6 +683,10 @@ impl MTLRenderPassSampleBufferAttachmentDescriptor {
         pub fn endOfFragmentSampleIndex(&self) -> NSUInteger;
 
         /// Setter for [`endOfFragmentSampleIndex`][Self::endOfFragmentSampleIndex].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setEndOfFragmentSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndOfFragmentSampleIndex(&self, end_of_fragment_sample_index: NSUInteger);
@@ -697,6 +719,9 @@ extern_conformance!(
 
 impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -704,6 +729,9 @@ impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
             attachment_index: NSUInteger,
         ) -> Retained<MTLRenderPassSampleBufferAttachmentDescriptor>;
 
+        /// # Safety
+        ///
+        /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -907,7 +935,8 @@ impl MTLRenderPassDescriptor {
         ///
         /// # Safety
         ///
-        /// `positions` must be a valid pointer or null.
+        /// - `positions` must be a valid pointer or null.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(setSamplePositions:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSamplePositions_count(
@@ -927,7 +956,8 @@ impl MTLRenderPassDescriptor {
         ///
         /// # Safety
         ///
-        /// `positions` must be a valid pointer or null.
+        /// - `positions` must be a valid pointer or null.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(getSamplePositions:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getSamplePositions_count(

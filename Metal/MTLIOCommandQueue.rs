@@ -198,6 +198,10 @@ impl MTLIOCommandQueueDescriptor {
         pub unsafe fn maxCommandBufferCount(&self) -> NSUInteger;
 
         /// Setter for [`maxCommandBufferCount`][Self::maxCommandBufferCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMaxCommandBufferCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxCommandBufferCount(&self, max_command_buffer_count: NSUInteger);

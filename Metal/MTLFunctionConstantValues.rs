@@ -31,7 +31,8 @@ impl MTLFunctionConstantValues {
         #[cfg(feature = "MTLDataType")]
         /// # Safety
         ///
-        /// `value` must be a valid pointer.
+        /// - `value` must be a valid pointer.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setConstantValue:type:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstantValue_type_atIndex(
@@ -44,7 +45,8 @@ impl MTLFunctionConstantValues {
         #[cfg(feature = "MTLDataType")]
         /// # Safety
         ///
-        /// `values` must be a valid pointer.
+        /// - `values` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setConstantValues:type:withRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConstantValues_type_withRange(

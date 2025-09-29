@@ -28,6 +28,10 @@ extern_protocol!(
         /// Parameter `storeAction`: The desired store action for the given color attachment.  This may be set to any value other than MTLStoreActionUnknown.
         ///
         /// Parameter `colorAttachmentIndex`: The index of the color attachment
+        ///
+        /// # Safety
+        ///
+        /// `colorAttachmentIndex` might not be bounds-checked.
         #[unsafe(method(setColorStoreAction:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setColorStoreAction_atIndex(
@@ -57,6 +61,10 @@ extern_protocol!(
         /// Parameter `storeActionOptions`: The desired store action options for the given color attachment.
         ///
         /// Parameter `colorAttachmentIndex`: The index of the color attachment
+        ///
+        /// # Safety
+        ///
+        /// `colorAttachmentIndex` might not be bounds-checked.
         #[unsafe(method(setColorStoreActionOptions:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setColorStoreActionOptions_atIndex(

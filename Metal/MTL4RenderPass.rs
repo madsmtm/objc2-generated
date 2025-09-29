@@ -154,6 +154,10 @@ impl MTL4RenderPassDescriptor {
         pub unsafe fn defaultRasterSampleCount(&self) -> NSUInteger;
 
         /// Setter for [`defaultRasterSampleCount`][Self::defaultRasterSampleCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setDefaultRasterSampleCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultRasterSampleCount(&self, default_raster_sample_count: NSUInteger);
@@ -258,7 +262,8 @@ impl MTL4RenderPassDescriptor {
         ///
         /// # Safety
         ///
-        /// `positions` must be a valid pointer or null.
+        /// - `positions` must be a valid pointer or null.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(setSamplePositions:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSamplePositions_count(
@@ -282,7 +287,8 @@ impl MTL4RenderPassDescriptor {
         ///
         /// # Safety
         ///
-        /// `positions` must be a valid pointer or null.
+        /// - `positions` must be a valid pointer or null.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(getSamplePositions:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getSamplePositions_count(

@@ -26,6 +26,10 @@ extern_protocol!(
         /// - texture: An ``MTLTexture`` instance for which to copy its texture view.
         /// - index: An index of a slot in this texture pool into which this method copies the texture view.
         /// - Returns: The ``MTLResourceID`` of a newly created texture view in this pool.
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setTextureView:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTextureView_atIndex(
@@ -51,6 +55,10 @@ extern_protocol!(
         /// - descriptor: A descriptor specifying properties of the texture view to create.
         /// - index: An index of a slot in the texture pool into which this method writes the new texture view.
         /// - Returns: The ``MTLResourceID`` of a newly created texture view in this pool.
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setTextureView:descriptor:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTextureView_descriptor_atIndex(
@@ -80,6 +88,11 @@ extern_protocol!(
         /// - bytesPerRow: The number of bytes between adjacent rows of pixels in the source buffer’s memory.
         /// - index: An index of a slot in the table into which this method writes the new texture view.
         /// - Returns: The ``MTLResourceID`` of a new buffer view in this pool.
+        ///
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setTextureViewFromBuffer:descriptor:offset:bytesPerRow:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTextureViewFromBuffer_descriptor_offset_bytesPerRow_atIndex(

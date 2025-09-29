@@ -358,6 +358,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLArgumentEncoder")]
         /// Creates an argument encoder which will encode arguments matching the layout of the argument buffer at the given bind point index.
+        ///
+        /// # Safety
+        ///
+        /// `bufferIndex` might not be bounds-checked.
         #[unsafe(method(newArgumentEncoderWithBufferIndex:))]
         #[unsafe(method_family = new)]
         unsafe fn newArgumentEncoderWithBufferIndex(
@@ -367,6 +371,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLArgument", feature = "MTLArgumentEncoder"))]
         /// Creates an argument encoder which will encode arguments matching the layout of the argument buffer at the given bind point index.
+        ///
+        /// # Safety
+        ///
+        /// `bufferIndex` might not be bounds-checked.
         #[deprecated = "Use MTLDevice's newArgumentEncoderWithBufferBinding: instead"]
         #[unsafe(method(newArgumentEncoderWithBufferIndex:reflection:))]
         #[unsafe(method_family = new)]

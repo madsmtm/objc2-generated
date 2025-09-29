@@ -71,6 +71,10 @@ extern_protocol!(
         /// * set the element stride the descriptor to `1`
         /// * ensure that number of bytes per row is a multiple of `64`
         /// * for dimensions greater than `2`, make sure `strides[dim] = strides[dim -1] * dimensions[dim - 1]`
+        ///
+        /// # Safety
+        ///
+        /// `offset` might not be bounds-checked.
         #[unsafe(method(newTensorWithDescriptor:offset:error:_))]
         #[unsafe(method_family = new)]
         unsafe fn newTensorWithDescriptor_offset_error(

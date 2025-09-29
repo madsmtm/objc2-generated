@@ -654,7 +654,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `residency_sets` must be a valid pointer.
+        /// - `residency_sets` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(useResidencySets:count:))]
         #[unsafe(method_family = none)]
         unsafe fn useResidencySets_count(

@@ -25,6 +25,10 @@ impl MTLRasterizationRateSampleArray {
         /// Retrieves the sample value at the specified index.
         ///
         /// Returns: NSNumber instance describing the value of the sample at the specified index, or 0 if the index is out of range.
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(&self, index: NSUInteger) -> Retained<NSNumber>;
@@ -32,6 +36,10 @@ impl MTLRasterizationRateSampleArray {
         /// Stores a sample value at the specified index.
         ///
         /// The value will be converted to a single precision floating point value.
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(&self, value: &NSNumber, index: NSUInteger);
@@ -93,6 +101,10 @@ impl MTLRasterizationRateLayerDescriptor {
         /// Parameter `sampleCount`: The width and height components are the number of samples on the horizontal and vertical axis respectively. The depth component is ignored.
         ///
         /// All values are initialized to zero.
+        ///
+        /// # Safety
+        ///
+        /// `sampleCount` might not be bounds-checked.
         #[unsafe(method(initWithSampleCount:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSampleCount(
@@ -113,6 +125,7 @@ impl MTLRasterizationRateLayerDescriptor {
         ///
         /// # Safety
         ///
+        /// - `sampleCount` might not be bounds-checked.
         /// - `horizontal` must be a valid pointer.
         /// - `vertical` must be a valid pointer.
         #[unsafe(method(initWithSampleCount:horizontal:vertical:))]
@@ -177,6 +190,10 @@ impl MTLRasterizationRateLayerDescriptor {
     extern_methods!(
         #[cfg(feature = "MTLTypes")]
         /// Setter for [`sampleCount`][Self::sampleCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setSampleCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSampleCount(&self, sample_count: MTLSize);
@@ -201,6 +218,10 @@ impl MTLRasterizationRateLayerArray {
         /// Returns: The MTLRasterizationRateLayerDescriptor instance for the given layerIndex, or nil if no instance hasn't been set for this index.
         ///
         /// Use setObject:atIndexedSubscript: to set the layer
+        ///
+        /// # Safety
+        ///
+        /// `layerIndex` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -211,6 +232,10 @@ impl MTLRasterizationRateLayerArray {
         /// Sets the MTLRasterizationRateLayerDescriptor instance for the given layerIndex.
         ///
         /// The previous instance at this index will be overwritten.
+        ///
+        /// # Safety
+        ///
+        /// `layerIndex` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -290,6 +315,10 @@ impl MTLRasterizationRateMapDescriptor {
         ///
         /// Use setLayer:atIndex: to add or set the layer.
         /// Identical to "layers[layerIndex]".
+        ///
+        /// # Safety
+        ///
+        /// `layerIndex` might not be bounds-checked.
         #[unsafe(method(layerAtIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn layerAtIndex(
@@ -302,6 +331,10 @@ impl MTLRasterizationRateMapDescriptor {
         /// The previous instance at the index, if any, will be overwritten.
         /// Set nil to an index to remove the layer at that index from the descriptor.
         /// Identical to "layers[layerIndex] = layer".
+        ///
+        /// # Safety
+        ///
+        /// `layerIndex` might not be bounds-checked.
         #[unsafe(method(setLayer:atIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLayer_atIndex(
@@ -437,6 +470,10 @@ extern_protocol!(
         /// The buffer must have storageMode MTLStorageModeShared, and a size of at least parameterBufferSizeAndAlign.size + offset.
         /// The specified offset must be a multiple of parameterBufferSize.align.
         /// The buffer can be bound to a shader stage to map screen space to physical fragment space, or vice versa.
+        ///
+        /// # Safety
+        ///
+        /// `offset` might not be bounds-checked.
         #[unsafe(method(copyParameterDataToBuffer:offset:))]
         #[unsafe(method_family = none)]
         unsafe fn copyParameterDataToBuffer_offset(
@@ -450,6 +487,10 @@ extern_protocol!(
         ///
         /// Different configured layers may have a different rasterization rate and may have different size after rendering.
         /// The rasterization rate layer for a primitive is selected on the [[render_target_layer_index]].
+        ///
+        /// # Safety
+        ///
+        /// `layerIndex` might not be bounds-checked.
         #[unsafe(method(physicalSizeForLayer:))]
         #[unsafe(method_family = none)]
         unsafe fn physicalSizeForLayer(&self, layer_index: NSUInteger) -> MTLSize;
@@ -457,6 +498,10 @@ extern_protocol!(
         #[cfg(feature = "MTLTypes")]
         /// Computes where an offset relative to the top-left of screen space, in screen space pixels, would end up in the framebuffer, in physical fragments.
         /// The returned value is less-or-equal the input value because the rasterization quality never exceeds 1:1 in any region.
+        ///
+        /// # Safety
+        ///
+        /// `layerIndex` might not be bounds-checked.
         #[unsafe(method(mapScreenToPhysicalCoordinates:forLayer:))]
         #[unsafe(method_family = none)]
         unsafe fn mapScreenToPhysicalCoordinates_forLayer(
@@ -468,6 +513,10 @@ extern_protocol!(
         #[cfg(feature = "MTLTypes")]
         /// Computes where an offset relative to the top-left of the framebuffer, in physical pixels, would end up in screen space, in screen space pixels.
         /// The returned value is greater-or-equal the input value because the rasterization quality never exceeds 1:1 in any region.
+        ///
+        /// # Safety
+        ///
+        /// `layerIndex` might not be bounds-checked.
         #[unsafe(method(mapPhysicalToScreenCoordinates:forLayer:))]
         #[unsafe(method_family = none)]
         unsafe fn mapPhysicalToScreenCoordinates_forLayer(

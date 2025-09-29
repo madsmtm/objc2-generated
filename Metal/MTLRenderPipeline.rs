@@ -403,6 +403,11 @@ impl MTLLogicalToPhysicalColorAttachmentMap {
         /// - Parameters:
         /// - physicalIndex: index of the color attachment's physical mapping.
         /// - logicalIndex: index of the color attachment's logical mapping.
+        ///
+        /// # Safety
+        ///
+        /// - `physicalIndex` might not be bounds-checked.
+        /// - `logicalIndex` might not be bounds-checked.
         #[unsafe(method(setPhysicalIndex:forLogicalIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPhysicalIndex_forLogicalIndex(
@@ -412,6 +417,10 @@ impl MTLLogicalToPhysicalColorAttachmentMap {
         );
 
         /// Queries the physical color attachment index corresponding to a logical index.
+        ///
+        /// # Safety
+        ///
+        /// `logicalIndex` might not be bounds-checked.
         #[unsafe(method(getPhysicalIndexForLogicalIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getPhysicalIndexForLogicalIndex(
@@ -635,6 +644,10 @@ impl MTLRenderPipelineDescriptor {
         pub fn maxVertexAmplificationCount(&self) -> NSUInteger;
 
         /// Setter for [`maxVertexAmplificationCount`][Self::maxVertexAmplificationCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMaxVertexAmplificationCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxVertexAmplificationCount(
@@ -731,6 +744,10 @@ impl MTLRenderPipelineDescriptor {
         pub fn tessellationControlPointIndexType(&self) -> MTLTessellationControlPointIndexType;
 
         /// Setter for [`tessellationControlPointIndexType`][Self::tessellationControlPointIndexType].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setTessellationControlPointIndexType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTessellationControlPointIndexType(
@@ -1365,6 +1382,9 @@ extern_conformance!(
 
 impl MTLRenderPipelineColorAttachmentDescriptorArray {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -1372,6 +1392,9 @@ impl MTLRenderPipelineColorAttachmentDescriptorArray {
             attachment_index: NSUInteger,
         ) -> Retained<MTLRenderPipelineColorAttachmentDescriptor>;
 
+        /// # Safety
+        ///
+        /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -1456,6 +1479,9 @@ extern_conformance!(
 
 impl MTLTileRenderPipelineColorAttachmentDescriptorArray {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -1463,6 +1489,9 @@ impl MTLTileRenderPipelineColorAttachmentDescriptorArray {
             attachment_index: NSUInteger,
         ) -> Retained<MTLTileRenderPipelineColorAttachmentDescriptor>;
 
+        /// # Safety
+        ///
+        /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -1545,6 +1574,10 @@ impl MTLTileRenderPipelineDescriptor {
         pub unsafe fn rasterSampleCount(&self) -> NSUInteger;
 
         /// Setter for [`rasterSampleCount`][Self::rasterSampleCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setRasterSampleCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRasterSampleCount(&self, raster_sample_count: NSUInteger);
@@ -1945,6 +1978,10 @@ impl MTLMeshRenderPipelineDescriptor {
         pub unsafe fn rasterSampleCount(&self) -> NSUInteger;
 
         /// Setter for [`rasterSampleCount`][Self::rasterSampleCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setRasterSampleCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRasterSampleCount(&self, raster_sample_count: NSUInteger);
@@ -1993,6 +2030,10 @@ impl MTLMeshRenderPipelineDescriptor {
         pub unsafe fn maxVertexAmplificationCount(&self) -> NSUInteger;
 
         /// Setter for [`maxVertexAmplificationCount`][Self::maxVertexAmplificationCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMaxVertexAmplificationCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxVertexAmplificationCount(

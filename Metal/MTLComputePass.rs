@@ -60,6 +60,10 @@ impl MTLComputePassSampleBufferAttachmentDescriptor {
         pub unsafe fn startOfEncoderSampleIndex(&self) -> NSUInteger;
 
         /// Setter for [`startOfEncoderSampleIndex`][Self::startOfEncoderSampleIndex].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setStartOfEncoderSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartOfEncoderSampleIndex(
@@ -78,6 +82,10 @@ impl MTLComputePassSampleBufferAttachmentDescriptor {
         pub unsafe fn endOfEncoderSampleIndex(&self) -> NSUInteger;
 
         /// Setter for [`endOfEncoderSampleIndex`][Self::endOfEncoderSampleIndex].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setEndOfEncoderSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
@@ -110,6 +118,9 @@ extern_conformance!(
 
 impl MTLComputePassSampleBufferAttachmentDescriptorArray {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -117,6 +128,9 @@ impl MTLComputePassSampleBufferAttachmentDescriptorArray {
             attachment_index: NSUInteger,
         ) -> Retained<MTLComputePassSampleBufferAttachmentDescriptor>;
 
+        /// # Safety
+        ///
+        /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(

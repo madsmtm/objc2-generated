@@ -58,6 +58,10 @@ impl MTL4TileRenderPipelineDescriptor {
         pub unsafe fn rasterSampleCount(&self) -> NSUInteger;
 
         /// Setter for [`rasterSampleCount`][Self::rasterSampleCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setRasterSampleCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRasterSampleCount(&self, raster_sample_count: NSUInteger);

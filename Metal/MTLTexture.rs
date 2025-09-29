@@ -325,6 +325,10 @@ impl MTLTextureDescriptor {
         pub fn mipmapLevelCount(&self) -> NSUInteger;
 
         /// Setter for [`mipmapLevelCount`][Self::mipmapLevelCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMipmapLevelCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMipmapLevelCount(&self, mipmap_level_count: NSUInteger);
@@ -337,6 +341,10 @@ impl MTLTextureDescriptor {
         pub fn sampleCount(&self) -> NSUInteger;
 
         /// Setter for [`sampleCount`][Self::sampleCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setSampleCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSampleCount(&self, sample_count: NSUInteger);
@@ -546,6 +554,10 @@ impl MTLTextureViewDescriptor {
         pub unsafe fn levelRange(&self) -> NSRange;
 
         /// Setter for [`levelRange`][Self::levelRange].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setLevelRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLevelRange(&self, level_range: NSRange);
@@ -556,6 +568,10 @@ impl MTLTextureViewDescriptor {
         pub unsafe fn sliceRange(&self) -> NSRange;
 
         /// Setter for [`sliceRange`][Self::sliceRange].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setSliceRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSliceRange(&self, slice_range: NSRange);
@@ -828,6 +844,11 @@ extern_protocol!(
 
         #[cfg(feature = "MTLPixelFormat")]
         /// Create a new texture which shares the same storage as the source texture, but with a different (but compatible) pixel format, texture type, levels and slices.
+        ///
+        /// # Safety
+        ///
+        /// - `levelRange` might not be bounds-checked.
+        /// - `sliceRange` might not be bounds-checked.
         #[unsafe(method(newTextureViewWithPixelFormat:textureType:levels:slices:))]
         #[unsafe(method_family = new)]
         unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices(
@@ -873,6 +894,11 @@ extern_protocol!(
 
         #[cfg(feature = "MTLPixelFormat")]
         /// Create a new texture which shares the same storage as the source texture, but with a different (but compatible) pixel format, texture type, levels, slices and swizzle.
+        ///
+        /// # Safety
+        ///
+        /// - `levelRange` might not be bounds-checked.
+        /// - `sliceRange` might not be bounds-checked.
         #[unsafe(method(newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:))]
         #[unsafe(method_family = new)]
         unsafe fn newTextureViewWithPixelFormat_textureType_levels_slices_swizzle(

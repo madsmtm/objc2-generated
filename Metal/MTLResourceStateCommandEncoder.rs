@@ -132,6 +132,10 @@ extern_protocol!(
         /// uint32_t numMappings;
         /// MTLMapIndirectArguments mappings[numMappings];
         /// }
+        ///
+        /// # Safety
+        ///
+        /// `indirectBufferOffset` might not be bounds-checked.
         #[optional]
         #[unsafe(method(updateTextureMapping:mode:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]

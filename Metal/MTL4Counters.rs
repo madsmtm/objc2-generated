@@ -122,6 +122,10 @@ impl MTL4CounterHeapDescriptor {
         pub unsafe fn count(&self) -> NSUInteger;
 
         /// Setter for [`count`][Self::count].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCount(&self, count: NSUInteger);
@@ -181,6 +185,10 @@ extern_protocol!(
         ///
         /// - Parameter range: The range in the heap to resolve.
         /// - Returns a newly allocated autoreleased NSData containing tightly packed resolved heap counter values.
+        ///
+        /// # Safety
+        ///
+        /// `range` might not be bounds-checked.
         #[unsafe(method(resolveCounterRange:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveCounterRange(&self, range: NSRange) -> Option<Retained<NSData>>;
@@ -193,6 +201,10 @@ extern_protocol!(
         ///
         /// - Parameters:
         /// - range: A heap index range to invalidate.
+        ///
+        /// # Safety
+        ///
+        /// `range` might not be bounds-checked.
         #[unsafe(method(invalidateCounterRange:))]
         #[unsafe(method_family = none)]
         unsafe fn invalidateCounterRange(&self, range: NSRange);

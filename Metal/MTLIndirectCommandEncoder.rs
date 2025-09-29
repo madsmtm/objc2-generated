@@ -22,6 +22,10 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setVertexBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexBuffer_offset_atIndex(
@@ -36,6 +40,10 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setFragmentBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentBuffer_offset_atIndex(
@@ -53,6 +61,11 @@ extern_protocol!(
         /// sets vertex buffer at specified index with provided offset and stride.
         /// only call this when the buffer-index is part of the vertexDescriptor and
         /// has set its stride to `MTLBufferLayoutStrideDynamic`
+        ///
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setVertexBuffer:offset:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexBuffer_offset_attributeStride_atIndex(
@@ -68,6 +81,13 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// # Safety
+        ///
+        /// - `patchCount` might not be bounds-checked.
+        /// - `patchIndexBuffer` might not be bounds-checked.
+        /// - `patchIndexBufferOffset` might not be bounds-checked.
+        /// - `instanceCount` might not be bounds-checked.
+        /// - `offset` might not be bounds-checked.
         #[unsafe(method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:))]
         #[unsafe(method_family = none)]
         unsafe fn drawPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
@@ -89,6 +109,15 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// # Safety
+        ///
+        /// - `patchCount` might not be bounds-checked.
+        /// - `patchIndexBuffer` might not be bounds-checked.
+        /// - `patchIndexBufferOffset` might not be bounds-checked.
+        /// - `controlPointIndexBuffer` might not be bounds-checked.
+        /// - `controlPointIndexBufferOffset` might not be bounds-checked.
+        /// - `instanceCount` might not be bounds-checked.
+        /// - `offset` might not be bounds-checked.
         #[unsafe(method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:))]
         #[unsafe(method_family = none)]
         unsafe fn drawIndexedPatches_patchStart_patchCount_patchIndexBuffer_patchIndexBufferOffset_controlPointIndexBuffer_controlPointIndexBufferOffset_instanceCount_baseInstance_tessellationFactorBuffer_tessellationFactorBufferOffset_tessellationFactorBufferInstanceStride(
@@ -108,6 +137,10 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLRenderCommandEncoder")]
+        /// # Safety
+        ///
+        /// - `vertexCount` might not be bounds-checked.
+        /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:))]
         #[unsafe(method_family = none)]
         unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(
@@ -126,6 +159,13 @@ extern_protocol!(
             feature = "MTLRenderCommandEncoder",
             feature = "MTLResource"
         ))]
+        /// # Safety
+        ///
+        /// - `indexCount` might not be bounds-checked.
+        /// - `indexType` might not be bounds-checked.
+        /// - `indexBuffer` might not be bounds-checked.
+        /// - `indexBufferOffset` might not be bounds-checked.
+        /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:))]
         #[unsafe(method_family = none)]
         unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferOffset_instanceCount_baseVertex_baseInstance(
@@ -140,6 +180,9 @@ extern_protocol!(
             base_instance: NSUInteger,
         );
 
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setObjectThreadgroupMemoryLength:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectThreadgroupMemoryLength_atIndex(
@@ -153,6 +196,10 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setObjectBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectBuffer_offset_atIndex(
@@ -167,6 +214,10 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setMeshBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setMeshBuffer_offset_atIndex(
@@ -263,6 +314,10 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setKernelBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setKernelBuffer_offset_atIndex(
@@ -280,6 +335,11 @@ extern_protocol!(
         /// sets kernel buffer at specified index with provided offset and stride.
         /// only call this when the buffer-index is part of the stageInputDescriptor
         /// and has set its stride to `MTLBufferLayoutStrideDynamic`
+        ///
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setKernelBuffer:offset:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setKernelBuffer_offset_attributeStride_atIndex(
@@ -324,6 +384,9 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn reset(&self);
 
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setThreadgroupMemoryLength:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setThreadgroupMemoryLength_atIndex(&self, length: NSUInteger, index: NSUInteger);

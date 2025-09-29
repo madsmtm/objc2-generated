@@ -48,6 +48,10 @@ impl MTLResidencySetDescriptor {
         pub unsafe fn initialCapacity(&self) -> NSUInteger;
 
         /// Setter for [`initialCapacity`][Self::initialCapacity].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setInitialCapacity:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInitialCapacity(&self, initial_capacity: NSUInteger);
@@ -112,7 +116,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `allocations` must be a valid pointer.
+        /// - `allocations` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(addAllocations:count:))]
         #[unsafe(method_family = none)]
         unsafe fn addAllocations_count(
@@ -132,7 +137,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `allocations` must be a valid pointer.
+        /// - `allocations` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(removeAllocations:count:))]
         #[unsafe(method_family = none)]
         unsafe fn removeAllocations_count(

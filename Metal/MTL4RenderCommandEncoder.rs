@@ -127,7 +127,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `viewports` must be a valid pointer.
+        /// - `viewports` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(setViewports:count:))]
         #[unsafe(method_family = none)]
         unsafe fn setViewports_count(&self, viewports: NonNull<MTLViewport>, count: NSUInteger);
@@ -148,7 +149,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `view_mappings` must be a valid pointer or null.
+        /// - `count` might not be bounds-checked.
+        /// - `view_mappings` must be a valid pointer or null.
         #[unsafe(method(setVertexAmplificationCount:viewMappings:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexAmplificationCount_viewMappings(
@@ -229,7 +231,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `scissor_rects` must be a valid pointer.
+        /// - `scissor_rects` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(setScissorRects:count:))]
         #[unsafe(method_family = none)]
         unsafe fn setScissorRects_count(
@@ -314,6 +317,10 @@ extern_protocol!(
         /// - offset: A location, in bytes, relative to the start of
         /// ``MTL4RenderPassDescriptor/visibilityResultBuffer`` The GPU stores
         /// the result of a visibility test at `offset`, which needs to be a multiple of `8`.
+        ///
+        /// # Safety
+        ///
+        /// `offset` might not be bounds-checked.
         #[unsafe(method(setVisibilityResultMode:offset:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibilityResultMode_offset(
@@ -329,6 +336,10 @@ extern_protocol!(
         /// - storeAction: A store action for the color attachment that
         /// can’t be ``MTLStoreAction/MTLStoreActionUnknown``.
         /// - colorAttachmentIndex: The index of a color attachment.
+        ///
+        /// # Safety
+        ///
+        /// `colorAttachmentIndex` might not be bounds-checked.
         #[unsafe(method(setColorStoreAction:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setColorStoreAction_atIndex(
@@ -368,6 +379,10 @@ extern_protocol!(
         /// - vertexStart: The lowest value the command passes to your vertex shader function’s parameter with the
         /// `[[vertex_id]]` attribute.
         /// - vertexCount: An integer that represents the number of vertices of `primitiveType` the command draws.
+        ///
+        /// # Safety
+        ///
+        /// `vertexCount` might not be bounds-checked.
         #[unsafe(method(drawPrimitives:vertexStart:vertexCount:))]
         #[unsafe(method_family = none)]
         unsafe fn drawPrimitives_vertexStart_vertexCount(
@@ -396,6 +411,11 @@ extern_protocol!(
         /// - vertexCount: An integer that represents the number of vertices of `primitiveType` the command draws.
         /// - instanceCount: An integer that represents the number of times the command draws `primitiveType` primitives
         /// with `vertexCount` vertices.
+        ///
+        /// # Safety
+        ///
+        /// - `vertexCount` might not be bounds-checked.
+        /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawPrimitives:vertexStart:vertexCount:instanceCount:))]
         #[unsafe(method_family = none)]
         unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount(
@@ -428,6 +448,11 @@ extern_protocol!(
         /// with `vertexCount` vertices.
         /// - baseInstance: The lowest value the command passes to your vertex shader function’s parameter with
         /// the `instance_id` attribute.
+        ///
+        /// # Safety
+        ///
+        /// - `vertexCount` might not be bounds-checked.
+        /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawPrimitives:vertexStart:vertexCount:instanceCount:baseInstance:))]
         #[unsafe(method_family = none)]
         unsafe fn drawPrimitives_vertexStart_vertexCount_instanceCount_baseInstance(
@@ -467,6 +492,13 @@ extern_protocol!(
         /// and a multiple of 4 if the format is ``MTLIndexType/MTLIndexTypeUInt32``.
         /// If this draw call causes Metal to read indices at or beyond the `indexBufferLength`, Metal
         /// continues to execute them assigning a value of `0` to the `vertex_id` attribute.
+        ///
+        /// # Safety
+        ///
+        /// - `indexCount` might not be bounds-checked.
+        /// - `indexType` might not be bounds-checked.
+        /// - `indexBuffer` might not be bounds-checked.
+        /// - `indexBufferLength` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferLength:))]
         #[unsafe(method_family = none)]
         unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferLength(
@@ -512,6 +544,14 @@ extern_protocol!(
         /// require loading indices at a byte offset of `indexBufferLength` or greater.
         /// - instanceCount: An integer that represents the number of times the command draws `primitiveType` with `indexCount`
         /// vertices.
+        ///
+        /// # Safety
+        ///
+        /// - `indexCount` might not be bounds-checked.
+        /// - `indexType` might not be bounds-checked.
+        /// - `indexBuffer` might not be bounds-checked.
+        /// - `indexBufferLength` might not be bounds-checked.
+        /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferLength:instanceCount:))]
         #[unsafe(method_family = none)]
         unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferLength_instanceCount(
@@ -564,6 +604,14 @@ extern_protocol!(
         /// attribute. Metal disregards this value and assigns `0` to the `vertex_id` attribute for all
         /// primitives that require loading indices at a byte offset of `indexBufferLength` or greater.
         /// - baseInstance: The lowest value the command passes to your vertex shader’s parameter with the `instance_id` attribute.
+        ///
+        /// # Safety
+        ///
+        /// - `indexCount` might not be bounds-checked.
+        /// - `indexType` might not be bounds-checked.
+        /// - `indexBuffer` might not be bounds-checked.
+        /// - `indexBufferLength` might not be bounds-checked.
+        /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferLength:instanceCount:baseVertex:baseInstance:))]
         #[unsafe(method_family = none)]
         unsafe fn drawIndexedPrimitives_indexCount_indexType_indexBuffer_indexBufferLength_instanceCount_baseVertex_baseInstance(
@@ -646,6 +694,12 @@ extern_protocol!(
         /// continues to execute them assigning a value of `0` to the `vertex_id` attribute.
         /// - indirectBuffer: GPUAddress of an ``MTLBuffer`` instance with data that matches the layout of the
         /// ``MTLDrawIndexedPrimitivesIndirectArguments`` structure. This address requires 4-byte alignment.
+        ///
+        /// # Safety
+        ///
+        /// - `indexType` might not be bounds-checked.
+        /// - `indexBuffer` might not be bounds-checked.
+        /// - `indexBufferLength` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexType:indexBuffer:indexBufferLength:indirectBuffer:))]
         #[unsafe(method_family = none)]
         unsafe fn drawIndexedPrimitives_indexType_indexBuffer_indexBufferLength_indirectBuffer(
@@ -667,6 +721,10 @@ extern_protocol!(
         /// - Parameters:
         /// - indirectCommandBuffer: A ``MTLIndirectCommandBuffer`` instance containing other commands that the current command runs.
         /// - executionRange: A span of integers that represent the command entries in the buffer that the current command runs.
+        ///
+        /// # Safety
+        ///
+        /// `executionRange` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_withRange(
@@ -699,6 +757,10 @@ extern_protocol!(
         /// the current command runs.
         /// - indirectRangeBuffer: GPUAddress of a ``MTLBuffer`` instance with data that matches the layout of the
         /// ``MTLIndirectCommandBufferExecutionRange`` structure. This address requires 4-byte alignment.
+        ///
+        /// # Safety
+        ///
+        /// `indirectRangeBuffer` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:indirectBuffer:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_indirectBuffer(
@@ -713,6 +775,10 @@ extern_protocol!(
         /// - length: The size of the threadgroup memory, in bytes.
         /// - index: An integer that corresponds to the index of the argument you annotate with attribute `[[threadgroup(index)]]`
         /// in the shader function.
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setObjectThreadgroupMemoryLength:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectThreadgroupMemoryLength_atIndex(
@@ -806,6 +872,11 @@ extern_protocol!(
         /// at `index` where the threadgroup memory begins.
         /// - index: An integer that corresponds to the index of the argument you annotate with attribute `[[threadgroup(index)]]`
         /// in the shader function.
+        ///
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setThreadgroupMemoryLength:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setThreadgroupMemoryLength_offset_atIndex(
@@ -857,6 +928,11 @@ extern_protocol!(
         /// ``MTLRenderStages/MTLRenderStageVertex``.
         /// - counterHeap: ``MTL4CounterHeap`` into which Metal writes timestamps.
         /// - index: The index value into which Metal writes this timestamp.
+        ///
+        /// # Safety
+        ///
+        /// - `counterHeap` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(writeTimestampWithGranularity:afterStage:intoHeap:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn writeTimestampWithGranularity_afterStage_intoHeap_atIndex(

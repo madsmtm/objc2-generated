@@ -161,6 +161,10 @@ extern_protocol!(
     #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
     pub unsafe trait MTLIntersectionFunctionTable: MTLResource {
         #[cfg(feature = "MTLBuffer")]
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffer_offset_atIndex(
@@ -174,7 +178,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffers` must be a valid pointer.
+        /// - `offsets` might not be bounds-checked.
         /// - `offsets` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffers_offsets_withRange(
@@ -202,7 +208,8 @@ extern_protocol!(
         #[cfg(feature = "MTLFunctionHandle")]
         /// # Safety
         ///
-        /// `functions` must be a valid pointer.
+        /// - `functions` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setFunctions:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setFunctions_withRange(
@@ -211,6 +218,9 @@ extern_protocol!(
             range: NSRange,
         );
 
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setOpaqueTriangleIntersectionFunctionWithSignature:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setOpaqueTriangleIntersectionFunctionWithSignature_atIndex(
@@ -219,6 +229,9 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        /// # Safety
+        ///
+        /// `range` might not be bounds-checked.
         #[unsafe(method(setOpaqueTriangleIntersectionFunctionWithSignature:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setOpaqueTriangleIntersectionFunctionWithSignature_withRange(
@@ -227,6 +240,9 @@ extern_protocol!(
             range: NSRange,
         );
 
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setOpaqueCurveIntersectionFunctionWithSignature:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setOpaqueCurveIntersectionFunctionWithSignature_atIndex(
@@ -235,6 +251,9 @@ extern_protocol!(
             index: NSUInteger,
         );
 
+        /// # Safety
+        ///
+        /// `range` might not be bounds-checked.
         #[unsafe(method(setOpaqueCurveIntersectionFunctionWithSignature:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setOpaqueCurveIntersectionFunctionWithSignature_withRange(
@@ -244,6 +263,9 @@ extern_protocol!(
         );
 
         #[cfg(feature = "MTLVisibleFunctionTable")]
+        /// # Safety
+        ///
+        /// `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTable_atBufferIndex(
@@ -255,7 +277,8 @@ extern_protocol!(
         #[cfg(feature = "MTLVisibleFunctionTable")]
         /// # Safety
         ///
-        /// `function_tables` must be a valid pointer.
+        /// - `function_tables` must be a valid pointer.
+        /// - `bufferRange` might not be bounds-checked.
         #[unsafe(method(setVisibleFunctionTables:withBufferRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTables_withBufferRange(

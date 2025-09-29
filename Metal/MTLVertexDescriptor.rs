@@ -249,6 +249,9 @@ extern_conformance!(
 
 impl MTLVertexBufferLayoutDescriptorArray {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -256,6 +259,9 @@ impl MTLVertexBufferLayoutDescriptorArray {
             index: NSUInteger,
         ) -> Retained<MTLVertexBufferLayoutDescriptor>;
 
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(
@@ -314,6 +320,10 @@ impl MTLVertexAttributeDescriptor {
         pub fn offset(&self) -> NSUInteger;
 
         /// Setter for [`offset`][Self::offset].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setOffset(&self, offset: NSUInteger);
@@ -323,6 +333,10 @@ impl MTLVertexAttributeDescriptor {
         pub fn bufferIndex(&self) -> NSUInteger;
 
         /// Setter for [`bufferIndex`][Self::bufferIndex].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setBufferIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBufferIndex(&self, buffer_index: NSUInteger);
@@ -362,6 +376,9 @@ extern_conformance!(
 
 impl MTLVertexAttributeDescriptorArray {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -369,6 +386,9 @@ impl MTLVertexAttributeDescriptorArray {
             index: NSUInteger,
         ) -> Retained<MTLVertexAttributeDescriptor>;
 
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(

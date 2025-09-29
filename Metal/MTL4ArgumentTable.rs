@@ -40,6 +40,10 @@ impl MTL4ArgumentTableDescriptor {
         pub unsafe fn maxBufferBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxBufferBindCount`][Self::maxBufferBindCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMaxBufferBindCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxBufferBindCount(&self, max_buffer_bind_count: NSUInteger);
@@ -52,6 +56,10 @@ impl MTL4ArgumentTableDescriptor {
         pub unsafe fn maxTextureBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxTextureBindCount`][Self::maxTextureBindCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMaxTextureBindCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxTextureBindCount(&self, max_texture_bind_count: NSUInteger);
@@ -64,6 +72,10 @@ impl MTL4ArgumentTableDescriptor {
         pub unsafe fn maxSamplerStateBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxSamplerStateBindCount`][Self::maxSamplerStateBindCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMaxSamplerStateBindCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxSamplerStateBindCount(&self, max_sampler_state_bind_count: NSUInteger);
@@ -140,6 +152,10 @@ extern_protocol!(
         /// It is an error for this value to match or exceed the value of property
         /// ``MTL4ArgumentTableDescriptor/maxBufferBindCount`` on the descriptor
         /// from which you created this argument table.
+        ///
+        /// # Safety
+        ///
+        /// `bindingIndex` might not be bounds-checked.
         #[unsafe(method(setAddress:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setAddress_atIndex(&self, gpu_address: MTLGPUAddress, binding_index: NSUInteger);
@@ -157,6 +173,10 @@ extern_protocol!(
         /// It is an error for this value to match or exceed the value of property
         /// ``MTL4ArgumentTableDescriptor/maxBufferBindCount`` on the descriptor
         /// from which you created this argument table.
+        ///
+        /// # Safety
+        ///
+        /// `bindingIndex` might not be bounds-checked.
         #[unsafe(method(setAddress:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setAddress_attributeStride_atIndex(
@@ -175,6 +195,10 @@ extern_protocol!(
         /// It is an error for this value to match or exceed the value of property
         /// ``MTL4ArgumentTableDescriptor/maxBufferBindCount`` on the descriptor
         /// from which you created this argument table.
+        ///
+        /// # Safety
+        ///
+        /// `bindingIndex` might not be bounds-checked.
         #[unsafe(method(setResource:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setResource_atBufferIndex(
@@ -192,6 +216,10 @@ extern_protocol!(
         /// It is an error for this value to match or exceed the value of property
         /// ``MTL4ArgumentTableDescriptor/maxTextureBindCount`` on the descriptor
         /// from which you created this argument table.
+        ///
+        /// # Safety
+        ///
+        /// `bindingIndex` might not be bounds-checked.
         #[unsafe(method(setTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTexture_atIndex(&self, resource_id: MTLResourceID, binding_index: NSUInteger);
@@ -205,6 +233,10 @@ extern_protocol!(
         /// It is an error for this value to match or exceed the value of property
         /// ``MTL4ArgumentTableDescriptor/maxSamplerStateBindCount`` on the descriptor
         /// from which you created this argument table.
+        ///
+        /// # Safety
+        ///
+        /// `bindingIndex` might not be bounds-checked.
         #[unsafe(method(setSamplerState:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setSamplerState_atIndex(

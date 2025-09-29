@@ -120,10 +120,17 @@ impl MTLFunctionStitchingInputNode {
         pub unsafe fn argumentIndex(&self) -> NSUInteger;
 
         /// Setter for [`argumentIndex`][Self::argumentIndex].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setArgumentIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setArgumentIndex(&self, argument_index: NSUInteger);
 
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(initWithArgumentIndex:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithArgumentIndex(
