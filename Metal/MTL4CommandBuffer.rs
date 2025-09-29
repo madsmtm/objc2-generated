@@ -236,7 +236,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `residency_sets` must be a valid pointer.
+        /// - `residency_sets` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(useResidencySets:count:))]
         #[unsafe(method_family = none)]
         unsafe fn useResidencySets_count(
@@ -268,6 +269,11 @@ extern_protocol!(
         /// - Parameters:
         /// - counterHeap: ``MTL4CounterHeap`` to write the timestamp into.
         /// - index: The index within the ``MTL4CounterHeap`` that Metal writes the timestamp to.
+        ///
+        /// # Safety
+        ///
+        /// - `counterHeap` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(writeTimestampIntoHeap:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn writeTimestampIntoHeap_atIndex(
@@ -311,6 +317,12 @@ extern_protocol!(
         /// - bufferRange: The buffer the command saves the data it resolves into.
         /// - fenceToWait: A fence the GPU waits for before starting, if applicable; otherwise `nil`.
         /// - fenceToUpdate: A fence the system updates after the command finishes resolving the data; otherwise `nil`.
+        ///
+        /// # Safety
+        ///
+        /// - `counterHeap` might not be bounds-checked.
+        /// - `range` might not be bounds-checked.
+        /// - `bufferRange` might not be bounds-checked.
         #[unsafe(method(resolveCounterHeap:withRange:intoBuffer:waitFence:updateFence:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveCounterHeap_withRange_intoBuffer_waitFence_updateFence(

@@ -93,6 +93,10 @@ impl MTLTensorExtents {
         /// - Parameters:
         /// - dimensionIndex: the index of the dimension. The first dimension is the innermost dimension.
         /// - Returns: the extent at `dimensionIndex`. This method returns -1 if `dimensionIndex` is greater than or equal to `rank`.
+        ///
+        /// # Safety
+        ///
+        /// `dimensionIndex` might not be bounds-checked.
         #[unsafe(method(extentAtDimensionIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn extentAtDimensionIndex(&self, dimension_index: NSUInteger) -> NSInteger;

@@ -36,6 +36,10 @@ impl MTLResourceViewPoolDescriptor {
         pub unsafe fn resourceViewCount(&self) -> NSUInteger;
 
         /// Setter for [`resourceViewCount`][Self::resourceViewCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setResourceViewCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setResourceViewCount(&self, resource_view_count: NSUInteger);
@@ -103,6 +107,11 @@ extern_protocol!(
         /// - destinationIndex: The starting index in this destination view pool into which to copy the source range of resource views.
         ///
         /// - Returns: The ``MTLResourceID`` of the resource view corresponding to `destinationIndex` of the copy in this resource view pool.
+        ///
+        /// # Safety
+        ///
+        /// - `sourceRange` might not be bounds-checked.
+        /// - `destinationIndex` might not be bounds-checked.
         #[unsafe(method(copyResourceViewsFromPool:sourceRange:destinationIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn copyResourceViewsFromPool_sourceRange_destinationIndex(

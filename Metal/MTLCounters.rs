@@ -252,6 +252,10 @@ impl MTLCounterSampleBufferDescriptor {
         pub unsafe fn counterSet(&self) -> Option<Retained<ProtocolObject<dyn MTLCounterSet>>>;
 
         /// Setter for [`counterSet`][Self::counterSet].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setCounterSet:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCounterSet(&self, counter_set: Option<&ProtocolObject<dyn MTLCounterSet>>);
@@ -285,6 +289,10 @@ impl MTLCounterSampleBufferDescriptor {
         pub unsafe fn sampleCount(&self) -> NSUInteger;
 
         /// Setter for [`sampleCount`][Self::sampleCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setSampleCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSampleCount(&self, sample_count: NSUInteger);
@@ -335,6 +343,10 @@ extern_protocol!(
         ///
         /// Samples that encountered an error during resolve will be set to
         /// MTLCounterErrorValue.
+        ///
+        /// # Safety
+        ///
+        /// `range` might not be bounds-checked.
         #[unsafe(method(resolveCounterRange:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveCounterRange(&self, range: NSRange) -> Option<Retained<NSData>>;

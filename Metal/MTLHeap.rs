@@ -328,6 +328,10 @@ extern_protocol!(
         /// Parameter `offset`: The requested offset of the buffer inside the heap, in bytes. Behavior is undefined if "offset + requiredSize > heap.size" or "offset % requiredAlignment != 0".
         ///
         /// Returns: The buffer, or nil if the heap is not a placement heap
+        ///
+        /// # Safety
+        ///
+        /// `offset` might not be bounds-checked.
         #[unsafe(method(newBufferWithLength:options:offset:))]
         #[unsafe(method_family = new)]
         unsafe fn newBufferWithLength_options_offset(
@@ -349,6 +353,10 @@ extern_protocol!(
         /// Parameter `offset`: The requested offset of the texture inside the heap, in bytes. Behavior is undefined if "offset + requiredSize > heap.size" and "offset % requiredAlignment != 0".
         ///
         /// Returns: The texture, or nil if the heap is not a placement heap.
+        ///
+        /// # Safety
+        ///
+        /// `offset` might not be bounds-checked.
         #[unsafe(method(newTextureWithDescriptor:offset:))]
         #[unsafe(method_family = new)]
         unsafe fn newTextureWithDescriptor_offset(
@@ -393,6 +401,10 @@ extern_protocol!(
         /// Parameter `offset`: The requested offset of the acceleration structure inside the heap, in bytes. Behavior is undefined if "offset + requiredSize > heap.size" or "offset % requiredAlignment != 0".
         ///
         /// Returns: The acceleration structure, or nil if the heap is not a placement heap
+        ///
+        /// # Safety
+        ///
+        /// `offset` might not be bounds-checked.
         #[unsafe(method(newAccelerationStructureWithSize:offset:))]
         #[unsafe(method_family = new)]
         unsafe fn newAccelerationStructureWithSize_offset(
@@ -414,6 +426,10 @@ extern_protocol!(
         /// Parameter `offset`: The requested offset of the acceleration structure inside the heap, in bytes. Behavior is undefined if "offset + requiredSize > heap.size" or "offset % requiredAlignment != 0".
         ///
         /// Returns: The acceleration structure, or nil if the heap is not a placement heap
+        ///
+        /// # Safety
+        ///
+        /// `offset` might not be bounds-checked.
         #[unsafe(method(newAccelerationStructureWithDescriptor:offset:))]
         #[unsafe(method_family = new)]
         unsafe fn newAccelerationStructureWithDescriptor_offset(

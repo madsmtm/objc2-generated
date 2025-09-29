@@ -84,6 +84,10 @@ extern_protocol!(
         /// after the refit has started/completed.
         ///
         /// Parameter `scratchBufferOffset`: Offset into the scratch buffer.
+        ///
+        /// # Safety
+        ///
+        /// `scratchBufferOffset` might not be bounds-checked.
         #[unsafe(method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset(
@@ -134,6 +138,10 @@ extern_protocol!(
         /// Parameter `scratchBufferOffset`: Offset into the scratch buffer.
         ///
         /// Parameter `options`: Options specifying the elements of the acceleration structure to refit.
+        ///
+        /// # Safety
+        ///
+        /// `scratchBufferOffset` might not be bounds-checked.
         #[unsafe(method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:))]
         #[unsafe(method_family = none)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options(
@@ -227,6 +235,10 @@ extern_protocol!(
         ///
         /// Parameter `sizeDataType`: Data type of the size to write into the buffer. Must be either
         /// MTLDataTypeUInt (32 bit) or MTLDataTypeULong (64 bit)
+        ///
+        /// # Safety
+        ///
+        /// `offset` might not be bounds-checked.
         #[unsafe(method(writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:))]
         #[unsafe(method_family = none)]
         unsafe fn writeCompactedAccelerationStructureSize_toBuffer_offset_sizeDataType(
@@ -303,7 +315,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `resources` must be a valid pointer.
+        /// - `resources` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(useResources:count:usage:))]
         #[unsafe(method_family = none)]
         unsafe fn useResources_count_usage(
@@ -332,7 +345,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `heaps` must be a valid pointer.
+        /// - `heaps` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(useHeaps:count:))]
         #[unsafe(method_family = none)]
         unsafe fn useHeaps_count(
@@ -357,6 +371,10 @@ extern_protocol!(
         /// In general, passing YES will lead to more repeatable counter results but
         /// may negatively impact performance.  Passing NO will generally be higher performance
         /// but counter results may not be repeatable.
+        ///
+        /// # Safety
+        ///
+        /// `sampleIndex` might not be bounds-checked.
         #[unsafe(method(sampleCountersInBuffer:atSampleIndex:withBarrier:))]
         #[unsafe(method_family = none)]
         unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
@@ -422,6 +440,10 @@ impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
         pub unsafe fn startOfEncoderSampleIndex(&self) -> NSUInteger;
 
         /// Setter for [`startOfEncoderSampleIndex`][Self::startOfEncoderSampleIndex].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setStartOfEncoderSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStartOfEncoderSampleIndex(
@@ -441,6 +463,10 @@ impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptor {
         pub unsafe fn endOfEncoderSampleIndex(&self) -> NSUInteger;
 
         /// Setter for [`endOfEncoderSampleIndex`][Self::endOfEncoderSampleIndex].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setEndOfEncoderSampleIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setEndOfEncoderSampleIndex(&self, end_of_encoder_sample_index: NSUInteger);
@@ -473,6 +499,9 @@ extern_conformance!(
 
 impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -480,6 +509,9 @@ impl MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray {
             attachment_index: NSUInteger,
         ) -> Retained<MTLAccelerationStructurePassSampleBufferAttachmentDescriptor>;
 
+        /// # Safety
+        ///
+        /// `attachmentIndex` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(

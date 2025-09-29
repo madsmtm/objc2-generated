@@ -74,7 +74,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `residency_sets` must be a valid pointer.
+        /// - `residency_sets` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(addResidencySets:count:))]
         #[unsafe(method_family = none)]
         unsafe fn addResidencySets_count(
@@ -94,7 +95,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `residency_sets` must be a valid pointer.
+        /// - `residency_sets` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(removeResidencySets:count:))]
         #[unsafe(method_family = none)]
         unsafe fn removeResidencySets_count(
@@ -133,6 +135,10 @@ impl MTLCommandQueueDescriptor {
         pub unsafe fn maxCommandBufferCount(&self) -> NSUInteger;
 
         /// Setter for [`maxCommandBufferCount`][Self::maxCommandBufferCount].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMaxCommandBufferCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMaxCommandBufferCount(&self, max_command_buffer_count: NSUInteger);

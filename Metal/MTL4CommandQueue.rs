@@ -395,7 +395,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `command_buffers` must be a valid pointer.
+        /// - `command_buffers` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(commit:count:))]
         #[unsafe(method_family = none)]
         unsafe fn commit_count(
@@ -428,7 +429,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `command_buffers` must be a valid pointer.
+        /// - `command_buffers` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(commit:count:options:))]
         #[unsafe(method_family = none)]
         unsafe fn commit_count_options(
@@ -524,7 +526,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `residency_sets` must be a valid pointer.
+        /// - `residency_sets` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(addResidencySets:count:))]
         #[unsafe(method_family = none)]
         unsafe fn addResidencySets_count(
@@ -556,7 +559,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `residency_sets` must be a valid pointer.
+        /// - `residency_sets` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(removeResidencySets:count:))]
         #[unsafe(method_family = none)]
         unsafe fn removeResidencySets_count(
@@ -592,7 +596,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `operations` must be a valid pointer.
+        /// - `operations` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(updateTextureMappings:heap:operations:count:))]
         #[unsafe(method_family = none)]
         unsafe fn updateTextureMappings_heap_operations_count(
@@ -628,7 +633,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `operations` must be a valid pointer.
+        /// - `operations` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(copyTextureMappingsFromTexture:toTexture:operations:count:))]
         #[unsafe(method_family = none)]
         unsafe fn copyTextureMappingsFromTexture_toTexture_operations_count(
@@ -661,7 +667,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `operations` must be a valid pointer.
+        /// - `operations` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(updateBufferMappings:heap:operations:count:))]
         #[unsafe(method_family = none)]
         unsafe fn updateBufferMappings_heap_operations_count(
@@ -696,7 +703,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `operations` must be a valid pointer.
+        /// - `operations` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(copyBufferMappingsFromBuffer:toBuffer:operations:count:))]
         #[unsafe(method_family = none)]
         unsafe fn copyBufferMappingsFromBuffer_toBuffer_operations_count(

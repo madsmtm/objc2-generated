@@ -49,6 +49,10 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Sets the destination buffer and offset at which the arguments will be encoded.
+        ///
+        /// # Safety
+        ///
+        /// `offset` might not be bounds-checked.
         #[unsafe(method(setArgumentBuffer:offset:))]
         #[unsafe(method_family = none)]
         unsafe fn setArgumentBuffer_offset(
@@ -64,6 +68,10 @@ extern_protocol!(
         ))]
         /// Sets the destination buffer, starting offset and specific array element arguments will be encoded into. arrayElement represents
         /// the desired element of IAB array targetted by encoding
+        ///
+        /// # Safety
+        ///
+        /// `startOffset` might not be bounds-checked.
         #[unsafe(method(setArgumentBuffer:startOffset:arrayElement:))]
         #[unsafe(method_family = none)]
         unsafe fn setArgumentBuffer_startOffset_arrayElement(
@@ -79,6 +87,11 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a buffer at the given bind point index.
+        ///
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffer_offset_atIndex(
@@ -98,7 +111,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffers` must be a valid pointer.
+        /// - `offsets` might not be bounds-checked.
         /// - `offsets` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffers_offsets_withRange(
@@ -114,6 +129,10 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set a texture at the given bind point index.
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTexture_atIndex(
@@ -131,7 +150,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `textures` must be a valid pointer.
+        /// - `textures` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setTextures:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setTextures_withRange(
@@ -142,6 +162,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set a sampler at the given bind point index.
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setSamplerState:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setSamplerState_atIndex(
@@ -155,7 +179,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `samplers` must be a valid pointer.
+        /// - `samplers` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setSamplerStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setSamplerStates_withRange(
@@ -165,12 +190,20 @@ extern_protocol!(
         );
 
         /// Returns a pointer to the constant data at the given bind point index.
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(constantDataAtIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn constantDataAtIndex(&self, index: NSUInteger) -> NonNull<c_void>;
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLRenderPipeline"))]
         /// Sets a render pipeline state at a given bind point index
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setRenderPipelineState:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setRenderPipelineState_atIndex(
@@ -184,7 +217,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `pipelines` must be a valid pointer.
+        /// - `pipelines` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setRenderPipelineStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setRenderPipelineStates_withRange(
@@ -195,6 +229,10 @@ extern_protocol!(
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLComputePipeline"))]
         /// Sets a compute pipeline state at a given bind point index
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setComputePipelineState:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setComputePipelineState_atIndex(
@@ -208,7 +246,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `pipelines` must be a valid pointer.
+        /// - `pipelines` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setComputePipelineStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setComputePipelineStates_withRange(
@@ -223,6 +262,10 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Sets an indirect command buffer at a given bind point index
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setIndirectCommandBuffer:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setIndirectCommandBuffer_atIndex(
@@ -240,7 +283,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `buffers` must be a valid pointer.
+        /// - `buffers` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setIndirectCommandBuffers:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setIndirectCommandBuffers_withRange(
@@ -254,6 +298,9 @@ extern_protocol!(
             feature = "MTLAllocation",
             feature = "MTLResource"
         ))]
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setAccelerationStructure:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccelerationStructure_atIndex(
@@ -265,6 +312,10 @@ extern_protocol!(
         /// Returns a pointer to a new MTLArgumentEncoder that can be used to encode the an argument buffer
         /// in the buffer associated with a given index.
         /// Returns nil if the resource at the given index is not an argument buffer.
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(newArgumentEncoderForBufferAtIndex:))]
         #[unsafe(method_family = new)]
         unsafe fn newArgumentEncoderForBufferAtIndex(
@@ -278,6 +329,10 @@ extern_protocol!(
             feature = "MTLVisibleFunctionTable"
         ))]
         /// Set a visible function table at the given buffer index
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setVisibleFunctionTable:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTable_atIndex(
@@ -295,7 +350,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `visible_function_tables` must be a valid pointer.
+        /// - `visible_function_tables` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setVisibleFunctionTables:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTables_withRange(
@@ -310,6 +366,10 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set an intersection function table at the given buffer index
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setIntersectionFunctionTable:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setIntersectionFunctionTable_atIndex(
@@ -327,7 +387,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `intersection_function_tables` must be a valid pointer.
+        /// - `intersection_function_tables` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setIntersectionFunctionTables:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setIntersectionFunctionTables_withRange(
@@ -340,6 +401,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLDepthStencil")]
         /// Sets a depth stencil state at a given bind point index
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setDepthStencilState:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setDepthStencilState_atIndex(
@@ -353,7 +418,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `depth_stencil_states` must be a valid pointer.
+        /// - `depth_stencil_states` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setDepthStencilStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setDepthStencilStates_withRange(

@@ -113,6 +113,9 @@ extern_conformance!(
 
 impl MTLPipelineBufferDescriptorArray {
     extern_methods!(
+        /// # Safety
+        ///
+        /// `bufferIndex` might not be bounds-checked.
         #[unsafe(method(objectAtIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn objectAtIndexedSubscript(
@@ -120,6 +123,9 @@ impl MTLPipelineBufferDescriptorArray {
             buffer_index: NSUInteger,
         ) -> Retained<MTLPipelineBufferDescriptor>;
 
+        /// # Safety
+        ///
+        /// `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setObject:atIndexedSubscript:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setObject_atIndexedSubscript(

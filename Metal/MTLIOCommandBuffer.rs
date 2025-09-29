@@ -57,7 +57,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `pointer` must be a valid pointer.
+        /// - `pointer` must be a valid pointer.
+        /// - `sourceHandleOffset` might not be bounds-checked.
         #[unsafe(method(loadBytes:size:sourceHandle:sourceHandleOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn loadBytes_size_sourceHandle_sourceHandleOffset(
@@ -76,6 +77,11 @@ extern_protocol!(
         ))]
         /// Encodes a command that loads from a handle
         /// and offset into a buffer and an offset.
+        ///
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `sourceHandleOffset` might not be bounds-checked.
         #[unsafe(method(loadBuffer:offset:size:sourceHandle:sourceHandleOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn loadBuffer_offset_size_sourceHandle_sourceHandleOffset(
@@ -96,6 +102,10 @@ extern_protocol!(
         ))]
         /// Encodes a command that loads a region from a handle
         /// and offset into a texture at a given slice, level and origin.
+        ///
+        /// # Safety
+        ///
+        /// `sourceHandleOffset` might not be bounds-checked.
         #[unsafe(method(loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn loadTexture_slice_level_size_sourceBytesPerRow_sourceBytesPerImage_destinationOrigin_sourceHandle_sourceHandleOffset(
@@ -118,6 +128,10 @@ extern_protocol!(
         ))]
         /// Encodes a command that writes the status of this commandBuffer upon completion
         /// to a buffer at a given offset
+        ///
+        /// # Safety
+        ///
+        /// `offset` might not be bounds-checked.
         #[unsafe(method(copyStatusToBuffer:offset:))]
         #[unsafe(method_family = none)]
         unsafe fn copyStatusToBuffer_offset(

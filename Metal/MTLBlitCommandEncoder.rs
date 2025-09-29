@@ -106,6 +106,10 @@ extern_protocol!(
             feature = "MTLTypes"
         ))]
         /// Copy an image from a buffer into a texture.
+        ///
+        /// # Safety
+        ///
+        /// `sourceOffset` might not be bounds-checked.
         #[unsafe(method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
@@ -129,6 +133,10 @@ extern_protocol!(
             feature = "MTLTypes"
         ))]
         /// Copy an image from a buffer into a texture.
+        ///
+        /// # Safety
+        ///
+        /// `sourceOffset` might not be bounds-checked.
         #[unsafe(method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options(
@@ -153,6 +161,10 @@ extern_protocol!(
             feature = "MTLTypes"
         ))]
         /// Copy an image from a texture into a buffer.
+        ///
+        /// # Safety
+        ///
+        /// `destinationOffset` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage(
@@ -176,6 +188,10 @@ extern_protocol!(
             feature = "MTLTypes"
         ))]
         /// Copy an image from a texture into a buffer.
+        ///
+        /// # Safety
+        ///
+        /// `destinationOffset` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_options(
@@ -232,6 +248,11 @@ extern_protocol!(
         /// The destinationTexture must have at least destinationLevel + levelCount mips
         /// The sourceTexture must have at least sourceSlice + sliceCount array slices
         /// The destinationTexture must have at least destinationSlice + sliceCount array slices
+        ///
+        /// # Safety
+        ///
+        /// - `sliceCount` might not be bounds-checked.
+        /// - `levelCount` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_toTexture_destinationSlice_destinationLevel_sliceCount_levelCount(
@@ -276,6 +297,11 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Basic memory copy between buffers.
+        ///
+        /// # Safety
+        ///
+        /// - `sourceOffset` might not be bounds-checked.
+        /// - `destinationOffset` might not be bounds-checked.
         #[unsafe(method(copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size(
@@ -313,6 +339,12 @@ extern_protocol!(
             feature = "MTLTypes"
         ))]
         /// Copies tile access counters within specified region into provided buffer
+        ///
+        /// # Safety
+        ///
+        /// - `resetCounters` might not be bounds-checked.
+        /// - `countersBuffer` might not be bounds-checked.
+        /// - `countersBufferOffset` might not be bounds-checked.
         #[optional]
         #[unsafe(method(getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:))]
         #[unsafe(method_family = none)]
@@ -334,6 +366,10 @@ extern_protocol!(
             feature = "MTLTypes"
         ))]
         /// Resets tile access counters within specified region
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[optional]
         #[unsafe(method(resetTextureAccessCounters:region:mipLevel:slice:))]
         #[unsafe(method_family = none)]
@@ -401,6 +437,10 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// reset commands in a indirect command buffer using the GPU
+        ///
+        /// # Safety
+        ///
+        /// `range` might not be bounds-checked.
         #[unsafe(method(resetCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn resetCommandsInBuffer_withRange(
@@ -415,6 +455,11 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// copy a region of a buffer into a destination buffer starting at destinationIndex using the GPU
+        ///
+        /// # Safety
+        ///
+        /// - `sourceRange` might not be bounds-checked.
+        /// - `destinationIndex` might not be bounds-checked.
         #[unsafe(method(copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn copyIndirectCommandBuffer_sourceRange_destination_destinationIndex(
@@ -431,6 +476,10 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Encodes a command that can improve the performance of a range of commands within an indirect command buffer.
+        ///
+        /// # Safety
+        ///
+        /// `range` might not be bounds-checked.
         #[unsafe(method(optimizeIndirectCommandBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn optimizeIndirectCommandBuffer_withRange(
@@ -458,6 +507,10 @@ extern_protocol!(
         ///
         /// On devices where MTLCounterSamplingPointAtBlitBoundary is unsupported,
         /// this method is not available and will generate an error if called.
+        ///
+        /// # Safety
+        ///
+        /// `sampleIndex` might not be bounds-checked.
         #[unsafe(method(sampleCountersInBuffer:atSampleIndex:withBarrier:))]
         #[unsafe(method_family = none)]
         unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(
@@ -486,6 +539,11 @@ extern_protocol!(
         ///
         /// Samples that encountered an error during resolve will be set to
         /// MTLCounterErrorValue.
+        ///
+        /// # Safety
+        ///
+        /// - `range` might not be bounds-checked.
+        /// - `destinationOffset` might not be bounds-checked.
         #[unsafe(method(resolveCounters:inRange:destinationBuffer:destinationOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn resolveCounters_inRange_destinationBuffer_destinationOffset(

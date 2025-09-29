@@ -76,7 +76,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bytes` must be a valid pointer.
+        /// - `bytes` must be a valid pointer.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setBytes:length:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setBytes_length_atIndex(
@@ -92,6 +93,11 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a global buffer for all compute kernels at the given bind point index.
+        ///
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setBuffer:offset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffer_offset_atIndex(
@@ -102,6 +108,11 @@ extern_protocol!(
         );
 
         /// Set the offset within the current global buffer for all compute kernels at the given bind point index.
+        ///
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setBufferOffset:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setBufferOffset_atIndex(&self, offset: NSUInteger, index: NSUInteger);
@@ -116,7 +127,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffers` must be a valid pointer.
+        /// - `offsets` might not be bounds-checked.
         /// - `offsets` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setBuffers:offsets:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffers_offsets_withRange(
@@ -134,6 +147,11 @@ extern_protocol!(
         /// sets kernel buffer at specified index with provided offset and stride.
         /// only call this when the kernel-buffer is part of the stageInputDescriptor
         /// and has set its stride to `MTLBufferLayoutStrideDynamic`
+        ///
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setBuffer:offset:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffer_offset_attributeStride_atIndex(
@@ -156,8 +174,10 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffers` must be a valid pointer.
+        /// - `offsets` might not be bounds-checked.
         /// - `offsets` must be a valid pointer.
         /// - `strides` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setBuffers:offsets:attributeStrides:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setBuffers_offsets_attributeStrides_withRange(
@@ -170,6 +190,11 @@ extern_protocol!(
 
         /// only call this when the buffer-index is part of the stageInputDescriptor
         /// and has set its stride to `MTLBufferLayoutStrideDynamic`
+        ///
+        /// # Safety
+        ///
+        /// - `offset` might not be bounds-checked.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setBufferOffset:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setBufferOffset_attributeStride_atIndex(
@@ -184,7 +209,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bytes` must be a valid pointer.
+        /// - `bytes` must be a valid pointer.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setBytes:length:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setBytes_length_attributeStride_atIndex(
@@ -201,6 +227,10 @@ extern_protocol!(
             feature = "MTLVisibleFunctionTable"
         ))]
         /// Set a visible function table at the given buffer index
+        ///
+        /// # Safety
+        ///
+        /// `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTable_atBufferIndex(
@@ -218,7 +248,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `visible_function_tables` must be a valid pointer.
+        /// - `visible_function_tables` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setVisibleFunctionTables:withBufferRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTables_withBufferRange(
@@ -233,6 +264,10 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a visible function table at the given buffer index
+        ///
+        /// # Safety
+        ///
+        /// `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setIntersectionFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setIntersectionFunctionTable_atBufferIndex(
@@ -250,7 +285,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `intersection_function_tables` must be a valid pointer.
+        /// - `intersection_function_tables` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setIntersectionFunctionTables:withBufferRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setIntersectionFunctionTables_withBufferRange(
@@ -267,6 +303,10 @@ extern_protocol!(
             feature = "MTLResource"
         ))]
         /// Set a global raytracing acceleration structure for all compute kernels at the given buffer bind point index.
+        ///
+        /// # Safety
+        ///
+        /// `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setAccelerationStructure:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccelerationStructure_atBufferIndex(
@@ -281,6 +321,10 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Set a global texture for all compute kernels at the given bind point index.
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTexture_atIndex(
@@ -298,7 +342,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `textures` must be a valid pointer.
+        /// - `textures` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setTextures:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setTextures_withRange(
@@ -309,6 +354,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set a global sampler for all compute kernels at the given bind point index.
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setSamplerState:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setSamplerState_atIndex(
@@ -322,7 +371,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `samplers` must be a valid pointer.
+        /// - `samplers` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setSamplerStates:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setSamplerStates_withRange(
@@ -333,6 +383,10 @@ extern_protocol!(
 
         #[cfg(feature = "MTLSampler")]
         /// Set a global sampler for all compute kernels at the given bind point index.
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setSamplerState:lodMinClamp:lodMaxClamp:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setSamplerState_lodMinClamp_lodMaxClamp_atIndex(
@@ -351,6 +405,7 @@ extern_protocol!(
         /// - `samplers` must be a valid pointer.
         /// - `lod_min_clamps` must be a valid pointer.
         /// - `lod_max_clamps` must be a valid pointer.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(setSamplerStates:lodMinClamps:lodMaxClamps:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn setSamplerStates_lodMinClamps_lodMaxClamps_withRange(
@@ -362,6 +417,10 @@ extern_protocol!(
         );
 
         /// Set the threadgroup memory byte length at the binding point specified by the index. This applies to all compute kernels.
+        ///
+        /// # Safety
+        ///
+        /// `index` might not be bounds-checked.
         #[unsafe(method(setThreadgroupMemoryLength:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setThreadgroupMemoryLength_atIndex(&self, length: NSUInteger, index: NSUInteger);
@@ -381,6 +440,9 @@ extern_protocol!(
             feature = "MTLBuffer",
             feature = "MTLResource"
         ))]
+        /// # Safety
+        ///
+        /// `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(setStageInRegionWithIndirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn setStageInRegionWithIndirectBuffer_indirectBufferOffset(
@@ -404,6 +466,9 @@ extern_protocol!(
             feature = "MTLResource",
             feature = "MTLTypes"
         ))]
+        /// # Safety
+        ///
+        /// `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
         unsafe fn dispatchThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerThreadgroup(
@@ -464,7 +529,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `resources` must be a valid pointer.
+        /// - `resources` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(useResources:count:usage:))]
         #[unsafe(method_family = none)]
         unsafe fn useResources_count_usage(
@@ -493,7 +559,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `heaps` must be a valid pointer.
+        /// - `heaps` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(useHeaps:count:))]
         #[unsafe(method_family = none)]
         unsafe fn useHeaps_count(
@@ -510,6 +577,10 @@ extern_protocol!(
         /// Execute commands in the buffer within the range specified.
         ///
         /// The same indirect command buffer may be executed any number of times within the same encoder.
+        ///
+        /// # Safety
+        ///
+        /// `executionRange` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_withRange(
@@ -531,6 +602,11 @@ extern_protocol!(
         /// Parameter `indirectBufferOffset`: The byte offset within indirectBuffer where the execution range parameter is located. Must be a multiple of 4 bytes.
         ///
         /// The same indirect command buffer may be executed any number of times within the same encoder.
+        ///
+        /// # Safety
+        ///
+        /// - `indirectRangeBuffer` might not be bounds-checked.
+        /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(
@@ -554,7 +630,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `resources` must be a valid pointer.
+        /// - `resources` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(memoryBarrierWithResources:count:))]
         #[unsafe(method_family = none)]
         unsafe fn memoryBarrierWithResources_count(
@@ -582,6 +659,10 @@ extern_protocol!(
         ///
         /// On devices where MTLCounterSamplingPointAtDispatchBoundary is unsupported,
         /// this method is not available and will generate an error if called.
+        ///
+        /// # Safety
+        ///
+        /// `sampleIndex` might not be bounds-checked.
         #[unsafe(method(sampleCountersInBuffer:atSampleIndex:withBarrier:))]
         #[unsafe(method_family = none)]
         unsafe fn sampleCountersInBuffer_atSampleIndex_withBarrier(

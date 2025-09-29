@@ -1448,7 +1448,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `positions` must be a valid pointer.
+        /// - `positions` must be a valid pointer.
+        /// - `count` might not be bounds-checked.
         #[unsafe(method(getDefaultSamplePositions:count:))]
         #[unsafe(method_family = none)]
         unsafe fn getDefaultSamplePositions_count(
@@ -1471,6 +1472,10 @@ extern_protocol!(
         /// Parameter `layerCount`: The number of layers for which to query device support.
         ///
         /// Returns: YES if the device supports creation of rendering using a MTLRasterizationRateMap with the given number of layers.
+        ///
+        /// # Safety
+        ///
+        /// `layerCount` might not be bounds-checked.
         #[unsafe(method(supportsRasterizationRateMapWithLayerCount:))]
         #[unsafe(method_family = none)]
         unsafe fn supportsRasterizationRateMapWithLayerCount(
@@ -1505,6 +1510,10 @@ extern_protocol!(
         /// Parameter `options`: The options for the indirect command buffer.
         ///
         /// The returned buffer can be safely executed without first encoding into (but is wasteful).
+        ///
+        /// # Safety
+        ///
+        /// `maxCount` might not be bounds-checked.
         #[unsafe(method(newIndirectCommandBufferWithDescriptor:maxCommandCount:options:))]
         #[unsafe(method_family = new)]
         unsafe fn newIndirectCommandBufferWithDescriptor_maxCommandCount_options(
@@ -1623,6 +1632,10 @@ extern_protocol!(
             feature = "MTLTypes"
         ))]
         /// Returns tile size for sparse texture with given type, pixel format and sample count.
+        ///
+        /// # Safety
+        ///
+        /// `sampleCount` might not be bounds-checked.
         #[unsafe(method(sparseTileSizeWithTextureType:pixelFormat:sampleCount:))]
         #[unsafe(method_family = none)]
         unsafe fn sparseTileSizeWithTextureType_pixelFormat_sampleCount(
@@ -1692,6 +1705,10 @@ extern_protocol!(
             feature = "MTLTypes"
         ))]
         /// Returns tile size for sparse texture with given type, pixel format and sample count.
+        ///
+        /// # Safety
+        ///
+        /// `sampleCount` might not be bounds-checked.
         #[unsafe(method(sparseTileSizeWithTextureType:pixelFormat:sampleCount:sparsePageSize:))]
         #[unsafe(method_family = none)]
         unsafe fn sparseTileSizeWithTextureType_pixelFormat_sampleCount_sparsePageSize(
@@ -1722,6 +1739,10 @@ extern_protocol!(
         /// Parameter `descriptor`: The descriptor to create a sample buffer for
         ///
         /// Parameter `error`: An error return on failure.
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(newCounterSampleBufferWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
         unsafe fn newCounterSampleBufferWithDescriptor_error(
@@ -2181,6 +2202,10 @@ extern_protocol!(
         /// if this function fails.
         ///
         /// - Returns: A ``MTL4CounterHeap`` instance, or `nil` if the function failed.
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(newCounterHeapWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
         unsafe fn newCounterHeapWithDescriptor_error(
@@ -2203,6 +2228,10 @@ extern_protocol!(
         /// - type: ``MTL4CounterHeapType`` value that represents the type of the ``MTL4CounterHeap`` to resolve.
         ///
         /// - Returns: The size of the post-transformation entry from a ``MTL4CounterHeap`` of type ``MTL4CounterHeapType``.
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(sizeOfCounterHeapEntry:))]
         #[unsafe(method_family = none)]
         unsafe fn sizeOfCounterHeapEntry(&self, r#type: MTL4CounterHeapType) -> NSUInteger;

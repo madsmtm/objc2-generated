@@ -72,6 +72,10 @@ impl MTL4MachineLearningPipelineDescriptor {
         /// - Parameters:
         /// - dimensions: the dimensions of the tensor.
         /// - bufferIndex: Index of the tensor to modify.
+        ///
+        /// # Safety
+        ///
+        /// `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setInputDimensions:atBufferIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputDimensions_atBufferIndex(
@@ -95,6 +99,10 @@ impl MTL4MachineLearningPipelineDescriptor {
         /// - dimensions: An array of tensor extents.
         /// - range: The range of inputs of the `dimensions` argument.
         /// The range's `length` needs to match the dimensions' `count` property.
+        ///
+        /// # Safety
+        ///
+        /// `range` might not be bounds-checked.
         #[unsafe(method(setInputDimensions:withRange:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setInputDimensions_withRange(
@@ -105,6 +113,10 @@ impl MTL4MachineLearningPipelineDescriptor {
 
         #[cfg(feature = "MTLTensor")]
         /// Obtains the dimensions of the input tensor at `bufferIndex` if set, `nil` otherwise.
+        ///
+        /// # Safety
+        ///
+        /// `bufferIndex` might not be bounds-checked.
         #[unsafe(method(inputDimensionsAtBufferIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputDimensionsAtBufferIndex(
