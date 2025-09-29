@@ -37,7 +37,7 @@ impl MTL4ArgumentTableDescriptor {
         /// The maximum value of this parameter is 31.
         #[unsafe(method(maxBufferBindCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxBufferBindCount(&self) -> NSUInteger;
+        pub fn maxBufferBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxBufferBindCount`][Self::maxBufferBindCount].
         ///
@@ -53,7 +53,7 @@ impl MTL4ArgumentTableDescriptor {
         /// The maximum value of this parameter is 128.
         #[unsafe(method(maxTextureBindCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxTextureBindCount(&self) -> NSUInteger;
+        pub fn maxTextureBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxTextureBindCount`][Self::maxTextureBindCount].
         ///
@@ -69,7 +69,7 @@ impl MTL4ArgumentTableDescriptor {
         /// The maximum value of this parameter is 16.
         #[unsafe(method(maxSamplerStateBindCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxSamplerStateBindCount(&self) -> NSUInteger;
+        pub fn maxSamplerStateBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxSamplerStateBindCount`][Self::maxSamplerStateBindCount].
         ///
@@ -87,12 +87,12 @@ impl MTL4ArgumentTableDescriptor {
         /// ://com.apple.documentation/documentation/swift/false>.
         #[unsafe(method(initializeBindings))]
         #[unsafe(method_family = none)]
-        pub unsafe fn initializeBindings(&self) -> bool;
+        pub fn initializeBindings(&self) -> bool;
 
         /// Setter for [`initializeBindings`][Self::initializeBindings].
         #[unsafe(method(setInitializeBindings:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInitializeBindings(&self, initialize_bindings: bool);
+        pub fn setInitializeBindings(&self, initialize_bindings: bool);
 
         /// Controls whether Metal should reserve memory for attribute strides in the argument table.
         ///
@@ -104,24 +104,24 @@ impl MTL4ArgumentTableDescriptor {
         /// ://com.apple.documentation/documentation/swift/false>.
         #[unsafe(method(supportAttributeStrides))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportAttributeStrides(&self) -> bool;
+        pub fn supportAttributeStrides(&self) -> bool;
 
         /// Setter for [`supportAttributeStrides`][Self::supportAttributeStrides].
         #[unsafe(method(setSupportAttributeStrides:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSupportAttributeStrides(&self, support_attribute_strides: bool);
+        pub fn setSupportAttributeStrides(&self, support_attribute_strides: bool);
 
         /// Assigns an optional label with the argument table for debug purposes.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+        pub fn setLabel(&self, label: Option<&NSString>);
     );
 }
 
@@ -130,12 +130,19 @@ impl MTL4ArgumentTableDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTL4ArgumentTableDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -249,7 +256,7 @@ extern_protocol!(
         /// The device from which you created this argument table.
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// Assigns an optional label with this argument table for debugging purposes.
         ///
@@ -257,6 +264,6 @@ extern_protocol!(
         /// creating this table instance.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        unsafe fn label(&self) -> Option<Retained<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
     }
 );

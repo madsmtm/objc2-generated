@@ -39,7 +39,7 @@ impl MTL4StitchedFunctionDescriptor {
         /// Sets the graph representing how to stitch functions together.
         #[unsafe(method(functionGraph))]
         #[unsafe(method_family = none)]
-        pub unsafe fn functionGraph(&self) -> Option<Retained<MTLFunctionStitchingGraph>>;
+        pub fn functionGraph(&self) -> Option<Retained<MTLFunctionStitchingGraph>>;
 
         #[cfg(feature = "MTLFunctionStitching")]
         /// Setter for [`functionGraph`][Self::functionGraph].
@@ -47,21 +47,19 @@ impl MTL4StitchedFunctionDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFunctionGraph:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFunctionGraph(&self, function_graph: Option<&MTLFunctionStitchingGraph>);
+        pub fn setFunctionGraph(&self, function_graph: Option<&MTLFunctionStitchingGraph>);
 
         /// Configures an array of function descriptors with references to functions that contribute to the stitching process.
         #[unsafe(method(functionDescriptors))]
         #[unsafe(method_family = none)]
-        pub unsafe fn functionDescriptors(
-            &self,
-        ) -> Option<Retained<NSArray<MTL4FunctionDescriptor>>>;
+        pub fn functionDescriptors(&self) -> Option<Retained<NSArray<MTL4FunctionDescriptor>>>;
 
         /// Setter for [`functionDescriptors`][Self::functionDescriptors].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setFunctionDescriptors:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFunctionDescriptors(
+        pub fn setFunctionDescriptors(
             &self,
             function_descriptors: Option<&NSArray<MTL4FunctionDescriptor>>,
         );
@@ -74,10 +72,18 @@ impl MTL4StitchedFunctionDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "MTL4FunctionDescriptor")]
+impl DefaultRetained for MTL4StitchedFunctionDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

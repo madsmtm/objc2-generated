@@ -19,19 +19,19 @@ extern_protocol!(
         /// The device this argument encoder was created against.
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// A string to help identify this object.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        unsafe fn label(&self) -> Option<Retained<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        unsafe fn setLabel(&self, label: Option<&NSString>);
+        fn setLabel(&self, label: Option<&NSString>);
 
         /// The number of bytes required to store the encoded resource bindings.
         #[unsafe(method(encodedLength))]

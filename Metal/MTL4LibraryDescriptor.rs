@@ -34,20 +34,20 @@ impl MTL4LibraryDescriptor {
         /// Metal library.
         #[unsafe(method(source))]
         #[unsafe(method_family = none)]
-        pub unsafe fn source(&self) -> Option<Retained<NSString>>;
+        pub fn source(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`source`][Self::source].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setSource:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSource(&self, source: Option<&NSString>);
+        pub fn setSource(&self, source: Option<&NSString>);
 
         #[cfg(feature = "MTLLibrary")]
         /// Provides compile-time options for the Metal library.
         #[unsafe(method(options))]
         #[unsafe(method_family = none)]
-        pub unsafe fn options(&self) -> Option<Retained<MTLCompileOptions>>;
+        pub fn options(&self) -> Option<Retained<MTLCompileOptions>>;
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`options`][Self::options].
@@ -55,19 +55,19 @@ impl MTL4LibraryDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOptions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOptions(&self, options: Option<&MTLCompileOptions>);
+        pub fn setOptions(&self, options: Option<&MTLCompileOptions>);
 
         /// Assigns an optional name to the Metal library.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
+        pub fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setName(&self, name: Option<&NSString>);
+        pub fn setName(&self, name: Option<&NSString>);
     );
 }
 
@@ -76,10 +76,17 @@ impl MTL4LibraryDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTL4LibraryDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

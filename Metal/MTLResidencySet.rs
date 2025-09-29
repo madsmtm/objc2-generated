@@ -33,19 +33,19 @@ impl MTLResidencySetDescriptor {
         /// An optional label for the MTLResidencySet.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+        pub fn setLabel(&self, label: Option<&NSString>);
 
         /// If non-zero, defines the number of allocations for which to initialize the internal arrays. Defaults to zero.
         #[unsafe(method(initialCapacity))]
         #[unsafe(method_family = none)]
-        pub unsafe fn initialCapacity(&self) -> NSUInteger;
+        pub fn initialCapacity(&self) -> NSUInteger;
 
         /// Setter for [`initialCapacity`][Self::initialCapacity].
         ///
@@ -63,12 +63,19 @@ impl MTLResidencySetDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLResidencySetDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -83,33 +90,33 @@ extern_protocol!(
         /// The device that created the residency set
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// The label specified at creation.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        unsafe fn label(&self) -> Option<Retained<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         /// The memory footprint of the set in bytes at the last commit operation. This may include internal allocations as well.
         #[unsafe(method(allocatedSize))]
         #[unsafe(method_family = none)]
-        unsafe fn allocatedSize(&self) -> u64;
+        fn allocatedSize(&self) -> u64;
 
         /// Requests that the set and all the committed resources and heaps are made resident.
         #[unsafe(method(requestResidency))]
         #[unsafe(method_family = none)]
-        unsafe fn requestResidency(&self);
+        fn requestResidency(&self);
 
         /// Requests that the set and all the committed resources and heaps are made non-resident.
         #[unsafe(method(endResidency))]
         #[unsafe(method_family = none)]
-        unsafe fn endResidency(&self);
+        fn endResidency(&self);
 
         #[cfg(feature = "MTLAllocation")]
         /// Adds one allocation to the set, leaving it uncommitted until commit is called.
         #[unsafe(method(addAllocation:))]
         #[unsafe(method_family = none)]
-        unsafe fn addAllocation(&self, allocation: &ProtocolObject<dyn MTLAllocation>);
+        fn addAllocation(&self, allocation: &ProtocolObject<dyn MTLAllocation>);
 
         #[cfg(feature = "MTLAllocation")]
         /// Adds allocations to the set, leaving them uncommitted until commit is called.
@@ -130,7 +137,7 @@ extern_protocol!(
         /// Marks an allocation to be removed from the set on the next commit call.
         #[unsafe(method(removeAllocation:))]
         #[unsafe(method_family = none)]
-        unsafe fn removeAllocation(&self, allocation: &ProtocolObject<dyn MTLAllocation>);
+        fn removeAllocation(&self, allocation: &ProtocolObject<dyn MTLAllocation>);
 
         #[cfg(feature = "MTLAllocation")]
         /// Marks allocations to be removed from the set on the next commit call.
@@ -150,7 +157,7 @@ extern_protocol!(
         /// Marks all allocations to be removed from the set on the next commit call.
         #[unsafe(method(removeAllAllocations))]
         #[unsafe(method_family = none)]
-        unsafe fn removeAllAllocations(&self);
+        fn removeAllAllocations(&self);
 
         #[cfg(feature = "MTLAllocation")]
         /// Returns a boolean indicating whether the allocation is present in the set or not.
@@ -158,10 +165,7 @@ extern_protocol!(
         /// This check includes non-committed allocations in the set.
         #[unsafe(method(containsAllocation:))]
         #[unsafe(method_family = none)]
-        unsafe fn containsAllocation(
-            &self,
-            an_allocation: &ProtocolObject<dyn MTLAllocation>,
-        ) -> bool;
+        fn containsAllocation(&self, an_allocation: &ProtocolObject<dyn MTLAllocation>) -> bool;
 
         #[cfg(feature = "MTLAllocation")]
         /// Array of all allocations associated with the set.
@@ -169,20 +173,20 @@ extern_protocol!(
         /// This property includes non-committed allocations in the set.
         #[unsafe(method(allAllocations))]
         #[unsafe(method_family = none)]
-        unsafe fn allAllocations(&self) -> Retained<NSArray<ProtocolObject<dyn MTLAllocation>>>;
+        fn allAllocations(&self) -> Retained<NSArray<ProtocolObject<dyn MTLAllocation>>>;
 
         /// Returns the current number of unique allocations present in the set.
         ///
         /// This property includes non-committed allocations in the set.
         #[unsafe(method(allocationCount))]
         #[unsafe(method_family = none)]
-        unsafe fn allocationCount(&self) -> NSUInteger;
+        fn allocationCount(&self) -> NSUInteger;
 
         /// Commits any pending adds/removes.
         ///
         /// If the residency set is resident, this will try to make added resources and heaps resident instantly, and make removed resources and heaps non-resident.
         #[unsafe(method(commit))]
         #[unsafe(method_family = none)]
-        unsafe fn commit(&self);
+        fn commit(&self);
     }
 );

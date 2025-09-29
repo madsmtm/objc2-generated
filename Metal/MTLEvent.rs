@@ -69,11 +69,11 @@ impl MTLSharedEventListener {
         #[cfg(feature = "dispatch2")]
         #[unsafe(method(dispatchQueue))]
         #[unsafe(method_family = none)]
-        pub unsafe fn dispatchQueue(&self) -> Retained<DispatchQueue>;
+        pub fn dispatchQueue(&self) -> Retained<DispatchQueue>;
 
         #[unsafe(method(sharedListener))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sharedListener() -> Retained<MTLSharedEventListener>;
+        pub fn sharedListener() -> Retained<MTLSharedEventListener>;
     );
 }
 
@@ -116,20 +116,20 @@ extern_protocol!(
 
         #[unsafe(method(newSharedEventHandle))]
         #[unsafe(method_family = new)]
-        unsafe fn newSharedEventHandle(&self) -> Retained<MTLSharedEventHandle>;
+        fn newSharedEventHandle(&self) -> Retained<MTLSharedEventHandle>;
 
         #[unsafe(method(waitUntilSignaledValue:timeoutMS:))]
         #[unsafe(method_family = none)]
-        unsafe fn waitUntilSignaledValue_timeoutMS(&self, value: u64, milliseconds: u64) -> bool;
+        fn waitUntilSignaledValue_timeoutMS(&self, value: u64, milliseconds: u64) -> bool;
 
         #[unsafe(method(signaledValue))]
         #[unsafe(method_family = none)]
-        unsafe fn signaledValue(&self) -> u64;
+        fn signaledValue(&self) -> u64;
 
         /// Setter for [`signaledValue`][Self::signaledValue].
         #[unsafe(method(setSignaledValue:))]
         #[unsafe(method_family = none)]
-        unsafe fn setSignaledValue(&self, signaled_value: u64);
+        fn setSignaledValue(&self, signaled_value: u64);
     }
 );
 
@@ -169,10 +169,17 @@ impl MTLSharedEventHandle {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLSharedEventHandle {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

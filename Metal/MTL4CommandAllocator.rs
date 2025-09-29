@@ -33,14 +33,14 @@ impl MTL4CommandAllocatorDescriptor {
         /// An optional label you can assign to the command allocator to aid debugging.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+        pub fn setLabel(&self, label: Option<&NSString>);
     );
 }
 
@@ -49,12 +49,19 @@ impl MTL4CommandAllocatorDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTL4CommandAllocatorDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -66,12 +73,12 @@ extern_protocol!(
         /// Returns the GPU device that this command allocator belongs to.
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// Provides the optional label you specify at creation time for debug purposes.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        unsafe fn label(&self) -> Option<Retained<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         /// Queries the size of the internal memory heaps of this command allocator that support encoding
         /// commands into command buffers.
@@ -79,7 +86,7 @@ extern_protocol!(
         /// - Returns: a size in bytes.
         #[unsafe(method(allocatedSize))]
         #[unsafe(method_family = none)]
-        unsafe fn allocatedSize(&self) -> u64;
+        fn allocatedSize(&self) -> u64;
 
         /// Marks the command allocator's heaps for reuse.
         ///
@@ -90,6 +97,6 @@ extern_protocol!(
         /// from this allocator instance are complete before calling resetting it.
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
-        unsafe fn reset(&self);
+        fn reset(&self);
     }
 );

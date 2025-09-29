@@ -122,6 +122,6 @@ extern_protocol!(
         /// Query support tier for sparse buffers.
         #[unsafe(method(sparseBufferTier))]
         #[unsafe(method_family = none)]
-        unsafe fn sparseBufferTier(&self) -> MTLBufferSparseTier;
+        fn sparseBufferTier(&self) -> MTLBufferSparseTier;
     }
 );

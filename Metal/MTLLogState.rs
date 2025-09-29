@@ -84,22 +84,22 @@ impl MTLLogStateDescriptor {
         /// All the logs with level less than given level will be skipped on the GPU Side.
         #[unsafe(method(level))]
         #[unsafe(method_family = none)]
-        pub unsafe fn level(&self) -> MTLLogLevel;
+        pub fn level(&self) -> MTLLogLevel;
 
         /// Setter for [`level`][Self::level].
         #[unsafe(method(setLevel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLevel(&self, level: MTLLogLevel);
+        pub fn setLevel(&self, level: MTLLogLevel);
 
         /// bufferSize indicates the size of the buffer where GPU will store the logging content from shaders. Minimum value is 1KB
         #[unsafe(method(bufferSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bufferSize(&self) -> NSInteger;
+        pub fn bufferSize(&self) -> NSInteger;
 
         /// Setter for [`bufferSize`][Self::bufferSize].
         #[unsafe(method(setBufferSize:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBufferSize(&self, buffer_size: NSInteger);
+        pub fn setBufferSize(&self, buffer_size: NSInteger);
     );
 }
 
@@ -108,12 +108,19 @@ impl MTLLogStateDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLLogStateDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern "C" {

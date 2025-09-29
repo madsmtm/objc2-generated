@@ -45,14 +45,14 @@ extern_protocol!(
         /// setDepthStoreAction: must be used to finalize the store action before endEncoding is called.
         #[unsafe(method(setDepthStoreAction:))]
         #[unsafe(method_family = none)]
-        unsafe fn setDepthStoreAction(&self, store_action: MTLStoreAction);
+        fn setDepthStoreAction(&self, store_action: MTLStoreAction);
 
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for the stencil attachment was set to MTLStoreActionUnknown when the render command encoder was created,
         /// setStencilStoreAction: must be used to finalize the store action before endEncoding is called.
         #[unsafe(method(setStencilStoreAction:))]
         #[unsafe(method_family = none)]
-        unsafe fn setStencilStoreAction(&self, store_action: MTLStoreAction);
+        fn setStencilStoreAction(&self, store_action: MTLStoreAction);
 
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for a given color attachment was set to MTLStoreActionUnknown when the render command encoder was created,
@@ -78,13 +78,13 @@ extern_protocol!(
         /// setDepthStoreActionOptions: may be used to finalize the store action options before endEncoding is called.
         #[unsafe(method(setDepthStoreActionOptions:))]
         #[unsafe(method_family = none)]
-        unsafe fn setDepthStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
+        fn setDepthStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
 
         #[cfg(feature = "MTLRenderPass")]
         /// If the the store action for the stencil attachment was set to MTLStoreActionUnknown when the render command encoder was created,
         /// setStencilStoreActionOptions: may be used to finalize the store action options before endEncoding is called.
         #[unsafe(method(setStencilStoreActionOptions:))]
         #[unsafe(method_family = none)]
-        unsafe fn setStencilStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
+        fn setStencilStoreActionOptions(&self, store_action_options: MTLStoreActionOptions);
     }
 );

@@ -299,12 +299,19 @@ impl MTLRenderPassAttachmentDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRenderPassAttachmentDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -432,12 +439,19 @@ impl MTLRenderPassDepthAttachmentDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRenderPassDepthAttachmentDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// Controls the MSAA stencil resolve operation.
@@ -515,12 +529,19 @@ impl MTLRenderPassStencilAttachmentDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRenderPassStencilAttachmentDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -564,12 +585,19 @@ impl MTLRenderPassColorAttachmentDescriptorArray {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRenderPassColorAttachmentDescriptorArray {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -698,12 +726,19 @@ impl MTLRenderPassSampleBufferAttachmentDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRenderPassSampleBufferAttachmentDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -747,12 +782,19 @@ impl MTLRenderPassSampleBufferAttachmentDescriptorArray {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRenderPassSampleBufferAttachmentDescriptorArray {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -846,7 +888,7 @@ impl MTLRenderPassDescriptor {
         /// Setter for [`renderTargetArrayLength`][Self::renderTargetArrayLength].
         #[unsafe(method(setRenderTargetArrayLength:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRenderTargetArrayLength(&self, render_target_array_length: NSUInteger);
+        pub fn setRenderTargetArrayLength(&self, render_target_array_length: NSUInteger);
 
         /// The per sample size in bytes of the largest explicit imageblock layout in the renderPass.
         #[unsafe(method(imageblockSampleLength))]
@@ -856,7 +898,7 @@ impl MTLRenderPassDescriptor {
         /// Setter for [`imageblockSampleLength`][Self::imageblockSampleLength].
         #[unsafe(method(setImageblockSampleLength:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setImageblockSampleLength(&self, imageblock_sample_length: NSUInteger);
+        pub fn setImageblockSampleLength(&self, imageblock_sample_length: NSUInteger);
 
         /// The per tile size in bytes of the persistent threadgroup memory allocation.
         #[unsafe(method(threadgroupMemoryLength))]
@@ -866,7 +908,7 @@ impl MTLRenderPassDescriptor {
         /// Setter for [`threadgroupMemoryLength`][Self::threadgroupMemoryLength].
         #[unsafe(method(setThreadgroupMemoryLength:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setThreadgroupMemoryLength(&self, threadgroup_memory_length: NSUInteger);
+        pub fn setThreadgroupMemoryLength(&self, threadgroup_memory_length: NSUInteger);
 
         /// The width in pixels of the tile.
         ///
@@ -995,28 +1037,22 @@ impl MTLRenderPassDescriptor {
         /// Specifies if Metal accumulates visibility results between render encoders or resets them.
         #[unsafe(method(visibilityResultType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn visibilityResultType(&self) -> MTLVisibilityResultType;
+        pub fn visibilityResultType(&self) -> MTLVisibilityResultType;
 
         /// Setter for [`visibilityResultType`][Self::visibilityResultType].
         #[unsafe(method(setVisibilityResultType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVisibilityResultType(
-            &self,
-            visibility_result_type: MTLVisibilityResultType,
-        );
+        pub fn setVisibilityResultType(&self, visibility_result_type: MTLVisibilityResultType);
 
         /// Specifies if the render pass should support color attachment mapping.
         #[unsafe(method(supportColorAttachmentMapping))]
         #[unsafe(method_family = none)]
-        pub unsafe fn supportColorAttachmentMapping(&self) -> bool;
+        pub fn supportColorAttachmentMapping(&self) -> bool;
 
         /// Setter for [`supportColorAttachmentMapping`][Self::supportColorAttachmentMapping].
         #[unsafe(method(setSupportColorAttachmentMapping:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSupportColorAttachmentMapping(
-            &self,
-            support_color_attachment_mapping: bool,
-        );
+        pub fn setSupportColorAttachmentMapping(&self, support_color_attachment_mapping: bool);
     );
 }
 
@@ -1025,12 +1061,19 @@ impl MTLRenderPassDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLRenderPassDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 impl MTLClearColor {

@@ -38,26 +38,26 @@ impl MTL4LibraryFunctionDescriptor {
         /// Assigns a name to the function.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Option<Retained<NSString>>;
+        pub fn name(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`name`][Self::name].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setName(&self, name: Option<&NSString>);
+        pub fn setName(&self, name: Option<&NSString>);
 
         #[cfg(feature = "MTLLibrary")]
         /// Returns a reference to the library containing the function.
         #[unsafe(method(library))]
         #[unsafe(method_family = none)]
-        pub unsafe fn library(&self) -> Option<Retained<ProtocolObject<dyn MTLLibrary>>>;
+        pub fn library(&self) -> Option<Retained<ProtocolObject<dyn MTLLibrary>>>;
 
         #[cfg(feature = "MTLLibrary")]
         /// Setter for [`library`][Self::library].
         #[unsafe(method(setLibrary:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLibrary(&self, library: Option<&ProtocolObject<dyn MTLLibrary>>);
+        pub fn setLibrary(&self, library: Option<&ProtocolObject<dyn MTLLibrary>>);
     );
 }
 
@@ -67,10 +67,18 @@ impl MTL4LibraryFunctionDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "MTL4FunctionDescriptor")]
+impl DefaultRetained for MTL4LibraryFunctionDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

@@ -38,22 +38,21 @@ impl MTL4MachineLearningPipelineDescriptor {
         /// Assigns an optional string that helps identify pipeline states you create from this descriptor.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+        pub fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(feature = "MTL4FunctionDescriptor")]
         /// Assigns the function that the machine learning pipeline you create from this descriptor executes.
         #[unsafe(method(machineLearningFunctionDescriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn machineLearningFunctionDescriptor(
-            &self,
-        ) -> Option<Retained<MTL4FunctionDescriptor>>;
+        pub fn machineLearningFunctionDescriptor(&self)
+            -> Option<Retained<MTL4FunctionDescriptor>>;
 
         #[cfg(feature = "MTL4FunctionDescriptor")]
         /// Setter for [`machineLearningFunctionDescriptor`][Self::machineLearningFunctionDescriptor].
@@ -61,7 +60,7 @@ impl MTL4MachineLearningPipelineDescriptor {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setMachineLearningFunctionDescriptor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMachineLearningFunctionDescriptor(
+        pub fn setMachineLearningFunctionDescriptor(
             &self,
             machine_learning_function_descriptor: Option<&MTL4FunctionDescriptor>,
         );
@@ -127,7 +126,7 @@ impl MTL4MachineLearningPipelineDescriptor {
         /// Resets the descriptor to its default values.
         #[unsafe(method(reset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reset(&self);
+        pub fn reset(&self);
     );
 }
 
@@ -137,12 +136,20 @@ impl MTL4MachineLearningPipelineDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+#[cfg(feature = "MTL4PipelineState")]
+impl DefaultRetained for MTL4MachineLearningPipelineDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -168,7 +175,7 @@ impl MTL4MachineLearningPipelineReflection {
         /// Describes every input and output of the pipeline.
         #[unsafe(method(bindings))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
+        pub fn bindings(&self) -> Retained<NSArray<ProtocolObject<dyn MTLBinding>>>;
     );
 }
 
@@ -177,12 +184,19 @@ impl MTL4MachineLearningPipelineReflection {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTL4MachineLearningPipelineReflection {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -198,18 +212,18 @@ extern_protocol!(
         /// Queries the string that helps identify this object.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        unsafe fn label(&self) -> Option<Retained<NSString>>;
+        fn label(&self) -> Option<Retained<NSString>>;
 
         #[cfg(feature = "MTLDevice")]
         /// Returns the device the pipeline state belongs to.
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// Returns reflection information for this machine learning pipeline state.
         #[unsafe(method(reflection))]
         #[unsafe(method_family = none)]
-        unsafe fn reflection(&self) -> Option<Retained<MTL4MachineLearningPipelineReflection>>;
+        fn reflection(&self) -> Option<Retained<MTL4MachineLearningPipelineReflection>>;
 
         /// Obtain the size of the heap, in bytes, this pipeline requires during the execution.
         ///
@@ -220,6 +234,6 @@ extern_protocol!(
         /// a heap at least as large as this property requests.
         #[unsafe(method(intermediatesHeapSize))]
         #[unsafe(method_family = none)]
-        unsafe fn intermediatesHeapSize(&self) -> NSUInteger;
+        fn intermediatesHeapSize(&self) -> NSUInteger;
     }
 );

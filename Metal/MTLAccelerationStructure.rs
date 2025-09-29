@@ -160,12 +160,12 @@ impl MTLAccelerationStructureDescriptor {
     extern_methods!(
         #[unsafe(method(usage))]
         #[unsafe(method_family = none)]
-        pub unsafe fn usage(&self) -> MTLAccelerationStructureUsage;
+        pub fn usage(&self) -> MTLAccelerationStructureUsage;
 
         /// Setter for [`usage`][Self::usage].
         #[unsafe(method(setUsage:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUsage(&self, usage: MTLAccelerationStructureUsage);
+        pub fn setUsage(&self, usage: MTLAccelerationStructureUsage);
     );
 }
 
@@ -174,12 +174,19 @@ impl MTLAccelerationStructureDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLAccelerationStructureDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -208,7 +215,7 @@ impl MTLAccelerationStructureGeometryDescriptor {
     extern_methods!(
         #[unsafe(method(intersectionFunctionTableOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn intersectionFunctionTableOffset(&self) -> NSUInteger;
+        pub fn intersectionFunctionTableOffset(&self) -> NSUInteger;
 
         /// Setter for [`intersectionFunctionTableOffset`][Self::intersectionFunctionTableOffset].
         #[unsafe(method(setIntersectionFunctionTableOffset:))]
@@ -221,23 +228,23 @@ impl MTLAccelerationStructureGeometryDescriptor {
         /// Whether the geometry is opaque
         #[unsafe(method(opaque))]
         #[unsafe(method_family = none)]
-        pub unsafe fn opaque(&self) -> bool;
+        pub fn opaque(&self) -> bool;
 
         /// Setter for [`opaque`][Self::opaque].
         #[unsafe(method(setOpaque:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOpaque(&self, opaque: bool);
+        pub fn setOpaque(&self, opaque: bool);
 
         /// Whether intersection functions may be invoked more than once per ray/primitive
         /// intersection. Defaults to YES.
         #[unsafe(method(allowDuplicateIntersectionFunctionInvocation))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allowDuplicateIntersectionFunctionInvocation(&self) -> bool;
+        pub fn allowDuplicateIntersectionFunctionInvocation(&self) -> bool;
 
         /// Setter for [`allowDuplicateIntersectionFunctionInvocation`][Self::allowDuplicateIntersectionFunctionInvocation].
         #[unsafe(method(setAllowDuplicateIntersectionFunctionInvocation:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAllowDuplicateIntersectionFunctionInvocation(
+        pub fn setAllowDuplicateIntersectionFunctionInvocation(
             &self,
             allow_duplicate_intersection_function_invocation: bool,
         );
@@ -245,14 +252,14 @@ impl MTLAccelerationStructureGeometryDescriptor {
         /// Label
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Option<Retained<NSString>>;
+        pub fn label(&self) -> Option<Retained<NSString>>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: Option<&NSString>);
+        pub fn setLabel(&self, label: Option<&NSString>);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -262,8 +269,7 @@ impl MTLAccelerationStructureGeometryDescriptor {
         /// Data buffer containing per-primitive data. May be nil.
         #[unsafe(method(primitiveDataBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn primitiveDataBuffer(&self)
-            -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn primitiveDataBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -281,7 +287,7 @@ impl MTLAccelerationStructureGeometryDescriptor {
         /// Primitive data buffer offset in bytes. Must be aligned to the platform's buffer offset alignment. Defaults to 0 bytes.
         #[unsafe(method(primitiveDataBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn primitiveDataBufferOffset(&self) -> NSUInteger;
+        pub fn primitiveDataBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`primitiveDataBufferOffset`][Self::primitiveDataBufferOffset].
         ///
@@ -296,7 +302,7 @@ impl MTLAccelerationStructureGeometryDescriptor {
         /// multiple of 4 bytes. Defaults to 0 bytes. Assumed to be equal to primitiveDataElementSize if zero.
         #[unsafe(method(primitiveDataStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn primitiveDataStride(&self) -> NSUInteger;
+        pub fn primitiveDataStride(&self) -> NSUInteger;
 
         /// Setter for [`primitiveDataStride`][Self::primitiveDataStride].
         #[unsafe(method(setPrimitiveDataStride:))]
@@ -307,7 +313,7 @@ impl MTLAccelerationStructureGeometryDescriptor {
         /// multiple of 4 bytes. Defaults to 0 bytes.
         #[unsafe(method(primitiveDataElementSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn primitiveDataElementSize(&self) -> NSUInteger;
+        pub fn primitiveDataElementSize(&self) -> NSUInteger;
 
         /// Setter for [`primitiveDataElementSize`][Self::primitiveDataElementSize].
         #[unsafe(method(setPrimitiveDataElementSize:))]
@@ -321,12 +327,19 @@ impl MTLAccelerationStructureGeometryDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLAccelerationStructureGeometryDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// Describes what happens to the object before the first motion key and after the last
@@ -381,7 +394,7 @@ impl MTLPrimitiveAccelerationStructureDescriptor {
         /// must be motion versions and have motionKeyframeCount of primitive buffers.
         #[unsafe(method(geometryDescriptors))]
         #[unsafe(method_family = none)]
-        pub unsafe fn geometryDescriptors(
+        pub fn geometryDescriptors(
             &self,
         ) -> Option<Retained<NSArray<MTLAccelerationStructureGeometryDescriptor>>>;
 
@@ -397,51 +410,48 @@ impl MTLPrimitiveAccelerationStructureDescriptor {
         /// motionStartTime. If not set defaults to MTLMotionBorderModeClamp.
         #[unsafe(method(motionStartBorderMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionStartBorderMode(&self) -> MTLMotionBorderMode;
+        pub fn motionStartBorderMode(&self) -> MTLMotionBorderMode;
 
         /// Setter for [`motionStartBorderMode`][Self::motionStartBorderMode].
         #[unsafe(method(setMotionStartBorderMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMotionStartBorderMode(
-            &self,
-            motion_start_border_mode: MTLMotionBorderMode,
-        );
+        pub fn setMotionStartBorderMode(&self, motion_start_border_mode: MTLMotionBorderMode);
 
         /// Motion border mode describing what happens if acceleration structure is sampled after
         /// motionEndTime. If not set defaults to MTLMotionBorderModeClamp.
         #[unsafe(method(motionEndBorderMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionEndBorderMode(&self) -> MTLMotionBorderMode;
+        pub fn motionEndBorderMode(&self) -> MTLMotionBorderMode;
 
         /// Setter for [`motionEndBorderMode`][Self::motionEndBorderMode].
         #[unsafe(method(setMotionEndBorderMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMotionEndBorderMode(&self, motion_end_border_mode: MTLMotionBorderMode);
+        pub fn setMotionEndBorderMode(&self, motion_end_border_mode: MTLMotionBorderMode);
 
         /// Motion start time of this geometry. If not set defaults to 0.0f.
         #[unsafe(method(motionStartTime))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionStartTime(&self) -> c_float;
+        pub fn motionStartTime(&self) -> c_float;
 
         /// Setter for [`motionStartTime`][Self::motionStartTime].
         #[unsafe(method(setMotionStartTime:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMotionStartTime(&self, motion_start_time: c_float);
+        pub fn setMotionStartTime(&self, motion_start_time: c_float);
 
         /// Motion end time of this geometry. If not set defaults to 1.0f.
         #[unsafe(method(motionEndTime))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionEndTime(&self) -> c_float;
+        pub fn motionEndTime(&self) -> c_float;
 
         /// Setter for [`motionEndTime`][Self::motionEndTime].
         #[unsafe(method(setMotionEndTime:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMotionEndTime(&self, motion_end_time: c_float);
+        pub fn setMotionEndTime(&self, motion_end_time: c_float);
 
         /// Motion keyframe count. Is 1 by default which means no motion.
         #[unsafe(method(motionKeyframeCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionKeyframeCount(&self) -> NSUInteger;
+        pub fn motionKeyframeCount(&self) -> NSUInteger;
 
         /// Setter for [`motionKeyframeCount`][Self::motionKeyframeCount].
         ///
@@ -463,12 +473,19 @@ impl MTLPrimitiveAccelerationStructureDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLPrimitiveAccelerationStructureDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -503,7 +520,7 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
         /// according to the vertex format. Must not be nil.
         #[unsafe(method(vertexBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vertexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn vertexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -519,7 +536,7 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
         /// platform's buffer offset alignment.
         #[unsafe(method(vertexBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vertexBufferOffset(&self) -> NSUInteger;
+        pub fn vertexBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`vertexBufferOffset`][Self::vertexBufferOffset].
         ///
@@ -535,19 +552,19 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
         /// Defaults to MTLAttributeFormatFloat3 (packed).
         #[unsafe(method(vertexFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vertexFormat(&self) -> MTLAttributeFormat;
+        pub fn vertexFormat(&self) -> MTLAttributeFormat;
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Setter for [`vertexFormat`][Self::vertexFormat].
         #[unsafe(method(setVertexFormat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVertexFormat(&self, vertex_format: MTLAttributeFormat);
+        pub fn setVertexFormat(&self, vertex_format: MTLAttributeFormat);
 
         /// Stride, in bytes, between vertices in the vertex buffer. Must be a multiple of the vertex format data type size and must be aligned to
         /// the vertex format data type's alignment. Defaults to 0, which will result in a stride of the vertex format data size.
         #[unsafe(method(vertexStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vertexStride(&self) -> NSUInteger;
+        pub fn vertexStride(&self) -> NSUInteger;
 
         /// Setter for [`vertexStride`][Self::vertexStride].
         #[unsafe(method(setVertexStride:))]
@@ -562,7 +579,7 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
         /// Optional index buffer containing references to vertices in the vertex buffer. May be nil.
         #[unsafe(method(indexBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -578,7 +595,7 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
         /// the index data type's alignment and the platform's buffer offset alignment.
         #[unsafe(method(indexBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
+        pub fn indexBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`indexBufferOffset`][Self::indexBufferOffset].
         ///
@@ -593,7 +610,7 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
         /// Index type
         #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexType(&self) -> MTLIndexType;
+        pub fn indexType(&self) -> MTLIndexType;
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
@@ -608,7 +625,7 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
         /// Number of triangles
         #[unsafe(method(triangleCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn triangleCount(&self) -> NSUInteger;
+        pub fn triangleCount(&self) -> NSUInteger;
 
         /// Setter for [`triangleCount`][Self::triangleCount].
         #[unsafe(method(setTriangleCount:))]
@@ -624,9 +641,8 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
         /// When set to nil, transformation matrix is not applied to vertex data.
         #[unsafe(method(transformationMatrixBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transformationMatrixBuffer(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn transformationMatrixBuffer(&self)
+            -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -636,7 +652,7 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
         /// Setter for [`transformationMatrixBuffer`][Self::transformationMatrixBuffer].
         #[unsafe(method(setTransformationMatrixBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTransformationMatrixBuffer(
+        pub fn setTransformationMatrixBuffer(
             &self,
             transformation_matrix_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -644,7 +660,7 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
         /// Transformation matrix buffer offset. Must be a multiple of 4 bytes. Defaults to 0.
         #[unsafe(method(transformationMatrixBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transformationMatrixBufferOffset(&self) -> NSUInteger;
+        pub fn transformationMatrixBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`transformationMatrixBufferOffset`][Self::transformationMatrixBufferOffset].
         ///
@@ -662,15 +678,12 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
         /// matrix buffer. Defaults to MTLMatrixLayoutColumnMajor.
         #[unsafe(method(transformationMatrixLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transformationMatrixLayout(&self) -> MTLMatrixLayout;
+        pub fn transformationMatrixLayout(&self) -> MTLMatrixLayout;
 
         /// Setter for [`transformationMatrixLayout`][Self::transformationMatrixLayout].
         #[unsafe(method(setTransformationMatrixLayout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTransformationMatrixLayout(
-            &self,
-            transformation_matrix_layout: MTLMatrixLayout,
-        );
+        pub fn setTransformationMatrixLayout(&self, transformation_matrix_layout: MTLMatrixLayout);
 
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
@@ -683,12 +696,19 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLAccelerationStructureTriangleGeometryDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -722,7 +742,7 @@ impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
         /// Bounding box buffer containing MTLAxisAlignedBoundingBoxes. Must not be nil.
         #[unsafe(method(boundingBoxBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boundingBoxBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn boundingBoxBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -741,7 +761,7 @@ impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
         /// aligned to the platform's buffer offset alignment.
         #[unsafe(method(boundingBoxBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boundingBoxBufferOffset(&self) -> NSUInteger;
+        pub fn boundingBoxBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`boundingBoxBufferOffset`][Self::boundingBoxBufferOffset].
         ///
@@ -756,17 +776,17 @@ impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
         /// bytes and must be a multiple of 4 bytes. Defaults to 24 bytes.
         #[unsafe(method(boundingBoxStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boundingBoxStride(&self) -> NSUInteger;
+        pub fn boundingBoxStride(&self) -> NSUInteger;
 
         /// Setter for [`boundingBoxStride`][Self::boundingBoxStride].
         #[unsafe(method(setBoundingBoxStride:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBoundingBoxStride(&self, bounding_box_stride: NSUInteger);
+        pub fn setBoundingBoxStride(&self, bounding_box_stride: NSUInteger);
 
         /// Number of bounding boxes
         #[unsafe(method(boundingBoxCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boundingBoxCount(&self) -> NSUInteger;
+        pub fn boundingBoxCount(&self) -> NSUInteger;
 
         /// Setter for [`boundingBoxCount`][Self::boundingBoxCount].
         #[unsafe(method(setBoundingBoxCount:))]
@@ -784,12 +804,19 @@ impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLAccelerationStructureBoundingBoxGeometryDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -815,7 +842,7 @@ impl MTLMotionKeyframeData {
         /// Buffer containing the data of a single keyframe. Multiple keyframes can be interleaved in one MTLBuffer.
         #[unsafe(method(buffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn buffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn buffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -825,12 +852,12 @@ impl MTLMotionKeyframeData {
         /// Setter for [`buffer`][Self::buffer].
         #[unsafe(method(setBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBuffer(&self, buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+        pub fn setBuffer(&self, buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         /// Buffer offset. Must be a multiple of 4 bytes.
         #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn offset(&self) -> NSUInteger;
+        pub fn offset(&self) -> NSUInteger;
 
         /// Setter for [`offset`][Self::offset].
         ///
@@ -843,7 +870,7 @@ impl MTLMotionKeyframeData {
 
         #[unsafe(method(data))]
         #[unsafe(method_family = none)]
-        pub unsafe fn data() -> Retained<Self>;
+        pub fn data() -> Retained<Self>;
     );
 }
 
@@ -852,12 +879,19 @@ impl MTLMotionKeyframeData {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLMotionKeyframeData {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -886,38 +920,38 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         /// Vertex buffer containing triangle vertices similar to what MTLAccelerationStructureTriangleGeometryDescriptor has but array of the values.
         #[unsafe(method(vertexBuffers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vertexBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
+        pub fn vertexBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
 
         /// Setter for [`vertexBuffers`][Self::vertexBuffers].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVertexBuffers:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVertexBuffers(&self, vertex_buffers: &NSArray<MTLMotionKeyframeData>);
+        pub fn setVertexBuffers(&self, vertex_buffers: &NSArray<MTLMotionKeyframeData>);
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Format type of the vertex buffers across all keyframes.
         /// Defaults to MTLAttributeFormatFloat3 (packed).
         #[unsafe(method(vertexFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vertexFormat(&self) -> MTLAttributeFormat;
+        pub fn vertexFormat(&self) -> MTLAttributeFormat;
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Setter for [`vertexFormat`][Self::vertexFormat].
         #[unsafe(method(setVertexFormat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVertexFormat(&self, vertex_format: MTLAttributeFormat);
+        pub fn setVertexFormat(&self, vertex_format: MTLAttributeFormat);
 
         /// Stride, in bytes, between vertices in each keyframe's vertex buffer. Must be a multiple of the vertex format data type size and must be aligned to
         /// the vertex format data type's alignment. Defaults to 0, which will result in a stride of the vertex format data size.
         #[unsafe(method(vertexStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vertexStride(&self) -> NSUInteger;
+        pub fn vertexStride(&self) -> NSUInteger;
 
         /// Setter for [`vertexStride`][Self::vertexStride].
         #[unsafe(method(setVertexStride:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVertexStride(&self, vertex_stride: NSUInteger);
+        pub fn setVertexStride(&self, vertex_stride: NSUInteger);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -927,7 +961,7 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         /// Optional index buffer containing references to vertices in the vertex buffer. May be nil.
         #[unsafe(method(indexBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -947,7 +981,7 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         /// the index data type's alignment and the platform's buffer offset alignment.
         #[unsafe(method(indexBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
+        pub fn indexBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`indexBufferOffset`][Self::indexBufferOffset].
         ///
@@ -962,7 +996,7 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         /// Index type
         #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexType(&self) -> MTLIndexType;
+        pub fn indexType(&self) -> MTLIndexType;
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
@@ -977,7 +1011,7 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         /// Number of triangles
         #[unsafe(method(triangleCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn triangleCount(&self) -> NSUInteger;
+        pub fn triangleCount(&self) -> NSUInteger;
 
         /// Setter for [`triangleCount`][Self::triangleCount].
         ///
@@ -998,9 +1032,8 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         /// When set to nil, transformation matrix is not applied to vertex data.
         #[unsafe(method(transformationMatrixBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transformationMatrixBuffer(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn transformationMatrixBuffer(&self)
+            -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -1010,7 +1043,7 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         /// Setter for [`transformationMatrixBuffer`][Self::transformationMatrixBuffer].
         #[unsafe(method(setTransformationMatrixBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTransformationMatrixBuffer(
+        pub fn setTransformationMatrixBuffer(
             &self,
             transformation_matrix_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -1018,7 +1051,7 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         /// Transformation matrix buffer offset. Must be a multiple of 4 bytes. Defaults to 0.
         #[unsafe(method(transformationMatrixBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transformationMatrixBufferOffset(&self) -> NSUInteger;
+        pub fn transformationMatrixBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`transformationMatrixBufferOffset`][Self::transformationMatrixBufferOffset].
         ///
@@ -1036,19 +1069,16 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         /// matrix buffer. Defaults to MTLMatrixLayoutColumnMajor.
         #[unsafe(method(transformationMatrixLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transformationMatrixLayout(&self) -> MTLMatrixLayout;
+        pub fn transformationMatrixLayout(&self) -> MTLMatrixLayout;
 
         /// Setter for [`transformationMatrixLayout`][Self::transformationMatrixLayout].
         #[unsafe(method(setTransformationMatrixLayout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTransformationMatrixLayout(
-            &self,
-            transformation_matrix_layout: MTLMatrixLayout,
-        );
+        pub fn setTransformationMatrixLayout(&self, transformation_matrix_layout: MTLMatrixLayout);
 
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn descriptor() -> Retained<Self>;
+        pub fn descriptor() -> Retained<Self>;
     );
 }
 
@@ -1057,12 +1087,19 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLAccelerationStructureMotionTriangleGeometryDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1091,33 +1128,30 @@ impl MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
         /// Bounding box buffer containing MTLAxisAlignedBoundingBoxes similar to what MTLAccelerationStructureBoundingBoxGeometryDescriptor has but array of the values.
         #[unsafe(method(boundingBoxBuffers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boundingBoxBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
+        pub fn boundingBoxBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
 
         /// Setter for [`boundingBoxBuffers`][Self::boundingBoxBuffers].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setBoundingBoxBuffers:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBoundingBoxBuffers(
-            &self,
-            bounding_box_buffers: &NSArray<MTLMotionKeyframeData>,
-        );
+        pub fn setBoundingBoxBuffers(&self, bounding_box_buffers: &NSArray<MTLMotionKeyframeData>);
 
         /// Stride, in bytes, between bounding boxes in the bounding box buffer. Must be at least 24
         /// bytes and must be a multiple of 4 bytes. Defaults to 24 bytes.
         #[unsafe(method(boundingBoxStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boundingBoxStride(&self) -> NSUInteger;
+        pub fn boundingBoxStride(&self) -> NSUInteger;
 
         /// Setter for [`boundingBoxStride`][Self::boundingBoxStride].
         #[unsafe(method(setBoundingBoxStride:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setBoundingBoxStride(&self, bounding_box_stride: NSUInteger);
+        pub fn setBoundingBoxStride(&self, bounding_box_stride: NSUInteger);
 
         /// Number of bounding boxes
         #[unsafe(method(boundingBoxCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn boundingBoxCount(&self) -> NSUInteger;
+        pub fn boundingBoxCount(&self) -> NSUInteger;
 
         /// Setter for [`boundingBoxCount`][Self::boundingBoxCount].
         ///
@@ -1130,7 +1164,7 @@ impl MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
 
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn descriptor() -> Retained<Self>;
+        pub fn descriptor() -> Retained<Self>;
     );
 }
 
@@ -1139,12 +1173,19 @@ impl MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// Curve types
@@ -1289,7 +1330,7 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// nil when the acceleration structure is built.
         #[unsafe(method(controlPointBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controlPointBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn controlPointBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -1299,7 +1340,7 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// Setter for [`controlPointBuffer`][Self::controlPointBuffer].
         #[unsafe(method(setControlPointBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setControlPointBuffer(
+        pub fn setControlPointBuffer(
             &self,
             control_point_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -1309,7 +1350,7 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// buffer offset alignment.
         #[unsafe(method(controlPointBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controlPointBufferOffset(&self) -> NSUInteger;
+        pub fn controlPointBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`controlPointBufferOffset`][Self::controlPointBufferOffset].
         ///
@@ -1323,7 +1364,7 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// Number of control points in the control point buffer
         #[unsafe(method(controlPointCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controlPointCount(&self) -> NSUInteger;
+        pub fn controlPointCount(&self) -> NSUInteger;
 
         /// Setter for [`controlPointCount`][Self::controlPointCount].
         ///
@@ -1340,25 +1381,25 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// bytes, indicating that the control points are tightly packed.
         #[unsafe(method(controlPointStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controlPointStride(&self) -> NSUInteger;
+        pub fn controlPointStride(&self) -> NSUInteger;
 
         /// Setter for [`controlPointStride`][Self::controlPointStride].
         #[unsafe(method(setControlPointStride:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setControlPointStride(&self, control_point_stride: NSUInteger);
+        pub fn setControlPointStride(&self, control_point_stride: NSUInteger);
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Format of the control points in the control point buffer.
         /// Defaults to MTLAttributeFormatFloat3 (packed).
         #[unsafe(method(controlPointFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controlPointFormat(&self) -> MTLAttributeFormat;
+        pub fn controlPointFormat(&self) -> MTLAttributeFormat;
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Setter for [`controlPointFormat`][Self::controlPointFormat].
         #[unsafe(method(setControlPointFormat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setControlPointFormat(&self, control_point_format: MTLAttributeFormat);
+        pub fn setControlPointFormat(&self, control_point_format: MTLAttributeFormat);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -1371,7 +1412,7 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// is built.
         #[unsafe(method(radiusBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn radiusBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn radiusBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -1381,13 +1422,13 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// Setter for [`radiusBuffer`][Self::radiusBuffer].
         #[unsafe(method(setRadiusBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRadiusBuffer(&self, radius_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+        pub fn setRadiusBuffer(&self, radius_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         /// Radius buffer offset. Must be a multiple of the radius format
         /// size and must be aligned to the platform's buffer offset alignment.
         #[unsafe(method(radiusBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn radiusBufferOffset(&self) -> NSUInteger;
+        pub fn radiusBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`radiusBufferOffset`][Self::radiusBufferOffset].
         ///
@@ -1403,25 +1444,25 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// MTLAttributeFormatFloat.
         #[unsafe(method(radiusFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn radiusFormat(&self) -> MTLAttributeFormat;
+        pub fn radiusFormat(&self) -> MTLAttributeFormat;
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Setter for [`radiusFormat`][Self::radiusFormat].
         #[unsafe(method(setRadiusFormat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRadiusFormat(&self, radius_format: MTLAttributeFormat);
+        pub fn setRadiusFormat(&self, radius_format: MTLAttributeFormat);
 
         /// Stride, in bytes, between radii in the radius buffer. Must be
         /// a multiple of the radius format size. Defaults to 0 bytes, indicating
         /// that the radii are tightly packed.
         #[unsafe(method(radiusStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn radiusStride(&self) -> NSUInteger;
+        pub fn radiusStride(&self) -> NSUInteger;
 
         /// Setter for [`radiusStride`][Self::radiusStride].
         #[unsafe(method(setRadiusStride:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRadiusStride(&self, radius_stride: NSUInteger);
+        pub fn setRadiusStride(&self, radius_stride: NSUInteger);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -1432,7 +1473,7 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// point buffer. Must not be nil when the acceleration structure is built.
         #[unsafe(method(indexBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -1453,7 +1494,7 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// the platform's buffer offset alignment.
         #[unsafe(method(indexBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
+        pub fn indexBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`indexBufferOffset`][Self::indexBufferOffset].
         ///
@@ -1468,7 +1509,7 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// Index type
         #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexType(&self) -> MTLIndexType;
+        pub fn indexType(&self) -> MTLIndexType;
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
@@ -1483,7 +1524,7 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// Number of curve segments
         #[unsafe(method(segmentCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn segmentCount(&self) -> NSUInteger;
+        pub fn segmentCount(&self) -> NSUInteger;
 
         /// Setter for [`segmentCount`][Self::segmentCount].
         ///
@@ -1497,7 +1538,7 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// Number of control points per curve segment. Must be 2, 3, or 4.
         #[unsafe(method(segmentControlPointCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn segmentControlPointCount(&self) -> NSUInteger;
+        pub fn segmentControlPointCount(&self) -> NSUInteger;
 
         /// Setter for [`segmentControlPointCount`][Self::segmentControlPointCount].
         ///
@@ -1511,36 +1552,36 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// Curve type. Defaults to MTLCurveTypeRound.
         #[unsafe(method(curveType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn curveType(&self) -> MTLCurveType;
+        pub fn curveType(&self) -> MTLCurveType;
 
         /// Setter for [`curveType`][Self::curveType].
         #[unsafe(method(setCurveType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCurveType(&self, curve_type: MTLCurveType);
+        pub fn setCurveType(&self, curve_type: MTLCurveType);
 
         /// Curve basis. Defaults to MTLCurveBasisBSpline.
         #[unsafe(method(curveBasis))]
         #[unsafe(method_family = none)]
-        pub unsafe fn curveBasis(&self) -> MTLCurveBasis;
+        pub fn curveBasis(&self) -> MTLCurveBasis;
 
         /// Setter for [`curveBasis`][Self::curveBasis].
         #[unsafe(method(setCurveBasis:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCurveBasis(&self, curve_basis: MTLCurveBasis);
+        pub fn setCurveBasis(&self, curve_basis: MTLCurveBasis);
 
         /// Type of curve end caps. Defaults to MTLCurveEndCapsNone.
         #[unsafe(method(curveEndCaps))]
         #[unsafe(method_family = none)]
-        pub unsafe fn curveEndCaps(&self) -> MTLCurveEndCaps;
+        pub fn curveEndCaps(&self) -> MTLCurveEndCaps;
 
         /// Setter for [`curveEndCaps`][Self::curveEndCaps].
         #[unsafe(method(setCurveEndCaps:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCurveEndCaps(&self, curve_end_caps: MTLCurveEndCaps);
+        pub fn setCurveEndCaps(&self, curve_end_caps: MTLCurveEndCaps);
 
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn descriptor() -> Retained<Self>;
+        pub fn descriptor() -> Retained<Self>;
     );
 }
 
@@ -1549,12 +1590,19 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLAccelerationStructureCurveGeometryDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -1589,14 +1637,14 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         /// structure is built.
         #[unsafe(method(controlPointBuffers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controlPointBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
+        pub fn controlPointBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
 
         /// Setter for [`controlPointBuffers`][Self::controlPointBuffers].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setControlPointBuffers:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setControlPointBuffers(
+        pub fn setControlPointBuffers(
             &self,
             control_point_buffers: &NSArray<MTLMotionKeyframeData>,
         );
@@ -1604,7 +1652,7 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         /// Number of control points in the control point buffers
         #[unsafe(method(controlPointCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controlPointCount(&self) -> NSUInteger;
+        pub fn controlPointCount(&self) -> NSUInteger;
 
         /// Setter for [`controlPointCount`][Self::controlPointCount].
         ///
@@ -1621,25 +1669,25 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         /// bytes, indicating that the control points are tightly packed.
         #[unsafe(method(controlPointStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controlPointStride(&self) -> NSUInteger;
+        pub fn controlPointStride(&self) -> NSUInteger;
 
         /// Setter for [`controlPointStride`][Self::controlPointStride].
         #[unsafe(method(setControlPointStride:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setControlPointStride(&self, control_point_stride: NSUInteger);
+        pub fn setControlPointStride(&self, control_point_stride: NSUInteger);
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Format of the control points in the control point buffer.
         /// Defaults to MTLAttributeFormatFloat3 (packed).
         #[unsafe(method(controlPointFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn controlPointFormat(&self) -> MTLAttributeFormat;
+        pub fn controlPointFormat(&self) -> MTLAttributeFormat;
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Setter for [`controlPointFormat`][Self::controlPointFormat].
         #[unsafe(method(setControlPointFormat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setControlPointFormat(&self, control_point_format: MTLAttributeFormat);
+        pub fn setControlPointFormat(&self, control_point_format: MTLAttributeFormat);
 
         /// Buffers containing the curve radius for each control point for
         /// each keyframe. Each radius must be of the type specified by the radius
@@ -1649,38 +1697,38 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         /// is built.
         #[unsafe(method(radiusBuffers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn radiusBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
+        pub fn radiusBuffers(&self) -> Retained<NSArray<MTLMotionKeyframeData>>;
 
         /// Setter for [`radiusBuffers`][Self::radiusBuffers].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setRadiusBuffers:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRadiusBuffers(&self, radius_buffers: &NSArray<MTLMotionKeyframeData>);
+        pub fn setRadiusBuffers(&self, radius_buffers: &NSArray<MTLMotionKeyframeData>);
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Format of the radii in the radius buffer. Defaults to
         /// MTLAttributeFormatFloat.
         #[unsafe(method(radiusFormat))]
         #[unsafe(method_family = none)]
-        pub unsafe fn radiusFormat(&self) -> MTLAttributeFormat;
+        pub fn radiusFormat(&self) -> MTLAttributeFormat;
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Setter for [`radiusFormat`][Self::radiusFormat].
         #[unsafe(method(setRadiusFormat:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRadiusFormat(&self, radius_format: MTLAttributeFormat);
+        pub fn setRadiusFormat(&self, radius_format: MTLAttributeFormat);
 
         /// Stride, in bytes, between radii in the radius buffer. Must be
         /// a multiple of 4 bytes. Defaults to 4 bytes.
         #[unsafe(method(radiusStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn radiusStride(&self) -> NSUInteger;
+        pub fn radiusStride(&self) -> NSUInteger;
 
         /// Setter for [`radiusStride`][Self::radiusStride].
         #[unsafe(method(setRadiusStride:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRadiusStride(&self, radius_stride: NSUInteger);
+        pub fn setRadiusStride(&self, radius_stride: NSUInteger);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -1691,7 +1739,7 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         /// point buffer. Must not be nil.
         #[unsafe(method(indexBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -1712,7 +1760,7 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         /// the platform's buffer offset alignment.
         #[unsafe(method(indexBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexBufferOffset(&self) -> NSUInteger;
+        pub fn indexBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`indexBufferOffset`][Self::indexBufferOffset].
         ///
@@ -1727,7 +1775,7 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         /// Index type
         #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexType(&self) -> MTLIndexType;
+        pub fn indexType(&self) -> MTLIndexType;
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
@@ -1742,7 +1790,7 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         /// Number of curve segments
         #[unsafe(method(segmentCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn segmentCount(&self) -> NSUInteger;
+        pub fn segmentCount(&self) -> NSUInteger;
 
         /// Setter for [`segmentCount`][Self::segmentCount].
         ///
@@ -1756,7 +1804,7 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         /// Number of control points per curve segment. Must be 2, 3, or 4.
         #[unsafe(method(segmentControlPointCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn segmentControlPointCount(&self) -> NSUInteger;
+        pub fn segmentControlPointCount(&self) -> NSUInteger;
 
         /// Setter for [`segmentControlPointCount`][Self::segmentControlPointCount].
         ///
@@ -1770,36 +1818,36 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         /// Curve type. Defaults to MTLCurveTypeRound.
         #[unsafe(method(curveType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn curveType(&self) -> MTLCurveType;
+        pub fn curveType(&self) -> MTLCurveType;
 
         /// Setter for [`curveType`][Self::curveType].
         #[unsafe(method(setCurveType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCurveType(&self, curve_type: MTLCurveType);
+        pub fn setCurveType(&self, curve_type: MTLCurveType);
 
         /// Curve basis. Defaults to MTLCurveBasisBSpline.
         #[unsafe(method(curveBasis))]
         #[unsafe(method_family = none)]
-        pub unsafe fn curveBasis(&self) -> MTLCurveBasis;
+        pub fn curveBasis(&self) -> MTLCurveBasis;
 
         /// Setter for [`curveBasis`][Self::curveBasis].
         #[unsafe(method(setCurveBasis:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCurveBasis(&self, curve_basis: MTLCurveBasis);
+        pub fn setCurveBasis(&self, curve_basis: MTLCurveBasis);
 
         /// Type of curve end caps. Defaults to MTLCurveEndCapsNone.
         #[unsafe(method(curveEndCaps))]
         #[unsafe(method_family = none)]
-        pub unsafe fn curveEndCaps(&self) -> MTLCurveEndCaps;
+        pub fn curveEndCaps(&self) -> MTLCurveEndCaps;
 
         /// Setter for [`curveEndCaps`][Self::curveEndCaps].
         #[unsafe(method(setCurveEndCaps:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCurveEndCaps(&self, curve_end_caps: MTLCurveEndCaps);
+        pub fn setCurveEndCaps(&self, curve_end_caps: MTLCurveEndCaps);
 
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn descriptor() -> Retained<Self>;
+        pub fn descriptor() -> Retained<Self>;
     );
 }
 
@@ -1808,12 +1856,19 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLAccelerationStructureMotionCurveGeometryDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptor?language=objc)
@@ -2136,9 +2191,7 @@ impl MTLInstanceAccelerationStructureDescriptor {
         /// Buffer containing instance descriptors of the type specified by the instanceDescriptorType property
         #[unsafe(method(instanceDescriptorBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instanceDescriptorBuffer(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn instanceDescriptorBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -2157,7 +2210,7 @@ impl MTLInstanceAccelerationStructureDescriptor {
         /// aligned to the platform's buffer offset alignment.
         #[unsafe(method(instanceDescriptorBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instanceDescriptorBufferOffset(&self) -> NSUInteger;
+        pub fn instanceDescriptorBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`instanceDescriptorBufferOffset`][Self::instanceDescriptorBufferOffset].
         ///
@@ -2176,17 +2229,17 @@ impl MTLInstanceAccelerationStructureDescriptor {
         /// Defaults to the size of the instance descriptor type.
         #[unsafe(method(instanceDescriptorStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instanceDescriptorStride(&self) -> NSUInteger;
+        pub fn instanceDescriptorStride(&self) -> NSUInteger;
 
         /// Setter for [`instanceDescriptorStride`][Self::instanceDescriptorStride].
         #[unsafe(method(setInstanceDescriptorStride:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInstanceDescriptorStride(&self, instance_descriptor_stride: NSUInteger);
+        pub fn setInstanceDescriptorStride(&self, instance_descriptor_stride: NSUInteger);
 
         /// Number of instance descriptors
         #[unsafe(method(instanceCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instanceCount(&self) -> NSUInteger;
+        pub fn instanceCount(&self) -> NSUInteger;
 
         /// Setter for [`instanceCount`][Self::instanceCount].
         #[unsafe(method(setInstanceCount:))]
@@ -2197,7 +2250,7 @@ impl MTLInstanceAccelerationStructureDescriptor {
         /// Acceleration structures to be instanced
         #[unsafe(method(instancedAccelerationStructures))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instancedAccelerationStructures(
+        pub fn instancedAccelerationStructures(
             &self,
         ) -> Option<Retained<NSArray<ProtocolObject<dyn MTLAccelerationStructure>>>>;
 
@@ -2216,14 +2269,12 @@ impl MTLInstanceAccelerationStructureDescriptor {
         /// MTLAccelerationStructureInstanceDescriptorTypeDefault.
         #[unsafe(method(instanceDescriptorType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instanceDescriptorType(
-            &self,
-        ) -> MTLAccelerationStructureInstanceDescriptorType;
+        pub fn instanceDescriptorType(&self) -> MTLAccelerationStructureInstanceDescriptorType;
 
         /// Setter for [`instanceDescriptorType`][Self::instanceDescriptorType].
         #[unsafe(method(setInstanceDescriptorType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInstanceDescriptorType(
+        pub fn setInstanceDescriptorType(
             &self,
             instance_descriptor_type: MTLAccelerationStructureInstanceDescriptorType,
         );
@@ -2236,9 +2287,7 @@ impl MTLInstanceAccelerationStructureDescriptor {
         /// Buffer containing transformation information for motion
         #[unsafe(method(motionTransformBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionTransformBuffer(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn motionTransformBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -2248,7 +2297,7 @@ impl MTLInstanceAccelerationStructureDescriptor {
         /// Setter for [`motionTransformBuffer`][Self::motionTransformBuffer].
         #[unsafe(method(setMotionTransformBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMotionTransformBuffer(
+        pub fn setMotionTransformBuffer(
             &self,
             motion_transform_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -2257,7 +2306,7 @@ impl MTLInstanceAccelerationStructureDescriptor {
         /// must be aligned to the platform's buffer offset alignment.
         #[unsafe(method(motionTransformBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionTransformBufferOffset(&self) -> NSUInteger;
+        pub fn motionTransformBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`motionTransformBufferOffset`][Self::motionTransformBufferOffset].
         ///
@@ -2274,7 +2323,7 @@ impl MTLInstanceAccelerationStructureDescriptor {
         /// Number of motion transforms
         #[unsafe(method(motionTransformCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionTransformCount(&self) -> NSUInteger;
+        pub fn motionTransformCount(&self) -> NSUInteger;
 
         /// Setter for [`motionTransformCount`][Self::motionTransformCount].
         ///
@@ -2290,12 +2339,12 @@ impl MTLInstanceAccelerationStructureDescriptor {
         /// transformation matrix buffer. Defaults to MTLMatrixLayoutColumnMajor.
         #[unsafe(method(instanceTransformationMatrixLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instanceTransformationMatrixLayout(&self) -> MTLMatrixLayout;
+        pub fn instanceTransformationMatrixLayout(&self) -> MTLMatrixLayout;
 
         /// Setter for [`instanceTransformationMatrixLayout`][Self::instanceTransformationMatrixLayout].
         #[unsafe(method(setInstanceTransformationMatrixLayout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInstanceTransformationMatrixLayout(
+        pub fn setInstanceTransformationMatrixLayout(
             &self,
             instance_transformation_matrix_layout: MTLMatrixLayout,
         );
@@ -2303,23 +2352,23 @@ impl MTLInstanceAccelerationStructureDescriptor {
         /// Type of motion transforms. Defaults to MTLTransformTypePackedFloat4x3.
         #[unsafe(method(motionTransformType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionTransformType(&self) -> MTLTransformType;
+        pub fn motionTransformType(&self) -> MTLTransformType;
 
         /// Setter for [`motionTransformType`][Self::motionTransformType].
         #[unsafe(method(setMotionTransformType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMotionTransformType(&self, motion_transform_type: MTLTransformType);
+        pub fn setMotionTransformType(&self, motion_transform_type: MTLTransformType);
 
         /// Motion transform stride. Defaults to 0, indicating that transforms are tightly packed according to the
         /// motion transform type.
         #[unsafe(method(motionTransformStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionTransformStride(&self) -> NSUInteger;
+        pub fn motionTransformStride(&self) -> NSUInteger;
 
         /// Setter for [`motionTransformStride`][Self::motionTransformStride].
         #[unsafe(method(setMotionTransformStride:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMotionTransformStride(&self, motion_transform_stride: NSUInteger);
+        pub fn setMotionTransformStride(&self, motion_transform_stride: NSUInteger);
 
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
@@ -2332,12 +2381,19 @@ impl MTLInstanceAccelerationStructureDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLInstanceAccelerationStructureDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -2371,9 +2427,7 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// Buffer containing instance descriptors of the type specified by the instanceDescriptorType property
         #[unsafe(method(instanceDescriptorBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instanceDescriptorBuffer(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn instanceDescriptorBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -2383,7 +2437,7 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// Setter for [`instanceDescriptorBuffer`][Self::instanceDescriptorBuffer].
         #[unsafe(method(setInstanceDescriptorBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInstanceDescriptorBuffer(
+        pub fn setInstanceDescriptorBuffer(
             &self,
             instance_descriptor_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -2392,7 +2446,7 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// aligned to the platform's buffer offset alignment.
         #[unsafe(method(instanceDescriptorBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instanceDescriptorBufferOffset(&self) -> NSUInteger;
+        pub fn instanceDescriptorBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`instanceDescriptorBufferOffset`][Self::instanceDescriptorBufferOffset].
         ///
@@ -2411,17 +2465,17 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// Defaults to the size of the instance descriptor type.
         #[unsafe(method(instanceDescriptorStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instanceDescriptorStride(&self) -> NSUInteger;
+        pub fn instanceDescriptorStride(&self) -> NSUInteger;
 
         /// Setter for [`instanceDescriptorStride`][Self::instanceDescriptorStride].
         #[unsafe(method(setInstanceDescriptorStride:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInstanceDescriptorStride(&self, instance_descriptor_stride: NSUInteger);
+        pub fn setInstanceDescriptorStride(&self, instance_descriptor_stride: NSUInteger);
 
         /// Maximum number of instance descriptors
         #[unsafe(method(maxInstanceCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxInstanceCount(&self) -> NSUInteger;
+        pub fn maxInstanceCount(&self) -> NSUInteger;
 
         /// Setter for [`maxInstanceCount`][Self::maxInstanceCount].
         ///
@@ -2441,8 +2495,7 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// must be less than or equal to maxInstanceCount.
         #[unsafe(method(instanceCountBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instanceCountBuffer(&self)
-            -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn instanceCountBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -2465,7 +2518,7 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// aligned to the platform's buffer offset alignment.
         #[unsafe(method(instanceCountBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instanceCountBufferOffset(&self) -> NSUInteger;
+        pub fn instanceCountBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`instanceCountBufferOffset`][Self::instanceCountBufferOffset].
         ///
@@ -2482,14 +2535,12 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// MTLAccelerationStructureInstanceDescriptorTypeIndirectMotion.
         #[unsafe(method(instanceDescriptorType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instanceDescriptorType(
-            &self,
-        ) -> MTLAccelerationStructureInstanceDescriptorType;
+        pub fn instanceDescriptorType(&self) -> MTLAccelerationStructureInstanceDescriptorType;
 
         /// Setter for [`instanceDescriptorType`][Self::instanceDescriptorType].
         #[unsafe(method(setInstanceDescriptorType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInstanceDescriptorType(
+        pub fn setInstanceDescriptorType(
             &self,
             instance_descriptor_type: MTLAccelerationStructureInstanceDescriptorType,
         );
@@ -2502,9 +2553,7 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// Buffer containing transformation information for motion
         #[unsafe(method(motionTransformBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionTransformBuffer(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn motionTransformBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -2514,7 +2563,7 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// Setter for [`motionTransformBuffer`][Self::motionTransformBuffer].
         #[unsafe(method(setMotionTransformBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMotionTransformBuffer(
+        pub fn setMotionTransformBuffer(
             &self,
             motion_transform_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -2523,7 +2572,7 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// must be aligned to the platform's buffer offset alignment.
         #[unsafe(method(motionTransformBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionTransformBufferOffset(&self) -> NSUInteger;
+        pub fn motionTransformBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`motionTransformBufferOffset`][Self::motionTransformBufferOffset].
         ///
@@ -2540,7 +2589,7 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// Maximum number of motion transforms
         #[unsafe(method(maxMotionTransformCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn maxMotionTransformCount(&self) -> NSUInteger;
+        pub fn maxMotionTransformCount(&self) -> NSUInteger;
 
         /// Setter for [`maxMotionTransformCount`][Self::maxMotionTransformCount].
         ///
@@ -2560,9 +2609,8 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// must be less than or equal to maxMotionTransformCount.
         #[unsafe(method(motionTransformCountBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionTransformCountBuffer(
-            &self,
-        ) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
+        pub fn motionTransformCountBuffer(&self)
+            -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -2585,7 +2633,7 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// aligned to the platform's buffer offset alignment.
         #[unsafe(method(motionTransformCountBufferOffset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionTransformCountBufferOffset(&self) -> NSUInteger;
+        pub fn motionTransformCountBufferOffset(&self) -> NSUInteger;
 
         /// Setter for [`motionTransformCountBufferOffset`][Self::motionTransformCountBufferOffset].
         ///
@@ -2604,12 +2652,12 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// transformation matrix buffer. Defaults to MTLMatrixLayoutColumnMajor.
         #[unsafe(method(instanceTransformationMatrixLayout))]
         #[unsafe(method_family = none)]
-        pub unsafe fn instanceTransformationMatrixLayout(&self) -> MTLMatrixLayout;
+        pub fn instanceTransformationMatrixLayout(&self) -> MTLMatrixLayout;
 
         /// Setter for [`instanceTransformationMatrixLayout`][Self::instanceTransformationMatrixLayout].
         #[unsafe(method(setInstanceTransformationMatrixLayout:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInstanceTransformationMatrixLayout(
+        pub fn setInstanceTransformationMatrixLayout(
             &self,
             instance_transformation_matrix_layout: MTLMatrixLayout,
         );
@@ -2617,27 +2665,27 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// Type of motion transforms. Defaults to MTLTransformTypePackedFloat4x3.
         #[unsafe(method(motionTransformType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionTransformType(&self) -> MTLTransformType;
+        pub fn motionTransformType(&self) -> MTLTransformType;
 
         /// Setter for [`motionTransformType`][Self::motionTransformType].
         #[unsafe(method(setMotionTransformType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMotionTransformType(&self, motion_transform_type: MTLTransformType);
+        pub fn setMotionTransformType(&self, motion_transform_type: MTLTransformType);
 
         /// Motion transform stride. Defaults to 0, indicating that transforms are tightly packed according to the
         /// motion transform type.
         #[unsafe(method(motionTransformStride))]
         #[unsafe(method_family = none)]
-        pub unsafe fn motionTransformStride(&self) -> NSUInteger;
+        pub fn motionTransformStride(&self) -> NSUInteger;
 
         /// Setter for [`motionTransformStride`][Self::motionTransformStride].
         #[unsafe(method(setMotionTransformStride:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMotionTransformStride(&self, motion_transform_stride: NSUInteger);
+        pub fn setMotionTransformStride(&self, motion_transform_stride: NSUInteger);
 
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn descriptor() -> Retained<Self>;
+        pub fn descriptor() -> Retained<Self>;
     );
 }
 
@@ -2646,12 +2694,19 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLIndirectInstanceAccelerationStructureDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -2660,12 +2715,12 @@ extern_protocol!(
     pub unsafe trait MTLAccelerationStructure: MTLResource {
         #[unsafe(method(size))]
         #[unsafe(method_family = none)]
-        unsafe fn size(&self) -> NSUInteger;
+        fn size(&self) -> NSUInteger;
 
         #[cfg(feature = "MTLTypes")]
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
-        unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        fn gpuResourceID(&self) -> MTLResourceID;
     }
 );

@@ -45,18 +45,18 @@ extern_protocol!(
         /// Returns the compiler instance that this asynchronous compiler task belongs to.
         #[unsafe(method(compiler))]
         #[unsafe(method_family = none)]
-        unsafe fn compiler(&self) -> Retained<ProtocolObject<dyn MTL4Compiler>>;
+        fn compiler(&self) -> Retained<ProtocolObject<dyn MTL4Compiler>>;
 
         /// Returns the compiler task status.
         ///
         /// The default is `MTL4CompilerStatusNone`.
         #[unsafe(method(status))]
         #[unsafe(method_family = none)]
-        unsafe fn status(&self) -> MTL4CompilerTaskStatus;
+        fn status(&self) -> MTL4CompilerTaskStatus;
 
         /// Waits synchronously for this compile task to complete by blocking the calling thread.
         #[unsafe(method(waitUntilCompleted))]
         #[unsafe(method_family = none)]
-        unsafe fn waitUntilCompleted(&self);
+        fn waitUntilCompleted(&self);
     }
 );

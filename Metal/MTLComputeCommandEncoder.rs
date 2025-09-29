@@ -64,7 +64,7 @@ extern_protocol!(
         /// The dispatch type of the compute command encoder.
         #[unsafe(method(dispatchType))]
         #[unsafe(method_family = none)]
-        unsafe fn dispatchType(&self) -> MTLDispatchType;
+        fn dispatchType(&self) -> MTLDispatchType;
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLComputePipeline"))]
         /// Set the compute pipeline state that will be used.
@@ -428,12 +428,12 @@ extern_protocol!(
         /// Set imageblock sizes.
         #[unsafe(method(setImageblockWidth:height:))]
         #[unsafe(method_family = none)]
-        unsafe fn setImageblockWidth_height(&self, width: NSUInteger, height: NSUInteger);
+        fn setImageblockWidth_height(&self, width: NSUInteger, height: NSUInteger);
 
         #[cfg(feature = "MTLTypes")]
         #[unsafe(method(setStageInRegion:))]
         #[unsafe(method_family = none)]
-        unsafe fn setStageInRegion(&self, region: MTLRegion);
+        fn setStageInRegion(&self, region: MTLRegion);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -621,7 +621,7 @@ extern_protocol!(
         /// This API ensures that all dispatches in the encoder have completed execution and their side effects are visible to subsequent dispatches in that encoder. Calling barrier on a serial encoder is allowed, but ignored.
         #[unsafe(method(memoryBarrierWithScope:))]
         #[unsafe(method_family = none)]
-        unsafe fn memoryBarrierWithScope(&self, scope: MTLBarrierScope);
+        fn memoryBarrierWithScope(&self, scope: MTLBarrierScope);
 
         #[cfg(all(feature = "MTLAllocation", feature = "MTLResource"))]
         /// Encodes a barrier between currently dispatched kernels in a concurrent compute command encoder and any subsequent ones on an array of resources.

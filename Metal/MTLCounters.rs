@@ -199,7 +199,7 @@ extern_protocol!(
     pub unsafe trait MTLCounter: NSObjectProtocol + Send + Sync {
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        unsafe fn name(&self) -> Retained<NSString>;
+        fn name(&self) -> Retained<NSString>;
     }
 );
 
@@ -211,7 +211,7 @@ extern_protocol!(
     pub unsafe trait MTLCounterSet: NSObjectProtocol + Send + Sync {
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        unsafe fn name(&self) -> Retained<NSString>;
+        fn name(&self) -> Retained<NSString>;
 
         /// The counters array contains all the counters that will be written
         /// when a counter sample is collected.  Counters that do not appear in this array
@@ -220,7 +220,7 @@ extern_protocol!(
         /// MTLCounterErrorValue will be written in the resolved buffer.
         #[unsafe(method(counters))]
         #[unsafe(method_family = none)]
-        unsafe fn counters(&self) -> Retained<NSArray<ProtocolObject<dyn MTLCounter>>>;
+        fn counters(&self) -> Retained<NSArray<ProtocolObject<dyn MTLCounter>>>;
     }
 );
 
@@ -249,7 +249,7 @@ impl MTLCounterSampleBufferDescriptor {
     extern_methods!(
         #[unsafe(method(counterSet))]
         #[unsafe(method_family = none)]
-        pub unsafe fn counterSet(&self) -> Option<Retained<ProtocolObject<dyn MTLCounterSet>>>;
+        pub fn counterSet(&self) -> Option<Retained<ProtocolObject<dyn MTLCounterSet>>>;
 
         /// Setter for [`counterSet`][Self::counterSet].
         ///
@@ -262,31 +262,31 @@ impl MTLCounterSampleBufferDescriptor {
 
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        pub unsafe fn label(&self) -> Retained<NSString>;
+        pub fn label(&self) -> Retained<NSString>;
 
         /// Setter for [`label`][Self::label].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setLabel:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLabel(&self, label: &NSString);
+        pub fn setLabel(&self, label: &NSString);
 
         #[cfg(feature = "MTLResource")]
         /// MTLStorageModeShared and MTLStorageModePrivate may be used.
         #[unsafe(method(storageMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn storageMode(&self) -> MTLStorageMode;
+        pub fn storageMode(&self) -> MTLStorageMode;
 
         #[cfg(feature = "MTLResource")]
         /// Setter for [`storageMode`][Self::storageMode].
         #[unsafe(method(setStorageMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStorageMode(&self, storage_mode: MTLStorageMode);
+        pub fn setStorageMode(&self, storage_mode: MTLStorageMode);
 
         /// counter sample buffer.
         #[unsafe(method(sampleCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sampleCount(&self) -> NSUInteger;
+        pub fn sampleCount(&self) -> NSUInteger;
 
         /// Setter for [`sampleCount`][Self::sampleCount].
         ///
@@ -304,12 +304,19 @@ impl MTLCounterSampleBufferDescriptor {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for MTLCounterSampleBufferDescriptor {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -322,16 +329,16 @@ extern_protocol!(
         /// to use the sample buffer with this device.
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         /// property of the descriptor that is used to create the sample buffer.
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]
-        unsafe fn label(&self) -> Retained<NSString>;
+        fn label(&self) -> Retained<NSString>;
 
         #[unsafe(method(sampleCount))]
         #[unsafe(method_family = none)]
-        unsafe fn sampleCount(&self) -> NSUInteger;
+        fn sampleCount(&self) -> NSUInteger;
 
         /// Resolve the counters from the sample buffer to an NSData containing
         /// the counter values.  This may only be used with sample buffers that have

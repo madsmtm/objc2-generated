@@ -288,12 +288,12 @@ impl MTLSamplerDescriptor {
         /// - The sampler's ``magFilter`` property is equal to ``MTLSamplerMinMagFilterNearest``.
         #[unsafe(method(reductionMode))]
         #[unsafe(method_family = none)]
-        pub unsafe fn reductionMode(&self) -> MTLSamplerReductionMode;
+        pub fn reductionMode(&self) -> MTLSamplerReductionMode;
 
         /// Setter for [`reductionMode`][Self::reductionMode].
         #[unsafe(method(setReductionMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setReductionMode(&self, reduction_mode: MTLSamplerReductionMode);
+        pub fn setReductionMode(&self, reduction_mode: MTLSamplerReductionMode);
 
         /// If YES, texture coordates are from 0 to 1.  If NO, texture coordinates are 0..width, 0..height.
         ///
@@ -349,12 +349,12 @@ impl MTLSamplerDescriptor {
         /// The precision format is `S4.6`, and the range is `[-16.0, 15.999]`.
         #[unsafe(method(lodBias))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lodBias(&self) -> c_float;
+        pub fn lodBias(&self) -> c_float;
 
         /// Setter for [`lodBias`][Self::lodBias].
         #[unsafe(method(setLodBias:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setLodBias(&self, lod_bias: c_float);
+        pub fn setLodBias(&self, lod_bias: c_float);
 
         #[cfg(feature = "MTLDepthStencil")]
         /// Set the comparison function used when sampling shadow maps. The default value is MTLCompareFunctionNever.
@@ -432,6 +432,6 @@ extern_protocol!(
         /// Handle of the GPU resource suitable for storing in an Argument Buffer
         #[unsafe(method(gpuResourceID))]
         #[unsafe(method_family = none)]
-        unsafe fn gpuResourceID(&self) -> MTLResourceID;
+        fn gpuResourceID(&self) -> MTLResourceID;
     }
 );
