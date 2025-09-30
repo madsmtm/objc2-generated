@@ -279,8 +279,7 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `counterHeap` might not be bounds-checked.
-        /// - `index` might not be bounds-checked.
+        /// `index` might not be bounds-checked.
         #[unsafe(method(writeTimestampIntoHeap:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn writeTimestampIntoHeap_atIndex(
@@ -327,7 +326,6 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `counterHeap` might not be bounds-checked.
         /// - `range` might not be bounds-checked.
         /// - `bufferRange` might not be bounds-checked.
         #[unsafe(method(resolveCounterHeap:withRange:intoBuffer:waitFence:updateFence:))]

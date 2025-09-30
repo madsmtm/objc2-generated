@@ -605,8 +605,7 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `indirectRangeBuffer` might not be bounds-checked.
-        /// - `indirectBufferOffset` might not be bounds-checked.
+        /// `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(

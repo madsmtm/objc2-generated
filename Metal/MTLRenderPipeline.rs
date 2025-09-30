@@ -765,10 +765,6 @@ impl MTLRenderPipelineDescriptor {
         pub fn tessellationControlPointIndexType(&self) -> MTLTessellationControlPointIndexType;
 
         /// Setter for [`tessellationControlPointIndexType`][Self::tessellationControlPointIndexType].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setTessellationControlPointIndexType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTessellationControlPointIndexType(

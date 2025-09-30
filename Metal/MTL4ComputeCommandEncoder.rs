@@ -1110,8 +1110,7 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `counterHeap` might not be bounds-checked.
-        /// - `index` might not be bounds-checked.
+        /// `index` might not be bounds-checked.
         #[unsafe(method(writeTimestampWithGranularity:intoHeap:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn writeTimestampWithGranularity_intoHeap_atIndex(

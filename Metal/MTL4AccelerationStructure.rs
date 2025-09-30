@@ -466,13 +466,9 @@ impl MTL4AccelerationStructureTriangleGeometryDescriptor {
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
+        pub fn setIndexType(&self, index_type: MTLIndexType);
 
         /// Declares the number of triangles in this geometry descriptor.
         #[unsafe(method(triangleCount))]
@@ -743,13 +739,9 @@ impl MTL4AccelerationStructureMotionTriangleGeometryDescriptor {
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
+        pub fn setIndexType(&self, index_type: MTLIndexType);
 
         /// Declares the number of triangles in the vertex buffers that the buffer in the vertex buffers property references.
         ///
@@ -1084,13 +1076,9 @@ impl MTL4AccelerationStructureCurveGeometryDescriptor {
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
+        pub fn setIndexType(&self, index_type: MTLIndexType);
 
         /// Declares the number of curve segments.
         #[unsafe(method(segmentCount))]
@@ -1358,13 +1346,9 @@ impl MTL4AccelerationStructureMotionCurveGeometryDescriptor {
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
+        pub fn setIndexType(&self, index_type: MTLIndexType);
 
         /// Declares the number of curve segments.
         ///

@@ -1674,8 +1674,6 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indexCount` might not be bounds-checked.
-        /// - `indexType` might not be bounds-checked.
-        /// - `indexBuffer` might not be bounds-checked.
         /// - `indexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:))]
@@ -1713,8 +1711,6 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indexCount` might not be bounds-checked.
-        /// - `indexType` might not be bounds-checked.
-        /// - `indexBuffer` might not be bounds-checked.
         /// - `indexBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:))]
         #[unsafe(method_family = none)]
@@ -1783,8 +1779,6 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indexCount` might not be bounds-checked.
-        /// - `indexType` might not be bounds-checked.
-        /// - `indexBuffer` might not be bounds-checked.
         /// - `indexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:))]
@@ -1854,8 +1848,6 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `indexType` might not be bounds-checked.
-        /// - `indexBuffer` might not be bounds-checked.
         /// - `indexBufferOffset` might not be bounds-checked.
         /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:))]
@@ -1939,7 +1931,6 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `patchCount` might not be bounds-checked.
-        /// - `patchIndexBuffer` might not be bounds-checked.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:))]
@@ -1962,7 +1953,6 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
-        /// - `patchIndexBuffer` might not be bounds-checked.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
         /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:))]
@@ -1984,9 +1974,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `patchCount` might not be bounds-checked.
-        /// - `patchIndexBuffer` might not be bounds-checked.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
-        /// - `controlPointIndexBuffer` might not be bounds-checked.
         /// - `controlPointIndexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:))]
@@ -2011,9 +1999,7 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
-        /// - `patchIndexBuffer` might not be bounds-checked.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
-        /// - `controlPointIndexBuffer` might not be bounds-checked.
         /// - `controlPointIndexBufferOffset` might not be bounds-checked.
         /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:))]
@@ -2487,8 +2473,7 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `indirectRangeBuffer` might not be bounds-checked.
-        /// - `indirectBufferOffset` might not be bounds-checked.
+        /// `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(
