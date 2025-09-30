@@ -252,13 +252,9 @@ impl MTLCounterSampleBufferDescriptor {
         pub fn counterSet(&self) -> Option<Retained<ProtocolObject<dyn MTLCounterSet>>>;
 
         /// Setter for [`counterSet`][Self::counterSet].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setCounterSet:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCounterSet(&self, counter_set: Option<&ProtocolObject<dyn MTLCounterSet>>);
+        pub fn setCounterSet(&self, counter_set: Option<&ProtocolObject<dyn MTLCounterSet>>);
 
         #[unsafe(method(label))]
         #[unsafe(method_family = none)]

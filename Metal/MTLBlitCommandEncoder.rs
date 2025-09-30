@@ -342,9 +342,7 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `resetCounters` might not be bounds-checked.
-        /// - `countersBuffer` might not be bounds-checked.
-        /// - `countersBufferOffset` might not be bounds-checked.
+        /// `countersBufferOffset` might not be bounds-checked.
         #[optional]
         #[unsafe(method(getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:))]
         #[unsafe(method_family = none)]

@@ -1751,13 +1751,9 @@ extern_protocol!(
         /// Parameter `descriptor`: The descriptor to create a sample buffer for
         ///
         /// Parameter `error`: An error return on failure.
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(newCounterSampleBufferWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newCounterSampleBufferWithDescriptor_error(
+        fn newCounterSampleBufferWithDescriptor_error(
             &self,
             descriptor: &MTLCounterSampleBufferDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTLCounterSampleBuffer>>, Retained<NSError>>;
@@ -1793,13 +1789,9 @@ extern_protocol!(
         /// Parameter `samplingPoint`: Query index
         ///
         /// Returns: BOOL value. If YES, the device supports counter sampling at given point.
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(supportsCounterSampling:))]
         #[unsafe(method_family = none)]
-        unsafe fn supportsCounterSampling(&self, sampling_point: MTLCounterSamplingPoint) -> bool;
+        fn supportsCounterSampling(&self, sampling_point: MTLCounterSamplingPoint) -> bool;
 
         /// Query device for vertex amplification support.
         ///
@@ -2217,13 +2209,9 @@ extern_protocol!(
         /// if this function fails.
         ///
         /// - Returns: A ``MTL4CounterHeap`` instance, or `nil` if the function failed.
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(newCounterHeapWithDescriptor:error:_))]
         #[unsafe(method_family = new)]
-        unsafe fn newCounterHeapWithDescriptor_error(
+        fn newCounterHeapWithDescriptor_error(
             &self,
             descriptor: &MTL4CounterHeapDescriptor,
         ) -> Result<Retained<ProtocolObject<dyn MTL4CounterHeap>>, Retained<NSError>>;
@@ -2243,13 +2231,9 @@ extern_protocol!(
         /// - type: ``MTL4CounterHeapType`` value that represents the type of the ``MTL4CounterHeap`` to resolve.
         ///
         /// - Returns: The size of the post-transformation entry from a ``MTL4CounterHeap`` of type ``MTL4CounterHeapType``.
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(sizeOfCounterHeapEntry:))]
         #[unsafe(method_family = none)]
-        unsafe fn sizeOfCounterHeapEntry(&self, r#type: MTL4CounterHeapType) -> NSUInteger;
+        fn sizeOfCounterHeapEntry(&self, r#type: MTL4CounterHeapType) -> NSUInteger;
 
         /// Queries the frequency of the GPU timestamp in ticks per second.
         ///

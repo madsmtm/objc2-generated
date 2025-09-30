@@ -84,7 +84,6 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `patchCount` might not be bounds-checked.
-        /// - `patchIndexBuffer` might not be bounds-checked.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
         /// - `offset` might not be bounds-checked.
@@ -112,9 +111,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `patchCount` might not be bounds-checked.
-        /// - `patchIndexBuffer` might not be bounds-checked.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
-        /// - `controlPointIndexBuffer` might not be bounds-checked.
         /// - `controlPointIndexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
         /// - `offset` might not be bounds-checked.
@@ -162,8 +159,6 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indexCount` might not be bounds-checked.
-        /// - `indexType` might not be bounds-checked.
-        /// - `indexBuffer` might not be bounds-checked.
         /// - `indexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:))]

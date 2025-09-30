@@ -614,13 +614,9 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
+        pub fn setIndexType(&self, index_type: MTLIndexType);
 
         /// Number of triangles
         #[unsafe(method(triangleCount))]
@@ -969,13 +965,9 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`indexBuffer`][Self::indexBuffer].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+        pub fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         /// Index buffer offset. Must be a multiple of the index data type size and must be aligned to both
         /// the index data type's alignment and the platform's buffer offset alignment.
@@ -1000,13 +992,9 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
+        pub fn setIndexType(&self, index_type: MTLIndexType);
 
         /// Number of triangles
         #[unsafe(method(triangleCount))]
@@ -1481,13 +1469,9 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`indexBuffer`][Self::indexBuffer].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+        pub fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         /// Index buffer offset. Must be a multiple of the index data type
         /// size and must be aligned to both the index data type's alignment and
@@ -1513,13 +1497,9 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
+        pub fn setIndexType(&self, index_type: MTLIndexType);
 
         /// Number of curve segments
         #[unsafe(method(segmentCount))]
@@ -1747,13 +1727,9 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`indexBuffer`][Self::indexBuffer].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+        pub fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         /// Index buffer offset. Must be a multiple of the index data type
         /// size and must be aligned to both the index data type's alignment and
@@ -1779,13 +1755,9 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
+        pub fn setIndexType(&self, index_type: MTLIndexType);
 
         /// Number of curve segments
         #[unsafe(method(segmentCount))]
@@ -2503,13 +2475,9 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`instanceCountBuffer`][Self::instanceCountBuffer].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setInstanceCountBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInstanceCountBuffer(
+        pub fn setInstanceCountBuffer(
             &self,
             instance_count_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -2618,13 +2586,9 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`motionTransformCountBuffer`][Self::motionTransformCountBuffer].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setMotionTransformCountBuffer:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMotionTransformCountBuffer(
+        pub fn setMotionTransformCountBuffer(
             &self,
             motion_transform_count_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );

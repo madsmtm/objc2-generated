@@ -493,7 +493,6 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indexCount` might not be bounds-checked.
-        /// - `indexType` might not be bounds-checked.
         /// - `indexBuffer` might not be bounds-checked.
         /// - `indexBufferLength` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferLength:))]
@@ -545,7 +544,6 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indexCount` might not be bounds-checked.
-        /// - `indexType` might not be bounds-checked.
         /// - `indexBuffer` might not be bounds-checked.
         /// - `indexBufferLength` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
@@ -605,7 +603,6 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indexCount` might not be bounds-checked.
-        /// - `indexType` might not be bounds-checked.
         /// - `indexBuffer` might not be bounds-checked.
         /// - `indexBufferLength` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
@@ -694,7 +691,6 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `indexType` might not be bounds-checked.
         /// - `indexBuffer` might not be bounds-checked.
         /// - `indexBufferLength` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexType:indexBuffer:indexBufferLength:indirectBuffer:))]
@@ -928,8 +924,7 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `counterHeap` might not be bounds-checked.
-        /// - `index` might not be bounds-checked.
+        /// `index` might not be bounds-checked.
         #[unsafe(method(writeTimestampWithGranularity:afterStage:intoHeap:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn writeTimestampWithGranularity_afterStage_intoHeap_atIndex(

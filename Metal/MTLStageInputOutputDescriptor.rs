@@ -461,13 +461,9 @@ impl MTLStageInputOutputDescriptor {
 
         #[cfg(feature = "MTLArgument")]
         /// Setter for [`indexType`][Self::indexType].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setIndexType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setIndexType(&self, index_type: MTLIndexType);
+        pub fn setIndexType(&self, index_type: MTLIndexType);
 
         #[unsafe(method(indexBufferIndex))]
         #[unsafe(method_family = none)]
