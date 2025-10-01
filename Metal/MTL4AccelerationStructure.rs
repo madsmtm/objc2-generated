@@ -168,7 +168,7 @@ impl MTL4AccelerationStructureGeometryDescriptor {
         /// Setter for [`primitiveDataBuffer`][Self::primitiveDataBuffer].
         #[unsafe(method(setPrimitiveDataBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setPrimitiveDataBuffer(&self, primitive_data_buffer: MTL4BufferRange);
+        pub unsafe fn setPrimitiveDataBuffer(&self, primitive_data_buffer: MTL4BufferRange);
 
         /// Defines the stride, in bytes, between each primitive's data in the primitive data buffer ``primitiveDataBuffer`` references.
         ///
@@ -407,7 +407,7 @@ impl MTL4AccelerationStructureTriangleGeometryDescriptor {
         /// Setter for [`vertexBuffer`][Self::vertexBuffer].
         #[unsafe(method(setVertexBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setVertexBuffer(&self, vertex_buffer: MTL4BufferRange);
+        pub unsafe fn setVertexBuffer(&self, vertex_buffer: MTL4BufferRange);
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Describes the format of the vertices in the vertex buffer.
@@ -1502,7 +1502,10 @@ impl MTL4InstanceAccelerationStructureDescriptor {
         /// Setter for [`instanceDescriptorBuffer`][Self::instanceDescriptorBuffer].
         #[unsafe(method(setInstanceDescriptorBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceDescriptorBuffer(&self, instance_descriptor_buffer: MTL4BufferRange);
+        pub unsafe fn setInstanceDescriptorBuffer(
+            &self,
+            instance_descriptor_buffer: MTL4BufferRange,
+        );
 
         /// Sets the stride, in bytes, between instance descriptors the instance descriptor buffer references.
         ///
@@ -1714,7 +1717,10 @@ impl MTL4IndirectInstanceAccelerationStructureDescriptor {
         /// Setter for [`instanceDescriptorBuffer`][Self::instanceDescriptorBuffer].
         #[unsafe(method(setInstanceDescriptorBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceDescriptorBuffer(&self, instance_descriptor_buffer: MTL4BufferRange);
+        pub unsafe fn setInstanceDescriptorBuffer(
+            &self,
+            instance_descriptor_buffer: MTL4BufferRange,
+        );
 
         /// Sets the stride, in bytes, between instance descriptors in the instance descriptor buffer.
         ///

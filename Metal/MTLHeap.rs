@@ -157,7 +157,7 @@ impl MTLHeapDescriptor {
         /// Setter for [`type`][Self::type].
         #[unsafe(method(setType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setType(&self, r#type: MTLHeapType);
+        pub fn setType(&self, r#type: MTLHeapType);
 
         #[cfg(feature = "MTLResource")]
         /// Specifies the largest sparse page size that the Metal heap supports.
