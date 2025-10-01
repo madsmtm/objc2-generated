@@ -523,7 +523,7 @@ impl MTLArgumentDescriptor {
         /// Setter for [`dataType`][Self::dataType].
         #[unsafe(method(setDataType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setDataType(&self, data_type: MTLDataType);
+        pub fn setDataType(&self, data_type: MTLDataType);
 
         /// The binding point index of the argument
         #[unsafe(method(index))]
@@ -1798,13 +1798,9 @@ extern_protocol!(
         /// Parameter `count`: The amplification count to check
         ///
         /// Returns: BOOL value. If YES, the device supports vertex amplification with the given count. If NO, the device does not.
-        ///
-        /// # Safety
-        ///
-        /// `count` might not be bounds-checked.
         #[unsafe(method(supportsVertexAmplificationCount:))]
         #[unsafe(method_family = none)]
-        unsafe fn supportsVertexAmplificationCount(&self, count: NSUInteger) -> bool;
+        fn supportsVertexAmplificationCount(&self, count: NSUInteger) -> bool;
 
         /// Query device support for creating and using dynamic libraries in a compute pipeline.
         ///
