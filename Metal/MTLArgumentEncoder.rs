@@ -52,7 +52,9 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `offset` might not be bounds-checked.
+        /// - `argument_buffer` may need to be synchronized.
+        /// - `argument_buffer` contents should be of the correct type.
+        /// - `offset` might not be bounds-checked.
         #[unsafe(method(setArgumentBuffer:offset:))]
         #[unsafe(method_family = none)]
         unsafe fn setArgumentBuffer_offset(
@@ -71,7 +73,9 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `startOffset` might not be bounds-checked.
+        /// - `argument_buffer` may need to be synchronized.
+        /// - `argument_buffer` contents should be of the correct type.
+        /// - `startOffset` might not be bounds-checked.
         #[unsafe(method(setArgumentBuffer:startOffset:arrayElement:))]
         #[unsafe(method_family = none)]
         unsafe fn setArgumentBuffer_startOffset_arrayElement(
@@ -90,6 +94,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setBuffer:offset:atIndex:))]
@@ -132,7 +138,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `index` might not be bounds-checked.
+        /// - `texture` may need to be synchronized.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTexture_atIndex(
@@ -265,7 +272,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `index` might not be bounds-checked.
+        /// - `indirect_command_buffer` may need to be synchronized.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setIndirectCommandBuffer:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setIndirectCommandBuffer_atIndex(
@@ -300,7 +308,8 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
-        /// `index` might not be bounds-checked.
+        /// - `acceleration_structure` may need to be synchronized.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setAccelerationStructure:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccelerationStructure_atIndex(
@@ -332,7 +341,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `index` might not be bounds-checked.
+        /// - `visible_function_table` may need to be synchronized.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setVisibleFunctionTable:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTable_atIndex(
@@ -369,7 +379,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `index` might not be bounds-checked.
+        /// - `intersection_function_table` may need to be synchronized.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setIntersectionFunctionTable:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setIntersectionFunctionTable_atIndex(

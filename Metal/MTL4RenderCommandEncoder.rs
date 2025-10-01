@@ -717,7 +717,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `executionRange` might not be bounds-checked.
+        /// - `indirect_command_buffer` may need to be synchronized.
+        /// - `executionRange` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_withRange(
@@ -753,7 +754,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `indirectRangeBuffer` might not be bounds-checked.
+        /// - `indirect_command_buffer` may need to be synchronized.
+        /// - `indirectRangeBuffer` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:indirectBuffer:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_indirectBuffer(

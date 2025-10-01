@@ -322,7 +322,7 @@ impl MTLTensorDescriptor {
         /// Setter for [`hazardTrackingMode`][Self::hazardTrackingMode].
         #[unsafe(method(setHazardTrackingMode:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setHazardTrackingMode(&self, hazard_tracking_mode: MTLHazardTrackingMode);
+        pub fn setHazardTrackingMode(&self, hazard_tracking_mode: MTLHazardTrackingMode);
     );
 }
 

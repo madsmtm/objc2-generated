@@ -87,7 +87,11 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `scratchBufferOffset` might not be bounds-checked.
+        /// - `source_acceleration_structure` may need to be synchronized.
+        /// - `destination_acceleration_structure` may need to be synchronized.
+        /// - `scratch_buffer` may need to be synchronized.
+        /// - `scratch_buffer` contents should be of the correct type.
+        /// - `scratchBufferOffset` might not be bounds-checked.
         #[unsafe(method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset(
@@ -141,7 +145,11 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `scratchBufferOffset` might not be bounds-checked.
+        /// - `source_acceleration_structure` may need to be synchronized.
+        /// - `destination_acceleration_structure` may need to be synchronized.
+        /// - `scratch_buffer` may need to be synchronized.
+        /// - `scratch_buffer` contents should be of the correct type.
+        /// - `scratchBufferOffset` might not be bounds-checked.
         #[unsafe(method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:))]
         #[unsafe(method_family = none)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_scratchBufferOffset_options(
@@ -173,9 +181,14 @@ extern_protocol!(
         /// Parameter `sourceAccelerationStructure`: Acceleration structure to copy from
         ///
         /// Parameter `destinationAccelerationStructure`: Acceleration structure to copy to
+        ///
+        /// # Safety
+        ///
+        /// - `source_acceleration_structure` may need to be synchronized.
+        /// - `destination_acceleration_structure` may need to be synchronized.
         #[unsafe(method(copyAccelerationStructure:toAccelerationStructure:))]
         #[unsafe(method_family = none)]
-        fn copyAccelerationStructure_toAccelerationStructure(
+        unsafe fn copyAccelerationStructure_toAccelerationStructure(
             &self,
             source_acceleration_structure: &ProtocolObject<dyn MTLAccelerationStructure>,
             destination_acceleration_structure: &ProtocolObject<dyn MTLAccelerationStructure>,
@@ -238,7 +251,10 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `offset` might not be bounds-checked.
+        /// - `acceleration_structure` may need to be synchronized.
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
+        /// - `offset` might not be bounds-checked.
         #[unsafe(method(writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:))]
         #[unsafe(method_family = none)]
         unsafe fn writeCompactedAccelerationStructureSize_toBuffer_offset_sizeDataType(
@@ -298,9 +314,13 @@ extern_protocol!(
         /// For tracked MTLResources, this method protects against data hazards. This method must be called before encoding any acceleration structure commands which may access the resource through an argument buffer.
         ///
         /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
+        ///
+        /// # Safety
+        ///
+        /// `resource` may need to be synchronized.
         #[unsafe(method(useResource:usage:))]
         #[unsafe(method_family = none)]
-        fn useResource_usage(
+        unsafe fn useResource_usage(
             &self,
             resource: &ProtocolObject<dyn MTLResource>,
             usage: MTLResourceUsage,

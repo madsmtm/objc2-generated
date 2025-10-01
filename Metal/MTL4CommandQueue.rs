@@ -610,6 +610,7 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `texture` may need to be synchronized.
         /// - `operations` must be a valid pointer.
         /// - `count` might not be bounds-checked.
         #[unsafe(method(updateTextureMappings:heap:operations:count:))]
@@ -647,6 +648,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
         /// - `operations` must be a valid pointer.
         /// - `count` might not be bounds-checked.
         #[unsafe(method(copyTextureMappingsFromTexture:toTexture:operations:count:))]
@@ -681,6 +684,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `operations` must be a valid pointer.
         /// - `count` might not be bounds-checked.
         #[unsafe(method(updateBufferMappings:heap:operations:count:))]
@@ -717,6 +722,10 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `source_buffer` may need to be synchronized.
+        /// - `source_buffer` contents should be of the correct type.
+        /// - `destination_buffer` may need to be synchronized.
+        /// - `destination_buffer` contents should be of the correct type.
         /// - `operations` must be a valid pointer.
         /// - `count` might not be bounds-checked.
         #[unsafe(method(copyBufferMappingsFromBuffer:toBuffer:operations:count:))]

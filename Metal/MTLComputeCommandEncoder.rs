@@ -96,6 +96,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setBuffer:offset:atIndex:))]
@@ -150,6 +152,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setBuffer:offset:attributeStride:atIndex:))]
@@ -230,7 +234,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bufferIndex` might not be bounds-checked.
+        /// - `visible_function_table` may need to be synchronized.
+        /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTable_atBufferIndex(
@@ -267,7 +272,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bufferIndex` might not be bounds-checked.
+        /// - `intersection_function_table` may need to be synchronized.
+        /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setIntersectionFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setIntersectionFunctionTable_atBufferIndex(
@@ -306,7 +312,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bufferIndex` might not be bounds-checked.
+        /// - `acceleration_structure` may need to be synchronized.
+        /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setAccelerationStructure:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccelerationStructure_atBufferIndex(
@@ -324,7 +331,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `index` might not be bounds-checked.
+        /// - `texture` may need to be synchronized.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTexture_atIndex(
@@ -442,7 +450,9 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
-        /// `indirectBufferOffset` might not be bounds-checked.
+        /// - `indirect_buffer` may need to be synchronized.
+        /// - `indirect_buffer` contents should be of the correct type.
+        /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(setStageInRegionWithIndirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn setStageInRegionWithIndirectBuffer_indirectBufferOffset(
@@ -468,7 +478,9 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
-        /// `indirectBufferOffset` might not be bounds-checked.
+        /// - `indirect_buffer` may need to be synchronized.
+        /// - `indirect_buffer` contents should be of the correct type.
+        /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(dispatchThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
         unsafe fn dispatchThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerThreadgroup(
@@ -580,7 +592,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `executionRange` might not be bounds-checked.
+        /// - `indirect_command_buffer` may need to be synchronized.
+        /// - `executionRange` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_withRange(
@@ -605,7 +618,10 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `indirectBufferOffset` might not be bounds-checked.
+        /// - `indirect_commandbuffer` may need to be synchronized.
+        /// - `indirect_range_buffer` may need to be synchronized.
+        /// - `indirect_range_buffer` contents should be of the correct type.
+        /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(

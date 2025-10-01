@@ -67,9 +67,13 @@ extern_protocol!(
         /// Parameter `level`: The mipmap level of the texture to flush.
         ///
         /// See the discussion of -synchronizeResource.   -synchronizeTexture:slice:mipmapLevel performs the same role, except it may flush only a subset of the texture storage, rather than the entire texture.
+        ///
+        /// # Safety
+        ///
+        /// `texture` may need to be synchronized.
         #[unsafe(method(synchronizeTexture:slice:level:))]
         #[unsafe(method_family = none)]
-        fn synchronizeTexture_slice_level(
+        unsafe fn synchronizeTexture_slice_level(
             &self,
             texture: &ProtocolObject<dyn MTLTexture>,
             slice: NSUInteger,
@@ -83,9 +87,14 @@ extern_protocol!(
             feature = "MTLTypes"
         ))]
         /// Copy a rectangle of pixels between textures.
+        ///
+        /// # Safety
+        ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]
         #[unsafe(method_family = none)]
-        fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
+        unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
             &self,
             source_texture: &ProtocolObject<dyn MTLTexture>,
             source_slice: NSUInteger,
@@ -109,7 +118,10 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `sourceOffset` might not be bounds-checked.
+        /// - `source_buffer` may need to be synchronized.
+        /// - `source_buffer` contents should be of the correct type.
+        /// - `sourceOffset` might not be bounds-checked.
+        /// - `destination_texture` may need to be synchronized.
         #[unsafe(method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
@@ -136,7 +148,10 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `sourceOffset` might not be bounds-checked.
+        /// - `source_buffer` may need to be synchronized.
+        /// - `source_buffer` contents should be of the correct type.
+        /// - `sourceOffset` might not be bounds-checked.
+        /// - `destination_texture` may need to be synchronized.
         #[unsafe(method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options(
@@ -164,7 +179,10 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `destinationOffset` might not be bounds-checked.
+        /// - `source_texture` may need to be synchronized.
+        /// - `destination_buffer` may need to be synchronized.
+        /// - `destination_buffer` contents should be of the correct type.
+        /// - `destinationOffset` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage(
@@ -191,7 +209,10 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `destinationOffset` might not be bounds-checked.
+        /// - `source_texture` may need to be synchronized.
+        /// - `destination_buffer` may need to be synchronized.
+        /// - `destination_buffer` contents should be of the correct type.
+        /// - `destinationOffset` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toBuffer_destinationOffset_destinationBytesPerRow_destinationBytesPerImage_options(
@@ -251,6 +272,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
         /// - `sliceCount` might not be bounds-checked.
         /// - `levelCount` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:))]
@@ -283,9 +306,14 @@ extern_protocol!(
         /// Computes: levelCount = min(sourceTexture.mipmapLevelCount - sourceLevel, destinationTexture.mipmapLevelCount - destinationLevel)
         /// sliceCount = min(sourceTexture.arrayLength, destinationTexture.arrayLength)
         /// Then invokes the method above using the computed parameters.
+        ///
+        /// # Safety
+        ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
         #[unsafe(method(copyFromTexture:toTexture:))]
         #[unsafe(method_family = none)]
-        fn copyFromTexture_toTexture(
+        unsafe fn copyFromTexture_toTexture(
             &self,
             source_texture: &ProtocolObject<dyn MTLTexture>,
             destination_texture: &ProtocolObject<dyn MTLTexture>,
@@ -300,7 +328,11 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `source_buffer` may need to be synchronized.
+        /// - `source_buffer` contents should be of the correct type.
         /// - `sourceOffset` might not be bounds-checked.
+        /// - `destination_buffer` may need to be synchronized.
+        /// - `destination_buffer` contents should be of the correct type.
         /// - `destinationOffset` might not be bounds-checked.
         #[unsafe(method(copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:))]
         #[unsafe(method_family = none)]
@@ -342,7 +374,10 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `countersBufferOffset` might not be bounds-checked.
+        /// - `texture` may need to be synchronized.
+        /// - `counters_buffer` may need to be synchronized.
+        /// - `counters_buffer` contents should be of the correct type.
+        /// - `countersBufferOffset` might not be bounds-checked.
         #[optional]
         #[unsafe(method(getTextureAccessCounters:region:mipLevel:slice:resetCounters:countersBuffer:countersBufferOffset:))]
         #[unsafe(method_family = none)]
@@ -367,7 +402,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// This might not be bounds-checked.
+        /// - `texture` may need to be synchronized.
+        /// - This might not be bounds-checked.
         #[optional]
         #[unsafe(method(resetTextureAccessCounters:region:mipLevel:slice:))]
         #[unsafe(method_family = none)]
@@ -395,6 +431,10 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Optimizes a subset of the texture data to ensure the best possible performance when accessing content on the GPU at the expense of CPU-access performance.
+        ///
+        /// # Safety
+        ///
+        /// `texture` may need to be synchronized.
         #[unsafe(method(optimizeContentsForGPUAccess:slice:level:))]
         #[unsafe(method_family = none)]
         unsafe fn optimizeContentsForGPUAccess_slice_level(
@@ -410,9 +450,13 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Optimizes the texture data to ensure the best possible performance when accessing content on the CPU at the expense of GPU-access performance.
+        ///
+        /// # Safety
+        ///
+        /// `texture` may need to be synchronized.
         #[unsafe(method(optimizeContentsForCPUAccess:))]
         #[unsafe(method_family = none)]
-        fn optimizeContentsForCPUAccess(&self, texture: &ProtocolObject<dyn MTLTexture>);
+        unsafe fn optimizeContentsForCPUAccess(&self, texture: &ProtocolObject<dyn MTLTexture>);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -420,9 +464,13 @@ extern_protocol!(
             feature = "MTLTexture"
         ))]
         /// Optimizes a subset of the texture data to ensure the best possible performance when accessing content on the CPU at the expense of GPU-access performance.
+        ///
+        /// # Safety
+        ///
+        /// `texture` may need to be synchronized.
         #[unsafe(method(optimizeContentsForCPUAccess:slice:level:))]
         #[unsafe(method_family = none)]
-        fn optimizeContentsForCPUAccess_slice_level(
+        unsafe fn optimizeContentsForCPUAccess_slice_level(
             &self,
             texture: &ProtocolObject<dyn MTLTexture>,
             slice: NSUInteger,
@@ -438,7 +486,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `range` might not be bounds-checked.
+        /// - `buffer` may need to be synchronized.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(resetCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn resetCommandsInBuffer_withRange(
@@ -456,7 +505,9 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `source` may need to be synchronized.
         /// - `sourceRange` might not be bounds-checked.
+        /// - `destination` may need to be synchronized.
         /// - `destinationIndex` might not be bounds-checked.
         #[unsafe(method(copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:))]
         #[unsafe(method_family = none)]
@@ -477,7 +528,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `range` might not be bounds-checked.
+        /// - `indirect_command_buffer` may need to be synchronized.
+        /// - `range` might not be bounds-checked.
         #[unsafe(method(optimizeIndirectCommandBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn optimizeIndirectCommandBuffer_withRange(
@@ -541,6 +593,8 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `range` might not be bounds-checked.
+        /// - `destination_buffer` may need to be synchronized.
+        /// - `destination_buffer` contents should be of the correct type.
         /// - `destinationOffset` might not be bounds-checked.
         #[unsafe(method(resolveCounters:inRange:destinationBuffer:destinationOffset:))]
         #[unsafe(method_family = none)]
@@ -567,9 +621,14 @@ extern_protocol!(
         /// - destinationTensor: A tensor instance that this command copies data to.
         /// - destinationOrigin: An array of offsets, in elements, to the first element of the slice of `destinationTensor` that this command copies data to.
         /// - destinationDimensions: An array of sizes, in elements, of the slice of `destinationTensor` that this command copies data to.
+        ///
+        /// # Safety
+        ///
+        /// - `source_tensor` may need to be synchronized.
+        /// - `destination_tensor` may need to be synchronized.
         #[unsafe(method(copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:))]
         #[unsafe(method_family = none)]
-        fn copyFromTensor_sourceOrigin_sourceDimensions_toTensor_destinationOrigin_destinationDimensions(
+        unsafe fn copyFromTensor_sourceOrigin_sourceDimensions_toTensor_destinationOrigin_destinationDimensions(
             &self,
             source_tensor: &ProtocolObject<dyn MTLTensor>,
             source_origin: &MTLTensorExtents,

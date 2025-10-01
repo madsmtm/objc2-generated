@@ -80,6 +80,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `sourceHandleOffset` might not be bounds-checked.
         #[unsafe(method(loadBuffer:offset:size:sourceHandle:sourceHandleOffset:))]
@@ -105,7 +107,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `sourceHandleOffset` might not be bounds-checked.
+        /// - `texture` may need to be synchronized.
+        /// - `sourceHandleOffset` might not be bounds-checked.
         #[unsafe(method(loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn loadTexture_slice_level_size_sourceBytesPerRow_sourceBytesPerImage_destinationOrigin_sourceHandle_sourceHandleOffset(
@@ -131,7 +134,9 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `offset` might not be bounds-checked.
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
+        /// - `offset` might not be bounds-checked.
         #[unsafe(method(copyStatusToBuffer:offset:))]
         #[unsafe(method_family = none)]
         unsafe fn copyStatusToBuffer_offset(

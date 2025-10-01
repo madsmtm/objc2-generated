@@ -224,9 +224,14 @@ impl MTL4RenderPassDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`visibilityResultBuffer`][Self::visibilityResultBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `visibility_result_buffer` may need to be synchronized.
+        /// - `visibility_result_buffer` contents should be of the correct type.
         #[unsafe(method(setVisibilityResultBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setVisibilityResultBuffer(
+        pub unsafe fn setVisibilityResultBuffer(
             &self,
             visibility_result_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );

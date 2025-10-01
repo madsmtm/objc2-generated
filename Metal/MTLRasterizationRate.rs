@@ -501,7 +501,9 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `offset` might not be bounds-checked.
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
+        /// - `offset` might not be bounds-checked.
         #[unsafe(method(copyParameterDataToBuffer:offset:))]
         #[unsafe(method_family = none)]
         unsafe fn copyParameterDataToBuffer_offset(

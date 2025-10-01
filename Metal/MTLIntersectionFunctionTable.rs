@@ -163,6 +163,8 @@ extern_protocol!(
         #[cfg(feature = "MTLBuffer")]
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setBuffer:offset:atIndex:))]
@@ -265,7 +267,8 @@ extern_protocol!(
         #[cfg(feature = "MTLVisibleFunctionTable")]
         /// # Safety
         ///
-        /// `bufferIndex` might not be bounds-checked.
+        /// - `function_table` may need to be synchronized.
+        /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVisibleFunctionTable_atBufferIndex(
