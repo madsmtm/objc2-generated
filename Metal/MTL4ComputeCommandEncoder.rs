@@ -120,7 +120,7 @@ extern_protocol!(
         /// threadgroup, in each dimension.
         #[unsafe(method(dispatchThreadgroupsWithIndirectBuffer:threadsPerThreadgroup:))]
         #[unsafe(method_family = none)]
-        fn dispatchThreadgroupsWithIndirectBuffer_threadsPerThreadgroup(
+        unsafe fn dispatchThreadgroupsWithIndirectBuffer_threadsPerThreadgroup(
             &self,
             indirect_buffer: MTLGPUAddress,
             threads_per_threadgroup: MTLSize,

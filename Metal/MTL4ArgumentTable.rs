@@ -40,13 +40,9 @@ impl MTL4ArgumentTableDescriptor {
         pub fn maxBufferBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxBufferBindCount`][Self::maxBufferBindCount].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setMaxBufferBindCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaxBufferBindCount(&self, max_buffer_bind_count: NSUInteger);
+        pub fn setMaxBufferBindCount(&self, max_buffer_bind_count: NSUInteger);
 
         /// Determines the number of texture-binding slots for the argument table.
         ///
@@ -56,13 +52,9 @@ impl MTL4ArgumentTableDescriptor {
         pub fn maxTextureBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxTextureBindCount`][Self::maxTextureBindCount].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setMaxTextureBindCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaxTextureBindCount(&self, max_texture_bind_count: NSUInteger);
+        pub fn setMaxTextureBindCount(&self, max_texture_bind_count: NSUInteger);
 
         /// Determines the number of sampler state-binding slots for the argument table.
         ///
@@ -72,13 +64,9 @@ impl MTL4ArgumentTableDescriptor {
         pub fn maxSamplerStateBindCount(&self) -> NSUInteger;
 
         /// Setter for [`maxSamplerStateBindCount`][Self::maxSamplerStateBindCount].
-        ///
-        /// # Safety
-        ///
-        /// This might not be bounds-checked.
         #[unsafe(method(setMaxSamplerStateBindCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMaxSamplerStateBindCount(&self, max_sampler_state_bind_count: NSUInteger);
+        pub fn setMaxSamplerStateBindCount(&self, max_sampler_state_bind_count: NSUInteger);
 
         /// Configures whether Metal initializes the bindings to nil values upon creation of argument table.
         ///
