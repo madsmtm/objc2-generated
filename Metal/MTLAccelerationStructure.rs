@@ -780,9 +780,13 @@ impl MTLAccelerationStructureBoundingBoxGeometryDescriptor {
         pub fn boundingBoxStride(&self) -> NSUInteger;
 
         /// Setter for [`boundingBoxStride`][Self::boundingBoxStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setBoundingBoxStride:))]
         #[unsafe(method_family = none)]
-        pub fn setBoundingBoxStride(&self, bounding_box_stride: NSUInteger);
+        pub unsafe fn setBoundingBoxStride(&self, bounding_box_stride: NSUInteger);
 
         /// Number of bounding boxes
         #[unsafe(method(boundingBoxCount))]
@@ -955,9 +959,13 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         pub fn vertexStride(&self) -> NSUInteger;
 
         /// Setter for [`vertexStride`][Self::vertexStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setVertexStride:))]
         #[unsafe(method_family = none)]
-        pub fn setVertexStride(&self, vertex_stride: NSUInteger);
+        pub unsafe fn setVertexStride(&self, vertex_stride: NSUInteger);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -1152,9 +1160,13 @@ impl MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor {
         pub fn boundingBoxStride(&self) -> NSUInteger;
 
         /// Setter for [`boundingBoxStride`][Self::boundingBoxStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setBoundingBoxStride:))]
         #[unsafe(method_family = none)]
-        pub fn setBoundingBoxStride(&self, bounding_box_stride: NSUInteger);
+        pub unsafe fn setBoundingBoxStride(&self, bounding_box_stride: NSUInteger);
 
         /// Number of bounding boxes
         #[unsafe(method(boundingBoxCount))]
@@ -1397,9 +1409,13 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         pub fn controlPointStride(&self) -> NSUInteger;
 
         /// Setter for [`controlPointStride`][Self::controlPointStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setControlPointStride:))]
         #[unsafe(method_family = none)]
-        pub fn setControlPointStride(&self, control_point_stride: NSUInteger);
+        pub unsafe fn setControlPointStride(&self, control_point_stride: NSUInteger);
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Format of the control points in the control point buffer.
@@ -1478,9 +1494,13 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         pub fn radiusStride(&self) -> NSUInteger;
 
         /// Setter for [`radiusStride`][Self::radiusStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setRadiusStride:))]
         #[unsafe(method_family = none)]
-        pub fn setRadiusStride(&self, radius_stride: NSUInteger);
+        pub unsafe fn setRadiusStride(&self, radius_stride: NSUInteger);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -1687,9 +1707,13 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         pub fn controlPointStride(&self) -> NSUInteger;
 
         /// Setter for [`controlPointStride`][Self::controlPointStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setControlPointStride:))]
         #[unsafe(method_family = none)]
-        pub fn setControlPointStride(&self, control_point_stride: NSUInteger);
+        pub unsafe fn setControlPointStride(&self, control_point_stride: NSUInteger);
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Format of the control points in the control point buffer.
@@ -1741,9 +1765,13 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         pub fn radiusStride(&self) -> NSUInteger;
 
         /// Setter for [`radiusStride`][Self::radiusStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setRadiusStride:))]
         #[unsafe(method_family = none)]
-        pub fn setRadiusStride(&self, radius_stride: NSUInteger);
+        pub unsafe fn setRadiusStride(&self, radius_stride: NSUInteger);
 
         #[cfg(all(
             feature = "MTLAllocation",
@@ -2244,9 +2272,13 @@ impl MTLInstanceAccelerationStructureDescriptor {
         pub fn instanceDescriptorStride(&self) -> NSUInteger;
 
         /// Setter for [`instanceDescriptorStride`][Self::instanceDescriptorStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setInstanceDescriptorStride:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceDescriptorStride(&self, instance_descriptor_stride: NSUInteger);
+        pub unsafe fn setInstanceDescriptorStride(&self, instance_descriptor_stride: NSUInteger);
 
         /// Number of instance descriptors
         #[unsafe(method(instanceCount))]
@@ -2383,9 +2415,13 @@ impl MTLInstanceAccelerationStructureDescriptor {
         pub fn motionTransformStride(&self) -> NSUInteger;
 
         /// Setter for [`motionTransformStride`][Self::motionTransformStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMotionTransformStride:))]
         #[unsafe(method_family = none)]
-        pub fn setMotionTransformStride(&self, motion_transform_stride: NSUInteger);
+        pub unsafe fn setMotionTransformStride(&self, motion_transform_stride: NSUInteger);
 
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
@@ -2490,9 +2526,13 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         pub fn instanceDescriptorStride(&self) -> NSUInteger;
 
         /// Setter for [`instanceDescriptorStride`][Self::instanceDescriptorStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setInstanceDescriptorStride:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceDescriptorStride(&self, instance_descriptor_stride: NSUInteger);
+        pub unsafe fn setInstanceDescriptorStride(&self, instance_descriptor_stride: NSUInteger);
 
         /// Maximum number of instance descriptors
         #[unsafe(method(maxInstanceCount))]
@@ -2708,9 +2748,13 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         pub fn motionTransformStride(&self) -> NSUInteger;
 
         /// Setter for [`motionTransformStride`][Self::motionTransformStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMotionTransformStride:))]
         #[unsafe(method_family = none)]
-        pub fn setMotionTransformStride(&self, motion_transform_stride: NSUInteger);
+        pub unsafe fn setMotionTransformStride(&self, motion_transform_stride: NSUInteger);
 
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]

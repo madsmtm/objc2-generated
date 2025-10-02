@@ -180,9 +180,13 @@ impl MTL4AccelerationStructureGeometryDescriptor {
         pub fn primitiveDataStride(&self) -> NSUInteger;
 
         /// Setter for [`primitiveDataStride`][Self::primitiveDataStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setPrimitiveDataStride:))]
         #[unsafe(method_family = none)]
-        pub fn setPrimitiveDataStride(&self, primitive_data_stride: NSUInteger);
+        pub unsafe fn setPrimitiveDataStride(&self, primitive_data_stride: NSUInteger);
 
         /// Sets the size, in bytes, of the data for each primitive in the primitive data buffer ``primitiveDataBuffer`` references.
         ///
@@ -436,9 +440,13 @@ impl MTL4AccelerationStructureTriangleGeometryDescriptor {
         pub fn vertexStride(&self) -> NSUInteger;
 
         /// Setter for [`vertexStride`][Self::vertexStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setVertexStride:))]
         #[unsafe(method_family = none)]
-        pub fn setVertexStride(&self, vertex_stride: NSUInteger);
+        pub unsafe fn setVertexStride(&self, vertex_stride: NSUInteger);
 
         #[cfg(all(feature = "MTL4BufferRange", feature = "MTLGPUAddress"))]
         /// Sets an optional index buffer containing references to vertices in the `vertexBuffer`.
@@ -594,9 +602,13 @@ impl MTL4AccelerationStructureBoundingBoxGeometryDescriptor {
         pub fn boundingBoxStride(&self) -> NSUInteger;
 
         /// Setter for [`boundingBoxStride`][Self::boundingBoxStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setBoundingBoxStride:))]
         #[unsafe(method_family = none)]
-        pub fn setBoundingBoxStride(&self, bounding_box_stride: NSUInteger);
+        pub unsafe fn setBoundingBoxStride(&self, bounding_box_stride: NSUInteger);
 
         /// Describes the number of bounding boxes the `boundingBoxBuffer` contains.
         #[unsafe(method(boundingBoxCount))]
@@ -707,9 +719,13 @@ impl MTL4AccelerationStructureMotionTriangleGeometryDescriptor {
         pub fn vertexStride(&self) -> NSUInteger;
 
         /// Setter for [`vertexStride`][Self::vertexStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setVertexStride:))]
         #[unsafe(method_family = none)]
-        pub fn setVertexStride(&self, vertex_stride: NSUInteger);
+        pub unsafe fn setVertexStride(&self, vertex_stride: NSUInteger);
 
         #[cfg(all(feature = "MTL4BufferRange", feature = "MTLGPUAddress"))]
         /// Assigns an optional index buffer containing references to vertices in the vertex buffers you reference through the
@@ -876,9 +892,13 @@ impl MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor {
         pub fn boundingBoxStride(&self) -> NSUInteger;
 
         /// Setter for [`boundingBoxStride`][Self::boundingBoxStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setBoundingBoxStride:))]
         #[unsafe(method_family = none)]
-        pub fn setBoundingBoxStride(&self, bounding_box_stride: NSUInteger);
+        pub unsafe fn setBoundingBoxStride(&self, bounding_box_stride: NSUInteger);
 
         /// Declares the number of bounding boxes in each buffer that `boundingBoxBuffer` references.
         ///
@@ -986,9 +1006,13 @@ impl MTL4AccelerationStructureCurveGeometryDescriptor {
         pub fn controlPointStride(&self) -> NSUInteger;
 
         /// Setter for [`controlPointStride`][Self::controlPointStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setControlPointStride:))]
         #[unsafe(method_family = none)]
-        pub fn setControlPointStride(&self, control_point_stride: NSUInteger);
+        pub unsafe fn setControlPointStride(&self, control_point_stride: NSUInteger);
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Declares the format of the control points the control point buffer references.
@@ -1045,9 +1069,13 @@ impl MTL4AccelerationStructureCurveGeometryDescriptor {
         pub fn radiusStride(&self) -> NSUInteger;
 
         /// Setter for [`radiusStride`][Self::radiusStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setRadiusStride:))]
         #[unsafe(method_family = none)]
-        pub fn setRadiusStride(&self, radius_stride: NSUInteger);
+        pub unsafe fn setRadiusStride(&self, radius_stride: NSUInteger);
 
         #[cfg(all(feature = "MTL4BufferRange", feature = "MTLGPUAddress"))]
         /// Assigns an optional index buffer containing references to control points in the control point buffer.
@@ -1248,9 +1276,13 @@ impl MTL4AccelerationStructureMotionCurveGeometryDescriptor {
         pub fn controlPointStride(&self) -> NSUInteger;
 
         /// Setter for [`controlPointStride`][Self::controlPointStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setControlPointStride:))]
         #[unsafe(method_family = none)]
-        pub fn setControlPointStride(&self, control_point_stride: NSUInteger);
+        pub unsafe fn setControlPointStride(&self, control_point_stride: NSUInteger);
 
         #[cfg(feature = "MTLStageInputOutputDescriptor")]
         /// Declares the format of the control points in the buffers that the control point buffers reference.
@@ -1314,9 +1346,13 @@ impl MTL4AccelerationStructureMotionCurveGeometryDescriptor {
         pub fn radiusStride(&self) -> NSUInteger;
 
         /// Setter for [`radiusStride`][Self::radiusStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setRadiusStride:))]
         #[unsafe(method_family = none)]
-        pub fn setRadiusStride(&self, radius_stride: NSUInteger);
+        pub unsafe fn setRadiusStride(&self, radius_stride: NSUInteger);
 
         #[cfg(all(feature = "MTL4BufferRange", feature = "MTLGPUAddress"))]
         /// Assigns an optional index buffer containing references to control points in the control point buffers.
@@ -1518,9 +1554,13 @@ impl MTL4InstanceAccelerationStructureDescriptor {
         pub fn instanceDescriptorStride(&self) -> NSUInteger;
 
         /// Setter for [`instanceDescriptorStride`][Self::instanceDescriptorStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setInstanceDescriptorStride:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceDescriptorStride(&self, instance_descriptor_stride: NSUInteger);
+        pub unsafe fn setInstanceDescriptorStride(&self, instance_descriptor_stride: NSUInteger);
 
         /// Controls the number of instance descriptors in the instance descriptor buffer references.
         #[unsafe(method(instanceCount))]
@@ -1625,9 +1665,13 @@ impl MTL4InstanceAccelerationStructureDescriptor {
         pub fn motionTransformStride(&self) -> NSUInteger;
 
         /// Setter for [`motionTransformStride`][Self::motionTransformStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMotionTransformStride:))]
         #[unsafe(method_family = none)]
-        pub fn setMotionTransformStride(&self, motion_transform_stride: NSUInteger);
+        pub unsafe fn setMotionTransformStride(&self, motion_transform_stride: NSUInteger);
     );
 }
 
@@ -1733,9 +1777,13 @@ impl MTL4IndirectInstanceAccelerationStructureDescriptor {
         pub fn instanceDescriptorStride(&self) -> NSUInteger;
 
         /// Setter for [`instanceDescriptorStride`][Self::instanceDescriptorStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setInstanceDescriptorStride:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceDescriptorStride(&self, instance_descriptor_stride: NSUInteger);
+        pub unsafe fn setInstanceDescriptorStride(&self, instance_descriptor_stride: NSUInteger);
 
         /// Controls the maximum number of instance descriptors the instance descriptor buffer can reference.
         ///
@@ -1889,9 +1937,13 @@ impl MTL4IndirectInstanceAccelerationStructureDescriptor {
         pub fn motionTransformStride(&self) -> NSUInteger;
 
         /// Setter for [`motionTransformStride`][Self::motionTransformStride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setMotionTransformStride:))]
         #[unsafe(method_family = none)]
-        pub fn setMotionTransformStride(&self, motion_transform_stride: NSUInteger);
+        pub unsafe fn setMotionTransformStride(&self, motion_transform_stride: NSUInteger);
     );
 }
 

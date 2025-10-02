@@ -171,7 +171,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bindingIndex` might not be bounds-checked.
+        /// - `stride` might not be bounds-checked.
+        /// - `bindingIndex` might not be bounds-checked.
         #[unsafe(method(setAddress:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setAddress_attributeStride_atIndex(

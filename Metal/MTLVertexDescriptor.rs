@@ -192,6 +192,10 @@ impl MTLVertexBufferLayoutDescriptor {
         pub fn stride(&self) -> NSUInteger;
 
         /// Setter for [`stride`][Self::stride].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setStride:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStride(&self, stride: NSUInteger);

@@ -451,6 +451,7 @@ extern_protocol!(
         /// - `buffer` may need to be synchronized.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
+        /// - `stride` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setVertexBuffer:offset:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
@@ -478,6 +479,7 @@ extern_protocol!(
         /// - `buffers` must be a valid pointer.
         /// - `offsets` might not be bounds-checked.
         /// - `offsets` must be a valid pointer.
+        /// - `strides` might not be bounds-checked.
         /// - `strides` must be a valid pointer.
         /// - `range` might not be bounds-checked.
         #[unsafe(method(setVertexBuffers:offsets:attributeStrides:withRange:))]
@@ -496,6 +498,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `offset` might not be bounds-checked.
+        /// - `stride` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setVertexBufferOffset:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
@@ -512,6 +515,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `bytes` must be a valid pointer.
+        /// - `stride` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setVertexBytes:length:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
@@ -1946,6 +1950,7 @@ extern_protocol!(
         /// - `buffer` may need to be synchronized.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
+        /// - `instanceStride` might not be bounds-checked.
         #[unsafe(method(setTessellationFactorBuffer:offset:instanceStride:))]
         #[unsafe(method_family = none)]
         unsafe fn setTessellationFactorBuffer_offset_instanceStride(

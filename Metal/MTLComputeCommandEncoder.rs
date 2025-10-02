@@ -155,6 +155,7 @@ extern_protocol!(
         /// - `buffer` may need to be synchronized.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
+        /// - `stride` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setBuffer:offset:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
@@ -180,6 +181,7 @@ extern_protocol!(
         /// - `buffers` must be a valid pointer.
         /// - `offsets` might not be bounds-checked.
         /// - `offsets` must be a valid pointer.
+        /// - `strides` might not be bounds-checked.
         /// - `strides` must be a valid pointer.
         /// - `range` might not be bounds-checked.
         #[unsafe(method(setBuffers:offsets:attributeStrides:withRange:))]
@@ -198,6 +200,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `offset` might not be bounds-checked.
+        /// - `stride` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setBufferOffset:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
@@ -214,6 +217,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `bytes` must be a valid pointer.
+        /// - `stride` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setBytes:length:attributeStride:atIndex:))]
         #[unsafe(method_family = none)]
