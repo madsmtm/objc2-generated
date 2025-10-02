@@ -189,6 +189,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `sourceSize` might not be bounds-checked.
         /// - `destination_texture` may need to be synchronized.
         #[optional]
         #[unsafe(method(moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]

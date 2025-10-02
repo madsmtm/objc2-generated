@@ -311,9 +311,13 @@ impl MTLRasterizationRateMapDescriptor {
         /// Parameter `screenSize`: The dimensions, in screen space pixels, of the region where variable rasterization is applied. The depth component of MTLSize is ignored.
         ///
         /// Returns: A descriptor containing no layers. Add or remove layers using setObject:atIndexedSubscript:.
+        ///
+        /// # Safety
+        ///
+        /// `screenSize` might not be bounds-checked.
         #[unsafe(method(rasterizationRateMapDescriptorWithScreenSize:))]
         #[unsafe(method_family = none)]
-        pub fn rasterizationRateMapDescriptorWithScreenSize(
+        pub unsafe fn rasterizationRateMapDescriptorWithScreenSize(
             screen_size: MTLSize,
         ) -> Retained<MTLRasterizationRateMapDescriptor>;
 
@@ -325,9 +329,13 @@ impl MTLRasterizationRateMapDescriptor {
         /// Parameter `layer`: The single layer describing how the rasterization rate varies in screen space
         ///
         /// Returns: A descriptor containing a single layer. Add or remove layers using setObject:atIndexedSubscript:.
+        ///
+        /// # Safety
+        ///
+        /// `screenSize` might not be bounds-checked.
         #[unsafe(method(rasterizationRateMapDescriptorWithScreenSize:layer:))]
         #[unsafe(method_family = none)]
-        pub fn rasterizationRateMapDescriptorWithScreenSize_layer(
+        pub unsafe fn rasterizationRateMapDescriptorWithScreenSize_layer(
             screen_size: MTLSize,
             layer: &MTLRasterizationRateLayerDescriptor,
         ) -> Retained<MTLRasterizationRateMapDescriptor>;
@@ -383,9 +391,13 @@ impl MTLRasterizationRateMapDescriptor {
 
         #[cfg(feature = "MTLTypes")]
         /// Setter for [`screenSize`][Self::screenSize].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setScreenSize:))]
         #[unsafe(method_family = none)]
-        pub fn setScreenSize(&self, screen_size: MTLSize);
+        pub unsafe fn setScreenSize(&self, screen_size: MTLSize);
 
         /// A string to help identify this object.
         ///

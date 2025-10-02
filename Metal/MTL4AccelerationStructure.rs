@@ -198,9 +198,13 @@ impl MTL4AccelerationStructureGeometryDescriptor {
         pub fn primitiveDataElementSize(&self) -> NSUInteger;
 
         /// Setter for [`primitiveDataElementSize`][Self::primitiveDataElementSize].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setPrimitiveDataElementSize:))]
         #[unsafe(method_family = none)]
-        pub fn setPrimitiveDataElementSize(&self, primitive_data_element_size: NSUInteger);
+        pub unsafe fn setPrimitiveDataElementSize(&self, primitive_data_element_size: NSUInteger);
     );
 }
 

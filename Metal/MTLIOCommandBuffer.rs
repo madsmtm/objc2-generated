@@ -58,6 +58,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `pointer` must be a valid pointer.
+        /// - `size` might not be bounds-checked.
         /// - `sourceHandleOffset` might not be bounds-checked.
         #[unsafe(method(loadBytes:size:sourceHandle:sourceHandleOffset:))]
         #[unsafe(method_family = none)]
@@ -83,6 +84,7 @@ extern_protocol!(
         /// - `buffer` may need to be synchronized.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
+        /// - `size` might not be bounds-checked.
         /// - `sourceHandleOffset` might not be bounds-checked.
         #[unsafe(method(loadBuffer:offset:size:sourceHandle:sourceHandleOffset:))]
         #[unsafe(method_family = none)]
@@ -108,6 +110,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `size` might not be bounds-checked.
         /// - `sourceHandleOffset` might not be bounds-checked.
         #[unsafe(method(loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:))]
         #[unsafe(method_family = none)]

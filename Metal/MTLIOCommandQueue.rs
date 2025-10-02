@@ -160,9 +160,13 @@ extern_protocol!(
         /// is the smallest buffer that will allow the command to execute, however a larger buffer can be provided and
         /// susequent commands will be able to use it, thus avoiding the need for an additional callback. Returning nil
         /// from the function will result in the load command being skipped and the commandBuffer getting cancelled.
+        ///
+        /// # Safety
+        ///
+        /// `minimumSize` might not be bounds-checked.
         #[unsafe(method(newScratchBufferWithMinimumSize:))]
         #[unsafe(method_family = new)]
-        fn newScratchBufferWithMinimumSize(
+        unsafe fn newScratchBufferWithMinimumSize(
             &self,
             minimum_size: NSUInteger,
         ) -> Option<Retained<ProtocolObject<dyn MTLIOScratchBuffer>>>;

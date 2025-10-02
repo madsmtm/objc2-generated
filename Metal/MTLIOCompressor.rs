@@ -40,7 +40,8 @@ pub extern "C-unwind" fn MTLIOCompressionContextDefaultChunkSize() -> usize {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `path` must be a valid pointer.
+    /// - `path` must be a valid pointer.
+    /// - `chunkSize` might not be bounds-checked.
     #[cfg(feature = "MTLDevice")]
     pub fn MTLIOCreateCompressionContext(
         path: NonNull<c_char>,
@@ -54,6 +55,7 @@ extern "C-unwind" {
     ///
     /// - `context` must be a valid pointer.
     /// - `data` must be a valid pointer.
+    /// - `size` might not be bounds-checked.
     pub fn MTLIOCompressionContextAppendData(
         context: MTLIOCompressionContext,
         data: NonNull<c_void>,

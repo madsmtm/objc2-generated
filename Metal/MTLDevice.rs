@@ -1672,6 +1672,7 @@ extern_protocol!(
         ///
         /// - `pixel_regions` must be a valid pointer.
         /// - `tile_regions` must be a valid pointer.
+        /// - `tileSize` might not be bounds-checked.
         #[optional]
         #[unsafe(method(convertSparsePixelRegions:toTileRegions:withTileSize:alignmentMode:numRegions:))]
         #[unsafe(method_family = none)]
@@ -1692,6 +1693,7 @@ extern_protocol!(
         ///
         /// - `tile_regions` must be a valid pointer.
         /// - `pixel_regions` must be a valid pointer.
+        /// - `tileSize` might not be bounds-checked.
         #[optional]
         #[unsafe(method(convertSparseTileRegions:toPixelRegions:withTileSize:numRegions:))]
         #[unsafe(method_family = none)]
@@ -1909,9 +1911,13 @@ extern_protocol!(
         /// Determine the byte size of acceleration structures when sub-allocated from a heap.
         ///
         /// This method can be used to help determine the required heap size.
+        ///
+        /// # Safety
+        ///
+        /// `size` might not be bounds-checked.
         #[unsafe(method(heapAccelerationStructureSizeAndAlignWithSize:))]
         #[unsafe(method_family = none)]
-        fn heapAccelerationStructureSizeAndAlignWithSize(
+        unsafe fn heapAccelerationStructureSizeAndAlignWithSize(
             &self,
             size: NSUInteger,
         ) -> MTLSizeAndAlign;
@@ -2187,9 +2193,13 @@ extern_protocol!(
         /// - placementSparsePageSize: ``MTLSparsePageSize`` to use for the placement sparse buffer.
         ///
         /// - Returns: A ``MTLBuffer`` instance, or `nil` if the function failed.
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(newBufferWithLength:options:placementSparsePageSize:))]
         #[unsafe(method_family = new)]
-        fn newBufferWithLength_options_placementSparsePageSize(
+        unsafe fn newBufferWithLength_options_placementSparsePageSize(
             &self,
             length: NSUInteger,
             options: MTLResourceOptions,

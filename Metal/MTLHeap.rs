@@ -376,9 +376,13 @@ extern_protocol!(
         /// Create a new acceleration structure backed by heap memory.
         ///
         /// Returns: The acceleration structure or nil if heap is full. Note that the MTLAccelerationStructure merely represents storage for an acceleration structure. It will still need to be populated via a build, copy, refit, etc.
+        ///
+        /// # Safety
+        ///
+        /// `size` might not be bounds-checked.
         #[unsafe(method(newAccelerationStructureWithSize:))]
         #[unsafe(method_family = new)]
-        fn newAccelerationStructureWithSize(
+        unsafe fn newAccelerationStructureWithSize(
             &self,
             size: NSUInteger,
         ) -> Option<Retained<ProtocolObject<dyn MTLAccelerationStructure>>>;
@@ -411,7 +415,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `offset` might not be bounds-checked.
+        /// - `size` might not be bounds-checked.
+        /// - `offset` might not be bounds-checked.
         #[unsafe(method(newAccelerationStructureWithSize:offset:))]
         #[unsafe(method_family = new)]
         unsafe fn newAccelerationStructureWithSize_offset(

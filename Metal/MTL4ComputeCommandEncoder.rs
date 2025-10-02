@@ -316,6 +316,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `sourceSize` might not be bounds-checked.
         /// - `destination_texture` may need to be synchronized.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]
         #[unsafe(method_family = none)]
@@ -378,6 +379,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `sourceSize` might not be bounds-checked.
         /// - `destination_buffer` may need to be synchronized.
         /// - `destination_buffer` contents should be of the correct type.
         /// - `destinationOffset` might not be bounds-checked.
@@ -451,6 +453,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `sourceSize` might not be bounds-checked.
         /// - `destination_buffer` may need to be synchronized.
         /// - `destination_buffer` contents should be of the correct type.
         /// - `destinationOffset` might not be bounds-checked.
@@ -492,6 +495,7 @@ extern_protocol!(
         /// - `destination_buffer` may need to be synchronized.
         /// - `destination_buffer` contents should be of the correct type.
         /// - `destinationOffset` might not be bounds-checked.
+        /// - `size` might not be bounds-checked.
         #[unsafe(method(copyFromBuffer:sourceOffset:toBuffer:destinationOffset:size:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromBuffer_sourceOffset_toBuffer_destinationOffset_size(
@@ -549,6 +553,7 @@ extern_protocol!(
         /// - `source_buffer` may need to be synchronized.
         /// - `source_buffer` contents should be of the correct type.
         /// - `sourceOffset` might not be bounds-checked.
+        /// - `sourceSize` might not be bounds-checked.
         /// - `destination_texture` may need to be synchronized.
         #[unsafe(method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]
         #[unsafe(method_family = none)]
@@ -619,6 +624,7 @@ extern_protocol!(
         /// - `source_buffer` may need to be synchronized.
         /// - `source_buffer` contents should be of the correct type.
         /// - `sourceOffset` might not be bounds-checked.
+        /// - `sourceSize` might not be bounds-checked.
         /// - `destination_texture` may need to be synchronized.
         #[unsafe(method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:))]
         #[unsafe(method_family = none)]
@@ -1140,7 +1146,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `acceleration_structure` may need to be synchronized.
+        /// - `acceleration_structure` may need to be synchronized.
+        /// - This might not be bounds-checked.
         #[unsafe(method(writeCompactedAccelerationStructureSize:toBuffer:))]
         #[unsafe(method_family = none)]
         unsafe fn writeCompactedAccelerationStructureSize_toBuffer(

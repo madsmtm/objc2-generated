@@ -249,6 +249,10 @@ impl MTLTextureDescriptor {
 
         #[cfg(feature = "MTLPixelFormat")]
         /// Create a TextureDescriptor for a common Cube texture.
+        ///
+        /// # Safety
+        ///
+        /// `size` might not be bounds-checked.
         #[unsafe(method(textureCubeDescriptorWithPixelFormat:size:mipmapped:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureCubeDescriptorWithPixelFormat_size_mipmapped(

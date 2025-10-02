@@ -97,9 +97,13 @@ impl MTLLogStateDescriptor {
         pub fn bufferSize(&self) -> NSInteger;
 
         /// Setter for [`bufferSize`][Self::bufferSize].
+        ///
+        /// # Safety
+        ///
+        /// This might not be bounds-checked.
         #[unsafe(method(setBufferSize:))]
         #[unsafe(method_family = none)]
-        pub fn setBufferSize(&self, buffer_size: NSInteger);
+        pub unsafe fn setBufferSize(&self, buffer_size: NSInteger);
     );
 }
 
