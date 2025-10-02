@@ -451,6 +451,11 @@ impl MPSMatrix {
         /// (descriptor.matrices-1) * descriptor.matrixBytes +
         /// (descriptor.rows-1) * descriptor.rowBytes +
         /// descriptor.columns * (element size) bytes.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:descriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_descriptor(
@@ -470,6 +475,11 @@ impl MPSMatrix {
         ///
         ///
         /// Parameter `descriptor`: The MPSMatrixDescriptor describing the shape of the matrix.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:offset:descriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_offset_descriptor(
@@ -634,6 +644,11 @@ impl MPSVector {
         ///
         /// (descriptor.vectors-1) * descriptor.vectorBytes +
         /// descriptor.length * (element size) bytes.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:descriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_descriptor(
@@ -652,6 +667,11 @@ impl MPSVector {
         ///
         ///
         /// Parameter `descriptor`: The MPSVectorDescriptor.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:offset:descriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_offset_descriptor(
@@ -793,6 +813,11 @@ impl MPSTemporaryMatrix {
         );
 
         /// *** unavailable
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:descriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_descriptor(
@@ -852,6 +877,11 @@ impl MPSTemporaryMatrix {
         ///
         ///
         /// Parameter `descriptor`: The MPSMatrixDescriptor describing the shape of the matrix.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:offset:descriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_offset_descriptor(
@@ -953,6 +983,11 @@ impl MPSTemporaryVector {
         );
 
         /// *** unavailable
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:descriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_descriptor(
@@ -1011,6 +1046,11 @@ impl MPSTemporaryVector {
         ///
         ///
         /// Parameter `descriptor`: The MPSVectorDescriptor.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:offset:descriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_offset_descriptor(

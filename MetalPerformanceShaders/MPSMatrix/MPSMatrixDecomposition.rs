@@ -149,6 +149,11 @@ impl MPSMatrixDecompositionLU {
         /// completely aliases the source matrix, or out-of-place.  If there
         /// is any partial overlap between input and output data the results
         /// are undefined.
+        ///
+        /// # Safety
+        ///
+        /// - `status` may need to be synchronized.
+        /// - `status` contents should be of the correct type.
         #[unsafe(method(encodeToCommandBuffer:sourceMatrix:resultMatrix:pivotIndices:status:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceMatrix_resultMatrix_pivotIndices_status(
@@ -356,6 +361,11 @@ impl MPSMatrixDecompositionCholesky {
         /// completely aliases the source matrix, or out-of-place.  If there
         /// is any partial overlap between input and output data the results
         /// are undefined.
+        ///
+        /// # Safety
+        ///
+        /// - `status` may need to be synchronized.
+        /// - `status` contents should be of the correct type.
         #[unsafe(method(encodeToCommandBuffer:sourceMatrix:resultMatrix:status:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceMatrix_resultMatrix_status(

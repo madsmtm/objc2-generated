@@ -179,7 +179,8 @@ pub unsafe trait NSObjectCIImageProvider:
         ///
         /// # Safety
         ///
-        /// `info` should be of the correct type.
+        /// - `texture` may need to be synchronized.
+        /// - `info` should be of the correct type.
         #[unsafe(method(provideImageToMTLTexture:commandBuffer:originx:originy:width:height:userInfo:))]
         #[unsafe(method_family = none)]
         unsafe fn provideImageToMTLTexture_commandBuffer_originx_originy_width_height_userInfo(

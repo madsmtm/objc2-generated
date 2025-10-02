@@ -300,6 +300,10 @@ extern_protocol!(
         unsafe fn colorTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`colorTexture`][Self::colorTexture].
+        ///
+        /// # Safety
+        ///
+        /// `color_texture` may need to be synchronized.
         #[unsafe(method(setColorTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -319,6 +323,10 @@ extern_protocol!(
         unsafe fn prevColorTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`prevColorTexture`][Self::prevColorTexture].
+        ///
+        /// # Safety
+        ///
+        /// `prev_color_texture` may need to be synchronized.
         #[unsafe(method(setPrevColorTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setPrevColorTexture(
@@ -335,6 +343,10 @@ extern_protocol!(
         unsafe fn depthTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`depthTexture`][Self::depthTexture].
+        ///
+        /// # Safety
+        ///
+        /// `depth_texture` may need to be synchronized.
         #[unsafe(method(setDepthTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setDepthTexture(&self, depth_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -348,6 +360,10 @@ extern_protocol!(
         unsafe fn motionTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`motionTexture`][Self::motionTexture].
+        ///
+        /// # Safety
+        ///
+        /// `motion_texture` may need to be synchronized.
         #[unsafe(method(setMotionTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setMotionTexture(&self, motion_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -454,6 +470,10 @@ extern_protocol!(
         unsafe fn uiTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`uiTexture`][Self::uiTexture].
+        ///
+        /// # Safety
+        ///
+        /// `ui_texture` may need to be synchronized.
         #[unsafe(method(setUITexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setUITexture(&self, ui_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -533,6 +553,10 @@ extern_protocol!(
         unsafe fn outputTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`outputTexture`][Self::outputTexture].
+        ///
+        /// # Safety
+        ///
+        /// `output_texture` may need to be synchronized.
         #[unsafe(method(setOutputTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);

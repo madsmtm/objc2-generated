@@ -122,6 +122,12 @@ impl MPSImageHistogram {
         /// - histogram results for the G channel for all bins followed by
         /// - histogram results for the B channel for all bins followed by
         /// - histogram results for the A channel for all bins
+        ///
+        /// # Safety
+        ///
+        /// - `source` may need to be synchronized.
+        /// - `histogram` may need to be synchronized.
+        /// - `histogram` contents should be of the correct type.
         #[unsafe(method(encodeToCommandBuffer:sourceTexture:histogram:histogramOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_histogram_histogramOffset(
@@ -322,6 +328,13 @@ impl MPSImageNormalizedHistogram {
         /// - histogram results for the G channel for all bins followed by
         /// - histogram results for the B channel for all bins followed by
         /// - histogram results for the A channel for all bins
+        ///
+        /// # Safety
+        ///
+        /// - `source` may need to be synchronized.
+        /// - `minmax_texture` may need to be synchronized.
+        /// - `histogram` may need to be synchronized.
+        /// - `histogram` contents should be of the correct type.
         #[unsafe(method(encodeToCommandBuffer:sourceTexture:minmaxTexture:histogram:histogramOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_minmaxTexture_histogram_histogramOffset(
@@ -514,6 +527,12 @@ impl MPSImageHistogramEqualization {
         /// Parameter `histogramOffset`: A byte offset into the histogram MTLBuffer where the histogram starts. Must conform to
         /// alignment requirements for [MTLComputeCommandEncoder setBuffer:offset:atIndex:] offset
         /// parameter.
+        ///
+        /// # Safety
+        ///
+        /// - `source` may need to be synchronized.
+        /// - `histogram` may need to be synchronized.
+        /// - `histogram` contents should be of the correct type.
         #[unsafe(method(encodeTransformToCommandBuffer:sourceTexture:histogram:histogramOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeTransformToCommandBuffer_sourceTexture_histogram_histogramOffset(
@@ -682,6 +701,14 @@ impl MPSImageHistogramSpecification {
         /// Parameter `desiredHistogramOffset`: A byte offset into the desiredHistogram MTLBuffer where the histogram starts. Must conform to
         /// alignment requirements for [MTLComputeCommandEncoder setBuffer:offset:atIndex:] offset
         /// parameter.
+        ///
+        /// # Safety
+        ///
+        /// - `source` may need to be synchronized.
+        /// - `source_histogram` may need to be synchronized.
+        /// - `source_histogram` contents should be of the correct type.
+        /// - `desired_histogram` may need to be synchronized.
+        /// - `desired_histogram` contents should be of the correct type.
         #[unsafe(method(encodeTransformToCommandBuffer:sourceTexture:sourceHistogram:sourceHistogramOffset:desiredHistogram:desiredHistogramOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeTransformToCommandBuffer_sourceTexture_sourceHistogram_sourceHistogramOffset_desiredHistogram_desiredHistogramOffset(

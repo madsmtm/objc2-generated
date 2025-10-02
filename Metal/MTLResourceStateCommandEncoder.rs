@@ -85,6 +85,7 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `texture` may need to be synchronized.
         /// - `regions` must be a valid pointer.
         /// - `mip_levels` must be a valid pointer.
         /// - `slices` must be a valid pointer.
@@ -108,10 +109,14 @@ extern_protocol!(
             feature = "MTLTypes"
         ))]
         /// Updates mapping for given sparse texture
+        ///
+        /// # Safety
+        ///
+        /// `texture` may need to be synchronized.
         #[optional]
         #[unsafe(method(updateTextureMapping:mode:region:mipLevel:slice:))]
         #[unsafe(method_family = none)]
-        fn updateTextureMapping_mode_region_mipLevel_slice(
+        unsafe fn updateTextureMapping_mode_region_mipLevel_slice(
             &self,
             texture: &ProtocolObject<dyn MTLTexture>,
             mode: MTLSparseTextureMappingMode,
@@ -135,7 +140,10 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `indirectBufferOffset` might not be bounds-checked.
+        /// - `texture` may need to be synchronized.
+        /// - `indirect_buffer` may need to be synchronized.
+        /// - `indirect_buffer` contents should be of the correct type.
+        /// - `indirectBufferOffset` might not be bounds-checked.
         #[optional]
         #[unsafe(method(updateTextureMapping:mode:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
@@ -177,10 +185,15 @@ extern_protocol!(
         ///
         /// The tile mapping is moved from the source texture only if the destination texture tile is unmapped. The textures must also have matching a texture format,
         /// texture type, sample count, usage and resource options.
+        ///
+        /// # Safety
+        ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
         #[optional]
         #[unsafe(method(moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]
         #[unsafe(method_family = none)]
-        fn moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
+        unsafe fn moveTextureMappingsFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
             &self,
             source_texture: &ProtocolObject<dyn MTLTexture>,
             source_slice: NSUInteger,

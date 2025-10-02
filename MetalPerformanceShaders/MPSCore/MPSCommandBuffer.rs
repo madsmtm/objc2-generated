@@ -61,6 +61,11 @@ impl MPSPredicate {
         /// Parameter `offset`: Byteoffset to the predicate buffer where the predicate is stored.
         ///
         /// Returns: A pointer to the newly initialized MPSPredicate object.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(predicateWithBuffer:offset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn predicateWithBuffer_offset(
@@ -75,6 +80,11 @@ impl MPSPredicate {
         /// Parameter `offset`: Byteoffset to the predicate buffer where the predicate is stored.
         ///
         /// Returns: A pointer to the newly initialized MPSPredicate object.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:offset:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_offset(

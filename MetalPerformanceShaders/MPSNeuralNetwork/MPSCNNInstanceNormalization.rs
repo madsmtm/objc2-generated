@@ -99,6 +99,10 @@ impl MPSCNNInstanceNormalizationGradientState {
         ) -> Retained<Self>;
 
         /// Unavailable.  Use MPSCNNInstanceNormalization state creation methods.
+        ///
+        /// # Safety
+        ///
+        /// `resource` may need to be synchronized.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -158,6 +162,10 @@ impl MPSCNNInstanceNormalizationGradientState {
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
+        ///
+        /// # Safety
+        ///
+        /// `resources` generic may need to be synchronized.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(

@@ -447,6 +447,10 @@ extern_protocol!(
         /// Returns: True if encoding was successful, otherwise, false.
         ///
         /// Client calls this method to direct display object to append encoded display processing Metal pass to client supplied commandBuffer.  Processed frame will land in specified region of client supplied texture.  Nothing outside the specified region will be written.  Note that commandBuffer and texture objects must both be descendants of host Metal device being used for guest acceleration.  Note that texture.textureUsage must contain the bits specified in self.minimumTextureUsage.  See newFrameEventHandler above since it notifies client of the existence of a new frame.
+        ///
+        /// # Safety
+        ///
+        /// `texture` may need to be synchronized.
         #[unsafe(method(encodeCurrentFrameToCommandBuffer:texture:region:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeCurrentFrameToCommandBuffer_texture_region(

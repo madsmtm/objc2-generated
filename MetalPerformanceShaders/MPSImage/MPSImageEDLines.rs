@@ -164,6 +164,13 @@ impl MPSImageEDLines {
         /// start and end pixel coordinates of the segment. Coordinates are stored as unsigned short pairs, and a
         /// single line segment will consist of two pairs, or four total unsigned shorts. The endpoint buffer size must
         /// be >= 4 * maxLines * sizeof(unsigned short) + sizeof(uint32_t).
+        ///
+        /// # Safety
+        ///
+        /// - `source` may need to be synchronized.
+        /// - `dest` may need to be synchronized.
+        /// - `endpoint_buffer` may need to be synchronized.
+        /// - `endpoint_buffer` contents should be of the correct type.
         #[unsafe(method(encodeToCommandBuffer:sourceTexture:destinationTexture:endpointBuffer:endpointOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_destinationTexture_endpointBuffer_endpointOffset(

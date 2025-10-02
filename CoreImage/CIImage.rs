@@ -434,7 +434,8 @@ impl CIImage {
         #[cfg(feature = "objc2-metal")]
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `texture` may need to be synchronized.
+        /// - `options` generic should be of the correct type.
         #[unsafe(method(imageWithMTLTexture:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn imageWithMTLTexture_options(
@@ -673,7 +674,8 @@ impl CIImage {
         #[cfg(feature = "objc2-metal")]
         /// # Safety
         ///
-        /// `options` generic should be of the correct type.
+        /// - `texture` may need to be synchronized.
+        /// - `options` generic should be of the correct type.
         #[unsafe(method(initWithMTLTexture:options:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMTLTexture_options(

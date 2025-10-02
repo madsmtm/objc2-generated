@@ -646,9 +646,14 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`transformationMatrixBuffer`][Self::transformationMatrixBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `transformation_matrix_buffer` may need to be synchronized.
+        /// - `transformation_matrix_buffer` contents should be of the correct type.
         #[unsafe(method(setTransformationMatrixBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setTransformationMatrixBuffer(
+        pub unsafe fn setTransformationMatrixBuffer(
             &self,
             transformation_matrix_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -846,9 +851,14 @@ impl MTLMotionKeyframeData {
             feature = "MTLResource"
         ))]
         /// Setter for [`buffer`][Self::buffer].
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(setBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setBuffer(&self, buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+        pub unsafe fn setBuffer(&self, buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         /// Buffer offset. Must be a multiple of 4 bytes.
         #[unsafe(method(offset))]
@@ -965,9 +975,14 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`indexBuffer`][Self::indexBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` contents should be of the correct type.
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+        pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         /// Index buffer offset. Must be a multiple of the index data type size and must be aligned to both
         /// the index data type's alignment and the platform's buffer offset alignment.
@@ -1029,9 +1044,14 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`transformationMatrixBuffer`][Self::transformationMatrixBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `transformation_matrix_buffer` may need to be synchronized.
+        /// - `transformation_matrix_buffer` contents should be of the correct type.
         #[unsafe(method(setTransformationMatrixBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setTransformationMatrixBuffer(
+        pub unsafe fn setTransformationMatrixBuffer(
             &self,
             transformation_matrix_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -1326,9 +1346,14 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`controlPointBuffer`][Self::controlPointBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `control_point_buffer` may need to be synchronized.
+        /// - `control_point_buffer` contents should be of the correct type.
         #[unsafe(method(setControlPointBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setControlPointBuffer(
+        pub unsafe fn setControlPointBuffer(
             &self,
             control_point_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -1408,9 +1433,14 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`radiusBuffer`][Self::radiusBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `radius_buffer` may need to be synchronized.
+        /// - `radius_buffer` contents should be of the correct type.
         #[unsafe(method(setRadiusBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setRadiusBuffer(&self, radius_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+        pub unsafe fn setRadiusBuffer(&self, radius_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         /// Radius buffer offset. Must be a multiple of the radius format
         /// size and must be aligned to the platform's buffer offset alignment.
@@ -1469,9 +1499,14 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`indexBuffer`][Self::indexBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` contents should be of the correct type.
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+        pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         /// Index buffer offset. Must be a multiple of the index data type
         /// size and must be aligned to both the index data type's alignment and
@@ -1727,9 +1762,14 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`indexBuffer`][Self::indexBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` contents should be of the correct type.
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
+        pub unsafe fn setIndexBuffer(&self, index_buffer: Option<&ProtocolObject<dyn MTLBuffer>>);
 
         /// Index buffer offset. Must be a multiple of the index data type
         /// size and must be aligned to both the index data type's alignment and
@@ -2267,9 +2307,14 @@ impl MTLInstanceAccelerationStructureDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`motionTransformBuffer`][Self::motionTransformBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `motion_transform_buffer` may need to be synchronized.
+        /// - `motion_transform_buffer` contents should be of the correct type.
         #[unsafe(method(setMotionTransformBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setMotionTransformBuffer(
+        pub unsafe fn setMotionTransformBuffer(
             &self,
             motion_transform_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -2407,9 +2452,14 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`instanceDescriptorBuffer`][Self::instanceDescriptorBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `instance_descriptor_buffer` may need to be synchronized.
+        /// - `instance_descriptor_buffer` contents should be of the correct type.
         #[unsafe(method(setInstanceDescriptorBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceDescriptorBuffer(
+        pub unsafe fn setInstanceDescriptorBuffer(
             &self,
             instance_descriptor_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -2475,9 +2525,14 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`instanceCountBuffer`][Self::instanceCountBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `instance_count_buffer` may need to be synchronized.
+        /// - `instance_count_buffer` contents should be of the correct type.
         #[unsafe(method(setInstanceCountBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setInstanceCountBuffer(
+        pub unsafe fn setInstanceCountBuffer(
             &self,
             instance_count_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -2529,9 +2584,14 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`motionTransformBuffer`][Self::motionTransformBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `motion_transform_buffer` may need to be synchronized.
+        /// - `motion_transform_buffer` contents should be of the correct type.
         #[unsafe(method(setMotionTransformBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setMotionTransformBuffer(
+        pub unsafe fn setMotionTransformBuffer(
             &self,
             motion_transform_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );
@@ -2586,9 +2646,14 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
             feature = "MTLResource"
         ))]
         /// Setter for [`motionTransformCountBuffer`][Self::motionTransformCountBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `motion_transform_count_buffer` may need to be synchronized.
+        /// - `motion_transform_count_buffer` contents should be of the correct type.
         #[unsafe(method(setMotionTransformCountBuffer:))]
         #[unsafe(method_family = none)]
-        pub fn setMotionTransformCountBuffer(
+        pub unsafe fn setMotionTransformCountBuffer(
             &self,
             motion_transform_count_buffer: Option<&ProtocolObject<dyn MTLBuffer>>,
         );

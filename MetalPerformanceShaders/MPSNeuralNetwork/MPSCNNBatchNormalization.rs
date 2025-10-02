@@ -49,6 +49,10 @@ impl MPSCNNBatchNormalizationState {
         pub unsafe fn batchNormalization(&self) -> Retained<MPSCNNBatchNormalization>;
 
         /// Unavailable.  Use MPSCNNBatchNormalizationStatistics methods to initialize the state object.
+        ///
+        /// # Safety
+        ///
+        /// `resource` may need to be synchronized.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -179,6 +183,10 @@ impl MPSCNNBatchNormalizationState {
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
+        ///
+        /// # Safety
+        ///
+        /// `resources` generic may need to be synchronized.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
@@ -239,6 +247,13 @@ impl MPSCNNNormalizationMeanAndVarianceState {
         ///
         ///
         /// Parameter `variance`: The MTLBuffer containing variance terms.
+        ///
+        /// # Safety
+        ///
+        /// - `mean` may need to be synchronized.
+        /// - `mean` contents should be of the correct type.
+        /// - `variance` may need to be synchronized.
+        /// - `variance` contents should be of the correct type.
         #[unsafe(method(initWithMean:variance:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMean_variance(
@@ -323,6 +338,10 @@ impl MPSCNNNormalizationMeanAndVarianceState {
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
+        ///
+        /// # Safety
+        ///
+        /// `resource` may need to be synchronized.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -364,6 +383,10 @@ impl MPSCNNNormalizationMeanAndVarianceState {
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
+        ///
+        /// # Safety
+        ///
+        /// `resources` generic may need to be synchronized.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(

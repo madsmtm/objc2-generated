@@ -79,6 +79,11 @@ impl MPSGraphTensorData {
         /// - shape: shape of the output tensor
         /// - dataType: dataType of the placeholder tensor
         /// - Returns: A valid MPSGraphTensorData, or nil if allocation failure.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithMTLBuffer:shape:dataType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMTLBuffer_shape_dataType(
@@ -99,6 +104,11 @@ impl MPSGraphTensorData {
         /// - dataType: dataType of the placeholder tensor
         /// - rowBytes: rowBytes for the fastest moving dimension, must be larger than or equal to sizeOf(dataType)shape[rank - 1] and must be a multiple of sizeOf(dataType)
         /// - Returns: A valid MPSGraphTensorData, or nil if allocation failure.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithMTLBuffer:shape:dataType:rowBytes:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMTLBuffer_shape_dataType_rowBytes(
@@ -210,6 +220,10 @@ impl MPSGraphTensorData {
         /// - Parameters:
         /// - tensor: MTLTensor to be used within the MPSGraphTensorData
         /// - Returns: A valid MPSGraphTensorData, or nil if allocation failure.
+        ///
+        /// # Safety
+        ///
+        /// `tensor` may need to be synchronized.
         #[unsafe(method(initWithMTLTensor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMTLTensor(

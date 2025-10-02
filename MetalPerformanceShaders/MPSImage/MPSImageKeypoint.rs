@@ -155,7 +155,12 @@ impl MPSImageFindKeypoints {
         ///
         /// # Safety
         ///
-        /// `regions` must be a valid pointer.
+        /// - `source` may need to be synchronized.
+        /// - `regions` must be a valid pointer.
+        /// - `keypoint_count_buffer` may need to be synchronized.
+        /// - `keypoint_count_buffer` contents should be of the correct type.
+        /// - `keypoint_data_buffer` may need to be synchronized.
+        /// - `keypoint_data_buffer` contents should be of the correct type.
         #[unsafe(method(encodeToCommandBuffer:sourceTexture:regions:numberOfRegions:keypointCountBuffer:keypointCountBufferOffset:keypointDataBuffer:keypointDataBufferOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_regions_numberOfRegions_keypointCountBuffer_keypointCountBufferOffset_keypointDataBuffer_keypointDataBufferOffset(

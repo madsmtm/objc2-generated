@@ -104,6 +104,11 @@ impl MPSPolygonBuffer {
         pub unsafe fn vertexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`vertexBuffer`][Self::vertexBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `vertex_buffer` may need to be synchronized.
+        /// - `vertex_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(setVertexBuffer:))]
         #[unsafe(method_family = none)]
@@ -130,6 +135,11 @@ impl MPSPolygonBuffer {
         pub unsafe fn indexBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`indexBuffer`][Self::indexBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
@@ -157,6 +167,11 @@ impl MPSPolygonBuffer {
         pub unsafe fn maskBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`maskBuffer`][Self::maskBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `mask_buffer` may need to be synchronized.
+        /// - `mask_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(setMaskBuffer:))]
         #[unsafe(method_family = none)]

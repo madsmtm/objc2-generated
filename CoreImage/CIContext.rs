@@ -506,6 +506,9 @@ impl CIContext {
             feature = "objc2-core-graphics",
             feature = "objc2-metal"
         ))]
+        /// # Safety
+        ///
+        /// `texture` may need to be synchronized.
         #[unsafe(method(render:toMTLTexture:commandBuffer:bounds:colorSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn render_toMTLTexture_commandBuffer_bounds_colorSpace(

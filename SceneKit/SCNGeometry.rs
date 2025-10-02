@@ -596,6 +596,11 @@ impl SCNGeometrySource {
         ///
         /// [myCommandBuffer commit];
         /// }
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(geometrySourceWithBuffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometrySourceWithBuffer_vertexFormat_semantic_vertexCount_dataOffset_dataStride(
@@ -736,6 +741,11 @@ impl SCNGeometryElement {
         /// Parameter `primitiveCount`: The number of primitives in the data.
         ///
         /// Parameter `bytesPerIndex`: The number of bytes that represent a single index value in the data.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(geometryElementWithBuffer:primitiveType:primitiveCount:bytesPerIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryElementWithBuffer_primitiveType_primitiveCount_bytesPerIndex(
@@ -747,6 +757,10 @@ impl SCNGeometryElement {
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(geometryElementWithBuffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geometryElementWithBuffer_primitiveType_primitiveCount_indicesChannelCount_interleavedIndicesChannels_bytesPerIndex(

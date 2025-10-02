@@ -24,6 +24,8 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setVertexBuffer:offset:atIndex:))]
@@ -42,6 +44,8 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setFragmentBuffer:offset:atIndex:))]
@@ -64,6 +68,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setVertexBuffer:offset:attributeStride:atIndex:))]
@@ -84,8 +90,12 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `patchCount` might not be bounds-checked.
+        /// - `patch_index_buffer` may need to be synchronized.
+        /// - `patch_index_buffer` contents should be of the correct type.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         #[unsafe(method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:))]
         #[unsafe(method_family = none)]
@@ -111,9 +121,15 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `patchCount` might not be bounds-checked.
+        /// - `patch_index_buffer` may need to be synchronized.
+        /// - `patch_index_buffer` contents should be of the correct type.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
+        /// - `control_point_index_buffer` may need to be synchronized.
+        /// - `control_point_index_buffer` contents should be of the correct type.
         /// - `controlPointIndexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         #[unsafe(method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:tessellationFactorBuffer:tessellationFactorBufferOffset:tessellationFactorBufferInstanceStride:))]
         #[unsafe(method_family = none)]
@@ -159,6 +175,8 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indexCount` might not be bounds-checked.
+        /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` contents should be of the correct type.
         /// - `indexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:))]
@@ -193,6 +211,8 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setObjectBuffer:offset:atIndex:))]
@@ -211,6 +231,8 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setMeshBuffer:offset:atIndex:))]
@@ -311,6 +333,8 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setKernelBuffer:offset:atIndex:))]
@@ -333,6 +357,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setKernelBuffer:offset:attributeStride:atIndex:))]

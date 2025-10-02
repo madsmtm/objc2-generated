@@ -29,7 +29,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `index` might not be bounds-checked.
+        /// - `texture` may need to be synchronized.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setTextureView:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTextureView_atIndex(
@@ -58,7 +59,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `index` might not be bounds-checked.
+        /// - `texture` may need to be synchronized.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setTextureView:descriptor:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTextureView_descriptor_atIndex(
@@ -91,6 +93,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setTextureViewFromBuffer:descriptor:offset:bytesPerRow:atIndex:))]

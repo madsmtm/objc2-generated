@@ -749,6 +749,10 @@ impl MPSImage {
         /// other libraries such as that drawn from a JPEG or PNG, featureChannels should
         /// be set to number of valid color channel e.g. for RGB data, even thought MTLPixelFormat will be
         /// MTLPixelFormatRGBA, featureChannels should be set to 3.
+        ///
+        /// # Safety
+        ///
+        /// `texture` may need to be synchronized.
         #[unsafe(method(initWithTexture:featureChannels:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTexture_featureChannels(
@@ -1359,6 +1363,10 @@ impl MPSTemporaryImage {
         );
 
         /// Unavailable. Use temporaryImageForCommandBuffer:textureDescriptor: or -temporaryImageForCommandBuffer:imageDescriptor: instead.
+        ///
+        /// # Safety
+        ///
+        /// `texture` may need to be synchronized.
         #[unsafe(method(initWithTexture:featureChannels:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTexture_featureChannels(

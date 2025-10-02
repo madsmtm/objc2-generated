@@ -436,6 +436,19 @@ impl MPSSVGF {
         /// Parameter `depthNormalTexture`: The depth and normal values for the current frame
         ///
         /// Parameter `previousDepthNormalTexture`: The depth and normal values for the previous frame
+        ///
+        /// # Safety
+        ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `previous_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
+        /// - `previous_luminance_moments_texture` may need to be synchronized.
+        /// - `destination_luminance_moments_texture` may need to be synchronized.
+        /// - `previous_frame_count_texture` may need to be synchronized.
+        /// - `destination_frame_count_texture` may need to be synchronized.
+        /// - `motion_vector_texture` may need to be synchronized.
+        /// - `depth_normal_texture` may need to be synchronized.
+        /// - `previous_depth_normal_texture` may need to be synchronized.
         #[unsafe(method(encodeReprojectionToCommandBuffer:sourceTexture:previousTexture:destinationTexture:previousLuminanceMomentsTexture:destinationLuminanceMomentsTexture:previousFrameCountTexture:destinationFrameCountTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeReprojectionToCommandBuffer_sourceTexture_previousTexture_destinationTexture_previousLuminanceMomentsTexture_destinationLuminanceMomentsTexture_previousFrameCountTexture_destinationFrameCountTexture_motionVectorTexture_depthNormalTexture_previousDepthNormalTexture(
@@ -539,6 +552,24 @@ impl MPSSVGF {
         /// Parameter `depthNormalTexture`: The depth and normal values for the current frame
         ///
         /// Parameter `previousDepthNormalTexture`: The depth and normal values for the previous frame
+        ///
+        /// # Safety
+        ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `previous_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
+        /// - `previous_luminance_moments_texture` may need to be synchronized.
+        /// - `destination_luminance_moments_texture` may need to be synchronized.
+        /// - `source_texture2` may need to be synchronized.
+        /// - `previous_texture2` may need to be synchronized.
+        /// - `destination_texture2` may need to be synchronized.
+        /// - `previous_luminance_moments_texture2` may need to be synchronized.
+        /// - `destination_luminance_moments_texture2` may need to be synchronized.
+        /// - `previous_frame_count_texture` may need to be synchronized.
+        /// - `destination_frame_count_texture` may need to be synchronized.
+        /// - `motion_vector_texture` may need to be synchronized.
+        /// - `depth_normal_texture` may need to be synchronized.
+        /// - `previous_depth_normal_texture` may need to be synchronized.
         #[unsafe(method(encodeReprojectionToCommandBuffer:sourceTexture:previousTexture:destinationTexture:previousLuminanceMomentsTexture:destinationLuminanceMomentsTexture:sourceTexture2:previousTexture2:destinationTexture2:previousLuminanceMomentsTexture2:destinationLuminanceMomentsTexture2:previousFrameCountTexture:destinationFrameCountTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeReprojectionToCommandBuffer_sourceTexture_previousTexture_destinationTexture_previousLuminanceMomentsTexture_destinationLuminanceMomentsTexture_sourceTexture2_previousTexture2_destinationTexture2_previousLuminanceMomentsTexture2_destinationLuminanceMomentsTexture2_previousFrameCountTexture_destinationFrameCountTexture_motionVectorTexture_depthNormalTexture_previousDepthNormalTexture(
@@ -612,6 +643,14 @@ impl MPSSVGF {
         /// Parameter `frameCountTexture`: Number of frames accumulated into the source image
         ///
         /// Parameter `depthNormalTexture`: The depth and normal values for the current frame
+        ///
+        /// # Safety
+        ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `luminance_moments_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
+        /// - `frame_count_texture` may need to be synchronized.
+        /// - `depth_normal_texture` may need to be synchronized.
         #[unsafe(method(encodeVarianceEstimationToCommandBuffer:sourceTexture:luminanceMomentsTexture:destinationTexture:frameCountTexture:depthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeVarianceEstimationToCommandBuffer_sourceTexture_luminanceMomentsTexture_destinationTexture_frameCountTexture_depthNormalTexture(
@@ -681,6 +720,17 @@ impl MPSSVGF {
         /// Parameter `frameCountTexture`: Number of frames accumulated into the source image
         ///
         /// Parameter `depthNormalTexture`: The depth and normal values for the current frame
+        ///
+        /// # Safety
+        ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `luminance_moments_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
+        /// - `source_texture2` may need to be synchronized.
+        /// - `luminance_moments_texture2` may need to be synchronized.
+        /// - `destination_texture2` may need to be synchronized.
+        /// - `frame_count_texture` may need to be synchronized.
+        /// - `depth_normal_texture` may need to be synchronized.
         #[unsafe(method(encodeVarianceEstimationToCommandBuffer:sourceTexture:luminanceMomentsTexture:destinationTexture:sourceTexture2:luminanceMomentsTexture2:destinationTexture2:frameCountTexture:depthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeVarianceEstimationToCommandBuffer_sourceTexture_luminanceMomentsTexture_destinationTexture_sourceTexture2_luminanceMomentsTexture2_destinationTexture2_frameCountTexture_depthNormalTexture(
@@ -745,6 +795,12 @@ impl MPSSVGF {
         /// Parameter `destinationTexture`: Destination packed color and variance texture
         ///
         /// Parameter `depthNormalTexture`: The depth and normal values for the current frame
+        ///
+        /// # Safety
+        ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
+        /// - `depth_normal_texture` may need to be synchronized.
         #[unsafe(method(encodeBilateralFilterToCommandBuffer:stepDistance:sourceTexture:destinationTexture:depthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBilateralFilterToCommandBuffer_stepDistance_sourceTexture_destinationTexture_depthNormalTexture(
@@ -809,6 +865,14 @@ impl MPSSVGF {
         /// Parameter `destinationTexture2`: Second destination image
         ///
         /// Parameter `depthNormalTexture`: The depth and normal values for the current frame
+        ///
+        /// # Safety
+        ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
+        /// - `source_texture2` may need to be synchronized.
+        /// - `destination_texture2` may need to be synchronized.
+        /// - `depth_normal_texture` may need to be synchronized.
         #[unsafe(method(encodeBilateralFilterToCommandBuffer:stepDistance:sourceTexture:destinationTexture:sourceTexture2:destinationTexture2:depthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeBilateralFilterToCommandBuffer_stepDistance_sourceTexture_destinationTexture_sourceTexture2_destinationTexture2_depthNormalTexture(
@@ -883,6 +947,10 @@ extern_protocol!(
         /// Return a texture to the allocator. The allocator operate in such a way as to reduce the
         /// allocation cost should another texture be requested with the same width, height, and pixel
         /// format.
+        ///
+        /// # Safety
+        ///
+        /// `texture` may need to be synchronized.
         #[unsafe(method(returnTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn returnTexture(&self, texture: &ProtocolObject<dyn MTLTexture>);
@@ -937,6 +1005,9 @@ impl MPSSVGFDefaultTextureAllocator {
             height: NSUInteger,
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
+        /// # Safety
+        ///
+        /// `texture` may need to be synchronized.
         #[unsafe(method(returnTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn returnTexture(&self, texture: &ProtocolObject<dyn MTLTexture>);
@@ -1103,6 +1174,13 @@ impl MPSSVGFDenoiser {
         /// details.
         /// Parameter previousDepthNormalTexture Depth/normal texture from the previous frame. See the MPSSVGF
         /// object for more details.
+        ///
+        /// # Safety
+        ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `motion_vector_texture` may need to be synchronized.
+        /// - `depth_normal_texture` may need to be synchronized.
+        /// - `previous_depth_normal_texture` may need to be synchronized.
         #[unsafe(method(encodeToCommandBuffer:sourceTexture:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_motionVectorTexture_depthNormalTexture_previousDepthNormalTexture(
@@ -1142,6 +1220,16 @@ impl MPSSVGFDenoiser {
         /// details.
         /// Parameter previousDepthNormalTexture Depth/normal texture from the previous frame. See the MPSSVGF
         /// object for more details.
+        ///
+        /// # Safety
+        ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
+        /// - `source_texture2` may need to be synchronized.
+        /// - `destination_texture2` may need to be synchronized.
+        /// - `motion_vector_texture` may need to be synchronized.
+        /// - `depth_normal_texture` may need to be synchronized.
+        /// - `previous_depth_normal_texture` may need to be synchronized.
         #[unsafe(method(encodeToCommandBuffer:sourceTexture:destinationTexture:sourceTexture2:destinationTexture2:motionVectorTexture:depthNormalTexture:previousDepthNormalTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_destinationTexture_sourceTexture2_destinationTexture2_motionVectorTexture_depthNormalTexture_previousDepthNormalTexture(

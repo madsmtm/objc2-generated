@@ -245,6 +245,11 @@ impl MPSInstanceAccelerationStructure {
         pub unsafe fn instanceBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`instanceBuffer`][Self::instanceBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `instance_buffer` may need to be synchronized.
+        /// - `instance_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(setInstanceBuffer:))]
         #[unsafe(method_family = none)]
@@ -273,6 +278,11 @@ impl MPSInstanceAccelerationStructure {
         pub unsafe fn transformBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`transformBuffer`][Self::transformBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `transform_buffer` may need to be synchronized.
+        /// - `transform_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(setTransformBuffer:))]
         #[unsafe(method_family = none)]
@@ -314,6 +324,11 @@ impl MPSInstanceAccelerationStructure {
         pub unsafe fn maskBuffer(&self) -> Option<Retained<ProtocolObject<dyn MTLBuffer>>>;
 
         /// Setter for [`maskBuffer`][Self::maskBuffer].
+        ///
+        /// # Safety
+        ///
+        /// - `mask_buffer` may need to be synchronized.
+        /// - `mask_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(setMaskBuffer:))]
         #[unsafe(method_family = none)]

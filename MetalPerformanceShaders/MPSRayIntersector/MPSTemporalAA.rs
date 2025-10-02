@@ -137,6 +137,14 @@ impl MPSTemporalAA {
         /// Parameter `motionVectorTexture`: Motion vector texture
         ///
         /// Parameter `depthTexture`: The depth values for the current frame
+        ///
+        /// # Safety
+        ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `previous_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
+        /// - `motion_vector_texture` may need to be synchronized.
+        /// - `depth_texture` may need to be synchronized.
         #[unsafe(method(encodeToCommandBuffer:sourceTexture:previousTexture:destinationTexture:motionVectorTexture:depthTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_previousTexture_destinationTexture_motionVectorTexture_depthTexture(

@@ -392,6 +392,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setVertexBuffer:offset:atIndex:))]
@@ -446,6 +448,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setVertexBuffer:offset:attributeStride:atIndex:))]
@@ -528,7 +532,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `index` might not be bounds-checked.
+        /// - `texture` may need to be synchronized.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setVertexTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexTexture_atIndex(
@@ -629,7 +634,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bufferIndex` might not be bounds-checked.
+        /// - `function_table` may need to be synchronized.
+        /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setVertexVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexVisibleFunctionTable_atBufferIndex(
@@ -666,7 +672,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bufferIndex` might not be bounds-checked.
+        /// - `intersection_function_table` may need to be synchronized.
+        /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setVertexIntersectionFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexIntersectionFunctionTable_atBufferIndex(
@@ -705,7 +712,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bufferIndex` might not be bounds-checked.
+        /// - `acceleration_structure` may need to be synchronized.
+        /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setVertexAccelerationStructure:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setVertexAccelerationStructure_atBufferIndex(
@@ -836,6 +844,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setFragmentBuffer:offset:atIndex:))]
@@ -888,7 +898,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `index` might not be bounds-checked.
+        /// - `texture` may need to be synchronized.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setFragmentTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentTexture_atIndex(
@@ -989,7 +1000,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bufferIndex` might not be bounds-checked.
+        /// - `function_table` may need to be synchronized.
+        /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setFragmentVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentVisibleFunctionTable_atBufferIndex(
@@ -1026,7 +1038,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bufferIndex` might not be bounds-checked.
+        /// - `intersection_function_table` may need to be synchronized.
+        /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setFragmentIntersectionFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentIntersectionFunctionTable_atBufferIndex(
@@ -1065,7 +1078,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bufferIndex` might not be bounds-checked.
+        /// - `acceleration_structure` may need to be synchronized.
+        /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setFragmentAccelerationStructure:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setFragmentAccelerationStructure_atBufferIndex(
@@ -1207,6 +1221,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setObjectBuffer:offset:atIndex:))]
@@ -1259,7 +1275,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `index` might not be bounds-checked.
+        /// - `texture` may need to be synchronized.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setObjectTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setObjectTexture_atIndex(
@@ -1388,6 +1405,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setMeshBuffer:offset:atIndex:))]
@@ -1440,7 +1459,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `index` might not be bounds-checked.
+        /// - `texture` may need to be synchronized.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setMeshTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setMeshTexture_atIndex(
@@ -1594,7 +1614,9 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `indirectBufferOffset` might not be bounds-checked.
+        /// - `indirect_buffer` may need to be synchronized.
+        /// - `indirect_buffer` contents should be of the correct type.
+        /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawMeshThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:))]
         #[unsafe(method_family = none)]
         unsafe fn drawMeshThreadgroupsWithIndirectBuffer_indirectBufferOffset_threadsPerObjectThreadgroup_threadsPerMeshThreadgroup(
@@ -1674,6 +1696,8 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indexCount` might not be bounds-checked.
+        /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` contents should be of the correct type.
         /// - `indexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:))]
@@ -1711,6 +1735,8 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indexCount` might not be bounds-checked.
+        /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` contents should be of the correct type.
         /// - `indexBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:))]
         #[unsafe(method_family = none)]
@@ -1779,6 +1805,8 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indexCount` might not be bounds-checked.
+        /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` contents should be of the correct type.
         /// - `indexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:instanceCount:baseVertex:baseInstance:))]
@@ -1812,7 +1840,9 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `indirectBufferOffset` might not be bounds-checked.
+        /// - `indirect_buffer` may need to be synchronized.
+        /// - `indirect_buffer` contents should be of the correct type.
+        /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawPrimitives:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn drawPrimitives_indirectBuffer_indirectBufferOffset(
@@ -1848,7 +1878,11 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` contents should be of the correct type.
         /// - `indexBufferOffset` might not be bounds-checked.
+        /// - `indirect_buffer` may need to be synchronized.
+        /// - `indirect_buffer` contents should be of the correct type.
         /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
@@ -1909,7 +1943,9 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
-        /// `offset` might not be bounds-checked.
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
+        /// - `offset` might not be bounds-checked.
         #[unsafe(method(setTessellationFactorBuffer:offset:instanceStride:))]
         #[unsafe(method_family = none)]
         unsafe fn setTessellationFactorBuffer_offset_instanceStride(
@@ -1931,6 +1967,8 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `patchCount` might not be bounds-checked.
+        /// - `patch_index_buffer` may need to be synchronized.
+        /// - `patch_index_buffer` contents should be of the correct type.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:instanceCount:baseInstance:))]
@@ -1953,7 +1991,11 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
+        /// - `patch_index_buffer` may need to be synchronized.
+        /// - `patch_index_buffer` contents should be of the correct type.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
+        /// - `indirect_buffer` may need to be synchronized.
+        /// - `indirect_buffer` contents should be of the correct type.
         /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
@@ -1974,7 +2016,11 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `patchCount` might not be bounds-checked.
+        /// - `patch_index_buffer` may need to be synchronized.
+        /// - `patch_index_buffer` contents should be of the correct type.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
+        /// - `control_point_index_buffer` may need to be synchronized.
+        /// - `control_point_index_buffer` contents should be of the correct type.
         /// - `controlPointIndexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
         #[unsafe(method(drawIndexedPatches:patchStart:patchCount:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:instanceCount:baseInstance:))]
@@ -1999,8 +2045,14 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
+        /// - `patch_index_buffer` may need to be synchronized.
+        /// - `patch_index_buffer` contents should be of the correct type.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
+        /// - `control_point_index_buffer` may need to be synchronized.
+        /// - `control_point_index_buffer` contents should be of the correct type.
         /// - `controlPointIndexBufferOffset` might not be bounds-checked.
+        /// - `indirect_buffer` may need to be synchronized.
+        /// - `indirect_buffer` contents should be of the correct type.
         /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
@@ -2049,6 +2101,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setTileBuffer:offset:atIndex:))]
@@ -2101,7 +2155,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `index` might not be bounds-checked.
+        /// - `texture` may need to be synchronized.
+        /// - `index` might not be bounds-checked.
         #[unsafe(method(setTileTexture:atIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileTexture_atIndex(
@@ -2202,7 +2257,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bufferIndex` might not be bounds-checked.
+        /// - `function_table` may need to be synchronized.
+        /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setTileVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileVisibleFunctionTable_atBufferIndex(
@@ -2239,7 +2295,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bufferIndex` might not be bounds-checked.
+        /// - `intersection_function_table` may need to be synchronized.
+        /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setTileIntersectionFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileIntersectionFunctionTable_atBufferIndex(
@@ -2278,7 +2335,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `bufferIndex` might not be bounds-checked.
+        /// - `acceleration_structure` may need to be synchronized.
+        /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setTileAccelerationStructure:atBufferIndex:))]
         #[unsafe(method_family = none)]
         unsafe fn setTileAccelerationStructure_atBufferIndex(
@@ -2448,7 +2506,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `executionRange` might not be bounds-checked.
+        /// - `indirect_command_buffer` may need to be synchronized.
+        /// - `executionRange` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_withRange(
@@ -2473,7 +2532,10 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `indirectBufferOffset` might not be bounds-checked.
+        /// - `indirect_commandbuffer` may need to be synchronized.
+        /// - `indirect_range_buffer` may need to be synchronized.
+        /// - `indirect_range_buffer` contents should be of the correct type.
+        /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:))]
         #[unsafe(method_family = none)]
         unsafe fn executeCommandsInBuffer_indirectBuffer_indirectBufferOffset(

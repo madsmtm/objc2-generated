@@ -47,6 +47,10 @@ extern_protocol!(
 
         #[cfg(feature = "objc2-metal")]
         #[cfg(not(target_os = "watchos"))]
+        /// # Safety
+        ///
+        /// - `inputs` generic may need to be synchronized.
+        /// - `outputs` generic may need to be synchronized.
         #[optional]
         #[unsafe(method(encodeToCommandBuffer:inputs:outputs:error:_))]
         #[unsafe(method_family = none)]

@@ -966,6 +966,10 @@ impl MPSCNNConvolutionGradientState {
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
+        ///
+        /// # Safety
+        ///
+        /// `resource` may need to be synchronized.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -1007,6 +1011,10 @@ impl MPSCNNConvolutionGradientState {
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
+        ///
+        /// # Safety
+        ///
+        /// `resources` generic may need to be synchronized.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
@@ -1158,6 +1166,10 @@ impl MPSCNNConvolutionTransposeGradientState {
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
+        ///
+        /// # Safety
+        ///
+        /// `resource` may need to be synchronized.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -1199,6 +1211,10 @@ impl MPSCNNConvolutionTransposeGradientState {
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
+        ///
+        /// # Safety
+        ///
+        /// `resources` generic may need to be synchronized.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
@@ -1289,6 +1305,13 @@ impl MPSCNNConvolutionWeightsAndBiasesState {
         /// [weights length] =  inputFeatureChannels*kernelWidth*kernelHeight*channelMultiplier*sizeof(float)                   // for depthwise convolution
         /// outputFeatureChannels*kernelWidth*kernelHeight*(inputChannels/groups)*sizeof(float)      // for regular otherwise
         /// and [biases length]  =  outputFeatureChannels*sizeof(float)
+        ///
+        /// # Safety
+        ///
+        /// - `weights` may need to be synchronized.
+        /// - `weights` contents should be of the correct type.
+        /// - `biases` may need to be synchronized.
+        /// - `biases` contents should be of the correct type.
         #[unsafe(method(initWithWeights:biases:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWeights_biases(
@@ -1337,6 +1360,13 @@ impl MPSCNNConvolutionWeightsAndBiasesState {
         /// <
         /// = [biases length]
         /// Offsets must of sizeof(float) aligned i.e. multiple of 4.
+        ///
+        /// # Safety
+        ///
+        /// - `weights` may need to be synchronized.
+        /// - `weights` contents should be of the correct type.
+        /// - `biases` may need to be synchronized.
+        /// - `biases` contents should be of the correct type.
         #[unsafe(method(initWithWeights:weightsOffset:biases:biasesOffset:cnnConvolutionDescriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithWeights_weightsOffset_biases_biasesOffset_cnnConvolutionDescriptor(
@@ -1406,6 +1436,10 @@ impl MPSCNNConvolutionWeightsAndBiasesState {
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
+        ///
+        /// # Safety
+        ///
+        /// `resource` may need to be synchronized.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -1447,6 +1481,10 @@ impl MPSCNNConvolutionWeightsAndBiasesState {
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
+        ///
+        /// # Safety
+        ///
+        /// `resources` generic may need to be synchronized.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(

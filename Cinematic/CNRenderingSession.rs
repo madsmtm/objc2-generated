@@ -237,6 +237,10 @@ impl CNRenderingSession {
         /// - sourceDisparity: a pixel buffer read from the cinematicDisparityTrack
         /// - destinationRGBA: a metal texture to which the SDoF image is rendered in RGBA format
         /// - Returns: whether encoding the render command was successful
+        ///
+        /// # Safety
+        ///
+        /// `destination_rgba` may need to be synchronized.
         #[unsafe(method(encodeRenderToCommandBuffer:frameAttributes:sourceImage:sourceDisparity:destinationRGBA:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRenderToCommandBuffer_frameAttributes_sourceImage_sourceDisparity_destinationRGBA(
@@ -258,6 +262,11 @@ impl CNRenderingSession {
         /// - destinationLuma: a metal texture to which the luma of the SDoF image is rendered
         /// - destinationChroma: a metal texture to which the chroma of the SDoF image is rendered
         /// - Returns: whether encoding the render command was successful
+        ///
+        /// # Safety
+        ///
+        /// - `destination_luma` may need to be synchronized.
+        /// - `destination_chroma` may need to be synchronized.
         #[unsafe(method(encodeRenderToCommandBuffer:frameAttributes:sourceImage:sourceDisparity:destinationLuma:destinationChroma:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRenderToCommandBuffer_frameAttributes_sourceImage_sourceDisparity_destinationLuma_destinationChroma(

@@ -268,6 +268,11 @@ impl MPSUnaryImageKernel {
         /// Parameter `sourceTexture`: A valid MTLTexture containing the source image.
         ///
         /// Parameter `destinationTexture`: A valid MTLTexture to be overwritten by result image. DestinationTexture may not alias sourceTexture.
+        ///
+        /// # Safety
+        ///
+        /// - `source_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
         #[unsafe(method(encodeToCommandBuffer:sourceTexture:destinationTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_destinationTexture(
@@ -600,6 +605,7 @@ impl MPSBinaryImageKernel {
         ///
         /// # Safety
         ///
+        /// - `primary_texture` may need to be synchronized.
         /// - `in_place_secondary_texture` must be a valid pointer.
         /// - `copy_allocator` must be a valid pointer or null.
         #[unsafe(method(encodeToCommandBuffer:primaryTexture:inPlaceSecondaryTexture:fallbackCopyAllocator:))]
@@ -672,6 +678,7 @@ impl MPSBinaryImageKernel {
         /// # Safety
         ///
         /// - `in_place_primary_texture` must be a valid pointer.
+        /// - `secondary_texture` may need to be synchronized.
         /// - `copy_allocator` must be a valid pointer or null.
         #[unsafe(method(encodeToCommandBuffer:inPlacePrimaryTexture:secondaryTexture:fallbackCopyAllocator:))]
         #[unsafe(method_family = none)]
@@ -692,6 +699,12 @@ impl MPSBinaryImageKernel {
         /// Parameter `secondaryTexture`: A valid MTLTexture containing the secondary source image.
         ///
         /// Parameter `destinationTexture`: A valid MTLTexture to be overwritten by result image. destinationTexture may not alias the source textures.
+        ///
+        /// # Safety
+        ///
+        /// - `primary_texture` may need to be synchronized.
+        /// - `secondary_texture` may need to be synchronized.
+        /// - `destination_texture` may need to be synchronized.
         #[unsafe(method(encodeToCommandBuffer:primaryTexture:secondaryTexture:destinationTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_primaryTexture_secondaryTexture_destinationTexture(

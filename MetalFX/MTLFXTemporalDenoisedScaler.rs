@@ -498,6 +498,10 @@ extern_protocol!(
         unsafe fn colorTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`colorTexture`][Self::colorTexture].
+        ///
+        /// # Safety
+        ///
+        /// `color_texture` may need to be synchronized.
         #[unsafe(method(setColorTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -512,6 +516,10 @@ extern_protocol!(
         unsafe fn depthTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`depthTexture`][Self::depthTexture].
+        ///
+        /// # Safety
+        ///
+        /// `depth_texture` may need to be synchronized.
         #[unsafe(method(setDepthTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setDepthTexture(&self, depth_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -526,6 +534,10 @@ extern_protocol!(
         unsafe fn motionTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`motionTexture`][Self::motionTexture].
+        ///
+        /// # Safety
+        ///
+        /// `motion_texture` may need to be synchronized.
         #[unsafe(method(setMotionTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setMotionTexture(&self, motion_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -540,6 +552,10 @@ extern_protocol!(
         unsafe fn diffuseAlbedoTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`diffuseAlbedoTexture`][Self::diffuseAlbedoTexture].
+        ///
+        /// # Safety
+        ///
+        /// `diffuse_albedo_texture` may need to be synchronized.
         #[unsafe(method(setDiffuseAlbedoTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setDiffuseAlbedoTexture(
@@ -557,6 +573,10 @@ extern_protocol!(
         unsafe fn specularAlbedoTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`specularAlbedoTexture`][Self::specularAlbedoTexture].
+        ///
+        /// # Safety
+        ///
+        /// `specular_albedo_texture` may need to be synchronized.
         #[unsafe(method(setSpecularAlbedoTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setSpecularAlbedoTexture(
@@ -574,6 +594,10 @@ extern_protocol!(
         unsafe fn normalTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`normalTexture`][Self::normalTexture].
+        ///
+        /// # Safety
+        ///
+        /// `normal_texture` may need to be synchronized.
         #[unsafe(method(setNormalTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setNormalTexture(&self, normal_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -588,6 +612,10 @@ extern_protocol!(
         unsafe fn roughnessTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`roughnessTexture`][Self::roughnessTexture].
+        ///
+        /// # Safety
+        ///
+        /// `roughness_texture` may need to be synchronized.
         #[unsafe(method(setRoughnessTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setRoughnessTexture(
@@ -607,6 +635,10 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`specularHitDistanceTexture`][Self::specularHitDistanceTexture].
+        ///
+        /// # Safety
+        ///
+        /// `specular_hit_distance_texture` may need to be synchronized.
         #[unsafe(method(setSpecularHitDistanceTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setSpecularHitDistanceTexture(
@@ -629,6 +661,10 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`denoiseStrengthMaskTexture`][Self::denoiseStrengthMaskTexture].
+        ///
+        /// # Safety
+        ///
+        /// `denoise_strength_mask_texture` may need to be synchronized.
         #[unsafe(method(setDenoiseStrengthMaskTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setDenoiseStrengthMaskTexture(
@@ -652,6 +688,10 @@ extern_protocol!(
         ) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`transparencyOverlayTexture`][Self::transparencyOverlayTexture].
+        ///
+        /// # Safety
+        ///
+        /// `transparency_overlay_texture` may need to be synchronized.
         #[unsafe(method(setTransparencyOverlayTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setTransparencyOverlayTexture(
@@ -667,6 +707,10 @@ extern_protocol!(
         unsafe fn outputTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`outputTexture`][Self::outputTexture].
+        ///
+        /// # Safety
+        ///
+        /// `output_texture` may need to be synchronized.
         #[unsafe(method(setOutputTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -687,6 +731,10 @@ extern_protocol!(
         unsafe fn exposureTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`exposureTexture`][Self::exposureTexture].
+        ///
+        /// # Safety
+        ///
+        /// `exposure_texture` may need to be synchronized.
         #[unsafe(method(setExposureTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setExposureTexture(
@@ -723,6 +771,10 @@ extern_protocol!(
         unsafe fn reactiveMaskTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;
 
         /// Setter for [`reactiveMaskTexture`][Self::reactiveMaskTexture].
+        ///
+        /// # Safety
+        ///
+        /// `reactive_mask_texture` may need to be synchronized.
         #[unsafe(method(setReactiveMaskTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setReactiveMaskTexture(

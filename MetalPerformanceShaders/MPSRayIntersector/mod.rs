@@ -1161,6 +1161,13 @@ impl MPSRayIntersector {
         /// Parameter `rayCount`: Number of rays
         ///
         /// Parameter `accelerationStructure`: Acceleration structure to test against
+        ///
+        /// # Safety
+        ///
+        /// - `ray_buffer` may need to be synchronized.
+        /// - `ray_buffer` contents should be of the correct type.
+        /// - `intersection_buffer` may need to be synchronized.
+        /// - `intersection_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:intersectionBuffer:intersectionBufferOffset:rayCount:accelerationStructure:))]
         #[unsafe(method_family = none)]
@@ -1206,6 +1213,15 @@ impl MPSRayIntersector {
         /// of 4 bytes.
         ///
         /// Parameter `accelerationStructure`: Acceleration structure to test against
+        ///
+        /// # Safety
+        ///
+        /// - `ray_buffer` may need to be synchronized.
+        /// - `ray_buffer` contents should be of the correct type.
+        /// - `intersection_buffer` may need to be synchronized.
+        /// - `intersection_buffer` contents should be of the correct type.
+        /// - `ray_count_buffer` may need to be synchronized.
+        /// - `ray_count_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:intersectionBuffer:intersectionBufferOffset:rayCountBuffer:rayCountBufferOffset:accelerationStructure:))]
         #[unsafe(method_family = none)]
@@ -1255,6 +1271,15 @@ impl MPSRayIntersector {
         /// Parameter `rayIndexCount`: Number of ray indices
         ///
         /// Parameter `accelerationStructure`: Acceleration structure to test against
+        ///
+        /// # Safety
+        ///
+        /// - `ray_buffer` may need to be synchronized.
+        /// - `ray_buffer` contents should be of the correct type.
+        /// - `ray_index_buffer` may need to be synchronized.
+        /// - `ray_index_buffer` contents should be of the correct type.
+        /// - `intersection_buffer` may need to be synchronized.
+        /// - `intersection_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:rayIndexBuffer:rayIndexBufferOffset:intersectionBuffer:intersectionBufferOffset:rayIndexCount:accelerationStructure:))]
         #[unsafe(method_family = none)]
@@ -1309,6 +1334,17 @@ impl MPSRayIntersector {
         /// of 4 bytes.
         ///
         /// Parameter `accelerationStructure`: Acceleration structure to test against
+        ///
+        /// # Safety
+        ///
+        /// - `ray_buffer` may need to be synchronized.
+        /// - `ray_buffer` contents should be of the correct type.
+        /// - `ray_index_buffer` may need to be synchronized.
+        /// - `ray_index_buffer` contents should be of the correct type.
+        /// - `intersection_buffer` may need to be synchronized.
+        /// - `intersection_buffer` contents should be of the correct type.
+        /// - `ray_index_count_buffer` may need to be synchronized.
+        /// - `ray_index_count_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:rayIndexBuffer:rayIndexBufferOffset:intersectionBuffer:intersectionBufferOffset:rayIndexCountBuffer:rayIndexCountBufferOffset:accelerationStructure:))]
         #[unsafe(method_family = none)]
@@ -1385,6 +1421,11 @@ impl MPSRayIntersector {
         ///  
         ///
         /// ```
+        ///
+        /// # Safety
+        ///
+        /// - `ray_texture` may need to be synchronized.
+        /// - `intersection_texture` may need to be synchronized.
         #[deprecated]
         #[unsafe(method(encodeIntersectionToCommandBuffer:intersectionType:rayTexture:intersectionTexture:accelerationStructure:))]
         #[unsafe(method_family = none)]

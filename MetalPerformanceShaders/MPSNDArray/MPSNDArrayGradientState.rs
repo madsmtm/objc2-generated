@@ -86,6 +86,10 @@ impl MPSNDArrayGradientState {
         /// Create a MPSState with a non-temporary MTLResource
         ///
         /// Parameter `resource`: A MTLBuffer or MTLTexture. May be nil.
+        ///
+        /// # Safety
+        ///
+        /// `resource` may need to be synchronized.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -127,6 +131,10 @@ impl MPSNDArrayGradientState {
         /// your application should use -initWithTextures:bufferSizes:bufferCount:
         /// whenever possible. This method is useful for cases when the
         /// MTLResources must be initialized by the CPU.
+        ///
+        /// # Safety
+        ///
+        /// `resources` generic may need to be synchronized.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(

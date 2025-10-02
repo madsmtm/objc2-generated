@@ -453,6 +453,11 @@ impl MPSNDArray {
         ///
         ///
         /// Returns: A valid MPSNDArray object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:offset:descriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_offset_descriptor(
@@ -607,7 +612,9 @@ impl MPSNDArray {
         ///
         /// # Safety
         ///
-        /// `row_strides` must be a valid pointer or null.
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
+        /// - `row_strides` must be a valid pointer or null.
         #[unsafe(method(exportDataWithCommandBuffer:toBuffer:destinationDataType:offset:rowStrides:))]
         #[unsafe(method_family = none)]
         pub unsafe fn exportDataWithCommandBuffer_toBuffer_destinationDataType_offset_rowStrides(
@@ -637,7 +644,9 @@ impl MPSNDArray {
         ///
         /// # Safety
         ///
-        /// `row_strides` must be a valid pointer or null.
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
+        /// - `row_strides` must be a valid pointer or null.
         #[unsafe(method(importDataWithCommandBuffer:fromBuffer:sourceDataType:offset:rowStrides:))]
         #[unsafe(method_family = none)]
         pub unsafe fn importDataWithCommandBuffer_fromBuffer_sourceDataType_offset_rowStrides(
@@ -884,6 +893,11 @@ impl MPSTemporaryNDArray {
         ///
         ///
         /// Returns: A valid MPSNDArray object or nil, if failure.
+        ///
+        /// # Safety
+        ///
+        /// - `buffer` may need to be synchronized.
+        /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:offset:descriptor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBuffer_offset_descriptor(
