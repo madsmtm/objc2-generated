@@ -718,6 +718,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indirect_command_buffer` may need to be synchronized.
+        /// - `indirect_command_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `executionRange` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
@@ -755,6 +756,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indirect_command_buffer` may need to be synchronized.
+        /// - `indirect_command_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `indirectRangeBuffer` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:indirectBuffer:))]
         #[unsafe(method_family = none)]

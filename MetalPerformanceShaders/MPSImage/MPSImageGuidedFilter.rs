@@ -177,9 +177,13 @@ impl MPSImageGuidedFilter {
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `source_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `guidance_texture` may need to be synchronized.
+        /// - `guidance_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `weights_texture` may need to be synchronized.
+        /// - `weights_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_coefficients_texture` may need to be synchronized.
+        /// - `destination_coefficients_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(encodeRegressionToCommandBuffer:sourceTexture:guidanceTexture:weightsTexture:destinationCoefficientsTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRegressionToCommandBuffer_sourceTexture_guidanceTexture_weightsTexture_destinationCoefficientsTexture(
@@ -209,8 +213,11 @@ impl MPSImageGuidedFilter {
         /// # Safety
         ///
         /// - `guidance_texture` may need to be synchronized.
+        /// - `guidance_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `coefficients_texture` may need to be synchronized.
+        /// - `coefficients_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_texture` may need to be synchronized.
+        /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTexture:destinationTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeReconstructionToCommandBuffer_guidanceTexture_coefficientsTexture_destinationTexture(
@@ -247,10 +254,15 @@ impl MPSImageGuidedFilter {
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `source_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `guidance_texture` may need to be synchronized.
+        /// - `guidance_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `weights_texture` may need to be synchronized.
+        /// - `weights_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_coefficients_texture_a` may need to be synchronized.
+        /// - `destination_coefficients_texture_a` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_coefficients_texture_b` may need to be synchronized.
+        /// - `destination_coefficients_texture_b` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(encodeRegressionToCommandBuffer:sourceTexture:guidanceTexture:weightsTexture:destinationCoefficientsTextureA:destinationCoefficientsTextureB:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRegressionToCommandBuffer_sourceTexture_guidanceTexture_weightsTexture_destinationCoefficientsTextureA_destinationCoefficientsTextureB(
@@ -281,9 +293,13 @@ impl MPSImageGuidedFilter {
         /// # Safety
         ///
         /// - `guidance_texture` may need to be synchronized.
+        /// - `guidance_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `coefficients_texture_a` may need to be synchronized.
+        /// - `coefficients_texture_a` may be unretained, you must ensure it is kept alive while in use.
         /// - `coefficients_texture_b` may need to be synchronized.
+        /// - `coefficients_texture_b` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_texture` may need to be synchronized.
+        /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(encodeReconstructionToCommandBuffer:guidanceTexture:coefficientsTextureA:coefficientsTextureB:destinationTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeReconstructionToCommandBuffer_guidanceTexture_coefficientsTextureA_coefficientsTextureB_destinationTexture(

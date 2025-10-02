@@ -153,6 +153,7 @@ impl MPSMatrixDecompositionLU {
         /// # Safety
         ///
         /// - `status` may need to be synchronized.
+        /// - `status` may be unretained, you must ensure it is kept alive while in use.
         /// - `status` contents should be of the correct type.
         #[unsafe(method(encodeToCommandBuffer:sourceMatrix:resultMatrix:pivotIndices:status:))]
         #[unsafe(method_family = none)]
@@ -365,6 +366,7 @@ impl MPSMatrixDecompositionCholesky {
         /// # Safety
         ///
         /// - `status` may need to be synchronized.
+        /// - `status` may be unretained, you must ensure it is kept alive while in use.
         /// - `status` contents should be of the correct type.
         #[unsafe(method(encodeToCommandBuffer:sourceMatrix:resultMatrix:status:))]
         #[unsafe(method_family = none)]

@@ -106,7 +106,7 @@ extern_protocol!(
         /// objects referenced by commands within the commandBuffer.
         #[unsafe(method(commandBufferWithUnretainedReferences))]
         #[unsafe(method_family = none)]
-        unsafe fn commandBufferWithUnretainedReferences(
+        fn commandBufferWithUnretainedReferences(
             &self,
         ) -> Retained<ProtocolObject<dyn MTLIOCommandBuffer>>;
 

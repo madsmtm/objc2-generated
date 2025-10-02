@@ -514,6 +514,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         #[unsafe(method(copyParameterDataToBuffer:offset:))]

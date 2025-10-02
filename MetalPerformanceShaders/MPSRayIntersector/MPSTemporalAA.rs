@@ -141,10 +141,15 @@ impl MPSTemporalAA {
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `source_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `previous_texture` may need to be synchronized.
+        /// - `previous_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_texture` may need to be synchronized.
+        /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `motion_vector_texture` may need to be synchronized.
+        /// - `motion_vector_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `depth_texture` may need to be synchronized.
+        /// - `depth_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(encodeToCommandBuffer:sourceTexture:previousTexture:destinationTexture:motionVectorTexture:depthTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_previousTexture_destinationTexture_motionVectorTexture_depthTexture(

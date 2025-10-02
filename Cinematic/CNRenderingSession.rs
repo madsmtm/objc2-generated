@@ -240,7 +240,8 @@ impl CNRenderingSession {
         ///
         /// # Safety
         ///
-        /// `destination_rgba` may need to be synchronized.
+        /// - `destination_rgba` may need to be synchronized.
+        /// - `destination_rgba` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(encodeRenderToCommandBuffer:frameAttributes:sourceImage:sourceDisparity:destinationRGBA:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRenderToCommandBuffer_frameAttributes_sourceImage_sourceDisparity_destinationRGBA(
@@ -266,7 +267,9 @@ impl CNRenderingSession {
         /// # Safety
         ///
         /// - `destination_luma` may need to be synchronized.
+        /// - `destination_luma` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_chroma` may need to be synchronized.
+        /// - `destination_chroma` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(encodeRenderToCommandBuffer:frameAttributes:sourceImage:sourceDisparity:destinationLuma:destinationChroma:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeRenderToCommandBuffer_frameAttributes_sourceImage_sourceDisparity_destinationLuma_destinationChroma(

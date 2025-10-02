@@ -450,7 +450,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `texture` may need to be synchronized.
+        /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(encodeCurrentFrameToCommandBuffer:texture:region:))]
         #[unsafe(method_family = none)]
         unsafe fn encodeCurrentFrameToCommandBuffer_texture_region(

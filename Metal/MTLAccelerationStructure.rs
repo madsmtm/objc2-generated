@@ -650,6 +650,7 @@ impl MTLAccelerationStructureTriangleGeometryDescriptor {
         /// # Safety
         ///
         /// - `transformation_matrix_buffer` may need to be synchronized.
+        /// - `transformation_matrix_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `transformation_matrix_buffer` contents should be of the correct type.
         #[unsafe(method(setTransformationMatrixBuffer:))]
         #[unsafe(method_family = none)]
@@ -859,6 +860,7 @@ impl MTLMotionKeyframeData {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(setBuffer:))]
         #[unsafe(method_family = none)]
@@ -987,6 +989,7 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         /// # Safety
         ///
         /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `index_buffer` contents should be of the correct type.
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
@@ -1056,6 +1059,7 @@ impl MTLAccelerationStructureMotionTriangleGeometryDescriptor {
         /// # Safety
         ///
         /// - `transformation_matrix_buffer` may need to be synchronized.
+        /// - `transformation_matrix_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `transformation_matrix_buffer` contents should be of the correct type.
         #[unsafe(method(setTransformationMatrixBuffer:))]
         #[unsafe(method_family = none)]
@@ -1362,6 +1366,7 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// # Safety
         ///
         /// - `control_point_buffer` may need to be synchronized.
+        /// - `control_point_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `control_point_buffer` contents should be of the correct type.
         #[unsafe(method(setControlPointBuffer:))]
         #[unsafe(method_family = none)]
@@ -1453,6 +1458,7 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// # Safety
         ///
         /// - `radius_buffer` may need to be synchronized.
+        /// - `radius_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `radius_buffer` contents should be of the correct type.
         #[unsafe(method(setRadiusBuffer:))]
         #[unsafe(method_family = none)]
@@ -1523,6 +1529,7 @@ impl MTLAccelerationStructureCurveGeometryDescriptor {
         /// # Safety
         ///
         /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `index_buffer` contents should be of the correct type.
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
@@ -1794,6 +1801,7 @@ impl MTLAccelerationStructureMotionCurveGeometryDescriptor {
         /// # Safety
         ///
         /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `index_buffer` contents should be of the correct type.
         #[unsafe(method(setIndexBuffer:))]
         #[unsafe(method_family = none)]
@@ -2343,6 +2351,7 @@ impl MTLInstanceAccelerationStructureDescriptor {
         /// # Safety
         ///
         /// - `motion_transform_buffer` may need to be synchronized.
+        /// - `motion_transform_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `motion_transform_buffer` contents should be of the correct type.
         #[unsafe(method(setMotionTransformBuffer:))]
         #[unsafe(method_family = none)]
@@ -2492,6 +2501,7 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// # Safety
         ///
         /// - `instance_descriptor_buffer` may need to be synchronized.
+        /// - `instance_descriptor_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `instance_descriptor_buffer` contents should be of the correct type.
         #[unsafe(method(setInstanceDescriptorBuffer:))]
         #[unsafe(method_family = none)]
@@ -2569,6 +2579,7 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// # Safety
         ///
         /// - `instance_count_buffer` may need to be synchronized.
+        /// - `instance_count_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `instance_count_buffer` contents should be of the correct type.
         #[unsafe(method(setInstanceCountBuffer:))]
         #[unsafe(method_family = none)]
@@ -2628,6 +2639,7 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// # Safety
         ///
         /// - `motion_transform_buffer` may need to be synchronized.
+        /// - `motion_transform_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `motion_transform_buffer` contents should be of the correct type.
         #[unsafe(method(setMotionTransformBuffer:))]
         #[unsafe(method_family = none)]
@@ -2690,6 +2702,7 @@ impl MTLIndirectInstanceAccelerationStructureDescriptor {
         /// # Safety
         ///
         /// - `motion_transform_count_buffer` may need to be synchronized.
+        /// - `motion_transform_count_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `motion_transform_count_buffer` contents should be of the correct type.
         #[unsafe(method(setMotionTransformCountBuffer:))]
         #[unsafe(method_family = none)]

@@ -435,6 +435,7 @@ impl CIImage {
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `options` generic should be of the correct type.
         #[unsafe(method(imageWithMTLTexture:options:))]
         #[unsafe(method_family = none)]
@@ -675,6 +676,7 @@ impl CIImage {
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `options` generic should be of the correct type.
         #[unsafe(method(initWithMTLTexture:options:))]
         #[unsafe(method_family = init)]

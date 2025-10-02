@@ -1165,8 +1165,10 @@ impl MPSRayIntersector {
         /// # Safety
         ///
         /// - `ray_buffer` may need to be synchronized.
+        /// - `ray_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `ray_buffer` contents should be of the correct type.
         /// - `intersection_buffer` may need to be synchronized.
+        /// - `intersection_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `intersection_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:intersectionBuffer:intersectionBufferOffset:rayCount:accelerationStructure:))]
@@ -1217,10 +1219,13 @@ impl MPSRayIntersector {
         /// # Safety
         ///
         /// - `ray_buffer` may need to be synchronized.
+        /// - `ray_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `ray_buffer` contents should be of the correct type.
         /// - `intersection_buffer` may need to be synchronized.
+        /// - `intersection_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `intersection_buffer` contents should be of the correct type.
         /// - `ray_count_buffer` may need to be synchronized.
+        /// - `ray_count_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `ray_count_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:intersectionBuffer:intersectionBufferOffset:rayCountBuffer:rayCountBufferOffset:accelerationStructure:))]
@@ -1275,10 +1280,13 @@ impl MPSRayIntersector {
         /// # Safety
         ///
         /// - `ray_buffer` may need to be synchronized.
+        /// - `ray_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `ray_buffer` contents should be of the correct type.
         /// - `ray_index_buffer` may need to be synchronized.
+        /// - `ray_index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `ray_index_buffer` contents should be of the correct type.
         /// - `intersection_buffer` may need to be synchronized.
+        /// - `intersection_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `intersection_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:rayIndexBuffer:rayIndexBufferOffset:intersectionBuffer:intersectionBufferOffset:rayIndexCount:accelerationStructure:))]
@@ -1338,12 +1346,16 @@ impl MPSRayIntersector {
         /// # Safety
         ///
         /// - `ray_buffer` may need to be synchronized.
+        /// - `ray_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `ray_buffer` contents should be of the correct type.
         /// - `ray_index_buffer` may need to be synchronized.
+        /// - `ray_index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `ray_index_buffer` contents should be of the correct type.
         /// - `intersection_buffer` may need to be synchronized.
+        /// - `intersection_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `intersection_buffer` contents should be of the correct type.
         /// - `ray_index_count_buffer` may need to be synchronized.
+        /// - `ray_index_count_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `ray_index_count_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(encodeIntersectionToCommandBuffer:intersectionType:rayBuffer:rayBufferOffset:rayIndexBuffer:rayIndexBufferOffset:intersectionBuffer:intersectionBufferOffset:rayIndexCountBuffer:rayIndexCountBufferOffset:accelerationStructure:))]
@@ -1425,7 +1437,9 @@ impl MPSRayIntersector {
         /// # Safety
         ///
         /// - `ray_texture` may need to be synchronized.
+        /// - `ray_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `intersection_texture` may need to be synchronized.
+        /// - `intersection_texture` may be unretained, you must ensure it is kept alive while in use.
         #[deprecated]
         #[unsafe(method(encodeIntersectionToCommandBuffer:intersectionType:rayTexture:intersectionTexture:accelerationStructure:))]
         #[unsafe(method_family = none)]

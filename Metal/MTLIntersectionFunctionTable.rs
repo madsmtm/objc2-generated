@@ -164,6 +164,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
@@ -268,6 +269,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `function_table` may need to be synchronized.
+        /// - `function_table` may be unretained, you must ensure it is kept alive while in use.
         /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]

@@ -285,7 +285,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `color_texture` may need to be synchronized.
+        /// - `color_texture` may need to be synchronized.
+        /// - `color_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setColorTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -301,7 +302,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `output_texture` may need to be synchronized.
+        /// - `output_texture` may need to be synchronized.
+        /// - `output_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setOutputTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);

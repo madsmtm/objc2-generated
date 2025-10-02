@@ -88,8 +88,11 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_acceleration_structure` may need to be synchronized.
+        /// - `source_acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_acceleration_structure` may need to be synchronized.
+        /// - `destination_acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - `scratch_buffer` may need to be synchronized.
+        /// - `scratch_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `scratch_buffer` contents should be of the correct type.
         /// - `scratchBufferOffset` might not be bounds-checked.
         #[unsafe(method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:))]
@@ -146,8 +149,11 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_acceleration_structure` may need to be synchronized.
+        /// - `source_acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_acceleration_structure` may need to be synchronized.
+        /// - `destination_acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - `scratch_buffer` may need to be synchronized.
+        /// - `scratch_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `scratch_buffer` contents should be of the correct type.
         /// - `scratchBufferOffset` might not be bounds-checked.
         #[unsafe(method(refitAccelerationStructure:descriptor:destination:scratchBuffer:scratchBufferOffset:options:))]
@@ -185,7 +191,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_acceleration_structure` may need to be synchronized.
+        /// - `source_acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_acceleration_structure` may need to be synchronized.
+        /// - `destination_acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(copyAccelerationStructure:toAccelerationStructure:))]
         #[unsafe(method_family = none)]
         unsafe fn copyAccelerationStructure_toAccelerationStructure(
@@ -252,7 +260,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `acceleration_structure` may need to be synchronized.
+        /// - `acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         #[unsafe(method(writeCompactedAccelerationStructureSize:toBuffer:offset:sizeDataType:))]
@@ -317,7 +327,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `resource` may need to be synchronized.
+        /// - `resource` may need to be synchronized.
+        /// - `resource` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(useResource:usage:))]
         #[unsafe(method_family = none)]
         unsafe fn useResource_usage(

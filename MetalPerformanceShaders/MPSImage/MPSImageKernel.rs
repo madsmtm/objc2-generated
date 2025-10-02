@@ -272,7 +272,9 @@ impl MPSUnaryImageKernel {
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `source_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_texture` may need to be synchronized.
+        /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(encodeToCommandBuffer:sourceTexture:destinationTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_sourceTexture_destinationTexture(
@@ -606,6 +608,7 @@ impl MPSBinaryImageKernel {
         /// # Safety
         ///
         /// - `primary_texture` may need to be synchronized.
+        /// - `primary_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `in_place_secondary_texture` must be a valid pointer.
         /// - `copy_allocator` must be a valid pointer or null.
         #[unsafe(method(encodeToCommandBuffer:primaryTexture:inPlaceSecondaryTexture:fallbackCopyAllocator:))]
@@ -679,6 +682,7 @@ impl MPSBinaryImageKernel {
         ///
         /// - `in_place_primary_texture` must be a valid pointer.
         /// - `secondary_texture` may need to be synchronized.
+        /// - `secondary_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `copy_allocator` must be a valid pointer or null.
         #[unsafe(method(encodeToCommandBuffer:inPlacePrimaryTexture:secondaryTexture:fallbackCopyAllocator:))]
         #[unsafe(method_family = none)]
@@ -703,8 +707,11 @@ impl MPSBinaryImageKernel {
         /// # Safety
         ///
         /// - `primary_texture` may need to be synchronized.
+        /// - `primary_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `secondary_texture` may need to be synchronized.
+        /// - `secondary_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_texture` may need to be synchronized.
+        /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(encodeToCommandBuffer:primaryTexture:secondaryTexture:destinationTexture:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_primaryTexture_secondaryTexture_destinationTexture(

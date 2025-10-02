@@ -611,6 +611,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `operations` must be a valid pointer.
         /// - `count` might not be bounds-checked.
         #[unsafe(method(updateTextureMappings:heap:operations:count:))]
@@ -649,7 +650,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `source_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_texture` may need to be synchronized.
+        /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `operations` must be a valid pointer.
         /// - `count` might not be bounds-checked.
         #[unsafe(method(copyTextureMappingsFromTexture:toTexture:operations:count:))]
@@ -685,6 +688,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `operations` must be a valid pointer.
         /// - `count` might not be bounds-checked.
@@ -723,8 +727,10 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_buffer` may need to be synchronized.
+        /// - `source_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `source_buffer` contents should be of the correct type.
         /// - `destination_buffer` may need to be synchronized.
+        /// - `destination_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_buffer` contents should be of the correct type.
         /// - `operations` must be a valid pointer.
         /// - `count` might not be bounds-checked.

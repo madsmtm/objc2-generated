@@ -168,8 +168,11 @@ impl MPSImageEDLines {
         /// # Safety
         ///
         /// - `source` may need to be synchronized.
+        /// - `source` may be unretained, you must ensure it is kept alive while in use.
         /// - `dest` may need to be synchronized.
+        /// - `dest` may be unretained, you must ensure it is kept alive while in use.
         /// - `endpoint_buffer` may need to be synchronized.
+        /// - `endpoint_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `endpoint_buffer` contents should be of the correct type.
         #[unsafe(method(encodeToCommandBuffer:sourceTexture:destinationTexture:endpointBuffer:endpointOffset:))]
         #[unsafe(method_family = none)]

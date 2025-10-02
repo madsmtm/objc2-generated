@@ -52,7 +52,8 @@ impl MPSCNNBatchNormalizationState {
         ///
         /// # Safety
         ///
-        /// `resource` may need to be synchronized.
+        /// - `resource` may need to be synchronized.
+        /// - `resource` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -186,7 +187,8 @@ impl MPSCNNBatchNormalizationState {
         ///
         /// # Safety
         ///
-        /// `resources` generic may need to be synchronized.
+        /// - `resources` generic may need to be synchronized.
+        /// - `resources` generic may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
@@ -251,8 +253,10 @@ impl MPSCNNNormalizationMeanAndVarianceState {
         /// # Safety
         ///
         /// - `mean` may need to be synchronized.
+        /// - `mean` may be unretained, you must ensure it is kept alive while in use.
         /// - `mean` contents should be of the correct type.
         /// - `variance` may need to be synchronized.
+        /// - `variance` may be unretained, you must ensure it is kept alive while in use.
         /// - `variance` contents should be of the correct type.
         #[unsafe(method(initWithMean:variance:))]
         #[unsafe(method_family = init)]
@@ -341,7 +345,8 @@ impl MPSCNNNormalizationMeanAndVarianceState {
         ///
         /// # Safety
         ///
-        /// `resource` may need to be synchronized.
+        /// - `resource` may need to be synchronized.
+        /// - `resource` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -386,7 +391,8 @@ impl MPSCNNNormalizationMeanAndVarianceState {
         ///
         /// # Safety
         ///
-        /// `resources` generic may need to be synchronized.
+        /// - `resources` generic may need to be synchronized.
+        /// - `resources` generic may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(

@@ -53,6 +53,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `argument_buffer` may need to be synchronized.
+        /// - `argument_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `argument_buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         #[unsafe(method(setArgumentBuffer:offset:))]
@@ -74,6 +75,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `argument_buffer` may need to be synchronized.
+        /// - `argument_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `argument_buffer` contents should be of the correct type.
         /// - `startOffset` might not be bounds-checked.
         #[unsafe(method(setArgumentBuffer:startOffset:arrayElement:))]
@@ -95,6 +97,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
@@ -139,6 +142,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setTexture:atIndex:))]
         #[unsafe(method_family = none)]
@@ -273,6 +277,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indirect_command_buffer` may need to be synchronized.
+        /// - `indirect_command_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setIndirectCommandBuffer:atIndex:))]
         #[unsafe(method_family = none)]
@@ -309,6 +314,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `acceleration_structure` may need to be synchronized.
+        /// - `acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setAccelerationStructure:atIndex:))]
         #[unsafe(method_family = none)]
@@ -342,6 +348,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `visible_function_table` may need to be synchronized.
+        /// - `visible_function_table` may be unretained, you must ensure it is kept alive while in use.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setVisibleFunctionTable:atIndex:))]
         #[unsafe(method_family = none)]
@@ -380,6 +387,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `intersection_function_table` may need to be synchronized.
+        /// - `intersection_function_table` may be unretained, you must ensure it is kept alive while in use.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setIntersectionFunctionTable:atIndex:))]
         #[unsafe(method_family = none)]

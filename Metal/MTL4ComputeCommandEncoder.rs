@@ -151,6 +151,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indirect_command_buffer` may need to be synchronized.
+        /// - `indirect_command_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `executionRange` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
@@ -181,6 +182,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indirect_commandbuffer` may need to be synchronized.
+        /// - `indirect_commandbuffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `indirectRangeBuffer` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:indirectBuffer:))]
         #[unsafe(method_family = none)]
@@ -205,7 +207,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `source_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_texture` may need to be synchronized.
+        /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(copyFromTexture:toTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromTexture_toTexture(
@@ -254,7 +258,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `source_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_texture` may need to be synchronized.
+        /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `sliceCount` might not be bounds-checked.
         /// - `levelCount` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:toTexture:destinationSlice:destinationLevel:sliceCount:levelCount:))]
@@ -316,8 +322,10 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `source_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `sourceSize` might not be bounds-checked.
         /// - `destination_texture` may need to be synchronized.
+        /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromTexture_sourceSlice_sourceLevel_sourceOrigin_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
@@ -379,8 +387,10 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `source_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `sourceSize` might not be bounds-checked.
         /// - `destination_buffer` may need to be synchronized.
+        /// - `destination_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_buffer` contents should be of the correct type.
         /// - `destinationOffset` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:))]
@@ -453,8 +463,10 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `source_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `sourceSize` might not be bounds-checked.
         /// - `destination_buffer` may need to be synchronized.
+        /// - `destination_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_buffer` contents should be of the correct type.
         /// - `destinationOffset` might not be bounds-checked.
         #[unsafe(method(copyFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toBuffer:destinationOffset:destinationBytesPerRow:destinationBytesPerImage:options:))]
@@ -490,9 +502,11 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_buffer` may need to be synchronized.
+        /// - `source_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `source_buffer` contents should be of the correct type.
         /// - `sourceOffset` might not be bounds-checked.
         /// - `destination_buffer` may need to be synchronized.
+        /// - `destination_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_buffer` contents should be of the correct type.
         /// - `destinationOffset` might not be bounds-checked.
         /// - `size` might not be bounds-checked.
@@ -551,10 +565,12 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_buffer` may need to be synchronized.
+        /// - `source_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `source_buffer` contents should be of the correct type.
         /// - `sourceOffset` might not be bounds-checked.
         /// - `sourceSize` might not be bounds-checked.
         /// - `destination_texture` may need to be synchronized.
+        /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin(
@@ -622,10 +638,12 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_buffer` may need to be synchronized.
+        /// - `source_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `source_buffer` contents should be of the correct type.
         /// - `sourceOffset` might not be bounds-checked.
         /// - `sourceSize` might not be bounds-checked.
         /// - `destination_texture` may need to be synchronized.
+        /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(copyFromBuffer:sourceOffset:sourceBytesPerRow:sourceBytesPerImage:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:options:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromBuffer_sourceOffset_sourceBytesPerRow_sourceBytesPerImage_sourceSize_toTexture_destinationSlice_destinationLevel_destinationOrigin_options(
@@ -661,7 +679,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_tensor` may need to be synchronized.
+        /// - `source_tensor` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_tensor` may need to be synchronized.
+        /// - `destination_tensor` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:))]
         #[unsafe(method_family = none)]
         unsafe fn copyFromTensor_sourceOrigin_sourceDimensions_toTensor_destinationOrigin_destinationDimensions(
@@ -690,7 +710,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `texture` may need to be synchronized.
+        /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(generateMipmapsForTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn generateMipmapsForTexture(&self, texture: &ProtocolObject<dyn MTLTexture>);
@@ -711,6 +732,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `range` might not be bounds-checked.
         #[unsafe(method(fillBuffer:range:value:))]
@@ -742,7 +764,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `texture` may need to be synchronized.
+        /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(optimizeContentsForGPUAccess:))]
         #[unsafe(method_family = none)]
         unsafe fn optimizeContentsForGPUAccess(&self, texture: &ProtocolObject<dyn MTLTexture>);
@@ -770,7 +793,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `texture` may need to be synchronized.
+        /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(optimizeContentsForGPUAccess:slice:level:))]
         #[unsafe(method_family = none)]
         unsafe fn optimizeContentsForGPUAccess_slice_level(
@@ -800,7 +824,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `texture` may need to be synchronized.
+        /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(optimizeContentsForCPUAccess:))]
         #[unsafe(method_family = none)]
         unsafe fn optimizeContentsForCPUAccess(&self, texture: &ProtocolObject<dyn MTLTexture>);
@@ -828,7 +853,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `texture` may need to be synchronized.
+        /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(optimizeContentsForCPUAccess:slice:level:))]
         #[unsafe(method_family = none)]
         unsafe fn optimizeContentsForCPUAccess_slice_level(
@@ -852,6 +878,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `range` might not be bounds-checked.
         #[unsafe(method(resetCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
@@ -880,8 +907,10 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source` may need to be synchronized.
+        /// - `source` may be unretained, you must ensure it is kept alive while in use.
         /// - `sourceRange` might not be bounds-checked.
         /// - `destination` may need to be synchronized.
+        /// - `destination` may be unretained, you must ensure it is kept alive while in use.
         /// - `destinationIndex` might not be bounds-checked.
         #[unsafe(method(copyIndirectCommandBuffer:sourceRange:destination:destinationIndex:))]
         #[unsafe(method_family = none)]
@@ -907,6 +936,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indirect_command_buffer` may need to be synchronized.
+        /// - `indirect_command_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `range` might not be bounds-checked.
         #[unsafe(method(optimizeIndirectCommandBuffer:withRange:))]
         #[unsafe(method_family = none)]
@@ -963,7 +993,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `acceleration_structure` may need to be synchronized.
+        /// - `acceleration_structure` may need to be synchronized.
+        /// - `acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(buildAccelerationStructure:descriptor:scratchBuffer:))]
         #[unsafe(method_family = none)]
         unsafe fn buildAccelerationStructure_descriptor_scratchBuffer(
@@ -1019,7 +1050,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_acceleration_structure` may need to be synchronized.
+        /// - `source_acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_acceleration_structure` may need to be synchronized.
+        /// - `destination_acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(refitAccelerationStructure:descriptor:destination:scratchBuffer:))]
         #[unsafe(method_family = none)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer(
@@ -1079,7 +1112,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_acceleration_structure` may need to be synchronized.
+        /// - `source_acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_acceleration_structure` may need to be synchronized.
+        /// - `destination_acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(refitAccelerationStructure:descriptor:destination:scratchBuffer:options:))]
         #[unsafe(method_family = none)]
         unsafe fn refitAccelerationStructure_descriptor_destination_scratchBuffer_options(
@@ -1115,7 +1150,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_acceleration_structure` may need to be synchronized.
+        /// - `source_acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_acceleration_structure` may need to be synchronized.
+        /// - `destination_acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(copyAccelerationStructure:toAccelerationStructure:))]
         #[unsafe(method_family = none)]
         unsafe fn copyAccelerationStructure_toAccelerationStructure(
@@ -1147,6 +1184,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `acceleration_structure` may need to be synchronized.
+        /// - `acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - This might not be bounds-checked.
         #[unsafe(method(writeCompactedAccelerationStructureSize:toBuffer:))]
         #[unsafe(method_family = none)]
@@ -1178,7 +1216,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_acceleration_structure` may need to be synchronized.
+        /// - `source_acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - `destination_acceleration_structure` may need to be synchronized.
+        /// - `destination_acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(copyAndCompactAccelerationStructure:toAccelerationStructure:))]
         #[unsafe(method_family = none)]
         unsafe fn copyAndCompactAccelerationStructure_toAccelerationStructure(

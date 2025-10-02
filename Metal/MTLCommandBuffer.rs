@@ -248,7 +248,7 @@ impl MTLCommandBufferDescriptor {
         /// Setter for [`retainedReferences`][Self::retainedReferences].
         #[unsafe(method(setRetainedReferences:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRetainedReferences(&self, retained_references: bool);
+        pub fn setRetainedReferences(&self, retained_references: bool);
 
         /// A set of options to influence the error reporting of the created command buffer. See MTLCommandBufferErrorOption.
         #[unsafe(method(errorOptions))]

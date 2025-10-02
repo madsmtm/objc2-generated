@@ -126,7 +126,9 @@ impl MPSImageHistogram {
         /// # Safety
         ///
         /// - `source` may need to be synchronized.
+        /// - `source` may be unretained, you must ensure it is kept alive while in use.
         /// - `histogram` may need to be synchronized.
+        /// - `histogram` may be unretained, you must ensure it is kept alive while in use.
         /// - `histogram` contents should be of the correct type.
         #[unsafe(method(encodeToCommandBuffer:sourceTexture:histogram:histogramOffset:))]
         #[unsafe(method_family = none)]
@@ -332,8 +334,11 @@ impl MPSImageNormalizedHistogram {
         /// # Safety
         ///
         /// - `source` may need to be synchronized.
+        /// - `source` may be unretained, you must ensure it is kept alive while in use.
         /// - `minmax_texture` may need to be synchronized.
+        /// - `minmax_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `histogram` may need to be synchronized.
+        /// - `histogram` may be unretained, you must ensure it is kept alive while in use.
         /// - `histogram` contents should be of the correct type.
         #[unsafe(method(encodeToCommandBuffer:sourceTexture:minmaxTexture:histogram:histogramOffset:))]
         #[unsafe(method_family = none)]
@@ -531,7 +536,9 @@ impl MPSImageHistogramEqualization {
         /// # Safety
         ///
         /// - `source` may need to be synchronized.
+        /// - `source` may be unretained, you must ensure it is kept alive while in use.
         /// - `histogram` may need to be synchronized.
+        /// - `histogram` may be unretained, you must ensure it is kept alive while in use.
         /// - `histogram` contents should be of the correct type.
         #[unsafe(method(encodeTransformToCommandBuffer:sourceTexture:histogram:histogramOffset:))]
         #[unsafe(method_family = none)]
@@ -705,9 +712,12 @@ impl MPSImageHistogramSpecification {
         /// # Safety
         ///
         /// - `source` may need to be synchronized.
+        /// - `source` may be unretained, you must ensure it is kept alive while in use.
         /// - `source_histogram` may need to be synchronized.
+        /// - `source_histogram` may be unretained, you must ensure it is kept alive while in use.
         /// - `source_histogram` contents should be of the correct type.
         /// - `desired_histogram` may need to be synchronized.
+        /// - `desired_histogram` may be unretained, you must ensure it is kept alive while in use.
         /// - `desired_histogram` contents should be of the correct type.
         #[unsafe(method(encodeTransformToCommandBuffer:sourceTexture:sourceHistogram:sourceHistogramOffset:desiredHistogram:desiredHistogramOffset:))]
         #[unsafe(method_family = none)]

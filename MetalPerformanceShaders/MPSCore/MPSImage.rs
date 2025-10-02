@@ -752,7 +752,8 @@ impl MPSImage {
         ///
         /// # Safety
         ///
-        /// `texture` may need to be synchronized.
+        /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithTexture:featureChannels:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTexture_featureChannels(
@@ -1366,7 +1367,8 @@ impl MPSTemporaryImage {
         ///
         /// # Safety
         ///
-        /// `texture` may need to be synchronized.
+        /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithTexture:featureChannels:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTexture_featureChannels(

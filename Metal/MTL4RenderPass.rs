@@ -228,6 +228,7 @@ impl MTL4RenderPassDescriptor {
         /// # Safety
         ///
         /// - `visibility_result_buffer` may need to be synchronized.
+        /// - `visibility_result_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `visibility_result_buffer` contents should be of the correct type.
         #[unsafe(method(setVisibilityResultBuffer:))]
         #[unsafe(method_family = none)]

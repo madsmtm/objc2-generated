@@ -115,7 +115,8 @@ impl MPSCNNArithmeticGradientState {
         ///
         /// # Safety
         ///
-        /// `resource` may need to be synchronized.
+        /// - `resource` may need to be synchronized.
+        /// - `resource` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -156,7 +157,8 @@ impl MPSCNNArithmeticGradientState {
         ///
         /// # Safety
         ///
-        /// `resources` generic may need to be synchronized.
+        /// - `resources` generic may need to be synchronized.
+        /// - `resources` generic may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(

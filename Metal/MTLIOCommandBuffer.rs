@@ -82,6 +82,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `size` might not be bounds-checked.
@@ -110,6 +111,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `size` might not be bounds-checked.
         /// - `sourceHandleOffset` might not be bounds-checked.
         #[unsafe(method(loadTexture:slice:level:size:sourceBytesPerRow:sourceBytesPerImage:destinationOrigin:sourceHandle:sourceHandleOffset:))]
@@ -138,6 +140,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         #[unsafe(method(copyStatusToBuffer:offset:))]

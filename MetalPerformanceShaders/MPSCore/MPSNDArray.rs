@@ -457,6 +457,7 @@ impl MPSNDArray {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:offset:descriptor:))]
         #[unsafe(method_family = init)]
@@ -613,6 +614,7 @@ impl MPSNDArray {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `row_strides` must be a valid pointer or null.
         #[unsafe(method(exportDataWithCommandBuffer:toBuffer:destinationDataType:offset:rowStrides:))]
@@ -645,6 +647,7 @@ impl MPSNDArray {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `row_strides` must be a valid pointer or null.
         #[unsafe(method(importDataWithCommandBuffer:fromBuffer:sourceDataType:offset:rowStrides:))]
@@ -897,6 +900,7 @@ impl MPSTemporaryNDArray {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:offset:descriptor:))]
         #[unsafe(method_family = init)]

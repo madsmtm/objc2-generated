@@ -969,7 +969,8 @@ impl MPSCNNConvolutionGradientState {
         ///
         /// # Safety
         ///
-        /// `resource` may need to be synchronized.
+        /// - `resource` may need to be synchronized.
+        /// - `resource` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -1014,7 +1015,8 @@ impl MPSCNNConvolutionGradientState {
         ///
         /// # Safety
         ///
-        /// `resources` generic may need to be synchronized.
+        /// - `resources` generic may need to be synchronized.
+        /// - `resources` generic may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
@@ -1169,7 +1171,8 @@ impl MPSCNNConvolutionTransposeGradientState {
         ///
         /// # Safety
         ///
-        /// `resource` may need to be synchronized.
+        /// - `resource` may need to be synchronized.
+        /// - `resource` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -1214,7 +1217,8 @@ impl MPSCNNConvolutionTransposeGradientState {
         ///
         /// # Safety
         ///
-        /// `resources` generic may need to be synchronized.
+        /// - `resources` generic may need to be synchronized.
+        /// - `resources` generic may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
@@ -1309,8 +1313,10 @@ impl MPSCNNConvolutionWeightsAndBiasesState {
         /// # Safety
         ///
         /// - `weights` may need to be synchronized.
+        /// - `weights` may be unretained, you must ensure it is kept alive while in use.
         /// - `weights` contents should be of the correct type.
         /// - `biases` may need to be synchronized.
+        /// - `biases` may be unretained, you must ensure it is kept alive while in use.
         /// - `biases` contents should be of the correct type.
         #[unsafe(method(initWithWeights:biases:))]
         #[unsafe(method_family = init)]
@@ -1364,8 +1370,10 @@ impl MPSCNNConvolutionWeightsAndBiasesState {
         /// # Safety
         ///
         /// - `weights` may need to be synchronized.
+        /// - `weights` may be unretained, you must ensure it is kept alive while in use.
         /// - `weights` contents should be of the correct type.
         /// - `biases` may need to be synchronized.
+        /// - `biases` may be unretained, you must ensure it is kept alive while in use.
         /// - `biases` contents should be of the correct type.
         #[unsafe(method(initWithWeights:weightsOffset:biases:biasesOffset:cnnConvolutionDescriptor:))]
         #[unsafe(method_family = init)]
@@ -1439,7 +1447,8 @@ impl MPSCNNConvolutionWeightsAndBiasesState {
         ///
         /// # Safety
         ///
-        /// `resource` may need to be synchronized.
+        /// - `resource` may need to be synchronized.
+        /// - `resource` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -1484,7 +1493,8 @@ impl MPSCNNConvolutionWeightsAndBiasesState {
         ///
         /// # Safety
         ///
-        /// `resources` generic may need to be synchronized.
+        /// - `resources` generic may need to be synchronized.
+        /// - `resources` generic may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(

@@ -71,7 +71,8 @@ impl CIRenderDestination {
         #[cfg(feature = "objc2-metal")]
         /// # Safety
         ///
-        /// `texture` may need to be synchronized.
+        /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithMTLTexture:commandBuffer:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMTLTexture_commandBuffer(

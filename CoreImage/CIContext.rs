@@ -508,7 +508,8 @@ impl CIContext {
         ))]
         /// # Safety
         ///
-        /// `texture` may need to be synchronized.
+        /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(render:toMTLTexture:commandBuffer:bounds:colorSpace:))]
         #[unsafe(method_family = none)]
         pub unsafe fn render_toMTLTexture_commandBuffer_bounds_colorSpace(

@@ -1004,7 +1004,8 @@ impl MPSRNNRecurrentImageState {
         ///
         /// # Safety
         ///
-        /// `resource` may need to be synchronized.
+        /// - `resource` may need to be synchronized.
+        /// - `resource` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -1049,7 +1050,8 @@ impl MPSRNNRecurrentImageState {
         ///
         /// # Safety
         ///
-        /// `resources` generic may need to be synchronized.
+        /// - `resources` generic may need to be synchronized.
+        /// - `resources` generic may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
@@ -1528,7 +1530,8 @@ impl MPSRNNRecurrentMatrixState {
         ///
         /// # Safety
         ///
-        /// `resource` may need to be synchronized.
+        /// - `resource` may need to be synchronized.
+        /// - `resource` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -1573,7 +1576,8 @@ impl MPSRNNRecurrentMatrixState {
         ///
         /// # Safety
         ///
-        /// `resources` generic may need to be synchronized.
+        /// - `resources` generic may need to be synchronized.
+        /// - `resources` generic may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(
@@ -2078,7 +2082,8 @@ impl MPSRNNMatrixTrainingState {
         ///
         /// # Safety
         ///
-        /// `resource` may need to be synchronized.
+        /// - `resource` may need to be synchronized.
+        /// - `resource` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -2123,7 +2128,8 @@ impl MPSRNNMatrixTrainingState {
         ///
         /// # Safety
         ///
-        /// `resources` generic may need to be synchronized.
+        /// - `resources` generic may need to be synchronized.
+        /// - `resources` generic may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(

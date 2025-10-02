@@ -455,6 +455,7 @@ impl MPSMatrix {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:descriptor:))]
         #[unsafe(method_family = init)]
@@ -479,6 +480,7 @@ impl MPSMatrix {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:offset:descriptor:))]
         #[unsafe(method_family = init)]
@@ -648,6 +650,7 @@ impl MPSVector {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:descriptor:))]
         #[unsafe(method_family = init)]
@@ -671,6 +674,7 @@ impl MPSVector {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:offset:descriptor:))]
         #[unsafe(method_family = init)]
@@ -817,6 +821,7 @@ impl MPSTemporaryMatrix {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:descriptor:))]
         #[unsafe(method_family = init)]
@@ -881,6 +886,7 @@ impl MPSTemporaryMatrix {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:offset:descriptor:))]
         #[unsafe(method_family = init)]
@@ -987,6 +993,7 @@ impl MPSTemporaryVector {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:descriptor:))]
         #[unsafe(method_family = init)]
@@ -1050,6 +1057,7 @@ impl MPSTemporaryVector {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:offset:descriptor:))]
         #[unsafe(method_family = init)]

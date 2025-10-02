@@ -65,6 +65,7 @@ impl MPSPredicate {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(predicateWithBuffer:offset:))]
         #[unsafe(method_family = none)]
@@ -84,6 +85,7 @@ impl MPSPredicate {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithBuffer:offset:))]
         #[unsafe(method_family = init)]

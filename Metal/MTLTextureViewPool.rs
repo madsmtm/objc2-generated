@@ -30,6 +30,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setTextureView:atIndex:))]
         #[unsafe(method_family = none)]
@@ -60,6 +61,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setTextureView:descriptor:atIndex:))]
         #[unsafe(method_family = none)]
@@ -94,6 +96,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.

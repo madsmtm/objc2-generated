@@ -179,6 +179,7 @@ impl MPSPolygonAccelerationStructure {
         /// # Safety
         ///
         /// - `vertex_buffer` may need to be synchronized.
+        /// - `vertex_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `vertex_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(setVertexBuffer:))]
@@ -218,6 +219,7 @@ impl MPSPolygonAccelerationStructure {
         /// # Safety
         ///
         /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `index_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(setIndexBuffer:))]
@@ -258,6 +260,7 @@ impl MPSPolygonAccelerationStructure {
         /// # Safety
         ///
         /// - `mask_buffer` may need to be synchronized.
+        /// - `mask_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `mask_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(setMaskBuffer:))]

@@ -501,7 +501,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `color_texture` may need to be synchronized.
+        /// - `color_texture` may need to be synchronized.
+        /// - `color_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setColorTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setColorTexture(&self, color_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -519,7 +520,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `depth_texture` may need to be synchronized.
+        /// - `depth_texture` may need to be synchronized.
+        /// - `depth_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setDepthTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setDepthTexture(&self, depth_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -537,7 +539,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `motion_texture` may need to be synchronized.
+        /// - `motion_texture` may need to be synchronized.
+        /// - `motion_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setMotionTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setMotionTexture(&self, motion_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -555,7 +558,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `diffuse_albedo_texture` may need to be synchronized.
+        /// - `diffuse_albedo_texture` may need to be synchronized.
+        /// - `diffuse_albedo_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setDiffuseAlbedoTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setDiffuseAlbedoTexture(
@@ -576,7 +580,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `specular_albedo_texture` may need to be synchronized.
+        /// - `specular_albedo_texture` may need to be synchronized.
+        /// - `specular_albedo_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setSpecularAlbedoTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setSpecularAlbedoTexture(
@@ -597,7 +602,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `normal_texture` may need to be synchronized.
+        /// - `normal_texture` may need to be synchronized.
+        /// - `normal_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setNormalTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setNormalTexture(&self, normal_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -615,7 +621,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `roughness_texture` may need to be synchronized.
+        /// - `roughness_texture` may need to be synchronized.
+        /// - `roughness_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setRoughnessTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setRoughnessTexture(
@@ -638,7 +645,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `specular_hit_distance_texture` may need to be synchronized.
+        /// - `specular_hit_distance_texture` may need to be synchronized.
+        /// - `specular_hit_distance_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setSpecularHitDistanceTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setSpecularHitDistanceTexture(
@@ -664,7 +672,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `denoise_strength_mask_texture` may need to be synchronized.
+        /// - `denoise_strength_mask_texture` may need to be synchronized.
+        /// - `denoise_strength_mask_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setDenoiseStrengthMaskTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setDenoiseStrengthMaskTexture(
@@ -691,7 +700,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `transparency_overlay_texture` may need to be synchronized.
+        /// - `transparency_overlay_texture` may need to be synchronized.
+        /// - `transparency_overlay_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setTransparencyOverlayTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setTransparencyOverlayTexture(
@@ -710,7 +720,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `output_texture` may need to be synchronized.
+        /// - `output_texture` may need to be synchronized.
+        /// - `output_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setOutputTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setOutputTexture(&self, output_texture: Option<&ProtocolObject<dyn MTLTexture>>);
@@ -734,7 +745,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `exposure_texture` may need to be synchronized.
+        /// - `exposure_texture` may need to be synchronized.
+        /// - `exposure_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setExposureTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setExposureTexture(
@@ -774,7 +786,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `reactive_mask_texture` may need to be synchronized.
+        /// - `reactive_mask_texture` may need to be synchronized.
+        /// - `reactive_mask_texture` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setReactiveMaskTexture:))]
         #[unsafe(method_family = none)]
         unsafe fn setReactiveMaskTexture(

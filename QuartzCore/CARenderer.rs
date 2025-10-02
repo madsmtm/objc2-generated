@@ -42,6 +42,7 @@ impl CARenderer {
         /// # Safety
         ///
         /// - `tex` may need to be synchronized.
+        /// - `tex` may be unretained, you must ensure it is kept alive while in use.
         /// - `dict` generic should be of the correct type.
         #[unsafe(method(rendererWithMTLTexture:options:))]
         #[unsafe(method_family = none)]
@@ -106,7 +107,8 @@ impl CARenderer {
         #[cfg(feature = "objc2-metal")]
         /// # Safety
         ///
-        /// `tex` may need to be synchronized.
+        /// - `tex` may need to be synchronized.
+        /// - `tex` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(setDestination:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDestination(&self, tex: &ProtocolObject<dyn MTLTexture>);

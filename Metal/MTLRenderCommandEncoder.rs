@@ -393,6 +393,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
@@ -449,6 +450,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `stride` might not be bounds-checked.
@@ -537,6 +539,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setVertexTexture:atIndex:))]
         #[unsafe(method_family = none)]
@@ -639,6 +642,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `function_table` may need to be synchronized.
+        /// - `function_table` may be unretained, you must ensure it is kept alive while in use.
         /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setVertexVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
@@ -677,6 +681,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `intersection_function_table` may need to be synchronized.
+        /// - `intersection_function_table` may be unretained, you must ensure it is kept alive while in use.
         /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setVertexIntersectionFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
@@ -717,6 +722,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `acceleration_structure` may need to be synchronized.
+        /// - `acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setVertexAccelerationStructure:atBufferIndex:))]
         #[unsafe(method_family = none)]
@@ -849,6 +855,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
@@ -903,6 +910,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setFragmentTexture:atIndex:))]
         #[unsafe(method_family = none)]
@@ -1005,6 +1013,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `function_table` may need to be synchronized.
+        /// - `function_table` may be unretained, you must ensure it is kept alive while in use.
         /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setFragmentVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
@@ -1043,6 +1052,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `intersection_function_table` may need to be synchronized.
+        /// - `intersection_function_table` may be unretained, you must ensure it is kept alive while in use.
         /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setFragmentIntersectionFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
@@ -1083,6 +1093,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `acceleration_structure` may need to be synchronized.
+        /// - `acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setFragmentAccelerationStructure:atBufferIndex:))]
         #[unsafe(method_family = none)]
@@ -1226,6 +1237,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
@@ -1280,6 +1292,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setObjectTexture:atIndex:))]
         #[unsafe(method_family = none)]
@@ -1410,6 +1423,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
@@ -1464,6 +1478,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setMeshTexture:atIndex:))]
         #[unsafe(method_family = none)]
@@ -1619,6 +1634,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indirect_buffer` may need to be synchronized.
+        /// - `indirect_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `indirect_buffer` contents should be of the correct type.
         /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawMeshThreadgroupsWithIndirectBuffer:indirectBufferOffset:threadsPerObjectThreadgroup:threadsPerMeshThreadgroup:))]
@@ -1701,6 +1717,7 @@ extern_protocol!(
         ///
         /// - `indexCount` might not be bounds-checked.
         /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `index_buffer` contents should be of the correct type.
         /// - `indexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
@@ -1740,6 +1757,7 @@ extern_protocol!(
         ///
         /// - `indexCount` might not be bounds-checked.
         /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `index_buffer` contents should be of the correct type.
         /// - `indexBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexCount:indexType:indexBuffer:indexBufferOffset:))]
@@ -1810,6 +1828,7 @@ extern_protocol!(
         ///
         /// - `indexCount` might not be bounds-checked.
         /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `index_buffer` contents should be of the correct type.
         /// - `indexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
@@ -1845,6 +1864,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indirect_buffer` may need to be synchronized.
+        /// - `indirect_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `indirect_buffer` contents should be of the correct type.
         /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawPrimitives:indirectBuffer:indirectBufferOffset:))]
@@ -1883,9 +1903,11 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `index_buffer` contents should be of the correct type.
         /// - `indexBufferOffset` might not be bounds-checked.
         /// - `indirect_buffer` may need to be synchronized.
+        /// - `indirect_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `indirect_buffer` contents should be of the correct type.
         /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawIndexedPrimitives:indexType:indexBuffer:indexBufferOffset:indirectBuffer:indirectBufferOffset:))]
@@ -1948,6 +1970,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `instanceStride` might not be bounds-checked.
@@ -1973,6 +1996,7 @@ extern_protocol!(
         ///
         /// - `patchCount` might not be bounds-checked.
         /// - `patch_index_buffer` may need to be synchronized.
+        /// - `patch_index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `patch_index_buffer` contents should be of the correct type.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
@@ -1997,9 +2021,11 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `patch_index_buffer` may need to be synchronized.
+        /// - `patch_index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `patch_index_buffer` contents should be of the correct type.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
         /// - `indirect_buffer` may need to be synchronized.
+        /// - `indirect_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `indirect_buffer` contents should be of the correct type.
         /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawPatches:patchIndexBuffer:patchIndexBufferOffset:indirectBuffer:indirectBufferOffset:))]
@@ -2022,9 +2048,11 @@ extern_protocol!(
         ///
         /// - `patchCount` might not be bounds-checked.
         /// - `patch_index_buffer` may need to be synchronized.
+        /// - `patch_index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `patch_index_buffer` contents should be of the correct type.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
         /// - `control_point_index_buffer` may need to be synchronized.
+        /// - `control_point_index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `control_point_index_buffer` contents should be of the correct type.
         /// - `controlPointIndexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
@@ -2051,12 +2079,15 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `patch_index_buffer` may need to be synchronized.
+        /// - `patch_index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `patch_index_buffer` contents should be of the correct type.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
         /// - `control_point_index_buffer` may need to be synchronized.
+        /// - `control_point_index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `control_point_index_buffer` contents should be of the correct type.
         /// - `controlPointIndexBufferOffset` might not be bounds-checked.
         /// - `indirect_buffer` may need to be synchronized.
+        /// - `indirect_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `indirect_buffer` contents should be of the correct type.
         /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(drawIndexedPatches:patchIndexBuffer:patchIndexBufferOffset:controlPointIndexBuffer:controlPointIndexBufferOffset:indirectBuffer:indirectBufferOffset:))]
@@ -2107,6 +2138,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
@@ -2161,6 +2193,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `index` might not be bounds-checked.
         #[unsafe(method(setTileTexture:atIndex:))]
         #[unsafe(method_family = none)]
@@ -2263,6 +2296,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `function_table` may need to be synchronized.
+        /// - `function_table` may be unretained, you must ensure it is kept alive while in use.
         /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setTileVisibleFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
@@ -2301,6 +2335,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `intersection_function_table` may need to be synchronized.
+        /// - `intersection_function_table` may be unretained, you must ensure it is kept alive while in use.
         /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setTileIntersectionFunctionTable:atBufferIndex:))]
         #[unsafe(method_family = none)]
@@ -2341,6 +2376,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `acceleration_structure` may need to be synchronized.
+        /// - `acceleration_structure` may be unretained, you must ensure it is kept alive while in use.
         /// - `bufferIndex` might not be bounds-checked.
         #[unsafe(method(setTileAccelerationStructure:atBufferIndex:))]
         #[unsafe(method_family = none)]
@@ -2512,6 +2548,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indirect_command_buffer` may need to be synchronized.
+        /// - `indirect_command_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `executionRange` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:withRange:))]
         #[unsafe(method_family = none)]
@@ -2538,7 +2575,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `indirect_commandbuffer` may need to be synchronized.
+        /// - `indirect_commandbuffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `indirect_range_buffer` may need to be synchronized.
+        /// - `indirect_range_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `indirect_range_buffer` contents should be of the correct type.
         /// - `indirectBufferOffset` might not be bounds-checked.
         #[unsafe(method(executeCommandsInBuffer:indirectBuffer:indirectBufferOffset:))]

@@ -249,6 +249,7 @@ impl MPSInstanceAccelerationStructure {
         /// # Safety
         ///
         /// - `instance_buffer` may need to be synchronized.
+        /// - `instance_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `instance_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(setInstanceBuffer:))]
@@ -282,6 +283,7 @@ impl MPSInstanceAccelerationStructure {
         /// # Safety
         ///
         /// - `transform_buffer` may need to be synchronized.
+        /// - `transform_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `transform_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(setTransformBuffer:))]
@@ -328,6 +330,7 @@ impl MPSInstanceAccelerationStructure {
         /// # Safety
         ///
         /// - `mask_buffer` may need to be synchronized.
+        /// - `mask_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `mask_buffer` contents should be of the correct type.
         #[deprecated]
         #[unsafe(method(setMaskBuffer:))]

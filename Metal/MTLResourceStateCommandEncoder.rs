@@ -86,6 +86,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `regions` must be a valid pointer.
         /// - `mip_levels` must be a valid pointer.
         /// - `slices` must be a valid pointer.
@@ -112,7 +113,8 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `texture` may need to be synchronized.
+        /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         #[optional]
         #[unsafe(method(updateTextureMapping:mode:region:mipLevel:slice:))]
         #[unsafe(method_family = none)]
@@ -141,7 +143,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `texture` may need to be synchronized.
+        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `indirect_buffer` may need to be synchronized.
+        /// - `indirect_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `indirect_buffer` contents should be of the correct type.
         /// - `indirectBufferOffset` might not be bounds-checked.
         #[optional]
@@ -189,8 +193,10 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `source_texture` may need to be synchronized.
+        /// - `source_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `sourceSize` might not be bounds-checked.
         /// - `destination_texture` may need to be synchronized.
+        /// - `destination_texture` may be unretained, you must ensure it is kept alive while in use.
         #[optional]
         #[unsafe(method(moveTextureMappingsFromTexture:sourceSlice:sourceLevel:sourceOrigin:sourceSize:toTexture:destinationSlice:destinationLevel:destinationOrigin:))]
         #[unsafe(method_family = none)]

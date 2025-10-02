@@ -25,6 +25,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
@@ -45,6 +46,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
@@ -69,6 +71,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `stride` might not be bounds-checked.
@@ -92,10 +95,12 @@ extern_protocol!(
         ///
         /// - `patchCount` might not be bounds-checked.
         /// - `patch_index_buffer` may need to be synchronized.
+        /// - `patch_index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `patch_index_buffer` contents should be of the correct type.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `instanceStride` might not be bounds-checked.
@@ -124,13 +129,16 @@ extern_protocol!(
         ///
         /// - `patchCount` might not be bounds-checked.
         /// - `patch_index_buffer` may need to be synchronized.
+        /// - `patch_index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `patch_index_buffer` contents should be of the correct type.
         /// - `patchIndexBufferOffset` might not be bounds-checked.
         /// - `control_point_index_buffer` may need to be synchronized.
+        /// - `control_point_index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `control_point_index_buffer` contents should be of the correct type.
         /// - `controlPointIndexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `instanceStride` might not be bounds-checked.
@@ -179,6 +187,7 @@ extern_protocol!(
         ///
         /// - `indexCount` might not be bounds-checked.
         /// - `index_buffer` may need to be synchronized.
+        /// - `index_buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `index_buffer` contents should be of the correct type.
         /// - `indexBufferOffset` might not be bounds-checked.
         /// - `instanceCount` might not be bounds-checked.
@@ -215,6 +224,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
@@ -235,6 +245,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
@@ -337,6 +348,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `index` might not be bounds-checked.
@@ -361,6 +373,7 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         /// - `offset` might not be bounds-checked.
         /// - `stride` might not be bounds-checked.

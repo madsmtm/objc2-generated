@@ -600,6 +600,7 @@ impl SCNGeometrySource {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(geometrySourceWithBuffer:vertexFormat:semantic:vertexCount:dataOffset:dataStride:))]
         #[unsafe(method_family = none)]
@@ -745,6 +746,7 @@ impl SCNGeometryElement {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(geometryElementWithBuffer:primitiveType:primitiveCount:bytesPerIndex:))]
         #[unsafe(method_family = none)]
@@ -760,6 +762,7 @@ impl SCNGeometryElement {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(geometryElementWithBuffer:primitiveType:primitiveCount:indicesChannelCount:interleavedIndicesChannels:bytesPerIndex:))]
         #[unsafe(method_family = none)]

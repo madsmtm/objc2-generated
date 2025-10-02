@@ -83,6 +83,7 @@ impl MPSGraphTensorData {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithMTLBuffer:shape:dataType:))]
         #[unsafe(method_family = init)]
@@ -108,6 +109,7 @@ impl MPSGraphTensorData {
         /// # Safety
         ///
         /// - `buffer` may need to be synchronized.
+        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
         /// - `buffer` contents should be of the correct type.
         #[unsafe(method(initWithMTLBuffer:shape:dataType:rowBytes:))]
         #[unsafe(method_family = init)]
@@ -223,7 +225,8 @@ impl MPSGraphTensorData {
         ///
         /// # Safety
         ///
-        /// `tensor` may need to be synchronized.
+        /// - `tensor` may need to be synchronized.
+        /// - `tensor` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithMTLTensor:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithMTLTensor(

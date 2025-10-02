@@ -49,8 +49,10 @@ impl MPSCNNNormalizationGammaAndBetaState {
         /// # Safety
         ///
         /// - `gamma` may need to be synchronized.
+        /// - `gamma` may be unretained, you must ensure it is kept alive while in use.
         /// - `gamma` contents should be of the correct type.
         /// - `beta` may need to be synchronized.
+        /// - `beta` may be unretained, you must ensure it is kept alive while in use.
         /// - `beta` contents should be of the correct type.
         #[unsafe(method(initWithGamma:beta:))]
         #[unsafe(method_family = init)]
@@ -139,7 +141,8 @@ impl MPSCNNNormalizationGammaAndBetaState {
         ///
         /// # Safety
         ///
-        /// `resource` may need to be synchronized.
+        /// - `resource` may need to be synchronized.
+        /// - `resource` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResource:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResource(
@@ -184,7 +187,8 @@ impl MPSCNNNormalizationGammaAndBetaState {
         ///
         /// # Safety
         ///
-        /// `resources` generic may need to be synchronized.
+        /// - `resources` generic may need to be synchronized.
+        /// - `resources` generic may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(initWithResources:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithResources(

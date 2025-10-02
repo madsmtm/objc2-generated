@@ -50,7 +50,9 @@ extern_protocol!(
         /// # Safety
         ///
         /// - `inputs` generic may need to be synchronized.
+        /// - `inputs` generic may be unretained, you must ensure it is kept alive while in use.
         /// - `outputs` generic may need to be synchronized.
+        /// - `outputs` generic may be unretained, you must ensure it is kept alive while in use.
         #[optional]
         #[unsafe(method(encodeToCommandBuffer:inputs:outputs:error:_))]
         #[unsafe(method_family = none)]

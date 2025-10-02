@@ -53,7 +53,7 @@ extern_protocol!(
         /// does not maintain strong references to resources used within the command buffer.
         #[unsafe(method(commandBufferWithUnretainedReferences))]
         #[unsafe(method_family = none)]
-        unsafe fn commandBufferWithUnretainedReferences(
+        fn commandBufferWithUnretainedReferences(
             &self,
         ) -> Option<Retained<ProtocolObject<dyn MTLCommandBuffer>>>;
 
