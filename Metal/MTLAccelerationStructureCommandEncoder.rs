@@ -324,14 +324,9 @@ extern_protocol!(
         /// For tracked MTLResources, this method protects against data hazards. This method must be called before encoding any acceleration structure commands which may access the resource through an argument buffer.
         ///
         /// Warning: Prior to iOS 13, macOS 10.15, this method does not protect against data hazards. If you are deploying to older versions of macOS or iOS, use fences to ensure data hazards are resolved.
-        ///
-        /// # Safety
-        ///
-        /// - `resource` may need to be synchronized.
-        /// - `resource` may be unretained, you must ensure it is kept alive while in use.
         #[unsafe(method(useResource:usage:))]
         #[unsafe(method_family = none)]
-        unsafe fn useResource_usage(
+        fn useResource_usage(
             &self,
             resource: &ProtocolObject<dyn MTLResource>,
             usage: MTLResourceUsage,
