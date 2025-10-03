@@ -108,7 +108,7 @@ impl UIKeyCommand {
         /// Action to take on choosing this command.
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
-        pub fn action(&self) -> Option<Sel>;
+        pub unsafe fn action(&self) -> Option<Sel>;
 
         #[unsafe(method(input))]
         #[unsafe(method_family = none)]

@@ -169,7 +169,7 @@ impl NSDistributedNotificationCenter {
         #[cfg(feature = "NSString")]
         #[unsafe(method(postNotificationName:object:))]
         #[unsafe(method_family = none)]
-        pub fn postNotificationName_object(
+        pub unsafe fn postNotificationName_object(
             &self,
             a_name: &NSNotificationName,
             an_object: Option<&NSString>,

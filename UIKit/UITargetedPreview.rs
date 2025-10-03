@@ -165,7 +165,7 @@ impl UITargetedPreview {
 
         #[unsafe(method(retargetedPreviewWithTarget:))]
         #[unsafe(method_family = none)]
-        pub fn retargetedPreviewWithTarget(
+        pub unsafe fn retargetedPreviewWithTarget(
             &self,
             new_target: &UIPreviewTarget,
         ) -> Retained<UITargetedPreview>;

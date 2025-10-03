@@ -74,7 +74,7 @@ impl UIHoverStyle {
         /// Creates a hover style with the provided effect and shape.
         #[unsafe(method(styleWithEffect:shape:))]
         #[unsafe(method_family = none)]
-        pub fn styleWithEffect_shape(
+        pub unsafe fn styleWithEffect_shape(
             effect: &ProtocolObject<dyn UIHoverEffect>,
             shape: Option<&UIShape>,
         ) -> Retained<Self>;

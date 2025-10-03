@@ -395,7 +395,10 @@ impl UIScrollView {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UIScrollViewDelegate>>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn UIScrollViewDelegate>>,
+        );
 
         #[unsafe(method(isDirectionalLockEnabled))]
         #[unsafe(method_family = none)]

@@ -107,7 +107,7 @@ impl UITargetedDragPreview {
     extern_methods!(
         #[unsafe(method(retargetedPreviewWithTarget:))]
         #[unsafe(method_family = none)]
-        pub fn retargetedPreviewWithTarget(
+        pub unsafe fn retargetedPreviewWithTarget(
             &self,
             new_target: &UIDragPreviewTarget,
         ) -> Retained<UITargetedDragPreview>;

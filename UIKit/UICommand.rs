@@ -214,7 +214,7 @@ impl UICommand {
         /// Action to take on choosing this command.
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
-        pub fn action(&self) -> Sel;
+        pub unsafe fn action(&self) -> Sel;
 
         /// Property list object to distinguish commands, if needed.
         #[unsafe(method(propertyList))]

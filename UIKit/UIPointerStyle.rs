@@ -59,7 +59,7 @@ impl UIPointerStyle {
         /// Parameter `shape`: The desired pointer shape. If omitted, a pointer will be generated automatically from the effect's preview view.
         #[unsafe(method(styleWithEffect:shape:))]
         #[unsafe(method_family = none)]
-        pub fn styleWithEffect_shape(
+        pub unsafe fn styleWithEffect_shape(
             effect: &UIPointerEffect,
             shape: Option<&UIPointerShape>,
         ) -> Retained<Self>;

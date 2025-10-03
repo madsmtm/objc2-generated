@@ -1094,7 +1094,10 @@ impl UICollectionView {
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn UICollectionViewDelegate>>);
+        pub unsafe fn setDelegate(
+            &self,
+            delegate: Option<&ProtocolObject<dyn UICollectionViewDelegate>>,
+        );
 
         #[unsafe(method(dataSource))]
         #[unsafe(method_family = none)]

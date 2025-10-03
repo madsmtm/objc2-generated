@@ -59,7 +59,7 @@ impl NSPort {
 
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub fn setDelegate(&self, an_object: Option<&ProtocolObject<dyn NSPortDelegate>>);
+        pub unsafe fn setDelegate(&self, an_object: Option<&ProtocolObject<dyn NSPortDelegate>>);
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -263,7 +263,10 @@ impl NSMachPort {
 
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub fn setDelegate(&self, an_object: Option<&ProtocolObject<dyn NSMachPortDelegate>>);
+        pub unsafe fn setDelegate(
+            &self,
+            an_object: Option<&ProtocolObject<dyn NSMachPortDelegate>>,
+        );
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
