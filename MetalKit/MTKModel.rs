@@ -51,7 +51,7 @@ impl MTKMeshBufferAllocator {
         /// The designated initializer for this class.
         #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
+        pub fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
@@ -59,7 +59,7 @@ impl MTKMeshBufferAllocator {
         /// Device used to create buffers.
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        pub fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
     );
 }
 
@@ -105,14 +105,14 @@ impl MTKMeshBuffer {
         /// Size in bytes of the buffer allocation.
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
-        pub unsafe fn length(&self) -> NSUInteger;
+        pub fn length(&self) -> NSUInteger;
 
         /// Allocator object used to create this buffer.
         ///
         /// This allcoator is stored so that it can be used by Model I/O for copy and relayout operations (such as when a new vertex descriptor is applied to a vertex buffer).
         #[unsafe(method(allocator))]
         #[unsafe(method_family = none)]
-        pub unsafe fn allocator(&self) -> Retained<MTKMeshBufferAllocator>;
+        pub fn allocator(&self) -> Retained<MTKMeshBufferAllocator>;
 
         #[cfg(feature = "objc2-model-io")]
         /// Zone from which this buffer was created (if it was created from a zone).
@@ -120,25 +120,25 @@ impl MTKMeshBuffer {
         /// A single MetalBuffer is allocated for each zone.  Each zone could have many MTKMeshBuffers, each with it's own offset.  If a MTKMeshBufferAllocator is used, Model I/O will attempt to load all vertex and index data of a single mesh into a single zone.  This allows the GPU to achieve a higher cache hit rate when drawing the mesh.  So although there maybe many MTKMeshBuffers for a model they will be backed with the same contigous MetalBuffer.
         #[unsafe(method(zone))]
         #[unsafe(method_family = none)]
-        pub unsafe fn zone(&self) -> Option<Retained<ProtocolObject<dyn MDLMeshBufferZone>>>;
+        pub fn zone(&self) -> Option<Retained<ProtocolObject<dyn MDLMeshBufferZone>>>;
 
         /// Metal Buffer backing vertex/index data.
         ///
         /// Many MTKMeshBuffers may reference the same buffer, but each with it's own offset.  (i.e. Many MTKMeshBuffers may be suballocated from a single buffer)
         #[unsafe(method(buffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn buffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
+        pub fn buffer(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
 
         /// Byte offset of the data within the metal buffer.
         #[unsafe(method(offset))]
         #[unsafe(method_family = none)]
-        pub unsafe fn offset(&self) -> NSUInteger;
+        pub fn offset(&self) -> NSUInteger;
 
         #[cfg(feature = "objc2-model-io")]
         /// the intended type of the buffer
         #[unsafe(method(type))]
         #[unsafe(method_family = none)]
-        pub unsafe fn r#type(&self) -> MDLMeshBufferType;
+        pub fn r#type(&self) -> MDLMeshBufferType;
     );
 }
 
@@ -178,49 +178,49 @@ impl MTKSubmesh {
         /// Value to use for primitiveType parameter in a [MTLRenderCommandEncoder drawIndexedPrimitives] call.
         #[unsafe(method(primitiveType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn primitiveType(&self) -> MTLPrimitiveType;
+        pub fn primitiveType(&self) -> MTLPrimitiveType;
 
         /// Metal index type of data in indexBuffer.
         ///
         /// Value to use for indexType parameter in a [MTLRenderCommandEncoder drawIndexedPrimitives] call.
         #[unsafe(method(indexType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexType(&self) -> MTLIndexType;
+        pub fn indexType(&self) -> MTLIndexType;
 
         /// IndexBuffer (including indexCount) to render the object.
         ///
         /// The MTLBuffer to use for indexBuffer parameter in a [MTLRenderCommandEncoder drawIndexedPrimitives] call.
         #[unsafe(method(indexBuffer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexBuffer(&self) -> Retained<MTKMeshBuffer>;
+        pub fn indexBuffer(&self) -> Retained<MTKMeshBuffer>;
 
         /// Number of indicies in indexBuffer.
         ///
         /// Value to use for indexCount parameter in a [MTLRenderCommandEncoder drawIndexedPrimitives] call.
         #[unsafe(method(indexCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexCount(&self) -> NSUInteger;
+        pub fn indexCount(&self) -> NSUInteger;
 
         /// Parent MTKMesh object containing vertex data of this object.
         ///
         /// The buffer of this parent mesh should be set in the encoder before a drawIndexedPrimitives call is made.
         #[unsafe(method(mesh))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mesh(&self) -> Option<Retained<MTKMesh>>;
+        pub fn mesh(&self) -> Option<Retained<MTKMesh>>;
 
         /// Name from the original MDLSubmesh object.
         ///
         /// Although not directly used by this object, the application may use this to identify the submesh in the renderer/scene/world.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Retained<NSString>;
+        pub fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setName(&self, name: &NSString);
+        pub fn setName(&self, name: &NSString);
     );
 }
 
@@ -265,7 +265,7 @@ impl MTKMesh {
         /// The designated initializer for this class.  This does NOT initialize any meshes that are children of the Model I/O mesh, only submeshes that are part of the given mesh.  An exception is raised if vertexBuffer objects in the given mesh and the indexBuffer of any submesh in this mesh have not been created with a MTKMeshBufferAllocator object.  If a submesh using MDLGeometryTypeQuads or MDLGeometryTypeTopology is used, that submesh will be copied, and recreated to use MDLGeometryTypeTriangles, before this routine creates the MTKSubmesh.
         #[unsafe(method(initWithMesh:device:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithMesh_device_error(
+        pub fn initWithMesh_device_error(
             this: Allocated<Self>,
             mesh: &MDLMesh,
             device: &ProtocolObject<dyn MTLDevice>,
@@ -287,7 +287,7 @@ impl MTKMesh {
         /// A convenience method to create MetalKit meshes from each mesh in a Model I/O asset.  resulting meshes are returned while the corresponding Model I/O meshes from which they were generated will appear in the sourceMeshes array.  All vertexBuffer objects in each MDLMesh object in the asset and the indexBuffer of each submesh within each of these meshes must have been created using a MTKMeshBufferAllocator object.  Thus
         #[unsafe(method(newMeshesFromAsset:device:sourceMeshes:error:_))]
         #[unsafe(method_family = new)]
-        pub unsafe fn newMeshesFromAsset_device_sourceMeshes_error(
+        pub fn newMeshesFromAsset_device_sourceMeshes_error(
             asset: &MDLAsset,
             device: &ProtocolObject<dyn MTLDevice>,
             source_meshes: Option<&mut Option<Retained<NSArray<MDLMesh>>>>,
@@ -298,7 +298,7 @@ impl MTKMesh {
         /// This is filled with mesh buffer objects using the layout described by the vertexDescriptor property.  Elements in this array can be [NSNull null] if the vertexDescriptor does not specify elements for buffer for the given index
         #[unsafe(method(vertexBuffers))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vertexBuffers(&self) -> Retained<NSArray<MTKMeshBuffer>>;
+        pub fn vertexBuffers(&self) -> Retained<NSArray<MTKMeshBuffer>>;
 
         #[cfg(feature = "objc2-model-io")]
         /// Model I/O vertex descriptor specifying the layout of data in vertexBuffers.
@@ -306,31 +306,31 @@ impl MTKMesh {
         /// This is not directly used by this object, but the application can use this information to determine rendering state or create a Metal vertex descriptor to build a RenderPipelineState object capable of interpreting data in 'vertexBuffers'.  Changing propties in the object will not result in the relayout data in vertex descriptor and thus will make the vertex descriptor no loger describe the layout of vertes data and verticies. (i.e. don't change properties in this vertexDescriptor)
         #[unsafe(method(vertexDescriptor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vertexDescriptor(&self) -> Retained<MDLVertexDescriptor>;
+        pub fn vertexDescriptor(&self) -> Retained<MDLVertexDescriptor>;
 
         /// Submeshes containing index buffers to rendering mesh vertices.
         #[unsafe(method(submeshes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn submeshes(&self) -> Retained<NSArray<MTKSubmesh>>;
+        pub fn submeshes(&self) -> Retained<NSArray<MTKSubmesh>>;
 
         /// Number of vertices in the vertexBuffers.
         #[unsafe(method(vertexCount))]
         #[unsafe(method_family = none)]
-        pub unsafe fn vertexCount(&self) -> NSUInteger;
+        pub fn vertexCount(&self) -> NSUInteger;
 
         /// Name of the mesh copies from the originating Model I/O mesh.
         ///
         /// Can be used by the app to identify the mesh in its scene/world/renderer etc.
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
-        pub unsafe fn name(&self) -> Retained<NSString>;
+        pub fn name(&self) -> Retained<NSString>;
 
         /// Setter for [`name`][Self::name].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setName:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setName(&self, name: &NSString);
+        pub fn setName(&self, name: &NSString);
     );
 }
 
@@ -348,7 +348,7 @@ impl MTKMesh {
 /// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Model I/O vertex descriptor.  It does not add any semantic information such at attributes names.  Names must be set in the returned Model I/O vertex descriptor before it can be applied to a a Model I/O mesh.
 #[cfg(feature = "objc2-model-io")]
 #[inline]
-pub unsafe extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetal(
+pub extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetal(
     metal_descriptor: &MTLVertexDescriptor,
 ) -> Retained<MDLVertexDescriptor> {
     extern "C-unwind" {
@@ -390,7 +390,7 @@ pub unsafe extern "C-unwind" fn MTKModelIOVertexDescriptorFromMetalWithError(
 /// This method can only set vertex format, offset, bufferIndex, and stride information in the produced Metal vertex descriptor. It simply copies attributes 1 for 1. Thus attributes in the given Model I/O vertex descriptor must be arranged in the correct order for the resulting descriptor to properly map mesh data to vertex shader inputs.  Layout stepFunction and stepRates for the resulting MTLVertexDescriptor must also be set by application.
 #[cfg(feature = "objc2-model-io")]
 #[inline]
-pub unsafe extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIO(
+pub extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIO(
     model_io_descriptor: &MDLVertexDescriptor,
 ) -> Option<Retained<MTLVertexDescriptor>> {
     extern "C-unwind" {
@@ -425,18 +425,30 @@ pub unsafe extern "C-unwind" fn MTKMetalVertexDescriptorFromModelIOWithError(
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
-extern "C-unwind" {
-    /// Converts a Metal vertex format to a Model I/O vertex format
-    ///
-    /// Returns: A Model I/O vertexformat correspoinding to the given Metal vertex format.  Returns MDLVertexFormatInvalid if no matching Model I/O vertex format exists.
-    #[cfg(feature = "objc2-model-io")]
-    pub fn MTKModelIOVertexFormatFromMetal(vertex_format: MTLVertexFormat) -> MDLVertexFormat;
+/// Converts a Metal vertex format to a Model I/O vertex format
+///
+/// Returns: A Model I/O vertexformat correspoinding to the given Metal vertex format.  Returns MDLVertexFormatInvalid if no matching Model I/O vertex format exists.
+#[cfg(feature = "objc2-model-io")]
+#[inline]
+pub extern "C-unwind" fn MTKModelIOVertexFormatFromMetal(
+    vertex_format: MTLVertexFormat,
+) -> MDLVertexFormat {
+    extern "C-unwind" {
+        fn MTKModelIOVertexFormatFromMetal(vertex_format: MTLVertexFormat) -> MDLVertexFormat;
+    }
+    unsafe { MTKModelIOVertexFormatFromMetal(vertex_format) }
 }
 
-extern "C-unwind" {
-    /// Converts a Model I/O vertex format to a Metal vertex format
-    ///
-    /// Returns: A Metal vertexformat correspoinding to the given Model I/O vertex format.  Returns MTLVertexFormatInvalid if no matching Metal vertex format exists.
-    #[cfg(feature = "objc2-model-io")]
-    pub fn MTKMetalVertexFormatFromModelIO(vertex_format: MDLVertexFormat) -> MTLVertexFormat;
+/// Converts a Model I/O vertex format to a Metal vertex format
+///
+/// Returns: A Metal vertexformat correspoinding to the given Model I/O vertex format.  Returns MTLVertexFormatInvalid if no matching Metal vertex format exists.
+#[cfg(feature = "objc2-model-io")]
+#[inline]
+pub extern "C-unwind" fn MTKMetalVertexFormatFromModelIO(
+    vertex_format: MDLVertexFormat,
+) -> MTLVertexFormat {
+    extern "C-unwind" {
+        fn MTKMetalVertexFormatFromModelIO(vertex_format: MDLVertexFormat) -> MTLVertexFormat;
+    }
+    unsafe { MTKMetalVertexFormatFromModelIO(vertex_format) }
 }

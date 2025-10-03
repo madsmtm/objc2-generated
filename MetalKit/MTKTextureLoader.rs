@@ -194,7 +194,7 @@ impl MTKTextureLoader {
         /// Metal device with which to create Metal textures
         #[unsafe(method(device))]
         #[unsafe(method_family = none)]
-        pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
+        pub fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -205,7 +205,7 @@ impl MTKTextureLoader {
         /// Parameter `device`: Metal device with which to create Metal textures
         #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
+        pub fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
