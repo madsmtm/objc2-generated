@@ -606,7 +606,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_component` must be a valid pointer.
-    /// - `in_validation_parameters` generics must be of the correct type.
+    /// - `in_validation_parameters` generic must be of the correct type.
+    /// - `in_validation_parameters` generic must be of the correct type.
     /// - `out_validation_result` must be a valid pointer.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn AudioComponentValidate(
@@ -656,7 +657,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_component` must be a valid pointer.
-    /// - `in_validation_parameters` generics must be of the correct type.
+    /// - `in_validation_parameters` generic must be of the correct type.
+    /// - `in_validation_parameters` generic must be of the correct type.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn AudioComponentValidateWithResults(
         in_component: AudioComponent,

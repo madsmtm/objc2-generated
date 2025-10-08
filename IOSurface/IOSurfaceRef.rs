@@ -337,7 +337,8 @@ unsafe impl ConcreteType for IOSurfaceRef {
 impl IOSurfaceRef {
     /// # Safety
     ///
-    /// `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     #[doc(alias = "IOSurfaceCreate")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]
@@ -746,7 +747,8 @@ impl IOSurfaceRef {
 
     /// # Safety
     ///
-    /// `keys_and_values` generics must be of the correct type.
+    /// - `keys_and_values` generic must be of the correct type.
+    /// - `keys_and_values` generic must be of the correct type.
     #[doc(alias = "IOSurfaceSetValues")]
     #[cfg(feature = "objc2-core-foundation")]
     #[inline]

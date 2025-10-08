@@ -594,7 +594,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `pixel_buffer_attributes` generics must be of the correct type.
+    /// - `pixel_buffer_attributes` generic must be of the correct type.
+    /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreate(
@@ -641,7 +642,8 @@ extern "C-unwind" {
     /// - `base_address` must be a valid pointer.
     /// - `release_callback` must be implemented correctly.
     /// - `release_ref_con` must be a valid pointer or null.
-    /// - `pixel_buffer_attributes` generics must be of the correct type.
+    /// - `pixel_buffer_attributes` generic must be of the correct type.
+    /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreateWithBytes(
@@ -707,7 +709,8 @@ extern "C-unwind" {
     /// - `plane_bytes_per_row` must be a valid pointer.
     /// - `release_callback` must be implemented correctly.
     /// - `release_ref_con` must be a valid pointer or null.
-    /// - `pixel_buffer_attributes` generics must be of the correct type.
+    /// - `pixel_buffer_attributes` generic must be of the correct type.
+    /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreateWithPlanarBytes(
@@ -1058,7 +1061,8 @@ pub extern "C-unwind" fn CVPixelBufferCopyCreationAttributes(
 ///
 /// # Safety
 ///
-/// `attributes` generics must be of the correct type.
+/// - `attributes` generic must be of the correct type.
+/// - `attributes` generic must be of the correct type.
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CVPixelBufferIsCompatibleWithAttributes(

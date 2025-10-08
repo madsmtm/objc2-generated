@@ -563,7 +563,8 @@ impl CMTime {
     ///
     /// # Safety
     ///
-    /// `dictionary_representation` generics must be of the correct type.
+    /// - `dictionary_representation` generic must be of the correct type.
+    /// - `dictionary_representation` generic must be of the correct type.
     #[doc(alias = "CMTimeMakeFromDictionary")]
     #[inline]
     pub unsafe fn from_dictionary(dictionary_representation: Option<&CFDictionary>) -> CMTime {

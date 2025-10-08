@@ -83,7 +83,8 @@ impl CMFormatDescription {
     ///
     /// # Safety
     ///
-    /// - `extensions` generics must be of the correct type.
+    /// - `extensions` generic must be of the correct type.
+    /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
     #[doc(alias = "CMFormatDescriptionCreate")]
     #[inline]
@@ -368,7 +369,8 @@ extern "C-unwind" {
     /// - `asbd` must be a valid pointer.
     /// - `layout` must be a valid pointer or null.
     /// - `magic_cookie` must be a valid pointer or null.
-    /// - `extensions` generics must be of the correct type.
+    /// - `extensions` generic must be of the correct type.
+    /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
     #[cfg(feature = "objc2-core-audio-types")]
     pub fn CMAudioFormatDescriptionCreate(
@@ -1571,7 +1573,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `extensions` generics must be of the correct type.
+    /// - `extensions` generic must be of the correct type.
+    /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
     pub fn CMVideoFormatDescriptionCreate(
         allocator: Option<&CFAllocator>,
@@ -1642,7 +1645,8 @@ extern "C-unwind" {
     ///
     /// - `parameter_set_pointers` must be a valid pointer.
     /// - `parameter_set_sizes` must be a valid pointer.
-    /// - `extensions` generics must be of the correct type.
+    /// - `extensions` generic must be of the correct type.
+    /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
     pub fn CMVideoFormatDescriptionCreateFromHEVCParameterSets(
         allocator: Option<&CFAllocator>,
@@ -1893,7 +1897,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `extensions` generics must be of the correct type.
+    /// - `extensions` generic must be of the correct type.
+    /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
     pub fn CMMuxedFormatDescriptionCreate(
         allocator: Option<&CFAllocator>,
@@ -2232,7 +2237,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `extensions` generics must be of the correct type.
+    /// - `extensions` generic must be of the correct type.
+    /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
     #[cfg(feature = "CMTime")]
     pub fn CMTimeCodeFormatDescriptionCreate(

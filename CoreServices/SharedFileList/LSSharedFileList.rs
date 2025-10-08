@@ -331,7 +331,8 @@ impl LSSharedFileList {
     /// # Safety
     ///
     /// - `in_icon_ref` must be a valid pointer or null.
-    /// - `in_properties_to_set` generics must be of the correct type.
+    /// - `in_properties_to_set` generic must be of the correct type.
+    /// - `in_properties_to_set` generic must be of the correct type.
     /// - `in_properties_to_clear` generic must be of the correct type.
     #[doc(alias = "LSSharedFileListInsertItemURL")]
     #[cfg(all(feature = "IconsCore", feature = "LaunchServices"))]
@@ -375,7 +376,8 @@ impl LSSharedFileList {
     ///
     /// - `in_icon_ref` must be a valid pointer or null.
     /// - `in_fs_ref` must be a valid pointer.
-    /// - `in_properties_to_set` generics must be of the correct type.
+    /// - `in_properties_to_set` generic must be of the correct type.
+    /// - `in_properties_to_set` generic must be of the correct type.
     /// - `in_properties_to_clear` generic must be of the correct type.
     #[doc(alias = "LSSharedFileListInsertItemFSRef")]
     #[cfg(all(

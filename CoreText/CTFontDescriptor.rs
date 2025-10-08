@@ -490,7 +490,8 @@ impl CTFontDescriptor {
     ///
     /// # Safety
     ///
-    /// `attributes` generics must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
     #[doc(alias = "CTFontDescriptorCreateWithAttributes")]
     #[inline]
     pub unsafe fn with_attributes(attributes: &CFDictionary) -> CFRetained<CTFontDescriptor> {
@@ -530,7 +531,8 @@ impl CTFontDescriptor {
     ///
     /// # Safety
     ///
-    /// `attributes` generics must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
     #[doc(alias = "CTFontDescriptorCreateCopyWithAttributes")]
     #[inline]
     pub unsafe fn copy_with_attributes(

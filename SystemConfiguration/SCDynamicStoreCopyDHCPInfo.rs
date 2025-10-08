@@ -57,7 +57,8 @@ impl SCDynamicStore {
 ///
 /// # Safety
 ///
-/// `info` generics must be of the correct type.
+/// - `info` generic must be of the correct type.
+/// - `info` generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn DHCPInfoGetOptionData(
     info: &CFDictionary,
@@ -84,7 +85,8 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetOptionData(
 ///
 /// # Safety
 ///
-/// `info` generics must be of the correct type.
+/// - `info` generic must be of the correct type.
+/// - `info` generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseStartTime(
     info: &CFDictionary,
@@ -111,7 +113,8 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseStartTime(
 ///
 /// # Safety
 ///
-/// `info` generics must be of the correct type.
+/// - `info` generic must be of the correct type.
+/// - `info` generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseExpirationTime(
     info: &CFDictionary,

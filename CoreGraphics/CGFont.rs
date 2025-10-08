@@ -118,7 +118,8 @@ impl CGFont {
 
     /// # Safety
     ///
-    /// `variations` generics must be of the correct type.
+    /// - `variations` generic must be of the correct type.
+    /// - `variations` generic must be of the correct type.
     #[doc(alias = "CGFontCreateCopyWithVariations")]
     #[inline]
     pub unsafe fn new_copy_with_variations(

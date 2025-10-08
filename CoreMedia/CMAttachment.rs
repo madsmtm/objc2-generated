@@ -146,7 +146,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `target` should be of the correct type.
-    /// - `the_attachments` generics must be of the correct type.
+    /// - `the_attachments` generic must be of the correct type.
+    /// - `the_attachments` generic must be of the correct type.
     pub fn CMSetAttachments(
         target: &CMAttachmentBearer,
         the_attachments: &CFDictionary,

@@ -31,7 +31,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     /// - `image_out` must be a valid pointer.
     #[cfg(all(feature = "objc2-core-graphics", feature = "objc2-core-video"))]
     pub fn VTCreateCGImageFromCVPixelBuffer(

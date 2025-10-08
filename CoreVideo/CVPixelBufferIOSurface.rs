@@ -77,7 +77,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `pixel_buffer_attributes` generics must be of the correct type.
+    /// - `pixel_buffer_attributes` generic must be of the correct type.
+    /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
     #[cfg(all(
         feature = "CVBuffer",

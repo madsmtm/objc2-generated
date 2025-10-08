@@ -60,7 +60,8 @@ impl CFURL {
     /// # Safety
     ///
     /// - `data_to_write` might not allow `None`.
-    /// - `properties_to_write` generics must be of the correct type.
+    /// - `properties_to_write` generic must be of the correct type.
+    /// - `properties_to_write` generic must be of the correct type.
     /// - `properties_to_write` might not allow `None`.
     /// - `error_code` must be a valid pointer.
     #[doc(alias = "CFURLWriteDataAndPropertiesToResource")]

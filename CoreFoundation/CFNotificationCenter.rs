@@ -191,7 +191,8 @@ impl CFNotificationCenter {
     ///
     /// - `name` might not allow `None`.
     /// - `object` must be a valid pointer.
-    /// - `user_info` generics must be of the correct type.
+    /// - `user_info` generic must be of the correct type.
+    /// - `user_info` generic must be of the correct type.
     /// - `user_info` might not allow `None`.
     #[doc(alias = "CFNotificationCenterPostNotification")]
     #[cfg(feature = "CFDictionary")]
@@ -234,7 +235,8 @@ impl CFNotificationCenter {
     ///
     /// - `name` might not allow `None`.
     /// - `object` must be a valid pointer.
-    /// - `user_info` generics must be of the correct type.
+    /// - `user_info` generic must be of the correct type.
+    /// - `user_info` generic must be of the correct type.
     /// - `user_info` might not allow `None`.
     #[doc(alias = "CFNotificationCenterPostNotificationWithOptions")]
     #[cfg(feature = "CFDictionary")]

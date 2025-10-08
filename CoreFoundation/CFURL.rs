@@ -918,7 +918,8 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `keyed_property_values` generics must be of the correct type.
+    /// - `keyed_property_values` generic must be of the correct type.
+    /// - `keyed_property_values` generic must be of the correct type.
     /// - `keyed_property_values` might not allow `None`.
     /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLSetResourcePropertiesForKeys")]

@@ -124,7 +124,8 @@ impl CFError {
     ///
     /// - `allocator` might not allow `None`.
     /// - `domain` might not allow `None`.
-    /// - `user_info` generics must be of the correct type.
+    /// - `user_info` generic must be of the correct type.
+    /// - `user_info` generic must be of the correct type.
     /// - `user_info` might not allow `None`.
     #[doc(alias = "CFErrorCreate")]
     #[cfg(feature = "CFDictionary")]

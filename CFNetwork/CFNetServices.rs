@@ -479,7 +479,8 @@ impl CFNetService {
 
     /// # Safety
     ///
-    /// `key_value_pairs` generics must be of the correct type.
+    /// - `key_value_pairs` generic must be of the correct type.
+    /// - `key_value_pairs` generic must be of the correct type.
     #[doc(alias = "CFNetServiceCreateTXTDataWithDictionary")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]

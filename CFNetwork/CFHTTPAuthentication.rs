@@ -167,7 +167,8 @@ impl CFHTTPMessage {
 
     /// # Safety
     ///
-    /// - `dict` generics must be of the correct type.
+    /// - `dict` generic must be of the correct type.
+    /// - `dict` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
     #[doc(alias = "CFHTTPMessageApplyCredentialDictionary")]
     #[cfg(feature = "CFHTTPMessage")]

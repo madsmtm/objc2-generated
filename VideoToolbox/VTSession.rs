@@ -162,7 +162,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `session` should be of the correct type.
-    /// - `property_dictionary` generics must be of the correct type.
+    /// - `property_dictionary` generic must be of the correct type.
+    /// - `property_dictionary` generic must be of the correct type.
     pub fn VTSessionSetProperties(
         session: &VTSession,
         property_dictionary: &CFDictionary,

@@ -28,7 +28,8 @@ impl QLThumbnail {
     ///
     /// - `allocator` might not allow `None`.
     /// - `url` might not allow `None`.
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     /// - `options` might not allow `None`.
     #[doc(alias = "QLThumbnailImageCreate")]
     #[cfg(feature = "objc2-core-graphics")]

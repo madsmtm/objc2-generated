@@ -51,7 +51,8 @@ extern "C-unwind" {
     /// - `src_data` must be a valid pointer.
     /// - `src_format` struct field 2 must be a valid pointer.
     /// - `src_format` struct field 7 must be a valid pointer.
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     /// - `options` might not allow `None`.
     #[cfg(all(feature = "CGColorSpace", feature = "CGImage"))]
     pub fn CGConvertColorDataWithFormat(

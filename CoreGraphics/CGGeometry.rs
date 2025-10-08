@@ -259,7 +259,8 @@ pub extern "C-unwind" fn CGPointCreateDictionaryRepresentation(
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `dict` generics must be of the correct type.
+    /// - `dict` generic must be of the correct type.
+    /// - `dict` generic must be of the correct type.
     /// - `point` must be a valid pointer or null.
     pub fn CGPointMakeWithDictionaryRepresentation(
         dict: Option<&CFDictionary>,
@@ -282,7 +283,8 @@ pub extern "C-unwind" fn CGSizeCreateDictionaryRepresentation(
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `dict` generics must be of the correct type.
+    /// - `dict` generic must be of the correct type.
+    /// - `dict` generic must be of the correct type.
     /// - `size` must be a valid pointer or null.
     pub fn CGSizeMakeWithDictionaryRepresentation(
         dict: Option<&CFDictionary>,
@@ -305,7 +307,8 @@ pub extern "C-unwind" fn CGRectCreateDictionaryRepresentation(
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `dict` generics must be of the correct type.
+    /// - `dict` generic must be of the correct type.
+    /// - `dict` generic must be of the correct type.
     /// - `rect` must be a valid pointer or null.
     pub fn CGRectMakeWithDictionaryRepresentation(
         dict: Option<&CFDictionary>,

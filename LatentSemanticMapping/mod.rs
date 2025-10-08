@@ -169,7 +169,8 @@ impl LSMMap {
     ///
     /// # Safety
     ///
-    /// `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     #[doc(alias = "LSMMapSetProperties")]
     #[inline]
     pub unsafe fn set_properties(&self, properties: &CFDictionary) {

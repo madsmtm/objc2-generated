@@ -69,7 +69,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `attributes` generics must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
     /// - `buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]

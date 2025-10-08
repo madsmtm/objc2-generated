@@ -193,7 +193,8 @@ unsafe impl RefEncode for CGBitmapParameters {
 
 /// # Safety
 ///
-/// - `auxiliary_info` generics must be of the correct type.
+/// - `auxiliary_info` generic must be of the correct type.
+/// - `auxiliary_info` generic must be of the correct type.
 /// - `on_allocate` block's return must be a valid pointer or null.
 #[cfg(all(
     feature = "CGColorSpace",

@@ -64,7 +64,8 @@ impl CFAttributedString {
     ///
     /// - `alloc` might not allow `None`.
     /// - `str` might not allow `None`.
-    /// - `attributes` generics must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
     /// - `attributes` might not allow `None`.
     #[doc(alias = "CFAttributedStringCreate")]
     #[cfg(feature = "CFDictionary")]
@@ -354,7 +355,8 @@ impl CFMutableAttributedString {
     /// # Safety
     ///
     /// - `a_str` might not allow `None`.
-    /// - `replacement` generics must be of the correct type.
+    /// - `replacement` generic must be of the correct type.
+    /// - `replacement` generic must be of the correct type.
     /// - `replacement` might not allow `None`.
     #[doc(alias = "CFAttributedStringSetAttributes")]
     #[cfg(feature = "CFDictionary")]

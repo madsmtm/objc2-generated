@@ -231,7 +231,8 @@ impl CTRubyAnnotation {
     ///
     /// # Safety
     ///
-    /// `attributes` generics must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
     #[doc(alias = "CTRubyAnnotationCreateWithAttributes")]
     #[inline]
     pub unsafe fn with_attributes(

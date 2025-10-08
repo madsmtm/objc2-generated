@@ -1715,7 +1715,8 @@ impl IOHIDDevice {
     ///
     /// # Safety
     ///
-    /// `matching` generics must be of the correct type.
+    /// - `matching` generic must be of the correct type.
+    /// - `matching` generic must be of the correct type.
     #[doc(alias = "IOHIDDeviceCopyMatchingElements")]
     #[inline]
     pub unsafe fn matching_elements(
@@ -2088,7 +2089,8 @@ impl IOHIDDevice {
     ///
     /// # Safety
     ///
-    /// `matching` generics must be of the correct type.
+    /// - `matching` generic must be of the correct type.
+    /// - `matching` generic must be of the correct type.
     #[doc(alias = "IOHIDDeviceSetInputValueMatching")]
     #[inline]
     pub unsafe fn set_input_value_matching(&self, matching: Option<&CFDictionary>) {
@@ -2173,7 +2175,8 @@ impl IOHIDDevice {
     ///
     /// # Safety
     ///
-    /// `multiple` generics must be of the correct type.
+    /// - `multiple` generic must be of the correct type.
+    /// - `multiple` generic must be of the correct type.
     #[doc(alias = "IOHIDDeviceSetValueMultiple")]
     #[inline]
     pub unsafe fn set_value_multiple(&self, multiple: &CFDictionary) -> IOReturn {
@@ -2258,7 +2261,8 @@ impl IOHIDDevice {
     ///
     /// # Safety
     ///
-    /// - `multiple` generics must be of the correct type.
+    /// - `multiple` generic must be of the correct type.
+    /// - `multiple` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "IOHIDDeviceSetValueMultipleWithCallback")]
@@ -2790,7 +2794,8 @@ impl IOHIDElement {
     ///
     /// # Safety
     ///
-    /// `dictionary` generics must be of the correct type.
+    /// - `dictionary` generic must be of the correct type.
+    /// - `dictionary` generic must be of the correct type.
     #[doc(alias = "IOHIDElementCreateWithDictionary")]
     #[inline]
     pub unsafe fn with_dictionary(
@@ -4435,7 +4440,8 @@ impl IOHIDManager {
     ///
     /// # Safety
     ///
-    /// `matching` generics must be of the correct type.
+    /// - `matching` generic must be of the correct type.
+    /// - `matching` generic must be of the correct type.
     #[doc(alias = "IOHIDManagerSetDeviceMatching")]
     #[inline]
     pub unsafe fn set_device_matching(&self, matching: Option<&CFDictionary>) {
@@ -4682,7 +4688,8 @@ impl IOHIDManager {
     ///
     /// # Safety
     ///
-    /// `matching` generics must be of the correct type.
+    /// - `matching` generic must be of the correct type.
+    /// - `matching` generic must be of the correct type.
     #[doc(alias = "IOHIDManagerSetInputValueMatching")]
     #[inline]
     pub unsafe fn set_input_value_matching(&self, matching: Option<&CFDictionary>) {

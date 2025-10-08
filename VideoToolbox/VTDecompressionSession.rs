@@ -149,8 +149,10 @@ impl VTDecompressionSession {
     ///
     /// # Safety
     ///
-    /// - `video_decoder_specification` generics must be of the correct type.
-    /// - `destination_image_buffer_attributes` generics must be of the correct type.
+    /// - `video_decoder_specification` generic must be of the correct type.
+    /// - `video_decoder_specification` generic must be of the correct type.
+    /// - `destination_image_buffer_attributes` generic must be of the correct type.
+    /// - `destination_image_buffer_attributes` generic must be of the correct type.
     /// - `output_callback` must be a valid pointer or null.
     /// - `decompression_session_out` must be a valid pointer.
     #[doc(alias = "VTDecompressionSessionCreate")]
@@ -727,7 +729,8 @@ impl VTDecompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_options` generics must be of the correct type.
+    /// - `frame_options` generic must be of the correct type.
+    /// - `frame_options` generic must be of the correct type.
     /// - `source_frame_ref_con` must be a valid pointer or null.
     /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOptions")]
@@ -797,7 +800,8 @@ impl VTDecompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_options` generics must be of the correct type.
+    /// - `frame_options` generic must be of the correct type.
+    /// - `frame_options` generic must be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
     /// - `output_handler` must be a valid pointer.
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler")]

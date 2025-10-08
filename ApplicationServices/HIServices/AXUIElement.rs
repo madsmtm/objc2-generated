@@ -37,7 +37,8 @@ pub unsafe extern "C-unwind" fn AXAPIEnabled() -> bool {
 ///
 /// # Safety
 ///
-/// `options` generics must be of the correct type.
+/// - `options` generic must be of the correct type.
+/// - `options` generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn AXIsProcessTrustedWithOptions(
     options: Option<&CFDictionary>,

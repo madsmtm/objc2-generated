@@ -118,7 +118,8 @@ impl CTFontCollection {
     ///
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CTFontCollectionCreateFromAvailableFonts")]
     #[inline]
     pub unsafe fn from_available_fonts(
@@ -149,7 +150,8 @@ impl CTFontCollection {
     /// # Safety
     ///
     /// - `query_descriptors` generic must be of the correct type.
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CTFontCollectionCreateWithFontDescriptors")]
     #[inline]
     pub unsafe fn with_font_descriptors(
@@ -185,7 +187,8 @@ impl CTFontCollection {
     /// # Safety
     ///
     /// - `query_descriptors` generic must be of the correct type.
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CTFontCollectionCreateCopyWithFontDescriptors")]
     #[inline]
     pub unsafe fn copy_with_font_descriptors(
@@ -400,7 +403,8 @@ impl CTFontCollection {
     ///
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsWithOptions")]
     #[inline]
     pub unsafe fn matching_font_descriptors_with_options(
@@ -431,7 +435,8 @@ impl CTFontCollection {
     ///
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsForFamily")]
     #[inline]
     pub unsafe fn matching_font_descriptors_for_family(

@@ -499,7 +499,8 @@ impl SCNetworkInterface {
     ///
     /// # Safety
     ///
-    /// `config` generics must be of the correct type.
+    /// - `config` generic must be of the correct type.
+    /// - `config` generic must be of the correct type.
     #[doc(alias = "SCNetworkInterfaceSetConfiguration")]
     #[inline]
     pub unsafe fn set_configuration(&self, config: Option<&CFDictionary>) -> bool {
@@ -523,7 +524,8 @@ impl SCNetworkInterface {
     ///
     /// # Safety
     ///
-    /// `config` generics must be of the correct type.
+    /// - `config` generic must be of the correct type.
+    /// - `config` generic must be of the correct type.
     #[doc(alias = "SCNetworkInterfaceSetExtendedConfiguration")]
     #[inline]
     pub unsafe fn set_extended_configuration(
@@ -926,7 +928,8 @@ pub extern "C-unwind" fn SCBondInterfaceSetLocalizedDisplayName(
 ///
 /// # Safety
 ///
-/// `new_options` generics must be of the correct type.
+/// - `new_options` generic must be of the correct type.
+/// - `new_options` generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn SCBondInterfaceSetOptions(
     bond: &SCBondInterface,
@@ -1211,7 +1214,8 @@ pub extern "C-unwind" fn SCVLANInterfaceSetLocalizedDisplayName(
 ///
 /// # Safety
 ///
-/// `new_options` generics must be of the correct type.
+/// - `new_options` generic must be of the correct type.
+/// - `new_options` generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn SCVLANInterfaceSetOptions(
     vlan: &SCVLANInterface,
@@ -1299,7 +1303,8 @@ impl SCNetworkProtocol {
     ///
     /// # Safety
     ///
-    /// `config` generics must be of the correct type.
+    /// - `config` generic must be of the correct type.
+    /// - `config` generic must be of the correct type.
     #[doc(alias = "SCNetworkProtocolSetConfiguration")]
     #[inline]
     pub unsafe fn set_configuration(&self, config: Option<&CFDictionary>) -> bool {

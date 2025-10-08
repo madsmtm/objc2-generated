@@ -131,7 +131,8 @@ impl CTFramesetter {
     ///
     /// # Safety
     ///
-    /// `frame_attributes` generics must be of the correct type.
+    /// - `frame_attributes` generic must be of the correct type.
+    /// - `frame_attributes` generic must be of the correct type.
     #[doc(alias = "CTFramesetterCreateFrame")]
     #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
     #[inline]
@@ -219,7 +220,8 @@ impl CTFramesetter {
     ///
     /// # Safety
     ///
-    /// - `frame_attributes` generics must be of the correct type.
+    /// - `frame_attributes` generic must be of the correct type.
+    /// - `frame_attributes` generic must be of the correct type.
     /// - `fit_range` must be a valid pointer or null.
     #[doc(alias = "CTFramesetterSuggestFrameSizeWithConstraints")]
     #[inline]

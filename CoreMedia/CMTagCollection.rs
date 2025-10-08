@@ -1048,7 +1048,8 @@ impl CMTagCollection {
     ///
     /// # Safety
     ///
-    /// - `dict` generics must be of the correct type.
+    /// - `dict` generic must be of the correct type.
+    /// - `dict` generic must be of the correct type.
     /// - `new_collection_out` must be a valid pointer.
     #[doc(alias = "CMTagCollectionCreateFromDictionary")]
     #[inline]

@@ -945,7 +945,8 @@ impl CGImageMetadata {
     ///
     /// # Safety
     ///
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     /// - `block` must be a valid pointer.
     #[doc(alias = "CGImageMetadataEnumerateTagsUsingBlock")]
     #[cfg(feature = "block2")]
@@ -1110,7 +1111,8 @@ impl CGImageMetadata {
     ///
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGImageMetadataCreateXMPData")]
     #[inline]
     pub unsafe fn xmp_data(&self, options: Option<&CFDictionary>) -> Option<CFRetained<CFData>> {

@@ -29,7 +29,8 @@ cf_objc2_type!(
 impl CGLayer {
     /// # Safety
     ///
-    /// `auxiliary_info` generics must be of the correct type.
+    /// - `auxiliary_info` generic must be of the correct type.
+    /// - `auxiliary_info` generic must be of the correct type.
     #[doc(alias = "CGLayerCreateWithContext")]
     #[cfg(feature = "CGContext")]
     #[inline]

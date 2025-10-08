@@ -194,7 +194,8 @@ extern "C" {
 ///
 /// # Safety
 ///
-/// - `dictionary` generics must be of the correct type.
+/// - `dictionary` generic must be of the correct type.
+/// - `dictionary` generic must be of the correct type.
 /// - `error` must be a valid pointer or null.
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]

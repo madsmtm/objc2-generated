@@ -81,7 +81,8 @@ impl CGColorConversionInfo {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGColorConversionInfoCreateWithOptions")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
@@ -103,7 +104,8 @@ impl CGColorConversionInfo {
 
     /// # Safety
     ///
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
     #[doc(alias = "CGColorConversionInfoCreateForToneMapping")]
     #[cfg(all(feature = "CGColorSpace", feature = "CGToneMapping"))]
@@ -179,7 +181,8 @@ impl CGColorConversionInfo {
     ///
     /// - `dst_data` must be a valid pointer.
     /// - `src_data` must be a valid pointer.
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGColorConversionInfoConvertData")]
     #[cfg(feature = "CGImage")]
     #[inline]

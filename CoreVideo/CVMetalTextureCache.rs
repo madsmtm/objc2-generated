@@ -64,8 +64,10 @@ impl CVMetalTextureCache {
     ///
     /// # Safety
     ///
-    /// - `cache_attributes` generics must be of the correct type.
-    /// - `texture_attributes` generics must be of the correct type.
+    /// - `cache_attributes` generic must be of the correct type.
+    /// - `cache_attributes` generic must be of the correct type.
+    /// - `texture_attributes` generic must be of the correct type.
+    /// - `texture_attributes` generic must be of the correct type.
     /// - `cache_out` must be a valid pointer.
     #[doc(alias = "CVMetalTextureCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
@@ -156,7 +158,8 @@ impl CVMetalTextureCache {
     ///
     /// # Safety
     ///
-    /// - `texture_attributes` generics must be of the correct type.
+    /// - `texture_attributes` generic must be of the correct type.
+    /// - `texture_attributes` generic must be of the correct type.
     /// - `texture_out` must be a valid pointer.
     #[doc(alias = "CVMetalTextureCacheCreateTextureFromImage")]
     #[cfg(all(

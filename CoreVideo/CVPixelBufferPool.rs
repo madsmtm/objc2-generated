@@ -60,8 +60,10 @@ impl CVPixelBufferPool {
     ///
     /// # Safety
     ///
-    /// - `pool_attributes` generics must be of the correct type.
-    /// - `pixel_buffer_attributes` generics must be of the correct type.
+    /// - `pool_attributes` generic must be of the correct type.
+    /// - `pool_attributes` generic must be of the correct type.
+    /// - `pixel_buffer_attributes` generic must be of the correct type.
+    /// - `pixel_buffer_attributes` generic must be of the correct type.
     /// - `pool_out` must be a valid pointer.
     #[doc(alias = "CVPixelBufferPoolCreate")]
     #[cfg(feature = "CVReturn")]
@@ -169,7 +171,8 @@ impl CVPixelBufferPool {
 
     /// # Safety
     ///
-    /// - `aux_attributes` generics must be of the correct type.
+    /// - `aux_attributes` generic must be of the correct type.
+    /// - `aux_attributes` generic must be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
     #[doc(alias = "CVPixelBufferPoolCreatePixelBufferWithAuxAttributes")]
     #[cfg(all(

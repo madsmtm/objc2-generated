@@ -2451,7 +2451,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `dict` generics must be of the correct type.
+    /// - `dict` generic must be of the correct type.
+    /// - `dict` generic must be of the correct type.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn MIDIObjectSetDictionaryProperty(
         obj: MIDIObjectRef,

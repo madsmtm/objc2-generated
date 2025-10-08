@@ -131,7 +131,8 @@ impl SecStaticCode {
     ///
     /// # Safety
     ///
-    /// - `attributes` generics must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
     /// - `static_code` must be a valid pointer.
     #[doc(alias = "SecStaticCodeCreateWithPathAndAttributes")]
     #[cfg(feature = "CSCommon")]

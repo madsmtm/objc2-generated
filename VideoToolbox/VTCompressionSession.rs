@@ -120,8 +120,10 @@ impl VTCompressionSession {
     ///
     /// # Safety
     ///
-    /// - `encoder_specification` generics must be of the correct type.
-    /// - `source_image_buffer_attributes` generics must be of the correct type.
+    /// - `encoder_specification` generic must be of the correct type.
+    /// - `encoder_specification` generic must be of the correct type.
+    /// - `source_image_buffer_attributes` generic must be of the correct type.
+    /// - `source_image_buffer_attributes` generic must be of the correct type.
     /// - `output_callback` must be implemented correctly.
     /// - `output_callback_ref_con` must be a valid pointer or null.
     /// - `compression_session_out` must be a valid pointer.
@@ -280,7 +282,8 @@ impl VTCompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_properties` generics must be of the correct type.
+    /// - `frame_properties` generic must be of the correct type.
+    /// - `frame_properties` generic must be of the correct type.
     /// - `source_frame_refcon` must be a valid pointer or null.
     /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionEncodeFrame")]
@@ -378,7 +381,8 @@ impl VTCompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_properties` generics must be of the correct type.
+    /// - `frame_properties` generic must be of the correct type.
+    /// - `frame_properties` generic must be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
     /// - `output_handler` must be a valid pointer.
     #[doc(alias = "VTCompressionSessionEncodeFrameWithOutputHandler")]
@@ -488,7 +492,8 @@ impl VTCompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_properties` generics must be of the correct type.
+    /// - `frame_properties` generic must be of the correct type.
+    /// - `frame_properties` generic must be of the correct type.
     /// - `source_frame_refcon` must be a valid pointer or null.
     /// - `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTCompressionSessionEncodeMultiImageFrame")]
@@ -559,7 +564,8 @@ impl VTCompressionSession {
     ///
     /// # Safety
     ///
-    /// - `frame_properties` generics must be of the correct type.
+    /// - `frame_properties` generic must be of the correct type.
+    /// - `frame_properties` generic must be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
     /// - `output_handler` must be a valid pointer.
     #[doc(alias = "VTCompressionSessionEncodeMultiImageFrameWithOutputHandler")]

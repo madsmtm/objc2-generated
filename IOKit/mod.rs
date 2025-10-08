@@ -10378,7 +10378,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `notification_type` Array TODO.
-    /// - `matching` generics must be of the correct type.
+    /// - `matching` generic must be of the correct type.
+    /// - `matching` generic must be of the correct type.
     /// - `matching` might not allow `None`.
     /// - `notification` must be a valid pointer.
     #[cfg(feature = "libc")]
@@ -10447,7 +10448,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `matching` generics must be of the correct type.
+    /// - `matching` generic must be of the correct type.
+    /// - `matching` generic must be of the correct type.
     /// - `matching` might not allow `None`.
     /// - `matches` must be a valid pointer.
     #[cfg(feature = "libc")]
@@ -11715,7 +11717,8 @@ pub unsafe extern "C-unwind" fn IORegistryEntryInPlane(
 /// # Safety
 ///
 /// - `name` must be a valid pointer.
-/// - The returned generics must be of the correct type.
+/// - The returned generic must be of the correct type.
+/// - The returned generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn IOServiceMatching(
     name: *const c_char,
@@ -11738,7 +11741,8 @@ pub unsafe extern "C-unwind" fn IOServiceMatching(
 /// # Safety
 ///
 /// - `name` must be a valid pointer.
-/// - The returned generics must be of the correct type.
+/// - The returned generic must be of the correct type.
+/// - The returned generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn IOServiceNameMatching(
     name: *const c_char,
@@ -11765,7 +11769,8 @@ pub unsafe extern "C-unwind" fn IOServiceNameMatching(
 /// # Safety
 ///
 /// - `bsd_name` must be a valid pointer.
-/// - The returned generics must be of the correct type.
+/// - The returned generic must be of the correct type.
+/// - The returned generic must be of the correct type.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IOBSDNameMatching(
@@ -11787,7 +11792,8 @@ pub unsafe extern "C-unwind" fn IOBSDNameMatching(
 /// # Safety
 ///
 /// - `path` must be a valid pointer.
-/// - The returned generics must be of the correct type.
+/// - The returned generic must be of the correct type.
+/// - The returned generic must be of the correct type.
 #[cfg(feature = "libc")]
 #[deprecated]
 #[inline]
@@ -11817,7 +11823,8 @@ pub unsafe extern "C-unwind" fn IOOpenFirmwarePathMatching(
 ///
 /// # Safety
 ///
-/// The returned generics must be of the correct type.
+/// - The returned generic must be of the correct type.
+/// - The returned generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntryIDMatching(
     entry_id: u64,
@@ -12338,7 +12345,8 @@ pub unsafe extern "C-unwind" fn IOURLCreateDataAndPropertiesFromResource(
 ///
 /// - `url` might not allow `None`.
 /// - `data_to_write` might not allow `None`.
-/// - `properties_to_write` generics must be of the correct type.
+/// - `properties_to_write` generic must be of the correct type.
+/// - `properties_to_write` generic must be of the correct type.
 /// - `properties_to_write` might not allow `None`.
 /// - `error_code` must be a valid pointer.
 #[inline]

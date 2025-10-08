@@ -89,7 +89,8 @@ impl SCPreferences {
     ///
     /// # Safety
     ///
-    /// `value` generics must be of the correct type.
+    /// - `value` generic must be of the correct type.
+    /// - `value` generic must be of the correct type.
     #[doc(alias = "SCPreferencesPathSetValue")]
     #[cfg(feature = "SCPreferences")]
     #[inline]

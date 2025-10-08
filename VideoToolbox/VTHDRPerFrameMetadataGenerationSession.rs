@@ -84,7 +84,8 @@ impl VTHDRPerFrameMetadataGenerationSession {
     ///
     /// # Safety
     ///
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     /// - `hdr_per_frame_metadata_generation_session_out` must be a valid pointer.
     #[doc(alias = "VTHDRPerFrameMetadataGenerationSessionCreate")]
     #[inline]

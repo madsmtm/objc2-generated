@@ -556,7 +556,8 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generics must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyGenerateSymmetric")]
     #[cfg(feature = "SecBase")]
@@ -602,7 +603,8 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generics must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateFromData")]
     #[cfg(feature = "SecBase")]
@@ -673,7 +675,8 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generics must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyDeriveFromPassword")]
     #[cfg(feature = "SecBase")]
@@ -716,7 +719,8 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generics must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyWrapSymmetric")]
     #[cfg(feature = "SecBase")]
@@ -762,7 +766,8 @@ impl SecKey {
     /// # Safety
     ///
     /// - `key_to_unwrap` must be a valid pointer.
-    /// - `parameters` generics must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyUnwrapSymmetric")]
     #[cfg(feature = "SecBase")]
@@ -842,7 +847,8 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generics must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
     /// - `public_key` must be a valid pointer or null.
     /// - `private_key` must be a valid pointer or null.
     #[doc(alias = "SecKeyGeneratePair")]
@@ -908,7 +914,8 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generics must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateRandomKey")]
     #[cfg(feature = "SecBase")]
@@ -949,7 +956,8 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `attributes` generics must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCreateWithData")]
     #[cfg(feature = "SecBase")]
@@ -2151,7 +2159,8 @@ impl SecKey {
     ///
     /// # Safety
     ///
-    /// - `parameters` generics must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
     #[doc(alias = "SecKeyCopyKeyExchangeResult")]
     #[cfg(feature = "SecBase")]

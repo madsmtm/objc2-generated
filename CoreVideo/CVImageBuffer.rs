@@ -529,7 +529,8 @@ pub extern "C-unwind" fn CVImageBufferGetColorSpace(
 ///
 /// # Safety
 ///
-/// `attachments` generics must be of the correct type.
+/// - `attachments` generic must be of the correct type.
+/// - `attachments` generic must be of the correct type.
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn CVImageBufferCreateColorSpaceFromAttachments(

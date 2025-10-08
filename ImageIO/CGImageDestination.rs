@@ -83,7 +83,8 @@ impl CGImageDestination {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGImageDestinationCreateWithDataConsumer")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -108,7 +109,8 @@ impl CGImageDestination {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGImageDestinationCreateWithData")]
     #[inline]
     pub unsafe fn with_data(
@@ -131,7 +133,8 @@ impl CGImageDestination {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGImageDestinationCreateWithURL")]
     #[inline]
     pub unsafe fn with_url(
@@ -154,7 +157,8 @@ impl CGImageDestination {
 
     /// # Safety
     ///
-    /// `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     #[doc(alias = "CGImageDestinationSetProperties")]
     #[inline]
     pub unsafe fn set_properties(&self, properties: Option<&CFDictionary>) {
@@ -169,7 +173,8 @@ impl CGImageDestination {
 
     /// # Safety
     ///
-    /// `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     #[doc(alias = "CGImageDestinationAddImage")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -186,7 +191,8 @@ impl CGImageDestination {
 
     /// # Safety
     ///
-    /// `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     #[doc(alias = "CGImageDestinationAddImageFromSource")]
     #[cfg(feature = "CGImageSource")]
     #[inline]
@@ -218,7 +224,8 @@ impl CGImageDestination {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGImageDestinationAddImageAndMetadata")]
     #[cfg(all(feature = "CGImageMetadata", feature = "objc2-core-graphics"))]
     #[inline]
@@ -321,7 +328,8 @@ extern "C" {
 impl CGImageDestination {
     /// # Safety
     ///
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     /// - `err` must be a valid pointer or null.
     #[doc(alias = "CGImageDestinationCopyImageSource")]
     #[cfg(feature = "CGImageSource")]
@@ -345,7 +353,8 @@ impl CGImageDestination {
 
     /// # Safety
     ///
-    /// `auxiliary_data_info_dictionary` generics must be of the correct type.
+    /// - `auxiliary_data_info_dictionary` generic must be of the correct type.
+    /// - `auxiliary_data_info_dictionary` generic must be of the correct type.
     #[doc(alias = "CGImageDestinationAddAuxiliaryDataInfo")]
     #[inline]
     pub unsafe fn add_auxiliary_data_info(

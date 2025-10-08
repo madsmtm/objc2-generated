@@ -2448,7 +2448,8 @@ pub unsafe extern "C-unwind" fn OBEXGetHeaders(
 ///
 /// # Safety
 ///
-/// - `dictionary_of_headers` generics must be of the correct type.
+/// - `dictionary_of_headers` generic must be of the correct type.
+/// - `dictionary_of_headers` generic must be of the correct type.
 /// - `dictionary_of_headers` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
@@ -2478,7 +2479,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `name` might not allow `None`.
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddNameHeader(
@@ -2501,7 +2503,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `description` might not allow `None`.
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddDescriptionHeader(
@@ -2523,7 +2526,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddCountHeader(count: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
@@ -2542,7 +2546,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTime4ByteHeader(
@@ -2564,7 +2569,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddLengthHeader(length: u32, dict_ref: Option<&CFMutableDictionary>) -> OBEXError;
@@ -2584,7 +2590,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `type` might not allow `None`.
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTypeHeader(
@@ -2607,7 +2614,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTimeISOHeader(
@@ -2633,7 +2641,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddTargetHeader(
@@ -2659,7 +2668,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddHTTPHeader(
@@ -2686,7 +2696,8 @@ extern "C-unwind" {
 /// # Safety
 ///
 /// - `in_header_data` must be a valid pointer.
-/// - `dict_ref` generics must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
+/// - `dict_ref` generic must be of the correct type.
 /// - `dict_ref` might not allow `None`.
 #[cfg(feature = "objc2-core-foundation")]
 #[inline]
@@ -2730,7 +2741,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddWhoHeader(
@@ -2760,7 +2772,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddConnectionIDHeader(
@@ -2786,7 +2799,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddApplicationParameterHeader(
@@ -2828,7 +2842,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddByteSequenceHeader(
@@ -2854,7 +2869,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddObjectClassHeader(
@@ -2880,7 +2896,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddAuthorizationChallengeHeader(
@@ -2906,7 +2923,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddAuthorizationResponseHeader(
@@ -2932,7 +2950,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `in_header_data` must be a valid pointer.
-    /// - `dict_ref` generics must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
+    /// - `dict_ref` generic must be of the correct type.
     /// - `dict_ref` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     pub fn OBEXAddUserDefinedHeader(

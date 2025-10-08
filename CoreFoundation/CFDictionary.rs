@@ -516,7 +516,8 @@ impl CFMutableDictionary {
     /// - `allocator` might not allow `None`.
     /// - `key_call_backs` must be a valid pointer.
     /// - `value_call_backs` must be a valid pointer.
-    /// - The returned generics must be of the correct type.
+    /// - The returned generic must be of the correct type.
+    /// - The returned generic must be of the correct type.
     #[doc(alias = "CFDictionaryCreateMutable")]
     #[inline]
     pub unsafe fn new(
@@ -574,9 +575,11 @@ impl CFMutableDictionary {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` might not allow `None`.
-    /// - The returned generics must be of the correct type.
+    /// - The returned generic must be of the correct type.
+    /// - The returned generic must be of the correct type.
     #[doc(alias = "CFDictionaryCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -631,7 +634,8 @@ impl CFDictionary {
     ///
     /// # Safety
     ///
-    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
     /// - `key` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetCountOfKey")]
     #[inline]
@@ -658,7 +662,8 @@ impl CFDictionary {
     ///
     /// # Safety
     ///
-    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetCountOfValue")]
     #[inline]
@@ -690,7 +695,8 @@ impl CFDictionary {
     ///
     /// # Safety
     ///
-    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
     /// - `key` must be a valid pointer.
     #[doc(alias = "CFDictionaryContainsKey")]
     #[inline]
@@ -718,7 +724,8 @@ impl CFDictionary {
     ///
     /// # Safety
     ///
-    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionaryContainsValue")]
     #[inline]
@@ -752,7 +759,8 @@ impl CFDictionary {
     ///
     /// # Safety
     ///
-    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
     /// - `key` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetValue")]
     #[inline]
@@ -789,7 +797,8 @@ impl CFDictionary {
     ///
     /// # Safety
     ///
-    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetValueIfPresent")]
@@ -829,7 +838,8 @@ impl CFDictionary {
     ///
     /// # Safety
     ///
-    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
     /// - `keys` must be a valid pointer.
     /// - `values` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetKeysAndValues")]
@@ -865,7 +875,8 @@ impl CFDictionary {
     ///
     /// # Safety
     ///
-    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
     /// - `applier` must be implemented correctly.
     /// - `context` must be a valid pointer.
     #[doc(alias = "CFDictionaryApplyFunction")]
@@ -907,7 +918,8 @@ impl CFMutableDictionary {
     ///
     /// # Safety
     ///
-    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
@@ -951,7 +963,8 @@ impl CFMutableDictionary {
     ///
     /// # Safety
     ///
-    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
@@ -991,7 +1004,8 @@ impl CFMutableDictionary {
     ///
     /// # Safety
     ///
-    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer.
@@ -1025,7 +1039,8 @@ impl CFMutableDictionary {
     ///
     /// # Safety
     ///
-    /// - `the_dict` generics must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
+    /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` might not allow `None`.
     /// - `key` must be a valid pointer.
     #[doc(alias = "CFDictionaryRemoveValue")]

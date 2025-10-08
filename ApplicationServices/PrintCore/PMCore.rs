@@ -803,7 +803,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `server` must be a valid pointer or null.
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[cfg(feature = "PMDefinitions")]
     pub fn PMServerLaunchPrinterBrowser(
         server: PMServer,
@@ -1377,7 +1378,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `printer` must be a valid pointer.
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[cfg(feature = "PMDefinitions")]
     pub fn PMPrinterSendCommand(
         printer: PMPrinter,

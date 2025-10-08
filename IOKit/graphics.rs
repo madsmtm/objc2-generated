@@ -3887,9 +3887,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `matching1` generics must be of the correct type.
+    /// - `matching1` generic must be of the correct type.
+    /// - `matching1` generic must be of the correct type.
     /// - `matching1` might not allow `None`.
-    /// - `matching2` generics must be of the correct type.
+    /// - `matching2` generic must be of the correct type.
+    /// - `matching2` generic must be of the correct type.
     /// - `matching2` might not allow `None`.
     pub fn IODisplayMatchDictionaries(
         matching1: Option<&CFDictionary>,
@@ -3916,7 +3918,8 @@ pub extern "C-unwind" fn IODisplayForFramebuffer(
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `params` generics must be of the correct type.
+    /// - `params` generic must be of the correct type.
+    /// - `params` generic must be of the correct type.
     /// - `params` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IODisplaySetParameters(

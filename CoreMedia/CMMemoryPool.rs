@@ -89,7 +89,8 @@ impl CMMemoryPool {
     ///
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CMMemoryPoolCreate")]
     #[inline]
     pub unsafe fn new(options: Option<&CFDictionary>) -> CFRetained<CMMemoryPool> {

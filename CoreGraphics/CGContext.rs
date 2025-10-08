@@ -1106,7 +1106,8 @@ impl CGContext {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGContextDrawImageApplyingToneMapping")]
     #[cfg(all(feature = "CGImage", feature = "CGToneMapping"))]
     #[inline]
@@ -1549,7 +1550,8 @@ impl CGContext {
     ///
     /// # Safety
     ///
-    /// `auxiliary_info` generics must be of the correct type.
+    /// - `auxiliary_info` generic must be of the correct type.
+    /// - `auxiliary_info` generic must be of the correct type.
     #[doc(alias = "CGContextBeginTransparencyLayer")]
     #[inline]
     pub unsafe fn begin_transparency_layer(
@@ -1567,7 +1569,8 @@ impl CGContext {
 
     /// # Safety
     ///
-    /// `aux_info` generics must be of the correct type.
+    /// - `aux_info` generic must be of the correct type.
+    /// - `aux_info` generic must be of the correct type.
     #[doc(alias = "CGContextBeginTransparencyLayerWithRect")]
     #[inline]
     pub unsafe fn begin_transparency_layer_with_rect(

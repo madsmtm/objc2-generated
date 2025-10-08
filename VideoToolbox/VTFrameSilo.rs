@@ -67,7 +67,8 @@ impl VTFrameSilo {
     ///
     /// # Safety
     ///
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     /// - `frame_silo_out` must be a valid pointer.
     #[doc(alias = "VTFrameSiloCreate")]
     #[cfg(feature = "objc2-core-media")]

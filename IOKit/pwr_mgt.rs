@@ -1856,7 +1856,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `assertion_properties` generics must be of the correct type.
+    /// - `assertion_properties` generic must be of the correct type.
+    /// - `assertion_properties` generic must be of the correct type.
     /// - `assertion_properties` might not allow `None`.
     /// - `assertion_id` must be a valid pointer.
     pub fn IOPMAssertionCreateWithProperties(

@@ -592,7 +592,8 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateXMLData(
 ///
 /// - `allocator` might not allow `None`.
 /// - `string` might not allow `None`.
-/// - `entities_dictionary` generics must be of the correct type.
+/// - `entities_dictionary` generic must be of the correct type.
+/// - `entities_dictionary` generic must be of the correct type.
 /// - `entities_dictionary` might not allow `None`.
 #[cfg(feature = "CFDictionary")]
 #[inline]
@@ -617,7 +618,8 @@ pub unsafe extern "C-unwind" fn CFXMLCreateStringByEscapingEntities(
 ///
 /// - `allocator` might not allow `None`.
 /// - `string` might not allow `None`.
-/// - `entities_dictionary` generics must be of the correct type.
+/// - `entities_dictionary` generic must be of the correct type.
+/// - `entities_dictionary` generic must be of the correct type.
 /// - `entities_dictionary` might not allow `None`.
 #[cfg(feature = "CFDictionary")]
 #[inline]

@@ -60,7 +60,8 @@ impl CVMetalBufferCache {
     ///
     /// # Safety
     ///
-    /// - `cache_attributes` generics must be of the correct type.
+    /// - `cache_attributes` generic must be of the correct type.
+    /// - `cache_attributes` generic must be of the correct type.
     /// - `cache_out` must be a valid pointer.
     #[doc(alias = "CVMetalBufferCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]

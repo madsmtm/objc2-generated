@@ -117,7 +117,8 @@ impl VTMotionEstimationSession {
     ///
     /// # Safety
     ///
-    /// - `motion_vector_processor_selection_options` generics must be of the correct type.
+    /// - `motion_vector_processor_selection_options` generic must be of the correct type.
+    /// - `motion_vector_processor_selection_options` generic must be of the correct type.
     /// - `motion_estimation_session_out` must be a valid pointer.
     #[doc(alias = "VTMotionEstimationSessionCreate")]
     #[inline]
@@ -233,7 +234,8 @@ impl VTMotionEstimationSession {
     ///
     /// # Safety
     ///
-    /// - `additional_frame_options` generics must be of the correct type.
+    /// - `additional_frame_options` generic must be of the correct type.
+    /// - `additional_frame_options` generic must be of the correct type.
     /// - `output_handler` must be a valid pointer.
     #[doc(alias = "VTMotionEstimationSessionEstimateMotionVectors")]
     #[cfg(all(feature = "block2", feature = "objc2-core-video"))]

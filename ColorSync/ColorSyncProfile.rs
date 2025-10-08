@@ -499,7 +499,8 @@ impl ColorSyncProfile {
     /// # Safety
     ///
     /// - `profile_info` generic must be of the correct type.
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "ColorSyncProfileCreateLink")]
     #[inline]
     pub unsafe fn new_link(
@@ -873,7 +874,8 @@ extern "C-unwind" {
     /// - `call_back` must be implemented correctly.
     /// - `seed` must be a valid pointer or null.
     /// - `user_info` must be a valid pointer or null.
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     /// - `error` must be a valid pointer or null.
     pub fn ColorSyncIterateInstalledProfilesWithOptions(
         call_back: ColorSyncProfileIterateCallback,

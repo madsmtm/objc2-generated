@@ -104,7 +104,8 @@ impl WSProtocolHandler {
 
     /// # Safety
     ///
-    /// - `method_context` generics must be of the correct type.
+    /// - `method_context` generic must be of the correct type.
+    /// - `method_context` generic must be of the correct type.
     /// - `method_context` might not allow `None`.
     /// - `result_value` should be of the correct type.
     /// - `result_value` might not allow `None`.
@@ -129,9 +130,11 @@ impl WSProtocolHandler {
 
     /// # Safety
     ///
-    /// - `method_context` generics must be of the correct type.
+    /// - `method_context` generic must be of the correct type.
+    /// - `method_context` generic must be of the correct type.
     /// - `method_context` might not allow `None`.
-    /// - `fault_dict` generics must be of the correct type.
+    /// - `fault_dict` generic must be of the correct type.
+    /// - `fault_dict` generic must be of the correct type.
     /// - `fault_dict` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerCopyFaultDocument")]
     #[deprecated = "No longer supported"]
@@ -155,11 +158,13 @@ impl WSProtocolHandler {
     /// # Safety
     ///
     /// - `method_name` might not allow `None`.
-    /// - `method_params` generics must be of the correct type.
+    /// - `method_params` generic must be of the correct type.
+    /// - `method_params` generic must be of the correct type.
     /// - `method_params` might not allow `None`.
     /// - `method_param_order` generic must be of the correct type.
     /// - `method_param_order` might not allow `None`.
-    /// - `method_extras` generics must be of the correct type.
+    /// - `method_extras` generic must be of the correct type.
+    /// - `method_extras` generic must be of the correct type.
     /// - `method_extras` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerCopyRequestDocument")]
     #[deprecated = "No longer supported"]

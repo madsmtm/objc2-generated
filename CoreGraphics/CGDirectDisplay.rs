@@ -159,7 +159,8 @@ pub extern "C-unwind" fn CGDisplayPixelsHigh(display: CGDirectDisplayID) -> usiz
 
 /// # Safety
 ///
-/// `options` generics must be of the correct type.
+/// - `options` generic must be of the correct type.
+/// - `options` generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn CGDisplayCopyAllDisplayModes(
     display: CGDirectDisplayID,
@@ -194,7 +195,8 @@ pub extern "C-unwind" fn CGDisplayCopyDisplayMode(
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[cfg(feature = "CGError")]
     pub fn CGDisplaySetDisplayMode(
         display: CGDirectDisplayID,
@@ -736,7 +738,8 @@ pub unsafe extern "C-unwind" fn CGDisplayCurrentMode(
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `mode` generics must be of the correct type.
+    /// - `mode` generic must be of the correct type.
+    /// - `mode` generic must be of the correct type.
     #[cfg(feature = "CGError")]
     #[deprecated = "No longer supported"]
     pub fn CGDisplaySwitchToMode(

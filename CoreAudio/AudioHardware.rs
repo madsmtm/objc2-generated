@@ -1109,7 +1109,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `in_description` generics must be of the correct type.
+    /// - `in_description` generic must be of the correct type.
+    /// - `in_description` generic must be of the correct type.
     /// - `out_device_id` must be a valid pointer.
     pub fn AudioHardwareCreateAggregateDevice(
         in_description: &CFDictionary,

@@ -65,8 +65,10 @@ impl CVOpenGLBufferPool {
     ///
     /// # Safety
     ///
-    /// - `pool_attributes` generics must be of the correct type.
-    /// - `open_gl_buffer_attributes` generics must be of the correct type.
+    /// - `pool_attributes` generic must be of the correct type.
+    /// - `pool_attributes` generic must be of the correct type.
+    /// - `open_gl_buffer_attributes` generic must be of the correct type.
+    /// - `open_gl_buffer_attributes` generic must be of the correct type.
     /// - `pool_out` must be a valid pointer.
     #[doc(alias = "CVOpenGLBufferPoolCreate")]
     #[cfg(feature = "CVReturn")]

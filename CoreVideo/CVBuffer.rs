@@ -208,7 +208,8 @@ impl CVBuffer {
     ///
     /// # Safety
     ///
-    /// `the_attachments` generics must be of the correct type.
+    /// - `the_attachments` generic must be of the correct type.
+    /// - `the_attachments` generic must be of the correct type.
     #[doc(alias = "CVBufferSetAttachments")]
     #[inline]
     pub unsafe fn set_attachments(

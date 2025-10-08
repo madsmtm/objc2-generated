@@ -229,7 +229,8 @@ pub unsafe extern "C-unwind" fn SMCopyAllJobDictionaries(
 /// # Safety
 ///
 /// - `domain` might not allow `None`.
-/// - `job` generics must be of the correct type.
+/// - `job` generic must be of the correct type.
+/// - `job` generic must be of the correct type.
 /// - `job` might not allow `None`.
 /// - `auth` must be a valid pointer.
 /// - `out_error` must be a valid pointer.

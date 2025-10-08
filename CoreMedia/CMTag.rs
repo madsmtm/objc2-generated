@@ -740,7 +740,8 @@ impl CMTag {
     ///
     /// # Safety
     ///
-    /// `dict` generics must be of the correct type.
+    /// - `dict` generic must be of the correct type.
+    /// - `dict` generic must be of the correct type.
     #[doc(alias = "CMTagMakeFromDictionary")]
     #[inline]
     pub unsafe fn from_dictionary(dict: &CFDictionary) -> CMTag {

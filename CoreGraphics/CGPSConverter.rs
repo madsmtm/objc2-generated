@@ -92,7 +92,8 @@ impl CGPSConverter {
     ///
     /// - `info` must be a valid pointer or null.
     /// - `callbacks` must be a valid pointer.
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGPSConverterCreate")]
     #[inline]
     pub unsafe fn new(
@@ -113,7 +114,8 @@ impl CGPSConverter {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGPSConverterConvert")]
     #[cfg(all(feature = "CGDataConsumer", feature = "CGDataProvider"))]
     #[inline]

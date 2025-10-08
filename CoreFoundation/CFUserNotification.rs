@@ -45,7 +45,8 @@ impl CFUserNotification {
     ///
     /// - `allocator` might not allow `None`.
     /// - `error` must be a valid pointer.
-    /// - `dictionary` generics must be of the correct type.
+    /// - `dictionary` generic must be of the correct type.
+    /// - `dictionary` generic must be of the correct type.
     /// - `dictionary` might not allow `None`.
     #[doc(alias = "CFUserNotificationCreate")]
     #[cfg(all(feature = "CFDate", feature = "CFDictionary"))]
@@ -127,7 +128,8 @@ impl CFUserNotification {
 
     /// # Safety
     ///
-    /// - `dictionary` generics must be of the correct type.
+    /// - `dictionary` generic must be of the correct type.
+    /// - `dictionary` generic must be of the correct type.
     /// - `dictionary` might not allow `None`.
     #[doc(alias = "CFUserNotificationUpdate")]
     #[cfg(all(feature = "CFDate", feature = "CFDictionary"))]

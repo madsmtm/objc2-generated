@@ -149,7 +149,8 @@ extern "C" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `device_info` generics must be of the correct type.
+    /// - `device_info` generic must be of the correct type.
+    /// - `device_info` generic must be of the correct type.
     pub fn ColorSyncRegisterDevice(
         device_class: &CFString,
         device_id: &CFUUID,
@@ -164,7 +165,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `profile_info` generics must be of the correct type.
+    /// - `profile_info` generic must be of the correct type.
+    /// - `profile_info` generic must be of the correct type.
     pub fn ColorSyncDeviceSetCustomProfiles(
         device_class: &CFString,
         device_id: &CFUUID,

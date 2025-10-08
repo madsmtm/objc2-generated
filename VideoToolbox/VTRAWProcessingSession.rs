@@ -66,8 +66,10 @@ impl VTRAWProcessingSession {
     ///
     /// # Safety
     ///
-    /// - `output_pixel_buffer_attributes` generics must be of the correct type.
-    /// - `processing_session_options` generics must be of the correct type.
+    /// - `output_pixel_buffer_attributes` generic must be of the correct type.
+    /// - `output_pixel_buffer_attributes` generic must be of the correct type.
+    /// - `processing_session_options` generic must be of the correct type.
+    /// - `processing_session_options` generic must be of the correct type.
     /// - `processing_session_out` must be a valid pointer.
     #[doc(alias = "VTRAWProcessingSessionCreate")]
     #[cfg(feature = "objc2-core-media")]
@@ -215,7 +217,8 @@ impl VTRAWProcessingSession {
     ///
     /// # Safety
     ///
-    /// - `frame_options` generics must be of the correct type.
+    /// - `frame_options` generic must be of the correct type.
+    /// - `frame_options` generic must be of the correct type.
     /// - `output_handler` must be a valid pointer.
     #[doc(alias = "VTRAWProcessingSessionProcessFrame")]
     #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
@@ -312,7 +315,8 @@ impl VTRAWProcessingSession {
     ///
     /// # Safety
     ///
-    /// `processing_parameters` generics must be of the correct type.
+    /// - `processing_parameters` generic must be of the correct type.
+    /// - `processing_parameters` generic must be of the correct type.
     #[doc(alias = "VTRAWProcessingSessionSetProcessingParameters")]
     #[inline]
     pub unsafe fn set_processing_parameters(

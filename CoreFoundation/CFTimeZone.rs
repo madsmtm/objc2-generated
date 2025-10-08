@@ -86,7 +86,8 @@ impl CFTimeZone {
 
     /// # Safety
     ///
-    /// - `dict` generics must be of the correct type.
+    /// - `dict` generic must be of the correct type.
+    /// - `dict` generic must be of the correct type.
     /// - `dict` might not allow `None`.
     #[doc(alias = "CFTimeZoneSetAbbreviationDictionary")]
     #[cfg(feature = "CFDictionary")]

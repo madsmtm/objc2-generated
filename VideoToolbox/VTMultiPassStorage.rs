@@ -58,7 +58,8 @@ impl VTMultiPassStorage {
     ///
     /// # Safety
     ///
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     /// - `multi_pass_storage_out` must be a valid pointer.
     #[doc(alias = "VTMultiPassStorageCreate")]
     #[cfg(feature = "objc2-core-media")]

@@ -26,7 +26,8 @@ pub unsafe extern "C-unwind" fn CFNetworkCopySystemProxySettings(
 
 /// # Safety
 ///
-/// `proxy_settings` generics must be of the correct type.
+/// - `proxy_settings` generic must be of the correct type.
+/// - `proxy_settings` generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn CFNetworkCopyProxiesForURL(
     url: &CFURL,

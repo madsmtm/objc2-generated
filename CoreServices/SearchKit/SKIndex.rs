@@ -119,7 +119,8 @@ impl SKIndex {
     ///
     /// - `in_url` might not allow `None`.
     /// - `in_index_name` might not allow `None`.
-    /// - `in_analysis_properties` generics must be of the correct type.
+    /// - `in_analysis_properties` generic must be of the correct type.
+    /// - `in_analysis_properties` generic must be of the correct type.
     /// - `in_analysis_properties` might not allow `None`.
     #[doc(alias = "SKIndexCreateWithURL")]
     #[inline]
@@ -169,7 +170,8 @@ impl SKIndex {
     ///
     /// - `in_data` might not allow `None`.
     /// - `in_index_name` might not allow `None`.
-    /// - `in_analysis_properties` generics must be of the correct type.
+    /// - `in_analysis_properties` generic must be of the correct type.
+    /// - `in_analysis_properties` generic must be of the correct type.
     /// - `in_analysis_properties` might not allow `None`.
     #[doc(alias = "SKIndexCreateWithMutableData")]
     #[inline]
@@ -417,7 +419,8 @@ impl SKIndex {
     ///
     /// - `in_document` should be of the correct type.
     /// - `in_document` might not allow `None`.
-    /// - `in_properties` generics must be of the correct type.
+    /// - `in_properties` generic must be of the correct type.
+    /// - `in_properties` generic must be of the correct type.
     /// - `in_properties` might not allow `None`.
     #[doc(alias = "SKIndexSetDocumentProperties")]
     #[cfg(feature = "SKDocument")]

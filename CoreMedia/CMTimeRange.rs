@@ -347,7 +347,8 @@ impl CMTimeRange {
     ///
     /// # Safety
     ///
-    /// `dictionary_representation` generics must be of the correct type.
+    /// - `dictionary_representation` generic must be of the correct type.
+    /// - `dictionary_representation` generic must be of the correct type.
     #[doc(alias = "CMTimeRangeMakeFromDictionary")]
     #[cfg(feature = "CMTime")]
     #[inline]
@@ -516,7 +517,8 @@ impl CMTimeMapping {
     ///
     /// # Safety
     ///
-    /// `dictionary_representation` generics must be of the correct type.
+    /// - `dictionary_representation` generic must be of the correct type.
+    /// - `dictionary_representation` generic must be of the correct type.
     #[doc(alias = "CMTimeMappingMakeFromDictionary")]
     #[cfg(feature = "CMTime")]
     #[inline]

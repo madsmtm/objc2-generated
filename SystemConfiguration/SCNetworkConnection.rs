@@ -260,7 +260,8 @@ impl SCNetworkConnection {
     ///
     /// # Safety
     ///
-    /// - `selection_options` generics must be of the correct type.
+    /// - `selection_options` generic must be of the correct type.
+    /// - `selection_options` generic must be of the correct type.
     /// - `service_id` must be a valid pointer.
     /// - `user_options` must be a valid pointer.
     #[doc(alias = "SCNetworkConnectionCopyUserPreferences")]
@@ -531,7 +532,8 @@ impl SCNetworkConnection {
     ///
     /// # Safety
     ///
-    /// `user_options` generics must be of the correct type.
+    /// - `user_options` generic must be of the correct type.
+    /// - `user_options` generic must be of the correct type.
     #[doc(alias = "SCNetworkConnectionStart")]
     #[inline]
     pub unsafe fn start(&self, user_options: Option<&CFDictionary>, linger: bool) -> bool {

@@ -263,7 +263,8 @@ impl WSMethodInvocation {
 
     /// # Safety
     ///
-    /// - `parameters` generics must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
+    /// - `parameters` generic must be of the correct type.
     /// - `parameters` might not allow `None`.
     /// - `parameter_order` generic must be of the correct type.
     /// - `parameter_order` might not allow `None`.
@@ -437,7 +438,8 @@ impl WSMethodInvocation {
 
 /// # Safety
 ///
-/// - `method_result` generics must be of the correct type.
+/// - `method_result` generic must be of the correct type.
+/// - `method_result` generic must be of the correct type.
 /// - `method_result` might not allow `None`.
 #[deprecated = "No longer supported"]
 #[inline]

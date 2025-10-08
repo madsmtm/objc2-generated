@@ -215,7 +215,8 @@ impl SecCode {
     ///
     /// # Safety
     ///
-    /// - `attributes` generics must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
     /// - `guest` must be a valid pointer.
     #[doc(alias = "SecCodeCopyGuestWithAttributes")]
     #[cfg(feature = "CSCommon")]

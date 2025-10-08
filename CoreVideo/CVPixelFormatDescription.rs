@@ -255,7 +255,8 @@ pub extern "C-unwind" fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTy
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `description` generics must be of the correct type.
+    /// - `description` generic must be of the correct type.
+    /// - `description` generic must be of the correct type.
     pub fn CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(
         description: &CFDictionary,
         pixel_format: OSType,

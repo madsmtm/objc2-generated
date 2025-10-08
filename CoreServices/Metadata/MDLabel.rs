@@ -227,7 +227,8 @@ impl MDLabel {
     ///
     /// # Safety
     ///
-    /// - `attrs` generics must be of the correct type.
+    /// - `attrs` generic must be of the correct type.
+    /// - `attrs` generic must be of the correct type.
     /// - `attrs` might not allow `None`.
     #[doc(alias = "MDLabelSetAttributes")]
     #[inline]

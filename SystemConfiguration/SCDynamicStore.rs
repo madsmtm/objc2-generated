@@ -222,7 +222,8 @@ impl SCDynamicStore {
     ///
     /// # Safety
     ///
-    /// - `store_options` generics must be of the correct type.
+    /// - `store_options` generic must be of the correct type.
+    /// - `store_options` generic must be of the correct type.
     /// - `callout` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[doc(alias = "SCDynamicStoreCreateWithOptions")]
@@ -523,7 +524,8 @@ impl SCDynamicStore {
     ///
     /// # Safety
     ///
-    /// - `keys_to_set` generics must be of the correct type.
+    /// - `keys_to_set` generic must be of the correct type.
+    /// - `keys_to_set` generic must be of the correct type.
     /// - `keys_to_remove` generic must be of the correct type.
     /// - `keys_to_notify` generic must be of the correct type.
     #[doc(alias = "SCDynamicStoreSetMultiple")]

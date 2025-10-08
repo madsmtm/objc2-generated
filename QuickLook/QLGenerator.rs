@@ -189,7 +189,8 @@ impl QLThumbnailRequest {
     /// # Safety
     ///
     /// - `image` might not allow `None`.
-    /// - `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetImage")]
     #[cfg(feature = "objc2-core-graphics")]
@@ -217,7 +218,8 @@ impl QLThumbnailRequest {
     /// # Safety
     ///
     /// - `data` might not allow `None`.
-    /// - `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetImageWithData")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
@@ -253,7 +255,8 @@ impl QLThumbnailRequest {
     ///
     /// # Safety
     ///
-    /// - `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestCreateContext")]
     #[cfg(feature = "objc2-core-graphics")]
@@ -312,7 +315,8 @@ impl QLThumbnailRequest {
     /// # Safety
     ///
     /// - `url` might not allow `None`.
-    /// - `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetImageAtURL")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
@@ -346,9 +350,11 @@ impl QLThumbnailRequest {
     ///
     /// - `data` might not allow `None`.
     /// - `content_type_uti` might not allow `None`.
-    /// - `preview_properties` generics must be of the correct type.
+    /// - `preview_properties` generic must be of the correct type.
+    /// - `preview_properties` generic must be of the correct type.
     /// - `preview_properties` might not allow `None`.
-    /// - `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetThumbnailWithDataRepresentation")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
@@ -396,9 +402,11 @@ impl QLThumbnailRequest {
     ///
     /// - `url` might not allow `None`.
     /// - `content_type_uti` might not allow `None`.
-    /// - `preview_properties` generics must be of the correct type.
+    /// - `preview_properties` generic must be of the correct type.
+    /// - `preview_properties` generic must be of the correct type.
     /// - `preview_properties` might not allow `None`.
-    /// - `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLThumbnailRequestSetThumbnailWithURLRepresentation")]
     #[deprecated = "Use a QLThumbnailReply in a Thumbnail Extension to provide thumbnails for your file types."]
@@ -747,7 +755,8 @@ impl QLPreviewRequest {
     ///
     /// - `data` might not allow `None`.
     /// - `content_type_uti` might not allow `None`.
-    /// - `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLPreviewRequestSetDataRepresentation")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
@@ -787,7 +796,8 @@ impl QLPreviewRequest {
     ///
     /// - `url` might not allow `None`.
     /// - `content_type_uti` might not allow `None`.
-    /// - `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLPreviewRequestSetURLRepresentation")]
     #[deprecated = "Use a QLPreviewingController in a Preview Extension to provide previews for your file types."]
@@ -821,7 +831,8 @@ impl QLPreviewRequest {
     ///
     /// # Safety
     ///
-    /// - `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLPreviewRequestCreateContext")]
     #[cfg(feature = "objc2-core-graphics")]
@@ -858,9 +869,11 @@ impl QLPreviewRequest {
     /// # Safety
     ///
     /// - `media_box` must be a valid pointer.
-    /// - `auxiliary_info` generics must be of the correct type.
+    /// - `auxiliary_info` generic must be of the correct type.
+    /// - `auxiliary_info` generic must be of the correct type.
     /// - `auxiliary_info` might not allow `None`.
-    /// - `properties` generics must be of the correct type.
+    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic must be of the correct type.
     /// - `properties` might not allow `None`.
     #[doc(alias = "QLPreviewRequestCreatePDFContext")]
     #[cfg(feature = "objc2-core-graphics")]

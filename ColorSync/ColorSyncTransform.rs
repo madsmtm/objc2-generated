@@ -41,7 +41,8 @@ impl ColorSyncTransform {
     /// # Safety
     ///
     /// - `profile_sequence` generic must be of the correct type.
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "ColorSyncTransformCreate")]
     #[inline]
     pub unsafe fn new(
@@ -61,7 +62,8 @@ impl ColorSyncTransform {
     /// # Safety
     ///
     /// - `key` should be of the correct type.
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "ColorSyncTransformCopyProperty")]
     #[inline]
     pub unsafe fn property(
@@ -197,7 +199,8 @@ impl ColorSyncTransform {
     ///
     /// - `dst` must be a valid pointer.
     /// - `src` must be a valid pointer.
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "ColorSyncTransformConvert")]
     #[inline]
     pub unsafe fn convert(
@@ -502,7 +505,8 @@ extern "C" {
 /// # Safety
 ///
 /// - `profile_sequence` generic must be of the correct type.
-/// - `options` generics must be of the correct type.
+/// - `options` generic must be of the correct type.
+/// - `options` generic must be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn ColorSyncCreateCodeFragment(
     profile_sequence: &CFArray,

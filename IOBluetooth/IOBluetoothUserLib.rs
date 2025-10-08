@@ -410,7 +410,8 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `device` might not allow `None`.
-    /// - `config_dict` generics must be of the correct type.
+    /// - `config_dict` generic must be of the correct type.
+    /// - `config_dict` generic must be of the correct type.
     /// - `config_dict` might not allow `None`.
     #[cfg(feature = "objc2-core-foundation")]
     #[deprecated]

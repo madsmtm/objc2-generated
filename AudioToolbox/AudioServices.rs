@@ -334,7 +334,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `in_details` generics must be of the correct type.
+    /// - `in_details` generic must be of the correct type.
+    /// - `in_details` generic must be of the correct type.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn AudioServicesPlaySystemSoundWithDetails(
         in_system_sound_id: SystemSoundID,
@@ -356,7 +357,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `in_details` generics must be of the correct type.
+    /// - `in_details` generic must be of the correct type.
+    /// - `in_details` generic must be of the correct type.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn AudioServicesPlayAlertSoundWithDetails(
         in_system_sound_id: SystemSoundID,

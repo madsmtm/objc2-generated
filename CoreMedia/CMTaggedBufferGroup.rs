@@ -441,7 +441,8 @@ impl CMTaggedBufferGroup {
     ///
     /// # Safety
     ///
-    /// - `extensions` generics must be of the correct type.
+    /// - `extensions` generic must be of the correct type.
+    /// - `extensions` generic must be of the correct type.
     /// - `format_description_out` must be a valid pointer.
     #[doc(alias = "CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions")]
     #[cfg(feature = "CMFormatDescription")]

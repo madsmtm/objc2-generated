@@ -297,7 +297,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `match` generics must be of the correct type.
+    /// - `match` generic must be of the correct type.
+    /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[cfg(all(feature = "DADisk", feature = "DASession"))]
@@ -337,7 +338,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `match` generics must be of the correct type.
+    /// - `match` generic must be of the correct type.
+    /// - `match` generic must be of the correct type.
     /// - `watch` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
@@ -375,7 +377,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `match` generics must be of the correct type.
+    /// - `match` generic must be of the correct type.
+    /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[cfg(all(feature = "DADisk", feature = "DASession"))]
@@ -516,7 +519,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `match` generics must be of the correct type.
+    /// - `match` generic must be of the correct type.
+    /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
@@ -660,7 +664,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `match` generics must be of the correct type.
+    /// - `match` generic must be of the correct type.
+    /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
@@ -752,7 +757,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `match` generics must be of the correct type.
+    /// - `match` generic must be of the correct type.
+    /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "DASession"))]
@@ -908,7 +914,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `match` generics must be of the correct type.
+    /// - `match` generic must be of the correct type.
+    /// - `match` generic must be of the correct type.
     /// - `callback` must be implemented correctly.
     /// - `context` must be a valid pointer or null.
     #[cfg(all(feature = "DADisk", feature = "DASession"))]

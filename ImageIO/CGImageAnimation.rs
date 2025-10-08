@@ -67,7 +67,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     /// - `block` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
     pub fn CGAnimateImageAtURLWithBlock(
@@ -86,7 +87,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     /// - `block` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
     pub fn CGAnimateImageDataWithBlock(

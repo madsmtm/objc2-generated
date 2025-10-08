@@ -432,7 +432,8 @@ impl CIContext {
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-graphics"))]
         /// # Safety
         ///
-        /// `info` generics must be of the correct type.
+        /// - `info` generic must be of the correct type.
+        /// - `info` generic must be of the correct type.
         #[deprecated]
         #[unsafe(method(createCGLayerWithSize:info:))]
         // required for soundness, method has `returns_retained` attribute.

@@ -85,10 +85,12 @@ impl CVOpenGLTextureCache {
     ///
     /// # Safety
     ///
-    /// - `cache_attributes` generics must be of the correct type.
+    /// - `cache_attributes` generic must be of the correct type.
+    /// - `cache_attributes` generic must be of the correct type.
     /// - `cgl_context` must be a valid pointer.
     /// - `cgl_pixel_format` must be a valid pointer.
-    /// - `texture_attributes` generics must be of the correct type.
+    /// - `texture_attributes` generic must be of the correct type.
+    /// - `texture_attributes` generic must be of the correct type.
     /// - `cache_out` must be a valid pointer.
     #[doc(alias = "CVOpenGLTextureCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-open-gl"))]
@@ -141,7 +143,8 @@ impl CVOpenGLTextureCache {
     ///
     /// # Safety
     ///
-    /// - `attributes` generics must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
+    /// - `attributes` generic must be of the correct type.
     /// - `texture_out` must be a valid pointer.
     #[doc(alias = "CVOpenGLTextureCacheCreateTextureFromImage")]
     #[cfg(all(

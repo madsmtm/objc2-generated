@@ -11,7 +11,8 @@ use crate::*;
 /// # Safety
 ///
 /// - `media_box` must be a valid pointer or null.
-/// - `auxiliary_info` generics must be of the correct type.
+/// - `auxiliary_info` generic must be of the correct type.
+/// - `auxiliary_info` generic must be of the correct type.
 #[cfg(all(feature = "CGContext", feature = "CGDataConsumer"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CGPDFContextCreate(
@@ -33,7 +34,8 @@ pub unsafe extern "C-unwind" fn CGPDFContextCreate(
 /// # Safety
 ///
 /// - `media_box` must be a valid pointer or null.
-/// - `auxiliary_info` generics must be of the correct type.
+/// - `auxiliary_info` generic must be of the correct type.
+/// - `auxiliary_info` generic must be of the correct type.
 #[cfg(feature = "CGContext")]
 #[inline]
 pub unsafe extern "C-unwind" fn CGPDFContextCreateWithURL(
@@ -64,7 +66,8 @@ pub extern "C-unwind" fn CGPDFContextClose(context: Option<&CGContext>) {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `page_info` generics must be of the correct type.
+    /// - `page_info` generic must be of the correct type.
+    /// - `page_info` generic must be of the correct type.
     #[cfg(feature = "CGContext")]
     pub fn CGPDFContextBeginPage(context: Option<&CGContext>, page_info: Option<&CFDictionary>);
 }
@@ -115,7 +118,8 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `page_tag_structure_tree_dictionary` generics must be of the correct type.
+    /// - `page_tag_structure_tree_dictionary` generic must be of the correct type.
+    /// - `page_tag_structure_tree_dictionary` generic must be of the correct type.
     #[cfg(feature = "CGContext")]
     pub fn CGPDFContextSetPageTagStructureTree(
         context: Option<&CGContext>,
@@ -293,7 +297,8 @@ extern "C" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `outline` generics must be of the correct type.
+    /// - `outline` generic must be of the correct type.
+    /// - `outline` generic must be of the correct type.
     #[cfg(feature = "CGContext")]
     pub fn CGPDFContextSetOutline(context: &CGContext, outline: Option<&CFDictionary>);
 }
@@ -464,7 +469,8 @@ extern "C" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `tag_properties` generics must be of the correct type.
+    /// - `tag_properties` generic must be of the correct type.
+    /// - `tag_properties` generic must be of the correct type.
     #[cfg(feature = "CGContext")]
     pub fn CGPDFContextBeginTag(
         context: &CGContext,

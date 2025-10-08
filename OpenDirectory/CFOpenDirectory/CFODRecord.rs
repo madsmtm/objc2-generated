@@ -863,7 +863,8 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// - `policies` generics must be of the correct type.
+    /// - `policies` generic must be of the correct type.
+    /// - `policies` generic must be of the correct type.
     /// - `policies` might not allow `None`.
     /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordSetPolicies")]
@@ -993,7 +994,8 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// - `policy` generics must be of the correct type.
+    /// - `policy` generic must be of the correct type.
+    /// - `policy` generic must be of the correct type.
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
     /// - `error` must be a valid pointer.
@@ -1037,7 +1039,8 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// - `policy` generics must be of the correct type.
+    /// - `policy` generic must be of the correct type.
+    /// - `policy` generic must be of the correct type.
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
     /// - `error` must be a valid pointer.
@@ -1090,7 +1093,8 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// - `policies` generics must be of the correct type.
+    /// - `policies` generic must be of the correct type.
+    /// - `policies` generic must be of the correct type.
     /// - `policies` might not allow `None`.
     /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordSetAccountPolicies")]

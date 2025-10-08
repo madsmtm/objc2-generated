@@ -510,7 +510,8 @@ impl ODNodeRef {
     ///
     /// - `record_type` might not allow `None`.
     /// - `record_name` might not allow `None`.
-    /// - `attribute_dict` generics must be of the correct type.
+    /// - `attribute_dict` generic must be of the correct type.
+    /// - `attribute_dict` generic must be of the correct type.
     /// - `attribute_dict` might not allow `None`.
     /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeCreateRecord")]
@@ -755,7 +756,8 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// - `policies` generics must be of the correct type.
+    /// - `policies` generic must be of the correct type.
+    /// - `policies` generic must be of the correct type.
     /// - `policies` might not allow `None`.
     /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeSetPolicies")]
@@ -885,7 +887,8 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// - `policy` generics must be of the correct type.
+    /// - `policy` generic must be of the correct type.
+    /// - `policy` generic must be of the correct type.
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
     /// - `error` must be a valid pointer.
@@ -929,7 +932,8 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// - `policy` generics must be of the correct type.
+    /// - `policy` generic must be of the correct type.
+    /// - `policy` generic must be of the correct type.
     /// - `policy` might not allow `None`.
     /// - `category` might not allow `None`.
     /// - `error` must be a valid pointer.
@@ -981,7 +985,8 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// - `policies` generics must be of the correct type.
+    /// - `policies` generic must be of the correct type.
+    /// - `policies` generic must be of the correct type.
     /// - `policies` might not allow `None`.
     /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeSetAccountPolicies")]

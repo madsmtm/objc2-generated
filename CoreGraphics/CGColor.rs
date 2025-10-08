@@ -237,7 +237,8 @@ impl CGColor {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGColorCreateCopyByMatchingToColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]

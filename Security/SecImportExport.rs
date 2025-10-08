@@ -435,7 +435,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     /// - `items` must be a valid pointer.
     pub fn SecPKCS12Import(
         pkcs12_data: &CFData,

@@ -134,7 +134,8 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGImageSourceCreateWithDataProvider")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -154,7 +155,8 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGImageSourceCreateWithData")]
     #[inline]
     pub unsafe fn with_data(
@@ -173,7 +175,8 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGImageSourceCreateWithURL")]
     #[inline]
     pub unsafe fn with_url(
@@ -211,7 +214,8 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGImageSourceCopyProperties")]
     #[inline]
     pub unsafe fn properties(
@@ -230,7 +234,8 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGImageSourceCopyPropertiesAtIndex")]
     #[inline]
     pub unsafe fn properties_at_index(
@@ -251,7 +256,8 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGImageSourceCopyMetadataAtIndex")]
     #[cfg(feature = "CGImageMetadata")]
     #[inline]
@@ -273,7 +279,8 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGImageSourceCreateImageAtIndex")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -304,7 +311,8 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGImageSourceCreateThumbnailAtIndex")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
@@ -326,7 +334,8 @@ impl CGImageSource {
 
     /// # Safety
     ///
-    /// `options` generics must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
     #[doc(alias = "CGImageSourceCreateIncremental")]
     #[inline]
     pub unsafe fn new_incremental(options: Option<&CFDictionary>) -> CFRetained<CGImageSource> {
