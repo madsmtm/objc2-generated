@@ -451,17 +451,17 @@ pub use self::__CTFontManager::CTFontManagerCopyAvailableFontFamilyNames;
 pub use self::__CTFontManager::CTFontManagerCopyAvailableFontURLs;
 #[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerCopyAvailablePostScriptNames;
-#[cfg(feature = "CTFontManager")]
+#[cfg(all(feature = "CTFontDescriptor", feature = "CTFontManager"))]
 pub use self::__CTFontManager::CTFontManagerCopyRegisteredFontDescriptors;
 #[cfg(all(feature = "CTFontDescriptor", feature = "CTFontManager"))]
 pub use self::__CTFontManager::CTFontManagerCreateFontDescriptorFromData;
-#[cfg(feature = "CTFontManager")]
+#[cfg(all(feature = "CTFontDescriptor", feature = "CTFontManager"))]
 pub use self::__CTFontManager::CTFontManagerCreateFontDescriptorsFromData;
-#[cfg(feature = "CTFontManager")]
+#[cfg(all(feature = "CTFontDescriptor", feature = "CTFontManager"))]
 pub use self::__CTFontManager::CTFontManagerCreateFontDescriptorsFromURL;
 #[cfg(all(feature = "CTFontManager", feature = "block2", feature = "libc"))]
 pub use self::__CTFontManager::CTFontManagerCreateFontRequestRunLoopSource;
-#[cfg(feature = "CTFontManager")]
+#[cfg(all(feature = "CTFontDescriptor", feature = "CTFontManager"))]
 pub use self::__CTFontManager::CTFontManagerEnableFontDescriptors;
 #[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerGetAutoActivationSetting;
@@ -469,7 +469,11 @@ pub use self::__CTFontManager::CTFontManagerGetAutoActivationSetting;
 pub use self::__CTFontManager::CTFontManagerGetScopeForURL;
 #[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerIsSupportedFont;
-#[cfg(all(feature = "CTFontManager", feature = "block2"))]
+#[cfg(all(
+    feature = "CTFontDescriptor",
+    feature = "CTFontManager",
+    feature = "block2"
+))]
 pub use self::__CTFontManager::CTFontManagerRegisterFontDescriptors;
 #[cfg(all(feature = "CTFontManager", feature = "block2"))]
 pub use self::__CTFontManager::CTFontManagerRegisterFontURLs;
@@ -481,13 +485,21 @@ pub use self::__CTFontManager::CTFontManagerRegisterFontsForURLs;
 pub use self::__CTFontManager::CTFontManagerRegisterFontsWithAssetNames;
 #[cfg(all(feature = "CTFontManager", feature = "objc2-core-graphics"))]
 pub use self::__CTFontManager::CTFontManagerRegisterGraphicsFont;
-#[cfg(all(feature = "CTFontManager", feature = "block2"))]
+#[cfg(all(
+    feature = "CTFontDescriptor",
+    feature = "CTFontManager",
+    feature = "block2"
+))]
 pub use self::__CTFontManager::CTFontManagerRequestFonts;
 #[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerScope;
 #[cfg(feature = "CTFontManager")]
 pub use self::__CTFontManager::CTFontManagerSetAutoActivationSetting;
-#[cfg(all(feature = "CTFontManager", feature = "block2"))]
+#[cfg(all(
+    feature = "CTFontDescriptor",
+    feature = "CTFontManager",
+    feature = "block2"
+))]
 pub use self::__CTFontManager::CTFontManagerUnregisterFontDescriptors;
 #[cfg(all(feature = "CTFontManager", feature = "block2"))]
 pub use self::__CTFontManager::CTFontManagerUnregisterFontURLs;

@@ -487,14 +487,15 @@ impl CTFontDescriptor {
     ///
     /// # Safety
     ///
-    /// - `attributes` generic must be of the correct type.
-    /// - `attributes` generic must be of the correct type.
+    /// `attributes` generic should be of the correct type.
     #[doc(alias = "CTFontDescriptorCreateWithAttributes")]
     #[inline]
-    pub unsafe fn with_attributes(attributes: &CFDictionary) -> CFRetained<CTFontDescriptor> {
+    pub unsafe fn with_attributes(
+        attributes: &CFDictionary<CFString, CFType>,
+    ) -> CFRetained<CTFontDescriptor> {
         extern "C-unwind" {
             fn CTFontDescriptorCreateWithAttributes(
-                attributes: &CFDictionary,
+                attributes: &CFDictionary<CFString, CFType>,
             ) -> Option<NonNull<CTFontDescriptor>>;
         }
         let ret = unsafe { CTFontDescriptorCreateWithAttributes(attributes) };
@@ -528,18 +529,17 @@ impl CTFontDescriptor {
     ///
     /// # Safety
     ///
-    /// - `attributes` generic must be of the correct type.
-    /// - `attributes` generic must be of the correct type.
+    /// `attributes` generic should be of the correct type.
     #[doc(alias = "CTFontDescriptorCreateCopyWithAttributes")]
     #[inline]
     pub unsafe fn copy_with_attributes(
         &self,
-        attributes: &CFDictionary,
+        attributes: &CFDictionary<CFString, CFType>,
     ) -> CFRetained<CTFontDescriptor> {
         extern "C-unwind" {
             fn CTFontDescriptorCreateCopyWithAttributes(
                 original: &CTFontDescriptor,
-                attributes: &CFDictionary,
+                attributes: &CFDictionary<CFString, CFType>,
             ) -> Option<NonNull<CTFontDescriptor>>;
         }
         let ret = unsafe { CTFontDescriptorCreateCopyWithAttributes(self, attributes) };
@@ -697,21 +697,17 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: This function returns a retained array of normalized font descriptors matching the attributes present in descriptor. If descriptor itself is normalized then the array will contain only one item, the original descriptor.
-    ///
-    /// # Safety
-    ///
-    /// `mandatory_attributes` generic must be of the correct type.
     #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptors")]
     #[inline]
-    pub unsafe fn matching_font_descriptors(
+    pub fn matching_font_descriptors(
         &self,
-        mandatory_attributes: Option<&CFSet>,
-    ) -> Option<CFRetained<CFArray>> {
+        mandatory_attributes: Option<&CFSet<CFString>>,
+    ) -> Option<CFRetained<CFArray<CTFontDescriptor>>> {
         extern "C-unwind" {
             fn CTFontDescriptorCreateMatchingFontDescriptors(
                 descriptor: &CTFontDescriptor,
-                mandatory_attributes: Option<&CFSet>,
-            ) -> Option<NonNull<CFArray>>;
+                mandatory_attributes: Option<&CFSet<CFString>>,
+            ) -> Option<NonNull<CFArray<CTFontDescriptor>>>;
         }
         let ret =
             unsafe { CTFontDescriptorCreateMatchingFontDescriptors(self, mandatory_attributes) };
@@ -728,20 +724,16 @@ impl CTFontDescriptor {
     ///
     ///
     /// Returns: This function returns a retained normalized font descriptor matching the attributes present in descriptor. The original descriptor may be returned in normalized form.
-    ///
-    /// # Safety
-    ///
-    /// `mandatory_attributes` generic must be of the correct type.
     #[doc(alias = "CTFontDescriptorCreateMatchingFontDescriptor")]
     #[inline]
-    pub unsafe fn matching_font_descriptor(
+    pub fn matching_font_descriptor(
         &self,
-        mandatory_attributes: Option<&CFSet>,
+        mandatory_attributes: Option<&CFSet<CFString>>,
     ) -> Option<CFRetained<CTFontDescriptor>> {
         extern "C-unwind" {
             fn CTFontDescriptorCreateMatchingFontDescriptor(
                 descriptor: &CTFontDescriptor,
-                mandatory_attributes: Option<&CFSet>,
+                mandatory_attributes: Option<&CFSet<CFString>>,
             ) -> Option<NonNull<CTFontDescriptor>>;
         }
         let ret =
@@ -836,21 +828,19 @@ pub type CTFontDescriptorProgressHandler =
 impl CTFontDescriptor {
     /// # Safety
     ///
-    /// - `descriptors` generic must be of the correct type.
-    /// - `mandatory_attributes` generic must be of the correct type.
-    /// - `progress_block` must be a valid pointer.
+    /// `progress_block` must be a valid pointer.
     #[doc(alias = "CTFontDescriptorMatchFontDescriptorsWithProgressHandler")]
     #[cfg(feature = "block2")]
     #[inline]
     pub unsafe fn match_font_descriptors_with_progress_handler(
-        descriptors: &CFArray,
-        mandatory_attributes: Option<&CFSet>,
+        descriptors: &CFArray<CTFontDescriptor>,
+        mandatory_attributes: Option<&CFSet<CFString>>,
         progress_block: CTFontDescriptorProgressHandler,
     ) -> bool {
         extern "C-unwind" {
             fn CTFontDescriptorMatchFontDescriptorsWithProgressHandler(
-                descriptors: &CFArray,
-                mandatory_attributes: Option<&CFSet>,
+                descriptors: &CFArray<CTFontDescriptor>,
+                mandatory_attributes: Option<&CFSet<CFString>>,
                 progress_block: CTFontDescriptorProgressHandler,
             ) -> bool;
         }
@@ -872,11 +862,11 @@ impl CTFontDescriptor {
     /// Returns: A retained reference to the font descriptor attributes dictionary. This dictionary will contain the minimum number of attributes to fully specify this particular font descriptor.
     #[doc(alias = "CTFontDescriptorCopyAttributes")]
     #[inline]
-    pub fn attributes(&self) -> CFRetained<CFDictionary> {
+    pub fn attributes(&self) -> CFRetained<CFDictionary<CFString, CFType>> {
         extern "C-unwind" {
             fn CTFontDescriptorCopyAttributes(
                 descriptor: &CTFontDescriptor,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CTFontDescriptorCopyAttributes(self) };
         let ret =
@@ -935,13 +925,13 @@ impl CTFontDescriptor {
     pub unsafe fn localized_attribute(
         &self,
         attribute: &CFString,
-        language: *mut *const CFString,
+        language: Option<&mut *const CFString>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CTFontDescriptorCopyLocalizedAttribute(
                 descriptor: &CTFontDescriptor,
                 attribute: &CFString,
-                language: *mut *const CFString,
+                language: Option<&mut *const CFString>,
             ) -> Option<NonNull<CFType>>;
         }
         let ret = unsafe { CTFontDescriptorCopyLocalizedAttribute(self, attribute, language) };

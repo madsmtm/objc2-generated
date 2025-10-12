@@ -129,8 +129,7 @@ impl CTFramesetter {
     ///
     /// # Safety
     ///
-    /// - `frame_attributes` generic must be of the correct type.
-    /// - `frame_attributes` generic must be of the correct type.
+    /// `frame_attributes` generic should be of the correct type.
     #[doc(alias = "CTFramesetterCreateFrame")]
     #[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
     #[inline]
@@ -138,14 +137,14 @@ impl CTFramesetter {
         &self,
         string_range: CFRange,
         path: &CGPath,
-        frame_attributes: Option<&CFDictionary>,
+        frame_attributes: Option<&CFDictionary<CFString, CFType>>,
     ) -> CFRetained<CTFrame> {
         extern "C-unwind" {
             fn CTFramesetterCreateFrame(
                 framesetter: &CTFramesetter,
                 string_range: CFRange,
                 path: &CGPath,
-                frame_attributes: Option<&CFDictionary>,
+                frame_attributes: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CTFrame>>;
         }
         let ret = unsafe { CTFramesetterCreateFrame(self, string_range, path, frame_attributes) };
@@ -218,25 +217,23 @@ impl CTFramesetter {
     ///
     /// # Safety
     ///
-    /// - `frame_attributes` generic must be of the correct type.
-    /// - `frame_attributes` generic must be of the correct type.
-    /// - `fit_range` must be a valid pointer or null.
+    /// `frame_attributes` generic should be of the correct type.
     #[doc(alias = "CTFramesetterSuggestFrameSizeWithConstraints")]
     #[inline]
     pub unsafe fn suggest_frame_size_with_constraints(
         &self,
         string_range: CFRange,
-        frame_attributes: Option<&CFDictionary>,
+        frame_attributes: Option<&CFDictionary<CFString, CFType>>,
         constraints: CGSize,
-        fit_range: *mut CFRange,
+        fit_range: Option<&mut CFRange>,
     ) -> CGSize {
         extern "C-unwind" {
             fn CTFramesetterSuggestFrameSizeWithConstraints(
                 framesetter: &CTFramesetter,
                 string_range: CFRange,
-                frame_attributes: Option<&CFDictionary>,
+                frame_attributes: Option<&CFDictionary<CFString, CFType>>,
                 constraints: CGSize,
-                fit_range: *mut CFRange,
+                fit_range: Option<&mut CFRange>,
             ) -> CGSize;
         }
         unsafe {

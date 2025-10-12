@@ -74,21 +74,20 @@ impl CTTextTab {
     ///
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CTTextTabCreate")]
     #[cfg(feature = "CTParagraphStyle")]
     #[inline]
     pub unsafe fn new(
         alignment: CTTextAlignment,
         location: c_double,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> CFRetained<CTTextTab> {
         extern "C-unwind" {
             fn CTTextTabCreate(
                 alignment: CTTextAlignment,
                 location: c_double,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CTTextTab>>;
         }
         let ret = unsafe { CTTextTabCreate(alignment, location, options) };
@@ -140,9 +139,11 @@ impl CTTextTab {
     /// no dictionary is present.
     #[doc(alias = "CTTextTabGetOptions")]
     #[inline]
-    pub fn options(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn options(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
-            fn CTTextTabGetOptions(tab: &CTTextTab) -> Option<NonNull<CFDictionary>>;
+            fn CTTextTabGetOptions(
+                tab: &CTTextTab,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CTTextTabGetOptions(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })

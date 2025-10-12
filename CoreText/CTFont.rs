@@ -226,22 +226,18 @@ impl CTFont {
     ///
     ///
     /// Returns: This function will return a CTFontRef that best matches the name provided with size and matrix attributes. The name parameter is the only required parameters, and default values will be used for unspecified parameters. A best match will be found if all parameters cannot be matched identically.
-    ///
-    /// # Safety
-    ///
-    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateWithName")]
     #[inline]
-    pub unsafe fn with_name(
+    pub fn with_name(
         name: &CFString,
         size: CGFloat,
-        matrix: *const CGAffineTransform,
+        matrix: Option<&CGAffineTransform>,
     ) -> CFRetained<CTFont> {
         extern "C-unwind" {
             fn CTFontCreateWithName(
                 name: &CFString,
                 size: CGFloat,
-                matrix: *const CGAffineTransform,
+                matrix: Option<&CGAffineTransform>,
             ) -> Option<NonNull<CTFont>>;
         }
         let ret = unsafe { CTFontCreateWithName(name, size, matrix) };
@@ -263,23 +259,19 @@ impl CTFont {
     ///
     ///
     /// Returns: This function will return a CTFontRef that best matches the attributes provided with the font descriptor. The size and matrix parameters will override any specified in the font descriptor, unless they are unspecified. A best match font will always be returned, and default values will be used for any unspecified.
-    ///
-    /// # Safety
-    ///
-    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateWithFontDescriptor")]
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
-    pub unsafe fn with_font_descriptor(
+    pub fn with_font_descriptor(
         descriptor: &CTFontDescriptor,
         size: CGFloat,
-        matrix: *const CGAffineTransform,
+        matrix: Option<&CGAffineTransform>,
     ) -> CFRetained<CTFont> {
         extern "C-unwind" {
             fn CTFontCreateWithFontDescriptor(
                 descriptor: &CTFontDescriptor,
                 size: CGFloat,
-                matrix: *const CGAffineTransform,
+                matrix: Option<&CGAffineTransform>,
             ) -> Option<NonNull<CTFont>>;
         }
         let ret = unsafe { CTFontCreateWithFontDescriptor(descriptor, size, matrix) };
@@ -346,23 +338,19 @@ impl CTFont {
     ///
     ///
     /// Returns: This function will return a CTFontRef that best matches the name provided with size and matrix attributes. The name parameter is the only required parameters, and default values will be used for unspecified parameters. A best match will be found if all parameters cannot be matched identically.
-    ///
-    /// # Safety
-    ///
-    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateWithNameAndOptions")]
     #[inline]
-    pub unsafe fn with_name_and_options(
+    pub fn with_name_and_options(
         name: &CFString,
         size: CGFloat,
-        matrix: *const CGAffineTransform,
+        matrix: Option<&CGAffineTransform>,
         options: CTFontOptions,
     ) -> CFRetained<CTFont> {
         extern "C-unwind" {
             fn CTFontCreateWithNameAndOptions(
                 name: &CFString,
                 size: CGFloat,
-                matrix: *const CGAffineTransform,
+                matrix: Option<&CGAffineTransform>,
                 options: CTFontOptions,
             ) -> Option<NonNull<CTFont>>;
         }
@@ -388,24 +376,20 @@ impl CTFont {
     ///
     ///
     /// Returns: This function will return a CTFontRef that best matches the attributes provided with the font descriptor. The size and matrix parameters will override any specified in the font descriptor, unless they are unspecified. A best match font will always be returned, and default values will be used for any unspecified.
-    ///
-    /// # Safety
-    ///
-    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateWithFontDescriptorAndOptions")]
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
-    pub unsafe fn with_font_descriptor_and_options(
+    pub fn with_font_descriptor_and_options(
         descriptor: &CTFontDescriptor,
         size: CGFloat,
-        matrix: *const CGAffineTransform,
+        matrix: Option<&CGAffineTransform>,
         options: CTFontOptions,
     ) -> CFRetained<CTFont> {
         extern "C-unwind" {
             fn CTFontCreateWithFontDescriptorAndOptions(
                 descriptor: &CTFontDescriptor,
                 size: CGFloat,
-                matrix: *const CGAffineTransform,
+                matrix: Option<&CGAffineTransform>,
                 options: CTFontOptions,
             ) -> Option<NonNull<CTFont>>;
         }
@@ -606,24 +590,20 @@ impl CTFont {
     ///
     ///
     /// Returns: Returns a new font reference converted from the original with the specified attributes.
-    ///
-    /// # Safety
-    ///
-    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateCopyWithAttributes")]
     #[cfg(feature = "CTFontDescriptor")]
     #[inline]
-    pub unsafe fn copy_with_attributes(
+    pub fn copy_with_attributes(
         &self,
         size: CGFloat,
-        matrix: *const CGAffineTransform,
+        matrix: Option<&CGAffineTransform>,
         attributes: Option<&CTFontDescriptor>,
     ) -> CFRetained<CTFont> {
         extern "C-unwind" {
             fn CTFontCreateCopyWithAttributes(
                 font: &CTFont,
                 size: CGFloat,
-                matrix: *const CGAffineTransform,
+                matrix: Option<&CGAffineTransform>,
                 attributes: Option<&CTFontDescriptor>,
             ) -> Option<NonNull<CTFont>>;
         }
@@ -652,17 +632,13 @@ impl CTFont {
     ///
     ///
     /// Returns: Returns a new font reference in the same family with the given symbolic traits, or NULL if none found in the system.
-    ///
-    /// # Safety
-    ///
-    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateCopyWithSymbolicTraits")]
     #[cfg(feature = "CTFontTraits")]
     #[inline]
-    pub unsafe fn copy_with_symbolic_traits(
+    pub fn copy_with_symbolic_traits(
         &self,
         size: CGFloat,
-        matrix: *const CGAffineTransform,
+        matrix: Option<&CGAffineTransform>,
         sym_trait_value: CTFontSymbolicTraits,
         sym_trait_mask: CTFontSymbolicTraits,
     ) -> Option<CFRetained<CTFont>> {
@@ -670,7 +646,7 @@ impl CTFont {
             fn CTFontCreateCopyWithSymbolicTraits(
                 font: &CTFont,
                 size: CGFloat,
-                matrix: *const CGAffineTransform,
+                matrix: Option<&CGAffineTransform>,
                 sym_trait_value: CTFontSymbolicTraits,
                 sym_trait_mask: CTFontSymbolicTraits,
             ) -> Option<NonNull<CTFont>>;
@@ -697,23 +673,19 @@ impl CTFont {
     ///
     ///
     /// Returns: Returns a new font reference with the original traits in the given family. NULL if non found in the system.
-    ///
-    /// # Safety
-    ///
-    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateCopyWithFamily")]
     #[inline]
-    pub unsafe fn copy_with_family(
+    pub fn copy_with_family(
         &self,
         size: CGFloat,
-        matrix: *const CGAffineTransform,
+        matrix: Option<&CGAffineTransform>,
         family: &CFString,
     ) -> Option<CFRetained<CTFont>> {
         extern "C-unwind" {
             fn CTFontCreateCopyWithFamily(
                 font: &CTFont,
                 size: CGFloat,
-                matrix: *const CGAffineTransform,
+                matrix: Option<&CGAffineTransform>,
                 family: &CFString,
             ) -> Option<NonNull<CTFont>>;
         }
@@ -906,9 +878,9 @@ impl CTFont {
     /// Returns: This function returns a retained reference to the font traits dictionary. Individual traits can be accessed with the trait key constants. See CTFontTraits.h for a definition of the font traits.
     #[doc(alias = "CTFontCopyTraits")]
     #[inline]
-    pub fn traits(&self) -> CFRetained<CFDictionary> {
+    pub fn traits(&self) -> CFRetained<CFDictionary<CFString, CFType>> {
         extern "C-unwind" {
-            fn CTFontCopyTraits(font: &CTFont) -> Option<NonNull<CFDictionary>>;
+            fn CTFontCopyTraits(font: &CTFont) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CTFontCopyTraits(self) };
         let ret =
@@ -926,21 +898,18 @@ impl CTFont {
     ///
     ///
     /// Returns: The ordered list of fallback fonts - ordered array of CTFontDescriptors.
-    ///
-    /// # Safety
-    ///
-    /// `language_pref_list` generic must be of the correct type.
     #[doc(alias = "CTFontCopyDefaultCascadeListForLanguages")]
+    #[cfg(feature = "CTFontDescriptor")]
     #[inline]
-    pub unsafe fn default_cascade_list_for_languages(
+    pub fn default_cascade_list_for_languages(
         &self,
-        language_pref_list: Option<&CFArray>,
-    ) -> Option<CFRetained<CFArray>> {
+        language_pref_list: Option<&CFArray<CFString>>,
+    ) -> Option<CFRetained<CFArray<CTFontDescriptor>>> {
         extern "C-unwind" {
             fn CTFontCopyDefaultCascadeListForLanguages(
                 font: &CTFont,
-                language_pref_list: Option<&CFArray>,
-            ) -> Option<NonNull<CFArray>>;
+                language_pref_list: Option<&CFArray<CFString>>,
+            ) -> Option<NonNull<CFArray<CTFontDescriptor>>>;
         }
         let ret = unsafe { CTFontCopyDefaultCascadeListForLanguages(self, language_pref_list) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -1073,13 +1042,13 @@ impl CTFont {
     pub unsafe fn localized_name(
         &self,
         name_key: &CFString,
-        actual_language: *mut *const CFString,
+        actual_language: Option<&mut *const CFString>,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CTFontCopyLocalizedName(
                 font: &CTFont,
                 name_key: &CFString,
-                actual_language: *mut *const CFString,
+                actual_language: Option<&mut *const CFString>,
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CTFontCopyLocalizedName(self, name_key, actual_language) };
@@ -1130,9 +1099,9 @@ impl CTFont {
     /// Returns: This function returns a retained reference to an array of languages supported by the font. The array contains language identifier strings as CFStringRefs. The format of the language identifier will conform to UTS #35.
     #[doc(alias = "CTFontCopySupportedLanguages")]
     #[inline]
-    pub fn supported_languages(&self) -> CFRetained<CFArray> {
+    pub fn supported_languages(&self) -> CFRetained<CFArray<CFString>> {
         extern "C-unwind" {
-            fn CTFontCopySupportedLanguages(font: &CTFont) -> Option<NonNull<CFArray>>;
+            fn CTFontCopySupportedLanguages(font: &CTFont) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CTFontCopySupportedLanguages(self) };
         let ret =
@@ -1602,23 +1571,19 @@ impl CTFont {
     ///
     ///
     /// Returns: A retained CGPath reference containing the glyph outlines or NULL if there is no such glyph or it has no outline.
-    ///
-    /// # Safety
-    ///
-    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreatePathForGlyph")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn path_for_glyph(
+    pub fn path_for_glyph(
         &self,
         glyph: CGGlyph,
-        matrix: *const CGAffineTransform,
+        matrix: Option<&CGAffineTransform>,
     ) -> Option<CFRetained<CGPath>> {
         extern "C-unwind" {
             fn CTFontCreatePathForGlyph(
                 font: &CTFont,
                 glyph: CGGlyph,
-                matrix: *const CGAffineTransform,
+                matrix: Option<&CGAffineTransform>,
             ) -> Option<NonNull<CGPath>>;
         }
         let ret = unsafe { CTFontCreatePathForGlyph(self, glyph, matrix) };
@@ -1707,9 +1672,11 @@ impl CTFont {
     /// See also: kCTFontVariationAxesAttribute
     #[doc(alias = "CTFontCopyVariationAxes")]
     #[inline]
-    pub fn variation_axes(&self) -> Option<CFRetained<CFArray>> {
+    pub fn variation_axes(&self) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
         extern "C-unwind" {
-            fn CTFontCopyVariationAxes(font: &CTFont) -> Option<NonNull<CFArray>>;
+            fn CTFontCopyVariationAxes(
+                font: &CTFont,
+            ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
         }
         let ret = unsafe { CTFontCopyVariationAxes(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -1731,9 +1698,11 @@ impl CTFont {
     /// See also: kCTFontVariationAxisDefaultValueKey
     #[doc(alias = "CTFontCopyVariation")]
     #[inline]
-    pub fn variation(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn variation(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
-            fn CTFontCopyVariation(font: &CTFont) -> Option<NonNull<CFDictionary>>;
+            fn CTFontCopyVariation(
+                font: &CTFont,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CTFontCopyVariation(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -1887,9 +1856,11 @@ impl CTFont {
     /// Returns: This function returns an array of font feature dictionaries for the font reference.
     #[doc(alias = "CTFontCopyFeatures")]
     #[inline]
-    pub fn features(&self) -> Option<CFRetained<CFArray>> {
+    pub fn features(&self) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
         extern "C-unwind" {
-            fn CTFontCopyFeatures(font: &CTFont) -> Option<NonNull<CFArray>>;
+            fn CTFontCopyFeatures(
+                font: &CTFont,
+            ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
         }
         let ret = unsafe { CTFontCopyFeatures(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -1907,9 +1878,11 @@ impl CTFont {
     /// Returns: This function returns a normalized array of font feature setting dictionaries. The array will only contain the non-default settings that should be applied to the font, or NULL if the default settings should be used.
     #[doc(alias = "CTFontCopyFeatureSettings")]
     #[inline]
-    pub fn feature_settings(&self) -> Option<CFRetained<CFArray>> {
+    pub fn feature_settings(&self) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
         extern "C-unwind" {
-            fn CTFontCopyFeatureSettings(font: &CTFont) -> Option<NonNull<CFArray>>;
+            fn CTFontCopyFeatureSettings(
+                font: &CTFont,
+            ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
         }
         let ret = unsafe { CTFontCopyFeatureSettings(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -1934,12 +1907,12 @@ impl CTFont {
     #[inline]
     pub unsafe fn graphics_font(
         &self,
-        attributes: *mut *const CTFontDescriptor,
+        attributes: Option<&mut *const CTFontDescriptor>,
     ) -> CFRetained<CGFont> {
         extern "C-unwind" {
             fn CTFontCopyGraphicsFont(
                 font: &CTFont,
-                attributes: *mut *const CTFontDescriptor,
+                attributes: Option<&mut *const CTFontDescriptor>,
             ) -> Option<NonNull<CGFont>>;
         }
         let ret = unsafe { CTFontCopyGraphicsFont(self, attributes) };
@@ -1964,24 +1937,20 @@ impl CTFont {
     ///
     ///
     /// Returns: This function returns a new font reference for an existing CGFontRef with the specified size, matrix, and additional attributes.
-    ///
-    /// # Safety
-    ///
-    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CTFontCreateWithGraphicsFont")]
     #[cfg(all(feature = "CTFontDescriptor", feature = "objc2-core-graphics"))]
     #[inline]
-    pub unsafe fn with_graphics_font(
+    pub fn with_graphics_font(
         graphics_font: &CGFont,
         size: CGFloat,
-        matrix: *const CGAffineTransform,
+        matrix: Option<&CGAffineTransform>,
         attributes: Option<&CTFontDescriptor>,
     ) -> CFRetained<CTFont> {
         extern "C-unwind" {
             fn CTFontCreateWithGraphicsFont(
                 graphics_font: &CGFont,
                 size: CGFloat,
-                matrix: *const CGAffineTransform,
+                matrix: Option<&CGAffineTransform>,
                 attributes: Option<&CTFontDescriptor>,
             ) -> Option<NonNull<CTFont>>;
         }

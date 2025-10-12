@@ -118,16 +118,15 @@ impl CTFontCollection {
     ///
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CTFontCollectionCreateFromAvailableFonts")]
     #[inline]
     pub unsafe fn from_available_fonts(
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> CFRetained<CTFontCollection> {
         extern "C-unwind" {
             fn CTFontCollectionCreateFromAvailableFonts(
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CTFontCollection>>;
         }
         let ret = unsafe { CTFontCollectionCreateFromAvailableFonts(options) };
@@ -149,19 +148,18 @@ impl CTFontCollection {
     ///
     /// # Safety
     ///
-    /// - `query_descriptors` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CTFontCollectionCreateWithFontDescriptors")]
+    #[cfg(feature = "CTFontDescriptor")]
     #[inline]
     pub unsafe fn with_font_descriptors(
-        query_descriptors: Option<&CFArray>,
-        options: Option<&CFDictionary>,
+        query_descriptors: Option<&CFArray<CTFontDescriptor>>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> CFRetained<CTFontCollection> {
         extern "C-unwind" {
             fn CTFontCollectionCreateWithFontDescriptors(
-                query_descriptors: Option<&CFArray>,
-                options: Option<&CFDictionary>,
+                query_descriptors: Option<&CFArray<CTFontDescriptor>>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CTFontCollection>>;
         }
         let ret = unsafe { CTFontCollectionCreateWithFontDescriptors(query_descriptors, options) };
@@ -186,21 +184,20 @@ impl CTFontCollection {
     ///
     /// # Safety
     ///
-    /// - `query_descriptors` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CTFontCollectionCreateCopyWithFontDescriptors")]
+    #[cfg(feature = "CTFontDescriptor")]
     #[inline]
     pub unsafe fn copy_with_font_descriptors(
         &self,
-        query_descriptors: Option<&CFArray>,
-        options: Option<&CFDictionary>,
+        query_descriptors: Option<&CFArray<CTFontDescriptor>>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> CFRetained<CTFontCollection> {
         extern "C-unwind" {
             fn CTFontCollectionCreateCopyWithFontDescriptors(
                 original: &CTFontCollection,
-                query_descriptors: Option<&CFArray>,
-                options: Option<&CFDictionary>,
+                query_descriptors: Option<&CFArray<CTFontDescriptor>>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CTFontCollection>>;
         }
         let ret = unsafe {
@@ -244,12 +241,13 @@ impl CTFontCollection {
     ///
     /// Returns: This function returns a retained reference to the array of descriptors to be used to query (match) the system font database. The return value is undefined if CTFontCollectionCreateFromAvailableFonts was used to create the collection.
     #[doc(alias = "CTFontCollectionCopyQueryDescriptors")]
+    #[cfg(feature = "CTFontDescriptor")]
     #[inline]
-    pub fn query_descriptors(&self) -> Option<CFRetained<CFArray>> {
+    pub fn query_descriptors(&self) -> Option<CFRetained<CFArray<CTFontDescriptor>>> {
         extern "C-unwind" {
             fn CTFontCollectionCopyQueryDescriptors(
                 collection: &CTFontCollection,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CTFontDescriptor>>>;
         }
         let ret = unsafe { CTFontCollectionCopyQueryDescriptors(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -264,17 +262,14 @@ impl CTMutableFontCollection {
     ///
     ///
     /// Parameter `descriptors`: An array of CTFontDescriptorRef. May be NULL to represent an empty collection, in which case the matching descriptors will also be NULL.
-    ///
-    /// # Safety
-    ///
-    /// `descriptors` generic must be of the correct type.
     #[doc(alias = "CTFontCollectionSetQueryDescriptors")]
+    #[cfg(feature = "CTFontDescriptor")]
     #[inline]
-    pub unsafe fn set_query_descriptors(&self, descriptors: Option<&CFArray>) {
+    pub fn set_query_descriptors(&self, descriptors: Option<&CFArray<CTFontDescriptor>>) {
         extern "C-unwind" {
             fn CTFontCollectionSetQueryDescriptors(
                 collection: &CTMutableFontCollection,
-                descriptors: Option<&CFArray>,
+                descriptors: Option<&CFArray<CTFontDescriptor>>,
             );
         }
         unsafe { CTFontCollectionSetQueryDescriptors(self, descriptors) }
@@ -290,12 +285,13 @@ impl CTFontCollection {
     ///
     /// Returns: This function returns a retained reference to the array of descriptors to be used to query (match) the system font database.
     #[doc(alias = "CTFontCollectionCopyExclusionDescriptors")]
+    #[cfg(feature = "CTFontDescriptor")]
     #[inline]
-    pub fn exclusion_descriptors(&self) -> Option<CFRetained<CFArray>> {
+    pub fn exclusion_descriptors(&self) -> Option<CFRetained<CFArray<CTFontDescriptor>>> {
         extern "C-unwind" {
             fn CTFontCollectionCopyExclusionDescriptors(
                 collection: &CTFontCollection,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CTFontDescriptor>>>;
         }
         let ret = unsafe { CTFontCollectionCopyExclusionDescriptors(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -310,17 +306,14 @@ impl CTMutableFontCollection {
     ///
     ///
     /// Parameter `descriptors`: An array of CTFontDescriptorRef. May be NULL.
-    ///
-    /// # Safety
-    ///
-    /// `descriptors` generic must be of the correct type.
     #[doc(alias = "CTFontCollectionSetExclusionDescriptors")]
+    #[cfg(feature = "CTFontDescriptor")]
     #[inline]
-    pub unsafe fn set_exclusion_descriptors(&self, descriptors: Option<&CFArray>) {
+    pub fn set_exclusion_descriptors(&self, descriptors: Option<&CFArray<CTFontDescriptor>>) {
         extern "C-unwind" {
             fn CTFontCollectionSetExclusionDescriptors(
                 collection: &CTMutableFontCollection,
-                descriptors: Option<&CFArray>,
+                descriptors: Option<&CFArray<CTFontDescriptor>>,
             );
         }
         unsafe { CTFontCollectionSetExclusionDescriptors(self, descriptors) }
@@ -336,12 +329,13 @@ impl CTFontCollection {
     ///
     /// Returns: An array of CTFontDescriptors matching the collection definition or NULL if there are none.
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptors")]
+    #[cfg(feature = "CTFontDescriptor")]
     #[inline]
-    pub fn matching_font_descriptors(&self) -> Option<CFRetained<CFArray>> {
+    pub fn matching_font_descriptors(&self) -> Option<CFRetained<CFArray<CTFontDescriptor>>> {
         extern "C-unwind" {
             fn CTFontCollectionCreateMatchingFontDescriptors(
                 collection: &CTFontCollection,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CTFontDescriptor>>>;
         }
         let ret = unsafe { CTFontCollectionCreateMatchingFontDescriptors(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -372,13 +366,13 @@ impl CTFontCollection {
         &self,
         sort_callback: CTFontCollectionSortDescriptorsCallback,
         ref_con: *mut c_void,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<CTFontDescriptor>>> {
         extern "C-unwind" {
             fn CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
                 collection: &CTFontCollection,
                 sort_callback: CTFontCollectionSortDescriptorsCallback,
                 ref_con: *mut c_void,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CTFontDescriptor>>>;
         }
         let ret = unsafe {
             CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(
@@ -403,19 +397,19 @@ impl CTFontCollection {
     ///
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsWithOptions")]
+    #[cfg(feature = "CTFontDescriptor")]
     #[inline]
     pub unsafe fn matching_font_descriptors_with_options(
         &self,
-        options: Option<&CFDictionary>,
-    ) -> Option<CFRetained<CFArray>> {
+        options: Option<&CFDictionary<CFString, CFType>>,
+    ) -> Option<CFRetained<CFArray<CTFontDescriptor>>> {
         extern "C-unwind" {
             fn CTFontCollectionCreateMatchingFontDescriptorsWithOptions(
                 collection: &CTFontCollection,
-                options: Option<&CFDictionary>,
-            ) -> Option<NonNull<CFArray>>;
+                options: Option<&CFDictionary<CFString, CFType>>,
+            ) -> Option<NonNull<CFArray<CTFontDescriptor>>>;
         }
         let ret =
             unsafe { CTFontCollectionCreateMatchingFontDescriptorsWithOptions(self, options) };
@@ -435,21 +429,21 @@ impl CTFontCollection {
     ///
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptorsForFamily")]
+    #[cfg(feature = "CTFontDescriptor")]
     #[inline]
     pub unsafe fn matching_font_descriptors_for_family(
         &self,
         family_name: &CFString,
-        options: Option<&CFDictionary>,
-    ) -> Option<CFRetained<CFArray>> {
+        options: Option<&CFDictionary<CFString, CFType>>,
+    ) -> Option<CFRetained<CFArray<CTFontDescriptor>>> {
         extern "C-unwind" {
             fn CTFontCollectionCreateMatchingFontDescriptorsForFamily(
                 collection: &CTFontCollection,
                 family_name: &CFString,
-                options: Option<&CFDictionary>,
-            ) -> Option<NonNull<CFArray>>;
+                options: Option<&CFDictionary<CFString, CFType>>,
+            ) -> Option<NonNull<CFArray<CTFontDescriptor>>>;
         }
         let ret = unsafe {
             CTFontCollectionCreateMatchingFontDescriptorsForFamily(self, family_name, options)
@@ -512,13 +506,13 @@ impl CTFontCollection {
         &self,
         attribute_name: &CFString,
         options: CTFontCollectionCopyOptions,
-    ) -> CFRetained<CFArray> {
+    ) -> CFRetained<CFArray<CFType>> {
         extern "C-unwind" {
             fn CTFontCollectionCopyFontAttribute(
                 collection: &CTFontCollection,
                 attribute_name: &CFString,
                 options: CTFontCollectionCopyOptions,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFType>>>;
         }
         let ret = unsafe { CTFontCollectionCopyFontAttribute(self, attribute_name, options) };
         let ret =
@@ -539,23 +533,19 @@ impl CTFontCollection {
     ///
     ///
     /// Returns: An array containing one CFDictionary value for each descriptor mapping the requested attribute names. With kCTFontCollectionCopyDefaultOptions, the values will be in the same order as the results from CTFontCollectionCreateMatchingFontDescriptors. When the kCTFontCollectionCopyUnique is set, duplicate values will be removed. When kCTFontCollectionCopyStandardSort is set, the values will be sorted in standard UI order.
-    ///
-    /// # Safety
-    ///
-    /// `attribute_names` generic must be of the correct type.
     #[doc(alias = "CTFontCollectionCopyFontAttributes")]
     #[inline]
-    pub unsafe fn font_attributes(
+    pub fn font_attributes(
         &self,
-        attribute_names: &CFSet,
+        attribute_names: &CFSet<CFString>,
         options: CTFontCollectionCopyOptions,
-    ) -> CFRetained<CFArray> {
+    ) -> CFRetained<CFArray<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CTFontCollectionCopyFontAttributes(
                 collection: &CTFontCollection,
-                attribute_names: &CFSet,
+                attribute_names: &CFSet<CFString>,
                 options: CTFontCollectionCopyOptions,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
         }
         let ret = unsafe { CTFontCollectionCopyFontAttributes(self, attribute_names, options) };
         let ret =

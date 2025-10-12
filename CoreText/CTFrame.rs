@@ -273,9 +273,11 @@ impl CTFrame {
     /// will return NULL.
     #[doc(alias = "CTFrameGetFrameAttributes")]
     #[inline]
-    pub fn frame_attributes(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn frame_attributes(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
-            fn CTFrameGetFrameAttributes(frame: &CTFrame) -> Option<NonNull<CFDictionary>>;
+            fn CTFrameGetFrameAttributes(
+                frame: &CTFrame,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CTFrameGetFrameAttributes(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -298,10 +300,11 @@ impl CTFrame {
     /// Returns: This function will return a CFArray object containing the
     /// CTLine objects that make up the frame.
     #[doc(alias = "CTFrameGetLines")]
+    #[cfg(feature = "CTLine")]
     #[inline]
-    pub fn lines(&self) -> CFRetained<CFArray> {
+    pub fn lines(&self) -> CFRetained<CFArray<CTLine>> {
         extern "C-unwind" {
-            fn CTFrameGetLines(frame: &CTFrame) -> Option<NonNull<CFArray>>;
+            fn CTFrameGetLines(frame: &CTFrame) -> Option<NonNull<CFArray<CTLine>>>;
         }
         let ret = unsafe { CTFrameGetLines(self) };
         let ret =

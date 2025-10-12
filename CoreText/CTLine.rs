@@ -291,10 +291,11 @@ impl CTLine {
     ///
     /// Returns: A CFArrayRef containing the CTRun objects that make up the line.
     #[doc(alias = "CTLineGetGlyphRuns")]
+    #[cfg(feature = "CTRun")]
     #[inline]
-    pub fn glyph_runs(&self) -> CFRetained<CFArray> {
+    pub fn glyph_runs(&self) -> CFRetained<CFArray<CTRun>> {
         extern "C-unwind" {
-            fn CTLineGetGlyphRuns(line: &CTLine) -> Option<NonNull<CFArray>>;
+            fn CTLineGetGlyphRuns(line: &CTLine) -> Option<NonNull<CFArray<CTRun>>>;
         }
         let ret = unsafe { CTLineGetGlyphRuns(self) };
         let ret =
@@ -405,26 +406,20 @@ impl CTLine {
     ///
     ///
     /// See also: CTLineGetTrailingWhitespaceWidth
-    ///
-    /// # Safety
-    ///
-    /// - `ascent` must be a valid pointer or null.
-    /// - `descent` must be a valid pointer or null.
-    /// - `leading` must be a valid pointer or null.
     #[doc(alias = "CTLineGetTypographicBounds")]
     #[inline]
-    pub unsafe fn typographic_bounds(
+    pub fn typographic_bounds(
         &self,
-        ascent: *mut CGFloat,
-        descent: *mut CGFloat,
-        leading: *mut CGFloat,
+        ascent: Option<&mut CGFloat>,
+        descent: Option<&mut CGFloat>,
+        leading: Option<&mut CGFloat>,
     ) -> c_double {
         extern "C-unwind" {
             fn CTLineGetTypographicBounds(
                 line: &CTLine,
-                ascent: *mut CGFloat,
-                descent: *mut CGFloat,
-                leading: *mut CGFloat,
+                ascent: Option<&mut CGFloat>,
+                descent: Option<&mut CGFloat>,
+                leading: Option<&mut CGFloat>,
             ) -> c_double;
         }
         unsafe { CTLineGetTypographicBounds(self, ascent, descent, leading) }
@@ -572,22 +567,18 @@ impl CTLine {
     ///
     /// Returns: The primary offset along the baseline for charIndex, or 0.0 in
     /// the event of failure.
-    ///
-    /// # Safety
-    ///
-    /// `secondary_offset` must be a valid pointer or null.
     #[doc(alias = "CTLineGetOffsetForStringIndex")]
     #[inline]
-    pub unsafe fn offset_for_string_index(
+    pub fn offset_for_string_index(
         &self,
         char_index: CFIndex,
-        secondary_offset: *mut CGFloat,
+        secondary_offset: Option<&mut CGFloat>,
     ) -> CGFloat {
         extern "C-unwind" {
             fn CTLineGetOffsetForStringIndex(
                 line: &CTLine,
                 char_index: CFIndex,
-                secondary_offset: *mut CGFloat,
+                secondary_offset: Option<&mut CGFloat>,
             ) -> CGFloat;
         }
         unsafe { CTLineGetOffsetForStringIndex(self, char_index, secondary_offset) }

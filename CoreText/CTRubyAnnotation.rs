@@ -279,8 +279,7 @@ impl CTRubyAnnotation {
     ///
     /// # Safety
     ///
-    /// - `attributes` generic must be of the correct type.
-    /// - `attributes` generic must be of the correct type.
+    /// `attributes` generic should be of the correct type.
     #[doc(alias = "CTRubyAnnotationCreateWithAttributes")]
     #[inline]
     pub unsafe fn with_attributes(
@@ -288,7 +287,7 @@ impl CTRubyAnnotation {
         overhang: CTRubyOverhang,
         position: CTRubyPosition,
         string: &CFString,
-        attributes: &CFDictionary,
+        attributes: &CFDictionary<CFString, CFType>,
     ) -> CFRetained<CTRubyAnnotation> {
         extern "C-unwind" {
             fn CTRubyAnnotationCreateWithAttributes(
@@ -296,7 +295,7 @@ impl CTRubyAnnotation {
                 overhang: CTRubyOverhang,
                 position: CTRubyPosition,
                 string: &CFString,
-                attributes: &CFDictionary,
+                attributes: &CFDictionary<CFString, CFType>,
             ) -> Option<NonNull<CTRubyAnnotation>>;
         }
         let ret = unsafe {

@@ -15,9 +15,10 @@ use crate::*;
 ///
 /// Returns: An array of CFStrings.
 #[inline]
-pub extern "C-unwind" fn CTFontManagerCopyAvailablePostScriptNames() -> CFRetained<CFArray> {
+pub extern "C-unwind" fn CTFontManagerCopyAvailablePostScriptNames() -> CFRetained<CFArray<CFString>>
+{
     extern "C-unwind" {
-        fn CTFontManagerCopyAvailablePostScriptNames() -> Option<NonNull<CFArray>>;
+        fn CTFontManagerCopyAvailablePostScriptNames() -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { CTFontManagerCopyAvailablePostScriptNames() };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -29,9 +30,10 @@ pub extern "C-unwind" fn CTFontManagerCopyAvailablePostScriptNames() -> CFRetain
 ///
 /// Returns: An array of CFStrings.
 #[inline]
-pub extern "C-unwind" fn CTFontManagerCopyAvailableFontFamilyNames() -> CFRetained<CFArray> {
+pub extern "C-unwind" fn CTFontManagerCopyAvailableFontFamilyNames() -> CFRetained<CFArray<CFString>>
+{
     extern "C-unwind" {
-        fn CTFontManagerCopyAvailableFontFamilyNames() -> Option<NonNull<CFArray>>;
+        fn CTFontManagerCopyAvailableFontFamilyNames() -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { CTFontManagerCopyAvailableFontFamilyNames() };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -43,9 +45,9 @@ pub extern "C-unwind" fn CTFontManagerCopyAvailableFontFamilyNames() -> CFRetain
 ///
 /// Returns: An array of CFURLs.
 #[inline]
-pub extern "C-unwind" fn CTFontManagerCopyAvailableFontURLs() -> CFRetained<CFArray> {
+pub extern "C-unwind" fn CTFontManagerCopyAvailableFontURLs() -> CFRetained<CFArray<CFURL>> {
     extern "C-unwind" {
-        fn CTFontManagerCopyAvailableFontURLs() -> Option<NonNull<CFArray>>;
+        fn CTFontManagerCopyAvailableFontURLs() -> Option<NonNull<CFArray<CFURL>>>;
     }
     let ret = unsafe { CTFontManagerCopyAvailableFontURLs() };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -85,12 +87,15 @@ extern "C-unwind" {
 ///
 ///
 /// Returns: An array of CTFontDescriptors or NULL if there are no valid fonts.
+#[cfg(feature = "CTFontDescriptor")]
 #[inline]
 pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromURL(
     file_url: &CFURL,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CTFontDescriptor>>> {
     extern "C-unwind" {
-        fn CTFontManagerCreateFontDescriptorsFromURL(file_url: &CFURL) -> Option<NonNull<CFArray>>;
+        fn CTFontManagerCreateFontDescriptorsFromURL(
+            file_url: &CFURL,
+        ) -> Option<NonNull<CFArray<CTFontDescriptor>>>;
     }
     let ret = unsafe { CTFontManagerCreateFontDescriptorsFromURL(file_url) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -129,12 +134,15 @@ pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorFromData(
 ///
 ///
 /// Returns: An array of font descriptors. This can be an empty array in the event of invalid or unsupported font data.
+#[cfg(feature = "CTFontDescriptor")]
 #[inline]
 pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromData(
     data: &CFData,
-) -> CFRetained<CFArray> {
+) -> CFRetained<CFArray<CTFontDescriptor>> {
     extern "C-unwind" {
-        fn CTFontManagerCreateFontDescriptorsFromData(data: &CFData) -> Option<NonNull<CFArray>>;
+        fn CTFontManagerCreateFontDescriptorsFromData(
+            data: &CFData,
+        ) -> Option<NonNull<CFArray<CTFontDescriptor>>>;
     }
     let ret = unsafe { CTFontManagerCreateFontDescriptorsFromData(data) };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -212,7 +220,7 @@ extern "C-unwind" {
     pub fn CTFontManagerRegisterFontsForURL(
         font_url: &CFURL,
         scope: CTFontManagerScope,
-        error: *mut *mut CFError,
+        error: Option<&mut *mut CFError>,
     ) -> bool;
 }
 
@@ -238,7 +246,7 @@ extern "C-unwind" {
     pub fn CTFontManagerUnregisterFontsForURL(
         font_url: &CFURL,
         scope: CTFontManagerScope,
-        error: *mut *mut CFError,
+        error: Option<&mut *mut CFError>,
     ) -> bool;
 }
 
@@ -264,7 +272,10 @@ extern "C-unwind" {
     /// `error` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use CTFontManagerCreateFontDescriptorsFromData or CTFontManagerRegisterFontsForURL"]
-    pub fn CTFontManagerRegisterGraphicsFont(font: &CGFont, error: *mut *mut CFError) -> bool;
+    pub fn CTFontManagerRegisterGraphicsFont(
+        font: &CGFont,
+        error: Option<&mut *mut CFError>,
+    ) -> bool;
 }
 
 extern "C-unwind" {
@@ -284,7 +295,10 @@ extern "C-unwind" {
     /// `error` must be a valid pointer or null.
     #[cfg(feature = "objc2-core-graphics")]
     #[deprecated = "Use the API corresponding to the one used to register the font"]
-    pub fn CTFontManagerUnregisterGraphicsFont(font: &CGFont, error: *mut *mut CFError) -> bool;
+    pub fn CTFontManagerUnregisterGraphicsFont(
+        font: &CGFont,
+        error: Option<&mut *mut CFError>,
+    ) -> bool;
 }
 
 extern "C-unwind" {
@@ -304,13 +318,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `font_ur_ls` generic must be of the correct type.
-    /// - `errors` must be a valid pointer or null.
+    /// `errors` must be a valid pointer or null.
     #[deprecated]
     pub fn CTFontManagerRegisterFontsForURLs(
-        font_ur_ls: &CFArray,
+        font_ur_ls: &CFArray<CFURL>,
         scope: CTFontManagerScope,
-        errors: *mut *const CFArray,
+        errors: Option<&mut *const CFArray<CFError>>,
     ) -> bool;
 }
 
@@ -332,171 +345,211 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `font_ur_ls` generic must be of the correct type.
-    /// - `errors` must be a valid pointer or null.
+    /// `errors` must be a valid pointer or null.
     #[deprecated]
     pub fn CTFontManagerUnregisterFontsForURLs(
-        font_ur_ls: &CFArray,
+        font_ur_ls: &CFArray<CFURL>,
         scope: CTFontManagerScope,
-        errors: *mut *const CFArray,
+        errors: Option<&mut *const CFArray<CFError>>,
     ) -> bool;
 }
 
-extern "C-unwind" {
-    /// Registers fonts from the specified font URLs with the font manager. Registered fonts are discoverable through font descriptor matching in the calling process
-    ///
-    ///
-    /// In iOS, fonts registered with the persistent scope are not automatically available to other processes. Other process may call CTFontManagerRequestFonts to get access to these fonts.
-    ///
-    ///
-    /// Parameter `fontURLs`: A file URL for the fonts or collections (TTC or OTC) to be registered. Once fonts have been registered from a file, it shouldn't be moved or renamed.
-    ///
-    ///
-    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
-    ///
-    ///
-    /// Parameter `enabled`: Boolean value indicating whether the font derived from the URL should be enabled for font descriptor matching and/or discoverable via CTFontManagerRequestFonts.
-    ///
-    ///
-    /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
-    ///
-    /// # Safety
-    ///
-    /// `font_ur_ls` generic must be of the correct type.
-    #[cfg(feature = "block2")]
-    pub fn CTFontManagerRegisterFontURLs(
-        font_ur_ls: &CFArray,
-        scope: CTFontManagerScope,
-        enabled: bool,
-        registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
-    );
+/// Registers fonts from the specified font URLs with the font manager. Registered fonts are discoverable through font descriptor matching in the calling process
+///
+///
+/// In iOS, fonts registered with the persistent scope are not automatically available to other processes. Other process may call CTFontManagerRequestFonts to get access to these fonts.
+///
+///
+/// Parameter `fontURLs`: A file URL for the fonts or collections (TTC or OTC) to be registered. Once fonts have been registered from a file, it shouldn't be moved or renamed.
+///
+///
+/// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
+///
+///
+/// Parameter `enabled`: Boolean value indicating whether the font derived from the URL should be enabled for font descriptor matching and/or discoverable via CTFontManagerRequestFonts.
+///
+///
+/// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
+#[cfg(feature = "block2")]
+#[inline]
+pub extern "C-unwind" fn CTFontManagerRegisterFontURLs(
+    font_ur_ls: &CFArray<CFURL>,
+    scope: CTFontManagerScope,
+    enabled: bool,
+    registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+) {
+    extern "C-unwind" {
+        fn CTFontManagerRegisterFontURLs(
+            font_ur_ls: &CFArray<CFURL>,
+            scope: CTFontManagerScope,
+            enabled: bool,
+            registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+        );
+    }
+    unsafe { CTFontManagerRegisterFontURLs(font_ur_ls, scope, enabled, registration_handler) }
 }
 
-extern "C-unwind" {
-    /// Unregisters fonts from the specified font URLs with the font manager. Unregistered fonts do not participate in font descriptor matching.
-    /// iOS note: only fonts registered with CTFontManagerRegisterFontsForURL or CTFontManagerRegisterFontsForURLs can be unregistered with this API.
-    ///
-    ///
-    /// Parameter `fontURLs`: Array of font URLs.
-    ///
-    ///
-    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. Should match the scope the fonts are registered in. See scope constants for more details.
-    ///
-    ///
-    /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter will be an empty array if all files are unregistered. Otherwise, it will contain an array of CFError references. Each error reference will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully unregistered. Note, the handler may be called multiple times during the unregistration process. The done parameter will be set to true when the unregistration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
-    ///
-    /// # Safety
-    ///
-    /// `font_ur_ls` generic must be of the correct type.
-    #[cfg(feature = "block2")]
-    pub fn CTFontManagerUnregisterFontURLs(
-        font_ur_ls: &CFArray,
-        scope: CTFontManagerScope,
-        registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
-    );
+/// Unregisters fonts from the specified font URLs with the font manager. Unregistered fonts do not participate in font descriptor matching.
+/// iOS note: only fonts registered with CTFontManagerRegisterFontsForURL or CTFontManagerRegisterFontsForURLs can be unregistered with this API.
+///
+///
+/// Parameter `fontURLs`: Array of font URLs.
+///
+///
+/// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. Should match the scope the fonts are registered in. See scope constants for more details.
+///
+///
+/// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter will be an empty array if all files are unregistered. Otherwise, it will contain an array of CFError references. Each error reference will contain a CFArray of font URLs corresponding to kCTFontManagerErrorFontURLsKey. These URLs represent the font files that caused the error, and were not successfully unregistered. Note, the handler may be called multiple times during the unregistration process. The done parameter will be set to true when the unregistration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
+#[cfg(feature = "block2")]
+#[inline]
+pub extern "C-unwind" fn CTFontManagerUnregisterFontURLs(
+    font_ur_ls: &CFArray<CFURL>,
+    scope: CTFontManagerScope,
+    registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+) {
+    extern "C-unwind" {
+        fn CTFontManagerUnregisterFontURLs(
+            font_ur_ls: &CFArray<CFURL>,
+            scope: CTFontManagerScope,
+            registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+        );
+    }
+    unsafe { CTFontManagerUnregisterFontURLs(font_ur_ls, scope, registration_handler) }
 }
 
-extern "C-unwind" {
-    /// Registers font descriptors with the font manager. Registered fonts are discoverable through font descriptor matching in the calling process.
-    ///
-    ///
-    /// Fonts descriptors registered in disabled state are not immediately available for descriptor matching but the font manager will know the descriptors could be made available if necessary. These decriptors can be enabled by making this called again with the enabled parameter set to true. This operation may fail if there is another font registered and enabled with the same Postscript name. In iOS, fonts registered with the persistent scope are not automatically available to other processes. Other process may call CTFontManagerRequestFonts to get access to these fonts.
-    ///
-    ///
-    /// Parameter `fontDescriptors`: Array of font descriptors to register. Font descriptor keys used for registration are: kCTFontURLAttribute, kCTFontNameAttribute, kCTFontFamilyNameAttribute, or kCTFontRegistrationUserInfoAttribute.
-    ///
-    ///
-    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
-    ///
-    ///
-    /// Parameter `enabled`: Boolean value indicating whether the font descriptors should be enabled for font descriptor matching and/or discoverable via CTFontManagerRequestFonts.
-    ///
-    ///
-    /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font descriptors corresponding to kCTFontManagerErrorFontDescriptorsKey. These represent the font descriptors that caused the error, and were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
-    ///
-    /// # Safety
-    ///
-    /// `font_descriptors` generic must be of the correct type.
-    #[cfg(feature = "block2")]
-    pub fn CTFontManagerRegisterFontDescriptors(
-        font_descriptors: &CFArray,
-        scope: CTFontManagerScope,
-        enabled: bool,
-        registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
-    );
+/// Registers font descriptors with the font manager. Registered fonts are discoverable through font descriptor matching in the calling process.
+///
+///
+/// Fonts descriptors registered in disabled state are not immediately available for descriptor matching but the font manager will know the descriptors could be made available if necessary. These decriptors can be enabled by making this called again with the enabled parameter set to true. This operation may fail if there is another font registered and enabled with the same Postscript name. In iOS, fonts registered with the persistent scope are not automatically available to other processes. Other process may call CTFontManagerRequestFonts to get access to these fonts.
+///
+///
+/// Parameter `fontDescriptors`: Array of font descriptors to register. Font descriptor keys used for registration are: kCTFontURLAttribute, kCTFontNameAttribute, kCTFontFamilyNameAttribute, or kCTFontRegistrationUserInfoAttribute.
+///
+///
+/// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
+///
+///
+/// Parameter `enabled`: Boolean value indicating whether the font descriptors should be enabled for font descriptor matching and/or discoverable via CTFontManagerRequestFonts.
+///
+///
+/// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font descriptors corresponding to kCTFontManagerErrorFontDescriptorsKey. These represent the font descriptors that caused the error, and were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
+#[cfg(all(feature = "CTFontDescriptor", feature = "block2"))]
+#[inline]
+pub extern "C-unwind" fn CTFontManagerRegisterFontDescriptors(
+    font_descriptors: &CFArray<CTFontDescriptor>,
+    scope: CTFontManagerScope,
+    enabled: bool,
+    registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+) {
+    extern "C-unwind" {
+        fn CTFontManagerRegisterFontDescriptors(
+            font_descriptors: &CFArray<CTFontDescriptor>,
+            scope: CTFontManagerScope,
+            enabled: bool,
+            registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+        );
+    }
+    unsafe {
+        CTFontManagerRegisterFontDescriptors(font_descriptors, scope, enabled, registration_handler)
+    }
 }
 
-extern "C-unwind" {
-    /// Unregisters font descriptors with the font manager. Unregistered fonts do not participate in font descriptor matching.
-    ///
-    ///
-    /// Parameter `fontDescriptors`: Array of font descriptors to unregister.
-    ///
-    ///
-    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
-    ///
-    ///
-    /// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter will be an empty array if all font descriptors are unregistered. Otherwise, it will contain an array of CFError references. Each error reference will contain a CFArray of font descriptors corresponding to kCTFontManagerErrorFontDescriptorsKey. These represent the font descriptors that caused the error, and were not successfully unregistered. Note, the handler may be called multiple times during the unregistration process. The done parameter will be set to true when the unregistration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
-    ///
-    /// # Safety
-    ///
-    /// `font_descriptors` generic must be of the correct type.
-    #[cfg(feature = "block2")]
-    pub fn CTFontManagerUnregisterFontDescriptors(
-        font_descriptors: &CFArray,
-        scope: CTFontManagerScope,
-        registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
-    );
+/// Unregisters font descriptors with the font manager. Unregistered fonts do not participate in font descriptor matching.
+///
+///
+/// Parameter `fontDescriptors`: Array of font descriptors to unregister.
+///
+///
+/// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. See scope constants for more details.
+///
+///
+/// Parameter `registrationHandler`: Block called as errors are discovered or upon completion. The errors parameter will be an empty array if all font descriptors are unregistered. Otherwise, it will contain an array of CFError references. Each error reference will contain a CFArray of font descriptors corresponding to kCTFontManagerErrorFontDescriptorsKey. These represent the font descriptors that caused the error, and were not successfully unregistered. Note, the handler may be called multiple times during the unregistration process. The done parameter will be set to true when the unregistration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
+#[cfg(all(feature = "CTFontDescriptor", feature = "block2"))]
+#[inline]
+pub extern "C-unwind" fn CTFontManagerUnregisterFontDescriptors(
+    font_descriptors: &CFArray<CTFontDescriptor>,
+    scope: CTFontManagerScope,
+    registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+) {
+    extern "C-unwind" {
+        fn CTFontManagerUnregisterFontDescriptors(
+            font_descriptors: &CFArray<CTFontDescriptor>,
+            scope: CTFontManagerScope,
+            registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+        );
+    }
+    unsafe { CTFontManagerUnregisterFontDescriptors(font_descriptors, scope, registration_handler) }
 }
 
-extern "C-unwind" {
-    /// Registers named font assets in the specified bundle with the font manager. Registered fonts are discoverable through font descriptor matching in the calling process.
-    ///
-    ///
-    /// Font assets are extracted from the asset catalog and registered. This call must be made after the completion handler of either NSBundleResourceRequest beginAccessingResourcesWithCompletionHandler: or conditionallyBeginAccessingResourcesWithCompletionHandler: is called successfully.
-    /// Name the assets using Postscript names for individual faces, or family names for variable/collection fonts. The same names can be used to unregister the fonts with CTFontManagerUnregisterFontDescriptors. In iOS, fonts registered with the persistent scope are not automatically available to other processes. Other process may call CTFontManagerRequestFonts to get access to these fonts.
-    ///
-    ///
-    /// Parameter `fontAssetNames`: Array of font name assets in asset catalog.
-    ///
-    ///
-    /// Parameter `bundle`: Bundle containing asset catalog. A null value resolves to the main bundle.
-    ///
-    ///
-    /// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. kCTFontManagerScopePersistent is the only supported scope for iOS.
-    ///
-    ///
-    /// Parameter `enabled`: Boolean value indicating whether the font assets should be enabled for font descriptor matching and/or discoverable via CTFontManagerRequestFonts.
-    ///
-    ///
-    /// Parameter `registrationHandler`: Block called as errors are discovered, or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font asset names corresponding to kCTFontManagerErrorFontAssetNameKey. These represent the font asset names that were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
-    ///
-    /// # Safety
-    ///
-    /// `font_asset_names` generic must be of the correct type.
-    #[cfg(feature = "block2")]
-    pub fn CTFontManagerRegisterFontsWithAssetNames(
-        font_asset_names: &CFArray,
-        bundle: Option<&CFBundle>,
-        scope: CTFontManagerScope,
-        enabled: bool,
-        registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
-    );
+/// Registers named font assets in the specified bundle with the font manager. Registered fonts are discoverable through font descriptor matching in the calling process.
+///
+///
+/// Font assets are extracted from the asset catalog and registered. This call must be made after the completion handler of either NSBundleResourceRequest beginAccessingResourcesWithCompletionHandler: or conditionallyBeginAccessingResourcesWithCompletionHandler: is called successfully.
+/// Name the assets using Postscript names for individual faces, or family names for variable/collection fonts. The same names can be used to unregister the fonts with CTFontManagerUnregisterFontDescriptors. In iOS, fonts registered with the persistent scope are not automatically available to other processes. Other process may call CTFontManagerRequestFonts to get access to these fonts.
+///
+///
+/// Parameter `fontAssetNames`: Array of font name assets in asset catalog.
+///
+///
+/// Parameter `bundle`: Bundle containing asset catalog. A null value resolves to the main bundle.
+///
+///
+/// Parameter `scope`: Scope constant defining the availability and lifetime of the registration. kCTFontManagerScopePersistent is the only supported scope for iOS.
+///
+///
+/// Parameter `enabled`: Boolean value indicating whether the font assets should be enabled for font descriptor matching and/or discoverable via CTFontManagerRequestFonts.
+///
+///
+/// Parameter `registrationHandler`: Block called as errors are discovered, or upon completion. The errors parameter contains an array of CFError references. An empty array indicates no errors. Each error reference will contain a CFArray of font asset names corresponding to kCTFontManagerErrorFontAssetNameKey. These represent the font asset names that were not successfully registered. Note, the handler may be called multiple times during the registration process. The done parameter will be set to true when the registration process has completed. The handler should return false if the operation is to be stopped. This may be desirable after receiving an error.
+#[cfg(feature = "block2")]
+#[inline]
+pub extern "C-unwind" fn CTFontManagerRegisterFontsWithAssetNames(
+    font_asset_names: &CFArray<CFString>,
+    bundle: Option<&CFBundle>,
+    scope: CTFontManagerScope,
+    enabled: bool,
+    registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+) {
+    extern "C-unwind" {
+        fn CTFontManagerRegisterFontsWithAssetNames(
+            font_asset_names: &CFArray<CFString>,
+            bundle: Option<&CFBundle>,
+            scope: CTFontManagerScope,
+            enabled: bool,
+            registration_handler: Option<&block2::DynBlock<dyn Fn(NonNull<CFArray>, bool) -> bool>>,
+        );
+    }
+    unsafe {
+        CTFontManagerRegisterFontsWithAssetNames(
+            font_asset_names,
+            bundle,
+            scope,
+            enabled,
+            registration_handler,
+        )
+    }
 }
 
-extern "C-unwind" {
-    /// Enables or disables the matching font descriptors for font descriptor matching.
-    ///
-    ///
-    /// Parameter `descriptors`: Array of font descriptors.
-    ///
-    ///
-    /// Parameter `enable`: Boolean value indicating whether the fonts matching descriptors should be enabled for font descriptor matching.
-    ///
-    /// # Safety
-    ///
-    /// `descriptors` generic must be of the correct type.
-    pub fn CTFontManagerEnableFontDescriptors(descriptors: &CFArray, enable: bool);
+/// Enables or disables the matching font descriptors for font descriptor matching.
+///
+///
+/// Parameter `descriptors`: Array of font descriptors.
+///
+///
+/// Parameter `enable`: Boolean value indicating whether the fonts matching descriptors should be enabled for font descriptor matching.
+#[cfg(feature = "CTFontDescriptor")]
+#[inline]
+pub extern "C-unwind" fn CTFontManagerEnableFontDescriptors(
+    descriptors: &CFArray<CTFontDescriptor>,
+    enable: bool,
+) {
+    extern "C-unwind" {
+        fn CTFontManagerEnableFontDescriptors(
+            descriptors: &CFArray<CTFontDescriptor>,
+            enable: bool,
+        );
+    }
+    unsafe { CTFontManagerEnableFontDescriptors(descriptors, enable) }
 }
 
 /// Returns the registration scope of the specified URL.
@@ -527,42 +580,46 @@ pub extern "C-unwind" fn CTFontManagerGetScopeForURL(font_url: &CFURL) -> CTFont
 ///
 ///
 /// Returns: Array of of font descriptors registered by the application. Array may be empty if nothing is registered.
+#[cfg(feature = "CTFontDescriptor")]
 #[inline]
 pub extern "C-unwind" fn CTFontManagerCopyRegisteredFontDescriptors(
     scope: CTFontManagerScope,
     enabled: bool,
-) -> CFRetained<CFArray> {
+) -> CFRetained<CFArray<CTFontDescriptor>> {
     extern "C-unwind" {
         fn CTFontManagerCopyRegisteredFontDescriptors(
             scope: CTFontManagerScope,
             enabled: bool,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CTFontDescriptor>>>;
     }
     let ret = unsafe { CTFontManagerCopyRegisteredFontDescriptors(scope, enabled) };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    /// Resolves font descriptors specified on input. On iOS only, if the font descriptors cannot be found, the user is presented with a dialog indicating fonts that could not be resolved. The user may optionally be provided with a way to resolve the missing fonts if the font manager has a way to enable them.
-    ///
-    ///
-    /// On iOS, fonts registered by font provider applications in the persistent scope are not automatically available to other applications. Client applications must call this function to make the requested fonts available for font descriptor matching.
-    ///
-    ///
-    /// Parameter `fontDescriptors`: Array of font descriptors to make available to the process.  Keys used to describe the fonts may be a combination of: kCTFontNameAttribute, kCTFontFamilyNameAttribute, or kCTFontRegistrationUserInfoAttribute.
-    ///
-    ///
-    /// Parameter `completionHandler`: Block called after request operation completes. Block takes a single parameter containing an array of those descriptors that could not be resolved/found. The array can be empty if all descriptors were resolved.
-    ///
-    /// # Safety
-    ///
-    /// `font_descriptors` generic must be of the correct type.
-    #[cfg(feature = "block2")]
-    pub fn CTFontManagerRequestFonts(
-        font_descriptors: &CFArray,
-        completion_handler: &block2::DynBlock<dyn Fn(NonNull<CFArray>)>,
-    );
+/// Resolves font descriptors specified on input. On iOS only, if the font descriptors cannot be found, the user is presented with a dialog indicating fonts that could not be resolved. The user may optionally be provided with a way to resolve the missing fonts if the font manager has a way to enable them.
+///
+///
+/// On iOS, fonts registered by font provider applications in the persistent scope are not automatically available to other applications. Client applications must call this function to make the requested fonts available for font descriptor matching.
+///
+///
+/// Parameter `fontDescriptors`: Array of font descriptors to make available to the process.  Keys used to describe the fonts may be a combination of: kCTFontNameAttribute, kCTFontFamilyNameAttribute, or kCTFontRegistrationUserInfoAttribute.
+///
+///
+/// Parameter `completionHandler`: Block called after request operation completes. Block takes a single parameter containing an array of those descriptors that could not be resolved/found. The array can be empty if all descriptors were resolved.
+#[cfg(all(feature = "CTFontDescriptor", feature = "block2"))]
+#[inline]
+pub extern "C-unwind" fn CTFontManagerRequestFonts(
+    font_descriptors: &CFArray<CTFontDescriptor>,
+    completion_handler: &block2::DynBlock<dyn Fn(NonNull<CFArray>)>,
+) {
+    extern "C-unwind" {
+        fn CTFontManagerRequestFonts(
+            font_descriptors: &CFArray<CTFontDescriptor>,
+            completion_handler: &block2::DynBlock<dyn Fn(NonNull<CFArray>)>,
+        );
+    }
+    unsafe { CTFontManagerRequestFonts(font_descriptors, completion_handler) }
 }
 
 /// Determines whether a file is in a supported font format.

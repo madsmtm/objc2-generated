@@ -175,17 +175,20 @@ impl CTRunDelegate {
     ///
     /// # Safety
     ///
-    /// - `callbacks` must be a valid pointer.
+    /// - `callbacks` struct field 2 must be implemented correctly.
+    /// - `callbacks` struct field 3 must be implemented correctly.
+    /// - `callbacks` struct field 4 must be implemented correctly.
+    /// - `callbacks` struct field 5 must be implemented correctly.
     /// - `ref_con` must be a valid pointer or null.
     #[doc(alias = "CTRunDelegateCreate")]
     #[inline]
     pub unsafe fn new(
-        callbacks: NonNull<CTRunDelegateCallbacks>,
+        callbacks: &CTRunDelegateCallbacks,
         ref_con: *mut c_void,
     ) -> Option<CFRetained<CTRunDelegate>> {
         extern "C-unwind" {
             fn CTRunDelegateCreate(
-                callbacks: NonNull<CTRunDelegateCallbacks>,
+                callbacks: &CTRunDelegateCallbacks,
                 ref_con: *mut c_void,
             ) -> Option<NonNull<CTRunDelegate>>;
         }
@@ -221,18 +224,14 @@ extern_protocol!(
     #[cfg(feature = "objc2")]
     pub unsafe trait CTAdaptiveImageProviding {
         #[cfg(feature = "objc2-core-graphics")]
-        /// # Safety
-        ///
-        /// - `out_image_offset` must be a valid pointer.
-        /// - `out_image_size` must be a valid pointer.
         #[unsafe(method(imageForProposedSize:scaleFactor:imageOffset:imageSize:))]
         #[unsafe(method_family = none)]
-        unsafe fn imageForProposedSize_scaleFactor_imageOffset_imageSize(
+        fn imageForProposedSize_scaleFactor_imageOffset_imageSize(
             &self,
             proposed_size: CGSize,
             scale_factor: CGFloat,
-            out_image_offset: NonNull<CGPoint>,
-            out_image_size: NonNull<CGSize>,
+            out_image_offset: &mut CGPoint,
+            out_image_size: &mut CGSize,
         ) -> Option<Retained<CGImage>>;
     }
 );

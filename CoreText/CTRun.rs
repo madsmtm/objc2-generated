@@ -123,9 +123,9 @@ impl CTRun {
     /// Returns: The attribute dictionary.
     #[doc(alias = "CTRunGetAttributes")]
     #[inline]
-    pub fn attributes(&self) -> CFRetained<CFDictionary> {
+    pub fn attributes(&self) -> CFRetained<CFDictionary<CFString, CFType>> {
         extern "C-unwind" {
-            fn CTRunGetAttributes(run: &CTRun) -> Option<NonNull<CFDictionary>>;
+            fn CTRunGetAttributes(run: &CTRun) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CTRunGetAttributes(self) };
         let ret =
@@ -429,28 +429,22 @@ impl CTRun {
     ///
     /// Returns: The typographic width of the run. If run or range is
     /// invalid, then this function will always return zero.
-    ///
-    /// # Safety
-    ///
-    /// - `ascent` must be a valid pointer or null.
-    /// - `descent` must be a valid pointer or null.
-    /// - `leading` must be a valid pointer or null.
     #[doc(alias = "CTRunGetTypographicBounds")]
     #[inline]
-    pub unsafe fn typographic_bounds(
+    pub fn typographic_bounds(
         &self,
         range: CFRange,
-        ascent: *mut CGFloat,
-        descent: *mut CGFloat,
-        leading: *mut CGFloat,
+        ascent: Option<&mut CGFloat>,
+        descent: Option<&mut CGFloat>,
+        leading: Option<&mut CGFloat>,
     ) -> c_double {
         extern "C-unwind" {
             fn CTRunGetTypographicBounds(
                 run: &CTRun,
                 range: CFRange,
-                ascent: *mut CGFloat,
-                descent: *mut CGFloat,
-                leading: *mut CGFloat,
+                ascent: Option<&mut CGFloat>,
+                descent: Option<&mut CGFloat>,
+                leading: Option<&mut CGFloat>,
             ) -> c_double;
         }
         unsafe { CTRunGetTypographicBounds(self, range, ascent, descent, leading) }

@@ -131,18 +131,17 @@ impl CTTypesetter {
     ///
     /// # Safety
     ///
-    /// - `options` generic must be of the correct type.
-    /// - `options` generic must be of the correct type.
+    /// `options` generic should be of the correct type.
     #[doc(alias = "CTTypesetterCreateWithAttributedStringAndOptions")]
     #[inline]
     pub unsafe fn with_attributed_string_and_options(
         string: &CFAttributedString,
-        options: Option<&CFDictionary>,
+        options: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CTTypesetter>> {
         extern "C-unwind" {
             fn CTTypesetterCreateWithAttributedStringAndOptions(
                 string: &CFAttributedString,
-                options: Option<&CFDictionary>,
+                options: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CTTypesetter>>;
         }
         let ret = unsafe { CTTypesetterCreateWithAttributedStringAndOptions(string, options) };
