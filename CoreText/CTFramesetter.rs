@@ -59,7 +59,7 @@ impl CTFramesetter {
     #[doc(alias = "CTFramesetterCreateWithTypesetter")]
     #[cfg(feature = "CTTypesetter")]
     #[inline]
-    pub unsafe fn with_typesetter(typesetter: &CTTypesetter) -> CFRetained<CTFramesetter> {
+    pub fn with_typesetter(typesetter: &CTTypesetter) -> CFRetained<CTFramesetter> {
         extern "C-unwind" {
             fn CTFramesetterCreateWithTypesetter(
                 typesetter: &CTTypesetter,
@@ -85,9 +85,7 @@ impl CTFramesetter {
     /// Returns: This function will return a reference to a CTFramesetter object.
     #[doc(alias = "CTFramesetterCreateWithAttributedString")]
     #[inline]
-    pub unsafe fn with_attributed_string(
-        attr_string: &CFAttributedString,
-    ) -> CFRetained<CTFramesetter> {
+    pub fn with_attributed_string(attr_string: &CFAttributedString) -> CFRetained<CTFramesetter> {
         extern "C-unwind" {
             fn CTFramesetterCreateWithAttributedString(
                 attr_string: &CFAttributedString,
@@ -174,7 +172,7 @@ impl CTFramesetter {
     #[doc(alias = "CTFramesetterGetTypesetter")]
     #[cfg(feature = "CTTypesetter")]
     #[inline]
-    pub unsafe fn typesetter(&self) -> CFRetained<CTTypesetter> {
+    pub fn typesetter(&self) -> CFRetained<CTTypesetter> {
         extern "C-unwind" {
             fn CTFramesetterGetTypesetter(
                 framesetter: &CTFramesetter,
@@ -256,7 +254,7 @@ impl CTFramesetter {
 #[cfg(feature = "CTTypesetter")]
 #[deprecated = "renamed to `CTFramesetter::with_typesetter`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFramesetterCreateWithTypesetter(
+pub extern "C-unwind" fn CTFramesetterCreateWithTypesetter(
     typesetter: &CTTypesetter,
 ) -> CFRetained<CTFramesetter> {
     extern "C-unwind" {
@@ -271,7 +269,7 @@ pub unsafe extern "C-unwind" fn CTFramesetterCreateWithTypesetter(
 
 #[deprecated = "renamed to `CTFramesetter::with_attributed_string`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFramesetterCreateWithAttributedString(
+pub extern "C-unwind" fn CTFramesetterCreateWithAttributedString(
     attr_string: &CFAttributedString,
 ) -> CFRetained<CTFramesetter> {
     extern "C-unwind" {
@@ -310,7 +308,7 @@ pub unsafe extern "C-unwind" fn CTFramesetterCreateFrame(
 #[cfg(feature = "CTTypesetter")]
 #[deprecated = "renamed to `CTFramesetter::typesetter`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFramesetterGetTypesetter(
+pub extern "C-unwind" fn CTFramesetterGetTypesetter(
     framesetter: &CTFramesetter,
 ) -> CFRetained<CTTypesetter> {
     extern "C-unwind" {

@@ -271,7 +271,7 @@ impl CTRubyAnnotation {
     /// "rubyAnnotation".
     #[doc(alias = "CTRubyAnnotationCreateCopy")]
     #[inline]
-    pub unsafe fn copy(&self) -> CFRetained<CTRubyAnnotation> {
+    pub fn copy(&self) -> CFRetained<CTRubyAnnotation> {
         extern "C-unwind" {
             fn CTRubyAnnotationCreateCopy(
                 ruby_annotation: &CTRubyAnnotation,
@@ -293,7 +293,7 @@ impl CTRubyAnnotation {
     /// function will return its alignment. Otherwise it will return kCTRubyAlignmentInvalid.
     #[doc(alias = "CTRubyAnnotationGetAlignment")]
     #[inline]
-    pub unsafe fn alignment(&self) -> CTRubyAlignment {
+    pub fn alignment(&self) -> CTRubyAlignment {
         extern "C-unwind" {
             fn CTRubyAnnotationGetAlignment(ruby_annotation: &CTRubyAnnotation) -> CTRubyAlignment;
         }
@@ -310,7 +310,7 @@ impl CTRubyAnnotation {
     /// function will return its overhang value. Otherwise it will return kCTRubyOverhangInvalid.
     #[doc(alias = "CTRubyAnnotationGetOverhang")]
     #[inline]
-    pub unsafe fn overhang(&self) -> CTRubyOverhang {
+    pub fn overhang(&self) -> CTRubyOverhang {
         extern "C-unwind" {
             fn CTRubyAnnotationGetOverhang(ruby_annotation: &CTRubyAnnotation) -> CTRubyOverhang;
         }
@@ -327,7 +327,7 @@ impl CTRubyAnnotation {
     /// function will return its sizeFactor. Otherwise it will return 0.
     #[doc(alias = "CTRubyAnnotationGetSizeFactor")]
     #[inline]
-    pub unsafe fn size_factor(&self) -> CGFloat {
+    pub fn size_factor(&self) -> CGFloat {
         extern "C-unwind" {
             fn CTRubyAnnotationGetSizeFactor(ruby_annotation: &CTRubyAnnotation) -> CGFloat;
         }
@@ -347,10 +347,7 @@ impl CTRubyAnnotation {
     /// function will return a CFStringRef for the text. Otherwise it will return NULL.
     #[doc(alias = "CTRubyAnnotationGetTextForPosition")]
     #[inline]
-    pub unsafe fn text_for_position(
-        &self,
-        position: CTRubyPosition,
-    ) -> Option<CFRetained<CFString>> {
+    pub fn text_for_position(&self, position: CTRubyPosition) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CTRubyAnnotationGetTextForPosition(
                 ruby_annotation: &CTRubyAnnotation,
@@ -389,7 +386,7 @@ pub unsafe extern "C-unwind" fn CTRubyAnnotationCreateWithAttributes(
 
 #[deprecated = "renamed to `CTRubyAnnotation::copy`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTRubyAnnotationCreateCopy(
+pub extern "C-unwind" fn CTRubyAnnotationCreateCopy(
     ruby_annotation: &CTRubyAnnotation,
 ) -> CFRetained<CTRubyAnnotation> {
     extern "C-unwind" {
@@ -402,24 +399,42 @@ pub unsafe extern "C-unwind" fn CTRubyAnnotationCreateCopy(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTRubyAnnotation::alignment`"]
-    pub fn CTRubyAnnotationGetAlignment(ruby_annotation: &CTRubyAnnotation) -> CTRubyAlignment;
+#[deprecated = "renamed to `CTRubyAnnotation::alignment`"]
+#[inline]
+pub extern "C-unwind" fn CTRubyAnnotationGetAlignment(
+    ruby_annotation: &CTRubyAnnotation,
+) -> CTRubyAlignment {
+    extern "C-unwind" {
+        fn CTRubyAnnotationGetAlignment(ruby_annotation: &CTRubyAnnotation) -> CTRubyAlignment;
+    }
+    unsafe { CTRubyAnnotationGetAlignment(ruby_annotation) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTRubyAnnotation::overhang`"]
-    pub fn CTRubyAnnotationGetOverhang(ruby_annotation: &CTRubyAnnotation) -> CTRubyOverhang;
+#[deprecated = "renamed to `CTRubyAnnotation::overhang`"]
+#[inline]
+pub extern "C-unwind" fn CTRubyAnnotationGetOverhang(
+    ruby_annotation: &CTRubyAnnotation,
+) -> CTRubyOverhang {
+    extern "C-unwind" {
+        fn CTRubyAnnotationGetOverhang(ruby_annotation: &CTRubyAnnotation) -> CTRubyOverhang;
+    }
+    unsafe { CTRubyAnnotationGetOverhang(ruby_annotation) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTRubyAnnotation::size_factor`"]
-    pub fn CTRubyAnnotationGetSizeFactor(ruby_annotation: &CTRubyAnnotation) -> CGFloat;
+#[deprecated = "renamed to `CTRubyAnnotation::size_factor`"]
+#[inline]
+pub extern "C-unwind" fn CTRubyAnnotationGetSizeFactor(
+    ruby_annotation: &CTRubyAnnotation,
+) -> CGFloat {
+    extern "C-unwind" {
+        fn CTRubyAnnotationGetSizeFactor(ruby_annotation: &CTRubyAnnotation) -> CGFloat;
+    }
+    unsafe { CTRubyAnnotationGetSizeFactor(ruby_annotation) }
 }
 
 #[deprecated = "renamed to `CTRubyAnnotation::text_for_position`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTRubyAnnotationGetTextForPosition(
+pub extern "C-unwind" fn CTRubyAnnotationGetTextForPosition(
     ruby_annotation: &CTRubyAnnotation,
     position: CTRubyPosition,
 ) -> Option<CFRetained<CFString>> {

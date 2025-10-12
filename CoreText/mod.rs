@@ -2774,30 +2774,34 @@ pub const kCTVersionNumber10_14: c_uint = 0x000B0000;
 pub const kCTVersionNumber10_15: c_uint = 0x000C0000;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber11_0?language=objc)
 pub const kCTVersionNumber11_0: c_uint = 0x000D0000;
-extern "C-unwind" {
-    /// Returns the version of the CoreText framework.
-    ///
-    ///
-    /// This function returns a number indicating the version of the
-    /// CoreText framework. Note that framework version is not always
-    /// an accurate indicator of feature availability. The recommended
-    /// way to use this function is first to check that the function
-    /// pointer is non-NULL, followed by calling it and comparing its
-    /// result to a defined constant (or constants). For example, to
-    /// determine whether the CoreText API is available:
-    /// if (
-    /// &CTGetCoreTextVersion
-    /// != NULL
-    /// &
-    /// &
-    /// CTGetCoreTextVersion() >= kCTVersionNumber10_5) {
-    /// // CoreText API is available
-    /// }
-    ///
-    ///
-    /// Returns: The version number. This value is for comparison with the
-    /// constants beginning with kCTVersionNumber and will not exceed
-    /// kCTVersionNumber11_0.
-    #[deprecated = "Use -[NSProcessInfo operatingSystemVersion]"]
-    pub fn CTGetCoreTextVersion() -> u32;
+/// Returns the version of the CoreText framework.
+///
+///
+/// This function returns a number indicating the version of the
+/// CoreText framework. Note that framework version is not always
+/// an accurate indicator of feature availability. The recommended
+/// way to use this function is first to check that the function
+/// pointer is non-NULL, followed by calling it and comparing its
+/// result to a defined constant (or constants). For example, to
+/// determine whether the CoreText API is available:
+/// if (
+/// &CTGetCoreTextVersion
+/// != NULL
+/// &
+/// &
+/// CTGetCoreTextVersion() >= kCTVersionNumber10_5) {
+/// // CoreText API is available
+/// }
+///
+///
+/// Returns: The version number. This value is for comparison with the
+/// constants beginning with kCTVersionNumber and will not exceed
+/// kCTVersionNumber11_0.
+#[deprecated = "Use -[NSProcessInfo operatingSystemVersion]"]
+#[inline]
+pub extern "C-unwind" fn CTGetCoreTextVersion() -> u32 {
+    extern "C-unwind" {
+        fn CTGetCoreTextVersion() -> u32;
+    }
+    unsafe { CTGetCoreTextVersion() }
 }

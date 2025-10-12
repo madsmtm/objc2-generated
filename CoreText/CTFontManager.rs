@@ -15,7 +15,7 @@ use crate::*;
 ///
 /// Returns: An array of CFStrings.
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerCopyAvailablePostScriptNames() -> CFRetained<CFArray> {
+pub extern "C-unwind" fn CTFontManagerCopyAvailablePostScriptNames() -> CFRetained<CFArray> {
     extern "C-unwind" {
         fn CTFontManagerCopyAvailablePostScriptNames() -> Option<NonNull<CFArray>>;
     }
@@ -29,7 +29,7 @@ pub unsafe extern "C-unwind" fn CTFontManagerCopyAvailablePostScriptNames() -> C
 ///
 /// Returns: An array of CFStrings.
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerCopyAvailableFontFamilyNames() -> CFRetained<CFArray> {
+pub extern "C-unwind" fn CTFontManagerCopyAvailableFontFamilyNames() -> CFRetained<CFArray> {
     extern "C-unwind" {
         fn CTFontManagerCopyAvailableFontFamilyNames() -> Option<NonNull<CFArray>>;
     }
@@ -43,7 +43,7 @@ pub unsafe extern "C-unwind" fn CTFontManagerCopyAvailableFontFamilyNames() -> C
 ///
 /// Returns: An array of CFURLs.
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerCopyAvailableFontURLs() -> CFRetained<CFArray> {
+pub extern "C-unwind" fn CTFontManagerCopyAvailableFontURLs() -> CFRetained<CFArray> {
     extern "C-unwind" {
         fn CTFontManagerCopyAvailableFontURLs() -> Option<NonNull<CFArray>>;
     }
@@ -86,7 +86,7 @@ extern "C-unwind" {
 ///
 /// Returns: An array of CTFontDescriptors or NULL if there are no valid fonts.
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromURL(
+pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromURL(
     file_url: &CFURL,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -109,7 +109,7 @@ pub unsafe extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromURL(
 /// Returns: A font descriptor created from the data or NULL if it is not a valid font.
 #[cfg(feature = "CTFontDescriptor")]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerCreateFontDescriptorFromData(
+pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorFromData(
     data: &CFData,
 ) -> Option<CFRetained<CTFontDescriptor>> {
     extern "C-unwind" {
@@ -130,7 +130,7 @@ pub unsafe extern "C-unwind" fn CTFontManagerCreateFontDescriptorFromData(
 ///
 /// Returns: An array of font descriptors. This can be an empty array in the event of invalid or unsupported font data.
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromData(
+pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromData(
     data: &CFData,
 ) -> CFRetained<CFArray> {
     extern "C-unwind" {
@@ -499,15 +499,19 @@ extern "C-unwind" {
     pub fn CTFontManagerEnableFontDescriptors(descriptors: &CFArray, enable: bool);
 }
 
-extern "C-unwind" {
-    /// Returns the registration scope of the specified URL.
-    ///
-    ///
-    /// Parameter `fontURL`: Font URL.
-    ///
-    ///
-    /// Returns: Returns the registration scope of the specified URL, will return kCTFontManagerScopeNone if not currently registered.
-    pub fn CTFontManagerGetScopeForURL(font_url: &CFURL) -> CTFontManagerScope;
+/// Returns the registration scope of the specified URL.
+///
+///
+/// Parameter `fontURL`: Font URL.
+///
+///
+/// Returns: Returns the registration scope of the specified URL, will return kCTFontManagerScopeNone if not currently registered.
+#[inline]
+pub extern "C-unwind" fn CTFontManagerGetScopeForURL(font_url: &CFURL) -> CTFontManagerScope {
+    extern "C-unwind" {
+        fn CTFontManagerGetScopeForURL(font_url: &CFURL) -> CTFontManagerScope;
+    }
+    unsafe { CTFontManagerGetScopeForURL(font_url) }
 }
 
 /// Returns the font descriptors that were registered with the font manager.
@@ -524,7 +528,7 @@ extern "C-unwind" {
 ///
 /// Returns: Array of of font descriptors registered by the application. Array may be empty if nothing is registered.
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontManagerCopyRegisteredFontDescriptors(
+pub extern "C-unwind" fn CTFontManagerCopyRegisteredFontDescriptors(
     scope: CTFontManagerScope,
     enabled: bool,
 ) -> CFRetained<CFArray> {
@@ -561,18 +565,22 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    /// Determines whether a file is in a supported font format.
-    ///
-    ///
-    /// This function does not validate any font data, so clients using it must still be prepared to handle failed registration or font descriptor creation.
-    ///
-    ///
-    /// Parameter `fontURL`: A file URL.
-    ///
-    ///
-    /// Returns: This function returns true if the file is in a supported font format.
-    pub fn CTFontManagerIsSupportedFont(font_url: &CFURL) -> bool;
+/// Determines whether a file is in a supported font format.
+///
+///
+/// This function does not validate any font data, so clients using it must still be prepared to handle failed registration or font descriptor creation.
+///
+///
+/// Parameter `fontURL`: A file URL.
+///
+///
+/// Returns: This function returns true if the file is in a supported font format.
+#[inline]
+pub extern "C-unwind" fn CTFontManagerIsSupportedFont(font_url: &CFURL) -> bool {
+    extern "C-unwind" {
+        fn CTFontManagerIsSupportedFont(font_url: &CFURL) -> bool;
+    }
+    unsafe { CTFontManagerIsSupportedFont(font_url) }
 }
 
 /// Creates a CFRunLoopSourceRef that will be used to convey font requests from CTFontManager.
@@ -656,33 +664,46 @@ unsafe impl RefEncode for CTFontManagerAutoActivationSetting {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C-unwind" {
-    /// Sets the auto-activation for the specified bundle identifier.
-    ///
-    /// Parameter `bundleIdentifier`: The bundle identifier. Used to specify a particular application bundle. If NULL,
-    /// the current application bundle will be used. If kCTFontManagerBundleIdentifier is specified,
-    /// will set the global auto-activation settings.
-    ///
-    /// Parameter `setting`: The new setting.
-    ///
-    /// Function will apply the setting to the appropriate preferences location.
-    pub fn CTFontManagerSetAutoActivationSetting(
-        bundle_identifier: Option<&CFString>,
-        setting: CTFontManagerAutoActivationSetting,
-    );
+/// Sets the auto-activation for the specified bundle identifier.
+///
+/// Parameter `bundleIdentifier`: The bundle identifier. Used to specify a particular application bundle. If NULL,
+/// the current application bundle will be used. If kCTFontManagerBundleIdentifier is specified,
+/// will set the global auto-activation settings.
+///
+/// Parameter `setting`: The new setting.
+///
+/// Function will apply the setting to the appropriate preferences location.
+#[inline]
+pub extern "C-unwind" fn CTFontManagerSetAutoActivationSetting(
+    bundle_identifier: Option<&CFString>,
+    setting: CTFontManagerAutoActivationSetting,
+) {
+    extern "C-unwind" {
+        fn CTFontManagerSetAutoActivationSetting(
+            bundle_identifier: Option<&CFString>,
+            setting: CTFontManagerAutoActivationSetting,
+        );
+    }
+    unsafe { CTFontManagerSetAutoActivationSetting(bundle_identifier, setting) }
 }
 
-extern "C-unwind" {
-    /// Accessor for the auto-activation setting.
-    ///
-    /// Parameter `bundleIdentifier`: The bundle identifier. Used to specify a particular application bundle. If NULL,
-    /// the current application bundle will be used. If kCTFontManagerBundleIdentifier is specified,
-    /// will set the global auto-activation settings.
-    ///
-    /// Returns: Will return the auto-activation setting for specified bundle identifier.
-    pub fn CTFontManagerGetAutoActivationSetting(
-        bundle_identifier: Option<&CFString>,
-    ) -> CTFontManagerAutoActivationSetting;
+/// Accessor for the auto-activation setting.
+///
+/// Parameter `bundleIdentifier`: The bundle identifier. Used to specify a particular application bundle. If NULL,
+/// the current application bundle will be used. If kCTFontManagerBundleIdentifier is specified,
+/// will set the global auto-activation settings.
+///
+/// Returns: Will return the auto-activation setting for specified bundle identifier.
+#[inline]
+pub extern "C-unwind" fn CTFontManagerGetAutoActivationSetting(
+    bundle_identifier: Option<&CFString>,
+) -> CTFontManagerAutoActivationSetting {
+    extern "C-unwind" {
+        fn CTFontManagerGetAutoActivationSetting(
+            bundle_identifier: Option<&CFString>,
+        ) -> CTFontManagerAutoActivationSetting;
+    }
+    unsafe { CTFontManagerGetAutoActivationSetting(bundle_identifier) }
 }
 
 extern "C" {

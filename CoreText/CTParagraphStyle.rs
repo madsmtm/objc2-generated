@@ -514,7 +514,7 @@ impl CTParagraphStyle {
     /// "paragraphStyle".
     #[doc(alias = "CTParagraphStyleCreateCopy")]
     #[inline]
-    pub unsafe fn copy(&self) -> CFRetained<CTParagraphStyle> {
+    pub fn copy(&self) -> CFRetained<CTParagraphStyle> {
         extern "C-unwind" {
             fn CTParagraphStyleCreateCopy(
                 paragraph_style: &CTParagraphStyle,
@@ -602,7 +602,7 @@ pub unsafe extern "C-unwind" fn CTParagraphStyleCreate(
 
 #[deprecated = "renamed to `CTParagraphStyle::copy`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTParagraphStyleCreateCopy(
+pub extern "C-unwind" fn CTParagraphStyleCreateCopy(
     paragraph_style: &CTParagraphStyle,
 ) -> CFRetained<CTParagraphStyle> {
     extern "C-unwind" {

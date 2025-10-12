@@ -107,7 +107,7 @@ impl CTTextTab {
     #[doc(alias = "CTTextTabGetAlignment")]
     #[cfg(feature = "CTParagraphStyle")]
     #[inline]
-    pub unsafe fn alignment(&self) -> CTTextAlignment {
+    pub fn alignment(&self) -> CTTextAlignment {
         extern "C-unwind" {
             fn CTTextTabGetAlignment(tab: &CTTextTab) -> CTTextAlignment;
         }
@@ -123,7 +123,7 @@ impl CTTextTab {
     /// Returns: The tab's ruler location relative to the back margin.
     #[doc(alias = "CTTextTabGetLocation")]
     #[inline]
-    pub unsafe fn location(&self) -> c_double {
+    pub fn location(&self) -> c_double {
         extern "C-unwind" {
             fn CTTextTabGetLocation(tab: &CTTextTab) -> c_double;
         }
@@ -140,7 +140,7 @@ impl CTTextTab {
     /// no dictionary is present.
     #[doc(alias = "CTTextTabGetOptions")]
     #[inline]
-    pub unsafe fn options(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn options(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CTTextTabGetOptions(tab: &CTTextTab) -> Option<NonNull<CFDictionary>>;
         }
@@ -169,22 +169,28 @@ pub unsafe extern "C-unwind" fn CTTextTabCreate(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "CTParagraphStyle")]
-    #[deprecated = "renamed to `CTTextTab::alignment`"]
-    pub fn CTTextTabGetAlignment(tab: &CTTextTab) -> CTTextAlignment;
+#[cfg(feature = "CTParagraphStyle")]
+#[deprecated = "renamed to `CTTextTab::alignment`"]
+#[inline]
+pub extern "C-unwind" fn CTTextTabGetAlignment(tab: &CTTextTab) -> CTTextAlignment {
+    extern "C-unwind" {
+        fn CTTextTabGetAlignment(tab: &CTTextTab) -> CTTextAlignment;
+    }
+    unsafe { CTTextTabGetAlignment(tab) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTTextTab::location`"]
-    pub fn CTTextTabGetLocation(tab: &CTTextTab) -> c_double;
+#[deprecated = "renamed to `CTTextTab::location`"]
+#[inline]
+pub extern "C-unwind" fn CTTextTabGetLocation(tab: &CTTextTab) -> c_double {
+    extern "C-unwind" {
+        fn CTTextTabGetLocation(tab: &CTTextTab) -> c_double;
+    }
+    unsafe { CTTextTabGetLocation(tab) }
 }
 
 #[deprecated = "renamed to `CTTextTab::options`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTTextTabGetOptions(
-    tab: &CTTextTab,
-) -> Option<CFRetained<CFDictionary>> {
+pub extern "C-unwind" fn CTTextTabGetOptions(tab: &CTTextTab) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
         fn CTTextTabGetOptions(tab: &CTTextTab) -> Option<NonNull<CFDictionary>>;
     }

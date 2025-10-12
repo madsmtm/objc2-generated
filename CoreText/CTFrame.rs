@@ -205,7 +205,7 @@ impl CTFrame {
     /// then an empty range will be returned.
     #[doc(alias = "CTFrameGetStringRange")]
     #[inline]
-    pub unsafe fn string_range(&self) -> CFRange {
+    pub fn string_range(&self) -> CFRange {
         extern "C-unwind" {
             fn CTFrameGetStringRange(frame: &CTFrame) -> CFRange;
         }
@@ -231,7 +231,7 @@ impl CTFrame {
     /// in the frame, then an empty range will be returned.
     #[doc(alias = "CTFrameGetVisibleStringRange")]
     #[inline]
-    pub unsafe fn visible_string_range(&self) -> CFRange {
+    pub fn visible_string_range(&self) -> CFRange {
         extern "C-unwind" {
             fn CTFrameGetVisibleStringRange(frame: &CTFrame) -> CFRange;
         }
@@ -245,7 +245,7 @@ impl CTFrame {
     #[doc(alias = "CTFrameGetPath")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn path(&self) -> CFRetained<CGPath> {
+    pub fn path(&self) -> CFRetained<CGPath> {
         extern "C-unwind" {
             fn CTFrameGetPath(frame: &CTFrame) -> Option<NonNull<CGPath>>;
         }
@@ -273,7 +273,7 @@ impl CTFrame {
     /// will return NULL.
     #[doc(alias = "CTFrameGetFrameAttributes")]
     #[inline]
-    pub unsafe fn frame_attributes(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn frame_attributes(&self) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CTFrameGetFrameAttributes(frame: &CTFrame) -> Option<NonNull<CFDictionary>>;
         }
@@ -299,7 +299,7 @@ impl CTFrame {
     /// CTLine objects that make up the frame.
     #[doc(alias = "CTFrameGetLines")]
     #[inline]
-    pub unsafe fn lines(&self) -> CFRetained<CFArray> {
+    pub fn lines(&self) -> CFRetained<CFArray> {
         extern "C-unwind" {
             fn CTFrameGetLines(frame: &CTFrame) -> Option<NonNull<CFArray>>;
         }
@@ -369,7 +369,7 @@ impl CTFrame {
     #[doc(alias = "CTFrameDraw")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn draw(&self, context: &CGContext) {
+    pub fn draw(&self, context: &CGContext) {
         extern "C-unwind" {
             fn CTFrameDraw(frame: &CTFrame, context: &CGContext);
         }
@@ -377,20 +377,28 @@ impl CTFrame {
     }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTFrame::string_range`"]
-    pub fn CTFrameGetStringRange(frame: &CTFrame) -> CFRange;
+#[deprecated = "renamed to `CTFrame::string_range`"]
+#[inline]
+pub extern "C-unwind" fn CTFrameGetStringRange(frame: &CTFrame) -> CFRange {
+    extern "C-unwind" {
+        fn CTFrameGetStringRange(frame: &CTFrame) -> CFRange;
+    }
+    unsafe { CTFrameGetStringRange(frame) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTFrame::visible_string_range`"]
-    pub fn CTFrameGetVisibleStringRange(frame: &CTFrame) -> CFRange;
+#[deprecated = "renamed to `CTFrame::visible_string_range`"]
+#[inline]
+pub extern "C-unwind" fn CTFrameGetVisibleStringRange(frame: &CTFrame) -> CFRange {
+    extern "C-unwind" {
+        fn CTFrameGetVisibleStringRange(frame: &CTFrame) -> CFRange;
+    }
+    unsafe { CTFrameGetVisibleStringRange(frame) }
 }
 
 #[cfg(feature = "objc2-core-graphics")]
 #[deprecated = "renamed to `CTFrame::path`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFrameGetPath(frame: &CTFrame) -> CFRetained<CGPath> {
+pub extern "C-unwind" fn CTFrameGetPath(frame: &CTFrame) -> CFRetained<CGPath> {
     extern "C-unwind" {
         fn CTFrameGetPath(frame: &CTFrame) -> Option<NonNull<CGPath>>;
     }
@@ -401,7 +409,7 @@ pub unsafe extern "C-unwind" fn CTFrameGetPath(frame: &CTFrame) -> CFRetained<CG
 
 #[deprecated = "renamed to `CTFrame::frame_attributes`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFrameGetFrameAttributes(
+pub extern "C-unwind" fn CTFrameGetFrameAttributes(
     frame: &CTFrame,
 ) -> Option<CFRetained<CFDictionary>> {
     extern "C-unwind" {
@@ -413,7 +421,7 @@ pub unsafe extern "C-unwind" fn CTFrameGetFrameAttributes(
 
 #[deprecated = "renamed to `CTFrame::lines`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFrameGetLines(frame: &CTFrame) -> CFRetained<CFArray> {
+pub extern "C-unwind" fn CTFrameGetLines(frame: &CTFrame) -> CFRetained<CFArray> {
     extern "C-unwind" {
         fn CTFrameGetLines(frame: &CTFrame) -> Option<NonNull<CFArray>>;
     }
@@ -427,8 +435,12 @@ extern "C-unwind" {
     pub fn CTFrameGetLineOrigins(frame: &CTFrame, range: CFRange, origins: NonNull<CGPoint>);
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-graphics")]
-    #[deprecated = "renamed to `CTFrame::draw`"]
-    pub fn CTFrameDraw(frame: &CTFrame, context: &CGContext);
+#[cfg(feature = "objc2-core-graphics")]
+#[deprecated = "renamed to `CTFrame::draw`"]
+#[inline]
+pub extern "C-unwind" fn CTFrameDraw(frame: &CTFrame, context: &CGContext) {
+    extern "C-unwind" {
+        fn CTFrameDraw(frame: &CTFrame, context: &CGContext);
+    }
+    unsafe { CTFrameDraw(frame, context) }
 }

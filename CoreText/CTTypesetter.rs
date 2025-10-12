@@ -94,7 +94,7 @@ impl CTTypesetter {
     /// Returns: This function will return a reference to a CTTypesetter.
     #[doc(alias = "CTTypesetterCreateWithAttributedString")]
     #[inline]
-    pub unsafe fn with_attributed_string(string: &CFAttributedString) -> CFRetained<CTTypesetter> {
+    pub fn with_attributed_string(string: &CFAttributedString) -> CFRetained<CTTypesetter> {
         extern "C-unwind" {
             fn CTTypesetterCreateWithAttributedString(
                 string: &CFAttributedString,
@@ -173,11 +173,7 @@ impl CTTypesetter {
     #[doc(alias = "CTTypesetterCreateLineWithOffset")]
     #[cfg(feature = "CTLine")]
     #[inline]
-    pub unsafe fn line_with_offset(
-        &self,
-        string_range: CFRange,
-        offset: c_double,
-    ) -> CFRetained<CTLine> {
+    pub fn line_with_offset(&self, string_range: CFRange, offset: c_double) -> CFRetained<CTLine> {
         extern "C-unwind" {
             fn CTTypesetterCreateLineWithOffset(
                 typesetter: &CTTypesetter,
@@ -195,7 +191,7 @@ impl CTTypesetter {
     #[doc(alias = "CTTypesetterCreateLine")]
     #[cfg(feature = "CTLine")]
     #[inline]
-    pub unsafe fn line(&self, string_range: CFRange) -> CFRetained<CTLine> {
+    pub fn line(&self, string_range: CFRange) -> CFRetained<CTLine> {
         extern "C-unwind" {
             fn CTTypesetterCreateLine(
                 typesetter: &CTTypesetter,
@@ -234,7 +230,7 @@ impl CTTypesetter {
     /// to construct a character range for CTTypesetterCreateLine.
     #[doc(alias = "CTTypesetterSuggestLineBreakWithOffset")]
     #[inline]
-    pub unsafe fn suggest_line_break_with_offset(
+    pub fn suggest_line_break_with_offset(
         &self,
         start_index: CFIndex,
         width: c_double,
@@ -254,7 +250,7 @@ impl CTTypesetter {
     /// Equivalent to CTTypesetterSuggestLineBreakWithOffset with offset = 0.0.
     #[doc(alias = "CTTypesetterSuggestLineBreak")]
     #[inline]
-    pub unsafe fn suggest_line_break(&self, start_index: CFIndex, width: c_double) -> CFIndex {
+    pub fn suggest_line_break(&self, start_index: CFIndex, width: c_double) -> CFIndex {
         extern "C-unwind" {
             fn CTTypesetterSuggestLineBreak(
                 typesetter: &CTTypesetter,
@@ -296,7 +292,7 @@ impl CTTypesetter {
     /// used to construct a character range for CTTypesetterCreateLine.
     #[doc(alias = "CTTypesetterSuggestClusterBreakWithOffset")]
     #[inline]
-    pub unsafe fn suggest_cluster_break_with_offset(
+    pub fn suggest_cluster_break_with_offset(
         &self,
         start_index: CFIndex,
         width: c_double,
@@ -316,7 +312,7 @@ impl CTTypesetter {
     /// Equivalent to CTTypesetterSuggestClusterBreakWithOffset with offset = 0.0.
     #[doc(alias = "CTTypesetterSuggestClusterBreak")]
     #[inline]
-    pub unsafe fn suggest_cluster_break(&self, start_index: CFIndex, width: c_double) -> CFIndex {
+    pub fn suggest_cluster_break(&self, start_index: CFIndex, width: c_double) -> CFIndex {
         extern "C-unwind" {
             fn CTTypesetterSuggestClusterBreak(
                 typesetter: &CTTypesetter,
@@ -330,7 +326,7 @@ impl CTTypesetter {
 
 #[deprecated = "renamed to `CTTypesetter::with_attributed_string`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTTypesetterCreateWithAttributedString(
+pub extern "C-unwind" fn CTTypesetterCreateWithAttributedString(
     string: &CFAttributedString,
 ) -> CFRetained<CTTypesetter> {
     extern "C-unwind" {
@@ -362,7 +358,7 @@ pub unsafe extern "C-unwind" fn CTTypesetterCreateWithAttributedStringAndOptions
 #[cfg(feature = "CTLine")]
 #[deprecated = "renamed to `CTTypesetter::line_with_offset`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTTypesetterCreateLineWithOffset(
+pub extern "C-unwind" fn CTTypesetterCreateLineWithOffset(
     typesetter: &CTTypesetter,
     string_range: CFRange,
     offset: c_double,
@@ -382,7 +378,7 @@ pub unsafe extern "C-unwind" fn CTTypesetterCreateLineWithOffset(
 #[cfg(feature = "CTLine")]
 #[deprecated = "renamed to `CTTypesetter::line`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTTypesetterCreateLine(
+pub extern "C-unwind" fn CTTypesetterCreateLine(
     typesetter: &CTTypesetter,
     string_range: CFRange,
 ) -> CFRetained<CTLine> {
@@ -397,40 +393,74 @@ pub unsafe extern "C-unwind" fn CTTypesetterCreateLine(
     unsafe { CFRetained::from_raw(ret) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTTypesetter::suggest_line_break_with_offset`"]
-    pub fn CTTypesetterSuggestLineBreakWithOffset(
-        typesetter: &CTTypesetter,
-        start_index: CFIndex,
-        width: c_double,
-        offset: c_double,
-    ) -> CFIndex;
+#[deprecated = "renamed to `CTTypesetter::suggest_line_break_with_offset`"]
+#[inline]
+pub extern "C-unwind" fn CTTypesetterSuggestLineBreakWithOffset(
+    typesetter: &CTTypesetter,
+    start_index: CFIndex,
+    width: c_double,
+    offset: c_double,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CTTypesetterSuggestLineBreakWithOffset(
+            typesetter: &CTTypesetter,
+            start_index: CFIndex,
+            width: c_double,
+            offset: c_double,
+        ) -> CFIndex;
+    }
+    unsafe { CTTypesetterSuggestLineBreakWithOffset(typesetter, start_index, width, offset) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTTypesetter::suggest_line_break`"]
-    pub fn CTTypesetterSuggestLineBreak(
-        typesetter: &CTTypesetter,
-        start_index: CFIndex,
-        width: c_double,
-    ) -> CFIndex;
+#[deprecated = "renamed to `CTTypesetter::suggest_line_break`"]
+#[inline]
+pub extern "C-unwind" fn CTTypesetterSuggestLineBreak(
+    typesetter: &CTTypesetter,
+    start_index: CFIndex,
+    width: c_double,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CTTypesetterSuggestLineBreak(
+            typesetter: &CTTypesetter,
+            start_index: CFIndex,
+            width: c_double,
+        ) -> CFIndex;
+    }
+    unsafe { CTTypesetterSuggestLineBreak(typesetter, start_index, width) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTTypesetter::suggest_cluster_break_with_offset`"]
-    pub fn CTTypesetterSuggestClusterBreakWithOffset(
-        typesetter: &CTTypesetter,
-        start_index: CFIndex,
-        width: c_double,
-        offset: c_double,
-    ) -> CFIndex;
+#[deprecated = "renamed to `CTTypesetter::suggest_cluster_break_with_offset`"]
+#[inline]
+pub extern "C-unwind" fn CTTypesetterSuggestClusterBreakWithOffset(
+    typesetter: &CTTypesetter,
+    start_index: CFIndex,
+    width: c_double,
+    offset: c_double,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CTTypesetterSuggestClusterBreakWithOffset(
+            typesetter: &CTTypesetter,
+            start_index: CFIndex,
+            width: c_double,
+            offset: c_double,
+        ) -> CFIndex;
+    }
+    unsafe { CTTypesetterSuggestClusterBreakWithOffset(typesetter, start_index, width, offset) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTTypesetter::suggest_cluster_break`"]
-    pub fn CTTypesetterSuggestClusterBreak(
-        typesetter: &CTTypesetter,
-        start_index: CFIndex,
-        width: c_double,
-    ) -> CFIndex;
+#[deprecated = "renamed to `CTTypesetter::suggest_cluster_break`"]
+#[inline]
+pub extern "C-unwind" fn CTTypesetterSuggestClusterBreak(
+    typesetter: &CTTypesetter,
+    start_index: CFIndex,
+    width: c_double,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CTTypesetterSuggestClusterBreak(
+            typesetter: &CTTypesetter,
+            start_index: CFIndex,
+            width: c_double,
+        ) -> CFIndex;
+    }
+    unsafe { CTTypesetterSuggestClusterBreak(typesetter, start_index, width) }
 }

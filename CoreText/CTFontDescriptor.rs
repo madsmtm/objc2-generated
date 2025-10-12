@@ -464,10 +464,7 @@ impl CTFontDescriptor {
     /// If you are trying to create a system UI font descriptor (with name beginning with a "."), you should create a font with CTFontCreateUIFontForLanguage() or appropriate AppKit/UIKit APIs instead, then use CTFontCopyFontDescriptor() to get its font descriptor.
     #[doc(alias = "CTFontDescriptorCreateWithNameAndSize")]
     #[inline]
-    pub unsafe fn with_name_and_size(
-        name: &CFString,
-        size: CGFloat,
-    ) -> CFRetained<CTFontDescriptor> {
+    pub fn with_name_and_size(name: &CFString, size: CGFloat) -> CFRetained<CTFontDescriptor> {
         extern "C-unwind" {
             fn CTFontDescriptorCreateWithNameAndSize(
                 name: &CFString,
@@ -563,10 +560,7 @@ impl CTFontDescriptor {
     /// Returns: Returns a new font reference with the original traits in the given family, or NULL if none found in the system.
     #[doc(alias = "CTFontDescriptorCreateCopyWithFamily")]
     #[inline]
-    pub unsafe fn copy_with_family(
-        &self,
-        family: &CFString,
-    ) -> Option<CFRetained<CTFontDescriptor>> {
+    pub fn copy_with_family(&self, family: &CFString) -> Option<CFRetained<CTFontDescriptor>> {
         extern "C-unwind" {
             fn CTFontDescriptorCreateCopyWithFamily(
                 original: &CTFontDescriptor,
@@ -593,7 +587,7 @@ impl CTFontDescriptor {
     #[doc(alias = "CTFontDescriptorCreateCopyWithSymbolicTraits")]
     #[cfg(feature = "CTFontTraits")]
     #[inline]
-    pub unsafe fn copy_with_symbolic_traits(
+    pub fn copy_with_symbolic_traits(
         &self,
         sym_trait_value: CTFontSymbolicTraits,
         sym_trait_mask: CTFontSymbolicTraits,
@@ -626,7 +620,7 @@ impl CTFontDescriptor {
     /// Returns: This function returns a copy of the original font descriptor with a new variation instance. This is a convenience method for easily creating new variation font instances.
     #[doc(alias = "CTFontDescriptorCreateCopyWithVariation")]
     #[inline]
-    pub unsafe fn copy_with_variation(
+    pub fn copy_with_variation(
         &self,
         variation_identifier: &CFNumber,
         variation_value: CGFloat,
@@ -669,7 +663,7 @@ impl CTFontDescriptor {
     /// See also: kCTFontFeatureSettingsAttribute
     #[doc(alias = "CTFontDescriptorCreateCopyWithFeature")]
     #[inline]
-    pub unsafe fn copy_with_feature(
+    pub fn copy_with_feature(
         &self,
         feature_type_identifier: &CFNumber,
         feature_selector_identifier: &CFNumber,
@@ -878,7 +872,7 @@ impl CTFontDescriptor {
     /// Returns: A retained reference to the font descriptor attributes dictionary. This dictionary will contain the minimum number of attributes to fully specify this particular font descriptor.
     #[doc(alias = "CTFontDescriptorCopyAttributes")]
     #[inline]
-    pub unsafe fn attributes(&self) -> CFRetained<CFDictionary> {
+    pub fn attributes(&self) -> CFRetained<CFDictionary> {
         extern "C-unwind" {
             fn CTFontDescriptorCopyAttributes(
                 descriptor: &CTFontDescriptor,
@@ -902,7 +896,7 @@ impl CTFontDescriptor {
     /// Returns: A retained reference to the requested attribute, or NULL if the requested attribute is not present. Refer to the attribute definitions for documentation as to how each attribute is packaged as a CFType.
     #[doc(alias = "CTFontDescriptorCopyAttribute")]
     #[inline]
-    pub unsafe fn attribute(&self, attribute: &CFString) -> Option<CFRetained<CFType>> {
+    pub fn attribute(&self, attribute: &CFString) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CTFontDescriptorCopyAttribute(
                 descriptor: &CTFontDescriptor,
@@ -957,7 +951,7 @@ impl CTFontDescriptor {
 
 #[deprecated = "renamed to `CTFontDescriptor::with_name_and_size`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCreateWithNameAndSize(
+pub extern "C-unwind" fn CTFontDescriptorCreateWithNameAndSize(
     name: &CFString,
     size: CGFloat,
 ) -> CFRetained<CTFontDescriptor> {
@@ -1006,7 +1000,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithAttributes(
 
 #[deprecated = "renamed to `CTFontDescriptor::copy_with_family`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithFamily(
+pub extern "C-unwind" fn CTFontDescriptorCreateCopyWithFamily(
     original: &CTFontDescriptor,
     family: &CFString,
 ) -> Option<CFRetained<CTFontDescriptor>> {
@@ -1023,7 +1017,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithFamily(
 #[cfg(feature = "CTFontTraits")]
 #[deprecated = "renamed to `CTFontDescriptor::copy_with_symbolic_traits`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithSymbolicTraits(
+pub extern "C-unwind" fn CTFontDescriptorCreateCopyWithSymbolicTraits(
     original: &CTFontDescriptor,
     sym_trait_value: CTFontSymbolicTraits,
     sym_trait_mask: CTFontSymbolicTraits,
@@ -1043,7 +1037,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithSymbolicTraits(
 
 #[deprecated = "renamed to `CTFontDescriptor::copy_with_variation`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithVariation(
+pub extern "C-unwind" fn CTFontDescriptorCreateCopyWithVariation(
     original: &CTFontDescriptor,
     variation_identifier: &CFNumber,
     variation_value: CGFloat,
@@ -1064,7 +1058,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithVariation(
 
 #[deprecated = "renamed to `CTFontDescriptor::copy_with_feature`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCreateCopyWithFeature(
+pub extern "C-unwind" fn CTFontDescriptorCreateCopyWithFeature(
     original: &CTFontDescriptor,
     feature_type_identifier: &CFNumber,
     feature_selector_identifier: &CFNumber,
@@ -1133,7 +1127,7 @@ extern "C-unwind" {
 
 #[deprecated = "renamed to `CTFontDescriptor::attributes`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCopyAttributes(
+pub extern "C-unwind" fn CTFontDescriptorCopyAttributes(
     descriptor: &CTFontDescriptor,
 ) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
@@ -1148,7 +1142,7 @@ pub unsafe extern "C-unwind" fn CTFontDescriptorCopyAttributes(
 
 #[deprecated = "renamed to `CTFontDescriptor::attribute`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontDescriptorCopyAttribute(
+pub extern "C-unwind" fn CTFontDescriptorCopyAttribute(
     descriptor: &CTFontDescriptor,
     attribute: &CFString,
 ) -> Option<CFRetained<CFType>> {

@@ -99,7 +99,7 @@ impl CTRun {
     /// indicating that there are no glyphs in this run.
     #[doc(alias = "CTRunGetGlyphCount")]
     #[inline]
-    pub unsafe fn glyph_count(&self) -> CFIndex {
+    pub fn glyph_count(&self) -> CFIndex {
         extern "C-unwind" {
             fn CTRunGetGlyphCount(run: &CTRun) -> CFIndex;
         }
@@ -123,7 +123,7 @@ impl CTRun {
     /// Returns: The attribute dictionary.
     #[doc(alias = "CTRunGetAttributes")]
     #[inline]
-    pub unsafe fn attributes(&self) -> CFRetained<CFDictionary> {
+    pub fn attributes(&self) -> CFRetained<CFDictionary> {
         extern "C-unwind" {
             fn CTRunGetAttributes(run: &CTRun) -> Option<NonNull<CFDictionary>>;
         }
@@ -151,7 +151,7 @@ impl CTRun {
     /// Returns: The run's status.
     #[doc(alias = "CTRunGetStatus")]
     #[inline]
-    pub unsafe fn status(&self) -> CTRunStatus {
+    pub fn status(&self) -> CTRunStatus {
         extern "C-unwind" {
             fn CTRunGetStatus(run: &CTRun) -> CTRunStatus;
         }
@@ -176,7 +176,7 @@ impl CTRun {
     #[doc(alias = "CTRunGetGlyphsPtr")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn glyphs_ptr(&self) -> *const CGGlyph {
+    pub fn glyphs_ptr(&self) -> *const CGGlyph {
         extern "C-unwind" {
             fn CTRunGetGlyphsPtr(run: &CTRun) -> *const CGGlyph;
         }
@@ -230,7 +230,7 @@ impl CTRun {
     /// Returns: A valid pointer to an array of CGPoint structures or NULL.
     #[doc(alias = "CTRunGetPositionsPtr")]
     #[inline]
-    pub unsafe fn positions_ptr(&self) -> *const CGPoint {
+    pub fn positions_ptr(&self) -> *const CGPoint {
         extern "C-unwind" {
             fn CTRunGetPositionsPtr(run: &CTRun) -> *const CGPoint;
         }
@@ -290,7 +290,7 @@ impl CTRun {
     /// Returns: A valid pointer to an array of CGSize structures or NULL.
     #[doc(alias = "CTRunGetAdvancesPtr")]
     #[inline]
-    pub unsafe fn advances_ptr(&self) -> *const CGSize {
+    pub fn advances_ptr(&self) -> *const CGSize {
         extern "C-unwind" {
             fn CTRunGetAdvancesPtr(run: &CTRun) -> *const CGSize;
         }
@@ -345,7 +345,7 @@ impl CTRun {
     /// Returns: A valid pointer to an array of CFIndex structures or NULL.
     #[doc(alias = "CTRunGetStringIndicesPtr")]
     #[inline]
-    pub unsafe fn string_indices_ptr(&self) -> *const CFIndex {
+    pub fn string_indices_ptr(&self) -> *const CFIndex {
         extern "C-unwind" {
             fn CTRunGetStringIndicesPtr(run: &CTRun) -> *const CFIndex;
         }
@@ -396,7 +396,7 @@ impl CTRun {
     /// glyphs. If run is invalid, this will return an empty range.
     #[doc(alias = "CTRunGetStringRange")]
     #[inline]
-    pub unsafe fn string_range(&self) -> CFRange {
+    pub fn string_range(&self) -> CFRange {
         extern "C-unwind" {
             fn CTRunGetStringRange(run: &CTRun) -> CFRange;
         }
@@ -493,7 +493,7 @@ impl CTRun {
     #[doc(alias = "CTRunGetImageBounds")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn image_bounds(&self, context: Option<&CGContext>, range: CFRange) -> CGRect {
+    pub fn image_bounds(&self, context: Option<&CGContext>, range: CFRange) -> CGRect {
         extern "C-unwind" {
             fn CTRunGetImageBounds(
                 run: &CTRun,
@@ -518,7 +518,7 @@ impl CTRun {
     /// Returns: A CGAffineTransform.
     #[doc(alias = "CTRunGetTextMatrix")]
     #[inline]
-    pub unsafe fn text_matrix(&self) -> CGAffineTransform {
+    pub fn text_matrix(&self) -> CGAffineTransform {
         extern "C-unwind" {
             fn CTRunGetTextMatrix(run: &CTRun) -> CGAffineTransform;
         }
@@ -609,7 +609,7 @@ impl CTRun {
     #[doc(alias = "CTRunDraw")]
     #[cfg(feature = "objc2-core-graphics")]
     #[inline]
-    pub unsafe fn draw(&self, context: &CGContext, range: CFRange) {
+    pub fn draw(&self, context: &CGContext, range: CFRange) {
         extern "C-unwind" {
             fn CTRunDraw(run: &CTRun, context: &CGContext, range: CFRange);
         }
@@ -617,14 +617,18 @@ impl CTRun {
     }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTRun::glyph_count`"]
-    pub fn CTRunGetGlyphCount(run: &CTRun) -> CFIndex;
+#[deprecated = "renamed to `CTRun::glyph_count`"]
+#[inline]
+pub extern "C-unwind" fn CTRunGetGlyphCount(run: &CTRun) -> CFIndex {
+    extern "C-unwind" {
+        fn CTRunGetGlyphCount(run: &CTRun) -> CFIndex;
+    }
+    unsafe { CTRunGetGlyphCount(run) }
 }
 
 #[deprecated = "renamed to `CTRun::attributes`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTRunGetAttributes(run: &CTRun) -> CFRetained<CFDictionary> {
+pub extern "C-unwind" fn CTRunGetAttributes(run: &CTRun) -> CFRetained<CFDictionary> {
     extern "C-unwind" {
         fn CTRunGetAttributes(run: &CTRun) -> Option<NonNull<CFDictionary>>;
     }
@@ -633,15 +637,23 @@ pub unsafe extern "C-unwind" fn CTRunGetAttributes(run: &CTRun) -> CFRetained<CF
     unsafe { CFRetained::retain(ret) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTRun::status`"]
-    pub fn CTRunGetStatus(run: &CTRun) -> CTRunStatus;
+#[deprecated = "renamed to `CTRun::status`"]
+#[inline]
+pub extern "C-unwind" fn CTRunGetStatus(run: &CTRun) -> CTRunStatus {
+    extern "C-unwind" {
+        fn CTRunGetStatus(run: &CTRun) -> CTRunStatus;
+    }
+    unsafe { CTRunGetStatus(run) }
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-graphics")]
-    #[deprecated = "renamed to `CTRun::glyphs_ptr`"]
-    pub fn CTRunGetGlyphsPtr(run: &CTRun) -> *const CGGlyph;
+#[cfg(feature = "objc2-core-graphics")]
+#[deprecated = "renamed to `CTRun::glyphs_ptr`"]
+#[inline]
+pub extern "C-unwind" fn CTRunGetGlyphsPtr(run: &CTRun) -> *const CGGlyph {
+    extern "C-unwind" {
+        fn CTRunGetGlyphsPtr(run: &CTRun) -> *const CGGlyph;
+    }
+    unsafe { CTRunGetGlyphsPtr(run) }
 }
 
 extern "C-unwind" {
@@ -650,9 +662,13 @@ extern "C-unwind" {
     pub fn CTRunGetGlyphs(run: &CTRun, range: CFRange, buffer: NonNull<CGGlyph>);
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTRun::positions_ptr`"]
-    pub fn CTRunGetPositionsPtr(run: &CTRun) -> *const CGPoint;
+#[deprecated = "renamed to `CTRun::positions_ptr`"]
+#[inline]
+pub extern "C-unwind" fn CTRunGetPositionsPtr(run: &CTRun) -> *const CGPoint {
+    extern "C-unwind" {
+        fn CTRunGetPositionsPtr(run: &CTRun) -> *const CGPoint;
+    }
+    unsafe { CTRunGetPositionsPtr(run) }
 }
 
 extern "C-unwind" {
@@ -660,9 +676,13 @@ extern "C-unwind" {
     pub fn CTRunGetPositions(run: &CTRun, range: CFRange, buffer: NonNull<CGPoint>);
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTRun::advances_ptr`"]
-    pub fn CTRunGetAdvancesPtr(run: &CTRun) -> *const CGSize;
+#[deprecated = "renamed to `CTRun::advances_ptr`"]
+#[inline]
+pub extern "C-unwind" fn CTRunGetAdvancesPtr(run: &CTRun) -> *const CGSize {
+    extern "C-unwind" {
+        fn CTRunGetAdvancesPtr(run: &CTRun) -> *const CGSize;
+    }
+    unsafe { CTRunGetAdvancesPtr(run) }
 }
 
 extern "C-unwind" {
@@ -670,9 +690,13 @@ extern "C-unwind" {
     pub fn CTRunGetAdvances(run: &CTRun, range: CFRange, buffer: NonNull<CGSize>);
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTRun::string_indices_ptr`"]
-    pub fn CTRunGetStringIndicesPtr(run: &CTRun) -> *const CFIndex;
+#[deprecated = "renamed to `CTRun::string_indices_ptr`"]
+#[inline]
+pub extern "C-unwind" fn CTRunGetStringIndicesPtr(run: &CTRun) -> *const CFIndex {
+    extern "C-unwind" {
+        fn CTRunGetStringIndicesPtr(run: &CTRun) -> *const CFIndex;
+    }
+    unsafe { CTRunGetStringIndicesPtr(run) }
 }
 
 extern "C-unwind" {
@@ -680,9 +704,13 @@ extern "C-unwind" {
     pub fn CTRunGetStringIndices(run: &CTRun, range: CFRange, buffer: NonNull<CFIndex>);
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTRun::string_range`"]
-    pub fn CTRunGetStringRange(run: &CTRun) -> CFRange;
+#[deprecated = "renamed to `CTRun::string_range`"]
+#[inline]
+pub extern "C-unwind" fn CTRunGetStringRange(run: &CTRun) -> CFRange {
+    extern "C-unwind" {
+        fn CTRunGetStringRange(run: &CTRun) -> CFRange;
+    }
+    unsafe { CTRunGetStringRange(run) }
 }
 
 extern "C-unwind" {
@@ -696,15 +724,27 @@ extern "C-unwind" {
     ) -> c_double;
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-graphics")]
-    #[deprecated = "renamed to `CTRun::image_bounds`"]
-    pub fn CTRunGetImageBounds(run: &CTRun, context: Option<&CGContext>, range: CFRange) -> CGRect;
+#[cfg(feature = "objc2-core-graphics")]
+#[deprecated = "renamed to `CTRun::image_bounds`"]
+#[inline]
+pub extern "C-unwind" fn CTRunGetImageBounds(
+    run: &CTRun,
+    context: Option<&CGContext>,
+    range: CFRange,
+) -> CGRect {
+    extern "C-unwind" {
+        fn CTRunGetImageBounds(run: &CTRun, context: Option<&CGContext>, range: CFRange) -> CGRect;
+    }
+    unsafe { CTRunGetImageBounds(run, context, range) }
 }
 
-extern "C-unwind" {
-    #[deprecated = "renamed to `CTRun::text_matrix`"]
-    pub fn CTRunGetTextMatrix(run: &CTRun) -> CGAffineTransform;
+#[deprecated = "renamed to `CTRun::text_matrix`"]
+#[inline]
+pub extern "C-unwind" fn CTRunGetTextMatrix(run: &CTRun) -> CGAffineTransform {
+    extern "C-unwind" {
+        fn CTRunGetTextMatrix(run: &CTRun) -> CGAffineTransform;
+    }
+    unsafe { CTRunGetTextMatrix(run) }
 }
 
 extern "C-unwind" {
@@ -717,8 +757,12 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-graphics")]
-    #[deprecated = "renamed to `CTRun::draw`"]
-    pub fn CTRunDraw(run: &CTRun, context: &CGContext, range: CFRange);
+#[cfg(feature = "objc2-core-graphics")]
+#[deprecated = "renamed to `CTRun::draw`"]
+#[inline]
+pub extern "C-unwind" fn CTRunDraw(run: &CTRun, context: &CGContext, range: CFRange) {
+    extern "C-unwind" {
+        fn CTRunDraw(run: &CTRun, context: &CGContext, range: CFRange);
+    }
+    unsafe { CTRunDraw(run, context, range) }
 }

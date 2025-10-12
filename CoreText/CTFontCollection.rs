@@ -222,7 +222,7 @@ impl CTMutableFontCollection {
     /// Returns: This function creates a mutable copy of the original font collection.
     #[doc(alias = "CTFontCollectionCreateMutableCopy")]
     #[inline]
-    pub unsafe fn new_copy(original: &CTFontCollection) -> CFRetained<CTMutableFontCollection> {
+    pub fn new_copy(original: &CTFontCollection) -> CFRetained<CTMutableFontCollection> {
         extern "C-unwind" {
             fn CTFontCollectionCreateMutableCopy(
                 original: &CTFontCollection,
@@ -245,7 +245,7 @@ impl CTFontCollection {
     /// Returns: This function returns a retained reference to the array of descriptors to be used to query (match) the system font database. The return value is undefined if CTFontCollectionCreateFromAvailableFonts was used to create the collection.
     #[doc(alias = "CTFontCollectionCopyQueryDescriptors")]
     #[inline]
-    pub unsafe fn query_descriptors(&self) -> Option<CFRetained<CFArray>> {
+    pub fn query_descriptors(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CTFontCollectionCopyQueryDescriptors(
                 collection: &CTFontCollection,
@@ -291,7 +291,7 @@ impl CTFontCollection {
     /// Returns: This function returns a retained reference to the array of descriptors to be used to query (match) the system font database.
     #[doc(alias = "CTFontCollectionCopyExclusionDescriptors")]
     #[inline]
-    pub unsafe fn exclusion_descriptors(&self) -> Option<CFRetained<CFArray>> {
+    pub fn exclusion_descriptors(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CTFontCollectionCopyExclusionDescriptors(
                 collection: &CTFontCollection,
@@ -337,7 +337,7 @@ impl CTFontCollection {
     /// Returns: An array of CTFontDescriptors matching the collection definition or NULL if there are none.
     #[doc(alias = "CTFontCollectionCreateMatchingFontDescriptors")]
     #[inline]
-    pub unsafe fn matching_font_descriptors(&self) -> Option<CFRetained<CFArray>> {
+    pub fn matching_font_descriptors(&self) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CTFontCollectionCreateMatchingFontDescriptors(
                 collection: &CTFontCollection,
@@ -508,7 +508,7 @@ impl CTFontCollection {
     /// Returns: An array containing one value for each descriptor. With kCTFontCollectionCopyDefaultOptions, the values will be in the same order as the results from CTFontCollectionCreateMatchingFontDescriptors and NULL values will be transformed to kCFNull. When the kCTFontCollectionCopyUnique is set, duplicate values will be removed. When kCTFontCollectionCopyStandardSort is set, the values will be sorted in standard UI order.
     #[doc(alias = "CTFontCollectionCopyFontAttribute")]
     #[inline]
-    pub unsafe fn font_attribute(
+    pub fn font_attribute(
         &self,
         attribute_name: &CFString,
         options: CTFontCollectionCopyOptions,
@@ -619,7 +619,7 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateCopyWithFontDescriptors(
 
 #[deprecated = "renamed to `CTMutableFontCollection::new_copy`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCreateMutableCopy(
+pub extern "C-unwind" fn CTFontCollectionCreateMutableCopy(
     original: &CTFontCollection,
 ) -> CFRetained<CTMutableFontCollection> {
     extern "C-unwind" {
@@ -634,7 +634,7 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateMutableCopy(
 
 #[deprecated = "renamed to `CTFontCollection::query_descriptors`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCopyQueryDescriptors(
+pub extern "C-unwind" fn CTFontCollectionCopyQueryDescriptors(
     collection: &CTFontCollection,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -656,7 +656,7 @@ extern "C-unwind" {
 
 #[deprecated = "renamed to `CTFontCollection::exclusion_descriptors`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCopyExclusionDescriptors(
+pub extern "C-unwind" fn CTFontCollectionCopyExclusionDescriptors(
     collection: &CTFontCollection,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -678,7 +678,7 @@ extern "C-unwind" {
 
 #[deprecated = "renamed to `CTFontCollection::matching_font_descriptors`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptors(
+pub extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptors(
     collection: &CTFontCollection,
 ) -> Option<CFRetained<CFArray>> {
     extern "C-unwind" {
@@ -754,7 +754,7 @@ pub unsafe extern "C-unwind" fn CTFontCollectionCreateMatchingFontDescriptorsFor
 
 #[deprecated = "renamed to `CTFontCollection::font_attribute`"]
 #[inline]
-pub unsafe extern "C-unwind" fn CTFontCollectionCopyFontAttribute(
+pub extern "C-unwind" fn CTFontCollectionCopyFontAttribute(
     collection: &CTFontCollection,
     attribute_name: &CFString,
     options: CTFontCollectionCopyOptions,
