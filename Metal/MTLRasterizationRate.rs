@@ -340,6 +340,32 @@ impl MTLRasterizationRateMapDescriptor {
             layer: &MTLRasterizationRateLayerDescriptor,
         ) -> Retained<MTLRasterizationRateMapDescriptor>;
 
+        #[cfg(feature = "MTLTypes")]
+        /// Convenience descriptor creation function for an arbitrary amount of layers stored in a C-array.
+        ///
+        /// Parameter `screenSize`: The dimensions, in screen space pixels, of the region where variable rasterization is applied. The depth component of MTLSize is ignored.
+        ///
+        /// Parameter `layerCount`: The number of layers in the descriptor.
+        ///
+        /// Parameter `layers`: An array of pointers to layer descriptors. The array must contain layerCount non-null pointers to MTLRasterizationRateLayerDescriptor instances.
+        ///
+        /// Returns: A descriptor containing all the specified layers. Add or remove layers using setObject:atIndexedSubscript:.
+        ///
+        /// The function copies the array of pointers internally, the caller need not keep the array alive after creating the descriptor.
+        ///
+        /// # Safety
+        ///
+        /// - `screenSize` might not be bounds-checked.
+        /// - `layerCount` might not be bounds-checked.
+        /// - `layers` must be a valid pointer.
+        #[unsafe(method(rasterizationRateMapDescriptorWithScreenSize:layerCount:layers:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn rasterizationRateMapDescriptorWithScreenSize_layerCount_layers(
+            screen_size: MTLSize,
+            layer_count: NSUInteger,
+            layers: NonNull<NonNull<MTLRasterizationRateLayerDescriptor>>,
+        ) -> Retained<MTLRasterizationRateMapDescriptor>;
+
         /// Returns: The MTLRasterizationRateLayerDescriptor instance for the given layerIndex, or nil if no instance hasn't been set for this index.
         ///
         /// Use setLayer:atIndex: to add or set the layer.
