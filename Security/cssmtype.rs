@@ -80,6 +80,9 @@ pub const CSSM_OK: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_module_string_size?language=objc)
 pub const CSSM_MODULE_STRING_SIZE: c_uint = 64;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_string?language=objc)
+pub type CSSM_STRING = [c_char; 68];
+
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_data_ptr?language=objc)
 #[deprecated]
 #[cfg(feature = "SecAsn1Types")]

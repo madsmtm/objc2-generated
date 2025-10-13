@@ -13,9 +13,9 @@ extern "C" {
 
 // TODO: pub fn GLKMatrix4MakeAndTranspose(m00: c_float,m01: c_float,m02: c_float,m03: c_float,m10: c_float,m11: c_float,m12: c_float,m13: c_float,m20: c_float,m21: c_float,m22: c_float,m23: c_float,m30: c_float,m31: c_float,m32: c_float,m33: c_float,) -> GLKMatrix4;
 
-// TODO: pub fn GLKMatrix4MakeWithArray(values: ArrayUnknownABI<[c_float; 16]>,) -> GLKMatrix4;
+// TODO: pub fn GLKMatrix4MakeWithArray(values: Option<&mut [c_float; 16]>,) -> GLKMatrix4;
 
-// TODO: pub fn GLKMatrix4MakeWithArrayAndTranspose(values: ArrayUnknownABI<[c_float; 16]>,) -> GLKMatrix4;
+// TODO: pub fn GLKMatrix4MakeWithArrayAndTranspose(values: Option<&mut [c_float; 16]>,) -> GLKMatrix4;
 
 // TODO: pub fn GLKMatrix4MakeWithRows(row0: GLKVector4,row1: GLKVector4,row2: GLKVector4,row3: GLKVector4,) -> GLKMatrix4;
 
@@ -124,9 +124,9 @@ extern "C-unwind" {
 
 // TODO: pub fn GLKMatrix4MakeAndTranspose(m00: c_float,m01: c_float,m02: c_float,m03: c_float,m10: c_float,m11: c_float,m12: c_float,m13: c_float,m20: c_float,m21: c_float,m22: c_float,m23: c_float,m30: c_float,m31: c_float,m32: c_float,m33: c_float,) -> GLKMatrix4;
 
-// TODO: pub fn GLKMatrix4MakeWithArray(values: ArrayUnknownABI<[c_float; 16]>,) -> GLKMatrix4;
+// TODO: pub fn GLKMatrix4MakeWithArray(values: Option<&mut [c_float; 16]>,) -> GLKMatrix4;
 
-// TODO: pub fn GLKMatrix4MakeWithArrayAndTranspose(values: ArrayUnknownABI<[c_float; 16]>,) -> GLKMatrix4;
+// TODO: pub fn GLKMatrix4MakeWithArrayAndTranspose(values: Option<&mut [c_float; 16]>,) -> GLKMatrix4;
 
 // TODO: pub fn GLKMatrix4MakeWithRows(row0: GLKVector4,row1: GLKVector4,row2: GLKVector4,row3: GLKVector4,) -> GLKMatrix4;
 

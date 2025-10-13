@@ -15,7 +15,7 @@ extern "C" {
 
 // TODO: pub fn GLKQuaternionMakeWithVector3(vector: GLKVector3,scalar: c_float,) -> GLKQuaternion;
 
-// TODO: pub fn GLKQuaternionMakeWithArray(values: ArrayUnknownABI<[c_float; 4]>,) -> GLKQuaternion;
+// TODO: pub fn GLKQuaternionMakeWithArray(values: Option<&mut [c_float; 4]>,) -> GLKQuaternion;
 
 // TODO: pub fn GLKQuaternionMakeWithAngleAndAxis(radians: c_float,x: c_float,y: c_float,z: c_float,) -> GLKQuaternion;
 
@@ -96,7 +96,7 @@ extern "C-unwind" {
 
 // TODO: pub fn GLKQuaternionMakeWithVector3(vector: GLKVector3,scalar: c_float,) -> GLKQuaternion;
 
-// TODO: pub fn GLKQuaternionMakeWithArray(values: ArrayUnknownABI<[c_float; 4]>,) -> GLKQuaternion;
+// TODO: pub fn GLKQuaternionMakeWithArray(values: Option<&mut [c_float; 4]>,) -> GLKQuaternion;
 
 // TODO: pub fn GLKQuaternionMakeWithAngleAndAxis(radians: c_float,x: c_float,y: c_float,z: c_float,) -> GLKQuaternion;
 

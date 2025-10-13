@@ -4181,6 +4181,8 @@ pub use self::__NSGraphics::NSDisplayGamut;
 #[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDottedFrameRect;
 #[cfg(feature = "NSGraphics")]
+pub use self::__NSGraphics::NSDrawBitmap;
+#[cfg(feature = "NSGraphics")]
 pub use self::__NSGraphics::NSDrawButton;
 #[cfg(all(feature = "NSColor", feature = "NSGraphics"))]
 pub use self::__NSGraphics::NSDrawColorTiledRects;

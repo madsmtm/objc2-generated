@@ -168,10 +168,6 @@ impl IOBluetoothDeviceSelectorController {
         /// NOTE: This method is only available in Mac OS X 10.2.4 (Bluetooth v1.1) or later.
         ///
         /// Returns: Returns the search attributes set by setSearchAttributes:
-        ///
-        /// # Safety
-        ///
-        /// The returned struct field 4 struct field 2 Array TODO.
         #[unsafe(method(getSearchAttributes))]
         #[unsafe(method_family = none)]
         pub unsafe fn getSearchAttributes(&self) -> *const IOBluetoothDeviceSearchAttributes;

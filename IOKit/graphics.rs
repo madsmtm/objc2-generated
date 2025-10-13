@@ -1664,6 +1664,9 @@ pub type IODisplayModeID = i32;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaxpixelbits?language=objc)
 pub const kIOMaxPixelBits: c_uint = 64;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopixelencoding?language=objc)
+pub type IOPixelEncoding = [c_char; 64];
+
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioclutpixels?language=objc)
 pub const kIOCLUTPixels: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofixedclutpixels?language=objc)
@@ -1678,6 +1681,66 @@ pub const kIOMonoInverseDirectPixels: c_uint = 4;
 pub const kIORGBSignedDirectPixels: c_uint = 5;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorgbsignedfloatingpointpixels?language=objc)
 pub const kIORGBSignedFloatingPointPixels: c_uint = 6;
+
+/// A structure defining the format of a framebuffer.
+///
+/// This structure is used by IOFramebuffer to define the format of the pixels.
+/// Field: bytesPerRow The number of bytes per row.
+/// Field: bytesPerPlane Not used.
+/// Field: bitsPerPixel The number of bits per pixel, including unused bits and alpha.
+/// Field: pixelType One of kIOCLUTPixels (indexed pixels with changeable CLUT), kIORGBDirectPixels (direct pixels).
+/// Field: componentCount One for indexed pixels, three for direct pixel formats.
+/// Field: bitsPerComponent Number of bits per component in each pixel.
+/// Field: componentMasks Mask of the bits valid for each component of the pixel - in R, G, B order for direct pixels.
+/// Field: pixelFormat String description of the pixel format - IO32BitDirectPixels, IO16BitDirectPixels etc.
+/// Field: flags None defined - set to zero.
+/// Field: activeWidth Number of pixels visible per row.
+/// Field: activeHeight Number of visible pixel rows.
+/// Field: reserved Set to zero.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopixelinformation?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct IOPixelInformation {
+    pub bytesPerRow: u32,
+    pub bytesPerPlane: u32,
+    pub bitsPerPixel: u32,
+    pub pixelType: u32,
+    pub componentCount: u32,
+    pub bitsPerComponent: u32,
+    pub componentMasks: [u32; 16],
+    pub pixelFormat: IOPixelEncoding,
+    pub flags: u32,
+    pub activeWidth: u32,
+    pub activeHeight: u32,
+    pub reserved: [u32; 2],
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for IOPixelInformation {
+    const ENCODING: Encoding = Encoding::Struct(
+        "IOPixelInformation",
+        &[
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <[u32; 16]>::ENCODING,
+            <IOPixelEncoding>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <u32>::ENCODING,
+            <[u32; 2]>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for IOPixelInformation {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioappletimingid?language=objc)
 pub type IOAppleTimingID = u32;
@@ -3794,6 +3857,140 @@ pub const kIOFBMaxCursorDepth: c_uint = 32;
 pub const kIOFBMaxCursorWidth: c_uint = 256;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmaxcursorframes?language=objc)
 pub const kIOFBMaxCursorFrames: c_uint = 32;
+
+/// Cursor image for 1-bit cursor.
+///
+/// This structure stores 16 pixel x 16 pixel cursors to be used with 1-bit color depth. This structure is only defined if IOFB_ARBITRARY_SIZE_CURSOR is not defined.
+/// Field: image This array contains the cursor images.
+/// Field: mask This array contains the cursor mask.
+/// Field: save This array stores the pixel values of the region underneath the cursor in its last drawn position.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/bm12cursor?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct bm12Cursor {
+    pub image: [[c_uint; 16]; 4],
+    pub mask: [[c_uint; 16]; 4],
+    pub save: [c_uint; 16],
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for bm12Cursor {
+    const ENCODING: Encoding = Encoding::Struct(
+        "bm12Cursor",
+        &[
+            <[[c_uint; 16]; 4]>::ENCODING,
+            <[[c_uint; 16]; 4]>::ENCODING,
+            <[c_uint; 16]>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for bm12Cursor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// Cursor image for 8-bit cursor.
+///
+/// This structure stores 16 pixel x 16 pixel cursors to be used with 8-bit color depth. This structure is only defined if IOFB_ARBITRARY_SIZE_CURSOR is not defined.
+/// Field: image This array contains cursor color values, which are converted to displayed colors through the color table. The array is two dimensional and its first index is the cursor frame and the second index is the cursor pixel.
+/// Field: mask This array contains the cursor alpha mask. The array is two dimensional with the same indexing as the image. If an alpha mask pixel is 0 and the corresponding image pixel is set to white for the display, then this cursor pixel will invert pixels on the display.
+/// Field: save This array stores the color values of the region underneath the cursor in its last drawn position.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/bm18cursor?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct bm18Cursor {
+    pub image: [[c_uchar; 256]; 4],
+    pub mask: [[c_uchar; 256]; 4],
+    pub save: [c_uchar; 256],
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for bm18Cursor {
+    const ENCODING: Encoding = Encoding::Struct(
+        "bm18Cursor",
+        &[
+            <[[c_uchar; 256]; 4]>::ENCODING,
+            <[[c_uchar; 256]; 4]>::ENCODING,
+            <[c_uchar; 256]>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for bm18Cursor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// Cursor image for 15-bit cursor.
+///
+/// This structure stores 16 pixel x 16 pixel cursors to be used with 15-bit color depth. This structure is only defined if IOFB_ARBITRARY_SIZE_CURSOR is not defined.
+/// Field: image This array defines the cursor color values and transparency. The array is two dimensional and its first index is the cursor frame and the second index is the cursor pixel. A value of 0 means the pixel is transparent. Non-zero values are stored with the red, green, blue, and alpha values encoded with the following masks:
+/// <BR
+/// >
+/// red mask = 0xF000
+/// <br>
+/// blue mask 0x0F00
+/// <br>
+/// green mask 0x00F0
+/// <br>
+/// alpha mask = 0x000F
+/// <br>
+/// Note, only 4 bits are allocated for each color component.
+/// Field: save This array stores the color values of the region underneath the cursor in its last drawn position.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/bm34cursor?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct bm34Cursor {
+    pub image: [[c_ushort; 256]; 4],
+    pub save: [c_ushort; 256],
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for bm34Cursor {
+    const ENCODING: Encoding = Encoding::Struct(
+        "bm34Cursor",
+        &[
+            <[[c_ushort; 256]; 4]>::ENCODING,
+            <[c_ushort; 256]>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for bm34Cursor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// Cursor image for 24-bit cursor.
+///
+/// This structure stores 16 pixel x 16 pixel cursors to be used with 24-bit color depth. This structure is only defined if IOFB_ARBITRARY_SIZE_CURSOR is not defined.
+/// Field: image This array defines the cursor color values and transparency. The array is two dimensional and its first index is the cursor frame and the second index is the cursor pixel. The lower 24 bits of a pixel's value contain the RGB color, while the upper 8 bits contain the alpha value.
+/// Field: save This array stores the color values of the region underneath the cursor in its last drawn position.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/bm38cursor?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct bm38Cursor {
+    pub image: [[c_uint; 256]; 4],
+    pub save: [c_uint; 256],
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for bm38Cursor {
+    const ENCODING: Encoding = Encoding::Struct(
+        "bm38Cursor",
+        &[<[[c_uint; 256]; 4]>::ENCODING, <[c_uint; 256]>::ENCODING],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for bm38Cursor {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbcursorimagenew?language=objc)
 pub const kIOFBCursorImageNew: c_uint = 0x01;

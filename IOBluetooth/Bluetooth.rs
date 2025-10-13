@@ -322,6 +322,9 @@ pub type BluetoothDeviceClassMinor = u32;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothdevicenamemaxlength?language=objc)
 pub const kBluetoothDeviceNameMaxLength: c_uint = 248;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothdevicename?language=objc)
+pub type BluetoothDeviceName = [u8; 248];
+
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothclockoffset?language=objc)
 pub type BluetoothClockOffset = u16;
 

@@ -178,6 +178,54 @@ unsafe impl RefEncode for CTRubyPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+impl CTRubyAnnotation {
+    /// Creates an immutable ruby annotation object.
+    ///
+    ///
+    /// Using this function is the easiest and most efficient way to
+    /// create a ruby annotation object.
+    ///
+    ///
+    /// Parameter `alignment`: Specifies how the ruby text and the base text should be aligned relative to each other.
+    ///
+    ///
+    /// Parameter `overhang`: Specifies how the ruby text can overhang adjacent characters.
+    ///
+    ///
+    /// Parameter `sizeFactor`: Specifies the size of the annotation text as a percent of the size of the base text.
+    ///
+    ///
+    /// Parameter `text`: An array of CFStringRef, indexed by CTRubyPosition. Supply NULL for any unused positions.
+    ///
+    ///
+    /// Returns: This function will return a reference to a CTRubyAnnotation object.
+    ///
+    /// # Safety
+    ///
+    /// `text` array element must be a valid pointer or null.
+    #[doc(alias = "CTRubyAnnotationCreate")]
+    #[inline]
+    pub unsafe fn new(
+        alignment: CTRubyAlignment,
+        overhang: CTRubyOverhang,
+        size_factor: CGFloat,
+        text: &[*const CFString; 4],
+    ) -> CFRetained<CTRubyAnnotation> {
+        extern "C-unwind" {
+            fn CTRubyAnnotationCreate(
+                alignment: CTRubyAlignment,
+                overhang: CTRubyOverhang,
+                size_factor: CGFloat,
+                text: &[*const CFString; 4],
+            ) -> Option<NonNull<CTRubyAnnotation>>;
+        }
+        let ret = unsafe { CTRubyAnnotationCreate(alignment, overhang, size_factor, text) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CFRetained::from_raw(ret) }
+    }
+}
+
 extern "C" {
     /// Specifies the size of the annotation text as a percent of the size of the base text.
     ///
@@ -357,6 +405,27 @@ impl CTRubyAnnotation {
         let ret = unsafe { CTRubyAnnotationGetTextForPosition(self, position) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
+}
+
+#[deprecated = "renamed to `CTRubyAnnotation::new`"]
+#[inline]
+pub unsafe extern "C-unwind" fn CTRubyAnnotationCreate(
+    alignment: CTRubyAlignment,
+    overhang: CTRubyOverhang,
+    size_factor: CGFloat,
+    text: &[*const CFString; 4],
+) -> CFRetained<CTRubyAnnotation> {
+    extern "C-unwind" {
+        fn CTRubyAnnotationCreate(
+            alignment: CTRubyAlignment,
+            overhang: CTRubyOverhang,
+            size_factor: CGFloat,
+            text: &[*const CFString; 4],
+        ) -> Option<NonNull<CTRubyAnnotation>>;
+    }
+    let ret = unsafe { CTRubyAnnotationCreate(alignment, overhang, size_factor, text) };
+    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
+    unsafe { CFRetained::from_raw(ret) }
 }
 
 #[deprecated = "renamed to `CTRubyAnnotation::with_attributes`"]

@@ -1520,6 +1520,8 @@ pub use self::__Bluetooth::BluetoothDeviceClassMajor;
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::BluetoothDeviceClassMinor;
 #[cfg(feature = "Bluetooth")]
+pub use self::__Bluetooth::BluetoothDeviceName;
+#[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::BluetoothEncryptionEnable;
 #[cfg(feature = "Bluetooth")]
 pub use self::__Bluetooth::BluetoothEnhancedSynchronousConnectionInfo;

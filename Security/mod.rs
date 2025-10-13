@@ -3908,6 +3908,8 @@ pub use self::__SecKeychain::SecPreferencesDomain;
 #[cfg(feature = "SecKeychain")]
 pub use self::__SecKeychain::SecProtocolType;
 #[cfg(feature = "SecKeychainItem")]
+pub use self::__SecKeychainItem::SecAFPServerSignature;
+#[cfg(feature = "SecKeychainItem")]
 pub use self::__SecKeychainItem::SecItemAttr;
 #[cfg(feature = "SecKeychainItem")]
 pub use self::__SecKeychainItem::SecItemClass;
@@ -3954,6 +3956,8 @@ pub use self::__SecKeychainItem::SecKeychainItemModifyAttributesAndData;
 pub use self::__SecKeychainItem::SecKeychainItemModifyContent;
 #[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
 pub use self::__SecKeychainItem::SecKeychainItemSetAccess;
+#[cfg(feature = "SecKeychainItem")]
+pub use self::__SecKeychainItem::SecPublicKeyHash;
 #[cfg(all(feature = "SecBase", feature = "SecKeychainSearch"))]
 pub use self::__SecKeychainSearch::SecKeychainSearchCopyNext;
 #[cfg(all(
@@ -9899,6 +9903,8 @@ pub use self::__cssmtype::CSSM_SERVICE_MASK;
 pub use self::__cssmtype::CSSM_SERVICE_TP;
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub use self::__cssmtype::CSSM_SERVICE_TYPE;
+#[cfg(feature = "cssmtype")]
+pub use self::__cssmtype::CSSM_STRING;
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub use self::__cssmtype::CSSM_SUBSERVICE_UID;
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]

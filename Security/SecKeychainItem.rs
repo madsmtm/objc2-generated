@@ -159,6 +159,16 @@ unsafe impl RefEncode for SecItemAttr {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// Represents a 16-byte Apple File Protocol server signature block.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secafpserversignature?language=objc)
+pub type SecAFPServerSignature = [u8; 16];
+
+/// Represents a 20-byte public key hash.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/security/secpublickeyhash?language=objc)
+pub type SecPublicKeyHash = [u8; 20];
+
 #[cfg(feature = "SecBase")]
 unsafe impl ConcreteType for SecKeychainItem {
     /// Returns the type identifier of SecKeychainItem instances.

@@ -121,6 +121,8 @@ pub use self::__AppleUSBDescriptorParsing::IOUSBGetNextInterfaceDescriptor;
 #[cfg(all(feature = "AppleUSBDescriptorParsing", feature = "objc2-io-kit"))]
 pub use self::__AppleUSBDescriptorParsing::IOUSBGetPlatformCapabilityDescriptor;
 #[cfg(all(feature = "AppleUSBDescriptorParsing", feature = "objc2-io-kit"))]
+pub use self::__AppleUSBDescriptorParsing::IOUSBGetPlatformCapabilityDescriptorWithUUID;
+#[cfg(all(feature = "AppleUSBDescriptorParsing", feature = "objc2-io-kit"))]
 pub use self::__AppleUSBDescriptorParsing::IOUSBGetSuperSpeedDeviceCapabilityDescriptor;
 #[cfg(all(feature = "AppleUSBDescriptorParsing", feature = "objc2-io-kit"))]
 pub use self::__AppleUSBDescriptorParsing::IOUSBGetSuperSpeedPlusDeviceCapabilityDescriptor;

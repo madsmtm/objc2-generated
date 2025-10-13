@@ -54,6 +54,10 @@ impl CAMediaTimingFunction {
             c2x: c_float,
             c2y: c_float,
         ) -> Retained<Self>;
+
+        #[unsafe(method(getControlPointAtIndex:values:))]
+        #[unsafe(method_family = none)]
+        pub fn getControlPointAtIndex_values(&self, idx: usize, ptr: &mut [c_float; 2]);
     );
 }
 

@@ -13,9 +13,9 @@ extern "C" {
 
 // TODO: pub fn GLKMatrix3MakeAndTranspose(m00: c_float,m01: c_float,m02: c_float,m10: c_float,m11: c_float,m12: c_float,m20: c_float,m21: c_float,m22: c_float,) -> GLKMatrix3;
 
-// TODO: pub fn GLKMatrix3MakeWithArray(values: ArrayUnknownABI<[c_float; 9]>,) -> GLKMatrix3;
+// TODO: pub fn GLKMatrix3MakeWithArray(values: Option<&mut [c_float; 9]>,) -> GLKMatrix3;
 
-// TODO: pub fn GLKMatrix3MakeWithArrayAndTranspose(values: ArrayUnknownABI<[c_float; 9]>,) -> GLKMatrix3;
+// TODO: pub fn GLKMatrix3MakeWithArrayAndTranspose(values: Option<&mut [c_float; 9]>,) -> GLKMatrix3;
 
 // TODO: pub fn GLKMatrix3MakeWithRows(row0: GLKVector3,row1: GLKVector3,row2: GLKVector3,) -> GLKMatrix3;
 
@@ -94,9 +94,9 @@ extern "C-unwind" {
 
 // TODO: pub fn GLKMatrix3MakeAndTranspose(m00: c_float,m01: c_float,m02: c_float,m10: c_float,m11: c_float,m12: c_float,m20: c_float,m21: c_float,m22: c_float,) -> GLKMatrix3;
 
-// TODO: pub fn GLKMatrix3MakeWithArray(values: ArrayUnknownABI<[c_float; 9]>,) -> GLKMatrix3;
+// TODO: pub fn GLKMatrix3MakeWithArray(values: Option<&mut [c_float; 9]>,) -> GLKMatrix3;
 
-// TODO: pub fn GLKMatrix3MakeWithArrayAndTranspose(values: ArrayUnknownABI<[c_float; 9]>,) -> GLKMatrix3;
+// TODO: pub fn GLKMatrix3MakeWithArrayAndTranspose(values: Option<&mut [c_float; 9]>,) -> GLKMatrix3;
 
 // TODO: pub fn GLKMatrix3MakeWithRows(row0: GLKVector3,row1: GLKVector3,row2: GLKVector3,) -> GLKMatrix3;
 

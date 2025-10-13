@@ -307,11 +307,32 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `bos_descriptor` must be a valid pointer.
-    /// - The returned struct field 5 Array TODO.
+    /// `bos_descriptor` must be a valid pointer.
     #[cfg(feature = "objc2-io-kit")]
     pub fn IOUSBGetPlatformCapabilityDescriptor(
         bos_descriptor: *const IOUSBBOSDescriptor,
+    ) -> *const IOUSBPlatformCapabilityDescriptor;
+}
+
+extern "C-unwind" {
+    /// Find the first PlatformCapabilityDescriptor in a BOS descriptor
+    ///
+    /// This method uses getNextCapabilityDescriptorWithType to fetch the first PlatformCapabilityDescriptor
+    ///
+    /// Parameter `bosDescriptor`: BOS descriptor that contains the descriptors to iterate through
+    ///
+    /// Parameter `uuid`: UUID associated with the platform capability
+    ///
+    /// Returns: PlatformCapabilityDescriptor pointer, or NULL if no matching descriptor can be found
+    ///
+    /// # Safety
+    ///
+    /// - `bos_descriptor` must be a valid pointer.
+    /// - `uuid` might not allow `None`.
+    #[cfg(feature = "objc2-io-kit")]
+    pub fn IOUSBGetPlatformCapabilityDescriptorWithUUID(
+        bos_descriptor: *const IOUSBBOSDescriptor,
+        uuid: Option<&mut uuid_t>,
     ) -> *const IOUSBPlatformCapabilityDescriptor;
 }
 

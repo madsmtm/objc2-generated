@@ -5,7 +5,7 @@ use crate::*;
 
 // TODO: pub fn GLKVector3Make(x: c_float,y: c_float,z: c_float,) -> GLKVector3;
 
-// TODO: pub fn GLKVector3MakeWithArray(values: ArrayUnknownABI<[c_float; 3]>,) -> GLKVector3;
+// TODO: pub fn GLKVector3MakeWithArray(values: Option<&mut [c_float; 3]>,) -> GLKVector3;
 
 // TODO: pub fn GLKVector3Negate(vector: GLKVector3,) -> GLKVector3;
 
@@ -57,7 +57,7 @@ use crate::*;
 
 // TODO: pub fn GLKVector3Make(x: c_float,y: c_float,z: c_float,) -> GLKVector3;
 
-// TODO: pub fn GLKVector3MakeWithArray(values: ArrayUnknownABI<[c_float; 3]>,) -> GLKVector3;
+// TODO: pub fn GLKVector3MakeWithArray(values: Option<&mut [c_float; 3]>,) -> GLKVector3;
 
 // TODO: pub fn GLKVector3Negate(vector: GLKVector3,) -> GLKVector3;
 

@@ -1051,6 +1051,14 @@ impl NSView {
         #[unsafe(method_family = none)]
         pub fn rectPreservedDuringLiveResize(&self) -> NSRect;
 
+        #[unsafe(method(getRectsExposedDuringLiveResize:count:))]
+        #[unsafe(method_family = none)]
+        pub fn getRectsExposedDuringLiveResize_count(
+            &self,
+            exposed_rects: &mut [NSRect; 4],
+            count: &mut NSInteger,
+        );
+
         #[cfg(feature = "NSTextInputContext")]
         #[unsafe(method(inputContext))]
         #[unsafe(method_family = none)]

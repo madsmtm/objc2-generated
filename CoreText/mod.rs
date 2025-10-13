@@ -845,6 +845,8 @@ pub use self::__CTRubyAnnotation::CTRubyAlignment;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotation;
 #[cfg(feature = "CTRubyAnnotation")]
+pub use self::__CTRubyAnnotation::CTRubyAnnotationCreate;
+#[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotationCreateCopy;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotationCreateWithAttributes;
@@ -2006,6 +2008,8 @@ pub use self::__SFNTLayoutTypes::AnchorPointTable;
 pub use self::__SFNTLayoutTypes::AnkrTable;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::BslnBaselineClass;
+#[cfg(feature = "SFNTLayoutTypes")]
+pub use self::__SFNTLayoutTypes::BslnBaselineRecord;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::BslnFormat0Part;
 #[cfg(feature = "SFNTLayoutTypes")]

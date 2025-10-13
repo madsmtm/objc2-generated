@@ -875,11 +875,15 @@ pub use self::__InternetConfig::ICFontRecordHandle;
 #[cfg(feature = "InternetConfig")]
 pub use self::__InternetConfig::ICFontRecordPtr;
 #[cfg(feature = "InternetConfig")]
+pub use self::__InternetConfig::ICGetConfigName;
+#[cfg(feature = "InternetConfig")]
 pub use self::__InternetConfig::ICGetCurrentProfile;
 #[cfg(feature = "InternetConfig")]
 pub use self::__InternetConfig::ICGetDefaultPref;
 #[cfg(feature = "InternetConfig")]
 pub use self::__InternetConfig::ICGetIndMapEntry;
+#[cfg(feature = "InternetConfig")]
+pub use self::__InternetConfig::ICGetIndPref;
 #[cfg(feature = "InternetConfig")]
 pub use self::__InternetConfig::ICGetIndProfile;
 #[cfg(feature = "InternetConfig")]
@@ -890,6 +894,8 @@ pub use self::__InternetConfig::ICGetPerm;
 pub use self::__InternetConfig::ICGetPref;
 #[cfg(feature = "InternetConfig")]
 pub use self::__InternetConfig::ICGetPrefHandle;
+#[cfg(feature = "InternetConfig")]
+pub use self::__InternetConfig::ICGetProfileName;
 #[cfg(feature = "InternetConfig")]
 pub use self::__InternetConfig::ICGetSeed;
 #[cfg(feature = "InternetConfig")]

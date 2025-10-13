@@ -763,6 +763,55 @@ pub extern "C-unwind" fn NSReadPixel(passed_point: NSPoint) -> Option<Retained<N
     unsafe { Retained::retain_autoreleased(ret) }
 }
 
+/// # Safety
+///
+/// `data` must be a valid pointer.
+#[inline]
+pub unsafe extern "C-unwind" fn NSDrawBitmap(
+    rect: NSRect,
+    width: NSInteger,
+    height: NSInteger,
+    bps: NSInteger,
+    spp: NSInteger,
+    bpp: NSInteger,
+    bpr: NSInteger,
+    is_planar: bool,
+    has_alpha: bool,
+    color_space_name: &NSColorSpaceName,
+    data: NonNull<[*const c_uchar; 5]>,
+) {
+    extern "C-unwind" {
+        fn NSDrawBitmap(
+            rect: NSRect,
+            width: NSInteger,
+            height: NSInteger,
+            bps: NSInteger,
+            spp: NSInteger,
+            bpp: NSInteger,
+            bpr: NSInteger,
+            is_planar: Bool,
+            has_alpha: Bool,
+            color_space_name: &NSColorSpaceName,
+            data: NonNull<[*const c_uchar; 5]>,
+        );
+    }
+    unsafe {
+        NSDrawBitmap(
+            rect,
+            width,
+            height,
+            bps,
+            spp,
+            bpp,
+            bpr,
+            Bool::new(is_planar),
+            Bool::new(has_alpha),
+            color_space_name,
+            data,
+        )
+    }
+}
+
 #[deprecated]
 #[inline]
 pub extern "C-unwind" fn NSHighlightRect(rect: NSRect) {

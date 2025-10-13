@@ -3296,6 +3296,9 @@ pub const kBSLNNoBaselineOverride: c_uint = 255;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnbaselineclass?language=objc)
 pub type BslnBaselineClass = u32;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnbaselinerecord?language=objc)
+pub type BslnBaselineRecord = [Fixed; 32];
+
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnformat0part?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]

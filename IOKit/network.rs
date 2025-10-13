@@ -810,11 +810,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `filter_group` Array TODO.
+    /// `filter_group` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IONetworkSetPacketFiltersMask(
         connect: io_connect_t,
-        filter_group: io_name_t,
+        filter_group: *mut io_name_t,
         filters_mask: u32,
         options: IOOptionBits,
     ) -> IOReturn;
@@ -847,12 +847,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `filter_group` Array TODO.
+    /// - `filter_group` must be a valid pointer.
     /// - `filters_mask` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IONetworkGetPacketFiltersMask(
         connect: io_connect_t,
-        filter_group: io_name_t,
+        filter_group: *mut io_name_t,
         filters_mask: *mut u32,
         options: IOOptionBits,
     ) -> IOReturn;

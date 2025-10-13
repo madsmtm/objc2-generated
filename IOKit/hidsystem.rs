@@ -367,6 +367,9 @@ unsafe impl RefEncode for IOFixedPoint32 {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventsysteminfotype?language=objc)
 pub type NXEventSystemInfoType = *mut c_int;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventsysteminfodata?language=objc)
+pub type NXEventSystemInfoData = [c_int; 1024];
+
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventsystemdevice?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]

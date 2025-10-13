@@ -690,6 +690,27 @@ extern "C-unwind" {
     pub fn ICGetVersion(inst: ICInstance, which_version: c_long, version: *mut u32) -> OSStatus;
 }
 
+/// # Safety
+///
+/// - `inst` must be a valid pointer.
+/// - `name` might not allow `None`.
+#[deprecated]
+#[inline]
+pub unsafe extern "C-unwind" fn ICGetConfigName(
+    inst: ICInstance,
+    longname: bool,
+    name: Option<&mut Str255>,
+) -> OSStatus {
+    extern "C-unwind" {
+        fn ICGetConfigName(
+            inst: ICInstance,
+            longname: Boolean,
+            name: Option<&mut Str255>,
+        ) -> OSStatus;
+    }
+    unsafe { ICGetConfigName(inst, longname as _, name) }
+}
+
 extern "C-unwind" {
     /// # Safety
     ///
@@ -804,6 +825,15 @@ extern "C-unwind" {
     /// - `count` must be a valid pointer.
     #[deprecated]
     pub fn ICCountPref(inst: ICInstance, count: *mut c_long) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `inst` must be a valid pointer.
+    /// - `key` might not allow `None`.
+    #[deprecated]
+    pub fn ICGetIndPref(inst: ICInstance, index: c_long, key: Option<&mut Str255>) -> OSStatus;
 }
 
 extern "C-unwind" {
@@ -1081,6 +1111,19 @@ extern "C-unwind" {
     /// - `this_id` must be a valid pointer.
     #[deprecated]
     pub fn ICGetIndProfile(inst: ICInstance, index: c_long, this_id: *mut ICProfileID) -> OSStatus;
+}
+
+extern "C-unwind" {
+    /// # Safety
+    ///
+    /// - `inst` must be a valid pointer.
+    /// - `name` might not allow `None`.
+    #[deprecated]
+    pub fn ICGetProfileName(
+        inst: ICInstance,
+        this_id: ICProfileID,
+        name: Option<&mut Str255>,
+    ) -> OSStatus;
 }
 
 extern "C-unwind" {
