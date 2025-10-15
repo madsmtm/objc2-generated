@@ -1320,8 +1320,6 @@ pub use self::__MTLTypes::MTLOrigin;
 #[cfg(feature = "MTLTypes")]
 pub use self::__MTLTypes::MTLRegion;
 #[cfg(feature = "MTLTypes")]
-pub use self::__MTLTypes::MTLResourceID;
-#[cfg(feature = "MTLTypes")]
 pub use self::__MTLTypes::MTLSamplePosition;
 #[cfg(feature = "MTLTypes")]
 pub use self::__MTLTypes::MTLSize;
