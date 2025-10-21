@@ -61,7 +61,7 @@ impl NSUUID {
 
         #[unsafe(method(initWithUUIDBytes:))]
         #[unsafe(method_family = init)]
-        pub fn initWithUUIDBytes(this: Allocated<Self>, bytes: Option<&uuid_t>) -> Retained<Self>;
+        pub fn initWithUUIDBytes(this: Allocated<Self>, bytes: &uuid_t) -> Retained<Self>;
 
         #[unsafe(method(getUUIDBytes:))]
         #[unsafe(method_family = none)]
