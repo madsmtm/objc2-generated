@@ -6,23 +6,29 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Represents the domain of a HKHealthConceptIdentifier
+/// A domain that represents a health concept.
+///
+/// A health concept describes what type of medical information a concept belongs to.
+/// For example, the medication domain groups all medication concepts together.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkhealthconceptdomain?language=objc)
 // NS_TYPED_ENUM
 pub type HKHealthConceptDomain = NSString;
 
 extern "C" {
-    /// The domain that represents medication concept identifiers
+    /// The domain that represents medication concepts.
+    ///
+    /// Use with identifiers for medications, such as ibuprofen or insulin.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkhealthconceptdomainmedication?language=objc)
     pub static HKHealthConceptDomainMedication: &'static HKHealthConceptDomain;
 }
 
 extern_class!(
-    /// The identifier that differentiates concepts from each other.
+    /// A unique identifier for a specific health concept within a domain.
     ///
-    /// This identifier is internally unique to each concept within a domain.
+    /// Each identifier points to one concept inside a domain. For example, within the medication
+    /// domain, one identifier might represent ibuprofen while another represents insulin.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkhealthconceptidentifier?language=objc)
     #[unsafe(super(NSObject))]
@@ -56,9 +62,10 @@ extern_conformance!(
 
 impl HKHealthConceptIdentifier {
     extern_methods!(
-        /// The domain of this identifier.
+        /// The domain this identifier belongs to.
         ///
-        /// A string that represents the domain this identifier is understood within.
+        /// This value identifies the group of concepts the identifier comes from. For example,
+        /// if the identifier represents a medication, the category will be the medication domain.
         ///
         /// This property is not atomic.
         ///

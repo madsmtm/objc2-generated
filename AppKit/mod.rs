@@ -548,6 +548,9 @@ mod __NSSavePanel;
 #[cfg(feature = "NSScreen")]
 #[path = "NSScreen.rs"]
 mod __NSScreen;
+#[cfg(feature = "NSScrollEdgeEffect")]
+#[path = "NSScrollEdgeEffect.rs"]
+mod __NSScrollEdgeEffect;
 #[cfg(feature = "NSScrollView")]
 #[path = "NSScrollView.rs"]
 mod __NSScrollView;
@@ -5822,6 +5825,8 @@ pub use self::__NSSavePanel::NSSavePanel;
 pub use self::__NSScreen::NSScreen;
 #[cfg(feature = "NSScreen")]
 pub use self::__NSScreen::NSScreenColorSpaceDidChangeNotification;
+#[cfg(feature = "NSScrollEdgeEffect")]
+pub use self::__NSScrollEdgeEffect::NSScrollEdgeEffectStyle;
 #[cfg(feature = "NSScrollView")]
 pub use self::__NSScrollView::NSScrollElasticity;
 #[cfg(all(feature = "NSResponder", feature = "NSScrollView", feature = "NSView"))]

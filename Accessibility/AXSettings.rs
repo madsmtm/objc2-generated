@@ -57,6 +57,32 @@ extern "C" {
         &'static NSNotificationName;
 }
 
+#[inline]
+pub unsafe extern "C-unwind" fn AXPrefersActionSliderAlternative() -> bool {
+    extern "C-unwind" {
+        fn AXPrefersActionSliderAlternative() -> Bool;
+    }
+    unsafe { AXPrefersActionSliderAlternative() }.as_bool()
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axprefersactionslideralternativedidchangenotification?language=objc)
+    pub static AXPrefersActionSliderAlternativeDidChangeNotification: &'static NSNotificationName;
+}
+
+#[inline]
+pub unsafe extern "C-unwind" fn AXShowBordersEnabled() -> bool {
+    extern "C-unwind" {
+        fn AXShowBordersEnabled() -> Bool;
+    }
+    unsafe { AXShowBordersEnabled() }.as_bool()
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axshowbordersenabledstatusdidchangenotification?language=objc)
+    pub static AXShowBordersEnabledStatusDidChangeNotification: &'static NSNotificationName;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axsettingsfeature?language=objc)
 // NS_ENUM
 #[repr(transparent)]

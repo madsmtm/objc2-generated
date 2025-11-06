@@ -97,6 +97,17 @@ impl UISheetPresentationControllerDetent {
         #[unsafe(method_family = none)]
         pub fn identifier(&self) -> Retained<UISheetPresentationControllerDetentIdentifier>;
 
+        #[cfg(feature = "UIVisualEffect")]
+        #[unsafe(method(backgroundEffect))]
+        #[unsafe(method_family = none)]
+        pub fn backgroundEffect(&self) -> Option<Retained<UIVisualEffect>>;
+
+        #[cfg(feature = "UIVisualEffect")]
+        /// Setter for [`backgroundEffect`][Self::backgroundEffect].
+        #[unsafe(method(setBackgroundEffect:))]
+        #[unsafe(method_family = none)]
+        pub fn setBackgroundEffect(&self, background_effect: Option<&UIVisualEffect>);
+
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(resolvedValueInContext:))]
         #[unsafe(method_family = none)]

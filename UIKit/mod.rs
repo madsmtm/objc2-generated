@@ -5787,6 +5787,8 @@ pub use self::__UIViewLayoutRegion::UIViewLayoutRegionAdaptivityAxis;
 #[cfg(feature = "UIViewPropertyAnimator")]
 pub use self::__UIViewPropertyAnimator::UIViewPropertyAnimator;
 #[cfg(feature = "UIVisualEffect")]
+pub use self::__UIVisualEffect::UIColorEffect;
+#[cfg(feature = "UIVisualEffect")]
 pub use self::__UIVisualEffect::UIVisualEffect;
 #[cfg(all(
     feature = "UIResponder",

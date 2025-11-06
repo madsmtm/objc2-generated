@@ -6,7 +6,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// The possible statuses of a logged HKMedicationDoseEvent
+/// The statuses the system assigns to a logged medication dose event.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseeventlogstatus?language=objc)
 // NS_ENUM
@@ -14,16 +14,29 @@ use crate::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKMedicationDoseEventLogStatus(pub NSInteger);
 impl HKMedicationDoseEventLogStatus {
+    /// The person doesn't interact with a scheduled medication reminder.
+    ///
+    /// The system generates this to represent an untouched reminder slot.
     #[doc(alias = "HKMedicationDoseEventLogStatusNotInteracted")]
     pub const NotInteracted: Self = Self(1);
+    /// The system assigns this status when it fails to deliver a scheduled medication notification.
+    ///
+    /// The system can generate this status because of a person's notification
+    /// restrictions or issues with notification delivery.
     #[doc(alias = "HKMedicationDoseEventLogStatusNotificationNotSent")]
     pub const NotificationNotSent: Self = Self(2);
+    /// The person snoozes a scheduled medication notification.
     #[doc(alias = "HKMedicationDoseEventLogStatusSnoozed")]
     pub const Snoozed: Self = Self(3);
+    /// The person logs that they took the medication dose.
     #[doc(alias = "HKMedicationDoseEventLogStatusTaken")]
     pub const Taken: Self = Self(4);
+    /// The person logs that they skipped the medication dose.
     #[doc(alias = "HKMedicationDoseEventLogStatusSkipped")]
     pub const Skipped: Self = Self(5);
+    /// The person undoes a previously logged medication status.
+    ///
+    /// The system clears the prior status.
     #[doc(alias = "HKMedicationDoseEventLogStatusNotLogged")]
     pub const NotLogged: Self = Self(6);
 }
@@ -36,7 +49,10 @@ unsafe impl RefEncode for HKMedicationDoseEventLogStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// The kind of schedule used to log this dose event.
+/// The kind of schedule the system associates with a logged medication dose event.
+///
+/// Each value tells you whether the person logged the dose ad-hoc or
+/// in response to a scheduled medication reminder.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationdoseeventscheduletype?language=objc)
 // NS_ENUM
@@ -44,8 +60,10 @@ unsafe impl RefEncode for HKMedicationDoseEventLogStatus {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct HKMedicationDoseEventScheduleType(pub NSInteger);
 impl HKMedicationDoseEventScheduleType {
+    /// The person logged this dose event ad-hoc, outside of any scheduled reminder.
     #[doc(alias = "HKMedicationDoseEventScheduleTypeAsNeeded")]
     pub const AsNeeded: Self = Self(1);
+    /// The person logged this dose event in response to a scheduled medication reminder.
     #[doc(alias = "HKMedicationDoseEventScheduleTypeSchedule")]
     pub const Schedule: Self = Self(2);
 }
@@ -101,14 +119,18 @@ extern_conformance!(
 impl HKMedicationDoseEvent {
     extern_methods!(
         #[cfg(feature = "HKObjectType")]
-        /// The data type of the HKMedicationDoseEvent object.
+        /// The data type that identified the samples that store medication dose event data.
+        ///
+        /// You use this type when creating queries or filtering results by sample type.
         #[unsafe(method(medicationDoseEventType))]
         #[unsafe(method_family = none)]
         pub unsafe fn medicationDoseEventType(&self) -> Retained<HKMedicationDoseEventType>;
 
-        /// The impetus behind the dose event.
+        /// The scheduling context for this logged dose event.
         ///
-        /// HKMedicationDoseEventScheduleTypeAsNeeded for doses logged as needed, and HKMedicationDoseEventScheduleTypeSchedule for doses logged from a scheduled event.
+        /// The system sets this to ``HKMedicationDoseEvent/ScheduleType/asNeeded`` when the person
+        /// logs a dose without a schedule and ``HKMedicationDoseEvent/ScheduleType/schedule`` when a person logs a dose
+        /// from a scheduled medication reminder.
         ///
         /// This property is not atomic.
         ///
@@ -120,7 +142,9 @@ impl HKMedicationDoseEvent {
         pub unsafe fn scheduleType(&self) -> HKMedicationDoseEventScheduleType;
 
         #[cfg(feature = "HKHealthConceptIdentifier")]
-        /// A unique identifier of the medication concept for which the dose event was created for, used to relate the dose event to the backing HKMedicationConcept object.
+        /// The identifier of the medication concept the system associates with this dose event.
+        ///
+        /// The system uses this identifier to link the dose event back to its ``HKMedicationConcept`` object.
         ///
         /// This property is not atomic.
         ///
@@ -131,9 +155,9 @@ impl HKMedicationDoseEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn medicationConceptIdentifier(&self) -> Retained<HKHealthConceptIdentifier>;
 
-        /// The time that the medication dose was supposed to be taken.
+        /// The date and time the person takes the medication, if scheduled.
         ///
-        /// Always non-null for scheduled medication dose events, always null for as needed dose events.
+        /// The value is always non-null for ``HKMedicationDoseEvent/ScheduleType/schedule`` and always null for  ``HKMedicationDoseEvent/ScheduleType/asNeeded``.
         ///
         /// This property is not atomic.
         ///
@@ -144,9 +168,9 @@ impl HKMedicationDoseEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn scheduledDate(&self) -> Option<Retained<NSDate>>;
 
-        /// The dose quantity a user is expected to take per the user's schedule.
+        /// The dose quantity a person is expected to take based on their medication schedule.
         ///
-        /// Always non-null for scheduled medication dose events, always null for as needed dose events.
+        /// The value is always non-null for ``HKMedicationDoseEvent/ScheduleType/schedule``, and always null for ``HKMedicationDoseEvent/ScheduleType/asNeeded``.
         ///
         /// This property is not atomic.
         ///
@@ -157,9 +181,10 @@ impl HKMedicationDoseEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn scheduledDoseQuantity(&self) -> Option<Retained<NSNumber>>;
 
-        /// The dose quantity the user indicates has actually been taken.
+        /// The dose quantity the person reports as taken.
         ///
-        /// For scheduled dose events, defaults to the scheduledDoseQuantity, when logged from a reminder. For as needed dose events, defaults to 1 in the medication tracking experience, but can be edited by the user at any time.
+        /// For scheduled dose events, the value defaults to the ``HKMedicationDoseEvent/scheduledDoseQuantity-477ge``, when logged from a
+        /// reminder. For as needed dose events, the value defaults to `1` in the medication tracking experience, but can always be edited by the person logging.
         ///
         /// This property is not atomic.
         ///
@@ -170,7 +195,7 @@ impl HKMedicationDoseEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn doseQuantity(&self) -> Option<Retained<NSNumber>>;
 
-        /// The log status of HKMedicationDoseEvent sample.
+        /// The log status the system assigns to this dose event.
         ///
         /// This property is not atomic.
         ///
@@ -182,7 +207,9 @@ impl HKMedicationDoseEvent {
         pub unsafe fn logStatus(&self) -> HKMedicationDoseEventLogStatus;
 
         #[cfg(feature = "HKUnit")]
-        /// The unit that the associated medication had associated at time the user logged the dose event.
+        /// The unit that the system associates with the medication when the person logs the dose.
+        ///
+        /// This ensures that the dose quantity is recorded with the correct measurement unit.
         ///
         /// This property is not atomic.
         ///
@@ -204,21 +231,29 @@ impl HKMedicationDoseEvent {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathstatus?language=objc)
+    /// The key path you use to create predicates that query by a dose event’s log status.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathstatus?language=objc)
     pub static HKPredicateKeyPathStatus: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathlogorigin?language=objc)
+    /// The key path you use to create predicates that query by the dose event's medication log origin.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathlogorigin?language=objc)
     pub static HKPredicateKeyPathLogOrigin: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathscheduleddate?language=objc)
+    /// The key path you use to create predicates that query by the dose event's scheduled date.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathscheduleddate?language=objc)
     pub static HKPredicateKeyPathScheduledDate: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmedicationconceptidentifier?language=objc)
+    /// The key path you use to create predicates that query by the dose event's medication concept identifier.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkpredicatekeypathmedicationconceptidentifier?language=objc)
     pub static HKPredicateKeyPathMedicationConceptIdentifier: &'static NSString;
 }

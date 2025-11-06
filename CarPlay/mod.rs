@@ -131,6 +131,9 @@ mod __CPMessageListItem;
 #[cfg(feature = "CPNavigationAlert")]
 #[path = "CPNavigationAlert.rs"]
 mod __CPNavigationAlert;
+#[cfg(feature = "CPNavigationEnum")]
+#[path = "CPNavigationEnum.rs"]
+mod __CPNavigationEnum;
 #[cfg(feature = "CPNavigationSession")]
 #[path = "CPNavigationSession.rs"]
 mod __CPNavigationSession;
@@ -375,6 +378,14 @@ pub use self::__CPNavigationAlert::CPNavigationAlert;
 pub use self::__CPNavigationAlert::CPNavigationAlertDismissalContext;
 #[cfg(feature = "CPNavigationAlert")]
 pub use self::__CPNavigationAlert::CPNavigationAlertMinimumDuration;
+#[cfg(all(feature = "CPManeuver", feature = "CPNavigationEnum"))]
+pub use self::__CPNavigationEnum::NSStringFromCPJunctionType;
+#[cfg(all(feature = "CPLane", feature = "CPNavigationEnum"))]
+pub use self::__CPNavigationEnum::NSStringFromCPLaneStatus;
+#[cfg(all(feature = "CPManeuver", feature = "CPNavigationEnum"))]
+pub use self::__CPNavigationEnum::NSStringFromCPManeuverType;
+#[cfg(all(feature = "CPManeuver", feature = "CPNavigationEnum"))]
+pub use self::__CPNavigationEnum::NSStringFromCPTrafficSide;
 #[cfg(feature = "CPNavigationSession")]
 pub use self::__CPNavigationSession::CPNavigationSession;
 #[cfg(feature = "CPNavigationSession")]

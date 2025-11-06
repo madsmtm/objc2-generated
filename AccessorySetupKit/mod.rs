@@ -58,6 +58,8 @@ pub use self::__ASAccessory::ASAccessoryState;
 pub use self::__ASAccessory::ASAccessorySupportOptions;
 #[cfg(feature = "ASAccessory")]
 pub use self::__ASAccessory::ASAccessoryWiFiAwarePairedDeviceID;
+#[cfg(feature = "ASAccessory")]
+pub use self::__ASAccessory::ASDiscoveredAccessory;
 #[cfg(feature = "ASAccessoryEvent")]
 pub use self::__ASAccessoryEvent::ASAccessoryEvent;
 #[cfg(feature = "ASAccessoryEvent")]
@@ -81,6 +83,8 @@ pub use self::__ASErrors::ASErrorCode;
 #[cfg(feature = "ASErrors")]
 pub use self::__ASErrors::ASErrorDomain;
 #[cfg(feature = "ASPickerDisplayItem")]
+pub use self::__ASPickerDisplayItem::ASDiscoveredDisplayItem;
+#[cfg(feature = "ASPickerDisplayItem")]
 pub use self::__ASPickerDisplayItem::ASMigrationDisplayItem;
 #[cfg(feature = "ASPickerDisplayItem")]
 pub use self::__ASPickerDisplayItem::ASPickerDisplayItem;
@@ -96,3 +100,7 @@ pub use self::__ASPickerDisplaySettings::ASPickerDisplaySettingsDiscoveryTimeout
 pub use self::__ASPickerDisplaySettings::ASPickerDisplaySettingsDiscoveryTimeoutMedium;
 #[cfg(feature = "ASPickerDisplaySettings")]
 pub use self::__ASPickerDisplaySettings::ASPickerDisplaySettingsDiscoveryTimeoutShort;
+#[cfg(feature = "ASPickerDisplaySettings")]
+pub use self::__ASPickerDisplaySettings::ASPickerDisplaySettingsDiscoveryTimeoutUnbounded;
+#[cfg(feature = "ASPickerDisplaySettings")]
+pub use self::__ASPickerDisplaySettings::ASPickerDisplaySettingsOptions;

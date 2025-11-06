@@ -1297,6 +1297,18 @@ impl NSURLSessionConfiguration {
         #[unsafe(method_family = none)]
         pub fn setAllowsConstrainedNetworkAccess(&self, allows_constrained_network_access: bool);
 
+        #[unsafe(method(allowsUltraConstrainedNetworkAccess))]
+        #[unsafe(method_family = none)]
+        pub fn allowsUltraConstrainedNetworkAccess(&self) -> bool;
+
+        /// Setter for [`allowsUltraConstrainedNetworkAccess`][Self::allowsUltraConstrainedNetworkAccess].
+        #[unsafe(method(setAllowsUltraConstrainedNetworkAccess:))]
+        #[unsafe(method_family = none)]
+        pub fn setAllowsUltraConstrainedNetworkAccess(
+            &self,
+            allows_ultra_constrained_network_access: bool,
+        );
+
         #[unsafe(method(requiresDNSSECValidation))]
         #[unsafe(method_family = none)]
         pub fn requiresDNSSECValidation(&self) -> bool;

@@ -467,8 +467,8 @@ extern_protocol!(
         ///
         /// The frame interpolator uses this property to overlay your custom UI on any frame data it produces into ``outputTexture``.
         ///
-        /// Use property ``uiTextureComposited`` to indicate to this frame interpolator if ``colorTexture`` contains a precomposition
-        /// of this UI to avoid it producing incorrect results for the overlay.
+        /// Use property ``uiTextureComposited`` to indicate to this frame interpolator if this texture contains a precomposition of
+        /// ``colorTexture``and UI.
         #[unsafe(method(uiTexture))]
         #[unsafe(method_family = none)]
         unsafe fn uiTexture(&self) -> Option<Retained<ProtocolObject<dyn MTLTexture>>>;

@@ -126,6 +126,25 @@ impl NSTitlebarAccessoryViewController {
         #[unsafe(method(viewDidDisappear))]
         #[unsafe(method_family = none)]
         pub fn viewDidDisappear(&self);
+
+        #[cfg(feature = "NSScrollEdgeEffect")]
+        /// The titlebar accessory’s preferred effect for content scrolling behind it.
+        ///
+        /// To allow for a soft edge on the bottom edge of a titlebar accessory:
+        ///
+        /// titlebarAccessoryViewController.preferredScrollEdgeEffectStyle = NSScrollEdgeEffectStyle.softStyle;
+        #[unsafe(method(preferredScrollEdgeEffectStyle))]
+        #[unsafe(method_family = none)]
+        pub fn preferredScrollEdgeEffectStyle(&self) -> Retained<NSScrollEdgeEffectStyle>;
+
+        #[cfg(feature = "NSScrollEdgeEffect")]
+        /// Setter for [`preferredScrollEdgeEffectStyle`][Self::preferredScrollEdgeEffectStyle].
+        #[unsafe(method(setPreferredScrollEdgeEffectStyle:))]
+        #[unsafe(method_family = none)]
+        pub fn setPreferredScrollEdgeEffectStyle(
+            &self,
+            preferred_scroll_edge_effect_style: &NSScrollEdgeEffectStyle,
+        );
     );
 }
 

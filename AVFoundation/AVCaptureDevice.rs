@@ -3817,7 +3817,7 @@ impl AVCaptureDeviceFormat {
         /// Parameter `videoStabilizationMode`: An AVCaptureVideoStabilizationMode to be checked.
         ///
         ///
-        /// isVideoStabilizationModeSupported: returns a boolean value indicating whether the format can be stabilized using the given mode with -[AVCaptureConnection setPreferredVideoStabilizationMode:].
+        /// isVideoStabilizationModeSupported: returns a boolean value indicating whether the format can be stabilized using the given mode with -[AVCaptureConnection setPreferredVideoStabilizationMode:]. In the case of ProRes RAW formats, video stabilization metadata is attached to the unstabilized video buffers instead.
         #[unsafe(method(isVideoStabilizationModeSupported:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isVideoStabilizationModeSupported(

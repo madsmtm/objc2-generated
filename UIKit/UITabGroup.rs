@@ -100,7 +100,7 @@ impl UITabGroup {
         pub fn setDisplayOrderIdentifiers(&self, display_order_identifiers: &NSArray<NSString>);
 
         /// Determines if elements in `children` can be reordered from the sidebar. Default is NO.
-        /// Changes in the display order are notified via `tabBarController:didCustomizeDisplayOrderForGroup:`
+        /// Changes in the display order are notified via `tabBarController:displayOrderDidChangeForGroup:`
         /// in `UITabBarControllerDelegate`.
         #[unsafe(method(allowsReordering))]
         #[unsafe(method_family = none)]
@@ -181,6 +181,20 @@ impl UITabGroup {
         #[unsafe(method(setSidebarAppearance:))]
         #[unsafe(method_family = none)]
         pub fn setSidebarAppearance(&self, sidebar_appearance: UITabGroupSidebarAppearance);
+
+        /// Determines if the tab group itself can be selected as a destination in the sidebar.
+        ///
+        /// By default, tab groups are not destinations when displayed in the sidebar, and cannot be selected directly
+        /// by users. When enabled, the tab group becomes a selectable item in the sidebar, and will no longer perform
+        /// automatic selection for a default child if no child is currently selected. The default value is NO.
+        #[unsafe(method(isSidebarDestination))]
+        #[unsafe(method_family = none)]
+        pub fn isSidebarDestination(&self) -> bool;
+
+        /// Setter for [`isSidebarDestination`][Self::isSidebarDestination].
+        #[unsafe(method(setIsSidebarDestination:))]
+        #[unsafe(method_family = none)]
+        pub fn setIsSidebarDestination(&self, is_sidebar_destination: bool);
 
         #[cfg(all(
             feature = "UIImage",

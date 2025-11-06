@@ -369,5 +369,9 @@ impl NSProcessInfo {
         #[unsafe(method(isiOSAppOnMac))]
         #[unsafe(method_family = none)]
         pub fn isiOSAppOnMac(&self) -> bool;
+
+        #[unsafe(method(isiOSAppOnVision))]
+        #[unsafe(method_family = none)]
+        pub fn isiOSAppOnVision(&self) -> bool;
     );
 }

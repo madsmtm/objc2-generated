@@ -230,6 +230,31 @@ impl ASMigrationDisplayItem {
         #[unsafe(method(setHotspotSSID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHotspotSSID(&self, hotspot_ssid: Option<&NSString>);
+
+        #[cfg(feature = "ASAccessory")]
+        /// The Wi-Fi Aware paired device identififer of the accessory to migrate.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(wifiAwarePairedDeviceID))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn wifiAwarePairedDeviceID(&self) -> ASAccessoryWiFiAwarePairedDeviceID;
+
+        #[cfg(feature = "ASAccessory")]
+        /// Setter for [`wifiAwarePairedDeviceID`][Self::wifiAwarePairedDeviceID].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(setWifiAwarePairedDeviceID:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setWifiAwarePairedDeviceID(
+            &self,
+            wifi_aware_paired_device_id: ASAccessoryWiFiAwarePairedDeviceID,
+        );
     );
 }
 
@@ -259,6 +284,75 @@ impl ASMigrationDisplayItem {
 
 /// Methods declared on superclass `NSObject`.
 impl ASMigrationDisplayItem {
+    extern_methods!(
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}
+
+extern_class!(
+    /// A picker display item created from customizing a discovered accessory.
+    ///
+    /// Use this type when your app's picker uses the ``ASPickerDisplaySettings/Options/filterDiscoveryResults`` option.
+    /// With this option enabled, your discovery session receives ``ASAccessoryEventType/accessoryDiscovered`` events with discovered accessories.
+    /// To include a discovered accessory in the picker, create an instance of this class, optionally using the Bluetooth properties of the event's ``ASDiscoveredAccessory`` to provide a more specific name or product image.
+    /// Then send the `ASDiscoveredDisplayItem` to the picker with the session's ``ASAccessorySession/updatePicker(showing:completionHandler:)`` method.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscovereddisplayitem?language=objc)
+    #[unsafe(super(ASPickerDisplayItem, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct ASDiscoveredDisplayItem;
+);
+
+unsafe impl Send for ASDiscoveredDisplayItem {}
+
+unsafe impl Sync for ASDiscoveredDisplayItem {}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASDiscoveredDisplayItem {}
+);
+
+impl ASDiscoveredDisplayItem {
+    extern_methods!(
+        #[cfg(all(feature = "ASAccessory", feature = "objc2-ui-kit"))]
+        /// Creates a discovered picker display item with a name and image to display and a descriptor to match discovered accessories.
+        /// - Parameters:
+        /// - name: The accessory name to display in the picker.
+        /// - productImage: An image of the accessory to display in the picker.
+        /// - accessory: App filtered accessory to display in the picker.
+        #[unsafe(method(initWithName:productImage:accessory:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithName_productImage_accessory(
+            this: Allocated<Self>,
+            name: &NSString,
+            product_image: &UIImage,
+            accessory: &ASDiscoveredAccessory,
+        ) -> Retained<Self>;
+
+        #[cfg(all(feature = "ASDiscoveryDescriptor", feature = "objc2-ui-kit"))]
+        #[unsafe(method(initWithName:productImage:descriptor:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithName_productImage_descriptor(
+            this: Allocated<Self>,
+            name: &NSString,
+            product_image: &UIImage,
+            descriptor: &ASDiscoveryDescriptor,
+        ) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `ASPickerDisplayItem`.
+impl ASDiscoveredDisplayItem {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl ASDiscoveredDisplayItem {
     extern_methods!(
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]

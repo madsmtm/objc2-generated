@@ -514,6 +514,18 @@ extern "C" {
 }
 
 extern "C" {
+    /// A UTI for the QuickTime audio file format
+    ///
+    /// The value of this UTI is
+    /// "
+    /// com.apple.quicktime-audio".
+    /// Files are identified with the .qta extension.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avfiletypequicktimeaudio?language=objc)
+    pub static AVFileTypeQuickTimeAudio: Option<&'static AVFileType>;
+}
+
+extern "C" {
     /// A UTI for the MPEG-4 file format.
     ///
     /// The value of this UTI is

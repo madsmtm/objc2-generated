@@ -1472,6 +1472,8 @@ pub use self::__AVMediaFormat::AVFileTypeProfileMPEG4AppleHLS;
 #[cfg(feature = "AVMediaFormat")]
 pub use self::__AVMediaFormat::AVFileTypeProfileMPEG4CMAFCompliant;
 #[cfg(feature = "AVMediaFormat")]
+pub use self::__AVMediaFormat::AVFileTypeQuickTimeAudio;
+#[cfg(feature = "AVMediaFormat")]
 pub use self::__AVMediaFormat::AVFileTypeQuickTimeMovie;
 #[cfg(feature = "AVMediaFormat")]
 pub use self::__AVMediaFormat::AVFileTypeSCC;

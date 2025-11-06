@@ -89,6 +89,8 @@ impl NSURLErrorNetworkUnavailableReason {
     pub const Expensive: Self = Self(1);
     #[doc(alias = "NSURLErrorNetworkUnavailableReasonConstrained")]
     pub const Constrained: Self = Self(2);
+    #[doc(alias = "NSURLErrorNetworkUnavailableReasonUltraConstrained")]
+    pub const UltraConstrained: Self = Self(3);
 }
 
 unsafe impl Encode for NSURLErrorNetworkUnavailableReason {

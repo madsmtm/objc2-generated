@@ -41,6 +41,12 @@ mod __PHAssetResource;
 #[cfg(feature = "PHAssetResourceManager")]
 #[path = "PHAssetResourceManager.rs"]
 mod __PHAssetResourceManager;
+#[cfg(feature = "PHAssetResourceUploadJob")]
+#[path = "PHAssetResourceUploadJob.rs"]
+mod __PHAssetResourceUploadJob;
+#[cfg(feature = "PHAssetResourceUploadJobChangeRequest")]
+#[path = "PHAssetResourceUploadJobChangeRequest.rs"]
+mod __PHAssetResourceUploadJobChangeRequest;
 #[cfg(feature = "PHChange")]
 #[path = "PHChange.rs"]
 mod __PHChange;
@@ -149,6 +155,13 @@ pub use self::__PHAssetResourceManager::PHAssetResourceProgressHandler;
 pub use self::__PHAssetResourceManager::PHAssetResourceRequestOptions;
 #[cfg(feature = "PHAssetResourceManager")]
 pub use self::__PHAssetResourceManager::PHInvalidAssetResourceDataRequestID;
+#[cfg(all(feature = "PHAssetResourceUploadJob", feature = "PHObject"))]
+pub use self::__PHAssetResourceUploadJob::PHAssetResourceUploadJob;
+#[cfg(all(
+    feature = "PHAssetResourceUploadJobChangeRequest",
+    feature = "PHChangeRequest"
+))]
+pub use self::__PHAssetResourceUploadJobChangeRequest::PHAssetResourceUploadJobChangeRequest;
 #[cfg(feature = "PHChange")]
 pub use self::__PHChange::PHChange;
 #[cfg(all(feature = "PHChange", feature = "PHObject"))]
@@ -301,6 +314,10 @@ pub use self::__PhotosTypes::PHAssetMediaType;
 pub use self::__PhotosTypes::PHAssetPlaybackStyle;
 #[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetResourceType;
+#[cfg(feature = "PhotosTypes")]
+pub use self::__PhotosTypes::PHAssetResourceUploadJobAction;
+#[cfg(feature = "PhotosTypes")]
+pub use self::__PhotosTypes::PHAssetResourceUploadJobState;
 #[cfg(feature = "PhotosTypes")]
 pub use self::__PhotosTypes::PHAssetSourceType;
 #[cfg(feature = "PhotosTypes")]

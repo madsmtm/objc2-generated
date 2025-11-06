@@ -50,6 +50,10 @@ extern_conformance!(
 
 impl ASAuthorizationWebBrowserPublicKeyCredentialManager {
     extern_methods!(
+        #[unsafe(method(isDeviceConfiguredForPasskeys))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isDeviceConfiguredForPasskeys() -> bool;
+
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;

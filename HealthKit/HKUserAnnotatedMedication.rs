@@ -7,7 +7,9 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// An object that contains all of the user-customizable details relevant to the medication tracking experience and a reference to a medication being tracked.
+    /// A reference to the tracked medication and the details a person can customize.
+    ///
+    /// The details are relevant to the medication tracking experience.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkuserannotatedmedication?language=objc)
     #[unsafe(super(NSObject))]
@@ -41,7 +43,7 @@ extern_conformance!(
 
 impl HKUserAnnotatedMedication {
     extern_methods!(
-        /// The nickname a added to a medication during the entry experience.
+        /// The nickname that a person added to a medication during the entry experience.
         ///
         /// This can be edited at any point.
         ///
@@ -54,9 +56,10 @@ impl HKUserAnnotatedMedication {
         #[unsafe(method_family = none)]
         pub unsafe fn nickname(&self) -> Option<Retained<NSString>>;
 
-        /// A boolean value indicating if a medication is archived.
+        /// A Boolean value that indicates whether a medication is archived.
         ///
-        /// True if a user moves a medication to the archived section in the medication tracking experience. False if a medication is not in the archived section.
+        /// The value is `true` if a person moves a medication to the archived section in the Health App.
+        /// The value is `false` if a medication isn't in the archived section.
         ///
         /// This property is not atomic.
         ///
@@ -67,9 +70,10 @@ impl HKUserAnnotatedMedication {
         #[unsafe(method_family = none)]
         pub unsafe fn isArchived(&self) -> bool;
 
-        /// A boolean value indicating if a medication has a schedule set up.
+        /// A Boolean value that indicates whether a medication has a schedule set up.
         ///
-        /// True if a user has set up reminders for a medication. False for "As Needed" medications.
+        /// The value is `true` for medications for which a person has set up reminders and `false` for medications that are only taken as needed.
+        /// > Note: Scheduled medications can still be taken as needed.
         ///
         /// This property is not atomic.
         ///
@@ -81,7 +85,7 @@ impl HKUserAnnotatedMedication {
         pub unsafe fn hasSchedule(&self) -> bool;
 
         #[cfg(feature = "HKMedicationConcept")]
-        /// A reference to the specific medication a user is tracking.
+        /// A reference to the specific medication a person is tracking.
         ///
         /// This concept's identifier is directly associated with the logged dose events.
         ///
@@ -110,11 +114,19 @@ impl HKUserAnnotatedMedication {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkuserannotatedmedicationpredicatekeypathisarchived?language=objc)
+    /// The key path you use to create predicates for the medication's archived status.
+    ///
+    /// Use to predicate against the ``HKUserAnnotatedMedication/isArchived`` property of a medication.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkuserannotatedmedicationpredicatekeypathisarchived?language=objc)
     pub static HKUserAnnotatedMedicationPredicateKeyPathIsArchived: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkuserannotatedmedicationpredicatekeypathhasschedule?language=objc)
+    /// The key path you use to create predicates for whether or not a medication has a schedule.
+    ///
+    /// Use to predicate against the ``HKUserAnnotatedMedication/hasSchedule`` property of a medication.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkuserannotatedmedicationpredicatekeypathhasschedule?language=objc)
     pub static HKUserAnnotatedMedicationPredicateKeyPathHasSchedule: &'static NSString;
 }

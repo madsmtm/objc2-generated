@@ -90,7 +90,33 @@ impl AEAssessmentApplication {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeautocorrectmode?language=objc)
+/// The set of autocorrect features that you can enable during an assessment.
+///
+/// Use one or more of the autocorrect modes to set the ``AEAssessmentConfiguration/autocorrectMode-swift.property`` property of an ``AEAssessmentConfiguration`` instance. For example, you can enable both spelling and punctuation corrections by combining ``AEAssessmentConfiguration/AutocorrectMode-swift.struct/spelling`` and ``AEAssessmentConfiguration/AutocorrectMode-swift.struct/punctuation``:
+///
+/// ```swift
+/// let config = AEAssessmentConfiguration()
+///
+/// #if os(iOS) // Available only on iOS and iPadOS.
+/// config.autocorrectMode = [.punctuation, .spelling]
+/// #endif
+///
+/// let session = AEAssessmentSession(configuration: config)
+/// ```
+///
+/// ## Topics
+///
+/// ### Creating a mode
+///
+/// - ``AEAssessmentConfiguration/AutocorrectMode-swift.struct/init(rawValue:)``
+///
+/// ### Modes
+///
+/// - ``AEAssessmentConfiguration/AutocorrectMode-swift.struct/punctuation``
+/// - ``AEAssessmentConfiguration/AutocorrectMode-swift.struct/spelling``
+/// - ``AEAutocorrectMode/AEAutocorrectModeNone``
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeautocorrectmode?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -99,8 +125,10 @@ bitflags::bitflags! {
     impl AEAutocorrectMode: NSUInteger {
         #[doc(alias = "AEAutocorrectModeNone")]
         const None = 0;
+/// A mode in which autocorrect checks for spelling as the user types.
         #[doc(alias = "AEAutocorrectModeSpelling")]
         const Spelling = 1<<0;
+/// A mode in which autocorrect checks punctuation as the user types.
         #[doc(alias = "AEAutocorrectModePunctuation")]
         const Punctuation = 1<<1;
     }
@@ -115,7 +143,65 @@ unsafe impl RefEncode for AEAutocorrectMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration?language=objc)
+    /// Configuration information for an assessment session.
+    ///
+    /// Create a configuration instance and pass it to the ``AEAssessmentSession/init(configuration:)`` initializer of an ``AEAssessmentSession`` instance to create a new assessment session. Before using the configuration, indicate which exceptions you want to allow for the assessment session's restrictions by setting values on the configuration instance. For example, you can set values to allow dictation and certain aspects of autocorrect:
+    ///
+    /// ```swift
+    /// let config = AEAssessmentConfiguration()
+    ///
+    /// #if os(iOS) // These exceptions available only on iOS and iPadOS.
+    /// config.allowsDictation = true
+    /// config.autocorrectMode = [.punctuation, .spelling]
+    /// #endif
+    ///
+    /// let session = AEAssessmentSession(configuration: config)
+    /// ```
+    ///
+    /// While you provide a configuration instance when creating a session on iOS, iPadOS, and macOS, specific exceptions apply only to certain platforms. In particular, on macOS, you can selectively make specific apps besides your own available during an assessment — for example, to allow users to access a calculator or a dictionary. All other exceptions apply only to iOS and iPadOS.
+    ///
+    /// ## Topics
+    ///
+    /// ### Allowing access to other apps
+    ///
+    /// - ``setConfiguration(_:for:)``
+    /// - ``configurationsByApplication``
+    /// - ``remove(_:)``
+    /// - ``mainParticipantConfiguration``
+    /// - ``AEAssessmentApplication``
+    /// - ``AEAssessmentParticipantConfiguration``
+    ///
+    /// ### Allowing accessibility
+    ///
+    /// - ``allowsAccessibilityKeyboard``
+    /// - ``allowsAccessibilityLiveCaptions``
+    /// - ``allowsAccessibilityReader``
+    /// - ``allowsAccessibilitySpeech``
+    /// - ``allowsAccessibilityTypingFeedback``
+    /// - ``allowsDictation``
+    ///
+    /// ### Allowing typing assistance
+    ///
+    /// - ``allowsContinuousPathKeyboard``
+    /// - ``allowsKeyboardShortcuts``
+    /// - ``allowsPredictiveKeyboard``
+    /// - ``allowsPasswordAutoFill``
+    ///
+    /// ### Allowing corrections
+    ///
+    /// - ``allowsSpellCheck``
+    /// - ``autocorrectMode-swift.property``
+    /// - ``AutocorrectMode-swift.struct``
+    ///
+    /// ### Allowing handoff
+    ///
+    /// - ``allowsActivityContinuation``
+    ///
+    /// ### Allowing content capture
+    ///
+    /// - ``allowsScreenshots``
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/automaticassessmentconfiguration/aeassessmentconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AEAssessmentConfiguration;
@@ -135,6 +221,9 @@ extern_conformance!(
 
 impl AEAssessmentConfiguration {
     extern_methods!(
+        /// The autocorrect mode that specifies which autocorrect features to allow during an assessment.
+        ///
+        /// Users can turn on autocorrect in the Settings app (General > Keyboard > Auto-Correction). An assessment session disables this feature by default, but you can allow it by setting ``AEAssessmentConfiguration/autocorrectMode-swift.property`` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session. Set the mode's value to some combination of the the values from the ``AEAssessmentConfiguration/AutocorrectMode-swift.struct`` structure.
         #[unsafe(method(autocorrectMode))]
         #[unsafe(method_family = none)]
         pub unsafe fn autocorrectMode(&self) -> AEAutocorrectMode;
@@ -144,6 +233,9 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAutocorrectMode(&self, autocorrect_mode: AEAutocorrectMode);
 
+        /// A Boolean value that indicates whether to allow spell check during an assessment.
+        ///
+        /// Users can activate the spell checker by turning on the Check Spelling feature in the Settings app (General > Keyboard). An assessment session disables spell checking by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsSpellCheck`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
         #[unsafe(method(allowsSpellCheck))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsSpellCheck(&self) -> bool;
@@ -153,6 +245,9 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsSpellCheck(&self, allows_spell_check: bool);
 
+        /// A Boolean value that indicates whether to enable the predictive keyboard during an assessment.
+        ///
+        /// Users can turn on the Predictive Keyboard feature in the Settings app (General > Keyboard). An assessment session disables this feature by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsPredictiveKeyboard`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
         #[unsafe(method(allowsPredictiveKeyboard))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsPredictiveKeyboard(&self) -> bool;
@@ -162,6 +257,9 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsPredictiveKeyboard(&self, allows_predictive_keyboard: bool);
 
+        /// A Boolean value that indicates whether to allow keyboard shortcuts during an assessment.
+        ///
+        /// Users can add Keyboard Shortcuts in the Settings app (General > Keyboard > Text Replacement). An assessment session disables the use of keyboard shortcuts by default, but you can allow them by setting ``AEAssessmentConfiguration/allowsKeyboardShortcuts`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
         #[unsafe(method(allowsKeyboardShortcuts))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsKeyboardShortcuts(&self) -> bool;
@@ -171,6 +269,11 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsKeyboardShortcuts(&self, allows_keyboard_shortcuts: bool);
 
+        /// A Boolean value that indicates whether to allow Handoff during an assessment.
+        ///
+        /// Handoff lets users start an activity on one device and seamlessly resume the activity on another. Users control whether a device participates in Handoff by turning the feature on or off in the Settings app (General > AirPlay
+        /// &
+        /// Handoff > Handoff). An assessment disables this feature by default, but you can allow users undergoing an assessment to continue to use Handoff by setting ``AEAssessmentConfiguration/allowsActivityContinuation`` to `true`.
         #[unsafe(method(allowsActivityContinuation))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsActivityContinuation(&self) -> bool;
@@ -180,6 +283,9 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsActivityContinuation(&self, allows_activity_continuation: bool);
 
+        /// A Boolean value that indicates whether to allow the use of dictation during an assessment.
+        ///
+        /// By turning on Enable Dictation (General > Keyboard in the Settings app on iOS and iPadOS), users can speak into their device and have the words they speak converted to text. An assessment session disables this feature by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsDictation`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
         #[unsafe(method(allowsDictation))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsDictation(&self) -> bool;
@@ -189,6 +295,55 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsDictation(&self, allows_dictation: bool);
 
+        /// A Boolean value that indicates whether to allow alternative input methods in the Accessibility Keyboard during an assessment.
+        ///
+        /// Users can enable the Accessibility Keyboard in the Settings app (Accessibility > Keyboard > Accessibility Keyboard) to access an on-screen keyboard with alternative input methods. An assessment session disables alternative input methods in the Accessibility Keyboard by default, but you can allow them by setting ``AEAssessmentConfiguration/allowsAccessibilityKeyboard`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsAccessibilityKeyboard))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessibilityKeyboard(&self) -> bool;
+
+        /// Setter for [`allowsAccessibilityKeyboard`][Self::allowsAccessibilityKeyboard].
+        #[unsafe(method(setAllowsAccessibilityKeyboard:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessibilityKeyboard(&self, allows_accessibility_keyboard: bool);
+
+        /// A Boolean value that indicates whether to allow Live Captions during an assessment.
+        ///
+        /// Users can enable Live Captions in the Settings app (Accessibility > Live Captions) to receive real-time transcription of spoken audio as text on screen. An assessment session disables Live Captions by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsAccessibilityLiveCaptions`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsAccessibilityLiveCaptions))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessibilityLiveCaptions(&self) -> bool;
+
+        /// Setter for [`allowsAccessibilityLiveCaptions`][Self::allowsAccessibilityLiveCaptions].
+        #[unsafe(method(setAllowsAccessibilityLiveCaptions:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessibilityLiveCaptions(
+            &self,
+            allows_accessibility_live_captions: bool,
+        );
+
+        /// A Boolean value that indicates whether to allow the Accessibility Reader during an assessment.
+        ///
+        /// Users can enable the Accessibility Reader in the Settings app (Accessibility > Read
+        /// &
+        /// Speak > Accessibility Reader) to have text content formatted or read aloud. An assessment session disables the Accessibility Reader by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsAccessibilityReader`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
+        #[unsafe(method(allowsAccessibilityReader))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsAccessibilityReader(&self) -> bool;
+
+        /// Setter for [`allowsAccessibilityReader`][Self::allowsAccessibilityReader].
+        #[unsafe(method(setAllowsAccessibilityReader:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsAccessibilityReader(&self, allows_accessibility_reader: bool);
+
+        /// A Boolean value that indicates whether to allow the speech-related accessibility features during an assessment.
+        ///
+        /// A device reads text aloud for users who need it. In particular, users can enable the following features from Accessibility > Spoken Content in the Settings app on iOS and iPadOS:
+        /// - Speak Selection
+        /// - Speak Screen
+        /// - Typing Feedback > Speak Words
+        ///
+        /// An assessment session disables these features by default, but you can allow them by setting ``AEAssessmentConfiguration/allowsAccessibilitySpeech`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
         #[unsafe(method(allowsAccessibilitySpeech))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsAccessibilitySpeech(&self) -> bool;
@@ -198,6 +353,11 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsAccessibilitySpeech(&self, allows_accessibility_speech: bool);
 
+        /// A Boolean value that indicates whether to allow accessibility typing feedback during an assessment.
+        ///
+        /// Users can enable typing feedback features in the Settings app (Accessibility > Keyboards
+        /// &
+        /// Typing > Typing Feedback)  to receive audio feedback when typing. An assessment session disables these accessibility typing feedback features by default, but you can allow them by setting ``AEAssessmentConfiguration/allowsAccessibilityTypingFeedback`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
         #[unsafe(method(allowsAccessibilityTypingFeedback))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsAccessibilityTypingFeedback(&self) -> bool;
@@ -210,6 +370,9 @@ impl AEAssessmentConfiguration {
             allows_accessibility_typing_feedback: bool,
         );
 
+        /// A Boolean value that indicates whether to allow password autofill during an assessment.
+        ///
+        /// Users can store passwords for use with Password Autofill by turning on the feature in the Settings app (General > Passwords > AutoFill Passwords). An assessment session disables Password Autofill by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsPasswordAutoFill`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
         #[unsafe(method(allowsPasswordAutoFill))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsPasswordAutoFill(&self) -> bool;
@@ -219,6 +382,9 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsPasswordAutoFill(&self, allows_password_auto_fill: bool);
 
+        /// A Boolean value that indicates whether to allow Slide to Type to operate during an assessment.
+        ///
+        /// Users can turn on Slide to Type in the Settings app (General > Keyboard). An assessment session disables this feature by default, but you can allow it by setting ``AEAssessmentConfiguration/allowsContinuousPathKeyboard`` to `true` in the ``AEAssessmentConfiguration`` instance that you use to initialize a session.
         #[unsafe(method(allowsContinuousPathKeyboard))]
         #[unsafe(method_family = none)]
         pub unsafe fn allowsContinuousPathKeyboard(&self) -> bool;
@@ -228,18 +394,66 @@ impl AEAssessmentConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn setAllowsContinuousPathKeyboard(&self, allows_continuous_path_keyboard: bool);
 
+        /// A Boolean value that indicates whether to allow screenshots copied to the clipboard during an assessment.
+        ///
+        /// An assessment session disables the ability to take screenshots by default to maintain assessment integrity. This property specifically applies to screenshots that are copied to the clipboard, typically those taken using the Command+Control+Shift+3 and Command+Control+Shift+4 keyboard shortcuts. You can allow clipboard screenshots by setting `allowsScreenshots` to `true`.
+        ///
+        /// - Note: The clipboard is cleared before the assessment session ends to prevent exporting captured content.
+        #[unsafe(method(allowsScreenshots))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn allowsScreenshots(&self) -> bool;
+
+        /// Setter for [`allowsScreenshots`][Self::allowsScreenshots].
+        #[unsafe(method(setAllowsScreenshots:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setAllowsScreenshots(&self, allows_screenshots: bool);
+
+        /// The app-specific configuration for the app that invokes the assessment.
+        ///
+        /// Use this property to get and customize the app-specific configuration that's applied to your own app. For example, you can set the `allowsNetworkAccess` property for your own app:
+        ///
+        /// ```swift
+        /// let config = AEAssessmentConfiguration()
+        /// config.mainParticipantConfiguration.allowsNetworkAccess = false
+        /// ```
         #[unsafe(method(mainParticipantConfiguration))]
         #[unsafe(method_family = none)]
         pub unsafe fn mainParticipantConfiguration(
             &self,
         ) -> Retained<AEAssessmentParticipantConfiguration>;
 
+        /// The collection of apps available during an assessment, along with their associated configurations.
+        ///
+        /// Access this property to get a list of the currently allowed secondary apps and their individual configurations. Add apps to the list by calling the ``AEAssessmentConfiguration/setConfiguration(_:for:)`` method. Remove them from the list by calling the ``AEAssessmentConfiguration/remove(_:)`` method.
         #[unsafe(method(configurationsByApplication))]
         #[unsafe(method_family = none)]
         pub unsafe fn configurationsByApplication(
             &self,
         ) -> Retained<NSDictionary<AEAssessmentApplication, AEAssessmentParticipantConfiguration>>;
 
+        /// Adds an app to the list of apps available during an assessment.
+        ///
+        /// Use this method to make an app besides your own available during an assessment. Create a representation of the app that you want to allow as an ``AEAssessmentApplication`` instance, and the configuration for that app using an ``AEAssessmentParticipantConfiguration`` instance:
+        ///
+        /// ```swift
+        /// let calculator = AEAssessmentApplication(bundleIdentifier: "com.apple.calculator")
+        /// let calculatorConfig = AEAssessmentParticipantConfiguration()
+        /// calculatorConfig.allowsNetworkAccess = false // Calculator doesn't need the network.
+        /// ```
+        ///
+        /// Use the app and its configuration to create an assessment configuration, and either create an assessment session with that, or update an existing session as shown below:
+        ///
+        /// ```swift
+        /// let configuration = AEAssessmentConfiguration()
+        /// configuration.setConfiguration(calculatorConfig, for: calculator)
+        /// session.update(to: configuration)
+        /// ```
+        ///
+        /// You can get a list of the currently allowed apps by accessing the ``AEAssessmentConfiguration/configurationsByApplication`` property. You can disallow a previously allowed app by using the ``AEAssessmentConfiguration/remove(_:)`` method.
+        ///
+        /// - Parameters:
+        /// - configuration: The configuration of the secondary app.
+        /// - application: The app that you want to configure.
         #[unsafe(method(setConfiguration:forApplication:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration_forApplication(
@@ -248,6 +462,12 @@ impl AEAssessmentConfiguration {
             application: &AEAssessmentApplication,
         );
 
+        /// Removes the availability of a previously allowed app.
+        ///
+        /// Use this method to remove apps that you previously added to the list of apps that are available during an assessment with the ``AEAssessmentConfiguration/setConfiguration(_:for:)`` method. You can get the list of currently allowed apps by accessing the configuration's ``AEAssessmentConfiguration/configurationsByApplication`` property.
+        ///
+        /// - Parameters:
+        /// - application: The app that you want to remove from the list of allowed secondary apps.
         #[unsafe(method(removeApplication:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeApplication(&self, application: &AEAssessmentApplication);

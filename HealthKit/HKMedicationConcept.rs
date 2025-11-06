@@ -6,106 +6,143 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// Represents a medications general form.
+/// The manufactured form of a medication.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralform?language=objc)
 // NS_TYPED_ENUM
 pub type HKMedicationGeneralForm = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformcapsule?language=objc)
+    /// The medication comes in capsule form, such as a hard-shell capsule or softgel.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformcapsule?language=objc)
     pub static HKMedicationGeneralFormCapsule: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformcream?language=objc)
+    /// The medication is applied as a cream.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformcream?language=objc)
     pub static HKMedicationGeneralFormCream: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformdevice?language=objc)
+    /// The medication is administered through a device, such as an infusion pump for controlled fluid delivery.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformdevice?language=objc)
     pub static HKMedicationGeneralFormDevice: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformdrops?language=objc)
+    /// The medication is taken as drops, for example eye drops or ear drops.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformdrops?language=objc)
     pub static HKMedicationGeneralFormDrops: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformfoam?language=objc)
+    /// The medication is applied as a foam.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformfoam?language=objc)
     pub static HKMedicationGeneralFormFoam: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformgel?language=objc)
+    /// The medication is applied as a gel.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformgel?language=objc)
     pub static HKMedicationGeneralFormGel: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralforminhaler?language=objc)
+    /// The medication is delivered through an inhaler.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralforminhaler?language=objc)
     pub static HKMedicationGeneralFormInhaler: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralforminjection?language=objc)
+    /// The medication is given as an injection.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralforminjection?language=objc)
     pub static HKMedicationGeneralFormInjection: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformliquid?language=objc)
+    /// The medication is taken as a liquid, such as a syrup.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformliquid?language=objc)
     pub static HKMedicationGeneralFormLiquid: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformlotion?language=objc)
+    /// The medication is applied as a lotion.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformlotion?language=objc)
     pub static HKMedicationGeneralFormLotion: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformointment?language=objc)
+    /// The medication is applied as an ointment.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformointment?language=objc)
     pub static HKMedicationGeneralFormOintment: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformpatch?language=objc)
+    /// The medication is applied as a patch worn on the skin.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformpatch?language=objc)
     pub static HKMedicationGeneralFormPatch: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformpowder?language=objc)
+    /// The medication is taken as a powder.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformpowder?language=objc)
     pub static HKMedicationGeneralFormPowder: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformspray?language=objc)
+    /// The medication is delivered as a spray, for example a nasal spray or throat spray.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformspray?language=objc)
     pub static HKMedicationGeneralFormSpray: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformsuppository?language=objc)
+    /// The medication is delivered as a suppository.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformsuppository?language=objc)
     pub static HKMedicationGeneralFormSuppository: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformtablet?language=objc)
+    /// The medication comes in tablet form, such as a pill or caplet.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformtablet?language=objc)
     pub static HKMedicationGeneralFormTablet: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformtopical?language=objc)
+    /// The medication is applied topically in a form that wasn't specified.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformtopical?language=objc)
     pub static HKMedicationGeneralFormTopical: &'static HKMedicationGeneralForm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformunknown?language=objc)
+    /// The system doesn't know the general form of the medication.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationgeneralformunknown?language=objc)
     pub static HKMedicationGeneralFormUnknown: &'static HKMedicationGeneralForm;
 }
 
 extern_class!(
-    /// An object that represents the concept of a medication.
+    /// An object that describes a specific medication concept.
     ///
-    /// Medications can have clinical significance, or can be created by the user.
+    /// A medication concept represents the idea of a medication, like ibuprofen or insulin.
+    /// It can have clinical significance, or can be created by the person using your app.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkmedicationconcept?language=objc)
     #[unsafe(super(NSObject))]
@@ -140,9 +177,11 @@ extern_conformance!(
 impl HKMedicationConcept {
     extern_methods!(
         #[cfg(feature = "HKHealthConceptIdentifier")]
-        /// A unique identifier that differentiates concepts from each other.
+        /// The unique identifier for the specific medication concept.
         ///
-        /// One medication concept will have a stable identifier across multiple devices, and can be used for direct comparison.
+        /// Each concept has one stable identifier that stays the same across devices.
+        /// You can use this identifier to directly compare medications, for example,
+        /// to check whether two objects represent the same medication.
         ///
         /// This property is not atomic.
         ///
@@ -153,9 +192,9 @@ impl HKMedicationConcept {
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<HKHealthConceptIdentifier>;
 
-        /// An unlocalized string suitable for display.
+        /// The display name for this medication.
         ///
-        /// The name of the medication entered or selected during medication onboarding.
+        /// The name of the medication a person enters or selects during medication onboarding.
         ///
         /// This property is not atomic.
         ///
@@ -166,9 +205,11 @@ impl HKMedicationConcept {
         #[unsafe(method_family = none)]
         pub unsafe fn displayText(&self) -> Retained<NSString>;
 
-        /// The general form this medication is manufactured in.
+        /// The general form the medication is manufactured in.
         ///
-        /// A general manufactured dose form for this medication.
+        /// A general manufactured dose form for the specific medication.
+        /// This value tells you the manufactured form of the medication,
+        /// such as tablet, capsule, cream, injection, or inhaler.
         ///
         /// This property is not atomic.
         ///
@@ -180,9 +221,10 @@ impl HKMedicationConcept {
         pub unsafe fn generalForm(&self) -> Retained<HKMedicationGeneralForm>;
 
         #[cfg(feature = "HKClinicalCoding")]
-        /// A list of potentially related codings.
+        /// The set of related clinical codings for the medication.
         ///
-        /// Contains a set of relevant codes for this particular medication.
+        /// Each coding links the medication to an external medical terminology system,
+        /// such as RxNorm.
         ///
         /// This property is not atomic.
         ///

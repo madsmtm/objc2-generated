@@ -562,7 +562,36 @@ impl FSBlockDeviceResource {
 }
 
 extern_class!(
-    /// A resource representing an abstract URL
+    /// A resource that represents an abstract URL.
+    ///
+    /// An `FSGenericURLResource` is a completely abstract resource.
+    /// The only reference to its contents is a single URL, the contents of which are arbitrary.
+    /// This URL might represent a PCI locator string like `/pci
+    /// /usb
+    /// @
+    /// 5`, or some sort of network address for a remote file system.
+    /// FSKit leaves interpretation of the URL and its contents entirely up to your implementation.
+    ///
+    /// Use the `Info.plist` key `FSSupportedSchemes` to provide an array of case-insensitive URL schemes that your implementation supports.
+    /// The following example shows how a hypothetical `FSGenericURLResource` implementation declares support for the `rsh` and `ssh` URL schemes:
+    /// ```text
+    /// <key
+    /// >FSSupportedSchemes
+    /// </key
+    /// >
+    /// <array
+    /// >
+    /// <string
+    /// >rsh
+    /// </string
+    /// >
+    /// <string
+    /// >ssh
+    /// </string
+    /// >
+    /// </array
+    /// >
+    /// ```
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsgenericurlresource?language=objc)
     #[unsafe(super(FSResource, NSObject))]
@@ -584,10 +613,13 @@ extern_conformance!(
 
 impl FSGenericURLResource {
     extern_methods!(
+        /// The URL represented by the resource.
         #[unsafe(method(url))]
         #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Retained<NSURL>;
 
+        /// Creates a generic URL resource with the given URL.
+        /// - Parameter url: A URL that provides the content of the file system. The format of this URL is completely arbitrary. It's up to your extension to access the contents represented by the URL and make them available as an ``FSVolume`` that FSKit can load.
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
@@ -608,9 +640,10 @@ impl FSGenericURLResource {
 }
 
 extern_class!(
-    /// A resource representing a path
+    /// A resource that represents a path in the system file space.
     ///
-    /// Represents a file path (possibly security scoped URL).
+    /// The URL passed to `FSPathURLResource` may be a security-scoped URL.
+    /// If the URL is a security-scoped URL, FSKit transports it intact from a client application to your extension.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fspathurlresource?language=objc)
     #[unsafe(super(FSResource, NSObject))]
@@ -632,10 +665,15 @@ extern_conformance!(
 
 impl FSPathURLResource {
     extern_methods!(
+        /// The URL represented by the resource.
         #[unsafe(method(url))]
         #[unsafe(method_family = none)]
         pub unsafe fn url(&self) -> Retained<NSURL>;
 
+        /// Creates a path URL resource.
+        /// - Parameters:
+        /// - URL: A URL in the system file space that represents the contents of a file system. This parameter uses the `file:` scheme.
+        /// - writable: A Boolean value that indicates whether the file system supports writing to the contents of the URL.
         #[unsafe(method(initWithURL:writable:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL_writable(
@@ -648,6 +686,7 @@ impl FSPathURLResource {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
+        /// A Boolean value that indicates whether the file system supports writing to the contents of the path URL.
         #[unsafe(method(isWritable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isWritable(&self) -> bool;
@@ -768,7 +807,7 @@ impl FSProbeResult {
         #[cfg(all(feature = "FSContainer", feature = "FSEntityIdentifier"))]
         /// The container identifier, as found during the probe operation.
         ///
-        /// This value is non-`nil` unless the ``FSProbeResult/result`` is ``FSMatchResult/notRecognized`.
+        /// This value is non-`nil` unless the ``FSProbeResult/result`` is ``FSMatchResult/notRecognized``.
         /// For formats that lack a durable UUID on which to base a container identifier --- which is only legal for a ``FSUnaryFileSystem`` --- this value may be a random UUID.
         #[unsafe(method(containerID))]
         #[unsafe(method_family = none)]

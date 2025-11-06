@@ -304,14 +304,21 @@ extern "C" {
 }
 
 extern "C" {
-    /// The stylus button used for interacting with virtual objects.
+    /// The stylus side button nearest the tip.
+    ///
+    /// A spatial stylus has at least two buttons arranged vertically along the
+    /// barrel.  The primary button is the button nearest the tip.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputstylusprimarybutton?language=objc)
     pub static GCInputStylusPrimaryButton: Option<&'static GCInputButtonName>;
 }
 
 extern "C" {
-    /// The stylus button used for drawing and writing in air.
+    /// The stylus side button above the primary button.
+    ///
+    /// A spatial stylus has at least two buttons arranged vertically along the
+    /// barrel.  The secondary button is located above the primary button when
+    /// the stylus is held with the tip pointing down.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcinputstylussecondarybutton?language=objc)
     pub static GCInputStylusSecondaryButton: Option<&'static GCInputButtonName>;

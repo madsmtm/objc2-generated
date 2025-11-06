@@ -256,6 +256,17 @@ impl UIPresentationController {
             &self,
             override_trait_collection: Option<&UITraitCollection>,
         );
+
+        #[cfg(feature = "UIVisualEffect")]
+        #[unsafe(method(backgroundEffect))]
+        #[unsafe(method_family = none)]
+        pub fn backgroundEffect(&self) -> Option<Retained<UIVisualEffect>>;
+
+        #[cfg(feature = "UIVisualEffect")]
+        /// Setter for [`backgroundEffect`][Self::backgroundEffect].
+        #[unsafe(method(setBackgroundEffect:))]
+        #[unsafe(method_family = none)]
+        pub fn setBackgroundEffect(&self, background_effect: Option<&UIVisualEffect>);
     );
 }
 

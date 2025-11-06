@@ -53,6 +53,9 @@ mod __HMAccessorySetupResult;
 #[cfg(feature = "HMAccessory_Camera")]
 #[path = "HMAccessory_Camera.rs"]
 mod __HMAccessory_Camera;
+#[cfg(feature = "HMAccessory_Vendor")]
+#[path = "HMAccessory_Vendor.rs"]
+mod __HMAccessory_Vendor;
 #[cfg(feature = "HMAction")]
 #[path = "HMAction.rs"]
 mod __HMAction;
@@ -146,6 +149,9 @@ mod __HMHomeAccessControl;
 #[cfg(feature = "HMHomeManager")]
 #[path = "HMHomeManager.rs"]
 mod __HMHomeManager;
+#[cfg(feature = "HMHomeManager_Vendor")]
+#[path = "HMHomeManager_Vendor.rs"]
+mod __HMHomeManager_Vendor;
 #[cfg(feature = "HMLocationEvent")]
 #[path = "HMLocationEvent.rs"]
 mod __HMLocationEvent;

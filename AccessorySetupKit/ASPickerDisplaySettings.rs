@@ -7,6 +7,33 @@ use objc2_foundation::*;
 
 use crate::*;
 
+/// Picker Options
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettingsoptions?language=objc)
+// NS_OPTIONS
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct ASPickerDisplaySettingsOptions(pub NSUInteger);
+bitflags::bitflags! {
+    impl ASPickerDisplaySettingsOptions: NSUInteger {
+/// An option to pass discovered accessories to the app for more custom filtering, before they're displayed in the picker for selection.
+///
+/// When your picker uses this option, your ``ASAccessorySession-class`` receives events of type ``ASAccessoryEventType/accessoryDiscovered``.
+/// Handle this event by examining the discovered accessory.
+/// To include it in the picker, create a new ``ASDiscoveredDisplayItem`` for it and call ``ASAccessorySession/updatePicker(showing:completionHandler:)``.
+        #[doc(alias = "ASPickerDisplaySettingsOptionFilterDiscoveryResults")]
+        const FilterDiscoveryResults = 1<<0;
+    }
+}
+
+unsafe impl Encode for ASPickerDisplaySettingsOptions {
+    const ENCODING: Encoding = NSUInteger::ENCODING;
+}
+
+unsafe impl RefEncode for ASPickerDisplaySettingsOptions {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// The type used for the accessory picker's discovery timeout value.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettingsdiscoverytimeout?language=objc)
@@ -34,6 +61,18 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettingsdiscoverytimeoutlong?language=objc)
     pub static ASPickerDisplaySettingsDiscoveryTimeoutLong: ASPickerDisplaySettingsDiscoveryTimeout;
+}
+
+extern "C" {
+    /// A picker discovery that only times out when the app tells it to.
+    ///
+    /// Use this timeout value if you set the picker display option ``ASPickerDisplaySettings/Options/filterDiscoveryResults`` and need unlimited time for filtering.
+    /// After performing manual discovery, perform the manual timeout by calling the ``ASAccessorySession`` method ``ASAccessorySession/finishPickerDiscovery(completionHandler:)``.
+    /// This process shows a timeout message if your filtering added no accessories to the picker, or returns silently if you updated the picker.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettingsdiscoverytimeoutunbounded?language=objc)
+    pub static ASPickerDisplaySettingsDiscoveryTimeoutUnbounded:
+        ASPickerDisplaySettingsDiscoveryTimeout;
 }
 
 extern_class!(
@@ -82,6 +121,26 @@ impl ASPickerDisplaySettings {
             &self,
             discovery_timeout: ASPickerDisplaySettingsDiscoveryTimeout,
         );
+
+        /// Custom options for the picker.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(options))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn options(&self) -> ASPickerDisplaySettingsOptions;
+
+        /// Setter for [`options`][Self::options].
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(setOptions:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setOptions(&self, options: ASPickerDisplaySettingsOptions);
     );
 }
 

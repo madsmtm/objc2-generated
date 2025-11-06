@@ -18,6 +18,10 @@ extern_class!(
     pub struct CNPostalAddress;
 );
 
+unsafe impl Send for CNPostalAddress {}
+
+unsafe impl Sync for CNPostalAddress {}
+
 extern_conformance!(
     unsafe impl NSCoding for CNPostalAddress {}
 );

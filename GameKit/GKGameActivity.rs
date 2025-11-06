@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// `GKGameActivity` represents a single instance of a game activity for the current game.
+    /// An object that represents a single instance of a game activity for the current game.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivity?language=objc)
     #[unsafe(super(NSObject))]
@@ -51,11 +51,12 @@ impl GKGameActivity {
 
         /// Properties that contain additional information about the activity.
         ///
-        /// This takes precedence over the `defaultProperties` on the `activityDefinition`.
+        /// This takes precedence over ``GKGameActivityDefinition/defaultProperties`` on the activity
+        /// definition.
         ///
-        /// 1. This dictionary is initialized with the default properties from the activity definition and deep linked properties if any.
-        /// 2. If deep linking contains the same key as the default properties, the deep linked value will override the default value.
-        /// 3. The properties can be updated at runtime.
+        /// 1. The framework initializes this dictionary with the default properties from the activity definition and deep linked properties, if any.
+        /// 2. If deep linking contains the same key as the default properties, the deep linked value overrides the default value.
+        /// 3. You can update the properties at runtime.
         ///
         /// This property is not atomic.
         ///
@@ -91,8 +92,8 @@ impl GKGameActivity {
 
         /// If the game supports party code, this is the party code that can be shared among players to join the party.
         ///
-        /// If the game does not support party code, this value will be nil.
-        /// - SeeAlso: ``-[GKGameActivity startWithDefinition:partyCode:completionHandler:]`` for creating a game activity with a custom party code.
+        /// If the game doesn't support party code, this value will be `nil`. Use ``GKGameActivity/start(definition:partyCode:)``
+        /// to create a game activity with a custom party code.
         ///
         /// This property is not atomic.
         ///
@@ -161,7 +162,7 @@ impl GKGameActivity {
         #[unsafe(method_family = none)]
         pub unsafe fn endDate(&self) -> Option<Retained<NSDate>>;
 
-        /// Total time elapsed while in active state.
+        /// The total time elapsed while in active state.
         ///
         /// This property is not atomic.
         ///
@@ -212,7 +213,7 @@ impl GKGameActivity {
         #[cfg(feature = "GKGameActivityDefinition")]
         /// Creates and starts a new game activity with a custom party code.
         ///
-        /// The party code will be converted to uppercased.
+        /// The framework converts the party code to uppercase.
         #[unsafe(method(startWithDefinition:partyCode:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithDefinition_partyCode_error(
@@ -221,7 +222,7 @@ impl GKGameActivity {
         ) -> Result<Retained<GKGameActivity>, Retained<NSError>>;
 
         #[cfg(feature = "GKGameActivityDefinition")]
-        /// Initializes and starts a game activity with definition.
+        /// Creates and starts a game activity with a definition.
         #[unsafe(method(startWithDefinition:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithDefinition_error(
@@ -230,14 +231,15 @@ impl GKGameActivity {
 
         /// Checks whether a party code is in valid format.
         ///
-        /// Party code should be two parts of strings with the same length (2-6) connected with a dash, and the code can be either pure digits (0-9), or both parts are uppercased characters from `validPartyCodeAlphabet`.
-        /// - SeeAlso: `validPartyCodeAlphabet` for allowed characters.
+        /// Party code should be two parts of strings with the same length (2-6) connected with a dash, and the
+        /// code can be either pure digits (0-9), or both parts are uppercased characters from
+        /// ``GKGameActivity/validPartyCodeAlphabet``.
         #[unsafe(method(isValidPartyCode:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isValidPartyCode(party_code: &NSString) -> bool;
 
         #[cfg(feature = "GKGameActivityDefinition")]
-        /// Initializes a game activity with definition.
+        /// Creates a game activity with definition.
         #[unsafe(method(initWithDefinition:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDefinition(
@@ -245,12 +247,12 @@ impl GKGameActivity {
             activity_definition: &GKGameActivityDefinition,
         ) -> Retained<Self>;
 
-        /// Starts the game activity if it is not already started.
+        /// Starts the game activity if it's not already started.
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]
         pub unsafe fn start(&self);
 
-        /// Pauses the game activity if it is not already paused.
+        /// Pauses the game activity if it's not already paused.
         #[unsafe(method(pause))]
         #[unsafe(method_family = none)]
         pub unsafe fn pause(&self);
@@ -260,9 +262,9 @@ impl GKGameActivity {
         #[unsafe(method_family = none)]
         pub unsafe fn resume(&self);
 
-        /// Ends the game activity if it is not already ended.
+        /// Ends the game activity if it's not already ended.
         ///
-        /// This will report all associated achievements and submit scores to leaderboards.
+        /// This reports all associated achievements and submit scores to leaderboards.
         #[unsafe(method(end))]
         #[unsafe(method_family = none)]
         pub unsafe fn end(&self);
@@ -270,7 +272,7 @@ impl GKGameActivity {
         #[cfg(feature = "GKLeaderboard")]
         /// Set a score of a leaderboard with a context for a player.
         ///
-        /// The score will be submitted to the leaderboard when the activity ends.
+        /// The framewwork submits the score to the leaderboard when the activity ends.
         #[unsafe(method(setScoreOnLeaderboard:toScore:context:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScoreOnLeaderboard_toScore_context(
@@ -283,7 +285,7 @@ impl GKGameActivity {
         #[cfg(feature = "GKLeaderboard")]
         /// Set a score of a leaderboard for a player.
         ///
-        /// The score will be submitted to the leaderboard when the activity ends.
+        /// The framewowrk submits the score to the leaderboard when the activity ends.
         #[unsafe(method(setScoreOnLeaderboard:toScore:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScoreOnLeaderboard_toScore(
@@ -310,7 +312,7 @@ impl GKGameActivity {
         #[cfg(feature = "GKAchievement")]
         /// Set a progress for an achievement for a player.
         ///
-        /// Achievement progress will be reported when the activity ends.
+        /// The framework reports achievement progress when the activity ends.
         #[unsafe(method(setProgressOnAchievement:toPercentComplete:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProgressOnAchievement_toPercentComplete(
@@ -320,9 +322,9 @@ impl GKGameActivity {
         );
 
         #[cfg(feature = "GKAchievement")]
-        /// Convenience method to set a progress to 100% for an achievement for a player.
+        /// Set progress to 100% for an achievement for a player.
         ///
-        /// Achievement completion will be reported when the activity ends.
+        /// The system reports achievement completion when the activity ends.
         #[unsafe(method(setAchievementCompleted:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAchievementCompleted(&self, achievement: &GKAchievement);
@@ -330,13 +332,13 @@ impl GKGameActivity {
         #[cfg(feature = "GKAchievement")]
         /// Get the achievement progress from a specific achievement of the local player if previously set.
         ///
-        /// Returns 0 if the achievement has not been set in the current activity.
+        /// Returns `0` if the achievement hasn't been set in the current activity.
         #[unsafe(method(getProgressOnAchievement:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getProgressOnAchievement(&self, achievement: &GKAchievement) -> c_double;
 
         #[cfg(feature = "GKAchievement")]
-        /// Removes all achievements if exist.
+        /// Removes all achievements if they exist.
         #[unsafe(method(removeAchievements:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAchievements(&self, achievements: &NSArray<GKAchievement>);
@@ -356,7 +358,7 @@ impl GKGameActivity {
 impl GKGameActivity {
     extern_methods!(
         #[cfg(feature = "GKMatchmaker")]
-        /// Makes a `GKMatchRequest` object with information from the activity, which can be used to find matches for the local player.
+        /// Makes a match request object with information from the activity, which you can use to find matches for the local player.
         #[unsafe(method(makeMatchRequest))]
         #[unsafe(method_family = none)]
         pub unsafe fn makeMatchRequest(&self) -> Option<Retained<GKMatchRequest>>;
@@ -364,8 +366,10 @@ impl GKGameActivity {
         #[cfg(all(feature = "GKMatch", feature = "block2"))]
         /// Use information from the activity to find matches for the local player.
         ///
-        /// GameKit will create a classic match making request with the activity's party code and other information, and return the match object in the completion handler or any error that occurred.
-        /// Error occurs if this activity doesn't support party code, or has unsupported range of players, which is used to be configured as match request's minPlayers and maxPlayers.
+        /// GameKit creates a classic match making request with the activity's party code and other information, and
+        /// returns the match object in the completion handler or any error that occurred.
+        /// An error occurs if this activity doesn't support party code, or has an unsupported range of players, which
+        /// is used to be configured as match request's `minPlayers` and `maxPlayers`.
         #[unsafe(method(findMatchWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findMatchWithCompletionHandler(
@@ -376,8 +380,10 @@ impl GKGameActivity {
         #[cfg(all(feature = "GKBasePlayer", feature = "GKPlayer", feature = "block2"))]
         /// Use information from the activity to find server hosted players for the local player.
         ///
-        /// GameKit will create a classic server hosted match making request with the activity's party code and other information, and return the players in the completion handler or any error that occurred.
-        /// Error occurs if this activity doesn't support party code, or has unsupported range of players, which is used to be configured as match request's minPlayers and maxPlayers.
+        /// GameKit creates a classic server hosted match making request with the activity's party code and other
+        /// information, and returns the players in the completion handler or any error that occurred.
+        /// An error occurs if this activity doesn't support party code, or has unsupported range of players, which is
+        /// used to be configured as match request's `minPlayers` and `maxPlayers`.
         #[unsafe(method(findPlayersForHostedMatchWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn findPlayersForHostedMatchWithCompletionHandler(
@@ -392,6 +398,9 @@ impl GKGameActivity {
     extern_methods!(
         #[cfg(feature = "block2")]
         /// Checks whether there is a pending activity to handle for the current game.
+        ///
+        /// You can call this method before you initialize Game Center to avoid activating the system banner or
+        /// welcome experience.
         #[unsafe(method(checkPendingGameActivityExistenceWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkPendingGameActivityExistenceWithCompletionHandler(

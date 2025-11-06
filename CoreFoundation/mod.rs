@@ -2304,11 +2304,15 @@ pub use self::__CFURLEnumerator::CFURLEnumeratorResult;
 #[cfg(feature = "CFURLEnumerator")]
 pub use self::__CFURLEnumerator::CFURLEnumeratorSkipDescendents;
 #[cfg(feature = "CFUserNotification")]
+pub use self::__CFUserNotification::kCFUserNotificationAlertAccessibilityIdentifierKey;
+#[cfg(feature = "CFUserNotification")]
 pub use self::__CFUserNotification::kCFUserNotificationAlertHeaderKey;
 #[cfg(feature = "CFUserNotification")]
 pub use self::__CFUserNotification::kCFUserNotificationAlertMessageKey;
 #[cfg(feature = "CFUserNotification")]
 pub use self::__CFUserNotification::kCFUserNotificationAlertTopMostKey;
+#[cfg(feature = "CFUserNotification")]
+pub use self::__CFUserNotification::kCFUserNotificationAlternateButtonAccessibilityIdentifierKey;
 #[cfg(feature = "CFUserNotification")]
 pub use self::__CFUserNotification::kCFUserNotificationAlternateButtonTitleKey;
 #[cfg(feature = "CFUserNotification")]
@@ -2319,6 +2323,8 @@ pub use self::__CFUserNotification::kCFUserNotificationCancelResponse;
 pub use self::__CFUserNotification::kCFUserNotificationCautionAlertLevel;
 #[cfg(feature = "CFUserNotification")]
 pub use self::__CFUserNotification::kCFUserNotificationCheckBoxTitlesKey;
+#[cfg(feature = "CFUserNotification")]
+pub use self::__CFUserNotification::kCFUserNotificationDefaultButtonAccessibilityIdentifierKey;
 #[cfg(feature = "CFUserNotification")]
 pub use self::__CFUserNotification::kCFUserNotificationDefaultButtonTitleKey;
 #[cfg(feature = "CFUserNotification")]
@@ -2333,6 +2339,8 @@ pub use self::__CFUserNotification::kCFUserNotificationLocalizationURLKey;
 pub use self::__CFUserNotification::kCFUserNotificationNoDefaultButtonFlag;
 #[cfg(feature = "CFUserNotification")]
 pub use self::__CFUserNotification::kCFUserNotificationNoteAlertLevel;
+#[cfg(feature = "CFUserNotification")]
+pub use self::__CFUserNotification::kCFUserNotificationOtherButtonAccessibilityIdentifierKey;
 #[cfg(feature = "CFUserNotification")]
 pub use self::__CFUserNotification::kCFUserNotificationOtherButtonTitleKey;
 #[cfg(feature = "CFUserNotification")]

@@ -645,7 +645,7 @@ impl CGColorSpace {
     pub fn copy_with_standard_range(&self) -> CFRetained<CGColorSpace> {
         extern "C-unwind" {
             fn CGColorSpaceCreateCopyWithStandardRange(
-                s: &CGColorSpace,
+                space: &CGColorSpace,
             ) -> Option<NonNull<CGColorSpace>>;
         }
         let ret = unsafe { CGColorSpaceCreateCopyWithStandardRange(self) };
@@ -1029,14 +1029,14 @@ pub extern "C-unwind" fn CGColorSpaceCreateExtendedLinearized(
 #[deprecated = "renamed to `CGColorSpace::copy_with_standard_range`"]
 #[inline]
 pub extern "C-unwind" fn CGColorSpaceCreateCopyWithStandardRange(
-    s: &CGColorSpace,
+    space: &CGColorSpace,
 ) -> CFRetained<CGColorSpace> {
     extern "C-unwind" {
         fn CGColorSpaceCreateCopyWithStandardRange(
-            s: &CGColorSpace,
+            space: &CGColorSpace,
         ) -> Option<NonNull<CGColorSpace>>;
     }
-    let ret = unsafe { CGColorSpaceCreateCopyWithStandardRange(s) };
+    let ret = unsafe { CGColorSpaceCreateCopyWithStandardRange(space) };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
     unsafe { CFRetained::from_raw(ret) }
 }

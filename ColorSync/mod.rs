@@ -141,6 +141,8 @@ pub use self::__ColorSyncDevice::ColorSyncUnregisterDevice;
 #[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::icVersion4Number;
 #[cfg(feature = "ColorSyncProfile")]
+pub use self::__ColorSyncProfile::icVersion4Point4Number;
+#[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::kColorSyncACESCGLinearProfile;
 #[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::kColorSyncAdobeRGB1998Profile;
@@ -148,6 +150,8 @@ pub use self::__ColorSyncProfile::kColorSyncAdobeRGB1998Profile;
 pub use self::__ColorSyncProfile::kColorSyncDCIP3Profile;
 #[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::kColorSyncDisplayP3Profile;
+#[cfg(feature = "ColorSyncProfile")]
+pub use self::__ColorSyncProfile::kColorSyncDoNotSubstituteProfiles;
 #[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::kColorSyncGenericCMYKProfile;
 #[cfg(feature = "ColorSyncProfile")]
@@ -315,6 +319,8 @@ pub use self::__ColorSyncProfile::ColorSyncProfileCreateWithName;
 #[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::ColorSyncProfileCreateWithURL;
 #[cfg(feature = "ColorSyncProfile")]
+pub use self::__ColorSyncProfile::ColorSyncProfileCreateWithURLAndOptions;
+#[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::ColorSyncProfileEstimateGamma;
 #[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::ColorSyncProfileEstimateGammaWithDisplayID;
@@ -322,6 +328,8 @@ pub use self::__ColorSyncProfile::ColorSyncProfileEstimateGammaWithDisplayID;
 pub use self::__ColorSyncProfile::ColorSyncProfileGetDisplayTransferFormulaFromVCGT;
 #[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::ColorSyncProfileGetMD5;
+#[cfg(feature = "ColorSyncProfile")]
+pub use self::__ColorSyncProfile::ColorSyncProfileGetTagCount;
 #[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::ColorSyncProfileGetURL;
 #[cfg(feature = "ColorSyncProfile")]
@@ -489,7 +497,7 @@ use core::ffi::*;
 use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsync_api_version?language=objc)
-pub const COLORSYNC_API_VERSION: c_uint = 0x10000000;
+pub const COLORSYNC_API_VERSION: c_uint = 0x1A010000;
 extern "C-unwind" {
     pub fn ColorSyncAPIVersion() -> u32;
 }

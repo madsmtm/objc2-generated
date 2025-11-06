@@ -104,6 +104,25 @@ impl NSSplitViewItemAccessoryViewController {
         #[unsafe(method(viewDidDisappear))]
         #[unsafe(method_family = none)]
         pub fn viewDidDisappear(&self);
+
+        #[cfg(feature = "NSScrollEdgeEffect")]
+        /// The split view item accessory’s preferred effect for content scrolling behind it.
+        ///
+        /// To allow for a soft edge on the interior edge of a titlebar accessory:
+        ///
+        /// splitViewItemAccessoryViewController.preferredScrollEdgeEffectStyle = NSScrollEdgeEffectStyle.softStyle;
+        #[unsafe(method(preferredScrollEdgeEffectStyle))]
+        #[unsafe(method_family = none)]
+        pub fn preferredScrollEdgeEffectStyle(&self) -> Retained<NSScrollEdgeEffectStyle>;
+
+        #[cfg(feature = "NSScrollEdgeEffect")]
+        /// Setter for [`preferredScrollEdgeEffectStyle`][Self::preferredScrollEdgeEffectStyle].
+        #[unsafe(method(setPreferredScrollEdgeEffectStyle:))]
+        #[unsafe(method_family = none)]
+        pub fn setPreferredScrollEdgeEffectStyle(
+            &self,
+            preferred_scroll_edge_effect_style: &NSScrollEdgeEffectStyle,
+        );
     );
 }
 

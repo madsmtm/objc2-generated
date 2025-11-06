@@ -53,6 +53,8 @@ impl PHPhotosError {
     pub const NotEnoughSpace: Self = Self(3305);
     #[doc(alias = "PHPhotosErrorRequestNotSupportedForAsset")]
     pub const RequestNotSupportedForAsset: Self = Self(3306);
+    #[doc(alias = "PHPhotosErrorLimitExceeded")]
+    pub const LimitExceeded: Self = Self(3307);
     #[doc(alias = "PHPhotosErrorAccessRestricted")]
     pub const AccessRestricted: Self = Self(3310);
     #[doc(alias = "PHPhotosErrorAccessUserDenied")]

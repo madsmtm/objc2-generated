@@ -1738,6 +1738,7 @@ extern "C" {
     pub static UIAccessibilityBoldTextStatusDidChangeNotification: &'static NSNotificationName;
 }
 
+#[deprecated]
 #[inline]
 pub extern "C-unwind" fn UIAccessibilityButtonShapesEnabled() -> bool {
     extern "C-unwind" {
@@ -1748,6 +1749,7 @@ pub extern "C-unwind" fn UIAccessibilityButtonShapesEnabled() -> bool {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitybuttonshapesenabledstatusdidchangenotification?language=objc)
+    #[deprecated]
     pub static UIAccessibilityButtonShapesEnabledStatusDidChangeNotification:
         &'static NSNotificationName;
 }

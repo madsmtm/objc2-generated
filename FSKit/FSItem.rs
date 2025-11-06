@@ -92,20 +92,28 @@ unsafe impl RefEncode for FSItemAttribute {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct FSItemType(pub NSInteger);
 impl FSItemType {
+    /// The item type of an unknown item.
     #[doc(alias = "FSItemTypeUnknown")]
     pub const Unknown: Self = Self(0);
+    /// The item type of a regular file.
     #[doc(alias = "FSItemTypeFile")]
     pub const File: Self = Self(1);
+    /// The item type of a directory.
     #[doc(alias = "FSItemTypeDirectory")]
     pub const Directory: Self = Self(2);
+    /// The item type of a symbolic link.
     #[doc(alias = "FSItemTypeSymlink")]
     pub const Symlink: Self = Self(3);
+    /// The item type of a first-in/first-out named pipe.
     #[doc(alias = "FSItemTypeFIFO")]
     pub const FIFO: Self = Self(4);
+    /// The item type of a character device.
     #[doc(alias = "FSItemTypeCharDevice")]
     pub const CharDevice: Self = Self(5);
+    /// The item type of a block device.
     #[doc(alias = "FSItemTypeBlockDevice")]
     pub const BlockDevice: Self = Self(6);
+    /// The item type of a socket.
     #[doc(alias = "FSItemTypeSocket")]
     pub const Socket: Self = Self(7);
 }
@@ -118,16 +126,24 @@ unsafe impl RefEncode for FSItemType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemid?language=objc)
+/// The unique identifier for an item.
+///
+/// Use this type when packing items for an enumeration in ``FSDirectoryEntryPacker/packEntry(name:itemType:itemID:nextCookie:attributes:)``.
+/// Either provide a unique identifier like an inode number, or one of the special enumeration cases this type defines, like ``FSItem/Identifier/rootDirectory``.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct FSItemID(pub u64);
 impl FSItemID {
+    /// The identifier for an invalid item.
     #[doc(alias = "FSItemIDInvalid")]
     pub const Invalid: Self = Self(0);
+    /// The identifier for an item that serves as the parent of the root directory.
     #[doc(alias = "FSItemIDParentOfRoot")]
     pub const ParentOfRoot: Self = Self(1);
+    /// The item identifier for the root directory.
     #[doc(alias = "FSItemIDRootDirectory")]
     pub const RootDirectory: Self = Self(2);
 }

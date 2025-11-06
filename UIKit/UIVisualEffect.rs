@@ -50,3 +50,58 @@ impl UIVisualEffect {
         pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
+
+extern_class!(
+    /// A visual effect that applies a solid color background.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicoloreffect?language=objc)
+    #[unsafe(super(UIVisualEffect, NSObject))]
+    #[thread_kind = MainThreadOnly]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct UIColorEffect;
+);
+
+extern_conformance!(
+    unsafe impl NSCoding for UIColorEffect {}
+);
+
+extern_conformance!(
+    unsafe impl NSCopying for UIColorEffect {}
+);
+
+unsafe impl CopyingHelper for UIColorEffect {
+    type Result = Self;
+}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for UIColorEffect {}
+);
+
+extern_conformance!(
+    unsafe impl NSSecureCoding for UIColorEffect {}
+);
+
+impl UIColorEffect {
+    extern_methods!(
+        #[cfg(feature = "UIColor")]
+        /// Creates a color effect with the specified color.
+        ///
+        /// Parameter `color`: The color to use for the background.
+        #[unsafe(method(effectWithColor:))]
+        #[unsafe(method_family = none)]
+        pub fn effectWithColor(color: Option<&UIColor>, mtm: MainThreadMarker) -> Retained<Self>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl UIColorEffect {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
+    );
+}

@@ -7,9 +7,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A coding embedded within a system.
+    /// A clinical coding that represents a medical concept using a standardized coding system.
     ///
-    /// Typically represents a single abstract concept within a coding system. This model is closely related to the FHIR model for codings. (https://build.fhir.org/datatypes.html#Coding)
+    /// A clinical coding pairs a ``system``, an optional ``version``,
+    /// and a ``code`` which identify a medical concept.
+    ///
+    /// This model is closely related to the [FHIR Coding model](https://build.fhir.org/datatypes.html#Coding).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkclinicalcoding?language=objc)
     #[unsafe(super(NSObject))]
@@ -43,9 +46,11 @@ extern_conformance!(
 
 impl HKClinicalCoding {
     extern_methods!(
-        /// A string identifier that uniquely represents a system.
+        /// The string that identifies the coding system that defines this clinical code.
         ///
-        /// In most cases, it will be the canonical reference URL for the coding system with respect to the HL7 Terminology. For the system RxNorm, for example, this would be "http://www.nlm.nih.gov/research/umls/rxnorm", according to https://terminology.hl7.org/CodeSystem-v3-rxNorm.html.
+        /// The system is usually expressed as a URL from the [HL7 Terminology](https://terminology.hl7.org/).
+        /// For example, the RxNorm, a coding system for medications uses:
+        /// `http://www.nlm.nih.gov/research/umls/rxnorm`.
         ///
         /// This property is not atomic.
         ///
@@ -56,7 +61,7 @@ impl HKClinicalCoding {
         #[unsafe(method_family = none)]
         pub unsafe fn system(&self) -> Retained<NSString>;
 
-        /// The version of the coding system, if it is relevant.
+        /// The version of the coding system.
         ///
         /// This property is not atomic.
         ///
@@ -67,9 +72,9 @@ impl HKClinicalCoding {
         #[unsafe(method_family = none)]
         pub unsafe fn version(&self) -> Option<Retained<NSString>>;
 
-        /// The code for this concept.
+        /// The clinical code that represents a medical concept inside the coding system.
         ///
-        /// The format of this code varies within each system.
+        /// The format depends on the coding system. For example, RxNorm codes are numeric.
         ///
         /// This property is not atomic.
         ///
@@ -84,14 +89,17 @@ impl HKClinicalCoding {
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        /// Initializer for a clinical coding.
+        /// Creates a clinical coding with the specified system, version, and code.
         ///
         ///
-        /// Parameter `system`: The system for this clinical coding.
+        /// Parameter `system`: The string that identifies the coding system, typically a HL7 URL.
         ///
-        /// Parameter `version`: A version, if applicable.
+        /// Parameter `version`: The version of the system, if applicable.
         ///
-        /// Parameter `code`: The actual code.
+        /// Parameter `code`: The clinical code string that represents the medical concept.
+        ///
+        /// Use when you need to explicitly construct a coding object to associate
+        /// a HealthKit concept with a standardized medical code.
         #[unsafe(method(initWithSystem:version:code:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSystem_version_code(

@@ -148,7 +148,7 @@ impl CPListImageRowItem {
         ///
         /// Parameter `text`: The text visible at the top of the cell.
         ///
-        /// Parameter `cardElements`: The list of
+        /// Parameter `elements`: The list of
         /// `CPListImageRowItemCardElement`elements visible below the text.
         ///
         /// Parameter `allowsMultipleLines`: Determines if the elements could be visible on more than a single line.
@@ -174,7 +174,7 @@ impl CPListImageRowItem {
         ///
         /// Parameter `text`: The text visible at the top of the cell.
         ///
-        /// Parameter `condensedElements`: The list of
+        /// Parameter `elements`: The list of
         /// `CPListImageRowItemCondensedElement`elements visible below the text.
         ///
         /// Parameter `allowsMultipleLines`: Determines if the elements could be visible on more than a single line.
@@ -200,7 +200,7 @@ impl CPListImageRowItem {
         ///
         /// Parameter `text`: The text visible at the top of the cell.
         ///
-        /// Parameter `gridElements`: The list of
+        /// Parameter `elements`: The list of
         /// `CPListImageRowItemGridElement`elements visible below the text.
         ///
         /// Parameter `allowsMultipleLines`: Determines if the elements could be visible on more than a single line.
@@ -226,7 +226,7 @@ impl CPListImageRowItem {
         ///
         /// Parameter `text`: The text visible at the top of the cell.
         ///
-        /// Parameter `imageGridElements`: The list of
+        /// Parameter `elements`: The list of
         /// `CPListImageRowItemImageGridElement`elements visible below the text.
         ///
         /// Parameter `allowsMultipleLines`: Determines if the elements could be visible on more than a single line.

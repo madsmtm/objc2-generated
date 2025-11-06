@@ -414,6 +414,58 @@ unsafe impl RefEncode for PHAssetResourceType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// The states of an upload job.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjobstate?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHAssetResourceUploadJobState(pub NSInteger);
+impl PHAssetResourceUploadJobState {
+    #[doc(alias = "PHAssetResourceUploadJobStateRegistered")]
+    pub const Registered: Self = Self(1);
+    /// The job has been registered.
+    #[doc(alias = "PHAssetResourceUploadJobStatePending")]
+    pub const Pending: Self = Self(2);
+    /// A request has been made to send the asset resource to the destination, but has not yet been fulfilled.
+    #[doc(alias = "PHAssetResourceUploadJobStateFailed")]
+    pub const Failed: Self = Self(3);
+    /// The job has failed to send over.
+    #[doc(alias = "PHAssetResourceUploadJobStateSucceeded")]
+    pub const Succeeded: Self = Self(4);
+}
+
+unsafe impl Encode for PHAssetResourceUploadJobState {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for PHAssetResourceUploadJobState {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// These actions correspond with the types of fetches we can make on a PHAssetResourceUploadJob and the actions we can also take on those jobs.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjobaction?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+pub struct PHAssetResourceUploadJobAction(pub NSInteger);
+impl PHAssetResourceUploadJobAction {
+    #[doc(alias = "PHAssetResourceUploadJobActionAcknowledge")]
+    pub const Acknowledge: Self = Self(1);
+    /// Where PHAssetResourceUploadJobState = (success OR fail).
+    #[doc(alias = "PHAssetResourceUploadJobActionRetry")]
+    pub const Retry: Self = Self(2);
+}
+
+unsafe impl Encode for PHAssetResourceUploadJobAction {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for PHAssetResourceUploadJobAction {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phobjecttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]

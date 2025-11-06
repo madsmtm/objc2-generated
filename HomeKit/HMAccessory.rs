@@ -31,6 +31,18 @@ extern_conformance!(
 
 impl HMAccessory {
     extern_methods!(
+        #[cfg(feature = "HMHome")]
+        /// The home containing the accessory.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(home))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn home(&self) -> Option<Retained<HMHome>>;
+
         /// The name of the accessory.
         ///
         ///
@@ -161,6 +173,22 @@ impl HMAccessory {
         pub unsafe fn uniqueIdentifiersForBridgedAccessories(
             &self,
         ) -> Option<Retained<NSArray<NSUUID>>>;
+
+        /// If the receiver represents a bridge, an array of the accessories behind the bridge, otherwise empty.
+        ///
+        ///
+        /// See: uniqueIdentifiersForBridgedAccessories
+        ///
+        /// See: bridged
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(bridgedAccessories))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn bridgedAccessories(&self) -> Retained<NSArray<HMAccessory>>;
 
         #[cfg(feature = "HMAccessoryCategory")]
         /// Category information for the accessory.

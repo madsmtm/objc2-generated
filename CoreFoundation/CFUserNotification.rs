@@ -390,6 +390,28 @@ extern "C" {
     pub static kCFUserNotificationKeyboardTypesKey: Option<&'static CFString>;
 }
 
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalertaccessibilityidentifierkey?language=objc)
+    pub static kCFUserNotificationAlertAccessibilityIdentifierKey: Option<&'static CFString>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationdefaultbuttonaccessibilityidentifierkey?language=objc)
+    pub static kCFUserNotificationDefaultButtonAccessibilityIdentifierKey:
+        Option<&'static CFString>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationalternatebuttonaccessibilityidentifierkey?language=objc)
+    pub static kCFUserNotificationAlternateButtonAccessibilityIdentifierKey:
+        Option<&'static CFString>;
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfusernotificationotherbuttonaccessibilityidentifierkey?language=objc)
+    pub static kCFUserNotificationOtherButtonAccessibilityIdentifierKey: Option<&'static CFString>;
+}
+
 #[cfg(all(feature = "CFDate", feature = "CFDictionary"))]
 #[deprecated = "renamed to `CFUserNotification::new`"]
 #[inline]

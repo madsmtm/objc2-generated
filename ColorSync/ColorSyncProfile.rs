@@ -12,6 +12,8 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/icversion4number?language=objc)
 pub const icVersion4Number: c_uint = 0x04000000;
+/// [Apple's documentation](https://developer.apple.com/documentation/colorsync/icversion4point4number?language=objc)
+pub const icVersion4Point4Number: c_uint = 0x04400000;
 /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/colorsync_profile_install_entitlement?language=objc)
 pub const COLORSYNC_PROFILE_INSTALL_ENTITLEMENT: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.ColorSync.profile.install\0")
@@ -424,6 +426,36 @@ impl ColorSyncProfile {
         let ret = unsafe { ColorSyncProfileCreateWithURL(url, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
+}
+
+extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/colorsync/kcolorsyncdonotsubstituteprofiles?language=objc)
+    pub static kColorSyncDoNotSubstituteProfiles: &'static CFString;
+}
+
+impl ColorSyncProfile {
+    /// # Safety
+    ///
+    /// - `options` generic must be of the correct type.
+    /// - `options` generic must be of the correct type.
+    /// - `error` must be a valid pointer or null.
+    #[doc(alias = "ColorSyncProfileCreateWithURLAndOptions")]
+    #[inline]
+    pub unsafe fn with_url_and_options(
+        url: &CFURL,
+        options: Option<&CFDictionary>,
+        error: *mut *mut CFError,
+    ) -> Option<CFRetained<ColorSyncProfile>> {
+        extern "C-unwind" {
+            fn ColorSyncProfileCreateWithURLAndOptions(
+                url: &CFURL,
+                options: Option<&CFDictionary>,
+                error: *mut *mut CFError,
+            ) -> Option<NonNull<ColorSyncProfile>>;
+        }
+        let ret = unsafe { ColorSyncProfileCreateWithURLAndOptions(url, options, error) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
 
     #[doc(alias = "ColorSyncProfileCreateWithName")]
     #[inline]
@@ -570,6 +602,15 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsHLGBased(self) }
     }
 
+    #[doc(alias = "ColorSyncProfileGetTagCount")]
+    #[inline]
+    pub unsafe fn tag_count(&self) -> usize {
+        extern "C-unwind" {
+            fn ColorSyncProfileGetTagCount(param1: &ColorSyncProfile) -> usize;
+        }
+        unsafe { ColorSyncProfileGetTagCount(self) }
+    }
+
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -586,21 +627,6 @@ impl ColorSyncProfile {
             ) -> c_float;
         }
         unsafe { ColorSyncProfileEstimateGammaWithDisplayID(display_id, error) }
-    }
-
-    /// # Safety
-    ///
-    /// `error` must be a valid pointer or null.
-    #[doc(alias = "ColorSyncProfileEstimateGamma")]
-    #[inline]
-    pub unsafe fn estimate_gamma(&self, error: *mut *mut CFError) -> c_float {
-        extern "C-unwind" {
-            fn ColorSyncProfileEstimateGamma(
-                prof: &ColorSyncProfile,
-                error: *mut *mut CFError,
-            ) -> c_float;
-        }
-        unsafe { ColorSyncProfileEstimateGamma(self, error) }
     }
 
     /// # Safety
@@ -677,6 +703,21 @@ impl ColorSyncProfile {
             ColorSyncProfileCreateDisplayTransferTablesFromVCGT(self, n_samples_per_channel)
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    /// # Safety
+    ///
+    /// `error` must be a valid pointer or null.
+    #[doc(alias = "ColorSyncProfileEstimateGamma")]
+    #[inline]
+    pub unsafe fn estimate_gamma(&self, error: *mut *mut CFError) -> c_float {
+        extern "C-unwind" {
+            fn ColorSyncProfileEstimateGamma(
+                prof: &ColorSyncProfile,
+                error: *mut *mut CFError,
+            ) -> c_float;
+        }
+        unsafe { ColorSyncProfileEstimateGamma(self, error) }
     }
 }
 
@@ -957,6 +998,24 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCreateWithURL(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
+#[deprecated = "renamed to `ColorSyncProfile::with_url_and_options`"]
+#[inline]
+pub unsafe extern "C-unwind" fn ColorSyncProfileCreateWithURLAndOptions(
+    url: &CFURL,
+    options: Option<&CFDictionary>,
+    error: *mut *mut CFError,
+) -> Option<CFRetained<ColorSyncProfile>> {
+    extern "C-unwind" {
+        fn ColorSyncProfileCreateWithURLAndOptions(
+            url: &CFURL,
+            options: Option<&CFDictionary>,
+            error: *mut *mut CFError,
+        ) -> Option<NonNull<ColorSyncProfile>>;
+    }
+    let ret = unsafe { ColorSyncProfileCreateWithURLAndOptions(url, options, error) };
+    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
 #[deprecated = "renamed to `ColorSyncProfile::with_name`"]
 #[inline]
 pub unsafe extern "C-unwind" fn ColorSyncProfileCreateWithName(
@@ -1072,17 +1131,14 @@ extern "C-unwind" {
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `ColorSyncProfile::estimate_gamma_with_display_id`"]
-    pub fn ColorSyncProfileEstimateGammaWithDisplayID(
-        display_id: i32,
-        error: *mut *mut CFError,
-    ) -> c_float;
+    #[deprecated = "renamed to `ColorSyncProfile::tag_count`"]
+    pub fn ColorSyncProfileGetTagCount(param1: &ColorSyncProfile) -> usize;
 }
 
 extern "C-unwind" {
-    #[deprecated = "renamed to `ColorSyncProfile::estimate_gamma`"]
-    pub fn ColorSyncProfileEstimateGamma(
-        prof: &ColorSyncProfile,
+    #[deprecated = "renamed to `ColorSyncProfile::estimate_gamma_with_display_id`"]
+    pub fn ColorSyncProfileEstimateGammaWithDisplayID(
+        display_id: i32,
         error: *mut *mut CFError,
     ) -> c_float;
 }
@@ -1119,6 +1175,14 @@ pub unsafe extern "C-unwind" fn ColorSyncProfileCreateDisplayTransferTablesFromV
         ColorSyncProfileCreateDisplayTransferTablesFromVCGT(profile, n_samples_per_channel)
     };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+}
+
+extern "C-unwind" {
+    #[deprecated = "renamed to `ColorSyncProfile::estimate_gamma`"]
+    pub fn ColorSyncProfileEstimateGamma(
+        prof: &ColorSyncProfile,
+        error: *mut *mut CFError,
+    ) -> c_float;
 }
 
 extern "C-unwind" {

@@ -234,10 +234,6 @@ impl UIButtonConfiguration {
         #[unsafe(method_family = none)]
         pub fn prominentGlassButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method(tintedGlassButtonConfiguration))]
-        #[unsafe(method_family = none)]
-        pub fn tintedGlassButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
-
         #[unsafe(method(clearGlassButtonConfiguration))]
         #[unsafe(method_family = none)]
         pub fn clearGlassButtonConfiguration(mtm: MainThreadMarker) -> Retained<Self>;

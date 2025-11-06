@@ -227,7 +227,6 @@ impl NSSavePanel {
         );
 
         /// `NSSavePanel`: Returns `YES` if the panel is expanded. Defaults to `NO`. Persists in the user defaults.
-        /// - Note: Can only be set during the configuration phase.
         /// `NSOpenPanel`: Not used.
         #[unsafe(method(isExpanded))]
         #[unsafe(method_family = none)]

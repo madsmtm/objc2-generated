@@ -10,7 +10,20 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// A view controller that allows users to enable and disable extensions.
+    /// A view controller that displays an interface to enable or disable the host
+    /// app’s extensions.
+    ///
+    /// When your host app supports app extensions, use this view controller to give
+    /// people a way to enable or disable those extensions. When you present this view
+    /// controller, the system displays an out-of-process UI with a list of all app
+    /// extensions that support your app’s extension points. Someone using your app
+    /// can use the presented interface to enable or disable extensions selectively.
+    /// App extensions you include inside your host app’s bundle are enabled by default,
+    /// but extensions that ship in separate apps are disabled by default.
+    ///
+    /// Present this view controller modally from your app, or embed the view controller
+    /// as a child in one of your existing view controller interfaces. For example, you
+    /// might choose to embed the view controller in a tab of your app’s preferences interface.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/extensionkit/exappextensionbrowserviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]

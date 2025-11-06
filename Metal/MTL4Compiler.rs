@@ -84,7 +84,13 @@ impl DefaultRetained for MTL4CompilerDescriptor {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compilertaskoptions?language=objc)
+    /// The configuration options that control the behavior of a compilation task for a Metal 4 compiler instance.
+    ///
+    /// You can configure task-specific settings that affect a compilation task by
+    /// creating an instance of this class, setting its properties,
+    /// and passing it to one of the applicable methods of an ``MTL4Compiler`` instance.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4compilertaskoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MTL4CompilerTaskOptions;
@@ -105,9 +111,16 @@ extern_conformance!(
 impl MTL4CompilerTaskOptions {
     extern_methods!(
         #[cfg(feature = "MTL4Archive")]
-        /// Specifies a set of archive instances this compilation process uses for accelerating the build process.
+        /// An array of archive instances that can potentially accelerate a compilation task.
         ///
-        /// In case of a match in the archive, the compiler can skip one or more compilation tasks, speeding up the build process.
+        /// The compiler can reduce the runtime of a compilation task if it finds an entry
+        /// that matches a function description within any of the archives in this array.
+        /// The compiler searches the archives in the order of the array's element.
+        ///
+        /// Consider adding archives to the array in scenarios that can benefit from the runtime savings,
+        /// such as repeat builds or when your app can share compilation results across multiple contexts.
+        ///
+        /// - Important: Only add ``MTL4Archive`` instances to the array that are compatible with the Metal device.
         #[unsafe(method(lookupArchives))]
         #[unsafe(method_family = none)]
         pub fn lookupArchives(&self) -> Option<Retained<NSArray<ProtocolObject<dyn MTL4Archive>>>>;
@@ -620,7 +633,7 @@ extern_protocol!(
         ///
         /// Additionally, there are some cases where the Metal can't specialize a pipeline:
         /// * If the original pipeline state object doesn't have any unspecialized properties
-        /// * You can't re-specialize a previosuly specialized pipeline state object
+        /// * You can't re-specialize a previously specialized pipeline state object
         ///
         /// - Parameters:
         /// - descriptor: A render pipeline state descriptor or any type: default, tile, or mesh render pipeline descriptor.
@@ -647,13 +660,15 @@ extern_protocol!(
             feature = "MTL4CompilerTask",
             feature = "block2"
         ))]
-        /// Creates a new binary visible/intersection function asynchronously.
+        /// Returns a new compiler task that asyncrhonously creates a binary version
+        /// of a GPU visible function or GPU intersection function.
+        ///
         /// - Parameters:
-        /// - descriptor: a binary function descriptor used to create the binary function.
-        /// - compilerTaskOptions: a descriptor of the compilation itself, providing parameters to
-        /// influence execution of this compilation, but not the resulting object.
-        /// - completionHandler: a callback used on task completion.
-        /// - Returns: a compiler task indicating the asynchronous compilation job.
+        /// - descriptor: A configuration that tells the method which GPU function to
+        /// make into a binary function and which options to apply when compiling it.
+        /// - compilerTaskOptions: A configuration for the compiler task.
+        /// - completionHandler: A completetion handler that you provide, which the task calls
+        /// when it finishes compiling the binary function.
         ///
         /// # Safety
         ///

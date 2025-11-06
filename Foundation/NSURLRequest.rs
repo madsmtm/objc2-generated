@@ -412,6 +412,15 @@ impl NSURLRequest {
         #[unsafe(method_family = none)]
         pub fn allowsConstrainedNetworkAccess(&self) -> bool;
 
+        /// returns whether a connection created with this request is allowed to use
+        /// network interfaces which have been marked as ultra constrained.
+        ///
+        /// Returns: YES if the receiver is allowed to use an interface marked as ultra constrained to
+        /// satisfy the request, NO otherwise.
+        #[unsafe(method(allowsUltraConstrainedNetworkAccess))]
+        #[unsafe(method_family = none)]
+        pub fn allowsUltraConstrainedNetworkAccess(&self) -> bool;
+
         /// returns whether we assume that server supports HTTP/3. Enables QUIC
         /// racing without HTTP/3 service discovery.
         ///
@@ -672,6 +681,23 @@ impl NSMutableURLRequest {
         #[unsafe(method(setAllowsConstrainedNetworkAccess:))]
         #[unsafe(method_family = none)]
         pub fn setAllowsConstrainedNetworkAccess(&self, allows_constrained_network_access: bool);
+
+        /// sets whether a connection created with this request is allowed to use
+        /// network interfaces which have been marked as ultra constrained.
+        ///
+        /// NO if the receiver should not be allowed to use an interface marked as ultra constrained to
+        /// satisfy the request, YES otherwise.
+        #[unsafe(method(allowsUltraConstrainedNetworkAccess))]
+        #[unsafe(method_family = none)]
+        pub fn allowsUltraConstrainedNetworkAccess(&self) -> bool;
+
+        /// Setter for [`allowsUltraConstrainedNetworkAccess`][Self::allowsUltraConstrainedNetworkAccess].
+        #[unsafe(method(setAllowsUltraConstrainedNetworkAccess:))]
+        #[unsafe(method_family = none)]
+        pub fn setAllowsUltraConstrainedNetworkAccess(
+            &self,
+            allows_ultra_constrained_network_access: bool,
+        );
 
         /// returns whether we assume that server supports HTTP/3. Enables QUIC
         /// racing without HTTP/3 service discovery.

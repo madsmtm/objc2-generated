@@ -205,3 +205,65 @@ impl ASAccessory {
         pub unsafe fn new() -> Retained<Self>;
     );
 }
+
+extern_class!(
+    /// A discovered accessory, for use in creating a customized picker display item.
+    ///
+    /// When your app's picker uses the ``ASPickerDisplaySettings/Options/filterDiscoveryResults`` option, you receive ``ASAccessoryEventType/accessoryDiscovered`` events that contain this type.
+    /// Use the discovered accessory's Bluetooth properties to create a new ``ASDiscoveredDisplayItem``, incorporating traits like a custom accessory name or a newly downloaded product image.
+    /// You can then add this item to the picker to allow the person using the app to set up the accessory.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoveredaccessory?language=objc)
+    #[unsafe(super(ASAccessory, NSObject))]
+    #[derive(Debug, PartialEq, Eq, Hash)]
+    pub struct ASDiscoveredAccessory;
+);
+
+unsafe impl Send for ASDiscoveredAccessory {}
+
+unsafe impl Sync for ASDiscoveredAccessory {}
+
+extern_conformance!(
+    unsafe impl NSObjectProtocol for ASDiscoveredAccessory {}
+);
+
+impl ASDiscoveredAccessory {
+    extern_methods!(
+        /// The Bluetooth advertisement data from the discovered accessory.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(bluetoothAdvertisementData))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn bluetoothAdvertisementData(&self) -> Option<Retained<NSDictionary>>;
+
+        /// The Bluetooth RSSI (Received Signal Strength Indicator) value from the discovered accessory.
+        ///
+        /// This value represents the signal strength in dBm when the session discovered the accessory.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(bluetoothRSSI))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn bluetoothRSSI(&self) -> Option<Retained<NSNumber>>;
+    );
+}
+
+/// Methods declared on superclass `NSObject`.
+impl ASDiscoveredAccessory {
+    extern_methods!(
+        #[unsafe(method(init))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+
+        #[unsafe(method(new))]
+        #[unsafe(method_family = new)]
+        pub unsafe fn new() -> Retained<Self>;
+    );
+}

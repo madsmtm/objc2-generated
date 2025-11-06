@@ -1516,21 +1516,39 @@ impl UIViewController {
 #[cfg(feature = "UIResponder")]
 impl UIViewController {
     extern_methods!(
-        /// Override to return a child view controller or nil. If non-nil, that view controller's preference for interface orientation lock will be used. If nil, `self` is used.
-        /// Whenever the return value changes, call `setNeedsUpdateOfPrefersInterfaceOrientationLocked()`.
+        /// A child view controller to query for the interface orientation lock preference.
+        ///
+        /// Override to return a child view controller or `nil`. If you return a view controller, the system uses that view controller’s preference for interface orientation lock. If you
+        /// return `nil`, the system uses `self` to get the preference for interface orientation lock. Call ``UIViewController/setNeedsUpdateOfPrefersInterfaceOrientationLocked()``
+        /// if the child view controller that the system needs to query for the interface orientation lock preference changes.
         #[unsafe(method(childViewControllerForInterfaceOrientationLock))]
         #[unsafe(method_family = none)]
         pub fn childViewControllerForInterfaceOrientationLock(
             &self,
         ) -> Option<Retained<UIViewController>>;
 
-        /// Whether this view controller prefers the scene's interface orientation to be locked when shown. The default is `NO`. Note that this preference may or may not be honored.
-        /// See `UIWindowScene.Geometry` for the current state of interface orientation lock.
+        /// A Boolean value that indicates whether the view controller prefers to lock the scene's interface orientation when the scene is visible.
+        ///
+        /// The default is
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/false>. Set this property to
+        /// <doc
+        /// ://com.apple.documentation/documentation/swift/true>
+        /// to indicate the view controller's preference to lock the scene's interface orientation. Check ``UIWindowScene.effectiveGeometry.isInterfaceOrientationLocked``
+        /// for the current state of the interface orientation lock. The system will consider locking the interface orientation when these conditions are true:
+        ///
+        /// - The scene is centered on the screen
+        /// - The scene is the same size as the screen
+        /// - The scene is not occluded by another scene
+        ///
+        /// The system continuously monitors the state and when the app no longer satisfies the requirements, it disables the interface orientation lock.
+        ///
+        /// If you change the value of `prefersInterfaceOrientationLocked`, call ``UIViewController/setNeedsUpdateOfPrefersInterfaceOrientationLocked()``.
         #[unsafe(method(prefersInterfaceOrientationLocked))]
         #[unsafe(method_family = none)]
         pub fn prefersInterfaceOrientationLocked(&self) -> bool;
 
-        /// Call whenever the view controller's preference for interface orientation lock has changed
+        /// Indicates that the view controller changed the interface orientation lock preference.
         #[unsafe(method(setNeedsUpdateOfPrefersInterfaceOrientationLocked))]
         #[unsafe(method_family = none)]
         pub fn setNeedsUpdateOfPrefersInterfaceOrientationLocked(&self);

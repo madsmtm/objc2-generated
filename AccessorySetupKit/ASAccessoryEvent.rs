@@ -37,6 +37,11 @@ impl ASAccessoryEventType {
     /// The properties of an accessory changed.
     #[doc(alias = "ASAccessoryEventTypeAccessoryChanged")]
     pub const AccessoryChanged: Self = Self(32);
+    /// The session discovered an accessory.
+    ///
+    /// Your app only receives this event if your picker uses the ``ASPickerDisplaySettings/Options/filterDiscoveryResults`` option.
+    #[doc(alias = "ASAccessoryEventTypeAccessoryDiscovered")]
+    pub const AccessoryDiscovered: Self = Self(33);
     /// The discovery session picker appeared.
     #[doc(alias = "ASAccessoryEventTypePickerDidPresent")]
     pub const PickerDidPresent: Self = Self(40);
