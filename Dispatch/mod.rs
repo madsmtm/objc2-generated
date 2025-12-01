@@ -984,13 +984,12 @@ impl DispatchQueue {
     ///
     /// # Safety
     ///
-    /// - `label` must be a valid pointer or null.
-    /// - `target` possibly has additional threading requirements.
+    /// `target` possibly has additional threading requirements.
     #[doc(alias = "dispatch_queue_create_with_target")]
     #[must_use]
     #[inline]
     pub(crate) unsafe fn __new_with_target(
-        label: *const c_char,
+        label: Option<&CStr>,
         attr: Option<&DispatchQueueAttr>,
         target: Option<&DispatchQueue>,
     ) -> DispatchRetained<DispatchQueue> {
@@ -1005,7 +1004,15 @@ impl DispatchQueue {
                 target: Option<&DispatchQueue>,
             ) -> Option<NonNull<DispatchQueue>>;
         }
-        let ret = unsafe { dispatch_queue_create_with_target(label, attr, target) };
+        let ret = unsafe {
+            dispatch_queue_create_with_target(
+                label
+                    .map(|ptr| ptr.as_ptr())
+                    .unwrap_or_else(core::ptr::null),
+                attr,
+                target,
+            )
+        };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { DispatchRetained::from_raw(ret) }
@@ -1051,15 +1058,11 @@ impl DispatchQueue {
     ///
     ///
     /// Returns: The newly created dispatch queue.
-    ///
-    /// # Safety
-    ///
-    /// `label` must be a valid pointer or null.
     #[doc(alias = "dispatch_queue_create")]
     #[must_use]
     #[inline]
-    pub(crate) unsafe fn __new(
-        label: *const c_char,
+    pub(crate) fn __new(
+        label: Option<&CStr>,
         attr: Option<&DispatchQueueAttr>,
     ) -> DispatchRetained<DispatchQueue> {
         extern "C" {
@@ -1068,7 +1071,14 @@ impl DispatchQueue {
                 attr: Option<&DispatchQueueAttr>,
             ) -> Option<NonNull<DispatchQueue>>;
         }
-        let ret = unsafe { dispatch_queue_create(label, attr) };
+        let ret = unsafe {
+            dispatch_queue_create(
+                label
+                    .map(|ptr| ptr.as_ptr())
+                    .unwrap_or_else(core::ptr::null),
+                attr,
+            )
+        };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { DispatchRetained::from_raw(ret) }
@@ -4133,18 +4143,20 @@ impl DispatchWorkloop {
     ///
     ///
     /// Returns: The newly created dispatch workloop.
-    ///
-    /// # Safety
-    ///
-    /// `label` must be a valid pointer or null.
     #[doc(alias = "dispatch_workloop_create")]
     #[must_use]
     #[inline]
-    pub(crate) unsafe fn __new(label: *const c_char) -> DispatchRetained<DispatchWorkloop> {
+    pub(crate) fn __new(label: Option<&CStr>) -> DispatchRetained<DispatchWorkloop> {
         extern "C" {
             fn dispatch_workloop_create(label: *const c_char) -> Option<NonNull<DispatchWorkloop>>;
         }
-        let ret = unsafe { dispatch_workloop_create(label) };
+        let ret = unsafe {
+            dispatch_workloop_create(
+                label
+                    .map(|ptr| ptr.as_ptr())
+                    .unwrap_or_else(core::ptr::null),
+            )
+        };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { DispatchRetained::from_raw(ret) }
@@ -4165,22 +4177,22 @@ impl DispatchWorkloop {
     ///
     ///
     /// Returns: The newly created dispatch workloop.
-    ///
-    /// # Safety
-    ///
-    /// `label` must be a valid pointer or null.
     #[doc(alias = "dispatch_workloop_create_inactive")]
     #[must_use]
     #[inline]
-    pub(crate) unsafe fn __new_inactive(
-        label: *const c_char,
-    ) -> DispatchRetained<DispatchWorkloop> {
+    pub(crate) fn __new_inactive(label: Option<&CStr>) -> DispatchRetained<DispatchWorkloop> {
         extern "C" {
             fn dispatch_workloop_create_inactive(
                 label: *const c_char,
             ) -> Option<NonNull<DispatchWorkloop>>;
         }
-        let ret = unsafe { dispatch_workloop_create_inactive(label) };
+        let ret = unsafe {
+            dispatch_workloop_create_inactive(
+                label
+                    .map(|ptr| ptr.as_ptr())
+                    .unwrap_or_else(core::ptr::null),
+            )
+        };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { DispatchRetained::from_raw(ret) }
