@@ -210,6 +210,8 @@ pub use self::__IOSurfaceRef::IOSurfaceRemoveAllValues;
 #[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
 pub use self::__IOSurfaceRef::IOSurfaceRemoveValue;
 #[cfg(all(feature = "IOSurfaceRef", feature = "libc"))]
+pub use self::__IOSurfaceRef::IOSurfaceSetOwnershipIdentity;
+#[cfg(all(feature = "IOSurfaceRef", feature = "libc"))]
 pub use self::__IOSurfaceRef::IOSurfaceSetPurgeable;
 #[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
 pub use self::__IOSurfaceRef::IOSurfaceSetValue;

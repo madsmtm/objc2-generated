@@ -955,6 +955,30 @@ unsafe impl Send for IOSurfaceMemoryLedgerFlags {}
 
 unsafe impl Sync for IOSurfaceMemoryLedgerFlags {}
 
+impl IOSurfaceRef {
+    #[doc(alias = "IOSurfaceSetOwnershipIdentity")]
+    #[cfg(feature = "libc")]
+    #[inline]
+    pub unsafe fn set_ownership_identity(
+        &self,
+        task_id_token: task_id_token_t,
+        new_ledger_tag: c_int,
+        new_ledger_options: u32,
+    ) -> libc::kern_return_t {
+        extern "C-unwind" {
+            fn IOSurfaceSetOwnershipIdentity(
+                buffer: &IOSurfaceRef,
+                task_id_token: task_id_token_t,
+                new_ledger_tag: c_int,
+                new_ledger_options: u32,
+            ) -> libc::kern_return_t;
+        }
+        unsafe {
+            IOSurfaceSetOwnershipIdentity(self, task_id_token, new_ledger_tag, new_ledger_options)
+        }
+    }
+}
+
 #[cfg(feature = "objc2-core-foundation")]
 #[deprecated = "renamed to `IOSurfaceRef::new`"]
 #[inline]
@@ -1471,5 +1495,16 @@ extern "C-unwind" {
         buffer: &IOSurfaceRef,
         new_state: u32,
         old_state: *mut u32,
+    ) -> libc::kern_return_t;
+}
+
+extern "C-unwind" {
+    #[cfg(feature = "libc")]
+    #[deprecated = "renamed to `IOSurfaceRef::set_ownership_identity`"]
+    pub fn IOSurfaceSetOwnershipIdentity(
+        buffer: &IOSurfaceRef,
+        task_id_token: task_id_token_t,
+        new_ledger_tag: c_int,
+        new_ledger_options: u32,
     ) -> libc::kern_return_t;
 }

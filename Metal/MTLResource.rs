@@ -387,5 +387,14 @@ extern_protocol!(
         #[unsafe(method(isAliasable))]
         #[unsafe(method_family = none)]
         fn isAliasable(&self) -> bool;
+
+        #[cfg(feature = "libc")]
+        /// Assigns ownership of the resource's underlying memory to another task for the purposes of VM accounting.
+        #[unsafe(method(setOwnerWithIdentity:))]
+        #[unsafe(method_family = none)]
+        unsafe fn setOwnerWithIdentity(
+            &self,
+            task_id_token: task_id_token_t,
+        ) -> libc::kern_return_t;
     }
 );
