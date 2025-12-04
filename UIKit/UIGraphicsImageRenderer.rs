@@ -17,7 +17,7 @@ pub type UIGraphicsImageDrawingActions =
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformatrange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIGraphicsImageRendererFormatRange(pub NSInteger);
 impl UIGraphicsImageRendererFormatRange {
     #[doc(alias = "UIGraphicsImageRendererFormatRangeUnspecified")]

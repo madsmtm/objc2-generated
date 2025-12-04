@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimationcurve?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAnimationCurve(pub NSInteger);
 impl UIViewAnimationCurve {
     #[doc(alias = "UIViewAnimationCurveEaseInOut")]
@@ -39,7 +39,7 @@ unsafe impl RefEncode for UIViewAnimationCurve {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewContentMode(pub NSInteger);
 impl UIViewContentMode {
     #[doc(alias = "UIViewContentModeScaleToFill")]
@@ -81,7 +81,7 @@ unsafe impl RefEncode for UIViewContentMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimationtransition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAnimationTransition(pub NSInteger);
 impl UIViewAnimationTransition {
     #[doc(alias = "UIViewAnimationTransitionNone")]
@@ -107,7 +107,7 @@ unsafe impl RefEncode for UIViewAnimationTransition {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewautoresizing?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAutoresizing(pub NSUInteger);
 bitflags::bitflags! {
     impl UIViewAutoresizing: NSUInteger {
@@ -139,7 +139,7 @@ unsafe impl RefEncode for UIViewAutoresizing {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAnimationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIViewAnimationOptions: NSUInteger {
@@ -217,7 +217,7 @@ unsafe impl RefEncode for UIViewAnimationOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewkeyframeanimationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewKeyframeAnimationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIViewKeyframeAnimationOptions: NSUInteger {
@@ -259,7 +259,7 @@ unsafe impl RefEncode for UIViewKeyframeAnimationOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisystemanimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISystemAnimation(pub NSUInteger);
 impl UISystemAnimation {
     #[doc(alias = "UISystemAnimationDelete")]
@@ -277,7 +277,7 @@ unsafe impl RefEncode for UISystemAnimation {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewtintadjustmentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewTintAdjustmentMode(pub NSInteger);
 impl UIViewTintAdjustmentMode {
     #[doc(alias = "UIViewTintAdjustmentModeAutomatic")]
@@ -299,7 +299,7 @@ unsafe impl RefEncode for UIViewTintAdjustmentMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisemanticcontentattribute?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISemanticContentAttribute(pub NSInteger);
 impl UISemanticContentAttribute {
     #[doc(alias = "UISemanticContentAttributeUnspecified")]
@@ -1283,7 +1283,7 @@ impl UIView {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutconstraintaxis?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UILayoutConstraintAxis(pub NSInteger);
 impl UILayoutConstraintAxis {
     #[doc(alias = "UILayoutConstraintAxisHorizontal")]

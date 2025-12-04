@@ -78,7 +78,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "SecTransform is no longer supported"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTransformMetaAttributeType(pub CFIndex);
 impl SecTransformMetaAttributeType {
     #[doc(alias = "kSecTransformMetaAttributeValue")]

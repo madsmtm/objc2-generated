@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessagestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEMessageState(pub NSInteger);
 impl MEMessageState {
     #[doc(alias = "MEMessageStateReceived")]
@@ -31,7 +31,7 @@ unsafe impl RefEncode for MEMessageState {
 /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageencryptionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEMessageEncryptionState(pub NSInteger);
 impl MEMessageEncryptionState {
     #[doc(alias = "MEMessageEncryptionStateUnknown")]

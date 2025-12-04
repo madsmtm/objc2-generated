@@ -92,7 +92,7 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationInputType {
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VTSuperResolutionScalerConfigurationModelStatus(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl VTSuperResolutionScalerConfigurationModelStatus {

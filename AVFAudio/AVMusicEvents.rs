@@ -187,7 +187,7 @@ impl AVMIDIChannelEvent {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangemessagetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVMIDIControlChangeMessageType(pub NSInteger);
 impl AVMIDIControlChangeMessageType {
     #[doc(alias = "AVMIDIControlChangeMessageTypeBankSelect")]
@@ -611,7 +611,7 @@ impl AVMIDISysexEvent {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaeventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVMIDIMetaEventType(pub NSInteger);
 impl AVMIDIMetaEventType {
     #[doc(alias = "AVMIDIMetaEventTypeSequenceNumber")]

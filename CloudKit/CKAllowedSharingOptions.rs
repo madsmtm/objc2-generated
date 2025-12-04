@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantaccessoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSharingParticipantAccessOption(pub NSUInteger);
 bitflags::bitflags! {
     impl CKSharingParticipantAccessOption: NSUInteger {
@@ -37,7 +37,7 @@ unsafe impl RefEncode for CKSharingParticipantAccessOption {
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharingparticipantpermissionoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSharingParticipantPermissionOption(pub NSUInteger);
 bitflags::bitflags! {
     impl CKSharingParticipantPermissionOption: NSUInteger {

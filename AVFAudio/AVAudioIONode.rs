@@ -52,7 +52,7 @@ pub type AVAudioIONodeInputBlock =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingspeechactivityevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioVoiceProcessingSpeechActivityEvent(pub NSInteger);
 impl AVAudioVoiceProcessingSpeechActivityEvent {
     #[doc(alias = "AVAudioVoiceProcessingSpeechActivityStarted")]
@@ -79,7 +79,7 @@ unsafe impl RefEncode for AVAudioVoiceProcessingSpeechActivityEvent {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckinglevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioVoiceProcessingOtherAudioDuckingLevel(pub NSInteger);
 impl AVAudioVoiceProcessingOtherAudioDuckingLevel {
     #[doc(alias = "AVAudioVoiceProcessingOtherAudioDuckingLevelDefault")]

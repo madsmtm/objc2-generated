@@ -26,7 +26,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceprotocol?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DDDeviceProtocol(pub NSInteger);
 impl DDDeviceProtocol {
     #[doc(alias = "DDDeviceProtocolInvalid")]
@@ -63,7 +63,7 @@ impl DDDeviceProtocol {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicecategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DDDeviceCategory(pub NSInteger);
 impl DDDeviceCategory {
     #[doc(alias = "DDDeviceCategoryHiFiSpeaker")]
@@ -115,7 +115,7 @@ impl DDDeviceCategory {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DDDeviceState(pub NSInteger);
 impl DDDeviceState {
     #[doc(alias = "DDDeviceStateInvalid")]
@@ -161,7 +161,7 @@ impl DDDeviceState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicemediaplaybackstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DDDeviceMediaPlaybackState(pub NSInteger);
 impl DDDeviceMediaPlaybackState {
     #[doc(alias = "DDDeviceMediaPlaybackStateNoContent")]
@@ -187,7 +187,7 @@ unsafe impl RefEncode for DDDeviceMediaPlaybackState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicesupports?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DDDeviceSupports(pub NSUInteger);
 bitflags::bitflags! {
     impl DDDeviceSupports: NSUInteger {

@@ -14,7 +14,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowsercellstate?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IKImageBrowserCellState(pub c_uint);
 impl IKImageBrowserCellState {
     #[doc(alias = "IKImageStateNoImage")]

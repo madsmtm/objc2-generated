@@ -34,7 +34,7 @@ pub type TKTokenDriverClassID = NSString;
 /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TKTokenOperation(pub NSInteger);
 impl TKTokenOperation {
     #[doc(alias = "TKTokenOperationNone")]

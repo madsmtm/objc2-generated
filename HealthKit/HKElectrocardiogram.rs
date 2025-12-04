@@ -33,7 +33,7 @@ unsafe impl RefEncode for HKElectrocardiogramLead {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramclassification?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKElectrocardiogramClassification(pub NSInteger);
 impl HKElectrocardiogramClassification {
     #[doc(alias = "HKElectrocardiogramClassificationNotSet")]
@@ -73,7 +73,7 @@ unsafe impl RefEncode for HKElectrocardiogramClassification {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramsymptomsstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKElectrocardiogramSymptomsStatus(pub NSInteger);
 impl HKElectrocardiogramSymptomsStatus {
     #[doc(alias = "HKElectrocardiogramSymptomsStatusNotSet")]

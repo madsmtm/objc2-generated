@@ -16,7 +16,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextitemcontenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextItemContentType(pub NSInteger);
 impl UITextItemContentType {
     /// The text item represents a link.

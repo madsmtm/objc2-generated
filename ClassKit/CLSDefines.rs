@@ -13,7 +13,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clserrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLSErrorCode(pub NSInteger);
 impl CLSErrorCode {
     #[doc(alias = "CLSErrorCodeNone")]

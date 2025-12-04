@@ -22,7 +22,7 @@ pub static NSAppKitVersionNumberWithPatternColorLeakFix: NSAppKitVersion = 641.0
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorType(pub NSInteger);
 impl NSColorType {
     #[doc(alias = "NSColorTypeComponentBased")]
@@ -44,7 +44,7 @@ unsafe impl RefEncode for NSColorType {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorsystemeffect?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorSystemEffect(pub NSInteger);
 impl NSColorSystemEffect {
     #[doc(alias = "NSColorSystemEffectNone")]

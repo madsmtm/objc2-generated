@@ -15,7 +15,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/webkit/domeventexceptioncode?language=objc)
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DOMEventExceptionCode(pub c_uint);
 impl DOMEventExceptionCode {
     #[doc(alias = "DOM_UNSPECIFIED_EVENT_TYPE_ERR")]

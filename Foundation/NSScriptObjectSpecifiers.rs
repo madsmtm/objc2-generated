@@ -24,7 +24,7 @@ pub const NSOperationNotSupportedForKeySpecifierError: NSInteger = 6;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinsertionposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSInsertionPosition(pub NSUInteger);
 impl NSInsertionPosition {
     #[doc(alias = "NSPositionAfter")]
@@ -50,7 +50,7 @@ unsafe impl RefEncode for NSInsertionPosition {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativeposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRelativePosition(pub NSUInteger);
 impl NSRelativePosition {
     #[doc(alias = "NSRelativeAfter")]
@@ -70,7 +70,7 @@ unsafe impl RefEncode for NSRelativePosition {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nswhosesubelementidentifier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWhoseSubelementIdentifier(pub NSUInteger);
 impl NSWhoseSubelementIdentifier {
     #[doc(alias = "NSIndexSubelement")]

@@ -18,7 +18,7 @@ pub type VNDegrees = c_float;
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnimagecropandscaleoption?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNImageCropAndScaleOption(pub NSUInteger);
 impl VNImageCropAndScaleOption {
     #[doc(alias = "VNImageCropAndScaleOptionCenterCrop")]
@@ -195,7 +195,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnelementtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNElementType(pub NSUInteger);
 impl VNElementType {
     #[doc(alias = "VNElementTypeUnknown")]
@@ -234,9 +234,10 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnchirality?language=objc)
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum VNChirality {
     #[doc(alias = "VNChiralityUnknown")]
+    #[default]
     Unknown = 0,
     #[doc(alias = "VNChiralityLeft")]
     Left = -1,
@@ -255,9 +256,10 @@ unsafe impl RefEncode for VNChirality {
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnpointsclassification?language=objc)
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum VNPointsClassification {
     #[doc(alias = "VNPointsClassificationDisconnected")]
+    #[default]
     Disconnected = 0,
     #[doc(alias = "VNPointsClassificationOpenPath")]
     OpenPath = 1,
@@ -276,9 +278,10 @@ unsafe impl RefEncode for VNPointsClassification {
 /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnbarcodecompositetype?language=objc)
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum VNBarcodeCompositeType {
     #[doc(alias = "VNBarcodeCompositeTypeNone")]
+    #[default]
     None = 0,
     #[doc(alias = "VNBarcodeCompositeTypeLinked")]
     Linked = 1,

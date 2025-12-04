@@ -130,7 +130,7 @@ impl ARGeometrySource {
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARGeometryPrimitiveType(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARGeometryPrimitiveType {
@@ -264,7 +264,7 @@ impl ARGeometryElement {
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARMeshClassification(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARMeshClassification {

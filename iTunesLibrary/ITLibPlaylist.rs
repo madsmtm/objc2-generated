@@ -54,7 +54,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibdistinguishedplaylistkind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibDistinguishedPlaylistKind(pub NSUInteger);
 impl ITLibDistinguishedPlaylistKind {
     #[doc(alias = "ITLibDistinguishedPlaylistKindNone")]
@@ -129,7 +129,7 @@ unsafe impl RefEncode for ITLibDistinguishedPlaylistKind {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibplaylistkind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibPlaylistKind(pub NSUInteger);
 impl ITLibPlaylistKind {
     #[doc(alias = "ITLibPlaylistKindRegular")]

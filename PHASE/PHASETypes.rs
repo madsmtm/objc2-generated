@@ -27,7 +27,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseupdatemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEUpdateMode(pub NSInteger);
 impl PHASEUpdateMode {
     #[doc(alias = "PHASEUpdateModeAutomatic")]
@@ -58,7 +58,7 @@ unsafe impl RefEncode for PHASEUpdateMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaserenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASERenderingMode(pub NSInteger);
 impl PHASERenderingMode {
     #[doc(alias = "PHASERenderingModeLocal")]
@@ -86,7 +86,7 @@ unsafe impl RefEncode for PHASERenderingMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaserenderingstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASERenderingState(pub NSInteger);
 impl PHASERenderingState {
     #[doc(alias = "PHASERenderingStateStopped")]
@@ -118,7 +118,7 @@ unsafe impl RefEncode for PHASERenderingState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatializationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESpatializationMode(pub NSInteger);
 impl PHASESpatializationMode {
     #[doc(alias = "PHASESpatializationModeAutomatic")]
@@ -289,7 +289,7 @@ unsafe impl RefEncode for PHASEAssetError {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventpreparehandlerreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESoundEventPrepareHandlerReason(pub NSInteger);
 impl PHASESoundEventPrepareHandlerReason {
     #[doc(alias = "PHASESoundEventPrepareHandlerReasonFailure")]
@@ -313,7 +313,7 @@ unsafe impl RefEncode for PHASESoundEventPrepareHandlerReason {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventstarthandlerreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESoundEventStartHandlerReason(pub NSInteger);
 impl PHASESoundEventStartHandlerReason {
     #[doc(alias = "PHASESoundEventStartHandlerReasonFailure")]
@@ -337,7 +337,7 @@ unsafe impl RefEncode for PHASESoundEventStartHandlerReason {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventseekhandlerreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESoundEventSeekHandlerReason(pub NSInteger);
 impl PHASESoundEventSeekHandlerReason {
     #[doc(alias = "PHASESoundEventSeekHandlerReasonFailure")]
@@ -361,7 +361,7 @@ unsafe impl RefEncode for PHASESoundEventSeekHandlerReason {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventpreparestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESoundEventPrepareState(pub NSInteger);
 impl PHASESoundEventPrepareState {
     #[doc(alias = "PHASESoundEventPrepareStatePrepareNotStarted")]
@@ -395,7 +395,7 @@ unsafe impl RefEncode for PHASESoundEventPrepareState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseassettype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEAssetType(pub NSInteger);
 impl PHASEAssetType {
     #[doc(alias = "PHASEAssetTypeResident")]
@@ -493,7 +493,7 @@ unsafe impl RefEncode for PHASECurveType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseculloption?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASECullOption(pub NSInteger);
 impl PHASECullOption {
     #[doc(alias = "PHASECullOptionTerminate")]
@@ -525,7 +525,7 @@ unsafe impl RefEncode for PHASECullOption {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseplaybackmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEPlaybackMode(pub NSInteger);
 impl PHASEPlaybackMode {
     #[doc(alias = "PHASEPlaybackModeOneShot")]
@@ -556,7 +556,7 @@ unsafe impl RefEncode for PHASEPlaybackMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasenormalizationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASENormalizationMode(pub NSInteger);
 impl PHASENormalizationMode {
     #[doc(alias = "PHASENormalizationModeNone")]
@@ -586,7 +586,7 @@ unsafe impl RefEncode for PHASENormalizationMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasecalibrationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASECalibrationMode(pub NSInteger);
 impl PHASECalibrationMode {
     #[doc(alias = "PHASECalibrationModeNone")]
@@ -614,7 +614,7 @@ unsafe impl RefEncode for PHASECalibrationMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseautomaticheadtrackingflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEAutomaticHeadTrackingFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl PHASEAutomaticHeadTrackingFlags: NSUInteger {

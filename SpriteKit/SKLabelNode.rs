@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelverticalalignmentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKLabelVerticalAlignmentMode(pub NSInteger);
 impl SKLabelVerticalAlignmentMode {
     #[doc(alias = "SKLabelVerticalAlignmentModeBaseline")]
@@ -39,7 +39,7 @@ unsafe impl RefEncode for SKLabelVerticalAlignmentMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sklabelhorizontalalignmentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKLabelHorizontalAlignmentMode(pub NSInteger);
 impl SKLabelHorizontalAlignmentMode {
     #[doc(alias = "SKLabelHorizontalAlignmentModeCenter")]

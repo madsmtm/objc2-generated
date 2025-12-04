@@ -26,7 +26,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcreationsource?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHProjectCreationSource(pub NSInteger);
 impl PHProjectCreationSource {
     #[doc(alias = "PHProjectCreationSourceUndefined")]
@@ -194,7 +194,7 @@ impl PHProjectInfo {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsectiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHProjectSectionType(pub NSInteger);
 impl PHProjectSectionType {
     #[doc(alias = "PHProjectSectionTypeUndefined")]
@@ -669,7 +669,7 @@ impl PHProjectAssetElement {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelementtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHProjectTextElementType(pub NSInteger);
 impl PHProjectTextElementType {
     #[doc(alias = "PHProjectTextElementTypeBody")]

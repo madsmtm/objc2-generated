@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolltype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollType(pub NSUInteger);
 impl UIScrollType {
     #[doc(alias = "UIScrollTypeDiscrete")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for UIScrollType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolltypemask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollTypeMask(pub NSInteger);
 bitflags::bitflags! {
     impl UIScrollTypeMask: NSInteger {

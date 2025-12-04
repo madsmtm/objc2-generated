@@ -152,7 +152,7 @@ impl BEScrollView {
 /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollviewscrollupdatephase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BEScrollViewScrollUpdatePhase(pub NSInteger);
 impl BEScrollViewScrollUpdatePhase {
     #[doc(alias = "BEScrollViewScrollUpdatePhaseBegan")]

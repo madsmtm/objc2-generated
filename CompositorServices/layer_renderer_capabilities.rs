@@ -62,7 +62,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_supported_color_formats_options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct cp_supported_color_formats_options(pub u32);
 bitflags::bitflags! {
     impl cp_supported_color_formats_options: u32 {
@@ -218,7 +218,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_supported_layouts_options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct cp_supported_layouts_options(pub u32);
 bitflags::bitflags! {
     impl cp_supported_layouts_options: u32 {

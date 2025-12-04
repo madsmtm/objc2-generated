@@ -11,7 +11,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneresizingrestrictions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWindowSceneResizingRestrictions(pub NSInteger);
 impl UIWindowSceneResizingRestrictions {
     /// App has no preference on user resize

@@ -7,7 +7,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nswritingdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWritingDirection(pub NSInteger);
 impl NSWritingDirection {
     #[doc(alias = "NSWritingDirectionNatural")]
@@ -29,7 +29,7 @@ unsafe impl RefEncode for NSWritingDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextAlignment(pub NSInteger);
 impl NSTextAlignment {
     #[doc(alias = "NSTextAlignmentLeft")]

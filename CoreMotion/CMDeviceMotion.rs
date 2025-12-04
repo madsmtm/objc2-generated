@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdevicemotionsensorlocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMDeviceMotionSensorLocation(pub NSInteger);
 impl CMDeviceMotionSensorLocation {
     #[doc(alias = "CMDeviceMotionSensorLocationDefault")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for CMDeviceMotionSensorLocation {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagneticfieldcalibrationaccuracy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMMagneticFieldCalibrationAccuracy(pub c_int);
 impl CMMagneticFieldCalibrationAccuracy {
     #[doc(alias = "CMMagneticFieldCalibrationAccuracyUncalibrated")]

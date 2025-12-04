@@ -18,7 +18,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKApplicationState(pub NSInteger);
 impl WKApplicationState {
     #[doc(alias = "WKApplicationStateActive")]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for WKApplicationState {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkbackgroundfetchresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKBackgroundFetchResult(pub NSUInteger);
 impl WKBackgroundFetchResult {
     #[doc(alias = "WKBackgroundFetchResultNewData")]

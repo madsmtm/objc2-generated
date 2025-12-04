@@ -158,7 +158,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemcapabilities?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderItemCapabilities(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderItemCapabilities: NSUInteger {
@@ -242,7 +242,7 @@ unsafe impl RefEncode for NSFileProviderItemCapabilities {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemfields?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderItemFields(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderItemFields: NSUInteger {
@@ -282,7 +282,7 @@ unsafe impl RefEncode for NSFileProviderItemFields {
 /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfilesystemflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderFileSystemFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderFileSystemFlags: NSUInteger {
@@ -340,7 +340,7 @@ unsafe impl RefEncode for NSFileProviderTypeAndCreator {
 /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercontentpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderContentPolicy(pub NSInteger);
 impl NSFileProviderContentPolicy {
     /// Inherit the content policy of the parent folder.

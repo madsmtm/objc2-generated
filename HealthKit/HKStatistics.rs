@@ -18,7 +18,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstatisticsoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKStatisticsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl HKStatisticsOptions: NSUInteger {

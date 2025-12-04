@@ -15,7 +15,7 @@ pub type CGBitmapContextReleaseDataCallback =
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolormodel?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGColorModel(pub u32);
 bitflags::bitflags! {
     impl CGColorModel: u32 {
@@ -47,7 +47,7 @@ unsafe impl RefEncode for CGColorModel {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcomponent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGComponent(pub u32);
 impl CGComponent {
     #[doc(alias = "kCGComponentUnknown")]
@@ -109,7 +109,7 @@ unsafe impl RefEncode for CGContentInfo {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmaplayout?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGBitmapLayout(pub u32);
 impl CGBitmapLayout {
     #[doc(alias = "kCGBitmapLayoutAlphaOnly")]

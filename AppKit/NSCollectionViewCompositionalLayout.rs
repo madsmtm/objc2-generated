@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdirectionalrectedge?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDirectionalRectEdge(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDirectionalRectEdge: NSUInteger {
@@ -83,7 +83,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrectalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRectAlignment(pub NSInteger);
 impl NSRectAlignment {
     #[doc(alias = "NSRectAlignmentNone")]
@@ -289,7 +289,7 @@ impl NSCollectionViewCompositionalLayout {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionlayoutsectionorthogonalscrollingbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionLayoutSectionOrthogonalScrollingBehavior(pub NSInteger);
 impl NSCollectionLayoutSectionOrthogonalScrollingBehavior {
     #[doc(alias = "NSCollectionLayoutSectionOrthogonalScrollingBehaviorNone")]

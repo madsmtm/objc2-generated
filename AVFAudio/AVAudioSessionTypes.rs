@@ -576,7 +576,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionactivationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionActivationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSessionActivationOptions: NSUInteger {
@@ -598,7 +598,7 @@ unsafe impl RefEncode for AVAudioSessionActivationOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionportoverride?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionPortOverride(pub NSUInteger);
 impl AVAudioSessionPortOverride {
     /// No override.  Return audio routing to the default state for the current audio category.
@@ -624,7 +624,7 @@ unsafe impl RefEncode for AVAudioSessionPortOverride {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutechangereason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionRouteChangeReason(pub NSUInteger);
 impl AVAudioSessionRouteChangeReason {
     /// The reason is unknown.
@@ -677,7 +677,7 @@ unsafe impl RefEncode for AVAudioSessionRouteChangeReason {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioncategoryoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionCategoryOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSessionCategoryOptions: NSUInteger {
@@ -858,7 +858,7 @@ unsafe impl RefEncode for AVAudioSessionCategoryOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionInterruptionType(pub NSUInteger);
 impl AVAudioSessionInterruptionType {
     /// the system has interrupted your audio session
@@ -883,7 +883,7 @@ unsafe impl RefEncode for AVAudioSessionInterruptionType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionInterruptionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSessionInterruptionOptions: NSUInteger {
@@ -922,7 +922,7 @@ unsafe impl RefEncode for AVAudioSessionInterruptionOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioninterruptionreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionInterruptionReason(pub NSUInteger);
 impl AVAudioSessionInterruptionReason {
     #[doc(alias = "AVAudioSessionInterruptionReasonDefault")]
@@ -950,7 +950,7 @@ unsafe impl RefEncode for AVAudioSessionInterruptionReason {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsetactiveoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionSetActiveOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioSessionSetActiveOptions: NSUInteger {
@@ -976,7 +976,7 @@ unsafe impl RefEncode for AVAudioSessionSetActiveOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionsilencesecondaryaudiohinttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionSilenceSecondaryAudioHintType(pub NSUInteger);
 impl AVAudioSessionSilenceSecondaryAudioHintType {
     /// Another application's primary audio has started.
@@ -1037,7 +1037,7 @@ unsafe impl RefEncode for AVAudioSessionSilenceSecondaryAudioHintType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessioniotype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionIOType(pub NSUInteger);
 impl AVAudioSessionIOType {
     #[doc(alias = "AVAudioSessionIOTypeNotSpecified")]
@@ -1090,7 +1090,7 @@ unsafe impl RefEncode for AVAudioSessionIOType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionroutesharingpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionRouteSharingPolicy(pub NSUInteger);
 impl AVAudioSessionRouteSharingPolicy {
     #[doc(alias = "AVAudioSessionRouteSharingPolicyDefault")]
@@ -1168,7 +1168,7 @@ unsafe impl RefEncode for AVAudioSessionPromptStyle {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiostereoorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioStereoOrientation(pub NSInteger);
 impl AVAudioStereoOrientation {
     #[doc(alias = "AVAudioStereoOrientationNone")]
@@ -1229,7 +1229,7 @@ unsafe impl RefEncode for AVAudioSessionRecordPermission {
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionrenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionRenderingMode(pub NSInteger);
 impl AVAudioSessionRenderingMode {
     /// Default Mode when no asset is loaded or playing
@@ -1270,7 +1270,7 @@ unsafe impl RefEncode for AVAudioSessionRenderingMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmicrophoneinjectionmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionMicrophoneInjectionMode(pub NSInteger);
 impl AVAudioSessionMicrophoneInjectionMode {
     /// Default state, microphone injection is not preferred

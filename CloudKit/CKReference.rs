@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckreferenceaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKReferenceAction(pub NSUInteger);
 impl CKReferenceAction {
     #[doc(alias = "CKReferenceActionNone")]

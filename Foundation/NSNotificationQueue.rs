@@ -31,7 +31,7 @@ unsafe impl RefEncode for NSPostingStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationcoalescing?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNotificationCoalescing(pub NSUInteger);
 bitflags::bitflags! {
     impl NSNotificationCoalescing: NSUInteger {

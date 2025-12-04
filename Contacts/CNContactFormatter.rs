@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactformatterstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNContactFormatterStyle(pub NSInteger);
 impl CNContactFormatterStyle {
     /// Combine the contact name components into a displayable full name.
@@ -36,7 +36,7 @@ unsafe impl RefEncode for CNContactFormatterStyle {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cncontactdisplaynameorder?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNContactDisplayNameOrder(pub NSInteger);
 impl CNContactDisplayNameOrder {
     #[doc(alias = "CNContactDisplayNameOrderUserDefault")]

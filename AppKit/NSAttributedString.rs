@@ -129,7 +129,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsunderlinestyle?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUnderlineStyle(pub NSInteger);
 bitflags::bitflags! {
     impl NSUnderlineStyle: NSInteger {
@@ -167,7 +167,7 @@ unsafe impl RefEncode for NSUnderlineStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingdirectionformattype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWritingDirectionFormatType(pub NSInteger);
 impl NSWritingDirectionFormatType {
     #[doc(alias = "NSWritingDirectionEmbedding")]
@@ -299,7 +299,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextscalingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextScalingType(pub NSInteger);
 impl NSTextScalingType {
     #[doc(alias = "NSTextScalingStandard")]

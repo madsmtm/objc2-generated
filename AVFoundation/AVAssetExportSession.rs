@@ -167,7 +167,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetexportsessionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAssetExportSessionStatus(pub NSInteger);
 impl AVAssetExportSessionStatus {
     #[doc(alias = "AVAssetExportSessionStatusUnknown")]
@@ -204,7 +204,7 @@ unsafe impl RefEncode for AVAssetExportSessionStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrackgroupoutputhandling?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAssetTrackGroupOutputHandling(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAssetTrackGroupOutputHandling: NSUInteger {

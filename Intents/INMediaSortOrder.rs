@@ -7,7 +7,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/inmediasortorder?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INMediaSortOrder(pub NSInteger);
 impl INMediaSortOrder {
     #[doc(alias = "INMediaSortOrderUnknown")]

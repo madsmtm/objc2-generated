@@ -51,7 +51,7 @@ impl UIFocusEffect {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocushaloeffectposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIFocusHaloEffectPosition(pub NSInteger);
 impl UIFocusHaloEffectPosition {
     /// Automatically detects the best position depending on the the focus item and its containing view hierarchy.

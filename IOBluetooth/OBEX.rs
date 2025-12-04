@@ -32,7 +32,7 @@ pub type OBEXError = i32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexerrorcodes?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXErrorCodes(pub c_int);
 impl OBEXErrorCodes {
     #[doc(alias = "kOBEXErrorRangeMin")]
@@ -176,7 +176,7 @@ unsafe impl RefEncode for OBEXHeaderIdentifiers {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexopcoderesponsevalues?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXOpCodeResponseValues(pub c_uint);
 impl OBEXOpCodeResponseValues {
     #[doc(alias = "kOBEXResponseCodeReservedRangeStart")]
@@ -398,7 +398,7 @@ unsafe impl RefEncode for OBEXOpCodeCommandValues {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexconnectflagvalues?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXConnectFlagValues(pub c_uint);
 impl OBEXConnectFlagValues {
     #[doc(alias = "kOBEXConnectFlagNone")]
@@ -436,7 +436,7 @@ unsafe impl RefEncode for OBEXConnectFlagValues {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexputflagvalues?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXPutFlagValues(pub c_uint);
 impl OBEXPutFlagValues {
     #[doc(alias = "kOBEXPutFlagNone")]
@@ -473,7 +473,7 @@ unsafe impl RefEncode for OBEXPutFlagValues {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexnonceflagvalues?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXNonceFlagValues(pub c_uint);
 impl OBEXNonceFlagValues {
     #[doc(alias = "kOBEXNonceFlagNone")]
@@ -510,7 +510,7 @@ unsafe impl RefEncode for OBEXNonceFlagValues {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexrealmvalues?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXRealmValues(pub c_uint);
 impl OBEXRealmValues {
     #[doc(alias = "kOBEXRealmASCII")]
@@ -551,7 +551,7 @@ unsafe impl RefEncode for OBEXRealmValues {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexopcodesessionvalues?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXOpCodeSessionValues(pub c_uint);
 impl OBEXOpCodeSessionValues {
     #[doc(alias = "kOBEXOpCodeCreateSession")]
@@ -580,7 +580,7 @@ unsafe impl RefEncode for OBEXOpCodeSessionValues {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionparametertags?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OBEXSessionParameterTags(pub c_uint);
 impl OBEXSessionParameterTags {
     #[doc(alias = "kOBEXSessionParameterTagDeviceAddress")]

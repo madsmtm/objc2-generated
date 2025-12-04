@@ -19,7 +19,7 @@ pub type MLCGraphCompletionHandler =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcdatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCDataType(pub i32);
 impl MLCDataType {
     #[doc(alias = "MLCDataTypeInvalid")]
@@ -63,7 +63,7 @@ unsafe impl RefEncode for MLCDataType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcrandominitializertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCRandomInitializerType(pub i32);
 impl MLCRandomInitializerType {
     #[doc(alias = "MLCRandomInitializerTypeInvalid")]
@@ -95,7 +95,7 @@ unsafe impl RefEncode for MLCRandomInitializerType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcdevicetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCDeviceType(pub i32);
 impl MLCDeviceType {
     /// The CPU device
@@ -137,7 +137,7 @@ unsafe impl RefEncode for MLCDeviceType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgraphcompilationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCGraphCompilationOptions(pub u64);
 bitflags::bitflags! {
     impl MLCGraphCompilationOptions: u64 {
@@ -194,7 +194,7 @@ unsafe impl RefEncode for MLCGraphCompilationOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcexecutionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCExecutionOptions(pub u64);
 bitflags::bitflags! {
     impl MLCExecutionOptions: u64 {
@@ -256,7 +256,7 @@ unsafe impl RefEncode for MLCExecutionOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcarithmeticoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCArithmeticOperation(pub i32);
 impl MLCArithmeticOperation {
     /// An operation that calculates the elementwise sum of its two inputs.
@@ -367,7 +367,7 @@ unsafe impl RefEncode for MLCArithmeticOperation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclosstype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCLossType(pub i32);
 impl MLCLossType {
     /// The mean absolute error loss.
@@ -415,7 +415,7 @@ unsafe impl RefEncode for MLCLossType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcactivationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCActivationType(pub i32);
 impl MLCActivationType {
     /// The identity activation type.
@@ -637,7 +637,7 @@ unsafe impl RefEncode for MLCActivationType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcconvolutiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCConvolutionType(pub i32);
 impl MLCConvolutionType {
     /// The standard convolution type.
@@ -664,7 +664,7 @@ unsafe impl RefEncode for MLCConvolutionType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpaddingpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCPaddingPolicy(pub i32);
 impl MLCPaddingPolicy {
     /// The "same" padding policy.
@@ -691,7 +691,7 @@ unsafe impl RefEncode for MLCPaddingPolicy {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpaddingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCPaddingType(pub i32);
 impl MLCPaddingType {
     /// The zero padding type.
@@ -751,7 +751,7 @@ unsafe impl RefEncode for MLCPoolingType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcreductiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCReductionType(pub i32);
 impl MLCReductionType {
     /// No reduction.
@@ -812,7 +812,7 @@ unsafe impl RefEncode for MLCReductionType {
 /// [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcregularizationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCRegularizationType(pub i32);
 impl MLCRegularizationType {
     /// No regularization.
@@ -839,7 +839,7 @@ unsafe impl RefEncode for MLCRegularizationType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcsamplemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCSampleMode(pub i32);
 impl MLCSampleMode {
     /// The nearest sample mode.
@@ -863,7 +863,7 @@ unsafe impl RefEncode for MLCSampleMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcsoftmaxoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCSoftmaxOperation(pub i32);
 impl MLCSoftmaxOperation {
     /// The standard softmax operation.
@@ -887,7 +887,7 @@ unsafe impl RefEncode for MLCSoftmaxOperation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlclstmresultmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCLSTMResultMode(pub u64);
 impl MLCLSTMResultMode {
     /// The output result mode. When selected for an LSTM layer, the layer will produce a single result tensor representing the final output of the LSTM.
@@ -912,7 +912,7 @@ unsafe impl RefEncode for MLCLSTMResultMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlccomparisonoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCComparisonOperation(pub i32);
 impl MLCComparisonOperation {
     #[doc(alias = "MLCComparisonOperationEqual")]
@@ -956,7 +956,7 @@ unsafe impl RefEncode for MLCComparisonOperation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgradientclippingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLCGradientClippingType(pub i32);
 impl MLCGradientClippingType {
     #[doc(alias = "MLCGradientClippingTypeByValue")]

@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextborderstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextBorderStyle(pub NSInteger);
 impl UITextBorderStyle {
     #[doc(alias = "UITextBorderStyleNone")]
@@ -39,7 +39,7 @@ unsafe impl RefEncode for UITextBorderStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfieldviewmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextFieldViewMode(pub NSInteger);
 impl UITextFieldViewMode {
     #[doc(alias = "UITextFieldViewModeNever")]
@@ -63,7 +63,7 @@ unsafe impl RefEncode for UITextFieldViewMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfielddidendeditingreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextFieldDidEndEditingReason(pub NSInteger);
 impl UITextFieldDidEndEditingReason {
     #[doc(alias = "UITextFieldDidEndEditingReasonCommitted")]

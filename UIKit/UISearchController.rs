@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchcontrollerscopebaractivation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISearchControllerScopeBarActivation(pub NSInteger);
 impl UISearchControllerScopeBarActivation {
     /// System-defined automatic showing and hiding of the scope bar

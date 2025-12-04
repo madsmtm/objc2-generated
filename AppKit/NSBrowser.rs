@@ -23,7 +23,7 @@ pub type NSBrowserColumnsAutosaveName = NSString;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowsercolumnresizingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBrowserColumnResizingType(pub NSUInteger);
 impl NSBrowserColumnResizingType {
     #[doc(alias = "NSBrowserNoColumnResizing")]
@@ -45,7 +45,7 @@ unsafe impl RefEncode for NSBrowserColumnResizingType {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowserdropoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBrowserDropOperation(pub NSUInteger);
 impl NSBrowserDropOperation {
     #[doc(alias = "NSBrowserDropOn")]

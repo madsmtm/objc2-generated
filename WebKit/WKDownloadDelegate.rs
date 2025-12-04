@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownloadredirectpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKDownloadRedirectPolicy(pub NSInteger);
 impl WKDownloadRedirectPolicy {
     #[doc(alias = "WKDownloadRedirectPolicyCancel")]
@@ -30,7 +30,7 @@ unsafe impl RefEncode for WKDownloadRedirectPolicy {
 /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkdownloadplaceholderpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKDownloadPlaceholderPolicy(pub NSInteger);
 impl WKDownloadPlaceholderPolicy {
     #[doc(alias = "WKDownloadPlaceholderPolicyDisable")]

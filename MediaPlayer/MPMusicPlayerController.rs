@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicplaybackstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMusicPlaybackState(pub NSInteger);
 impl MPMusicPlaybackState {
     #[doc(alias = "MPMusicPlaybackStateStopped")]
@@ -38,7 +38,7 @@ unsafe impl RefEncode for MPMusicPlaybackState {
 /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicrepeatmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMusicRepeatMode(pub NSInteger);
 impl MPMusicRepeatMode {
     #[doc(alias = "MPMusicRepeatModeDefault")]
@@ -62,7 +62,7 @@ unsafe impl RefEncode for MPMusicRepeatMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpmusicshufflemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPMusicShuffleMode(pub NSInteger);
 impl MPMusicShuffleMode {
     #[doc(alias = "MPMusicShuffleModeDefault")]

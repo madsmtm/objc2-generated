@@ -11,7 +11,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramconductiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAudiogramConductionType(pub NSInteger);
 impl HKAudiogramConductionType {
     #[doc(alias = "HKAudiogramConductionTypeAir")]
@@ -31,7 +31,7 @@ unsafe impl RefEncode for HKAudiogramConductionType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitytestside?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAudiogramSensitivityTestSide(pub NSInteger);
 impl HKAudiogramSensitivityTestSide {
     #[doc(alias = "HKAudiogramSensitivityTestSideLeft")]

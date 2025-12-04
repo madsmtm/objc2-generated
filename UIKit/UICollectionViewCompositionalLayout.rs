@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentinsetsreference?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContentInsetsReference(pub NSInteger);
 impl UIContentInsetsReference {
     #[doc(alias = "UIContentInsetsReferenceAutomatic")]
@@ -234,7 +234,7 @@ impl UICollectionViewCompositionalLayout {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutSectionOrthogonalScrollingBehavior(pub NSInteger);
 impl UICollectionLayoutSectionOrthogonalScrollingBehavior {
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBehaviorNone")]
@@ -304,7 +304,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbounce?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutSectionOrthogonalScrollingBounce(pub NSInteger);
 impl UICollectionLayoutSectionOrthogonalScrollingBounce {
     #[doc(alias = "UICollectionLayoutSectionOrthogonalScrollingBounceAutomatic")]

@@ -32,7 +32,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbufferstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCommandBufferStatus(pub NSUInteger);
 impl MTLCommandBufferStatus {
     #[doc(alias = "MTLCommandBufferStatusNotEnqueued")]
@@ -99,7 +99,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCommandBufferError(pub NSUInteger);
 impl MTLCommandBufferError {
     #[doc(alias = "MTLCommandBufferErrorNone")]
@@ -155,7 +155,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandbuffererroroption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCommandBufferErrorOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLCommandBufferErrorOption: NSUInteger {
@@ -194,7 +194,7 @@ unsafe impl RefEncode for MTLCommandBufferErrorOption {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommandencodererrorstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCommandEncoderErrorState(pub NSInteger);
 impl MTLCommandEncoderErrorState {
     #[doc(alias = "MTLCommandEncoderErrorStateUnknown")]
@@ -332,7 +332,7 @@ pub type MTLCommandBufferHandler =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLDispatchType(pub NSUInteger);
 impl MTLDispatchType {
     #[doc(alias = "MTLDispatchTypeSerial")]

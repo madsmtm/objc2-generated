@@ -161,7 +161,7 @@ impl CKContainer {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckaccountstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKAccountStatus(pub NSInteger);
 impl CKAccountStatus {
     #[doc(alias = "CKAccountStatusCouldNotDetermine")]
@@ -214,7 +214,7 @@ impl CKContainer {
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckapplicationpermissions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKApplicationPermissions(pub NSUInteger);
 bitflags::bitflags! {
     impl CKApplicationPermissions: NSUInteger {
@@ -237,7 +237,7 @@ unsafe impl RefEncode for CKApplicationPermissions {
 // NS_ENUM
 #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKApplicationPermissionStatus(pub NSInteger);
 impl CKApplicationPermissionStatus {
     #[doc(alias = "CKApplicationPermissionStatusInitialState")]

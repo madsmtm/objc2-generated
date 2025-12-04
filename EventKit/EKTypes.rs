@@ -15,7 +15,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKAuthorizationStatus(pub NSInteger);
 impl EKAuthorizationStatus {
     #[doc(alias = "EKAuthorizationStatusNotDetermined")]
@@ -93,7 +93,7 @@ unsafe impl RefEncode for EKWeekday {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekrecurrencefrequency?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKRecurrenceFrequency(pub NSInteger);
 impl EKRecurrenceFrequency {
     #[doc(alias = "EKRecurrenceFrequencyDaily")]
@@ -119,7 +119,7 @@ unsafe impl RefEncode for EKRecurrenceFrequency {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipanttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKParticipantType(pub NSInteger);
 impl EKParticipantType {
     #[doc(alias = "EKParticipantTypeUnknown")]
@@ -147,7 +147,7 @@ unsafe impl RefEncode for EKParticipantType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantrole?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKParticipantRole(pub NSInteger);
 impl EKParticipantRole {
     #[doc(alias = "EKParticipantRoleUnknown")]
@@ -197,7 +197,7 @@ unsafe impl RefEncode for EKParticipantRole {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantschedulestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKParticipantScheduleStatus(pub NSInteger);
 impl EKParticipantScheduleStatus {
     #[doc(alias = "EKParticipantScheduleStatusNone")]
@@ -233,7 +233,7 @@ unsafe impl RefEncode for EKParticipantScheduleStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekparticipantstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKParticipantStatus(pub NSInteger);
 impl EKParticipantStatus {
     #[doc(alias = "EKParticipantStatusUnknown")]
@@ -267,7 +267,7 @@ unsafe impl RefEncode for EKParticipantStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendartype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKCalendarType(pub NSInteger);
 impl EKCalendarType {
     #[doc(alias = "EKCalendarTypeLocal")]
@@ -293,7 +293,7 @@ unsafe impl RefEncode for EKCalendarType {
 /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekcalendareventavailabilitymask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKCalendarEventAvailabilityMask(pub NSUInteger);
 bitflags::bitflags! {
     impl EKCalendarEventAvailabilityMask: NSUInteger {
@@ -321,7 +321,7 @@ unsafe impl RefEncode for EKCalendarEventAvailabilityMask {
 /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/eksourcetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKSourceType(pub NSInteger);
 impl EKSourceType {
     #[doc(alias = "EKSourceTypeLocal")]
@@ -351,7 +351,7 @@ unsafe impl RefEncode for EKSourceType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekentitytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKEntityType(pub NSUInteger);
 impl EKEntityType {
     #[doc(alias = "EKEntityTypeEvent")]
@@ -373,7 +373,7 @@ unsafe impl RefEncode for EKEntityType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekentitymask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKEntityMask(pub NSUInteger);
 bitflags::bitflags! {
     impl EKEntityMask: NSUInteger {
@@ -397,7 +397,7 @@ unsafe impl RefEncode for EKEntityMask {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarmproximity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKAlarmProximity(pub NSInteger);
 impl EKAlarmProximity {
     #[doc(alias = "EKAlarmProximityNone")]
@@ -421,7 +421,7 @@ unsafe impl RefEncode for EKAlarmProximity {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekalarmtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKAlarmType(pub NSInteger);
 impl EKAlarmType {
     #[doc(alias = "EKAlarmTypeDisplay")]
@@ -452,7 +452,7 @@ unsafe impl RefEncode for EKAlarmType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekreminderpriority?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKReminderPriority(pub NSUInteger);
 impl EKReminderPriority {
     #[doc(alias = "EKReminderPriorityNone")]

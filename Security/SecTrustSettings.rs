@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingskeyusage?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTrustSettingsKeyUsage(pub u32);
 bitflags::bitflags! {
     impl SecTrustSettingsKeyUsage: u32 {
@@ -46,7 +46,7 @@ unsafe impl RefEncode for SecTrustSettingsKeyUsage {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTrustSettingsResult(pub u32);
 impl SecTrustSettingsResult {
     #[doc(alias = "kSecTrustSettingsResultInvalid")]
@@ -74,7 +74,7 @@ unsafe impl RefEncode for SecTrustSettingsResult {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sectrustsettingsdomain?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTrustSettingsDomain(pub u32);
 impl SecTrustSettingsDomain {
     #[doc(alias = "kSecTrustSettingsDomainUser")]

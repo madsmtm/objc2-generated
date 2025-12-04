@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepickerstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDatePickerStyle(pub NSUInteger);
 impl NSDatePickerStyle {
     #[doc(alias = "NSDatePickerStyleTextFieldAndStepper")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for NSDatePickerStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepickermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDatePickerMode(pub NSUInteger);
 impl NSDatePickerMode {
     #[doc(alias = "NSDatePickerModeSingle")]
@@ -52,7 +52,7 @@ unsafe impl RefEncode for NSDatePickerMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatepickerelementflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDatePickerElementFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDatePickerElementFlags: NSUInteger {

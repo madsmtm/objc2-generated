@@ -14,7 +14,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibexportfeature?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibExportFeature(pub NSUInteger);
 impl ITLibExportFeature {
     #[doc(alias = "ITLibExportFeatureNone")]
@@ -38,7 +38,7 @@ unsafe impl RefEncode for ITLibExportFeature {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibinitoptions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibInitOptions(pub NSUInteger);
 impl ITLibInitOptions {
     #[doc(alias = "ITLibInitOptionNone")]

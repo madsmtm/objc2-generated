@@ -249,7 +249,7 @@ impl CMSEncoder {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cmssignedattributes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMSSignedAttributes(pub u32);
 bitflags::bitflags! {
     impl CMSSignedAttributes: u32 {
@@ -299,7 +299,7 @@ impl CMSEncoder {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cmscertificatechainmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMSCertificateChainMode(pub u32);
 impl CMSCertificateChainMode {
     #[doc(alias = "kCMSCertificateNone")]

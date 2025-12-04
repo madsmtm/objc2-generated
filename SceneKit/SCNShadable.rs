@@ -23,7 +23,7 @@ pub type SCNShaderModifierEntryPoint = NSString;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbufferfrequency?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNBufferFrequency(pub NSInteger);
 impl SCNBufferFrequency {
     #[doc(alias = "SCNBufferFrequencyPerFrame")]

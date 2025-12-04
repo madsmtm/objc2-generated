@@ -62,7 +62,7 @@ pub const kCTFontClassMaskShift: c_uint = 28;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontsymbolictraits?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontSymbolicTraits(pub u32);
 bitflags::bitflags! {
     impl CTFontSymbolicTraits: u32 {
@@ -126,7 +126,7 @@ unsafe impl RefEncode for CTFontSymbolicTraits {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontstylisticclass?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontStylisticClass(pub u32);
 bitflags::bitflags! {
     impl CTFontStylisticClass: u32 {

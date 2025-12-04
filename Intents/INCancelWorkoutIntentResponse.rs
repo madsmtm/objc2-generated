@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/incancelworkoutintentresponsecode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCancelWorkoutIntentResponseCode(pub NSInteger);
 impl INCancelWorkoutIntentResponseCode {
     #[doc(alias = "INCancelWorkoutIntentResponseCodeUnspecified")]

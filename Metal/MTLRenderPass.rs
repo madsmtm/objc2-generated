@@ -40,7 +40,7 @@ impl MTLClearColor {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlloadaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLLoadAction(pub NSUInteger);
 impl MTLLoadAction {
     #[doc(alias = "MTLLoadActionDontCare")]
@@ -62,7 +62,7 @@ unsafe impl RefEncode for MTLLoadAction {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStoreAction(pub NSUInteger);
 impl MTLStoreAction {
     #[doc(alias = "MTLStoreActionDontCare")]
@@ -90,7 +90,7 @@ unsafe impl RefEncode for MTLStoreAction {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoreactionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStoreActionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLStoreActionOptions: NSUInteger {
@@ -118,7 +118,7 @@ unsafe impl RefEncode for MTLStoreActionOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLVisibilityResultType(pub NSInteger);
 impl MTLVisibilityResultType {
     /// Reset visibility result data when you create a render command encoder.
@@ -372,7 +372,7 @@ impl DefaultRetained for MTLRenderPassColorAttachmentDescriptor {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisampledepthresolvefilter?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMultisampleDepthResolveFilter(pub NSUInteger);
 impl MTLMultisampleDepthResolveFilter {
     #[doc(alias = "MTLMultisampleDepthResolveFilterSample0")]
@@ -459,7 +459,7 @@ impl DefaultRetained for MTLRenderPassDepthAttachmentDescriptor {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmultisamplestencilresolvefilter?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMultisampleStencilResolveFilter(pub NSUInteger);
 impl MTLMultisampleStencilResolveFilter {
     /// The stencil sample corresponding to sample 0. This is the default behavior.

@@ -44,7 +44,7 @@ pub const kCGCursorWindowLevel: CGWindowLevel = kCGMaximumWindowLevel - 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGWindowLevelKey(pub i32);
 impl CGWindowLevelKey {
     #[doc(alias = "kCGBaseWindowLevelKey")]

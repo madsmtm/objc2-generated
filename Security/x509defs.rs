@@ -237,7 +237,7 @@ pub type CSSM_X509EXT_BASICCONSTRAINTS_PTR = *mut cssm_x509ext_basicConstraints;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/extension_data_format?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct extension_data_format(pub c_uint);
 impl extension_data_format {
     pub const CSSM_X509_DATAFORMAT_ENCODED: Self = Self(0);

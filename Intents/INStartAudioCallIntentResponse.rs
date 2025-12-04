@@ -10,7 +10,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INStartAudioCallIntentResponseCode(pub NSInteger);
 impl INStartAudioCallIntentResponseCode {
     #[doc(alias = "INStartAudioCallIntentResponseCodeUnspecified")]

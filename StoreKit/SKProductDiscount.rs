@@ -10,7 +10,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "Use Product.SubscriptionOffer.PaymentMode"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKProductDiscountPaymentMode(pub NSUInteger);
 impl SKProductDiscountPaymentMode {
     #[doc(alias = "SKProductDiscountPaymentModePayAsYouGo")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for SKProductDiscountPaymentMode {
 // NS_ENUM
 #[deprecated = "Use Product.SubscriptionOffer.OfferType"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKProductDiscountType(pub NSUInteger);
 impl SKProductDiscountType {
     #[doc(alias = "SKProductDiscountTypeIntroductory")]

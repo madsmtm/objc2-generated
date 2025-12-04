@@ -37,7 +37,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmousebutton?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGMouseButton(pub u32);
 impl CGMouseButton {
     #[doc(alias = "kCGMouseButtonLeft")]
@@ -61,7 +61,7 @@ unsafe impl RefEncode for CGMouseButton {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscrolleventunit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGScrollEventUnit(pub u32);
 impl CGScrollEventUnit {
     #[doc(alias = "kCGScrollEventUnitPixel")]
@@ -83,7 +83,7 @@ unsafe impl RefEncode for CGScrollEventUnit {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgmomentumscrollphase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGMomentumScrollPhase(pub u32);
 impl CGMomentumScrollPhase {
     #[doc(alias = "kCGMomentumScrollPhaseNone")]
@@ -137,7 +137,7 @@ unsafe impl RefEncode for CGScrollPhase {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cggesturephase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGGesturePhase(pub u32);
 impl CGGesturePhase {
     #[doc(alias = "kCGGesturePhaseNone")]
@@ -167,7 +167,7 @@ unsafe impl RefEncode for CGGesturePhase {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventFlags(pub u64);
 bitflags::bitflags! {
     impl CGEventFlags: u64 {
@@ -205,7 +205,7 @@ unsafe impl RefEncode for CGEventFlags {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventType(pub u32);
 impl CGEventType {
     #[doc(alias = "kCGEventNull")]
@@ -264,7 +264,7 @@ pub type CGEventTimestamp = u64;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfield?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventField(pub u32);
 impl CGEventField {
     #[doc(alias = "kCGMouseEventNumber")]
@@ -412,7 +412,7 @@ unsafe impl RefEncode for CGEventField {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventmousesubtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventMouseSubtype(pub u32);
 impl CGEventMouseSubtype {
     #[doc(alias = "kCGEventMouseSubtypeDefault")]
@@ -436,7 +436,7 @@ unsafe impl RefEncode for CGEventMouseSubtype {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtaplocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventTapLocation(pub u32);
 impl CGEventTapLocation {
     #[doc(alias = "kCGHIDEventTap")]
@@ -460,7 +460,7 @@ unsafe impl RefEncode for CGEventTapLocation {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapplacement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventTapPlacement(pub u32);
 impl CGEventTapPlacement {
     #[doc(alias = "kCGHeadInsertEventTap")]
@@ -482,7 +482,7 @@ unsafe impl RefEncode for CGEventTapPlacement {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapoptions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventTapOptions(pub u32);
 impl CGEventTapOptions {
     #[doc(alias = "kCGEventTapOptionDefault")]
@@ -590,7 +590,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsourcestateid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventSourceStateID(pub i32);
 impl CGEventSourceStateID {
     #[doc(alias = "kCGEventSourceStatePrivate")]

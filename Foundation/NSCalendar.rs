@@ -178,7 +178,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendarunit?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCalendarUnit(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCalendarUnit: NSUInteger {
@@ -266,7 +266,7 @@ unsafe impl RefEncode for NSCalendarUnit {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalendaroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCalendarOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCalendarOptions: NSUInteger {

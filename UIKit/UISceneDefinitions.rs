@@ -8,7 +8,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneactivationstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISceneActivationState(pub NSInteger);
 impl UISceneActivationState {
     #[doc(alias = "UISceneActivationStateUnattached")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for UISceneActivationState {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenecapturestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISceneCaptureState(pub NSInteger);
 impl UISceneCaptureState {
     #[doc(alias = "UISceneCaptureStateUnspecified")]
@@ -63,7 +63,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISceneErrorCode(pub NSInteger);
 impl UISceneErrorCode {
     #[doc(alias = "UISceneErrorCodeMultipleScenesNotSupported")]

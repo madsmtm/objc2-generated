@@ -24,7 +24,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKErrorCode(pub NSInteger);
 impl HKErrorCode {
     #[doc(alias = "HKUnknownError")]
@@ -105,7 +105,7 @@ unsafe impl RefEncode for HKUpdateFrequency {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAuthorizationStatus(pub NSInteger);
 impl HKAuthorizationStatus {
     #[doc(alias = "HKAuthorizationStatusNotDetermined")]
@@ -132,7 +132,7 @@ unsafe impl RefEncode for HKAuthorizationStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkauthorizationrequeststatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKAuthorizationRequestStatus(pub NSInteger);
 impl HKAuthorizationRequestStatus {
     #[doc(alias = "HKAuthorizationRequestStatusUnknown")]

@@ -147,7 +147,7 @@ unsafe impl NSAttributedStringNSStringDrawing for NSAttributedString {}
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstringdrawingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStringDrawingOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSStringDrawingOptions: NSInteger {

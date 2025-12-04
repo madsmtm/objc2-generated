@@ -15,7 +15,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/indailyroutinesituation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INDailyRoutineSituation(pub NSInteger);
 impl INDailyRoutineSituation {
     /// A situation that occurs in the morning, around the time the user wakes up.

@@ -9,7 +9,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlreshapefrequencyhint?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLReshapeFrequencyHint(pub NSInteger);
 impl MLReshapeFrequencyHint {
     /// The input shape is expected to change frequently on each prediction sent to this loaded model instance. Core ML will try to minimize the latency associated with shape changes and avoid expensive shape-specific optimizations prior to prediction computation. While prediction computation may be slower for each specific shape, switching between shapes should be faster.

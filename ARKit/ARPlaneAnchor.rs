@@ -15,7 +15,7 @@ use crate::*;
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARPlaneAnchorAlignment(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARPlaneAnchorAlignment {
@@ -43,7 +43,7 @@ unsafe impl RefEncode for ARPlaneAnchorAlignment {
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARPlaneClassificationStatus(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARPlaneClassificationStatus {
@@ -77,7 +77,7 @@ unsafe impl RefEncode for ARPlaneClassificationStatus {
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARPlaneClassification(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARPlaneClassification {

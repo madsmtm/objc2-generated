@@ -14,7 +14,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKChallengeState(pub NSInteger);
 impl GKChallengeState {
     #[doc(alias = "GKChallengeStateInvalid")]

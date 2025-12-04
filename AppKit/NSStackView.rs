@@ -38,7 +38,7 @@ unsafe impl RefEncode for NSStackViewGravity {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackviewdistribution?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStackViewDistribution(pub NSInteger);
 impl NSStackViewDistribution {
     /// Default value. NSStackView will not have any special distribution behavior, relying on behavior described by gravity areas and set hugging priorities along the stacking axis.

@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechrecognizerauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFSpeechRecognizerAuthorizationStatus(pub NSInteger);
 impl SFSpeechRecognizerAuthorizationStatus {
     /// The app's authorization status has not yet been determined.

@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationcurve?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAnimationCurve(pub NSUInteger);
 impl NSAnimationCurve {
     #[doc(alias = "NSAnimationEaseInOut")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for NSAnimationCurve {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationblockingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAnimationBlockingMode(pub NSUInteger);
 impl NSAnimationBlockingMode {
     #[doc(alias = "NSAnimationBlocking")]

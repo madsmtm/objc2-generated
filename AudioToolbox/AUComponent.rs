@@ -224,7 +224,7 @@ pub const kAudioUnitSubType_AudioFilePlayer: u32 = 0x6166706c;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitrenderactionflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioUnitRenderActionFlags(pub u32);
 bitflags::bitflags! {
     impl AudioUnitRenderActionFlags: u32 {

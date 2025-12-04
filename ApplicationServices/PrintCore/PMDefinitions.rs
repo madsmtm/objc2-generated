@@ -432,7 +432,7 @@ pub type PMPaperMargins = PMRect;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmdataformat?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PMDataFormat(pub c_uint);
 impl PMDataFormat {
     #[doc(alias = "kPMDataFormatXMLDefault")]

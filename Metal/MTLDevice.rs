@@ -14,7 +14,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocompressionmethod?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIOCompressionMethod(pub NSInteger);
 impl MTLIOCompressionMethod {
     #[doc(alias = "MTLIOCompressionMethodZlib")]
@@ -132,7 +132,7 @@ extern "C-unwind" {
 // NS_ENUM
 #[deprecated = "Use MTLGPUFamily instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLFeatureSet(pub NSUInteger);
 impl MTLFeatureSet {
     #[doc(alias = "MTLFeatureSet_iOS_GPUFamily1_v1")]
@@ -273,7 +273,7 @@ unsafe impl RefEncode for MTLGPUFamily {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicelocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLDeviceLocation(pub NSUInteger);
 impl MTLDeviceLocation {
     #[doc(alias = "MTLDeviceLocationBuiltIn")]
@@ -299,7 +299,7 @@ unsafe impl RefEncode for MTLDeviceLocation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpipelineoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLPipelineOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLPipelineOption: NSUInteger {
@@ -330,7 +330,7 @@ unsafe impl RefEncode for MTLPipelineOption {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlreadwritetexturetier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLReadWriteTextureTier(pub NSUInteger);
 impl MTLReadWriteTextureTier {
     #[doc(alias = "MTLReadWriteTextureTierNone")]
@@ -354,7 +354,7 @@ unsafe impl RefEncode for MTLReadWriteTextureTier {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlargumentbufferstier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLArgumentBuffersTier(pub NSUInteger);
 impl MTLArgumentBuffersTier {
     #[doc(alias = "MTLArgumentBuffersTier1")]
@@ -376,7 +376,7 @@ unsafe impl RefEncode for MTLArgumentBuffersTier {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsparsetextureregionalignmentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSparseTextureRegionAlignmentMode(pub NSUInteger);
 impl MTLSparseTextureRegionAlignmentMode {
     #[doc(alias = "MTLSparseTextureRegionAlignmentModeOutward")]
@@ -442,7 +442,7 @@ unsafe impl RefEncode for MTLAccelerationStructureSizes {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplingpoint?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCounterSamplingPoint(pub NSUInteger);
 impl MTLCounterSamplingPoint {
     #[doc(alias = "MTLCounterSamplingPointAtStageBoundary")]

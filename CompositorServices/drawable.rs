@@ -20,7 +20,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_state?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct cp_drawable_state(pub u32);
 impl cp_drawable_state {
     /// A drawable that is not in use and ready for assignment to a frame.
@@ -51,7 +51,7 @@ unsafe impl RefEncode for cp_drawable_state {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_target?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct cp_drawable_target(pub u32);
 impl cp_drawable_target {
     /// A drawable that is targeting the built-in display,

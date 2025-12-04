@@ -80,7 +80,7 @@ extern_protocol!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubbermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrubberMode(pub NSInteger);
 impl NSScrubberMode {
     #[doc(alias = "NSScrubberModeFixed")]
@@ -102,7 +102,7 @@ unsafe impl RefEncode for NSScrubberMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrubberAlignment(pub NSInteger);
 impl NSScrubberAlignment {
     #[doc(alias = "NSScrubberAlignmentNone")]

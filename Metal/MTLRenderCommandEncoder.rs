@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLPrimitiveType(pub NSUInteger);
 impl MTLPrimitiveType {
     #[doc(alias = "MTLPrimitiveTypePoint")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for MTLPrimitiveType {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvisibilityresultmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLVisibilityResultMode(pub NSUInteger);
 impl MTLVisibilityResultMode {
     #[doc(alias = "MTLVisibilityResultModeDisabled")]
@@ -114,7 +114,7 @@ unsafe impl RefEncode for MTLViewport {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcullmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCullMode(pub NSUInteger);
 impl MTLCullMode {
     #[doc(alias = "MTLCullModeNone")]
@@ -136,7 +136,7 @@ unsafe impl RefEncode for MTLCullMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlwinding?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLWinding(pub NSUInteger);
 impl MTLWinding {
     #[doc(alias = "MTLWindingClockwise")]
@@ -156,7 +156,7 @@ unsafe impl RefEncode for MTLWinding {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldepthclipmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLDepthClipMode(pub NSUInteger);
 impl MTLDepthClipMode {
     #[doc(alias = "MTLDepthClipModeClip")]
@@ -176,7 +176,7 @@ unsafe impl RefEncode for MTLDepthClipMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltrianglefillmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTriangleFillMode(pub NSUInteger);
 impl MTLTriangleFillMode {
     #[doc(alias = "MTLTriangleFillModeFill")]
@@ -328,7 +328,7 @@ unsafe impl RefEncode for MTLTriangleTessellationFactorsHalf {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlrenderstages?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLRenderStages(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLRenderStages: NSUInteger {

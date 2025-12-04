@@ -14,7 +14,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inrelevantshortcutrole?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRelevantShortcutRole(pub NSInteger);
 impl INRelevantShortcutRole {
     /// The relevant shortcut represents an action that the user may want to perform using your app.

@@ -416,7 +416,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpspurgeablestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSPurgeableState(pub NSUInteger);
 impl MPSPurgeableState {
     #[doc(alias = "MPSPurgeableStateAllocationDeferred")]
@@ -442,7 +442,7 @@ unsafe impl RefEncode for MPSPurgeableState {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatalayout?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSDataLayout(pub NSUInteger);
 impl MPSDataLayout {
     #[doc(alias = "MPSDataLayoutHeightxWidthxFeatureChannels")]

@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementcategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionElementCategory(pub NSInteger);
 impl NSCollectionElementCategory {
     #[doc(alias = "NSCollectionElementCategoryItem")]
@@ -178,7 +178,7 @@ impl NSCollectionViewLayoutAttributes {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionupdateaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionUpdateAction(pub NSInteger);
 impl NSCollectionUpdateAction {
     #[doc(alias = "NSCollectionUpdateActionInsert")]

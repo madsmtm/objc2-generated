@@ -294,7 +294,7 @@ pub type NSComparator =
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEnumerationOptions: NSUInteger {
@@ -316,7 +316,7 @@ unsafe impl RefEncode for NSEnumerationOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssortoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSortOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSortOptions: NSUInteger {

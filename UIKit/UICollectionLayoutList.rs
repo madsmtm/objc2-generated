@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistappearance?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutListAppearance(pub NSInteger);
 impl UICollectionLayoutListAppearance {
     #[doc(alias = "UICollectionLayoutListAppearancePlain")]
@@ -38,7 +38,7 @@ unsafe impl RefEncode for UICollectionLayoutListAppearance {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistheadermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutListHeaderMode(pub NSInteger);
 impl UICollectionLayoutListHeaderMode {
     /// No headers are shown
@@ -63,7 +63,7 @@ unsafe impl RefEncode for UICollectionLayoutListHeaderMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistfootermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutListFooterMode(pub NSInteger);
 impl UICollectionLayoutListFooterMode {
     /// No footers are shown
@@ -113,7 +113,7 @@ pub type UICollectionLayoutListItemSeparatorHandler = *mut block2::DynBlock<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistcontenthuggingelements?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionLayoutListContentHuggingElements(pub NSUInteger);
 bitflags::bitflags! {
     impl UICollectionLayoutListContentHuggingElements: NSUInteger {

@@ -26,7 +26,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVRoutePickerViewButtonState(pub NSInteger);
 impl AVRoutePickerViewButtonState {
     #[doc(alias = "AVRoutePickerViewButtonStateNormal")]
@@ -56,7 +56,7 @@ unsafe impl RefEncode for AVRoutePickerViewButtonState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVRoutePickerViewButtonStyle(pub NSInteger);
 impl AVRoutePickerViewButtonStyle {
     #[doc(alias = "AVRoutePickerViewButtonStyleSystem")]

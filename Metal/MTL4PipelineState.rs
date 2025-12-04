@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4shaderreflection?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4ShaderReflection(pub NSUInteger);
 bitflags::bitflags! {
     impl MTL4ShaderReflection: NSUInteger {
@@ -41,7 +41,7 @@ unsafe impl RefEncode for MTL4ShaderReflection {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4alphatoonestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4AlphaToOneState(pub NSInteger);
 impl MTL4AlphaToOneState {
     /// Disables alpha-to-one.
@@ -65,7 +65,7 @@ unsafe impl RefEncode for MTL4AlphaToOneState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4alphatocoveragestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4AlphaToCoverageState(pub NSInteger);
 impl MTL4AlphaToCoverageState {
     /// Disables alpha-to-coverage.
@@ -89,7 +89,7 @@ unsafe impl RefEncode for MTL4AlphaToCoverageState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4blendstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4BlendState(pub NSInteger);
 impl MTL4BlendState {
     /// Disables blending.
@@ -118,7 +118,7 @@ unsafe impl RefEncode for MTL4BlendState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4indirectcommandbuffersupportstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4IndirectCommandBufferSupportState(pub NSInteger);
 impl MTL4IndirectCommandBufferSupportState {
     /// Disables support for indirect command buffers.

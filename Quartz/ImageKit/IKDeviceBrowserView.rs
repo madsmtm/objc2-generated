@@ -52,9 +52,10 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikdevicebrowserviewdisplaymode?language=objc)
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum IKDeviceBrowserViewDisplayMode {
     #[doc(alias = "IKDeviceBrowserViewDisplayModeTable")]
+    #[default]
     Table = 0,
     #[doc(alias = "IKDeviceBrowserViewDisplayModeOutline")]
     Outline = 1,

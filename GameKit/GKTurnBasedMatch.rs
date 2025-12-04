@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTurnBasedMatchStatus(pub NSInteger);
 impl GKTurnBasedMatchStatus {
     #[doc(alias = "GKTurnBasedMatchStatusUnknown")]
@@ -38,7 +38,7 @@ unsafe impl RefEncode for GKTurnBasedMatchStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipantstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTurnBasedParticipantStatus(pub NSInteger);
 impl GKTurnBasedParticipantStatus {
     #[doc(alias = "GKTurnBasedParticipantStatusUnknown")]
@@ -68,7 +68,7 @@ unsafe impl RefEncode for GKTurnBasedParticipantStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchoutcome?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTurnBasedMatchOutcome(pub NSInteger);
 impl GKTurnBasedMatchOutcome {
     #[doc(alias = "GKTurnBasedMatchOutcomeNone")]
@@ -585,7 +585,7 @@ impl GKTurnBasedMatch {
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedexchangestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTurnBasedExchangeStatus(pub i8);
 impl GKTurnBasedExchangeStatus {
     #[doc(alias = "GKTurnBasedExchangeStatusUnknown")]

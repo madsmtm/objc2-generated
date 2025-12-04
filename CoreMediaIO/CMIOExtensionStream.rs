@@ -18,7 +18,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMIOExtensionStreamDirection(pub NSInteger);
 impl CMIOExtensionStreamDirection {
     #[doc(alias = "CMIOExtensionStreamDirectionSource")]
@@ -46,7 +46,7 @@ unsafe impl RefEncode for CMIOExtensionStreamDirection {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamclocktype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMIOExtensionStreamClockType(pub NSInteger);
 impl CMIOExtensionStreamClockType {
     #[doc(alias = "CMIOExtensionStreamClockTypeHostTime")]
@@ -78,7 +78,7 @@ unsafe impl RefEncode for CMIOExtensionStreamClockType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamdiscontinuityflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMIOExtensionStreamDiscontinuityFlags(pub u32);
 bitflags::bitflags! {
     impl CMIOExtensionStreamDiscontinuityFlags: u32 {

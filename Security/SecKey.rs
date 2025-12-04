@@ -97,7 +97,7 @@ pub const kSecKeyUnwrap: c_int = 26;
 #[cfg(feature = "cssmconfig")]
 #[deprecated = "No longer supported"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecCredentialType(pub uint32);
 #[cfg(feature = "cssmconfig")]
 impl SecCredentialType {
@@ -128,7 +128,7 @@ unsafe impl RefEncode for SecCredentialType {
 // NS_OPTIONS
 #[deprecated = "Replaced with SecKeyAlgorithm"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecPadding(pub u32);
 bitflags::bitflags! {
     impl SecPadding: u32 {
@@ -184,7 +184,7 @@ unsafe impl RefEncode for SecPadding {
 // NS_ENUM
 #[deprecated = "No longer supported"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecKeySizes(pub u32);
 impl SecKeySizes {
     #[doc(alias = "kSecDefaultKeySize")]
@@ -2207,7 +2207,7 @@ impl SecKey {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeyoperationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecKeyOperationType(pub CFIndex);
 impl SecKeyOperationType {
     #[doc(alias = "kSecKeyOperationTypeSign")]

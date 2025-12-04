@@ -106,7 +106,7 @@ impl MDItem {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdlabeldomain?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLabelDomain(pub c_uint);
 impl MDLabelDomain {
     #[doc(alias = "kMDLabelUserDomain")]

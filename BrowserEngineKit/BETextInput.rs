@@ -30,7 +30,7 @@ unsafe impl RefEncode for BEDirectionalTextRange {
 /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextreplacementoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BETextReplacementOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl BETextReplacementOptions: NSUInteger {
@@ -52,7 +52,7 @@ unsafe impl RefEncode for BETextReplacementOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeymodifierflags?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BEKeyModifierFlags(pub NSInteger);
 impl BEKeyModifierFlags {
     #[doc(alias = "BEKeyModifierFlagNone")]

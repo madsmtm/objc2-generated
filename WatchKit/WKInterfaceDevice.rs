@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkhaptictype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKHapticType(pub NSInteger);
 impl WKHapticType {
     #[doc(alias = "WKHapticTypeNotification")]
@@ -56,7 +56,7 @@ unsafe impl RefEncode for WKHapticType {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacelayoutdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceLayoutDirection(pub NSInteger);
 impl WKInterfaceLayoutDirection {
     #[doc(alias = "WKInterfaceLayoutDirectionLeftToRight")]
@@ -76,7 +76,7 @@ unsafe impl RefEncode for WKInterfaceLayoutDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacesemanticcontentattribute?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceSemanticContentAttribute(pub NSInteger);
 impl WKInterfaceSemanticContentAttribute {
     #[doc(alias = "WKInterfaceSemanticContentAttributeUnspecified")]
@@ -102,7 +102,7 @@ unsafe impl RefEncode for WKInterfaceSemanticContentAttribute {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicewristlocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceDeviceWristLocation(pub NSInteger);
 impl WKInterfaceDeviceWristLocation {
     #[doc(alias = "WKInterfaceDeviceWristLocationLeft")]
@@ -122,7 +122,7 @@ unsafe impl RefEncode for WKInterfaceDeviceWristLocation {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicecrownorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceDeviceCrownOrientation(pub NSInteger);
 impl WKInterfaceDeviceCrownOrientation {
     #[doc(alias = "WKInterfaceDeviceCrownOrientationLeft")]
@@ -142,7 +142,7 @@ unsafe impl RefEncode for WKInterfaceDeviceCrownOrientation {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkwaterresistancerating?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWaterResistanceRating(pub NSInteger);
 impl WKWaterResistanceRating {
     #[doc(alias = "WKWaterResistanceRatingIPX7")]
@@ -164,7 +164,7 @@ unsafe impl RefEncode for WKWaterResistanceRating {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacedevicebatterystate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceDeviceBatteryState(pub NSInteger);
 impl WKInterfaceDeviceBatteryState {
     #[doc(alias = "WKInterfaceDeviceBatteryStateUnknown")]

@@ -33,7 +33,7 @@ extern "C" {
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UILineBreakMode(pub NSInteger);
 impl UILineBreakMode {
     #[doc(alias = "UILineBreakModeWordWrap")]
@@ -68,7 +68,7 @@ unsafe impl RefEncode for UILineBreakMode {
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextAlignment(pub NSInteger);
 impl UITextAlignment {
     #[doc(alias = "UITextAlignmentLeft")]
@@ -93,7 +93,7 @@ unsafe impl RefEncode for UITextAlignment {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibaselineadjustment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBaselineAdjustment(pub NSInteger);
 impl UIBaselineAdjustment {
     #[doc(alias = "UIBaselineAdjustmentAlignBaselines")]

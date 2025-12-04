@@ -14,7 +14,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionwindowtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebExtensionWindowType(pub NSInteger);
 impl WKWebExtensionWindowType {
     #[doc(alias = "WKWebExtensionWindowTypeNormal")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for WKWebExtensionWindowType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionwindowstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebExtensionWindowState(pub NSInteger);
 impl WKWebExtensionWindowState {
     #[doc(alias = "WKWebExtensionWindowStateNormal")]

@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkinviterecipientresponse?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKInviteRecipientResponse(pub NSInteger);
 impl GKInviteRecipientResponse {
     #[doc(alias = "GKInviteRecipientResponseAccepted")]
@@ -57,7 +57,7 @@ pub type GKInviteeResponse = GKInviteRecipientResponse;
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKMatchType(pub NSUInteger);
 impl GKMatchType {
     #[doc(alias = "GKMatchTypePeerToPeer")]

@@ -14,7 +14,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktilesettype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKTileSetType(pub NSUInteger);
 impl SKTileSetType {
     #[doc(alias = "SKTileSetTypeGrid")]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for SKTileSetType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/sktileadjacencymask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKTileAdjacencyMask(pub NSUInteger);
 bitflags::bitflags! {
     impl SKTileAdjacencyMask: NSUInteger {

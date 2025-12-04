@@ -212,7 +212,7 @@ pub const kAudioQueueParam_Pan: AudioQueueParameterID = 13;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueprocessingtapflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioQueueProcessingTapFlags(pub u32);
 bitflags::bitflags! {
     impl AudioQueueProcessingTapFlags: u32 {

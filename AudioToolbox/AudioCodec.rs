@@ -360,7 +360,7 @@ unsafe impl RefEncode for AudioCodecPrimeInfo {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiosettingsflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioSettingsFlags(pub u32);
 bitflags::bitflags! {
     impl AudioSettingsFlags: u32 {

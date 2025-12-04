@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentswitchtracking?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSegmentSwitchTracking(pub NSUInteger);
 impl NSSegmentSwitchTracking {
     #[doc(alias = "NSSegmentSwitchTrackingSelectOne")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for NSSegmentSwitchTracking {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSegmentStyle(pub NSInteger);
 impl NSSegmentStyle {
     #[doc(alias = "NSSegmentStyleAutomatic")]
@@ -68,7 +68,7 @@ unsafe impl RefEncode for NSSegmentStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentdistribution?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSegmentDistribution(pub NSInteger);
 impl NSSegmentDistribution {
     /// Dynamically sized segments will be sized to fit their contents, any remaining space will be left blank. This style is equivalent to the way segments were distributed on older systems.

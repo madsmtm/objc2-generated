@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttextalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIListContentTextAlignment(pub NSInteger);
 impl UIListContentTextAlignment {
     #[doc(alias = "UIListContentTextAlignmentNatural")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for UIListContentTextAlignment {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistcontenttexttransform?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIListContentTextTransform(pub NSInteger);
 impl UIListContentTextTransform {
     #[doc(alias = "UIListContentTextTransformNone")]

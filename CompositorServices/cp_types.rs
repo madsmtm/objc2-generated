@@ -100,7 +100,7 @@ impl cp_time {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_axis_direction_convention?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct cp_axis_direction_convention(pub u8);
 impl cp_axis_direction_convention {
     #[doc(alias = "cp_axis_direction_convention_right_up_back")]

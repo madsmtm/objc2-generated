@@ -8,7 +8,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "UITextItemInteraction has been replaced by text item methods on UITextViewDelegate"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextItemInteraction(pub NSInteger);
 impl UITextItemInteraction {
     #[doc(alias = "UITextItemInteractionInvokeDefaultAction")]

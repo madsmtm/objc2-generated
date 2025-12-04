@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewcontrollertabstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTabViewControllerTabStyle(pub NSInteger);
 impl NSTabViewControllerTabStyle {
     /// Uses an NSSegmentedControl to show the UI for the tabs. The control is on the top of the view.

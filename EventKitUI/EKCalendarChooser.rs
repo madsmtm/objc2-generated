@@ -14,7 +14,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserselectionstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKCalendarChooserSelectionStyle(pub NSInteger);
 impl EKCalendarChooserSelectionStyle {
     #[doc(alias = "EKCalendarChooserSelectionStyleSingle")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for EKCalendarChooserSelectionStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/eventkitui/ekcalendarchooserdisplaystyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKCalendarChooserDisplayStyle(pub NSInteger);
 impl EKCalendarChooserDisplayStyle {
     #[doc(alias = "EKCalendarChooserDisplayAllCalendars")]

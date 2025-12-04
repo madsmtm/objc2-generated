@@ -106,7 +106,7 @@ pub const ENAttenuationMax: c_uint = 0xFF;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENAuthorizationStatus(pub NSInteger);
 impl ENAuthorizationStatus {
     /// Authorization status has not yet been determined.
@@ -138,7 +138,7 @@ unsafe impl RefEncode for ENAuthorizationStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/encalibrationconfidence?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENCalibrationConfidence(pub u8);
 impl ENCalibrationConfidence {
     /// No calibration data.
@@ -178,7 +178,7 @@ pub static ENDaysSinceOnsetOfSymptomsUnknown: NSInteger = NSIntegerMax as _;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosisreporttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENDiagnosisReportType(pub u32);
 impl ENDiagnosisReportType {
     /// Diagnosis type unknown or not available.
@@ -215,7 +215,7 @@ unsafe impl RefEncode for ENDiagnosisReportType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/eninfectiousness?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENInfectiousness(pub u32);
 impl ENInfectiousness {
     #[doc(alias = "ENInfectiousnessNone")]
@@ -239,7 +239,7 @@ unsafe impl RefEncode for ENInfectiousness {
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/envariantofconcerntype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENVariantOfConcernType(pub u32);
 impl ENVariantOfConcernType {
     #[doc(alias = "ENVariantOfConcernTypeUnknown")]

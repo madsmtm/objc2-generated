@@ -13,7 +13,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "Use VSUserAccount and VSUserAccountType instead."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSSubscriptionAccessLevel(pub NSInteger);
 impl VSSubscriptionAccessLevel {
     #[doc(alias = "VSSubscriptionAccessLevelUnknown")]

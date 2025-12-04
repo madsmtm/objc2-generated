@@ -65,7 +65,7 @@ cf_objc2_type!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamupdaterecttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGDisplayStreamUpdateRectType(pub i32);
 impl CGDisplayStreamUpdateRectType {
     #[doc(alias = "kCGDisplayStreamUpdateRefreshedRects")]
@@ -93,7 +93,7 @@ unsafe impl RefEncode for CGDisplayStreamUpdateRectType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGDisplayStreamFrameStatus(pub i32);
 impl CGDisplayStreamFrameStatus {
     #[doc(alias = "kCGDisplayStreamFrameStatusFrameComplete")]

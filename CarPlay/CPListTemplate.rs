@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpassistantcellactiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPAssistantCellActionType(pub NSInteger);
 impl CPAssistantCellActionType {
     #[doc(alias = "CPAssistantCellActionTypePlayMedia")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for CPAssistantCellActionType {
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpassistantcellvisibility?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPAssistantCellVisibility(pub NSInteger);
 impl CPAssistantCellVisibility {
     #[doc(alias = "CPAssistantCellVisibilityOff")]
@@ -54,7 +54,7 @@ unsafe impl RefEncode for CPAssistantCellVisibility {
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpassistantcellposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPAssistantCellPosition(pub NSInteger);
 impl CPAssistantCellPosition {
     #[doc(alias = "CPAssistantCellPositionTop")]

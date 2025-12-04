@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkmatchsenddatamode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKMatchSendDataMode(pub NSInteger);
 impl GKMatchSendDataMode {
     #[doc(alias = "GKMatchSendDataReliable")]
@@ -31,7 +31,7 @@ unsafe impl RefEncode for GKMatchSendDataMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkplayerconnectionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKPlayerConnectionState(pub NSInteger);
 impl GKPlayerConnectionState {
     #[doc(alias = "GKPlayerStateUnknown")]

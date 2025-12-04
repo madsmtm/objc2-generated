@@ -55,7 +55,7 @@ impl UIMenuSystem {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystemelementgrouppreference?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuSystemElementGroupPreference(pub NSInteger);
 impl UIMenuSystemElementGroupPreference {
     /// The default preference. The element group is automatically included based on the platform and other system behaviors.
@@ -86,7 +86,7 @@ unsafe impl Sync for UIMenuSystemElementGroupPreference {}
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystemfindelementgroupconfigurationstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuSystemFindElementGroupConfigurationStyle(pub NSInteger);
 impl UIMenuSystemFindElementGroupConfigurationStyle {
     /// The default preference. Find elements are automatically included based on the platform and other system behaviors.

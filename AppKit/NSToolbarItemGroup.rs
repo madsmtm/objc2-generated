@@ -15,7 +15,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroupselectionmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSToolbarItemGroupSelectionMode(pub NSInteger);
 impl NSToolbarItemGroupSelectionMode {
     #[doc(alias = "NSToolbarItemGroupSelectionModeSelectOne")]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for NSToolbarItemGroupSelectionMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroupcontrolrepresentation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSToolbarItemGroupControlRepresentation(pub NSInteger);
 impl NSToolbarItemGroupControlRepresentation {
     #[doc(alias = "NSToolbarItemGroupControlRepresentationAutomatic")]

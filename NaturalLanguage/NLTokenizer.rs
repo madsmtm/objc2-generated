@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenunit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLTokenUnit(pub NSInteger);
 impl NLTokenUnit {
     #[doc(alias = "NLTokenUnitWord")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for NLTokenUnit {
 /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltokenizerattributes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLTokenizerAttributes(pub NSUInteger);
 bitflags::bitflags! {
     impl NLTokenizerAttributes: NSUInteger {

@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalgender?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalGender(pub NSInteger);
 impl NSGrammaticalGender {
     #[doc(alias = "NSGrammaticalGenderNotSet")]
@@ -33,7 +33,7 @@ unsafe impl RefEncode for NSGrammaticalGender {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpartofspeech?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalPartOfSpeech(pub NSInteger);
 impl NSGrammaticalPartOfSpeech {
     #[doc(alias = "NSGrammaticalPartOfSpeechNotSet")]
@@ -79,7 +79,7 @@ unsafe impl RefEncode for NSGrammaticalPartOfSpeech {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalnumber?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalNumber(pub NSInteger);
 impl NSGrammaticalNumber {
     #[doc(alias = "NSGrammaticalNumberNotSet")]
@@ -109,7 +109,7 @@ unsafe impl RefEncode for NSGrammaticalNumber {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalcase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalCase(pub NSInteger);
 impl NSGrammaticalCase {
     #[doc(alias = "NSGrammaticalCaseNotSet")]
@@ -155,7 +155,7 @@ unsafe impl RefEncode for NSGrammaticalCase {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalpronountype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalPronounType(pub NSInteger);
 impl NSGrammaticalPronounType {
     #[doc(alias = "NSGrammaticalPronounTypeNotSet")]
@@ -179,7 +179,7 @@ unsafe impl RefEncode for NSGrammaticalPronounType {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticalperson?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalPerson(pub NSInteger);
 impl NSGrammaticalPerson {
     #[doc(alias = "NSGrammaticalPersonNotSet")]
@@ -203,7 +203,7 @@ unsafe impl RefEncode for NSGrammaticalPerson {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticaldetermination?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalDetermination(pub NSInteger);
 impl NSGrammaticalDetermination {
     #[doc(alias = "NSGrammaticalDeterminationNotSet")]
@@ -225,7 +225,7 @@ unsafe impl RefEncode for NSGrammaticalDetermination {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsgrammaticaldefiniteness?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGrammaticalDefiniteness(pub NSInteger);
 impl NSGrammaticalDefiniteness {
     #[doc(alias = "NSGrammaticalDefinitenessNotSet")]

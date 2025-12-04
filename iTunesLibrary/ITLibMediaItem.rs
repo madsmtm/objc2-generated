@@ -108,7 +108,7 @@ unsafe impl RefEncode for ITLibMediaItemMediaKind {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlyricscontentrating?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibMediaItemLyricsContentRating(pub NSUInteger);
 impl ITLibMediaItemLyricsContentRating {
     #[doc(alias = "ITLibMediaItemLyricsContentRatingNone")]
@@ -140,7 +140,7 @@ unsafe impl RefEncode for ITLibMediaItemLyricsContentRating {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemlocationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibMediaItemLocationType(pub NSUInteger);
 impl ITLibMediaItemLocationType {
     #[doc(alias = "ITLibMediaItemLocationTypeUnknown")]
@@ -172,7 +172,7 @@ unsafe impl RefEncode for ITLibMediaItemLocationType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/ituneslibrary/itlibmediaitemplaystatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ITLibMediaItemPlayStatus(pub NSUInteger);
 impl ITLibMediaItemPlayStatus {
     #[doc(alias = "ITLibMediaItemPlayStatusNone")]

@@ -11,7 +11,7 @@ use crate::*;
 // NS_OPTIONS
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserNotificationType(pub NSUInteger);
 bitflags::bitflags! {
     impl UIUserNotificationType: NSUInteger {
@@ -42,7 +42,7 @@ unsafe impl RefEncode for UIUserNotificationType {
 // NS_ENUM
 #[deprecated = "Use UserNotifications Framework's UNNotificationAction or UNTextInputNotificationAction"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserNotificationActionBehavior(pub NSUInteger);
 impl UIUserNotificationActionBehavior {
     #[doc(alias = "UIUserNotificationActionBehaviorDefault")]
@@ -65,7 +65,7 @@ unsafe impl RefEncode for UIUserNotificationActionBehavior {
 // NS_ENUM
 #[deprecated = "Use UserNotifications Framework's UNNotificationActionOptions"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserNotificationActivationMode(pub NSUInteger);
 impl UIUserNotificationActivationMode {
     #[doc(alias = "UIUserNotificationActivationModeForeground")]
@@ -88,7 +88,7 @@ unsafe impl RefEncode for UIUserNotificationActivationMode {
 // NS_ENUM
 #[deprecated = "Use UserNotifications Framework's -[UNNotificationCategory actions] or -[UNNotificationCategory minimalActions]"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserNotificationActionContext(pub NSUInteger);
 impl UIUserNotificationActionContext {
     #[doc(alias = "UIUserNotificationActionContextDefault")]

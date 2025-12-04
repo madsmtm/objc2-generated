@@ -25,7 +25,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamoutputtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCStreamOutputType(pub NSInteger);
 impl SCStreamOutputType {
     #[doc(alias = "SCStreamOutputTypeScreen")]
@@ -49,7 +49,7 @@ unsafe impl RefEncode for SCStreamOutputType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scframestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCFrameStatus(pub NSInteger);
 impl SCFrameStatus {
     #[doc(alias = "SCFrameStatusComplete")]
@@ -79,7 +79,7 @@ unsafe impl RefEncode for SCFrameStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scpresenteroverlayalertsetting?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCPresenterOverlayAlertSetting(pub NSInteger);
 impl SCPresenterOverlayAlertSetting {
     #[doc(alias = "SCPresenterOverlayAlertSettingSystem")]
@@ -104,7 +104,7 @@ unsafe impl RefEncode for SCPresenterOverlayAlertSetting {
 // NS_ENUM
 #[deprecated = "Use SCShareableContentStyle instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCStreamType(pub NSInteger);
 impl SCStreamType {
     #[doc(alias = "SCStreamTypeWindow")]
@@ -126,7 +126,7 @@ unsafe impl RefEncode for SCStreamType {
 /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccaptureresolutiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCCaptureResolutionType(pub NSInteger);
 impl SCCaptureResolutionType {
     #[doc(alias = "SCCaptureResolutionAutomatic")]
@@ -150,7 +150,7 @@ unsafe impl RefEncode for SCCaptureResolutionType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccapturedynamicrange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCCaptureDynamicRange(pub NSInteger);
 impl SCCaptureDynamicRange {
     #[doc(alias = "SCCaptureDynamicRangeSDR")]
@@ -340,7 +340,7 @@ impl SCContentFilter {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamconfigurationpreset?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCStreamConfigurationPreset(pub NSInteger);
 impl SCStreamConfigurationPreset {
     #[doc(alias = "SCStreamConfigurationPresetCaptureHDRStreamLocalDisplay")]

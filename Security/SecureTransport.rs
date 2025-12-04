@@ -32,7 +32,7 @@ pub type SSLConnectionRef = *const c_void;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionoption?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLSessionOption(pub c_int);
 impl SSLSessionOption {
     #[doc(alias = "kSSLSessionOptionBreakOnServerAuth")]
@@ -80,10 +80,11 @@ unsafe impl RefEncode for SSLSessionOption {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sslsessionstate?language=objc)
 // NS_CLOSED_ENUM
 #[repr(i32)] // c_int
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum SSLSessionState {
     #[doc(alias = "kSSLIdle")]
     #[deprecated]
+    #[default]
     Idle = 0,
     #[doc(alias = "kSSLHandshake")]
     #[deprecated]
@@ -112,7 +113,7 @@ unsafe impl RefEncode for SSLSessionState {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sslclientcertificatestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLClientCertificateState(pub c_int);
 impl SSLClientCertificateState {
     #[doc(alias = "kSSLClientCertNone")]
@@ -152,10 +153,11 @@ pub type SSLWriteFunc = Option<
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocolside?language=objc)
 // NS_CLOSED_ENUM
 #[repr(i32)] // c_int
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum SSLProtocolSide {
     #[doc(alias = "kSSLServerSide")]
     #[deprecated]
+    #[default]
     ServerSide = 0,
     #[doc(alias = "kSSLClientSide")]
     #[deprecated]
@@ -175,7 +177,7 @@ unsafe impl RefEncode for SSLProtocolSide {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sslconnectiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLConnectionType(pub c_int);
 impl SSLConnectionType {
     #[doc(alias = "kSSLStreamType")]
@@ -868,7 +870,7 @@ extern "C-unwind" {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sslauthenticate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLAuthenticate(pub c_int);
 impl SSLAuthenticate {
     #[doc(alias = "kNeverAuthenticate")]

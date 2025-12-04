@@ -301,7 +301,7 @@ impl CTFont {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CTFontOptions: CFOptionFlags {
@@ -424,7 +424,7 @@ impl CTFont {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontuifonttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontUIFontType(pub u32);
 impl CTFontUIFontType {
     #[doc(alias = "kCTFontUIFontNone")]
@@ -2198,7 +2198,7 @@ pub type CTFontTableTag = FourCharCode;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfonttableoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontTableOptions(pub u32);
 bitflags::bitflags! {
     impl CTFontTableOptions: u32 {

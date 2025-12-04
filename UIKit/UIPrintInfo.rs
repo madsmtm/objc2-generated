@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfooutputtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPrintInfoOutputType(pub NSInteger);
 impl UIPrintInfoOutputType {
     #[doc(alias = "UIPrintInfoOutputGeneral")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for UIPrintInfoOutputType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfoorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPrintInfoOrientation(pub NSInteger);
 impl UIPrintInfoOrientation {
     #[doc(alias = "UIPrintInfoOrientationPortrait")]
@@ -54,7 +54,7 @@ unsafe impl RefEncode for UIPrintInfoOrientation {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinfoduplex?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPrintInfoDuplex(pub NSInteger);
 impl UIPrintInfoDuplex {
     #[doc(alias = "UIPrintInfoDuplexNone")]

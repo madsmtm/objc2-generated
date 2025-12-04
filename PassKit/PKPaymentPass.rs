@@ -10,7 +10,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "Use PKSecureElementPassActivationState instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentPassActivationState(pub NSUInteger);
 impl PKPaymentPassActivationState {
     #[doc(alias = "PKPaymentPassActivationStateActivated")]

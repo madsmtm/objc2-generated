@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNAuthorizationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UNAuthorizationOptions: NSUInteger {
@@ -186,7 +186,7 @@ impl UNUserNotificationCenter {
 /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationpresentationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNNotificationPresentationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UNNotificationPresentationOptions: NSUInteger {

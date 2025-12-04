@@ -283,7 +283,7 @@ pub const NSUpdateWindowsRunLoopOrdering: c_uint = 500000;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationpresentationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationPresentationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSApplicationPresentationOptions: NSUInteger {
@@ -344,7 +344,7 @@ unsafe impl RefEncode for NSApplicationPresentationOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationocclusionstate?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationOcclusionState(pub NSUInteger);
 bitflags::bitflags! {
     impl NSApplicationOcclusionState: NSUInteger {
@@ -365,7 +365,7 @@ unsafe impl RefEncode for NSApplicationOcclusionState {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowlistoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowListOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSWindowListOptions: NSInteger {
@@ -403,7 +403,7 @@ pub type NSModalSession = *mut _NSModalSession;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrequestuserattentiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRequestUserAttentionType(pub NSUInteger);
 impl NSRequestUserAttentionType {
     #[doc(alias = "NSCriticalRequest")]
@@ -423,7 +423,7 @@ unsafe impl RefEncode for NSRequestUserAttentionType {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdelegatereply?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationDelegateReply(pub NSUInteger);
 impl NSApplicationDelegateReply {
     #[doc(alias = "NSApplicationDelegateReplySuccess")]
@@ -1055,7 +1055,7 @@ impl NSApplication {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationterminatereply?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationTerminateReply(pub NSUInteger);
 impl NSApplicationTerminateReply {
     #[doc(alias = "NSTerminateCancel")]
@@ -1079,7 +1079,7 @@ unsafe impl RefEncode for NSApplicationTerminateReply {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationprintreply?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSApplicationPrintReply(pub NSUInteger);
 impl NSApplicationPrintReply {
     #[doc(alias = "NSPrintingCancelled")]
@@ -1669,7 +1669,7 @@ impl NSApplication {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsremotenotificationtype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRemoteNotificationType(pub NSUInteger);
 bitflags::bitflags! {
     impl NSRemoteNotificationType: NSUInteger {

@@ -22,7 +22,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooperstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerLooperStatus(pub NSInteger);
 impl AVPlayerLooperStatus {
     #[doc(alias = "AVPlayerLooperStatusUnknown")]
@@ -52,7 +52,7 @@ unsafe impl RefEncode for AVPlayerLooperStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooperitemordering?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerLooperItemOrdering(pub NSInteger);
 impl AVPlayerLooperItemOrdering {
     #[doc(alias = "AVPlayerLooperItemOrderingLoopingItemsPrecedeExistingItems")]

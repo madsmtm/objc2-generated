@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbuttontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSButtonType(pub NSUInteger);
 impl NSButtonType {
     #[doc(alias = "NSButtonTypeMomentaryLight")]
@@ -48,7 +48,7 @@ unsafe impl RefEncode for NSButtonType {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezelstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBezelStyle(pub NSUInteger);
 impl NSBezelStyle {
     /// The appearance of this bezel style is automatically determined based on the button's contents and position within the window. This bezel style is the default for all button initializers.
@@ -481,7 +481,7 @@ impl NSButtonCell {
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGradientType(pub NSUInteger);
 impl NSGradientType {
     #[doc(alias = "NSGradientNone")]

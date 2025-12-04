@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBarStyle(pub NSInteger);
 impl UIBarStyle {
     #[doc(alias = "UIBarStyleDefault")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for UIBarStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacesizeclass?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceSizeClass(pub NSInteger);
 impl UIUserInterfaceSizeClass {
     #[doc(alias = "UIUserInterfaceSizeClassUnspecified")]
@@ -58,7 +58,7 @@ unsafe impl RefEncode for UIUserInterfaceSizeClass {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceStyle(pub NSInteger);
 impl UIUserInterfaceStyle {
     #[doc(alias = "UIUserInterfaceStyleUnspecified")]
@@ -80,7 +80,7 @@ unsafe impl RefEncode for UIUserInterfaceStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacelayoutdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceLayoutDirection(pub NSInteger);
 impl UIUserInterfaceLayoutDirection {
     #[doc(alias = "UIUserInterfaceLayoutDirectionLeftToRight")]
@@ -100,7 +100,7 @@ unsafe impl RefEncode for UIUserInterfaceLayoutDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitenvironmentlayoutdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITraitEnvironmentLayoutDirection(pub NSInteger);
 impl UITraitEnvironmentLayoutDirection {
     #[doc(alias = "UITraitEnvironmentLayoutDirectionUnspecified")]
@@ -122,7 +122,7 @@ unsafe impl RefEncode for UITraitEnvironmentLayoutDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidisplaygamut?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDisplayGamut(pub NSInteger);
 impl UIDisplayGamut {
     #[doc(alias = "UIDisplayGamutUnspecified")]
@@ -144,7 +144,7 @@ unsafe impl RefEncode for UIDisplayGamut {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontrast?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityContrast(pub NSInteger);
 impl UIAccessibilityContrast {
     #[doc(alias = "UIAccessibilityContrastUnspecified")]
@@ -166,7 +166,7 @@ unsafe impl RefEncode for UIAccessibilityContrast {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilegibilityweight?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UILegibilityWeight(pub NSInteger);
 impl UILegibilityWeight {
     #[doc(alias = "UILegibilityWeightUnspecified")]
@@ -188,7 +188,7 @@ unsafe impl RefEncode for UILegibilityWeight {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfacelevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceLevel(pub NSInteger);
 impl UIUserInterfaceLevel {
     #[doc(alias = "UIUserInterfaceLevelUnspecified")]
@@ -210,7 +210,7 @@ unsafe impl RefEncode for UIUserInterfaceLevel {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceactiveappearance?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceActiveAppearance(pub NSInteger);
 impl UIUserInterfaceActiveAppearance {
     #[doc(alias = "UIUserInterfaceActiveAppearanceUnspecified")]
@@ -232,7 +232,7 @@ unsafe impl RefEncode for UIUserInterfaceActiveAppearance {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinstoolbaritempresentationsize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINSToolbarItemPresentationSize(pub NSInteger);
 impl UINSToolbarItemPresentationSize {
     #[doc(alias = "UINSToolbarItemPresentationSizeUnspecified")]
@@ -256,7 +256,7 @@ unsafe impl RefEncode for UINSToolbarItemPresentationSize {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagedynamicrange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageDynamicRange(pub NSInteger);
 impl UIImageDynamicRange {
     /// Do not specify a preferred dynamic range.
@@ -284,7 +284,7 @@ unsafe impl RefEncode for UIImageDynamicRange {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uihdrheadroomusagelimit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIHDRHeadroomUsageLimit(pub NSInteger);
 impl UIHDRHeadroomUsageLimit {
     /// Headroom usage limits are not defined

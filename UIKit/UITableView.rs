@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewStyle(pub NSInteger);
 impl UITableViewStyle {
     #[doc(alias = "UITableViewStylePlain")]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for UITableViewStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewscrollposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewScrollPosition(pub NSInteger);
 impl UITableViewScrollPosition {
     #[doc(alias = "UITableViewScrollPositionNone")]
@@ -61,7 +61,7 @@ unsafe impl RefEncode for UITableViewScrollPosition {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowanimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewRowAnimation(pub NSInteger);
 impl UITableViewRowAnimation {
     #[doc(alias = "UITableViewRowAnimationFade")]
@@ -95,7 +95,7 @@ unsafe impl RefEncode for UITableViewRowAnimation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcontenthuggingelements?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewContentHuggingElements(pub NSInteger);
 bitflags::bitflags! {
     impl UITableViewContentHuggingElements: NSInteger {
@@ -131,7 +131,7 @@ extern "C" {
 // NS_ENUM
 #[deprecated = "Use UIContextualAction and related APIs instead."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewRowActionStyle(pub NSInteger);
 impl UITableViewRowActionStyle {
     #[doc(alias = "UITableViewRowActionStyleDefault")]
@@ -1032,7 +1032,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewseparatorinsetreference?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewSeparatorInsetReference(pub NSInteger);
 impl UITableViewSeparatorInsetReference {
     #[doc(alias = "UITableViewSeparatorInsetFromCellEdges")]
@@ -1052,7 +1052,7 @@ unsafe impl RefEncode for UITableViewSeparatorInsetReference {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewselfsizinginvalidation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewSelfSizingInvalidation(pub NSInteger);
 impl UITableViewSelfSizingInvalidation {
     /// No updates will take place when -invalidateIntrinsicContentSize is called on a self-sizing cell or its contentView.
@@ -2401,7 +2401,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropintent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewDropIntent(pub NSInteger);
 impl UITableViewDropIntent {
     #[doc(alias = "UITableViewDropIntentUnspecified")]

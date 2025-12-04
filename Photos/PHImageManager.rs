@@ -19,7 +19,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHImageRequestOptionsVersion(pub NSInteger);
 impl PHImageRequestOptionsVersion {
     #[doc(alias = "PHImageRequestOptionsVersionCurrent")]
@@ -41,7 +41,7 @@ unsafe impl RefEncode for PHImageRequestOptionsVersion {
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsdeliverymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHImageRequestOptionsDeliveryMode(pub NSInteger);
 impl PHImageRequestOptionsDeliveryMode {
     #[doc(alias = "PHImageRequestOptionsDeliveryModeOpportunistic")]
@@ -63,7 +63,7 @@ unsafe impl RefEncode for PHImageRequestOptionsDeliveryMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptionsresizemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHImageRequestOptionsResizeMode(pub NSInteger);
 impl PHImageRequestOptionsResizeMode {
     #[doc(alias = "PHImageRequestOptionsResizeModeNone")]
@@ -298,7 +298,7 @@ impl PHLivePhotoRequestOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHVideoRequestOptionsVersion(pub NSInteger);
 impl PHVideoRequestOptionsVersion {
     #[doc(alias = "PHVideoRequestOptionsVersionCurrent")]
@@ -318,7 +318,7 @@ unsafe impl RefEncode for PHVideoRequestOptionsVersion {
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptionsdeliverymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHVideoRequestOptionsDeliveryMode(pub NSInteger);
 impl PHVideoRequestOptionsDeliveryMode {
     #[doc(alias = "PHVideoRequestOptionsDeliveryModeAutomatic")]

@@ -495,7 +495,7 @@ unsafe impl RefEncode for AudioStreamPacketDependencyDescription {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SMPTETimeType(pub u32);
 impl SMPTETimeType {
     #[doc(alias = "kSMPTETimeType24")]
@@ -543,7 +543,7 @@ unsafe impl RefEncode for SMPTETimeType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetimeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SMPTETimeFlags(pub u32);
 bitflags::bitflags! {
     impl SMPTETimeFlags: u32 {
@@ -641,7 +641,7 @@ unsafe impl RefEncode for SMPTETime {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestampflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioTimeStampFlags(pub u32);
 bitflags::bitflags! {
     impl AudioTimeStampFlags: u32 {
@@ -1014,7 +1014,7 @@ pub const kAudioChannelLabel_EndReserved: AudioChannelLabel = 0xFFFFFFFE;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelbitmap?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioChannelBitmap(pub u32);
 bitflags::bitflags! {
     impl AudioChannelBitmap: u32 {
@@ -1102,7 +1102,7 @@ unsafe impl RefEncode for AudioChannelBitmap {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioChannelFlags(pub u32);
 bitflags::bitflags! {
     impl AudioChannelFlags: u32 {
@@ -1148,7 +1148,7 @@ unsafe impl RefEncode for AudioChannelFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannelcoordinateindex?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioChannelCoordinateIndex(pub u32);
 impl AudioChannelCoordinateIndex {
     #[doc(alias = "kAudioChannelCoordinates_LeftRight")]

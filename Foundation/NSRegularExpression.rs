@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregularexpressionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRegularExpressionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSRegularExpressionOptions: NSUInteger {
@@ -135,7 +135,7 @@ impl DefaultRetained for NSRegularExpression {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmatchingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMatchingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMatchingOptions: NSUInteger {
@@ -163,7 +163,7 @@ unsafe impl RefEncode for NSMatchingOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmatchingflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMatchingFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMatchingFlags: NSUInteger {

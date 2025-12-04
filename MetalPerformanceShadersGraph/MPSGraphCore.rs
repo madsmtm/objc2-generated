@@ -172,7 +172,7 @@ impl MPSGraphShapedType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphtensornameddatalayout?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphTensorNamedDataLayout(pub NSUInteger);
 impl MPSGraphTensorNamedDataLayout {
     /// LayoutNCHW
@@ -223,7 +223,7 @@ unsafe impl RefEncode for MPSGraphTensorNamedDataLayout {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphPaddingStyle(pub NSUInteger);
 impl MPSGraphPaddingStyle {
     /// Explicit
@@ -256,7 +256,7 @@ unsafe impl RefEncode for MPSGraphPaddingStyle {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphpaddingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphPaddingMode(pub NSInteger);
 impl MPSGraphPaddingMode {
     /// Constant
@@ -295,7 +295,7 @@ unsafe impl RefEncode for MPSGraphPaddingMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreductionmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphReductionMode(pub NSUInteger);
 impl MPSGraphReductionMode {
     /// Min

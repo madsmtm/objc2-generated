@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagealignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageAlignment(pub NSUInteger);
 impl NSImageAlignment {
     #[doc(alias = "NSImageAlignCenter")]
@@ -44,7 +44,7 @@ unsafe impl RefEncode for NSImageAlignment {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageframestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageFrameStyle(pub NSUInteger);
 impl NSImageFrameStyle {
     #[doc(alias = "NSImageFrameNone")]

@@ -111,7 +111,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwerr?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWErr(pub NSInteger);
 impl CWErr {
     #[doc(alias = "kCWNoErr")]
@@ -219,7 +219,7 @@ unsafe impl RefEncode for CWErr {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwphymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWPHYMode(pub NSInteger);
 impl CWPHYMode {
     #[doc(alias = "kCWPHYModeNone")]
@@ -263,7 +263,7 @@ unsafe impl RefEncode for CWPHYMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwinterfacemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWInterfaceMode(pub NSInteger);
 impl CWInterfaceMode {
     #[doc(alias = "kCWInterfaceModeNone")]
@@ -334,7 +334,7 @@ unsafe impl RefEncode for CWInterfaceMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwsecurity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWSecurity(pub NSInteger);
 impl CWSecurity {
     #[doc(alias = "kCWSecurityNone")]
@@ -396,7 +396,7 @@ unsafe impl RefEncode for CWSecurity {
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWIBSSModeSecurity(pub NSInteger);
 impl CWIBSSModeSecurity {
     #[doc(alias = "kCWIBSSModeSecurityNone")]
@@ -438,7 +438,7 @@ unsafe impl RefEncode for CWIBSSModeSecurity {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelwidth?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWChannelWidth(pub NSInteger);
 impl CWChannelWidth {
     #[doc(alias = "kCWChannelWidthUnknown")]
@@ -478,7 +478,7 @@ unsafe impl RefEncode for CWChannelWidth {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwchannelband?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWChannelBand(pub NSInteger);
 impl CWChannelBand {
     #[doc(alias = "kCWChannelBandUnknown")]
@@ -519,7 +519,7 @@ unsafe impl RefEncode for CWChannelBand {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwcipherkeyflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWCipherKeyFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl CWCipherKeyFlags: NSUInteger {
@@ -558,7 +558,7 @@ unsafe impl RefEncode for CWCipherKeyFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cwkeychaindomain?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWKeychainDomain(pub NSInteger);
 impl CWKeychainDomain {
     #[doc(alias = "kCWKeychainDomainNone")]
@@ -612,7 +612,7 @@ unsafe impl RefEncode for CWKeychainDomain {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corewlan/cweventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CWEventType(pub NSInteger);
 impl CWEventType {
     #[doc(alias = "CWEventTypeNone")]

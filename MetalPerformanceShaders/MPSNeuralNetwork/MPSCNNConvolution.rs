@@ -753,7 +753,7 @@ impl MPSCNNDepthWiseConvolutionDescriptor {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutionweightslayout?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNConvolutionWeightsLayout(pub u32);
 impl MPSCNNConvolutionWeightsLayout {
     #[doc(alias = "MPSCNNConvolutionWeightsLayoutOHWI")]
@@ -771,7 +771,7 @@ unsafe impl RefEncode for MPSCNNConvolutionWeightsLayout {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnweightsquantizationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNWeightsQuantizationType(pub u32);
 impl MPSCNNWeightsQuantizationType {
     #[doc(alias = "MPSCNNWeightsQuantizationTypeNone")]
@@ -2174,7 +2174,7 @@ impl MPSCNNConvolution {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNConvolutionGradientOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSCNNConvolutionGradientOption: NSUInteger {

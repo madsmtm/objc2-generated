@@ -16,7 +16,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerStatus(pub NSInteger);
 impl AVPlayerStatus {
     /// Indicates that the status of the player is not yet known because it has not tried to load new media resources for playback.
@@ -208,7 +208,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayertimecontrolstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerTimeControlStatus(pub NSInteger);
 impl AVPlayerTimeControlStatus {
     /// This state is entered upon receipt of a -pause message, an invocation of -setRate: with a value of 0.0, when a change in overall state requires playback to be halted, such as when an interruption occurs on iOS, as announced by AVAudioSession. In this state, playback is paused indefinitely and will not resume until 1) a subsequent -play message is received or 2) a -setRate: or -playImmediatelyAtRate: message with a non-zero value for rate is received and sufficient media data has been buffered for playback to proceed.
@@ -364,7 +364,7 @@ impl AVPlayer {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeractionatitemend?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerActionAtItemEnd(pub NSInteger);
 impl AVPlayerActionAtItemEnd {
     /// Indicates that when an AVPlayerItem reaches its end time the player will automatically advance to the next item in its queue. This value is supported only for players of class AVQueuePlayer. An AVPlayer that's not an AVQueuePlayer will raise an NSInvalidArgumentException if an attempt is made to set its actionAtItemEnd to AVPlayerActionAtItemEndAdvance.
@@ -939,7 +939,7 @@ impl AVPlayer {
 // NS_OPTIONS
 #[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerHDRMode(pub NSInteger);
 bitflags::bitflags! {
     impl AVPlayerHDRMode: NSInteger {
@@ -1168,7 +1168,7 @@ impl AVPlayer {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayernetworkresourcepriority?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerNetworkResourcePriority(pub NSInteger);
 impl AVPlayerNetworkResourcePriority {
     /// The default priority level given to a player for loading network resources. Use this when the player requires an optimal level of network resources and streaming in high-quality resolution is ideal. Players with AVPlayerNetworkResourcePriorityHigh will take precedence over this player. This player will take precedence over players with AVPlayerNetworkResourcePriorityLow.

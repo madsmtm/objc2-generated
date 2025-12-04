@@ -61,7 +61,7 @@ pub const kAudioLevelControlPropertyDecibelsToScalarTransferFunction: AudioObjec
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiolevelcontroltransferfunction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioLevelControlTransferFunction(pub u32);
 impl AudioLevelControlTransferFunction {
     #[doc(alias = "kAudioLevelControlTranferFunctionLinear")]

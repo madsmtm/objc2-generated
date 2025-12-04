@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractioncommitstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContextMenuInteractionCommitStyle(pub NSInteger);
 impl UIContextMenuInteractionCommitStyle {
     #[doc(alias = "UIContextMenuInteractionCommitStyleDismiss")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for UIContextMenuInteractionCommitStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractionappearance?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContextMenuInteractionAppearance(pub NSInteger);
 impl UIContextMenuInteractionAppearance {
     #[doc(alias = "UIContextMenuInteractionAppearanceUnknown")]

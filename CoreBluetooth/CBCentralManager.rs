@@ -17,7 +17,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "Use CBManagerState instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBCentralManagerState(pub NSInteger);
 impl CBCentralManagerState {
     #[doc(alias = "CBCentralManagerStateUnknown")]
@@ -59,7 +59,7 @@ unsafe impl RefEncode for CBCentralManagerState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectionevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBConnectionEvent(pub NSInteger);
 impl CBConnectionEvent {
     #[doc(alias = "CBConnectionEventPeerDisconnected")]
@@ -81,7 +81,7 @@ unsafe impl RefEncode for CBConnectionEvent {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerfeature?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBCentralManagerFeature(pub NSUInteger);
 bitflags::bitflags! {
     impl CBCentralManagerFeature: NSUInteger {

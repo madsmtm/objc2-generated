@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineeventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEngineEventType(pub NSInteger);
 impl CKSyncEngineEventType {
     /// The sync engine state was updated. You should persist it locally.
@@ -306,7 +306,7 @@ impl CKSyncEngineStateUpdateEvent {
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengineaccountchangetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEngineAccountChangeType(pub NSInteger);
 impl CKSyncEngineAccountChangeType {
     /// The user signed in to an account.
@@ -1034,7 +1034,7 @@ impl CKSyncEngineFetchedRecordDeletion {
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginezonedeletionreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEngineZoneDeletionReason(pub NSInteger);
 impl CKSyncEngineZoneDeletionReason {
     /// A deletion from your software.

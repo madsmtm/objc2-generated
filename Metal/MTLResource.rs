@@ -58,7 +58,7 @@ unsafe impl RefEncode for MTLPurgeableState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcpucachemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCPUCacheMode(pub NSUInteger);
 impl MTLCPUCacheMode {
     #[doc(alias = "MTLCPUCacheModeDefaultCache")]
@@ -101,7 +101,7 @@ unsafe impl RefEncode for MTLCPUCacheMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstoragemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStorageMode(pub NSUInteger);
 impl MTLStorageMode {
     #[doc(alias = "MTLStorageModeShared")]
@@ -127,7 +127,7 @@ unsafe impl RefEncode for MTLStorageMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlhazardtrackingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLHazardTrackingMode(pub NSUInteger);
 impl MTLHazardTrackingMode {
     #[doc(alias = "MTLHazardTrackingModeDefault")]
@@ -149,7 +149,7 @@ unsafe impl RefEncode for MTLHazardTrackingMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLResourceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLResourceOptions: NSUInteger {
@@ -217,7 +217,7 @@ unsafe impl RefEncode for MTLSparsePageSize {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbuffersparsetier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBufferSparseTier(pub NSInteger);
 impl MTLBufferSparseTier {
     /// Indicates that the buffer is not sparse.
@@ -251,7 +251,7 @@ unsafe impl RefEncode for MTLBufferSparseTier {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturesparsetier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTextureSparseTier(pub NSInteger);
 impl MTLTextureSparseTier {
     /// Indicates that the texture is not sparse.

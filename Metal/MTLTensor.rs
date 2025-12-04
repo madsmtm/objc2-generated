@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensordatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTensorDataType(pub NSInteger);
 impl MTLTensorDataType {
     #[doc(alias = "MTLTensorDataTypeNone")]
@@ -135,7 +135,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTensorError(pub NSInteger);
 impl MTLTensorError {
     #[doc(alias = "MTLTensorErrorNone")]
@@ -159,7 +159,7 @@ unsafe impl RefEncode for MTLTensorError {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltensorusage?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTensorUsage(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLTensorUsage: NSUInteger {

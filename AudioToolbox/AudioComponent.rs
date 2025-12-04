@@ -50,7 +50,7 @@ pub const kAudioComponentValidationParameter_LoadOutOfProcess: &CStr =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioComponentFlags(pub u32);
 bitflags::bitflags! {
     impl AudioComponentFlags: u32 {
@@ -101,7 +101,7 @@ unsafe impl RefEncode for AudioComponentFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentinstantiationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioComponentInstantiationOptions(pub u32);
 bitflags::bitflags! {
     impl AudioComponentInstantiationOptions: u32 {
@@ -577,7 +577,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentvalidationresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioComponentValidationResult(pub u32);
 impl AudioComponentValidationResult {
     #[doc(alias = "kAudioComponentValidationResult_Unknown")]

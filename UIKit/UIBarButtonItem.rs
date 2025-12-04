@@ -14,7 +14,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitemstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBarButtonItemStyle(pub NSInteger);
 impl UIBarButtonItemStyle {
     #[doc(alias = "UIBarButtonItemStylePlain")]
@@ -58,7 +58,7 @@ unsafe impl RefEncode for UIBarButtonItemStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonsystemitem?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBarButtonSystemItem(pub NSInteger);
 impl UIBarButtonSystemItem {
     #[doc(alias = "UIBarButtonSystemItemDone")]

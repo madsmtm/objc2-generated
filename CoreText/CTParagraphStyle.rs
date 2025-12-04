@@ -59,7 +59,7 @@ unsafe impl ConcreteType for CTParagraphStyle {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/cttextalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTTextAlignment(pub u8);
 impl CTTextAlignment {
     #[doc(alias = "kCTTextAlignmentLeft")]
@@ -124,7 +124,7 @@ unsafe impl RefEncode for CTTextAlignment {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinebreakmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTLineBreakMode(pub u8);
 impl CTLineBreakMode {
     #[doc(alias = "kCTLineBreakByWordWrapping")]
@@ -166,7 +166,7 @@ unsafe impl RefEncode for CTLineBreakMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctwritingdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTWritingDirection(pub i8);
 impl CTWritingDirection {
     #[doc(alias = "kCTWritingDirectionNatural")]
@@ -357,7 +357,7 @@ unsafe impl RefEncode for CTWritingDirection {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctparagraphstylespecifier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTParagraphStyleSpecifier(pub u32);
 impl CTParagraphStyleSpecifier {
     #[doc(alias = "kCTParagraphStyleSpecifierAlignment")]

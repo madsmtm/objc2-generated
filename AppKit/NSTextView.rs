@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectiongranularity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSelectionGranularity(pub NSUInteger);
 impl NSSelectionGranularity {
     #[doc(alias = "NSSelectByCharacter")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for NSSelectionGranularity {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectionaffinity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSelectionAffinity(pub NSUInteger);
 impl NSSelectionAffinity {
     #[doc(alias = "NSSelectionAffinityUpstream")]
@@ -2441,7 +2441,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsubstringmatchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFindPanelSubstringMatchType(pub NSUInteger);
 impl NSFindPanelSubstringMatchType {
     #[doc(alias = "NSFindPanelSubstringMatchTypeContains")]

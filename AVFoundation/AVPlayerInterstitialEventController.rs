@@ -14,7 +14,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventrestrictions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerInterstitialEventRestrictions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVPlayerInterstitialEventRestrictions: NSUInteger {
@@ -73,7 +73,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventtimelineoccupancy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerInterstitialEventTimelineOccupancy(pub NSInteger);
 impl AVPlayerInterstitialEventTimelineOccupancy {
     /// Indicates this interstitial event occupies a single point on AVPlayerItemIntegratedTimeline.
@@ -97,7 +97,7 @@ unsafe impl RefEncode for AVPlayerInterstitialEventTimelineOccupancy {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventassetlistresponsestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerInterstitialEventAssetListResponseStatus(pub NSInteger);
 impl AVPlayerInterstitialEventAssetListResponseStatus {
     /// Indicates that the asset list response is now available and non-nil, meaning the asset list read was successful.
@@ -124,7 +124,7 @@ unsafe impl RefEncode for AVPlayerInterstitialEventAssetListResponseStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventskippableeventstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerInterstitialEventSkippableEventState(pub NSInteger);
 impl AVPlayerInterstitialEventSkippableEventState {
     /// Indicates that the interstitial event is not skippable.

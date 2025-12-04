@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellularplancapability?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTCellularPlanCapability(pub NSInteger);
 impl CTCellularPlanCapability {
     #[doc(alias = "CTCellularPlanCapabilityDataOnly")]

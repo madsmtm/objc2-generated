@@ -14,7 +14,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragmentenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutFragmentEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextLayoutFragmentEnumerationOptions: NSUInteger {
@@ -42,7 +42,7 @@ unsafe impl RefEncode for NSTextLayoutFragmentEnumerationOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragmentstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutFragmentState(pub NSUInteger);
 impl NSTextLayoutFragmentState {
     #[doc(alias = "NSTextLayoutFragmentStateNone")]

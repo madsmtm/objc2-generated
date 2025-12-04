@@ -27,7 +27,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/bamanagederrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BAManagedErrorCode(pub NSInteger);
 impl BAManagedErrorCode {
     /// An error code that indicates the system can’t find an asset pack with the given identifier.

@@ -44,7 +44,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanagerauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ATTrackingManagerAuthorizationStatus(pub NSUInteger);
 impl ATTrackingManagerAuthorizationStatus {
     /// The value that returns when the app can’t determine the user’s

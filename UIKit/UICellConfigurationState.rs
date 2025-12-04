@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdragstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICellConfigurationDragState(pub NSInteger);
 impl UICellConfigurationDragState {
     /// The cell is not associated with a drag session.
@@ -35,7 +35,7 @@ unsafe impl RefEncode for UICellConfigurationDragState {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationdropstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICellConfigurationDropState(pub NSInteger);
 impl UICellConfigurationDropState {
     /// The cell is not associated with a drag session.

@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigationdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationDirection(pub NSInteger);
 impl NSTextSelectionNavigationDirection {
     #[doc(alias = "NSTextSelectionNavigationDirectionForward")]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for NSTextSelectionNavigationDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigationdestination?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationDestination(pub NSInteger);
 impl NSTextSelectionNavigationDestination {
     #[doc(alias = "NSTextSelectionNavigationDestinationCharacter")]
@@ -70,7 +70,7 @@ unsafe impl RefEncode for NSTextSelectionNavigationDestination {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigationmodifier?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationModifier(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextSelectionNavigationModifier: NSUInteger {
@@ -94,7 +94,7 @@ unsafe impl RefEncode for NSTextSelectionNavigationModifier {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigationwritingdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationWritingDirection(pub NSInteger);
 impl NSTextSelectionNavigationWritingDirection {
     #[doc(alias = "NSTextSelectionNavigationWritingDirectionLeftToRight")]
@@ -114,7 +114,7 @@ unsafe impl RefEncode for NSTextSelectionNavigationWritingDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigationlayoutorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionNavigationLayoutOrientation(pub NSInteger);
 impl NSTextSelectionNavigationLayoutOrientation {
     #[doc(alias = "NSTextSelectionNavigationLayoutOrientationHorizontal")]

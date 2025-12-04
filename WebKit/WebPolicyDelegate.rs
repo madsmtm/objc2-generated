@@ -12,7 +12,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WebNavigationType(pub NSInteger);
 impl WebNavigationType {
     #[doc(alias = "WebNavigationTypeLinkClicked")]

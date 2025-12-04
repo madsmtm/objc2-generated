@@ -24,7 +24,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinatortextupdatereason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWritingToolsCoordinatorTextUpdateReason(pub NSInteger);
 impl UIWritingToolsCoordinatorTextUpdateReason {
     /// An operation that involved a person editing the text in your view.
@@ -65,7 +65,7 @@ unsafe impl RefEncode for UIWritingToolsCoordinatorTextUpdateReason {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinatorstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWritingToolsCoordinatorState(pub NSInteger);
 impl UIWritingToolsCoordinatorState {
     /// A state that indicates Writing Tools isn’t currently performing
@@ -470,7 +470,7 @@ impl UIWritingToolsCoordinator {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinatortextreplacementreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWritingToolsCoordinatorTextReplacementReason(pub NSInteger);
 impl UIWritingToolsCoordinatorTextReplacementReason {
     /// An option to animate the replacement of text in your view.
@@ -510,7 +510,7 @@ unsafe impl RefEncode for UIWritingToolsCoordinatorTextReplacementReason {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinatorcontextscope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWritingToolsCoordinatorContextScope(pub NSInteger);
 impl UIWritingToolsCoordinatorContextScope {
     /// An option to provide only the view’s currently selected text.
@@ -559,7 +559,7 @@ unsafe impl RefEncode for UIWritingToolsCoordinatorContextScope {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinatortextanimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWritingToolsCoordinatorTextAnimation(pub NSInteger);
 impl UIWritingToolsCoordinatorTextAnimation {
     /// The animation that Writing Tools performs when waiting to receive

@@ -11,7 +11,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessorystate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAccessoryState(pub NSInteger);
 impl ASAccessoryState {
     /// The accessory is invalid or unauthorized.
@@ -38,7 +38,7 @@ unsafe impl RefEncode for ASAccessoryState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryrenameoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAccessoryRenameOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAccessoryRenameOptions: NSUInteger {
@@ -61,7 +61,7 @@ unsafe impl RefEncode for ASAccessoryRenameOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessorysupportoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAccessorySupportOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAccessorySupportOptions: NSUInteger {

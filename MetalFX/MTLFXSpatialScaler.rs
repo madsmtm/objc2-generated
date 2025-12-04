@@ -13,7 +13,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalfx/mtlfxspatialscalercolorprocessingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLFXSpatialScalerColorProcessingMode(pub NSInteger);
 impl MTLFXSpatialScalerColorProcessingMode {
     /// Indicates your input and output textures use a perceptual color space (sRGB).

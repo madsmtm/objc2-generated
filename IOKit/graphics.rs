@@ -447,7 +447,7 @@ pub const kIODisplayParametersFlushKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"flush\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioacceleratorclienttypes?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAcceleratorClientTypes(pub c_uint);
 impl eIOAcceleratorClientTypes {
     #[doc(alias = "kIOAccelSurfaceClientType")]
@@ -647,7 +647,7 @@ unsafe impl RefEncode for IOAccelDeviceRegion {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacememorytypes?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAccelSurfaceMemoryTypes(pub c_uint);
 impl eIOAccelSurfaceMemoryTypes {
     #[doc(alias = "kIOAccelNumSurfaceMemoryTypes")]
@@ -666,7 +666,7 @@ unsafe impl RefEncode for eIOAccelSurfaceMemoryTypes {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAccelSurfaceMethods(pub c_uint);
 impl eIOAccelSurfaceMethods {
     #[doc(alias = "kIOAccelSurfaceReadLockOptions")]
@@ -764,7 +764,7 @@ unsafe impl RefEncode for eIOAccelSurfaceModeBits {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfaceshapebits?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAccelSurfaceShapeBits(pub c_uint);
 impl eIOAccelSurfaceShapeBits {
     #[doc(alias = "kIOAccelSurfaceShapeNone")]
@@ -802,7 +802,7 @@ unsafe impl RefEncode for eIOAccelSurfaceShapeBits {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacestatebits?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAccelSurfaceStateBits(pub c_uint);
 impl eIOAccelSurfaceStateBits {
     #[doc(alias = "kIOAccelSurfaceStateNone")]
@@ -823,7 +823,7 @@ unsafe impl RefEncode for eIOAccelSurfaceStateBits {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacescalebits?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAccelSurfaceScaleBits(pub c_uint);
 impl eIOAccelSurfaceScaleBits {
     #[doc(alias = "kIOAccelSurfaceBeamSyncSwaps")]
@@ -852,7 +852,7 @@ unsafe impl RefEncode for eIOAccelSurfaceScaleBits {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacelockbits?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAccelSurfaceLockBits(pub c_uint);
 impl eIOAccelSurfaceLockBits {
     #[doc(alias = "kIOAccelSurfaceLockInBacking")]

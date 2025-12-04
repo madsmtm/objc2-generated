@@ -8,7 +8,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspropertylistmutabilityoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPropertyListMutabilityOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPropertyListMutabilityOptions: NSUInteger {

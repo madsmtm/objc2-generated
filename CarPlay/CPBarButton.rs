@@ -15,7 +15,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbuttonstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPBarButtonStyle(pub NSInteger);
 impl CPBarButtonStyle {
     #[doc(alias = "CPBarButtonStyleNone")]
@@ -38,7 +38,7 @@ unsafe impl RefEncode for CPBarButtonStyle {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbuttontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPBarButtonType(pub NSUInteger);
 impl CPBarButtonType {
     #[doc(alias = "CPBarButtonTypeText")]

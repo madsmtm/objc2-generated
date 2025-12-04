@@ -443,7 +443,7 @@ pub const NSNullGlyph: c_uint = 0x0;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontrenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFontRenderingMode(pub NSUInteger);
 impl NSFontRenderingMode {
     #[doc(alias = "NSFontDefaultRenderingMode")]

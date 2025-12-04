@@ -11,10 +11,11 @@ use crate::*;
 // NS_CLOSED_ENUM
 #[deprecated = "Use Product.PromotionInfo.Visibility"]
 #[repr(isize)] // NSInteger
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum SKProductStorePromotionVisibility {
     #[doc(alias = "SKProductStorePromotionVisibilityDefault")]
     #[deprecated = "Use Product.PromotionInfo.Visibility"]
+    #[default]
     Default = 0,
     #[doc(alias = "SKProductStorePromotionVisibilityShow")]
     #[deprecated = "Use Product.PromotionInfo.Visibility"]

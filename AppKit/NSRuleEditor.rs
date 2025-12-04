@@ -51,7 +51,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditornestingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRuleEditorNestingMode(pub NSUInteger);
 impl NSRuleEditorNestingMode {
     #[doc(alias = "NSRuleEditorNestingModeSingle")]
@@ -75,7 +75,7 @@ unsafe impl RefEncode for NSRuleEditorNestingMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditorrowtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRuleEditorRowType(pub NSUInteger);
 impl NSRuleEditorRowType {
     #[doc(alias = "NSRuleEditorRowTypeSimple")]

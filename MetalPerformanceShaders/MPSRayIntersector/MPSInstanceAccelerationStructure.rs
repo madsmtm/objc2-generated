@@ -13,7 +13,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstransformtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSTransformType(pub NSUInteger);
 impl MPSTransformType {
     /// Instance transformations are represented by a 4x4 column major matrix of 32 bit

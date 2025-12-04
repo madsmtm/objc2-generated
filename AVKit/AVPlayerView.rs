@@ -27,7 +27,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewcontrolsstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerViewControlsStyle(pub NSInteger);
 impl AVPlayerViewControlsStyle {
     #[doc(alias = "AVPlayerViewControlsStyleNone")]
@@ -425,7 +425,7 @@ impl AVPlayerView {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avplayerviewtrimresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerViewTrimResult(pub NSInteger);
 impl AVPlayerViewTrimResult {
     #[doc(alias = "AVPlayerViewTrimOKButton")]

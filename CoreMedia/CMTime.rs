@@ -43,7 +43,7 @@ pub type CMTimeEpoch = i64;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMTimeFlags(pub u32);
 bitflags::bitflags! {
     impl CMTimeFlags: u32 {

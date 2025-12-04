@@ -12,7 +12,7 @@ pub type IOSurfaceID = u32;
 /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacelockoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceLockOptions(pub u32);
 bitflags::bitflags! {
     impl IOSurfaceLockOptions: u32 {
@@ -40,7 +40,7 @@ unsafe impl Sync for IOSurfaceLockOptions {}
 /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacepurgeabilitystate?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfacePurgeabilityState(pub u32);
 bitflags::bitflags! {
     impl IOSurfacePurgeabilityState: u32 {

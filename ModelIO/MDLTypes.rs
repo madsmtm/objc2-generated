@@ -40,7 +40,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlindexbitdepth?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLIndexBitDepth(pub NSUInteger);
 impl MDLIndexBitDepth {
     #[doc(alias = "MDLIndexBitDepthInvalid")]
@@ -70,7 +70,7 @@ unsafe impl RefEncode for MDLIndexBitDepth {
 /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlgeometrytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLGeometryType(pub NSInteger);
 impl MDLGeometryType {
     #[doc(alias = "MDLGeometryTypePoints")]
@@ -98,7 +98,7 @@ unsafe impl RefEncode for MDLGeometryType {
 /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlprobeplacement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLProbePlacement(pub NSInteger);
 impl MDLProbePlacement {
     #[doc(alias = "MDLProbePlacementUniformGrid")]
@@ -118,7 +118,7 @@ unsafe impl RefEncode for MDLProbePlacement {
 /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdldataprecision?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLDataPrecision(pub NSUInteger);
 impl MDLDataPrecision {
     #[doc(alias = "MDLDataPrecisionUndefined")]

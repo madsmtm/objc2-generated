@@ -368,7 +368,7 @@ unsafe impl RefEncode for CGLContextEnable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglgpurestartstatus?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGLGPURestartStatus(pub c_uint);
 impl CGLGPURestartStatus {
     #[doc(alias = "kCGLCPGPURestartStatusNone")]
@@ -448,7 +448,7 @@ unsafe impl RefEncode for CGLContextParameter {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglcpcontextpriorityrequest?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGLCPContextPriorityRequest(pub c_uint);
 impl CGLCPContextPriorityRequest {
     #[doc(alias = "kCGLCPContextPriorityRequestHigh")]
@@ -519,7 +519,7 @@ unsafe impl RefEncode for CGLOpenGLProfile {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglerror?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGLError(pub c_uint);
 impl CGLError {
     #[doc(alias = "kCGLNoError")]

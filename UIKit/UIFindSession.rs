@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifindsessionsearchresultdisplaystyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIFindSessionSearchResultDisplayStyle(pub NSInteger);
 impl UIFindSessionSearchResultDisplayStyle {
     /// Displays the total number of reported results, and which result index is currently highlighted (i.e., "1 of 5").
@@ -35,7 +35,7 @@ unsafe impl RefEncode for UIFindSessionSearchResultDisplayStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchmatchmethod?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSearchMatchMethod(pub NSInteger);
 impl UITextSearchMatchMethod {
     /// Word contains search string.

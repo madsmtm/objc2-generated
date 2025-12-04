@@ -36,7 +36,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageloadstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageLoadStatus(pub NSUInteger);
 impl NSImageLoadStatus {
     #[doc(alias = "NSImageLoadStatusCompleted")]
@@ -62,7 +62,7 @@ unsafe impl RefEncode for NSImageLoadStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagecachemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageCacheMode(pub NSUInteger);
 impl NSImageCacheMode {
     #[doc(alias = "NSImageCacheDefault")]
@@ -1603,7 +1603,7 @@ unsafe impl RefEncode for NSImageSymbolScale {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagesymbolvariablevaluemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageSymbolVariableValueMode(pub NSInteger);
 impl NSImageSymbolVariableValueMode {
     /// Automatically selects an appropriate variable value mode for the symbol.
@@ -1634,7 +1634,7 @@ unsafe impl Sync for NSImageSymbolVariableValueMode {}
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagesymbolcolorrenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageSymbolColorRenderingMode(pub NSInteger);
 impl NSImageSymbolColorRenderingMode {
     /// Automatically uses an appropriate color rendering mode for the symbol’s color layers.

@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintingpageorder?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintingPageOrder(pub NSInteger);
 impl NSPrintingPageOrder {
     #[doc(alias = "NSDescendingPageOrder")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for NSPrintingPageOrder {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintrenderingquality?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintRenderingQuality(pub NSInteger);
 impl NSPrintRenderingQuality {
     #[doc(alias = "NSPrintRenderingQualityBest")]

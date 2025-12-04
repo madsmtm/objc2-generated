@@ -29,7 +29,7 @@ unsafe impl RefEncode for MTL4TimestampHeapEntry {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4counterheaptype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4CounterHeapType(pub NSInteger);
 impl MTL4CounterHeapType {
     /// Specifies that ``MTL4CounterHeap`` entries contain invalid data.
@@ -57,7 +57,7 @@ unsafe impl RefEncode for MTL4CounterHeapType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4timestampgranularity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTL4TimestampGranularity(pub NSInteger);
 impl MTL4TimestampGranularity {
     /// A minimally-invasive timestamp which may be less precise.

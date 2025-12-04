@@ -108,7 +108,7 @@ unsafe impl Sync for UIOffset {}
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uirectcorner?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIRectCorner(pub NSUInteger);
 bitflags::bitflags! {
     impl UIRectCorner: NSUInteger {
@@ -136,7 +136,7 @@ unsafe impl RefEncode for UIRectCorner {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionalrectedge?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDirectionalRectEdge(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDirectionalRectEdge: NSUInteger {
@@ -167,7 +167,7 @@ unsafe impl RefEncode for NSDirectionalRectEdge {
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDirectionalRectEdge(pub NSUInteger);
 bitflags::bitflags! {
     impl UIDirectionalRectEdge: NSUInteger {
@@ -203,7 +203,7 @@ unsafe impl RefEncode for UIDirectionalRectEdge {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsrectalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRectAlignment(pub NSInteger);
 impl NSRectAlignment {
     #[doc(alias = "NSRectAlignmentNone")]

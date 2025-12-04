@@ -127,7 +127,7 @@ unsafe impl RefEncode for CFNetServiceMonitorType {
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetserviceregisterflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNetServiceRegisterFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFNetServiceRegisterFlags: CFOptionFlags {
@@ -149,7 +149,7 @@ unsafe impl RefEncode for CFNetServiceRegisterFlags {
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfnetservicebrowserflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNetServiceBrowserFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFNetServiceBrowserFlags: CFOptionFlags {

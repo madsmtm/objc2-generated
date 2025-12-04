@@ -29,7 +29,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfbox?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGPDFBox(pub i32);
 impl CGPDFBox {
     #[doc(alias = "kCGPDFMediaBox")]

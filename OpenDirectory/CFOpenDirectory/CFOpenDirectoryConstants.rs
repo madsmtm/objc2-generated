@@ -4606,7 +4606,7 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odframeworkerrors?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ODFrameworkErrors(pub c_uint);
 impl ODFrameworkErrors {
     #[doc(alias = "kODErrorSuccess")]

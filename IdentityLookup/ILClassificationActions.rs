@@ -9,7 +9,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilclassificationaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ILClassificationAction(pub NSInteger);
 impl ILClassificationAction {
     /// Indicate that no action is requested.

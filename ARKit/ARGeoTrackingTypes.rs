@@ -14,7 +14,7 @@ use crate::*;
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARAltitudeSource(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARAltitudeSource {
@@ -48,7 +48,7 @@ unsafe impl RefEncode for ARAltitudeSource {
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARGeoTrackingState(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARGeoTrackingState {
@@ -82,7 +82,7 @@ unsafe impl RefEncode for ARGeoTrackingState {
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARGeoTrackingAccuracy(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARGeoTrackingAccuracy {
@@ -116,7 +116,7 @@ unsafe impl RefEncode for ARGeoTrackingAccuracy {
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARGeoTrackingStateReason(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARGeoTrackingStateReason {

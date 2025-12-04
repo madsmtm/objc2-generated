@@ -26,7 +26,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mefileinfofragmentsstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEFileInfoFragmentsStatus(pub NSInteger);
 impl MEFileInfoFragmentsStatus {
     #[doc(alias = "MEFileInfoCouldNotContainFragments")]
@@ -58,7 +58,7 @@ unsafe impl RefEncode for MEFileInfoFragmentsStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meformatreaderparseadditionalfragmentsstatus?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEFormatReaderParseAdditionalFragmentsStatus(pub NSUInteger);
 bitflags::bitflags! {
     impl MEFormatReaderParseAdditionalFragmentsStatus: NSUInteger {

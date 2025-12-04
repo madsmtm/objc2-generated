@@ -169,7 +169,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentname?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceComponentName(pub i32);
 impl IOSurfaceComponentName {
     #[doc(alias = "kIOSurfaceComponentNameUnknown")]
@@ -213,7 +213,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceComponentType(pub i32);
 impl IOSurfaceComponentType {
     #[doc(alias = "kIOSurfaceComponentTypeUnknown")]
@@ -251,7 +251,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacecomponentrange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceComponentRange(pub i32);
 impl IOSurfaceComponentRange {
     #[doc(alias = "kIOSurfaceComponentRangeUnknown")]
@@ -287,7 +287,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacesubsampling?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceSubsampling(pub i32);
 impl IOSurfaceSubsampling {
     #[doc(alias = "kIOSurfaceSubsamplingUnknown")]
@@ -932,7 +932,7 @@ unsafe impl Sync for IOSurfaceMemoryLedgerTags {}
 /// [Apple's documentation](https://developer.apple.com/documentation/iosurface/iosurfacememoryledgerflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOSurfaceMemoryLedgerFlags(pub u32);
 bitflags::bitflags! {
     impl IOSurfaceMemoryLedgerFlags: u32 {

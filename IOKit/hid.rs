@@ -473,7 +473,7 @@ pub const kIOHIDKeyboardFunctionKeyCountKey: &CStr =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidreporttype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDReportType(pub c_uint);
 impl IOHIDReportType {
     #[doc(alias = "kIOHIDReportTypeInput")]
@@ -511,7 +511,7 @@ unsafe impl RefEncode for IOHIDReportType {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcommitdirection?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDElementCommitDirection(pub c_uint);
 impl IOHIDElementCommitDirection {
     #[doc(alias = "kIOHIDElementCommitDirectionIn")]
@@ -652,7 +652,7 @@ pub type IOHIDElementFlags = u32;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidelementcollectiontype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDElementCollectionType(pub c_uint);
 impl IOHIDElementCollectionType {
     #[doc(alias = "kIOHIDElementCollectionTypePhysical")]
@@ -763,7 +763,7 @@ pub const kIOHIDReportOptionVariableSize: c_uint = 0x200;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/hidreportcommandtype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HIDReportCommandType(pub c_uint);
 impl HIDReportCommandType {
     #[doc(alias = "kIOHIDReportCommandSetReport")]
@@ -899,7 +899,7 @@ cf_objc2_type!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidtransactiondirectiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDTransactionDirectionType(pub u32);
 impl IOHIDTransactionDirectionType {
     #[doc(alias = "kIOHIDTransactionDirectionTypeInput")]
@@ -4035,7 +4035,7 @@ unsafe impl RefEncode for IOHIDOutputTransactionInterface {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidmanageroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDManagerOptions(pub u32);
 bitflags::bitflags! {
     impl IOHIDManagerOptions: u32 {
@@ -9834,7 +9834,7 @@ impl IOHIDValue {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidtransactionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDTransactionOptions(pub u32);
 bitflags::bitflags! {
     impl IOHIDTransactionOptions: u32 {

@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewindicatorstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollViewIndicatorStyle(pub NSInteger);
 impl UIScrollViewIndicatorStyle {
     #[doc(alias = "UIScrollViewIndicatorStyleDefault")]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for UIScrollViewIndicatorStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewkeyboarddismissmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollViewKeyboardDismissMode(pub NSInteger);
 impl UIScrollViewKeyboardDismissMode {
     #[doc(alias = "UIScrollViewKeyboardDismissModeNone")]
@@ -63,7 +63,7 @@ unsafe impl RefEncode for UIScrollViewKeyboardDismissMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewindexdisplaymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollViewIndexDisplayMode(pub NSInteger);
 impl UIScrollViewIndexDisplayMode {
     #[doc(alias = "UIScrollViewIndexDisplayModeAutomatic")]
@@ -83,7 +83,7 @@ unsafe impl RefEncode for UIScrollViewIndexDisplayMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewcontentinsetadjustmentbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScrollViewContentInsetAdjustmentBehavior(pub NSInteger);
 impl UIScrollViewContentInsetAdjustmentBehavior {
     #[doc(alias = "UIScrollViewContentInsetAdjustmentAutomatic")]

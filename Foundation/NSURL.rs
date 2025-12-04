@@ -954,7 +954,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlbookmarkcreationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLBookmarkCreationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSURLBookmarkCreationOptions: NSUInteger {
@@ -985,7 +985,7 @@ unsafe impl RefEncode for NSURLBookmarkCreationOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlbookmarkresolutionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLBookmarkResolutionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSURLBookmarkResolutionOptions: NSUInteger {

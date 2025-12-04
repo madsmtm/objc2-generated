@@ -998,7 +998,7 @@ impl MPSCNNDivide {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnncomparisontype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSNNComparisonType(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNNComparisonType: NSUInteger {

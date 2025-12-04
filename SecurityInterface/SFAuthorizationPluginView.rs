@@ -14,7 +14,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfbuttontype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFButtonType(pub c_uint);
 impl SFButtonType {
     #[doc(alias = "SFButtonTypeCancel")]
@@ -39,7 +39,7 @@ unsafe impl RefEncode for SFButtonType {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/securityinterface/sfviewtype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SFViewType(pub c_uint);
 impl SFViewType {
     #[doc(alias = "SFViewTypeIdentityAndCredentials")]

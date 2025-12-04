@@ -33,7 +33,7 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcode?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCode(pub NSInteger);
 impl CXErrorCode {
     #[doc(alias = "CXErrorCodeUnknownError")]
@@ -56,7 +56,7 @@ unsafe impl RefEncode for CXErrorCode {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeIncomingCallError(pub NSInteger);
 impl CXErrorCodeIncomingCallError {
     #[doc(alias = "CXErrorCodeIncomingCallErrorUnknown")]
@@ -87,7 +87,7 @@ unsafe impl RefEncode for CXErrorCodeIncomingCallError {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeRequestTransactionError(pub NSInteger);
 impl CXErrorCodeRequestTransactionError {
     #[doc(alias = "CXErrorCodeRequestTransactionErrorUnknown")]
@@ -120,7 +120,7 @@ unsafe impl RefEncode for CXErrorCodeRequestTransactionError {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeCallDirectoryManagerError(pub NSInteger);
 impl CXErrorCodeCallDirectoryManagerError {
     #[doc(alias = "CXErrorCodeCallDirectoryManagerErrorUnknown")]
@@ -153,7 +153,7 @@ unsafe impl RefEncode for CXErrorCodeCallDirectoryManagerError {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodenotificationserviceextensionerror?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeNotificationServiceExtensionError(pub NSInteger);
 impl CXErrorCodeNotificationServiceExtensionError {
     #[doc(alias = "CXErrorCodeNotificationServiceExtensionErrorUnknown")]

@@ -13,7 +13,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceiconcreationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWorkspaceIconCreationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWorkspaceIconCreationOptions: NSUInteger {
@@ -539,7 +539,7 @@ impl NSWorkspace {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceauthorizationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWorkspaceAuthorizationType(pub NSInteger);
 impl NSWorkspaceAuthorizationType {
     #[doc(alias = "NSWorkspaceAuthorizationTypeCreateSymbolicLink")]
@@ -762,7 +762,7 @@ pub type NSWorkspaceFileOperationName = NSString;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspacelaunchoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWorkspaceLaunchOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWorkspaceLaunchOptions: NSUInteger {

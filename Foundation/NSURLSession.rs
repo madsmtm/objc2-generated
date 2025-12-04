@@ -436,7 +436,7 @@ impl NSURLSession {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionTaskState(pub NSInteger);
 impl NSURLSessionTaskState {
     #[doc(alias = "NSURLSessionTaskStateRunning")]
@@ -920,7 +920,7 @@ impl NSURLSessionStreamTask {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionwebsocketmessagetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionWebSocketMessageType(pub NSInteger);
 impl NSURLSessionWebSocketMessageType {
     #[doc(alias = "NSURLSessionWebSocketMessageTypeData")]
@@ -991,7 +991,7 @@ impl NSURLSessionWebSocketMessage {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionwebsocketclosecode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionWebSocketCloseCode(pub NSInteger);
 impl NSURLSessionWebSocketCloseCode {
     #[doc(alias = "NSURLSessionWebSocketCloseCodeInvalid")]
@@ -1158,7 +1158,7 @@ impl NSURLSessionWebSocketTask {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionmultipathservicetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionMultipathServiceType(pub NSInteger);
 impl NSURLSessionMultipathServiceType {
     #[doc(alias = "NSURLSessionMultipathServiceTypeNone")]
@@ -1556,7 +1556,7 @@ impl NSURLSessionConfiguration {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiondelayedrequestdisposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionDelayedRequestDisposition(pub NSInteger);
 impl NSURLSessionDelayedRequestDisposition {
     #[doc(alias = "NSURLSessionDelayedRequestContinueLoading")]
@@ -1578,7 +1578,7 @@ unsafe impl RefEncode for NSURLSessionDelayedRequestDisposition {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionauthchallengedisposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionAuthChallengeDisposition(pub NSInteger);
 impl NSURLSessionAuthChallengeDisposition {
     #[doc(alias = "NSURLSessionAuthChallengeUseCredential")]
@@ -1602,7 +1602,7 @@ unsafe impl RefEncode for NSURLSessionAuthChallengeDisposition {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionresponsedisposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionResponseDisposition(pub NSInteger);
 impl NSURLSessionResponseDisposition {
     #[doc(alias = "NSURLSessionResponseCancel")]
@@ -2027,7 +2027,7 @@ impl NSURLSessionConfiguration {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskmetricsresourcefetchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionTaskMetricsResourceFetchType(pub NSInteger);
 impl NSURLSessionTaskMetricsResourceFetchType {
     #[doc(alias = "NSURLSessionTaskMetricsResourceFetchTypeUnknown")]
@@ -2052,7 +2052,7 @@ unsafe impl RefEncode for NSURLSessionTaskMetricsResourceFetchType {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskmetricsdomainresolutionprotocol?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLSessionTaskMetricsDomainResolutionProtocol(pub NSInteger);
 impl NSURLSessionTaskMetricsDomainResolutionProtocol {
     #[doc(alias = "NSURLSessionTaskMetricsDomainResolutionProtocolUnknown")]

@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinatorreadingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileCoordinatorReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileCoordinatorReadingOptions: NSUInteger {
@@ -35,7 +35,7 @@ unsafe impl RefEncode for NSFileCoordinatorReadingOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilecoordinatorwritingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileCoordinatorWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileCoordinatorWritingOptions: NSUInteger {

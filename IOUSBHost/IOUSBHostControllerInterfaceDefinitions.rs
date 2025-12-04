@@ -9,7 +9,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciuserclientversion?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIUserClientVersion(pub c_uint);
 impl IOUSBHostCIUserClientVersion {
     #[doc(alias = "IOUSBHostCIUserClientVersion100")]
@@ -46,7 +46,7 @@ unsafe impl RefEncode for IOUSBHostCIUserClientVersion {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciexceptiontype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIExceptionType(pub c_uint);
 impl IOUSBHostCIExceptionType {
     #[doc(alias = "IOUSBHostCIExceptionTypeUnknown")]
@@ -89,7 +89,7 @@ unsafe impl RefEncode for IOUSBHostCIExceptionType {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagetype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIMessageType(pub c_uint);
 impl IOUSBHostCIMessageType {
     #[doc(alias = "IOUSBHostCIMessageTypeControllerCapabilities")]
@@ -180,7 +180,7 @@ unsafe impl RefEncode for IOUSBHostCIMessageType {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessagestatus?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIMessageStatus(pub c_uint);
 impl IOUSBHostCIMessageStatus {
     #[doc(alias = "IOUSBHostCIMessageStatusReserved")]
@@ -225,7 +225,7 @@ unsafe impl RefEncode for IOUSBHostCIMessageStatus {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicespeed?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIDeviceSpeed(pub c_uint);
 impl IOUSBHostCIDeviceSpeed {
     #[doc(alias = "IOUSBHostCIDeviceSpeedNone")]
@@ -265,7 +265,7 @@ unsafe impl RefEncode for IOUSBHostCIDeviceSpeed {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcilinkstate?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCILinkState(pub c_uint);
 impl IOUSBHostCILinkState {
     #[doc(alias = "IOUSBHostCILinkStateU0")]
@@ -498,7 +498,7 @@ pub const IOUSBHostCICommandMessageData0StreamIDPhase: c_uint = IOUSBBitRangePha
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstate?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIControllerState(pub c_uint);
 impl IOUSBHostCIControllerState {
     #[doc(alias = "IOUSBHostCIControllerStateOff")]
@@ -526,7 +526,7 @@ unsafe impl RefEncode for IOUSBHostCIControllerState {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciportstate?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIPortState(pub c_uint);
 impl IOUSBHostCIPortState {
     #[doc(alias = "IOUSBHostCIPortStateOff")]
@@ -589,7 +589,7 @@ pub const IOUSBHostCIPortStatusCommandData1ChangeMask: c_uint = IOUSBHostCIPortS
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestate?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIDeviceState(pub c_uint);
 impl IOUSBHostCIDeviceState {
     #[doc(alias = "IOUSBHostCIDeviceStateDestroyed")]
@@ -645,7 +645,7 @@ pub const IOUSBHostCIDeviceUpdateCommandData1DescriptorAddressPhase: c_ulong =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostciendpointstate?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostCIEndpointState(pub c_uint);
 impl IOUSBHostCIEndpointState {
     #[doc(alias = "IOUSBHostCIEndpointStateDestroyed")]

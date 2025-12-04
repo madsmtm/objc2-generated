@@ -22,7 +22,7 @@ pub type MPSAccelerationStructureCompletionHandler =
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSAccelerationStructureUsage(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSAccelerationStructureUsage: NSUInteger {
@@ -76,7 +76,7 @@ unsafe impl RefEncode for MPSAccelerationStructureUsage {
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSAccelerationStructureStatus(pub NSUInteger);
 impl MPSAccelerationStructureStatus {
     /// The acceleration structure has not been built yet

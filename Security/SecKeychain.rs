@@ -52,7 +52,7 @@ unsafe impl RefEncode for SecKeychainSettings {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secauthenticationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecAuthenticationType(pub FourCharCode);
 impl SecAuthenticationType {
     #[doc(alias = "kSecAuthenticationTypeNTLM")]
@@ -90,7 +90,7 @@ unsafe impl RefEncode for SecAuthenticationType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/secprotocoltype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecProtocolType(pub FourCharCode);
 impl SecProtocolType {
     #[doc(alias = "kSecProtocolTypeFTP")]
@@ -221,7 +221,7 @@ unsafe impl RefEncode for SecKeychainEvent {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychaineventmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecKeychainEventMask(pub u32);
 bitflags::bitflags! {
     impl SecKeychainEventMask: u32 {
@@ -637,7 +637,7 @@ impl SecKeychain {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secpreferencesdomain?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecPreferencesDomain(pub c_int);
 impl SecPreferencesDomain {
     #[doc(alias = "kSecPreferencesDomainUser")]

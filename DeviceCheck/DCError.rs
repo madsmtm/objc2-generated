@@ -18,7 +18,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/devicecheck/dcerror?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DCError(pub NSInteger);
 impl DCError {
     /// A failure has occurred, such as the failure to generate a token.

@@ -226,7 +226,7 @@ extern_conformance!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinesweepdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineSweepDirection(pub NSUInteger);
 impl NSLineSweepDirection {
     #[doc(alias = "NSLineSweepLeft")]
@@ -250,7 +250,7 @@ unsafe impl RefEncode for NSLineSweepDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinemovementdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineMovementDirection(pub NSUInteger);
 impl NSLineMovementDirection {
     #[doc(alias = "NSLineDoesntMove")]

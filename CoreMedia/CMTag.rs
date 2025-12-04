@@ -38,7 +38,7 @@ unsafe impl RefEncode for CMTagError {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagcategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMTagCategory(pub FourCharCode);
 impl CMTagCategory {
     #[doc(alias = "kCMTagCategory_Undefined")]
@@ -80,7 +80,7 @@ unsafe impl RefEncode for CMTagCategory {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtagdatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMTagDataType(pub u32);
 impl CMTagDataType {
     #[doc(alias = "kCMTagDataType_Invalid")]
@@ -210,7 +210,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmstereoviewcomponents?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMStereoViewComponents(pub u64);
 bitflags::bitflags! {
     impl CMStereoViewComponents: u64 {
@@ -268,7 +268,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmstereoviewinterpretationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMStereoViewInterpretationOptions(pub u64);
 bitflags::bitflags! {
     impl CMStereoViewInterpretationOptions: u64 {

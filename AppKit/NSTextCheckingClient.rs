@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputtraittype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextInputTraitType(pub NSInteger);
 impl NSTextInputTraitType {
     #[doc(alias = "NSTextInputTraitTypeDefault")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for NSTextInputTraitType {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWritingToolsBehavior(pub NSInteger);
 impl NSWritingToolsBehavior {
     #[doc(alias = "NSWritingToolsBehaviorNone")]
@@ -56,7 +56,7 @@ unsafe impl RefEncode for NSWritingToolsBehavior {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolsresultoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWritingToolsResultOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWritingToolsResultOptions: NSUInteger {

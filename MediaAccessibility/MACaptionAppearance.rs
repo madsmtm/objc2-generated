@@ -29,7 +29,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedomain?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceDomain(pub CFIndex);
 impl MACaptionAppearanceDomain {
     #[doc(alias = "kMACaptionAppearanceDomainDefault")]
@@ -60,7 +60,7 @@ unsafe impl RefEncode for MACaptionAppearanceDomain {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancedisplaytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceDisplayType(pub CFIndex);
 impl MACaptionAppearanceDisplayType {
     #[doc(alias = "kMACaptionAppearanceDisplayTypeForcedOnly")]
@@ -91,7 +91,7 @@ unsafe impl RefEncode for MACaptionAppearanceDisplayType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancebehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceBehavior(pub CFIndex);
 impl MACaptionAppearanceBehavior {
     #[doc(alias = "kMACaptionAppearanceBehaviorUseValue")]
@@ -132,7 +132,7 @@ unsafe impl RefEncode for MACaptionAppearanceBehavior {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancefontstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceFontStyle(pub CFIndex);
 impl MACaptionAppearanceFontStyle {
     #[doc(alias = "kMACaptionAppearanceFontStyleDefault")]
@@ -181,7 +181,7 @@ unsafe impl RefEncode for MACaptionAppearanceFontStyle {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/macaptionappearancetextedgestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MACaptionAppearanceTextEdgeStyle(pub CFIndex);
 impl MACaptionAppearanceTextEdgeStyle {
     #[doc(alias = "kMACaptionAppearanceTextEdgeStyleUndefined")]

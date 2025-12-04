@@ -14,7 +14,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "Use MKPinAnnotationView's pinTintColor instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKPinAnnotationColor(pub NSUInteger);
 impl MKPinAnnotationColor {
     #[doc(alias = "MKPinAnnotationColorRed")]

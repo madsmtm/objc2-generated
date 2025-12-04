@@ -858,7 +858,7 @@ pub type AUEventSampleTime = i64;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterunit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioUnitParameterUnit(pub u32);
 impl AudioUnitParameterUnit {
     #[doc(alias = "kAudioUnitParameterUnit_Generic")]
@@ -968,7 +968,7 @@ unsafe impl RefEncode for AudioUnitParameterUnit {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameteroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioUnitParameterOptions(pub u32);
 bitflags::bitflags! {
     impl AudioUnitParameterOptions: u32 {
@@ -1292,7 +1292,7 @@ pub const kAudioUnitProperty_HotMapParameterMIDIMapping: AudioUnitPropertyID = 4
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimappingflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUParameterMIDIMappingFlags(pub u32);
 bitflags::bitflags! {
     impl AUParameterMIDIMappingFlags: u32 {
@@ -1686,7 +1686,7 @@ pub const kAUVoiceIOProperty_MuteOutput: AudioUnitPropertyID = 2104;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiospeechactivityevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUVoiceIOSpeechActivityEvent(pub u32);
 impl AUVoiceIOSpeechActivityEvent {
     #[doc(alias = "kAUVoiceIOSpeechActivityHasStarted")]
@@ -1724,7 +1724,7 @@ pub const kAUVoiceIOProperty_MutedSpeechActivityEventListener: AudioUnitProperty
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckinglevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUVoiceIOOtherAudioDuckingLevel(pub u32);
 impl AUVoiceIOOtherAudioDuckingLevel {
     #[doc(alias = "kAUVoiceIOOtherAudioDuckingLevelDefault")]
@@ -1882,7 +1882,7 @@ pub const kAudioUnitProperty_SpatialMixerAnyInputIsUsingPersonalizedHRTF: AudioU
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatializationalgorithm?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatializationAlgorithm(pub u32);
 impl AUSpatializationAlgorithm {
     #[doc(alias = "kSpatializationAlgorithm_EqualPowerPanning")]
@@ -1940,7 +1940,7 @@ unsafe impl RefEncode for AUSpatializationAlgorithm {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixersourcemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatialMixerSourceMode(pub u32);
 impl AUSpatialMixerSourceMode {
     #[doc(alias = "kSpatialMixerSourceMode_SpatializeIfMono")]
@@ -1967,7 +1967,7 @@ unsafe impl RefEncode for AUSpatialMixerSourceMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aureverbroomtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUReverbRoomType(pub u32);
 impl AUReverbRoomType {
     #[doc(alias = "kReverbRoomType_SmallRoom")]
@@ -2009,7 +2009,7 @@ unsafe impl RefEncode for AUReverbRoomType {
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerattenuationcurve?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatialMixerAttenuationCurve(pub u32);
 impl AUSpatialMixerAttenuationCurve {
     #[doc(alias = "kSpatialMixerAttenuationCurve_Power")]
@@ -2053,7 +2053,7 @@ unsafe impl RefEncode for MixerDistanceParams {
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerrenderingflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatialMixerRenderingFlags(pub u32);
 bitflags::bitflags! {
     impl AUSpatialMixerRenderingFlags: u32 {
@@ -2086,7 +2086,7 @@ unsafe impl RefEncode for AUSpatialMixerRenderingFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpersonalizedhrtfmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatialMixerPersonalizedHRTFMode(pub u32);
 impl AUSpatialMixerPersonalizedHRTFMode {
     #[doc(alias = "kSpatialMixerPersonalizedHRTFMode_Off")]
@@ -2157,7 +2157,7 @@ unsafe impl RefEncode for AUSpatialMixerOutputType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auspatialmixerpointsourceinheadmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUSpatialMixerPointSourceInHeadMode(pub u32);
 impl AUSpatialMixerPointSourceInHeadMode {
     #[doc(alias = "kSpatialMixerPointSourceInHeadMode_Mono")]
@@ -2209,7 +2209,7 @@ pub const kAudioUnitProperty_ReverbPreset: AudioUnitPropertyID = 3012;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerrenderingflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AU3DMixerRenderingFlags(pub u32);
 bitflags::bitflags! {
     impl AU3DMixerRenderingFlags: u32 {
@@ -2234,7 +2234,7 @@ unsafe impl RefEncode for AU3DMixerRenderingFlags {
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/au3dmixerattenuationcurve?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AU3DMixerAttenuationCurve(pub u32);
 impl AU3DMixerAttenuationCurve {
     pub const k3DMixerAttenuationCurve_Power: Self = Self(0);
@@ -2282,7 +2282,7 @@ pub const kAudioUnitProperty_CurrentPlayTime: AudioUnitPropertyID = 3302;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auscheduledaudiosliceflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUScheduledAudioSliceFlags(pub u32);
 bitflags::bitflags! {
     impl AUScheduledAudioSliceFlags: u32 {

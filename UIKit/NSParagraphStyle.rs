@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslinebreakmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineBreakMode(pub NSInteger);
 impl NSLineBreakMode {
     #[doc(alias = "NSLineBreakByWordWrapping")]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for NSLineBreakMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslinebreakstrategy?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineBreakStrategy(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLineBreakStrategy: NSUInteger {

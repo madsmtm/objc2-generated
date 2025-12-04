@@ -96,7 +96,7 @@ unsafe impl RefEncode for SCNetworkConnectionContext {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNetworkConnectionStatus(pub i32);
 impl SCNetworkConnectionStatus {
     #[doc(alias = "kSCNetworkConnectionInvalid")]
@@ -166,7 +166,7 @@ unsafe impl RefEncode for SCNetworkConnectionStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkconnectionpppstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNetworkConnectionPPPStatus(pub i32);
 impl SCNetworkConnectionPPPStatus {
     #[doc(alias = "kSCNetworkConnectionPPPDisconnected")]

@@ -31,7 +31,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewscrolldirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewScrollDirection(pub NSInteger);
 impl UICollectionViewScrollDirection {
     #[doc(alias = "UICollectionViewScrollDirectionVertical")]
@@ -51,7 +51,7 @@ unsafe impl RefEncode for UICollectionViewScrollDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionelementcategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionElementCategory(pub NSUInteger);
 impl UICollectionElementCategory {
     #[doc(alias = "UICollectionElementCategoryCell")]

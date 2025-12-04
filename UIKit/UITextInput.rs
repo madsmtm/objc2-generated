@@ -30,7 +30,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextstoragedirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextStorageDirection(pub NSInteger);
 impl UITextStorageDirection {
     #[doc(alias = "UITextStorageDirectionForward")]
@@ -78,7 +78,7 @@ pub type UITextDirection = NSInteger;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextgranularity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextGranularity(pub NSInteger);
 impl UITextGranularity {
     #[doc(alias = "UITextGranularityCharacter")]
@@ -264,7 +264,7 @@ impl UITextPlaceholder {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextalternativestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextAlternativeStyle(pub NSInteger);
 impl UITextAlternativeStyle {
     #[doc(alias = "UITextAlternativeStyleNone")]

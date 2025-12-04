@@ -15,7 +15,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenupresentationstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMenuPresentationStyle(pub NSInteger);
 impl NSMenuPresentationStyle {
     /// The default presentation style. Typically means the menu will
@@ -47,7 +47,7 @@ unsafe impl RefEncode for NSMenuPresentationStyle {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuselectionmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMenuSelectionMode(pub NSInteger);
 impl NSMenuSelectionMode {
     /// The menu will determine the appropriate selection mode based
@@ -642,7 +642,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuproperties?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMenuProperties(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMenuProperties: NSUInteger {

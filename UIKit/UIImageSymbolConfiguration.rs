@@ -11,7 +11,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagesymbolscale?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageSymbolScale(pub NSInteger);
 impl UIImageSymbolScale {
     #[doc(alias = "UIImageSymbolScaleDefault")]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for UIImageSymbolScale {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagesymbolweight?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageSymbolWeight(pub NSInteger);
 impl UIImageSymbolWeight {
     #[doc(alias = "UIImageSymbolWeightUnspecified")]
@@ -73,7 +73,7 @@ unsafe impl RefEncode for UIImageSymbolWeight {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagesymbolvariablevaluemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageSymbolVariableValueMode(pub NSInteger);
 impl UIImageSymbolVariableValueMode {
     /// Automatically selects an appropriate variable value mode for the symbol.
@@ -104,7 +104,7 @@ unsafe impl Sync for UIImageSymbolVariableValueMode {}
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagesymbolcolorrenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageSymbolColorRenderingMode(pub NSInteger);
 impl UIImageSymbolColorRenderingMode {
     /// Automatically uses an appropriate color rendering mode for the symbol’s color layers.

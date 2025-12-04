@@ -24,7 +24,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcachestoragepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLCacheStoragePolicy(pub NSUInteger);
 impl NSURLCacheStoragePolicy {
     #[doc(alias = "NSURLCacheStorageAllowed")]

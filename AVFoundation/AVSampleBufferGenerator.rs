@@ -140,7 +140,7 @@ impl AVSampleBufferGenerator {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequestdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSampleBufferRequestDirection(pub NSInteger);
 impl AVSampleBufferRequestDirection {
     #[doc(alias = "AVSampleBufferRequestDirectionForward")]
@@ -171,7 +171,7 @@ unsafe impl RefEncode for AVSampleBufferRequestDirection {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequestmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSampleBufferRequestMode(pub NSInteger);
 impl AVSampleBufferRequestMode {
     #[doc(alias = "AVSampleBufferRequestModeImmediate")]

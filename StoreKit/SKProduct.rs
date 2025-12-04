@@ -10,7 +10,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKProductPeriodUnit(pub NSUInteger);
 impl SKProductPeriodUnit {
     #[doc(alias = "SKProductPeriodUnitDay")]

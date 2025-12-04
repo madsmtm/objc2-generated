@@ -11,7 +11,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "INDeleteTasksIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INDeleteTasksIntentResponseCode(pub NSInteger);
 impl INDeleteTasksIntentResponseCode {
     #[doc(alias = "INDeleteTasksIntentResponseCodeUnspecified")]

@@ -12,7 +12,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSPolygonType(pub NSUInteger);
 impl MPSPolygonType {
     /// Triangles with three vertices

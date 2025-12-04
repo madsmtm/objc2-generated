@@ -13,7 +13,7 @@ pub const SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecExternalFormat(pub u32);
 impl SecExternalFormat {
     #[doc(alias = "kSecFormatUnknown")]
@@ -61,7 +61,7 @@ unsafe impl RefEncode for SecExternalFormat {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalitemtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecExternalItemType(pub u32);
 impl SecExternalItemType {
     #[doc(alias = "kSecItemTypeUnknown")]
@@ -91,7 +91,7 @@ unsafe impl RefEncode for SecExternalItemType {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemimportexportflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecItemImportExportFlags(pub u32);
 bitflags::bitflags! {
     impl SecItemImportExportFlags: u32 {
@@ -113,7 +113,7 @@ unsafe impl RefEncode for SecItemImportExportFlags {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyimportexportflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecKeyImportExportFlags(pub u32);
 bitflags::bitflags! {
     impl SecKeyImportExportFlags: u32 {

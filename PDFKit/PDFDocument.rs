@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfprintscalingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFPrintScalingMode(pub NSInteger);
 impl PDFPrintScalingMode {
     #[doc(alias = "kPDFPrintPageScaleNone")]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for PDFPrintScalingMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentpermissions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFDocumentPermissions(pub NSInteger);
 impl PDFDocumentPermissions {
     #[doc(alias = "kPDFDocumentPermissionsNone")]

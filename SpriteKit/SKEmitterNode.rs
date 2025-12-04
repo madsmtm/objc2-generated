@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/skparticlerenderorder?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKParticleRenderOrder(pub NSUInteger);
 impl SKParticleRenderOrder {
     #[doc(alias = "SKParticleRenderOrderOldestLast")]

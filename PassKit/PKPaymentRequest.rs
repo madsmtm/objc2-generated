@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkmerchantcapability?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKMerchantCapability(pub NSUInteger);
 bitflags::bitflags! {
     impl PKMerchantCapability: NSUInteger {
@@ -48,7 +48,7 @@ extern "C" {
 // NS_OPTIONS
 #[deprecated = "Use PKContactField and -requiredShippingContactFields / -requiredBillingContactFields"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAddressField(pub NSUInteger);
 bitflags::bitflags! {
     impl PKAddressField: NSUInteger {
@@ -83,7 +83,7 @@ unsafe impl RefEncode for PKAddressField {
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshippingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKShippingType(pub NSUInteger);
 impl PKShippingType {
     #[doc(alias = "PKShippingTypeShipping")]
@@ -130,7 +130,7 @@ unsafe impl RefEncode for PKShippingContactEditingMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkapplepaylateravailability?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKApplePayLaterAvailability(pub NSInteger);
 impl PKApplePayLaterAvailability {
     #[doc(alias = "PKApplePayLaterAvailable")]

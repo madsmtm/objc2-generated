@@ -20,7 +20,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemsegmenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerItemSegmentType(pub NSInteger);
 impl AVPlayerItemSegmentType {
     #[doc(alias = "AVPlayerItemSegmentTypePrimary")]

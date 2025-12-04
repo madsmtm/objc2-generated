@@ -44,7 +44,7 @@ unsafe impl RefEncode for GLKTextureTarget {
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GLKTextureEnvMode(pub GLint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]

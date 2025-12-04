@@ -7,7 +7,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagecontentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHImageContentMode(pub NSInteger);
 impl PHImageContentMode {
     #[doc(alias = "PHImageContentModeAspectFit")]
@@ -231,7 +231,7 @@ unsafe impl RefEncode for PHAssetEditOperation {
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetplaybackstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAssetPlaybackStyle(pub NSInteger);
 impl PHAssetPlaybackStyle {
     #[doc(alias = "PHAssetPlaybackStyleUnsupported")]
@@ -259,7 +259,7 @@ unsafe impl RefEncode for PHAssetPlaybackStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAssetMediaType(pub NSInteger);
 impl PHAssetMediaType {
     #[doc(alias = "PHAssetMediaTypeUnknown")]
@@ -283,7 +283,7 @@ unsafe impl RefEncode for PHAssetMediaType {
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetmediasubtype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAssetMediaSubtype(pub NSUInteger);
 bitflags::bitflags! {
     impl PHAssetMediaSubtype: NSUInteger {
@@ -325,7 +325,7 @@ unsafe impl RefEncode for PHAssetMediaSubtype {
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetburstselectiontype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAssetBurstSelectionType(pub NSUInteger);
 bitflags::bitflags! {
     impl PHAssetBurstSelectionType: NSUInteger {
@@ -349,7 +349,7 @@ unsafe impl RefEncode for PHAssetBurstSelectionType {
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetsourcetype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHAssetSourceType(pub NSUInteger);
 bitflags::bitflags! {
     impl PHAssetSourceType: NSUInteger {

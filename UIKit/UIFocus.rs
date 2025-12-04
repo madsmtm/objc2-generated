@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusheading?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIFocusHeading(pub NSUInteger);
 bitflags::bitflags! {
     impl UIFocusHeading: NSUInteger {
@@ -48,7 +48,7 @@ unsafe impl RefEncode for UIFocusHeading {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusitemdeferralmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIFocusItemDeferralMode(pub NSInteger);
 impl UIFocusItemDeferralMode {
     /// Use the system default behavior.

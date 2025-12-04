@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotordirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityCustomRotorDirection(pub NSInteger);
 impl UIAccessibilityCustomRotorDirection {
     #[doc(alias = "UIAccessibilityCustomRotorDirectionPrevious")]
@@ -30,7 +30,7 @@ unsafe impl RefEncode for UIAccessibilityCustomRotorDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomsystemrotortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityCustomSystemRotorType(pub NSInteger);
 impl UIAccessibilityCustomSystemRotorType {
     #[doc(alias = "UIAccessibilityCustomSystemRotorTypeNone")]

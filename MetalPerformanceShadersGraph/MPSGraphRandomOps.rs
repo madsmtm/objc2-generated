@@ -14,7 +14,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomdistribution?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphRandomDistribution(pub u64);
 impl MPSGraphRandomDistribution {
     /// The uniform distribution, with samples drawn uniformly from [min, max) for float types, and [min, max] for integer types.
@@ -41,7 +41,7 @@ unsafe impl RefEncode for MPSGraphRandomDistribution {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphrandomnormalsamplingmethod?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphRandomNormalSamplingMethod(pub u64);
 impl MPSGraphRandomNormalSamplingMethod {
     /// Use inverse erf to convert uniform values to values in the normal distribution

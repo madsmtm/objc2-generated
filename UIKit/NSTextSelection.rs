@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectiongranularity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionGranularity(pub NSInteger);
 impl NSTextSelectionGranularity {
     #[doc(alias = "NSTextSelectionGranularityCharacter")]
@@ -38,7 +38,7 @@ unsafe impl RefEncode for NSTextSelectionGranularity {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionaffinity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextSelectionAffinity(pub NSInteger);
 impl NSTextSelectionAffinity {
     #[doc(alias = "NSTextSelectionAffinityUpstream")]

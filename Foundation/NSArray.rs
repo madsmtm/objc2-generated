@@ -143,7 +143,7 @@ impl<ObjectType: Message> DefaultRetained for NSArray<ObjectType> {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbinarysearchingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBinarySearchingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSBinarySearchingOptions: NSUInteger {

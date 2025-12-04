@@ -14,7 +14,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVElementAlignment(pub NSInteger);
 impl TVElementAlignment {
     #[doc(alias = "TVElementAlignmentUndefined")]
@@ -49,7 +49,7 @@ unsafe impl RefEncode for TVElementAlignment {
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVElementContentAlignment(pub NSInteger);
 impl TVElementContentAlignment {
     #[doc(alias = "TVElementContentAlignmentUndefined")]
@@ -78,7 +78,7 @@ unsafe impl RefEncode for TVElementContentAlignment {
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVElementPosition(pub NSInteger);
 impl TVElementPosition {
     #[doc(alias = "TVElementPositionUndefined")]

@@ -19,7 +19,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBManagerState(pub NSInteger);
 impl CBManagerState {
     #[doc(alias = "CBManagerStateUnknown")]
@@ -53,7 +53,7 @@ unsafe impl RefEncode for CBManagerState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbmanagerauthorization?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBManagerAuthorization(pub NSInteger);
 impl CBManagerAuthorization {
     #[doc(alias = "CBManagerAuthorizationNotDetermined")]

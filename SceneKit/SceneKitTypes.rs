@@ -20,7 +20,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactiontimingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNActionTimingMode(pub NSInteger);
 impl SCNActionTimingMode {
     #[doc(alias = "SCNActionTimingModeLinear")]
@@ -46,7 +46,7 @@ unsafe impl RefEncode for SCNActionTimingMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncolormask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNColorMask(pub NSInteger);
 bitflags::bitflags! {
     impl SCNColorMask: NSInteger {

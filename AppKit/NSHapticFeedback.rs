@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackpattern?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSHapticFeedbackPattern(pub NSInteger);
 impl NSHapticFeedbackPattern {
     #[doc(alias = "NSHapticFeedbackPatternGeneric")]
@@ -31,7 +31,7 @@ unsafe impl RefEncode for NSHapticFeedbackPattern {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshapticfeedbackperformancetime?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSHapticFeedbackPerformanceTime(pub NSUInteger);
 impl NSHapticFeedbackPerformanceTime {
     #[doc(alias = "NSHapticFeedbackPerformanceTimeDefault")]

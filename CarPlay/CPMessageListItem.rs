@@ -33,7 +33,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessageleadingitem?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPMessageLeadingItem(pub NSInteger);
 impl CPMessageLeadingItem {
     /// The list item will render without a leading glyph.
@@ -60,7 +60,7 @@ unsafe impl RefEncode for CPMessageLeadingItem {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmessagetrailingitem?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPMessageTrailingItem(pub NSInteger);
 impl CPMessageTrailingItem {
     /// The list item will render without a trailing glyph.

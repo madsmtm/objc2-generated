@@ -14,7 +14,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutOrientation(pub NSInteger);
 impl NSTextLayoutOrientation {
     #[doc(alias = "NSTextLayoutOrientationHorizontal")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for NSTextLayoutOrientation {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsglyphproperty?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGlyphProperty(pub NSInteger);
 bitflags::bitflags! {
     impl NSGlyphProperty: NSInteger {
@@ -60,7 +60,7 @@ unsafe impl RefEncode for NSGlyphProperty {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscontrolcharacteraction?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSControlCharacterAction(pub NSInteger);
 bitflags::bitflags! {
     impl NSControlCharacterAction: NSInteger {

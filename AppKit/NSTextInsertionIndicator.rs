@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicatordisplaymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextInsertionIndicatorDisplayMode(pub NSInteger);
 impl NSTextInsertionIndicatorDisplayMode {
     #[doc(alias = "NSTextInsertionIndicatorDisplayModeAutomatic")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for NSTextInsertionIndicatorDisplayMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinsertionindicatorautomaticmodeoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextInsertionIndicatorAutomaticModeOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSTextInsertionIndicatorAutomaticModeOptions: NSInteger {

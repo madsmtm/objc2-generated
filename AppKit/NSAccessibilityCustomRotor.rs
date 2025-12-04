@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotorsearchdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityCustomRotorSearchDirection(pub NSInteger);
 impl NSAccessibilityCustomRotorSearchDirection {
     #[doc(alias = "NSAccessibilityCustomRotorSearchDirectionPrevious")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for NSAccessibilityCustomRotorSearchDirection {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityCustomRotorType(pub NSInteger);
 impl NSAccessibilityCustomRotorType {
     #[doc(alias = "NSAccessibilityCustomRotorTypeCustom")]

@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocapitalizationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextAutocapitalizationType(pub NSInteger);
 impl UITextAutocapitalizationType {
     #[doc(alias = "UITextAutocapitalizationTypeNone")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for UITextAutocapitalizationType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextautocorrectiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextAutocorrectionType(pub NSInteger);
 impl UITextAutocorrectionType {
     #[doc(alias = "UITextAutocorrectionTypeDefault")]
@@ -56,7 +56,7 @@ unsafe impl RefEncode for UITextAutocorrectionType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextspellcheckingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSpellCheckingType(pub NSInteger);
 impl UITextSpellCheckingType {
     #[doc(alias = "UITextSpellCheckingTypeDefault")]
@@ -78,7 +78,7 @@ unsafe impl RefEncode for UITextSpellCheckingType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartquotestype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSmartQuotesType(pub NSInteger);
 impl UITextSmartQuotesType {
     #[doc(alias = "UITextSmartQuotesTypeDefault")]
@@ -100,7 +100,7 @@ unsafe impl RefEncode for UITextSmartQuotesType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartdashestype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSmartDashesType(pub NSInteger);
 impl UITextSmartDashesType {
     #[doc(alias = "UITextSmartDashesTypeDefault")]
@@ -122,7 +122,7 @@ unsafe impl RefEncode for UITextSmartDashesType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsmartinsertdeletetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextSmartInsertDeleteType(pub NSInteger);
 impl UITextSmartInsertDeleteType {
     #[doc(alias = "UITextSmartInsertDeleteTypeDefault")]
@@ -144,7 +144,7 @@ unsafe impl RefEncode for UITextSmartInsertDeleteType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinlinepredictiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextInlinePredictionType(pub NSInteger);
 impl UITextInlinePredictionType {
     #[doc(alias = "UITextInlinePredictionTypeDefault")]
@@ -166,7 +166,7 @@ unsafe impl RefEncode for UITextInlinePredictionType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextmathexpressioncompletiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextMathExpressionCompletionType(pub NSInteger);
 impl UITextMathExpressionCompletionType {
     #[doc(alias = "UITextMathExpressionCompletionTypeDefault")]
@@ -188,7 +188,7 @@ unsafe impl RefEncode for UITextMathExpressionCompletionType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIKeyboardType(pub NSInteger);
 impl UIKeyboardType {
     #[doc(alias = "UIKeyboardTypeDefault")]
@@ -230,7 +230,7 @@ unsafe impl RefEncode for UIKeyboardType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardappearance?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIKeyboardAppearance(pub NSInteger);
 impl UIKeyboardAppearance {
     #[doc(alias = "UIKeyboardAppearanceDefault")]
@@ -254,7 +254,7 @@ unsafe impl RefEncode for UIKeyboardAppearance {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uireturnkeytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIReturnKeyType(pub NSInteger);
 impl UIReturnKeyType {
     #[doc(alias = "UIReturnKeyDefault")]
@@ -294,7 +294,7 @@ unsafe impl RefEncode for UIReturnKeyType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWritingToolsBehavior(pub NSInteger);
 impl UIWritingToolsBehavior {
     /// Writing Tools will ignore this view
@@ -322,7 +322,7 @@ unsafe impl RefEncode for UIWritingToolsBehavior {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolsresultoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWritingToolsResultOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIWritingToolsResultOptions: NSUInteger {

@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkcomplicationfamily?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationFamily(pub NSInteger);
 impl CLKComplicationFamily {
     #[doc(alias = "CLKComplicationFamilyModularSmall")]
@@ -50,7 +50,7 @@ unsafe impl RefEncode for CLKComplicationFamily {
 // NS_OPTIONS
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationTimeTravelDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl CLKComplicationTimeTravelDirections: NSUInteger {
@@ -78,7 +78,7 @@ unsafe impl RefEncode for CLKComplicationTimeTravelDirections {
 // NS_ENUM
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationPrivacyBehavior(pub NSUInteger);
 impl CLKComplicationPrivacyBehavior {
     #[doc(alias = "CLKComplicationPrivacyBehaviorShowOnLockScreen")]
@@ -101,7 +101,7 @@ unsafe impl RefEncode for CLKComplicationPrivacyBehavior {
 // NS_ENUM
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationTimelineAnimationBehavior(pub NSUInteger);
 impl CLKComplicationTimelineAnimationBehavior {
     #[doc(alias = "CLKComplicationTimelineAnimationBehaviorNever")]
@@ -127,7 +127,7 @@ unsafe impl RefEncode for CLKComplicationTimelineAnimationBehavior {
 // NS_ENUM
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationColumnAlignment(pub NSInteger);
 impl CLKComplicationColumnAlignment {
     #[doc(alias = "CLKComplicationColumnAlignmentLeading")]
@@ -156,7 +156,7 @@ unsafe impl RefEncode for CLKComplicationColumnAlignment {
 // NS_ENUM
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKComplicationRingStyle(pub NSInteger);
 impl CLKComplicationRingStyle {
     #[doc(alias = "CLKComplicationRingStyleClosed")]
@@ -179,7 +179,7 @@ unsafe impl RefEncode for CLKComplicationRingStyle {
 // NS_ENUM
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKGaugeProviderStyle(pub NSInteger);
 impl CLKGaugeProviderStyle {
     #[doc(alias = "CLKGaugeProviderStyleRing")]

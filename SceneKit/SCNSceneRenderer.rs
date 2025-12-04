@@ -21,7 +21,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnantialiasingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNAntialiasingMode(pub NSUInteger);
 impl SCNAntialiasingMode {
     #[doc(alias = "SCNAntialiasingModeNone")]
@@ -52,7 +52,7 @@ unsafe impl RefEncode for SCNAntialiasingMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnrenderingapi?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNRenderingAPI(pub NSUInteger);
 impl SCNRenderingAPI {
     #[doc(alias = "SCNRenderingAPIMetal")]
@@ -78,7 +78,7 @@ unsafe impl RefEncode for SCNRenderingAPI {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scndebugoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNDebugOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl SCNDebugOptions: NSUInteger {

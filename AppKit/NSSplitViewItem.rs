@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitembehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSplitViewItemBehavior(pub NSInteger);
 impl NSSplitViewItemBehavior {
     #[doc(alias = "NSSplitViewItemBehaviorDefault")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for NSSplitViewItemBehavior {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitemcollapsebehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSplitViewItemCollapseBehavior(pub NSInteger);
 impl NSSplitViewItemCollapseBehavior {
     /// The item uses the default collapsing behavior for its set `behavior`. The default may change over time.

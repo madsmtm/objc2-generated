@@ -61,7 +61,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadowmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNShadowMode(pub NSInteger);
 impl SCNShadowMode {
     #[doc(alias = "SCNShadowModeForward")]
@@ -83,7 +83,7 @@ unsafe impl RefEncode for SCNShadowMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightprobetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNLightProbeType(pub NSInteger);
 impl SCNLightProbeType {
     #[doc(alias = "SCNLightProbeTypeIrradiance")]
@@ -103,7 +103,7 @@ unsafe impl RefEncode for SCNLightProbeType {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightprobeupdatetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNLightProbeUpdateType(pub NSInteger);
 impl SCNLightProbeUpdateType {
     #[doc(alias = "SCNLightProbeUpdateTypeNever")]

@@ -16,7 +16,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkusernotificationinterfacetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKUserNotificationInterfaceType(pub NSInteger);
 impl WKUserNotificationInterfaceType {
     #[doc(alias = "WKUserNotificationInterfaceTypeDefault")]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for WKUserNotificationInterfaceType {
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKMenuItemIcon(pub NSInteger);
 impl WKMenuItemIcon {
     #[doc(alias = "WKMenuItemIconAccept")]
@@ -101,7 +101,7 @@ unsafe impl RefEncode for WKMenuItemIcon {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextinputmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKTextInputMode(pub NSInteger);
 impl WKTextInputMode {
     #[doc(alias = "WKTextInputModePlain")]
@@ -124,7 +124,7 @@ unsafe impl RefEncode for WKTextInputMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertcontrollerstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKAlertControllerStyle(pub NSInteger);
 impl WKAlertControllerStyle {
     #[doc(alias = "WKAlertControllerStyleAlert")]
@@ -146,7 +146,7 @@ unsafe impl RefEncode for WKAlertControllerStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkpageorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKPageOrientation(pub NSInteger);
 impl WKPageOrientation {
     #[doc(alias = "WKPageOrientationHorizontal")]
@@ -166,7 +166,7 @@ unsafe impl RefEncode for WKPageOrientation {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacescrollposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceScrollPosition(pub NSInteger);
 impl WKInterfaceScrollPosition {
     #[doc(alias = "WKInterfaceScrollPositionTop")]
@@ -188,7 +188,7 @@ unsafe impl RefEncode for WKInterfaceScrollPosition {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkvideogravity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKVideoGravity(pub NSInteger);
 impl WKVideoGravity {
     #[doc(alias = "WKVideoGravityResizeAspect")]
@@ -210,7 +210,7 @@ unsafe impl RefEncode for WKVideoGravity {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkaudiorecorderpreset?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKAudioRecorderPreset(pub NSInteger);
 impl WKAudioRecorderPreset {
     #[doc(alias = "WKAudioRecorderPresetNarrowBandSpeech")]

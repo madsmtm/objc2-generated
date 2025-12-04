@@ -11,7 +11,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "No longer supported"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKVoiceChatPlayerState(pub NSInteger);
 impl GKVoiceChatPlayerState {
     #[doc(alias = "GKVoiceChatPlayerConnected")]

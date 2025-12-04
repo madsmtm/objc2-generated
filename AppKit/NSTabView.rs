@@ -14,7 +14,7 @@ pub static NSAppKitVersionNumberWithDirectionalTabs: NSAppKitVersion = 631.0 as 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTabViewType(pub NSUInteger);
 impl NSTabViewType {
     #[doc(alias = "NSTopTabsBezelBorder")]
@@ -44,7 +44,7 @@ unsafe impl RefEncode for NSTabViewType {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTabPosition(pub NSUInteger);
 impl NSTabPosition {
     #[doc(alias = "NSTabPositionNone")]
@@ -70,7 +70,7 @@ unsafe impl RefEncode for NSTabPosition {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewbordertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTabViewBorderType(pub NSUInteger);
 impl NSTabViewBorderType {
     #[doc(alias = "NSTabViewBorderTypeNone")]

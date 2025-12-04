@@ -170,7 +170,7 @@ impl AVCaptureInputPort {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemultichannelaudiomode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureMultichannelAudioMode(pub NSInteger);
 impl AVCaptureMultichannelAudioMode {
     #[doc(alias = "AVCaptureMultichannelAudioModeNone")]

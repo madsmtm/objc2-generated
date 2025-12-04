@@ -193,7 +193,7 @@ pub static NSOtherMouseDragged: NSEventType = NSEventType(NSEventType::OtherMous
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventMask(pub c_ulonglong);
 bitflags::bitflags! {
     impl NSEventMask: c_ulonglong {
@@ -381,7 +381,7 @@ impl NSEventMask {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventmodifierflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventModifierFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEventModifierFlags: NSUInteger {
@@ -461,7 +461,7 @@ pub static NSDeviceIndependentModifierFlagsMask: NSEventModifierFlags =
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspointingdevicetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPointingDeviceType(pub NSUInteger);
 impl NSPointingDeviceType {
     #[doc(alias = "NSPointingDeviceTypeUnknown")]
@@ -505,7 +505,7 @@ pub static NSEraserPointingDevice: NSPointingDeviceType =
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventbuttonmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventButtonMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEventButtonMask: NSUInteger {
@@ -543,7 +543,7 @@ pub static NSPenUpperSideMask: NSEventButtonMask =
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventphase?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventPhase(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEventPhase: NSUInteger {
@@ -575,7 +575,7 @@ unsafe impl RefEncode for NSEventPhase {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventgestureaxis?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventGestureAxis(pub NSInteger);
 impl NSEventGestureAxis {
     #[doc(alias = "NSEventGestureAxisNone")]
@@ -597,7 +597,7 @@ unsafe impl RefEncode for NSEventGestureAxis {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventswipetrackingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventSwipeTrackingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSEventSwipeTrackingOptions: NSUInteger {
@@ -619,7 +619,7 @@ unsafe impl RefEncode for NSEventSwipeTrackingOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventsubtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSEventSubtype(pub c_short);
 impl NSEventSubtype {
     #[doc(alias = "NSEventSubtypeWindowExposed")]
@@ -705,7 +705,7 @@ pub static NSTouchEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtype::
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspressurebehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPressureBehavior(pub NSInteger);
 impl NSPressureBehavior {
     #[doc(alias = "NSPressureBehaviorUnknown")]

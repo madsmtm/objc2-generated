@@ -46,7 +46,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnfillmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNFillMode(pub NSUInteger);
 impl SCNFillMode {
     #[doc(alias = "SCNFillModeFill")]
@@ -66,7 +66,7 @@ unsafe impl RefEncode for SCNFillMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scncullmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNCullMode(pub NSInteger);
 impl SCNCullMode {
     #[doc(alias = "SCNCullModeBack")]
@@ -86,7 +86,7 @@ unsafe impl RefEncode for SCNCullMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scntransparencymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNTransparencyMode(pub NSInteger);
 impl SCNTransparencyMode {
     #[doc(alias = "SCNTransparencyModeAOne")]
@@ -114,7 +114,7 @@ unsafe impl RefEncode for SCNTransparencyMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnblendmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNBlendMode(pub NSInteger);
 impl SCNBlendMode {
     #[doc(alias = "SCNBlendModeAlpha")]

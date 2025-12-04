@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdateformatterstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDateFormatterStyle(pub NSUInteger);
 impl NSDateFormatterStyle {
     #[doc(alias = "NSDateFormatterNoStyle")]
@@ -35,7 +35,7 @@ unsafe impl RefEncode for NSDateFormatterStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdateformatterbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDateFormatterBehavior(pub NSUInteger);
 impl NSDateFormatterBehavior {
     #[doc(alias = "NSDateFormatterBehaviorDefault")]

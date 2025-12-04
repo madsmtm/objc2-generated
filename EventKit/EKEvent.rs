@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventavailability?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKEventAvailability(pub NSInteger);
 impl EKEventAvailability {
     #[doc(alias = "EKEventAvailabilityNotSupported")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for EKEventAvailability {
 /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EKEventStatus(pub NSInteger);
 impl EKEventStatus {
     #[doc(alias = "EKEventStatusNone")]

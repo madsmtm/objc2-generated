@@ -14,7 +14,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevicestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVExternalSyncDeviceStatus(pub NSInteger);
 impl AVExternalSyncDeviceStatus {
     /// Indicates that external sync signal is not connected, or has transitioned to a state that is not recoverable.

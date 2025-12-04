@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayinginfomediatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPNowPlayingInfoMediaType(pub NSUInteger);
 impl MPNowPlayingInfoMediaType {
     #[doc(alias = "MPNowPlayingInfoMediaTypeNone")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for MPNowPlayingInfoMediaType {
 /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpnowplayingplaybackstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPNowPlayingPlaybackState(pub NSUInteger);
 impl MPNowPlayingPlaybackState {
     #[doc(alias = "MPNowPlayingPlaybackStateUnknown")]

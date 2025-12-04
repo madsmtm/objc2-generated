@@ -14,7 +14,7 @@ pub const GCDualSenseAdaptiveTriggerDiscretePositionCount: c_uint = 10;
 /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GCDualSenseAdaptiveTriggerMode(pub NSInteger);
 impl GCDualSenseAdaptiveTriggerMode {
     /// The adaptive trigger effect is disabled.
@@ -45,7 +45,7 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggerstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GCDualSenseAdaptiveTriggerStatus(pub NSInteger);
 impl GCDualSenseAdaptiveTriggerStatus {
     /// The adaptive trigger status cannot be determined.

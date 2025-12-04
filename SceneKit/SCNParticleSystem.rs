@@ -167,7 +167,7 @@ pub type SCNParticleModifierBlock = *mut block2::DynBlock<
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesortingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleSortingMode(pub NSInteger);
 impl SCNParticleSortingMode {
     #[doc(alias = "SCNParticleSortingModeNone")]
@@ -193,7 +193,7 @@ unsafe impl RefEncode for SCNParticleSortingMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleblendmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleBlendMode(pub NSInteger);
 impl SCNParticleBlendMode {
     #[doc(alias = "SCNParticleBlendModeAdditive")]
@@ -221,7 +221,7 @@ unsafe impl RefEncode for SCNParticleBlendMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleorientationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleOrientationMode(pub NSInteger);
 impl SCNParticleOrientationMode {
     #[doc(alias = "SCNParticleOrientationModeBillboardScreenAligned")]
@@ -245,7 +245,7 @@ unsafe impl RefEncode for SCNParticleOrientationMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthlocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleBirthLocation(pub NSInteger);
 impl SCNParticleBirthLocation {
     #[doc(alias = "SCNParticleBirthLocationSurface")]
@@ -267,7 +267,7 @@ unsafe impl RefEncode for SCNParticleBirthLocation {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlebirthdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleBirthDirection(pub NSInteger);
 impl SCNParticleBirthDirection {
     #[doc(alias = "SCNParticleBirthDirectionConstant")]
@@ -289,7 +289,7 @@ unsafe impl RefEncode for SCNParticleBirthDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleimagesequenceanimationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleImageSequenceAnimationMode(pub NSInteger);
 impl SCNParticleImageSequenceAnimationMode {
     #[doc(alias = "SCNParticleImageSequenceAnimationModeRepeat")]
@@ -311,7 +311,7 @@ unsafe impl RefEncode for SCNParticleImageSequenceAnimationMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleinputmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleInputMode(pub NSInteger);
 impl SCNParticleInputMode {
     #[doc(alias = "SCNParticleInputModeOverLife")]
@@ -333,7 +333,7 @@ unsafe impl RefEncode for SCNParticleInputMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlemodifierstage?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleModifierStage(pub NSInteger);
 impl SCNParticleModifierStage {
     #[doc(alias = "SCNParticleModifierStagePreDynamics")]
@@ -357,7 +357,7 @@ unsafe impl RefEncode for SCNParticleModifierStage {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNParticleEvent(pub NSInteger);
 impl SCNParticleEvent {
     #[doc(alias = "SCNParticleEventBirth")]

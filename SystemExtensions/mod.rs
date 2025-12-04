@@ -116,7 +116,7 @@ unsafe impl RefEncode for OSSystemExtensionErrorCode {
 /// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionreplacementaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSSystemExtensionReplacementAction(pub NSInteger);
 impl OSSystemExtensionReplacementAction {
     /// Returned by the delegate when it determines that replacing an existing
@@ -142,7 +142,7 @@ unsafe impl RefEncode for OSSystemExtensionReplacementAction {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequestresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSSystemExtensionRequestResult(pub NSInteger);
 impl OSSystemExtensionRequestResult {
     /// The request was successfully completed.

@@ -143,7 +143,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioquality?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioQuality(pub NSInteger);
 impl AVAudioQuality {
     #[doc(alias = "AVAudioQualityMin")]
@@ -169,7 +169,7 @@ unsafe impl RefEncode for AVAudioQuality {
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiodynamicrangecontrolconfiguration?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioDynamicRangeControlConfiguration(pub NSInteger);
 impl AVAudioDynamicRangeControlConfiguration {
     #[doc(alias = "AVAudioDynamicRangeControlConfiguration_None")]
@@ -195,7 +195,7 @@ unsafe impl RefEncode for AVAudioDynamicRangeControlConfiguration {
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiocontentsource?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioContentSource(pub NSInteger);
 impl AVAudioContentSource {
     #[doc(alias = "AVAudioContentSource_Unspecified")]

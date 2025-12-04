@@ -149,7 +149,7 @@ pub type IOBluetoothDeviceSearchOptions = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothdevicesearchoptionsbits?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothDeviceSearchOptionsBits(pub c_uint);
 impl IOBluetoothDeviceSearchOptionsBits {
     #[doc(alias = "kSearchOptionsNone")]
@@ -291,7 +291,7 @@ extern "C-unwind" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothusernotificationchanneldirection?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothUserNotificationChannelDirection(pub c_uint);
 impl IOBluetoothUserNotificationChannelDirection {
     #[doc(alias = "kIOBluetoothUserNotificationChannelDirectionAny")]

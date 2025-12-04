@@ -10,7 +10,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVImageType(pub NSInteger);
 impl TVImageType {
     #[doc(alias = "TVImageTypeImage")]

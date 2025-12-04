@@ -8,7 +8,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "This enum is no longer used"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INNoteContentType(pub NSInteger);
 impl INNoteContentType {
     #[doc(alias = "INNoteContentTypeUnknown")]

@@ -20,7 +20,7 @@ pub type UIConfigurationTextAttributesTransformer = *mut block2::DynBlock<
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationsize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonConfigurationSize(pub NSInteger);
 impl UIButtonConfigurationSize {
     #[doc(alias = "UIButtonConfigurationSizeMedium")]
@@ -44,7 +44,7 @@ unsafe impl RefEncode for UIButtonConfigurationSize {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationtitlealignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonConfigurationTitleAlignment(pub NSInteger);
 impl UIButtonConfigurationTitleAlignment {
     /// Align title
@@ -80,7 +80,7 @@ unsafe impl RefEncode for UIButtonConfigurationTitleAlignment {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationcornerstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonConfigurationCornerStyle(pub NSInteger);
 impl UIButtonConfigurationCornerStyle {
     /// The corner radius provided by the background style will be used as is, without adjusting for dynamic type
@@ -114,7 +114,7 @@ unsafe impl RefEncode for UIButtonConfigurationCornerStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationmacidiomstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonConfigurationMacIdiomStyle(pub NSInteger);
 impl UIButtonConfigurationMacIdiomStyle {
     /// Automatically select the style to use
@@ -142,7 +142,7 @@ unsafe impl RefEncode for UIButtonConfigurationMacIdiomStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationindicator?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonConfigurationIndicator(pub NSInteger);
 impl UIButtonConfigurationIndicator {
     /// Automatically determine an indicator based on the button's properties.

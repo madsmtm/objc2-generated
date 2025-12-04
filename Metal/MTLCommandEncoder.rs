@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlresourceusage?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLResourceUsage(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLResourceUsage: NSUInteger {
@@ -39,7 +39,7 @@ unsafe impl RefEncode for MTLResourceUsage {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbarrierscope?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBarrierScope(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLBarrierScope: NSUInteger {
@@ -72,7 +72,7 @@ unsafe impl RefEncode for MTLBarrierScope {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstages?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStages(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLStages: NSUInteger {

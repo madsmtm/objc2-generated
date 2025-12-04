@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdisplaymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerDisplayMode(pub NSInteger);
 impl UISplitViewControllerDisplayMode {
     #[doc(alias = "UISplitViewControllerDisplayModeAutomatic")]
@@ -51,7 +51,7 @@ unsafe impl RefEncode for UISplitViewControllerDisplayMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerprimaryedge?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerPrimaryEdge(pub NSInteger);
 impl UISplitViewControllerPrimaryEdge {
     #[doc(alias = "UISplitViewControllerPrimaryEdgeLeading")]
@@ -71,7 +71,7 @@ unsafe impl RefEncode for UISplitViewControllerPrimaryEdge {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerbackgroundstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerBackgroundStyle(pub NSInteger);
 impl UISplitViewControllerBackgroundStyle {
     #[doc(alias = "UISplitViewControllerBackgroundStyleNone")]
@@ -91,7 +91,7 @@ unsafe impl RefEncode for UISplitViewControllerBackgroundStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerStyle(pub NSInteger);
 impl UISplitViewControllerStyle {
     #[doc(alias = "UISplitViewControllerStyleUnspecified")]
@@ -114,7 +114,7 @@ unsafe impl RefEncode for UISplitViewControllerStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontrollercolumn?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerColumn(pub NSInteger);
 impl UISplitViewControllerColumn {
     #[doc(alias = "UISplitViewControllerColumnPrimary")]
@@ -140,7 +140,7 @@ unsafe impl RefEncode for UISplitViewControllerColumn {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontrollersplitbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerSplitBehavior(pub NSInteger);
 impl UISplitViewControllerSplitBehavior {
     #[doc(alias = "UISplitViewControllerSplitBehaviorAutomatic")]
@@ -164,7 +164,7 @@ unsafe impl RefEncode for UISplitViewControllerSplitBehavior {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerdisplaymodebuttonvisibility?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISplitViewControllerDisplayModeButtonVisibility(pub NSInteger);
 impl UISplitViewControllerDisplayModeButtonVisibility {
     #[doc(alias = "UISplitViewControllerDisplayModeButtonVisibilityAutomatic")]

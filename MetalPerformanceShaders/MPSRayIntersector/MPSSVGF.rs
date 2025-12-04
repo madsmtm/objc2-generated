@@ -13,7 +13,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpstemporalweighting?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSTemporalWeighting(pub NSUInteger);
 impl MPSTemporalWeighting {
     /// Compute an average of all samples. This will fully utilize all samples but may lead

@@ -30,7 +30,7 @@ pub type CALayerCornerCurve = NSString;
 /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caautoresizingmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CAAutoresizingMask(pub c_uint);
 bitflags::bitflags! {
     impl CAAutoresizingMask: c_uint {
@@ -105,7 +105,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caedgeantialiasingmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CAEdgeAntialiasingMask(pub c_uint);
 bitflags::bitflags! {
     impl CAEdgeAntialiasingMask: c_uint {
@@ -131,7 +131,7 @@ unsafe impl RefEncode for CAEdgeAntialiasingMask {
 /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cacornermask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CACornerMask(pub NSUInteger);
 bitflags::bitflags! {
     impl CACornerMask: NSUInteger {

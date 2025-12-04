@@ -31,7 +31,7 @@ pub type CNDetectionGroupID = i64;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetectiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNDetectionType(pub NSInteger);
 impl CNDetectionType {
     #[doc(alias = "CNDetectionTypeUnknown")]

@@ -18,7 +18,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerminmagfilter?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerMinMagFilter(pub NSUInteger);
 impl MTLSamplerMinMagFilter {
     #[doc(alias = "MTLSamplerMinMagFilterNearest")]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for MTLSamplerMinMagFilter {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplermipfilter?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerMipFilter(pub NSUInteger);
 impl MTLSamplerMipFilter {
     #[doc(alias = "MTLSamplerMipFilterNotMipmapped")]
@@ -82,7 +82,7 @@ unsafe impl RefEncode for MTLSamplerMipFilter {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleraddressmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerAddressMode(pub NSUInteger);
 impl MTLSamplerAddressMode {
     #[doc(alias = "MTLSamplerAddressModeClampToEdge")]
@@ -121,7 +121,7 @@ unsafe impl RefEncode for MTLSamplerAddressMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerbordercolor?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerBorderColor(pub NSUInteger);
 impl MTLSamplerBorderColor {
     #[doc(alias = "MTLSamplerBorderColorTransparentBlack")]
@@ -145,7 +145,7 @@ unsafe impl RefEncode for MTLSamplerBorderColor {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsamplerreductionmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLSamplerReductionMode(pub NSUInteger);
 impl MTLSamplerReductionMode {
     /// A reduction mode that adds together the product of each contributing sample value by its weight.

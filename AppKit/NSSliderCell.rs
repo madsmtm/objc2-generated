@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstickmarkposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTickMarkPosition(pub NSUInteger);
 impl NSTickMarkPosition {
     #[doc(alias = "NSTickMarkPositionBelow")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for NSTickMarkPosition {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslidertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSliderType(pub NSUInteger);
 impl NSSliderType {
     #[doc(alias = "NSSliderTypeLinear")]

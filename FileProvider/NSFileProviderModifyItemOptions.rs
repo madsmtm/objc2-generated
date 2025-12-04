@@ -9,7 +9,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermodifyitemoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderModifyItemOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderModifyItemOptions: NSUInteger {

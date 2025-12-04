@@ -9,7 +9,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalue?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKCategoryValue(pub NSInteger);
 impl HKCategoryValue {
     #[doc(alias = "HKCategoryValueNotApplicable")]
@@ -29,7 +29,7 @@ unsafe impl RefEncode for HKCategoryValue {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueappetitechanges?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKCategoryValueAppetiteChanges(pub NSInteger);
 impl HKCategoryValueAppetiteChanges {
     #[doc(alias = "HKCategoryValueAppetiteChangesUnspecified")]
@@ -61,7 +61,7 @@ unsafe impl RefEncode for HKCategoryValueAppetiteChanges {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueapplestandhour?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKCategoryValueAppleStandHour(pub NSInteger);
 impl HKCategoryValueAppleStandHour {
     #[doc(alias = "HKCategoryValueAppleStandHourStood")]
@@ -357,7 +357,7 @@ unsafe impl RefEncode for HKCategoryValuePregnancyTestResult {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluepresence?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKCategoryValuePresence(pub NSInteger);
 impl HKCategoryValuePresence {
     #[doc(alias = "HKCategoryValuePresencePresent")]
@@ -407,7 +407,7 @@ unsafe impl RefEncode for HKCategoryValueProgesteroneTestResult {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvalueseverity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKCategoryValueSeverity(pub NSInteger);
 impl HKCategoryValueSeverity {
     #[doc(alias = "HKCategoryValueSeverityUnspecified")]
@@ -444,7 +444,7 @@ unsafe impl RefEncode for HKCategoryValueSeverity {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategoryvaluesleepanalysis?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKCategoryValueSleepAnalysis(pub NSInteger);
 impl HKCategoryValueSleepAnalysis {
     #[doc(alias = "HKCategoryValueSleepAnalysisInBed")]

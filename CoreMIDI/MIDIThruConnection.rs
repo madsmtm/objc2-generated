@@ -59,7 +59,7 @@ unsafe impl RefEncode for MIDIValueMap {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDITransformType(pub u16);
 impl MIDITransformType {
     #[doc(alias = "kMIDITransform_None")]
@@ -105,7 +105,7 @@ pub const kMIDIThruConnection_MaxEndpoints: c_uint = 8;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransformcontroltype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDITransformControlType(pub u8);
 impl MIDITransformControlType {
     #[doc(alias = "kMIDIControlType_7Bit")]

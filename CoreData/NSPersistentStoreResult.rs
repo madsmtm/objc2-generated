@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchinsertrequestresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBatchInsertRequestResultType(pub NSUInteger);
 impl NSBatchInsertRequestResultType {
     #[doc(alias = "NSBatchInsertRequestResultTypeStatusOnly")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for NSBatchInsertRequestResultType {
 /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchupdaterequestresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBatchUpdateRequestResultType(pub NSUInteger);
 impl NSBatchUpdateRequestResultType {
     #[doc(alias = "NSStatusOnlyResultType")]
@@ -54,7 +54,7 @@ unsafe impl RefEncode for NSBatchUpdateRequestResultType {
 /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsbatchdeleterequestresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBatchDeleteRequestResultType(pub NSUInteger);
 impl NSBatchDeleteRequestResultType {
     #[doc(alias = "NSBatchDeleteResultTypeStatusOnly")]
@@ -76,7 +76,7 @@ unsafe impl RefEncode for NSBatchDeleteRequestResultType {
 /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistenthistoryresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersistentHistoryResultType(pub NSInteger);
 impl NSPersistentHistoryResultType {
     #[doc(alias = "NSPersistentHistoryResultTypeStatusOnly")]
@@ -380,7 +380,7 @@ impl NSPersistentHistoryResult {
 /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainereventresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersistentCloudKitContainerEventResultType(pub NSInteger);
 impl NSPersistentCloudKitContainerEventResultType {
     #[doc(alias = "NSPersistentCloudKitContainerEventResultTypeEvents")]

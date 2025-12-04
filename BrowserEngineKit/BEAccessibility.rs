@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitypressedstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BEAccessibilityPressedState(pub NSInteger);
 impl BEAccessibilityPressedState {
     #[doc(alias = "BEAccessibilityPressedStateUndefined")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for BEAccessibilityPressedState {
 /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitycontainertype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BEAccessibilityContainerType(pub NSUInteger);
 bitflags::bitflags! {
     impl BEAccessibilityContainerType: NSUInteger {

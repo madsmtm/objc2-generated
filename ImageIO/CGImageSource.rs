@@ -31,7 +31,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagesourcestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageSourceStatus(pub i32);
 impl CGImageSourceStatus {
     #[doc(alias = "kCGImageStatusUnexpectedEOF")]

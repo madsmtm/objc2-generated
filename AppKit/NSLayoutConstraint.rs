@@ -37,7 +37,7 @@ pub static NSLayoutPriorityFittingSizeCompression: NSLayoutPriority = 50 as _;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutconstraintorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLayoutConstraintOrientation(pub NSInteger);
 impl NSLayoutConstraintOrientation {
     #[doc(alias = "NSLayoutConstraintOrientationHorizontal")]
@@ -57,7 +57,7 @@ unsafe impl RefEncode for NSLayoutConstraintOrientation {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutrelation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLayoutRelation(pub NSInteger);
 impl NSLayoutRelation {
     #[doc(alias = "NSLayoutRelationLessThanOrEqual")]
@@ -79,7 +79,7 @@ unsafe impl RefEncode for NSLayoutRelation {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutattribute?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLayoutAttribute(pub NSInteger);
 impl NSLayoutAttribute {
     #[doc(alias = "NSLayoutAttributeLeft")]
@@ -123,7 +123,7 @@ unsafe impl RefEncode for NSLayoutAttribute {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutformatoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLayoutFormatOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLayoutFormatOptions: NSUInteger {

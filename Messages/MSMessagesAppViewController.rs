@@ -16,7 +16,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapppresentationstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MSMessagesAppPresentationStyle(pub NSUInteger);
 impl MSMessagesAppPresentationStyle {
     #[doc(alias = "MSMessagesAppPresentationStyleCompact")]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for MSMessagesAppPresentationStyle {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/messages/msmessagesapppresentationcontext?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MSMessagesAppPresentationContext(pub NSUInteger);
 impl MSMessagesAppPresentationContext {
     #[doc(alias = "MSMessagesAppPresentationContextMessages")]

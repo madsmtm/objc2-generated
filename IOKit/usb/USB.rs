@@ -1424,7 +1424,7 @@ pub const kUSBLowLatencyIsochTransferKey: c_uint = 0x6c6c6974;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/usblowlatencybuffertype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct USBLowLatencyBufferType(pub c_uint);
 impl USBLowLatencyBufferType {
     #[doc(alias = "kUSBLowLatencyWriteBuffer")]
@@ -1517,7 +1517,7 @@ unsafe impl RefEncode for USBReEnumerateOptions {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/usbdeviceinformationbits?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct USBDeviceInformationBits(pub c_uint);
 impl USBDeviceInformationBits {
     #[doc(alias = "kUSBInformationDeviceIsCaptiveBit")]
@@ -1611,7 +1611,7 @@ unsafe impl RefEncode for USBDeviceInformationBits {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/usbpowerrequesttypes?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct USBPowerRequestTypes(pub c_uint);
 impl USBPowerRequestTypes {
     #[doc(alias = "kUSBPowerDuringSleep")]
@@ -1680,7 +1680,7 @@ unsafe impl RefEncode for USBNotificationTypes {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbconnectable?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct kUSBConnectable(pub c_uint);
 impl kUSBConnectable {
     #[doc(alias = "kUSBPortNotConnectable")]
@@ -1701,7 +1701,7 @@ unsafe impl RefEncode for kUSBConnectable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostconnectortype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct kUSBHostConnectorType(pub c_uint);
 impl kUSBHostConnectorType {
     #[doc(alias = "kUSBTypeAConnector")]

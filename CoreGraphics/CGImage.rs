@@ -29,7 +29,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagealphainfo?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageAlphaInfo(pub u32);
 impl CGImageAlphaInfo {
     #[doc(alias = "kCGImageAlphaNone")]
@@ -63,7 +63,7 @@ unsafe impl RefEncode for CGImageAlphaInfo {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagecomponentinfo?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageComponentInfo(pub u32);
 impl CGImageComponentInfo {
     #[doc(alias = "kCGImageComponentInteger")]
@@ -85,7 +85,7 @@ unsafe impl RefEncode for CGImageComponentInfo {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagebyteorderinfo?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageByteOrderInfo(pub u32);
 impl CGImageByteOrderInfo {
     #[doc(alias = "kCGImageByteOrderMask")]
@@ -116,7 +116,7 @@ unsafe impl RefEncode for CGImageByteOrderInfo {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgimagepixelformatinfo?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImagePixelFormatInfo(pub u32);
 impl CGImagePixelFormatInfo {
     #[doc(alias = "kCGImagePixelFormatMask")]
@@ -147,7 +147,7 @@ unsafe impl RefEncode for CGImagePixelFormatInfo {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapinfo?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGBitmapInfo(pub u32);
 bitflags::bitflags! {
     impl CGBitmapInfo: u32 {

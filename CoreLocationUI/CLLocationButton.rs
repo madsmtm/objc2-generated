@@ -19,7 +19,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonicon?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLLocationButtonIcon(pub NSInteger);
 impl CLLocationButtonIcon {
     /// A style that doesn't display an icon.
@@ -48,7 +48,7 @@ unsafe impl RefEncode for CLLocationButtonIcon {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corelocationui/cllocationbuttonlabel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLLocationButtonLabel(pub NSInteger);
 impl CLLocationButtonLabel {
     /// A style that doesn’t display a text label.

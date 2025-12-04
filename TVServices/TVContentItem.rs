@@ -19,7 +19,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimagetrait?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVContentItemImageTrait(pub NSUInteger);
 bitflags::bitflags! {
     impl TVContentItemImageTrait: NSUInteger {
@@ -47,7 +47,7 @@ unsafe impl RefEncode for TVContentItemImageTrait {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvcontentitemimageshape?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVContentItemImageShape(pub NSInteger);
 impl TVContentItemImageShape {
     #[doc(alias = "TVContentItemImageShapeNone")]

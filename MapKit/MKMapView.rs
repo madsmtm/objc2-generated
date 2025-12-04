@@ -17,7 +17,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkoverlaylevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKOverlayLevel(pub NSInteger);
 impl MKOverlayLevel {
     #[doc(alias = "MKOverlayLevelAboveRoads")]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for MKOverlayLevel {
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkusertrackingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKUserTrackingMode(pub NSInteger);
 impl MKUserTrackingMode {
     #[doc(alias = "MKUserTrackingModeNone")]

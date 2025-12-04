@@ -13,7 +13,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardtimescope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKLeaderboardTimeScope(pub NSInteger);
 impl GKLeaderboardTimeScope {
     #[doc(alias = "GKLeaderboardTimeScopeToday")]
@@ -35,7 +35,7 @@ unsafe impl RefEncode for GKLeaderboardTimeScope {
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardplayerscope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKLeaderboardPlayerScope(pub NSInteger);
 impl GKLeaderboardPlayerScope {
     #[doc(alias = "GKLeaderboardPlayerScopeGlobal")]
@@ -55,7 +55,7 @@ unsafe impl RefEncode for GKLeaderboardPlayerScope {
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKLeaderboardType(pub NSInteger);
 impl GKLeaderboardType {
     #[doc(alias = "GKLeaderboardTypeClassic")]

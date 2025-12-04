@@ -300,7 +300,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestyle?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTUnderlineStyle(pub i32);
 bitflags::bitflags! {
     impl CTUnderlineStyle: i32 {
@@ -335,7 +335,7 @@ unsafe impl RefEncode for CTUnderlineStyle {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctunderlinestylemodifiers?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTUnderlineStyleModifiers(pub i32);
 bitflags::bitflags! {
     impl CTUnderlineStyleModifiers: i32 {

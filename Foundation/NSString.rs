@@ -14,7 +14,7 @@ pub type unichar = c_ushort;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringcompareoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStringCompareOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStringCompareOptions: NSUInteger {
@@ -100,7 +100,7 @@ pub const NSUTF32LittleEndianStringEncoding: NSStringEncoding = 0x9c000100;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringencodingconversionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStringEncodingConversionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStringEncodingConversionOptions: NSUInteger {
@@ -222,7 +222,7 @@ impl DefaultRetained for NSString {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstringenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStringEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStringEnumerationOptions: NSUInteger {

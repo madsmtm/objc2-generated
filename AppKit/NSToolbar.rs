@@ -33,7 +33,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbardisplaymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSToolbarDisplayMode(pub NSUInteger);
 impl NSToolbarDisplayMode {
     #[doc(alias = "NSToolbarDisplayModeDefault")]
@@ -58,7 +58,7 @@ unsafe impl RefEncode for NSToolbarDisplayMode {
 // NS_ENUM
 #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSToolbarSizeMode(pub NSUInteger);
 impl NSToolbarSizeMode {
     #[doc(alias = "NSToolbarSizeModeDefault")]

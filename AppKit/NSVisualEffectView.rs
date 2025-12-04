@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectmaterial?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSVisualEffectMaterial(pub NSInteger);
 impl NSVisualEffectMaterial {
     /// The material used by window titlebars.
@@ -90,7 +90,7 @@ unsafe impl RefEncode for NSVisualEffectMaterial {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectblendingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSVisualEffectBlendingMode(pub NSInteger);
 impl NSVisualEffectBlendingMode {
     /// Blend with the area behind the window (such as the Desktop or other windows).
@@ -112,7 +112,7 @@ unsafe impl RefEncode for NSVisualEffectBlendingMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSVisualEffectState(pub NSInteger);
 impl NSVisualEffectState {
     /// Use the active look only when the containing window is active.

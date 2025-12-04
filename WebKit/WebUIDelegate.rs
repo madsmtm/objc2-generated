@@ -112,7 +112,7 @@ pub const WebMenuItemPDFPreviousPage: c_uint = 32;
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WebDragDestinationAction(pub NSUInteger);
 bitflags::bitflags! {
     impl WebDragDestinationAction: NSUInteger {
@@ -148,7 +148,7 @@ unsafe impl RefEncode for WebDragDestinationAction {
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WebDragSourceAction(pub NSUInteger);
 bitflags::bitflags! {
     impl WebDragSourceAction: NSUInteger {

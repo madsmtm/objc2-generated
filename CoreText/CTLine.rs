@@ -65,7 +65,7 @@ cf_objc2_type!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlineboundsoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTLineBoundsOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CTLineBoundsOptions: CFOptionFlags {
@@ -113,7 +113,7 @@ unsafe impl RefEncode for CTLineBoundsOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctlinetruncationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTLineTruncationType(pub u32);
 impl CTLineTruncationType {
     #[doc(alias = "kCTLineTruncationStart")]

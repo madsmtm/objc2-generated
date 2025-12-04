@@ -98,7 +98,7 @@ impl UIMotionEffect {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterpolatingmotioneffecttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIInterpolatingMotionEffectType(pub NSInteger);
 impl UIInterpolatingMotionEffectType {
     /// Tracks the device being tilted left/right relative to the viewer. The minimum

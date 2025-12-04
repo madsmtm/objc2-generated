@@ -210,7 +210,7 @@ impl DefaultRetained for NSProcessInfo {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsactivityoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSActivityOptions(pub u64);
 bitflags::bitflags! {
     impl NSActivityOptions: u64 {
@@ -308,7 +308,7 @@ impl NSProcessInfo {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfothermalstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSProcessInfoThermalState(pub NSInteger);
 impl NSProcessInfoThermalState {
     #[doc(alias = "NSProcessInfoThermalStateNominal")]

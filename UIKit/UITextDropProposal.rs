@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextDropAction(pub NSUInteger);
 impl UITextDropAction {
     #[doc(alias = "UITextDropActionInsert")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for UITextDropAction {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropprogressmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextDropProgressMode(pub NSUInteger);
 impl UITextDropProgressMode {
     #[doc(alias = "UITextDropProgressModeSystem")]
@@ -52,7 +52,7 @@ unsafe impl RefEncode for UITextDropProgressMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextdropperformer?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextDropPerformer(pub NSUInteger);
 impl UITextDropPerformer {
     #[doc(alias = "UITextDropPerformerView")]

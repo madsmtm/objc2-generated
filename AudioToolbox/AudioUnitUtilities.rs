@@ -32,7 +32,7 @@ pub const kAUParameterListener_AnyParameter: AudioUnitParameterID = 0xFFFFFFFF;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiouniteventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioUnitEventType(pub u32);
 impl AudioUnitEventType {
     #[doc(alias = "kAudioUnitEvent_ParameterValueChange")]

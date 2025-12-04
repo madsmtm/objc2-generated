@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatepickermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDatePickerMode(pub NSInteger);
 impl UIDatePickerMode {
     /// Displays hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. 6 | 53 | PM)
@@ -46,7 +46,7 @@ unsafe impl RefEncode for UIDatePickerMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidatepickerstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDatePickerStyle(pub NSInteger);
 impl UIDatePickerStyle {
     /// Automatically pick the best style available for the current platform

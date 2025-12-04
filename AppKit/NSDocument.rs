@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocumentchangetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDocumentChangeType(pub NSUInteger);
 impl NSDocumentChangeType {
     #[doc(alias = "NSChangeDone")]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for NSDocumentChangeType {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssaveoperationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSaveOperationType(pub NSUInteger);
 impl NSSaveOperationType {
     #[doc(alias = "NSSaveOperation")]

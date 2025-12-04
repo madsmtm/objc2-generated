@@ -59,7 +59,7 @@ impl HKQuery {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkqueryoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKQueryOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl HKQueryOptions: NSUInteger {

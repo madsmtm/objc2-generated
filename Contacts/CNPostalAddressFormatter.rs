@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnpostaladdressformatterstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNPostalAddressFormatterStyle(pub NSInteger);
 impl CNPostalAddressFormatterStyle {
     /// Combine the postal address components into a multi-line mailing address.

@@ -15,7 +15,7 @@ pub type CFStringEncoding = u32;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringbuiltinencodings?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFStringBuiltInEncodings(pub CFStringEncoding);
 impl CFStringBuiltInEncodings {
     #[doc(alias = "kCFStringEncodingMacRoman")]
@@ -690,7 +690,7 @@ impl CFString {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringcompareflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFStringCompareFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFStringCompareFlags: CFOptionFlags {
@@ -1524,7 +1524,7 @@ impl CFMutableString {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstringnormalizationform?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFStringNormalizationForm(pub CFIndex);
 impl CFStringNormalizationForm {
     #[doc(alias = "kCFStringNormalizationFormD")]

@@ -76,7 +76,7 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingError {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioEngineManualRenderingStatus(pub NSInteger);
 impl AVAudioEngineManualRenderingStatus {
     #[doc(alias = "AVAudioEngineManualRenderingStatusError")]
@@ -113,7 +113,7 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioenginemanualrenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioEngineManualRenderingMode(pub NSInteger);
 impl AVAudioEngineManualRenderingMode {
     #[doc(alias = "AVAudioEngineManualRenderingModeOffline")]

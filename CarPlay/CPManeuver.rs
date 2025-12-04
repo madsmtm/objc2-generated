@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuvertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPManeuverType(pub NSUInteger);
 impl CPManeuverType {
     #[doc(alias = "CPManeuverTypeNoTurn")]
@@ -136,7 +136,7 @@ unsafe impl RefEncode for CPManeuverType {
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpjunctiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPJunctionType(pub NSUInteger);
 impl CPJunctionType {
     #[doc(alias = "CPJunctionTypeIntersection")]
@@ -156,7 +156,7 @@ unsafe impl RefEncode for CPJunctionType {
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptrafficside?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPTrafficSide(pub NSUInteger);
 impl CPTrafficSide {
     #[doc(alias = "CPTrafficSideRight")]
@@ -176,7 +176,7 @@ unsafe impl RefEncode for CPTrafficSide {
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPManeuverState(pub NSInteger);
 impl CPManeuverState {
     #[doc(alias = "CPManeuverStateContinue")]

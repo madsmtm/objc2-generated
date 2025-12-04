@@ -17,7 +17,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimageorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageOrientation(pub NSInteger);
 impl UIImageOrientation {
     #[doc(alias = "UIImageOrientationUp")]
@@ -64,7 +64,7 @@ unsafe impl RefEncode for UIImageResizingMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagerenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImageRenderingMode(pub NSInteger);
 impl UIImageRenderingMode {
     #[doc(alias = "UIImageRenderingModeAutomatic")]

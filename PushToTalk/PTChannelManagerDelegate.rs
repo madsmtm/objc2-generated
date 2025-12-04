@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneljoinreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTChannelJoinReason(pub NSInteger);
 impl PTChannelJoinReason {
     /// The app joined via a programmatic call to requestJoinChannelWithUUID:descriptor: while in the foreground
@@ -34,7 +34,7 @@ unsafe impl RefEncode for PTChannelJoinReason {
 /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelleavereason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTChannelLeaveReason(pub NSInteger);
 impl PTChannelLeaveReason {
     #[doc(alias = "PTChannelLeaveReasonUnknown")]
@@ -61,7 +61,7 @@ unsafe impl RefEncode for PTChannelLeaveReason {
 /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchanneltransmitrequestsource?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTChannelTransmitRequestSource(pub NSInteger);
 impl PTChannelTransmitRequestSource {
     #[doc(alias = "PTChannelTransmitRequestSourceUnknown")]

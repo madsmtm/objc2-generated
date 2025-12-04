@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoacoordinatestype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NIDLTDOACoordinatesType(pub NSInteger);
 impl NIDLTDOACoordinatesType {
     #[doc(alias = "NIDLTDOACoordinatesTypeGeodetic")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for NIDLTDOACoordinatesType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurementtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NIDLTDOAMeasurementType(pub NSInteger);
 impl NIDLTDOAMeasurementType {
     #[doc(alias = "NIDLTDOAMeasurementTypePoll")]

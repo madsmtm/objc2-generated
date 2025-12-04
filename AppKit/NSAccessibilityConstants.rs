@@ -590,7 +590,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannotationposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityAnnotationPosition(pub NSInteger);
 impl NSAccessibilityAnnotationPosition {
     #[doc(alias = "NSAccessibilityAnnotationPositionFullRange")]
@@ -736,7 +736,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityOrientation(pub NSInteger);
 impl NSAccessibilityOrientation {
     #[doc(alias = "NSAccessibilityOrientationUnknown")]
@@ -946,7 +946,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysortdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilitySortDirection(pub NSInteger);
 impl NSAccessibilitySortDirection {
     #[doc(alias = "NSAccessibilitySortDirectionUnknown")]
@@ -1106,7 +1106,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityRulerMarkerType(pub NSInteger);
 impl NSAccessibilityRulerMarkerType {
     #[doc(alias = "NSAccessibilityRulerMarkerTypeUnknown")]
@@ -1167,7 +1167,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunits?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAccessibilityUnits(pub NSInteger);
 impl NSAccessibilityUnits {
     #[doc(alias = "NSAccessibilityUnitsUnknown")]

@@ -47,7 +47,7 @@ pub const noPasteboardPromiseKeeperErr: c_int = -25136;
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardsyncflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PasteboardSyncFlags(pub OptionBits);
 bitflags::bitflags! {
     impl PasteboardSyncFlags: OptionBits {
@@ -71,7 +71,7 @@ unsafe impl RefEncode for PasteboardSyncFlags {
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardflavorflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PasteboardFlavorFlags(pub OptionBits);
 bitflags::bitflags! {
     impl PasteboardFlavorFlags: OptionBits {

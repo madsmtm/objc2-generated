@@ -18,7 +18,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewplaybackstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHLivePhotoViewPlaybackStyle(pub NSInteger);
 impl PHLivePhotoViewPlaybackStyle {
     #[doc(alias = "PHLivePhotoViewPlaybackStyleUndefined")]
@@ -44,7 +44,7 @@ unsafe impl Sync for PHLivePhotoViewPlaybackStyle {}
 /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phlivephotoviewcontentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHLivePhotoViewContentMode(pub NSInteger);
 impl PHLivePhotoViewContentMode {
     #[doc(alias = "PHLivePhotoViewContentModeAspectFit")]

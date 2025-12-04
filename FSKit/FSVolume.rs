@@ -42,7 +42,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdeactivateoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSDeactivateOptions(pub NSInteger);
 bitflags::bitflags! {
     impl FSDeactivateOptions: NSInteger {
@@ -254,7 +254,7 @@ impl FSDirectoryEntryPacker {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumecaseformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSVolumeCaseFormat(pub NSInteger);
 impl FSVolumeCaseFormat {
     /// The volume is case sensitive.
@@ -1329,7 +1329,7 @@ extern_protocol!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fssetxattrpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSSetXattrPolicy(pub NSUInteger);
 impl FSSetXattrPolicy {
     /// Set the value, regardless of previous state.
@@ -1448,7 +1448,7 @@ extern_protocol!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeopenmodes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSVolumeOpenModes(pub NSUInteger);
 bitflags::bitflags! {
     impl FSVolumeOpenModes: NSUInteger {
@@ -1603,7 +1603,7 @@ extern_protocol!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsaccessmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSAccessMask(pub NSUInteger);
 bitflags::bitflags! {
     impl FSAccessMask: NSUInteger {
@@ -1748,7 +1748,7 @@ extern_protocol!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fspreallocateflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSPreallocateFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl FSPreallocateFlags: NSUInteger {
@@ -1840,7 +1840,7 @@ extern_protocol!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemdeactivationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSItemDeactivationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl FSItemDeactivationOptions: NSUInteger {

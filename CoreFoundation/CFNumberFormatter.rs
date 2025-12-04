@@ -43,7 +43,7 @@ unsafe impl ConcreteType for CFNumberFormatter {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNumberFormatterStyle(pub CFIndex);
 impl CFNumberFormatterStyle {
     #[doc(alias = "kCFNumberFormatterNoStyle")]
@@ -207,7 +207,7 @@ impl CFNumberFormatter {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatteroptionflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNumberFormatterOptionFlags(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFNumberFormatterOptionFlags: CFOptionFlags {
@@ -524,7 +524,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterroundingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNumberFormatterRoundingMode(pub CFIndex);
 impl CFNumberFormatterRoundingMode {
     #[doc(alias = "kCFNumberFormatterRoundCeiling")]
@@ -556,7 +556,7 @@ unsafe impl RefEncode for CFNumberFormatterRoundingMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfnumberformatterpadposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNumberFormatterPadPosition(pub CFIndex);
 impl CFNumberFormatterPadPosition {
     #[doc(alias = "kCFNumberFormatterPadBeforePrefix")]

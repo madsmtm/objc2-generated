@@ -479,7 +479,7 @@ extern_protocol!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorratechangeoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVDelegatingPlaybackCoordinatorRateChangeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVDelegatingPlaybackCoordinatorRateChangeOptions: NSUInteger {
@@ -502,7 +502,7 @@ unsafe impl RefEncode for AVDelegatingPlaybackCoordinatorRateChangeOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVDelegatingPlaybackCoordinatorSeekOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVDelegatingPlaybackCoordinatorSeekOptions: NSUInteger {

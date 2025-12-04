@@ -14,7 +14,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiorenderingstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNSpatialAudioRenderingStyle(pub NSInteger);
 impl CNSpatialAudioRenderingStyle {
     /// Isolates the ambience and place it in a spatial stem. Isolates all voices and place them in a mono stem.
@@ -62,7 +62,7 @@ unsafe impl RefEncode for CNSpatialAudioRenderingStyle {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnspatialaudiocontenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNSpatialAudioContentType(pub NSInteger);
 impl CNSpatialAudioContentType {
     /// Export settings to generate an asset with stereo audio and effect burned in

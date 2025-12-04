@@ -7,7 +7,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/begesturetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BEGestureType(pub NSInteger);
 impl BEGestureType {
     #[doc(alias = "BEGestureTypeLoupe")]
@@ -43,7 +43,7 @@ unsafe impl RefEncode for BEGestureType {
 /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beselectiontouchphase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BESelectionTouchPhase(pub NSInteger);
 impl BESelectionTouchPhase {
     #[doc(alias = "BESelectionTouchPhaseStarted")]
@@ -71,7 +71,7 @@ unsafe impl RefEncode for BESelectionTouchPhase {
 /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beselectionflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BESelectionFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl BESelectionFlags: NSUInteger {

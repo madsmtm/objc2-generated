@@ -494,7 +494,7 @@ extern_protocol!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcpollingoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCPollingOption(pub NSInteger);
 bitflags::bitflags! {
     impl NFCPollingOption: NSInteger {
@@ -878,7 +878,7 @@ unsafe impl NSUserActivityCoreNFC for NSUserActivity {}
 /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693requestflag?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCISO15693RequestFlag(pub u8);
 bitflags::bitflags! {
     impl NFCISO15693RequestFlag: u8 {
@@ -925,7 +925,7 @@ pub type RequestFlag = NFCISO15693RequestFlag;
 /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfciso15693responseflag?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCISO15693ResponseFlag(pub u8);
 bitflags::bitflags! {
     impl NFCISO15693ResponseFlag: u8 {
@@ -2232,7 +2232,7 @@ extern_protocol!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingrequestcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCFeliCaPollingRequestCode(pub NSInteger);
 impl NFCFeliCaPollingRequestCode {
     #[doc(alias = "NFCFeliCaPollingRequestCodeNoRequest")]
@@ -2267,7 +2267,7 @@ pub type PollingRequestCode = NFCFeliCaPollingRequestCode;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcfelicapollingtimeslot?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCFeliCaPollingTimeSlot(pub NSInteger);
 impl NFCFeliCaPollingTimeSlot {
     #[doc(alias = "NFCFeliCaPollingTimeSlotMax1")]
@@ -2876,7 +2876,7 @@ extern_protocol!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctypenameformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCTypeNameFormat(pub u8);
 impl NFCTypeNameFormat {
     #[doc(alias = "NFCTypeNameFormatEmpty")]
@@ -3150,7 +3150,7 @@ impl NFCNDEFMessage {
 /// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NFCVASMode(pub NSInteger);
 impl NFCVASMode {
     #[doc(alias = "NFCVASModeURLOnly")]

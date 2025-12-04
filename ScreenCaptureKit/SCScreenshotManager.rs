@@ -18,7 +18,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotdisplayintent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCScreenshotDisplayIntent(pub NSInteger);
 impl SCScreenshotDisplayIntent {
     #[doc(alias = "SCScreenshotDisplayIntentCanonical")]
@@ -38,7 +38,7 @@ unsafe impl RefEncode for SCScreenshotDisplayIntent {
 /// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scscreenshotdynamicrange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCScreenshotDynamicRange(pub NSInteger);
 impl SCScreenshotDynamicRange {
     #[doc(alias = "SCScreenshotDynamicRangeSDR")]

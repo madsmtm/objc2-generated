@@ -108,7 +108,7 @@ unsafe impl RefEncode for CFRunLoopRunResult {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopactivity?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFRunLoopActivity(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFRunLoopActivity: CFOptionFlags {

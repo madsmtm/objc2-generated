@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellStyle(pub NSInteger);
 impl UITableViewCellStyle {
     #[doc(alias = "UITableViewCellStyleDefault")]
@@ -39,7 +39,7 @@ unsafe impl RefEncode for UITableViewCellStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellseparatorstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellSeparatorStyle(pub NSInteger);
 impl UITableViewCellSeparatorStyle {
     #[doc(alias = "UITableViewCellSeparatorStyleNone")]
@@ -62,7 +62,7 @@ unsafe impl RefEncode for UITableViewCellSeparatorStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellselectionstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellSelectionStyle(pub NSInteger);
 impl UITableViewCellSelectionStyle {
     #[doc(alias = "UITableViewCellSelectionStyleNone")]
@@ -86,7 +86,7 @@ unsafe impl RefEncode for UITableViewCellSelectionStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellfocusstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellFocusStyle(pub NSInteger);
 impl UITableViewCellFocusStyle {
     #[doc(alias = "UITableViewCellFocusStyleDefault")]
@@ -106,7 +106,7 @@ unsafe impl RefEncode for UITableViewCellFocusStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcelleditingstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellEditingStyle(pub NSInteger);
 impl UITableViewCellEditingStyle {
     #[doc(alias = "UITableViewCellEditingStyleNone")]
@@ -128,7 +128,7 @@ unsafe impl RefEncode for UITableViewCellEditingStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellaccessorytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellAccessoryType(pub NSInteger);
 impl UITableViewCellAccessoryType {
     #[doc(alias = "UITableViewCellAccessoryNone")]
@@ -154,7 +154,7 @@ unsafe impl RefEncode for UITableViewCellAccessoryType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellstatemask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellStateMask(pub NSUInteger);
 bitflags::bitflags! {
     impl UITableViewCellStateMask: NSUInteger {
@@ -178,7 +178,7 @@ unsafe impl RefEncode for UITableViewCellStateMask {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcelldragstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITableViewCellDragState(pub NSInteger);
 impl UITableViewCellDragState {
     #[doc(alias = "UITableViewCellDragStateNone")]

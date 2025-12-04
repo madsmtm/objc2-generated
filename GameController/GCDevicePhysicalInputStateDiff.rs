@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicephysicalinputelementchange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GCDevicePhysicalInputElementChange(pub NSInteger);
 impl GCDevicePhysicalInputElementChange {
     /// Indicates that a change could not be determined.  This is typically

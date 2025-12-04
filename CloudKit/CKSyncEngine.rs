@@ -762,7 +762,7 @@ impl CKSyncEngineSendChangesScope {
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginesyncreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEngineSyncReason(pub NSInteger);
 impl CKSyncEngineSyncReason {
     /// This sync was scheduled automatically by the sync engine.

@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageactionmessagecolor?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEMessageActionMessageColor(pub NSInteger);
 impl MEMessageActionMessageColor {
     #[doc(alias = "MEMessageActionMessageColorNone")]
@@ -41,7 +41,7 @@ unsafe impl RefEncode for MEMessageActionMessageColor {
 /// [Apple's documentation](https://developer.apple.com/documentation/mailkit/memessageactionflag?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MEMessageActionFlag(pub NSInteger);
 impl MEMessageActionFlag {
     #[doc(alias = "MEMessageActionFlagNone")]

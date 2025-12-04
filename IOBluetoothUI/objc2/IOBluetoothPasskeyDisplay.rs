@@ -12,7 +12,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetoothui/bluetoothkeyboardreturntype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothKeyboardReturnType(pub c_uint);
 impl BluetoothKeyboardReturnType {
     #[doc(alias = "kBluetoothKeyboardANSIReturn")]

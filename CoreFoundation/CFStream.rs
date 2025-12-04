@@ -36,7 +36,7 @@ pub type CFStreamPropertyKey = CFString;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreamstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFStreamStatus(pub CFIndex);
 impl CFStreamStatus {
     #[doc(alias = "kCFStreamStatusNotOpen")]
@@ -70,7 +70,7 @@ unsafe impl RefEncode for CFStreamStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreameventtype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFStreamEventType(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFStreamEventType: CFOptionFlags {

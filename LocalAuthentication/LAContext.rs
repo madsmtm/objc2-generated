@@ -117,7 +117,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/lacredentialtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct LACredentialType(pub NSInteger);
 impl LACredentialType {
     /// Password provided by application
@@ -154,7 +154,7 @@ unsafe impl RefEncode for LACredentialType {
 /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laaccesscontroloperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct LAAccessControlOperation(pub NSInteger);
 impl LAAccessControlOperation {
     /// Access control will be used for item creation.

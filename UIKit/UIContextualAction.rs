@@ -16,7 +16,7 @@ pub type UIContextualActionHandler = *mut block2::DynBlock<
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualactionstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContextualActionStyle(pub NSInteger);
 impl UIContextualActionStyle {
     #[doc(alias = "UIContextualActionStyleNormal")]

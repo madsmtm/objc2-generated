@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNAuthorizationStatus(pub NSInteger);
 impl UNAuthorizationStatus {
     #[doc(alias = "UNAuthorizationStatusNotDetermined")]
@@ -35,7 +35,7 @@ unsafe impl RefEncode for UNAuthorizationStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unshowpreviewssetting?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNShowPreviewsSetting(pub NSInteger);
 impl UNShowPreviewsSetting {
     #[doc(alias = "UNShowPreviewsSettingAlways")]
@@ -57,7 +57,7 @@ unsafe impl RefEncode for UNShowPreviewsSetting {
 /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unnotificationsetting?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNNotificationSetting(pub NSInteger);
 impl UNNotificationSetting {
     #[doc(alias = "UNNotificationSettingNotSupported")]
@@ -79,7 +79,7 @@ unsafe impl RefEncode for UNNotificationSetting {
 /// [Apple's documentation](https://developer.apple.com/documentation/usernotifications/unalertstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UNAlertStyle(pub NSInteger);
 impl UNAlertStyle {
     #[doc(alias = "UNAlertStyleNone")]

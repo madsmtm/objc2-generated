@@ -25,7 +25,7 @@ pub const callerSecuritySession: SecuritySessionId = 4294967295;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sessionattributebits?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SessionAttributeBits(pub u32);
 bitflags::bitflags! {
     impl SessionAttributeBits: u32 {
@@ -52,7 +52,7 @@ unsafe impl RefEncode for SessionAttributeBits {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sessioncreationflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SessionCreationFlags(pub u32);
 bitflags::bitflags! {
     impl SessionCreationFlags: u32 {

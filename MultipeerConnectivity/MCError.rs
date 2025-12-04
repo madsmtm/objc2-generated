@@ -13,7 +13,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCErrorCode(pub NSInteger);
 impl MCErrorCode {
     #[doc(alias = "MCErrorUnknown")]

@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAnimatingState(pub NSInteger);
 impl UIViewAnimatingState {
     #[doc(alias = "UIViewAnimatingStateInactive")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for UIViewAnimatingState {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimatingposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIViewAnimatingPosition(pub NSInteger);
 impl UIViewAnimatingPosition {
     #[doc(alias = "UIViewAnimatingPositionEnd")]

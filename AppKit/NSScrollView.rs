@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollelasticity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollElasticity(pub NSInteger);
 impl NSScrollElasticity {
     #[doc(alias = "NSScrollElasticityAutomatic")]
@@ -638,7 +638,7 @@ impl NSScrollView {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewfindbarposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollViewFindBarPosition(pub NSInteger);
 impl NSScrollViewFindBarPosition {
     #[doc(alias = "NSScrollViewFindBarPositionAboveHorizontalRuler")]

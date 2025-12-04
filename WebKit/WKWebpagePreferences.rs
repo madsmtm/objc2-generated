@@ -19,7 +19,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkcontentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKContentMode(pub NSInteger);
 impl WKContentMode {
     #[doc(alias = "WKContentModeRecommended")]
@@ -45,7 +45,7 @@ unsafe impl RefEncode for WKContentMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferencesupgradetohttpspolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebpagePreferencesUpgradeToHTTPSPolicy(pub NSInteger);
 impl WKWebpagePreferencesUpgradeToHTTPSPolicy {
     #[doc(alias = "WKWebpagePreferencesUpgradeToHTTPSPolicyKeepAsRequested")]

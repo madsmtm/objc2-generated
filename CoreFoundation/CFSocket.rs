@@ -28,7 +28,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFSocketError(pub CFIndex);
 impl CFSocketError {
     #[doc(alias = "kCFSocketSuccess")]
@@ -81,7 +81,7 @@ unsafe impl RefEncode for CFSocketSignature {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfsocketcallbacktype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFSocketCallBackType(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFSocketCallBackType: CFOptionFlags {

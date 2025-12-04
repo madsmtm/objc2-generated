@@ -10,7 +10,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_layout?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct cp_layer_renderer_layout(pub u32);
 impl cp_layer_renderer_layout {
     /// A layout that assigns a separate texture to each rendered view.

@@ -8,7 +8,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_generalnametype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CE_GeneralNameType(pub c_uint);
 impl CE_GeneralNameType {
     pub const GNT_OtherName: Self = Self(0);
@@ -323,7 +323,7 @@ pub type CE_CrlDistReasonFlags = uint8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_crldistributionpointnametype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CE_CrlDistributionPointNameType(pub c_uint);
 impl CE_CrlDistributionPointNameType {
     #[doc(alias = "CE_CDNT_FullName")]
@@ -936,7 +936,7 @@ pub type CE_InhibitAnyPolicy = uint32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_datatype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CE_DataType(pub c_uint);
 impl CE_DataType {
     pub const DT_AuthorityKeyID: Self = Self(0);

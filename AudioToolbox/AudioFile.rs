@@ -173,7 +173,7 @@ pub const kAudioFileFileNotFoundError: OSStatus = -43;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioFileFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileFlags: u32 {
@@ -371,7 +371,7 @@ unsafe impl RefEncode for AudioFileMarkerList {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofileregionflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioFileRegionFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileRegionFlags: u32 {
@@ -512,7 +512,7 @@ unsafe impl RefEncode for AudioFramePacketTranslation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobytepackettranslationflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioBytePacketTranslationFlags(pub u32);
 bitflags::bitflags! {
     impl AudioBytePacketTranslationFlags: u32 {

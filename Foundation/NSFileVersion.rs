@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileversionaddingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileVersionAddingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileVersionAddingOptions: NSUInteger {
@@ -29,7 +29,7 @@ unsafe impl RefEncode for NSFileVersionAddingOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfileversionreplacingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileVersionReplacingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileVersionReplacingOptions: NSUInteger {

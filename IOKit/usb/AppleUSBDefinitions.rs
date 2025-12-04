@@ -513,7 +513,7 @@ pub const kIOUSBEndpointDescriptorReservedPhase: c_uint = IOUSBBitRangePhase!(13
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousbendpointdirection?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBEndpointDirection(pub c_uint);
 impl tIOUSBEndpointDirection {
     #[doc(alias = "kIOUSBEndpointDirectionOut")]
@@ -540,7 +540,7 @@ unsafe impl RefEncode for tIOUSBEndpointDirection {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousbendpointtype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBEndpointType(pub c_uint);
 impl tIOUSBEndpointType {
     #[doc(alias = "kIOUSBEndpointTypeControl")]
@@ -573,7 +573,7 @@ unsafe impl RefEncode for tIOUSBEndpointType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousbendpointsynchronizationtype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBEndpointSynchronizationType(pub c_uint);
 impl tIOUSBEndpointSynchronizationType {
     #[doc(alias = "kIOUSBEndpointSynchronizationTypeNone")]
@@ -610,7 +610,7 @@ unsafe impl RefEncode for tIOUSBEndpointSynchronizationType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousbendpointusagetype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBEndpointUsageType(pub c_uint);
 impl tIOUSBEndpointUsageType {
     #[doc(alias = "kIOUSBEndpointUsageTypeIsocData")]
@@ -1706,7 +1706,7 @@ unsafe impl RefEncode for IOUSBDeviceRequestSetSELData {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousbdevicerequestdirectionvalue?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBDeviceRequestDirectionValue(pub c_uint);
 impl tIOUSBDeviceRequestDirectionValue {
     #[doc(alias = "kIOUSBDeviceRequestDirectionValueOut")]
@@ -1729,7 +1729,7 @@ unsafe impl RefEncode for tIOUSBDeviceRequestDirectionValue {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousbdevicerequesttypevalue?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBDeviceRequestTypeValue(pub c_uint);
 impl tIOUSBDeviceRequestTypeValue {
     #[doc(alias = "kIOUSBDeviceRequestTypeValueStandard")]
@@ -1754,7 +1754,7 @@ unsafe impl RefEncode for tIOUSBDeviceRequestTypeValue {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousbdevicerequestrecipientvalue?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBDeviceRequestRecipientValue(pub c_uint);
 impl tIOUSBDeviceRequestRecipientValue {
     #[doc(alias = "kIOUSBDeviceRequestRecipientValueDevice")]
@@ -1779,7 +1779,7 @@ unsafe impl RefEncode for tIOUSBDeviceRequestRecipientValue {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousbdevicerequest?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBDeviceRequest(pub c_uint);
 impl tIOUSBDeviceRequest {
     #[doc(alias = "kIOUSBDeviceRequestSize")]
@@ -2052,7 +2052,7 @@ unsafe impl RefEncode for tIOUSB30ResetTimeout {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousb30linkstatetimeout?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSB30LinkStateTimeout(pub c_uint);
 impl tIOUSB30LinkStateTimeout {
     #[doc(alias = "kIOUSB30LinkStateSSInactiveQuietTimeout")]
@@ -2184,7 +2184,7 @@ unsafe impl RefEncode for tIOUSB30TimingParameters {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousb30hubportstatuscode?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSB30HubPortStatusCode(pub c_uint);
 impl tIOUSB30HubPortStatusCode {
     #[doc(alias = "kIOUSB30HubPortStatusCodeStandard")]
@@ -2241,7 +2241,7 @@ unsafe impl RefEncode for IOUSB30HubPortStatusExt {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousb30hubextstatus?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSB30HubExtStatus(pub c_uint);
 impl tIOUSB30HubExtStatus {
     #[doc(alias = "kIOUSB30HubExtStatusRxSublinkSpeedID")]

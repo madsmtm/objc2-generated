@@ -520,7 +520,7 @@ pub const kAppleCurrentExtraInSleep: &CStr =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousbhostconnectionspeed?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBHostConnectionSpeed(pub c_uint);
 impl tIOUSBHostConnectionSpeed {
     #[doc(alias = "kIOUSBHostConnectionSpeedNone")]
@@ -555,7 +555,7 @@ unsafe impl RefEncode for tIOUSBHostConnectionSpeed {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousbhostporttype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBHostPortType(pub c_uint);
 impl tIOUSBHostPortType {
     #[doc(alias = "kIOUSBHostPortTypeStandard")]
@@ -588,7 +588,7 @@ unsafe impl RefEncode for tIOUSBHostPortType {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/tiousbhostportstatus?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tIOUSBHostPortStatus(pub c_uint);
 impl tIOUSBHostPortStatus {
     #[doc(alias = "kIOUSBHostPortStatusPortTypeMask")]

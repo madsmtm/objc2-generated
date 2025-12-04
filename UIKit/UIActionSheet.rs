@@ -16,7 +16,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "UIActionSheet is deprecated. Use UIAlertController with a preferredStyle of UIAlertControllerStyleActionSheet instead."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIActionSheetStyle(pub NSInteger);
 impl UIActionSheetStyle {
     #[doc(alias = "UIActionSheetStyleAutomatic")]

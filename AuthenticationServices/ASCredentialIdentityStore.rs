@@ -15,7 +15,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystoreerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASCredentialIdentityStoreErrorCode(pub NSInteger);
 impl ASCredentialIdentityStoreErrorCode {
     #[doc(alias = "ASCredentialIdentityStoreErrorCodeInternalError")]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for ASCredentialIdentityStoreErrorCode {
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitytypes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASCredentialIdentityTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl ASCredentialIdentityTypes: NSUInteger {

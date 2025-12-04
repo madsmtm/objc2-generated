@@ -76,7 +76,7 @@ unsafe impl RefEncode for IOUSBHostIsochronousFrame {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransferoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostIsochronousTransferOptions(pub u32);
 bitflags::bitflags! {
     impl IOUSBHostIsochronousTransferOptions: u32 {
@@ -105,7 +105,7 @@ unsafe impl RefEncode for IOUSBHostIsochronousTransferOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransactionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostIsochronousTransactionOptions(pub u32);
 bitflags::bitflags! {
     impl IOUSBHostIsochronousTransactionOptions: u32 {
@@ -227,7 +227,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostabortoption?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostAbortOption(pub NSUInteger);
 impl IOUSBHostAbortOption {
     #[doc(alias = "IOUSBHostAbortOptionAsynchronous")]
@@ -270,7 +270,7 @@ unsafe impl RefEncode for IOUSBHostAbortOption {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectinitoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostObjectInitOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl IOUSBHostObjectInitOptions: NSUInteger {
@@ -312,7 +312,7 @@ unsafe impl RefEncode for IOUSBHostObjectInitOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostobjectdestroyoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOUSBHostObjectDestroyOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl IOUSBHostObjectDestroyOptions: NSUInteger {

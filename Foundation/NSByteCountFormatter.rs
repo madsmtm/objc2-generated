@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbytecountformatterunits?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSByteCountFormatterUnits(pub NSUInteger);
 bitflags::bitflags! {
     impl NSByteCountFormatterUnits: NSUInteger {
@@ -49,7 +49,7 @@ unsafe impl RefEncode for NSByteCountFormatterUnits {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbytecountformattercountstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSByteCountFormatterCountStyle(pub NSInteger);
 impl NSByteCountFormatterCountStyle {
     #[doc(alias = "NSByteCountFormatterCountStyleFile")]

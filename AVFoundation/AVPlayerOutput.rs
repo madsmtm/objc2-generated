@@ -100,7 +100,7 @@ impl AVPlayerVideoOutput {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/cmtagcollectionvideooutputpreset?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMTagCollectionVideoOutputPreset(pub u32);
 impl CMTagCollectionVideoOutputPreset {
     #[doc(alias = "kCMTagCollectionVideoOutputPreset_Monoscopic")]

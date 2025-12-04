@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentchangekind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentChangeKind(pub NSInteger);
 impl UIDocumentChangeKind {
     #[doc(alias = "UIDocumentChangeDone")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for UIDocumentChangeKind {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentsaveoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentSaveOperation(pub NSInteger);
 impl UIDocumentSaveOperation {
     #[doc(alias = "UIDocumentSaveForCreating")]
@@ -54,7 +54,7 @@ unsafe impl RefEncode for UIDocumentSaveOperation {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentstate?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentState(pub NSUInteger);
 bitflags::bitflags! {
     impl UIDocumentState: NSUInteger {

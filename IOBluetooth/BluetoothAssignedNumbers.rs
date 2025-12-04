@@ -8,7 +8,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothcompanyidentifers?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothCompanyIdentifers(pub c_uint);
 impl BluetoothCompanyIdentifers {
     #[doc(alias = "kBluetoothCompanyIdentiferEricssonTechnologyLicensing")]
@@ -1206,7 +1206,7 @@ unsafe impl RefEncode for SDPServiceClasses {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/sdpattributeidentifiercodes?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SDPAttributeIdentifierCodes(pub c_uint);
 impl SDPAttributeIdentifierCodes {
     #[doc(alias = "kBluetoothSDPAttributeIdentifierServiceRecordHandle")]
@@ -1516,7 +1516,7 @@ unsafe impl RefEncode for BluetoothHCIExtendedInquiryResponseDataTypes {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciversions?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothHCIVersions(pub c_uint);
 impl BluetoothHCIVersions {
     #[doc(alias = "kBluetoothHCIVersionCoreSpecification1_0b")]
@@ -1559,7 +1559,7 @@ unsafe impl RefEncode for BluetoothHCIVersions {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothlmpversions?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BluetoothLMPVersions(pub c_uint);
 impl BluetoothLMPVersions {
     #[doc(alias = "kBluetoothLMPVersionCoreSpecification1_0b")]

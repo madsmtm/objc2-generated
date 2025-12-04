@@ -66,7 +66,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextfindermatchingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextFinderMatchingType(pub NSInteger);
 impl NSTextFinderMatchingType {
     #[doc(alias = "NSTextFinderMatchingTypeContains")]

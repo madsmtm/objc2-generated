@@ -13,7 +13,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphResizeMode(pub NSUInteger);
 impl MPSGraphResizeMode {
     /// Samples the nearest neighbor to the pixel coordinate.
@@ -37,7 +37,7 @@ unsafe impl RefEncode for MPSGraphResizeMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphresizenearestroundingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphResizeNearestRoundingMode(pub NSUInteger);
 impl MPSGraphResizeNearestRoundingMode {
     /// Rounds values to the nearest integer value, with 0.5f offset rounding toward +inf.

@@ -286,7 +286,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontOrientation(pub u32);
 impl CTFontOrientation {
     #[doc(alias = "kCTFontOrientationDefault")]
@@ -339,7 +339,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontFormat(pub u32);
 impl CTFontFormat {
     #[doc(alias = "kCTFontFormatUnrecognized")]
@@ -755,7 +755,7 @@ impl CTFontDescriptor {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptormatchingstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontDescriptorMatchingState(pub u32);
 impl CTFontDescriptorMatchingState {
     #[doc(alias = "kCTFontDescriptorMatchingDidBegin")]

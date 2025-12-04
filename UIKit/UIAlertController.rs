@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertactionstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAlertActionStyle(pub NSInteger);
 impl UIAlertActionStyle {
     #[doc(alias = "UIAlertActionStyleDefault")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for UIAlertActionStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertcontrollerstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAlertControllerStyle(pub NSInteger);
 impl UIAlertControllerStyle {
     #[doc(alias = "UIAlertControllerStyleActionSheet")]
@@ -52,7 +52,7 @@ unsafe impl RefEncode for UIAlertControllerStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uialertcontrollerseverity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAlertControllerSeverity(pub NSInteger);
 impl UIAlertControllerSeverity {
     #[doc(alias = "UIAlertControllerSeverityDefault")]

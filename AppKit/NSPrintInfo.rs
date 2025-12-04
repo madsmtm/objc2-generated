@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspaperorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPaperOrientation(pub NSInteger);
 impl NSPaperOrientation {
     #[doc(alias = "NSPaperOrientationPortrait")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for NSPaperOrientation {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintingpaginationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintingPaginationMode(pub NSUInteger);
 impl NSPrintingPaginationMode {
     #[doc(alias = "NSPrintingPaginationModeAutomatic")]
@@ -577,7 +577,7 @@ extern "C" {
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintingOrientation(pub NSUInteger);
 impl NSPrintingOrientation {
     #[doc(alias = "NSPortraitOrientation")]

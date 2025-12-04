@@ -51,7 +51,7 @@ unsafe impl RefEncode for HKBloodGlucoseMealTime {
 /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbodytemperaturesensorlocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKBodyTemperatureSensorLocation(pub NSInteger);
 impl HKBodyTemperatureSensorLocation {
     #[doc(alias = "HKBodyTemperatureSensorLocationOther")]
@@ -132,7 +132,7 @@ unsafe impl RefEncode for HKCyclingFunctionalThresholdPowerTestType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkdeviceplacementside?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKDevicePlacementSide(pub NSInteger);
 impl HKDevicePlacementSide {
     #[doc(alias = "HKDevicePlacementSideUnknown")]
@@ -156,7 +156,7 @@ unsafe impl RefEncode for HKDevicePlacementSide {
 /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratemotioncontext?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKHeartRateMotionContext(pub NSInteger);
 impl HKHeartRateMotionContext {
     #[doc(alias = "HKHeartRateMotionContextNotSet")]
@@ -210,7 +210,7 @@ unsafe impl RefEncode for HKHeartRateRecoveryTestType {
 /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkheartratesensorlocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKHeartRateSensorLocation(pub NSInteger);
 impl HKHeartRateSensorLocation {
     #[doc(alias = "HKHeartRateSensorLocationOther")]
@@ -297,7 +297,7 @@ unsafe impl RefEncode for HKPhysicalEffortEstimationType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkswimmingstrokestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKSwimmingStrokeStyle(pub NSInteger);
 impl HKSwimmingStrokeStyle {
     #[doc(alias = "HKSwimmingStrokeStyleUnknown")]
@@ -327,7 +327,7 @@ unsafe impl RefEncode for HKSwimmingStrokeStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkusermotioncontext?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKUserMotionContext(pub NSInteger);
 impl HKUserMotionContext {
     #[doc(alias = "HKUserMotionContextNotSet")]
@@ -408,7 +408,7 @@ unsafe impl RefEncode for HKWaterSalinity {
 /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkweathercondition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKWeatherCondition(pub NSInteger);
 impl HKWeatherCondition {
     #[doc(alias = "HKWeatherConditionNone")]
@@ -484,7 +484,7 @@ unsafe impl RefEncode for HKWeatherCondition {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkworkoutswimminglocationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKWorkoutSwimmingLocationType(pub NSInteger);
 impl HKWorkoutSwimmingLocationType {
     #[doc(alias = "HKWorkoutSwimmingLocationTypeUnknown")]

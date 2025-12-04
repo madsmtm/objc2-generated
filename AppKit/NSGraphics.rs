@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscompositingoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCompositingOperation(pub NSUInteger);
 impl NSCompositingOperation {
     #[doc(alias = "NSCompositingOperationClear")]
@@ -232,7 +232,7 @@ pub static NSCompositeLuminosity: NSCompositingOperation =
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackingstoretype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBackingStoreType(pub NSUInteger);
 impl NSBackingStoreType {
     #[doc(alias = "NSBackingStoreRetained")]
@@ -256,7 +256,7 @@ unsafe impl RefEncode for NSBackingStoreType {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindoworderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowOrderingMode(pub NSInteger);
 impl NSWindowOrderingMode {
     #[doc(alias = "NSWindowAbove")]
@@ -278,7 +278,7 @@ unsafe impl RefEncode for NSWindowOrderingMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringplacement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFocusRingPlacement(pub NSUInteger);
 impl NSFocusRingPlacement {
     #[doc(alias = "NSFocusRingOnly")]
@@ -300,7 +300,7 @@ unsafe impl RefEncode for NSFocusRingPlacement {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfocusringtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFocusRingType(pub NSUInteger);
 impl NSFocusRingType {
     #[doc(alias = "NSFocusRingTypeDefault")]
@@ -322,7 +322,7 @@ unsafe impl RefEncode for NSFocusRingType {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorrenderingintent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorRenderingIntent(pub NSInteger);
 impl NSColorRenderingIntent {
     #[doc(alias = "NSColorRenderingIntentDefault")]
@@ -921,7 +921,7 @@ pub extern "C-unwind" fn NSEnableScreenUpdates() {
 // NS_ENUM
 #[deprecated = "Use +[NSCursor disappearingItemCursor] instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAnimationEffect(pub NSUInteger);
 impl NSAnimationEffect {
     #[doc(alias = "NSAnimationEffectDisappearingItemDefault")]

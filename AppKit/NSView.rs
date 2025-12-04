@@ -18,7 +18,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsautoresizingmaskoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAutoresizingMaskOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAutoresizingMaskOptions: NSUInteger {
@@ -50,7 +50,7 @@ unsafe impl RefEncode for NSAutoresizingMaskOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbordertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBorderType(pub NSUInteger);
 impl NSBorderType {
     #[doc(alias = "NSNoBorder")]
@@ -74,7 +74,7 @@ unsafe impl RefEncode for NSBorderType {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewlayercontentsredrawpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSViewLayerContentsRedrawPolicy(pub NSInteger);
 impl NSViewLayerContentsRedrawPolicy {
     #[doc(alias = "NSViewLayerContentsRedrawNever")]
@@ -100,7 +100,7 @@ unsafe impl RefEncode for NSViewLayerContentsRedrawPolicy {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewlayercontentsplacement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSViewLayerContentsPlacement(pub NSInteger);
 impl NSViewLayerContentsPlacement {
     #[doc(alias = "NSViewLayerContentsPlacementScaleAxesIndependently")]

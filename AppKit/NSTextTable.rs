@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblockvaluetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextBlockValueType(pub NSUInteger);
 impl NSTextBlockValueType {
     #[doc(alias = "NSTextBlockAbsoluteValueType")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for NSTextBlockValueType {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblockdimension?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextBlockDimension(pub NSUInteger);
 impl NSTextBlockDimension {
     #[doc(alias = "NSTextBlockWidth")]
@@ -60,7 +60,7 @@ unsafe impl RefEncode for NSTextBlockDimension {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblocklayer?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextBlockLayer(pub NSInteger);
 impl NSTextBlockLayer {
     #[doc(alias = "NSTextBlockPadding")]
@@ -82,7 +82,7 @@ unsafe impl RefEncode for NSTextBlockLayer {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblockverticalalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextBlockVerticalAlignment(pub NSUInteger);
 impl NSTextBlockVerticalAlignment {
     #[doc(alias = "NSTextBlockTopAlignment")]
@@ -106,7 +106,7 @@ unsafe impl RefEncode for NSTextBlockVerticalAlignment {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttablelayoutalgorithm?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextTableLayoutAlgorithm(pub NSUInteger);
 impl NSTextTableLayoutAlgorithm {
     #[doc(alias = "NSTextTableAutomaticLayoutAlgorithm")]

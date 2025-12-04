@@ -81,7 +81,7 @@ extern "C-unwind" {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscreenupdateoperation?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGScreenUpdateOperation(pub u32);
 bitflags::bitflags! {
     impl CGScreenUpdateOperation: u32 {
@@ -271,7 +271,7 @@ pub extern "C-unwind" fn CGPostKeyboardEvent(
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventfiltermask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventFilterMask(pub u32);
 bitflags::bitflags! {
     impl CGEventFilterMask: u32 {
@@ -297,7 +297,7 @@ unsafe impl RefEncode for CGEventFilterMask {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventsuppressionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGEventSuppressionState(pub u32);
 impl CGEventSuppressionState {
     #[doc(alias = "kCGEventSuppressionStateSuppressionInterval")]

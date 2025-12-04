@@ -60,7 +60,7 @@ unsafe impl RefEncode for AVCapturePhotoQualityPrioritization {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutputcapturereadiness?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCapturePhotoOutputCaptureReadiness(pub NSInteger);
 impl AVCapturePhotoOutputCaptureReadiness {
     #[doc(alias = "AVCapturePhotoOutputCaptureReadinessSessionNotRunning")]
@@ -2820,7 +2820,7 @@ impl AVCapturePhoto {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturelensstabilizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureLensStabilizationStatus(pub NSInteger);
 impl AVCaptureLensStabilizationStatus {
     #[doc(alias = "AVCaptureLensStabilizationStatusUnsupported")]

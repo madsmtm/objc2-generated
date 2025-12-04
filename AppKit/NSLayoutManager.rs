@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutOrientation(pub NSInteger);
 impl NSTextLayoutOrientation {
     #[doc(alias = "NSTextLayoutOrientationHorizontal")]
@@ -35,7 +35,7 @@ unsafe impl RefEncode for NSTextLayoutOrientation {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphproperty?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGlyphProperty(pub NSInteger);
 bitflags::bitflags! {
     impl NSGlyphProperty: NSInteger {
@@ -61,7 +61,7 @@ unsafe impl RefEncode for NSGlyphProperty {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolcharacteraction?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSControlCharacterAction(pub NSInteger);
 bitflags::bitflags! {
     impl NSControlCharacterAction: NSInteger {
@@ -100,7 +100,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesetterbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTypesetterBehavior(pub NSInteger);
 impl NSTypesetterBehavior {
     #[doc(alias = "NSTypesetterLatestBehavior")]
@@ -1370,7 +1370,7 @@ pub const NSGlyphAttributeInscribe: c_uint = 5;
 // NS_ENUM
 #[deprecated = "Use NSGlyphProperty instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGlyphInscription(pub NSUInteger);
 impl NSGlyphInscription {
     #[doc(alias = "NSGlyphInscribeBase")]

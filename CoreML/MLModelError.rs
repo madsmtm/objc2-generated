@@ -22,7 +22,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MLModelError(pub NSInteger);
 impl MLModelError {
     /// Core ML throws/returns this error when the framework encounters an generic error.

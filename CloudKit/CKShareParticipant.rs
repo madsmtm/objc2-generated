@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantacceptancestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKShareParticipantAcceptanceStatus(pub NSInteger);
 impl CKShareParticipantAcceptanceStatus {
     #[doc(alias = "CKShareParticipantAcceptanceStatusUnknown")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for CKShareParticipantAcceptanceStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantpermission?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKShareParticipantPermission(pub NSInteger);
 impl CKShareParticipantPermission {
     #[doc(alias = "CKShareParticipantPermissionUnknown")]
@@ -69,7 +69,7 @@ unsafe impl RefEncode for CKShareParticipantPermission {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantrole?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKShareParticipantRole(pub NSInteger);
 impl CKShareParticipantRole {
     #[doc(alias = "CKShareParticipantRoleUnknown")]
@@ -96,7 +96,7 @@ unsafe impl RefEncode for CKShareParticipantRole {
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKShareParticipantType(pub NSInteger);
 impl CKShareParticipantType {
     #[doc(alias = "CKShareParticipantTypeUnknown")]

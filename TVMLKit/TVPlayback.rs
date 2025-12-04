@@ -65,7 +65,7 @@ extern "C" {
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVPlaybackState(pub NSInteger);
 impl TVPlaybackState {
     #[doc(alias = "TVPlaybackStateUndefined")]
@@ -109,7 +109,7 @@ unsafe impl RefEncode for TVPlaybackState {
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVPlaylistRepeatMode(pub NSInteger);
 impl TVPlaylistRepeatMode {
     #[doc(alias = "TVPlaylistRepeatModeNone")]
@@ -135,7 +135,7 @@ unsafe impl RefEncode for TVPlaylistRepeatMode {
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVPlaylistEndAction(pub NSInteger);
 impl TVPlaylistEndAction {
     #[doc(alias = "TVPlaylistEndActionStop")]

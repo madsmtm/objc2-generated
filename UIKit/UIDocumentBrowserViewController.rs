@@ -39,7 +39,7 @@ unsafe impl RefEncode for UIDocumentBrowserErrorCode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserimportmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentBrowserImportMode(pub NSUInteger);
 impl UIDocumentBrowserImportMode {
     #[doc(alias = "UIDocumentBrowserImportModeNone")]
@@ -61,7 +61,7 @@ unsafe impl RefEncode for UIDocumentBrowserImportMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowseruserinterfacestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentBrowserUserInterfaceStyle(pub NSUInteger);
 impl UIDocumentBrowserUserInterfaceStyle {
     #[doc(alias = "UIDocumentBrowserUserInterfaceStyleWhite")]

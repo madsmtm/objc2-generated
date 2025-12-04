@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaptype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKMapType(pub NSUInteger);
 impl MKMapType {
     #[doc(alias = "MKMapTypeStandard")]
@@ -70,7 +70,7 @@ unsafe impl RefEncode for MKErrorCode {
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturevisibility?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKFeatureVisibility(pub NSInteger);
 impl MKFeatureVisibility {
     #[doc(alias = "MKFeatureVisibilityAdaptive")]
@@ -92,7 +92,7 @@ unsafe impl RefEncode for MKFeatureVisibility {
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchregionpriority?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKLocalSearchRegionPriority(pub NSInteger);
 impl MKLocalSearchRegionPriority {
     #[doc(alias = "MKLocalSearchRegionPriorityDefault")]

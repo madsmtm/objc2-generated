@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelementstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuElementState(pub NSInteger);
 impl UIMenuElementState {
     #[doc(alias = "UIMenuElementStateOff")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for UIMenuElementState {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelementattributes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuElementAttributes(pub NSUInteger);
 bitflags::bitflags! {
     impl UIMenuElementAttributes: NSUInteger {
@@ -63,7 +63,7 @@ unsafe impl RefEncode for UIMenuElementAttributes {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelementrepeatbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuElementRepeatBehavior(pub NSInteger);
 impl UIMenuElementRepeatBehavior {
     /// Automatically uses the appropriate repeat behavior for this element.

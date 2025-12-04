@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentsformatterstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersonNameComponentsFormatterStyle(pub NSInteger);
 impl NSPersonNameComponentsFormatterStyle {
     #[doc(alias = "NSPersonNameComponentsFormatterStyleDefault")]
@@ -35,7 +35,7 @@ unsafe impl RefEncode for NSPersonNameComponentsFormatterStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentsformatteroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersonNameComponentsFormatterOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPersonNameComponentsFormatterOptions: NSUInteger {

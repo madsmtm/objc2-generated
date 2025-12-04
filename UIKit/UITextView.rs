@@ -501,7 +501,7 @@ extern_protocol!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextviewborderstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITextViewBorderStyle(pub NSInteger);
 impl UITextViewBorderStyle {
     /// The text view does not display a border.

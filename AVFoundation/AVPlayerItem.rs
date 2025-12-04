@@ -71,7 +71,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVPlayerItemStatus(pub NSInteger);
 impl AVPlayerItemStatus {
     /// Indicates that the status of the player item is not yet known because it has not tried to load new media resources for playback.
@@ -861,7 +861,7 @@ impl AVPlayerItem {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvariantpreferences?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVVariantPreferences(pub NSUInteger);
 bitflags::bitflags! {
     impl AVVariantPreferences: NSUInteger {

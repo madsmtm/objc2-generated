@@ -17,7 +17,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFDisplayMode(pub NSInteger);
 impl PDFDisplayMode {
     #[doc(alias = "kPDFDisplaySinglePage")]
@@ -41,7 +41,7 @@ unsafe impl RefEncode for PDFDisplayMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdisplaydirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFDisplayDirection(pub NSInteger);
 impl PDFDisplayDirection {
     #[doc(alias = "kPDFDisplayDirectionVertical")]
@@ -61,7 +61,7 @@ unsafe impl RefEncode for PDFDisplayDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfinterpolationquality?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFInterpolationQuality(pub NSInteger);
 impl PDFInterpolationQuality {
     #[doc(alias = "kPDFInterpolationQualityNone")]

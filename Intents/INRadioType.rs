@@ -8,7 +8,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "INRadioType is deprecated. There is no replacement."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INRadioType(pub NSInteger);
 impl INRadioType {
     #[doc(alias = "INRadioTypeUnknown")]

@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructurerefitoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLAccelerationStructureRefitOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLAccelerationStructureRefitOptions: NSUInteger {
@@ -40,7 +40,7 @@ unsafe impl RefEncode for MTLAccelerationStructureRefitOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureusage?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLAccelerationStructureUsage(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLAccelerationStructureUsage: NSUInteger {
@@ -80,7 +80,7 @@ unsafe impl RefEncode for MTLAccelerationStructureUsage {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstanceoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLAccelerationStructureInstanceOptions(pub u32);
 bitflags::bitflags! {
     impl MTLAccelerationStructureInstanceOptions: u32 {
@@ -115,7 +115,7 @@ unsafe impl RefEncode for MTLAccelerationStructureInstanceOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmatrixlayout?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMatrixLayout(pub NSInteger);
 impl MTLMatrixLayout {
     /// Column-major order
@@ -348,7 +348,7 @@ impl DefaultRetained for MTLAccelerationStructureGeometryDescriptor {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmotionbordermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMotionBorderMode(pub u32);
 impl MTLMotionBorderMode {
     /// Motion is stopped. (default)
@@ -1217,7 +1217,7 @@ impl DefaultRetained for MTLAccelerationStructureMotionBoundingBoxGeometryDescri
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCurveType(pub NSInteger);
 impl MTLCurveType {
     /// Curve with a circular cross-section. These curves have the
@@ -1247,7 +1247,7 @@ unsafe impl RefEncode for MTLCurveType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurvebasis?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCurveBasis(pub NSInteger);
 impl MTLCurveBasis {
     /// B-Spline basis. Each curve segment must have 3 or 4 control
@@ -1298,7 +1298,7 @@ unsafe impl RefEncode for MTLCurveBasis {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcurveendcaps?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCurveEndCaps(pub NSInteger);
 impl MTLCurveEndCaps {
     /// No end caps
@@ -1998,7 +1998,7 @@ unsafe impl RefEncode for MTLAccelerationStructureUserIDInstanceDescriptor {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLAccelerationStructureInstanceDescriptorType(pub NSUInteger);
 impl MTLAccelerationStructureInstanceDescriptorType {
     /// Default instance descriptor: MTLAccelerationStructureInstanceDescriptor
@@ -2186,7 +2186,7 @@ unsafe impl RefEncode for MTLIndirectAccelerationStructureMotionInstanceDescript
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltransformtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTransformType(pub NSInteger);
 impl MTLTransformType {
     /// A tightly packed matrix with 4 columns and 3 rows. The full transform is assumed

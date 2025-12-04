@@ -189,7 +189,7 @@ impl CKSyncEngineStateSerialization {
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingrecordzonechangetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEnginePendingRecordZoneChangeType(pub NSInteger);
 impl CKSyncEnginePendingRecordZoneChangeType {
     #[doc(alias = "CKSyncEnginePendingRecordZoneChangeTypeSaveRecord")]
@@ -266,7 +266,7 @@ impl CKSyncEnginePendingRecordZoneChange {
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginependingdatabasechangetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKSyncEnginePendingDatabaseChangeType(pub NSInteger);
 impl CKSyncEnginePendingDatabaseChangeType {
     #[doc(alias = "CKSyncEnginePendingDatabaseChangeTypeSaveZone")]

@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonType(pub NSInteger);
 impl UIButtonType {
     #[doc(alias = "UIButtonTypeCustom")]
@@ -49,7 +49,7 @@ unsafe impl RefEncode for UIButtonType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonrole?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIButtonRole(pub NSInteger);
 impl UIButtonRole {
     #[doc(alias = "UIButtonRoleNormal")]

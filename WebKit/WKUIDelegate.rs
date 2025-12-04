@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkpermissiondecision?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKPermissionDecision(pub NSInteger);
 impl WKPermissionDecision {
     #[doc(alias = "WKPermissionDecisionPrompt")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for WKPermissionDecision {
 /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKMediaCaptureType(pub NSInteger);
 impl WKMediaCaptureType {
     #[doc(alias = "WKMediaCaptureTypeCamera")]

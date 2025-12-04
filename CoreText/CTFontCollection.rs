@@ -469,7 +469,7 @@ impl CTFontCollection {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontcollectioncopyoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontCollectionCopyOptions(pub u32);
 bitflags::bitflags! {
     impl CTFontCollectionCopyOptions: u32 {

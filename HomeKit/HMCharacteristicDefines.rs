@@ -7,7 +7,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismlastknownaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueLockMechanismLastKnownAction(pub NSInteger);
 impl HMCharacteristicValueLockMechanismLastKnownAction {
     #[doc(
@@ -57,7 +57,7 @@ unsafe impl RefEncode for HMCharacteristicValueLockMechanismLastKnownAction {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueairparticulatesize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueAirParticulateSize(pub NSInteger);
 impl HMCharacteristicValueAirParticulateSize {
     #[doc(alias = "HMCharacteristicValueAirParticulateSize2_5")]
@@ -77,7 +77,7 @@ unsafe impl RefEncode for HMCharacteristicValueAirParticulateSize {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueairquality?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueAirQuality(pub NSInteger);
 impl HMCharacteristicValueAirQuality {
     #[doc(alias = "HMCharacteristicValueAirQualityUnknown")]
@@ -105,7 +105,7 @@ unsafe impl RefEncode for HMCharacteristicValueAirQuality {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepositionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValuePositionState(pub NSInteger);
 impl HMCharacteristicValuePositionState {
     #[doc(alias = "HMCharacteristicValuePositionStateClosing")]
@@ -127,7 +127,7 @@ unsafe impl RefEncode for HMCharacteristicValuePositionState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentsecuritysystemstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentSecuritySystemState(pub NSInteger);
 impl HMCharacteristicValueCurrentSecuritySystemState {
     #[doc(alias = "HMCharacteristicValueCurrentSecuritySystemStateStayArm")]
@@ -153,7 +153,7 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentSecuritySystemState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetsecuritysystemstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetSecuritySystemState(pub NSInteger);
 impl HMCharacteristicValueTargetSecuritySystemState {
     #[doc(alias = "HMCharacteristicValueTargetSecuritySystemStateStayArm")]
@@ -177,7 +177,7 @@ unsafe impl RefEncode for HMCharacteristicValueTargetSecuritySystemState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluejammedstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueJammedStatus(pub NSInteger);
 impl HMCharacteristicValueJammedStatus {
     #[doc(alias = "HMCharacteristicValueJammedStatusNone")]
@@ -197,7 +197,7 @@ unsafe impl RefEncode for HMCharacteristicValueJammedStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetamperedstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTamperedStatus(pub NSInteger);
 impl HMCharacteristicValueTamperedStatus {
     #[doc(alias = "HMCharacteristicValueTamperedStatusNone")]
@@ -217,7 +217,7 @@ unsafe impl RefEncode for HMCharacteristicValueTamperedStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueleakstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueLeakStatus(pub NSInteger);
 impl HMCharacteristicValueLeakStatus {
     #[doc(alias = "HMCharacteristicValueLeakStatusNone")]
@@ -237,7 +237,7 @@ unsafe impl RefEncode for HMCharacteristicValueLeakStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecontactstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueContactState(pub NSInteger);
 impl HMCharacteristicValueContactState {
     #[doc(alias = "HMCharacteristicValueContactStateDetected")]
@@ -257,7 +257,7 @@ unsafe impl RefEncode for HMCharacteristicValueContactState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluestatusfault?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueStatusFault(pub NSInteger);
 impl HMCharacteristicValueStatusFault {
     #[doc(alias = "HMCharacteristicValueStatusFaultNoFault")]
@@ -277,7 +277,7 @@ unsafe impl RefEncode for HMCharacteristicValueStatusFault {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecarbonmonoxidedetectionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCarbonMonoxideDetectionStatus(pub NSInteger);
 impl HMCharacteristicValueCarbonMonoxideDetectionStatus {
     #[doc(alias = "HMCharacteristicValueCarbonMonoxideDetectionStatusNotDetected")]
@@ -297,7 +297,7 @@ unsafe impl RefEncode for HMCharacteristicValueCarbonMonoxideDetectionStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecarbondioxidedetectionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCarbonDioxideDetectionStatus(pub NSInteger);
 impl HMCharacteristicValueCarbonDioxideDetectionStatus {
     #[doc(alias = "HMCharacteristicValueCarbonDioxideDetectionStatusNotDetected")]
@@ -317,7 +317,7 @@ unsafe impl RefEncode for HMCharacteristicValueCarbonDioxideDetectionStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueoccupancystatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueOccupancyStatus(pub NSInteger);
 impl HMCharacteristicValueOccupancyStatus {
     #[doc(alias = "HMCharacteristicValueOccupancyStatusNotOccupied")]
@@ -337,7 +337,7 @@ unsafe impl RefEncode for HMCharacteristicValueOccupancyStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluesecuritysystemalarmtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueSecuritySystemAlarmType(pub NSInteger);
 impl HMCharacteristicValueSecuritySystemAlarmType {
     #[doc(alias = "HMCharacteristicValueSecuritySystemAlarmTypeNoAlarm")]
@@ -357,7 +357,7 @@ unsafe impl RefEncode for HMCharacteristicValueSecuritySystemAlarmType {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentairpurifierstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentAirPurifierState(pub NSInteger);
 impl HMCharacteristicValueCurrentAirPurifierState {
     #[doc(alias = "HMCharacteristicValueCurrentAirPurifierStateInactive")]
@@ -379,7 +379,7 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentAirPurifierState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetairpurifierstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetAirPurifierState(pub NSInteger);
 impl HMCharacteristicValueTargetAirPurifierState {
     #[doc(alias = "HMCharacteristicValueTargetAirPurifierStateManual")]
@@ -399,7 +399,7 @@ unsafe impl RefEncode for HMCharacteristicValueTargetAirPurifierState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentslatstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentSlatState(pub NSInteger);
 impl HMCharacteristicValueCurrentSlatState {
     #[doc(alias = "HMCharacteristicValueCurrentSlatStateStationary")]
@@ -421,7 +421,7 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentSlatState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueslattype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueSlatType(pub NSInteger);
 impl HMCharacteristicValueSlatType {
     #[doc(alias = "HMCharacteristicValueSlatTypeHorizontal")]
@@ -441,7 +441,7 @@ unsafe impl RefEncode for HMCharacteristicValueSlatType {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluefilterchange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueFilterChange(pub NSInteger);
 impl HMCharacteristicValueFilterChange {
     #[doc(alias = "HMCharacteristicValueFilterChangeNotNeeded")]
@@ -461,7 +461,7 @@ unsafe impl RefEncode for HMCharacteristicValueFilterChange {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelabelnamespace?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueLabelNamespace(pub NSInteger);
 impl HMCharacteristicValueLabelNamespace {
     #[doc(alias = "HMCharacteristicValueLabelNamespaceDot")]
@@ -481,7 +481,7 @@ unsafe impl RefEncode for HMCharacteristicValueLabelNamespace {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueprogrammode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueProgramMode(pub NSInteger);
 impl HMCharacteristicValueProgramMode {
     #[doc(alias = "HMCharacteristicValueProgramModeNotScheduled")]
@@ -503,7 +503,7 @@ unsafe impl RefEncode for HMCharacteristicValueProgramMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueusagestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueUsageState(pub NSInteger);
 impl HMCharacteristicValueUsageState {
     #[doc(alias = "HMCharacteristicValueUsageStateNotInUse")]
@@ -523,7 +523,7 @@ unsafe impl RefEncode for HMCharacteristicValueUsageState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevalvetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueValveType(pub NSInteger);
 impl HMCharacteristicValueValveType {
     #[doc(alias = "HMCharacteristicValueValveTypeGenericValve")]
@@ -547,7 +547,7 @@ unsafe impl RefEncode for HMCharacteristicValueValveType {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevolumecontroltype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueVolumeControlType(pub NSInteger);
 impl HMCharacteristicValueVolumeControlType {
     #[doc(alias = "HMCharacteristicValueVolumeControlTypeNone")]
@@ -571,7 +571,7 @@ unsafe impl RefEncode for HMCharacteristicValueVolumeControlType {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluevolumeselector?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueVolumeSelector(pub NSInteger);
 impl HMCharacteristicValueVolumeSelector {
     #[doc(alias = "HMCharacteristicValueVolumeSelectorVolumeIncrement")]
@@ -591,7 +591,7 @@ unsafe impl RefEncode for HMCharacteristicValueVolumeSelector {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluedoorstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueDoorState(pub NSInteger);
 impl HMCharacteristicValueDoorState {
     #[doc(alias = "HMCharacteristicValueDoorStateOpen")]
@@ -617,7 +617,7 @@ unsafe impl RefEncode for HMCharacteristicValueDoorState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentheatingcooling?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentHeatingCooling(pub NSInteger);
 impl HMCharacteristicValueCurrentHeatingCooling {
     #[doc(alias = "HMCharacteristicValueCurrentHeatingCoolingOff")]
@@ -639,7 +639,7 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentHeatingCooling {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockmechanismstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueLockMechanismState(pub NSInteger);
 impl HMCharacteristicValueLockMechanismState {
     #[doc(alias = "HMCharacteristicValueLockMechanismStateUnsecured")]
@@ -663,7 +663,7 @@ unsafe impl RefEncode for HMCharacteristicValueLockMechanismState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetlockmechanismstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetLockMechanismState(pub NSInteger);
 impl HMCharacteristicValueTargetLockMechanismState {
     #[doc(alias = "HMCharacteristicValueTargetLockMechanismStateUnsecured")]
@@ -683,7 +683,7 @@ unsafe impl RefEncode for HMCharacteristicValueTargetLockMechanismState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluerotationdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueRotationDirection(pub NSInteger);
 impl HMCharacteristicValueRotationDirection {
     #[doc(alias = "HMCharacteristicValueRotationDirectionClockwise")]
@@ -703,7 +703,7 @@ unsafe impl RefEncode for HMCharacteristicValueRotationDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetdoorstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetDoorState(pub NSInteger);
 impl HMCharacteristicValueTargetDoorState {
     #[doc(alias = "HMCharacteristicValueTargetDoorStateOpen")]
@@ -723,7 +723,7 @@ unsafe impl RefEncode for HMCharacteristicValueTargetDoorState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueheatingcooling?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueHeatingCooling(pub NSInteger);
 impl HMCharacteristicValueHeatingCooling {
     #[doc(alias = "HMCharacteristicValueHeatingCoolingOff")]
@@ -747,7 +747,7 @@ unsafe impl RefEncode for HMCharacteristicValueHeatingCooling {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetemperatureunit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTemperatureUnit(pub NSInteger);
 impl HMCharacteristicValueTemperatureUnit {
     #[doc(alias = "HMCharacteristicValueTemperatureUnitCelsius")]
@@ -767,7 +767,7 @@ unsafe impl RefEncode for HMCharacteristicValueTemperatureUnit {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueInputEvent(pub NSInteger);
 impl HMCharacteristicValueInputEvent {
     #[doc(alias = "HMCharacteristicValueInputEventSinglePress")]
@@ -789,7 +789,7 @@ unsafe impl RefEncode for HMCharacteristicValueInputEvent {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluesmokedetectionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueSmokeDetectionStatus(pub NSInteger);
 impl HMCharacteristicValueSmokeDetectionStatus {
     #[doc(alias = "HMCharacteristicValueSmokeDetectionStatusNone")]
@@ -809,7 +809,7 @@ unsafe impl RefEncode for HMCharacteristicValueSmokeDetectionStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluebatterystatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueBatteryStatus(pub NSInteger);
 impl HMCharacteristicValueBatteryStatus {
     #[doc(alias = "HMCharacteristicValueBatteryStatusNormal")]
@@ -829,7 +829,7 @@ unsafe impl RefEncode for HMCharacteristicValueBatteryStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluechargingstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueChargingState(pub NSInteger);
 impl HMCharacteristicValueChargingState {
     #[doc(alias = "HMCharacteristicValueChargingStateNone")]
@@ -851,7 +851,7 @@ unsafe impl RefEncode for HMCharacteristicValueChargingState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluelockphysicalcontrolsstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueLockPhysicalControlsState(pub NSInteger);
 impl HMCharacteristicValueLockPhysicalControlsState {
     #[doc(alias = "HMCharacteristicValueLockPhysicalControlsStateNotLocked")]
@@ -871,7 +871,7 @@ unsafe impl RefEncode for HMCharacteristicValueLockPhysicalControlsState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentfanstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentFanState(pub NSInteger);
 impl HMCharacteristicValueCurrentFanState {
     #[doc(alias = "HMCharacteristicValueCurrentFanStateInactive")]
@@ -893,7 +893,7 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentFanState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueactivationstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueActivationState(pub NSInteger);
 impl HMCharacteristicValueActivationState {
     #[doc(alias = "HMCharacteristicValueActivationStateInactive")]
@@ -913,7 +913,7 @@ unsafe impl RefEncode for HMCharacteristicValueActivationState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentheatercoolerstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentHeaterCoolerState(pub NSInteger);
 impl HMCharacteristicValueCurrentHeaterCoolerState {
     #[doc(alias = "HMCharacteristicValueCurrentHeaterCoolerStateInactive")]
@@ -937,7 +937,7 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentHeaterCoolerState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetheatercoolerstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetHeaterCoolerState(pub NSInteger);
 impl HMCharacteristicValueTargetHeaterCoolerState {
     #[doc(alias = "HMCharacteristicValueTargetHeaterCoolerStateAutomatic")]
@@ -959,7 +959,7 @@ unsafe impl RefEncode for HMCharacteristicValueTargetHeaterCoolerState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrenthumidifierdehumidifierstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentHumidifierDehumidifierState(pub NSInteger);
 impl HMCharacteristicValueCurrentHumidifierDehumidifierState {
     #[doc(alias = "HMCharacteristicValueCurrentHumidifierDehumidifierStateInactive")]
@@ -983,7 +983,7 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentHumidifierDehumidifierStat
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargethumidifierdehumidifierstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetHumidifierDehumidifierState(pub NSInteger);
 impl HMCharacteristicValueTargetHumidifierDehumidifierState {
     #[doc(alias = "HMCharacteristicValueTargetHumidifierDehumidifierStateAutomatic")]
@@ -1005,7 +1005,7 @@ unsafe impl RefEncode for HMCharacteristicValueTargetHumidifierDehumidifierState
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueswingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueSwingMode(pub NSInteger);
 impl HMCharacteristicValueSwingMode {
     #[doc(alias = "HMCharacteristicValueSwingModeDisabled")]
@@ -1025,7 +1025,7 @@ unsafe impl RefEncode for HMCharacteristicValueSwingMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetfanstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetFanState(pub NSInteger);
 impl HMCharacteristicValueTargetFanState {
     #[doc(alias = "HMCharacteristicValueTargetFanStateManual")]
@@ -1045,7 +1045,7 @@ unsafe impl RefEncode for HMCharacteristicValueTargetFanState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueconfigurationstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueConfigurationState(pub NSInteger);
 impl HMCharacteristicValueConfigurationState {
     #[doc(alias = "HMCharacteristicValueConfigurationStateNotConfigured")]
@@ -1065,7 +1065,7 @@ unsafe impl RefEncode for HMCharacteristicValueConfigurationState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputsourcetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueInputSourceType(pub NSInteger);
 impl HMCharacteristicValueInputSourceType {
     #[doc(alias = "HMCharacteristicValueInputSourceTypeOther")]
@@ -1103,7 +1103,7 @@ unsafe impl RefEncode for HMCharacteristicValueInputSourceType {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueinputdevicetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueInputDeviceType(pub NSInteger);
 impl HMCharacteristicValueInputDeviceType {
     #[doc(alias = "HMCharacteristicValueInputDeviceTypeOther")]
@@ -1133,7 +1133,7 @@ unsafe impl RefEncode for HMCharacteristicValueInputDeviceType {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueclosedcaptions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueClosedCaptions(pub NSInteger);
 impl HMCharacteristicValueClosedCaptions {
     #[doc(alias = "HMCharacteristicValueClosedCaptionsDisabled")]
@@ -1153,7 +1153,7 @@ unsafe impl RefEncode for HMCharacteristicValueClosedCaptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepowermodeselection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValuePowerModeSelection(pub NSInteger);
 impl HMCharacteristicValuePowerModeSelection {
     #[doc(alias = "HMCharacteristicValuePowerModeSelectionShow")]
@@ -1173,7 +1173,7 @@ unsafe impl RefEncode for HMCharacteristicValuePowerModeSelection {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentmediastate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentMediaState(pub NSInteger);
 impl HMCharacteristicValueCurrentMediaState {
     #[doc(alias = "HMCharacteristicValueCurrentMediaStatePlaying")]
@@ -1201,7 +1201,7 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentMediaState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvalueremotekey?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueRemoteKey(pub NSInteger);
 impl HMCharacteristicValueRemoteKey {
     #[doc(alias = "HMCharacteristicValueRemoteKeyRewind")]
@@ -1251,7 +1251,7 @@ unsafe impl RefEncode for HMCharacteristicValueRemoteKey {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluepicturemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValuePictureMode(pub NSInteger);
 impl HMCharacteristicValuePictureMode {
     #[doc(alias = "HMCharacteristicValuePictureModeStandard")]
@@ -1295,7 +1295,7 @@ unsafe impl RefEncode for HMCharacteristicValuePictureMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetvisibilitystate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetVisibilityState(pub NSInteger);
 impl HMCharacteristicValueTargetVisibilityState {
     #[doc(alias = "HMCharacteristicValueTargetVisibilityStateShow")]
@@ -1315,7 +1315,7 @@ unsafe impl RefEncode for HMCharacteristicValueTargetVisibilityState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluecurrentvisibilitystate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueCurrentVisibilityState(pub NSInteger);
 impl HMCharacteristicValueCurrentVisibilityState {
     #[doc(alias = "HMCharacteristicValueCurrentVisibilityStateShown")]
@@ -1339,7 +1339,7 @@ unsafe impl RefEncode for HMCharacteristicValueCurrentVisibilityState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluetargetmediastate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueTargetMediaState(pub NSInteger);
 impl HMCharacteristicValueTargetMediaState {
     #[doc(alias = "HMCharacteristicValueTargetMediaStatePlay")]
@@ -1361,7 +1361,7 @@ unsafe impl RefEncode for HMCharacteristicValueTargetMediaState {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluerouterstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueRouterStatus(pub NSInteger);
 impl HMCharacteristicValueRouterStatus {
     #[doc(alias = "HMCharacteristicValueRouterStatusReady")]
@@ -1381,7 +1381,7 @@ unsafe impl RefEncode for HMCharacteristicValueRouterStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicvaluewifisatellitestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HMCharacteristicValueWiFiSatelliteStatus(pub NSInteger);
 impl HMCharacteristicValueWiFiSatelliteStatus {
     #[doc(alias = "HMCharacteristicValueWiFiSatelliteStatusUnknown")]

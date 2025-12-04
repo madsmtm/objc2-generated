@@ -125,7 +125,7 @@ impl DefaultRetained for NSAttributedString {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAttributedStringEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAttributedStringEnumerationOptions: NSUInteger {
@@ -468,7 +468,7 @@ impl NSMutableAttributedString {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinlinepresentationintent?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSInlinePresentationIntent(pub NSUInteger);
 bitflags::bitflags! {
     impl NSInlinePresentationIntent: NSUInteger {
@@ -532,7 +532,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdownparsingfailurepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAttributedStringMarkdownParsingFailurePolicy(pub NSInteger);
 impl NSAttributedStringMarkdownParsingFailurePolicy {
     #[doc(alias = "NSAttributedStringMarkdownParsingFailureReturnError")]
@@ -552,7 +552,7 @@ unsafe impl RefEncode for NSAttributedStringMarkdownParsingFailurePolicy {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringmarkdowninterpretedsyntax?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAttributedStringMarkdownInterpretedSyntax(pub NSInteger);
 impl NSAttributedStringMarkdownInterpretedSyntax {
     #[doc(alias = "NSAttributedStringMarkdownInterpretedSyntaxFull")]
@@ -832,7 +832,7 @@ impl NSMutableAttributedString {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringformattingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSAttributedStringFormattingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSAttributedStringFormattingOptions: NSUInteger {
@@ -936,7 +936,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentkind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPresentationIntentKind(pub NSInteger);
 impl NSPresentationIntentKind {
     #[doc(alias = "NSPresentationIntentKindParagraph")]
@@ -976,7 +976,7 @@ unsafe impl RefEncode for NSPresentationIntentKind {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintenttablecolumnalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPresentationIntentTableColumnAlignment(pub NSInteger);
 impl NSPresentationIntentTableColumnAlignment {
     #[doc(alias = "NSPresentationIntentTableColumnAlignmentLeft")]

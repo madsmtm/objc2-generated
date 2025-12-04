@@ -18,7 +18,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodesourcetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureTimecodeSourceType(pub NSInteger);
 impl AVCaptureTimecodeSourceType {
     /// No internal or external source is adopted. Timecodes are zero-based, sequentially generated frame counts.
@@ -45,7 +45,7 @@ unsafe impl RefEncode for AVCaptureTimecodeSourceType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegeneratorsynchronizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureTimecodeGeneratorSynchronizationStatus(pub NSInteger);
 impl AVCaptureTimecodeGeneratorSynchronizationStatus {
     /// The initial state before a source is selected or during error conditions.

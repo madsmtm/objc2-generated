@@ -21,7 +21,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkuserinterfacedirectionpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKUserInterfaceDirectionPolicy(pub NSInteger);
 impl WKUserInterfaceDirectionPolicy {
     #[doc(alias = "WKUserInterfaceDirectionPolicyContent")]
@@ -43,7 +43,7 @@ unsafe impl RefEncode for WKUserInterfaceDirectionPolicy {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkaudiovisualmediatypes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKAudiovisualMediaTypes(pub NSUInteger);
 bitflags::bitflags! {
     impl WKAudiovisualMediaTypes: NSUInteger {

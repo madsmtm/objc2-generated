@@ -11,7 +11,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkgesturerecognizerstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKGestureRecognizerState(pub NSInteger);
 impl WKGestureRecognizerState {
     #[doc(alias = "WKGestureRecognizerStatePossible")]
@@ -41,7 +41,7 @@ unsafe impl RefEncode for WKGestureRecognizerState {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkswipegesturerecognizerdirection?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKSwipeGestureRecognizerDirection(pub NSUInteger);
 bitflags::bitflags! {
     impl WKSwipeGestureRecognizerDirection: NSUInteger {

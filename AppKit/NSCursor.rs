@@ -57,7 +57,7 @@ unsafe impl RefEncode for NSCursorFrameResizePosition {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorframeresizedirections?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCursorFrameResizeDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCursorFrameResizeDirections: NSUInteger {

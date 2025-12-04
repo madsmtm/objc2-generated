@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutionflags?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNConvolutionFlags(pub NSUInteger);
 impl MPSCNNConvolutionFlags {
     /// Use default options
@@ -29,7 +29,7 @@ unsafe impl RefEncode for MPSCNNConvolutionFlags {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutionflags?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNBinaryConvolutionFlags(pub NSUInteger);
 impl MPSCNNBinaryConvolutionFlags {
     /// Use default in binary convolution options
@@ -51,7 +51,7 @@ unsafe impl RefEncode for MPSCNNBinaryConvolutionFlags {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbinaryconvolutiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNBinaryConvolutionType(pub NSUInteger);
 impl MPSCNNBinaryConvolutionType {
     /// Otherwise a normal convolution operation, except that the weights are binary values
@@ -76,7 +76,7 @@ unsafe impl RefEncode for MPSCNNBinaryConvolutionType {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnconvolutionaccumulatorprecisionoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSNNConvolutionAccumulatorPrecisionOption(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNNConvolutionAccumulatorPrecisionOption: NSUInteger {
@@ -100,7 +100,7 @@ unsafe impl RefEncode for MPSNNConvolutionAccumulatorPrecisionOption {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnntrainingstyle?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSNNTrainingStyle(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNNTrainingStyle: NSUInteger {
@@ -127,7 +127,7 @@ unsafe impl RefEncode for MPSNNTrainingStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscnnbatchnormalizationflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCNNBatchNormalizationFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSCNNBatchNormalizationFlags: NSUInteger {
@@ -160,7 +160,7 @@ unsafe impl RefEncode for MPSCNNBatchNormalizationFlags {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpaddingmethod?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSNNPaddingMethod(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSNNPaddingMethod: NSUInteger {

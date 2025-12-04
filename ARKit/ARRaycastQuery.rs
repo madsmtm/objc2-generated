@@ -12,7 +12,7 @@ use crate::*;
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARRaycastTarget(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARRaycastTarget {
@@ -45,7 +45,7 @@ unsafe impl RefEncode for ARRaycastTarget {
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARRaycastTargetAlignment(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARRaycastTargetAlignment {

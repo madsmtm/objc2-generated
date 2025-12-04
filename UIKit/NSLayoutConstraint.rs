@@ -37,7 +37,7 @@ pub static UILayoutPriorityFittingSizeLevel: UILayoutPriority = 50 as _;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutrelation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLayoutRelation(pub NSInteger);
 impl NSLayoutRelation {
     #[doc(alias = "NSLayoutRelationLessThanOrEqual")]
@@ -59,7 +59,7 @@ unsafe impl RefEncode for NSLayoutRelation {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutattribute?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLayoutAttribute(pub NSInteger);
 impl NSLayoutAttribute {
     #[doc(alias = "NSLayoutAttributeLeft")]
@@ -119,7 +119,7 @@ unsafe impl RefEncode for NSLayoutAttribute {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutformatoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLayoutFormatOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLayoutFormatOptions: NSUInteger {

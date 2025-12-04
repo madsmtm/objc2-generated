@@ -7,7 +7,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpshuffletype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPShuffleType(pub NSInteger);
 impl MPShuffleType {
     #[doc(alias = "MPShuffleTypeOff")]
@@ -31,7 +31,7 @@ unsafe impl RefEncode for MPShuffleType {
 /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mprepeattype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPRepeatType(pub NSInteger);
 impl MPRepeatType {
     #[doc(alias = "MPRepeatTypeOff")]
@@ -55,7 +55,7 @@ unsafe impl RefEncode for MPRepeatType {
 /// [Apple's documentation](https://developer.apple.com/documentation/mediaplayer/mpchangelanguageoptionsetting?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPChangeLanguageOptionSetting(pub NSInteger);
 impl MPChangeLanguageOptionSetting {
     #[doc(alias = "MPChangeLanguageOptionSettingNone")]

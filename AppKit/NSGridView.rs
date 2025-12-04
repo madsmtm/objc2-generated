@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcellplacement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGridCellPlacement(pub NSInteger);
 impl NSGridCellPlacement {
     #[doc(alias = "NSGridCellPlacementInherited")]
@@ -44,7 +44,7 @@ unsafe impl RefEncode for NSGridCellPlacement {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridrowalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSGridRowAlignment(pub NSInteger);
 impl NSGridRowAlignment {
     #[doc(alias = "NSGridRowAlignmentInherited")]

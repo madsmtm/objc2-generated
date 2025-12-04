@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlattributeformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLAttributeFormat(pub NSUInteger);
 impl MTLAttributeFormat {
     #[doc(alias = "MTLAttributeFormatInvalid")]
@@ -134,7 +134,7 @@ unsafe impl RefEncode for MTLAttributeFormat {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstepfunction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStepFunction(pub NSUInteger);
 impl MTLStepFunction {
     #[doc(alias = "MTLStepFunctionConstant")]

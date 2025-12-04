@@ -278,7 +278,7 @@ unsafe impl ConcreteType for SKSearchResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchtype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKSearchType(pub c_uint);
 impl SKSearchType {
     #[doc(alias = "kSKSearchRanked")]

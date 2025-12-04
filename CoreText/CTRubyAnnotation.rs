@@ -63,7 +63,7 @@ unsafe impl ConcreteType for CTRubyAnnotation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTRubyAlignment(pub u8);
 impl CTRubyAlignment {
     #[doc(alias = "kCTRubyAlignmentInvalid")]
@@ -111,7 +111,7 @@ unsafe impl RefEncode for CTRubyAlignment {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyoverhang?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTRubyOverhang(pub u8);
 impl CTRubyOverhang {
     #[doc(alias = "kCTRubyOverhangInvalid")]
@@ -153,7 +153,7 @@ unsafe impl RefEncode for CTRubyOverhang {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctrubyposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTRubyPosition(pub u8);
 impl CTRubyPosition {
     #[doc(alias = "kCTRubyPositionBefore")]

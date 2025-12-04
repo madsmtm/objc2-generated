@@ -8,7 +8,7 @@ use crate::*;
 // NS_OPTIONS
 #[deprecated = "INPhotoAttributeOptions is deprecated. There is no replacement."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPhotoAttributeOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl INPhotoAttributeOptions: NSUInteger {

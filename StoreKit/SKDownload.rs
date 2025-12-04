@@ -11,10 +11,11 @@ use crate::*;
 // NS_CLOSED_ENUM
 #[deprecated = "Hosted content is no longer supported"]
 #[repr(isize)] // NSInteger
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum SKDownloadState {
     #[doc(alias = "SKDownloadStateWaiting")]
     #[deprecated = "Hosted content is no longer supported"]
+    #[default]
     Waiting = 0,
     #[doc(alias = "SKDownloadStateActive")]
     #[deprecated = "Hosted content is no longer supported"]

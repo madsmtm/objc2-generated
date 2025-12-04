@@ -14,7 +14,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cppandirection?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPPanDirection(pub NSInteger);
 bitflags::bitflags! {
     impl CPPanDirection: NSInteger {
@@ -42,7 +42,7 @@ unsafe impl RefEncode for CPPanDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpmaneuverdisplaystyle?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPManeuverDisplayStyle(pub NSInteger);
 bitflags::bitflags! {
     impl CPManeuverDisplayStyle: NSInteger {
@@ -70,7 +70,7 @@ unsafe impl RefEncode for CPManeuverDisplayStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptimeremainingcolor?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPTimeRemainingColor(pub NSUInteger);
 impl CPTimeRemainingColor {
     #[doc(alias = "CPTimeRemainingColorDefault")]
@@ -94,7 +94,7 @@ unsafe impl RefEncode for CPTimeRemainingColor {
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cptripestimatestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPTripEstimateStyle(pub NSUInteger);
 impl CPTripEstimateStyle {
     #[doc(alias = "CPTripEstimateStyleLight")]

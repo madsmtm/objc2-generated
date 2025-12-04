@@ -492,7 +492,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequeststatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVContentKeyRequestStatus(pub NSInteger);
 impl AVContentKeyRequestStatus {
     /// Indicates that the request has just been created.
@@ -1003,7 +1003,7 @@ impl AVContentKeySpecifier {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalcontentprotectionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVExternalContentProtectionStatus(pub NSInteger);
 impl AVExternalContentProtectionStatus {
     /// Indicates that the current protection status has not yet been discovered for the attached display(s).

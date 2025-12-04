@@ -11,7 +11,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "INCreateTaskListIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INCreateTaskListIntentResponseCode(pub NSInteger);
 impl INCreateTaskListIntentResponseCode {
     #[doc(alias = "INCreateTaskListIntentResponseCodeUnspecified")]

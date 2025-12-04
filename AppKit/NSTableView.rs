@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdropoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewDropOperation(pub NSUInteger);
 impl NSTableViewDropOperation {
     #[doc(alias = "NSTableViewDropOn")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for NSTableViewDropOperation {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewcolumnautoresizingstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewColumnAutoresizingStyle(pub NSUInteger);
 impl NSTableViewColumnAutoresizingStyle {
     #[doc(alias = "NSTableViewNoColumnAutoresizing")]
@@ -60,7 +60,7 @@ unsafe impl RefEncode for NSTableViewColumnAutoresizingStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewgridlinestyle?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewGridLineStyle(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTableViewGridLineStyle: NSUInteger {
@@ -86,7 +86,7 @@ unsafe impl RefEncode for NSTableViewGridLineStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewrowsizestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewRowSizeStyle(pub NSInteger);
 impl NSTableViewRowSizeStyle {
     #[doc(alias = "NSTableViewRowSizeStyleDefault")]
@@ -112,7 +112,7 @@ unsafe impl RefEncode for NSTableViewRowSizeStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewStyle(pub NSInteger);
 impl NSTableViewStyle {
     #[doc(alias = "NSTableViewStyleAutomatic")]
@@ -138,7 +138,7 @@ unsafe impl RefEncode for NSTableViewStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewselectionhighlightstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewSelectionHighlightStyle(pub NSInteger);
 impl NSTableViewSelectionHighlightStyle {
     #[doc(alias = "NSTableViewSelectionHighlightStyleNone")]
@@ -161,7 +161,7 @@ unsafe impl RefEncode for NSTableViewSelectionHighlightStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdraggingdestinationfeedbackstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewDraggingDestinationFeedbackStyle(pub NSInteger);
 impl NSTableViewDraggingDestinationFeedbackStyle {
     #[doc(alias = "NSTableViewDraggingDestinationFeedbackStyleNone")]
@@ -185,7 +185,7 @@ unsafe impl RefEncode for NSTableViewDraggingDestinationFeedbackStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstablerowactionedge?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableRowActionEdge(pub NSInteger);
 impl NSTableRowActionEdge {
     #[doc(alias = "NSTableRowActionEdgeLeading")]
@@ -208,7 +208,7 @@ pub type NSTableViewAutosaveName = NSString;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewanimationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTableViewAnimationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTableViewAnimationOptions: NSUInteger {

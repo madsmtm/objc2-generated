@@ -16,7 +16,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBError(pub NSInteger);
 impl CBError {
     #[doc(alias = "CBErrorUnknown")]
@@ -78,7 +78,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBATTError(pub NSInteger);
 impl CBATTError {
     #[doc(alias = "CBATTErrorSuccess")]

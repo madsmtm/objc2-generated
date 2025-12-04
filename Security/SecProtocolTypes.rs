@@ -187,7 +187,7 @@ unsafe impl RefEncode for tls_ciphersuite_t {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/tls_ciphersuite_group_t?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct tls_ciphersuite_group_t(pub u16);
 impl tls_ciphersuite_group_t {
     #[doc(alias = "tls_ciphersuite_group_default")]
@@ -220,7 +220,7 @@ unsafe impl RefEncode for tls_ciphersuite_group_t {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sslprotocol?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLProtocol(pub c_int);
 impl SSLProtocol {
     #[doc(alias = "kSSLProtocolUnknown")]

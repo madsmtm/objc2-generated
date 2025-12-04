@@ -11,7 +11,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouchphase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITouchPhase(pub NSInteger);
 impl UITouchPhase {
     #[doc(alias = "UITouchPhaseBegan")]
@@ -43,7 +43,7 @@ unsafe impl RefEncode for UITouchPhase {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiforcetouchcapability?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIForceTouchCapability(pub NSInteger);
 impl UIForceTouchCapability {
     #[doc(alias = "UIForceTouchCapabilityUnknown")]
@@ -65,7 +65,7 @@ unsafe impl RefEncode for UIForceTouchCapability {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITouchType(pub NSInteger);
 impl UITouchType {
     #[doc(alias = "UITouchTypeDirect")]
@@ -91,7 +91,7 @@ unsafe impl RefEncode for UITouchType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitouchproperties?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITouchProperties(pub NSInteger);
 bitflags::bitflags! {
     impl UITouchProperties: NSInteger {

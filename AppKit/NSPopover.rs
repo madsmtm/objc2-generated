@@ -11,7 +11,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPopoverAppearance(pub NSInteger);
 impl NSPopoverAppearance {
     /// The popover will use the default, light content appearance.
@@ -35,7 +35,7 @@ unsafe impl RefEncode for NSPopoverAppearance {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPopoverBehavior(pub NSInteger);
 impl NSPopoverBehavior {
     #[doc(alias = "NSPopoverBehaviorApplicationDefined")]

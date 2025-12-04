@@ -39,7 +39,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/cfnetwork/cfhostinfotype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFHostInfoType(pub c_int);
 impl CFHostInfoType {
     #[doc(alias = "kCFHostAddresses")]

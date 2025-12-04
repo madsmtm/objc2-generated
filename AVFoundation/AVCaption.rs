@@ -26,7 +26,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionunitstype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionUnitsType(pub NSInteger);
 impl AVCaptionUnitsType {
     #[doc(alias = "AVCaptionUnitsTypeUnspecified")]
@@ -196,7 +196,7 @@ impl AVCaptionSize {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregiondisplayalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRegionDisplayAlignment(pub NSInteger);
 impl AVCaptionRegionDisplayAlignment {
     #[doc(alias = "AVCaptionRegionDisplayAlignmentBefore")]
@@ -220,7 +220,7 @@ unsafe impl RefEncode for AVCaptionRegionDisplayAlignment {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregionwritingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRegionWritingMode(pub NSInteger);
 impl AVCaptionRegionWritingMode {
     #[doc(alias = "AVCaptionRegionWritingModeLeftToRightAndTopToBottom")]
@@ -242,7 +242,7 @@ unsafe impl RefEncode for AVCaptionRegionWritingMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregionscroll?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRegionScroll(pub NSInteger);
 impl AVCaptionRegionScroll {
     #[doc(alias = "AVCaptionRegionScrollNone")]
@@ -556,7 +556,7 @@ impl AVMutableCaptionRegion {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionanimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionAnimation(pub NSInteger);
 impl AVCaptionAnimation {
     #[doc(alias = "AVCaptionAnimationNone")]
@@ -783,7 +783,7 @@ impl AVMutableCaption {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionfontweight?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionFontWeight(pub NSInteger);
 impl AVCaptionFontWeight {
     #[doc(alias = "AVCaptionFontWeightUnknown")]
@@ -807,7 +807,7 @@ unsafe impl RefEncode for AVCaptionFontWeight {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionfontstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionFontStyle(pub NSInteger);
 impl AVCaptionFontStyle {
     #[doc(alias = "AVCaptionFontStyleUnknown")]
@@ -831,7 +831,7 @@ unsafe impl RefEncode for AVCaptionFontStyle {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiondecoration?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionDecoration(pub NSUInteger);
 bitflags::bitflags! {
     impl AVCaptionDecoration: NSUInteger {
@@ -882,7 +882,7 @@ unsafe impl RefEncode for AVCaptionDecoration {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiontextcombine?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionTextCombine(pub NSInteger);
 impl AVCaptionTextCombine {
     #[doc(alias = "AVCaptionTextCombineAll")]
@@ -922,7 +922,7 @@ unsafe impl RefEncode for AVCaptionTextCombine {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiontextalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionTextAlignment(pub NSInteger);
 impl AVCaptionTextAlignment {
     #[doc(alias = "AVCaptionTextAlignmentStart")]
@@ -1289,7 +1289,7 @@ impl AVMutableCaption {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRubyPosition(pub NSInteger);
 impl AVCaptionRubyPosition {
     #[doc(alias = "AVCaptionRubyPositionBefore")]
@@ -1335,7 +1335,7 @@ unsafe impl RefEncode for AVCaptionRubyPosition {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionrubyalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptionRubyAlignment(pub NSInteger);
 impl AVCaptionRubyAlignment {
     #[doc(alias = "AVCaptionRubyAlignmentStart")]

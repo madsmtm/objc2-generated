@@ -12,7 +12,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "No longer supported"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKSendDataMode(pub c_int);
 impl GKSendDataMode {
     #[doc(alias = "GKSendDataReliable")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for GKSendDataMode {
 // NS_ENUM
 #[deprecated = "No longer supported"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKSessionMode(pub c_int);
 impl GKSessionMode {
     #[doc(alias = "GKSessionModeServer")]
@@ -66,7 +66,7 @@ unsafe impl RefEncode for GKSessionMode {
 // NS_ENUM
 #[deprecated = "No longer supported"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKPeerConnectionState(pub c_int);
 impl GKPeerConnectionState {
     #[doc(alias = "GKPeerStateAvailable")]

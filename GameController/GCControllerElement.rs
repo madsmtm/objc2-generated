@@ -30,7 +30,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcsystemgesturestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GCSystemGestureState(pub NSInteger);
 impl GCSystemGestureState {
     /// System gesture recognizers will run before input is sent to app, this is the default state

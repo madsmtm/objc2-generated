@@ -1947,7 +1947,7 @@ pub extern "C-unwind" fn UIAccessibilityRequestGuidedAccessSession(
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityhearingdeviceear?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityHearingDeviceEar(pub NSUInteger);
 bitflags::bitflags! {
     impl UIAccessibilityHearingDeviceEar: NSUInteger {

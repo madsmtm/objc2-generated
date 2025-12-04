@@ -29,7 +29,7 @@ extern "C" {
 // NS_ENUM
 #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKAudioFilePlayerItemStatus(pub NSInteger);
 impl WKAudioFilePlayerItemStatus {
     #[doc(alias = "WKAudioFilePlayerItemStatusUnknown")]

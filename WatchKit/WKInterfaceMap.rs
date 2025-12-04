@@ -18,7 +18,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemappincolor?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceMapPinColor(pub NSInteger);
 impl WKInterfaceMapPinColor {
     #[doc(alias = "WKInterfaceMapPinColorRed")]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for WKInterfaceMapPinColor {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemapusertrackingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceMapUserTrackingMode(pub NSInteger);
 impl WKInterfaceMapUserTrackingMode {
     #[doc(alias = "WKInterfaceMapUserTrackingModeNone")]

@@ -127,7 +127,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSIntersectionType(pub NSUInteger);
 impl MPSIntersectionType {
     /// Find the closest intersection to the ray's origin along the ray direction. This is
@@ -155,7 +155,7 @@ unsafe impl RefEncode for MPSIntersectionType {
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSTriangleIntersectionTestType(pub NSUInteger);
 impl MPSTriangleIntersectionTestType {
     /// Use the default ray/triangle intersection test
@@ -184,7 +184,7 @@ unsafe impl RefEncode for MPSTriangleIntersectionTestType {
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSBoundingBoxIntersectionTestType(pub NSUInteger);
 impl MPSBoundingBoxIntersectionTestType {
     /// Use the default MPSBoundingBoxIntersectionTestTypeAxisAligned ray/bounding box
@@ -233,7 +233,7 @@ unsafe impl RefEncode for MPSBoundingBoxIntersectionTestType {
 // NS_OPTIONS
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSRayMaskOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSRayMaskOptions: NSUInteger {
@@ -265,7 +265,7 @@ unsafe impl RefEncode for MPSRayMaskOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraydatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSRayDataType(pub NSUInteger);
 impl MPSRayDataType {
     /// Use the MPSRayOriginDirection struct type
@@ -295,7 +295,7 @@ unsafe impl RefEncode for MPSRayDataType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSIntersectionDataType(pub NSUInteger);
 impl MPSIntersectionDataType {
     /// Use the MPSIntersectionDistance struct type
@@ -343,7 +343,7 @@ unsafe impl RefEncode for MPSIntersectionDataType {
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSRayMaskOperator(pub NSUInteger);
 impl MPSRayMaskOperator {
     /// Accept the intersection if (primitive mask

@@ -19,7 +19,7 @@ use crate::*;
 // NS_OPTIONS
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARFrameSemantics(pub NSUInteger);
 #[cfg(feature = "objc2")]
 bitflags::bitflags! {
@@ -88,7 +88,7 @@ unsafe impl RefEncode for ARFrameSemantics {
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARWorldAlignment(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARWorldAlignment {
@@ -120,7 +120,7 @@ unsafe impl RefEncode for ARWorldAlignment {
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AREnvironmentTexturing(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl AREnvironmentTexturing {
@@ -152,7 +152,7 @@ unsafe impl RefEncode for AREnvironmentTexturing {
 // NS_OPTIONS
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARSceneReconstruction(pub NSUInteger);
 #[cfg(feature = "objc2")]
 bitflags::bitflags! {

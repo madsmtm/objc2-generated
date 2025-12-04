@@ -19,7 +19,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationassetrepresentationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHPickerConfigurationAssetRepresentationMode(pub NSInteger);
 impl PHPickerConfigurationAssetRepresentationMode {
     /// Uses the best representation determined by the system. This may change in future releases.
@@ -51,7 +51,7 @@ unsafe impl Sync for PHPickerConfigurationAssetRepresentationMode {}
 /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfigurationselection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHPickerConfigurationSelection(pub NSInteger);
 impl PHPickerConfigurationSelection {
     /// Uses the default selection behavior.
@@ -86,7 +86,7 @@ unsafe impl Sync for PHPickerConfigurationSelection {}
 /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHPickerMode(pub NSInteger);
 impl PHPickerMode {
     /// Default picker mode.
@@ -111,7 +111,7 @@ unsafe impl RefEncode for PHPickerMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickercapabilities?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHPickerCapabilities(pub NSUInteger);
 bitflags::bitflags! {
     impl PHPickerCapabilities: NSUInteger {

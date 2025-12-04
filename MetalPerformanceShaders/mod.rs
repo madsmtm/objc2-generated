@@ -167,7 +167,7 @@ extern "C-unwind" {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdeviceoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSDeviceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSDeviceOptions: NSUInteger {

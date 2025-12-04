@@ -324,7 +324,7 @@ pub type NXMouseScaling = evsioMouseScaling;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxmousebutton?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NXMouseButton(pub c_uint);
 impl NXMouseButton {
     #[doc(alias = "NX_OneButton")]
@@ -417,7 +417,7 @@ unsafe impl RefEncode for NXEventSystemDeviceList {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/evcmd?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EvCmd(pub c_uint);
 impl EvCmd {
     pub const EVNOP: Self = Self(0);
@@ -1092,7 +1092,7 @@ unsafe impl RefEncode for NXEvent {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidbuttonmodes?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDButtonModes(pub c_uint);
 impl IOHIDButtonModes {
     #[doc(alias = "kIOHIDButtonMode_BothLeftClicks")]
@@ -1115,7 +1115,7 @@ unsafe impl RefEncode for IOHIDButtonModes {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/evsioevsioscsindices?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct evsioEVSIOSCSIndices(pub c_uint);
 impl evsioEVSIOSCSIndices {
     pub const EVSIOSCS_X: Self = Self(0);
@@ -1134,7 +1134,7 @@ unsafe impl RefEncode for evsioEVSIOSCSIndices {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/evsioevsioccsindices?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct evsioEVSIOCCSIndices(pub c_uint);
 impl evsioEVSIOCCSIndices {
     pub const EVSIOCCS_X: Self = Self(0);
@@ -1705,7 +1705,7 @@ extern "C-unwind" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidrequesttype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDRequestType(pub c_uint);
 impl IOHIDRequestType {
     #[doc(alias = "kIOHIDRequestTypePostEvent")]
@@ -1726,7 +1726,7 @@ unsafe impl RefEncode for IOHIDRequestType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidaccesstype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOHIDAccessType(pub c_uint);
 impl IOHIDAccessType {
     #[doc(alias = "kIOHIDAccessTypeGranted")]

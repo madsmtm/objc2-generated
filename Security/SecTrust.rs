@@ -53,7 +53,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustresulttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTrustResultType(pub u32);
 impl SecTrustResultType {
     #[doc(alias = "kSecTrustResultInvalid")]
@@ -923,7 +923,7 @@ pub type SecTrustUserSetting = SecTrustResultType;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustoptionflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecTrustOptionFlags(pub u32);
 bitflags::bitflags! {
     impl SecTrustOptionFlags: u32 {

@@ -11,7 +11,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "Use MKLocalSearchCompleterResultType"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKSearchCompletionFilterType(pub NSInteger);
 impl MKSearchCompletionFilterType {
     #[doc(alias = "MKSearchCompletionFilterTypeLocationsAndQueries")]
@@ -33,7 +33,7 @@ unsafe impl RefEncode for MKSearchCompletionFilterType {
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleterresulttype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKLocalSearchCompleterResultType(pub NSUInteger);
 bitflags::bitflags! {
     impl MKLocalSearchCompleterResultType: NSUInteger {

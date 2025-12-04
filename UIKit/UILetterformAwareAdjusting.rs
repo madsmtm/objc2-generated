@@ -18,7 +18,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiletterformawaresizingrule?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UILetterformAwareSizingRule(pub NSInteger);
 impl UILetterformAwareSizingRule {
     /// `UILetterformAwareSizingRuleTypographic`: `-sizeThatFits:` and `-intrinsicContentSize` results will work well for typographic alignment of edges and centers of the view frames, but extreme ascenders or descenders in tall scripts may not be accounted for

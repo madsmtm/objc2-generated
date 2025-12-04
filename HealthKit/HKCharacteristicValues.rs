@@ -31,7 +31,7 @@ unsafe impl RefEncode for HKActivityMoveMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbiologicalsex?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKBiologicalSex(pub NSInteger);
 impl HKBiologicalSex {
     #[doc(alias = "HKBiologicalSexNotSet")]
@@ -57,7 +57,7 @@ unsafe impl RefEncode for HKBiologicalSex {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkbloodtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKBloodType(pub NSInteger);
 impl HKBloodType {
     #[doc(alias = "HKBloodTypeNotSet")]
@@ -96,7 +96,7 @@ unsafe impl RefEncode for HKBloodType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKFitzpatrickSkinType(pub NSInteger);
 impl HKFitzpatrickSkinType {
     #[doc(alias = "HKFitzpatrickSkinTypeNotSet")]
@@ -128,7 +128,7 @@ unsafe impl RefEncode for HKFitzpatrickSkinType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkwheelchairuse?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKWheelchairUse(pub NSInteger);
 impl HKWheelchairUse {
     #[doc(alias = "HKWheelchairUseNotSet")]

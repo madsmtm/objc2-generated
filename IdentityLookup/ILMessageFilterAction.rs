@@ -9,7 +9,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefilteraction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ILMessageFilterAction(pub NSInteger);
 impl ILMessageFilterAction {
     /// Insufficient information to determine an action to take. In a query response, has the effect of allowing the message to be shown normally.
@@ -44,7 +44,7 @@ unsafe impl RefEncode for ILMessageFilterAction {
 /// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltersubaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ILMessageFilterSubAction(pub NSInteger);
 impl ILMessageFilterSubAction {
     /// Insufficient information to determine an action to take. In a query response, has the effect of allowing the message to be shown normally.

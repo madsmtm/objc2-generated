@@ -14,7 +14,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowserstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EAWiFiUnconfiguredAccessoryBrowserState(pub NSInteger);
 impl EAWiFiUnconfiguredAccessoryBrowserState {
     #[doc(alias = "EAWiFiUnconfiguredAccessoryBrowserStateWiFiUnavailable")]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for EAWiFiUnconfiguredAccessoryBrowserState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessoryconfigurationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct EAWiFiUnconfiguredAccessoryConfigurationStatus(pub NSInteger);
 impl EAWiFiUnconfiguredAccessoryConfigurationStatus {
     #[doc(alias = "EAWiFiUnconfiguredAccessoryConfigurationStatusSuccess")]

@@ -69,7 +69,7 @@ unsafe impl RefEncode for AuthorizationValueVector {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationcontextflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AuthorizationContextFlags(pub u32);
 bitflags::bitflags! {
     impl AuthorizationContextFlags: u32 {
@@ -144,9 +144,10 @@ pub type AuthorizationSessionId = *mut c_void;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationresult?language=objc)
 // NS_CLOSED_ENUM
 #[repr(u32)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum AuthorizationResult {
     #[doc(alias = "kAuthorizationResultAllow")]
+    #[default]
     Allow = 0,
     #[doc(alias = "kAuthorizationResultDeny")]
     Deny = 1,

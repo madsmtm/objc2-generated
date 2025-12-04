@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryaddpassesstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPassLibraryAddPassesStatus(pub NSInteger);
 impl PKPassLibraryAddPassesStatus {
     #[doc(alias = "PKPassLibraryDidAddPasses")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for PKPassLibraryAddPassesStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkautomaticpasspresentationsuppressionresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAutomaticPassPresentationSuppressionResult(pub NSUInteger);
 impl PKAutomaticPassPresentationSuppressionResult {
     #[doc(alias = "PKAutomaticPassPresentationSuppressionResultNotSupported")]
@@ -58,7 +58,7 @@ unsafe impl RefEncode for PKAutomaticPassPresentationSuppressionResult {
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarycapability?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPassLibraryCapability(pub NSInteger);
 impl PKPassLibraryCapability {
     #[doc(alias = "PKPassLibraryCapabilityBackgroundAddPasses")]
@@ -76,7 +76,7 @@ unsafe impl RefEncode for PKPassLibraryCapability {
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPassLibraryAuthorizationStatus(pub NSInteger);
 impl PKPassLibraryAuthorizationStatus {
     #[doc(alias = "PKPassLibraryAuthorizationStatusNotDetermined")]

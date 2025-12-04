@@ -125,7 +125,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardaccessbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPasteboardAccessBehavior(pub NSInteger);
 impl NSPasteboardAccessBehavior {
     /// The default behavior for the General pasteboard is to ask upon programmatic access. All other pasteboards default to always allow access.
@@ -276,7 +276,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardcontentsoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPasteboardContentsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPasteboardContentsOptions: NSUInteger {
@@ -715,7 +715,7 @@ extern_protocol!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardwritingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPasteboardWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPasteboardWritingOptions: NSUInteger {
@@ -763,7 +763,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardreadingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPasteboardReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPasteboardReadingOptions: NSUInteger {

@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKExtendedRuntimeSessionState(pub NSInteger);
 impl WKExtendedRuntimeSessionState {
     /// Start has never been called on the session.
@@ -42,7 +42,7 @@ unsafe impl RefEncode for WKExtendedRuntimeSessionState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessioninvalidationreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKExtendedRuntimeSessionInvalidationReason(pub NSInteger);
 impl WKExtendedRuntimeSessionInvalidationReason {
     /// The session ended normally, likely through a direct call to invalidate.
@@ -120,7 +120,7 @@ unsafe impl RefEncode for WKExtendedRuntimeSessionErrorCode {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextendedruntimesessionautolaunchauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKExtendedRuntimeSessionAutoLaunchAuthorizationStatus(pub NSInteger);
 impl WKExtendedRuntimeSessionAutoLaunchAuthorizationStatus {
     #[doc(alias = "WKExtendedRuntimeSessionAutoLaunchAuthorizationStatusUnknown")]

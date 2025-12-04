@@ -47,7 +47,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenoverscancompensation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScreenOverscanCompensation(pub NSInteger);
 impl UIScreenOverscanCompensation {
     #[doc(alias = "UIScreenOverscanCompensationScale")]
@@ -72,7 +72,7 @@ unsafe impl RefEncode for UIScreenOverscanCompensation {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenreferencedisplaymodestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIScreenReferenceDisplayModeStatus(pub NSInteger);
 impl UIScreenReferenceDisplayModeStatus {
     #[doc(alias = "UIScreenReferenceDisplayModeStatusNotSupported")]

@@ -17,7 +17,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphOptions(pub u64);
 impl MPSGraphOptions {
     /// No Options.
@@ -47,7 +47,7 @@ unsafe impl RefEncode for MPSGraphOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimization?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphOptimization(pub u64);
 impl MPSGraphOptimization {
     /// Graph performs core optimizations only.
@@ -71,7 +71,7 @@ unsafe impl RefEncode for MPSGraphOptimization {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphoptimizationprofile?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphOptimizationProfile(pub u64);
 impl MPSGraphOptimizationProfile {
     /// Default, graph optimized for performance.
@@ -95,7 +95,7 @@ unsafe impl RefEncode for MPSGraphOptimizationProfile {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphexecutionstage?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphExecutionStage(pub u64);
 impl MPSGraphExecutionStage {
     /// stage when execution of the graph completes.
@@ -116,7 +116,7 @@ unsafe impl RefEncode for MPSGraphExecutionStage {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphreducedprecisionfastmath?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSGraphReducedPrecisionFastMath(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSGraphReducedPrecisionFastMath: NSUInteger {

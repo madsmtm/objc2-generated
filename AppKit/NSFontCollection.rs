@@ -13,7 +13,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionvisibility?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFontCollectionVisibility(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFontCollectionVisibility: NSUInteger {

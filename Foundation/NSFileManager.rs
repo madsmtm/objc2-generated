@@ -31,7 +31,7 @@ pub type NSFileProviderServiceName = NSString;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvolumeenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSVolumeEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSVolumeEnumerationOptions: NSUInteger {
@@ -53,7 +53,7 @@ unsafe impl RefEncode for NSVolumeEnumerationOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdirectoryenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDirectoryEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDirectoryEnumerationOptions: NSUInteger {
@@ -81,7 +81,7 @@ unsafe impl RefEncode for NSDirectoryEnumerationOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanageritemreplacementoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileManagerItemReplacementOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileManagerItemReplacementOptions: NSUInteger {
@@ -103,7 +103,7 @@ unsafe impl RefEncode for NSFileManagerItemReplacementOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrelationship?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRelationship(pub NSInteger);
 impl NSURLRelationship {
     #[doc(alias = "NSURLRelationshipContains")]
@@ -125,7 +125,7 @@ unsafe impl RefEncode for NSURLRelationship {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerunmountoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileManagerUnmountOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileManagerUnmountOptions: NSUInteger {
@@ -163,7 +163,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagersupportedsynccontrols?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileManagerSupportedSyncControls(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileManagerSupportedSyncControls: NSUInteger {
@@ -192,7 +192,7 @@ unsafe impl RefEncode for NSFileManagerSupportedSyncControls {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanagerresumesyncbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileManagerResumeSyncBehavior(pub NSInteger);
 impl NSFileManagerResumeSyncBehavior {
     /// Resumes synchronizing by uploading the local version of the file.
@@ -234,7 +234,7 @@ unsafe impl RefEncode for NSFileManagerResumeSyncBehavior {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilemanageruploadlocalversionconflictpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileManagerUploadLocalVersionConflictPolicy(pub NSInteger);
 impl NSFileManagerUploadLocalVersionConflictPolicy {
     /// Resolves the conflict using the policy defined by the file provider.

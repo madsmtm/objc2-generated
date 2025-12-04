@@ -14,7 +14,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENStatus(pub NSInteger);
 impl ENStatus {
     /// Status of Exposure Notification is unknown. This is the status before ENManager has activated successfully.
@@ -57,7 +57,7 @@ unsafe impl RefEncode for ENStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ENActivityFlags(pub u32);
 bitflags::bitflags! {
     impl ENActivityFlags: u32 {

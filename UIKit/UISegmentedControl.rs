@@ -16,7 +16,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "The segmentedControlStyle property no longer has any effect"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISegmentedControlStyle(pub NSInteger);
 impl UISegmentedControlStyle {
     #[doc(alias = "UISegmentedControlStylePlain")]
@@ -47,7 +47,7 @@ pub const UISegmentedControlNoSegment: c_int = -1;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrolsegment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UISegmentedControlSegment(pub NSInteger);
 impl UISegmentedControlSegment {
     #[doc(alias = "UISegmentedControlSegmentAny")]

@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfsectioneditemimageshape?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVTopShelfSectionedItemImageShape(pub NSInteger);
 impl TVTopShelfSectionedItemImageShape {
     /// A 1:1 image.

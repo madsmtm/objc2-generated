@@ -26,7 +26,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsblockmapflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSBlockmapFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl FSBlockmapFlags: NSUInteger {
@@ -55,7 +55,7 @@ unsafe impl RefEncode for FSBlockmapFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fscompleteioflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSCompleteIOFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl FSCompleteIOFlags: NSUInteger {
@@ -84,7 +84,7 @@ unsafe impl RefEncode for FSCompleteIOFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsextenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSExtentType(pub NSInteger);
 impl FSExtentType {
     /// An extent type to indicate valid data.

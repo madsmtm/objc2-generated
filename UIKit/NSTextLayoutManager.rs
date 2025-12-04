@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanagersegmenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutManagerSegmentType(pub NSInteger);
 impl NSTextLayoutManagerSegmentType {
     #[doc(alias = "NSTextLayoutManagerSegmentTypeStandard")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for NSTextLayoutManagerSegmentType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanagersegmentoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextLayoutManagerSegmentOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTextLayoutManagerSegmentOptions: NSUInteger {

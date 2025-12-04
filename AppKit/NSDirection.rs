@@ -9,7 +9,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nshorizontaldirections?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSHorizontalDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl NSHorizontalDirections: NSUInteger {
@@ -38,7 +38,7 @@ unsafe impl RefEncode for NSHorizontalDirections {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsverticaldirections?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSVerticalDirections(pub NSUInteger);
 bitflags::bitflags! {
     impl NSVerticalDirections: NSUInteger {

@@ -166,7 +166,7 @@ impl CFCalendar {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfcalendarunit?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFCalendarUnit(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFCalendarUnit: CFOptionFlags {

@@ -15,7 +15,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "Use CBManagerAuthorization instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralManagerAuthorizationStatus(pub NSInteger);
 impl CBPeripheralManagerAuthorizationStatus {
     #[doc(alias = "CBPeripheralManagerAuthorizationStatusNotDetermined")]
@@ -46,7 +46,7 @@ unsafe impl RefEncode for CBPeripheralManagerAuthorizationStatus {
 // NS_ENUM
 #[deprecated = "Use CBManagerState instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralManagerState(pub NSInteger);
 impl CBPeripheralManagerState {
     #[doc(alias = "CBPeripheralManagerStateUnknown")]
@@ -88,7 +88,7 @@ unsafe impl RefEncode for CBPeripheralManagerState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralmanagerconnectionlatency?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralManagerConnectionLatency(pub NSInteger);
 impl CBPeripheralManagerConnectionLatency {
     #[doc(alias = "CBPeripheralManagerConnectionLatencyLow")]

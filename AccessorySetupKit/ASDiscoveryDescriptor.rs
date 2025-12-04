@@ -14,7 +14,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptorrange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASDiscoveryDescriptorRange(pub NSInteger);
 impl ASDiscoveryDescriptorRange {
     /// The default range in which to discover accessories.

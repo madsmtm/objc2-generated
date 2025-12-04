@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmhighfrequencyheartratedataconfidence?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMHighFrequencyHeartRateDataConfidence(pub NSInteger);
 impl CMHighFrequencyHeartRateDataConfidence {
     #[doc(alias = "CMHighFrequencyHeartRateDataConfidenceLow")]

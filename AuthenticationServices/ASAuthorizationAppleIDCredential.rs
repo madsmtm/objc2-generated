@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuserdetectionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASUserDetectionStatus(pub NSInteger);
 impl ASUserDetectionStatus {
     #[doc(alias = "ASUserDetectionStatusUnsupported")]
@@ -31,7 +31,7 @@ unsafe impl RefEncode for ASUserDetectionStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asuseragerange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASUserAgeRange(pub NSInteger);
 impl ASUserAgeRange {
     #[doc(alias = "ASUserAgeRangeUnknown")]

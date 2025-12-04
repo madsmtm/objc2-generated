@@ -11,7 +11,7 @@ use crate::*;
 // NS_OPTIONS
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARPlaneDetection(pub NSUInteger);
 #[cfg(feature = "objc2")]
 bitflags::bitflags! {

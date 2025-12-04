@@ -15,7 +15,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccesserrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIGuidedAccessErrorCode(pub NSInteger);
 impl UIGuidedAccessErrorCode {
     #[doc(alias = "UIGuidedAccessErrorPermissionDenied")]
@@ -35,7 +35,7 @@ unsafe impl RefEncode for UIGuidedAccessErrorCode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessrestrictionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIGuidedAccessRestrictionState(pub NSInteger);
 impl UIGuidedAccessRestrictionState {
     #[doc(alias = "UIGuidedAccessRestrictionStateAllow")]
@@ -102,7 +102,7 @@ impl UIGuidedAccessRestrictionState {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessaccessibilityfeature?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIGuidedAccessAccessibilityFeature(pub NSUInteger);
 bitflags::bitflags! {
     impl UIGuidedAccessAccessibilityFeature: NSUInteger {

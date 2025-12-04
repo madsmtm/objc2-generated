@@ -37,7 +37,7 @@ unsafe impl RefEncode for HKGAD7AssessmentRisk {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessmentanswer?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKGAD7AssessmentAnswer(pub NSInteger);
 impl HKGAD7AssessmentAnswer {
     #[doc(alias = "HKGAD7AssessmentAnswerNotAtAll")]

@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpanelresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintPanelResult(pub NSInteger);
 impl NSPrintPanelResult {
     #[doc(alias = "NSPrintPanelResultCancelled")]
@@ -30,7 +30,7 @@ unsafe impl RefEncode for NSPrintPanelResult {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsprintpaneloptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPrintPanelOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPrintPanelOptions: NSUInteger {

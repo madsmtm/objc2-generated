@@ -148,7 +148,7 @@ impl NISession {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectremovalreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NINearbyObjectRemovalReason(pub NSInteger);
 impl NINearbyObjectRemovalReason {
     /// The system has not received new activity from this object for over the allowed period.
@@ -173,7 +173,7 @@ unsafe impl RefEncode for NINearbyObjectRemovalReason {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NIAlgorithmConvergenceStatus(pub NSInteger);
 impl NIAlgorithmConvergenceStatus {
     /// Algorithm convergence status is unknown.

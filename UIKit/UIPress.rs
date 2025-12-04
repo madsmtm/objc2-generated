@@ -11,7 +11,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipressphase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPressPhase(pub NSInteger);
 impl UIPressPhase {
     #[doc(alias = "UIPressPhaseBegan")]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for UIPressPhase {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipresstype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPressType(pub NSInteger);
 impl UIPressType {
     #[doc(alias = "UIPressTypeUpArrow")]

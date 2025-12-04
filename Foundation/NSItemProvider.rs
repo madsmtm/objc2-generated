@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderrepresentationvisibility?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSItemProviderRepresentationVisibility(pub NSInteger);
 impl NSItemProviderRepresentationVisibility {
     #[doc(alias = "NSItemProviderRepresentationVisibilityAll")]
@@ -33,7 +33,7 @@ unsafe impl RefEncode for NSItemProviderRepresentationVisibility {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderfileoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSItemProviderFileOptions(pub NSInteger);
 bitflags::bitflags! {
     impl NSItemProviderFileOptions: NSInteger {

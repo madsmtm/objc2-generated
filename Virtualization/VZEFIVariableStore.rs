@@ -11,7 +11,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefivariablestoreinitializationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VZEFIVariableStoreInitializationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl VZEFIVariableStoreInitializationOptions: NSUInteger {

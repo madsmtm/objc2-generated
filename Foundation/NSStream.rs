@@ -16,7 +16,7 @@ pub type NSStreamPropertyKey = NSString;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStreamStatus(pub NSUInteger);
 impl NSStreamStatus {
     #[doc(alias = "NSStreamStatusNotOpen")]
@@ -48,7 +48,7 @@ unsafe impl RefEncode for NSStreamStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsstreamevent?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSStreamEvent(pub NSUInteger);
 bitflags::bitflags! {
     impl NSStreamEvent: NSUInteger {

@@ -59,7 +59,7 @@ pub type AudioSessionID = u32;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosessionerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioSessionErrorCode(pub AVAudioInteger);
 impl AVAudioSessionErrorCode {
     #[doc(alias = "AVAudioSessionErrorCodeNone")]

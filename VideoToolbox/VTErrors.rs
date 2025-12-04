@@ -115,7 +115,7 @@ pub const kVTVideoEncoderAutoWhiteBalanceNotLockedErr: OSStatus = -19512;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecodeframeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VTDecodeFrameFlags(pub u32);
 bitflags::bitflags! {
     impl VTDecodeFrameFlags: u32 {
@@ -162,7 +162,7 @@ unsafe impl RefEncode for VTDecodeFrameFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtdecodeinfoflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VTDecodeInfoFlags(pub u32);
 bitflags::bitflags! {
     impl VTDecodeInfoFlags: u32 {
@@ -192,7 +192,7 @@ unsafe impl RefEncode for VTDecodeInfoFlags {
 /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtencodeinfoflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VTEncodeInfoFlags(pub u32);
 bitflags::bitflags! {
     impl VTEncodeInfoFlags: u32 {

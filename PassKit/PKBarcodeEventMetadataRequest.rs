@@ -206,7 +206,7 @@ impl PKBarcodeEventSignatureResponse {
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkbarcodeeventconfigurationdatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKBarcodeEventConfigurationDataType(pub NSInteger);
 impl PKBarcodeEventConfigurationDataType {
     #[doc(alias = "PKBarcodeEventConfigurationDataTypeUnknown")]

@@ -29,7 +29,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathdrawingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGPathDrawingMode(pub i32);
 impl CGPathDrawingMode {
     #[doc(alias = "kCGPathFill")]
@@ -57,7 +57,7 @@ unsafe impl RefEncode for CGPathDrawingMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgtextdrawingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGTextDrawingMode(pub i32);
 impl CGTextDrawingMode {
     #[doc(alias = "kCGTextFill")]
@@ -92,7 +92,7 @@ unsafe impl RefEncode for CGTextDrawingMode {
 // NS_ENUM
 #[deprecated = "No longer supported"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGTextEncoding(pub i32);
 impl CGTextEncoding {
     #[doc(alias = "kCGEncodingFontSpecific")]
@@ -116,7 +116,7 @@ unsafe impl RefEncode for CGTextEncoding {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cginterpolationquality?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGInterpolationQuality(pub i32);
 impl CGInterpolationQuality {
     #[doc(alias = "kCGInterpolationDefault")]
@@ -144,7 +144,7 @@ unsafe impl RefEncode for CGInterpolationQuality {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgblendmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGBlendMode(pub i32);
 impl CGBlendMode {
     #[doc(alias = "kCGBlendModeNormal")]

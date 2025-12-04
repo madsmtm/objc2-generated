@@ -487,7 +487,7 @@ impl CIPDF417CodeDescriptor {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodeeccversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CIDataMatrixCodeECCVersion(pub NSInteger);
 impl CIDataMatrixCodeECCVersion {
     /// Indicates error correction using convolutional code error correction with no data protection.

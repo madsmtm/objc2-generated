@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cldeviceorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLDeviceOrientation(pub c_int);
 impl CLDeviceOrientation {
     #[doc(alias = "CLDeviceOrientationUnknown")]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for CLDeviceOrientation {
 /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLAuthorizationStatus(pub c_int);
 impl CLAuthorizationStatus {
     #[doc(alias = "kCLAuthorizationStatusNotDetermined")]
@@ -69,7 +69,7 @@ unsafe impl RefEncode for CLAuthorizationStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/claccuracyauthorization?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLAccuracyAuthorization(pub NSInteger);
 impl CLAccuracyAuthorization {
     #[doc(alias = "CLAccuracyAuthorizationFullAccuracy")]

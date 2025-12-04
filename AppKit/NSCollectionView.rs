@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdropoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionViewDropOperation(pub NSInteger);
 impl NSCollectionViewDropOperation {
     #[doc(alias = "NSCollectionViewDropOn")]
@@ -30,7 +30,7 @@ unsafe impl RefEncode for NSCollectionViewDropOperation {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewitemhighlightstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionViewItemHighlightState(pub NSInteger);
 impl NSCollectionViewItemHighlightState {
     #[doc(alias = "NSCollectionViewItemHighlightNone")]
@@ -54,7 +54,7 @@ unsafe impl RefEncode for NSCollectionViewItemHighlightState {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewscrollposition?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCollectionViewScrollPosition(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCollectionViewScrollPosition: NSUInteger {

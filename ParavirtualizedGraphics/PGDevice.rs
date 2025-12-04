@@ -309,7 +309,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgresumeerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PGResumeErrorCode(pub NSUInteger);
 impl PGResumeErrorCode {
     #[doc(alias = "PGResumeErrorCodeInternalFault")]

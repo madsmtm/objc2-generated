@@ -116,7 +116,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialsemantic?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialSemantic(pub NSUInteger);
 impl MDLMaterialSemantic {
     #[doc(alias = "MDLMaterialSemanticBaseColor")]
@@ -184,7 +184,7 @@ unsafe impl RefEncode for MDLMaterialSemantic {
 /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialpropertytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialPropertyType(pub NSUInteger);
 impl MDLMaterialPropertyType {
     #[doc(alias = "MDLMaterialPropertyTypeNone")]
@@ -224,7 +224,7 @@ unsafe impl RefEncode for MDLMaterialPropertyType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialtexturewrapmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialTextureWrapMode(pub NSUInteger);
 impl MDLMaterialTextureWrapMode {
     #[doc(alias = "MDLMaterialTextureWrapModeClamp")]
@@ -246,7 +246,7 @@ unsafe impl RefEncode for MDLMaterialTextureWrapMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialtexturefiltermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialTextureFilterMode(pub NSUInteger);
 impl MDLMaterialTextureFilterMode {
     #[doc(alias = "MDLMaterialTextureFilterModeNearest")]
@@ -266,7 +266,7 @@ unsafe impl RefEncode for MDLMaterialTextureFilterMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialmipmapfiltermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialMipMapFilterMode(pub NSUInteger);
 impl MDLMaterialMipMapFilterMode {
     #[doc(alias = "MDLMaterialMipMapFilterModeNearest")]
@@ -978,7 +978,7 @@ impl MDLPhysicallyPlausibleScatteringFunction {
 /// [Apple's documentation](https://developer.apple.com/documentation/modelio/mdlmaterialface?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MDLMaterialFace(pub NSUInteger);
 impl MDLMaterialFace {
     #[doc(alias = "MDLMaterialFaceFront")]

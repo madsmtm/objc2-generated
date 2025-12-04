@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzonecapabilities?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKRecordZoneCapabilities(pub NSUInteger);
 bitflags::bitflags! {
     impl CKRecordZoneCapabilities: NSUInteger {
@@ -40,7 +40,7 @@ unsafe impl RefEncode for CKRecordZoneCapabilities {
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzoneencryptionscope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CKRecordZoneEncryptionScope(pub NSInteger);
 impl CKRecordZoneEncryptionScope {
     /// Zone uses per-record encryption keys for any encrypted values on a record or share.

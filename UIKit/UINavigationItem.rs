@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitemlargetitledisplaymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINavigationItemLargeTitleDisplayMode(pub NSInteger);
 impl UINavigationItemLargeTitleDisplayMode {
     /// Automatically use the large out-of-line title based on the state of the previous item in the navigation bar. An item with largeTitleDisplayMode=Automatic will show or hide the large title based on the request of the previous navigation item. If the first item pushed is set to Automatic, then it will show the large title if the navigation bar has prefersLargeTitles=YES.
@@ -40,7 +40,7 @@ unsafe impl RefEncode for UINavigationItemLargeTitleDisplayMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitembackbuttondisplaymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINavigationItemBackButtonDisplayMode(pub NSInteger);
 impl UINavigationItemBackButtonDisplayMode {
     /// Default mode, uses an appropriate title, followed by a generic title (typically 'Back'), then no title.
@@ -65,7 +65,7 @@ unsafe impl RefEncode for UINavigationItemBackButtonDisplayMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitemsearchbarplacement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINavigationItemSearchBarPlacement(pub NSInteger);
 impl UINavigationItemSearchBarPlacement {
     /// The navigation bar will choose a placement for the search bar that is appropriate for the current layout
@@ -102,7 +102,7 @@ unsafe impl RefEncode for UINavigationItemSearchBarPlacement {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitemstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UINavigationItemStyle(pub NSInteger);
 impl UINavigationItemStyle {
     /// Traditional navigation bar behavior. Center items are placed in the overflow menu.

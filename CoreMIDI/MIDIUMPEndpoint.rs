@@ -108,7 +108,7 @@ impl MIDI2DeviceInfo {
 // NS_OPTIONS
 #[cfg(feature = "MIDIMessages")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIUMPProtocolOptions(pub MIDIUInteger4);
 #[cfg(feature = "MIDIMessages")]
 bitflags::bitflags! {

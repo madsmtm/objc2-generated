@@ -1602,7 +1602,7 @@ pub const kIOPMAssertionLevelOn: c_uint = 255;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmuseractivetype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOPMUserActiveType(pub c_uint);
 impl IOPMUserActiveType {
     #[doc(alias = "kIOPMUserActiveLocal")]

@@ -14,7 +14,7 @@ pub type UIMenuIdentifier = NSString;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIMenuOptions: NSUInteger {
@@ -44,7 +44,7 @@ unsafe impl RefEncode for UIMenuOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelementsize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuElementSize(pub NSInteger);
 impl UIMenuElementSize {
     #[doc(alias = "UIMenuElementSizeSmall")]

@@ -30,7 +30,7 @@ cf_objc2_type!(
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFNetDiagnosticStatusValues(pub c_int);
 impl CFNetDiagnosticStatusValues {
     #[doc(alias = "kCFNetDiagnosticNoErr")]

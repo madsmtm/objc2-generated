@@ -220,7 +220,7 @@ pub const kCVPixelFormatType_Lossy_422YpCbCr10PackedBiPlanarVideoRange: OSType =
 // NS_OPTIONS
 #[cfg(feature = "CVBase")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CVPixelBufferLockFlags(pub CVOptionFlags);
 #[cfg(feature = "CVBase")]
 bitflags::bitflags! {

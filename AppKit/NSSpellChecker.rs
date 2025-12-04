@@ -69,7 +69,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscorrectionresponse?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCorrectionResponse(pub NSInteger);
 impl NSCorrectionResponse {
     #[doc(alias = "NSCorrectionResponseNone")]
@@ -97,7 +97,7 @@ unsafe impl RefEncode for NSCorrectionResponse {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscorrectionindicatortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCorrectionIndicatorType(pub NSInteger);
 impl NSCorrectionIndicatorType {
     #[doc(alias = "NSCorrectionIndicatorTypeDefault")]

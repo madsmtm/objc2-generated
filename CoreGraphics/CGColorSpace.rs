@@ -29,7 +29,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorrenderingintent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGColorRenderingIntent(pub i32);
 impl CGColorRenderingIntent {
     #[doc(alias = "kCGRenderingIntentDefault")]
@@ -57,7 +57,7 @@ unsafe impl RefEncode for CGColorRenderingIntent {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspacemodel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGColorSpaceModel(pub i32);
 impl CGColorSpaceModel {
     #[doc(alias = "kCGColorSpaceModelUnknown")]

@@ -45,7 +45,7 @@ extern_protocol!(
 // NS_ENUM
 #[deprecated = "Use appropriate initializers instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDocumentPickerMode(pub NSUInteger);
 impl UIDocumentPickerMode {
     #[doc(alias = "UIDocumentPickerModeImport")]

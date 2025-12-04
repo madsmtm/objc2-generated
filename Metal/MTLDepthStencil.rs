@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomparefunction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCompareFunction(pub NSUInteger);
 impl MTLCompareFunction {
     #[doc(alias = "MTLCompareFunctionNever")]
@@ -42,7 +42,7 @@ unsafe impl RefEncode for MTLCompareFunction {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstenciloperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLStencilOperation(pub NSUInteger);
 impl MTLStencilOperation {
     #[doc(alias = "MTLStencilOperationKeep")]

@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWritingDirection(pub NSInteger);
 impl NSWritingDirection {
     #[doc(alias = "NSWritingDirectionNatural")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for NSWritingDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextAlignment(pub NSInteger);
 impl NSTextAlignment {
     #[doc(alias = "NSTextAlignmentLeft")]
@@ -577,7 +577,7 @@ pub const NSParagraphSeparatorCharacter: c_uint = 0x2029;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextMovement(pub NSInteger);
 impl NSTextMovement {
     #[doc(alias = "NSTextMovementReturn")]

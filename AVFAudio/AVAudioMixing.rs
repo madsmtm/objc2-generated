@@ -159,7 +159,7 @@ extern_protocol!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingrenderingalgorithm?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudio3DMixingRenderingAlgorithm(pub NSInteger);
 impl AVAudio3DMixingRenderingAlgorithm {
     #[doc(alias = "AVAudio3DMixingRenderingAlgorithmEqualPowerPanning")]
@@ -218,7 +218,7 @@ unsafe impl RefEncode for AVAudio3DMixingRenderingAlgorithm {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingsourcemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudio3DMixingSourceMode(pub NSInteger);
 impl AVAudio3DMixingSourceMode {
     #[doc(alias = "AVAudio3DMixingSourceModeSpatializeIfMono")]
@@ -256,7 +256,7 @@ unsafe impl RefEncode for AVAudio3DMixingSourceMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dmixingpointsourceinheadmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudio3DMixingPointSourceInHeadMode(pub NSInteger);
 impl AVAudio3DMixingPointSourceInHeadMode {
     #[doc(alias = "AVAudio3DMixingPointSourceInHeadModeMono")]

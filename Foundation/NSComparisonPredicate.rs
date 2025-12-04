@@ -8,7 +8,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicateoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSComparisonPredicateOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSComparisonPredicateOptions: NSUInteger {
@@ -32,7 +32,7 @@ unsafe impl RefEncode for NSComparisonPredicateOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicatemodifier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSComparisonPredicateModifier(pub NSUInteger);
 impl NSComparisonPredicateModifier {
     #[doc(alias = "NSDirectPredicateModifier")]
@@ -54,7 +54,7 @@ unsafe impl RefEncode for NSComparisonPredicateModifier {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspredicateoperatortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPredicateOperatorType(pub NSUInteger);
 impl NSPredicateOperatorType {
     #[doc(alias = "NSLessThanPredicateOperatorType")]

@@ -67,7 +67,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrystorecategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogEntryStoreCategory(pub NSInteger);
 impl OSLogEntryStoreCategory {
     #[doc(alias = "OSLogEntryStoreCategoryUndefined")]
@@ -294,7 +294,7 @@ impl OSLogEntryBoundary {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentryloglevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogEntryLogLevel(pub NSInteger);
 impl OSLogEntryLogLevel {
     #[doc(alias = "OSLogEntryLogLevelUndefined")]
@@ -367,7 +367,7 @@ impl OSLogEntryLog {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrysignposttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogEntrySignpostType(pub NSInteger);
 impl OSLogEntrySignpostType {
     #[doc(alias = "OSLogEntrySignpostTypeUndefined")]
@@ -450,7 +450,7 @@ impl OSLogEntrySignpost {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogenumeratoroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogEnumeratorOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl OSLogEnumeratorOptions: NSUInteger {
@@ -509,7 +509,7 @@ impl OSLogEnumerator {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponentargumentcategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogMessageComponentArgumentCategory(pub NSInteger);
 impl OSLogMessageComponentArgumentCategory {
     #[doc(alias = "OSLogMessageComponentArgumentCategoryUndefined")]
@@ -678,7 +678,7 @@ impl OSLogPosition {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogstorescope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct OSLogStoreScope(pub NSInteger);
 impl OSLogStoreScope {
     #[doc(alias = "OSLogStoreSystem")]

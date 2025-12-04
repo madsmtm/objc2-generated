@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLVertexFormat(pub NSUInteger);
 impl MTLVertexFormat {
     #[doc(alias = "MTLVertexFormatInvalid")]
@@ -136,7 +136,7 @@ unsafe impl RefEncode for MTLVertexFormat {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexstepfunction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLVertexStepFunction(pub NSUInteger);
 impl MTLVertexStepFunction {
     #[doc(alias = "MTLVertexStepFunctionConstant")]

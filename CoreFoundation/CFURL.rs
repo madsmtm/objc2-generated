@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlpathstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFURLPathStyle(pub CFIndex);
 impl CFURLPathStyle {
     #[doc(alias = "kCFURLPOSIXPathStyle")]
@@ -1668,7 +1668,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkcreationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFURLBookmarkCreationOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFURLBookmarkCreationOptions: CFOptionFlags {
@@ -1701,7 +1701,7 @@ unsafe impl RefEncode for CFURLBookmarkCreationOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlbookmarkresolutionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFURLBookmarkResolutionOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFURLBookmarkResolutionOptions: CFOptionFlags {

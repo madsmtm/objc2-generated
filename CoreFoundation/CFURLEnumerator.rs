@@ -39,7 +39,7 @@ unsafe impl ConcreteType for CFURLEnumerator {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfurlenumeratoroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFURLEnumeratorOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFURLEnumeratorOptions: CFOptionFlags {

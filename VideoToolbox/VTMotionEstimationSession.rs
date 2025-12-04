@@ -17,7 +17,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationframeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VTMotionEstimationFrameFlags(pub u32);
 bitflags::bitflags! {
     impl VTMotionEstimationFrameFlags: u32 {
@@ -44,7 +44,7 @@ unsafe impl RefEncode for VTMotionEstimationFrameFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationinfoflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VTMotionEstimationInfoFlags(pub u32);
 bitflags::bitflags! {
     impl VTMotionEstimationInfoFlags: u32 {

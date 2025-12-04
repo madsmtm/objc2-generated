@@ -79,7 +79,7 @@ impl NSFileProviderDomainVersion {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomaintestingmodes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderDomainTestingModes(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderDomainTestingModes: NSUInteger {
@@ -116,7 +116,7 @@ unsafe impl RefEncode for NSFileProviderDomainTestingModes {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolders?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderKnownFolders(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderKnownFolders: NSUInteger {

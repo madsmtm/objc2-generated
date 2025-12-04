@@ -11,7 +11,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "INPayBillIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INPayBillIntentResponseCode(pub NSInteger);
 impl INPayBillIntentResponseCode {
     #[doc(alias = "INPayBillIntentResponseCodeUnspecified")]

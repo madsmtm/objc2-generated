@@ -131,7 +131,7 @@ impl ASAuthorizationProviderExtensionKerberosMapping {
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionfederationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionFederationType(pub NSInteger);
 impl ASAuthorizationProviderExtensionFederationType {
     #[doc(alias = "ASAuthorizationProviderExtensionFederationTypeNone")]
@@ -153,7 +153,7 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionFederationType {
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionusersecureenclavekeybiometricpolicy?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAuthorizationProviderExtensionUserSecureEnclaveKeyBiometricPolicy: NSUInteger {

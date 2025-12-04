@@ -14,7 +14,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidercreateitemoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderCreateItemOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderCreateItemOptions: NSUInteger {
@@ -70,7 +70,7 @@ unsafe impl RefEncode for NSFileProviderCreateItemOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdeleteitemoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderDeleteItemOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderDeleteItemOptions: NSUInteger {
@@ -94,7 +94,7 @@ unsafe impl RefEncode for NSFileProviderDeleteItemOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermaterializationflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderMaterializationFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderMaterializationFlags: NSUInteger {
@@ -122,7 +122,7 @@ unsafe impl RefEncode for NSFileProviderMaterializationFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderfetchcontentsoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderFetchContentsOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderFetchContentsOptions: NSUInteger {

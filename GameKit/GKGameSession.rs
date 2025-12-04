@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkconnectionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKConnectionState(pub NSInteger);
 impl GKConnectionState {
     #[doc(alias = "GKConnectionStateNotConnected")]
@@ -30,7 +30,7 @@ unsafe impl RefEncode for GKConnectionState {
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gktransporttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKTransportType(pub NSInteger);
 impl GKTransportType {
     #[doc(alias = "GKTransportTypeUnreliable")]

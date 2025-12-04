@@ -14,7 +14,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilpreferredaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPencilPreferredAction(pub NSInteger);
 impl UIPencilPreferredAction {
     /// No action, or the user has disabled pencil interactions in Accessibility settings
@@ -55,7 +55,7 @@ unsafe impl RefEncode for UIPencilPreferredAction {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteractionphase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPencilInteractionPhase(pub NSUInteger);
 impl UIPencilInteractionPhase {
     /// A continuous gesture on the pencil began

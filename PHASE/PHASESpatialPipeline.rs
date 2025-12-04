@@ -41,7 +41,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialpipelineflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASESpatialPipelineFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl PHASESpatialPipelineFlags: NSUInteger {

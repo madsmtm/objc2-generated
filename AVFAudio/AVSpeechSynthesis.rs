@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechboundary?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSpeechBoundary(pub NSInteger);
 impl AVSpeechBoundary {
     #[doc(alias = "AVSpeechBoundaryImmediate")]
@@ -52,7 +52,7 @@ unsafe impl RefEncode for AVSpeechSynthesisVoiceQuality {
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicegender?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSpeechSynthesisVoiceGender(pub NSInteger);
 impl AVSpeechSynthesisVoiceGender {
     #[doc(alias = "AVSpeechSynthesisVoiceGenderUnspecified")]
@@ -76,7 +76,7 @@ unsafe impl RefEncode for AVSpeechSynthesisVoiceGender {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarkermark?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSpeechSynthesisMarkerMark(pub NSInteger);
 impl AVSpeechSynthesisMarkerMark {
     #[doc(alias = "AVSpeechSynthesisMarkerMarkPhoneme")]
@@ -136,7 +136,7 @@ pub type AVSpeechSynthesizerMarkerCallback =
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesispersonalvoiceauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSpeechSynthesisPersonalVoiceAuthorizationStatus(pub NSUInteger);
 impl AVSpeechSynthesisPersonalVoiceAuthorizationStatus {
     /// The app's authorization status has not yet been determined.
@@ -166,7 +166,7 @@ unsafe impl RefEncode for AVSpeechSynthesisPersonalVoiceAuthorizationStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicetraits?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVSpeechSynthesisVoiceTraits(pub NSUInteger);
 bitflags::bitflags! {
     impl AVSpeechSynthesisVoiceTraits: NSUInteger {

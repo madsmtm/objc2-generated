@@ -20,7 +20,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodebufferoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioPlayerNodeBufferOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVAudioPlayerNodeBufferOptions: NSUInteger {
@@ -60,7 +60,7 @@ unsafe impl RefEncode for AVAudioPlayerNodeBufferOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioplayernodecompletioncallbacktype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioPlayerNodeCompletionCallbackType(pub NSInteger);
 impl AVAudioPlayerNodeCompletionCallbackType {
     #[doc(alias = "AVAudioPlayerNodeCompletionDataConsumed")]

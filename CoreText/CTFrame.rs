@@ -61,7 +61,7 @@ unsafe impl ConcreteType for CTFrame {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframeprogression?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFrameProgression(pub u32);
 impl CTFrameProgression {
     #[doc(alias = "kCTFrameProgressionTopToBottom")]
@@ -113,7 +113,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctframepathfillrule?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFramePathFillRule(pub u32);
 impl CTFramePathFillRule {
     #[doc(alias = "kCTFramePathFillEvenOdd")]

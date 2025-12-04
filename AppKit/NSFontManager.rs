@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFontTraitMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFontTraitMask: NSUInteger {
@@ -54,7 +54,7 @@ unsafe impl RefEncode for NSFontTraitMask {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcollectionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFontCollectionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFontCollectionOptions: NSUInteger {
@@ -74,7 +74,7 @@ unsafe impl RefEncode for NSFontCollectionOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFontAction(pub NSUInteger);
 impl NSFontAction {
     #[doc(alias = "NSNoFontChangeAction")]

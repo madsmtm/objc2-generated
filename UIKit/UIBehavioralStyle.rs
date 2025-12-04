@@ -10,7 +10,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uibehavioralstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBehavioralStyle(pub NSUInteger);
 impl UIBehavioralStyle {
     /// The system will choose the most appropriate style for the targetted platform.

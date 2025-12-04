@@ -670,7 +670,7 @@ impl SRFetchRequest {
 /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRAuthorizationStatus(pub NSInteger);
 impl SRAuthorizationStatus {
     /// User has not yet made a choice regarding this application
@@ -978,7 +978,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRErrorCode(pub NSInteger);
 impl SRErrorCode {
     /// No valid entitlement found
@@ -1009,7 +1009,7 @@ unsafe impl RefEncode for SRErrorCode {
 /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsensorplacement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRAmbientLightSensorPlacement(pub NSInteger);
 impl SRAmbientLightSensorPlacement {
     #[doc(alias = "SRAmbientLightSensorPlacementUnknown")]
@@ -1101,7 +1101,7 @@ impl SRAmbientLightSample {
 /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srlocationcategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRLocationCategory(pub NSInteger);
 impl SRLocationCategory {
     #[doc(alias = "SRLocationCategoryUnknown")]
@@ -1614,7 +1614,7 @@ impl SRApplicationUsage {
 /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srnotificationevent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRNotificationEvent(pub NSInteger);
 impl SRNotificationEvent {
     #[doc(alias = "SRNotificationEventUnknown")]
@@ -2394,7 +2394,7 @@ impl SRKeyboardMetrics {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetricssentimentcategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRKeyboardMetricsSentimentCategory(pub NSInteger);
 impl SRKeyboardMetricsSentimentCategory {
     #[doc(alias = "SRKeyboardMetricsSentimentCategoryAbsolutist")]
@@ -2454,7 +2454,7 @@ impl SRKeyboardMetrics {
 /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeletionreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRDeletionReason(pub NSInteger);
 impl SRDeletionReason {
     /// The user initiated deletion
@@ -2563,7 +2563,7 @@ unsafe impl NSStringSRDeletionRecord for NSString {}
 /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristlocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRWristLocation(pub NSInteger);
 impl SRWristLocation {
     #[doc(alias = "SRWristLocationLeft")]
@@ -2583,7 +2583,7 @@ unsafe impl RefEncode for SRWristLocation {
 /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srcrownorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRCrownOrientation(pub NSInteger);
 impl SRCrownOrientation {
     #[doc(alias = "SRCrownOrientationLeft")]
@@ -2661,7 +2661,7 @@ impl SRWristDetection {
 /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristtemperaturecondition?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRWristTemperatureCondition(pub NSUInteger);
 bitflags::bitflags! {
     impl SRWristTemperatureCondition: NSUInteger {
@@ -3176,7 +3176,7 @@ impl SRAudioLevel {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srspeechmetricssessionflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRSpeechMetricsSessionFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl SRSpeechMetricsSessionFlags: NSUInteger {
@@ -3326,7 +3326,7 @@ impl SRSpeechMetrics {
 /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srfacemetricscontext?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRFaceMetricsContext(pub NSUInteger);
 bitflags::bitflags! {
     impl SRFaceMetricsContext: NSUInteger {
@@ -3661,7 +3661,7 @@ impl SRElectrocardiogramSession {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramdataflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SRElectrocardiogramDataFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl SRElectrocardiogramDataFlags: NSUInteger {

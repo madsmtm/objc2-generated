@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpskerneloptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSKernelOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSKernelOptions: NSUInteger {
@@ -76,7 +76,7 @@ unsafe impl RefEncode for MPSKernelOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageedgemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSImageEdgeMode(pub NSUInteger);
 impl MPSImageEdgeMode {
     /// Out of bound pixels are (0,0,0,1) for image with pixel format without alpha channel
@@ -114,7 +114,7 @@ unsafe impl RefEncode for MPSImageEdgeMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagefeaturechannelformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSImageFeatureChannelFormat(pub NSUInteger);
 impl MPSImageFeatureChannelFormat {
     /// No format. This can mean  according to context invalid format or any format.  In the
@@ -196,7 +196,7 @@ unsafe impl RefEncode for MPSFloatDataTypeShift {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSDataType(pub u32);
 impl MPSDataType {
     #[doc(alias = "MPSDataTypeInvalid")]
@@ -267,7 +267,7 @@ unsafe impl RefEncode for MPSDataType {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsaliasingstrategy?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSAliasingStrategy(pub NSUInteger);
 bitflags::bitflags! {
     impl MPSAliasingStrategy: NSUInteger {

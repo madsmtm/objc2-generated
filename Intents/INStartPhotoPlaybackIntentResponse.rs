@@ -11,7 +11,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "INStartPhotoPlaybackIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INStartPhotoPlaybackIntentResponseCode(pub NSInteger);
 impl INStartPhotoPlaybackIntentResponseCode {
     #[doc(alias = "INStartPhotoPlaybackIntentResponseCodeUnspecified")]

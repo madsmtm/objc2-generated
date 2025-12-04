@@ -490,7 +490,7 @@ impl CLKTimeIntervalTextProvider {
 // NS_ENUM
 #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLKRelativeDateStyle(pub NSInteger);
 impl CLKRelativeDateStyle {
     #[doc(alias = "CLKRelativeDateStyleNatural")]

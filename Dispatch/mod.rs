@@ -728,7 +728,7 @@ impl DispatchQueueAttr {
 #[doc(alias = "dispatch_autorelease_frequency_t")]
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct DispatchAutoReleaseFrequency(pub c_ulong);
 impl DispatchAutoReleaseFrequency {
     /// Values to pass to the dispatch_queue_attr_make_with_autorelease_frequency()
@@ -1716,7 +1716,7 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_flags_t?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct dispatch_block_flags_t(pub c_ulong);
 bitflags::bitflags! {
     impl dispatch_block_flags_t: c_ulong {

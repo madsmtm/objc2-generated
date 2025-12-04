@@ -10,9 +10,10 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clregionstate?language=objc)
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum CLRegionState {
     #[doc(alias = "CLRegionStateUnknown")]
+    #[default]
     Unknown = 0,
     #[doc(alias = "CLRegionStateInside")]
     Inside = 1,
@@ -31,7 +32,7 @@ unsafe impl RefEncode for CLRegionState {
 /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clproximity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLProximity(pub NSInteger);
 impl CLProximity {
     #[doc(alias = "CLProximityUnknown")]

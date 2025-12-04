@@ -43,7 +43,7 @@ unsafe impl RefEncode for TVElementEventType {
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVElementUpdateType(pub NSInteger);
 impl TVElementUpdateType {
     #[doc(alias = "TVElementUpdateTypeNone")]
@@ -87,7 +87,7 @@ unsafe impl RefEncode for TVElementUpdateType {
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVElementResettableProperty(pub NSInteger);
 impl TVElementResettableProperty {
     /// Maps to updateType property.

@@ -52,7 +52,7 @@ pub type MusicEventType = u32;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequenceloadflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MusicSequenceLoadFlags(pub u32);
 bitflags::bitflags! {
     impl MusicSequenceLoadFlags: u32 {
@@ -120,7 +120,7 @@ unsafe impl RefEncode for MusicSequenceType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefiletypeid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MusicSequenceFileTypeID(pub u32);
 impl MusicSequenceFileTypeID {
     #[doc(alias = "kMusicSequenceFile_AnyType")]
@@ -149,7 +149,7 @@ unsafe impl RefEncode for MusicSequenceFileTypeID {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequencefileflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MusicSequenceFileFlags(pub u32);
 bitflags::bitflags! {
     impl MusicSequenceFileFlags: u32 {

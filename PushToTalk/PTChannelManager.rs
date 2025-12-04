@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptservicestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTServiceStatus(pub NSInteger);
 impl PTServiceStatus {
     /// The service is available for use and ready for use by the client.
@@ -35,7 +35,7 @@ unsafe impl RefEncode for PTServiceStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/pttransmissionmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTTransmissionMode(pub NSInteger);
 impl PTTransmissionMode {
     /// Users can transmit and receive simultaneously.

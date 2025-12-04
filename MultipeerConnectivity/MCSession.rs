@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionsenddatamode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCSessionSendDataMode(pub NSInteger);
 impl MCSessionSendDataMode {
     #[doc(alias = "MCSessionSendDataReliable")]
@@ -30,7 +30,7 @@ unsafe impl RefEncode for MCSessionSendDataMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcsessionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCSessionState(pub NSInteger);
 impl MCSessionState {
     #[doc(alias = "MCSessionStateNotConnected")]
@@ -52,7 +52,7 @@ unsafe impl RefEncode for MCSessionState {
 /// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcencryptionpreference?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MCEncryptionPreference(pub NSInteger);
 impl MCEncryptionPreference {
     #[doc(alias = "MCEncryptionOptional")]

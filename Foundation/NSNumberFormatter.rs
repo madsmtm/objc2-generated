@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterBehavior(pub NSUInteger);
 impl NSNumberFormatterBehavior {
     #[doc(alias = "NSNumberFormatterBehaviorDefault")]
@@ -31,7 +31,7 @@ unsafe impl RefEncode for NSNumberFormatterBehavior {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterStyle(pub NSUInteger);
 impl NSNumberFormatterStyle {
     #[doc(alias = "NSNumberFormatterNoStyle")]
@@ -67,7 +67,7 @@ unsafe impl RefEncode for NSNumberFormatterStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterpadposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterPadPosition(pub NSUInteger);
 impl NSNumberFormatterPadPosition {
     #[doc(alias = "NSNumberFormatterPadBeforePrefix")]
@@ -91,7 +91,7 @@ unsafe impl RefEncode for NSNumberFormatterPadPosition {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterroundingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSNumberFormatterRoundingMode(pub NSUInteger);
 impl NSNumberFormatterRoundingMode {
     #[doc(alias = "NSNumberFormatterRoundCeiling")]

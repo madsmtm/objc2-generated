@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinecapstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineCapStyle(pub NSUInteger);
 impl NSLineCapStyle {
     #[doc(alias = "NSLineCapStyleButt")]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for NSLineCapStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinejoinstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineJoinStyle(pub NSUInteger);
 impl NSLineJoinStyle {
     #[doc(alias = "NSLineJoinStyleMiter")]
@@ -59,7 +59,7 @@ unsafe impl RefEncode for NSLineJoinStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindingrule?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindingRule(pub NSUInteger);
 impl NSWindingRule {
     #[doc(alias = "NSWindingRuleNonZero")]
@@ -79,7 +79,7 @@ unsafe impl RefEncode for NSWindingRule {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpathelement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBezierPathElement(pub NSUInteger);
 impl NSBezierPathElement {
     #[doc(alias = "NSBezierPathElementMoveTo")]

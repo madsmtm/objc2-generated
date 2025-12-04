@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpanelmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorPanelMode(pub NSInteger);
 impl NSColorPanelMode {
     #[doc(alias = "NSColorPanelModeNone")]
@@ -46,7 +46,7 @@ unsafe impl RefEncode for NSColorPanelMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorpaneloptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSColorPanelOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSColorPanelOptions: NSUInteger {

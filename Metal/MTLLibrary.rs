@@ -79,7 +79,7 @@ pub type MTLAutoreleasedArgument = MTLArgument;
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpatchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLPatchType(pub NSUInteger);
 impl MTLPatchType {
     #[doc(alias = "MTLPatchTypeNone")]
@@ -457,7 +457,7 @@ unsafe impl RefEncode for MTLLanguageVersion {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibrarytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLLibraryType(pub NSInteger);
 impl MTLLibraryType {
     #[doc(alias = "MTLLibraryTypeExecutable")]
@@ -485,7 +485,7 @@ unsafe impl RefEncode for MTLLibraryType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtllibraryoptimizationlevel?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLLibraryOptimizationLevel(pub NSInteger);
 impl MTLLibraryOptimizationLevel {
     #[doc(alias = "MTLLibraryOptimizationLevelDefault")]
@@ -505,7 +505,7 @@ unsafe impl RefEncode for MTLLibraryOptimizationLevel {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcompilesymbolvisibility?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLCompileSymbolVisibility(pub NSInteger);
 impl MTLCompileSymbolVisibility {
     #[doc(alias = "MTLCompileSymbolVisibilityDefault")]
@@ -536,7 +536,7 @@ unsafe impl RefEncode for MTLCompileSymbolVisibility {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMathMode(pub NSInteger);
 impl MTLMathMode {
     #[doc(alias = "MTLMathModeSafe")]
@@ -566,7 +566,7 @@ unsafe impl RefEncode for MTLMathMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmathfloatingpointfunctions?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMathFloatingPointFunctions(pub NSInteger);
 impl MTLMathFloatingPointFunctions {
     #[doc(alias = "MTLMathFloatingPointFunctionsFast")]

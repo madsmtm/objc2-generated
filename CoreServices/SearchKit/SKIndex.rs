@@ -66,7 +66,7 @@ unsafe impl ConcreteType for SKIndexDocumentIterator {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindextype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKIndexType(pub c_uint);
 impl SKIndexType {
     #[doc(alias = "kSKIndexUnknown")]
@@ -91,7 +91,7 @@ unsafe impl RefEncode for SKIndexType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skdocumentindexstate?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKDocumentIndexState(pub c_uint);
 impl SKDocumentIndexState {
     #[doc(alias = "kSKDocumentStateNotIndexed")]

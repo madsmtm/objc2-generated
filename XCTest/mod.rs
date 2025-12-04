@@ -44,7 +44,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctesterrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTestErrorCode(pub NSInteger);
 impl XCTestErrorCode {
     #[doc(alias = "XCTestErrorCodeTimeoutWhileWaiting")]
@@ -285,7 +285,7 @@ pub(crate) extern "C-unwind" fn _XCTPreformattedFailureHandler(
 /// [Apple's documentation](https://developer.apple.com/documentation/xctest/_xctassertiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct _XCTAssertionType(pub NSUInteger);
 impl _XCTAssertionType {
     #[doc(alias = "_XCTAssertion_Fail")]
@@ -1818,7 +1818,7 @@ impl XCTestSuiteRun {
 /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachmentlifetime?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTAttachmentLifetime(pub NSInteger);
 impl XCTAttachmentLifetime {
     #[doc(alias = "XCTAttachmentLifetimeKeepAlways")]
@@ -1990,7 +1990,7 @@ impl XCTAttachment {
 /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctimagequality?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTImageQuality(pub NSInteger);
 impl XCTImageQuality {
     #[doc(alias = "XCTImageQualityOriginal")]
@@ -2428,7 +2428,7 @@ impl DefaultRetained for XCTExpectedFailure {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTIssueType(pub NSInteger);
 impl XCTIssueType {
     /// Issue raised by a failed XCTAssert or related API.
@@ -2809,7 +2809,7 @@ impl XCTMutableIssue {
 /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctmeasurementinvocationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTMeasurementInvocationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl XCTMeasurementInvocationOptions: NSUInteger {
@@ -2900,7 +2900,7 @@ impl DefaultRetained for XCTMeasureOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemeasurementpolarity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCTPerformanceMeasurementPolarity(pub NSInteger);
 impl XCTPerformanceMeasurementPolarity {
     /// Represents measurements where smaller values are considered "better".

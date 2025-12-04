@@ -10,7 +10,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXError(pub i32);
 impl AXError {
     /// No error occurred.

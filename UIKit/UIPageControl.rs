@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrolinteractionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageControlInteractionState(pub NSInteger);
 impl UIPageControlInteractionState {
     /// The default interaction state, where no interaction has occurred.
@@ -40,7 +40,7 @@ unsafe impl RefEncode for UIPageControlInteractionState {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontrolbackgroundstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageControlBackgroundStyle(pub NSInteger);
 impl UIPageControlBackgroundStyle {
     /// The default background style that adapts based on the current interaction state.
@@ -65,7 +65,7 @@ unsafe impl RefEncode for UIPageControlBackgroundStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipagecontroldirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageControlDirection(pub NSInteger);
 impl UIPageControlDirection {
     /// Page indicators are laid out in the natural direction of the system locale.

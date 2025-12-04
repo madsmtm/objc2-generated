@@ -11,7 +11,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKCloudServiceAuthorizationStatus(pub NSInteger);
 impl SKCloudServiceAuthorizationStatus {
     #[doc(alias = "SKCloudServiceAuthorizationStatusNotDetermined")]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for SKCloudServiceAuthorizationStatus {
 // NS_OPTIONS
 #[deprecated = "Use MusicSubscription from MusicKit"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKCloudServiceCapability(pub NSUInteger);
 bitflags::bitflags! {
     impl SKCloudServiceCapability: NSUInteger {

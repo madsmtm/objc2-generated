@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midimessagetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIMessageType(pub c_uint);
 impl MIDIMessageType {
     #[doc(alias = "kMIDIMessageTypeUtility")]
@@ -47,7 +47,7 @@ unsafe impl RefEncode for MIDIMessageType {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicvstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDICVStatus(pub c_uint);
 impl MIDICVStatus {
     #[doc(alias = "kMIDICVStatusNoteOff")]
@@ -139,7 +139,7 @@ unsafe impl RefEncode for MIDISystemStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midisysexstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDISysExStatus(pub c_uint);
 impl MIDISysExStatus {
     #[doc(alias = "kMIDISysExStatusComplete")]
@@ -169,7 +169,7 @@ unsafe impl RefEncode for MIDISysExStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiutilitystatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIUtilityStatus(pub c_uint);
 impl MIDIUtilityStatus {
     #[doc(alias = "kMIDIUtilityStatusNOOP")]
@@ -197,7 +197,7 @@ unsafe impl RefEncode for MIDIUtilityStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessagestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UMPStreamMessageStatus(pub c_uint);
 impl UMPStreamMessageStatus {
     #[doc(alias = "kUMPStreamMessageStatusEndpointDiscovery")]
@@ -239,7 +239,7 @@ unsafe impl RefEncode for UMPStreamMessageStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinoteattribute?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDINoteAttribute(pub u8);
 impl MIDINoteAttribute {
     #[doc(alias = "kMIDINoteAttributeNone")]
@@ -265,7 +265,7 @@ unsafe impl RefEncode for MIDINoteAttribute {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiprogramchangeoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIProgramChangeOptions(pub u8);
 bitflags::bitflags! {
     impl MIDIProgramChangeOptions: u8 {
@@ -287,7 +287,7 @@ unsafe impl RefEncode for MIDIProgramChangeOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midipernotemanagementoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIPerNoteManagementOptions(pub u8);
 bitflags::bitflags! {
     impl MIDIPerNoteManagementOptions: u8 {
@@ -313,7 +313,7 @@ unsafe impl RefEncode for MIDIPerNoteManagementOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockmidi1info?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIUMPFunctionBlockMIDI1Info(pub i32);
 impl MIDIUMPFunctionBlockMIDI1Info {
     #[doc(alias = "kMIDIUMPFunctionBlockMIDI1InfoNotMIDI1")]
@@ -339,7 +339,7 @@ unsafe impl RefEncode for MIDIUMPFunctionBlockMIDI1Info {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockuihint?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIUMPFunctionBlockUIHint(pub i32);
 impl MIDIUMPFunctionBlockUIHint {
     #[doc(alias = "kMIDIUMPFunctionBlockUIHintUnknown")]
@@ -367,7 +367,7 @@ unsafe impl RefEncode for MIDIUMPFunctionBlockUIHint {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpfunctionblockdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIUMPFunctionBlockDirection(pub i32);
 impl MIDIUMPFunctionBlockDirection {
     #[doc(alias = "kMIDIUMPFunctionBlockDirectionUnknown")]
@@ -395,7 +395,7 @@ unsafe impl RefEncode for MIDIUMPFunctionBlockDirection {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/umpstreammessageformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UMPStreamMessageFormat(pub u8);
 impl UMPStreamMessageFormat {
     #[doc(alias = "kUMPStreamMessageFormatComplete")]

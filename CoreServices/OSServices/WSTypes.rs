@@ -19,7 +19,7 @@ pub const errWSTimeoutError: c_int = -65796;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WSTypeID(pub c_uint);
 impl WSTypeID {
     pub const eWSUnknownType: Self = Self(0);

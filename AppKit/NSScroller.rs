@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsusablescrollerparts?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUsableScrollerParts(pub NSUInteger);
 impl NSUsableScrollerParts {
     #[doc(alias = "NSNoScrollerParts")]
@@ -35,7 +35,7 @@ unsafe impl RefEncode for NSUsableScrollerParts {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollerpart?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollerPart(pub NSUInteger);
 impl NSScrollerPart {
     #[doc(alias = "NSScrollerNoPart")]
@@ -67,7 +67,7 @@ unsafe impl RefEncode for NSScrollerPart {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollerstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollerStyle(pub NSInteger);
 impl NSScrollerStyle {
     #[doc(alias = "NSScrollerStyleLegacy")]
@@ -87,7 +87,7 @@ unsafe impl RefEncode for NSScrollerStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollerknobstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollerKnobStyle(pub NSInteger);
 impl NSScrollerKnobStyle {
     #[doc(alias = "NSScrollerKnobStyleDefault")]
@@ -328,7 +328,7 @@ extern "C" {
 // NS_ENUM
 #[deprecated = "Scroller arrows are not used anymore."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollArrowPosition(pub NSUInteger);
 impl NSScrollArrowPosition {
     #[doc(alias = "NSScrollerArrowsMaxEnd")]
@@ -353,7 +353,7 @@ unsafe impl RefEncode for NSScrollArrowPosition {
 // NS_ENUM
 #[deprecated = "Scroller arrows are not used anymore."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSScrollerArrow(pub NSUInteger);
 impl NSScrollerArrow {
     #[doc(alias = "NSScrollerIncrementArrow")]

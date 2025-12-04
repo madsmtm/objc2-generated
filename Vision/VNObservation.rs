@@ -2374,7 +2374,7 @@ impl VNRecognizedPoints3DObservation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationheightestimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VNHumanBodyPose3DObservationHeightEstimation(pub NSInteger);
 impl VNHumanBodyPose3DObservationHeightEstimation {
     #[doc(alias = "VNHumanBodyPose3DObservationHeightEstimationReference")]

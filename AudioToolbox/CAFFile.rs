@@ -107,7 +107,7 @@ unsafe impl RefEncode for CAF_UUID_ChunkHeader {
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafformatflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CAFFormatFlags(pub u32);
 bitflags::bitflags! {
     impl CAFFormatFlags: u32 {
@@ -375,7 +375,7 @@ unsafe impl RefEncode for CAFMarkerChunk {
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafregionflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CAFRegionFlags(pub u32);
 bitflags::bitflags! {
     impl CAFRegionFlags: u32 {

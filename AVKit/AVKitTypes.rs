@@ -23,7 +23,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avvideoframeanalysistype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVVideoFrameAnalysisType(pub NSUInteger);
 bitflags::bitflags! {
     impl AVVideoFrameAnalysisType: NSUInteger {
@@ -55,7 +55,7 @@ unsafe impl RefEncode for AVVideoFrameAnalysisType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avdisplaydynamicrange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVDisplayDynamicRange(pub NSInteger);
 impl AVDisplayDynamicRange {
     /// Defines an automatic dynamic range. Indicates that the dynamic range will be set automatically.

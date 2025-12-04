@@ -9,7 +9,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkquantityaggregationstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKQuantityAggregationStyle(pub NSInteger);
 impl HKQuantityAggregationStyle {
     #[doc(alias = "HKQuantityAggregationStyleCumulative")]

@@ -64,7 +64,7 @@ extern "C" {
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GLKTextureLoaderError(pub GLuint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
@@ -128,7 +128,7 @@ unsafe impl RefEncode for GLKTextureLoaderError {
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GLKTextureInfoAlphaState(pub GLint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
@@ -158,7 +158,7 @@ unsafe impl RefEncode for GLKTextureInfoAlphaState {
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GLKTextureInfoOrigin(pub GLint);
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]

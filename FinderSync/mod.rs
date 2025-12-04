@@ -219,7 +219,7 @@ impl FIFinderSyncController {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fimenukind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FIMenuKind(pub NSUInteger);
 impl FIMenuKind {
     /// A shortcut menu created when the user control-clicks on an item or a

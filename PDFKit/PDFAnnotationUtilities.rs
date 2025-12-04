@@ -13,7 +13,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdflinestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFLineStyle(pub NSInteger);
 impl PDFLineStyle {
     #[doc(alias = "kPDFLineStyleNone")]
@@ -41,7 +41,7 @@ unsafe impl RefEncode for PDFLineStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdftextannotationicontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFTextAnnotationIconType(pub NSInteger);
 impl PDFTextAnnotationIconType {
     #[doc(alias = "kPDFTextAnnotationIconComment")]
@@ -71,7 +71,7 @@ unsafe impl RefEncode for PDFTextAnnotationIconType {
 /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfmarkuptype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFMarkupType(pub NSInteger);
 impl PDFMarkupType {
     #[doc(alias = "kPDFMarkupTypeHighlight")]
@@ -95,7 +95,7 @@ unsafe impl RefEncode for PDFMarkupType {
 /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcontroltype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFWidgetControlType(pub NSInteger);
 impl PDFWidgetControlType {
     #[doc(alias = "kPDFWidgetUnknownControl")]
@@ -119,7 +119,7 @@ unsafe impl RefEncode for PDFWidgetControlType {
 /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfwidgetcellstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFWidgetCellState(pub NSInteger);
 impl PDFWidgetCellState {
     #[doc(alias = "kPDFWidgetMixedState")]

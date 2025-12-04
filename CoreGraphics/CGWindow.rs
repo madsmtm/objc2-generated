@@ -15,7 +15,7 @@ pub type CGWindowID = u32;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowsharingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGWindowSharingType(pub u32);
 impl CGWindowSharingType {
     #[doc(alias = "kCGWindowSharingNone")]
@@ -39,7 +39,7 @@ unsafe impl RefEncode for CGWindowSharingType {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowbackingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGWindowBackingType(pub u32);
 impl CGWindowBackingType {
     #[doc(alias = "kCGBackingStoreRetained")]
@@ -129,7 +129,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlistoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGWindowListOption(pub u32);
 bitflags::bitflags! {
     impl CGWindowListOption: u32 {
@@ -207,7 +207,7 @@ pub unsafe extern "C-unwind" fn CGWindowListCreateDescriptionFromArray(
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowimageoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGWindowImageOption(pub u32);
 bitflags::bitflags! {
     impl CGWindowImageOption: u32 {

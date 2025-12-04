@@ -11,7 +11,7 @@ use crate::*;
 // NS_OPTIONS
 #[cfg(feature = "cssmconfig")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecKeychainPromptSelector(pub uint16);
 #[cfg(feature = "cssmconfig")]
 bitflags::bitflags! {

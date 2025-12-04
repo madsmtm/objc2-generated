@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplimitableuserinterface?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPLimitableUserInterface(pub NSUInteger);
 bitflags::bitflags! {
     impl CPLimitableUserInterface: NSUInteger {
@@ -31,7 +31,7 @@ unsafe impl RefEncode for CPLimitableUserInterface {
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpcontentstyle?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPContentStyle(pub NSUInteger);
 bitflags::bitflags! {
     impl CPContentStyle: NSUInteger {

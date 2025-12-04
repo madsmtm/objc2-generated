@@ -11,7 +11,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainerschemainitializationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSPersistentCloudKitContainerSchemaInitializationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSPersistentCloudKitContainerSchemaInitializationOptions: NSUInteger {

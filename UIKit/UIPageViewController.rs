@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontrollernavigationorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageViewControllerNavigationOrientation(pub NSInteger);
 impl UIPageViewControllerNavigationOrientation {
     #[doc(alias = "UIPageViewControllerNavigationOrientationHorizontal")]
@@ -30,7 +30,7 @@ unsafe impl RefEncode for UIPageViewControllerNavigationOrientation {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontrollerspinelocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageViewControllerSpineLocation(pub NSInteger);
 impl UIPageViewControllerSpineLocation {
     #[doc(alias = "UIPageViewControllerSpineLocationNone")]
@@ -54,7 +54,7 @@ unsafe impl RefEncode for UIPageViewControllerSpineLocation {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontrollernavigationdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageViewControllerNavigationDirection(pub NSInteger);
 impl UIPageViewControllerNavigationDirection {
     #[doc(alias = "UIPageViewControllerNavigationDirectionForward")]
@@ -74,7 +74,7 @@ unsafe impl RefEncode for UIPageViewControllerNavigationDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontrollertransitionstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPageViewControllerTransitionStyle(pub NSInteger);
 impl UIPageViewControllerTransitionStyle {
     #[doc(alias = "UIPageViewControllerTransitionStylePageCurl")]

@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMWaterSubmersionState(pub NSInteger);
 impl CMWaterSubmersionState {
     #[doc(alias = "CMWaterSubmersionStateUnknown")]
@@ -31,7 +31,7 @@ unsafe impl RefEncode for CMWaterSubmersionState {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersiondepthstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CMWaterSubmersionDepthState(pub NSInteger);
 impl CMWaterSubmersionDepthState {
     #[doc(alias = "CMWaterSubmersionDepthStateUnknown")]

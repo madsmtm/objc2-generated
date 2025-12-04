@@ -54,7 +54,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmovabilityhint?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNMovabilityHint(pub NSInteger);
 impl SCNMovabilityHint {
     #[doc(alias = "SCNMovabilityHintFixed")]
@@ -76,7 +76,7 @@ unsafe impl RefEncode for SCNMovabilityHint {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnnodefocusbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNNodeFocusBehavior(pub NSInteger);
 impl SCNNodeFocusBehavior {
     #[doc(alias = "SCNNodeFocusBehaviorNone")]

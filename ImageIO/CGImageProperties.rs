@@ -3140,9 +3140,10 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagepropertytgacompression?language=objc)
 // NS_CLOSED_ENUM
 #[repr(u32)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum CGImagePropertyTGACompression {
     #[doc(alias = "kCGImageTGACompressionNone")]
+    #[default]
     TGACompressionNone = 0,
     #[doc(alias = "kCGImageTGACompressionRLE")]
     TGACompressionRLE = 1,

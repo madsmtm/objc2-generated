@@ -19,7 +19,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicproperties?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBCharacteristicProperties(pub NSUInteger);
 bitflags::bitflags! {
     impl CBCharacteristicProperties: NSUInteger {
@@ -132,7 +132,7 @@ impl CBCharacteristic {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbattributepermissions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBAttributePermissions(pub NSUInteger);
 bitflags::bitflags! {
     impl CBAttributePermissions: NSUInteger {

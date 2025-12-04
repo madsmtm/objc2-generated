@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdragoperation?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDragOperation(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDragOperation: NSUInteger {
@@ -50,7 +50,7 @@ unsafe impl RefEncode for NSDragOperation {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingformation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDraggingFormation(pub NSInteger);
 impl NSDraggingFormation {
     #[doc(alias = "NSDraggingFormationDefault")]
@@ -76,7 +76,7 @@ unsafe impl RefEncode for NSDraggingFormation {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingcontext?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDraggingContext(pub NSInteger);
 impl NSDraggingContext {
     #[doc(alias = "NSDraggingContextOutsideApplication")]
@@ -96,7 +96,7 @@ unsafe impl RefEncode for NSDraggingContext {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitemenumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSDraggingItemEnumerationOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSDraggingItemEnumerationOptions: NSUInteger {
@@ -118,7 +118,7 @@ unsafe impl RefEncode for NSDraggingItemEnumerationOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadinghighlight?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSpringLoadingHighlight(pub NSInteger);
 impl NSSpringLoadingHighlight {
     #[doc(alias = "NSSpringLoadingHighlightNone")]
@@ -347,7 +347,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspringloadingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSpringLoadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSpringLoadingOptions: NSUInteger {

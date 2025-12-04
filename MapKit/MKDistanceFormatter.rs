@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatterunits?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKDistanceFormatterUnits(pub NSUInteger);
 impl MKDistanceFormatterUnits {
     #[doc(alias = "MKDistanceFormatterUnitsDefault")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for MKDistanceFormatterUnits {
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdistanceformatterunitstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKDistanceFormatterUnitStyle(pub NSUInteger);
 impl MKDistanceFormatterUnitStyle {
     #[doc(alias = "MKDistanceFormatterUnitStyleDefault")]

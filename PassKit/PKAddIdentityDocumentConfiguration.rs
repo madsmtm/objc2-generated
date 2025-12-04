@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddidentitydocumenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAddIdentityDocumentType(pub NSInteger);
 impl PKAddIdentityDocumentType {
     #[doc(alias = "PKAddIdentityDocumentTypeIDCard")]

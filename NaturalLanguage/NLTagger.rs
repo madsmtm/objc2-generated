@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltaggeroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLTaggerOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NLTaggerOptions: NSUInteger {
@@ -40,7 +40,7 @@ unsafe impl RefEncode for NLTaggerOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nltaggerassetsresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NLTaggerAssetsResult(pub NSInteger);
 impl NLTaggerAssetsResult {
     #[doc(alias = "NLTaggerAssetsResultAvailable")]

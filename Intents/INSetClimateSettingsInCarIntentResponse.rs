@@ -10,7 +10,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "INSetClimateSettingsInCarIntentResponseCode is deprecated. There is no replacement."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INSetClimateSettingsInCarIntentResponseCode(pub NSInteger);
 impl INSetClimateSettingsInCarIntentResponseCode {
     #[doc(alias = "INSetClimateSettingsInCarIntentResponseCodeUnspecified")]

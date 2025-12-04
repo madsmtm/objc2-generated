@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccounttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSUserAccountType(pub NSInteger);
 impl VSUserAccountType {
     #[doc(alias = "VSUserAccountTypeFree")]
@@ -30,7 +30,7 @@ unsafe impl RefEncode for VSUserAccountType {
 /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsoriginatingdevicecategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VSOriginatingDeviceCategory(pub NSInteger);
 impl VSOriginatingDeviceCategory {
     #[doc(alias = "VSOriginatingDeviceCategoryMobile")]

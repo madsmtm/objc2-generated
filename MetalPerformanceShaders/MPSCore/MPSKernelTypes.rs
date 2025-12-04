@@ -8,7 +8,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdevicecapsvalues?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSDeviceCapsValues(pub u32);
 impl MPSDeviceCapsValues {
     #[doc(alias = "MPSDeviceCapsNull")]
@@ -56,7 +56,7 @@ pub type MPSDeviceCaps = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscustomkernelindex?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSCustomKernelIndex(pub c_uint);
 impl MPSCustomKernelIndex {
     #[doc(alias = "MPSCustomKernelIndexDestIndex")]
@@ -131,7 +131,7 @@ unsafe impl RefEncode for MPSIntegerDivisionParams {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagetype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSImageType(pub u32);
 impl MPSImageType {
     #[doc(alias = "MPSImageType2d")]

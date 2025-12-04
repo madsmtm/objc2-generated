@@ -7,7 +7,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDeviceOrientation(pub NSInteger);
 impl UIDeviceOrientation {
     #[doc(alias = "UIDeviceOrientationUnknown")]
@@ -47,7 +47,7 @@ impl UIDeviceOrientation {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIInterfaceOrientation(pub NSInteger);
 impl UIInterfaceOrientation {
     #[doc(alias = "UIInterfaceOrientationUnknown")]
@@ -73,7 +73,7 @@ unsafe impl RefEncode for UIInterfaceOrientation {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIInterfaceOrientationMask(pub NSUInteger);
 bitflags::bitflags! {
     impl UIInterfaceOrientationMask: NSUInteger {

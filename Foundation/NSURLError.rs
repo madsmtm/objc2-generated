@@ -80,7 +80,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlerrornetworkunavailablereason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLErrorNetworkUnavailableReason(pub NSInteger);
 impl NSURLErrorNetworkUnavailableReason {
     #[doc(alias = "NSURLErrorNetworkUnavailableReasonCellular")]

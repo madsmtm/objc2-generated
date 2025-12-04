@@ -96,7 +96,7 @@ unsafe impl Sync for CVSMPTETime {}
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CVSMPTETimeType(pub u32);
 impl CVSMPTETimeType {
     #[doc(alias = "kCVSMPTETimeType24")]
@@ -140,7 +140,7 @@ unsafe impl Sync for CVSMPTETimeType {}
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetimeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CVSMPTETimeFlags(pub u32);
 bitflags::bitflags! {
     impl CVSMPTETimeFlags: u32 {
@@ -168,7 +168,7 @@ unsafe impl Sync for CVSMPTETimeFlags {}
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimeflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CVTimeFlags(pub i32);
 bitflags::bitflags! {
     impl CVTimeFlags: i32 {
@@ -287,7 +287,7 @@ unsafe impl RefEncode for CVTimeStamp {
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestampflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CVTimeStampFlags(pub u64);
 bitflags::bitflags! {
     impl CVTimeStampFlags: u64 {

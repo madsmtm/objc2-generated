@@ -101,7 +101,7 @@ impl GKPlayer {
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkphotosize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct GKPhotoSize(pub NSInteger);
 impl GKPhotoSize {
     #[doc(alias = "GKPhotoSizeSmall")]

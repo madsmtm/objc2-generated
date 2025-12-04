@@ -53,7 +53,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequestcachepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestCachePolicy(pub NSUInteger);
 impl NSURLRequestCachePolicy {
     #[doc(alias = "NSURLRequestUseProtocolCachePolicy")]
@@ -101,7 +101,7 @@ unsafe impl RefEncode for NSURLRequestCachePolicy {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequestnetworkservicetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestNetworkServiceType(pub NSUInteger);
 impl NSURLRequestNetworkServiceType {
     #[doc(alias = "NSURLNetworkServiceTypeDefault")]
@@ -145,7 +145,7 @@ unsafe impl RefEncode for NSURLRequestNetworkServiceType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequestattribution?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSURLRequestAttribution(pub NSUInteger);
 impl NSURLRequestAttribution {
     #[doc(alias = "NSURLRequestAttributionDeveloper")]

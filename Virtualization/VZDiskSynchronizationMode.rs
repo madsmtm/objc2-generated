@@ -7,7 +7,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzdisksynchronizationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct VZDiskSynchronizationMode(pub NSInteger);
 impl VZDiskSynchronizationMode {
     /// Perform all synchronization operations as requested by the guest OS.

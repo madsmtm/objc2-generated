@@ -160,7 +160,7 @@ impl NSFileProviderExtension {
 /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainremovalmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderDomainRemovalMode(pub NSInteger);
 impl NSFileProviderDomainRemovalMode {
     /// Don't keep any files that are current in the domain
@@ -810,7 +810,7 @@ impl NSFileProviderManager {
 /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanagerdisconnectionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderManagerDisconnectionOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderManagerDisconnectionOptions: NSUInteger {
@@ -913,7 +913,7 @@ impl NSFileProviderManager {
 /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidervolumeunsupportedreason?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSFileProviderVolumeUnsupportedReason(pub NSUInteger);
 bitflags::bitflags! {
     impl NSFileProviderVolumeUnsupportedReason: NSUInteger {

@@ -44,7 +44,7 @@ cf_objc2_type!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencesnotification?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCPreferencesNotification(pub u32);
 bitflags::bitflags! {
     impl SCPreferencesNotification: u32 {

@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkvehicleconnectionerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKVehicleConnectionErrorCode(pub NSInteger);
 impl PKVehicleConnectionErrorCode {
     #[doc(alias = "PKVehicleConnectionErrorCodeUnknown")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for PKVehicleConnectionErrorCode {
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkvehicleconnectionsessionconnectionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKVehicleConnectionSessionConnectionState(pub NSInteger);
 impl PKVehicleConnectionSessionConnectionState {
     #[doc(alias = "PKVehicleConnectionSessionConnectionStateDisconnected")]

@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbperipheralstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBPeripheralState(pub NSInteger);
 impl CBPeripheralState {
     #[doc(alias = "CBPeripheralStateDisconnected")]
@@ -38,7 +38,7 @@ unsafe impl RefEncode for CBPeripheralState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcharacteristicwritetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CBCharacteristicWriteType(pub NSInteger);
 impl CBCharacteristicWriteType {
     #[doc(alias = "CBCharacteristicWriteWithResponse")]

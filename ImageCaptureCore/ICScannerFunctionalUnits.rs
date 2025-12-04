@@ -16,7 +16,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerfunctionalunittype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerFunctionalUnitType(pub NSUInteger);
 impl ICScannerFunctionalUnitType {
     #[doc(alias = "ICScannerFunctionalUnitTypeFlatbed")]
@@ -42,7 +42,7 @@ unsafe impl RefEncode for ICScannerFunctionalUnitType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannermeasurementunit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerMeasurementUnit(pub NSUInteger);
 impl ICScannerMeasurementUnit {
     #[doc(alias = "ICScannerMeasurementUnitInches")]
@@ -96,7 +96,7 @@ unsafe impl RefEncode for ICScannerBitDepth {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannercolordataformattype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerColorDataFormatType(pub NSUInteger);
 impl ICScannerColorDataFormatType {
     #[doc(alias = "ICScannerColorDataFormatTypeChunky")]
@@ -118,7 +118,7 @@ unsafe impl RefEncode for ICScannerColorDataFormatType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerpixeldatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerPixelDataType(pub NSUInteger);
 impl ICScannerPixelDataType {
     #[doc(alias = "ICScannerPixelDataTypeBW")]
@@ -154,7 +154,7 @@ unsafe impl RefEncode for ICScannerPixelDataType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerdocumenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerDocumentType(pub NSUInteger);
 impl ICScannerDocumentType {
     #[doc(alias = "ICScannerDocumentTypeDefault")]
@@ -340,7 +340,7 @@ unsafe impl RefEncode for ICScannerFunctionalUnitState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icscannerfeaturetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ICScannerFeatureType(pub NSUInteger);
 impl ICScannerFeatureType {
     #[doc(alias = "ICScannerFeatureTypeEnumeration")]

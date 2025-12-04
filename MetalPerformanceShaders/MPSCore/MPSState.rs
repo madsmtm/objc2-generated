@@ -89,7 +89,7 @@ unsafe impl RefEncode for MPSStateTextureInfo {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsstateresourcetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSStateResourceType(pub NSUInteger);
 impl MPSStateResourceType {
     #[doc(alias = "MPSStateResourceTypeNone")]

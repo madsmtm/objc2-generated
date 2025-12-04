@@ -15,7 +15,7 @@ use crate::*;
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ARAppClipCodeURLDecodingState(pub NSInteger);
 #[cfg(feature = "objc2")]
 impl ARAppClipCodeURLDecodingState {

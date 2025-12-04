@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebviewnavigationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWebViewNavigationType(pub NSInteger);
 impl UIWebViewNavigationType {
     #[doc(alias = "UIWebViewNavigationTypeLinkClicked")]
@@ -43,7 +43,7 @@ unsafe impl RefEncode for UIWebViewNavigationType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebpaginationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWebPaginationMode(pub NSInteger);
 impl UIWebPaginationMode {
     #[doc(alias = "UIWebPaginationModeUnpaginated")]
@@ -69,7 +69,7 @@ unsafe impl RefEncode for UIWebPaginationMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebpaginationbreakingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIWebPaginationBreakingMode(pub NSInteger);
 impl UIWebPaginationBreakingMode {
     #[doc(alias = "UIWebPaginationBreakingModePage")]

@@ -28,7 +28,7 @@ pub const IKGroupDisclosureStyle: c_uint = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikimagebrowserdropoperation?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IKImageBrowserDropOperation(pub c_uint);
 impl IKImageBrowserDropOperation {
     #[doc(alias = "IKImageBrowserDropOn")]

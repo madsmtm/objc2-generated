@@ -11,7 +11,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsroundingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSRoundingMode(pub NSUInteger);
 impl NSRoundingMode {
     #[doc(alias = "NSRoundPlain")]
@@ -35,7 +35,7 @@ unsafe impl RefEncode for NSRoundingMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscalculationerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCalculationError(pub NSUInteger);
 impl NSCalculationError {
     #[doc(alias = "NSCalculationNoError")]

@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewscrollposition?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewScrollPosition(pub NSUInteger);
 bitflags::bitflags! {
     impl UICollectionViewScrollPosition: NSUInteger {
@@ -47,7 +47,7 @@ unsafe impl RefEncode for UICollectionViewScrollPosition {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewreorderingcadence?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewReorderingCadence(pub NSInteger);
 impl UICollectionViewReorderingCadence {
     #[doc(alias = "UICollectionViewReorderingCadenceImmediate")]
@@ -69,7 +69,7 @@ unsafe impl RefEncode for UICollectionViewReorderingCadence {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewselfsizinginvalidation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewSelfSizingInvalidation(pub NSInteger);
 impl UICollectionViewSelfSizingInvalidation {
     /// No updates will take place when -invalidateIntrinsicContentSize is called on a self-sizing cell or its contentView.
@@ -1917,7 +1917,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropintent?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICollectionViewDropIntent(pub NSInteger);
 impl UICollectionViewDropIntent {
     #[doc(alias = "UICollectionViewDropIntentUnspecified")]

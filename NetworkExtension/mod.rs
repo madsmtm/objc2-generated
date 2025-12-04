@@ -161,7 +161,7 @@ impl NEAppProxyFlow {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neproviderstopreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEProviderStopReason(pub NSInteger);
 impl NEProviderStopReason {
     #[doc(alias = "NEProviderStopReasonNone")]
@@ -2572,7 +2572,7 @@ impl NEDNSSettingsManager {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nenetworkruleprotocol?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NENetworkRuleProtocol(pub NSInteger);
 impl NENetworkRuleProtocol {
     #[doc(alias = "NENetworkRuleProtocolAny")]
@@ -2596,7 +2596,7 @@ unsafe impl RefEncode for NENetworkRuleProtocol {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netrafficdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NETrafficDirection(pub NSInteger);
 impl NETrafficDirection {
     #[doc(alias = "NETrafficDirectionAny")]
@@ -3114,7 +3114,7 @@ impl NEFilterProvider {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreportfrequency?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEFilterReportFrequency(pub NSInteger);
 impl NEFilterReportFrequency {
     #[doc(alias = "NEFilterReportFrequencyNone")]
@@ -3430,7 +3430,7 @@ impl NEFilterControlVerdict {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilteraction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEFilterAction(pub NSInteger);
 impl NEFilterAction {
     #[doc(alias = "NEFilterActionInvalid")]
@@ -4271,7 +4271,7 @@ impl NEFilterPacketContext {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketproviderverdict?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEFilterPacketProviderVerdict(pub NSInteger);
 impl NEFilterPacketProviderVerdict {
     #[doc(alias = "NEFilterPacketProviderVerdictAllow")]
@@ -4758,7 +4758,7 @@ impl NEFlowMetaData {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotnetworksecuritytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotNetworkSecurityType(pub NSInteger);
 impl NEHotspotNetworkSecurityType {
     #[doc(alias = "NEHotspotNetworkSecurityTypeOpen")]
@@ -4855,7 +4855,7 @@ impl NEHotspotNetwork {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelpercommandtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotHelperCommandType(pub NSInteger);
 impl NEHotspotHelperCommandType {
     #[doc(alias = "kNEHotspotHelperCommandTypeNone")]
@@ -4911,7 +4911,7 @@ unsafe impl RefEncode for NEHotspotHelperCommandType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotHelperResult(pub NSInteger);
 impl NEHotspotHelperResult {
     #[doc(alias = "kNEHotspotHelperResultSuccess")]
@@ -4952,7 +4952,7 @@ unsafe impl RefEncode for NEHotspotHelperResult {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperconfidence?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotHelperConfidence(pub NSInteger);
 impl NEHotspotHelperConfidence {
     #[doc(alias = "kNEHotspotHelperConfidenceNone")]
@@ -5394,7 +5394,7 @@ unsafe impl RefEncode for NEHotspotConfigurationEAPType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationttlsinnerauthenticationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotConfigurationTTLSInnerAuthenticationType(pub NSInteger);
 impl NEHotspotConfigurationTTLSInnerAuthenticationType {
     #[doc(alias = "NEHotspotConfigurationEAPTTLSInnerAuthenticationPAP")]
@@ -5422,7 +5422,7 @@ unsafe impl RefEncode for NEHotspotConfigurationTTLSInnerAuthenticationType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationeaptlsversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotConfigurationEAPTLSVersion(pub NSInteger);
 impl NEHotspotConfigurationEAPTLSVersion {
     #[doc(alias = "NEHotspotConfigurationEAPTLSVersion_1_0")]
@@ -5951,7 +5951,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationerror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEHotspotConfigurationError(pub NSInteger);
 impl NEHotspotConfigurationError {
     #[doc(alias = "NEHotspotConfigurationErrorInvalid")]
@@ -6998,7 +6998,7 @@ unsafe impl RefEncode for NEOnDemandRuleAction {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neondemandruleinterfacetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEOnDemandRuleInterfaceType(pub NSInteger);
 impl NEOnDemandRuleInterfaceType {
     #[doc(alias = "NEOnDemandRuleInterfaceTypeAny")]
@@ -8289,7 +8289,7 @@ impl NETransparentProxyProvider {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNStatus(pub NSInteger);
 impl NEVPNStatus {
     #[doc(alias = "NEVPNStatusInvalid")]
@@ -8655,7 +8655,7 @@ impl NETunnelProviderProtocol {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikeauthenticationmethod?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEAuthenticationMethod(pub NSInteger);
 impl NEVPNIKEAuthenticationMethod {
     #[doc(alias = "NEVPNIKEAuthenticationMethodNone")]
@@ -8854,7 +8854,7 @@ unsafe impl RefEncode for NEVPNIKEv2IntegrityAlgorithm {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2deadpeerdetectionrate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2DeadPeerDetectionRate(pub NSInteger);
 impl NEVPNIKEv2DeadPeerDetectionRate {
     #[doc(alias = "NEVPNIKEv2DeadPeerDetectionRateNone")]
@@ -8880,7 +8880,7 @@ unsafe impl RefEncode for NEVPNIKEv2DeadPeerDetectionRate {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2diffiehellmangroup?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2DiffieHellmanGroup(pub NSInteger);
 impl NEVPNIKEv2DiffieHellmanGroup {
     #[doc(alias = "NEVPNIKEv2DiffieHellmanGroupInvalid")]
@@ -8929,7 +8929,7 @@ unsafe impl RefEncode for NEVPNIKEv2DiffieHellmanGroup {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2postquantumkeyexchangemethod?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2PostQuantumKeyExchangeMethod(pub NSInteger);
 impl NEVPNIKEv2PostQuantumKeyExchangeMethod {
     #[doc(alias = "NEVPNIKEv2PostQuantumKeyExchangeMethodNone")]
@@ -8983,7 +8983,7 @@ unsafe impl RefEncode for NEVPNIKEv2CertificateType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnikev2tlsversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NEVPNIKEv2TLSVersion(pub NSInteger);
 impl NEVPNIKEv2TLSVersion {
     #[doc(alias = "NEVPNIKEv2TLSVersionDefault")]
@@ -10089,7 +10089,7 @@ impl NWBonjourServiceEndpoint {
 // NS_ENUM
 #[deprecated = "Use `nw_path_status_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NWPathStatus(pub NSInteger);
 impl NWPathStatus {
     #[doc(alias = "NWPathStatusInvalid")]
@@ -10180,7 +10180,7 @@ impl NWPath {
 // NS_ENUM
 #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NWTCPConnectionState(pub NSInteger);
 impl NWTCPConnectionState {
     #[doc(alias = "NWTCPConnectionStateInvalid")]
@@ -10524,7 +10524,7 @@ extern_protocol!(
 // NS_ENUM
 #[deprecated = "Use `nw_connection_state_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NWUDPSessionState(pub NSInteger);
 impl NWUDPSessionState {
     #[doc(alias = "NWUDPSessionStateInvalid")]

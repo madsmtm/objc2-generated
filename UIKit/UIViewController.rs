@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodaltransitionstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIModalTransitionStyle(pub NSInteger);
 impl UIModalTransitionStyle {
     #[doc(alias = "UIModalTransitionStyleCoverVertical")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for UIModalTransitionStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimodalpresentationstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIModalPresentationStyle(pub NSInteger);
 impl UIModalPresentationStyle {
     #[doc(alias = "UIModalPresentationFullScreen")]
@@ -1591,7 +1591,7 @@ extern_conformance!(
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontainerbackgroundstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIContainerBackgroundStyle(pub NSInteger);
 impl UIContainerBackgroundStyle {
     #[doc(alias = "UIContainerBackgroundStyleAutomatic")]
@@ -1642,7 +1642,7 @@ extern_protocol!(
 // NS_ENUM
 #[deprecated = "Please use UIContextMenuInteraction."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIPreviewActionStyle(pub NSInteger);
 impl UIPreviewActionStyle {
     #[doc(alias = "UIPreviewActionStyleDefault")]

@@ -172,7 +172,7 @@ impl PHLivePhotoEditingContext {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHLivePhotoFrameType(pub NSInteger);
 impl PHLivePhotoFrameType {
     /// Indicates the still image
@@ -244,7 +244,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHLivePhotoEditingErrorCode(pub NSInteger);
 impl PHLivePhotoEditingErrorCode {
     #[doc(alias = "PHLivePhotoEditingErrorCodeUnknown")]

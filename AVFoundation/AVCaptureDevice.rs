@@ -454,7 +454,7 @@ impl AVCaptureDevice {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureDevicePosition(pub NSInteger);
 impl AVCaptureDevicePosition {
     #[doc(alias = "AVCaptureDevicePositionUnspecified")]
@@ -765,7 +765,7 @@ impl AVCaptureDevice {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureprimaryconstituentdeviceswitchingbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCapturePrimaryConstituentDeviceSwitchingBehavior(pub NSInteger);
 impl AVCapturePrimaryConstituentDeviceSwitchingBehavior {
     #[doc(alias = "AVCapturePrimaryConstituentDeviceSwitchingBehaviorUnsupported")]
@@ -805,7 +805,7 @@ unsafe impl RefEncode for AVCapturePrimaryConstituentDeviceSwitchingBehavior {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureprimaryconstituentdevicerestrictedswitchingbehaviorconditions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions(pub NSUInteger);
 bitflags::bitflags! {
     impl AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions: NSUInteger {
@@ -964,7 +964,7 @@ impl AVCaptureDevice {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureflashmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureFlashMode(pub NSInteger);
 impl AVCaptureFlashMode {
     #[doc(alias = "AVCaptureFlashModeOff")]
@@ -1056,7 +1056,7 @@ impl AVCaptureDevice {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetorchmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureTorchMode(pub NSInteger);
 impl AVCaptureTorchMode {
     #[doc(alias = "AVCaptureTorchModeOff")]
@@ -1168,7 +1168,7 @@ impl AVCaptureDevice {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturefocusmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureFocusMode(pub NSInteger);
 impl AVCaptureFocusMode {
     #[doc(alias = "AVCaptureFocusModeLocked")]
@@ -1199,7 +1199,7 @@ unsafe impl RefEncode for AVCaptureFocusMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureautofocusrangerestriction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureAutoFocusRangeRestriction(pub NSInteger);
 impl AVCaptureAutoFocusRangeRestriction {
     #[doc(alias = "AVCaptureAutoFocusRangeRestrictionNone")]
@@ -1230,7 +1230,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecinematicvideofocusmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureCinematicVideoFocusMode(pub NSInteger);
 impl AVCaptureCinematicVideoFocusMode {
     /// Indicates that no focus mode is specified, in which case weak focus is used as default.
@@ -1536,7 +1536,7 @@ impl AVCaptureDevice {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexposuremode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureExposureMode(pub NSInteger);
 impl AVCaptureExposureMode {
     #[doc(alias = "AVCaptureExposureModeLocked")]
@@ -1875,7 +1875,7 @@ impl AVCaptureDevice {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureWhiteBalanceMode(pub NSInteger);
 impl AVCaptureWhiteBalanceMode {
     #[doc(alias = "AVCaptureWhiteBalanceModeLocked")]
@@ -2326,7 +2326,7 @@ impl AVCaptureDevice {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAuthorizationStatus(pub NSInteger);
 impl AVAuthorizationStatus {
     #[doc(alias = "AVAuthorizationStatusNotDetermined")]
@@ -2408,7 +2408,7 @@ pub type AVCaptureDeviceTransportControlsSpeed = c_float;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetransportcontrolsplaybackmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureDeviceTransportControlsPlaybackMode(pub NSInteger);
 impl AVCaptureDeviceTransportControlsPlaybackMode {
     #[doc(alias = "AVCaptureDeviceTransportControlsNotPlayingMode")]
@@ -2519,7 +2519,7 @@ impl AVCaptureDevice {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecolorspace?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureColorSpace(pub NSInteger);
 impl AVCaptureColorSpace {
     /// The sRGB color space ( https://www.w3.org/Graphics/Color/srgb ).
@@ -2717,7 +2717,7 @@ impl AVCaptureDevice {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecenterstagecontrolmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureCenterStageControlMode(pub NSInteger);
 impl AVCaptureCenterStageControlMode {
     #[doc(alias = "AVCaptureCenterStageControlModeUser")]
@@ -2975,7 +2975,7 @@ impl AVCaptureDevice {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemicrophonemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureMicrophoneMode(pub NSInteger);
 impl AVCaptureMicrophoneMode {
     #[doc(alias = "AVCaptureMicrophoneModeStandard")]
@@ -3675,7 +3675,7 @@ impl AVZoomRange {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturevideostabilizationmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureVideoStabilizationMode(pub NSInteger);
 impl AVCaptureVideoStabilizationMode {
     /// Indicates that video should not be stabilized.
@@ -3724,7 +3724,7 @@ unsafe impl RefEncode for AVCaptureVideoStabilizationMode {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureautofocussystem?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureAutoFocusSystem(pub NSInteger);
 impl AVCaptureAutoFocusSystem {
     #[doc(alias = "AVCaptureAutoFocusSystemNone")]
@@ -4381,7 +4381,7 @@ impl AVCaptureDeviceFormat {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecameralenssmudgedetectionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVCaptureCameraLensSmudgeDetectionStatus(pub NSInteger);
 impl AVCaptureCameraLensSmudgeDetectionStatus {
     /// Indicates that the detection is not enabled.

@@ -34,7 +34,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCUIElementType(pub NSUInteger);
 impl XCUIElementType {
     #[doc(alias = "XCUIElementTypeAny")]
@@ -216,7 +216,7 @@ unsafe impl RefEncode for XCUIElementType {
 /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiuserinterfacesizeclass?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCUIUserInterfaceSizeClass(pub NSInteger);
 impl XCUIUserInterfaceSizeClass {
     #[doc(alias = "XCUIUserInterfaceSizeClassUnspecified")]
@@ -987,7 +987,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeymodifierflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCUIKeyModifierFlags(pub NSUInteger);
 bitflags::bitflags! {
     impl XCUIKeyModifierFlags: NSUInteger {
@@ -1451,7 +1451,7 @@ unsafe impl RefEncode for XCUIProtectedResource {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiaccessibilityaudittype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCUIAccessibilityAuditType(pub u64);
 bitflags::bitflags! {
     impl XCUIAccessibilityAuditType: u64 {
@@ -1530,7 +1530,7 @@ impl XCUIAccessibilityAuditIssue {
 /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiapplicationstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCUIApplicationState(pub NSUInteger);
 impl XCUIApplicationState {
     #[doc(alias = "XCUIApplicationStateUnknown")]
@@ -1958,7 +1958,7 @@ impl XCUILocation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuideviceappearance?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCUIDeviceAppearance(pub NSInteger);
 impl XCUIDeviceAppearance {
     #[doc(alias = "XCUIDeviceAppearanceUnspecified")]
@@ -2197,7 +2197,7 @@ impl XCUIElementQuery {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremotebutton?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct XCUIRemoteButton(pub NSUInteger);
 impl XCUIRemoteButton {
     #[doc(alias = "XCUIRemoteButtonUp")]

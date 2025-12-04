@@ -10,7 +10,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKPaymentTransactionState(pub NSInteger);
 impl SKPaymentTransactionState {
     #[doc(alias = "SKPaymentTransactionStatePurchasing")]

@@ -13,7 +13,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdepthdataquality?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVDepthDataQuality(pub NSInteger);
 impl AVDepthDataQuality {
     #[doc(alias = "AVDepthDataQualityLow")]
@@ -33,7 +33,7 @@ unsafe impl RefEncode for AVDepthDataQuality {
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avdepthdataaccuracy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVDepthDataAccuracy(pub NSInteger);
 impl AVDepthDataAccuracy {
     #[doc(alias = "AVDepthDataAccuracyRelative")]

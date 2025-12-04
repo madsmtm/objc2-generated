@@ -10,7 +10,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jstype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct JSType(pub c_uint);
 impl JSType {
     #[doc(alias = "kJSTypeUndefined")]
@@ -45,7 +45,7 @@ unsafe impl RefEncode for JSType {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jstypedarraytype?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct JSTypedArrayType(pub c_uint);
 impl JSTypedArrayType {
     #[doc(alias = "kJSTypedArrayTypeInt8Array")]
@@ -91,7 +91,7 @@ unsafe impl RefEncode for JSTypedArrayType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsrelationcondition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct JSRelationCondition(pub u32);
 impl JSRelationCondition {
     /// A constant identifying the type of JavaScript relation condition.

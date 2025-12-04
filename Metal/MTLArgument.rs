@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindextype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIndexType(pub NSUInteger);
 impl MTLIndexType {
     #[doc(alias = "MTLIndexTypeUInt16")]
@@ -67,7 +67,7 @@ unsafe impl RefEncode for MTLIndexType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBindingType(pub NSInteger);
 impl MTLBindingType {
     #[doc(alias = "MTLBindingTypeBuffer")]
@@ -122,7 +122,7 @@ unsafe impl RefEncode for MTLBindingType {
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLArgumentType(pub NSUInteger);
 impl MTLArgumentType {
     #[doc(alias = "MTLArgumentTypeBuffer")]
@@ -162,7 +162,7 @@ unsafe impl RefEncode for MTLArgumentType {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlbindingaccess?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBindingAccess(pub NSUInteger);
 impl MTLBindingAccess {
     #[doc(alias = "MTLBindingAccessReadOnly")]

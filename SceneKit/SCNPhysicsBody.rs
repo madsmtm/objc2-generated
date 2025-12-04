@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsbodytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNPhysicsBodyType(pub NSInteger);
 impl SCNPhysicsBodyType {
     #[doc(alias = "SCNPhysicsBodyTypeStatic")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for SCNPhysicsBodyType {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicscollisioncategory?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SCNPhysicsCollisionCategory(pub NSUInteger);
 bitflags::bitflags! {
     impl SCNPhysicsCollisionCategory: NSUInteger {

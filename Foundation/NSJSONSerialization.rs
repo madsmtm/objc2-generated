@@ -8,7 +8,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjsonreadingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSJSONReadingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSJSONReadingOptions: NSUInteger {
@@ -39,7 +39,7 @@ unsafe impl RefEncode for NSJSONReadingOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsjsonwritingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSJSONWritingOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSJSONWritingOptions: NSUInteger {

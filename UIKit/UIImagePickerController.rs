@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollersourcetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerSourceType(pub NSInteger);
 impl UIImagePickerControllerSourceType {
     #[doc(alias = "UIImagePickerControllerSourceTypePhotoLibrary")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for UIImagePickerControllerSourceType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollerqualitytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerQualityType(pub NSInteger);
 impl UIImagePickerControllerQualityType {
     #[doc(alias = "UIImagePickerControllerQualityTypeHigh")]
@@ -64,7 +64,7 @@ unsafe impl RefEncode for UIImagePickerControllerQualityType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollercameracapturemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerCameraCaptureMode(pub NSInteger);
 impl UIImagePickerControllerCameraCaptureMode {
     #[doc(alias = "UIImagePickerControllerCameraCaptureModePhoto")]
@@ -84,7 +84,7 @@ unsafe impl RefEncode for UIImagePickerControllerCameraCaptureMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollercameradevice?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerCameraDevice(pub NSInteger);
 impl UIImagePickerControllerCameraDevice {
     #[doc(alias = "UIImagePickerControllerCameraDeviceRear")]
@@ -104,7 +104,7 @@ unsafe impl RefEncode for UIImagePickerControllerCameraDevice {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagepickercontrollercameraflashmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerCameraFlashMode(pub NSInteger);
 impl UIImagePickerControllerCameraFlashMode {
     #[doc(alias = "UIImagePickerControllerCameraFlashModeOff")]
@@ -127,7 +127,7 @@ unsafe impl RefEncode for UIImagePickerControllerCameraFlashMode {
 // NS_ENUM
 #[deprecated = "Will be removed in a future release, use PHPicker."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIImagePickerControllerImageURLExportPreset(pub NSInteger);
 impl UIImagePickerControllerImageURLExportPreset {
     #[doc(alias = "UIImagePickerControllerImageURLExportPresetCompatible")]

@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackviewdistribution?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIStackViewDistribution(pub NSInteger);
 impl UIStackViewDistribution {
     #[doc(alias = "UIStackViewDistributionFill")]
@@ -41,7 +41,7 @@ unsafe impl RefEncode for UIStackViewDistribution {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistackviewalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIStackViewAlignment(pub NSInteger);
 impl UIStackViewAlignment {
     #[doc(alias = "UIStackViewAlignmentFill")]

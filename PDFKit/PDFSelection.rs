@@ -13,7 +13,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfselectiongranularity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PDFSelectionGranularity(pub NSUInteger);
 impl PDFSelectionGranularity {
     #[doc(alias = "PDFSelectionGranularityCharacter")]

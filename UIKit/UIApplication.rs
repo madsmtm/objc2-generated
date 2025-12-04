@@ -14,7 +14,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbarstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIStatusBarStyle(pub NSInteger);
 impl UIStatusBarStyle {
     #[doc(alias = "UIStatusBarStyleDefault")]
@@ -42,7 +42,7 @@ unsafe impl RefEncode for UIStatusBarStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistatusbaranimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIStatusBarAnimation(pub NSInteger);
 impl UIStatusBarAnimation {
     #[doc(alias = "UIStatusBarAnimationNone")]
@@ -70,7 +70,7 @@ extern "C" {
 // NS_OPTIONS
 #[deprecated = "Use UserNotifications Framework's UNAuthorizationOptions for user notifications and registerForRemoteNotifications for receiving remote notifications instead."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIRemoteNotificationType(pub NSUInteger);
 bitflags::bitflags! {
     impl UIRemoteNotificationType: NSUInteger {
@@ -103,7 +103,7 @@ unsafe impl RefEncode for UIRemoteNotificationType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundfetchresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBackgroundFetchResult(pub NSUInteger);
 impl UIBackgroundFetchResult {
     #[doc(alias = "UIBackgroundFetchResultNewData")]
@@ -125,7 +125,7 @@ unsafe impl RefEncode for UIBackgroundFetchResult {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundrefreshstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBackgroundRefreshStatus(pub NSInteger);
 impl UIBackgroundRefreshStatus {
     #[doc(alias = "UIBackgroundRefreshStatusRestricted")]
@@ -147,7 +147,7 @@ unsafe impl RefEncode for UIBackgroundRefreshStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIApplicationState(pub NSInteger);
 impl UIApplicationState {
     #[doc(alias = "UIApplicationStateActive")]
@@ -731,7 +731,7 @@ unsafe impl RefEncode for UIApplicationCategory {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaultstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIApplicationCategoryDefaultStatus(pub NSInteger);
 impl UIApplicationCategoryDefaultStatus {
     /// The status was not available. This is an error condition and the returned error object has more information.

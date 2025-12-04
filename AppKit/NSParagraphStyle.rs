@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineBreakMode(pub NSUInteger);
 impl NSLineBreakMode {
     #[doc(alias = "NSLineBreakByWordWrapping")]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for NSLineBreakMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakstrategy?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLineBreakStrategy(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLineBreakStrategy: NSUInteger {
@@ -649,7 +649,7 @@ impl NSMutableParagraphStyle {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttabtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTextTabType(pub NSUInteger);
 impl NSTextTabType {
     #[doc(alias = "NSLeftTabStopType")]

@@ -10,7 +10,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUserNotificationActivationType(pub NSInteger);
 impl NSUserNotificationActivationType {
     #[doc(alias = "NSUserNotificationActivationTypeNone")]

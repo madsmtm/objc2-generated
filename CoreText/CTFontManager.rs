@@ -155,7 +155,7 @@ pub extern "C-unwind" fn CTFontManagerCreateFontDescriptorsFromData(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerscope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontManagerScope(pub u32);
 impl CTFontManagerScope {
     #[doc(alias = "kCTFontManagerScopeNone")]
@@ -640,7 +640,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontmanagerautoactivationsetting?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTFontManagerAutoActivationSetting(pub u32);
 impl CTFontManagerAutoActivationSetting {
     #[doc(alias = "kCTFontManagerAutoActivationDefault")]

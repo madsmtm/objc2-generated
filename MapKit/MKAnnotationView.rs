@@ -20,7 +20,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewdragstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKAnnotationViewDragState(pub NSUInteger);
 impl MKAnnotationViewDragState {
     #[doc(alias = "MKAnnotationViewDragStateNone")]
@@ -75,7 +75,7 @@ pub static MKAnnotationViewZPriorityMin: MKAnnotationViewZPriority = 0 as _;
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewcollisionmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MKAnnotationViewCollisionMode(pub NSInteger);
 impl MKAnnotationViewCollisionMode {
     #[doc(alias = "MKAnnotationViewCollisionModeRectangle")]

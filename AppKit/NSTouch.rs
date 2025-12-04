@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchphase?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTouchPhase(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTouchPhase: NSUInteger {
@@ -41,7 +41,7 @@ unsafe impl RefEncode for NSTouchPhase {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTouchType(pub NSInteger);
 impl NSTouchType {
     #[doc(alias = "NSTouchTypeDirect")]
@@ -61,7 +61,7 @@ unsafe impl RefEncode for NSTouchType {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchtypemask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTouchTypeMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSTouchTypeMask: NSUInteger {

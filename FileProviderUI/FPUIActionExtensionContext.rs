@@ -24,7 +24,7 @@ pub type FPUIActionIdentifier = NSString;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fileproviderui/fpuiextensionerrorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FPUIExtensionErrorCode(pub NSUInteger);
 impl FPUIExtensionErrorCode {
     /// An error indicating that the action was canceled by the user.

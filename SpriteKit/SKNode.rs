@@ -17,7 +17,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skblendmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKBlendMode(pub NSInteger);
 impl SKBlendMode {
     #[doc(alias = "SKBlendModeAlpha")]
@@ -49,7 +49,7 @@ unsafe impl RefEncode for SKBlendMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/spritekit/sknodefocusbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKNodeFocusBehavior(pub NSInteger);
 impl SKNodeFocusBehavior {
     #[doc(alias = "SKNodeFocusBehaviorNone")]

@@ -350,7 +350,7 @@ pub const SSL_NO_SUCH_CIPHERSUITE: SSLCipherSuite = 65535;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sslciphersuitegroup?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SSLCiphersuiteGroup(pub c_int);
 impl SSLCiphersuiteGroup {
     #[doc(alias = "kSSLCiphersuiteGroupDefault")]

@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnentitytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNEntityType(pub NSInteger);
 impl CNEntityType {
     /// The user's contacts.
@@ -33,7 +33,7 @@ unsafe impl RefEncode for CNEntityType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/contacts/cnauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CNAuthorizationStatus(pub NSInteger);
 impl CNAuthorizationStatus {
     /// The user has not yet made a choice regarding whether the application may access contact data.

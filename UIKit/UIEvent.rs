@@ -9,7 +9,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIEventType(pub NSInteger);
 impl UIEventType {
     #[doc(alias = "UIEventTypeTouches")]
@@ -39,7 +39,7 @@ unsafe impl RefEncode for UIEventType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uieventsubtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIEventSubtype(pub NSInteger);
 impl UIEventSubtype {
     #[doc(alias = "UIEventSubtypeNone")]
@@ -89,7 +89,7 @@ unsafe impl RefEncode for UIEventSubtype {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uieventbuttonmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIEventButtonMask(pub NSInteger);
 bitflags::bitflags! {
     impl UIEventButtonMask: NSInteger {

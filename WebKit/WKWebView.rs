@@ -17,7 +17,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediaplaybackstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKMediaPlaybackState(pub NSInteger);
 impl WKMediaPlaybackState {
     #[doc(alias = "WKMediaPlaybackStateNone")]
@@ -41,7 +41,7 @@ unsafe impl RefEncode for WKMediaPlaybackState {
 /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkmediacapturestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKMediaCaptureState(pub NSInteger);
 impl WKMediaCaptureState {
     #[doc(alias = "WKMediaCaptureStateNone")]
@@ -63,7 +63,7 @@ unsafe impl RefEncode for WKMediaCaptureState {
 /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkfullscreenstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKFullscreenState(pub NSInteger);
 impl WKFullscreenState {
     #[doc(alias = "WKFullscreenStateNotInFullscreen")]
@@ -87,7 +87,7 @@ unsafe impl RefEncode for WKFullscreenState {
 /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebviewdatatype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKWebViewDataType(pub NSUInteger);
 bitflags::bitflags! {
     impl WKWebViewDataType: NSUInteger {

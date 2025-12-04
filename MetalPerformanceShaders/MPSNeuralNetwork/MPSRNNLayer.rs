@@ -11,7 +11,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnsequencedirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSRNNSequenceDirection(pub NSUInteger);
 impl MPSRNNSequenceDirection {
     /// The input sequence is processed from index zero to array length minus one
@@ -33,7 +33,7 @@ unsafe impl RefEncode for MPSRNNSequenceDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnbidirectionalcombinemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSRNNBidirectionalCombineMode(pub NSUInteger);
 impl MPSRNNBidirectionalCombineMode {
     /// The two sequences are kept separate
@@ -2152,7 +2152,7 @@ impl MPSRNNMatrixTrainingState {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrnnmatrixid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MPSRNNMatrixId(pub NSUInteger);
 impl MPSRNNMatrixId {
     #[doc(alias = "MPSRNNMatrixIdSingleGateInputWeights")]

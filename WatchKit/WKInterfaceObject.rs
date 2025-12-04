@@ -14,7 +14,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjecthorizontalalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceObjectHorizontalAlignment(pub NSInteger);
 impl WKInterfaceObjectHorizontalAlignment {
     #[doc(alias = "WKInterfaceObjectHorizontalAlignmentLeft")]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for WKInterfaceObjectHorizontalAlignment {
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceobjectverticalalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKInterfaceObjectVerticalAlignment(pub NSInteger);
 impl WKInterfaceObjectVerticalAlignment {
     #[doc(alias = "WKInterfaceObjectVerticalAlignmentTop")]

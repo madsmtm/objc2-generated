@@ -22,7 +22,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreampropertyflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioFileStreamPropertyFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamPropertyFlags: u32 {
@@ -48,7 +48,7 @@ unsafe impl RefEncode for AudioFileStreamPropertyFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamparseflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioFileStreamParseFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamParseFlags: u32 {
@@ -70,7 +70,7 @@ unsafe impl RefEncode for AudioFileStreamParseFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreamseekflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AudioFileStreamSeekFlags(pub u32);
 bitflags::bitflags! {
     impl AudioFileStreamSeekFlags: u32 {

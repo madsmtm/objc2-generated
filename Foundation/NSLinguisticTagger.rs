@@ -285,7 +285,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggerunit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLinguisticTaggerUnit(pub NSInteger);
 impl NSLinguisticTaggerUnit {
     #[doc(alias = "NSLinguisticTaggerUnitWord")]
@@ -309,7 +309,7 @@ unsafe impl RefEncode for NSLinguisticTaggerUnit {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggeroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSLinguisticTaggerOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSLinguisticTaggerOptions: NSUInteger {

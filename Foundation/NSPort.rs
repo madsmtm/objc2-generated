@@ -188,7 +188,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmachportoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSMachPortOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSMachPortOptions: NSUInteger {

@@ -7,7 +7,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUserInterfaceLayoutDirection(pub NSInteger);
 impl NSUserInterfaceLayoutDirection {
     #[doc(alias = "NSUserInterfaceLayoutDirectionLeftToRight")]
@@ -27,7 +27,7 @@ unsafe impl RefEncode for NSUserInterfaceLayoutDirection {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsuserinterfacelayoutorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSUserInterfaceLayoutOrientation(pub NSInteger);
 impl NSUserInterfaceLayoutOrientation {
     #[doc(alias = "NSUserInterfaceLayoutOrientationHorizontal")]

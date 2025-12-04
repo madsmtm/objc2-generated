@@ -13,7 +13,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WebViewInsertAction(pub NSInteger);
 impl WebViewInsertAction {
     #[doc(alias = "WebViewInsertActionTyped")]

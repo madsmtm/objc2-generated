@@ -334,7 +334,7 @@ pub const kSecNoGuest: SecGuestRef = 0;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccsflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecCSFlags(pub u32);
 bitflags::bitflags! {
     impl SecCSFlags: u32 {
@@ -409,7 +409,7 @@ unsafe impl RefEncode for SecCSFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodesignatureflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecCodeSignatureFlags(pub u32);
 bitflags::bitflags! {
     impl SecCodeSignatureFlags: u32 {
@@ -494,7 +494,7 @@ unsafe impl RefEncode for SecCodeSignatureFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccodestatus?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecCodeStatus(pub u32);
 bitflags::bitflags! {
     impl SecCodeStatus: u32 {
@@ -569,7 +569,7 @@ unsafe impl RefEncode for SecRequirementType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seccsdigestalgorithm?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecCSDigestAlgorithm(pub u32);
 impl SecCSDigestAlgorithm {
     #[doc(alias = "kSecCodeSignatureNoHash")]

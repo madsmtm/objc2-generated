@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenthandlingstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INIntentHandlingStatus(pub NSInteger);
 impl INIntentHandlingStatus {
     #[doc(alias = "INIntentHandlingStatusUnspecified")]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for INIntentHandlingStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/intents/ininteractiondirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct INInteractionDirection(pub NSInteger);
 impl INInteractionDirection {
     #[doc(alias = "INInteractionDirectionUnspecified")]

@@ -13,7 +13,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationactionpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKNavigationActionPolicy(pub NSInteger);
 impl WKNavigationActionPolicy {
     #[doc(alias = "WKNavigationActionPolicyCancel")]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for WKNavigationActionPolicy {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wknavigationresponsepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct WKNavigationResponsePolicy(pub NSInteger);
 impl WKNavigationResponsePolicy {
     #[doc(alias = "WKNavigationResponsePolicyCancel")]

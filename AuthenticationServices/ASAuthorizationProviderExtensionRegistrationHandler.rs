@@ -34,7 +34,7 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionAuthenticationMethod {
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionrequestoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionRequestOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl ASAuthorizationProviderExtensionRequestOptions: NSUInteger {
@@ -68,7 +68,7 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionRequestOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionregistrationresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionRegistrationResult(pub NSInteger);
 impl ASAuthorizationProviderExtensionRegistrationResult {
     #[doc(alias = "ASAuthorizationProviderExtensionRegistrationResultSuccess")]
@@ -92,7 +92,7 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionRegistrationResult {
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsupportedgranttypes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionSupportedGrantTypes(pub NSInteger);
 bitflags::bitflags! {
     impl ASAuthorizationProviderExtensionSupportedGrantTypes: NSInteger {
@@ -120,7 +120,7 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionSupportedGrantTypes {
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionplatformssoprotocolversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationProviderExtensionPlatformSSOProtocolVersion(pub NSInteger);
 impl ASAuthorizationProviderExtensionPlatformSSOProtocolVersion {
     #[doc(alias = "ASAuthorizationProviderExtensionPlatformSSOProtocolVersion1_0")]

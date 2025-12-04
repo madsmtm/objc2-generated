@@ -36,7 +36,7 @@ pub const errSecureDownloadInvalidDownload: c_int = -20053;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadtrustcallbackresult?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecureDownloadTrustCallbackResult(pub c_uint);
 impl SecureDownloadTrustCallbackResult {
     #[doc(alias = "kSecureDownloadDoNotEvaluateSigner")]

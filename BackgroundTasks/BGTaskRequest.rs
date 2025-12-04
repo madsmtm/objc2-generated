@@ -285,7 +285,7 @@ impl BGHealthResearchTaskRequest {
 /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequestsubmissionstrategy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BGContinuedProcessingTaskRequestSubmissionStrategy(pub NSInteger);
 impl BGContinuedProcessingTaskRequestSubmissionStrategy {
     /// Fail the submission if there is no room for the task request, or if the system is under substantial load and is
@@ -310,7 +310,7 @@ unsafe impl RefEncode for BGContinuedProcessingTaskRequestSubmissionStrategy {
 /// [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgcontinuedprocessingtaskrequestresources?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct BGContinuedProcessingTaskRequestResources(pub NSInteger);
 bitflags::bitflags! {
     impl BGContinuedProcessingTaskRequestResources: NSInteger {

@@ -39,7 +39,7 @@ unsafe impl RefEncode for HKPHQ9AssessmentRisk {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessmentanswer?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct HKPHQ9AssessmentAnswer(pub NSInteger);
 impl HKPHQ9AssessmentAnswer {
     #[doc(alias = "HKPHQ9AssessmentAnswerNotAtAll")]

@@ -15,7 +15,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemattribute?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSItemAttribute(pub NSInteger);
 bitflags::bitflags! {
     impl FSItemAttribute: NSInteger {
@@ -89,7 +89,7 @@ unsafe impl RefEncode for FSItemAttribute {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSItemType(pub NSInteger);
 impl FSItemType {
     /// The item type of an unknown item.
@@ -134,7 +134,7 @@ unsafe impl RefEncode for FSItemType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemid?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct FSItemID(pub u64);
 impl FSItemID {
     /// The identifier for an invalid item.

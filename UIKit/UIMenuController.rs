@@ -13,7 +13,7 @@ use crate::*;
 // NS_ENUM
 #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIMenuControllerArrowDirection(pub NSInteger);
 impl UIMenuControllerArrowDirection {
     #[doc(alias = "UIMenuControllerArrowDefault")]

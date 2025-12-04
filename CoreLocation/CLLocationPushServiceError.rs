@@ -13,7 +13,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationpushserviceerror?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CLLocationPushServiceError(pub NSInteger);
 impl CLLocationPushServiceError {
     #[doc(alias = "CLLocationPushServiceErrorUnknown")]

@@ -13,7 +13,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmutability?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLMutability(pub NSUInteger);
 impl MTLMutability {
     #[doc(alias = "MTLMutabilityDefault")]
@@ -35,7 +35,7 @@ unsafe impl RefEncode for MTLMutability {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlshadervalidation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLShaderValidation(pub NSInteger);
 impl MTLShaderValidation {
     #[doc(alias = "MTLShaderValidationDefault")]

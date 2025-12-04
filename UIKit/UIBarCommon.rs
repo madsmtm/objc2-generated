@@ -8,7 +8,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarmetrics?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBarMetrics(pub NSInteger);
 impl UIBarMetrics {
     #[doc(alias = "UIBarMetricsDefault")]
@@ -38,7 +38,7 @@ unsafe impl RefEncode for UIBarMetrics {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIBarPosition(pub NSInteger);
 impl UIBarPosition {
     #[doc(alias = "UIBarPositionAny")]

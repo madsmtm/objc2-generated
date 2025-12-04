@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessorydisplayedstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICellAccessoryDisplayedState(pub NSInteger);
 impl UICellAccessoryDisplayedState {
     /// The accessory is always displayed.
@@ -675,7 +675,7 @@ impl UICellAccessoryMultiselect {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryoutlinedisclosurestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICellAccessoryOutlineDisclosureStyle(pub NSInteger);
 impl UICellAccessoryOutlineDisclosureStyle {
     /// The style will be automatically determined based on whether the cell is configured to be a section header or not.
@@ -961,7 +961,7 @@ impl UICellAccessoryLabel {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryplacement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UICellAccessoryPlacement(pub NSInteger);
 impl UICellAccessoryPlacement {
     /// Accessory placed on the leading edge.

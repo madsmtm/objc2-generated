@@ -18,7 +18,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptinstantiationerror?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTInstantiationError(pub NSInteger);
 impl PTInstantiationError {
     #[doc(alias = "PTInstantiationErrorUnknown")]
@@ -51,7 +51,7 @@ unsafe impl RefEncode for PTInstantiationError {
 /// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelerror?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PTChannelError(pub NSInteger);
 impl PTChannelError {
     #[doc(alias = "PTChannelErrorUnknown")]

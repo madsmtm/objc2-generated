@@ -14,7 +14,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTextureType(pub NSUInteger);
 impl MTLTextureType {
     #[doc(alias = "MTLTextureType1D")]
@@ -50,7 +50,7 @@ unsafe impl RefEncode for MTLTextureType {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTextureSwizzle(pub u8);
 impl MTLTextureSwizzle {
     #[doc(alias = "MTLTextureSwizzleZero")]
@@ -168,7 +168,7 @@ impl DefaultRetained for MTLSharedTextureHandle {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureusage?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTextureUsage(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLTextureUsage: NSUInteger {
@@ -198,7 +198,7 @@ unsafe impl RefEncode for MTLTextureUsage {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltexturecompressiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTextureCompressionType(pub NSInteger);
 impl MTLTextureCompressionType {
     #[doc(alias = "MTLTextureCompressionTypeLossless")]

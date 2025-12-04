@@ -16,7 +16,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreedevicefeatures?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothHandsFreeDeviceFeatures(pub u32);
 impl IOBluetoothHandsFreeDeviceFeatures {
     #[doc(alias = "IOBluetoothHandsFreeDeviceFeatureNone")]
@@ -50,7 +50,7 @@ unsafe impl RefEncode for IOBluetoothHandsFreeDeviceFeatures {
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreeaudiogatewayfeatures?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothHandsFreeAudioGatewayFeatures(pub u32);
 impl IOBluetoothHandsFreeAudioGatewayFeatures {
     #[doc(alias = "IOBluetoothHandsFreeAudioGatewayFeatureNone")]
@@ -230,7 +230,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothsmsmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothSMSMode(pub NSUInteger);
 impl IOBluetoothSMSMode {
     #[doc(alias = "IOBluetoothSMSModePDU")]
@@ -272,7 +272,7 @@ unsafe impl RefEncode for IOBluetoothHandsFreeSMSSupport {
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothhandsfreepdumessagestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct IOBluetoothHandsFreePDUMessageStatus(pub NSUInteger);
 impl IOBluetoothHandsFreePDUMessageStatus {
     #[doc(alias = "IOBluetoothHandsFreePDUStatusRecUnread")]

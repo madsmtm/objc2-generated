@@ -976,7 +976,7 @@ impl AVCaptureMultiCamSession {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideofieldmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVVideoFieldMode(pub NSInteger);
 impl AVVideoFieldMode {
     #[doc(alias = "AVVideoFieldModeBoth")]

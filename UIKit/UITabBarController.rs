@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontrollermode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITabBarControllerMode(pub NSInteger);
 impl UITabBarControllerMode {
     /// The default tab bar controller mode.
@@ -37,7 +37,7 @@ unsafe impl RefEncode for UITabBarControllerMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarminimizebehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UITabBarMinimizeBehavior(pub NSInteger);
 impl UITabBarMinimizeBehavior {
     /// Resolves to the system default minimize behavior.

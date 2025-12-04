@@ -277,7 +277,7 @@ unsafe impl RefEncode for CFXMLAttributeListDeclarationInfo {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlentitytypecode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFXMLEntityTypeCode(pub CFIndex);
 impl CFXMLEntityTypeCode {
     #[doc(alias = "kCFXMLEntityTypeParameter")]

@@ -28,7 +28,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparseroptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFXMLParserOptions(pub CFOptionFlags);
 bitflags::bitflags! {
     impl CFXMLParserOptions: CFOptionFlags {
@@ -64,7 +64,7 @@ unsafe impl RefEncode for CFXMLParserOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfxmlparserstatuscode?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CFXMLParserStatusCode(pub CFIndex);
 bitflags::bitflags! {
     impl CFXMLParserStatusCode: CFIndex {

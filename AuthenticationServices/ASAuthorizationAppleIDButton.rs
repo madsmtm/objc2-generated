@@ -14,7 +14,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbuttontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationAppleIDButtonType(pub NSInteger);
 impl ASAuthorizationAppleIDButtonType {
     #[doc(alias = "ASAuthorizationAppleIDButtonTypeSignIn")]
@@ -38,7 +38,7 @@ unsafe impl RefEncode for ASAuthorizationAppleIDButtonType {
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbuttonstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct ASAuthorizationAppleIDButtonStyle(pub NSInteger);
 impl ASAuthorizationAppleIDButtonStyle {
     #[doc(alias = "ASAuthorizationAppleIDButtonStyleWhite")]

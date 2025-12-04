@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterprimemethod?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioConverterPrimeMethod(pub NSInteger);
 impl AVAudioConverterPrimeMethod {
     /// Primes with leading + trailing input frames.
@@ -113,7 +113,7 @@ unsafe impl RefEncode for AVAudioConverterPrimeInfo {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterinputstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioConverterInputStatus(pub NSInteger);
 impl AVAudioConverterInputStatus {
     /// This is the normal case where you supply data to the converter.
@@ -145,7 +145,7 @@ unsafe impl RefEncode for AVAudioConverterInputStatus {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverteroutputstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AVAudioConverterOutputStatus(pub NSInteger);
 impl AVAudioConverterOutputStatus {
     /// All of the requested data was returned.

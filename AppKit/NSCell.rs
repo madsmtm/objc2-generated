@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscelltype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCellType(pub NSUInteger);
 impl NSCellType {
     #[doc(alias = "NSNullCellType")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for NSCellType {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellattribute?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCellAttribute(pub NSUInteger);
 impl NSCellAttribute {
     #[doc(alias = "NSCellDisabled")]
@@ -84,7 +84,7 @@ unsafe impl RefEncode for NSCellAttribute {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellimageposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCellImagePosition(pub NSUInteger);
 impl NSCellImagePosition {
     #[doc(alias = "NSNoImage")]
@@ -118,7 +118,7 @@ unsafe impl RefEncode for NSCellImagePosition {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagescaling?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSImageScaling(pub NSUInteger);
 impl NSImageScaling {
     #[doc(alias = "NSImageScaleProportionallyDown")]
@@ -161,7 +161,7 @@ pub static NSControlStateValueOn: NSControlStateValue = 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellstylemask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCellStyleMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCellStyleMask: NSUInteger {
@@ -189,7 +189,7 @@ unsafe impl RefEncode for NSCellStyleMask {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltint?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSControlTint(pub NSUInteger);
 impl NSControlTint {
     #[doc(alias = "NSDefaultControlTint")]
@@ -213,7 +213,7 @@ unsafe impl RefEncode for NSControlTint {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolsize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSControlSize(pub NSUInteger);
 impl NSControlSize {
     #[doc(alias = "NSControlSizeRegular")]
@@ -1095,7 +1095,7 @@ impl NSCell {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellhitresult?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCellHitResult(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCellHitResult: NSUInteger {
@@ -1151,7 +1151,7 @@ impl NSCell {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackgroundstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBackgroundStyle(pub NSInteger);
 impl NSBackgroundStyle {
     #[doc(alias = "NSBackgroundStyleNormal")]

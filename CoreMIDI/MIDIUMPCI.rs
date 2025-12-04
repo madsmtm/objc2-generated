@@ -56,7 +56,7 @@ unsafe impl RefEncode for MIDI2DeviceRevisionLevel {
 // NS_OPTIONS
 #[cfg(feature = "MIDIMessages")]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDICICategoryOptions(pub MIDIUInteger7);
 #[cfg(feature = "MIDIMessages")]
 bitflags::bitflags! {
@@ -91,7 +91,7 @@ pub type MIDIUMPFunctionBlockID = MIDIUInteger7;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicidevicetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDICIDeviceType(pub u8);
 impl MIDICIDeviceType {
     #[doc(alias = "kMIDICIDeviceTypeUnknown")]
@@ -303,7 +303,7 @@ unsafe impl RefEncode for MIDICIProfileType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiumpciobjectbackingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MIDIUMPCIObjectBackingType(pub u8);
 impl MIDIUMPCIObjectBackingType {
     #[doc(alias = "kMIDIUMPCIObjectBackingTypeUnknown")]

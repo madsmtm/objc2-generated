@@ -19,7 +19,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionviewdisplaycontext?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SWAttributionViewDisplayContext(pub NSInteger);
 impl SWAttributionViewDisplayContext {
     /// The default context. Indicates that the attributed content shown along with this view is being offered to the user for consumption
@@ -43,7 +43,7 @@ unsafe impl RefEncode for SWAttributionViewDisplayContext {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionviewhorizontalalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SWAttributionViewHorizontalAlignment(pub NSInteger);
 impl SWAttributionViewHorizontalAlignment {
     /// The default horizontal alignment, to be chosen by SWAttributionView
@@ -73,7 +73,7 @@ unsafe impl RefEncode for SWAttributionViewHorizontalAlignment {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionviewbackgroundstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SWAttributionViewBackgroundStyle(pub NSInteger);
 impl SWAttributionViewBackgroundStyle {
     /// The default background style, to be chosen by SWAttributionView

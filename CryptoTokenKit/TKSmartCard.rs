@@ -106,7 +106,7 @@ impl TKSmartCardSlotManager {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TKSmartCardSlotState(pub NSInteger);
 impl TKSmartCardSlotState {
     /// Slot is no longer known to the system.  This is terminal state for TKSmartCardSlot instance, once reached, the slot instance can never be revived.
@@ -139,7 +139,7 @@ unsafe impl RefEncode for TKSmartCardSlotState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpincharset?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TKSmartCardPINCharset(pub NSInteger);
 impl TKSmartCardPINCharset {
     /// PIN is only composed of digits.
@@ -166,7 +166,7 @@ unsafe impl RefEncode for TKSmartCardPINCharset {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinencoding?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TKSmartCardPINEncoding(pub NSInteger);
 impl TKSmartCardPINEncoding {
     /// Characters are encoded in Binary format (1234 => 01h 02h 03h 04h).
@@ -193,7 +193,7 @@ unsafe impl RefEncode for TKSmartCardPINEncoding {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinjustification?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TKSmartCardPINJustification(pub NSInteger);
 impl TKSmartCardPINJustification {
     /// Justify to the left.
@@ -217,7 +217,7 @@ unsafe impl RefEncode for TKSmartCardPINJustification {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpincompletion?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TKSmartCardPINCompletion(pub NSUInteger);
 bitflags::bitflags! {
     impl TKSmartCardPINCompletion: NSUInteger {
@@ -246,7 +246,7 @@ unsafe impl RefEncode for TKSmartCardPINCompletion {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinconfirmation?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TKSmartCardPINConfirmation(pub NSUInteger);
 bitflags::bitflags! {
     impl TKSmartCardPINConfirmation: NSUInteger {

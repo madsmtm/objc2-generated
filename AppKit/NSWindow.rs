@@ -23,7 +23,7 @@ pub static NSAppKitVersionNumberWithDeferredWindowDisplaySupport: NSAppKitVersio
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowstylemask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowStyleMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWindowStyleMask: NSUInteger {
@@ -81,7 +81,7 @@ pub const NSResetCursorRectsRunLoopOrdering: c_uint = 700000;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowsharingtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowSharingType(pub NSUInteger);
 impl NSWindowSharingType {
     #[doc(alias = "NSWindowSharingNone")]
@@ -143,7 +143,7 @@ unsafe impl RefEncode for NSWindowSharingType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowcollectionbehavior?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowCollectionBehavior(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWindowCollectionBehavior: NSUInteger {
@@ -193,7 +193,7 @@ unsafe impl RefEncode for NSWindowCollectionBehavior {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowanimationbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowAnimationBehavior(pub NSInteger);
 impl NSWindowAnimationBehavior {
     #[doc(alias = "NSWindowAnimationBehaviorDefault")]
@@ -221,7 +221,7 @@ unsafe impl RefEncode for NSWindowAnimationBehavior {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindownumberlistoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowNumberListOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWindowNumberListOptions: NSUInteger {
@@ -243,7 +243,7 @@ unsafe impl RefEncode for NSWindowNumberListOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowocclusionstate?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowOcclusionState(pub NSUInteger);
 bitflags::bitflags! {
     impl NSWindowOcclusionState: NSUInteger {
@@ -294,7 +294,7 @@ pub static NSScreenSaverWindowLevel: NSWindowLevel = 1000;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectiondirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSelectionDirection(pub NSUInteger);
 impl NSSelectionDirection {
     #[doc(alias = "NSDirectSelection")]
@@ -318,7 +318,7 @@ unsafe impl RefEncode for NSSelectionDirection {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowbutton?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowButton(pub NSUInteger);
 impl NSWindowButton {
     #[doc(alias = "NSWindowCloseButton")]
@@ -346,7 +346,7 @@ unsafe impl RefEncode for NSWindowButton {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowtitlevisibility?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowTitleVisibility(pub NSInteger);
 impl NSWindowTitleVisibility {
     #[doc(alias = "NSWindowTitleVisible")]
@@ -366,7 +366,7 @@ unsafe impl RefEncode for NSWindowTitleVisibility {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowtoolbarstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowToolbarStyle(pub NSInteger);
 impl NSWindowToolbarStyle {
     #[doc(alias = "NSWindowToolbarStyleAutomatic")]
@@ -395,7 +395,7 @@ pub static NSEventDurationForever: NSTimeInterval = c_double::MAX as _;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowusertabbingpreference?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowUserTabbingPreference(pub NSInteger);
 impl NSWindowUserTabbingPreference {
     #[doc(alias = "NSWindowUserTabbingPreferenceManual")]
@@ -417,7 +417,7 @@ unsafe impl RefEncode for NSWindowUserTabbingPreference {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowtabbingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowTabbingMode(pub NSInteger);
 impl NSWindowTabbingMode {
     #[doc(alias = "NSWindowTabbingModeAutomatic")]
@@ -439,7 +439,7 @@ unsafe impl RefEncode for NSWindowTabbingMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitlebarseparatorstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTitlebarSeparatorStyle(pub NSInteger);
 impl NSTitlebarSeparatorStyle {
     #[doc(alias = "NSTitlebarSeparatorStyleAutomatic")]
@@ -2815,7 +2815,7 @@ extern "C" {
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSWindowBackingLocation(pub NSUInteger);
 impl NSWindowBackingLocation {
     #[doc(alias = "NSWindowBackingLocationDefault")]

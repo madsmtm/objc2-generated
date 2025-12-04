@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevicebatterystate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDeviceBatteryState(pub NSInteger);
 impl UIDeviceBatteryState {
     #[doc(alias = "UIDeviceBatteryStateUnknown")]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for UIDeviceBatteryState {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiuserinterfaceidiom?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIUserInterfaceIdiom(pub NSInteger);
 impl UIUserInterfaceIdiom {
     #[doc(alias = "UIUserInterfaceIdiomUnspecified")]

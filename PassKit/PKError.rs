@@ -121,7 +121,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddpaymentpasserror?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAddPaymentPassError(pub NSInteger);
 impl PKAddPaymentPassError {
     #[doc(alias = "PKAddPaymentPassErrorUnsupported")]
@@ -148,7 +148,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKAddSecureElementPassErrorCode(pub NSInteger);
 impl PKAddSecureElementPassErrorCode {
     #[doc(alias = "PKAddSecureElementPassGenericError")]
@@ -186,7 +186,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksharesecureelementpasserrorcode?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKShareSecureElementPassErrorCode(pub NSInteger);
 impl PKShareSecureElementPassErrorCode {
     #[doc(alias = "PKShareSecureElementPassUnknownError")]

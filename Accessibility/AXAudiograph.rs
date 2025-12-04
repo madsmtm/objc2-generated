@@ -65,7 +65,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptorscale?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXNumericDataAxisDescriptorScale(pub NSInteger);
 impl AXNumericDataAxisDescriptorScale {
     #[doc(alias = "AXScaleTypeLinear")]
@@ -572,7 +572,7 @@ impl AXDataSeriesDescriptor {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptorcontentdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AXChartDescriptorContentDirection(pub NSInteger);
 impl AXChartDescriptorContentDirection {
     #[doc(alias = "AXChartContentDirectionLeftToRight")]

@@ -72,11 +72,12 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcameradeviceviewdisplaymode?language=objc)
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum IKCameraDeviceViewDisplayMode {
     #[doc(alias = "IKCameraDeviceViewDisplayModeNone")]
     None = -1,
     #[doc(alias = "IKCameraDeviceViewDisplayModeTable")]
+    #[default]
     Table = 0,
     #[doc(alias = "IKCameraDeviceViewDisplayModeIcon")]
     Icon = 1,
@@ -93,9 +94,10 @@ unsafe impl RefEncode for IKCameraDeviceViewDisplayMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/quartz/ikcameradeviceviewtransfermode?language=objc)
 // NS_CLOSED_ENUM
 #[repr(isize)] // NSInteger
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum IKCameraDeviceViewTransferMode {
     #[doc(alias = "IKCameraDeviceViewTransferModeFileBased")]
+    #[default]
     FileBased = 0,
     #[doc(alias = "IKCameraDeviceViewTransferModeMemoryBased")]
     MemoryBased = 1,

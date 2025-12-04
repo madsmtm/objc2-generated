@@ -59,7 +59,7 @@ impl UIDropInteraction {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidropoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIDropOperation(pub NSUInteger);
 impl UIDropOperation {
     #[doc(alias = "UIDropOperationCancel")]

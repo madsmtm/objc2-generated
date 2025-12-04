@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendfactor?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBlendFactor(pub NSUInteger);
 impl MTLBlendFactor {
     #[doc(alias = "MTLBlendFactorZero")]
@@ -71,7 +71,7 @@ unsafe impl RefEncode for MTLBlendFactor {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlblendoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLBlendOperation(pub NSUInteger);
 impl MTLBlendOperation {
     #[doc(alias = "MTLBlendOperationAdd")]
@@ -100,7 +100,7 @@ unsafe impl RefEncode for MTLBlendOperation {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcolorwritemask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLColorWriteMask(pub NSUInteger);
 bitflags::bitflags! {
     impl MTLColorWriteMask: NSUInteger {
@@ -135,7 +135,7 @@ unsafe impl RefEncode for MTLColorWriteMask {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlprimitivetopologyclass?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLPrimitiveTopologyClass(pub NSUInteger);
 impl MTLPrimitiveTopologyClass {
     #[doc(alias = "MTLPrimitiveTopologyClassUnspecified")]
@@ -159,7 +159,7 @@ unsafe impl RefEncode for MTLPrimitiveTopologyClass {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationpartitionmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTessellationPartitionMode(pub NSUInteger);
 impl MTLTessellationPartitionMode {
     #[doc(alias = "MTLTessellationPartitionModePow2")]
@@ -183,7 +183,7 @@ unsafe impl RefEncode for MTLTessellationPartitionMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationfactorstepfunction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTessellationFactorStepFunction(pub NSUInteger);
 impl MTLTessellationFactorStepFunction {
     #[doc(alias = "MTLTessellationFactorStepFunctionConstant")]
@@ -207,7 +207,7 @@ unsafe impl RefEncode for MTLTessellationFactorStepFunction {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationfactorformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTessellationFactorFormat(pub NSUInteger);
 impl MTLTessellationFactorFormat {
     #[doc(alias = "MTLTessellationFactorFormatHalf")]
@@ -225,7 +225,7 @@ unsafe impl RefEncode for MTLTessellationFactorFormat {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltessellationcontrolpointindextype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLTessellationControlPointIndexType(pub NSUInteger);
 impl MTLTessellationControlPointIndexType {
     #[doc(alias = "MTLTessellationControlPointIndexTypeNone")]

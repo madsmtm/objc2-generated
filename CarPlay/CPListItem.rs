@@ -16,7 +16,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitemaccessorytype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPListItemAccessoryType(pub NSInteger);
 impl CPListItemAccessoryType {
     #[doc(alias = "CPListItemAccessoryTypeNone")]
@@ -38,7 +38,7 @@ unsafe impl RefEncode for CPListItemAccessoryType {
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitemplayingindicatorlocation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CPListItemPlayingIndicatorLocation(pub NSInteger);
 impl CPListItemPlayingIndicatorLocation {
     #[doc(alias = "CPListItemPlayingIndicatorLocationLeading")]

@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrolevents?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIControlEvents(pub NSUInteger);
 bitflags::bitflags! {
     impl UIControlEvents: NSUInteger {
@@ -75,7 +75,7 @@ unsafe impl RefEncode for UIControlEvents {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrolcontentverticalalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIControlContentVerticalAlignment(pub NSInteger);
 impl UIControlContentVerticalAlignment {
     #[doc(alias = "UIControlContentVerticalAlignmentCenter")]
@@ -99,7 +99,7 @@ unsafe impl RefEncode for UIControlContentVerticalAlignment {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrolcontenthorizontalalignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIControlContentHorizontalAlignment(pub NSInteger);
 impl UIControlContentHorizontalAlignment {
     #[doc(alias = "UIControlContentHorizontalAlignmentCenter")]
@@ -127,7 +127,7 @@ unsafe impl RefEncode for UIControlContentHorizontalAlignment {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontrolstate?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIControlState(pub NSUInteger);
 bitflags::bitflags! {
     impl UIControlState: NSUInteger {

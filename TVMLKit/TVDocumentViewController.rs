@@ -19,7 +19,7 @@ extern "C" {
 // NS_ERROR_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct TVDocumentError(pub NSInteger);
 impl TVDocumentError {
     #[doc(alias = "TVDocumentErrorFailed")]

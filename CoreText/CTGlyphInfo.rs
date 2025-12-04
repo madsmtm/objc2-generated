@@ -65,7 +65,7 @@ unsafe impl ConcreteType for CTGlyphInfo {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/ctcharactercollection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CTCharacterCollection(pub u16);
 impl CTCharacterCollection {
     #[doc(alias = "kCTCharacterCollectionIdentityMapping")]

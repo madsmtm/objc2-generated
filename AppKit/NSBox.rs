@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitleposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSTitlePosition(pub NSUInteger);
 impl NSTitlePosition {
     #[doc(alias = "NSNoTitle")]
@@ -42,7 +42,7 @@ unsafe impl RefEncode for NSTitlePosition {
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsboxtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSBoxType(pub NSUInteger);
 impl NSBoxType {
     #[doc(alias = "NSBoxPrimary")]

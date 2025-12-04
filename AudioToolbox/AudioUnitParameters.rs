@@ -615,7 +615,7 @@ pub const kAUAudioMixParameter_RemixAmount: AudioUnitParameterID = 1;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auaudiomixrenderingstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct AUAudioMixRenderingStyle(pub u32);
 impl AUAudioMixRenderingStyle {
     #[doc(alias = "kAudioMixRenderingStyle_Cinematic")]

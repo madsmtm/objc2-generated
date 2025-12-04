@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliopriority?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIOPriority(pub NSInteger);
 impl MTLIOPriority {
     #[doc(alias = "MTLIOPriorityHigh")]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for MTLIOPriority {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtliocommandqueuetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct MTLIOCommandQueueType(pub NSInteger);
 impl MTLIOCommandQueueType {
     #[doc(alias = "MTLIOCommandQueueTypeConcurrent")]

@@ -28,7 +28,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreambufferoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEPushStreamBufferOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl PHASEPushStreamBufferOptions: NSUInteger {
@@ -59,7 +59,7 @@ unsafe impl RefEncode for PHASEPushStreamBufferOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasepushstreamcompletioncallbackcondition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PHASEPushStreamCompletionCallbackCondition(pub NSInteger);
 impl PHASEPushStreamCompletionCallbackCondition {
     #[doc(alias = "PHASEPushStreamCompletionDataRendered")]

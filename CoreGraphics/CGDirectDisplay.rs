@@ -448,7 +448,7 @@ pub extern "C-unwind" fn CGDisplayRestoreColorSyncSettings() {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcaptureoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGCaptureOptions(pub u32);
 bitflags::bitflags! {
     impl CGCaptureOptions: u32 {

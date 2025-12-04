@@ -243,7 +243,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentauthorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentAuthorizationStatus(pub NSInteger);
 impl PKPaymentAuthorizationStatus {
     #[doc(alias = "PKPaymentAuthorizationStatusSuccess")]
@@ -278,7 +278,7 @@ unsafe impl RefEncode for PKPaymentAuthorizationStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttonstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentButtonStyle(pub NSInteger);
 impl PKPaymentButtonStyle {
     #[doc(alias = "PKPaymentButtonStyleWhite")]
@@ -302,7 +302,7 @@ unsafe impl RefEncode for PKPaymentButtonStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentbuttontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKPaymentButtonType(pub NSInteger);
 impl PKPaymentButtonType {
     #[doc(alias = "PKPaymentButtonTypePlain")]
@@ -352,7 +352,7 @@ unsafe impl RefEncode for PKPaymentButtonType {
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkradiotechnology?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct PKRadioTechnology(pub NSUInteger);
 bitflags::bitflags! {
     impl PKRadioTechnology: NSUInteger {

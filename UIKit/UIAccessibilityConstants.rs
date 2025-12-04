@@ -198,7 +198,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitynavigationstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityNavigationStyle(pub NSInteger);
 impl UIAccessibilityNavigationStyle {
     #[doc(alias = "UIAccessibilityNavigationStyleAutomatic")]
@@ -220,7 +220,7 @@ unsafe impl RefEncode for UIAccessibilityNavigationStyle {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycontainertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityContainerType(pub NSInteger);
 impl UIAccessibilityContainerType {
     #[doc(alias = "UIAccessibilityContainerTypeNone")]
@@ -246,7 +246,7 @@ unsafe impl RefEncode for UIAccessibilityContainerType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitydirecttouchoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityDirectTouchOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl UIAccessibilityDirectTouchOptions: NSUInteger {
@@ -328,7 +328,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityexpandedstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct UIAccessibilityExpandedStatus(pub NSInteger);
 impl UIAccessibilityExpandedStatus {
     #[doc(alias = "UIAccessibilityExpandedStatusUnsupported")]

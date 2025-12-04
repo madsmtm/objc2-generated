@@ -107,7 +107,7 @@ extern "C-unwind" {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgconfigureoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGConfigureOption(pub u32);
 bitflags::bitflags! {
     impl CGConfigureOption: u32 {
@@ -152,7 +152,7 @@ pub extern "C-unwind" fn CGRestorePermanentDisplayConfiguration() {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaychangesummaryflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGDisplayChangeSummaryFlags(pub u32);
 bitflags::bitflags! {
     impl CGDisplayChangeSummaryFlags: u32 {

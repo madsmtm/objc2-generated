@@ -45,7 +45,7 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinejoin?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGLineJoin(pub i32);
 impl CGLineJoin {
     #[doc(alias = "kCGLineJoinMiter")]
@@ -69,7 +69,7 @@ unsafe impl RefEncode for CGLineJoin {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cglinecap?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGLineCap(pub i32);
 impl CGLineCap {
     #[doc(alias = "kCGLineCapButt")]
@@ -729,7 +729,7 @@ impl CGPath {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathelementtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGPathElementType(pub i32);
 impl CGPathElementType {
     #[doc(alias = "kCGPathElementMoveToPoint")]

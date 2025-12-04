@@ -315,7 +315,7 @@ impl NSSharingService {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingcontentscope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSharingContentScope(pub NSInteger);
 impl NSSharingContentScope {
     /// NSSharingContentScopeItem: use when sharing a clearly identified item, e.g. a file represented by its icon.
@@ -445,7 +445,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscloudkitsharingserviceoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSCloudKitSharingServiceOptions(pub NSUInteger);
 bitflags::bitflags! {
     impl NSCloudKitSharingServiceOptions: NSUInteger {

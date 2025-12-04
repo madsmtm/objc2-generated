@@ -254,7 +254,7 @@ unsafe impl RefEncode for NSSearchPathDirectory {
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssearchpathdomainmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct NSSearchPathDomainMask(pub NSUInteger);
 bitflags::bitflags! {
     impl NSSearchPathDomainMask: NSUInteger {

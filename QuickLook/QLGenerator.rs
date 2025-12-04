@@ -557,7 +557,7 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/quicklook/qlpreviewpdfstyle?language=objc)
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct QLPreviewPDFStyle(pub c_uint);
 impl QLPreviewPDFStyle {
     #[doc(alias = "kQLPreviewPDFStandardStyle")]

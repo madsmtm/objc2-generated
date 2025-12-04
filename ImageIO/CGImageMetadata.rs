@@ -283,7 +283,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageMetadataType(pub i32);
 impl CGImageMetadataType {
     #[doc(alias = "kCGImageMetadataTypeInvalid")]
@@ -1161,7 +1161,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadataerrors?language=objc)
 // NS_ENUM
 #[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGImageMetadataErrors(pub i32);
 impl CGImageMetadataErrors {
     #[doc(alias = "kCGImageMetadataErrorUnknown")]
