@@ -47,7 +47,7 @@ unsafe impl RefEncode for MTLIndirectCommandType {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlindirectcommandbufferexecutionrange?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLIndirectCommandBufferExecutionRange {
     pub location: u32,
     pub length: u32,

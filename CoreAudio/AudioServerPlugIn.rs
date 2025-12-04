@@ -23,7 +23,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverplugincustompropertyinfo?language=objc)
 #[cfg(feature = "AudioHardware")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioServerPlugInCustomPropertyInfo {
     pub mSelector: AudioObjectPropertySelector,
     pub mPropertyDataType: u32,
@@ -66,7 +66,7 @@ unsafe impl RefEncode for AudioServerPlugInCustomPropertyInfo {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginclientinfo?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioServerPlugInClientInfo {
     pub mClientID: u32,
     pub mProcessID: libc::pid_t,

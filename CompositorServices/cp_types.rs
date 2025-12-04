@@ -33,7 +33,7 @@ pub type cp_compositor_frame_index_t = u64;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_time?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cp_time {
     pub cp_mach_abs_time: u64,
 }

@@ -35,7 +35,7 @@ pub const kAudio_MemFullError: OSStatus = -108;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiovaluerange?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioValueRange {
     pub mMinimum: f64,
     pub mMaximum: f64,
@@ -100,7 +100,7 @@ unsafe impl RefEncode for AudioValueTranslation {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiobuffer?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioBuffer {
     pub mNumberChannels: u32,
     pub mDataByteSize: u32,
@@ -128,7 +128,7 @@ unsafe impl RefEncode for AudioBuffer {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiobufferlist?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioBufferList {
     pub mNumberBuffers: u32,
     pub mBuffers: [AudioBuffer; 1],
@@ -197,7 +197,7 @@ pub type AudioFormatFlags = u32;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiostreambasicdescription?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioStreamBasicDescription {
     pub mSampleRate: f64,
     pub mFormatID: AudioFormatID,
@@ -388,7 +388,7 @@ pub const kAudioFormatFlagsNativeFloatPacked: AudioFormatFlags =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiostreampacketdescription?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioStreamPacketDescription {
     pub mStartOffset: i64,
     pub mVariableFramesInPacket: u32,
@@ -440,7 +440,7 @@ unsafe impl RefEncode for AudioStreamPacketDescription {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiostreampacketdependencydescription?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioStreamPacketDependencyDescription {
     pub mIsIndependentlyDecodable: u32,
     pub mPreRollCount: u32,
@@ -588,7 +588,7 @@ unsafe impl RefEncode for SMPTETimeFlags {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/smptetime?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SMPTETime {
     pub mSubframes: i16,
     pub mSubframeDivisor: i16,
@@ -691,7 +691,7 @@ unsafe impl RefEncode for AudioTimeStampFlags {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiotimestamp?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioTimeStamp {
     pub mSampleTime: f64,
     pub mHostTime: u64,
@@ -733,7 +733,7 @@ unsafe impl RefEncode for AudioTimeStamp {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audioclassdescription?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioClassDescription {
     pub mType: OSType,
     pub mSubType: OSType,
@@ -2052,7 +2052,7 @@ pub const kAudioChannelLayoutTag_Unknown: AudioChannelLayoutTag = 0xFFFF0000;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochanneldescription?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioChannelDescription {
     pub mChannelLabel: AudioChannelLabel,
     pub mChannelFlags: AudioChannelFlags,
@@ -2090,7 +2090,7 @@ unsafe impl RefEncode for AudioChannelDescription {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiochannellayout?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioChannelLayout {
     pub mChannelLayoutTag: AudioChannelLayoutTag,
     pub mChannelBitmap: AudioChannelBitmap,
@@ -2128,7 +2128,7 @@ impl AudioChannelLayout {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audioformatlistitem?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFormatListItem {
     pub mASBD: AudioStreamBasicDescription,
     pub mChannelLayoutTag: AudioChannelLayoutTag,

@@ -13,7 +13,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerange?language=objc)
 #[cfg(feature = "CMTime")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMTimeRange {
     /// The start time of the time range.
     pub start: CMTime,
@@ -431,7 +431,7 @@ impl CMTimeRange {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemapping?language=objc)
 #[cfg(feature = "CMTime")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMTimeMapping {
     pub source: CMTimeRange,
     pub target: CMTimeRange,

@@ -358,7 +358,7 @@ pub const kPMUnlocked: c_uint = 0;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmrect?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct PMRect {
     pub top: c_double,
     pub left: c_double,
@@ -386,7 +386,7 @@ unsafe impl RefEncode for PMRect {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmresolution?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct PMResolution {
     pub hRes: c_double,
     pub vRes: c_double,

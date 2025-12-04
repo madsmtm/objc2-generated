@@ -152,7 +152,7 @@ impl AVCaptureTimecodeSource {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecode?language=objc)
 #[cfg(feature = "objc2-core-media")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVCaptureTimecode {
     /// Time component representing the current timecode in hours.
     pub hours: u8,

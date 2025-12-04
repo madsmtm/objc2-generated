@@ -1298,7 +1298,7 @@ pub const kPreviousBody: c_uint = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/textrange?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct TextRange {
     pub fStart: i32,
     pub fEnd: i32,
@@ -1326,7 +1326,7 @@ pub type TextRangeHandle = *mut TextRangePtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/textrangearray?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct TextRangeArray {
     pub fNumOfRanges: i16,
     pub fRange: [TextRange; 1],
@@ -1353,7 +1353,7 @@ pub type TextRangeArrayHandle = *mut TextRangeArrayPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/offsetarray?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct OffsetArray {
     pub fNumOfOffsets: i16,
     pub fOffset: [i32; 1],
@@ -1378,7 +1378,7 @@ pub type OffsetArrayHandle = *mut OffsetArrayPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/writingcode?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct WritingCode {
     pub theScriptCode: ScriptCode,
     pub theLangCode: LangCode,
@@ -1399,7 +1399,7 @@ unsafe impl RefEncode for WritingCode {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/intltext?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IntlText {
     pub theScriptCode: ScriptCode,
     pub theLangCode: LangCode,

@@ -109,7 +109,7 @@ unsafe impl RefEncode for AVAudioVoiceProcessingOtherAudioDuckingLevel {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiovoiceprocessingotheraudioduckingconfiguration?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVAudioVoiceProcessingOtherAudioDuckingConfiguration {
     pub enableAdvancedDucking: Bool,
     pub duckingLevel: AVAudioVoiceProcessingOtherAudioDuckingLevel,

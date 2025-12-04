@@ -6589,7 +6589,7 @@ pub type CAClockListenerProc =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/catempomapentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CATempoMapEntry {
     pub beats: CAClockBeats,
     pub tempoBPM: CAClockTempo,
@@ -6620,7 +6620,7 @@ unsafe impl RefEncode for CATempoMapEntry {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cametertrackentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAMeterTrackEntry {
     pub beats: CAClockBeats,
     pub meterNumer: u16,

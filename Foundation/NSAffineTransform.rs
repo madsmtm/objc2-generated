@@ -11,7 +11,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsaffinetransformstruct?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSAffineTransformStruct {
     pub m11: CGFloat,
     pub m12: CGFloat,

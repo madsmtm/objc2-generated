@@ -61,7 +61,7 @@ unsafe impl RefEncode for AUParameterAutomationEventType {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aurecordedparameterevent?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AURecordedParameterEvent {
     /// The host time at which the event occurred.
     pub hostTime: u64,
@@ -91,7 +91,7 @@ unsafe impl RefEncode for AURecordedParameterEvent {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterautomationevent?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AUParameterAutomationEvent {
     /// The host time at which the event occurred.
     pub hostTime: u64,

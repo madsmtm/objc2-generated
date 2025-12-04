@@ -241,7 +241,7 @@ pub const kIONetworkInterfaceDisabledState: c_uint = 0x4;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ionetworkstats?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IONetworkStats {
     pub inputPackets: u32,
     pub inputErrors: u32,
@@ -280,7 +280,7 @@ unsafe impl RefEncode for IONetworkStats {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iooutputqueuestats?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOOutputQueueStats {
     pub capacity: u32,
     pub size: u32,
@@ -332,7 +332,7 @@ unsafe impl RefEncode for IOOutputQueueStats {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodot3statsentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IODot3StatsEntry {
     pub alignmentErrors: u32,
     pub fcsErrors: u32,
@@ -383,7 +383,7 @@ unsafe impl RefEncode for IODot3StatsEntry {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodot3collentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IODot3CollEntry {
     pub collFrequencies: [u32; 16],
 }
@@ -411,7 +411,7 @@ unsafe impl RefEncode for IODot3CollEntry {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodot3rxextraentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IODot3RxExtraEntry {
     pub overruns: u32,
     pub watchdogTimeouts: u32,
@@ -460,7 +460,7 @@ unsafe impl RefEncode for IODot3RxExtraEntry {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodot3txextraentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IODot3TxExtraEntry {
     pub underruns: u32,
     pub jabbers: u32,
@@ -502,7 +502,7 @@ unsafe impl RefEncode for IODot3TxExtraEntry {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/ioethernetstats?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOEthernetStats {
     pub dot3StatsEntry: IODot3StatsEntry,
     pub dot3CollEntry: IODot3CollEntry,

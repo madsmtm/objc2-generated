@@ -533,7 +533,7 @@ pub type CGEventTapCallBack = Option<
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapinformation?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGEventTapInformation {
     pub eventTapID: u32,
     pub tapPoint: CGEventTapLocation,

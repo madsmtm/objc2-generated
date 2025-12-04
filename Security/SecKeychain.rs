@@ -23,7 +23,7 @@ pub const kSecWritePermStatus: u32 = 4;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainsettings?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SecKeychainSettings {
     pub version: u32,
     pub lockOnSleep: Boolean,

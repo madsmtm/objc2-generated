@@ -497,7 +497,7 @@ pub type MIDIMessage_32 = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midimessage_64?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDIMessage_64 {
     pub word0: u32,
     pub word1: u32,
@@ -516,7 +516,7 @@ unsafe impl RefEncode for MIDIMessage_64 {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midimessage_96?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDIMessage_96 {
     pub word0: u32,
     pub word1: u32,
@@ -538,7 +538,7 @@ unsafe impl RefEncode for MIDIMessage_96 {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midimessage_128?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDIMessage_128 {
     pub word0: u32,
     pub word1: u32,
@@ -669,7 +669,7 @@ pub static kMIDI1UPMaxSysexSize: u8 = 6;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDIUniversalMessage {
     /// determines which variant in the union is active
     pub r#type: MIDIMessageType,

@@ -30,7 +30,7 @@ pub const NSOSF1OperatingSystem: c_uint = 7;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperatingsystemversion?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSOperatingSystemVersion {
     pub majorVersion: NSInteger,
     pub minorVersion: NSInteger,

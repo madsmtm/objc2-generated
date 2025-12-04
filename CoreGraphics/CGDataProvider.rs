@@ -45,7 +45,7 @@ pub type CGDataProviderReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGDataProviderSequentialCallbacks {
     pub version: c_uint,
     pub getBytes: CGDataProviderGetBytesCallback,
@@ -90,7 +90,7 @@ pub type CGDataProviderGetBytesAtPositionCallback =
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGDataProviderDirectCallbacks {
     pub version: c_uint,
     pub getBytePointer: CGDataProviderGetBytePointerCallback,

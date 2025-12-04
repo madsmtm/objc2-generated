@@ -189,7 +189,7 @@ pub const kConverterPrimeMethod_None: u32 = 2;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioconverterprimeinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioConverterPrimeInfo {
     pub leadingFrames: u32,
     pub trailingFrames: u32,

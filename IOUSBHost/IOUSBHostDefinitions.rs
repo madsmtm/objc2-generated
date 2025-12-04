@@ -38,7 +38,7 @@ pub type IOUSBHostTime = u64;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronousframe?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBHostIsochronousFrame {
     pub status: IOReturn,
     pub requestCount: u32,
@@ -147,7 +147,7 @@ unsafe impl RefEncode for IOUSBHostIsochronousTransactionOptions {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostisochronoustransaction?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBHostIsochronousTransaction {
     pub status: IOReturn,
     pub requestCount: u32,

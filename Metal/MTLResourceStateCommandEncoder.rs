@@ -39,7 +39,7 @@ unsafe impl RefEncode for MTLSparseTextureMappingMode {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlmapindirectarguments?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLMapIndirectArguments {
     pub regionOriginX: u32,
     pub regionOriginY: u32,

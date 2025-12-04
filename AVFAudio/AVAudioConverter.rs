@@ -89,7 +89,7 @@ unsafe impl RefEncode for AVAudioConverterPrimeMethod {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioconverterprimeinfo?language=objc)
 #[cfg(feature = "AVAudioTypes")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVAudioConverterPrimeInfo {
     pub leadingFrames: AVAudioFrameCount,
     pub trailingFrames: AVAudioFrameCount,

@@ -93,7 +93,7 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerStatus {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggerpositionalamplitudes?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCDualSenseAdaptiveTriggerPositionalAmplitudes {
     /// An array of amplitudes associated with the GCDualSenseAdaptiveTriggerDiscretePositionCount control positions supported by the DualSense adaptive triggers.
     pub values: [c_float; 10],
@@ -109,7 +109,7 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerPositionalAmplitudes {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggerpositionalresistivestrengths?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCDualSenseAdaptiveTriggerPositionalResistiveStrengths {
     /// An array of resistive strengths associated with the GCDualSenseAdaptiveTriggerDiscretePositionCount control positions supported by the DualSense adaptive triggers.
     pub values: [c_float; 10],

@@ -106,7 +106,7 @@ unsafe impl RefEncode for CGScreenUpdateOperation {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscreenupdatemovedelta?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGScreenUpdateMoveDelta {
     pub dX: i32,
     pub dY: i32,

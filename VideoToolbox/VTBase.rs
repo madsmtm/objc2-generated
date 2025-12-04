@@ -7,7 +7,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtint32point?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct VTInt32Point {
     pub x: i32,
     pub y: i32,
@@ -26,7 +26,7 @@ unsafe impl RefEncode for VTInt32Point {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtint32size?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct VTInt32Size {
     pub width: i32,
     pub height: i32,

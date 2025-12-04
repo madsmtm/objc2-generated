@@ -463,7 +463,7 @@ unsafe impl RefEncode for MPSDataLayout {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagereadwriteparams?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSImageReadWriteParams {
     /// featureChannel offset from which to read/write featureChannels, this should be a multiple of 4
     pub featureChannelOffset: NSUInteger,

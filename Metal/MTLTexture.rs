@@ -77,7 +77,7 @@ unsafe impl RefEncode for MTLTextureSwizzle {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltextureswizzlechannels?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLTextureSwizzleChannels {
     pub red: MTLTextureSwizzle,
     pub green: MTLTextureSwizzle,

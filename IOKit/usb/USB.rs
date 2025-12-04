@@ -431,7 +431,7 @@ pub type USBPhysicalAddress32 = u32;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbisocframe?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBIsocFrame {
     pub frStatus: IOReturn,
     pub frReqCount: u16,
@@ -464,7 +464,7 @@ unsafe impl RefEncode for IOUSBIsocFrame {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousblowlatencyisocframe?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBLowLatencyIsocFrame {
     pub frStatus: IOReturn,
     pub frReqCount: u16,
@@ -691,7 +691,7 @@ unsafe impl RefEncode for IOUSBLowLatencyIsocCompletion {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbmousedata?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBMouseData {
     pub buttons: u16,
     pub XDelta: i16,
@@ -716,7 +716,7 @@ pub type IOUSBMouseDataPtr = *mut IOUSBMouseData;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbkeyboarddata?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBKeyboardData {
     pub keycount: u16,
     pub usbkeycode: [u16; 32],
@@ -921,7 +921,7 @@ pub const addPacketShift: c_uint = 11;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbendpointproperties?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBEndpointProperties {
     pub bVersion: u8,
     pub bAlternateSetting: u8,
@@ -992,7 +992,7 @@ pub const kIOUSBAnyProduct: c_uint = 0xFFFF;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbmatch?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBMatch {
     pub usbClass: u16,
     pub usbSubClass: u16,
@@ -1031,7 +1031,7 @@ unsafe impl RefEncode for IOUSBMatch {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbfindendpointrequest?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBFindEndpointRequest {
     pub r#type: u8,
     pub direction: u8,
@@ -1301,7 +1301,7 @@ unsafe impl RefEncode for IOUSBIsocStruct {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iousblowlatencyisocstruct?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBLowLatencyIsocStruct {
     pub fPipe: u32,
     pub fBufSize: u32,
@@ -1343,7 +1343,7 @@ unsafe impl RefEncode for IOUSBLowLatencyIsocStruct {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbgetframestruct?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBGetFrameStruct {
     pub frame: u64,
     pub timeStamp: AbsoluteTime,
@@ -1363,7 +1363,7 @@ unsafe impl RefEncode for IOUSBGetFrameStruct {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbfindinterfacerequest?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBFindInterfaceRequest {
     pub bInterfaceClass: u16,
     pub bInterfaceSubClass: u16,

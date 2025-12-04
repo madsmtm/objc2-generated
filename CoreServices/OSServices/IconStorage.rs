@@ -88,7 +88,7 @@ pub const kIconFamilyType: c_uint = 0x69636e73;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/iconfamilyelement?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IconFamilyElement {
     pub elementType: OSType,
     pub elementSize: i32,
@@ -114,7 +114,7 @@ unsafe impl RefEncode for IconFamilyElement {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/iconfamilyresource?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IconFamilyResource {
     pub resourceType: OSType,
     pub resourceSize: i32,

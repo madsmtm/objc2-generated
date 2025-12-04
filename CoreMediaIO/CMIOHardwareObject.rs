@@ -45,7 +45,7 @@ pub type CMIOObjectPropertyElement = u32;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectpropertyaddress?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMIOObjectPropertyAddress {
     pub mSelector: CMIOObjectPropertySelector,
     pub mScope: CMIOObjectPropertyScope,

@@ -14,7 +14,7 @@ pub const kCTErrorDomainMach: c_uint = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/cterror?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CTError {
     pub domain: i32,
     pub error: i32,

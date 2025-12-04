@@ -177,7 +177,7 @@ pub type MusicTimeStamp = f64;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/midinotemessage?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDINoteMessage {
     pub channel: u8,
     pub note: u8,
@@ -207,7 +207,7 @@ unsafe impl RefEncode for MIDINoteMessage {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/midichannelmessage?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDIChannelMessage {
     pub status: u8,
     pub data1: u8,
@@ -235,7 +235,7 @@ unsafe impl RefEncode for MIDIChannelMessage {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/midirawdata?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDIRawData {
     pub length: u32,
     pub data: [u8; 1],
@@ -254,7 +254,7 @@ unsafe impl RefEncode for MIDIRawData {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/midimetaevent?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDIMetaEvent {
     pub metaEventType: u8,
     pub unused1: u8,
@@ -290,7 +290,7 @@ unsafe impl RefEncode for MIDIMetaEvent {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musiceventuserdata?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MusicEventUserData {
     pub length: u32,
     pub data: [u8; 1],
@@ -312,7 +312,7 @@ unsafe impl RefEncode for MusicEventUserData {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extendednoteonevent?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct ExtendedNoteOnEvent {
     pub instrumentID: MusicDeviceInstrumentID,
     pub groupID: MusicDeviceGroupID,
@@ -343,7 +343,7 @@ unsafe impl RefEncode for ExtendedNoteOnEvent {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/parameterevent?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct ParameterEvent {
     pub parameterID: AudioUnitParameterID,
     pub scope: AudioUnitScope,
@@ -373,7 +373,7 @@ unsafe impl RefEncode for ParameterEvent {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extendedtempoevent?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct ExtendedTempoEvent {
     pub bpm: f64,
 }
@@ -439,7 +439,7 @@ unsafe impl RefEncode for AUPresetEvent {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cabarbeattime?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CABarBeatTime {
     pub bar: i32,
     pub beat: u16,
@@ -583,7 +583,7 @@ pub const kSequenceTrackProperty_TimeResolution: u32 = 6;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrackloopinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MusicTrackLoopInfo {
     pub loopDuration: MusicTimeStamp,
     pub numberOfLoops: i32,
@@ -2266,7 +2266,7 @@ pub const kMusicEventType_ExtendedControl: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extendedcontrolevent?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "MusicDevice"))]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct ExtendedControlEvent {
     pub groupID: MusicDeviceGroupID,
     pub controlID: AudioUnitParameterID,

@@ -6,7 +6,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarrayoffsets?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSNDArrayOffsets {
     pub dimensions: [NSInteger; 16],
 }
@@ -21,7 +21,7 @@ unsafe impl RefEncode for MPSNDArrayOffsets {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsndarraysizes?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSNDArraySizes {
     pub dimensions: [NSUInteger; 16],
 }

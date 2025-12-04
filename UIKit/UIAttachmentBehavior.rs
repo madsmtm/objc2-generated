@@ -32,7 +32,7 @@ unsafe impl RefEncode for UIAttachmentBehaviorType {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifloatrange?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct UIFloatRange {
     pub minimum: CGFloat,
     pub maximum: CGFloat,

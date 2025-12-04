@@ -235,7 +235,7 @@ pub const kBluetoothHCIErroneousDataReportingReservedEnd: c_uint = 0xFF;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothdeviceaddress?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothDeviceAddress {
     pub data: [u8; 6],
 }
@@ -252,7 +252,7 @@ unsafe impl RefEncode for BluetoothDeviceAddress {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothkey?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothKey {
     pub data: [u8; 16],
 }
@@ -269,7 +269,7 @@ unsafe impl RefEncode for BluetoothKey {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothirk?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothIRK {
     pub data: [u8; 16],
 }
@@ -286,7 +286,7 @@ unsafe impl RefEncode for BluetoothIRK {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothpincode?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothPINCode {
     pub data: [u8; 16],
 }
@@ -352,7 +352,7 @@ pub const kBluetoothRoleRemainSlave: c_uint = kBluetoothRoleRemainPeripheral;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothseteventmask?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothSetEventMask {
     pub data: [u8; 8],
 }
@@ -533,7 +533,7 @@ pub const kBluetoothL2CAPFlushTimeoutEnd: c_uint = 65536;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capqualityofserviceoptions?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothL2CAPQualityOfServiceOptions {
     pub flags: u8,
     pub serviceType: u8,
@@ -567,7 +567,7 @@ unsafe impl RefEncode for BluetoothL2CAPQualityOfServiceOptions {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothl2capretransmissionandflowcontroloptions?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothL2CAPRetransmissionAndFlowControlOptions {
     pub flags: u8,
     pub txWindowSize: u8,
@@ -2128,7 +2128,7 @@ unsafe impl RefEncode for BluetoothHCISupportedCommands {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcisupportedfeatures?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCISupportedFeatures {
     pub data: [u8; 8],
 }
@@ -2155,7 +2155,7 @@ pub type BluetoothHCIPageNumber = u8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciextendedfeaturesinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIExtendedFeaturesInfo {
     pub page: BluetoothHCIPageNumber,
     pub maxPage: BluetoothHCIPageNumber,
@@ -2307,7 +2307,7 @@ unsafe impl RefEncode for BluetoothFeatureBits {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetootheventfiltercondition?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothEventFilterCondition {
     pub data: [u8; 7],
 }
@@ -2328,7 +2328,7 @@ pub type BluetoothHCIFailedContactCount = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcifailedcontactinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIFailedContactInfo {
     pub count: BluetoothHCIFailedContactCount,
     pub handle: BluetoothConnectionHandle,
@@ -2355,7 +2355,7 @@ pub type BluetoothHCIRSSIValue = i8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcirssiinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIRSSIInfo {
     pub handle: BluetoothConnectionHandle,
     pub RSSIValue: BluetoothHCIRSSIValue,
@@ -2382,7 +2382,7 @@ pub type BluetoothHCILinkQuality = u8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcilinkqualityinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCILinkQualityInfo {
     pub handle: BluetoothConnectionHandle,
     pub qualityValue: BluetoothHCILinkQuality,
@@ -2409,7 +2409,7 @@ pub type BluetoothHCIEncryptionKeySize = u8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciencryptionkeysizeinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEncryptionKeySizeInfo {
     pub handle: BluetoothConnectionHandle,
     pub keySize: BluetoothHCIEncryptionKeySize,
@@ -2436,7 +2436,7 @@ pub type BluetoothHCIRole = u8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciroleinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIRoleInfo {
     pub role: u8,
     pub handle: BluetoothConnectionHandle,
@@ -2520,7 +2520,7 @@ unsafe impl RefEncode for BluetoothHCILinkPolicySettingsValues {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcilinkpolicysettingsinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCILinkPolicySettingsInfo {
     pub settings: BluetoothHCILinkPolicySettings,
     pub handle: BluetoothConnectionHandle,
@@ -2544,7 +2544,7 @@ unsafe impl RefEncode for BluetoothHCILinkPolicySettingsInfo {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciqualityofservicesetupparams?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIQualityOfServiceSetupParams {
     pub flags: u8,
     pub serviceType: u8,
@@ -2576,7 +2576,7 @@ unsafe impl RefEncode for BluetoothHCIQualityOfServiceSetupParams {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcisetupsynchronousconnectionparams?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCISetupSynchronousConnectionParams {
     pub transmitBandwidth: u32,
     pub receiveBandwidth: u32,
@@ -2608,7 +2608,7 @@ unsafe impl RefEncode for BluetoothHCISetupSynchronousConnectionParams {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciacceptsynchronousconnectionrequestparams?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIAcceptSynchronousConnectionRequestParams {
     pub transmitBandwidth: u32,
     pub receiveBandwidth: u32,
@@ -2640,7 +2640,7 @@ unsafe impl RefEncode for BluetoothHCIAcceptSynchronousConnectionRequestParams {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcienhancedsetupsynchronousconnectionparams?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEnhancedSetupSynchronousConnectionParams {
     pub transmitBandwidth: u32,
     pub receiveBandwidth: u32,
@@ -2706,7 +2706,7 @@ unsafe impl RefEncode for BluetoothHCIEnhancedSetupSynchronousConnectionParams {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcienhancedacceptsynchronousconnectionrequestparams?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEnhancedAcceptSynchronousConnectionRequestParams {
     pub transmitBandwidth: u32,
     pub receiveBandwidth: u32,
@@ -2782,7 +2782,7 @@ pub const kBluetoothHCILoopbackModeRemote: c_uint = 0x02;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothreadclockinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothReadClockInfo {
     pub handle: BluetoothConnectionHandle,
     pub clock: u32,
@@ -2808,7 +2808,7 @@ unsafe impl RefEncode for BluetoothReadClockInfo {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventflowspecificationdata?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventFlowSpecificationData {
     pub connectionHandle: BluetoothConnectionHandle,
     pub flags: u8,
@@ -2865,7 +2865,7 @@ pub type BluetoothHCIRequestID = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciversioninfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIVersionInfo {
     pub manufacturerName: BluetoothManufacturerName,
     pub lmpVersion: BluetoothLMPVersion,
@@ -2895,7 +2895,7 @@ unsafe impl RefEncode for BluetoothHCIVersionInfo {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcibuffersize?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIBufferSize {
     pub ACLDataPacketLength: u16,
     pub SCODataPacketLength: u8,
@@ -2923,7 +2923,7 @@ unsafe impl RefEncode for BluetoothHCIBufferSize {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcilebuffersize?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCILEBufferSize {
     pub ACLDataPacketLength: u16,
     pub totalNumACLDataPackets: u8,
@@ -3023,7 +3023,7 @@ unsafe impl RefEncode for BluetoothHCIReadStoredLinkKeysFlags {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcistoredlinkkeysinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIStoredLinkKeysInfo {
     pub numLinkKeysRead: u16,
     pub maxNumLinkKeysAllowedInDevice: u16,
@@ -3126,7 +3126,7 @@ unsafe impl RefEncode for BluetoothHCIPageScanEnableStates {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciscanactivity?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIScanActivity {
     pub scanInterval: u16,
     pub scanWindow: u16,
@@ -3147,7 +3147,7 @@ unsafe impl RefEncode for BluetoothHCIScanActivity {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquiryaccesscode?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIInquiryAccessCode {
     pub data: [u8; 3],
 }
@@ -3219,7 +3219,7 @@ unsafe impl RefEncode for BluetoothHCICurrentInquiryAccessCodesForWrite {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcilinksupervisiontimeout?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCILinkSupervisionTimeout {
     pub handle: BluetoothConnectionHandle,
     pub timeout: u16,
@@ -3340,7 +3340,7 @@ unsafe impl RefEncode for BluetoothHCIAFHChannelAssessmentModes {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcitransmitpowerlevelinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCITransmitPowerLevelInfo {
     pub handle: BluetoothConnectionHandle,
     pub level: BluetoothHCITransmitPowerLevel,
@@ -3448,7 +3448,7 @@ pub type BluetoothHCIAutomaticFlushTimeout = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciautomaticflushtimeoutinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIAutomaticFlushTimeoutInfo {
     pub handle: BluetoothConnectionHandle,
     pub timeout: BluetoothHCIAutomaticFlushTimeout,
@@ -3540,7 +3540,7 @@ unsafe impl RefEncode for BluetoothTransportTypes {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquiryresult?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIInquiryResult {
     pub deviceAddress: BluetoothDeviceAddress,
     pub pageScanRepetitionMode: BluetoothPageScanRepetitionMode,
@@ -3596,7 +3596,7 @@ unsafe impl RefEncode for BluetoothHCIInquiryResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhciinquirywithrssiresult?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIInquiryWithRSSIResult {
     pub deviceAddress: BluetoothDeviceAddress,
     pub pageScanRepetitionMode: BluetoothPageScanRepetitionMode,
@@ -3813,7 +3813,7 @@ unsafe impl RefEncode for BluetoothHCIExtendedInquiryResult {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcireadlmphandleresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIReadLMPHandleResults {
     pub handle: BluetoothConnectionHandle,
     pub lmp_handle: BluetoothLMPHandle,
@@ -3887,7 +3887,7 @@ unsafe impl RefEncode for BluetoothSimplePairingDebugModes {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcisimplepairingoobdata?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCISimplePairingOOBData {
     pub data: [u8; 16],
 }
@@ -3905,7 +3905,7 @@ unsafe impl RefEncode for BluetoothHCISimplePairingOOBData {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcireadlocaloobdataresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIReadLocalOOBDataResults {
     pub hash: BluetoothHCISimplePairingOOBData,
     pub randomizer: BluetoothHCISimplePairingOOBData,
@@ -4017,7 +4017,7 @@ unsafe impl RefEncode for BluetoothAuthenticationRequirementsValues {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothiocapabilityresponse?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothIOCapabilityResponse {
     pub deviceAddress: BluetoothDeviceAddress,
     pub ioCapability: BluetoothIOCapability,
@@ -4048,7 +4048,7 @@ pub type BluetoothPasskey = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothuserpasskeynotification?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothUserPasskeyNotification {
     pub deviceAddress: BluetoothDeviceAddress,
     pub passkey: BluetoothPasskey,
@@ -4102,7 +4102,7 @@ unsafe impl RefEncode for BluetoothKeypressNotificationTypes {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothkeypressnotification?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothKeypressNotification {
     pub deviceAddress: BluetoothDeviceAddress,
     pub notificationType: BluetoothKeypressNotificationType,
@@ -4126,7 +4126,7 @@ unsafe impl RefEncode for BluetoothKeypressNotification {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothremotehostsupportedfeaturesnotification?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothRemoteHostSupportedFeaturesNotification {
     pub deviceAddress: BluetoothDeviceAddress,
     pub hostSupportedFeatures: BluetoothHCISupportedFeatures,
@@ -4153,7 +4153,7 @@ pub type TransmissionPower = i8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothafhhostchannelclassification?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothAFHHostChannelClassification {
     pub data: [u8; 10],
 }
@@ -4176,7 +4176,7 @@ pub type BluetoothAFHMode = u8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothafhresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothAFHResults {
     pub handle: BluetoothConnectionHandle,
     pub mode: BluetoothAFHMode,
@@ -4205,7 +4205,7 @@ pub type BluetoothNumericValue = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothuserconfirmationrequest?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothUserConfirmationRequest {
     pub deviceAddress: BluetoothDeviceAddress,
     pub numericValue: BluetoothNumericValue,
@@ -4229,7 +4229,7 @@ unsafe impl RefEncode for BluetoothUserConfirmationRequest {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventsimplepairingcompleteresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventSimplePairingCompleteResults {
     pub deviceAddress: BluetoothDeviceAddress,
 }
@@ -4455,7 +4455,7 @@ pub const kBluetoothAirModeTransparentData: c_uint = 0x03;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothsynchronousconnectioninfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothSynchronousConnectionInfo {
     pub transmitBandWidth: BluetoothHCITransmitBandwidth,
     pub receiveBandWidth: BluetoothHCIReceiveBandwidth,
@@ -4487,7 +4487,7 @@ unsafe impl RefEncode for BluetoothSynchronousConnectionInfo {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothenhancedsynchronousconnectioninfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothEnhancedSynchronousConnectionInfo {
     pub transmitBandWidth: BluetoothHCITransmitBandwidth,
     pub receiveBandWidth: BluetoothHCIReceiveBandwidth,
@@ -4555,7 +4555,7 @@ unsafe impl RefEncode for BluetoothEnhancedSynchronousConnectionInfo {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventsynchronousconnectioncompleteresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventSynchronousConnectionCompleteResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub deviceAddress: BluetoothDeviceAddress,
@@ -4591,7 +4591,7 @@ unsafe impl RefEncode for BluetoothHCIEventSynchronousConnectionCompleteResults 
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventsynchronousconnectionchangedresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventSynchronousConnectionChangedResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub transmissionInterval: u8,
@@ -4878,7 +4878,7 @@ pub const kBluetoothHCIEventMaskDefault: c_uint = kBluetoothHCIEventMaskAll;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventconnectioncompleteresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventConnectionCompleteResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub deviceAddress: BluetoothDeviceAddress,
@@ -4906,7 +4906,7 @@ unsafe impl RefEncode for BluetoothHCIEventConnectionCompleteResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventleconnectioncompleteresults?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventLEConnectionCompleteResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub role: u8,
@@ -4942,7 +4942,7 @@ unsafe impl RefEncode for BluetoothHCIEventLEConnectionCompleteResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventleenhancedconnectioncompleteresults?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventLEEnhancedConnectionCompleteResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub role: u8,
@@ -4982,7 +4982,7 @@ unsafe impl RefEncode for BluetoothHCIEventLEEnhancedConnectionCompleteResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventleconnectionupdatecompleteresults?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventLEConnectionUpdateCompleteResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub connInterval: u16,
@@ -5010,7 +5010,7 @@ unsafe impl RefEncode for BluetoothHCIEventLEConnectionUpdateCompleteResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventlereadremoteusedfeaturescompleteresults?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventLEReadRemoteUsedFeaturesCompleteResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub usedFeatures: BluetoothHCISupportedFeatures,
@@ -5034,7 +5034,7 @@ unsafe impl RefEncode for BluetoothHCIEventLEReadRemoteUsedFeaturesCompleteResul
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventdisconnectioncompleteresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventDisconnectionCompleteResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub reason: BluetoothReasonCode,
@@ -5058,7 +5058,7 @@ unsafe impl RefEncode for BluetoothHCIEventDisconnectionCompleteResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreadsupportedfeaturesresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReadSupportedFeaturesResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub supportedFeatures: BluetoothHCISupportedFeatures,
@@ -5082,7 +5082,7 @@ unsafe impl RefEncode for BluetoothHCIEventReadSupportedFeaturesResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreadextendedfeaturesresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReadExtendedFeaturesResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub supportedFeaturesInfo: BluetoothHCIExtendedFeaturesInfo,
@@ -5106,7 +5106,7 @@ unsafe impl RefEncode for BluetoothHCIEventReadExtendedFeaturesResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreadremoteversioninforesults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReadRemoteVersionInfoResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub lmpVersion: BluetoothLMPVersion,
@@ -5158,7 +5158,7 @@ unsafe impl RefEncode for BluetoothHCIEventRemoteNameRequestResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreadclockoffsetresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReadClockOffsetResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub clockOffset: BluetoothClockOffset,
@@ -5182,7 +5182,7 @@ unsafe impl RefEncode for BluetoothHCIEventReadClockOffsetResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventconnectionrequestresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventConnectionRequestResults {
     pub deviceAddress: BluetoothDeviceAddress,
     pub classOfDevice: BluetoothClassOfDevice,
@@ -5208,7 +5208,7 @@ unsafe impl RefEncode for BluetoothHCIEventConnectionRequestResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventlinkkeynotificationresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventLinkKeyNotificationResults {
     pub deviceAddress: BluetoothDeviceAddress,
     pub linkKey: BluetoothKey,
@@ -5234,7 +5234,7 @@ unsafe impl RefEncode for BluetoothHCIEventLinkKeyNotificationResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventmaxslotschangeresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventMaxSlotsChangeResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub maxSlots: BluetoothMaxSlots,
@@ -5258,7 +5258,7 @@ unsafe impl RefEncode for BluetoothHCIEventMaxSlotsChangeResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventmodechangeresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventModeChangeResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub mode: BluetoothHCIConnectionMode,
@@ -5284,7 +5284,7 @@ unsafe impl RefEncode for BluetoothHCIEventModeChangeResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreturnlinkkeysresults_linkkeys?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReturnLinkKeysResults_linkKeys {
     pub deviceAddress: BluetoothDeviceAddress,
     pub linkKey: BluetoothKey,
@@ -5305,7 +5305,7 @@ unsafe impl RefEncode for BluetoothHCIEventReturnLinkKeysResults_linkKeys {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreturnlinkkeysresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReturnLinkKeysResults {
     pub numLinkKeys: u8,
     pub linkKeys: [BluetoothHCIEventReturnLinkKeysResults_linkKeys; 1],
@@ -5329,7 +5329,7 @@ unsafe impl RefEncode for BluetoothHCIEventReturnLinkKeysResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventauthenticationcompleteresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventAuthenticationCompleteResults {
     pub connectionHandle: BluetoothConnectionHandle,
 }
@@ -5349,7 +5349,7 @@ unsafe impl RefEncode for BluetoothHCIEventAuthenticationCompleteResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventencryptionchangeresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventEncryptionChangeResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub enable: BluetoothEncryptionEnable,
@@ -5373,7 +5373,7 @@ unsafe impl RefEncode for BluetoothHCIEventEncryptionChangeResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventchangeconnectionlinkkeycompleteresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventChangeConnectionLinkKeyCompleteResults {
     pub connectionHandle: BluetoothConnectionHandle,
 }
@@ -5393,7 +5393,7 @@ unsafe impl RefEncode for BluetoothHCIEventChangeConnectionLinkKeyCompleteResult
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventmasterlinkkeycompleteresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventMasterLinkKeyCompleteResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub keyFlag: BluetoothKeyFlag,
@@ -5417,7 +5417,7 @@ unsafe impl RefEncode for BluetoothHCIEventMasterLinkKeyCompleteResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventqossetupcompleteresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventQoSSetupCompleteResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub setupParams: BluetoothHCIQualityOfServiceSetupParams,
@@ -5441,7 +5441,7 @@ unsafe impl RefEncode for BluetoothHCIEventQoSSetupCompleteResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventhardwareerrorresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventHardwareErrorResults {
     pub error: BluetoothHCIStatus,
 }
@@ -5461,7 +5461,7 @@ unsafe impl RefEncode for BluetoothHCIEventHardwareErrorResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventflushoccurredresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventFlushOccurredResults {
     pub connectionHandle: BluetoothConnectionHandle,
 }
@@ -5481,7 +5481,7 @@ unsafe impl RefEncode for BluetoothHCIEventFlushOccurredResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventrolechangeresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventRoleChangeResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub deviceAddress: BluetoothDeviceAddress,
@@ -5507,7 +5507,7 @@ unsafe impl RefEncode for BluetoothHCIEventRoleChangeResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventdatabufferoverflowresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventDataBufferOverflowResults {
     pub linkType: BluetoothLinkType,
 }
@@ -5527,7 +5527,7 @@ unsafe impl RefEncode for BluetoothHCIEventDataBufferOverflowResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventconnectionpackettyperesults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventConnectionPacketTypeResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub packetType: BluetoothPacketType,
@@ -5551,7 +5551,7 @@ unsafe impl RefEncode for BluetoothHCIEventConnectionPacketTypeResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreadremotesupportedfeaturesresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReadRemoteSupportedFeaturesResults {
     pub error: BluetoothHCIStatus,
     pub connectionHandle: BluetoothConnectionHandle,
@@ -5577,7 +5577,7 @@ unsafe impl RefEncode for BluetoothHCIEventReadRemoteSupportedFeaturesResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreadremoteextendedfeaturesresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReadRemoteExtendedFeaturesResults {
     pub error: BluetoothHCIStatus,
     pub connectionHandle: BluetoothConnectionHandle,
@@ -5607,7 +5607,7 @@ unsafe impl RefEncode for BluetoothHCIEventReadRemoteExtendedFeaturesResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventqosviolationresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventQoSViolationResults {
     pub connectionHandle: BluetoothConnectionHandle,
 }
@@ -5627,7 +5627,7 @@ unsafe impl RefEncode for BluetoothHCIEventQoSViolationResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventpagescanmodechangeresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventPageScanModeChangeResults {
     pub deviceAddress: BluetoothDeviceAddress,
     pub pageScanMode: BluetoothPageScanMode,
@@ -5651,7 +5651,7 @@ unsafe impl RefEncode for BluetoothHCIEventPageScanModeChangeResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventpagescanrepetitionmodechangeresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventPageScanRepetitionModeChangeResults {
     pub deviceAddress: BluetoothDeviceAddress,
     pub pageScanRepetitionMode: BluetoothPageScanRepetitionMode,
@@ -5696,7 +5696,7 @@ unsafe impl RefEncode for BluetoothHCIEventVendorSpecificResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventencryptionkeyrefreshcompleteresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventEncryptionKeyRefreshCompleteResults {
     pub connectionHandle: BluetoothConnectionHandle,
 }
@@ -5716,7 +5716,7 @@ unsafe impl RefEncode for BluetoothHCIEventEncryptionKeyRefreshCompleteResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventsniffsubratingresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventSniffSubratingResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub maxTransmitLatency: u16,
@@ -5767,7 +5767,7 @@ unsafe impl RefEncode for BluetoothHCIEventLEMetaResults {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventlelongtermkeyrequestresults?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventLELongTermKeyRequestResults {
     pub connectionHandle: BluetoothConnectionHandle,
     pub randomNumber: [u8; 8],
@@ -5794,7 +5794,7 @@ unsafe impl RefEncode for BluetoothHCIEventLELongTermKeyRequestResults {
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcirequestcallbackinfo?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIRequestCallbackInfo {
     pub userCallback: libc::mach_vm_address_t,
     pub userRefCon: libc::mach_vm_address_t,

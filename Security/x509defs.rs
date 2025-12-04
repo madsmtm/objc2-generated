@@ -19,7 +19,7 @@ pub type CSSM_X509_ALGORITHM_IDENTIFIER_PTR = *mut SecAsn1AlgId;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_x509_type_value_pair {
     pub r#type: SecAsn1Oid,
     pub valueType: CSSM_BER_TAG,
@@ -131,7 +131,7 @@ pub type CSSM_X509_SUBJECT_PUBLIC_KEY_INFO_PTR = *mut SecAsn1PubKeyInfo;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_x509_time {
     pub timeType: CSSM_BER_TAG,
     pub time: SecAsn1Item,
@@ -164,7 +164,7 @@ pub type CSSM_X509_TIME_PTR = *mut cssm_x509_time;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct x509_validity {
     pub notBefore: CSSM_X509_TIME,
     pub notAfter: CSSM_X509_TIME,
@@ -201,7 +201,7 @@ pub type CSSM_X509_OPTION = CSSM_BOOL;
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_x509ext_basicConstraints {
     pub cA: CSSM_BOOL,
     pub pathLenConstraintPresent: CSSM_X509_OPTION,
@@ -262,7 +262,7 @@ pub type CSSM_X509EXT_DATA_FORMAT = extension_data_format;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_x509_extensionTagAndValue {
     pub r#type: CSSM_BER_TAG,
     pub value: SecAsn1Item,
@@ -516,7 +516,7 @@ pub type CSSM_X509_TBS_CERTIFICATE_PTR = *mut cssm_x509_tbs_certificate;
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_x509_signature {
     pub algorithmIdentifier: SecAsn1AlgId,
     pub encrypted: SecAsn1Item,
@@ -595,7 +595,7 @@ pub type CSSM_X509_SIGNED_CERTIFICATE_PTR = *mut cssm_x509_signed_certificate;
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_x509ext_policyQualifierInfo {
     pub policyQualifierId: SecAsn1Oid,
     pub value: SecAsn1Item,

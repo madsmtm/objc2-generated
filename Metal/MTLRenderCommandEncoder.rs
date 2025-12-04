@@ -57,7 +57,7 @@ unsafe impl RefEncode for MTLVisibilityResultMode {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlscissorrect?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLScissorRect {
     pub x: NSUInteger,
     pub y: NSUInteger,
@@ -83,7 +83,7 @@ unsafe impl RefEncode for MTLScissorRect {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlviewport?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLViewport {
     pub originX: c_double,
     pub originY: c_double,
@@ -195,7 +195,7 @@ unsafe impl RefEncode for MTLTriangleFillMode {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawprimitivesindirectarguments?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLDrawPrimitivesIndirectArguments {
     pub vertexCount: u32,
     pub instanceCount: u32,
@@ -221,7 +221,7 @@ unsafe impl RefEncode for MTLDrawPrimitivesIndirectArguments {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawindexedprimitivesindirectarguments?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLDrawIndexedPrimitivesIndirectArguments {
     pub indexCount: u32,
     pub instanceCount: u32,
@@ -249,7 +249,7 @@ unsafe impl RefEncode for MTLDrawIndexedPrimitivesIndirectArguments {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlvertexamplificationviewmapping?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLVertexAmplificationViewMapping {
     pub viewportArrayIndexOffset: u32,
     pub renderTargetArrayIndexOffset: u32,
@@ -265,7 +265,7 @@ unsafe impl RefEncode for MTLVertexAmplificationViewMapping {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawpatchindirectarguments?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLDrawPatchIndirectArguments {
     pub patchCount: u32,
     pub instanceCount: u32,
@@ -291,7 +291,7 @@ unsafe impl RefEncode for MTLDrawPatchIndirectArguments {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlquadtessellationfactorshalf?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLQuadTessellationFactorsHalf {
     pub edgeTessellationFactor: [u16; 4],
     pub insideTessellationFactor: [u16; 2],
@@ -307,7 +307,7 @@ unsafe impl RefEncode for MTLQuadTessellationFactorsHalf {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtltriangletessellationfactorshalf?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLTriangleTessellationFactorsHalf {
     pub edgeTessellationFactor: [u16; 3],
     pub insideTessellationFactor: u16,

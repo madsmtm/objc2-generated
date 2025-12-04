@@ -10,7 +10,7 @@ pub type CFByteOrder = CFIndex;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfswappedfloat32?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CFSwappedFloat32 {
     pub v: u32,
 }
@@ -27,7 +27,7 @@ unsafe impl RefEncode for CFSwappedFloat32 {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfswappedfloat64?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CFSwappedFloat64 {
     pub v: u64,
 }

@@ -56,7 +56,7 @@ pub const kAEUTPlural: c_uint = 0;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/tscriptingsizeresource?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct TScriptingSizeResource {
     pub scriptingSizeFlags: i16,
     pub minStackSize: u32,

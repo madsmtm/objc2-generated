@@ -162,7 +162,7 @@ pub type AudioObjectPropertyElement = u32;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectpropertyaddress?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioObjectPropertyAddress {
     pub mSelector: AudioObjectPropertySelector,
     pub mScope: AudioObjectPropertyScope,
@@ -464,7 +464,7 @@ pub const kAudioEndPointClassID: AudioClassID = 0x656e6470;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiostreamrangeddescription?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioStreamRangedDescription {
     pub mFormat: AudioStreamBasicDescription,
     pub mSampleRateRange: AudioValueRange,

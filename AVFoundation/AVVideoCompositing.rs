@@ -18,7 +18,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avpixelaspectratio?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVPixelAspectRatio {
     pub horizontalSpacing: NSInteger,
     pub verticalSpacing: NSInteger,
@@ -36,7 +36,7 @@ unsafe impl RefEncode for AVPixelAspectRatio {
 /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avedgewidths?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVEdgeWidths {
     pub left: CGFloat,
     pub top: CGFloat,

@@ -63,7 +63,7 @@ pub type AVMusicTimeStamp = c_double;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dpoint?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVAudio3DPoint {
     pub x: c_float,
     pub y: c_float,
@@ -105,7 +105,7 @@ pub type AVAudio3DVector = AVAudio3DPoint;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dvectororientation?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVAudio3DVectorOrientation {
     pub forward: AVAudio3DVector,
     pub up: AVAudio3DVector,
@@ -147,7 +147,7 @@ unsafe impl RefEncode for AVAudio3DVectorOrientation {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudio3dangularorientation?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVAudio3DAngularOrientation {
     pub yaw: c_float,
     pub pitch: c_float,

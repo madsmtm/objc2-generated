@@ -115,7 +115,7 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterresulttimestamp?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLCounterResultTimestamp {
     pub timestamp: u64,
 }
@@ -130,7 +130,7 @@ unsafe impl RefEncode for MTLCounterResultTimestamp {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterresultstageutilization?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLCounterResultStageUtilization {
     pub totalCycles: u64,
     pub vertexCycles: u64,
@@ -160,7 +160,7 @@ unsafe impl RefEncode for MTLCounterResultStageUtilization {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcounterresultstatistic?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLCounterResultStatistic {
     pub tessellationInputPatches: u64,
     pub vertexInvocations: u64,

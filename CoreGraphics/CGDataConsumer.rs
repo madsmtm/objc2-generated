@@ -36,7 +36,7 @@ pub type CGDataConsumerReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdataconsumercallbacks?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGDataConsumerCallbacks {
     pub putBytes: CGDataConsumerPutBytesCallback,
     pub releaseConsumer: CGDataConsumerReleaseInfoCallback,

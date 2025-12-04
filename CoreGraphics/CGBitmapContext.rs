@@ -78,7 +78,7 @@ unsafe impl RefEncode for CGComponent {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontentinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGContentInfo {
     pub deepestImageComponent: CGComponent,
     pub contentColorModels: CGColorModel,

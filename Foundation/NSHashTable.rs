@@ -405,7 +405,7 @@ pub unsafe extern "C-unwind" fn NSAllHashTableObjects(table: &NSHashTable) -> Re
 #[cfg(feature = "NSString")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSHashTableCallBacks {
     pub hash:
         Option<unsafe extern "C-unwind" fn(NonNull<NSHashTable>, NonNull<c_void>) -> NSUInteger>,

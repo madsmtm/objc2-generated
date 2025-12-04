@@ -11,7 +11,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4timestampheapentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTL4TimestampHeapEntry {
     pub timestamp: u64,
 }

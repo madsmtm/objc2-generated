@@ -76,7 +76,7 @@ unsafe impl RefEncode for CMTimeFlags {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtime?language=objc)
 #[repr(C, packed(4))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMTime {
     /// The value of the CMTime. value/timescale = seconds
     pub value: CMTimeValue,

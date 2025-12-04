@@ -50,7 +50,7 @@ pub const kCAF_iXMLChunkID: u32 = 0x69584d4c;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caffileheader?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFFileHeader {
     pub mFileType: u32,
     pub mFileVersion: u16,
@@ -70,7 +70,7 @@ unsafe impl RefEncode for CAFFileHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafchunkheader?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFChunkHeader {
     pub mChunkType: u32,
     pub mChunkSize: i64,
@@ -87,7 +87,7 @@ unsafe impl RefEncode for CAFChunkHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caf_uuid_chunkheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAF_UUID_ChunkHeader {
     pub mHeader: CAFChunkHeader,
     pub mUUID: [u8; 16],
@@ -128,7 +128,7 @@ unsafe impl RefEncode for CAFFormatFlags {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafaudiodescription?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFAudioDescription {
     pub mSampleRate: f64,
     pub mFormatID: u32,
@@ -160,7 +160,7 @@ unsafe impl RefEncode for CAFAudioDescription {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafaudioformatlistitem?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFAudioFormatListItem {
     pub mFormat: CAFAudioDescription,
     pub mChannelLayoutTag: u32,
@@ -179,7 +179,7 @@ unsafe impl RefEncode for CAFAudioFormatListItem {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafpackettableheader?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFPacketTableHeader {
     pub mNumberPackets: i64,
     pub mNumberValidFrames: i64,
@@ -207,7 +207,7 @@ unsafe impl RefEncode for CAFPacketTableHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafdatachunk?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFDataChunk {
     pub mEditCount: u32,
     pub mData: [u8; 1],
@@ -298,7 +298,7 @@ pub const kCAF_SMPTE_TimeType2398: u32 = 12;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/caf_smpte_time?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAF_SMPTE_Time {
     pub mHours: i8,
     pub mMinutes: i8,
@@ -326,7 +326,7 @@ unsafe impl RefEncode for CAF_SMPTE_Time {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafmarker?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFMarker {
     pub mType: u32,
     pub mFramePosition: f64,
@@ -354,7 +354,7 @@ unsafe impl RefEncode for CAFMarker {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafmarkerchunk?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFMarkerChunk {
     pub mSMPTE_TimeType: u32,
     pub mNumberMarkers: u32,
@@ -398,7 +398,7 @@ unsafe impl RefEncode for CAFRegionFlags {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafregion?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFRegion {
     pub mRegionID: u32,
     pub mFlags: CAFRegionFlags,
@@ -424,7 +424,7 @@ unsafe impl RefEncode for CAFRegion {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafregionchunk?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFRegionChunk {
     pub mSMPTE_TimeType: u32,
     pub mNumberRegions: u32,
@@ -444,7 +444,7 @@ unsafe impl RefEncode for CAFRegionChunk {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafinstrumentchunk?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFInstrumentChunk {
     pub mBaseNote: f32,
     pub mMIDILowNote: u8,
@@ -482,7 +482,7 @@ unsafe impl RefEncode for CAFInstrumentChunk {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafstringid?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFStringID {
     pub mStringID: u32,
     pub mStringStartByteOffset: i64,
@@ -498,7 +498,7 @@ unsafe impl RefEncode for CAFStringID {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafstrings?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFStrings {
     pub mNumEntries: u32,
     pub mStringsIDs: [CAFStringID; 1],
@@ -517,7 +517,7 @@ unsafe impl RefEncode for CAFStrings {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafinfostrings?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFInfoStrings {
     pub mNumEntries: u32,
 }
@@ -532,7 +532,7 @@ unsafe impl RefEncode for CAFInfoStrings {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafpositionpeak?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFPositionPeak {
     pub mValue: f32,
     pub mFrameNumber: u64,
@@ -549,7 +549,7 @@ unsafe impl RefEncode for CAFPositionPeak {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafpeakchunk?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFPeakChunk {
     pub mEditCount: u32,
     pub mPeaks: [CAFPositionPeak; 1],
@@ -568,7 +568,7 @@ unsafe impl RefEncode for CAFPeakChunk {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafoverviewsample?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFOverviewSample {
     pub mMinValue: i16,
     pub mMaxValue: i16,
@@ -585,7 +585,7 @@ unsafe impl RefEncode for CAFOverviewSample {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/cafoverviewchunk?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CAFOverviewChunk {
     pub mEditCount: u32,
     pub mNumFramesPerOVWSample: u32,

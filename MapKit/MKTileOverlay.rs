@@ -108,7 +108,7 @@ impl MKTileOverlay {
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mktileoverlaypath?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MKTileOverlayPath {
     pub x: NSInteger,
     pub y: NSInteger,

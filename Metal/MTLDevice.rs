@@ -397,7 +397,7 @@ unsafe impl RefEncode for MTLSparseTextureRegionAlignmentMode {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuresizes?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLAccelerationStructureSizes {
     /// The required size, in bytes, of the built acceleration structure
     pub accelerationStructureSize: NSUInteger,
@@ -469,7 +469,7 @@ unsafe impl RefEncode for MTLCounterSamplingPoint {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsizeandalign?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLSizeAndAlign {
     pub size: NSUInteger,
     pub align: NSUInteger,

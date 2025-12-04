@@ -85,7 +85,7 @@ unsafe impl RefEncode for SCPreferencesNotification {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scpreferencescontext?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SCPreferencesContext {
     pub version: CFIndex,
     pub info: *mut c_void,

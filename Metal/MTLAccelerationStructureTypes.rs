@@ -7,7 +7,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpackedfloatquaternion?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLPackedFloatQuaternion {
     pub x: c_float,
     pub y: c_float,

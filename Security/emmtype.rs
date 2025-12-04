@@ -13,7 +13,7 @@ pub type CSSM_MANAGER_EVENT_TYPES = uint32;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_manager_event_notification {
     pub DestinationModuleManagerType: CSSM_SERVICE_MASK,
     pub SourceModuleManagerType: CSSM_SERVICE_MASK,

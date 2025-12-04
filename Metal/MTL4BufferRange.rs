@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4bufferrange?language=objc)
 #[cfg(feature = "MTLGPUAddress")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTL4BufferRange {
     /// Buffer address returned by the gpuAddress property of an MTLBuffer plus any offset into the buffer
     pub bufferAddress: MTLGPUAddress,

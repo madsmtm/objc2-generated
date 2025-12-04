@@ -9590,7 +9590,7 @@ pub type IOPhysicalLength = IOPhysicalLength64;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iophysicalrange?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOPhysicalRange {
     pub address: IOPhysicalAddress,
     pub length: IOByteCount,
@@ -9612,7 +9612,7 @@ unsafe impl RefEncode for IOPhysicalRange {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iovirtualrange?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOVirtualRange {
     pub address: IOVirtualAddress,
     pub length: IOByteCount,
@@ -11991,7 +11991,7 @@ pub extern "C-unwind" fn IOCatalogueReset(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodataqueueentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IODataQueueEntry {
     pub size: u32,
     pub data: [u8; 4],
@@ -12018,7 +12018,7 @@ unsafe impl RefEncode for IODataQueueEntry {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodataqueuememory?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IODataQueueMemory {
     pub queueSize: u32,
     pub head: u32,
@@ -12575,7 +12575,7 @@ pub const kIORPCMessageSimpleReply: c_uint = 0x00000080;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iorpcmessage?language=objc)
 #[repr(C, packed(4))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IORPCMessage {
     pub msgid: u64,
     pub flags: u64,
@@ -12604,7 +12604,7 @@ unsafe impl RefEncode for IORPCMessage {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iorpcmessageerrorreturncontent?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IORPCMessageErrorReturnContent {
     pub hdr: IORPCMessage,
     pub result: libc::kern_return_t,

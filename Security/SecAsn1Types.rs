@@ -9,7 +9,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_data?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_data {
     pub Length: usize,
     pub Data: *mut u8,
@@ -37,7 +37,7 @@ pub type SecAsn1Oid = cssm_data;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1algid?language=objc)
 #[deprecated = "SecAsn1 is not supported"]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SecAsn1AlgId {
     pub algorithm: SecAsn1Oid,
     pub parameters: SecAsn1Item,
@@ -57,7 +57,7 @@ unsafe impl RefEncode for SecAsn1AlgId {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1pubkeyinfo?language=objc)
 #[deprecated = "SecAsn1 is not supported"]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SecAsn1PubKeyInfo {
     pub algorithm: SecAsn1AlgId,
     pub subjectPublicKey: SecAsn1Item,

@@ -727,7 +727,7 @@ pub const kCMVideoCodecType_AV1: CMVideoCodecType = 0x61763031;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmvideodimensions?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMVideoDimensions {
     pub width: i32,
     pub height: i32,

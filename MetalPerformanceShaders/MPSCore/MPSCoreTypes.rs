@@ -302,7 +302,7 @@ unsafe impl RefEncode for MPSAliasingStrategy {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsoffset?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSOffset {
     /// The horizontal component of the offset. Units: pixels
     pub x: NSInteger,
@@ -331,7 +331,7 @@ unsafe impl RefEncode for MPSOffset {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsorigin?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSOrigin {
     /// The x coordinate of the position
     pub x: c_double,
@@ -360,7 +360,7 @@ unsafe impl RefEncode for MPSOrigin {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpssize?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSSize {
     /// The width of the region
     pub width: c_double,
@@ -389,7 +389,7 @@ unsafe impl RefEncode for MPSSize {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsdimensionslice?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSDimensionSlice {
     /// the position of the first element in the slice
     pub start: NSUInteger,
@@ -412,7 +412,7 @@ unsafe impl RefEncode for MPSDimensionSlice {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsregion?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSRegion {
     /// The top left corner of the region.  Units: pixels
     pub origin: MPSOrigin,
@@ -443,7 +443,7 @@ unsafe impl RefEncode for MPSRegion {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsscaletransform?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSScaleTransform {
     /// horizontal scaling factor
     pub scaleX: c_double,
@@ -475,7 +475,7 @@ unsafe impl RefEncode for MPSScaleTransform {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimagecoordinate?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSImageCoordinate {
     /// The horizontal component of the coordinate. Units: pixels
     pub x: NSUInteger,
@@ -504,7 +504,7 @@ unsafe impl RefEncode for MPSImageCoordinate {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsimageregion?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSImageRegion {
     /// The position of the top left corner of the subregion
     pub offset: MPSImageCoordinate,

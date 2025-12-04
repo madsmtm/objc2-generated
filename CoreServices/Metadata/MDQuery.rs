@@ -384,7 +384,7 @@ impl MDQuery {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdquerybatchingparams?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MDQueryBatchingParams {
     pub first_max_num: usize,
     pub first_max_ms: usize,

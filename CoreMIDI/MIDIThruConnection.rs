@@ -141,7 +141,7 @@ unsafe impl RefEncode for MIDITransformControlType {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/miditransform?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDITransform {
     pub transform: MIDITransformType,
     pub param: i16,
@@ -190,7 +190,7 @@ unsafe impl RefEncode for MIDITransform {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicontroltransform?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDIControlTransform {
     pub controlType: MIDITransformControlType,
     pub remappedControlType: MIDITransformControlType,
@@ -232,7 +232,7 @@ unsafe impl RefEncode for MIDIControlTransform {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectionendpoint?language=objc)
 #[cfg(feature = "MIDIServices")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDIThruConnectionEndpoint {
     pub endpointRef: MIDIEndpointRef,
     pub uniqueID: MIDIUniqueID,
@@ -295,7 +295,7 @@ unsafe impl RefEncode for MIDIThruConnectionEndpoint {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midithruconnectionparams?language=objc)
 #[cfg(feature = "MIDIServices")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDIThruConnectionParams {
     pub version: u32,
     pub numSources: u32,

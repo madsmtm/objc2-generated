@@ -121,7 +121,7 @@ pub type CMTagValue = u64;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtag?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMTag {
     pub category: CMTagCategory,
     pub dataType: CMTagDataType,

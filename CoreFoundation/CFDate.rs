@@ -139,7 +139,7 @@ cf_objc2_type!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregoriandate?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CFGregorianDate {
     pub year: i32,
     pub month: i8,
@@ -171,7 +171,7 @@ unsafe impl RefEncode for CFGregorianDate {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfgregorianunits?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CFGregorianUnits {
     pub years: i32,
     pub months: i32,

@@ -76,7 +76,7 @@ unsafe impl RefEncode for SCNColorMask {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnvector3?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SCNVector3 {
     pub x: CGFloat,
     pub y: CGFloat,
@@ -103,7 +103,7 @@ unsafe impl RefEncode for SCNVector3 {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnvector4?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SCNVector4 {
     pub x: CGFloat,
     pub y: CGFloat,

@@ -78,7 +78,7 @@ cf_objc2_type!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsampletiminginfo?language=objc)
 #[cfg(feature = "CMTime")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMSampleTimingInfo {
     /// The duration of the sample. If a single struct applies to
     /// each of the samples, they all will have this duration.

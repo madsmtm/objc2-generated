@@ -321,7 +321,7 @@ unsafe impl RefEncode for AudioUnitConnection {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auchannelinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AUChannelInfo {
     pub inChannels: i16,
     pub outChannels: i16,
@@ -363,7 +363,7 @@ unsafe impl RefEncode for AudioUnitExternalBuffer {
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AURenderCallbackStruct {
     pub inputProc: AURenderCallback,
     pub inputProcRefCon: *mut c_void,
@@ -394,7 +394,7 @@ unsafe impl RefEncode for AURenderCallbackStruct {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aupreset?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AUPreset {
     pub presetNumber: i32,
     pub presetName: *const CFString,
@@ -434,7 +434,7 @@ pub const kNumberOfResponseFrequencies: c_uint = 1024;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitfrequencyresponsebin?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitFrequencyResponseBin {
     pub mFrequency: f64,
     pub mMagnitude: f64,
@@ -592,7 +592,7 @@ pub type HostCallback_GetTransportState2 = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallbackinfo?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct HostCallbackInfo {
     pub hostUserData: *mut c_void,
     pub beatAndTempoProc: HostCallback_GetBeatAndTempo,
@@ -624,7 +624,7 @@ unsafe impl RefEncode for HostCallbackInfo {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audependentparameter?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AUDependentParameter {
     pub mScope: AudioUnitScope,
     pub mParameterID: AudioUnitParameterID,
@@ -773,7 +773,7 @@ unsafe impl RefEncode for AUInputSamplesInOutputCallbackStruct {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameterhistoryinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitParameterHistoryInfo {
     pub updatesPerSecond: f32,
     pub historyDurationInSeconds: f32,
@@ -1115,7 +1115,7 @@ pub const kAudioUnitParameterName_Full: c_int = -1;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameternameinfo?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitParameterNameInfo {
     pub inID: AudioUnitParameterID,
     pub inDesiredLength: i32,
@@ -1328,7 +1328,7 @@ unsafe impl RefEncode for AUParameterMIDIMappingFlags {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparametermidimapping?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AUParameterMIDIMapping {
     pub mScope: AudioUnitScope,
     pub mElement: AudioUnitElement,
@@ -1449,7 +1449,7 @@ pub const kOtherPluginFormat_AU: u32 = 3;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitotherplugindesc?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitOtherPluginDesc {
     pub format: u32,
     pub plugin: AudioClassDescription,
@@ -1474,7 +1474,7 @@ unsafe impl RefEncode for AudioUnitOtherPluginDesc {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparametervaluetranslation?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitParameterValueTranslation {
     pub otherDesc: AudioUnitOtherPluginDesc,
     pub otherParamID: u32,
@@ -1507,7 +1507,7 @@ unsafe impl RefEncode for AudioUnitParameterValueTranslation {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitpresetmas_settingdata?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitPresetMAS_SettingData {
     pub isStockSetting: u32,
     pub settingID: u32,
@@ -1535,7 +1535,7 @@ unsafe impl RefEncode for AudioUnitPresetMAS_SettingData {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitpresetmas_settings?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitPresetMAS_Settings {
     pub manufacturerID: u32,
     pub effectID: u32,
@@ -1654,7 +1654,7 @@ unsafe impl RefEncode for AudioOutputUnitMIDICallbacks {
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiooutputunitstartattimeparams?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioOutputUnitStartAtTimeParams {
     pub mTimestamp: AudioTimeStamp,
     pub mFlags: u32,
@@ -1754,7 +1754,7 @@ unsafe impl RefEncode for AUVoiceIOOtherAudioDuckingLevel {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auvoiceiootheraudioduckingconfiguration?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AUVoiceIOOtherAudioDuckingConfiguration {
     pub mEnableAdvancedDucking: Boolean,
     pub mDuckingLevel: AUVoiceIOOtherAudioDuckingLevel,
@@ -1820,7 +1820,7 @@ pub const kAudioUnitProperty_InputAnchorTimeStamp: AudioUnitPropertyID = 3016;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitmeterclipping?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitMeterClipping {
     pub peakValueSinceLastCall: f32,
     pub sawInfinity: Boolean,
@@ -2032,7 +2032,7 @@ unsafe impl RefEncode for AUSpatialMixerAttenuationCurve {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/mixerdistanceparams?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MixerDistanceParams {
     pub mReferenceDistance: f32,
     pub mMaxDistance: f32,
@@ -2512,7 +2512,7 @@ pub const kAUNetSendNumPresetFormats: AudioUnitPropertyID = 18;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aunumversion?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AUNumVersion {
     pub nonRelRev: u8,
     pub stage: u8,
@@ -2606,7 +2606,7 @@ pub const kAudioUnitSRCAlgorithm_MediumQuality: u32 = 0x63737263;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitmidicontrolmapping?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitMIDIControlMapping {
     pub midiNRPN: u16,
     pub midiControl: u8,

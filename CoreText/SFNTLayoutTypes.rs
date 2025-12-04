@@ -652,7 +652,7 @@ pub type SFNTLookupKind = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupbinarysearchheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupBinarySearchHeader {
     pub unitSize: u16,
     pub nUnits: u16,
@@ -682,7 +682,7 @@ unsafe impl RefEncode for SFNTLookupBinarySearchHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookuparrayheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupArrayHeader {
     pub lookupValues: [SFNTLookupValue; 1],
 }
@@ -700,7 +700,7 @@ unsafe impl RefEncode for SFNTLookupArrayHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookuptrimmedarrayheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupTrimmedArrayHeader {
     pub firstGlyph: u16,
     pub count: u16,
@@ -726,7 +726,7 @@ unsafe impl RefEncode for SFNTLookupTrimmedArrayHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupvectorheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupVectorHeader {
     pub valueSize: u16,
     pub firstGlyph: u16,
@@ -754,7 +754,7 @@ unsafe impl RefEncode for SFNTLookupVectorHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupsegment?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupSegment {
     pub lastGlyph: u16,
     pub firstGlyph: u16,
@@ -776,7 +776,7 @@ unsafe impl RefEncode for SFNTLookupSegment {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupsegmentheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupSegmentHeader {
     pub binSearch: SFNTLookupBinarySearchHeader,
     pub segments: [SFNTLookupSegment; 1],
@@ -800,7 +800,7 @@ unsafe impl RefEncode for SFNTLookupSegmentHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupsingle?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupSingle {
     pub glyph: u16,
     pub value: [u16; 1],
@@ -819,7 +819,7 @@ unsafe impl RefEncode for SFNTLookupSingle {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/sfntlookupsingleheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SFNTLookupSingleHeader {
     pub binSearch: SFNTLookupBinarySearchHeader,
     pub entries: [SFNTLookupSingle; 1],
@@ -928,7 +928,7 @@ pub type STEntryIndex = u8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/stheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STHeader {
     pub filler: u8,
     pub nClasses: STClass,
@@ -958,7 +958,7 @@ unsafe impl RefEncode for STHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/stclasstable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STClassTable {
     pub firstGlyph: u16,
     pub nGlyphs: u16,
@@ -980,7 +980,7 @@ unsafe impl RefEncode for STClassTable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/stentryzero?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STEntryZero {
     pub newState: u16,
     pub flags: u16,
@@ -998,7 +998,7 @@ unsafe impl RefEncode for STEntryZero {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/stentryone?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STEntryOne {
     pub newState: u16,
     pub flags: u16,
@@ -1020,7 +1020,7 @@ unsafe impl RefEncode for STEntryOne {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/stentrytwo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STEntryTwo {
     pub newState: u16,
     pub flags: u16,
@@ -1060,7 +1060,7 @@ pub type STXEntryIndex = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/stxheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STXHeader {
     pub nClasses: u32,
     pub classTableOffset: u32,
@@ -1091,7 +1091,7 @@ pub type STXClassTable = SFNTLookupTable;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/stxentryzero?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STXEntryZero {
     pub newState: STXStateIndex,
     pub flags: u16,
@@ -1112,7 +1112,7 @@ unsafe impl RefEncode for STXEntryZero {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/stxentryone?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STXEntryOne {
     pub newState: STXStateIndex,
     pub flags: u16,
@@ -1134,7 +1134,7 @@ unsafe impl RefEncode for STXEntryOne {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/stxentrytwo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct STXEntryTwo {
     pub newState: STXStateIndex,
     pub flags: u16,
@@ -1174,7 +1174,7 @@ pub const kLCARCtlPointFormat: c_uint = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/lcarcaretclassentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct LcarCaretClassEntry {
     pub count: u16,
     pub partials: [u16; 1],
@@ -1273,7 +1273,7 @@ pub type JustificationFlags = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcdecompositionaction?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustPCDecompositionAction {
     pub lowerLimit: Fixed,
     pub upperLimit: Fixed,
@@ -1306,7 +1306,7 @@ pub type JustPCUnconditionalAddAction = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcconditionaladdaction?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustPCConditionalAddAction {
     pub substThreshold: Fixed,
     pub addGlyph: u16,
@@ -1328,7 +1328,7 @@ unsafe impl RefEncode for JustPCConditionalAddAction {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcductilityaction?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustPCDuctilityAction {
     pub ductilityAxis: u32,
     pub minimumLimit: Fixed,
@@ -1356,7 +1356,7 @@ unsafe impl RefEncode for JustPCDuctilityAction {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcglyphrepeataddaction?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustPCGlyphRepeatAddAction {
     pub flags: u16,
     pub glyph: u16,
@@ -1377,7 +1377,7 @@ unsafe impl RefEncode for JustPCGlyphRepeatAddAction {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcactionsubrecord?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustPCActionSubrecord {
     pub theClass: u16,
     pub theType: JustPCActionType,
@@ -1405,7 +1405,7 @@ unsafe impl RefEncode for JustPCActionSubrecord {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justpcaction?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustPCAction {
     pub actionCount: u32,
     pub actions: [JustPCActionSubrecord; 1],
@@ -1426,7 +1426,7 @@ unsafe impl RefEncode for JustPCAction {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justwidthdeltaentry?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustWidthDeltaEntry {
     pub justClass: u32,
     pub beforeGrowLimit: Fixed,
@@ -1460,7 +1460,7 @@ unsafe impl RefEncode for JustWidthDeltaEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justwidthdeltagroup?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustWidthDeltaGroup {
     pub count: u32,
     pub entries: [JustWidthDeltaEntry; 1],
@@ -1527,7 +1527,7 @@ unsafe impl RefEncode for JustDirectionTable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/justtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct JustTable {
     pub version: Fixed,
     pub format: u16,
@@ -1567,7 +1567,7 @@ pub type OpbdTableFormat = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/opbdsidevalues?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct OpbdSideValues {
     pub leftSideShift: i16,
     pub topSideShift: i16,
@@ -1720,7 +1720,7 @@ pub type MortLigatureActionEntry = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortrearrangementsubtable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MortRearrangementSubtable {
     pub header: STHeader,
 }
@@ -1738,7 +1738,7 @@ unsafe impl RefEncode for MortRearrangementSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortcontextualsubtable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MortContextualSubtable {
     pub header: STHeader,
     pub substitutionTableOffset: u16,
@@ -1759,7 +1759,7 @@ unsafe impl RefEncode for MortContextualSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortligaturesubtable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MortLigatureSubtable {
     pub header: STHeader,
     pub ligatureActionTableOffset: u16,
@@ -1805,7 +1805,7 @@ unsafe impl RefEncode for MortSwashSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortinsertionsubtable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MortInsertionSubtable {
     pub header: STHeader,
 }
@@ -1880,7 +1880,7 @@ unsafe impl RefEncode for MortSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortfeatureentry?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MortFeatureEntry {
     pub featureType: u16,
     pub featureSelector: u16,
@@ -1908,7 +1908,7 @@ unsafe impl RefEncode for MortFeatureEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/mortchain?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MortChain {
     pub defaultFlags: MortSubtableMaskFlags,
     pub length: u32,
@@ -1938,7 +1938,7 @@ unsafe impl RefEncode for MortChain {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/morttable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MortTable {
     pub version: Fixed,
     pub nChains: u32,
@@ -1979,7 +1979,7 @@ pub const kMORXCoverTypeMask: c_int = 0x000000FF;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxrearrangementsubtable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MorxRearrangementSubtable {
     pub header: STXHeader,
 }
@@ -1997,7 +1997,7 @@ unsafe impl RefEncode for MorxRearrangementSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxcontextualsubtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MorxContextualSubtable {
     pub header: STXHeader,
     pub substitutionTableOffset: u32,
@@ -2018,7 +2018,7 @@ unsafe impl RefEncode for MorxContextualSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxligaturesubtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MorxLigatureSubtable {
     pub header: STXHeader,
     pub ligatureActionTableOffset: u32,
@@ -2046,7 +2046,7 @@ unsafe impl RefEncode for MorxLigatureSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxinsertionsubtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MorxInsertionSubtable {
     pub header: STXHeader,
     pub insertionGlyphTableOffset: u32,
@@ -2125,7 +2125,7 @@ unsafe impl RefEncode for MorxSubtable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxchain?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MorxChain {
     pub defaultFlags: MortSubtableMaskFlags,
     pub length: u32,
@@ -2155,7 +2155,7 @@ unsafe impl RefEncode for MorxChain {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/morxtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MorxTable {
     pub version: Fixed,
     pub nChains: u32,
@@ -2280,7 +2280,7 @@ unsafe impl RefEncode for PropTable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/proplookupsegment?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct PropLookupSegment {
     pub lastGlyph: u16,
     pub firstGlyph: u16,
@@ -2302,7 +2302,7 @@ unsafe impl RefEncode for PropLookupSegment {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/proplookupsingle?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct PropLookupSingle {
     pub glyph: u16,
     pub props: PropCharProperties,
@@ -2333,7 +2333,7 @@ pub type TrakValue = i16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/traktableentry?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct TrakTableEntry {
     pub track: Fixed,
     pub nameTableIndex: u16,
@@ -2355,7 +2355,7 @@ unsafe impl RefEncode for TrakTableEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/traktabledata?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct TrakTableData {
     pub nTracks: u16,
     pub nSizes: u16,
@@ -2383,7 +2383,7 @@ unsafe impl RefEncode for TrakTableData {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/traktable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct TrakTable {
     pub version: Fixed,
     pub format: u16,
@@ -2464,7 +2464,7 @@ pub type KernArrayOffset = u16;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernversion0header?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernVersion0Header {
     pub version: u16,
     pub nTables: u16,
@@ -2486,7 +2486,7 @@ unsafe impl RefEncode for KernVersion0Header {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerntableheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernTableHeader {
     pub version: Fixed,
     pub nTables: i32,
@@ -2514,7 +2514,7 @@ pub type KernTableHeaderHandle = *mut KernTableHeaderPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernkerningpair?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernKerningPair {
     pub left: u16,
     pub right: u16,
@@ -2533,7 +2533,7 @@ unsafe impl RefEncode for KernKerningPair {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernorderedlistentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernOrderedListEntry {
     pub pair: KernKerningPair,
     pub value: KernKerningValue,
@@ -2557,7 +2557,7 @@ pub type KernOrderedListEntryPtr = *mut KernOrderedListEntry;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernorderedlistheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernOrderedListHeader {
     pub nPairs: u16,
     pub searchRange: u16,
@@ -2587,7 +2587,7 @@ unsafe impl RefEncode for KernOrderedListHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernstateheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernStateHeader {
     pub header: STHeader,
     pub valueTable: u16,
@@ -2609,7 +2609,7 @@ unsafe impl RefEncode for KernStateHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernstateentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernStateEntry {
     pub newState: u16,
     pub flags: u16,
@@ -2628,7 +2628,7 @@ unsafe impl RefEncode for KernStateEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernoffsettable?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernOffsetTable {
     pub firstGlyph: u16,
     pub nGlyphs: u16,
@@ -2657,7 +2657,7 @@ pub type KernOffsetTablePtr = *mut KernOffsetTable;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernsimplearrayheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernSimpleArrayHeader {
     pub rowWidth: u16,
     pub leftOffsetTable: u16,
@@ -2687,7 +2687,7 @@ unsafe impl RefEncode for KernSimpleArrayHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kernindexarrayheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KernIndexArrayHeader {
     pub glyphCount: u16,
     pub kernValueCount: u8,
@@ -2879,7 +2879,7 @@ pub type KerxArrayOffset = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxtableheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxTableHeader {
     pub version: Fixed,
     pub nTables: u32,
@@ -2907,7 +2907,7 @@ pub type KerxTableHeaderHandle = *mut KerxTableHeaderPtr;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxkerningpair?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxKerningPair {
     pub left: u16,
     pub right: u16,
@@ -2926,7 +2926,7 @@ unsafe impl RefEncode for KerxKerningPair {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxorderedlistentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxOrderedListEntry {
     pub pair: KerxKerningPair,
     pub value: KernKerningValue,
@@ -2950,7 +2950,7 @@ pub type KerxOrderedListEntryPtr = *mut KerxOrderedListEntry;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxorderedlistheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxOrderedListHeader {
     pub nPairs: u32,
     pub searchRange: u32,
@@ -2980,7 +2980,7 @@ unsafe impl RefEncode for KerxOrderedListHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxstateheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxStateHeader {
     pub header: STXHeader,
     pub valueTable: u32,
@@ -3002,7 +3002,7 @@ unsafe impl RefEncode for KerxStateHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxstateentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxStateEntry {
     pub newState: u16,
     pub flags: u16,
@@ -3024,7 +3024,7 @@ unsafe impl RefEncode for KerxStateEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxcontrolpointheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxControlPointHeader {
     pub header: STXHeader,
     pub flags: u32,
@@ -3046,7 +3046,7 @@ unsafe impl RefEncode for KerxControlPointHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxcontrolpointentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxControlPointEntry {
     pub newState: u16,
     pub flags: u16,
@@ -3068,7 +3068,7 @@ unsafe impl RefEncode for KerxControlPointEntry {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxcontrolpointaction?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxControlPointAction {
     pub markControlPoint: u16,
     pub currControlPoint: u16,
@@ -3089,7 +3089,7 @@ unsafe impl RefEncode for KerxControlPointAction {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxanchorpointaction?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxAnchorPointAction {
     pub markAnchorPoint: u16,
     pub currAnchorPoint: u16,
@@ -3108,7 +3108,7 @@ unsafe impl RefEncode for KerxAnchorPointAction {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxcoordinateaction?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxCoordinateAction {
     pub markX: u16,
     pub markY: u16,
@@ -3136,7 +3136,7 @@ unsafe impl RefEncode for KerxCoordinateAction {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxsimplearrayheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxSimpleArrayHeader {
     pub rowWidth: u32,
     pub leftOffsetTable: u32,
@@ -3166,7 +3166,7 @@ unsafe impl RefEncode for KerxSimpleArrayHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/kerxindexarrayheader?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct KerxIndexArrayHeader {
     pub flags: u32,
     pub rowCount: u16,
@@ -3301,7 +3301,7 @@ pub type BslnBaselineRecord = [Fixed; 32];
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnformat0part?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BslnFormat0Part {
     pub deltas: [i16; 32],
 }
@@ -3339,7 +3339,7 @@ unsafe impl RefEncode for BslnFormat1Part {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/bslnformat2part?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BslnFormat2Part {
     pub stdGlyph: u16,
     pub ctlPoints: [i16; 32],
@@ -3478,7 +3478,7 @@ unsafe impl RefEncode for ALMXHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/almxglyphentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct ALMXGlyphEntry {
     pub GlyphIndexOffset: i16,
     pub HorizontalAdvance: i16,
@@ -3540,7 +3540,7 @@ unsafe impl RefEncode for ROTAHeader {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/rotaglyphentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct ROTAGlyphEntry {
     pub GlyphIndexOffset: i16,
     pub HBaselineOffset: i16,
@@ -3565,7 +3565,7 @@ pub const kANKRCurrentVersion: c_uint = 0;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/anchorpoint?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AnchorPoint {
     pub x: i16,
     pub y: i16,
@@ -3583,7 +3583,7 @@ unsafe impl RefEncode for AnchorPoint {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/anchorpointtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AnchorPointTable {
     pub nPoints: u32,
     pub points: [AnchorPoint; 1],
@@ -3604,7 +3604,7 @@ unsafe impl RefEncode for AnchorPointTable {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ankrtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AnkrTable {
     pub version: u16,
     pub flags: u16,
@@ -3635,7 +3635,7 @@ pub const kLTAGCurrentVersion: c_uint = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ltagstringrange?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct LtagStringRange {
     pub offset: u16,
     pub length: u16,
@@ -3654,7 +3654,7 @@ unsafe impl RefEncode for LtagStringRange {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ltagtable?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct LtagTable {
     pub version: u32,
     pub flags: u32,

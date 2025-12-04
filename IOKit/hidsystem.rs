@@ -295,7 +295,7 @@ pub type NXKeyMapping = evsioKeymapping;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/evsiomousescaling?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct evsioMouseScaling {
     pub numScaleLevels: c_int,
     pub scaleThresholds: [c_short; 20],
@@ -347,7 +347,7 @@ unsafe impl RefEncode for NXMouseButton {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iofixedpoint32?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOFixedPoint32 {
     pub x: i32,
     pub y: i32,
@@ -372,7 +372,7 @@ pub type NXEventSystemInfoData = [c_int; 1024];
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventsystemdevice?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXEventSystemDevice {
     pub interface: c_int,
     pub interface_addr: c_int,
@@ -400,7 +400,7 @@ unsafe impl RefEncode for NXEventSystemDevice {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventsystemdevicelist?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXEventSystemDeviceList {
     pub dev: [NXEventSystemDevice; 16],
 }
@@ -442,7 +442,7 @@ pub type NXCoord = c_float;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxpoint?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXPoint {
     pub x: NXCoord,
     pub y: NXCoord,
@@ -461,7 +461,7 @@ unsafe impl RefEncode for NXPoint {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxsize?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXSize {
     pub width: NXCoord,
     pub height: NXCoord,
@@ -480,7 +480,7 @@ unsafe impl RefEncode for NXSize {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/_nxtabletpointdata_tilt?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct _NXTabletPointData_tilt {
     pub x: i16,
     pub y: i16,
@@ -498,7 +498,7 @@ unsafe impl RefEncode for _NXTabletPointData_tilt {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxtabletpointdata?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXTabletPointData {
     pub x: i32,
     pub y: i32,
@@ -542,7 +542,7 @@ unsafe impl RefEncode for NXTabletPointData {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxtabletproximitydata?language=objc)
 #[repr(C, packed(4))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXTabletProximityData {
     pub vendorID: u16,
     pub tabletID: u16,
@@ -710,7 +710,7 @@ unsafe impl RefEncode for NXEventData_mouseMove {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_key?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXEventData_key {
     pub origCharSet: u16,
     pub repeat: i16,
@@ -754,7 +754,7 @@ unsafe impl RefEncode for NXEventData_key {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_tracking?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXEventData_tracking {
     pub reserved: i16,
     pub eventNum: i16,
@@ -794,7 +794,7 @@ unsafe impl RefEncode for NXEventData_tracking {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_scrollwheel?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXEventData_scrollWheel {
     pub deltaAxis1: i16,
     pub deltaAxis2: i16,
@@ -890,7 +890,7 @@ unsafe impl RefEncode for NXEventData_compound {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_tablet_tilt?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXEventData_tablet_tilt {
     pub x: i16,
     pub y: i16,
@@ -908,7 +908,7 @@ unsafe impl RefEncode for NXEventData_tablet_tilt {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_tablet?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXEventData_tablet {
     pub x: i32,
     pub y: i32,
@@ -954,7 +954,7 @@ unsafe impl RefEncode for NXEventData_tablet {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_proximity?language=objc)
 #[repr(C, packed(4))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXEventData_proximity {
     pub vendorID: u16,
     pub tabletID: u16,
@@ -1038,7 +1038,7 @@ unsafe impl RefEncode for NXEventData {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/_nxevent_location?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct _NXEvent_location {
     pub x: i32,
     pub y: i32,
@@ -1205,7 +1205,7 @@ pub const kIOHIDActivityDisplayOn: c_uint = 0x00000004;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/_evoffsets?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct _evOffsets {
     pub evGlobalsOffset: c_int,
     pub evShmemOffset: c_int,

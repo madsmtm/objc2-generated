@@ -21,7 +21,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostiosourcedescriptors?language=objc)
 #[cfg(feature = "objc2-io-kit")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBHostIOSourceDescriptors {
     pub bcdUSB: u16,
     pub descriptor: IOUSBEndpointDescriptor,

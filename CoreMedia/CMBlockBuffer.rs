@@ -80,7 +80,7 @@ cf_objc2_type!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmblockbuffercustomblocksource?language=objc)
 #[repr(C, packed(4))]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMBlockBufferCustomBlockSource {
     pub version: u32,
     pub AllocateBlock: Option<unsafe extern "C-unwind" fn(*mut c_void, usize) -> *mut c_void>,

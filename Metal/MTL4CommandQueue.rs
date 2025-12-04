@@ -199,7 +199,7 @@ impl DefaultRetained for MTL4CommandQueueDescriptor {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4updatesparsetexturemappingoperation?language=objc)
 #[cfg(all(feature = "MTLResourceStateCommandEncoder", feature = "MTLTypes"))]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTL4UpdateSparseTextureMappingOperation {
     /// The mode of the mapping operation to perform.
     ///
@@ -251,7 +251,7 @@ unsafe impl RefEncode for MTL4UpdateSparseTextureMappingOperation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4copysparsetexturemappingoperation?language=objc)
 #[cfg(feature = "MTLTypes")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTL4CopySparseTextureMappingOperation {
     /// The region in the source texture, in tiles.
     ///
@@ -317,7 +317,7 @@ unsafe impl RefEncode for MTL4CopySparseTextureMappingOperation {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4updatesparsebuffermappingoperation?language=objc)
 #[cfg(feature = "MTLResourceStateCommandEncoder")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTL4UpdateSparseBufferMappingOperation {
     /// The mode of the mapping operation to perform.
     ///
@@ -355,7 +355,7 @@ unsafe impl RefEncode for MTL4UpdateSparseBufferMappingOperation {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4copysparsebuffermappingoperation?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTL4CopySparseBufferMappingOperation {
     /// The range in the source buffer, in tiles.
     ///

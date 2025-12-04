@@ -199,7 +199,7 @@ unsafe impl RefEncode for AudioFormatInfo {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/extendedaudioformatinfo?language=objc)
 #[cfg(feature = "objc2-core-audio-types")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct ExtendedAudioFormatInfo {
     pub mASBD: AudioStreamBasicDescription,
     pub mMagicCookie: *const c_void,

@@ -186,7 +186,7 @@ unsafe impl RefEncode for SecKeyImportExportParameters {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secitemimportexportkeyparameters?language=objc)
 #[cfg(feature = "SecBase")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SecItemImportExportKeyParameters {
     pub version: u32,
     pub flags: SecKeyImportExportFlags,

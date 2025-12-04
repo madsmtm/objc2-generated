@@ -318,7 +318,7 @@ unsafe impl RefEncode for NSFileProviderFileSystemFlags {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertypeandcreator?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSFileProviderTypeAndCreator {
     /// The first word of the FinderInfo structure. It matches the file type code
     pub r#type: OSType,

@@ -49,7 +49,7 @@ unsafe impl RefEncode for AVMusicSequenceLoadOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avbeatrange?language=objc)
 #[cfg(feature = "AVAudioTypes")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVBeatRange {
     pub start: AVMusicTimeStamp,
     pub length: AVMusicTimeStamp,

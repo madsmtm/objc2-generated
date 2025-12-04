@@ -7,7 +7,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgvector?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGVector {
     pub dx: CGFloat,
     pub dy: CGFloat,
@@ -52,7 +52,7 @@ unsafe impl RefEncode for CGRectEdge {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgaffinetransform?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGAffineTransform {
     pub a: CGFloat,
     pub b: CGFloat,
@@ -84,7 +84,7 @@ unsafe impl RefEncode for CGAffineTransform {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cgaffinetransformcomponents?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGAffineTransformComponents {
     pub scale: CGSize,
     pub horizontalShear: CGFloat,

@@ -822,7 +822,7 @@ pub const kIOPMThermalLevelUnknown: c_uint = 255;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmcalendarstruct?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOPMCalendarStruct {
     pub year: u32,
     pub month: u8,

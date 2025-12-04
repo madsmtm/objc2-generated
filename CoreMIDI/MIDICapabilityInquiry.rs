@@ -11,7 +11,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicideviceidentification?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDICIDeviceIdentification {
     pub manufacturer: [u8; 3],
     pub family: [u8; 2],

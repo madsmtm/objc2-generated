@@ -7,7 +7,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midi2devicemanufacturer?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDI2DeviceManufacturer {
     pub sysExIDByte: [Byte; 3],
 }
@@ -24,7 +24,7 @@ unsafe impl RefEncode for MIDI2DeviceManufacturer {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midi2devicerevisionlevel?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDI2DeviceRevisionLevel {
     pub revisionLevel: [Byte; 4],
 }
@@ -331,7 +331,7 @@ unsafe impl RefEncode for MIDIUMPCIObjectBackingType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofileidstandard?language=objc)
 #[cfg(feature = "MIDIMessages")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDICIProfileIDStandard {
     pub profileIDByte1: MIDIUInteger7,
     pub profileBank: MIDIUInteger7,
@@ -364,7 +364,7 @@ unsafe impl RefEncode for MIDICIProfileIDStandard {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofileidmanufacturerspecific?language=objc)
 #[cfg(feature = "MIDIMessages")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MIDICIProfileIDManufacturerSpecific {
     pub sysExID1: MIDIUInteger7,
     pub sysExID2: MIDIUInteger7,

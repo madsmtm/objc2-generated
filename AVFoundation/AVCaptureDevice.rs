@@ -1898,7 +1898,7 @@ unsafe impl RefEncode for AVCaptureWhiteBalanceMode {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancegains?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVCaptureWhiteBalanceGains {
     pub redGain: c_float,
     pub greenGain: c_float,
@@ -1924,7 +1924,7 @@ unsafe impl RefEncode for AVCaptureWhiteBalanceGains {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancechromaticityvalues?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVCaptureWhiteBalanceChromaticityValues {
     pub x: c_float,
     pub y: c_float,
@@ -1942,7 +1942,7 @@ unsafe impl RefEncode for AVCaptureWhiteBalanceChromaticityValues {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancetemperatureandtintvalues?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVCaptureWhiteBalanceTemperatureAndTintValues {
     pub temperature: c_float,
     pub tint: c_float,

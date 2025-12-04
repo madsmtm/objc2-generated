@@ -91,7 +91,7 @@ pub type CSSM_DATA_PTR = *mut SecAsn1Item;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_guid?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_guid {
     pub Data1: uint32,
     pub Data2: uint16,
@@ -167,7 +167,7 @@ pub const CSSM_PRIVILEGE_SCOPE_THREAD: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_version?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_version {
     pub Major: uint32,
     pub Minor: uint32,
@@ -221,7 +221,7 @@ pub type CSSM_SERVICE_TYPE = CSSM_SERVICE_MASK;
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_subservice_uid {
     pub Guid: CSSM_GUID,
     pub Version: CSSM_VERSION,
@@ -344,7 +344,7 @@ pub const CSSM_ADDR_NAME: c_uint = 4;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_net_address {
     pub AddressType: CSSM_NET_ADDRESS_TYPE,
     pub Address: SecAsn1Item,
@@ -1113,7 +1113,7 @@ pub const CSSM_CL_CUSTOM_CERT_ENCODING: c_uint = 32768;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_encoded_cert {
     pub CertType: CSSM_CERT_TYPE,
     pub CertEncoding: CSSM_CERT_ENCODING,
@@ -1527,7 +1527,7 @@ pub type CSSM_AUTHORIZATIONGROUP_PTR = *mut cssm_authorizationgroup;
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_acl_validity_period {
     pub StartDate: SecAsn1Item,
     pub EndDate: SecAsn1Item,
@@ -1846,7 +1846,7 @@ pub type CSSM_FUNC_NAME_ADDR_PTR = *mut cssm_func_name_addr;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_date?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_date {
     pub Year: [uint8; 4],
     pub Month: [uint8; 2],
@@ -1883,7 +1883,7 @@ pub type CSSM_DATE_PTR = *mut cssm_date;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_range?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_range {
     pub Min: uint32,
     pub Max: uint32,
@@ -1913,7 +1913,7 @@ pub type CSSM_RANGE_PTR = *mut cssm_range;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_size_data?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_query_size_data {
     pub SizeInputBlock: uint32,
     pub SizeOutputBlock: uint32,
@@ -1952,7 +1952,7 @@ pub const CSSM_KEYHEADER_VERSION: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_key_size?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_key_size {
     pub LogicalKeySizeInBits: uint32,
     pub EffectiveKeySizeInBits: uint32,
@@ -2436,7 +2436,7 @@ pub const CSSM_ALGMODE_VENDOR_DEFINED: c_uint = 2147483648;
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_keyheader {
     pub HeaderVersion: CSSM_HEADERVERSION,
     pub CspId: CSSM_GUID,
@@ -2496,7 +2496,7 @@ pub type CSSM_KEYHEADER_PTR = *mut cssm_keyheader;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_key {
     pub KeyHeader: CSSM_KEYHEADER,
     pub KeyData: SecAsn1Item,
@@ -2549,7 +2549,7 @@ pub const CSSM_CSP_HYBRID: c_uint = 3;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_db_handle?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_dl_db_handle {
     pub DLHandle: CSSM_DL_HANDLE,
     pub DBHandle: CSSM_DB_HANDLE,
@@ -3019,7 +3019,7 @@ pub const CSSM_PKCS_OAEP_PSOURCE_Pspecified: c_uint = 1;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_pkcs1_oaep_params {
     pub HashAlgorithm: uint32,
     pub HashParams: SecAsn1Item,
@@ -3062,7 +3062,7 @@ pub type CSSM_PKCS1_OAEP_PARAMS_PTR = *mut cssm_pkcs1_oaep_params;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_operational_statistics?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_csp_operational_statistics {
     pub UserAuthenticated: CSSM_BOOL,
     pub DeviceFlags: CSSM_CSP_FLAGS,
@@ -3117,7 +3117,7 @@ pub const CSSM_VALUE_NOT_AVAILABLE: c_int = -1;
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_pkcs5_pbkdf1_params {
     pub Passphrase: SecAsn1Item,
     pub InitVector: SecAsn1Item,
@@ -3157,7 +3157,7 @@ pub const CSSM_PKCS5_PBKDF2_PRF_HMAC_SHA1: c_uint = 0;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_pkcs5_pbkdf2_params {
     pub Passphrase: SecAsn1Item,
     pub PseudoRandomFunction: CSSM_PKCS5_PBKDF2_PRF,
@@ -3190,7 +3190,7 @@ pub type CSSM_PKCS5_PBKDF2_PARAMS_PTR = *mut cssm_pkcs5_pbkdf2_params;
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_kea_derive_params {
     pub Rb: SecAsn1Item,
     pub Yb: SecAsn1Item,
@@ -3296,7 +3296,7 @@ pub type CSSM_OID_PTR = *mut SecAsn1Oid;
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_field {
     pub FieldOid: SecAsn1Oid,
     pub FieldValue: SecAsn1Item,
@@ -3556,7 +3556,7 @@ pub const CSSM_CRL_ENCODING_MULTIPLE: c_uint = 32766;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_encoded_crl {
     pub CrlType: CSSM_CRL_TYPE,
     pub CrlEncoding: CSSM_CRL_ENCODING,
@@ -4239,7 +4239,7 @@ pub const CSSM_TP_CERTCHANGE_NOT_AUTHORIZED: c_uint = 5;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_tp_certchange_output {
     pub ActionStatus: CSSM_TP_CERTCHANGE_STATUS,
     pub RevokeInfo: CSSM_FIELD,
@@ -4747,7 +4747,7 @@ pub const CSSM_CERT_BUNDLE_ENCODING_PGP: c_uint = 5;
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_cert_bundle_header {
     pub BundleType: CSSM_CERT_BUNDLE_TYPE,
     pub BundleEncoding: CSSM_CERT_BUNDLE_ENCODING,
@@ -4783,7 +4783,7 @@ pub type CSSM_CERT_BUNDLE_HEADER_PTR = *mut cssm_cert_bundle_header;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_cert_bundle {
     pub BundleHeader: CSSM_CERT_BUNDLE_HEADER,
     pub Bundle: SecAsn1Item,
@@ -5099,7 +5099,7 @@ pub type CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR = *mut cssm_db_record_attribute_data;
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_db_parsing_module_info {
     pub RecordType: CSSM_DB_RECORDTYPE,
     pub ModuleSubserviceUid: CSSM_SUBSERVICE_UID,
@@ -5418,7 +5418,7 @@ pub const CSSM_QUERY_SIZELIMIT_NONE: c_uint = 0;
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_query_limits {
     pub TimeLimit: uint32,
     pub SizeLimit: uint32,
@@ -5538,7 +5538,7 @@ pub type CSSM_DL_FFS_ATTRIBUTES = *mut c_void;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_pkcs11_attributes?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_dl_pkcs11_attributes {
     pub DeviceAccessFlags: uint32,
 }
@@ -5648,7 +5648,7 @@ pub type CSSM_DB_SCHEMA_ATTRIBUTE_INFO_PTR = *mut cssm_db_schema_attribute_info;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_schema_index_info?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_db_schema_index_info {
     pub AttributeId: uint32,
     pub IndexId: uint32,

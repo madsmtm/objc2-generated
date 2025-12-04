@@ -82,7 +82,7 @@ impl GCGamepadSnapshot {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcgamepadsnapshotdatav100?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCGamepadSnapShotDataV100 {
     pub version: u16,
     pub size: u16,

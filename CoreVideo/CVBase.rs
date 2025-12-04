@@ -35,7 +35,7 @@ pub type CVOptionFlags = u64;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvsmptetime?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CVSMPTETime {
     pub subframes: i16,
     pub subframeDivisor: i16,
@@ -193,7 +193,7 @@ unsafe impl Sync for CVTimeFlags {}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtime?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CVTime {
     pub timeValue: i64,
     pub timeScale: i32,
@@ -248,7 +248,7 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvtimestamp?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CVTimeStamp {
     pub version: u32,
     pub videoTimeScale: i32,

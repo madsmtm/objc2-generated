@@ -9,7 +9,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchthreadgroupsindirectarguments?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLDispatchThreadgroupsIndirectArguments {
     pub threadgroupsPerGrid: [u32; 3],
 }
@@ -24,7 +24,7 @@ unsafe impl RefEncode for MTLDispatchThreadgroupsIndirectArguments {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldispatchthreadsindirectarguments?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLDispatchThreadsIndirectArguments {
     pub threadsPerGrid: [u32; 3],
     pub threadsPerThreadgroup: [u32; 3],
@@ -40,7 +40,7 @@ unsafe impl RefEncode for MTLDispatchThreadsIndirectArguments {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlstageinregionindirectarguments?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLStageInRegionIndirectArguments {
     pub stageInOrigin: [u32; 3],
     pub stageInSize: [u32; 3],

@@ -320,7 +320,7 @@ impl GLKMesh {
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GLKVertexAttributeParameters {
     pub r#type: GLenum,
     pub size: GLint,

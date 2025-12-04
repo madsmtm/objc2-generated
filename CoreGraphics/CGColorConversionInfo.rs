@@ -148,7 +148,7 @@ impl CGColorConversionInfo {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorbufferformat?language=objc)
 #[cfg(feature = "CGImage")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGColorBufferFormat {
     pub version: u32,
     pub bitmapInfo: CGBitmapInfo,

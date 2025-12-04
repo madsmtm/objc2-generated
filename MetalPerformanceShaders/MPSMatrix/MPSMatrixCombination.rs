@@ -12,7 +12,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixcopyoffsets?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSMatrixCopyOffsets {
     /// offset to start of source region to read in rows
     pub sourceRowOffset: u32,

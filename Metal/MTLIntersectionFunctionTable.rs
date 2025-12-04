@@ -11,7 +11,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlintersectionfunctionbufferarguments?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLIntersectionFunctionBufferArguments {
     /// The GPU resource ID of the buffer containing intersection-function handles.
     /// Required to be aligned to 8 bytes.

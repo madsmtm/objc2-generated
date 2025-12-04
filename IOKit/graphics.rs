@@ -470,7 +470,7 @@ unsafe impl RefEncode for eIOAcceleratorClientTypes {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioaccelbounds?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOAccelBounds {
     pub x: i16,
     pub y: i16,
@@ -498,7 +498,7 @@ unsafe impl RefEncode for IOAccelBounds {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioaccelsize?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOAccelSize {
     pub w: i16,
     pub h: i16,
@@ -520,7 +520,7 @@ pub const kIOAccelVolatileSurface: c_uint = 0x00000001;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioaccelsurfaceinformation?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOAccelSurfaceInformation {
     pub address: [libc::mach_vm_address_t; 4],
     pub rowBytes: u32,
@@ -557,7 +557,7 @@ unsafe impl RefEncode for IOAccelSurfaceInformation {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioaccelsurfacereaddata?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOAccelSurfaceReadData {
     pub x: i32,
     pub y: i32,
@@ -589,7 +589,7 @@ unsafe impl RefEncode for IOAccelSurfaceReadData {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioaccelsurfacescaling?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOAccelSurfaceScaling {
     pub buffer: IOAccelBounds,
     pub source: IOAccelSize,
@@ -621,7 +621,7 @@ pub const kIOAccelPrivateID: c_uint = 0x00000001;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioacceldeviceregion?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOAccelDeviceRegion {
     pub num_rects: u32,
     pub bounds: IOAccelBounds,
@@ -969,7 +969,7 @@ pub const kIOBlitDestFramebuffer: c_uint = 0x00000001;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitoperationstruct?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitOperationStruct {
     pub color0: u32,
     pub color1: u32,
@@ -1006,7 +1006,7 @@ pub type IOBlitOperation = IOBlitOperationStruct;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitrectanglestruct?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitRectangleStruct {
     pub x: i32,
     pub y: i32,
@@ -1037,7 +1037,7 @@ pub type IOBlitRectangle = IOBlitRectangleStruct;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitrectanglesstruct?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitRectanglesStruct {
     pub operation: IOBlitOperation,
     pub count: IOItemCount,
@@ -1066,7 +1066,7 @@ pub type IOBlitRectangles = IOBlitRectanglesStruct;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitcopyrectanglestruct?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitCopyRectangleStruct {
     pub sourceX: i32,
     pub sourceY: i32,
@@ -1101,7 +1101,7 @@ pub type IOBlitCopyRectangle = IOBlitCopyRectangleStruct;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitcopyrectanglesstruct?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitCopyRectanglesStruct {
     pub operation: IOBlitOperation,
     pub count: IOItemCount,
@@ -1161,7 +1161,7 @@ pub type IOBlitCopyRegion = IOBlitCopyRegionStruct;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitvertexstruct?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitVertexStruct {
     pub x: i32,
     pub y: i32,
@@ -1183,7 +1183,7 @@ pub type IOBlitVertex = IOBlitVertexStruct;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitverticesstruct?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitVerticesStruct {
     pub operation: IOBlitOperation,
     pub count: IOItemCount,
@@ -1212,7 +1212,7 @@ pub type IOBlitVertices = IOBlitVerticesStruct;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitscanlinesstruct?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitScanlinesStruct {
     pub operation: IOBlitOperation,
     pub count: IOItemCount,
@@ -1245,7 +1245,7 @@ pub type IOBlitScanlines = IOBlitScanlinesStruct;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitcursorstruct?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitCursorStruct {
     pub operation: IOBlitOperation,
     pub rect: IOBlitRectangle,
@@ -1770,7 +1770,7 @@ pub type IOAppleTimingID = u32;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodisplaymodeinformation?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IODisplayModeInformation {
     pub nominalWidth: u32,
     pub nominalHeight: u32,
@@ -1850,7 +1850,7 @@ pub const kDisplayModeDefaultFlag: c_uint = 0x00000004;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioframebufferinformation?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOFramebufferInformation {
     pub baseAddress: IOPhysicalAddress,
     pub activeWidth: u32,
@@ -1914,7 +1914,7 @@ pub type IOColorComponent = u16;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iocolorentry?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOColorEntry {
     pub index: u16,
     pub red: IOColorComponent,
@@ -2145,7 +2145,7 @@ pub const kIOMirrorForced: c_uint = 0x00000002;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iodetailedtiminginformationv1?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IODetailedTimingInformationV1 {
     pub pixelClock: u32,
     pub horizontalActive: u32,
@@ -3366,7 +3366,7 @@ pub const kIOFBUserRequestProbe: c_uint = 0x00000001;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iogpoint?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOGPoint {
     pub x: i16,
     pub y: i16,
@@ -3384,7 +3384,7 @@ unsafe impl RefEncode for IOGPoint {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iogsize?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOGSize {
     pub width: i16,
     pub height: i16,
@@ -3402,7 +3402,7 @@ unsafe impl RefEncode for IOGSize {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iogbounds?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOGBounds {
     pub minx: i16,
     pub maxx: i16,
@@ -3867,7 +3867,7 @@ pub const kIOFBMaxCursorFrames: c_uint = 32;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/bm12cursor?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct bm12Cursor {
     pub image: [[c_uint; 16]; 4],
     pub mask: [[c_uint; 16]; 4],

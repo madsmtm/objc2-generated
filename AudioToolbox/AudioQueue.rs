@@ -335,7 +335,7 @@ pub type AudioQueueBufferRef = *mut AudioQueueBuffer;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueparameterevent?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioQueueParameterEvent {
     pub mID: AudioQueueParameterID,
     pub mValue: AudioQueueParameterValue,
@@ -363,7 +363,7 @@ unsafe impl RefEncode for AudioQueueParameterEvent {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueuelevelmeterstate?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioQueueLevelMeterState {
     pub mAveragePower: f32,
     pub mPeakPower: f32,

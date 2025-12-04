@@ -9,7 +9,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmrotationmatrix?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMRotationMatrix {
     pub m11: c_double,
     pub m12: c_double,
@@ -45,7 +45,7 @@ unsafe impl RefEncode for CMRotationMatrix {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmquaternion?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMQuaternion {
     pub x: c_double,
     pub y: c_double,

@@ -87,7 +87,7 @@ unsafe impl RefEncode for MPSCustomKernelIndex {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsmatrixoffset?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSMatrixOffset {
     /// offset to start of source region to read in rows
     pub rowOffset: u32,
@@ -105,7 +105,7 @@ unsafe impl RefEncode for MPSMatrixOffset {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintegerdivisionparams?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSIntegerDivisionParams {
     pub divisor: u16,
     pub recip: u16,
@@ -209,7 +209,7 @@ pub static MPSFunctionConstantNone: MPSFunctionConstant = -1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscustomkernelargumentcount?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSCustomKernelArgumentCount {
     /// must be 1. Can't have 2 or more. If you have 0, this is 1.
     pub destinationTextureCount: c_ulong,

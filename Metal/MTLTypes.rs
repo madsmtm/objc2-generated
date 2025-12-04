@@ -9,7 +9,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlorigin?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLOrigin {
     pub x: NSUInteger,
     pub y: NSUInteger,
@@ -39,7 +39,7 @@ impl MTLOrigin {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsize?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLSize {
     pub width: NSUInteger,
     pub height: NSUInteger,
@@ -69,7 +69,7 @@ impl MTLSize {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlregion?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLRegion {
     pub origin: MTLOrigin,
     pub size: MTLSize,
@@ -95,7 +95,7 @@ impl MTLRegion {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlsampleposition?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLSamplePosition {
     pub x: c_float,
     pub y: c_float,

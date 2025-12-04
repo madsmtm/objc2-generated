@@ -62,7 +62,7 @@ pub type CGPatternReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut 
 #[cfg(feature = "CGContext")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CGPatternCallbacks {
     pub version: c_uint,
     pub drawPattern: CGPatternDrawPatternCallback,

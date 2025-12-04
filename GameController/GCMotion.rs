@@ -17,7 +17,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcacceleration?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCAcceleration {
     pub x: c_double,
     pub y: c_double,
@@ -58,7 +58,7 @@ unsafe impl RefEncode for GCAcceleration {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcrotationrate?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCRotationRate {
     pub x: c_double,
     pub y: c_double,
@@ -99,7 +99,7 @@ unsafe impl RefEncode for GCRotationRate {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gceulerangles?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCEulerAngles {
     pub pitch: c_double,
     pub yaw: c_double,
@@ -128,7 +128,7 @@ unsafe impl RefEncode for GCEulerAngles {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcquaternion?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCQuaternion {
     pub x: c_double,
     pub y: c_double,

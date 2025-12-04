@@ -56,7 +56,7 @@ unsafe impl RefEncode for CMMagneticFieldCalibrationAccuracy {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmcalibratedmagneticfield?language=objc)
 #[cfg(feature = "CMMagnetometer")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMCalibratedMagneticField {
     pub field: CMMagneticField,
     pub accuracy: CMMagneticFieldCalibrationAccuracy,

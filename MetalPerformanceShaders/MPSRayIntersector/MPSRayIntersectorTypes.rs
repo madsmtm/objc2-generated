@@ -127,7 +127,7 @@ unsafe impl RefEncode for MPSRayOriginMaskDirectionMaxDistance {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistance?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSIntersectionDistance {
     /// Distance from the ray origin to the intersection point along the ray direction
     /// vector such that intersection = ray.origin + ray.direction * distance. Is negative if
@@ -153,7 +153,7 @@ unsafe impl RefEncode for MPSIntersectionDistance {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindex?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSIntersectionDistancePrimitiveIndex {
     /// Distance from the ray origin to the intersection point along the ray direction
     /// vector such that intersection = ray.origin + ray.direction * distance. Is negative if
@@ -183,7 +183,7 @@ unsafe impl RefEncode for MPSIntersectionDistancePrimitiveIndex {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindexbufferindex?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSIntersectionDistancePrimitiveIndexBufferIndex {
     /// Distance from the ray origin to the intersection point along the ray direction
     /// vector such that intersection = ray.origin + ray.direction * distance. Is negative if
@@ -218,7 +218,7 @@ unsafe impl RefEncode for MPSIntersectionDistancePrimitiveIndexBufferIndex {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindexinstanceindex?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSIntersectionDistancePrimitiveIndexInstanceIndex {
     /// Distance from the ray origin to the intersection point along the ray direction
     /// vector such that intersection = ray.origin + ray.direction * distance. Is negative if
@@ -255,7 +255,7 @@ unsafe impl RefEncode for MPSIntersectionDistancePrimitiveIndexInstanceIndex {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsintersectiondistanceprimitiveindexbufferindexinstanceindex?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndex {
     /// Distance from the ray origin to the intersection point along the ray direction
     /// vector such that intersection = ray.origin + ray.direction * distance. Is negative if

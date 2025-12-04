@@ -153,7 +153,7 @@ unsafe impl RefEncode for AuthorizationItem {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationitemset?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AuthorizationItemSet {
     pub count: u32,
     pub items: *mut AuthorizationItem,
@@ -181,7 +181,7 @@ unsafe impl RefEncode for AuthorizationItemSet {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationexternalform?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AuthorizationExternalForm {
     pub bytes: [c_char; 32],
 }

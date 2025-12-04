@@ -249,7 +249,7 @@ pub const kAudioFileLoopDirection_Backward: u32 = 3;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofile_smpte_time?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFile_SMPTE_Time {
     pub mHours: i8,
     pub mMinutes: u8,
@@ -285,7 +285,7 @@ pub const kAudioFileMarkerType_Generic: u32 = 0;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilemarker?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFileMarker {
     pub mFramePosition: f64,
     pub mName: *const CFString,
@@ -328,7 +328,7 @@ unsafe impl RefEncode for AudioFileMarker {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilemarkerlist?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFileMarkerList {
     pub mSMPTE_TimeType: u32,
     pub mNumberMarkers: u32,
@@ -484,7 +484,7 @@ unsafe impl RefEncode for AudioFileRegionList {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioframepackettranslation?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFramePacketTranslation {
     pub mFrame: i64,
     pub mPacket: i64,
@@ -535,7 +535,7 @@ unsafe impl RefEncode for AudioBytePacketTranslationFlags {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiobytepackettranslation?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioBytePacketTranslation {
     pub mByte: i64,
     pub mPacket: i64,
@@ -571,7 +571,7 @@ unsafe impl RefEncode for AudioBytePacketTranslation {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilepackettableinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFilePacketTableInfo {
     pub mNumberValidFrames: i64,
     pub mPrimingFrames: i32,
@@ -595,7 +595,7 @@ unsafe impl RefEncode for AudioFilePacketTableInfo {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiopacketrangebytecounttranslation?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioPacketRangeByteCountTranslation {
     pub mPacket: i64,
     pub mPacketCount: i64,
@@ -619,7 +619,7 @@ unsafe impl RefEncode for AudioPacketRangeByteCountTranslation {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiopacketrolldistancetranslation?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioPacketRollDistanceTranslation {
     pub mPacket: i64,
     pub mRollDistance: i64,
@@ -642,7 +642,7 @@ unsafe impl RefEncode for AudioPacketRollDistanceTranslation {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioindependentpackettranslation?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioIndependentPacketTranslation {
     pub mPacket: i64,
     pub mIndependentlyDecodablePacket: i64,
@@ -665,7 +665,7 @@ unsafe impl RefEncode for AudioIndependentPacketTranslation {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiopacketdependencyinfotranslation?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioPacketDependencyInfoTranslation {
     pub mPacket: i64,
     pub mIsIndependentlyDecodable: u32,
@@ -1731,7 +1731,7 @@ pub const kAudioFileGlobalInfo_TypesForExtension: AudioFilePropertyID = 0x746578
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofiletypeandformatid?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioFileTypeAndFormatID {
     pub mFileType: AudioFileTypeID,
     pub mFormatID: u32,

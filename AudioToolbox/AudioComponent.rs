@@ -124,7 +124,7 @@ unsafe impl RefEncode for AudioComponentInstantiationOptions {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponentdescription?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioComponentDescription {
     pub componentType: OSType,
     pub componentSubType: OSType,

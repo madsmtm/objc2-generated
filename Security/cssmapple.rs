@@ -195,7 +195,7 @@ pub const CSSM_ACL_PROCESS_SELECTOR_CURRENT_VERSION: c_uint = 257;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_process_subject_selector?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_acl_process_subject_selector {
     pub version: uint16,
     pub mask: uint16,
@@ -242,7 +242,7 @@ pub const CSSM_ACL_KEYCHAIN_PROMPT_INVALID_ACT: c_uint = 128;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_keychain_prompt_selector?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_acl_keychain_prompt_selector {
     pub version: uint16,
     pub flags: uint16,
@@ -711,7 +711,7 @@ unsafe impl RefEncode for cssm_appledl_open_parameters_mask {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_appledl_open_parameters?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype", feature = "libc"))]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_appledl_open_parameters {
     pub length: uint32,
     pub version: uint32,
@@ -823,7 +823,7 @@ pub const CSSM_APPLECSP_PUBKEY: c_uint = 257;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecspdl_db_settings_parameters?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_applecspdl_db_settings_parameters {
     pub idleTimeout: uint32,
     pub lockOnSleep: uint8,
@@ -853,7 +853,7 @@ pub type CSSM_APPLECSPDL_DB_SETTINGS_PARAMETERS_PTR = *mut cssm_applecspdl_db_se
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecspdl_db_is_locked_parameters?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct cssm_applecspdl_db_is_locked_parameters {
     pub isLocked: uint8,
 }
@@ -1202,7 +1202,7 @@ pub const CSSM_TP_ACTION_IMPLICIT_ANCHORS: c_uint = 64;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_apple_tp_action_data?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CSSM_APPLE_TP_ACTION_DATA {
     pub Version: uint32,
     pub ActionFlags: CSSM_APPLE_TP_ACTION_FLAGS,
@@ -1253,7 +1253,7 @@ pub const CSSM_CERT_STATUS_TRUST_SETTINGS_IGNORED_ERROR: c_uint = 2048;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_apple_evidence_header?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CSSM_TP_APPLE_EVIDENCE_HEADER {
     pub Version: uint32,
 }

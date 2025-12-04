@@ -54,7 +54,7 @@ pub const aeBuildSyntaxUncoercedDoubleAt: c_uint = 19;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuilderror?language=objc)
 #[repr(C, packed(2))]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AEBuildError {
     pub fError: AEBuildErrorCode,
     pub fErrorPos: u32,

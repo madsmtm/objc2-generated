@@ -147,7 +147,7 @@ unsafe impl RefEncode for tIOUSBDescriptorSize {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdescriptorheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBDescriptorHeader {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -180,7 +180,7 @@ pub type IOUSBDescriptor = IOUSBDescriptorHeader;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicedescriptor?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBDeviceDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -236,7 +236,7 @@ unsafe impl RefEncode for IOUSBDeviceDescriptor {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicequalifierdescriptor?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBDeviceQualifierDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -277,7 +277,7 @@ unsafe impl RefEncode for IOUSBDeviceQualifierDescriptor {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbconfigurationdescheader?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBConfigurationDescHeader {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -308,7 +308,7 @@ unsafe impl RefEncode for IOUSBConfigurationDescHeader {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbconfigurationdescriptor?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBConfigurationDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -356,7 +356,7 @@ pub const kIOUSBConfigurationDescriptorAttributeSelfPowered: c_uint = IOUSBBit!(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacedescriptor?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBInterfaceDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -401,7 +401,7 @@ unsafe impl RefEncode for IOUSBInterfaceDescriptor {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbendpointdescriptor?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBEndpointDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -666,7 +666,7 @@ unsafe impl RefEncode for tIOUSBLanguageID {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbstringdescriptor?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBStringDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -740,7 +740,7 @@ unsafe impl RefEncode for tIOUSBDeviceCapabilityType {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbbosdescriptor?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBBOSDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -775,7 +775,7 @@ unsafe impl RefEncode for IOUSBBOSDescriptor {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicecapabilitydescriptorheader?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBDeviceCapabilityDescriptorHeader {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -800,7 +800,7 @@ unsafe impl RefEncode for IOUSBDeviceCapabilityDescriptorHeader {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicecapabilityusb2extension?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBDeviceCapabilityUSB2Extension {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -847,7 +847,7 @@ pub const kIOUSBUSB20ExtensionCapabilityBESLDPhase: c_uint = IOUSBBitRangePhase!
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicecapabilitysuperspeedusb?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBDeviceCapabilitySuperSpeedUSB {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -1040,7 +1040,7 @@ pub const kIOUSBSuperSpeedPlusDeviceCapabilitySublinkSpeedMantissaPhase: c_uint 
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicecapabilitycontainerid?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBDeviceCapabilityContainerID {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -1073,7 +1073,7 @@ unsafe impl RefEncode for IOUSBDeviceCapabilityContainerID {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbplatformcapabilitydescriptor?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBPlatformCapabilityDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -1106,7 +1106,7 @@ unsafe impl RefEncode for IOUSBPlatformCapabilityDescriptor {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicecapabilitybillboardaltconfigcompatibility?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBDeviceCapabilityBillboardAltConfigCompatibility {
     pub wSVID: u16,
     pub dwAlternateMode: u32,
@@ -1131,7 +1131,7 @@ unsafe impl RefEncode for IOUSBDeviceCapabilityBillboardAltConfigCompatibility {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicecapabilitybillboardaltconfig?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBDeviceCapabilityBillboardAltConfig {
     pub wSVID: u16,
     pub bAltenateMode: u8,
@@ -1203,7 +1203,7 @@ unsafe impl RefEncode for IOUSBDeviceCapabilityBillboard {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicecapabilitybillboardaltmode?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBDeviceCapabilityBillboardAltMode {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -1241,7 +1241,7 @@ unsafe impl RefEncode for IOUSBDeviceCapabilityBillboardAltMode {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceassociationdescriptor?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBInterfaceAssociationDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -1285,7 +1285,7 @@ unsafe impl RefEncode for IOUSBInterfaceAssociationDescriptor {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbsuperspeedendpointcompaniondescriptor?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBSuperSpeedEndpointCompanionDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -1351,7 +1351,7 @@ pub const kIOUSBSuperSpeedEndpointCompanionDescriptorSSPIsocCompanion: c_uint = 
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbsuperspeedplusisochronousendpointcompaniondescriptor?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBSuperSpeedPlusIsochronousEndpointCompanionDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -1387,7 +1387,7 @@ unsafe impl RefEncode for IOUSBSuperSpeedPlusIsochronousEndpointCompanionDescrip
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousb20hubdescriptor?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSB20HubDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -1431,7 +1431,7 @@ unsafe impl RefEncode for IOUSB20HubDescriptor {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbsuperspeedhubdescriptor?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBSuperSpeedHubDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -1496,7 +1496,7 @@ pub const kIOUSBSuperSpeedHubDelayMax: c_uint = 400;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/uaspipedescriptor?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct UASPipeDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -1530,7 +1530,7 @@ unsafe impl RefEncode for UASPipeDescriptor {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbhiddescriptor?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBHIDDescriptor {
     pub descLen: u8,
     pub descType: u8,
@@ -1572,7 +1572,7 @@ unsafe impl RefEncode for IOUSBHIDDescriptor {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbhidreportdesc?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBHIDReportDesc {
     pub hidDescriptorType: u8,
     pub hidDescriptorLengthLo: u8,
@@ -1601,7 +1601,7 @@ unsafe impl RefEncode for IOUSBHIDReportDesc {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdfudescriptor?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBDFUDescriptor {
     pub bLength: u8,
     pub bDescriptorType: u8,
@@ -1639,7 +1639,7 @@ unsafe impl RefEncode for IOUSBDFUDescriptor {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicerequest?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBDeviceRequest {
     pub bmRequestType: u8,
     pub bRequest: u8,
@@ -1676,7 +1676,7 @@ unsafe impl RefEncode for IOUSBDeviceRequest {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicerequestsetseldata?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBDeviceRequestSetSELData {
     pub u1Sel: u8,
     pub u1Pel: u8,
@@ -2219,7 +2219,7 @@ pub const kIOUSB30RetimerDepthLimit: c_uint = 4;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousb30hubportstatusext?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSB30HubPortStatusExt {
     pub wPortStatus: u16,
     pub wPortChange: u16,

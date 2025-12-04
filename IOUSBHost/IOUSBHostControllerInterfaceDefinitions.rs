@@ -378,7 +378,7 @@ pub const IOUSBHostCIDoorbellStreamIDPhase: c_uint = IOUSBBitRangePhase!(16, 31)
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostcimessage?language=objc)
 #[repr(C, packed)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOUSBHostCIMessage {
     pub control: u32,
     pub data0: u32,

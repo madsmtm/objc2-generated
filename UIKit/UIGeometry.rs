@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiedgeinsets?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct UIEdgeInsets {
     pub top: CGFloat,
     pub left: CGFloat,
@@ -47,7 +47,7 @@ unsafe impl Sync for UIEdgeInsets {}
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSDirectionalEdgeInsets {
     pub top: CGFloat,
     pub leading: CGFloat,
@@ -82,7 +82,7 @@ unsafe impl Sync for NSDirectionalEdgeInsets {}
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uioffset?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct UIOffset {
     pub horizontal: CGFloat,
     pub vertical: CGFloat,

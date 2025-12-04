@@ -52,7 +52,7 @@ unsafe impl RefEncode for AVCaptionUnitsType {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiondimension?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVCaptionDimension {
     pub value: CGFloat,
     pub units: AVCaptionUnitsType,
@@ -78,7 +78,7 @@ unsafe impl RefEncode for AVCaptionDimension {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionpoint?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVCaptionPoint {
     pub x: AVCaptionDimension,
     pub y: AVCaptionDimension,
@@ -107,7 +107,7 @@ unsafe impl RefEncode for AVCaptionPoint {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionsize?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVCaptionSize {
     pub width: AVCaptionDimension,
     pub height: AVCaptionDimension,

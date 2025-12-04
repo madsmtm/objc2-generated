@@ -242,7 +242,7 @@ unsafe impl RefEncode for CVPixelBufferLockFlags {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvplanarcomponentinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CVPlanarComponentInfo {
     pub offset: i32,
     pub rowBytes: u32,
@@ -261,7 +261,7 @@ unsafe impl RefEncode for CVPlanarComponentInfo {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvplanarpixelbufferinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CVPlanarPixelBufferInfo {
     pub componentInfo: [CVPlanarComponentInfo; 1],
 }
@@ -281,7 +281,7 @@ unsafe impl RefEncode for CVPlanarPixelBufferInfo {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvplanarpixelbufferinfo_ycbcrplanar?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CVPlanarPixelBufferInfo_YCbCrPlanar {
     pub componentInfoY: CVPlanarComponentInfo,
     pub componentInfoCb: CVPlanarComponentInfo,
@@ -307,7 +307,7 @@ unsafe impl RefEncode for CVPlanarPixelBufferInfo_YCbCrPlanar {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvplanarpixelbufferinfo_ycbcrbiplanar?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CVPlanarPixelBufferInfo_YCbCrBiPlanar {
     pub componentInfoY: CVPlanarComponentInfo,
     pub componentInfoCbCr: CVPlanarComponentInfo,

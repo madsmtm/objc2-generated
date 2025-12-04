@@ -2028,7 +2028,7 @@ unsafe impl RefEncode for MTLAccelerationStructureInstanceDescriptorType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotioninstancedescriptor?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLAccelerationStructureMotionInstanceDescriptor {
     /// Instance options
     pub options: MTLAccelerationStructureInstanceOptions,

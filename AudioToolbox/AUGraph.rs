@@ -265,7 +265,7 @@ pub const kAUNodeInteraction_InputCallback: u32 = 2;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitnodeconnection?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AudioUnitNodeConnection {
     pub sourceNode: AUNode,
     pub sourceOutputNumber: u32,
@@ -304,7 +304,7 @@ pub type AUNodeConnection = AudioUnitNodeConnection;
     feature = "objc2-core-audio-types"
 ))]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AUNodeRenderCallback {
     pub destNode: AUNode,
     pub destInputNumber: AudioUnitElement,

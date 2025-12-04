@@ -33,7 +33,7 @@ pub type MusicDeviceInstrumentID = u32;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicestdnoteparams?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MusicDeviceStdNoteParams {
     pub argCount: u32,
     pub mPitch: f32,
@@ -65,7 +65,7 @@ unsafe impl RefEncode for MusicDeviceStdNoteParams {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/noteparamscontrolvalue?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NoteParamsControlValue {
     pub mID: AudioUnitParameterID,
     pub mValue: AudioUnitParameterValue,
@@ -112,7 +112,7 @@ unsafe impl RefEncode for NoteParamsControlValue {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicdevicenoteparams?language=objc)
 #[cfg(feature = "AUComponent")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MusicDeviceNoteParams {
     pub argCount: u32,
     pub mPitch: f32,

@@ -14,7 +14,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkcoordinatespan?language=objc)
 #[cfg(feature = "objc2-core-location")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MKCoordinateSpan {
     pub latitudeDelta: CLLocationDegrees,
     pub longitudeDelta: CLLocationDegrees,
@@ -36,7 +36,7 @@ unsafe impl RefEncode for MKCoordinateSpan {
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkcoordinateregion?language=objc)
 #[cfg(feature = "objc2-core-location")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MKCoordinateRegion {
     pub center: CLLocationCoordinate2D,
     pub span: MKCoordinateSpan,
@@ -94,7 +94,7 @@ impl MKCoordinateRegion {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmappoint?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MKMapPoint {
     pub x: c_double,
     pub y: c_double,
@@ -110,7 +110,7 @@ unsafe impl RefEncode for MKMapPoint {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsize?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MKMapSize {
     pub width: c_double,
     pub height: c_double,
@@ -126,7 +126,7 @@ unsafe impl RefEncode for MKMapSize {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MKMapRect {
     pub origin: MKMapPoint,
     pub size: MKMapSize,

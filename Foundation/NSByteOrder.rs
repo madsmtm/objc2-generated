@@ -49,7 +49,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsswappedfloat?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSSwappedFloat {
     pub v: c_uint,
 }
@@ -68,7 +68,7 @@ unsafe impl Sync for NSSwappedFloat {}
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsswappeddouble?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSSwappedDouble {
     pub v: c_ulonglong,
 }

@@ -19,7 +19,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaycoord_t?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct PGDisplayCoord_t {
     pub x: u16,
     pub y: u16,
