@@ -48,7 +48,7 @@ cf_objc2_type!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachabilitycontext?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct SCNetworkReachabilityContext {
     pub version: CFIndex,
     pub info: *mut c_void,

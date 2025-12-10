@@ -39,7 +39,7 @@ unsafe impl RefEncode for CGToneMapping {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontenttonemappinginfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CGContentToneMappingInfo {
     pub method: CGToneMapping,
     pub options: *const CFDictionary,

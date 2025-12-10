@@ -35,7 +35,7 @@ unsafe impl RefEncode for CE_GeneralNameType {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_othername?language=objc)
 #[cfg(feature = "SecAsn1Types")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CE_OtherName {
     pub typeId: SecAsn1Oid,
     pub value: SecAsn1Item,
@@ -57,7 +57,7 @@ unsafe impl RefEncode for CE_OtherName {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_generalname?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CE_GeneralName {
     pub nameType: CE_GeneralNameType,
     pub berEncoded: CSSM_BOOL,
@@ -243,7 +243,7 @@ unsafe impl RefEncode for CE_BasicConstraints {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_policyqualifierinfo?language=objc)
 #[cfg(feature = "SecAsn1Types")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CE_PolicyQualifierInfo {
     pub policyQualifierId: SecAsn1Oid,
     pub qualifier: SecAsn1Item,
@@ -514,7 +514,7 @@ unsafe impl RefEncode for CE_CRLDistPointsSyntax {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_accessdescription?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CE_AccessDescription {
     pub accessMethod: SecAsn1Oid,
     pub accessLocation: CE_GeneralName,
@@ -859,7 +859,7 @@ unsafe impl RefEncode for CE_NameConstraints {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/ce_policymapping?language=objc)
 #[cfg(feature = "SecAsn1Types")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CE_PolicyMapping {
     pub issuerDomainPolicy: SecAsn1Oid,
     pub subjectDomainPolicy: SecAsn1Oid,

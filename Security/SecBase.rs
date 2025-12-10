@@ -176,7 +176,7 @@ pub type SecKeychainAttrType = OSType;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainattribute?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct SecKeychainAttribute {
     pub tag: SecKeychainAttrType,
     pub length: u32,
@@ -211,7 +211,7 @@ pub type SecKeychainAttributePtr = *mut SecKeychainAttribute;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/seckeychainattributelist?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct SecKeychainAttributeList {
     pub count: u32,
     pub attr: *mut SecKeychainAttribute,

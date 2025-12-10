@@ -95,7 +95,7 @@ pub type VTDecompressionOutputCallback = Option<
 ))]
 #[repr(C, packed(4))]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct VTDecompressionOutputCallbackRecord {
     pub decompressionOutputCallback: VTDecompressionOutputCallback,
     pub decompressionOutputRefCon: *mut c_void,

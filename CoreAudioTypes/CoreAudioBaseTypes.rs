@@ -100,7 +100,7 @@ unsafe impl RefEncode for AudioValueTranslation {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiobuffer?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioBuffer {
     pub mNumberChannels: u32,
     pub mDataByteSize: u32,
@@ -128,7 +128,7 @@ unsafe impl RefEncode for AudioBuffer {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/audiobufferlist?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioBufferList {
     pub mNumberBuffers: u32,
     pub mBuffers: [AudioBuffer; 1],

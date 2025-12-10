@@ -363,7 +363,7 @@ unsafe impl RefEncode for AudioUnitExternalBuffer {
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-audio-types"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AURenderCallbackStruct {
     pub inputProc: AURenderCallback,
     pub inputProcRefCon: *mut c_void,
@@ -394,7 +394,7 @@ unsafe impl RefEncode for AURenderCallbackStruct {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aupreset?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AUPreset {
     pub presetNumber: i32,
     pub presetName: *const CFString,
@@ -592,7 +592,7 @@ pub type HostCallback_GetTransportState2 = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/hostcallbackinfo?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct HostCallbackInfo {
     pub hostUserData: *mut c_void,
     pub beatAndTempoProc: HostCallback_GetBeatAndTempo,
@@ -1115,7 +1115,7 @@ pub const kAudioUnitParameterName_Full: c_int = -1;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiounitparameternameinfo?language=objc)
 #[cfg(all(feature = "AUComponent", feature = "objc2-core-foundation"))]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioUnitParameterNameInfo {
     pub inID: AudioUnitParameterID,
     pub inDesiredLength: i32,

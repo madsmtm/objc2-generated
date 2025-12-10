@@ -304,7 +304,7 @@ pub type AUNodeConnection = AudioUnitNodeConnection;
     feature = "objc2-core-audio-types"
 ))]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AUNodeRenderCallback {
     pub destNode: AUNode,
     pub destInputNumber: AudioUnitElement,

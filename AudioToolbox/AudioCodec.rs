@@ -67,7 +67,7 @@ pub type AudioCodecPropertyID = u32;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodecmagiccookieinfo?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioCodecMagicCookieInfo {
     pub mMagicCookieSize: u32,
     pub mMagicCookie: *const c_void,

@@ -66,7 +66,7 @@ unsafe impl RefEncode for AudioServerPlugInCustomPropertyInfo {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioserverpluginclientinfo?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioServerPlugInClientInfo {
     pub mClientID: u32,
     pub mProcessID: libc::pid_t,

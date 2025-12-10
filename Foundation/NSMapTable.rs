@@ -471,7 +471,7 @@ pub unsafe extern "C-unwind" fn NSAllMapTableValues(table: &NSMapTable) -> Retai
 #[cfg(feature = "NSString")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct NSMapTableKeyCallBacks {
     pub hash:
         Option<unsafe extern "C-unwind" fn(NonNull<NSMapTable>, NonNull<c_void>) -> NSUInteger>,

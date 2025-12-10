@@ -344,7 +344,7 @@ pub const CSSM_ADDR_NAME: c_uint = 4;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_net_address {
     pub AddressType: CSSM_NET_ADDRESS_TYPE,
     pub Address: SecAsn1Item,
@@ -1113,7 +1113,7 @@ pub const CSSM_CL_CUSTOM_CERT_ENCODING: c_uint = 32768;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_encoded_cert {
     pub CertType: CSSM_CERT_TYPE,
     pub CertEncoding: CSSM_CERT_ENCODING,
@@ -1527,7 +1527,7 @@ pub type CSSM_AUTHORIZATIONGROUP_PTR = *mut cssm_authorizationgroup;
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_acl_validity_period {
     pub StartDate: SecAsn1Item,
     pub EndDate: SecAsn1Item,
@@ -2496,7 +2496,7 @@ pub type CSSM_KEYHEADER_PTR = *mut cssm_keyheader;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_key {
     pub KeyHeader: CSSM_KEYHEADER,
     pub KeyData: SecAsn1Item,
@@ -3019,7 +3019,7 @@ pub const CSSM_PKCS_OAEP_PSOURCE_Pspecified: c_uint = 1;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_pkcs1_oaep_params {
     pub HashAlgorithm: uint32,
     pub HashParams: SecAsn1Item,
@@ -3117,7 +3117,7 @@ pub const CSSM_VALUE_NOT_AVAILABLE: c_int = -1;
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_pkcs5_pbkdf1_params {
     pub Passphrase: SecAsn1Item,
     pub InitVector: SecAsn1Item,
@@ -3157,7 +3157,7 @@ pub const CSSM_PKCS5_PBKDF2_PRF_HMAC_SHA1: c_uint = 0;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_pkcs5_pbkdf2_params {
     pub Passphrase: SecAsn1Item,
     pub PseudoRandomFunction: CSSM_PKCS5_PBKDF2_PRF,
@@ -3190,7 +3190,7 @@ pub type CSSM_PKCS5_PBKDF2_PARAMS_PTR = *mut cssm_pkcs5_pbkdf2_params;
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_kea_derive_params {
     pub Rb: SecAsn1Item,
     pub Yb: SecAsn1Item,
@@ -3296,7 +3296,7 @@ pub type CSSM_OID_PTR = *mut SecAsn1Oid;
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_field {
     pub FieldOid: SecAsn1Oid,
     pub FieldValue: SecAsn1Item,
@@ -3556,7 +3556,7 @@ pub const CSSM_CRL_ENCODING_MULTIPLE: c_uint = 32766;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_encoded_crl {
     pub CrlType: CSSM_CRL_TYPE,
     pub CrlEncoding: CSSM_CRL_ENCODING,
@@ -4239,7 +4239,7 @@ pub const CSSM_TP_CERTCHANGE_NOT_AUTHORIZED: c_uint = 5;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_tp_certchange_output {
     pub ActionStatus: CSSM_TP_CERTCHANGE_STATUS,
     pub RevokeInfo: CSSM_FIELD,
@@ -4783,7 +4783,7 @@ pub type CSSM_CERT_BUNDLE_HEADER_PTR = *mut cssm_cert_bundle_header;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_cert_bundle {
     pub BundleHeader: CSSM_CERT_BUNDLE_HEADER,
     pub Bundle: SecAsn1Item,

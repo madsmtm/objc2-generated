@@ -285,7 +285,7 @@ pub const kAudioFileMarkerType_Generic: u32 = 0;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilemarker?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioFileMarker {
     pub mFramePosition: f64,
     pub mName: *const CFString,
@@ -328,7 +328,7 @@ unsafe impl RefEncode for AudioFileMarker {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilemarkerlist?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub struct AudioFileMarkerList {
     pub mSMPTE_TimeType: u32,
     pub mNumberMarkers: u32,
