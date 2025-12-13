@@ -57,9 +57,9 @@ impl CPTemplate {
         /// `tabTitle`is specified, the tab will inherit the template's title, if any.
         ///
         ///
-        /// Note: Your template should specify either a
-        /// `tabSystemItem`OR both a
-        /// `tabImage`and
+        /// Note: Your template should specify a
+        /// `tabSystemItem`OR a
+        /// `tabImage`OR a
         /// `tabTitle.`
         #[unsafe(method(tabTitle))]
         #[unsafe(method_family = none)]
@@ -78,9 +78,9 @@ impl CPTemplate {
         /// the image specified in this template. If a tabSystemItem is also specified, tabImage will take precedence.
         ///
         ///
-        /// Note: Your template should specify either a
-        /// `tabSystemItem`OR both a
-        /// `tabImage`and
+        /// Note: Your template should specify a
+        /// `tabSystemItem`OR a
+        /// `tabImage`OR a
         /// `tabTitle.`
         #[unsafe(method(tabImage))]
         #[unsafe(method_family = none)]
@@ -98,9 +98,9 @@ impl CPTemplate {
         /// the system image AND system title specified in this template.
         ///
         ///
-        /// Note: Your template should specify either a
-        /// `tabSystemItem`OR both a
-        /// `tabImage`and
+        /// Note: Your template should specify a
+        /// `tabSystemItem`OR a
+        /// `tabImage`OR a
         /// `tabTitle.`
         #[unsafe(method(tabSystemItem))]
         #[unsafe(method_family = none)]

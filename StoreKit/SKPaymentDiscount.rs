@@ -10,7 +10,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymentdiscount?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
+    #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)."]
     pub struct SKPaymentDiscount;
 );
 
@@ -24,7 +24,7 @@ extern_conformance!(
 
 impl SKPaymentDiscount {
     extern_methods!(
-        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)."]
         #[unsafe(method(initWithIdentifier:keyIdentifier:nonce:signature:timestamp:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIdentifier_keyIdentifier_nonce_signature_timestamp(
@@ -41,7 +41,7 @@ impl SKPaymentDiscount {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)."]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;
@@ -51,7 +51,7 @@ impl SKPaymentDiscount {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)."]
         #[unsafe(method(keyIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn keyIdentifier(&self) -> Retained<NSString>;
@@ -61,7 +61,7 @@ impl SKPaymentDiscount {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)."]
         #[unsafe(method(nonce))]
         #[unsafe(method_family = none)]
         pub unsafe fn nonce(&self) -> Retained<NSUUID>;
@@ -71,7 +71,7 @@ impl SKPaymentDiscount {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)."]
         #[unsafe(method(signature))]
         #[unsafe(method_family = none)]
         pub unsafe fn signature(&self) -> Retained<NSString>;
@@ -81,7 +81,7 @@ impl SKPaymentDiscount {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)"]
+        #[deprecated = "Create a Product.PurchaseOption.promotionalOffer to use in Product.purchase(confirmIn:options:)."]
         #[unsafe(method(timestamp))]
         #[unsafe(method_family = none)]
         pub unsafe fn timestamp(&self) -> Retained<NSNumber>;

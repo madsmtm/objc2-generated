@@ -1138,6 +1138,8 @@ pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierHighHeartRateEvent;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierHotFlashes;
 #[cfg(feature = "HKTypeIdentifiers")]
+pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierHypertensionEvent;
+#[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierInfrequentMenstrualCycles;
 #[cfg(feature = "HKTypeIdentifiers")]
 pub use self::__HKTypeIdentifiers::HKCategoryTypeIdentifierIntermenstrualBleeding;

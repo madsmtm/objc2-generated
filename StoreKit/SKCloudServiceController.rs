@@ -9,22 +9,22 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudserviceauthorizationstatus?language=objc)
 // NS_ENUM
-#[deprecated = "Use MusicAuthorization.Status from MusicKit"]
+#[deprecated = "Use MusicAuthorization.Status from MusicKit."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKCloudServiceAuthorizationStatus(pub NSInteger);
 impl SKCloudServiceAuthorizationStatus {
     #[doc(alias = "SKCloudServiceAuthorizationStatusNotDetermined")]
-    #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
+    #[deprecated = "Use MusicAuthorization.Status from MusicKit."]
     pub const NotDetermined: Self = Self(0);
     #[doc(alias = "SKCloudServiceAuthorizationStatusDenied")]
-    #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
+    #[deprecated = "Use MusicAuthorization.Status from MusicKit."]
     pub const Denied: Self = Self(1);
     #[doc(alias = "SKCloudServiceAuthorizationStatusRestricted")]
-    #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
+    #[deprecated = "Use MusicAuthorization.Status from MusicKit."]
     pub const Restricted: Self = Self(2);
     #[doc(alias = "SKCloudServiceAuthorizationStatusAuthorized")]
-    #[deprecated = "Use MusicAuthorization.Status from MusicKit"]
+    #[deprecated = "Use MusicAuthorization.Status from MusicKit."]
     pub const Authorized: Self = Self(3);
 }
 
@@ -38,23 +38,23 @@ unsafe impl RefEncode for SKCloudServiceAuthorizationStatus {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapability?language=objc)
 // NS_OPTIONS
-#[deprecated = "Use MusicSubscription from MusicKit"]
+#[deprecated = "Use MusicSubscription from MusicKit."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKCloudServiceCapability(pub NSUInteger);
 bitflags::bitflags! {
     impl SKCloudServiceCapability: NSUInteger {
         #[doc(alias = "SKCloudServiceCapabilityNone")]
-#[deprecated = "Use MusicSubscription from MusicKit"]
+#[deprecated = "Use MusicSubscription from MusicKit."]
         const None = 0;
         #[doc(alias = "SKCloudServiceCapabilityMusicCatalogPlayback")]
-#[deprecated = "Use MusicSubscription from MusicKit"]
+#[deprecated = "Use MusicSubscription from MusicKit."]
         const MusicCatalogPlayback = 1<<0;
         #[doc(alias = "SKCloudServiceCapabilityMusicCatalogSubscriptionEligible")]
-#[deprecated = "Use the canBecomeSubscriber property of MusicSubscription from MusicKit"]
+#[deprecated = "Use the canBecomeSubscriber property of MusicSubscription from MusicKit."]
         const MusicCatalogSubscriptionEligible = 1<<1;
         #[doc(alias = "SKCloudServiceCapabilityAddToCloudMusicLibrary")]
-#[deprecated = "Use MusicSubscription from MusicKit"]
+#[deprecated = "Use MusicSubscription from MusicKit."]
         const AddToCloudMusicLibrary = 1<<8;
     }
 }
@@ -71,7 +71,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "Use MusicKit"]
+    #[deprecated = "Use MusicKit."]
     pub struct SKCloudServiceController;
 );
 
@@ -81,13 +81,13 @@ extern_conformance!(
 
 impl SKCloudServiceController {
     extern_methods!(
-        #[deprecated = "Use MusicAuthorization.currentStatus from MusicKit"]
+        #[deprecated = "Use MusicAuthorization.currentStatus from MusicKit."]
         #[unsafe(method(authorizationStatus))]
         #[unsafe(method_family = none)]
         pub unsafe fn authorizationStatus() -> SKCloudServiceAuthorizationStatus;
 
         #[cfg(feature = "block2")]
-        #[deprecated = "Use MusicAuthorization.request() from MusicKit"]
+        #[deprecated = "Use MusicAuthorization.request() from MusicKit."]
         #[unsafe(method(requestAuthorization:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAuthorization(
@@ -95,7 +95,7 @@ impl SKCloudServiceController {
         );
 
         #[cfg(feature = "block2")]
-        #[deprecated = "Use MusicSubscription.current from MusicKit"]
+        #[deprecated = "Use MusicSubscription.current from MusicKit."]
         #[unsafe(method(requestCapabilitiesWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestCapabilitiesWithCompletionHandler(
@@ -104,7 +104,7 @@ impl SKCloudServiceController {
         );
 
         #[cfg(feature = "block2")]
-        #[deprecated = "Use MusicDataRequest.currentCountryCode from MusicKit"]
+        #[deprecated = "Use MusicDataRequest.currentCountryCode from MusicKit."]
         #[unsafe(method(requestStorefrontCountryCodeWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestStorefrontCountryCodeWithCompletionHandler(
@@ -113,7 +113,7 @@ impl SKCloudServiceController {
         );
 
         #[cfg(feature = "block2")]
-        #[deprecated = "Use Storefront.current.id"]
+        #[deprecated = "Use Storefront.current.id."]
         #[unsafe(method(requestStorefrontIdentifierWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestStorefrontIdentifierWithCompletionHandler(
@@ -122,7 +122,7 @@ impl SKCloudServiceController {
         );
 
         #[cfg(feature = "block2")]
-        #[deprecated = "Use MusicKit"]
+        #[deprecated = "Use MusicKit."]
         #[unsafe(method(requestUserTokenForDeveloperToken:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestUserTokenForDeveloperToken_completionHandler(
@@ -158,18 +158,18 @@ impl SKCloudServiceController {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicecapabilitiesdidchangenotification?language=objc)
-    #[deprecated = "Use MusicSubscription.subscriptionUpdates from MusicKit"]
+    #[deprecated = "Use MusicSubscription.subscriptionUpdates from MusicKit."]
     pub static SKCloudServiceCapabilitiesDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstorefrontcountrycodedidchangenotification?language=objc)
-    #[deprecated = "Use Storefront.updates"]
+    #[deprecated = "Use Storefront.updates."]
     pub static SKStorefrontCountryCodeDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstorefrontidentifierdidchangenotification?language=objc)
-    #[deprecated = "Use Storefront.updates"]
+    #[deprecated = "Use Storefront.updates."]
     pub static SKStorefrontIdentifierDidChangeNotification: &'static NSNotificationName;
 }

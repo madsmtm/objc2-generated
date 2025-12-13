@@ -294,7 +294,7 @@ impl ASCredentialProviderViewController {
         /// This method will be called for handling passkey updates when a relying party reports an update using the `ASCredentialUpdater` API.
         /// This update should be handled in the background, so no blocking UI or error should ever be shown.
         ///
-        /// - Parameter relyingParty: Relying party (website) that the crendential is saved for.
+        /// - Parameter relyingParty: Relying party (website) that the credential is saved for.
         /// - Parameter userHandle: User identifier.
         /// - Parameter newName: The new user name for the credential.
         ///
@@ -321,7 +321,7 @@ impl ASCredentialProviderViewController {
         /// You may hide or remove this credential.
         /// This update should be handled in the background, so no blocking UI or error should ever be shown.
         ///
-        /// - Parameter relyingParty: Relying party (website) that the crendential is saved for.
+        /// - Parameter relyingParty: Relying party (website) that the credential is saved for.
         /// - Parameter credentialID: An identifier that uniquely identifies the passkey.
         ///
         /// To indicate support for this feature, add `SupportsCredentialUpdate` under the
@@ -346,7 +346,7 @@ impl ASCredentialProviderViewController {
         /// You may hide or remove any credential not present in the accepted credentials list.
         /// This update should be handled in the background, so no blocking UI or error should ever be shown.
         ///
-        /// - Parameter relyingParty: Relying party (website) that the crendential is saved for.
+        /// - Parameter relyingParty: Relying party (website) that the credential is saved for.
         /// - Parameter userHandle: User identifier.
         /// - Parameter acceptedCredentialIDs: An array of identifiers that uniquely identifies the accepted credentials.
         ///
@@ -390,6 +390,106 @@ impl ASCredentialProviderViewController {
             &self,
             domain: &NSString,
             user_name: &NSString,
+        );
+
+        #[cfg(feature = "ASSavePasswordRequest")]
+        /// Attempt to save a password credential.
+        ///
+        /// To return results, you must call  ``ASCredentialProviderExtensionContext/completeSavePasswordRequest(completionHandler:)``.
+        /// - Parameter request: The request to save a password.
+        /// - Note: When this method is called, your extension's view controller is not present on the screen.
+        /// You can request user interaction by calling ``ASCredentialProviderExtensionContext/cancelRequest(with:)``, using ``ASExtensionError/userInteractionRequired``.
+        ///
+        /// To indicate support for this feature, add `SupportsSavePasswordCredentials` under the
+        /// `ASCredentialProviderExtensionCapabilities` dictionary.
+        ///
+        /// Info.plist
+        /// ├─ NSExtension
+        /// ├─ NSExtensionAttributes
+        /// ├─ ASCredentialProviderExtensionCapabilities
+        /// ├─ SupportsSavePasswordCredentials => true
+        #[unsafe(method(performSavePasswordRequestWithoutUserInteractionIfPossible:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn performSavePasswordRequestWithoutUserInteractionIfPossible(
+            &self,
+            save_password_request: &ASSavePasswordRequest,
+        );
+
+        #[cfg(feature = "ASSavePasswordRequest")]
+        /// Prepares the interface to display a prompt to save a password credential.
+        ///
+        /// The system calls this method to tell your extension’s view controller to prepare to present a prompt to save a password credential.
+        /// After calling this method, the system presents the view controller to the user.
+        ///
+        /// Upon success, call ``ASCredentialProviderExtensionContext/completeSavePasswordRequest(completionHandler:)``.
+        ///
+        /// Always provide a way for someone to cancel the operation from your view controller, for example, by including a Cancel button in the navigation bar.
+        /// When someone cancels the operation, call ``ASCredentialProviderExtensionContext/cancelRequest(with:)``, using ``ASExtensionError/userCanceled``.
+        /// - Parameter request: The request to save a password.
+        #[unsafe(method(prepareInterfaceForSavePasswordRequest:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn prepareInterfaceForSavePasswordRequest(
+            &self,
+            save_password_request: &ASSavePasswordRequest,
+        );
+
+        #[cfg(feature = "ASGeneratePasswordsRequest")]
+        /// Attempt to generate passwords based on developer-specified rules.
+        ///
+        /// To return results, you must call ``ASCredentialProviderExtensionContext/completeGeneratePasswordRequest(results:completionHandler:)`.
+        /// - Parameter request: The request to generate a password.
+        /// - Note: When this method is called, your extension's view controller is not present on the screen.
+        /// ``ASExtensionError/userInteractionRequired`` will not be honored and treated as a failure.
+        /// - Note: You should not update or replace any existing credentials when this API is called.
+        ///
+        /// To indicate support for this feature, add `SupportsGeneratePasswordCredentials` under the
+        /// `ASCredentialProviderExtensionCapabilities` dictionary.
+        ///
+        /// Info.plist
+        /// ├─ NSExtension
+        /// ├─ NSExtensionAttributes
+        /// ├─ ASCredentialProviderExtensionCapabilities
+        /// ├─ SupportsSavePasswordCredentials => true
+        /// ├─ SupportsGeneratePasswordCredentials => true
+        #[unsafe(method(performGeneratePasswordsRequestWithoutUserInteraction:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn performGeneratePasswordsRequestWithoutUserInteraction(
+            &self,
+            generate_passwords_request: &ASGeneratePasswordsRequest,
+        );
+
+        #[cfg(feature = "ASGeneratePasswordsRequest")]
+        /// Prepares the interface to display a prompt to generate passwords based on developer-specified rules.
+        ///
+        /// The system calls this method to tell your extension’s view controller to prepare to present a prompt to generate passwords.
+        /// After calling this method, the system presents the view controller to the user.
+        ///
+        /// Upon success, call ``ASCredentialProviderExtensionContext/completeGeneratePasswordRequest(results:completionHandler:)``.
+        ///
+        /// Always provide a way for someone to cancel the operation from your view controller, for example, by including a Cancel button in the navigation bar.
+        /// When someone cancels the operation, call ``ASCredentialProviderExtensionContext/cancelRequest(with:)``, using ``ASExtensionError/userCanceled``.
+        /// - Parameter request: The request to generate a password.
+        /// - Note: This flow can only be initiated by the user. It will not be triggered from `-performGeneratePasswordsRequestWithoutUserInteraction:`
+        /// - Note: You should not update or replace any existing credentials when this API is called.
+        ///
+        /// Support of this feature is implied by default when adding support for generating passwords.
+        /// You can opt out of showing UI by adding the `SupportsGeneratePasswordCredentialsWithUI` under the
+        /// `ASCredentialProviderExtensionCapabilities` dictionary.
+        /// When opting out, you must provide a value of `false` as the default value for this field is `true`.
+        /// When you opt out, the OS will provide a relevant experience after requesting generated passwords from your extension.
+        ///
+        /// Info.plist
+        /// ├─ NSExtension
+        /// ├─ NSExtensionAttributes
+        /// ├─ ASCredentialProviderExtensionCapabilities
+        /// ├─ SupportsSavePasswordCredentials => true
+        /// ├─ SupportsGeneratePasswordCredentials => true
+        /// ├─ SupportsGeneratePasswordCredentialsWithUI => true
+        #[unsafe(method(prepareInterfaceForGeneratePasswordsRequest:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn prepareInterfaceForGeneratePasswordsRequest(
+            &self,
+            generate_passwords_request: &ASGeneratePasswordsRequest,
         );
     );
 }

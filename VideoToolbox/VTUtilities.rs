@@ -47,8 +47,9 @@ extern "C-unwind" {
     ///
     /// Parameter `codecType`: The CMVideoCodecType corresponding the format being requested
     ///
-    /// This call will find and register a video decoder for the provided CMVideoCodecType if
-    /// such a decoder is available on the system but not registered by default.
+    /// This call will register a video decoder for the provided CMVideoCodecType if such a decoder is present on the system but not registered by default.
+    /// You can call VTIsHardwareDecodeAvailable to confirm availability of the decoder after calling VTRegisterSupplementalVideoDecoderIfAvailable.
+    /// Supplemental video decoders registered through this API will not work in applications which have not performed this opt in.  For broadest ecosystem compatibility, we encourage use of platform-standard formats such as H.264, HEVC, and AV1.
     #[cfg(feature = "objc2-core-media")]
     pub fn VTRegisterSupplementalVideoDecoderIfAvailable(codec_type: CMVideoCodecType);
 }

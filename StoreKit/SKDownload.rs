@@ -9,28 +9,28 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadstate?language=objc)
 // NS_CLOSED_ENUM
-#[deprecated = "Hosted content is no longer supported"]
+#[deprecated = "Hosted content is no longer supported."]
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum SKDownloadState {
     #[doc(alias = "SKDownloadStateWaiting")]
-    #[deprecated = "Hosted content is no longer supported"]
+    #[deprecated = "Hosted content is no longer supported."]
     #[default]
     Waiting = 0,
     #[doc(alias = "SKDownloadStateActive")]
-    #[deprecated = "Hosted content is no longer supported"]
+    #[deprecated = "Hosted content is no longer supported."]
     Active = 1,
     #[doc(alias = "SKDownloadStatePaused")]
-    #[deprecated = "Hosted content is no longer supported"]
+    #[deprecated = "Hosted content is no longer supported."]
     Paused = 2,
     #[doc(alias = "SKDownloadStateFinished")]
-    #[deprecated = "Hosted content is no longer supported"]
+    #[deprecated = "Hosted content is no longer supported."]
     Finished = 3,
     #[doc(alias = "SKDownloadStateFailed")]
-    #[deprecated = "Hosted content is no longer supported"]
+    #[deprecated = "Hosted content is no longer supported."]
     Failed = 4,
     #[doc(alias = "SKDownloadStateCancelled")]
-    #[deprecated = "Hosted content is no longer supported"]
+    #[deprecated = "Hosted content is no longer supported."]
     Cancelled = 5,
 }
 
@@ -44,7 +44,7 @@ unsafe impl RefEncode for SKDownloadState {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownloadtimeremainingunknown?language=objc)
-    #[deprecated = "Hosted content is no longer supported"]
+    #[deprecated = "Hosted content is no longer supported."]
     pub static SKDownloadTimeRemainingUnknown: NSTimeInterval;
 }
 
@@ -52,7 +52,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skdownload?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "Hosted content is no longer supported"]
+    #[deprecated = "Hosted content is no longer supported."]
     pub struct SKDownload;
 );
 
@@ -62,7 +62,7 @@ extern_conformance!(
 
 impl SKDownload {
     extern_methods!(
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> SKDownloadState;
@@ -77,53 +77,53 @@ impl SKDownload {
         #[unsafe(method_family = none)]
         pub unsafe fn contentLength(&self) -> Retained<NSNumber>;
 
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(expectedContentLength))]
         #[unsafe(method_family = none)]
         pub unsafe fn expectedContentLength(&self) -> c_longlong;
 
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(contentIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentIdentifier(&self) -> Retained<NSString>;
 
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(contentURL))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentURL(&self) -> Option<Retained<NSURL>>;
 
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(contentVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentVersion(&self) -> Retained<NSString>;
 
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
 
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(progress))]
         #[unsafe(method_family = none)]
         pub unsafe fn progress(&self) -> c_float;
 
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(timeRemaining))]
         #[unsafe(method_family = none)]
         pub unsafe fn timeRemaining(&self) -> NSTimeInterval;
 
         #[cfg(feature = "SKPaymentTransaction")]
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(transaction))]
         #[unsafe(method_family = none)]
         pub unsafe fn transaction(&self) -> Retained<SKPaymentTransaction>;
 
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(contentURLForProductID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn contentURLForProductID(product_id: &NSString) -> Option<Retained<NSURL>>;
 
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(deleteContentForProductID:))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteContentForProductID(product_id: &NSString);

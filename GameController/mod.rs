@@ -1158,6 +1158,8 @@ pub use self::__GCMouseInput::GCMouseMoved;
 pub use self::__GCPhysicalInputElement::GCPhysicalInputElement;
 #[cfg(feature = "GCPhysicalInputElement")]
 pub use self::__GCPhysicalInputElement::GCPhysicalInputElementCollection;
+#[cfg(feature = "GCPhysicalInputExtents")]
+pub use self::__GCPhysicalInputExtents::GCPhysicalInputExtents;
 #[cfg(feature = "GCPhysicalInputProfile")]
 pub use self::__GCPhysicalInputProfile::GCPhysicalInputProfile;
 #[cfg(feature = "GCPhysicalInputSource")]

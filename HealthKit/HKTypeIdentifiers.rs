@@ -649,6 +649,11 @@ extern "C" {
 }
 
 extern "C" {
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierhypertensionevent?language=objc)
+    pub static HKCategoryTypeIdentifierHypertensionEvent: &'static HKCategoryTypeIdentifier;
+}
+
+extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkcategorytypeidentifierirregularheartrhythmevent?language=objc)
     pub static HKCategoryTypeIdentifierIrregularHeartRhythmEvent: &'static HKCategoryTypeIdentifier;
 }

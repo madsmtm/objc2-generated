@@ -12,7 +12,7 @@ extern_class!(
     #[unsafe(super(SKRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SKRequest")]
-    #[deprecated = "Use Transaction.all and AppTransaction.shared"]
+    #[deprecated = "Use Transaction.all and AppTransaction.shared."]
     pub struct SKReceiptRefreshRequest;
 );
 
@@ -27,7 +27,7 @@ impl SKReceiptRefreshRequest {
         /// # Safety
         ///
         /// `properties` generic should be of the correct type.
-        #[deprecated = "Use Transaction.all and AppTransaction.shared"]
+        #[deprecated = "Use Transaction.all and AppTransaction.shared."]
         #[unsafe(method(initWithReceiptProperties:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithReceiptProperties(
@@ -35,7 +35,7 @@ impl SKReceiptRefreshRequest {
             properties: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
 
-        #[deprecated = "Use Transaction.all and AppTransaction.shared"]
+        #[deprecated = "Use Transaction.all and AppTransaction.shared."]
         #[unsafe(method(receiptProperties))]
         #[unsafe(method_family = none)]
         pub unsafe fn receiptProperties(
@@ -64,18 +64,18 @@ extern "C-unwind" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skreceiptpropertyisexpired?language=objc)
-    #[deprecated = "No longer supported"]
+    #[deprecated = "No longer supported."]
     pub static SKReceiptPropertyIsExpired: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skreceiptpropertyisrevoked?language=objc)
-    #[deprecated = "No longer supported"]
+    #[deprecated = "No longer supported."]
     pub static SKReceiptPropertyIsRevoked: &'static NSString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skreceiptpropertyisvolumepurchase?language=objc)
-    #[deprecated = "No longer supported"]
+    #[deprecated = "No longer supported."]
     pub static SKReceiptPropertyIsVolumePurchase: &'static NSString;
 }

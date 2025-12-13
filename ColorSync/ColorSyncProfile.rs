@@ -602,15 +602,6 @@ impl ColorSyncProfile {
         unsafe { ColorSyncProfileIsHLGBased(self) }
     }
 
-    #[doc(alias = "ColorSyncProfileGetTagCount")]
-    #[inline]
-    pub unsafe fn tag_count(&self) -> usize {
-        extern "C-unwind" {
-            fn ColorSyncProfileGetTagCount(param1: &ColorSyncProfile) -> usize;
-        }
-        unsafe { ColorSyncProfileGetTagCount(self) }
-    }
-
     /// # Safety
     ///
     /// `error` must be a valid pointer or null.
@@ -1128,11 +1119,6 @@ extern "C-unwind" {
 extern "C-unwind" {
     #[deprecated = "renamed to `ColorSyncProfile::is_hlg_based`"]
     pub fn ColorSyncProfileIsHLGBased(param1: &ColorSyncProfile) -> bool;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `ColorSyncProfile::tag_count`"]
-    pub fn ColorSyncProfileGetTagCount(param1: &ColorSyncProfile) -> usize;
 }
 
 extern "C-unwind" {

@@ -92,6 +92,32 @@ impl ASCredentialProviderExtensionContext {
             completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
 
+        #[cfg(feature = "block2")]
+        /// Signal that a password request was successfully saved.
+        /// - parameter completionHandler: An optional block your extension can provide to perform any cleanup work after the system has captured the results.
+        /// The expired parameter is true if the system decides to prematurely end a previous non-expiration invocation of the completion handler.
+        /// - note: You are responsible for updating the ASCredentialIdentityStore.
+        #[unsafe(method(completeSavePasswordRequestWithCompletionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn completeSavePasswordRequestWithCompletionHandler(
+            &self,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+        );
+
+        #[cfg(all(feature = "ASGeneratedPassword", feature = "block2"))]
+        /// Return potential passwords for the given request.
+        /// - parameter results: Potential passwords that the user can select. You can provide multiple options for increased flexibility on the user's behalf.
+        /// These results should be returned in priority order.
+        /// - parameter completionHandler: An optional block your extension can provide to perform any cleanup work after the system has captured the results.
+        /// The expired parameter is true if the system decides to prematurely end a previous non-expiration invocation of the completion handler.
+        #[unsafe(method(completeGeneratePasswordRequestWithResults:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn completeGeneratePasswordRequestWithResults_completionHandler(
+            &self,
+            results: &NSArray<ASGeneratedPassword>,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
+        );
+
         /// Complete the request to configure the extension.
         ///
         /// Calling this method will eventually dismiss the associated view controller.

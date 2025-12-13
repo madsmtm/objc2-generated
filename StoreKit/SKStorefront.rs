@@ -10,7 +10,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skstorefront?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "Use Storefront"]
+    #[deprecated = "Use Storefront."]
     pub struct SKStorefront;
 );
 
@@ -24,12 +24,12 @@ extern_conformance!(
 
 impl SKStorefront {
     extern_methods!(
-        #[deprecated = "Use 'Storefront.countryCode'"]
+        #[deprecated = "Use 'Storefront.countryCode'."]
         #[unsafe(method(countryCode))]
         #[unsafe(method_family = none)]
         pub unsafe fn countryCode(&self) -> Retained<NSString>;
 
-        #[deprecated = "Use 'Storefront.id'"]
+        #[deprecated = "Use 'Storefront.id'."]
         #[unsafe(method(identifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn identifier(&self) -> Retained<NSString>;

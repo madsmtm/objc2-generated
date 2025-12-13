@@ -110,6 +110,9 @@ mod __BETextSuggestion;
 #[cfg(feature = "BEWebAppManifest")]
 #[path = "BEWebAppManifest.rs"]
 mod __BEWebAppManifest;
+#[cfg(feature = "BEWebContentFilter")]
+#[path = "BEWebContentFilter.rs"]
+mod __BEWebContentFilter;
 #[cfg(feature = "BEWebContentProcess")]
 #[path = "BEWebContentProcess.rs"]
 mod __BEWebContentProcess;
@@ -228,5 +231,7 @@ pub use self::__BETextSelectionTypes::BESelectionTouchPhase;
 pub use self::__BETextSuggestion::BETextSuggestion;
 #[cfg(feature = "BEWebAppManifest")]
 pub use self::__BEWebAppManifest::BEWebAppManifest;
+#[cfg(feature = "BEWebContentFilter")]
+pub use self::__BEWebContentFilter::BEWebContentFilter;
 #[cfg(feature = "BEWebContentProcess")]
 pub use self::__BEWebContentProcess::BEWebContentProcess;

@@ -18,6 +18,10 @@ impl ASCredentialServiceIdentifierType {
     pub const Domain: Self = Self(0);
     #[doc(alias = "ASCredentialServiceIdentifierTypeURL")]
     pub const URL: Self = Self(1);
+    /// The service identifier represents an App ID. When a service identifier of this type is provided to your extension for saving a password,
+    /// the ASCredentialServiceIdentifier object will have a non-nil `displayName` property that contains a user friendly name for the app.
+    #[doc(alias = "ASCredentialServiceIdentifierTypeApp")]
+    pub const App: Self = Self(2);
 }
 
 unsafe impl Encode for ASCredentialServiceIdentifierType {
@@ -69,6 +73,28 @@ impl ASCredentialServiceIdentifier {
             identifier: &NSString,
             r#type: ASCredentialServiceIdentifierType,
         ) -> Retained<Self>;
+
+        /// Initializes an ASCredentialServiceIdentifier object.
+        ///
+        /// - Parameters:
+        /// - identifier: The string value for the service identifier.
+        /// - type: The type that the service identifier string represents.
+        /// - displayName: A user visible name that describes the service.
+        #[unsafe(method(initWithIdentifier:type:displayName:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithIdentifier_type_displayName(
+            this: Allocated<Self>,
+            identifier: &NSString,
+            r#type: ASCredentialServiceIdentifierType,
+            display_name: &NSString,
+        ) -> Retained<Self>;
+
+        /// A user visible name for the identifier. For `app` types it will contain the localized name of the app. For `URL` types it will contain the host name of the URL if it contains a valid host.
+        /// For `URL` type identifiers that do not contain a valid host and for `domain` type identifiers, this will be equal to `identifier`.
+        /// This property is meant only as a best effort suggestion for display purposes. It is not used by the system to identify the service or suggest a credential for AutoFill.
+        #[unsafe(method(displayName))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn displayName(&self) -> Option<Retained<NSString>>;
 
         /// Get the identifier.
         ///

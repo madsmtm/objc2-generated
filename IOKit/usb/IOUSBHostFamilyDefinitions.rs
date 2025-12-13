@@ -21,12 +21,12 @@ pub const kIOUSBHostControllerInterfaceEntitlement: &CStr = unsafe {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbbillboardentitlement?language=objc)
 pub const kIOUSBBillboardEntitlement: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.developer.usb.billboard\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostmatchingpropertyspeed?language=objc)
-pub const kUSBHostMatchingPropertySpeed: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"USBSpeed\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostmatchingpropertyporttype?language=objc)
-pub const kUSBHostMatchingPropertyPortType: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"USBPortType\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbhostdeviceclassname?language=objc)
+pub const kIOUSBHostDeviceClassName: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUSBHostDevice\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbhostinterfaceclassname?language=objc)
+pub const kIOUSBHostInterfaceClassName: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUSBHostInterface\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostmatchingpropertyvendorid?language=objc)
 pub const kUSBHostMatchingPropertyVendorID: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"idVendor\0") };
@@ -69,6 +69,12 @@ pub const kUSBHostMatchingPropertyInterfaceProtocol: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostmatchingpropertyinterfacenumber?language=objc)
 pub const kUSBHostMatchingPropertyInterfaceNumber: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"bInterfaceNumber\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostmatchingpropertyspeed?language=objc)
+pub const kUSBHostMatchingPropertySpeed: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"USBSpeed\0") };
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostmatchingpropertyporttype?language=objc)
+pub const kUSBHostMatchingPropertyPortType: &CStr =
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"USBPortType\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostpropertylocationid?language=objc)
 pub const kUSBHostPropertyLocationID: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"locationID\0") };
@@ -301,7 +307,7 @@ pub const kUSBHostPortPropertyOvercurrent: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbHostPortOvercurrent\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostportpropertyportnumber?language=objc)
 pub const kUSBHostPortPropertyPortNumber: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"usb-port-number\0") };
+    unsafe { CStr::from_bytes_with_nul_unchecked(b"port\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostportpropertyremovable?language=objc)
 pub const kUSBHostPortPropertyRemovable: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"removable\0") };
@@ -463,12 +469,6 @@ pub const kUSBHostControllerPropertyInterruptRMBS: &CStr =
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostcontrollerpropertyisochronousrmbs?language=objc)
 pub const kUSBHostControllerPropertyIsochronousRMBS: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"UsbHostControllerIsochronousRMBS\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbhostdeviceclassname?language=objc)
-pub const kIOUSBHostDeviceClassName: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUSBHostDevice\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbhostinterfaceclassname?language=objc)
-pub const kIOUSBHostInterfaceClassName: &CStr =
-    unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUSBHostInterface\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/kusbhostdevicepropertyaddress?language=objc)
 pub const kUSBHostDevicePropertyAddress: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"kUSBAddress\0") };

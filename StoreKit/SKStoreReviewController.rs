@@ -12,7 +12,7 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skstorereviewcontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "Use AppStore.requestReview(in:)"]
+    #[deprecated = "Use AppStore.requestReview(in:)."]
     pub struct SKStoreReviewController;
 );
 
@@ -33,7 +33,7 @@ impl SKStoreReviewController {
         /// Given this may not successfully present an alert to the user, it is not appropriate for use
         /// from a button or any other user action. For presenting a write review form, a deep link is
         /// available to the App Store by appending the query params "action=write-review" to a product URL.
-        #[deprecated = "Use AppStore.requestReview(in:)"]
+        #[deprecated = "Use AppStore.requestReview(in:)."]
         #[unsafe(method(requestReview))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestReview();

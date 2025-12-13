@@ -232,6 +232,15 @@ impl GKAccessPoint {
             &self,
             handler: Option<&block2::DynBlock<dyn Fn()>>,
         );
+
+        #[cfg(feature = "block2")]
+        /// Brings up the Arcade dashboard.
+        #[unsafe(method(triggerAccessPointForArcadeWithHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn triggerAccessPointForArcadeWithHandler(
+            &self,
+            handler: Option<&block2::DynBlock<dyn Fn()>>,
+        );
     );
 }
 

@@ -341,6 +341,25 @@ extern "C" {
 }
 
 extern "C" {
+    /// Appropriate for applications that require simultaneous use of built-in microphone/speaker
+    /// with a secondary audio device that supports both input and output capabilities.
+    ///
+    /// Only valid with ``AVAudioSessionCategoryMultiRoute``.
+    ///
+    /// This mode requires ``AVAudioSessionCategoryOptionAllowBluetoothHFP`` to be set
+    ///
+    /// When this mode is set:
+    /// - The audio route will always include built-in mic/speaker as the primary route
+    /// - Supported secondary route types: ``AVAudioSessionPortHeadsetMic``, ``AVAudioSessionPortHeadphones``, ``AVAudioSessionPortBluetoothLE``, ``AVAudioSessionPortBluetoothHFP``
+    /// - Only routes with both input/output capabilities will be supported
+    /// - Hardware volume controls will adjust volume for both primary and secondary routes
+    /// - System may engage appropriate signal processing for output routes
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionmodedualroute?language=objc)
+    pub static AVAudioSessionModeDualRoute: Option<&'static AVAudioSessionMode>;
+}
+
+extern "C" {
     /// Notification sent to registered listeners when the system has interrupted the audio
     /// session and when the interruption has ended.
     ///
@@ -684,7 +703,8 @@ bitflags::bitflags! {
 /// Controls whether other active audio apps will be interrupted or mixed with when your app's
 /// audio session goes active. Details depend on the category.
 ///
-/// - ``AVAudioSessionCategoryPlayAndRecord`` or ``AVAudioSessionCategoryMultiRoute``:
+/// - ``AVAudioSessionCategoryPlayAndRecord`` or
+/// ``AVAudioSessionCategoryMultiRoute`` with ``AVAudioSessionModeDefault``:
 /// MixWithOthers defaults to false, but can be set to true, allowing other applications to
 /// play in the background while your app has both audio input and output enabled.
 ///
@@ -697,7 +717,8 @@ bitflags::bitflags! {
 /// MixWithOthers defaults to false and cannot be changed.
 ///
 /// MixWithOthers is only valid with ``AVAudioSessionCategoryPlayAndRecord``,
-/// ``AVAudioSessionCategoryPlayback``, and ``AVAudioSessionCategoryMultiRoute``.
+/// ``AVAudioSessionCategoryPlayback``, and
+/// ``AVAudioSessionCategoryMultiRoute`` with ``AVAudioSessionModeDefault``.
         #[doc(alias = "AVAudioSessionCategoryOptionMixWithOthers")]
         const MixWithOthers = 0x1;
 /// Controls whether or not other active audio apps will be ducked when when your app's audio
@@ -714,7 +735,7 @@ bitflags::bitflags! {
 ///
 /// DuckOthers is only valid with ``AVAudioSessionCategoryAmbient``,
 /// ``AVAudioSessionCategoryPlayAndRecord``, ``AVAudioSessionCategoryPlayback``, and
-/// ``AVAudioSessionCategoryMultiRoute``.
+/// ``AVAudioSessionCategoryMultiRoute`` with ``AVAudioSessionModeDefault``.
         #[doc(alias = "AVAudioSessionCategoryOptionDuckOthers")]
         const DuckOthers = 0x2;
 /// Deprecated - please see ``AVAudioSessionCategoryOptionAllowBluetoothHFP``
@@ -764,7 +785,8 @@ bitflags::bitflags! {
 /// goes active, also set ``AVAudioSessionCategoryOptionDuckOthers``.
 ///
 /// Only valid with ``AVAudioSessionCategoryPlayAndRecord``,
-/// ``AVAudioSessionCategoryPlayback``, and ``AVAudioSessionCategoryMultiRoute``.
+/// ``AVAudioSessionCategoryPlayback``, and
+/// ``AVAudioSessionCategoryMultiRoute`` with ``AVAudioSessionModeDefault``.
         #[doc(alias = "AVAudioSessionCategoryOptionInterruptSpokenAudioAndMixWithOthers")]
         const InterruptSpokenAudioAndMixWithOthers = 0x11;
 /// Allows an application to change the default behavior of some audio session categories with
@@ -816,6 +838,20 @@ bitflags::bitflags! {
 /// not the user has granted permission to use microphone input.
         #[doc(alias = "AVAudioSessionCategoryOptionOverrideMutedMicrophoneInterruption")]
         const OverrideMutedMicrophoneInterruption = 0x80;
+/// This option should be used if a session prefers to use FarFieldInput when available.
+/// This option is only valid with categories that support input -
+/// ``AVAudioSessionCategoryPlayAndRecord`` and ``AVAudioSessionCategoryRecord``.
+///
+/// - This option requires ``AVAudioSessionCategoryOptionAllowBluetoothHFP`` to be set.
+/// Otherwise error will be returned.
+///
+/// - Support for this can be queried on input ports via the BluetoothMicrophone interface on a port,
+/// via its member `farFieldCapture.isSupported`.
+///
+/// - Active sessions can see if far-field input is enabled on a bluetooth audio device by querying
+/// the BluetoothMicrophone interface of the input port of the current route for: `farFieldCapture.isEnabled`.
+        #[doc(alias = "AVAudioSessionCategoryOptionFarFieldInput")]
+        const FarFieldInput = 1<<18;
 /// When this option is specified with a category that supports both input and output, the session
 /// will enable full-bandwidth audio in both input
 /// &

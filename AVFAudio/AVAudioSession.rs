@@ -258,8 +258,10 @@ impl AVAudioSession {
         /// The Voice Processor solution is tuned for voice signals, unlike this option, which is tuned for better capture
         /// of wider range of audio signals in the presence of built-in speaker echo.
         ///
-        /// This option is valid only when used with AVAudioSessionCategoryPlayAndRecord and AVAudioSessionModeDefault and is only available
-        /// on certain 2024 or later iPhone models. Support can be queried using property `isEchoCancelledInputAvailable`.
+        /// This option is only available on certain 2024 or later iPhone models and is valid only when used with the following configurations:
+        /// - AVAudioSessionCategoryPlayAndRecord and AVAudioSessionModeDefault
+        /// - AVAudioSessionCategoryMultiRoute and AVAudioSessionModeDualRoute
+        /// Support can be queried using property `isEchoCancelledInputAvailable`.
         /// Other recording sessions might be interrupted if this option is not compatible with sessions that are already recording.
         ///
         /// After an audio session goes active, `isEchoCancelledInputEnabled` property can be queried to check if the option was honored.
@@ -292,8 +294,11 @@ impl AVAudioSession {
         #[unsafe(method_family = none)]
         pub unsafe fn isEchoCancelledInputEnabled(&self) -> bool;
 
+        /// This property will return YES if the device supports echo cancellation with the following category and mode combinations:
+        /// - ``AVAudioSessionCategoryPlayAndRecord`` with ``AVAudioSessionModeDefault``
+        /// - ``AVAudioSessionCategoryMultiRoute`` with ``AVAudioSessionModeDualRoute``
+        ///
         /// Query whether built-in mic / built-in speaker route supports echo cancellation for the session's given category and mode.
-        /// Returns YES if device model supports echo cancellation and the audio category is PlayAndRecord and the mode is Default.
         ///
         /// This property is not atomic.
         ///

@@ -107,6 +107,15 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn lastValueLatency(&self) -> NSTimeInterval;
 
+        #[cfg(feature = "GCPhysicalInputExtents")]
+        /// An object describing the physical extents of the input, if the input represents
+        /// a physical unit of measurement.
+        #[unsafe(method(physicalExtents))]
+        #[unsafe(method_family = none)]
+        unsafe fn physicalExtents(
+            &self,
+        ) -> Option<Retained<ProtocolObject<dyn GCPhysicalInputExtents>>>;
+
         #[cfg(feature = "GCPhysicalInputSource")]
         /// An object describing the physical action(s) the user performs to manipulate
         /// this input.

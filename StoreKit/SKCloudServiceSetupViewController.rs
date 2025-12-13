@@ -28,7 +28,7 @@ extern_class!(
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
     #[cfg(target_os = "macos")]
-    #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
+    #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit."]
     pub struct SKCloudServiceSetupViewController;
 );
 
@@ -67,7 +67,7 @@ extern_conformance!(
 impl SKCloudServiceSetupViewController {
     extern_methods!(
         /// Optional delegate.
-        #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
+        #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit."]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -77,7 +77,7 @@ impl SKCloudServiceSetupViewController {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
-        #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
+        #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -92,7 +92,7 @@ impl SKCloudServiceSetupViewController {
         /// # Safety
         ///
         /// `options` generic should be of the correct type.
-        #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
+        #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit."]
         #[unsafe(method(loadWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadWithOptions_completionHandler(
@@ -152,12 +152,12 @@ impl SKCloudServiceSetupViewController {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupviewcontrollerdelegate?language=objc)
-    #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
+    #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit."]
     pub unsafe trait SKCloudServiceSetupViewControllerDelegate: NSObjectProtocol {
         #[cfg(feature = "objc2-app-kit")]
         #[cfg(target_os = "macos")]
         /// Sent when the view controller was dismissed.
-        #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit"]
+        #[deprecated = "Use the musicSubscriptionOffer(isPresented:options:onLoadCompletion:) SwiftUI View Modifier from MusicKit."]
         #[optional]
         #[unsafe(method(cloudServiceSetupViewControllerDidDismiss:))]
         #[unsafe(method_family = none)]
@@ -172,7 +172,7 @@ extern "C" {
     /// Action for setup entry point (of type SKCloudServiceSetupAction).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsactionkey?language=objc)
-    #[deprecated = "Use the action property of MusicSubscriptionOffer.Options from MusicKit"]
+    #[deprecated = "Use the action property of MusicSubscriptionOffer.Options from MusicKit."]
     pub static SKCloudServiceSetupOptionsActionKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
@@ -180,7 +180,7 @@ extern "C" {
     /// Identifier of the iTunes Store item the user is trying to access which requires cloud service setup (NSNumber).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsitunesitemidentifierkey?language=objc)
-    #[deprecated = "Use the itemID property of MusicSubscriptionOffer.Options from MusicKit"]
+    #[deprecated = "Use the itemID property of MusicSubscriptionOffer.Options from MusicKit."]
     pub static SKCloudServiceSetupOptionsITunesItemIdentifierKey:
         &'static SKCloudServiceSetupOptionsKey;
 }
@@ -189,7 +189,7 @@ extern "C" {
     /// iTunes Store affiliate token (NSString).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsaffiliatetokenkey?language=objc)
-    #[deprecated = "Use the affiliateToken property of MusicSubscriptionOffer.Options from MusicKit"]
+    #[deprecated = "Use the affiliateToken property of MusicSubscriptionOffer.Options from MusicKit."]
     pub static SKCloudServiceSetupOptionsAffiliateTokenKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
@@ -197,7 +197,7 @@ extern "C" {
     /// iTunes Store affiliate campaign token (NSString).
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionscampaigntokenkey?language=objc)
-    #[deprecated = "Use the campaignToken property of MusicSubscriptionOffer.Options from MusicKit"]
+    #[deprecated = "Use the campaignToken property of MusicSubscriptionOffer.Options from MusicKit."]
     pub static SKCloudServiceSetupOptionsCampaignTokenKey: &'static SKCloudServiceSetupOptionsKey;
 }
 
@@ -206,41 +206,41 @@ extern "C" {
     /// When missing, the setup view will be configured in a way that is equivalent to using SKCloudServiceSetupMessageIdentifierJoin.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupoptionsmessageidentifierkey?language=objc)
-    #[deprecated = "Use the messageIdentifier property of MusicSubscriptionOffer.Options from MusicKit"]
+    #[deprecated = "Use the messageIdentifier property of MusicSubscriptionOffer.Options from MusicKit."]
     pub static SKCloudServiceSetupOptionsMessageIdentifierKey:
         &'static SKCloudServiceSetupOptionsKey;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupactionsubscribe?language=objc)
-    #[deprecated = "Use MusicSubscriptionOffer.Action.subscribe from MusicKit"]
+    #[deprecated = "Use MusicSubscriptionOffer.Action.subscribe from MusicKit."]
     pub static SKCloudServiceSetupActionSubscribe: &'static SKCloudServiceSetupAction;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifierjoin?language=objc)
-    #[deprecated = "Use MusicSubscriptionOffer.MessageIdentifier.join from MusicKit"]
+    #[deprecated = "Use MusicSubscriptionOffer.MessageIdentifier.join from MusicKit."]
     pub static SKCloudServiceSetupMessageIdentifierJoin:
         &'static SKCloudServiceSetupMessageIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifierconnect?language=objc)
-    #[deprecated = "No longer supported"]
+    #[deprecated = "No longer supported."]
     pub static SKCloudServiceSetupMessageIdentifierConnect:
         &'static SKCloudServiceSetupMessageIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifieraddmusic?language=objc)
-    #[deprecated = "Use MusicSubscriptionOffer.MessageIdentifier.addMusic from MusicKit"]
+    #[deprecated = "Use MusicSubscriptionOffer.MessageIdentifier.addMusic from MusicKit."]
     pub static SKCloudServiceSetupMessageIdentifierAddMusic:
         &'static SKCloudServiceSetupMessageIdentifier;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skcloudservicesetupmessageidentifierplaymusic?language=objc)
-    #[deprecated = "Use MusicSubscriptionOffer.MessageIdentifier.playMusic from MusicKit"]
+    #[deprecated = "Use MusicSubscriptionOffer.MessageIdentifier.playMusic from MusicKit."]
     pub static SKCloudServiceSetupMessageIdentifierPlayMusic:
         &'static SKCloudServiceSetupMessageIdentifier;
 }

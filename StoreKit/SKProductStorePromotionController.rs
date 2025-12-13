@@ -9,19 +9,19 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductstorepromotionvisibility?language=objc)
 // NS_CLOSED_ENUM
-#[deprecated = "Use Product.PromotionInfo.Visibility"]
+#[deprecated = "Use Product.PromotionInfo.Visibility."]
 #[repr(isize)] // NSInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub enum SKProductStorePromotionVisibility {
     #[doc(alias = "SKProductStorePromotionVisibilityDefault")]
-    #[deprecated = "Use Product.PromotionInfo.Visibility"]
+    #[deprecated = "Use Product.PromotionInfo.Visibility."]
     #[default]
     Default = 0,
     #[doc(alias = "SKProductStorePromotionVisibilityShow")]
-    #[deprecated = "Use Product.PromotionInfo.Visibility"]
+    #[deprecated = "Use Product.PromotionInfo.Visibility."]
     Show = 1,
     #[doc(alias = "SKProductStorePromotionVisibilityHide")]
-    #[deprecated = "Use Product.PromotionInfo.Visibility"]
+    #[deprecated = "Use Product.PromotionInfo.Visibility."]
     Hide = 2,
 }
 
@@ -37,7 +37,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductstorepromotioncontroller?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "Use Product.PromotionInfo"]
+    #[deprecated = "Use Product.PromotionInfo."]
     pub struct SKProductStorePromotionController;
 );
 
@@ -47,13 +47,13 @@ extern_conformance!(
 
 impl SKProductStorePromotionController {
     extern_methods!(
-        #[deprecated = "Use Product.PromotionInfo"]
+        #[deprecated = "Use Product.PromotionInfo."]
         #[unsafe(method(defaultController))]
         #[unsafe(method_family = none)]
         pub unsafe fn defaultController() -> Retained<Self>;
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
-        #[deprecated = "Get visibility from Product.PromotionInfo.currentOrder"]
+        #[deprecated = "Get visibility from Product.PromotionInfo.currentOrder."]
         #[unsafe(method(fetchStorePromotionVisibilityForProduct:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchStorePromotionVisibilityForProduct_completionHandler(
@@ -65,7 +65,7 @@ impl SKProductStorePromotionController {
         );
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
-        #[deprecated = "Use Product.PromotionInfo.updateProductVisibility(_:for:)"]
+        #[deprecated = "Use Product.PromotionInfo.updateProductVisibility(_:for:)."]
         #[unsafe(method(updateStorePromotionVisibility:forProduct:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateStorePromotionVisibility_forProduct_completionHandler(
@@ -76,7 +76,7 @@ impl SKProductStorePromotionController {
         );
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
-        #[deprecated = "Use Product.PromotionInfo.currentOrder"]
+        #[deprecated = "Use Product.PromotionInfo.currentOrder."]
         #[unsafe(method(fetchStorePromotionOrderWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchStorePromotionOrderWithCompletionHandler(
@@ -87,7 +87,7 @@ impl SKProductStorePromotionController {
         );
 
         #[cfg(all(feature = "SKProduct", feature = "block2"))]
-        #[deprecated = "Use Product.PromotionInfo.updateProductOrder(byID:)"]
+        #[deprecated = "Use Product.PromotionInfo.updateProductOrder(byID:)."]
         #[unsafe(method(updateStorePromotionOrder:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateStorePromotionOrder_completionHandler(

@@ -32,6 +32,7 @@ extern "C-unwind" {
     ///
     /// Note: since a request involving shared web credentials may potentially require user interaction or other verification to be approved, this function is dispatched asynchronously; your code provides a completion handler that will be called once the results (if any) are available.
     #[cfg(feature = "block2")]
+    #[deprecated = "Use ASCredentialDataManager.save(password:for:title:anchor:)  (AuthenticationServices framework)"]
     pub fn SecAddSharedWebCredential(
         fqdn: &CFString,
         account: &CFString,

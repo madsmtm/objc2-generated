@@ -96,33 +96,6 @@ impl GKLocalPlayer {
         );
 
         #[cfg(feature = "block2")]
-        /// Set the default leaderboard for the current game
-        /// Possible reasons for error:
-        /// 1. Communications problem
-        /// 2. Unauthenticated player
-        /// 3. Leaderboard not present
-        #[unsafe(method(setDefaultLeaderboardIdentifier:completionHandler:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setDefaultLeaderboardIdentifier_completionHandler(
-            &self,
-            leaderboard_identifier: &NSString,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
-        );
-
-        #[cfg(feature = "block2")]
-        /// Load the default leaderboard identifier for the local player
-        /// Possible reasons for error:
-        /// 1. Communications problem
-        /// 2. Unauthenticated player
-        /// 3. Leaderboard not present
-        #[unsafe(method(loadDefaultLeaderboardIdentifierWithCompletionHandler:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn loadDefaultLeaderboardIdentifierWithCompletionHandler(
-            &self,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSString, *mut NSError)>>,
-        );
-
-        #[cfg(feature = "block2")]
         /// Generates a signature allowing 3rd party server to authenticate the GKLocalPlayer
         /// Possible reasons for error:
         /// 1. Communications problem
@@ -282,6 +255,35 @@ impl GKLocalPlayer {
             completion_handler: Option<
                 &block2::DynBlock<dyn Fn(*mut NSURL, *mut NSData, *mut NSData, u64, *mut NSError)>,
             >,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Load the default leaderboard identifier for the local player
+        /// Possible reasons for error:
+        /// 1. Communications problem
+        /// 2. Unauthenticated player
+        /// 3. Leaderboard not present
+        #[deprecated = "No longer supported"]
+        #[unsafe(method(loadDefaultLeaderboardIdentifierWithCompletionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn loadDefaultLeaderboardIdentifierWithCompletionHandler(
+            &self,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSString, *mut NSError)>>,
+        );
+
+        #[cfg(feature = "block2")]
+        /// Set the default leaderboard for the current game
+        /// Possible reasons for error:
+        /// 1. Communications problem
+        /// 2. Unauthenticated player
+        /// 3. Leaderboard not present
+        #[deprecated = "No longer supported"]
+        #[unsafe(method(setDefaultLeaderboardIdentifier:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setDefaultLeaderboardIdentifier_completionHandler(
+            &self,
+            leaderboard_identifier: &NSString,
+            completion_handler: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
     );
 }

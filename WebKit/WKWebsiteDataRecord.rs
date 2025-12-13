@@ -23,6 +23,7 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebsitedatatypeofflinewebapplicationcache?language=objc)
+    #[deprecated = "WebApplicationCache is no longer supported"]
     pub static WKWebsiteDataTypeOfflineWebApplicationCache: &'static NSString;
 }
 

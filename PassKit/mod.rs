@@ -319,6 +319,8 @@ pub use self::__PKConstants::PKPaymentNetworkCartesBancaires;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkChinaUnionPay;
 #[cfg(feature = "PKConstants")]
+pub use self::__PKConstants::PKPaymentNetworkConecs;
+#[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkDankort;
 #[cfg(feature = "PKConstants")]
 pub use self::__PKConstants::PKPaymentNetworkDiscover;

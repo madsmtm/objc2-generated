@@ -55,12 +55,12 @@ impl SKAdNetwork {
             completion: Option<&block2::DynBlock<dyn Fn(*mut NSError)>>,
         );
 
-        #[deprecated = "Use updatePostbackConversionValue:completionHandler: instead"]
+        #[deprecated = "Use updatePostbackConversionValue:completionHandler: instead."]
         #[unsafe(method(registerAppForAdNetworkAttribution))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerAppForAdNetworkAttribution();
 
-        #[deprecated = "Use updatePostbackConversionValue:completionHandler: instead"]
+        #[deprecated = "Use updatePostbackConversionValue:completionHandler: instead."]
         #[unsafe(method(updateConversionValue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn updateConversionValue(conversion_value: NSInteger);

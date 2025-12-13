@@ -4269,6 +4269,37 @@ impl AVCaptureDeviceFormat {
     );
 }
 
+/// AVCaptureDeviceEdgeLight.
+impl AVCaptureDevice {
+    extern_methods!(
+        /// A class property indicating whether the Edge Light feature is currently enabled in Control Center.
+        ///
+        /// This readonly property changes to reflect the Edge Light state in Control Center. It is key-value observable.
+        #[unsafe(method(isEdgeLightEnabled))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isEdgeLightEnabled() -> bool;
+
+        /// A class property indicating whether the edge light UI is actively being shown on a screen.
+        ///
+        /// This readonly property reflects whether the edge light UI is actively being shown on a screen. It is key-value observable.
+        #[unsafe(method(isEdgeLightActive))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isEdgeLightActive() -> bool;
+    );
+}
+
+/// AVCaptureDeviceFormatEdgeLight.
+impl AVCaptureDeviceFormat {
+    extern_methods!(
+        /// Indicates whether the format supports the Edge Light feature.
+        ///
+        /// This property returns YES if the device supports the Edge Light feature. See +AVCaptureDevice.edgeLightEnabled.
+        #[unsafe(method(isEdgeLightSupported))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn isEdgeLightSupported(&self) -> bool;
+    );
+}
+
 /// AVCaptureDeviceFormatCinematicVideoSupport.
 impl AVCaptureDeviceFormat {
     extern_methods!(

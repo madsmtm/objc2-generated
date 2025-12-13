@@ -10,9 +10,9 @@ use crate::*;
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductsrequestdelegate?language=objc)
     #[cfg(feature = "SKRequest")]
-    #[deprecated = "Get products using Product.products(for:)"]
+    #[deprecated = "Get products using Product.products(for:)."]
     pub unsafe trait SKProductsRequestDelegate: SKRequestDelegate {
-        #[deprecated = "Get products using Product.products(for:)"]
+        #[deprecated = "Get products using Product.products(for:)."]
         #[unsafe(method(productsRequest:didReceiveResponse:))]
         #[unsafe(method_family = none)]
         unsafe fn productsRequest_didReceiveResponse(
@@ -28,7 +28,7 @@ extern_class!(
     #[unsafe(super(SKRequest, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "SKRequest")]
-    #[deprecated = "Use Product.products(for:)"]
+    #[deprecated = "Use Product.products(for:)."]
     pub struct SKProductsRequest;
 );
 
@@ -40,7 +40,7 @@ extern_conformance!(
 #[cfg(feature = "SKRequest")]
 impl SKProductsRequest {
     extern_methods!(
-        #[deprecated = "Use Product.products(for:)"]
+        #[deprecated = "Use Product.products(for:)."]
         #[unsafe(method(initWithProductIdentifiers:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithProductIdentifiers(
@@ -48,7 +48,7 @@ impl SKProductsRequest {
             product_identifiers: &NSSet<NSString>,
         ) -> Retained<Self>;
 
-        #[deprecated = "Use Product.products(for:)"]
+        #[deprecated = "Use Product.products(for:)."]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(
@@ -58,7 +58,7 @@ impl SKProductsRequest {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
-        #[deprecated = "Use Product.products(for:)"]
+        #[deprecated = "Use Product.products(for:)."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(
@@ -86,7 +86,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductsresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "Get products using Product.products(for:)"]
+    #[deprecated = "Get products using Product.products(for:)."]
     pub struct SKProductsResponse;
 );
 
@@ -106,7 +106,7 @@ impl SKProductsResponse {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Get products using Product.products(for:)"]
+        #[deprecated = "Get products using Product.products(for:)."]
         #[unsafe(method(products))]
         #[unsafe(method_family = none)]
         pub unsafe fn products(&self) -> Retained<NSArray<SKProduct>>;
@@ -116,7 +116,7 @@ impl SKProductsResponse {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Get products using Product.products(for:)"]
+        #[deprecated = "Get products using Product.products(for:)."]
         #[unsafe(method(invalidProductIdentifiers))]
         #[unsafe(method_family = none)]
         pub unsafe fn invalidProductIdentifiers(&self) -> Retained<NSArray<NSString>>;

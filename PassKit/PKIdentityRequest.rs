@@ -66,6 +66,22 @@ impl PKIdentityRequest {
         #[unsafe(method(setMerchantIdentifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMerchantIdentifier(&self, merchant_identifier: Option<&NSString>);
+
+        /// A key in the NSIdentityUsageDescriptionDictionary field of the app's
+        /// Info.plist file.
+        ///
+        /// The value for this key is an app-provided string that describes the
+        /// reason for requesting identity information.
+        #[unsafe(method(usageDescriptionKey))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn usageDescriptionKey(&self) -> Option<Retained<NSString>>;
+
+        /// Setter for [`usageDescriptionKey`][Self::usageDescriptionKey].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setUsageDescriptionKey:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setUsageDescriptionKey(&self, usage_description_key: Option<&NSString>);
     );
 }
 

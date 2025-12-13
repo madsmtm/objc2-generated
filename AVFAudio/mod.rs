@@ -461,6 +461,8 @@ pub use self::__AVAudioSessionTypes::AVAudioSessionMode;
 #[cfg(feature = "AVAudioSessionTypes")]
 pub use self::__AVAudioSessionTypes::AVAudioSessionModeDefault;
 #[cfg(feature = "AVAudioSessionTypes")]
+pub use self::__AVAudioSessionTypes::AVAudioSessionModeDualRoute;
+#[cfg(feature = "AVAudioSessionTypes")]
 pub use self::__AVAudioSessionTypes::AVAudioSessionModeGameChat;
 #[cfg(feature = "AVAudioSessionTypes")]
 pub use self::__AVAudioSessionTypes::AVAudioSessionModeMeasurement;

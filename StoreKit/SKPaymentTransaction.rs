@@ -8,25 +8,25 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransactionstate?language=objc)
 // NS_ENUM
-#[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
+#[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKPaymentTransactionState(pub NSInteger);
 impl SKPaymentTransactionState {
     #[doc(alias = "SKPaymentTransactionStatePurchasing")]
-    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
+    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)."]
     pub const Purchasing: Self = Self(0);
     #[doc(alias = "SKPaymentTransactionStatePurchased")]
-    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
+    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)."]
     pub const Purchased: Self = Self(1);
     #[doc(alias = "SKPaymentTransactionStateFailed")]
-    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
+    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)."]
     pub const Failed: Self = Self(2);
     #[doc(alias = "SKPaymentTransactionStateRestored")]
-    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
+    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)."]
     pub const Restored: Self = Self(3);
     #[doc(alias = "SKPaymentTransactionStateDeferred")]
-    #[deprecated = "Use PurchaseResult.pending from Product.purchase(confirmIn:options:)"]
+    #[deprecated = "Use PurchaseResult.pending from Product.purchase(confirmIn:options:)."]
     pub const Deferred: Self = Self(4);
 }
 
@@ -42,7 +42,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skpaymenttransaction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
+    #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)."]
     pub struct SKPaymentTransaction;
 );
 
@@ -61,7 +61,7 @@ impl SKPaymentTransaction {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
+        #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)."]
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
@@ -71,7 +71,7 @@ impl SKPaymentTransaction {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
+        #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)."]
         #[unsafe(method(originalTransaction))]
         #[unsafe(method_family = none)]
         pub unsafe fn originalTransaction(&self) -> Option<Retained<SKPaymentTransaction>>;
@@ -82,7 +82,7 @@ impl SKPaymentTransaction {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
+        #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)."]
         #[unsafe(method(payment))]
         #[unsafe(method_family = none)]
         pub unsafe fn payment(&self) -> Retained<SKPayment>;
@@ -93,7 +93,7 @@ impl SKPaymentTransaction {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(downloads))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloads(&self) -> Retained<NSArray<SKDownload>>;
@@ -103,7 +103,7 @@ impl SKPaymentTransaction {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
+        #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)."]
         #[unsafe(method(transactionDate))]
         #[unsafe(method_family = none)]
         pub unsafe fn transactionDate(&self) -> Option<Retained<NSDate>>;
@@ -113,7 +113,7 @@ impl SKPaymentTransaction {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
+        #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)."]
         #[unsafe(method(transactionIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn transactionIdentifier(&self) -> Option<Retained<NSString>>;
@@ -133,7 +133,7 @@ impl SKPaymentTransaction {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)"]
+        #[deprecated = "Use PurchaseResult from Product.purchase(confirmIn:options:)."]
         #[unsafe(method(transactionState))]
         #[unsafe(method_family = none)]
         pub unsafe fn transactionState(&self) -> SKPaymentTransactionState;

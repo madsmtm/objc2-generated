@@ -443,7 +443,9 @@ unsafe impl RefEncode for PHAssetResourceUploadJobState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// These actions correspond with the types of fetches we can make on a PHAssetResourceUploadJob and the actions we can also take on those jobs.
+/// An action to perform on an upload job.
+///
+/// Determine the available jobs for an action by calling the ``PHAssetResourceUploadJob/fetchJobsWithAction:options:`` method.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjobaction?language=objc)
 // NS_ENUM
@@ -451,9 +453,20 @@ unsafe impl RefEncode for PHAssetResourceUploadJobState {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PHAssetResourceUploadJobAction(pub NSInteger);
 impl PHAssetResourceUploadJobAction {
+    /// A job that requires acknowledgement.
+    ///
+    /// An acknowledgeable job has a ``PHAssetResourceUploadJob/state`` of `succeeded` or `failed`
+    /// and hasn't been acknowledged.
+    ///
+    /// Call ``PHAssetResourceUploadJobChangeRequest/acknowledge`` to acknowledge a job
+    /// and free queue capacity for new uploads.
     #[doc(alias = "PHAssetResourceUploadJobActionAcknowledge")]
     pub const Acknowledge: Self = Self(1);
-    /// Where PHAssetResourceUploadJobState = (success OR fail).
+    /// A job to retry processing.
+    ///
+    /// An retryable job has a ``PHAssetResourceUploadJob/state`` of `failed` and hasn't previously been retried.
+    ///
+    /// Call ``PHAssetResourceUploadJobChangeRequest/retryWithDestination:`` to retry the job.
     #[doc(alias = "PHAssetResourceUploadJobActionRetry")]
     pub const Retry: Self = Self(2);
 }

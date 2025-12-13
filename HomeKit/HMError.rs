@@ -233,8 +233,6 @@ impl HMErrorCode {
     pub const PartialCommunicationFailure: Self = Self(104);
     #[doc(alias = "HMErrorCodeHomeUpgradeRequired")]
     pub const HomeUpgradeRequired: Self = Self(105);
-    #[doc(alias = "HMErrorCodeQuotaExceeded")]
-    pub const QuotaExceeded: Self = Self(106);
 }
 
 unsafe impl Encode for HMErrorCode {

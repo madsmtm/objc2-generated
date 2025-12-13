@@ -11,7 +11,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "No longer supported"]
+    #[deprecated = "No longer supported."]
     pub struct SKRequest;
 );
 
@@ -21,7 +21,7 @@ extern_conformance!(
 
 impl SKRequest {
     extern_methods!(
-        #[deprecated = "No longer supported"]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
         pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn SKRequestDelegate>>>;
@@ -29,17 +29,17 @@ impl SKRequest {
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
-        #[deprecated = "No longer supported"]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn SKRequestDelegate>>);
 
-        #[deprecated = "No longer supported"]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]
         pub unsafe fn cancel(&self);
 
-        #[deprecated = "No longer supported"]
+        #[deprecated = "No longer supported."]
         #[unsafe(method(start))]
         #[unsafe(method_family = none)]
         pub unsafe fn start(&self);
@@ -61,15 +61,15 @@ impl SKRequest {
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skrequestdelegate?language=objc)
-    #[deprecated = "No longer supported"]
+    #[deprecated = "No longer supported."]
     pub unsafe trait SKRequestDelegate: NSObjectProtocol {
-        #[deprecated = "No longer supported"]
+        #[deprecated = "No longer supported."]
         #[optional]
         #[unsafe(method(requestDidFinish:))]
         #[unsafe(method_family = none)]
         unsafe fn requestDidFinish(&self, request: &SKRequest);
 
-        #[deprecated = "No longer supported"]
+        #[deprecated = "No longer supported."]
         #[optional]
         #[unsafe(method(request:didFailWithError:))]
         #[unsafe(method_family = none)]

@@ -7,11 +7,15 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Represents a request to upload a `PHAssetResource`
+    /// An object that represents a request to upload an asset resource.
     ///
-    /// Used within an application's `com.apple.photos.background-upload` extension to represent a request to upload a `PHAssetResource` to a destination `NSURLRequest`.
+    /// Use within an application's `com.apple.photos.background-upload` extension to request an upload of a ``PHAssetResource`` to a destination
+    /// <doc
+    /// ://com.apple.documentation/documentation/foundation/nsurlrequest>.
     ///
-    /// When the extensions principal class receives a call to `process` background uploads, it can create new `PHAssetResourceUploadJob`s using `PHAssetResourceUploadJobChangeRequest` and any existing upload jobs can be fetched using `fetchJobsWithAction:options:` and handled by updating their state using a `PHAssetResourceUploadJobChangeRequest` to mark them as acknowledged, or to be retried. The maximum number of jobs that can be a in flight is limited to the `jobLimit`.
+    /// When the extension's principal class receives a call to ``PHBackgroundResourceUploadExtension/process()`` background uploads, it can create new ``PHAssetResourceUploadJob`` objects using ``PHAssetResourceUploadJobChangeRequest``.
+    ///
+    /// The maximum number of jobs that can be in flight is limited to the ``jobLimit``. To make space for new jobs, you must call ``PHAssetResourceUploadJobChangeRequest/fetchJobsWithAction:options:`` and retry/acknowledge them with ``PHAssetResourceUploadJobChangeRequest/acknowledge:`` or ``PHAssetResourceUploadJobChangeRequest/retryWithDestination:`` respectively.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob?language=objc)
     #[unsafe(super(PHObject, NSObject))]
@@ -44,23 +48,26 @@ extern_conformance!(
 #[cfg(feature = "PHObject")]
 impl PHAssetResourceUploadJob {
     extern_methods!(
+        /// The maximum number of unacknowledged upload jobs allowed.
+        ///
+        /// This includes jobs that are in-flight and those that have succeeded or failed.
         #[unsafe(method(jobLimit))]
         #[unsafe(method_family = none)]
         pub unsafe fn jobLimit() -> NSInteger;
 
         #[cfg(feature = "PHAssetResource")]
-        /// The maximum number of unacknowledged upload jobs allowed, this includes registered, pending, succeeded and failed jobs.
+        /// The asset resource this job promises to upload.
         #[unsafe(method(resource))]
         #[unsafe(method_family = none)]
         pub unsafe fn resource(&self) -> Retained<PHAssetResource>;
 
-        /// The asset resource this upload job represents.
+        /// The destination to send the job's resource.
         #[unsafe(method(destination))]
         #[unsafe(method_family = none)]
         pub unsafe fn destination(&self) -> Retained<NSURLRequest>;
 
         #[cfg(feature = "PhotosTypes")]
-        /// The destination to send this asset resource.
+        /// The state of this upload job.
         #[unsafe(method(state))]
         #[unsafe(method_family = none)]
         pub unsafe fn state(&self) -> PHAssetResourceUploadJobState;
@@ -76,7 +83,7 @@ impl PHAssetResourceUploadJob {
         /// - action: The actions a client can take on a job.
         /// - options: The fetch options to be passed in.
         ///
-        /// - Returns: The jobs available to apply `action` on them.
+        /// - Returns: The jobs available on which you can apply an action found in ``PHAssetResourceUploadJobAction``.
         #[unsafe(method(fetchJobsWithAction:options:))]
         #[unsafe(method_family = none)]
         pub unsafe fn fetchJobsWithAction_options(

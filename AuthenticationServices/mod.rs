@@ -245,6 +245,15 @@ mod __ASExtensionErrors;
 #[cfg(feature = "ASFoundation")]
 #[path = "ASFoundation.rs"]
 mod __ASFoundation;
+#[cfg(feature = "ASGeneratePasswordsRequest")]
+#[path = "ASGeneratePasswordsRequest.rs"]
+mod __ASGeneratePasswordsRequest;
+#[cfg(feature = "ASGeneratedPassword")]
+#[path = "ASGeneratedPassword.rs"]
+mod __ASGeneratedPassword;
+#[cfg(feature = "ASGeneratedPasswordKind")]
+#[path = "ASGeneratedPasswordKind.rs"]
+mod __ASGeneratedPasswordKind;
 #[cfg(feature = "ASOneTimeCodeCredential")]
 #[path = "ASOneTimeCodeCredential.rs"]
 mod __ASOneTimeCodeCredential;
@@ -296,6 +305,9 @@ mod __ASPublicKeyCredential;
 #[cfg(feature = "ASPublicKeyCredentialClientData")]
 #[path = "ASPublicKeyCredentialClientData.rs"]
 mod __ASPublicKeyCredentialClientData;
+#[cfg(feature = "ASSavePasswordRequest")]
+#[path = "ASSavePasswordRequest.rs"]
+mod __ASSavePasswordRequest;
 #[cfg(feature = "ASSettingsHelper")]
 #[path = "ASSettingsHelper.rs"]
 mod __ASSettingsHelper;
@@ -653,6 +665,18 @@ pub use self::__ASExtensionErrors::ASExtensionErrorCode;
 pub use self::__ASExtensionErrors::ASExtensionErrorDomain;
 #[cfg(feature = "ASExtensionErrors")]
 pub use self::__ASExtensionErrors::ASExtensionLocalizedFailureReasonErrorKey;
+#[cfg(feature = "ASGeneratePasswordsRequest")]
+pub use self::__ASGeneratePasswordsRequest::ASGeneratePasswordsRequest;
+#[cfg(feature = "ASGeneratedPassword")]
+pub use self::__ASGeneratedPassword::ASGeneratedPassword;
+#[cfg(feature = "ASGeneratedPasswordKind")]
+pub use self::__ASGeneratedPasswordKind::ASGeneratedPasswordKind;
+#[cfg(feature = "ASGeneratedPasswordKind")]
+pub use self::__ASGeneratedPasswordKind::ASGeneratedPasswordKindAlphanumeric;
+#[cfg(feature = "ASGeneratedPasswordKind")]
+pub use self::__ASGeneratedPasswordKind::ASGeneratedPasswordKindPassphrase;
+#[cfg(feature = "ASGeneratedPasswordKind")]
+pub use self::__ASGeneratedPasswordKind::ASGeneratedPasswordKindStrong;
 #[cfg(feature = "ASOneTimeCodeCredential")]
 pub use self::__ASOneTimeCodeCredential::ASOneTimeCodeCredential;
 #[cfg(feature = "ASOneTimeCodeCredentialIdentity")]
@@ -692,6 +716,10 @@ pub use self::__ASPublicKeyCredential::ASPublicKeyCredential;
 pub use self::__ASPublicKeyCredentialClientData::ASPublicKeyCredentialClientData;
 #[cfg(feature = "ASPublicKeyCredentialClientData")]
 pub use self::__ASPublicKeyCredentialClientData::ASPublicKeyCredentialClientDataCrossOriginValue;
+#[cfg(feature = "ASSavePasswordRequest")]
+pub use self::__ASSavePasswordRequest::ASSavePasswordRequest;
+#[cfg(feature = "ASSavePasswordRequest")]
+pub use self::__ASSavePasswordRequest::ASSavePasswordRequestEvent;
 #[cfg(feature = "ASSettingsHelper")]
 pub use self::__ASSettingsHelper::ASSettingsHelper;
 #[cfg(feature = "ASWebAuthenticationSession")]

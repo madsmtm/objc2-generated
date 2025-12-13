@@ -329,8 +329,6 @@ pub use self::__ColorSyncProfile::ColorSyncProfileGetDisplayTransferFormulaFromV
 #[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::ColorSyncProfileGetMD5;
 #[cfg(feature = "ColorSyncProfile")]
-pub use self::__ColorSyncProfile::ColorSyncProfileGetTagCount;
-#[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::ColorSyncProfileGetURL;
 #[cfg(feature = "ColorSyncProfile")]
 pub use self::__ColorSyncProfile::ColorSyncProfileInstall;

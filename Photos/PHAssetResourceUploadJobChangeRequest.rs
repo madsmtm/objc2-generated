@@ -8,11 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// Used within an application's `com.apple.photos.background-upload` extension to create and manage `PHAssetResourceUploadJob` records
+    /// Use within an application's `com.apple.photos.background-upload` extension to create and change ``PHAssetResourceUploadJob`` records.
     ///
-    /// When the extensions principal class receives a call to `process` background uploads, it can create new `PHAssetResourceUploadJob`s through calls to perform changes on a PHPhotoLibrary using `PHAssetResourceUploadJobChangeRequest` and any in-flight upload jobs can be handled by updating their state to mark them as acknowledged, or to be retried. The maximum number of jobs that can be in flight is limited to the `PHAssetResourceUploadJob.jobLimit`.
+    /// When the extension's principal class receives a call to `process` background uploads, it can create new ``PHAssetResourceUploadJob``s through calls to perform changes on a PHPhotoLibrary using ``PHAssetResourceUploadJobChangeRequest`` and any in-flight upload jobs can be handled by updating their state to mark them as acknowledged, or to be retried. The maximum number of jobs that can be in flight is limited to the ``PHAssetResourceUploadJob.jobLimit``.
     ///
-    /// `PHAssetResourceUploadJobChangeRequest` can only be created or used within a photo library change block. For details on change blocks, see `PHPhotoLibrary`.
+    /// ``PHAssetResourceUploadJobChangeRequest`` can only be created or used within a photo library change block. For details on change blocks, see ``PHPhotoLibrary``.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjobchangerequest?language=objc)
     #[unsafe(super(PHChangeRequest, NSObject))]
@@ -30,13 +30,15 @@ extern_conformance!(
 impl PHAssetResourceUploadJobChangeRequest {
     extern_methods!(
         #[cfg(feature = "PHAssetResource")]
-        /// Used to create an asset resource upload job.
+        /// Creates an asset resource upload job.
         ///
-        /// If the number of jobs exceeds `jobLimit`the photo library `performChanges` request will fail with a `PHPhotosErrorLimitExceeded` error.
-        /// If you want to generate jobs after this limit is triggered, you must acknowledge succeeded and failed jobs, and wait for the registered/pending ones to be uploaded.
+        /// If the number of jobs exceeds ``PHAssetResourceUploadJob/jobLimit`` the photo library ``performChanges`` request will fail with a ``PHPhotosErrorLimitExceeded`` error.
+        /// To generate jobs after this limit is triggered, you must acknowledge succeeded/failed jobs, and wait for the registered/pending ones to finish uploading, which will make those jobs also succeeded/failed.
         ///
         /// - Parameter:
-        /// - destination: the destination `NSURLRequest` to which this asset resource will be sent.
+        /// - destination: the destination
+        /// <doc
+        /// ://com.apple.documentation/foundation/nsurlrequest> to which this asset resource will be sent.
         /// - resource: the asset resource to be uploaded.
         #[unsafe(method(createJobWithDestination:resource:))]
         #[unsafe(method_family = none)]
@@ -55,12 +57,12 @@ impl PHAssetResourceUploadJobChangeRequest {
             job: &PHAssetResourceUploadJob,
         ) -> Option<Retained<Self>>;
 
-        /// Acknowledges a successful or failed job. Jobs must be acknowledged to free up space for `jobLimit`.
+        /// Acknowledges a successful or failed job. Jobs must be acknowledged to free up space for ``PHAssetResourceUploadJob/jobLimit``.
         #[unsafe(method(acknowledge))]
         #[unsafe(method_family = none)]
         pub unsafe fn acknowledge(&self);
 
-        /// Retries a job that is failed, unacknowledged, and has not been retried before. Successful retries also free up space for `jobLimit`.
+        /// Retries a job that is failed, unacknowledged, and has not been retried before. Successful retries also free up space for ``PHAssetResourceUploadJob/jobLimit``.
         #[unsafe(method(retryWithDestination:))]
         #[unsafe(method_family = none)]
         pub unsafe fn retryWithDestination(&self, destination: Option<&NSURLRequest>);

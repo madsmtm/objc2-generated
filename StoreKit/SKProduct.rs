@@ -8,22 +8,22 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductperiodunit?language=objc)
 // NS_ENUM
-#[deprecated = "Use Product.SubscriptionPeriod.Unit"]
+#[deprecated = "Use Product.SubscriptionPeriod.Unit."]
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SKProductPeriodUnit(pub NSUInteger);
 impl SKProductPeriodUnit {
     #[doc(alias = "SKProductPeriodUnitDay")]
-    #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
+    #[deprecated = "Use Product.SubscriptionPeriod.Unit."]
     pub const Day: Self = Self(0);
     #[doc(alias = "SKProductPeriodUnitWeek")]
-    #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
+    #[deprecated = "Use Product.SubscriptionPeriod.Unit."]
     pub const Week: Self = Self(1);
     #[doc(alias = "SKProductPeriodUnitMonth")]
-    #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
+    #[deprecated = "Use Product.SubscriptionPeriod.Unit."]
     pub const Month: Self = Self(2);
     #[doc(alias = "SKProductPeriodUnitYear")]
-    #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
+    #[deprecated = "Use Product.SubscriptionPeriod.Unit."]
     pub const Year: Self = Self(3);
 }
 
@@ -39,7 +39,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductsubscriptionperiod?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "Use Product.SubscriptionPeriod"]
+    #[deprecated = "Use Product.SubscriptionPeriod."]
     pub struct SKProductSubscriptionPeriod;
 );
 
@@ -58,7 +58,7 @@ impl SKProductSubscriptionPeriod {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use Product.SubscriptionPeriod"]
+        #[deprecated = "Use Product.SubscriptionPeriod."]
         #[unsafe(method(numberOfUnits))]
         #[unsafe(method_family = none)]
         pub unsafe fn numberOfUnits(&self) -> NSUInteger;
@@ -68,7 +68,7 @@ impl SKProductSubscriptionPeriod {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use Product.SubscriptionPeriod"]
+        #[deprecated = "Use Product.SubscriptionPeriod."]
         #[unsafe(method(unit))]
         #[unsafe(method_family = none)]
         pub unsafe fn unit(&self) -> SKProductPeriodUnit;
@@ -92,7 +92,7 @@ extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproduct?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    #[deprecated = "Use Product"]
+    #[deprecated = "Use Product."]
     pub struct SKProduct;
 );
 
@@ -111,7 +111,7 @@ impl SKProduct {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use Product.description"]
+        #[deprecated = "Use Product.description."]
         #[unsafe(method(localizedDescription))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedDescription(&self) -> Retained<NSString>;
@@ -121,7 +121,7 @@ impl SKProduct {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use Product.displayName"]
+        #[deprecated = "Use Product.displayName."]
         #[unsafe(method(localizedTitle))]
         #[unsafe(method_family = none)]
         pub unsafe fn localizedTitle(&self) -> Retained<NSString>;
@@ -131,7 +131,7 @@ impl SKProduct {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use Product.displayPrice"]
+        #[deprecated = "Use Product.displayPrice."]
         #[unsafe(method(price))]
         #[unsafe(method_family = none)]
         pub unsafe fn price(&self) -> Retained<NSDecimalNumber>;
@@ -141,7 +141,7 @@ impl SKProduct {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use Product.displayPrice"]
+        #[deprecated = "Use Product.displayPrice."]
         #[unsafe(method(priceLocale))]
         #[unsafe(method_family = none)]
         pub unsafe fn priceLocale(&self) -> Retained<NSLocale>;
@@ -151,7 +151,7 @@ impl SKProduct {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use Product.id"]
+        #[deprecated = "Use Product.id."]
         #[unsafe(method(productIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn productIdentifier(&self) -> Retained<NSString>;
@@ -161,7 +161,7 @@ impl SKProduct {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(isDownloadable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isDownloadable(&self) -> bool;
@@ -181,7 +181,7 @@ impl SKProduct {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use Product.isFamilyShareable"]
+        #[deprecated = "Use Product.isFamilyShareable."]
         #[unsafe(method(isFamilyShareable))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFamilyShareable(&self) -> bool;
@@ -201,7 +201,7 @@ impl SKProduct {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(downloadContentLengths))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadContentLengths(&self) -> Retained<NSArray<NSNumber>>;
@@ -221,7 +221,7 @@ impl SKProduct {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Hosted content is no longer supported"]
+        #[deprecated = "Hosted content is no longer supported."]
         #[unsafe(method(downloadContentVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn downloadContentVersion(&self) -> Retained<NSString>;
@@ -231,7 +231,7 @@ impl SKProduct {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use Product.subscription.subscriptionPeriod"]
+        #[deprecated = "Use Product.subscription.subscriptionPeriod."]
         #[unsafe(method(subscriptionPeriod))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionPeriod(&self) -> Option<Retained<SKProductSubscriptionPeriod>>;
@@ -242,7 +242,7 @@ impl SKProduct {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use Product.subscription.introductionaryOffer"]
+        #[deprecated = "Use Product.subscription.introductionaryOffer."]
         #[unsafe(method(introductoryPrice))]
         #[unsafe(method_family = none)]
         pub unsafe fn introductoryPrice(&self) -> Option<Retained<SKProductDiscount>>;
@@ -252,7 +252,7 @@ impl SKProduct {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use Product.subscription.subscriptionGroupID"]
+        #[deprecated = "Use Product.subscription.subscriptionGroupID."]
         #[unsafe(method(subscriptionGroupIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn subscriptionGroupIdentifier(&self) -> Option<Retained<NSString>>;
@@ -263,7 +263,7 @@ impl SKProduct {
         /// # Safety
         ///
         /// This might not be thread-safe.
-        #[deprecated = "Use Product.subscription.promotionalOffers"]
+        #[deprecated = "Use Product.subscription.promotionalOffers."]
         #[unsafe(method(discounts))]
         #[unsafe(method_family = none)]
         pub unsafe fn discounts(&self) -> Retained<NSArray<SKProductDiscount>>;
