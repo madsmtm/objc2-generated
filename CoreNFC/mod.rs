@@ -36,7 +36,7 @@ extern "C" {
 
 /// Possible errors returned by CoreNFC framework reader session.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadererror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -248,7 +248,7 @@ extern_class!(
     /// This represents a NFC reader session for processing tags; this base class cannot be instantiate. Only one NFCReaderSession
     /// can be active at any time in the system.  Subsequent opened sessions will get queued up and processed by the system in FIFO order.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadersession?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcreadersession-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NFCReaderSession;
@@ -321,7 +321,7 @@ unsafe impl RefEncode for NFCTagType {
 extern_protocol!(
     /// A NFC / RFID tag object conforms to this protocol.  The NFCReaderSession returns an instance of this type when a tag is detected.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctag?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctag-c.protocol?language=objc)
     pub unsafe trait NFCTag: NSObjectProtocol + NSSecureCoding + NSCopying {
         /// See
         ///
@@ -434,7 +434,7 @@ impl NFCTagCommandConfiguration {
 extern_protocol!(
     /// Tag reader session delegate
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersessiondelegate?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersessiondelegate-5gxiw?language=objc)
     pub unsafe trait NFCTagReaderSessionDelegate: NSObjectProtocol {
         /// Parameter `session`: The session object that is invalidated.
         ///
@@ -491,7 +491,7 @@ extern_protocol!(
 
 /// This is an exclusive value that cannot be combine with other NFCPollingOption values; this will override all other combinations.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcpollingoption?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfctagreadersession/pollingoption?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -3147,7 +3147,7 @@ impl NFCNDEFMessage {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvascommandconfiguration/mode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -3265,7 +3265,7 @@ impl NFCVASCommandConfiguration {
 
 /// Response APDU status word.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvaserrorcode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corenfc/nfcvasresponse/errorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

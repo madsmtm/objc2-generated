@@ -476,7 +476,7 @@ impl NSView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitemimportfromdeviceidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitem/importfromdeviceidentifier?language=objc)
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub static NSMenuItemImportFromDeviceIdentifier: &'static NSUserInterfaceItemIdentifier;
 }

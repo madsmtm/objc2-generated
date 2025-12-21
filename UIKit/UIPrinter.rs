@@ -12,7 +12,7 @@ use crate::*;
 /// This enumeration provides the abstract job types
 /// reported by the UIPrinter supportedJobTypes method.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterjobtypes?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/jobtypes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

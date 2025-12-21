@@ -1073,7 +1073,7 @@ impl PHASEPushStreamNode {
 /// Returns: An OSStatus result code. If an error is returned, the audio data should be assumed to be
 /// invalid.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasepullstreamrenderblock?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasepullstreamrenderhandler?language=objc)
 #[cfg(all(
     feature = "block2",
     feature = "objc2-avf-audio",

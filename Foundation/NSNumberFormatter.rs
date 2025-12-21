@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterbehavior?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/behavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -28,7 +28,7 @@ unsafe impl RefEncode for NSNumberFormatterBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/style?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -64,7 +64,7 @@ unsafe impl RefEncode for NSNumberFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterpadposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/padposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -88,7 +88,7 @@ unsafe impl RefEncode for NSNumberFormatterPadPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatterroundingmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter/roundingmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -119,7 +119,7 @@ unsafe impl RefEncode for NSNumberFormatterRoundingMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnumberformatter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/numberformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

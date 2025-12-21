@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelementstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/state?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -29,7 +29,7 @@ unsafe impl RefEncode for UIMenuElementState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelementattributes?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/attributes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -60,7 +60,7 @@ unsafe impl RefEncode for UIMenuElementAttributes {
 
 /// Possible repeat behaviors for a menu element.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelementrepeatbehavior?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenuelement/repeatbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -8,186 +8,186 @@ use crate::*;
 
 /// ** LOGICAL OPERATOR CONSTANTS  ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeand?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaeand?language=objc)
 pub const kAEAND: c_uint = 0x414e4420;
 /// ** LOGICAL OPERATOR CONSTANTS  ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeor?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaeor?language=objc)
 pub const kAEOR: c_uint = 0x4f522020;
 /// ** LOGICAL OPERATOR CONSTANTS  ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenot?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaenot?language=objc)
 pub const kAENOT: c_uint = 0x4e4f5420;
 /// ** ABSOLUTE ORDINAL CONSTANTS  ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaefirst?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaefirst?language=objc)
 pub const kAEFirst: c_uint = 0x66697273;
 /// ** ABSOLUTE ORDINAL CONSTANTS  ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaelast?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaelast?language=objc)
 pub const kAELast: c_uint = 0x6c617374;
 /// ** ABSOLUTE ORDINAL CONSTANTS  ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaemiddle?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaemiddle?language=objc)
 pub const kAEMiddle: c_uint = 0x6d696464;
 /// ** ABSOLUTE ORDINAL CONSTANTS  ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeany?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaeany?language=objc)
 pub const kAEAny: c_uint = 0x616e7920;
 /// ** ABSOLUTE ORDINAL CONSTANTS  ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeall?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaeall?language=objc)
 pub const kAEAll: c_uint = 0x616c6c20;
 /// ** RELATIVE ORDINAL CONSTANTS  ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenext?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaenext?language=objc)
 pub const kAENext: c_uint = 0x6e657874;
 /// ** RELATIVE ORDINAL CONSTANTS  ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeprevious?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/kaeprevious?language=objc)
 pub const kAEPrevious: c_uint = 0x70726576;
 /// ** KEYWORD CONSTANT    ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaecompoperator?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaecompoperator?language=objc)
 pub const keyAECompOperator: c_uint = 0x72656c6f;
 /// ** KEYWORD CONSTANT    ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaelogicalterms?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaelogicalterms?language=objc)
 pub const keyAELogicalTerms: c_uint = 0x7465726d;
 /// ** KEYWORD CONSTANT    ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaelogicaloperator?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaelogicaloperator?language=objc)
 pub const keyAELogicalOperator: c_uint = 0x6c6f6763;
 /// ** KEYWORD CONSTANT    ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaeobject1?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaeobject1?language=objc)
 pub const keyAEObject1: c_uint = 0x6f626a31;
 /// ** KEYWORD CONSTANT    ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaeobject2?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaeobject2?language=objc)
 pub const keyAEObject2: c_uint = 0x6f626a32;
 /// ** KEYWORD CONSTANT    ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaedesiredclass?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaedesiredclass?language=objc)
 pub const keyAEDesiredClass: c_uint = 0x77616e74;
 /// ** KEYWORD CONSTANT    ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaecontainer?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaecontainer?language=objc)
 pub const keyAEContainer: c_uint = 0x66726f6d;
 /// ** KEYWORD CONSTANT    ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaekeyform?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaekeyform?language=objc)
 pub const keyAEKeyForm: c_uint = 0x666f726d;
 /// ** KEYWORD CONSTANT    ***
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaekeydata?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572744-constants_for_object_specifiers_/keyaekeydata?language=objc)
 pub const keyAEKeyData: c_uint = 0x73656c64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaerangestart?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaerangestart?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAERangeStart: AEKeyword = 0x73746172;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaerangestop?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaerangestop?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAERangeStop: AEKeyword = 0x73746f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keydisposetokenproc?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keydisposetokenproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyDisposeTokenProc: AEKeyword = 0x78746f6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaecompareproc?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaecompareproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAECompareProc: AEKeyword = 0x636d7072;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaecountproc?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaecountproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAECountProc: AEKeyword = 0x636f6e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaemarktokenproc?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaemarktokenproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAEMarkTokenProc: AEKeyword = 0x6d6b6964;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaemarkproc?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaemarkproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAEMarkProc: AEKeyword = 0x6d61726b;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaeadjustmarksproc?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaeadjustmarksproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAEAdjustMarksProc: AEKeyword = 0x61646a6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaegeterrdescproc?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572726-special_handler_callback_constan/keyaegeterrdescproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAEGetErrDescProc: AEKeyword = 0x696e6463;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formabsoluteposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj/formabsoluteposition?language=objc)
 pub const formAbsolutePosition: c_uint = 0x696e6478;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formrelativeposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj/formrelativeposition?language=objc)
 pub const formRelativePosition: c_uint = 0x72656c65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formtest?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj/formtest?language=objc)
 pub const formTest: c_uint = 0x74657374;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formrange?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj/formrange?language=objc)
 pub const formRange: c_uint = 0x72616e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formpropertyid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj/formpropertyid?language=objc)
 pub const formPropertyID: c_uint = 0x70726f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj/formname?language=objc)
 pub const formName: c_uint = 0x6e616d65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formuniqueid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572731-key_form_and_descriptor_type_obj/formuniqueid?language=objc)
 pub const formUniqueID: c_uint = 0x49442020;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeobjectspecifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typeobjectspecifier?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeObjectSpecifier: DescType = 0x6f626a20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeobjectbeingexamined?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typeobjectbeingexamined?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeObjectBeingExamined: DescType = 0x65786d6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typecurrentcontainer?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typecurrentcontainer?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeCurrentContainer: DescType = 0x63636e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typetoken?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typetoken?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeToken: DescType = 0x746f6b65;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typerelativedescriptor?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typerelativedescriptor?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeRelativeDescriptor: DescType = 0x72656c20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeabsoluteordinal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typeabsoluteordinal?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeAbsoluteOrdinal: DescType = 0x6162736f;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeindexdescriptor?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typeindexdescriptor?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeIndexDescriptor: DescType = 0x696e6465;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typerangedescriptor?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typerangedescriptor?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeRangeDescriptor: DescType = 0x72616e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typelogicaldescriptor?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typelogicaldescriptor?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeLogicalDescriptor: DescType = 0x6c6f6769;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typecompdescriptor?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typecompdescriptor?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeCompDescriptor: DescType = 0x636d7064;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typeosltokenlist?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1645753-anonymous/typeosltokenlist?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeOSLTokenList: DescType = 0x6f73746c;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeidominimum?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres/kaeidominimum?language=objc)
 pub const kAEIDoMinimum: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeidowhose?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres/kaeidowhose?language=objc)
 pub const kAEIDoWhose: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeidomarking?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres/kaeidomarking?language=objc)
 pub const kAEIDoMarking: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaepasssubdescs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres/kaepasssubdescs?language=objc)
 pub const kAEPassSubDescs: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeresolvenestedlists?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres/kaeresolvenestedlists?language=objc)
 pub const kAEResolveNestedLists: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaehandlesimpleranges?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres/kaehandlesimpleranges?language=objc)
 pub const kAEHandleSimpleRanges: c_uint = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeuserelativeiterators?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572741-callback_constants_for_the_aeres/kaeuserelativeiterators?language=objc)
 pub const kAEUseRelativeIterators: c_uint = 0x0040;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typewhosedescriptor?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572727-anonymous/typewhosedescriptor?language=objc)
 pub const typeWhoseDescriptor: c_uint = 0x77686f73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/formwhose?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572727-anonymous/formwhose?language=objc)
 pub const formWhose: c_uint = 0x77686f73;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typewhoserange?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572727-anonymous/typewhoserange?language=objc)
 pub const typeWhoseRange: c_uint = 0x77726e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaewhoserangestart?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572727-anonymous/keyaewhoserangestart?language=objc)
 pub const keyAEWhoseRangeStart: c_uint = 0x77737472;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaewhoserangestop?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572727-anonymous/keyaewhoserangestop?language=objc)
 pub const keyAEWhoseRangeStop: c_uint = 0x77737470;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaeindex?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572727-anonymous/keyaeindex?language=objc)
 pub const keyAEIndex: c_uint = 0x6b696478;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaetest?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1572727-anonymous/keyaetest?language=objc)
 pub const keyAETest: c_uint = 0x6b747374;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ccnttokenrecord?language=objc)

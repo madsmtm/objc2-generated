@@ -1513,446 +1513,446 @@ impl SecKey {
 pub type SecKeyAlgorithm = CFString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignatureraw?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignatureraw?language=objc)
     pub static kSecKeyAlgorithmRSASignatureRaw: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturedigestpkcs1v15raw?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpkcs1v15raw?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPKCS1v15Raw: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturedigestpkcs1v15sha1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpkcs1v15sha1?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturedigestpkcs1v15sha224?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpkcs1v15sha224?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturedigestpkcs1v15sha256?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpkcs1v15sha256?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturedigestpkcs1v15sha384?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpkcs1v15sha384?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturedigestpkcs1v15sha512?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpkcs1v15sha512?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPKCS1v15SHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturemessagepkcs1v15sha1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepkcs1v15sha1?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePKCS1v15SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturemessagepkcs1v15sha224?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepkcs1v15sha224?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePKCS1v15SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturemessagepkcs1v15sha256?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepkcs1v15sha256?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePKCS1v15SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturemessagepkcs1v15sha384?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepkcs1v15sha384?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePKCS1v15SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturemessagepkcs1v15sha512?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepkcs1v15sha512?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePKCS1v15SHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturedigestpsssha1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpsssha1?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPSSSHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturedigestpsssha224?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpsssha224?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPSSSHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturedigestpsssha256?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpsssha256?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPSSSHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturedigestpsssha384?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpsssha384?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPSSSHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturedigestpsssha512?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturedigestpsssha512?language=objc)
     pub static kSecKeyAlgorithmRSASignatureDigestPSSSHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturemessagepsssha1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepsssha1?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePSSSHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturemessagepsssha224?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepsssha224?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePSSSHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturemessagepsssha256?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepsssha256?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePSSSHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturemessagepsssha384?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepsssha384?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePSSSHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsasignaturemessagepsssha512?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsasignaturemessagepsssha512?language=objc)
     pub static kSecKeyAlgorithmRSASignatureMessagePSSSHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturedigestx962?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestx962?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestX962: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturedigestx962sha1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestx962sha1?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestX962SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturedigestx962sha224?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestx962sha224?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestX962SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturedigestx962sha256?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestx962sha256?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestX962SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturedigestx962sha384?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestx962sha384?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestX962SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturedigestx962sha512?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestx962sha512?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestX962SHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturemessagex962sha1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagex962sha1?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageX962SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturemessagex962sha224?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagex962sha224?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageX962SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturemessagex962sha256?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagex962sha256?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageX962SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturemessagex962sha384?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagex962sha384?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageX962SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturemessagex962sha512?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagex962sha512?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageX962SHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturedigestrfc4754?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestrfc4754?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestRFC4754: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturedigestrfc4754sha1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestrfc4754sha1?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturedigestrfc4754sha224?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestrfc4754sha224?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturedigestrfc4754sha256?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestrfc4754sha256?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturedigestrfc4754sha384?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestrfc4754sha384?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturedigestrfc4754sha512?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturedigestrfc4754sha512?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureDigestRFC4754SHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturemessagerfc4754sha1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagerfc4754sha1?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturemessagerfc4754sha224?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagerfc4754sha224?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturemessagerfc4754sha256?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagerfc4754sha256?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturemessagerfc4754sha384?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagerfc4754sha384?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturemessagerfc4754sha512?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturemessagerfc4754sha512?language=objc)
     pub static kSecKeyAlgorithmECDSASignatureMessageRFC4754SHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdsasignaturerfc4754?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdsasignaturerfc4754?language=objc)
     #[deprecated]
     pub static kSecKeyAlgorithmECDSASignatureRFC4754: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsaencryptionraw?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionraw?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionRaw: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsaencryptionpkcs1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionpkcs1?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionPKCS1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsaencryptionoaepsha1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha1?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsaencryptionoaepsha224?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha224?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsaencryptionoaepsha256?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha256?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsaencryptionoaepsha384?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha384?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsaencryptionoaepsha512?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha512?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsaencryptionoaepsha1aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha1aesgcm?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA1AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsaencryptionoaepsha224aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha224aesgcm?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA224AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsaencryptionoaepsha256aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha256aesgcm?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA256AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsaencryptionoaepsha384aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha384aesgcm?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA384AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmrsaencryptionoaepsha512aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/rsaencryptionoaepsha512aesgcm?language=objc)
     pub static kSecKeyAlgorithmRSAEncryptionOAEPSHA512AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptionstandardx963sha1aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardx963sha1aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardX963SHA1AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptionstandardx963sha224aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardx963sha224aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardX963SHA224AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptionstandardx963sha256aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardx963sha256aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardX963SHA256AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptionstandardx963sha384aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardx963sha384aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardX963SHA384AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptionstandardx963sha512aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardx963sha512aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardX963SHA512AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptioncofactorx963sha1aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorx963sha1aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorX963SHA1AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptioncofactorx963sha224aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorx963sha224aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorX963SHA224AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptioncofactorx963sha256aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorx963sha256aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorX963SHA256AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptioncofactorx963sha384aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorx963sha384aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorX963SHA384AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptioncofactorx963sha512aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorx963sha512aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorX963SHA512AESGCM: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptionstandardvariableivx963sha224aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardvariableivx963sha224aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA224AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptionstandardvariableivx963sha256aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardvariableivx963sha256aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA256AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptionstandardvariableivx963sha384aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardvariableivx963sha384aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA384AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptionstandardvariableivx963sha512aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptionstandardvariableivx963sha512aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionStandardVariableIVX963SHA512AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptioncofactorvariableivx963sha224aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorvariableivx963sha224aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorVariableIVX963SHA224AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptioncofactorvariableivx963sha256aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorvariableivx963sha256aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorVariableIVX963SHA256AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptioncofactorvariableivx963sha384aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorvariableivx963sha384aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorVariableIVX963SHA384AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmeciesencryptioncofactorvariableivx963sha512aesgcm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/eciesencryptioncofactorvariableivx963sha512aesgcm?language=objc)
     pub static kSecKeyAlgorithmECIESEncryptionCofactorVariableIVX963SHA512AESGCM:
         &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdhkeyexchangestandard?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangestandard?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeStandard: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdhkeyexchangestandardx963sha1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangestandardx963sha1?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeStandardX963SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdhkeyexchangestandardx963sha224?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangestandardx963sha224?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeStandardX963SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdhkeyexchangestandardx963sha256?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangestandardx963sha256?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeStandardX963SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdhkeyexchangestandardx963sha384?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangestandardx963sha384?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeStandardX963SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdhkeyexchangestandardx963sha512?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangestandardx963sha512?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeStandardX963SHA512: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdhkeyexchangecofactor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangecofactor?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeCofactor: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdhkeyexchangecofactorx963sha1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangecofactorx963sha1?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeCofactorX963SHA1: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdhkeyexchangecofactorx963sha224?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangecofactorx963sha224?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeCofactorX963SHA224: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdhkeyexchangecofactorx963sha256?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangecofactorx963sha256?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeCofactorX963SHA256: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdhkeyexchangecofactorx963sha384?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangecofactorx963sha384?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeCofactorX963SHA384: &'static SecKeyAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeyalgorithmecdhkeyexchangecofactorx963sha512?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeyalgorithm/ecdhkeyexchangecofactorx963sha512?language=objc)
     pub static kSecKeyAlgorithmECDHKeyExchangeCofactorX963SHA512: &'static SecKeyAlgorithm;
 }
 
@@ -2132,12 +2132,12 @@ impl SecKey {
 pub type SecKeyKeyExchangeParameter = CFString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeykeyexchangeparameterrequestedsize?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeykeyexchangeparameter/requestedsize?language=objc)
     pub static kSecKeyKeyExchangeParameterRequestedSize: &'static SecKeyKeyExchangeParameter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/security/kseckeykeyexchangeparametersharedinfo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/security/seckeykeyexchangeparameter/sharedinfo?language=objc)
     pub static kSecKeyKeyExchangeParameterSharedInfo: &'static SecKeyKeyExchangeParameter;
 }
 

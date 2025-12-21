@@ -13,10 +13,10 @@ extern "C" {
     pub static NSSoundPboardType: &'static NSPasteboardType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssoundname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssound/name-swift.typealias?language=objc)
 pub type NSSoundName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssoundplaybackdeviceidentifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssound/playbackdeviceidentifier-swift.typealias?language=objc)
 pub type NSSoundPlaybackDeviceIdentifier = NSString;
 
 extern_class!(

@@ -8,55 +8,55 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "objc2-foundation")]
 pub type ARSkeletonJointName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnameroot?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/root?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameRoot: &'static ARSkeletonJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnamehead?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/head?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameHead: &'static ARSkeletonJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnamelefthand?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/lefthand?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameLeftHand: &'static ARSkeletonJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnamerighthand?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/righthand?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameRightHand: &'static ARSkeletonJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnameleftfoot?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/leftfoot?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameLeftFoot: &'static ARSkeletonJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnamerightfoot?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/rightfoot?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameRightFoot: &'static ARSkeletonJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnameleftshoulder?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/leftshoulder?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameLeftShoulder: &'static ARSkeletonJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeletonjointnamerightshoulder?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arskeleton/jointname/rightshoulder?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARSkeletonJointNameRightShoulder: &'static ARSkeletonJointName;
 }

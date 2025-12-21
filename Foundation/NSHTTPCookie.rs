@@ -5,12 +5,12 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiepropertykey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSHTTPCookiePropertyKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiestringpolicy?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiestringpolicy?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSHTTPCookieStringPolicy = NSString;
@@ -18,7 +18,7 @@ pub type NSHTTPCookieStringPolicy = NSString;
 extern "C" {
     /// Key for cookie name
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiename?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/name?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieName: &'static NSHTTPCookiePropertyKey;
 }
@@ -26,7 +26,7 @@ extern "C" {
 extern "C" {
     /// Key for cookie value
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookievalue?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/value?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieValue: &'static NSHTTPCookiePropertyKey;
 }
@@ -34,7 +34,7 @@ extern "C" {
 extern "C" {
     /// Key for cookie origin URL
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieoriginurl?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/originurl?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieOriginURL: &'static NSHTTPCookiePropertyKey;
 }
@@ -42,7 +42,7 @@ extern "C" {
 extern "C" {
     /// Key for cookie version
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieversion?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/version?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieVersion: &'static NSHTTPCookiePropertyKey;
 }
@@ -50,7 +50,7 @@ extern "C" {
 extern "C" {
     /// Key for cookie domain
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiedomain?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/domain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieDomain: &'static NSHTTPCookiePropertyKey;
 }
@@ -58,7 +58,7 @@ extern "C" {
 extern "C" {
     /// Key for cookie path
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiepath?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/path?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookiePath: &'static NSHTTPCookiePropertyKey;
 }
@@ -66,7 +66,7 @@ extern "C" {
 extern "C" {
     /// Key for cookie secure flag
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesecure?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/secure?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSecure: &'static NSHTTPCookiePropertyKey;
 }
@@ -74,7 +74,7 @@ extern "C" {
 extern "C" {
     /// Key for cookie expiration date
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieexpires?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/expires?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieExpires: &'static NSHTTPCookiePropertyKey;
 }
@@ -82,7 +82,7 @@ extern "C" {
 extern "C" {
     /// Key for cookie comment text
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiecomment?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/comment?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieComment: &'static NSHTTPCookiePropertyKey;
 }
@@ -90,7 +90,7 @@ extern "C" {
 extern "C" {
     /// Key for cookie comment URL
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiecommenturl?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/commenturl?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieCommentURL: &'static NSHTTPCookiePropertyKey;
 }
@@ -98,7 +98,7 @@ extern "C" {
 extern "C" {
     /// Key for cookie discard (session-only) flag
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiediscard?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/discard?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieDiscard: &'static NSHTTPCookiePropertyKey;
 }
@@ -106,7 +106,7 @@ extern "C" {
 extern "C" {
     /// Key for cookie maximum age (an alternate way of specifying the expiration)
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiemaximumage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/maximumage?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieMaximumAge: &'static NSHTTPCookiePropertyKey;
 }
@@ -114,7 +114,7 @@ extern "C" {
 extern "C" {
     /// Key for cookie ports
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieport?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/port?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookiePort: &'static NSHTTPCookiePropertyKey;
 }
@@ -122,7 +122,7 @@ extern "C" {
 extern "C" {
     /// An NSString object indicating that the cookie is set via JavaScript.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesetbyjavascript?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/setbyjavascript?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSetByJavaScript: &'static NSHTTPCookiePropertyKey;
 }
@@ -130,7 +130,7 @@ extern "C" {
 extern "C" {
     /// Key for cookie same site
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesamesitepolicy?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiepropertykey/samesitepolicy?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSameSitePolicy: &'static NSHTTPCookiePropertyKey;
 }
@@ -138,7 +138,7 @@ extern "C" {
 extern "C" {
     /// String constant "lax" to be used as a value for the property key NSHTTPCookieSameSite
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesamesitelax?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiestringpolicy/samesitelax?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSameSiteLax: &'static NSHTTPCookieStringPolicy;
 }
@@ -146,7 +146,7 @@ extern "C" {
 extern "C" {
     /// String constant "strict" to be used as a value for the property key NSHTTPCookieSameSite
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiesamesitestrict?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiestringpolicy/samesitestrict?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSHTTPCookieSameSiteStrict: &'static NSHTTPCookieStringPolicy;
 }
@@ -159,7 +159,7 @@ extern_class!(
     /// the various cookie attributes. It has accessors to get the various
     /// attributes of a cookie.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookie?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookie?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHTTPCookie;

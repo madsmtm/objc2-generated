@@ -8,7 +8,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSAttributedStringKey = NSString;
@@ -19,7 +19,7 @@ pub type NSAttributedStringKey = NSString;
 pub type NSAttributedStringFormattingContextKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionconceptskey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringformattingcontextkey/inflectionconceptskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionConceptsKey: &'static NSAttributedStringFormattingContextKey;
 }
@@ -122,7 +122,7 @@ impl DefaultRetained for NSAttributedString {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstringenumerationoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/enumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -465,7 +465,7 @@ impl NSMutableAttributedString {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinlinepresentationintent?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/inlinepresentationintent?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -500,31 +500,31 @@ unsafe impl RefEncode for NSInlinePresentationIntent {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinlinepresentationintentattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/inlinepresentationintent?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInlinePresentationIntentAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsalternatedescriptionattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/alternatedescription?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAlternateDescriptionAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsimageurlattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/imageurl?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSImageURLAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslanguageidentifierattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/languageidentifier?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLanguageIdentifierAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmarkdownsourcepositionattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/markdownsourceposition?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMarkdownSourcePositionAttributeName: &'static NSAttributedStringKey;
 }
@@ -862,7 +862,7 @@ impl NSMutableAttributedString {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsreplacementindexattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/replacementindex?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSReplacementIndexAttributeName: &'static NSAttributedStringKey;
 }
@@ -880,55 +880,55 @@ impl NSAttributedString {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmorphologyattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/morphology?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSMorphologyAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionruleattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/inflectionrule?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionRuleAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionagreementargumentattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/agreewithargument?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionAgreementArgumentAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionagreementconceptattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/agreewithconcept?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionAgreementConceptAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionreferentconceptattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/referentconcept?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionReferentConceptAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinflectionalternativeattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/inflectionalternative?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSInflectionAlternativeAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalizednumberformatattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/localizednumberformat?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocalizedNumberFormatAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslistitemdelimiterattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/listitemdelimiter?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSListItemDelimiterAttributeName: &'static NSAttributedStringKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspresentationintentattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsattributedstring/key/presentationintentattributename?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSPresentationIntentAttributeName: &'static NSAttributedStringKey;
 }

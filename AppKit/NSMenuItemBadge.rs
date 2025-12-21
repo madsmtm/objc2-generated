@@ -10,7 +10,7 @@ use crate::*;
 /// string portions of a menu item badge, ensuring appropriate localization
 /// and pluralization behaviors automatically when using a pre-defined type.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitembadgetype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuitembadge/badgetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_spi_ac_funcs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_spi_ac_funcs-c.struct?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -77,7 +77,7 @@ unsafe impl RefEncode for cssm_spi_ac_funcs {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_spi_ac_funcs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_spi_ac_funcs-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_SPI_AC_FUNCS = cssm_spi_ac_funcs;

@@ -13,6 +13,6 @@ pub type SNClassifierIdentifier = NSString;
 extern "C" {
     /// Denotes the first edition of the Apple-provided sound classifier.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snclassifieridentifierversion1?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/snclassifieridentifier/version1?language=objc)
     pub static SNClassifierIdentifierVersion1: Option<&'static SNClassifierIdentifier>;
 }

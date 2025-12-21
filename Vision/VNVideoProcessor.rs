@@ -14,7 +14,7 @@ use crate::*;
 extern_class!(
     /// An object that defines the cadence at which the video stream is processed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessorcadence?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessor/cadence?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorCadence;
@@ -52,7 +52,7 @@ impl VNVideoProcessorCadence {
 extern_class!(
     /// An object that defines a frame-based cadence for processing the video stream.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessorframeratecadence?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessor/frameratecadence?language=objc)
     #[unsafe(super(VNVideoProcessorCadence, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorFrameRateCadence;
@@ -101,7 +101,7 @@ impl VNVideoProcessorFrameRateCadence {
 extern_class!(
     /// An object that defines a time-based cadence for processing the video stream.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessortimeintervalcadence?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessor/timeintervalcadence?language=objc)
     #[unsafe(super(VNVideoProcessorCadence, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorTimeIntervalCadence;
@@ -152,7 +152,7 @@ impl VNVideoProcessorTimeIntervalCadence {
 extern_class!(
     /// Options applied to a request's processing of the video.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessorrequestprocessingoptions?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnvideoprocessor/requestprocessingoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VNVideoProcessorRequestProcessingOptions;

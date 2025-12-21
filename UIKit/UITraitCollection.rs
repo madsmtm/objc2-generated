@@ -468,7 +468,7 @@ impl DefaultRetained for UITraitCollection {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimutabletraits?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimutabletraits-8l00o?language=objc)
     pub unsafe trait UIMutableTraits: NSObjectProtocol + MainThreadOnly {
         #[cfg(all(feature = "UITrait", feature = "objc2-core-foundation"))]
         /// # Safety
@@ -931,7 +931,7 @@ pub type UITraitChangeHandler = *mut block2::DynBlock<
 >;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitoverrides?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitoverrides-c.protocol?language=objc)
     pub unsafe trait UITraitOverrides: UIMutableTraits + MainThreadOnly {
         #[cfg(feature = "UITrait")]
         /// # Safety
@@ -952,7 +952,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitchangeobservable?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitchangeobservable-7qoet?language=objc)
     pub unsafe trait UITraitChangeObservable: MainThreadOnly {
         #[unsafe(method(unregisterForTraitChanges:))]
         #[unsafe(method_family = none)]

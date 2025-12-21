@@ -103,7 +103,7 @@ impl TKSmartCardSlotManager {
 
 /// Enumerates all possible slot states.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -136,7 +136,7 @@ unsafe impl RefEncode for TKSmartCardSlotState {
 
 /// Enumerates all possible PIN character sets.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpincharset?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/charset-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -163,7 +163,7 @@ unsafe impl RefEncode for TKSmartCardPINCharset {
 
 /// Enumerates all possible PIN encoding types.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinencoding?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/encoding-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -190,7 +190,7 @@ unsafe impl RefEncode for TKSmartCardPINEncoding {
 
 /// Enumerates all posible PIN justification types.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinjustification?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinformat/justification?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -214,7 +214,7 @@ unsafe impl RefEncode for TKSmartCardPINJustification {
 
 /// Bitmask specifying condition(s) under which PIN entry should be considered complete.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpincompletion?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforpinoperation/completion?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -243,7 +243,7 @@ unsafe impl RefEncode for TKSmartCardPINCompletion {
 
 /// Bitmask specifying whether PIN confirmation should be requested.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardpinconfirmation?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcarduserinteractionforsecurepinchange/confirmation?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

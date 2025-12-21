@@ -19,16 +19,16 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionelementkindsectionheader?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/elementkindsectionheader?language=objc)
     pub static UICollectionElementKindSectionHeader: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionelementkindsectionfooter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/elementkindsectionfooter?language=objc)
     pub static UICollectionElementKindSectionFooter: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewscrolldirection?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrolldirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -48,7 +48,7 @@ unsafe impl RefEncode for UICollectionViewScrollDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionelementcategory?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/elementcategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

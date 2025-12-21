@@ -129,21 +129,21 @@ impl CALayer {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcascrollnone?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cascrolllayerscrollmode/none?language=objc)
     pub static kCAScrollNone: &'static CAScrollLayerScrollMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcascrollvertically?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cascrolllayerscrollmode/vertically?language=objc)
     pub static kCAScrollVertically: &'static CAScrollLayerScrollMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcascrollhorizontally?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cascrolllayerscrollmode/horizontally?language=objc)
     pub static kCAScrollHorizontally: &'static CAScrollLayerScrollMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcascrollboth?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cascrolllayerscrollmode/both?language=objc)
     pub static kCAScrollBoth: &'static CAScrollLayerScrollMode;
 }

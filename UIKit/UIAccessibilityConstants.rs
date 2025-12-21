@@ -11,186 +11,186 @@ use crate::*;
 pub type UIAccessibilityTraits = u64;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitnone?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/none?language=objc)
     pub static UIAccessibilityTraitNone: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitbutton?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/button?language=objc)
     pub static UIAccessibilityTraitButton: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitlink?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/link?language=objc)
     pub static UIAccessibilityTraitLink: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitheader?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/header?language=objc)
     pub static UIAccessibilityTraitHeader: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitsearchfield?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/searchfield?language=objc)
     pub static UIAccessibilityTraitSearchField: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitimage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/image?language=objc)
     pub static UIAccessibilityTraitImage: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitselected?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/selected?language=objc)
     pub static UIAccessibilityTraitSelected: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitplayssound?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/playssound?language=objc)
     pub static UIAccessibilityTraitPlaysSound: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitkeyboardkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/keyboardkey?language=objc)
     pub static UIAccessibilityTraitKeyboardKey: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitstatictext?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/statictext?language=objc)
     pub static UIAccessibilityTraitStaticText: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitsummaryelement?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/summaryelement?language=objc)
     pub static UIAccessibilityTraitSummaryElement: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitnotenabled?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/notenabled?language=objc)
     pub static UIAccessibilityTraitNotEnabled: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitupdatesfrequently?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/updatesfrequently?language=objc)
     pub static UIAccessibilityTraitUpdatesFrequently: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitstartsmediasession?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/startsmediasession?language=objc)
     pub static UIAccessibilityTraitStartsMediaSession: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitadjustable?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/adjustable?language=objc)
     pub static UIAccessibilityTraitAdjustable: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitallowsdirectinteraction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/allowsdirectinteraction?language=objc)
     pub static UIAccessibilityTraitAllowsDirectInteraction: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitcausespageturn?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/causespageturn?language=objc)
     pub static UIAccessibilityTraitCausesPageTurn: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraittabbar?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/tabbar?language=objc)
     pub static UIAccessibilityTraitTabBar: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraittogglebutton?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/togglebutton?language=objc)
     pub static UIAccessibilityTraitToggleButton: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraitsupportszoom?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytraits/supportszoom?language=objc)
     pub static UIAccessibilityTraitSupportsZoom: UIAccessibilityTraits;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitynotifications?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/notification?language=objc)
 // NS_TYPED_ENUM
 pub type UIAccessibilityNotifications = u32;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityscreenchangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/screenchanged?language=objc)
     pub static UIAccessibilityScreenChangedNotification: UIAccessibilityNotifications;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitylayoutchangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/layoutchanged?language=objc)
     pub static UIAccessibilityLayoutChangedNotification: UIAccessibilityNotifications;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityannouncementnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/announcement?language=objc)
     pub static UIAccessibilityAnnouncementNotification: UIAccessibilityNotifications;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitypagescrollednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/pagescrolled?language=objc)
     pub static UIAccessibilityPageScrolledNotification: UIAccessibilityNotifications;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitypauseassistivetechnologynotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/pauseassistivetechnology?language=objc)
     pub static UIAccessibilityPauseAssistiveTechnologyNotification: UIAccessibilityNotifications;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityresumeassistivetechnologynotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/notification/resumeassistivetechnology?language=objc)
     pub static UIAccessibilityResumeAssistiveTechnologyNotification: UIAccessibilityNotifications;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityannouncementdidfinishnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/announcementdidfinishnotification?language=objc)
     pub static UIAccessibilityAnnouncementDidFinishNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityannouncementkeystringvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/announcementstringvalueuserinfokey?language=objc)
     pub static UIAccessibilityAnnouncementKeyStringValue: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityannouncementkeywassuccessful?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/announcementwassuccessfuluserinfokey?language=objc)
     pub static UIAccessibilityAnnouncementKeyWasSuccessful: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityelementfocusednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/elementfocusednotification?language=objc)
     pub static UIAccessibilityElementFocusedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityfocusedelementkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/focusedelementuserinfokey?language=objc)
     pub static UIAccessibilityFocusedElementKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityunfocusedelementkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/unfocusedelementuserinfokey?language=objc)
     pub static UIAccessibilityUnfocusedElementKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityassistivetechnologykey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/assistivetechnologyuserinfokey?language=objc)
     pub static UIAccessibilityAssistiveTechnologyKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityassistivetechnologyidentifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/assistivetechnologyidentifier?language=objc)
 // NS_TYPED_ENUM
 pub type UIAccessibilityAssistiveTechnologyIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitynotificationswitchcontrolidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/assistivetechnologyidentifier/notificationswitchcontrol?language=objc)
     pub static UIAccessibilityNotificationSwitchControlIdentifier:
         &'static UIAccessibilityAssistiveTechnologyIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitynotificationvoiceoveridentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/assistivetechnologyidentifier/notificationvoiceover?language=objc)
     pub static UIAccessibilityNotificationVoiceOverIdentifier:
         &'static UIAccessibilityAssistiveTechnologyIdentifier;
 }
@@ -243,7 +243,7 @@ unsafe impl RefEncode for UIAccessibilityContainerType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitydirecttouchoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/directtouchoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -272,37 +272,37 @@ unsafe impl RefEncode for UIAccessibilityDirectTouchOptions {
 pub type UIAccessibilityTextualContext = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontextwordprocessing?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext/wordprocessing?language=objc)
     pub static UIAccessibilityTextualContextWordProcessing: &'static UIAccessibilityTextualContext;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontextnarrative?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext/narrative?language=objc)
     pub static UIAccessibilityTextualContextNarrative: &'static UIAccessibilityTextualContext;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontextmessaging?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext/messaging?language=objc)
     pub static UIAccessibilityTextualContextMessaging: &'static UIAccessibilityTextualContext;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontextspreadsheet?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext/spreadsheet?language=objc)
     pub static UIAccessibilityTextualContextSpreadsheet: &'static UIAccessibilityTextualContext;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontextfilesystem?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext/filesystem?language=objc)
     pub static UIAccessibilityTextualContextFileSystem: &'static UIAccessibilityTextualContext;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontextsourcecode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext/sourcecode?language=objc)
     pub static UIAccessibilityTextualContextSourceCode: &'static UIAccessibilityTextualContext;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontextconsole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitytextualcontext/console?language=objc)
     pub static UIAccessibilityTextualContextConsole: &'static UIAccessibilityTextualContext;
 }
 
@@ -311,21 +311,21 @@ extern "C" {
 pub type UIAccessibilityPriority = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitypriorityhigh?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitypriority/high?language=objc)
     pub static UIAccessibilityPriorityHigh: &'static UIAccessibilityPriority;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityprioritydefault?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitypriority/default?language=objc)
     pub static UIAccessibilityPriorityDefault: &'static UIAccessibilityPriority;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityprioritylow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitypriority/low?language=objc)
     pub static UIAccessibilityPriorityLow: &'static UIAccessibilityPriority;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityexpandedstatus?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/expandedstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

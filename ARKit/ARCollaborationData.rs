@@ -10,7 +10,7 @@ use crate::*;
 
 /// A value describing the priority of the collaboration data.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcollaborationdatapriority?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/collaborationdata/priority-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -44,7 +44,7 @@ extern_class!(
     ///
     /// This data needs to be sent to each participants in the collaborative session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcollaborationdata?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/collaborationdata?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

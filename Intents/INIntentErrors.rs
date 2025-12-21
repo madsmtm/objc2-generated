@@ -10,7 +10,7 @@ extern "C" {
     pub static INIntentErrorDomain: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/intents/inintenterror/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

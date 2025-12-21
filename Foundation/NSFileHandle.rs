@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filehandle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileHandle;
@@ -199,31 +199,31 @@ impl NSFileHandle {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandleoperationexception?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/filehandleoperationexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSFileHandleOperationException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlereadcompletionnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filehandle/readcompletionnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleReadCompletionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandlereadtoendoffilecompletionnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsfilehandlereadtoendoffilecompletion?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleReadToEndOfFileCompletionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandleconnectionacceptednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsfilehandleconnectionaccepted?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleConnectionAcceptedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilehandledataavailablenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsfilehandledataavailable?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSFileHandleDataAvailableNotification: &'static NSNotificationName;
 }
@@ -413,7 +413,7 @@ impl NSFileHandle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspipe?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/pipe?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPipe;

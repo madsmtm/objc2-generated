@@ -1130,7 +1130,7 @@ use crate::*;
 
 /// Opaque reference for the ODContext object
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odcontextref?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odcontext?language=objc)
 #[repr(C)]
 pub struct ODContextRef {
     inner: [u8; 0],

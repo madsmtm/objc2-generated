@@ -83,25 +83,25 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostwillenterforegroundnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsextensionhostwillenterforeground?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostWillEnterForegroundNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostdidenterbackgroundnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsextensionhostdidenterbackground?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostDidEnterBackgroundNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostwillresignactivenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsextensionhostwillresignactive?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostWillResignActiveNotification: Option<&'static NSString>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsextensionhostdidbecomeactivenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsextensionhostdidbecomeactive?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSExtensionHostDidBecomeActiveNotification: Option<&'static NSString>;
 }

@@ -530,8 +530,6 @@ extern "C" {
     /// This is a special constant to indicate no clipping is to be done.
     /// The entire image will be used.
     /// This is the default clipping rectangle or the input extent for MPSKernels.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrectnoclip?language=objc)
     pub static MPSRectNoClip: MTLRegion;
 }
 

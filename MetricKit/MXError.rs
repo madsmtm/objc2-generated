@@ -18,7 +18,7 @@ extern "C" {
 ///
 /// These error codes are used as the codes for all NSError instances stemmming from the MetricKit Framework.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerrorcode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metrickit/mxerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

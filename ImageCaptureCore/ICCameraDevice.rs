@@ -12,7 +12,7 @@ use crate::*;
 extern "C" {
     /// Indicates that the camera can capture a picture while it is connected, if the client sends a 'requestTakePicture' message to it.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccameradevicecantakepicture?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicecantakepicture?language=objc)
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceCanTakePicture: &'static ICDeviceCapability;
 }
@@ -20,7 +20,7 @@ extern "C" {
 extern "C" {
     /// Indicates that the camera can capture a picture while it is connected, if the user presses the shutter release on the camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccameradevicecantakepictureusingshutterreleaseoncamera?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicecantakepictureusingshutterreleaseoncamera?language=objc)
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceCanTakePictureUsingShutterReleaseOnCamera: &'static ICDeviceCapability;
 }
@@ -28,7 +28,7 @@ extern "C" {
 extern "C" {
     /// Indicates that the camera can delete a file at a time while it is connected.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccameradevicecandeleteonefile?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicecandeleteonefile?language=objc)
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceCanDeleteOneFile: &'static ICDeviceCapability;
 }
@@ -36,7 +36,7 @@ extern "C" {
 extern "C" {
     /// Indicates that the camera can delete all files in a single operation while it is connected.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccameradevicecandeleteallfiles?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicecandeleteallfiles?language=objc)
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceCanDeleteAllFiles: &'static ICDeviceCapability;
 }
@@ -44,7 +44,7 @@ extern "C" {
 extern "C" {
     /// Indicates that the camera can synchronize its date and time with that of the host computer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccameradevicecansyncclock?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicecansyncclock?language=objc)
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceCanSyncClock: &'static ICDeviceCapability;
 }
@@ -52,7 +52,7 @@ extern "C" {
 extern "C" {
     /// Indicates that the host can upload files to the camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccameradevicecanreceivefile?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicecanreceivefile?language=objc)
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceCanReceiveFile: &'static ICDeviceCapability;
 }
@@ -60,7 +60,7 @@ extern "C" {
 extern "C" {
     /// Indicates that the camera can accept PTP commands.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccameradevicecanacceptptpcommands?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicecanacceptptpcommands?language=objc)
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceCanAcceptPTPCommands: &'static ICDeviceCapability;
 }
@@ -68,7 +68,7 @@ extern "C" {
 extern "C" {
     /// Indicates that the camera supports HEIF transcoding, and can change the presentation of converted assets and original assets on the fly.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccameradevicesupportsheif?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/cameradevicesupportsheif?language=objc)
     #[cfg(feature = "ICDevice")]
     pub static ICCameraDeviceSupportsHEIF: &'static ICDeviceCapability;
 }
@@ -86,7 +86,7 @@ extern "C" {
     /// <ICCameraItem
     /// *>*
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeletesuccessful?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteresult/successful?language=objc)
     pub static ICDeleteSuccessful: &'static ICDeleteResult;
 }
 
@@ -95,7 +95,7 @@ extern "C" {
     /// <ICCameraItem
     /// *>*
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeletecanceled?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteresult/canceled?language=objc)
     pub static ICDeleteCanceled: &'static ICDeleteResult;
 }
 
@@ -104,7 +104,7 @@ extern "C" {
     /// <ICCameraItem
     /// *>*
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeletefailed?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteresult/failed?language=objc)
     pub static ICDeleteFailed: &'static ICDeleteResult;
 }
 
@@ -115,28 +115,28 @@ pub type ICDeleteError = NSString;
 extern "C" {
     /// The value for this key should be an ICCameraItem*
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteerrorreadonly?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteerror/readonly?language=objc)
     pub static ICDeleteErrorReadOnly: &'static ICDeleteError;
 }
 
 extern "C" {
     /// The value for this key should be an ICCameraItem*
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteerrorfilemissing?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteerror/filemissing?language=objc)
     pub static ICDeleteErrorFileMissing: &'static ICDeleteError;
 }
 
 extern "C" {
     /// The value for this key should be an ICCameraItem*
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteerrordevicemissing?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteerror/devicemissing?language=objc)
     pub static ICDeleteErrorDeviceMissing: &'static ICDeleteError;
 }
 
 extern "C" {
     /// The value for this key should be an ICCameraItem*
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteerrorcanceled?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteerror/canceled?language=objc)
     pub static ICDeleteErrorCanceled: &'static ICDeleteError;
 }
 

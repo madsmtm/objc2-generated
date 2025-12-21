@@ -7,28 +7,18 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_apple_tp_ssl_opts_version?language=objc)
 pub const CSSM_APPLE_TP_SSL_OPTS_VERSION: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_apple_tp_crl_opts_version?language=objc)
 pub const CSSM_APPLE_TP_CRL_OPTS_VERSION: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_apple_tp_smime_opts_version?language=objc)
 pub const CSSM_APPLE_TP_SMIME_OPTS_VERSION: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_apple_tp_action_version?language=objc)
 pub const CSSM_APPLE_TP_ACTION_VERSION: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_apple_evidence_version?language=objc)
 pub const CSSM_TP_APPLE_EVIDENCE_VERSION: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kkeychainsuffix?language=objc)
 pub const kKeychainSuffix: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b".keychain\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kkeychaindbsuffix?language=objc)
 pub const kKeychainDbSuffix: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b".keychain-db\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksystemkeychainname?language=objc)
 pub const kSystemKeychainName: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"System.keychain\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksystemkeychaindir?language=objc)
 pub const kSystemKeychainDir: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"/Library/Keychains/\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ksystemunlockfile?language=objc)
 pub const kSystemUnlockFile: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"/var/db/SystemKey\0") };
 extern "C" {
@@ -192,7 +182,7 @@ pub const CSSM_ACL_MATCH_BITS: c_uint = 3;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_process_selector_current_version?language=objc)
 pub const CSSM_ACL_PROCESS_SELECTOR_CURRENT_VERSION: c_uint = 257;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_process_subject_selector?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_process_subject_selector-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -221,7 +211,7 @@ unsafe impl RefEncode for cssm_acl_process_subject_selector {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_process_subject_selector?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_process_subject_selector-swift.typealias?language=objc)
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_ACL_PROCESS_SUBJECT_SELECTOR = cssm_acl_process_subject_selector;
 
@@ -239,7 +229,7 @@ pub const CSSM_ACL_KEYCHAIN_PROMPT_INVALID: c_uint = 64;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_keychain_prompt_invalid_act?language=objc)
 pub const CSSM_ACL_KEYCHAIN_PROMPT_INVALID_ACT: c_uint = 128;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_keychain_prompt_selector?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_keychain_prompt_selector-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -261,7 +251,7 @@ unsafe impl RefEncode for cssm_acl_keychain_prompt_selector {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_keychain_prompt_selector?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_keychain_prompt_selector-swift.typealias?language=objc)
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR = cssm_acl_keychain_prompt_selector;
 
@@ -708,7 +698,7 @@ unsafe impl RefEncode for cssm_appledl_open_parameters_mask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_appledl_open_parameters?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_appledl_open_parameters-swift.struct?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype", feature = "libc"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -749,7 +739,7 @@ unsafe impl RefEncode for cssm_appledl_open_parameters {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_appledl_open_parameters?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_appledl_open_parameters-swift.typealias?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype", feature = "libc"))]
 pub type CSSM_APPLEDL_OPEN_PARAMETERS = cssm_appledl_open_parameters;
 
@@ -820,7 +810,7 @@ pub const CSSM_APPLECSP_KEYDIGEST: c_uint = 256;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecsp_pubkey?language=objc)
 pub const CSSM_APPLECSP_PUBKEY: c_uint = 257;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecspdl_db_settings_parameters?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecspdl_db_settings_parameters-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -842,7 +832,7 @@ unsafe impl RefEncode for cssm_applecspdl_db_settings_parameters {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecspdl_db_settings_parameters?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecspdl_db_settings_parameters-swift.typealias?language=objc)
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_APPLECSPDL_DB_SETTINGS_PARAMETERS = cssm_applecspdl_db_settings_parameters;
 
@@ -850,7 +840,7 @@ pub type CSSM_APPLECSPDL_DB_SETTINGS_PARAMETERS = cssm_applecspdl_db_settings_pa
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_APPLECSPDL_DB_SETTINGS_PARAMETERS_PTR = *mut cssm_applecspdl_db_settings_parameters;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecspdl_db_is_locked_parameters?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecspdl_db_is_locked_parameters-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -871,7 +861,7 @@ unsafe impl RefEncode for cssm_applecspdl_db_is_locked_parameters {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecspdl_db_is_locked_parameters?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecspdl_db_is_locked_parameters-swift.typealias?language=objc)
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_APPLECSPDL_DB_IS_LOCKED_PARAMETERS = cssm_applecspdl_db_is_locked_parameters;
 
@@ -879,7 +869,7 @@ pub type CSSM_APPLECSPDL_DB_IS_LOCKED_PARAMETERS = cssm_applecspdl_db_is_locked_
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_APPLECSPDL_DB_IS_LOCKED_PARAMETERS_PTR = *mut cssm_applecspdl_db_is_locked_parameters;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecspdl_db_change_password_parameters?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecspdl_db_change_password_parameters-swift.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -910,7 +900,7 @@ unsafe impl RefEncode for cssm_applecspdl_db_change_password_parameters {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecspdl_db_change_password_parameters?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_applecspdl_db_change_password_parameters-swift.typealias?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_APPLECSPDL_DB_CHANGE_PASSWORD_PARAMETERS =
     cssm_applecspdl_db_change_password_parameters;

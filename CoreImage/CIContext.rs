@@ -49,7 +49,7 @@ extern "C" {
     ///
     /// If this option is not specified, then the default output space is sRGB.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextoutputcolorspace?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption/outputcolorspace?language=objc)
     pub static kCIContextOutputColorSpace: &'static CIContextOption;
 }
 
@@ -70,7 +70,7 @@ extern "C" {
     ///
     /// If this option is not specified, then the default working space is used.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextworkingcolorspace?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption/workingcolorspace?language=objc)
     pub static kCIContextWorkingColorSpace: &'static CIContextOption;
 }
 
@@ -90,7 +90,7 @@ extern "C" {
     ///
     /// (The default is ``kCIFormatRGBA8`` if your if app is linked against iOS 12 SDK or earlier.)
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextworkingformat?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption/workingformat?language=objc)
     pub static kCIContextWorkingFormat: &'static CIContextOption;
 }
 
@@ -113,7 +113,7 @@ extern "C" {
     /// > * This option does affect how ``/CIImage/imageByApplyingTransform:`` operations are performed by the context.
     /// > * This option does not affect how ``/CIImage/imageByApplyingTransform:highQualityDownsample:`` behaves.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontexthighqualitydownsample?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption/highqualitydownsample?language=objc)
     pub static kCIContextHighQualityDownsample: &'static CIContextOption;
 }
 
@@ -136,7 +136,7 @@ extern "C" {
     /// This option does not affect how a context is rendered to a ``CIRenderDestination`` because
     /// that API allows you to set or override the alpha behavior using ``/CIRenderDestination/alphaMode``.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextoutputpremultiplied?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption/outputpremultiplied?language=objc)
     pub static kCIContextOutputPremultiplied: &'static CIContextOption;
 }
 
@@ -155,7 +155,7 @@ extern "C" {
     /// > * This option does affect how ``/CIImage/imageByInsertingIntermediate`` behaves.
     /// > * This option does not affect how ``/CIImage/imageByInsertingIntermediate:`` behaves.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextcacheintermediates?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption/cacheintermediates?language=objc)
     pub static kCIContextCacheIntermediates: &'static CIContextOption;
 }
 
@@ -164,7 +164,7 @@ extern "C" {
     ///
     /// > Note: This option has no effect if the platform does not support OpenCL.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextusesoftwarerenderer?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption/usesoftwarerenderer?language=objc)
     pub static kCIContextUseSoftwareRenderer: &'static CIContextOption;
 }
 
@@ -175,7 +175,7 @@ extern "C" {
     /// than other GPU usage from the main thread. This allows your app to perform Core Image rendering without
     /// disturbing the frame rate of UI animations.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextpriorityrequestlow?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption/priorityrequestlow?language=objc)
     pub static kCIContextPriorityRequestLow: &'static CIContextOption;
 }
 
@@ -189,7 +189,7 @@ extern "C" {
     ///
     /// Otherwise, the context will use the highest power/performance GPU device.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextallowlowpower?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption/allowlowpower?language=objc)
     pub static kCIContextAllowLowPower: &'static CIContextOption;
 }
 
@@ -198,7 +198,7 @@ extern "C" {
     ///
     /// This name will be used in QuickLook graphs and the output of CI_PRINT_TREE.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextname?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption/name?language=objc)
     pub static kCIContextName: &'static CIContextOption;
 }
 
@@ -213,7 +213,7 @@ extern "C" {
     ///
     /// It is the client's responsibility to flush the cache when appropriate.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextcvmetaltexturecache?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption/cvmetaltexturecache?language=objc)
     pub static kCIContextCVMetalTextureCache: &'static CIContextOption;
 }
 
@@ -222,7 +222,7 @@ extern "C" {
     ///
     /// Larger values could increase memory  footprint while smaller values could reduce performance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcicontextmemorylimit?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cicontextoption/memorytarget?language=objc)
     pub static kCIContextMemoryLimit: &'static CIContextOption;
 }
 
@@ -816,7 +816,7 @@ extern "C" {
     ///
     /// The value for this key needs to be an `AVDepthData` instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationavdepthdata?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption/avdepthdata?language=objc)
     pub static kCIImageRepresentationAVDepthData: &'static CIImageRepresentationOption;
 }
 
@@ -825,7 +825,7 @@ extern "C" {
     ///
     /// The value for this key needs to be a monochrome depth ``CIImage`` instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationdepthimage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption/depthimage?language=objc)
     pub static kCIImageRepresentationDepthImage: &'static CIImageRepresentationOption;
 }
 
@@ -834,7 +834,7 @@ extern "C" {
     ///
     /// The value for this key needs to be a monochrome disparity ``CIImage`` instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationdisparityimage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption/disparityimage?language=objc)
     pub static kCIImageRepresentationDisparityImage: &'static CIImageRepresentationOption;
 }
 
@@ -843,7 +843,7 @@ extern "C" {
     ///
     /// The value for this key needs to be a an `AVPortraitEffectsMatte` instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationavportraiteffectsmatte?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption/avportraiteffectsmatte?language=objc)
     pub static kCIImageRepresentationAVPortraitEffectsMatte: &'static CIImageRepresentationOption;
 }
 
@@ -854,7 +854,7 @@ extern "C" {
     /// represent the background region and white pixels represent the primary people in the image.
     /// The image will be converted to monochrome before it is saved to the JPEG or HEIF.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationportraiteffectsmatteimage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption/portraiteffectsmatteimage?language=objc)
     pub static kCIImageRepresentationPortraitEffectsMatteImage:
         &'static CIImageRepresentationOption;
 }
@@ -864,7 +864,7 @@ extern "C" {
     ///
     /// The value for this key needs to be an array of AVSemanticSegmentationMatte instances.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationavsemanticsegmentationmattes?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption/avsemanticsegmentationmattes?language=objc)
     pub static kCIImageRepresentationAVSemanticSegmentationMattes:
         &'static CIImageRepresentationOption;
 }
@@ -876,7 +876,7 @@ extern "C" {
     /// represent the areas of person's skin are found in the image.
     /// The image will be converted to monochrome before it is saved to the JPEG or HEIF.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationskinmatteimage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption/semanticsegmentationskinmatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationSkinMatteImage:
         &'static CIImageRepresentationOption;
 }
@@ -888,7 +888,7 @@ extern "C" {
     /// represent the areas of person's head and facial hair are found in the image.
     /// The image will be converted to monochrome before it is saved to the JPEG or HEIF.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationhairmatteimage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption/semanticsegmentationhairmatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationHairMatteImage:
         &'static CIImageRepresentationOption;
 }
@@ -900,7 +900,7 @@ extern "C" {
     /// represent the areas where a person's teeth are found in the image.
     /// The image will be converted to monochrome before it is saved to the JPEG or HEIF.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationteethmatteimage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption/semanticsegmentationteethmatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationTeethMatteImage:
         &'static CIImageRepresentationOption;
 }
@@ -912,7 +912,7 @@ extern "C" {
     /// represent the areas where a person's glasses are found in the image.
     /// The image will be converted to monochrome before it is saved to the JPEG or HEIF.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationglassesmatteimage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption/semanticsegmentationglassesmatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationGlassesMatteImage:
         &'static CIImageRepresentationOption;
 }
@@ -924,7 +924,7 @@ extern "C" {
     /// represent the areas where a person's skin are found in the image.
     /// The image will be converted to monochrome before it is saved to the JPEG or HEIF.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationsemanticsegmentationskymatteimage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption/semanticsegmentationskymatteimage?language=objc)
     pub static kCIImageRepresentationSemanticSegmentationSkyMatteImage:
         &'static CIImageRepresentationOption;
 }
@@ -940,7 +940,7 @@ extern "C" {
     /// If the the HDR ``CIImage`` instance has a ``/CIImage/contentHeadroom`` property,
     /// then that will be used when calculating the HDRGainMap image and metadata.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationhdrimage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption/hdrimage?language=objc)
     pub static kCIImageRepresentationHDRImage: &'static CIImageRepresentationOption;
 }
 
@@ -955,7 +955,7 @@ extern "C" {
     /// The ``/CIImage/properties`` should contain metadata information equivalent to what is returned when
     /// initializing an image using ``kCIImageAuxiliaryHDRGainMap``.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationhdrgainmapimage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption/hdrgainmapimage?language=objc)
     pub static kCIImageRepresentationHDRGainMapImage: &'static CIImageRepresentationOption;
 }
 
@@ -970,7 +970,7 @@ extern "C" {
     /// * False: the gain map is created as a brightness ratio between the HDR and SDR images.
     /// * Not specified: the default behavior False.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagerepresentationhdrgainmapasrgb?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimagerepresentationoption/hdrgainmapasrgb?language=objc)
     pub static kCIImageRepresentationHDRGainMapAsRGB: &'static CIImageRepresentationOption;
 }
 

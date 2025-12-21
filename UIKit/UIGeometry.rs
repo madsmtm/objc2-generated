@@ -270,19 +270,19 @@ impl UIOffset {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiedgeinsetszero?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiedgeinsets/zero?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIEdgeInsetsZero: UIEdgeInsets;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsetszero?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdirectionaledgeinsets/zero?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSDirectionalEdgeInsetsZero: NSDirectionalEdgeInsets;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uioffsetzero?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uioffset/zero?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIOffsetZero: UIOffset;
 }

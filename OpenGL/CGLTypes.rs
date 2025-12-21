@@ -7,108 +7,57 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglmonoscopicbit?language=objc)
 pub const kCGLMonoscopicBit: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglstereoscopicbit?language=objc)
 pub const kCGLStereoscopicBit: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglsinglebufferbit?language=objc)
 pub const kCGLSingleBufferBit: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgldoublebufferbit?language=objc)
 pub const kCGLDoubleBufferBit: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgltriplebufferbit?language=objc)
 pub const kCGLTripleBufferBit: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl0bit?language=objc)
 pub const kCGL0Bit: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl1bit?language=objc)
 pub const kCGL1Bit: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl2bit?language=objc)
 pub const kCGL2Bit: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl3bit?language=objc)
 pub const kCGL3Bit: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl4bit?language=objc)
 pub const kCGL4Bit: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl5bit?language=objc)
 pub const kCGL5Bit: c_uint = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl6bit?language=objc)
 pub const kCGL6Bit: c_uint = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl8bit?language=objc)
 pub const kCGL8Bit: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl10bit?language=objc)
 pub const kCGL10Bit: c_uint = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl12bit?language=objc)
 pub const kCGL12Bit: c_uint = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl16bit?language=objc)
 pub const kCGL16Bit: c_uint = 0x00000400;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl24bit?language=objc)
 pub const kCGL24Bit: c_uint = 0x00000800;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl32bit?language=objc)
 pub const kCGL32Bit: c_uint = 0x00001000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl48bit?language=objc)
 pub const kCGL48Bit: c_uint = 0x00002000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl64bit?language=objc)
 pub const kCGL64Bit: c_uint = 0x00004000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl96bit?language=objc)
 pub const kCGL96Bit: c_uint = 0x00008000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcgl128bit?language=objc)
 pub const kCGL128Bit: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgb444bit?language=objc)
 pub const kCGLRGB444Bit: c_uint = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglargb4444bit?language=objc)
 pub const kCGLARGB4444Bit: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgb444a8bit?language=objc)
 pub const kCGLRGB444A8Bit: c_uint = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgb555bit?language=objc)
 pub const kCGLRGB555Bit: c_uint = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglargb1555bit?language=objc)
 pub const kCGLARGB1555Bit: c_uint = 0x00000400;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgb555a8bit?language=objc)
 pub const kCGLRGB555A8Bit: c_uint = 0x00000800;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgb565bit?language=objc)
 pub const kCGLRGB565Bit: c_uint = 0x00001000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgb565a8bit?language=objc)
 pub const kCGLRGB565A8Bit: c_uint = 0x00002000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgb888bit?language=objc)
 pub const kCGLRGB888Bit: c_uint = 0x00004000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglargb8888bit?language=objc)
 pub const kCGLARGB8888Bit: c_uint = 0x00008000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgb888a8bit?language=objc)
 pub const kCGLRGB888A8Bit: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgb101010bit?language=objc)
 pub const kCGLRGB101010Bit: c_uint = 0x00020000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglargb2101010bit?language=objc)
 pub const kCGLARGB2101010Bit: c_uint = 0x00040000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgb101010_a8bit?language=objc)
 pub const kCGLRGB101010_A8Bit: c_uint = 0x00080000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgb121212bit?language=objc)
 pub const kCGLRGB121212Bit: c_uint = 0x00100000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglargb12121212bit?language=objc)
 pub const kCGLARGB12121212Bit: c_uint = 0x00200000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgb161616bit?language=objc)
 pub const kCGLRGB161616Bit: c_uint = 0x00400000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgba16161616bit?language=objc)
 pub const kCGLRGBA16161616Bit: c_uint = 0x00800000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgbfloat64bit?language=objc)
 pub const kCGLRGBFloat64Bit: c_uint = 0x01000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgbafloat64bit?language=objc)
 pub const kCGLRGBAFloat64Bit: c_uint = 0x02000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgbfloat128bit?language=objc)
 pub const kCGLRGBFloat128Bit: c_uint = 0x04000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgbafloat128bit?language=objc)
 pub const kCGLRGBAFloat128Bit: c_uint = 0x08000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgbfloat256bit?language=objc)
 pub const kCGLRGBFloat256Bit: c_uint = 0x10000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglrgbafloat256bit?language=objc)
 pub const kCGLRGBAFloat256Bit: c_uint = 0x20000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglsupersamplebit?language=objc)
 pub const kCGLSupersampleBit: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglmultisamplebit?language=objc)
 pub const kCGLMultisampleBit: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/kcglargb16161616bit?language=objc)
 pub const kCGLARGB16161616Bit: c_uint = kCGLRGBA16161616Bit;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglcontextobj?language=objc)
 pub type CGLContextObj = *mut _CGLContextObject;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/_cglpixelformatobject?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct _CGLPixelFormatObject {
@@ -121,10 +70,8 @@ unsafe impl RefEncode for _CGLPixelFormatObject {
         Encoding::Pointer(&Encoding::Struct("_CGLPixelFormatObject", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglpixelformatobj?language=objc)
 pub type CGLPixelFormatObj = *mut _CGLPixelFormatObject;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/_cglrendererinfoobject?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct _CGLRendererInfoObject {
@@ -137,10 +84,8 @@ unsafe impl RefEncode for _CGLRendererInfoObject {
         Encoding::Pointer(&Encoding::Struct("_CGLRendererInfoObject", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglrendererinfoobj?language=objc)
 pub type CGLRendererInfoObj = *mut _CGLRendererInfoObject;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/_cglpbufferobject?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct _CGLPBufferObject {
@@ -152,10 +97,8 @@ unsafe impl RefEncode for _CGLPBufferObject {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("_CGLPBufferObject", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglpbufferobj?language=objc)
 pub type CGLPBufferObj = *mut _CGLPBufferObject;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglpixelformatattribute?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGLPixelFormatAttribute(pub c_uint);
@@ -252,7 +195,6 @@ unsafe impl RefEncode for CGLPixelFormatAttribute {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglrendererproperty?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGLRendererProperty(pub c_uint);
@@ -335,7 +277,6 @@ unsafe impl RefEncode for CGLRendererProperty {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglcontextenable?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGLContextEnable(pub c_uint);
@@ -366,7 +307,6 @@ unsafe impl RefEncode for CGLContextEnable {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglgpurestartstatus?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGLGPURestartStatus(pub c_uint);
@@ -389,7 +329,6 @@ unsafe impl RefEncode for CGLGPURestartStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglcontextparameter?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGLContextParameter(pub c_uint);
@@ -446,7 +385,6 @@ unsafe impl RefEncode for CGLContextParameter {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglcpcontextpriorityrequest?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGLCPContextPriorityRequest(pub c_uint);
@@ -467,7 +405,6 @@ unsafe impl RefEncode for CGLCPContextPriorityRequest {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglglobaloption?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGLGlobalOption(pub c_uint);
@@ -494,7 +431,6 @@ unsafe impl RefEncode for CGLGlobalOption {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglopenglprofile?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct CGLOpenGLProfile(pub c_uint);
@@ -517,7 +453,6 @@ unsafe impl RefEncode for CGLOpenGLProfile {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglerror?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CGLError(pub c_uint);

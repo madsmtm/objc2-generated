@@ -7,7 +7,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_frame?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct cp_frame {

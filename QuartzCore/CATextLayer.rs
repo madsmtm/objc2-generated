@@ -185,46 +185,46 @@ impl DefaultRetained for CATextLayer {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatruncationnone?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayertruncationmode/none?language=objc)
     pub static kCATruncationNone: &'static CATextLayerTruncationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatruncationstart?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayertruncationmode/start?language=objc)
     pub static kCATruncationStart: &'static CATextLayerTruncationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatruncationend?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayertruncationmode/end?language=objc)
     pub static kCATruncationEnd: &'static CATextLayerTruncationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatruncationmiddle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayertruncationmode/middle?language=objc)
     pub static kCATruncationMiddle: &'static CATextLayerTruncationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaalignmentnatural?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayeralignmentmode/natural?language=objc)
     pub static kCAAlignmentNatural: &'static CATextLayerAlignmentMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaalignmentleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayeralignmentmode/left?language=objc)
     pub static kCAAlignmentLeft: &'static CATextLayerAlignmentMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaalignmentright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayeralignmentmode/right?language=objc)
     pub static kCAAlignmentRight: &'static CATextLayerAlignmentMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaalignmentcenter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayeralignmentmode/center?language=objc)
     pub static kCAAlignmentCenter: &'static CATextLayerAlignmentMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaalignmentjustified?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catextlayeralignmentmode/justified?language=objc)
     pub static kCAAlignmentJustified: &'static CATextLayerAlignmentMode;
 }

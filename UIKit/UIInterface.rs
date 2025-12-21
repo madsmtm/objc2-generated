@@ -253,7 +253,7 @@ unsafe impl RefEncode for UINSToolbarItemPresentationSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagedynamicrange?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/dynamicrange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

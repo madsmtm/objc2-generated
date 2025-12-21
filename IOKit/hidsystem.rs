@@ -12,264 +12,175 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/event_system_version?language=objc)
 pub const EVENT_SYSTEM_VERSION: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/knxeventdataversion?language=objc)
 pub const kNXEventDataVersion: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/knxeventversion?language=objc)
 pub const kNXEventVersion: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkindkey?language=objc)
 pub const kIOHIDKindKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDKind\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidinterfaceidkey?language=objc)
 pub const kIOHIDInterfaceIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDInterfaceID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidsubinterfaceidkey?language=objc)
 pub const kIOHIDSubinterfaceIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDSubinterfaceID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidoriginalsubinterfaceidkey?language=objc)
 pub const kIOHIDOriginalSubinterfaceIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDOriginalSubinterfaceID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidparameterskey?language=objc)
 pub const kIOHIDParametersKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDParameters\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidvirtualhidevice?language=objc)
 pub const kIOHIDVirtualHIDevice: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDVirtualDevice\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyrepeatkey?language=objc)
 pub const kIOHIDKeyRepeatKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDKeyRepeat\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidinitialkeyrepeatkey?language=objc)
 pub const kIOHIDInitialKeyRepeatKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDInitialKeyRepeat\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeymappingkey?language=objc)
 pub const kIOHIDKeyMappingKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDKeyMapping\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidresetkeyboardkey?language=objc)
 pub const kIOHIDResetKeyboardKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDResetKeyboard\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardmodifiermappingpairskey?language=objc)
 pub const kIOHIDKeyboardModifierMappingPairsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDKeyboardModifierMappingPairs\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardmodifiermappingsrckey?language=objc)
 pub const kIOHIDKeyboardModifierMappingSrcKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDKeyboardModifierMappingSrc\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardmodifiermappingdstkey?language=objc)
 pub const kIOHIDKeyboardModifierMappingDstKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDKeyboardModifierMappingDst\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardcapslockdoeslockkey?language=objc)
 pub const kIOHIDKeyboardCapsLockDoesLockKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDKeyboardCapsLockDoesLock\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardsupportsf12ejectkey?language=objc)
 pub const kIOHIDKeyboardSupportsF12EjectKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDKeyboardSupportsF12Eject\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardsupportedmodifierskey?language=objc)
 pub const kIOHIDKeyboardSupportedModifiersKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDKeyboardSupportedModifiers\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidkeyboardglobalmodifierskey?language=objc)
 pub const kIOHIDKeyboardGlobalModifiersKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDKeyboardGlobalModifiers\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidserviceglobalmodifiersusagekey?language=objc)
 pub const kIOHIDServiceGlobalModifiersUsageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDServiceGlobalModifiersUsage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidpointerresolutionkey?language=objc)
 pub const kIOHIDPointerResolutionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerResolution\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidresetpointerkey?language=objc)
 pub const kIOHIDResetPointerKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDResetPointer\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidpointerconvertabsolutekey?language=objc)
 pub const kIOHIDPointerConvertAbsoluteKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerConvertAbsolute\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidpointercontacttomovekey?language=objc)
 pub const kIOHIDPointerContactToMoveKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerContactToMove\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidpointerpressuretoclickkey?language=objc)
 pub const kIOHIDPointerPressureToClickKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerPressureToClick\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidpointerbuttoncountkey?language=objc)
 pub const kIOHIDPointerButtonCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerButtonCount\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidpointeraccelerationsettingskey?language=objc)
 pub const kIOHIDPointerAccelerationSettingsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerAccelerationSettings\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidpointeraccelerationtablekey?language=objc)
 pub const kIOHIDPointerAccelerationTableKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDPointerAccelerationTable\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollresetkey?language=objc)
 pub const kIOHIDScrollResetKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollReset\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollaccelerationtablekey?language=objc)
 pub const kIOHIDScrollAccelerationTableKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollAccelerationTable\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollaccelerationtablexkey?language=objc)
 pub const kIOHIDScrollAccelerationTableXKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollAccelerationTableX\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollaccelerationtableykey?language=objc)
 pub const kIOHIDScrollAccelerationTableYKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollAccelerationTableY\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollaccelerationtablezkey?language=objc)
 pub const kIOHIDScrollAccelerationTableZKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollAccelerationTableZ\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollmousebuttonkey?language=objc)
 pub const kIOHIDScrollMouseButtonKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollMouseButton\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollzoommodifiermaskkey?language=objc)
 pub const kIOHIDScrollZoomModifierMaskKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollZoomModifierMask\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidclicktimekey?language=objc)
 pub const kIOHIDClickTimeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDClickTime\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidclickspacekey?language=objc)
 pub const kIOHIDClickSpaceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDClickSpace\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidwaitcursorframeintervalkey?language=objc)
 pub const kIOHIDWaitCursorFrameIntervalKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDWaitCursorFrameInterval\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidautodimthresholdkey?language=objc)
 pub const kIOHIDAutoDimThresholdKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAutoDimThreshold\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidautodimstatekey?language=objc)
 pub const kIOHIDAutoDimStateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAutoDimState\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidautodimtimekey?language=objc)
 pub const kIOHIDAutoDimTimeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAutoDimTime\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohididletimekey?language=objc)
 pub const kIOHIDIdleTimeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDIdleTime\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidbrightnesskey?language=objc)
 pub const kIOHIDBrightnessKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDBrightness\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidautodimbrightnesskey?language=objc)
 pub const kIOHIDAutoDimBrightnessKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAutoDimBrightness\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidfkeymodekey?language=objc)
 pub const kIOHIDFKeyModeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDFKeyMode\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstickykeysdisabledkey?language=objc)
 pub const kIOHIDStickyKeysDisabledKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDStickyKeysDisabled\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstickykeysonkey?language=objc)
 pub const kIOHIDStickyKeysOnKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDStickyKeysOn\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidstickykeysshifttoggleskey?language=objc)
 pub const kIOHIDStickyKeysShiftTogglesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDStickyKeysShiftToggles\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidresetstickykeynotification?language=objc)
 pub const kIOHIDResetStickyKeyNotification: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDResetStickyKeyNotification\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidmousekeysoptiontoggleskey?language=objc)
 pub const kIOHIDMouseKeysOptionTogglesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDMouseKeysOptionToggles\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidslowkeysdelaykey?language=objc)
 pub const kIOHIDSlowKeysDelayKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDSlowKeysDelay\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidf12ejectdelaykey?language=objc)
 pub const kIOHIDF12EjectDelayKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDF12EjectDelay\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidmousekeysonkey?language=objc)
 pub const kIOHIDMouseKeysOnKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDMouseKeysOn\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidusekeyswitchkey?language=objc)
 pub const kIOHIDUseKeyswitchKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDUseKeyswitch\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohiddisallowremappingofprimaryclickkey?language=objc)
 pub const kIOHIDDisallowRemappingOfPrimaryClickKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDDisallowRemappingOfPrimaryClick\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidmousekeysenablesvirtualnumpadkey?language=objc)
 pub const kIOHIDMouseKeysEnablesVirtualNumPadKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDMouseKeysEnablesVirtualNumPad\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidresetledskey?language=objc)
 pub const kIOHIDResetLEDsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDResetLEDs\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidtrackingaccelparametriccurveskey?language=objc)
 pub const kHIDTrackingAccelParametricCurvesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDTrackingAccelCurves\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidaccelparametriccurvesdebugkey?language=objc)
 pub const kHIDAccelParametricCurvesDebugKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAccelCurvesDebug\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidscrollaccelparametriccurvesdebugkey?language=objc)
 pub const kHIDScrollAccelParametricCurvesDebugKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollAccelCurvesDebug\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidaccelgainlinearkey?language=objc)
 pub const kHIDAccelGainLinearKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAccelGainLinear\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidaccelgainparabolickey?language=objc)
 pub const kHIDAccelGainParabolicKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAccelGainParabolic\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidaccelgaincubickey?language=objc)
 pub const kHIDAccelGainCubicKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAccelGainCubic\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidaccelgainquartickey?language=objc)
 pub const kHIDAccelGainQuarticKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAccelGainQuartic\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidacceltangentspeedlinearkey?language=objc)
 pub const kHIDAccelTangentSpeedLinearKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAccelTangentSpeedLinear\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidacceltangentspeedparabolicrootkey?language=objc)
 pub const kHIDAccelTangentSpeedParabolicRootKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAccelTangentSpeedParabolicRoot\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidacceltangentspeedcubicrootkey?language=objc)
 pub const kHIDAccelTangentSpeedCubicRootKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAccelTangentSpeedCubicRoot\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidacceltangentspeedquarticrootkey?language=objc)
 pub const kHIDAccelTangentSpeedQuarticRootKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAccelTangentSpeedQuarticRoot\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khidaccelindexkey?language=objc)
 pub const kHIDAccelIndexKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDAccelIndex\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollcountmaxtimedeltabetweenkey?language=objc)
 pub const kIOHIDScrollCountMaxTimeDeltaBetweenKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollCountMaxTimeDeltaBetween\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollcountmaxtimedeltatosustainkey?language=objc)
 pub const kIOHIDScrollCountMaxTimeDeltaToSustainKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollCountMaxTimeDeltaToSustain\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollcountmindeltatostartkey?language=objc)
 pub const kIOHIDScrollCountMinDeltaToStartKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollCountMinDeltaToStart\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollcountmindeltatosustainkey?language=objc)
 pub const kIOHIDScrollCountMinDeltaToSustainKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollCountMinDeltaToSustain\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollcountignoremomentumscrollskey?language=objc)
 pub const kIOHIDScrollCountIgnoreMomentumScrollsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollCountIgnoreMomentumScrolls\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollcountmousecanresetkey?language=objc)
 pub const kIOHIDScrollCountMouseCanResetKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollCountMouseCanReset\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollcountmaxkey?language=objc)
 pub const kIOHIDScrollCountMaxKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollCountMax\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollcountaccelerationfactorkey?language=objc)
 pub const kIOHIDScrollCountAccelerationFactorKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollCountAccelerationFactor\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollcountzerokey?language=objc)
 pub const kIOHIDScrollCountZeroKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollCountZero\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollcountbootdefaultkey?language=objc)
 pub const kIOHIDScrollCountBootDefaultKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollCountBootDefault\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidscrollcountresetkey?language=objc)
 pub const kIOHIDScrollCountResetKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HIDScrollCountReset\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidactivityuseridlekey?language=objc)
 pub const kIOHIDActivityUserIdleKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOHIDActivityUserIdle\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidsystemclass?language=objc)
 pub const kIOHIDSystemClass: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOHIDSystem\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohikeyboardclass?language=objc)
 pub const kIOHIKeyboardClass: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOHIKeyboard\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohipointingclass?language=objc)
 pub const kIOHIPointingClass: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOHIPointing\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidcurrentshmemversion?language=objc)
 pub const kIOHIDCurrentShmemVersion: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidlastcompatibleshmemversion?language=objc)
 pub const kIOHIDLastCompatibleShmemVersion: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidmessagerelayserviceinterfaceactive?language=objc)
 pub const kIOHIDMessageRelayServiceInterfaceActive: c_uint = iokit_vendor_specific_msg!(2);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/evsiokeymapping?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct evsioKeymapping {
@@ -290,10 +201,9 @@ unsafe impl RefEncode for evsioKeymapping {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxkeymapping?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/kernel/nxkeymapping?language=objc)
 pub type NXKeyMapping = evsioKeymapping;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/evsiomousescaling?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct evsioMouseScaling {
@@ -319,7 +229,7 @@ unsafe impl RefEncode for evsioMouseScaling {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxmousescaling?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/kernel/nxmousescaling?language=objc)
 pub type NXMouseScaling = evsioMouseScaling;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxmousebutton?language=objc)
@@ -345,7 +255,6 @@ unsafe impl RefEncode for NXMouseButton {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iofixedpoint32?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOFixedPoint32 {
@@ -440,7 +349,6 @@ unsafe impl RefEncode for EvCmd {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxcoord?language=objc)
 pub type NXCoord = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxpoint?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXPoint {
@@ -459,7 +367,6 @@ unsafe impl RefEncode for NXPoint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxsize?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXSize {
@@ -478,7 +385,6 @@ unsafe impl RefEncode for NXSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/_nxtabletpointdata_tilt?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct _NXTabletPointData_tilt {
@@ -496,7 +402,6 @@ unsafe impl RefEncode for _NXTabletPointData_tilt {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxtabletpointdata?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXTabletPointData {
@@ -540,7 +445,6 @@ unsafe impl RefEncode for NXTabletPointData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxtabletproximitydata?language=objc)
 #[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXTabletProximityData {
@@ -584,7 +488,6 @@ unsafe impl RefEncode for NXTabletProximityData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_mouse_tablet?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union NXEventData_mouse_tablet {
@@ -608,7 +511,6 @@ unsafe impl RefEncode for NXEventData_mouse_tablet {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_mouse?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct NXEventData_mouse {
@@ -648,7 +550,6 @@ unsafe impl RefEncode for NXEventData_mouse {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_mousemove_tablet?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union NXEventData_mouseMove_tablet {
@@ -672,7 +573,6 @@ unsafe impl RefEncode for NXEventData_mouseMove_tablet {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_mousemove?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct NXEventData_mouseMove {
@@ -708,7 +608,6 @@ unsafe impl RefEncode for NXEventData_mouseMove {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_key?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXEventData_key {
@@ -752,7 +651,6 @@ unsafe impl RefEncode for NXEventData_key {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_tracking?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXEventData_tracking {
@@ -792,7 +690,6 @@ unsafe impl RefEncode for NXEventData_tracking {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_scrollwheel?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXEventData_scrollWheel {
@@ -834,7 +731,6 @@ unsafe impl RefEncode for NXEventData_scrollWheel {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_compound_misc?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union NXEventData_compound_misc {
@@ -862,7 +758,6 @@ unsafe impl RefEncode for NXEventData_compound_misc {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_compound?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct NXEventData_compound {
@@ -888,7 +783,6 @@ unsafe impl RefEncode for NXEventData_compound {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_tablet_tilt?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXEventData_tablet_tilt {
@@ -906,7 +800,6 @@ unsafe impl RefEncode for NXEventData_tablet_tilt {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_tablet?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXEventData_tablet {
@@ -952,7 +845,6 @@ unsafe impl RefEncode for NXEventData_tablet {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata_proximity?language=objc)
 #[repr(C, packed(4))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NXEventData_proximity {
@@ -998,7 +890,6 @@ unsafe impl RefEncode for NXEventData_proximity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxeventdata?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union NXEventData {
@@ -1036,7 +927,6 @@ unsafe impl RefEncode for NXEventData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/_nxevent_location?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct _NXEvent_location {
@@ -1054,7 +944,6 @@ unsafe impl RefEncode for _NXEvent_location {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxevent?language=objc)
 #[repr(C, packed(4))]
 #[derive(Clone, Copy)]
 pub struct NXEvent {
@@ -1151,13 +1040,13 @@ unsafe impl RefEncode for evsioEVSIOCCSIndices {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidcapslockstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562769-anonymous/kiohidcapslockstate?language=objc)
 pub const kIOHIDCapsLockState: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidnumlockstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562769-anonymous/kiohidnumlockstate?language=objc)
 pub const kIOHIDNumLockState: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidactivityuseridle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562769-anonymous/kiohidactivityuseridle?language=objc)
 pub const kIOHIDActivityUserIdle: c_uint = 0x00000003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidactivitydisplayon?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562769-anonymous/kiohidactivitydisplayon?language=objc)
 pub const kIOHIDActivityDisplayOn: c_uint = 0x00000004;
 
 /// ****************************************************************************
@@ -1202,8 +1091,6 @@ pub const kIOHIDActivityDisplayOn: c_uint = 0x00000004;
 /// it (the idea behind copy-on-WRITE).  However, this seems to be broken
 /// in 2.0.  We think this is a kernel bug.
 /// ****************************************************************************
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/_evoffsets?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct _evOffsets {
@@ -1265,10 +1152,9 @@ unsafe impl RefEncode for _evOffsets {
 /// in 2.0.  We think this is a kernel bug.
 /// ****************************************************************************
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/evoffsets?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/kernel/evoffsets?language=objc)
 pub type EvOffsets = _evOffsets;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/eviollevent?language=objc)
 #[cfg(feature = "graphics")]
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -1301,35 +1187,35 @@ unsafe impl RefEncode for evioLLEvent {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohideventnotification?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514146-anonymous/kiohideventnotification?language=objc)
 pub const kIOHIDEventNotification: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidserverconnecttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514178-anonymous/kiohidserverconnecttype?language=objc)
 pub const kIOHIDServerConnectType: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidparamconnecttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514178-anonymous/kiohidparamconnecttype?language=objc)
 pub const kIOHIDParamConnectType: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohideventsystemconnecttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514178-anonymous/kiohideventsystemconnecttype?language=objc)
 pub const kIOHIDEventSystemConnectType: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidglobalmemory?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514084-anonymous/kiohidglobalmemory?language=objc)
 pub const kIOHIDGlobalMemory: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohideventqueuetypekernel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514207-anonymous/kiohideventqueuetypekernel?language=objc)
 pub const kIOHIDEventQueueTypeKernel: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohideventqueuetypeuser?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1514207-anonymous/kiohideventqueuetypeuser?language=objc)
 pub const kIOHIDEventQueueTypeUser: c_uint = 1;
 
 /// kIOHIDOpenedByEventSystem
 ///
 /// option passed to open for IOHIDInterface  if opened by IOHIDEventDriver
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidopenedbyeventsystem?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2854427-anonymous/kiohidopenedbyeventsystem?language=objc)
 pub const kIOHIDOpenedByEventSystem: c_uint = 0x10000;
 /// kIOHIDOpenedByFastPathClient
 ///
 /// option passed to open for IOHIDEventService if opened by fast path client
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidopenedbyfastpathclient?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/2854427-anonymous/kiohidopenedbyfastpathclient?language=objc)
 pub const kIOHIDOpenedByFastPathClient: c_uint = 0x20000;
 
 #[cfg(feature = "libc")]
@@ -1375,13 +1261,13 @@ pub extern "C-unwind" fn IOHIDSetCursorEnable(
     unsafe { IOHIDSetCursorEnable(connect, enable as _) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidsetglobaleventflags?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555401-anonymous/kiohidsetglobaleventflags?language=objc)
 pub const kIOHIDSetGlobalEventFlags: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidsetcursorposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555401-anonymous/kiohidsetcursorposition?language=objc)
 pub const kIOHIDSetCursorPosition: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidsetrelativecursorposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555401-anonymous/kiohidsetrelativecursorposition?language=objc)
 pub const kIOHIDSetRelativeCursorPosition: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohidposthidmanagerevent?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1555401-anonymous/kiohidposthidmanagerevent?language=objc)
 pub const kIOHIDPostHIDManagerEvent: c_uint = 0x00000008;
 
 extern "C-unwind" {
@@ -1922,7 +1808,6 @@ pub extern "C-unwind" fn NXResetMouse(handle: NXEventHandle) {
     unsafe { NXResetMouse(handle) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/_nxparsedkeymapping_?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct _NXParsedKeyMapping_ {
@@ -1966,7 +1851,7 @@ unsafe impl RefEncode for _NXParsedKeyMapping_ {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/nxparsedkeymapping?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/kernel/nxparsedkeymapping?language=objc)
 pub type NXParsedKeyMapping = _NXParsedKeyMapping_;
 
 /// IOHIDEventSystemClient
@@ -1982,8 +1867,6 @@ pub type NXParsedKeyMapping = _NXParsedKeyMapping_;
 ///
 ///
 /// See also: IOKit/hidsystem/IOHIDServiceClient.h
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohideventsystemclient?language=objc)
 #[doc(alias = "IOHIDEventSystemClientRef")]
 #[repr(C)]
 pub struct IOHIDEventSystemClient {
@@ -2172,8 +2055,6 @@ impl IOHIDEventSystemClient {
 /// </code>
 /// ), and gather more information
 /// about the services available in the HID event system.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohidserviceclient?language=objc)
 #[doc(alias = "IOHIDServiceClientRef")]
 #[repr(C)]
 pub struct IOHIDServiceClient {
@@ -2323,7 +2204,6 @@ impl IOHIDServiceClient {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiduserdevice?language=objc)
 #[doc(alias = "IOHIDUserDeviceRef")]
 #[repr(C)]
 pub struct IOHIDUserDevice {

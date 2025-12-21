@@ -21,7 +21,7 @@ use crate::*;
 /// Providing no options will result in the default behavior of resuming tracking
 /// from the last known position and keeping all existing anchors.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsessionrunoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsession/runoptions?language=objc)
 // NS_OPTIONS
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

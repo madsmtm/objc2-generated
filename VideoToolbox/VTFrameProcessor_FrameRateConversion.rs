@@ -10,7 +10,7 @@ use crate::*;
 
 /// Configuration value you set to prioritize quality or performance.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfigurationqualityprioritization?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfiguration/qualityprioritization-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -39,7 +39,7 @@ unsafe impl RefEncode for VTFrameRateConversionConfigurationQualityPrioritizatio
 /// A new enum case with higher revision number is added when the processing algorithm is updated.
 /// The ``VTFrameRateConversionConfiguration/defaultRevision`` property provides the default algorithm revision.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfigurationrevision?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionconfiguration/revision-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -77,7 +77,7 @@ unsafe impl RefEncode for VTFrameRateConversionConfigurationRevision {
 /// Use ``VTFrameRateConversionParametersSubmissionModeSequentialReferencesUnchanged`` to indicate that the frames are
 /// in sequential order however, the reference frames are unchanged.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionparameterssubmissionmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframerateconversionparameters/submissionmode-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

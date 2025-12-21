@@ -7,111 +7,111 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIActivityType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypeposttofacebook?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/posttofacebook?language=objc)
     pub static UIActivityTypePostToFacebook: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypeposttotwitter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/posttotwitter?language=objc)
     pub static UIActivityTypePostToTwitter: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypeposttoweibo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/posttoweibo?language=objc)
     pub static UIActivityTypePostToWeibo: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypemessage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/message?language=objc)
     pub static UIActivityTypeMessage: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypemail?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/mail?language=objc)
     pub static UIActivityTypeMail: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypeprint?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/print?language=objc)
     pub static UIActivityTypePrint: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypecopytopasteboard?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/copytopasteboard?language=objc)
     pub static UIActivityTypeCopyToPasteboard: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypeassigntocontact?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/assigntocontact?language=objc)
     pub static UIActivityTypeAssignToContact: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypesavetocameraroll?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/savetocameraroll?language=objc)
     pub static UIActivityTypeSaveToCameraRoll: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypeaddtoreadinglist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/addtoreadinglist?language=objc)
     pub static UIActivityTypeAddToReadingList: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypeposttoflickr?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/posttoflickr?language=objc)
     pub static UIActivityTypePostToFlickr: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypeposttovimeo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/posttovimeo?language=objc)
     pub static UIActivityTypePostToVimeo: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypeposttotencentweibo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/posttotencentweibo?language=objc)
     pub static UIActivityTypePostToTencentWeibo: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypeairdrop?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/airdrop?language=objc)
     pub static UIActivityTypeAirDrop: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypeopeninibooks?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/openinibooks?language=objc)
     pub static UIActivityTypeOpenInIBooks: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypemarkupaspdf?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/markupaspdf?language=objc)
     pub static UIActivityTypeMarkupAsPDF: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypeshareplay?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/shareplay?language=objc)
     pub static UIActivityTypeSharePlay: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypecollaborationinvitewithlink?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/collaborationinvitewithlink?language=objc)
     pub static UIActivityTypeCollaborationInviteWithLink: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypecollaborationcopylink?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/collaborationcopylink?language=objc)
     pub static UIActivityTypeCollaborationCopyLink: &'static UIActivityType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitytypeaddtohomescreen?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/activitytype-swift.struct/addtohomescreen?language=objc)
     pub static UIActivityTypeAddToHomeScreen: &'static UIActivityType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitycategory?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivity/category?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

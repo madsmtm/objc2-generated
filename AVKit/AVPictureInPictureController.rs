@@ -192,7 +192,7 @@ extern_class!(
     ///
     /// Create a content source with an appropriate layer, and use it to initialize the AVPictureInPictureController.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avpictureinpicturecontrollercontentsource?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPictureInPictureControllerContentSource;

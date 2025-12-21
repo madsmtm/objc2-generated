@@ -8,7 +8,7 @@ use crate::*;
 
 /// A type that defines values for the state of an accessory.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessorystate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/accessorystate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -35,7 +35,7 @@ unsafe impl RefEncode for ASAccessoryState {
 
 /// Accessory Rename Options
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessoryrenameoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/renameoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -58,7 +58,7 @@ unsafe impl RefEncode for ASAccessoryRenameOptions {
 
 /// Accessory Support Options
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessorysupportoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/supportoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -87,7 +87,7 @@ unsafe impl RefEncode for ASAccessorySupportOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessorywifiawarepaireddeviceid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asaccessory/wifiawarepaireddeviceid-swift.typealias?language=objc)
 pub type ASAccessoryWiFiAwarePairedDeviceID = u64;
 
 extern_class!(

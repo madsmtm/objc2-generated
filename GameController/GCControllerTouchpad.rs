@@ -8,7 +8,7 @@ use crate::*;
 
 /// Represents the current state of a touch event on a touchpad.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gctouchstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpad/touchstate-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

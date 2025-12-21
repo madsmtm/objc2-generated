@@ -15,7 +15,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontsymbolictraits?language=objc)
 pub type NSFontSymbolicTraits = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptorsymbolictraits?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/symbolictraits-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -77,41 +77,41 @@ unsafe impl RefEncode for NSFontDescriptorSymbolicTraits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptorattributename?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFontDescriptorAttributeName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptortraitkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/traitkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSFontDescriptorTraitKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptorvariationkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/variationkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSFontDescriptorVariationKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptorfeaturekey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/featurekey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSFontDescriptorFeatureKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontweight?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSFontWeight = CGFloat;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontwidth?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/width?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSFontWidth = CGFloat;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptorsystemdesign?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/systemdesign?language=objc)
 // NS_TYPED_ENUM
 pub type NSFontDescriptorSystemDesign = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttextstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle?language=objc)
 // NS_TYPED_ENUM
 pub type NSFontTextStyle = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttextstyleoptionkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyleoptionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSFontTextStyleOptionKey = NSString;
 
@@ -313,270 +313,270 @@ impl DefaultRetained for NSFontDescriptor {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontfamilyattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/family?language=objc)
     pub static NSFontFamilyAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontnameattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/name?language=objc)
     pub static NSFontNameAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontfaceattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/face?language=objc)
     pub static NSFontFaceAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontsizeattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/size?language=objc)
     pub static NSFontSizeAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontvisiblenameattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/visiblename?language=objc)
     pub static NSFontVisibleNameAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontmatrixattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/matrix?language=objc)
     pub static NSFontMatrixAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontvariationattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/variation?language=objc)
     pub static NSFontVariationAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcharactersetattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/characterset?language=objc)
     pub static NSFontCharacterSetAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontcascadelistattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/cascadelist?language=objc)
     pub static NSFontCascadeListAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttraitsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/traits?language=objc)
     pub static NSFontTraitsAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontfixedadvanceattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/fixedadvance?language=objc)
     pub static NSFontFixedAdvanceAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontfeaturesettingsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/attributename/featuresettings?language=objc)
     pub static NSFontFeatureSettingsAttribute: &'static NSFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontsymbolictrait?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/traitkey/symbolic?language=objc)
     pub static NSFontSymbolicTrait: &'static NSFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontweighttrait?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/traitkey/weight?language=objc)
     pub static NSFontWeightTrait: &'static NSFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontwidthtrait?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/traitkey/width?language=objc)
     pub static NSFontWidthTrait: &'static NSFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontslanttrait?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/traitkey/slant?language=objc)
     pub static NSFontSlantTrait: &'static NSFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontvariationaxisidentifierkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/variationkey/identifier?language=objc)
     pub static NSFontVariationAxisIdentifierKey: &'static NSFontDescriptorVariationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontvariationaxisminimumvaluekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/variationkey/minimumvalue?language=objc)
     pub static NSFontVariationAxisMinimumValueKey: &'static NSFontDescriptorVariationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontvariationaxismaximumvaluekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/variationkey/maximumvalue?language=objc)
     pub static NSFontVariationAxisMaximumValueKey: &'static NSFontDescriptorVariationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontvariationaxisdefaultvaluekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/variationkey/defaultvalue?language=objc)
     pub static NSFontVariationAxisDefaultValueKey: &'static NSFontDescriptorVariationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontvariationaxisnamekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/variationkey/name?language=objc)
     pub static NSFontVariationAxisNameKey: &'static NSFontDescriptorVariationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontfeaturetypeidentifierkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/featurekey/typeidentifier?language=objc)
     pub static NSFontFeatureTypeIdentifierKey: &'static NSFontDescriptorFeatureKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontfeatureselectoridentifierkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/featurekey/selectoridentifier?language=objc)
     pub static NSFontFeatureSelectorIdentifierKey: &'static NSFontDescriptorFeatureKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontweightultralight?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/ultralight?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightUltraLight: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontweightthin?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/thin?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightThin: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontweightlight?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/light?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightLight: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontweightregular?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/regular?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightRegular: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontweightmedium?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/medium?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightMedium: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontweightsemibold?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/semibold?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightSemibold: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontweightbold?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/bold?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightBold: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontweightheavy?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/heavy?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightHeavy: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontweightblack?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/weight/black?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWeightBlack: NSFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontwidthcompressed?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/width/compressed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWidthCompressed: NSFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontwidthcondensed?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/width/condensed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWidthCondensed: NSFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontwidthstandard?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/width/standard?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWidthStandard: NSFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontwidthexpanded?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/width/expanded?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontWidthExpanded: NSFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptorsystemdesigndefault?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/systemdesign/default?language=objc)
     pub static NSFontDescriptorSystemDesignDefault: &'static NSFontDescriptorSystemDesign;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptorsystemdesignserif?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/systemdesign/serif?language=objc)
     pub static NSFontDescriptorSystemDesignSerif: &'static NSFontDescriptorSystemDesign;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptorsystemdesignmonospaced?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/systemdesign/monospaced?language=objc)
     pub static NSFontDescriptorSystemDesignMonospaced: &'static NSFontDescriptorSystemDesign;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptorsystemdesignrounded?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontdescriptor/systemdesign/rounded?language=objc)
     pub static NSFontDescriptorSystemDesignRounded: &'static NSFontDescriptorSystemDesign;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttextstylelargetitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/largetitle?language=objc)
     pub static NSFontTextStyleLargeTitle: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttextstyletitle1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/title1?language=objc)
     pub static NSFontTextStyleTitle1: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttextstyletitle2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/title2?language=objc)
     pub static NSFontTextStyleTitle2: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttextstyletitle3?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/title3?language=objc)
     pub static NSFontTextStyleTitle3: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttextstyleheadline?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/headline?language=objc)
     pub static NSFontTextStyleHeadline: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttextstylesubheadline?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/subheadline?language=objc)
     pub static NSFontTextStyleSubheadline: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttextstylebody?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/body?language=objc)
     pub static NSFontTextStyleBody: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttextstylecallout?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/callout?language=objc)
     pub static NSFontTextStyleCallout: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttextstylefootnote?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/footnote?language=objc)
     pub static NSFontTextStyleFootnote: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttextstylecaption1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/caption1?language=objc)
     pub static NSFontTextStyleCaption1: &'static NSFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfonttextstylecaption2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/textstyle/caption2?language=objc)
     pub static NSFontTextStyleCaption2: &'static NSFontTextStyle;
 }
 

@@ -12,7 +12,7 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsession?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSession;
@@ -433,7 +433,7 @@ impl NSURLSession {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -458,7 +458,7 @@ unsafe impl RefEncode for NSURLSessionTaskState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontask?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionTask;
@@ -640,22 +640,22 @@ impl NSURLSessionTask {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskprioritydefault?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/defaultpriority?language=objc)
     pub static NSURLSessionTaskPriorityDefault: c_float;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskprioritylow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/lowpriority?language=objc)
     pub static NSURLSessionTaskPriorityLow: c_float;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskpriorityhigh?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontask/highpriority?language=objc)
     pub static NSURLSessionTaskPriorityHigh: c_float;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiondatatask?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiondatatask?language=objc)
     #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionDataTask;
@@ -699,7 +699,7 @@ impl NSURLSessionDataTask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionuploadtask?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionuploadtask?language=objc)
     #[unsafe(super(NSURLSessionDataTask, NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionUploadTask;
@@ -761,7 +761,7 @@ impl NSURLSessionUploadTask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiondownloadtask?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiondownloadtask?language=objc)
     #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionDownloadTask;
@@ -816,7 +816,7 @@ impl NSURLSessionDownloadTask {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionstreamtask?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionstreamtask?language=objc)
     #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionStreamTask;
@@ -988,7 +988,7 @@ impl NSURLSessionWebSocketMessage {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionwebsocketclosecode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask/closecode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1031,7 +1031,7 @@ unsafe impl RefEncode for NSURLSessionWebSocketCloseCode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionwebsockettask?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsockettask?language=objc)
     #[unsafe(super(NSURLSessionTask, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionWebSocketTask;
@@ -1155,7 +1155,7 @@ impl NSURLSessionWebSocketTask {
 /// used for better bandwidth.  This mode is only available for experimentation on devices configured for development use.
 /// It can be enabled in the Developer section of the Settings app.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionmultipathservicetype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionconfiguration/multipathservicetype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1180,7 +1180,7 @@ unsafe impl RefEncode for NSURLSessionMultipathServiceType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionconfiguration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionConfiguration;
@@ -1553,7 +1553,7 @@ impl NSURLSessionConfiguration {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiondelayedrequestdisposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/delayedrequestdisposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1575,7 +1575,7 @@ unsafe impl RefEncode for NSURLSessionDelayedRequestDisposition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionauthchallengedisposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/authchallengedisposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1599,7 +1599,7 @@ unsafe impl RefEncode for NSURLSessionAuthChallengeDisposition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionresponsedisposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsession/responsedisposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1624,7 +1624,7 @@ unsafe impl RefEncode for NSURLSessionResponseDisposition {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiondelegate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiondelegate?language=objc)
     pub unsafe trait NSURLSessionDelegate: NSObjectProtocol + Send + Sync {
         #[cfg(feature = "NSError")]
         #[optional]
@@ -1664,7 +1664,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskdelegate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskdelegate?language=objc)
     pub unsafe trait NSURLSessionTaskDelegate: NSURLSessionDelegate {
         #[optional]
         #[unsafe(method(URLSession:didCreateTask:))]
@@ -1822,7 +1822,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiondatadelegate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiondatadelegate?language=objc)
     pub unsafe trait NSURLSessionDataDelegate: NSURLSessionTaskDelegate {
         #[cfg(all(feature = "NSURLResponse", feature = "block2"))]
         /// # Safety
@@ -1888,7 +1888,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiondownloaddelegate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiondownloaddelegate?language=objc)
     pub unsafe trait NSURLSessionDownloadDelegate: NSURLSessionTaskDelegate {
         #[cfg(feature = "NSURL")]
         #[unsafe(method(URLSession:downloadTask:didFinishDownloadingToURL:))]
@@ -1926,7 +1926,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionstreamdelegate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionstreamdelegate?language=objc)
     pub unsafe trait NSURLSessionStreamDelegate: NSURLSessionTaskDelegate {
         #[optional]
         #[unsafe(method(URLSession:readClosedForStreamTask:))]
@@ -1970,7 +1970,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessionwebsocketdelegate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessionwebsocketdelegate?language=objc)
     pub unsafe trait NSURLSessionWebSocketDelegate: NSURLSessionTaskDelegate {
         #[cfg(feature = "NSString")]
         #[optional]
@@ -2024,7 +2024,7 @@ impl NSURLSessionConfiguration {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskmetricsresourcefetchtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/resourcefetchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2049,7 +2049,7 @@ unsafe impl RefEncode for NSURLSessionTaskMetricsResourceFetchType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskmetricsdomainresolutionprotocol?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics/domainresolutionprotocol?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2076,7 +2076,7 @@ unsafe impl RefEncode for NSURLSessionTaskMetricsDomainResolutionProtocol {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontasktransactionmetrics?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontasktransactionmetrics?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionTaskTransactionMetrics;
@@ -2261,7 +2261,7 @@ impl NSURLSessionTaskTransactionMetrics {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlsessiontaskmetrics?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlsessiontaskmetrics?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLSessionTaskMetrics;

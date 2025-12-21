@@ -20,21 +20,21 @@ pub type AVContentKeySystem = NSString;
 extern "C" {
     /// Used to specify FairPlay Streaming (FPS) as the method of key delivery.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystemfairplaystreaming?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystem/fairplaystreaming?language=objc)
     pub static AVContentKeySystemFairPlayStreaming: &'static AVContentKeySystem;
 }
 
 extern "C" {
     /// Used to specify clear key as the method of key delivery.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystemclearkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystem/clearkey?language=objc)
     pub static AVContentKeySystemClearKey: &'static AVContentKeySystem;
 }
 
 extern "C" {
     /// Used to specify a token that could be used to authorize playback of associated content key recipients.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystemauthorizationtoken?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysystem/authorizationtoken?language=objc)
     pub static AVContentKeySystemAuthorizationToken: &'static AVContentKeySystem;
 }
 
@@ -49,7 +49,7 @@ pub type AVContentKeySessionServerPlaybackContextOption = NSString;
 extern "C" {
     /// Specifies the versions of the content protection protocol supported by the application; as an NSArray of one or more NSNumber objects. If this option is not set, an appropriate protocol version will be selected based on sideband information such as an associated HLS playlist. If such information is not available, a protocol version of 1 is assumed
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessionserverplaybackcontextoptionprotocolversions?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessionserverplaybackcontextoption/protocolversions?language=objc)
     pub static AVContentKeySessionServerPlaybackContextOptionProtocolVersions:
         &'static AVContentKeySessionServerPlaybackContextOption;
 }
@@ -57,7 +57,7 @@ extern "C" {
 extern "C" {
     /// Specifies a nonce as a 8-byte NSData object to be included in the secure server playback context (SPC) in order to prevent replay attacks. If not specified default server challenge of 0 is assumed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessionserverplaybackcontextoptionserverchallenge?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeysessionserverplaybackcontextoption/serverchallenge?language=objc)
     pub static AVContentKeySessionServerPlaybackContextOptionServerChallenge:
         &'static AVContentKeySessionServerPlaybackContextOption;
 }
@@ -354,21 +354,21 @@ impl AVContentKeySession {
 
 /// Used to specify a reason for asking the client to retry a content key request.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestretryreason?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/retryreason?language=objc)
 // NS_TYPED_ENUM
 pub type AVContentKeyRequestRetryReason = NSString;
 
 extern "C" {
     /// Indicates that the content key request should be retried because the key response was not set soon enough either due the initial request/response was taking too long, or a lease was expiring in the meantime.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestretryreasontimedout?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/retryreason/timedout?language=objc)
     pub static AVContentKeyRequestRetryReasonTimedOut: &'static AVContentKeyRequestRetryReason;
 }
 
 extern "C" {
     /// Indicates that the content key request should be retried because a key response with expired lease was set on the previous content key request.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestretryreasonreceivedresponsewithexpiredlease?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/retryreason/receivedresponsewithexpiredlease?language=objc)
     pub static AVContentKeyRequestRetryReasonReceivedResponseWithExpiredLease:
         &'static AVContentKeyRequestRetryReason;
 }
@@ -376,7 +376,7 @@ extern "C" {
 extern "C" {
     /// Indicates that the content key request should be retried because an obsolete key response was set on the previous content key request.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequestretryreasonreceivedobsoletecontentkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/retryreason/receivedobsoletecontentkey?language=objc)
     pub static AVContentKeyRequestRetryReasonReceivedObsoleteContentKey:
         &'static AVContentKeyRequestRetryReason;
 }
@@ -489,7 +489,7 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequeststatus?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcontentkeyrequest/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -436,5 +436,5 @@ pub type MIDICIPropertyExchangeRequestID = u8;
 
 /// Returned when MIDI-CI Property Messages were not dispatched due to an error.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/kmidicipropertyexchangebadrequestid?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midicipropertyexchangerequestid/badrequestid?language=objc)
 pub static kMIDICIPropertyExchangeBadRequestID: MIDICIPropertyExchangeRequestID = 0xFF;

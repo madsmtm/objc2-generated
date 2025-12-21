@@ -13,7 +13,7 @@ extern "C" {
 
 /// Constants used by NSError to indicate errors in the WebKit domain.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerrorcode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkerror/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

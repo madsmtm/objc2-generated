@@ -9,291 +9,291 @@ use crate::*;
 pub type NLLanguage = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageundetermined?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/undetermined?language=objc)
     pub static NLLanguageUndetermined: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageamharic?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/amharic?language=objc)
     pub static NLLanguageAmharic: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagearabic?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/arabic?language=objc)
     pub static NLLanguageArabic: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagearmenian?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/armenian?language=objc)
     pub static NLLanguageArmenian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagebengali?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/bengali?language=objc)
     pub static NLLanguageBengali: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagebulgarian?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/bulgarian?language=objc)
     pub static NLLanguageBulgarian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageburmese?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/burmese?language=objc)
     pub static NLLanguageBurmese: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagecatalan?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/catalan?language=objc)
     pub static NLLanguageCatalan: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagecherokee?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/cherokee?language=objc)
     pub static NLLanguageCherokee: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagecroatian?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/croatian?language=objc)
     pub static NLLanguageCroatian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageczech?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/czech?language=objc)
     pub static NLLanguageCzech: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagedanish?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/danish?language=objc)
     pub static NLLanguageDanish: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagedutch?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/dutch?language=objc)
     pub static NLLanguageDutch: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageenglish?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/english?language=objc)
     pub static NLLanguageEnglish: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagefinnish?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/finnish?language=objc)
     pub static NLLanguageFinnish: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagefrench?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/french?language=objc)
     pub static NLLanguageFrench: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagegeorgian?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/georgian?language=objc)
     pub static NLLanguageGeorgian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagegerman?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/german?language=objc)
     pub static NLLanguageGerman: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagegreek?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/greek?language=objc)
     pub static NLLanguageGreek: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagegujarati?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/gujarati?language=objc)
     pub static NLLanguageGujarati: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagehebrew?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/hebrew?language=objc)
     pub static NLLanguageHebrew: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagehindi?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/hindi?language=objc)
     pub static NLLanguageHindi: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagehungarian?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/hungarian?language=objc)
     pub static NLLanguageHungarian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageicelandic?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/icelandic?language=objc)
     pub static NLLanguageIcelandic: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageindonesian?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/indonesian?language=objc)
     pub static NLLanguageIndonesian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageitalian?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/italian?language=objc)
     pub static NLLanguageItalian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagejapanese?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/japanese?language=objc)
     pub static NLLanguageJapanese: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagekannada?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/kannada?language=objc)
     pub static NLLanguageKannada: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagekhmer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/khmer?language=objc)
     pub static NLLanguageKhmer: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagekorean?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/korean?language=objc)
     pub static NLLanguageKorean: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagelao?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/lao?language=objc)
     pub static NLLanguageLao: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagemalay?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/malay?language=objc)
     pub static NLLanguageMalay: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagemalayalam?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/malayalam?language=objc)
     pub static NLLanguageMalayalam: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagemarathi?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/marathi?language=objc)
     pub static NLLanguageMarathi: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagemongolian?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/mongolian?language=objc)
     pub static NLLanguageMongolian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagenorwegian?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/norwegian?language=objc)
     pub static NLLanguageNorwegian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageoriya?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/oriya?language=objc)
     pub static NLLanguageOriya: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagepersian?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/persian?language=objc)
     pub static NLLanguagePersian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagepolish?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/polish?language=objc)
     pub static NLLanguagePolish: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageportuguese?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/portuguese?language=objc)
     pub static NLLanguagePortuguese: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagepunjabi?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/punjabi?language=objc)
     pub static NLLanguagePunjabi: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageromanian?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/romanian?language=objc)
     pub static NLLanguageRomanian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagerussian?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/russian?language=objc)
     pub static NLLanguageRussian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagesimplifiedchinese?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/simplifiedchinese?language=objc)
     pub static NLLanguageSimplifiedChinese: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagesinhalese?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/sinhalese?language=objc)
     pub static NLLanguageSinhalese: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageslovak?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/slovak?language=objc)
     pub static NLLanguageSlovak: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagespanish?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/spanish?language=objc)
     pub static NLLanguageSpanish: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageswedish?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/swedish?language=objc)
     pub static NLLanguageSwedish: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagetamil?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/tamil?language=objc)
     pub static NLLanguageTamil: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagetelugu?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/telugu?language=objc)
     pub static NLLanguageTelugu: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagethai?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/thai?language=objc)
     pub static NLLanguageThai: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagetibetan?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/tibetan?language=objc)
     pub static NLLanguageTibetan: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagetraditionalchinese?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/traditionalchinese?language=objc)
     pub static NLLanguageTraditionalChinese: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageturkish?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/turkish?language=objc)
     pub static NLLanguageTurkish: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageukrainian?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/ukrainian?language=objc)
     pub static NLLanguageUkrainian: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguageurdu?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/urdu?language=objc)
     pub static NLLanguageUrdu: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagevietnamese?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/vietnamese?language=objc)
     pub static NLLanguageVietnamese: Option<&'static NLLanguage>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguagekazakh?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nllanguage/kazakh?language=objc)
     pub static NLLanguageKazakh: Option<&'static NLLanguage>;
 }

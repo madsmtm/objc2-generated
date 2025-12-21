@@ -186,7 +186,7 @@ impl NSWorkspace {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspaceaccessibilitydisplayoptionsdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsworkspace/accessibilitydisplayoptionsdidchangenotification?language=objc)
     pub static NSWorkspaceAccessibilityDisplayOptionsDidChangeNotification:
         &'static NSNotificationName;
 }

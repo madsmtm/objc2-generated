@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideferredmenuelementidentifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideferredmenuelement/identifier-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIDeferredMenuElementIdentifier = NSString;
 
@@ -150,7 +150,7 @@ extern_class!(
     /// When the containing menu for a responder-based deferred element is presented, the system asks the
     /// responder chain for one of these element providers for the deferred element.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uideferredmenuelementprovider?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uideferredmenuelement/provider?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

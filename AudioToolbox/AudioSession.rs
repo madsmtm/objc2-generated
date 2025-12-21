@@ -7,10 +7,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutechangekey_reason?language=objc)
 pub const kAudioSession_AudioRouteChangeKey_Reason: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"OutputDeviceDidChange_Reason\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosession_audioroutechangekey_oldroute?language=objc)
 pub const kAudioSession_AudioRouteChangeKey_OldRoute: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"OutputDeviceDidChange_OldRoute\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosessionnoerror?language=objc)

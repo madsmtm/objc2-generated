@@ -12,7 +12,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinecapstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linecapstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for NSLineCapStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinejoinstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/linejoinstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -56,7 +56,7 @@ unsafe impl RefEncode for NSLineJoinStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindingrule?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/windingrule-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -76,7 +76,7 @@ unsafe impl RefEncode for NSWindingRule {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpathelement?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezierpath/elementtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

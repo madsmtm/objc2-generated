@@ -9,7 +9,7 @@ use crate::*;
 
 /// The position along the perimeter of a rectangular frame (its edges and corners) from which it’s resized.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursorframeresizeposition?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nscursor/frameresizeposition?language=objc)
 // NS_CLOSED_ENUM
 #[repr(usize)] // NSUInteger
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

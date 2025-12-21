@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsapplesubscription?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsapplesubscription-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VSAppleSubscription;

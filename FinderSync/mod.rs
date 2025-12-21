@@ -416,7 +416,7 @@ extern_class!(
     /// ## See Also
     /// - ``FinderSync/FIFinderSyncProtocol``
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fifindersync?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/findersync/fifindersync-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FIFinderSync;

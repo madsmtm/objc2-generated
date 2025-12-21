@@ -11,7 +11,7 @@ use crate::*;
 ///
 /// Profiles allow you to keep your web history separate for topics like work, personal, or school.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/screentime/stwebhistoryprofileidentifier?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/screentime/stwebhistory/profileidentifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type STWebHistoryProfileIdentifier = NSString;
 

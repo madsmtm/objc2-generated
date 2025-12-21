@@ -4,13 +4,9 @@ use core::ffi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplayfadereservationinvalidtoken?language=objc)
 pub const kCGDisplayFadeReservationInvalidToken: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplayblendnormal?language=objc)
 pub const kCGDisplayBlendNormal: c_float = 0.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplayblendsolidcolor?language=objc)
 pub const kCGDisplayBlendSolidColor: c_float = 1.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgmaxdisplayreservationinterval?language=objc)
 pub const kCGMaxDisplayReservationInterval: CGDisplayReservationInterval = 15.0;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayfadereservationtoken?language=objc)
 pub type CGDisplayFadeReservationToken = u32;

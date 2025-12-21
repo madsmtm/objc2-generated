@@ -440,14 +440,14 @@ impl AVPlayerItemLegibleOutput {
 
 /// The type of a text styling resolution.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputtextstylingresolution?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutput/textstylingresolution-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVPlayerItemLegibleOutputTextStylingResolution = NSString;
 
 extern "C" {
     /// Specify this level of text styling resolution to receive attributed strings from an AVPlayerItemLegibleOutput that include the same level of styling information that AVFoundation would use itself to render text within an AVPlayerLayer. The text styling will accommodate user-level Media Accessibility settings.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputtextstylingresolutiondefault?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutput/textstylingresolution-swift.struct/default?language=objc)
     pub static AVPlayerItemLegibleOutputTextStylingResolutionDefault:
         &'static AVPlayerItemLegibleOutputTextStylingResolution;
 }
@@ -457,7 +457,7 @@ extern "C" {
     ///
     /// This level of resolution excludes styling provided by the user-level Media Accessibility settings. You would typically use it if you wish to override the styling specified in source media. If you do this, you are strongly encouraged to allow your custom styling in turn to be overriden by user preferences for text styling that are available as Media Accessibility settings.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutputtextstylingresolutionsourceandrulesonly?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemlegibleoutput/textstylingresolution-swift.struct/sourceandrulesonly?language=objc)
     pub static AVPlayerItemLegibleOutputTextStylingResolutionSourceAndRulesOnly:
         &'static AVPlayerItemLegibleOutputTextStylingResolution;
 }

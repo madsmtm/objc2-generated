@@ -13,14 +13,14 @@ use crate::*;
 ///
 /// Uniquely and persistently identifies objects (keys and certificates) present on the token.  Type of this identifier must be compatible with plist and its format is defined by the implementation of token extension.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenobjectid?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktoken/objectid?language=objc)
 pub type TKTokenObjectID = AnyObject;
 
 /// TKTokenInstanceID Unique, persistent identifier of this token in the form of string.
 ///
 /// InstanceID is Typically implemented by some kind of serial number of the target hardware, for example SmartCard serial number.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokeninstanceid?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktoken/instanceid?language=objc)
 pub type TKTokenInstanceID = NSString;
 
 /// TKTokenDriverClassID ClassID of the token driver.
@@ -28,7 +28,7 @@ pub type TKTokenInstanceID = NSString;
 /// Identical with
 /// `com.apple.ctk.class-id`token extension attribute. Typically in the RDN form (com.company.id).
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokendriverclassid?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokendriver/classid?language=objc)
 pub type TKTokenDriverClassID = NSString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenoperation?language=objc)

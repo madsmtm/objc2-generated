@@ -1829,7 +1829,7 @@ impl VNContoursObservation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpointgroupkeyall?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpointgroupkey/all?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNRecognizedPointGroupKeyAll: &'static VNRecognizedPointGroupKey;
 }
@@ -2257,7 +2257,7 @@ impl VNAnimalBodyPoseObservation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpoint3dgroupkeyall?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrecognizedpointgroupkey/point3dgroupkeyall?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNRecognizedPoint3DGroupKeyAll: &'static VNRecognizedPointGroupKey;
 }
@@ -2371,7 +2371,7 @@ impl VNRecognizedPoints3DObservation {
 /// reference -   Since no depth was present, a reference height of 1.8 meters is used
 /// measured -   LiDAR depth was used to measure a more accurate `bodyHeight` in meters
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservationheightestimation?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/heightestimation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

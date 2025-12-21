@@ -151,7 +151,7 @@ impl NSTextInputContext {
 extern "C" {
     /// ** Notifications ***
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputcontextkeyboardselectiondidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextinputcontext/keyboardselectiondidchangenotification?language=objc)
     pub static NSTextInputContextKeyboardSelectionDidChangeNotification:
         &'static NSNotificationName;
 }

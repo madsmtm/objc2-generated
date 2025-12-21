@@ -580,37 +580,37 @@ impl DefaultRetained for CAKeyframeAnimation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaanimationlinear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationcalculationmode/linear?language=objc)
     pub static kCAAnimationLinear: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaanimationdiscrete?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationcalculationmode/discrete?language=objc)
     pub static kCAAnimationDiscrete: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaanimationpaced?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationcalculationmode/paced?language=objc)
     pub static kCAAnimationPaced: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaanimationcubic?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationcalculationmode/cubic?language=objc)
     pub static kCAAnimationCubic: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaanimationcubicpaced?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationcalculationmode/cubicpaced?language=objc)
     pub static kCAAnimationCubicPaced: &'static CAAnimationCalculationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaanimationrotateauto?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationrotationmode/rotateauto?language=objc)
     pub static kCAAnimationRotateAuto: &'static CAAnimationRotationMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaanimationrotateautoreverse?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caanimationrotationmode/rotateautoreverse?language=objc)
     pub static kCAAnimationRotateAutoReverse: &'static CAAnimationRotationMode;
 }
 
@@ -898,42 +898,42 @@ impl DefaultRetained for CATransition {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionfade?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitiontype/fade?language=objc)
     pub static kCATransitionFade: &'static CATransitionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionmovein?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitiontype/movein?language=objc)
     pub static kCATransitionMoveIn: &'static CATransitionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionpush?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitiontype/push?language=objc)
     pub static kCATransitionPush: &'static CATransitionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionreveal?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitiontype/reveal?language=objc)
     pub static kCATransitionReveal: &'static CATransitionType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionfromright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitionsubtype/fromright?language=objc)
     pub static kCATransitionFromRight: &'static CATransitionSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionfromleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitionsubtype/fromleft?language=objc)
     pub static kCATransitionFromLeft: &'static CATransitionSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionfromtop?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitionsubtype/fromtop?language=objc)
     pub static kCATransitionFromTop: &'static CATransitionSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcatransitionfrombottom?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/catransitionsubtype/frombottom?language=objc)
     pub static kCATransitionFromBottom: &'static CATransitionSubtype;
 }
 

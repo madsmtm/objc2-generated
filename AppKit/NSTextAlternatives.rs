@@ -71,6 +71,6 @@ impl DefaultRetained for NSTextAlternatives {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextalternativesselectedalternativestringnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextalternatives/selectedalternativestringnotification?language=objc)
     pub static NSTextAlternativesSelectedAlternativeStringNotification: &'static NSNotificationName;
 }

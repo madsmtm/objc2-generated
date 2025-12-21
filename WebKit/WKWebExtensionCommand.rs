@@ -17,7 +17,7 @@ extern_class!(
     /// can be used by a web extension to perform specific actions within a web extension context, such toggling features, or interacting with
     /// web content. These commands enhance the functionality of the extension by allowing users to invoke actions quickly.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncommand?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/command?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

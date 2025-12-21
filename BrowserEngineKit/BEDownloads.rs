@@ -45,7 +45,7 @@ impl BEDownloadMonitorLocation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bedownloadmonitor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bedownloadmonitor-9y4hu?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEDownloadMonitor;

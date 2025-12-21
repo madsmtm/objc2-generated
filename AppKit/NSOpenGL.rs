@@ -429,7 +429,7 @@ impl DefaultRetained for NSOpenGLPixelBuffer {
 /// * NSOpenGLContext
 /// ***************
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontextparameter?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglcontext/parameter?language=objc)
 // NS_ENUM
 #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
 #[repr(transparent)]

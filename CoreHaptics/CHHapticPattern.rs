@@ -69,82 +69,82 @@ use crate::*;
 /// For events of type CHHapticEventTypeAudioCustom, indicates whether the audio file playback will be looped.
 /// Value type: boolean.  Default is false.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkey?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key?language=objc)
 // NS_TYPED_ENUM
 pub type CHHapticPatternKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeyversion?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/version?language=objc)
     pub static CHHapticPatternKeyVersion: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeypattern?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/pattern?language=objc)
     pub static CHHapticPatternKeyPattern: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeyevent?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/event?language=objc)
     pub static CHHapticPatternKeyEvent: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeyeventtype?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/eventtype?language=objc)
     pub static CHHapticPatternKeyEventType: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeytime?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/time?language=objc)
     pub static CHHapticPatternKeyTime: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeyeventduration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/eventduration?language=objc)
     pub static CHHapticPatternKeyEventDuration: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeyeventwaveformpath?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/eventwaveformpath?language=objc)
     pub static CHHapticPatternKeyEventWaveformPath: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeyeventparameters?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/eventparameters?language=objc)
     pub static CHHapticPatternKeyEventParameters: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeyeventwaveformusevolumeenvelope?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/eventwaveformusevolumeenvelope?language=objc)
     pub static CHHapticPatternKeyEventWaveformUseVolumeEnvelope: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeyeventwaveformloopenabled?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/eventwaveformloopenabled?language=objc)
     pub static CHHapticPatternKeyEventWaveformLoopEnabled: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeyparameter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/parameter?language=objc)
     pub static CHHapticPatternKeyParameter: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeyparameterid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/parameterid?language=objc)
     pub static CHHapticPatternKeyParameterID: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeyparametervalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/parametervalue?language=objc)
     pub static CHHapticPatternKeyParameterValue: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeyparametercurve?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/parametercurve?language=objc)
     pub static CHHapticPatternKeyParameterCurve: &'static CHHapticPatternKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpatternkeyparametercurvecontrolpoints?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticpattern/key/parametercurvecontrolpoints?language=objc)
     pub static CHHapticPatternKeyParameterCurveControlPoints: &'static CHHapticPatternKey;
 }
 

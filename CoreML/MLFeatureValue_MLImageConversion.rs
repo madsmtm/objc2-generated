@@ -12,21 +12,21 @@ use crate::*;
 
 /// Options keys passed into the MLFeatureValue construction for image types
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalueimageoption?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalue/imageoption?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type MLFeatureValueImageOption = NSString;
 
 extern "C" {
     /// Key for CGRect describing a crop region of interest of image source in normalized coordinates
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalueimageoptioncroprect?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalue/imageoption/croprect?language=objc)
     pub static MLFeatureValueImageOptionCropRect: &'static MLFeatureValueImageOption;
 }
 
 extern "C" {
     /// Key for VNImageCropAndScaleOption describing how to crop and scale the image (or region of interest) to the desired size
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalueimageoptioncropandscale?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlfeaturevalue/imageoption/cropandscale?language=objc)
     pub static MLFeatureValueImageOptionCropAndScale: &'static MLFeatureValueImageOption;
 }
 

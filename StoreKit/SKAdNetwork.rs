@@ -7,22 +7,22 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetworkcoarseconversionvalue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetwork/coarseconversionvalue?language=objc)
 // NS_TYPED_ENUM
 pub type SKAdNetworkCoarseConversionValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetworkcoarseconversionvaluehigh?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetwork/coarseconversionvalue/high?language=objc)
     pub static SKAdNetworkCoarseConversionValueHigh: &'static SKAdNetworkCoarseConversionValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetworkcoarseconversionvaluemedium?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetwork/coarseconversionvalue/medium?language=objc)
     pub static SKAdNetworkCoarseConversionValueMedium: &'static SKAdNetworkCoarseConversionValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetworkcoarseconversionvaluelow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skadnetwork/coarseconversionvalue/low?language=objc)
     pub static SKAdNetworkCoarseConversionValueLow: &'static SKAdNetworkCoarseConversionValue;
 }
 

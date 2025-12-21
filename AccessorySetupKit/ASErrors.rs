@@ -15,7 +15,7 @@ extern "C" {
 
 /// Error codes used with ASErrorDomain.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserrorcode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aserror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -54,7 +54,6 @@ unsafe impl RefEncode for IOBluetoothL2CAPChannelDataBlock {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/iobluetoothl2capchannelevent_u?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union IOBluetoothL2CAPChannelEvent_u {

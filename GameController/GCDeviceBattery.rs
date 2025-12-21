@@ -12,7 +12,7 @@ use crate::*;
 /// GCControllerBatteryStateCharging means that controller is plugged in, but it's battery level is less than 100%
 /// GCControllerBatteryStateFull means that controller is plugged in and it's battery level is 100%
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicebatterystate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdevicebattery/state?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

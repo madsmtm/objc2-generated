@@ -15,7 +15,7 @@ use crate::*;
 
 /// Option set indicating semantic understanding types of the image frame.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframesemantics?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/framesemantics-swift.struct?language=objc)
 // NS_OPTIONS
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -84,7 +84,7 @@ unsafe impl RefEncode for ARFrameSemantics {
 
 /// Enum constants for indicating the world alignment.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldalignment?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/worldalignment-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -116,7 +116,7 @@ unsafe impl RefEncode for ARWorldAlignment {
 
 /// Enum constants for indicating the mode of environment texturing to run.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arenvironmenttexturing?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/environmenttexturing-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -148,7 +148,7 @@ unsafe impl RefEncode for AREnvironmentTexturing {
 
 /// Types of scene reconstruction.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arscenereconstruction?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/scenereconstruction?language=objc)
 // NS_OPTIONS
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

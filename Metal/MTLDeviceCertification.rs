@@ -10,7 +10,7 @@ use crate::*;
 pub type NSDeviceCertification = NSInteger;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/nsdevicecertificationiphoneperformancegaming?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/nsdevicecertification/iphoneperformancegaming?language=objc)
     pub static NSDeviceCertificationiPhonePerformanceGaming: NSDeviceCertification;
 }
 
@@ -19,12 +19,12 @@ extern "C" {
 pub type NSProcessPerformanceProfile = NSInteger;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/nsprocessperformanceprofiledefault?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/nsprocessperformanceprofile/default?language=objc)
     pub static NSProcessPerformanceProfileDefault: NSProcessPerformanceProfile;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/nsprocessperformanceprofilesustained?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/nsprocessperformanceprofile/sustained?language=objc)
     pub static NSProcessPerformanceProfileSustained: NSProcessPerformanceProfile;
 }
 

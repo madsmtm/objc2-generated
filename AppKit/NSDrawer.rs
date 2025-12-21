@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -319,25 +319,25 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerwillopennotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/willopennotification?language=objc)
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub static NSDrawerWillOpenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerdidopennotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/didopennotification?language=objc)
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub static NSDrawerDidOpenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerwillclosenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/willclosenotification?language=objc)
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub static NSDrawerWillCloseNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawerdidclosenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdrawer/didclosenotification?language=objc)
     #[deprecated = "Drawers are deprecated; consider using NSSplitViewController"]
     pub static NSDrawerDidCloseNotification: &'static NSNotificationName;
 }

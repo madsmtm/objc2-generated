@@ -10,22 +10,22 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxwillpopupnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobox/willpopupnotification?language=objc)
     pub static NSComboBoxWillPopUpNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxwilldismissnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobox/willdismissnotification?language=objc)
     pub static NSComboBoxWillDismissNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxselectiondidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobox/selectiondidchangenotification?language=objc)
     pub static NSComboBoxSelectionDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscomboboxselectionischangingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscombobox/selectionischangingnotification?language=objc)
     pub static NSComboBoxSelectionIsChangingNotification: &'static NSNotificationName;
 }
 

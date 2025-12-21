@@ -9,7 +9,7 @@ use crate::*;
 extern_class!(
     /// Represents an opaque Merkle tree where the root hash of the tree can uniquely identify the individual by all of their devices. The individual's devices can prove themselves to be part of this identity, and can then be used for cryptographic signatures for that individual.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swpersonidentity?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swperson/identity?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWPersonIdentity;

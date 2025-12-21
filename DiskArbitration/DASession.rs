@@ -127,7 +127,7 @@ impl DASession {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daapprovalsession?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/daapprovalsessionref?language=objc)
 #[doc(alias = "DAApprovalSessionRef")]
 #[repr(C)]
 pub struct DAApprovalSession {

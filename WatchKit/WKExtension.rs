@@ -169,27 +169,27 @@ impl WKExtension {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationdidfinishlaunchingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextension/applicationdidfinishlaunchingnotification?language=objc)
     pub static WKApplicationDidFinishLaunchingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationdidbecomeactivenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextension/applicationdidbecomeactivenotification?language=objc)
     pub static WKApplicationDidBecomeActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationwillresignactivenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextension/applicationwillresignactivenotification?language=objc)
     pub static WKApplicationWillResignActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationwillenterforegroundnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextension/applicationwillenterforegroundnotification?language=objc)
     pub static WKApplicationWillEnterForegroundNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkapplicationdidenterbackgroundnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkextension/applicationdidenterbackgroundnotification?language=objc)
     pub static WKApplicationDidEnterBackgroundNotification: &'static NSNotificationName;
 }
 

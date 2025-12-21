@@ -13,7 +13,7 @@ extern "C" {
     pub static LAErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laerror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

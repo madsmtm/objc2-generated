@@ -12,17 +12,17 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorendererdidfailtodecodenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/didfailtodecodenotification?language=objc)
     pub static AVSampleBufferVideoRendererDidFailToDecodeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorendererdidfailtodecodenotificationerrorkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/didfailtodecodenotificationerrorkey?language=objc)
     pub static AVSampleBufferVideoRendererDidFailToDecodeNotificationErrorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorendererrequiresflushtoresumedecodingdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/requiresflushtoresumedecodingdidchangenotification?language=objc)
     pub static AVSampleBufferVideoRendererRequiresFlushToResumeDecodingDidChangeNotification:
         &'static NSNotificationName;
 }

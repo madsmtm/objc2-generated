@@ -101,191 +101,191 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericcmyk?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/genericcmyk?language=objc)
     pub static kCGColorSpaceGenericCMYK: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacedisplayp3?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/displayp3?language=objc)
     pub static kCGColorSpaceDisplayP3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericrgblinear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/genericrgblinear?language=objc)
     pub static kCGColorSpaceGenericRGBLinear: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceadobergb1998?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/adobergb1998?language=objc)
     pub static kCGColorSpaceAdobeRGB1998: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacesrgb?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/srgb?language=objc)
     pub static kCGColorSpaceSRGB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericgraygamma2_2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/genericgraygamma2_2?language=objc)
     pub static kCGColorSpaceGenericGrayGamma2_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericxyz?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/genericxyz?language=objc)
     pub static kCGColorSpaceGenericXYZ: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacegenericlab?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/genericlab?language=objc)
     pub static kCGColorSpaceGenericLab: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceacescglinear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/acescglinear?language=objc)
     pub static kCGColorSpaceACESCGLinear: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_709?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_709?language=objc)
     pub static kCGColorSpaceITUR_709: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_709_pq?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_709_pq?language=objc)
     pub static kCGColorSpaceITUR_709_PQ: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_709_hlg?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_709_hlg?language=objc)
     pub static kCGColorSpaceITUR_709_HLG: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2020?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2020?language=objc)
     pub static kCGColorSpaceITUR_2020: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2020_srgbgamma?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2020_srgbgamma?language=objc)
     pub static kCGColorSpaceITUR_2020_sRGBGamma: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacerommrgb?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/rommrgb?language=objc)
     pub static kCGColorSpaceROMMRGB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacedcip3?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/dcip3?language=objc)
     pub static kCGColorSpaceDCIP3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacelinearitur_2020?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/linearitur_2020?language=objc)
     pub static kCGColorSpaceLinearITUR_2020: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendeditur_2020?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendeditur_2020?language=objc)
     pub static kCGColorSpaceExtendedITUR_2020: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedlinearitur_2020?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendedlinearitur_2020?language=objc)
     pub static kCGColorSpaceExtendedLinearITUR_2020: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacelineardisplayp3?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/lineardisplayp3?language=objc)
     pub static kCGColorSpaceLinearDisplayP3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendeddisplayp3?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendeddisplayp3?language=objc)
     pub static kCGColorSpaceExtendedDisplayP3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedlineardisplayp3?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendedlineardisplayp3?language=objc)
     pub static kCGColorSpaceExtendedLinearDisplayP3: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2100_pq?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2100_pq?language=objc)
     pub static kCGColorSpaceITUR_2100_PQ: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2100_hlg?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2100_hlg?language=objc)
     pub static kCGColorSpaceITUR_2100_HLG: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacedisplayp3_pq?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/displayp3_pq?language=objc)
     pub static kCGColorSpaceDisplayP3_PQ: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacedisplayp3_hlg?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/displayp3_hlg?language=objc)
     pub static kCGColorSpaceDisplayP3_HLG: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2020_pq?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2020_pq?language=objc)
     #[deprecated = "No longer supported"]
     pub static kCGColorSpaceITUR_2020_PQ: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2020_hlg?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2020_hlg?language=objc)
     #[deprecated = "No longer supported"]
     pub static kCGColorSpaceITUR_2020_HLG: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacedisplayp3_pq_eotf?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/displayp3_pq_eotf?language=objc)
     #[deprecated = "No longer supported"]
     pub static kCGColorSpaceDisplayP3_PQ_EOTF: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceitur_2020_pq_eotf?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/itur_2020_pq_eotf?language=objc)
     #[deprecated = "No longer supported"]
     pub static kCGColorSpaceITUR_2020_PQ_EOTF: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedsrgb?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendedsrgb?language=objc)
     pub static kCGColorSpaceExtendedSRGB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacelinearsrgb?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/linearsrgb?language=objc)
     pub static kCGColorSpaceLinearSRGB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedlinearsrgb?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendedlinearsrgb?language=objc)
     pub static kCGColorSpaceExtendedLinearSRGB: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedgray?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendedgray?language=objc)
     pub static kCGColorSpaceExtendedGray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacelineargray?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/lineargray?language=objc)
     pub static kCGColorSpaceLinearGray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspaceextendedlineargray?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/extendedlineargray?language=objc)
     pub static kCGColorSpaceExtendedLinearGray: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorspacecoremedia709?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolorspace/coremedia709?language=objc)
     pub static kCGColorSpaceCoreMedia709: &'static CFString;
 }
 

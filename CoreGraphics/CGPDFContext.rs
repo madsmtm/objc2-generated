@@ -447,22 +447,22 @@ impl CGPDFTagType {
 pub type CGPDFTagProperty = CFString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdftagpropertyactualtext?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagproperty/actualtext?language=objc)
     pub static kCGPDFTagPropertyActualText: &'static CGPDFTagProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdftagpropertyalternativetext?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagproperty/alternativetext?language=objc)
     pub static kCGPDFTagPropertyAlternativeText: &'static CGPDFTagProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdftagpropertytitletext?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagproperty/titletext?language=objc)
     pub static kCGPDFTagPropertyTitleText: &'static CGPDFTagProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpdftagpropertylanguagetext?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdftagproperty/languagetext?language=objc)
     pub static kCGPDFTagPropertyLanguageText: &'static CGPDFTagProperty;
 }
 

@@ -135,7 +135,7 @@ unsafe impl RefEncode for UICollectionLayoutListContentHuggingElements {
 extern_class!(
     /// A list configuration can be used to layout a section inside a UICollectionViewCompositionalLayout as a list.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistconfiguration-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

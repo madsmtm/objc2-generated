@@ -20,14 +20,14 @@ use crate::*;
 ///
 /// Determines what HDR display metadata should be attached to the rendered frame.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositionperframehdrdisplaymetadatapolicy?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocomposition/perframehdrdisplaymetadatapolicy-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVVideoCompositionPerFrameHDRDisplayMetadataPolicy = NSString;
 
 extern "C" {
     /// Default. Pass the HDR metadata through, if present on the composed frame.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositionperframehdrdisplaymetadatapolicypropagate?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocomposition/perframehdrdisplaymetadatapolicy-swift.struct/propagate?language=objc)
     pub static AVVideoCompositionPerFrameHDRDisplayMetadataPolicyPropagate:
         &'static AVVideoCompositionPerFrameHDRDisplayMetadataPolicy;
 }
@@ -35,7 +35,7 @@ extern "C" {
 extern "C" {
     /// AVVideoComposition may generate HDR metadata and attach it to the rendered frame. HDR metadata generation is influenced by the color space of the rendered frame, device, and HDR metadata format platform support. Any previously attached HDR metadata of the same metadata format will be overwritten.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositionperframehdrdisplaymetadatapolicygenerate?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocomposition/perframehdrdisplaymetadatapolicy-swift.struct/generate?language=objc)
     pub static AVVideoCompositionPerFrameHDRDisplayMetadataPolicyGenerate:
         &'static AVVideoCompositionPerFrameHDRDisplayMetadataPolicy;
 }
@@ -894,7 +894,7 @@ extern_class!(
     ///
     /// An AVVideoComposition object maintains an array of instructions to perform its composition. This class is not intended to be subclassed; instead, conform to AVVideoCompositionInstructionProtocol ("AVVideoCompositionInstruction" in Objective-C). Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositioninstruction?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocompositioninstruction-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVVideoCompositionInstruction;

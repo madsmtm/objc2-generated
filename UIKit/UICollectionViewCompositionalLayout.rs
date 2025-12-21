@@ -275,33 +275,33 @@ pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = *mut block2:
     ),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingdecelerationrate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/decelerationrate-swift.struct?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type UICollectionLayoutSectionOrthogonalScrollingDecelerationRate = CGFloat;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingdecelerationrateautomatic?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/decelerationrate-swift.struct/automatic?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UICollectionLayoutSectionOrthogonalScrollingDecelerationRateAutomatic:
         UICollectionLayoutSectionOrthogonalScrollingDecelerationRate;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingdecelerationratenormal?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/decelerationrate-swift.struct/normal?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UICollectionLayoutSectionOrthogonalScrollingDecelerationRateNormal:
         UICollectionLayoutSectionOrthogonalScrollingDecelerationRate;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingdecelerationratefast?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/decelerationrate-swift.struct/fast?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UICollectionLayoutSectionOrthogonalScrollingDecelerationRateFast:
         UICollectionLayoutSectionOrthogonalScrollingDecelerationRate;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingbounce?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutsectionorthogonalscrollingproperties/bounce-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

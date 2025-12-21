@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindex?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindexref?language=objc)
 #[doc(alias = "SKIndexRef")]
 #[repr(C)]
 pub struct SKIndex {
@@ -37,7 +37,7 @@ unsafe impl ConcreteType for SKIndex {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindexdocumentiterator?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/skindexdocumentiteratorref?language=objc)
 #[doc(alias = "SKIndexDocumentIteratorRef")]
 #[repr(C)]
 pub struct SKIndexDocumentIterator {

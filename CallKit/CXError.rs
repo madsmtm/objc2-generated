@@ -31,7 +31,7 @@ extern "C" {
     pub static CXErrorDomainNotificationServiceExtension: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerror/code?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCode(pub NSInteger);
@@ -54,7 +54,7 @@ unsafe impl RefEncode for CXErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodeincomingcallerror-swift.struct/code?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeIncomingCallError(pub NSInteger);
@@ -85,7 +85,7 @@ unsafe impl RefEncode for CXErrorCodeIncomingCallError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcoderequesttransactionerror-swift.struct/code?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeRequestTransactionError(pub NSInteger);
@@ -118,7 +118,7 @@ unsafe impl RefEncode for CXErrorCodeRequestTransactionError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodecalldirectorymanagererror-swift.struct/code?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeCallDirectoryManagerError(pub NSInteger);
@@ -151,7 +151,7 @@ unsafe impl RefEncode for CXErrorCodeCallDirectoryManagerError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodenotificationserviceextensionerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/callkit/cxerrorcodenotificationserviceextensionerror-swift.struct/code?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CXErrorCodeNotificationServiceExtensionError(pub NSInteger);

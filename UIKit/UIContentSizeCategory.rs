@@ -11,78 +11,78 @@ use crate::*;
 pub type UIContentSizeCategory = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategoryunspecified?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/unspecified?language=objc)
     pub static UIContentSizeCategoryUnspecified: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategoryextrasmall?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/extrasmall?language=objc)
     pub static UIContentSizeCategoryExtraSmall: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategorysmall?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/small?language=objc)
     pub static UIContentSizeCategorySmall: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategorymedium?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/medium?language=objc)
     pub static UIContentSizeCategoryMedium: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategorylarge?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/large?language=objc)
     pub static UIContentSizeCategoryLarge: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategoryextralarge?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/extralarge?language=objc)
     pub static UIContentSizeCategoryExtraLarge: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategoryextraextralarge?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/extraextralarge?language=objc)
     pub static UIContentSizeCategoryExtraExtraLarge: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategoryextraextraextralarge?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/extraextraextralarge?language=objc)
     pub static UIContentSizeCategoryExtraExtraExtraLarge: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategoryaccessibilitymedium?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/accessibilitymedium?language=objc)
     pub static UIContentSizeCategoryAccessibilityMedium: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategoryaccessibilitylarge?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/accessibilitylarge?language=objc)
     pub static UIContentSizeCategoryAccessibilityLarge: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategoryaccessibilityextralarge?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/accessibilityextralarge?language=objc)
     pub static UIContentSizeCategoryAccessibilityExtraLarge: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategoryaccessibilityextraextralarge?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/accessibilityextraextralarge?language=objc)
     pub static UIContentSizeCategoryAccessibilityExtraExtraLarge: &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategoryaccessibilityextraextraextralarge?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/accessibilityextraextraextralarge?language=objc)
     pub static UIContentSizeCategoryAccessibilityExtraExtraExtraLarge:
         &'static UIContentSizeCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategorydidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/didchangenotification?language=objc)
     pub static UIContentSizeCategoryDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategorynewvaluekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentsizecategory/newvalueuserinfokey?language=objc)
     pub static UIContentSizeCategoryNewValueKey: &'static NSString;
 }
 

@@ -15,7 +15,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstiffcompression?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/tiffcompression?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -47,7 +47,7 @@ unsafe impl RefEncode for NSTIFFCompression {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagefiletype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/filetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -75,7 +75,7 @@ unsafe impl RefEncode for NSBitmapImageFileType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagereploadstatus?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/loadstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -103,7 +103,7 @@ unsafe impl RefEncode for NSImageRepLoadStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/format?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -135,82 +135,82 @@ unsafe impl RefEncode for NSBitmapFormat {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagereppropertykey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSBitmapImageRepPropertyKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagecompressionmethod?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/compressionmethod?language=objc)
     pub static NSImageCompressionMethod: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagecompressionfactor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/compressionfactor?language=objc)
     pub static NSImageCompressionFactor: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagedithertransparency?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/dithertransparency?language=objc)
     pub static NSImageDitherTransparency: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagergbcolortable?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/rgbcolortable?language=objc)
     pub static NSImageRGBColorTable: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageinterlaced?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/interlaced?language=objc)
     pub static NSImageInterlaced: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagecolorsyncprofiledata?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/colorsyncprofiledata?language=objc)
     pub static NSImageColorSyncProfileData: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageframecount?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/framecount?language=objc)
     pub static NSImageFrameCount: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagecurrentframe?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/currentframe?language=objc)
     pub static NSImageCurrentFrame: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagecurrentframeduration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/currentframeduration?language=objc)
     pub static NSImageCurrentFrameDuration: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageloopcount?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/loopcount?language=objc)
     pub static NSImageLoopCount: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagegamma?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/gamma?language=objc)
     pub static NSImageGamma: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageprogressive?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/progressive?language=objc)
     pub static NSImageProgressive: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageexifdata?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/exifdata?language=objc)
     pub static NSImageEXIFData: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageiptcdata?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/imageiptcdata?language=objc)
     pub static NSImageIPTCData: &'static NSBitmapImageRepPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagefallbackbackgroundcolor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbitmapimagerep/propertykey/fallbackbackgroundcolor?language=objc)
     pub static NSImageFallbackBackgroundColor: &'static NSBitmapImageRepPropertyKey;
 }
 

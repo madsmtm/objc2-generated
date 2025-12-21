@@ -54,7 +54,7 @@ extern "C" {
     pub static MTLIOErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlioerror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

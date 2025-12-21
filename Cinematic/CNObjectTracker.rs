@@ -16,7 +16,7 @@ use objc2_metal::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnboundsprediction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnboundsprediction-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNBoundsPrediction;
@@ -76,7 +76,7 @@ impl CNBoundsPrediction {
 extern_class!(
     /// Converts a normalized point or rectangle into a detection track that tracks an object over time.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnobjecttracker?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnobjecttracker-7aliq?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNObjectTracker;

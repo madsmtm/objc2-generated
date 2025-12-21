@@ -13,7 +13,7 @@ use crate::*;
 
 /// These constants are returned by the AVPlayer status property to indicate whether it can successfully play items.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -156,7 +156,7 @@ extern "C" {
     ///
     /// Posted by the player when its rate changes. Similar to KVO of AVPlayer.rate, but providing additional information about the rate change in the userInfo. See keys below.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/ratedidchangenotification?language=objc)
     pub static AVPlayerRateDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -165,7 +165,7 @@ extern "C" {
     ///
     /// The value corresponding to this key is of type AVPlayerRateDidChangeReason.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/ratedidchangereasonkey?language=objc)
     pub static AVPlayerRateDidChangeReasonKey: &'static NSString;
 }
 
@@ -174,38 +174,38 @@ extern "C" {
     ///
     /// Informs the receiver of an AVPlayerRateDidChangeNotification about a rate change originated from another AVCoordinatedPlaybackParticipant connected through AVPlayerPlaybackCoordinator. This can be used to inform UI showing why the playback rate changed. The type of the value for this key is an AVCoordinatedPlaybackParticipant, which is part of the AVPlayerPlaybackCoordinator.otherParticipants array.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangeoriginatingparticipantkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/ratedidchangeoriginatingparticipantkey?language=objc)
     pub static AVPlayerRateDidChangeOriginatingParticipantKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereason?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/ratedidchangereason?language=objc)
 // NS_TYPED_ENUM
 pub type AVPlayerRateDidChangeReason = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonsetratecalled?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/ratedidchangereason/setratecalled?language=objc)
     pub static AVPlayerRateDidChangeReasonSetRateCalled: &'static AVPlayerRateDidChangeReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonsetratefailed?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/ratedidchangereason/setratefailed?language=objc)
     pub static AVPlayerRateDidChangeReasonSetRateFailed: &'static AVPlayerRateDidChangeReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonaudiosessioninterrupted?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/ratedidchangereason/audiosessioninterrupted?language=objc)
     pub static AVPlayerRateDidChangeReasonAudioSessionInterrupted:
         &'static AVPlayerRateDidChangeReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerratedidchangereasonappbackgrounded?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/ratedidchangereason/appbackgrounded?language=objc)
     pub static AVPlayerRateDidChangeReasonAppBackgrounded: &'static AVPlayerRateDidChangeReason;
 }
 
 /// These constants are the allowable values of AVPlayer's timeControlStatus property. This discussion pertains when automaticallyWaitsToMinimizeStalling is YES, the default setting, and exceptions are discussed in connection with automaticallyWaitsToMinimizeStalling.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayertimecontrolstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/timecontrolstatus-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -232,7 +232,7 @@ unsafe impl RefEncode for AVPlayerTimeControlStatus {
 
 /// The type of reason that a player is waiting for playback.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerwaitingreason?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/waitingreason?language=objc)
 // NS_TYPED_ENUM
 pub type AVPlayerWaitingReason = NSString;
 
@@ -242,7 +242,7 @@ extern "C" {
     /// The player is waiting for playback because automaticallyWaitToMinimizeStalling is YES and playback at the specified rate would likely cause the playback buffer to become empty before playback completes. Playback will resume when 1) playback at the specified rate will likely complete without a stall or 2) the playback buffer becomes full, meaning no forther buffering of media data is possible.
     /// When the value of automaticallyWaitsToMinimizeStalling is NO, timeControlStatus cannot become AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate for this reason.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerwaitingtominimizestallsreason?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/waitingreason/tominimizestalls?language=objc)
     pub static AVPlayerWaitingToMinimizeStallsReason: &'static AVPlayerWaitingReason;
 }
 
@@ -252,7 +252,7 @@ extern "C" {
     /// The player is waiting for playback because automaticallyWaitToMinimizeStalling is YES and it has not yet determined if starting playback at the specified rate would likely cause the buffer to become empty. When the brief initial monitoring period is over, either playback will begin or the value of reasonForWaitingToPlayAtSpecifiedRate will switch to AVPlayerWaitingToMinimizeStallsReason.
     /// Recommended practice is not to show UI indicating the waiting state to the user while the value of reasonForWaitingToPlayAtSpecifiedRate is AVPlayerWaitingWhileEvaluatingBufferingRateReason.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerwaitingwhileevaluatingbufferingratereason?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/waitingreason/evaluatingbufferingrate?language=objc)
     pub static AVPlayerWaitingWhileEvaluatingBufferingRateReason: &'static AVPlayerWaitingReason;
 }
 
@@ -261,7 +261,7 @@ extern "C" {
     ///
     /// The player is waiting for playback because automaticallyWaitToMinimizeStalling is YES and the value of currentItem is nil. When an item becomes available, either because of a call to -replaceCurrentItemWithPlayerItem: or -insertItem: afterItem:, playback will begin or the value of reasonForWaitingToPlay will change.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerwaitingwithnoitemtoplayreason?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/waitingreason/noitemtoplay?language=objc)
     pub static AVPlayerWaitingWithNoItemToPlayReason: &'static AVPlayerWaitingReason;
 }
 
@@ -270,7 +270,7 @@ extern "C" {
     ///
     /// The player is waiting for playback because its connected AVPlayerPlaybackCoordinator requires information from one of the other participants before playback can start.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerwaitingforcoordinatedplaybackreason?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/waitingreason/waitingforcoordinatedplayback?language=objc)
     pub static AVPlayerWaitingForCoordinatedPlaybackReason: &'static AVPlayerWaitingReason;
 }
 
@@ -361,7 +361,7 @@ impl AVPlayer {
 
 /// These constants are the allowable values of AVPlayer's actionAtItemEnd property.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeractionatitemend?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/actionatitemend-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -935,7 +935,7 @@ impl AVPlayer {
 
 /// A bitfield type that specifies an HDR mode.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerhdrmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/hdrmode?language=objc)
 // NS_OPTIONS
 #[deprecated = "The deprecated availableHDRModes uses this enum. Use eligibleForHDRPlayback instead"]
 #[repr(transparent)]
@@ -981,7 +981,7 @@ extern "C" {
     ///
     /// This notification fires when eligibleForHDRPlayback changes. This can be caused by display connection/disconnection or resource changes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayereligibleforhdrplaybackdidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/eligibleforhdrplaybackdidchangenotification?language=objc)
     pub static AVPlayerEligibleForHDRPlaybackDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1165,7 +1165,7 @@ impl AVPlayer {
 
 /// This defines the network resource priority for a player.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayernetworkresourcepriority?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/networkresourcepriority-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

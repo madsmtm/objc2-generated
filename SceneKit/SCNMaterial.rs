@@ -9,37 +9,37 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightingmodel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type SCNLightingModel = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightingmodelphong?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct/phong?language=objc)
     pub static SCNLightingModelPhong: &'static SCNLightingModel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightingmodelblinn?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct/blinn?language=objc)
     pub static SCNLightingModelBlinn: &'static SCNLightingModel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightingmodellambert?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct/lambert?language=objc)
     pub static SCNLightingModelLambert: &'static SCNLightingModel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightingmodelconstant?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct/constant?language=objc)
     pub static SCNLightingModelConstant: &'static SCNLightingModel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightingmodelphysicallybased?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct/physicallybased?language=objc)
     pub static SCNLightingModelPhysicallyBased: &'static SCNLightingModel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlightingmodelshadowonly?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmaterial/lightingmodel-swift.struct/shadowonly?language=objc)
     pub static SCNLightingModelShadowOnly: &'static SCNLightingModel;
 }
 

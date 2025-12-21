@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiattachmentbehaviortype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiattachmentbehavior/attachmenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -55,13 +55,13 @@ unsafe impl Send for UIFloatRange {}
 unsafe impl Sync for UIFloatRange {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifloatrangezero?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifloatrange/zero?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFloatRangeZero: UIFloatRange;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifloatrangeinfinite?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifloatrange/infinite?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFloatRangeInfinite: UIFloatRange;
 }

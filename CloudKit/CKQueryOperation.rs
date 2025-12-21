@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerycursor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckqueryoperation/cursor-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKQueryCursor;
@@ -50,7 +50,7 @@ extern "C" {
     /// Query operations have a dynamically defined maximum number of results.  If the results of a query exceed this max, your completion block will invoked with a cursor.
     /// Issue a new query with that cursor to fetch the next batch of results.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckqueryoperationmaximumresults?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckqueryoperation/maximumresults?language=objc)
     pub static CKQueryOperationMaximumResults: NSUInteger;
 }
 

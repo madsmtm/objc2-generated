@@ -159,7 +159,7 @@ impl AVCaptureOutput {
 ///
 /// Data was dropped because the device providing the data experienced a discontinuity, and an unknown number of data objects have been lost. This condition is typically caused by the system being too busy.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureoutputdatadroppedreason?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureoutput/datadroppedreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

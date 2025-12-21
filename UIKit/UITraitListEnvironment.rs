@@ -50,7 +50,7 @@ extern_class!(
     /// A trait that specifies the UIListEnvironment, if any, that a view is in. It is set on views inside UITableViews and list sections in UICollectionViews.
     /// Defaults to UIListEnvironmentUnspecified.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlistenvironment?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlistenvironment-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

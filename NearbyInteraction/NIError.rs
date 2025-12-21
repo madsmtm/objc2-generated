@@ -13,7 +13,7 @@ extern "C" {
 
 /// Error codes for nearby interaction session failures.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierrorcode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nierror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

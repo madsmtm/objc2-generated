@@ -65,7 +65,7 @@ impl NSApplication {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdidfinishrestoringwindowsnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didfinishrestoringwindowsnotification?language=objc)
     pub static NSApplicationDidFinishRestoringWindowsNotification: &'static NSNotificationName;
 }
 

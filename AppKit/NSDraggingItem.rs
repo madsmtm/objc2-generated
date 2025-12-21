@@ -7,17 +7,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingimagecomponentkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponentkey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSDraggingImageComponentKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingimagecomponenticonkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponentkey/icon?language=objc)
     pub static NSDraggingImageComponentIconKey: &'static NSDraggingImageComponentKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingimagecomponentlabelkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdraggingitem/imagecomponentkey/label?language=objc)
     pub static NSDraggingImageComponentLabelKey: &'static NSDraggingImageComponentKey;
 }
 

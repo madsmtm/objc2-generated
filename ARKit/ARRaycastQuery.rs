@@ -8,7 +8,7 @@ use crate::*;
 
 /// A value describing the target of a ray used for raycasting.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycasttarget?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/target-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -41,7 +41,7 @@ unsafe impl RefEncode for ARRaycastTarget {
 
 /// A value describing the alignment of a target.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycasttargetalignment?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arraycastquery/targetalignment-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

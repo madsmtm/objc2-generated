@@ -10,7 +10,7 @@ extern_class!(
     /// An interaction behavior for a PKCanvasView.
     /// Should not be subclassed outside of the PencilKit framework.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pktool?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pktool-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKTool;

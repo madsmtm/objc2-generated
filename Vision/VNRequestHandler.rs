@@ -27,7 +27,7 @@ pub type VNImageOption = NSString;
 extern "C" {
     /// VNImageOptionProperties is the dictionary from CGImageSourceCopyPropertiesAtIndex. This contains metadata that can be used by some algorithms like horizon detection.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoptionproperties?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoption/properties?language=objc)
     pub static VNImageOptionProperties: &'static VNImageOption;
 }
 
@@ -43,14 +43,14 @@ extern "C" {
     ///
     /// Note: When using a CMSampleBuffer as an input and that sample buffer has camera intrinsics attached to it, Vision will use the camera intrinsic from there unless overwritten by passing in as an explicit option which will take precedence.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoptioncameraintrinsics?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoption/cameraintrinsics?language=objc)
     pub static VNImageOptionCameraIntrinsics: &'static VNImageOption;
 }
 
 extern "C" {
     /// VNImageOptionCIContext  Specifies the CIContext to be used in Core Image operations of request handler. If this is not specified, Vision will create its own CIContext. This option is helpful when the passed in CIImage is the result of a CIFilter chain that has been executed on a CIContext or uses outputs of a CIImage on a given CIContext as they don't have to transfer to other contexts.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoptioncicontext?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnimageoption/cicontext?language=objc)
     pub static VNImageOptionCIContext: &'static VNImageOption;
 }
 

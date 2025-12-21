@@ -29,7 +29,6 @@ pub type AudioQueueParameterID = u32;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueparametervalue?language=objc)
 pub type AudioQueueParameterValue = f32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaqueaudioqueue?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueAudioQueue {
@@ -46,7 +45,6 @@ unsafe impl RefEncode for OpaqueAudioQueue {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueref?language=objc)
 pub type AudioQueueRef = *mut OpaqueAudioQueue;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaqueaudioqueuetimeline?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueAudioQueueTimeline {
@@ -380,7 +378,6 @@ unsafe impl RefEncode for AudioQueueLevelMeterState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaqueaudioqueueprocessingtap?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueAudioQueueProcessingTap {

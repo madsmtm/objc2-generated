@@ -137,7 +137,7 @@ impl AVSampleBufferGenerator {
 ///
 /// Indicates zero or more preceeding samples may be loaded from [AVSampleBufferRequest startCursor], subject to [AVSampleBufferRequest limitCursor], [AVSampleBufferRequest preferredMinSampleCount], and [AVSampleBufferRequest maxSampleCount]
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequestdirection?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/direction-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -168,7 +168,7 @@ unsafe impl RefEncode for AVSampleBufferRequestDirection {
 ///
 /// The AVSampleBufferGenerator will attempt to read data for opportunistic requests as soon as possible. However, in situations with multiple competing requests, the AVSampleBufferGenerator may defer an opportunistic request in favor of another immediate request or a scheduled requests with a presentation time close to the timebase time. Because a request with AVSampleBufferRequestModeOpportunistic may be postponed indefinitely, this mode should not be used for time-sensitive processing.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequestmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrequest/mode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

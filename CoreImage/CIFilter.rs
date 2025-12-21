@@ -785,7 +785,7 @@ extern "C" {
     ///
     /// Images with `contentHeadroom` metadata will be tone mapped to a maximum pixel value of 1.0.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcidynamicrangestandard?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidynamicrangeoption/standard?language=objc)
     pub static kCIDynamicRangeStandard: &'static CIDynamicRangeOption;
 }
 
@@ -795,7 +795,7 @@ extern "C" {
     ///
     /// For best results, images should contain `contentAverageLightLevel` metadata.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcidynamicrangeconstrainedhigh?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidynamicrangeoption/constrainedhigh?language=objc)
     pub static kCIDynamicRangeConstrainedHigh: &'static CIDynamicRangeOption;
 }
 
@@ -806,7 +806,7 @@ extern "C" {
     /// for situations where the user is focused on the media, such as larger views in
     /// an image editing/viewing app, or annotating/drawing with HDR colors
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kcidynamicrangehigh?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidynamicrangeoption/high?language=objc)
     pub static kCIDynamicRangeHigh: &'static CIDynamicRangeOption;
 }
 
@@ -815,7 +815,7 @@ extern_class!(
     ///
     /// The CIFilter class produces a CIImage object as output. Typically, a filter takes one or more images as input. Some filters, however, generate an image based on other types of input parameters. The parameters of a CIFilter object are set and retrieved through the use of key-value pairs. You use the CIFilter object in conjunction with the CIImage, CIContext, CIVector, CIImageAccumulator, and CIColor objects to take advantage of the built-in Core Image filters when processing images. CIFilter objects are also used along with CIKernel, CISampler, and CIFilterShape objects to create custom filters.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifilter?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cifilter-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CIFilter;

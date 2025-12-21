@@ -8,7 +8,7 @@ use crate::*;
 
 /// The subkind of a DTD node kind.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldtdnodekind?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode/dtdkind-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -75,7 +75,7 @@ extern_class!(
     /// </li>
     /// </ul>
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldtdnode?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtdnode?language=objc)
     #[unsafe(super(NSXMLNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSXMLNode")]

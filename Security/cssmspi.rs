@@ -30,7 +30,7 @@ pub const CSSM_CONTEXT_EVENT_DELETE: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_context_event_update?language=objc)
 pub const CSSM_CONTEXT_EVENT_UPDATE: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_module_funcs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_module_funcs-c.struct?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -58,7 +58,7 @@ unsafe impl RefEncode for cssm_module_funcs {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_module_funcs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_module_funcs-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_MODULE_FUNCS = cssm_module_funcs;
@@ -91,7 +91,7 @@ pub type CSSM_UPCALLS_REALLOC =
 pub type CSSM_UPCALLS_CALLOC =
     Option<unsafe extern "C-unwind" fn(CSSM_HANDLE, usize, usize) -> *mut c_void>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls-c.struct?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -155,7 +155,7 @@ unsafe impl RefEncode for cssm_upcalls {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_upcalls-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_UPCALLS = cssm_upcalls;

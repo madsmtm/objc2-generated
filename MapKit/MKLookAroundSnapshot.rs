@@ -9,7 +9,7 @@ use objc2_app_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklookaroundsnapshot?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklookaroundsnapshotter/snapshot?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKLookAroundSnapshot;

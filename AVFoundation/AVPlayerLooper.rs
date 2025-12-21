@@ -19,7 +19,7 @@ use crate::*;
 ///
 /// Indicates that the looper is no longer looping because -disableLooping was invoked.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooperstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -49,7 +49,7 @@ unsafe impl RefEncode for AVPlayerLooperStatus {
 ///
 /// Indicates that the looper will insert the replica items after any existing items in the specified AVQueuePlayer's play queue.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooperitemordering?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerlooper/itemordering?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

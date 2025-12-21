@@ -9,10 +9,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaridentifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/identifier-swift.typealias?language=objc)
 pub type NSToolbarIdentifier = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemidentifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSToolbarItemIdentifier = NSString;
 
@@ -21,16 +21,16 @@ pub type NSToolbarItemIdentifier = NSString;
 pub type NSToolbarUserInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaruserinfokey/itemkey?language=objc)
     pub static NSToolbarItemKey: &'static NSToolbarUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarnewindexkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaruserinfokey/newindexkey?language=objc)
     pub static NSToolbarNewIndexKey: &'static NSToolbarUserInfoKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbardisplaymode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/displaymode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -54,7 +54,7 @@ unsafe impl RefEncode for NSToolbarDisplayMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarsizemode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/sizemode-swift.enum?language=objc)
 // NS_ENUM
 #[deprecated = "NSToolbarSizeMode is no longer recommended and will be ignored in the future"]
 #[repr(transparent)]
@@ -431,12 +431,12 @@ extern_protocol!(
 extern "C" {
     /// Notifications
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarwilladditemnotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/willadditemnotification?language=objc)
     pub static NSToolbarWillAddItemNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbardidremoveitemnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbar/didremoveitemnotification?language=objc)
     pub static NSToolbarDidRemoveItemNotification: &'static NSNotificationName;
 }
 

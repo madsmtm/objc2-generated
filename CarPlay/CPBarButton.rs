@@ -35,7 +35,7 @@ unsafe impl RefEncode for CPBarButtonStyle {
 /// Specifies the type of a
 /// `CPBarButton.`
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbuttontype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbutton/type?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

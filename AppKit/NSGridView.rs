@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcellplacement?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridcell/placement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -41,7 +41,7 @@ unsafe impl RefEncode for NSGridCellPlacement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridrowalignment?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridrow/alignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -66,7 +66,7 @@ unsafe impl RefEncode for NSGridRowAlignment {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridviewsizeforcontent?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgridview/sizedforcontent?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSGridViewSizeForContent: CGFloat;
 }

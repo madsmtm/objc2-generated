@@ -18,7 +18,7 @@ pub type CKRecordFieldKey = NSString;
 extern "C" {
     /// Use this constant for the recordType parameter when fetching User Records.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordtypeuserrecord?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordtypeuserrecord-49k30?language=objc)
     pub static CKRecordTypeUserRecord: &'static CKRecordType;
 }
 
@@ -60,19 +60,19 @@ extern "C" {
 extern "C" {
     /// For use in queries to match on record properties.  Matches `record.parent`
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordparentkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordparentkey-2kx8l?language=objc)
     pub static CKRecordParentKey: &'static CKRecordFieldKey;
 }
 
 extern "C" {
     /// For use in queries to match on record properties.  Matches `record.share`
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordsharekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordsharekey-rrat?language=objc)
     pub static CKRecordShareKey: &'static CKRecordFieldKey;
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordvalue-c.protocol?language=objc)
     pub unsafe trait CKRecordValue: NSObjectProtocol {}
 );
 

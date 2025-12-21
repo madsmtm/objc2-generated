@@ -315,8 +315,6 @@ impl GLKMesh {
 }
 
 /// Structure for parameters to use in glVertexAttribPointer given a MDLVertexForamt
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/glkit/glkvertexattributeparameters?language=objc)
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]
 #[repr(C)]

@@ -121,7 +121,7 @@ impl DefaultRetained for NSTimeZone {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezonenamestyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimezone/namestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -285,7 +285,7 @@ impl NSTimeZone {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssystemtimezonedidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nssystemtimezonedidchange?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSSystemTimeZoneDidChangeNotification: &'static NSNotificationName;
 }

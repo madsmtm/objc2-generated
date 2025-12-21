@@ -12,7 +12,7 @@ extern "C" {
     pub static ASCredentialIdentityStoreErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystoreerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystoreerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for ASCredentialIdentityStoreErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitytypes?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialidentitystore/identitytypes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

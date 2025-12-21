@@ -9,7 +9,7 @@ use crate::*;
 
 /// Each of the different states of a right
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/larightstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laright/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

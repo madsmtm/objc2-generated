@@ -10,7 +10,7 @@ use crate::*;
 
 /// Keeps track of where an altitude value came from and informs the user about the expected accuracy.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/araltitudesource?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeoanchor/altitudesource-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -44,7 +44,7 @@ unsafe impl RefEncode for ARAltitudeSource {
 
 /// A value describing geo tracking state.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/state-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -78,7 +78,7 @@ unsafe impl RefEncode for ARGeoTrackingState {
 
 /// A value describing geo tracking accuracy.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingaccuracy?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/accuracy-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -112,7 +112,7 @@ unsafe impl RefEncode for ARGeoTrackingAccuracy {
 
 /// Reasons for geo tracking failure states.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatereason?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/argeotrackingstatus/statereason-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

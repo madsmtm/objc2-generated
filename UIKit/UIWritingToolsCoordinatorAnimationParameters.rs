@@ -29,7 +29,7 @@ extern_class!(
     /// method of your ``UIWritingToolsCoordinatorDelegate`` object. Use that
     /// object to specify the blocks to run during and after the system animations.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinatoranimationparameters?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/animationparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIWritingToolsCoordinatorAnimationParameters;

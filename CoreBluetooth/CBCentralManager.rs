@@ -78,7 +78,7 @@ unsafe impl RefEncode for CBConnectionEvent {
 
 /// The set of device specific features.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanagerfeature?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager/feature?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -7,34 +7,34 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionidentifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction/identifier-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIActionIdentifier = NSString;
 
 extern "C" {
     /// Default action identifiers for paste variants
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionpaste?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction/identifier-swift.struct/paste?language=objc)
     pub static UIActionPaste: &'static UIActionIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionpasteandmatchstyle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction/identifier-swift.struct/pasteandmatchstyle?language=objc)
     pub static UIActionPasteAndMatchStyle: &'static UIActionIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionpasteandgo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction/identifier-swift.struct/pasteandgo?language=objc)
     pub static UIActionPasteAndGo: &'static UIActionIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionpasteandsearch?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction/identifier-swift.struct/pasteandsearch?language=objc)
     pub static UIActionPasteAndSearch: &'static UIActionIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionnewfrompasteboard?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction/identifier-swift.struct/newfrompasteboard?language=objc)
     pub static UIActionNewFromPasteboard: &'static UIActionIdentifier;
 }
 

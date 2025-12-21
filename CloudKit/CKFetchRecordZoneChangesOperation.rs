@@ -465,7 +465,7 @@ impl CKFetchRecordZoneChangesOperation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesconfiguration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKFetchRecordZoneChangesConfiguration;
@@ -553,7 +553,7 @@ impl CKFetchRecordZoneChangesConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoptions?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckfetchrecordzonechangesoperation/zoneoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

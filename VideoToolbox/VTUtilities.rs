@@ -106,7 +106,7 @@ extern "C" {
     ///
     /// This key points to a CFStringRef value with the extension identifier, corresponding to the ClassImplementationID value from the EXAppExtensionAttributes dictionary in the Info.plist file.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtextensionproperties_extensionidentifierkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtextensionpropertieskey/extensionidentifier?language=objc)
     pub static kVTExtensionProperties_ExtensionIdentifierKey: &'static VTExtensionPropertiesKey;
 }
 
@@ -115,7 +115,7 @@ extern "C" {
     ///
     /// This key points to a CFStringRef value with the localized extension name.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtextensionproperties_extensionnamekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtextensionpropertieskey/extensionname?language=objc)
     pub static kVTExtensionProperties_ExtensionNameKey: &'static VTExtensionPropertiesKey;
 }
 
@@ -124,7 +124,7 @@ extern "C" {
     ///
     /// This key points to a CFStringRef value with the localized name of the application hosting the extension.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtextensionproperties_containingbundlenamekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtextensionpropertieskey/containingbundlename?language=objc)
     pub static kVTExtensionProperties_ContainingBundleNameKey: &'static VTExtensionPropertiesKey;
 }
 
@@ -133,7 +133,7 @@ extern "C" {
     ///
     /// This key points to a CFURLRef value with the URL for the extension.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtextensionproperties_extensionurlkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtextensionpropertieskey/extensionurl?language=objc)
     pub static kVTExtensionProperties_ExtensionURLKey: &'static VTExtensionPropertiesKey;
 }
 
@@ -142,7 +142,7 @@ extern "C" {
     ///
     /// This key points to a CFURLRef value with the URL of the extension host application.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/kvtextensionproperties_containingbundleurlkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtextensionpropertieskey/containingbundleurl?language=objc)
     pub static kVTExtensionProperties_ContainingBundleURLKey: &'static VTExtensionPropertiesKey;
 }
 

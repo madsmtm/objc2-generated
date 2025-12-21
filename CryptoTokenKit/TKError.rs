@@ -11,7 +11,7 @@ extern "C" {
     pub static TKErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tkerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

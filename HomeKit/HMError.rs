@@ -14,7 +14,7 @@ extern "C" {
 /// This enumeration describes the possible error constants that can be
 /// returned from the the HomeKit APIs.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerrorcode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerror/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

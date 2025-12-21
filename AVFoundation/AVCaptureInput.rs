@@ -55,7 +55,7 @@ extern "C" {
     ///
     /// The notification object is the AVCaptureInputPort instance whose format description changed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureinputportformatdescriptiondidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/formatdescriptiondidchangenotification?language=objc)
     pub static AVCaptureInputPortFormatDescriptionDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -66,7 +66,7 @@ extern_class!(
     ///
     /// Instances of AVCaptureInputPort cannot be created directly. An AVCaptureInput exposes its input ports via its ports property. Input ports provide information about the format of their media data via the mediaType and formatDescription properties, and allow clients to control the flow of data via the enabled property. Input ports are used by an AVCaptureConnection to define the mapping between inputs and outputs in an AVCaptureSession.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureinputport?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureinput/port?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureInputPort;

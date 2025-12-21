@@ -41,7 +41,7 @@ extern_class!(
     ///
     /// `SNTimeDurationConstraint` is a union type, which, based on the value of its `type` property, may assume one of several forms. Instance properties may be used to extract information from an object, but certain properties are only valid to exercise under certain circumstances. Before accessing a particular property, refer to its documentation to understand what `type` value is required in order for that property to be valid.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstraint?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/soundanalysis/sntimedurationconstraint-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SNTimeDurationConstraint;

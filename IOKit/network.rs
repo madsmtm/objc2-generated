@@ -7,229 +7,170 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkcontrollerclass?language=objc)
 pub const kIONetworkControllerClass: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkController\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiovendor?language=objc)
 pub const kIOVendor: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOVendor\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomodel?language=objc)
 pub const kIOModel: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOModel\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorevision?language=objc)
 pub const kIORevision: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IORevision\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofeatures?language=objc)
 pub const kIOFeatures: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFeatures\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumdictionary?language=objc)
 pub const kIOMediumDictionary: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMediumDictionary\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodefaultmedium?language=objc)
 pub const kIODefaultMedium: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODefaultMedium\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioselectedmedium?language=objc)
 pub const kIOSelectedMedium: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOSelectedMedium\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioactivemedium?language=objc)
 pub const kIOActiveMedium: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOActiveMedium\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiolinkspeed?language=objc)
 pub const kIOLinkSpeed: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOLinkSpeed\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiolinkstatus?language=objc)
 pub const kIOLinkStatus: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOLinkStatus\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiolinkdata?language=objc)
 pub const kIOLinkData: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOLinkData\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfilters?language=objc)
 pub const kIOPacketFilters: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPacketFilters\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomacaddress?language=objc)
 pub const kIOMACAddress: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMACAddress\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaxpacketsize?language=objc)
 pub const kIOMaxPacketSize: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaxPacketSize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiominpacketsize?language=objc)
 pub const kIOMinPacketSize: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMinPacketSize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfiltergroup?language=objc)
 pub const kIONetworkFilterGroup: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkFilterGroup\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetcontrollerclass?language=objc)
 pub const kIOEthernetControllerClass: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOEthernetController\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetaddresssize?language=objc)
 pub const kIOEthernetAddressSize: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetmaxpacketsize?language=objc)
 pub const kIOEthernetMaxPacketSize: c_uint = 1518;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetminpacketsize?language=objc)
 pub const kIOEthernetMinPacketSize: c_uint = 64;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetcrcsize?language=objc)
 pub const kIOEthernetCRCSize: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetwakeonlanfiltergroup?language=objc)
 pub const kIOEthernetWakeOnLANFilterGroup: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOEthernetWakeOnLANFilterGroup\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetdisabledwakeonlanfiltergroup?language=objc)
 pub const kIOEthernetDisabledWakeOnLANFilterGroup: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOEthernetDisabledWakeOnLANFilterGroup\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatabasicaccesstypes?language=objc)
 pub const kIONetworkDataBasicAccessTypes: c_uint =
     kIONetworkDataAccessTypeRead | kIONetworkDataAccessTypeSerialize;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatabytes?language=objc)
 pub const kIONetworkDataBytes: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Data\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstypes?language=objc)
 pub const kIONetworkDataAccessTypes: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Access Types\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatasize?language=objc)
 pub const kIONetworkDataSize: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Size\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkstackusercommandkey?language=objc)
 pub const kIONetworkStackUserCommandKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkStackUserCommand\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkstackusercommand?language=objc)
 pub const kIONetworkStackUserCommand: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkStackUserCommand\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetinterfaceclass?language=objc)
 pub const kIOEthernetInterfaceClass: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOEthernetInterface\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioactivepacketfilters?language=objc)
 pub const kIOActivePacketFilters: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOActivePacketFilters\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorequiredpacketfilters?language=objc)
 pub const kIORequiredPacketFilters: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IORequiredPacketFilters\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomulticastaddresslist?language=objc)
 pub const kIOMulticastAddressList: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMulticastAddressList\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomulticastfilterdata?language=objc)
 pub const kIOMulticastFilterData: &CStr = kIOMulticastAddressList;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkinterfaceclass?language=objc)
 pub const kIONetworkInterfaceClass: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkInterface\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdata?language=objc)
 pub const kIONetworkData: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkData\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiointerfacetype?language=objc)
 pub const kIOInterfaceType: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOInterfaceType\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaxtransferunit?language=objc)
 pub const kIOMaxTransferUnit: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMaxTransferUnit\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediaaddresslength?language=objc)
 pub const kIOMediaAddressLength: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMediaAddressLength\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediaheaderlength?language=objc)
 pub const kIOMediaHeaderLength: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOMediaHeaderLength\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiointerfaceflags?language=objc)
 pub const kIOInterfaceFlags: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOInterfaceFlags\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiointerfaceextraflags?language=objc)
 pub const kIOInterfaceExtraFlags: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOInterfaceExtraFlags\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiointerfaceunit?language=objc)
 pub const kIOInterfaceUnit: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOInterfaceUnit\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiointerfacestate?language=objc)
 pub const kIOInterfaceState: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOInterfaceState\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiointerfacenameprefix?language=objc)
 pub const kIOInterfaceNamePrefix: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOInterfaceNamePrefix\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioprimaryinterface?language=objc)
 pub const kIOPrimaryInterface: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPrimaryInterface\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobuiltin?language=objc)
 pub const kIOBuiltin: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBuiltin\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiolocation?language=objc)
 pub const kIOLocation: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOLocation\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworknobsdattachkey?language=objc)
 pub const kIONetworkNoBSDAttachKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkNoBSDAttach\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkstatskey?language=objc)
 pub const kIONetworkStatsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IONetworkStatsKey\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiooutputqueuestatskey?language=objc)
 pub const kIOOutputQueueStatsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOOutputQueueStatsKey\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetstatskey?language=objc)
 pub const kIOEthernetStatsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOEthernetStatsKey\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumtype?language=objc)
 pub const kIOMediumType: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Type\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumflags?language=objc)
 pub const kIOMediumFlags: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Flags\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumspeed?language=objc)
 pub const kIOMediumSpeed: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Speed\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumindex?language=objc)
 pub const kIOMediumIndex: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Index\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkuserclienttypeid?language=objc)
 pub const kIONetworkUserClientTypeID: c_uint = 0xff000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionuctype?language=objc)
 pub const kIONUCType: c_uint = 0xff000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfilterunicast?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551496-standardpacketfilters/kiopacketfilterunicast?language=objc)
 pub const kIOPacketFilterUnicast: c_uint = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfilterbroadcast?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551496-standardpacketfilters/kiopacketfilterbroadcast?language=objc)
 pub const kIOPacketFilterBroadcast: c_uint = 0x2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfiltermulticast?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551496-standardpacketfilters/kiopacketfiltermulticast?language=objc)
 pub const kIOPacketFilterMulticast: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfiltermulticastall?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551496-standardpacketfilters/kiopacketfiltermulticastall?language=objc)
 pub const kIOPacketFilterMulticastAll: c_uint = 0x20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfilterpromiscuous?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551496-standardpacketfilters/kiopacketfilterpromiscuous?language=objc)
 pub const kIOPacketFilterPromiscuous: c_uint = 0x100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopacketfilterpromiscuousall?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551496-standardpacketfilters/kiopacketfilterpromiscuousall?language=objc)
 pub const kIOPacketFilterPromiscuousAll: c_uint = 0x200;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturenobsdwait?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturenobsdwait?language=objc)
 pub const kIONetworkFeatureNoBSDWait: c_uint = 0x001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturehardwarevlan?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturehardwarevlan?language=objc)
 pub const kIONetworkFeatureHardwareVlan: c_uint = 0x002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturesoftwarevlan?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturesoftwarevlan?language=objc)
 pub const kIONetworkFeatureSoftwareVlan: c_uint = 0x004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturemultipages?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturemultipages?language=objc)
 pub const kIONetworkFeatureMultiPages: c_uint = 0x008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturetsoipv4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturetsoipv4?language=objc)
 pub const kIONetworkFeatureTSOIPv4: c_uint = 0x010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturetsoipv6?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturetsoipv6?language=objc)
 pub const kIONetworkFeatureTSOIPv6: c_uint = 0x020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturetransmitcompletionstatus?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturetransmitcompletionstatus?language=objc)
 pub const kIONetworkFeatureTransmitCompletionStatus: c_uint = 0x040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturehwtimestamp?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturehwtimestamp?language=objc)
 pub const kIONetworkFeatureHWTimeStamp: c_uint = 0x080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeatureswtimestamp?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeatureswtimestamp?language=objc)
 pub const kIONetworkFeatureSWTimeStamp: c_uint = 0x100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkfeaturelro?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1551508-network/kionetworkfeaturelro?language=objc)
 pub const kIONetworkFeatureLRO: c_uint = 0x200;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetwakeonmagicpacket?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1519759-wake_on_lan_filters/kioethernetwakeonmagicpacket?language=objc)
 pub const kIOEthernetWakeOnMagicPacket: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioethernetwakeonpacketaddressmatch?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1519759-wake_on_lan_filters/kioethernetwakeonpacketaddressmatch?language=objc)
 pub const kIOEthernetWakeOnPacketAddressMatch: c_uint = 0x00000002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstyperead?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547646-networkdataaccesstypes/kionetworkdataaccesstyperead?language=objc)
 pub const kIONetworkDataAccessTypeRead: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstypewrite?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547646-networkdataaccesstypes/kionetworkdataaccesstypewrite?language=objc)
 pub const kIONetworkDataAccessTypeWrite: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstypereset?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547646-networkdataaccesstypes/kionetworkdataaccesstypereset?language=objc)
 pub const kIONetworkDataAccessTypeReset: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstypeserialize?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547646-networkdataaccesstypes/kionetworkdataaccesstypeserialize?language=objc)
 pub const kIONetworkDataAccessTypeSerialize: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdataaccesstypemask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547646-networkdataaccesstypes/kionetworkdataaccesstypemask?language=objc)
 pub const kIONetworkDataAccessTypeMask: c_uint = 0xff;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatabuffertypeinternal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547636-networkdatabuffertypes/kionetworkdatabuffertypeinternal?language=objc)
 pub const kIONetworkDataBufferTypeInternal: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatabuffertypeexternal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547636-networkdatabuffertypes/kionetworkdatabuffertypeexternal?language=objc)
 pub const kIONetworkDataBufferTypeExternal: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkdatabuffertypenone?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1547636-networkdatabuffertypes/kionetworkdatabuffertypenone?language=objc)
 pub const kIONetworkDataBufferTypeNone: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkstackregisterinterfacewithunit?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1528153-anonymous/kionetworkstackregisterinterfacewithunit?language=objc)
 pub const kIONetworkStackRegisterInterfaceWithUnit: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkstackregisterinterfacewithlowestunit?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1528153-anonymous/kionetworkstackregisterinterfacewithlowestunit?language=objc)
 pub const kIONetworkStackRegisterInterfaceWithLowestUnit: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkstackregisterinterfaceall?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1528153-anonymous/kionetworkstackregisterinterfaceall?language=objc)
 pub const kIONetworkStackRegisterInterfaceAll: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkinterfaceregisteredstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1579661-interfaceobjectstates/kionetworkinterfaceregisteredstate?language=objc)
 pub const kIONetworkInterfaceRegisteredState: c_uint = 0x1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkinterfaceopenedstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1579661-interfaceobjectstates/kionetworkinterfaceopenedstate?language=objc)
 pub const kIONetworkInterfaceOpenedState: c_uint = 0x2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworkinterfacedisabledstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1579661-interfaceobjectstates/kionetworkinterfacedisabledstate?language=objc)
 pub const kIONetworkInterfaceDisabledState: c_uint = 0x4;
 
 /// Generic network statistics structure.
@@ -534,117 +475,117 @@ unsafe impl RefEncode for IOEthernetStats {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iomediumtype?language=objc)
 pub type IOMediumType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet?language=objc)
 pub const kIOMediumEthernet: c_uint = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernetauto?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernetauto?language=objc)
 pub const kIOMediumEthernetAuto: c_uint = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernetmanual?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernetmanual?language=objc)
 pub const kIOMediumEthernetManual: c_uint = 33;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernetnone?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernetnone?language=objc)
 pub const kIOMediumEthernetNone: c_uint = 34;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet10baset?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10baset?language=objc)
 pub const kIOMediumEthernet10BaseT: c_uint = 35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet10base2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10base2?language=objc)
 pub const kIOMediumEthernet10Base2: c_uint = 36;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet10base5?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10base5?language=objc)
 pub const kIOMediumEthernet10Base5: c_uint = 37;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet100basetx?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet100basetx?language=objc)
 pub const kIOMediumEthernet100BaseTX: c_uint = 38;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet100basefx?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet100basefx?language=objc)
 pub const kIOMediumEthernet100BaseFX: c_uint = 39;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet100baset4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet100baset4?language=objc)
 pub const kIOMediumEthernet100BaseT4: c_uint = 40;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet100basevg?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet100basevg?language=objc)
 pub const kIOMediumEthernet100BaseVG: c_uint = 41;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet100baset2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet100baset2?language=objc)
 pub const kIOMediumEthernet100BaseT2: c_uint = 42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet1000basesx?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet1000basesx?language=objc)
 pub const kIOMediumEthernet1000BaseSX: c_uint = 43;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet10basestp?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10basestp?language=objc)
 pub const kIOMediumEthernet10BaseSTP: c_uint = 44;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet10basefl?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10basefl?language=objc)
 pub const kIOMediumEthernet10BaseFL: c_uint = 45;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet1000baselx?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet1000baselx?language=objc)
 pub const kIOMediumEthernet1000BaseLX: c_uint = 46;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet1000basecx?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet1000basecx?language=objc)
 pub const kIOMediumEthernet1000BaseCX: c_uint = 47;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet1000basetx?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet1000basetx?language=objc)
 pub const kIOMediumEthernet1000BaseTX: c_uint = 48;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet1000baset?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet1000baset?language=objc)
 pub const kIOMediumEthernet1000BaseT: c_uint = 48;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernethomepna1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernethomepna1?language=objc)
 pub const kIOMediumEthernetHomePNA1: c_uint = 49;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet10gbasesr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10gbasesr?language=objc)
 pub const kIOMediumEthernet10GBaseSR: c_uint = 50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet10gbaselr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10gbaselr?language=objc)
 pub const kIOMediumEthernet10GBaseLR: c_uint = 51;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet10gbasecx4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10gbasecx4?language=objc)
 pub const kIOMediumEthernet10GBaseCX4: c_uint = 52;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet10gbaset?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet10gbaset?language=objc)
 pub const kIOMediumEthernet10GBaseT: c_uint = 53;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet2500baset?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet2500baset?language=objc)
 pub const kIOMediumEthernet2500BaseT: c_uint = 54;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumethernet5000baset?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562954-anonymous/kiomediumethernet5000baset?language=objc)
 pub const kIOMediumEthernet5000BaseT: c_uint = 55;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumieee80211?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211?language=objc)
 pub const kIOMediumIEEE80211: c_uint = 128;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumieee80211auto?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211auto?language=objc)
 pub const kIOMediumIEEE80211Auto: c_uint = 128;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumieee80211manual?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211manual?language=objc)
 pub const kIOMediumIEEE80211Manual: c_uint = 129;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumieee80211none?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211none?language=objc)
 pub const kIOMediumIEEE80211None: c_uint = 130;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumieee80211fh1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211fh1?language=objc)
 pub const kIOMediumIEEE80211FH1: c_uint = 131;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumieee80211fh2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211fh2?language=objc)
 pub const kIOMediumIEEE80211FH2: c_uint = 132;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumieee80211ds2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211ds2?language=objc)
 pub const kIOMediumIEEE80211DS2: c_uint = 133;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumieee80211ds5?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211ds5?language=objc)
 pub const kIOMediumIEEE80211DS5: c_uint = 134;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumieee80211ds11?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211ds11?language=objc)
 pub const kIOMediumIEEE80211DS11: c_uint = 135;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumieee80211ds1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211ds1?language=objc)
 pub const kIOMediumIEEE80211DS1: c_uint = 136;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumieee80211optionadhoc?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562948-anonymous/kiomediumieee80211optionadhoc?language=objc)
 pub const kIOMediumIEEE80211OptionAdhoc: c_uint = 256;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumoptionfullduplex?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptionfullduplex?language=objc)
 pub const kIOMediumOptionFullDuplex: c_uint = 1048576;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumoptionhalfduplex?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptionhalfduplex?language=objc)
 pub const kIOMediumOptionHalfDuplex: c_uint = 2097152;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumoptionflowcontrol?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptionflowcontrol?language=objc)
 pub const kIOMediumOptionFlowControl: c_uint = 4194304;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumoptioneee?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptioneee?language=objc)
 pub const kIOMediumOptionEEE: c_uint = 8388608;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumoptionflag0?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptionflag0?language=objc)
 pub const kIOMediumOptionFlag0: c_uint = 16777216;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumoptionflag1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptionflag1?language=objc)
 pub const kIOMediumOptionFlag1: c_uint = 33554432;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumoptionflag2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptionflag2?language=objc)
 pub const kIOMediumOptionFlag2: c_uint = 67108864;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomediumoptionloopback?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562972-anonymous/kiomediumoptionloopback?language=objc)
 pub const kIOMediumOptionLoopback: c_uint = 134217728;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworklinkvalid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562923-anonymous/kionetworklinkvalid?language=objc)
 pub const kIONetworkLinkValid: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworklinkactive?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562923-anonymous/kionetworklinkactive?language=objc)
 pub const kIONetworkLinkActive: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworklinknonetworkchange?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1562923-anonymous/kionetworklinknonetworkchange?language=objc)
 pub const kIONetworkLinkNoNetworkChange: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionucresetnetworkdataindex?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1458660-anonymous/kionucresetnetworkdataindex?language=objc)
 pub const kIONUCResetNetworkDataIndex: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionucwritenetworkdataindex?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1458660-anonymous/kionucwritenetworkdataindex?language=objc)
 pub const kIONUCWriteNetworkDataIndex: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionucreadnetworkdataindex?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1458660-anonymous/kionucreadnetworkdataindex?language=objc)
 pub const kIONUCReadNetworkDataIndex: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionucgetnetworkdatacapacityindex?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1458660-anonymous/kionucgetnetworkdatacapacityindex?language=objc)
 pub const kIONUCGetNetworkDataCapacityIndex: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionucgetnetworkdatahandleindex?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1458660-anonymous/kionucgetnetworkdatahandleindex?language=objc)
 pub const kIONUCGetNetworkDataHandleIndex: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionuclastindex?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1458660-anonymous/kionuclastindex?language=objc)
 pub const kIONUCLastIndex: c_uint = 5;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iondhandle?language=objc)
@@ -820,7 +761,7 @@ extern "C-unwind" {
     ) -> IOReturn;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionetworksupportedpacketfilters?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1572705-ionetworkpacketfilteroptions/kionetworksupportedpacketfilters?language=objc)
 pub const kIONetworkSupportedPacketFilters: c_uint = 0x0001;
 
 extern "C-unwind" {

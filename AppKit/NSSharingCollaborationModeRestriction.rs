@@ -35,7 +35,7 @@ extern_class!(
     /// Optionally, an extra alert button can be provided for a "recovery suggestion". This can give a user a way to fix whatever is causing this type of sharing to be disabled
     /// If no reason is provided, the corresponding mode will not show up as an option
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingcollaborationmoderestriction?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicepicker/collaborationmoderestriction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSSharingCollaborationModeRestriction;

@@ -35,12 +35,12 @@ extern "C" {
     ///
     /// Multiple calls to both cache the EXIF thumbnail, and subsequently retrieve a larger thumbnail will work as defined.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icimagesourcethumbnailmaxpixelsize?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccameraitemthumbnailoption/imagesourcethumbnailmaxpixelsize?language=objc)
     pub static ICImageSourceThumbnailMaxPixelSize: &'static ICCameraItemThumbnailOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icimagesourceshouldcache?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iccameraitemthumbnailoption/imagesourceshouldcache?language=objc)
     pub static ICImageSourceShouldCache: &'static ICCameraItemThumbnailOption;
 }
 
@@ -53,7 +53,7 @@ extern "C" {
     ///
     /// The value for this key should be an NSURL object referencing a writable directory. The downloaded files will be saved in that directory.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdownloadsdirectoryurl?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdownloadoption/downloadsdirectoryurl?language=objc)
     pub static ICDownloadsDirectoryURL: &'static ICDownloadOption;
 }
 
@@ -62,7 +62,7 @@ extern "C" {
     ///
     /// The value for this key should be an NSString object containing the name to be used for the downloaded file.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icsaveasfilename?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdownloadoption/saveasfilename?language=objc)
     pub static ICSaveAsFilename: &'static ICDownloadOption;
 }
 
@@ -71,7 +71,7 @@ extern "C" {
     ///
     /// The value for this key will be an NSString object containing the actual name of the saved file. The options dictionary returned in didDownloadFile:error:options:contextInfo: will have this key.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icsavedfilename?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdownloadoption/savedfilename?language=objc)
     pub static ICSavedFilename: &'static ICDownloadOption;
 }
 
@@ -80,7 +80,7 @@ extern "C" {
     ///
     /// The value for this key will be an NSArray object containing names of files associated with the primary file that is downloaded. The options dictionary returned in didDownloadFile:error:options:contextInfo: may have this key.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icsavedancillaryfiles?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdownloadoption/savedancillaryfiles?language=objc)
     pub static ICSavedAncillaryFiles: &'static ICDownloadOption;
 }
 
@@ -89,7 +89,7 @@ extern "C" {
     ///
     /// The value for this key should be an NSNumber object representing a boolean value. If this value is YES, the downloaded file will overwrite an existing file with the same name and extension.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icoverwrite?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdownloadoption/overwrite?language=objc)
     pub static ICOverwrite: &'static ICDownloadOption;
 }
 
@@ -98,7 +98,7 @@ extern "C" {
     ///
     /// The value for this key should be an NSNumber object representing a boolean value. If this value is YES, the file will be deleted from the device after it is succcessfully downloaded.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdeleteaftersuccessfuldownload?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdownloadoption/deleteaftersuccessfuldownload?language=objc)
     pub static ICDeleteAfterSuccessfulDownload: &'static ICDownloadOption;
 }
 
@@ -107,7 +107,7 @@ extern "C" {
     ///
     /// The value for this key should be an NSNumber object representing a boolean value. If this value is YES, all sidecar files will be downloaded along with the media file.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdownloadsidecarfiles?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdownloadoption/sidecarfiles?language=objc)
     pub static ICDownloadSidecarFiles: &'static ICDownloadOption;
 }
 
@@ -116,7 +116,7 @@ extern "C" {
     /// the padding will be stripped from the end of the file.  Note that the file size property of the ICCameraItem object will not be updated to reflect the newly truncated image.  This
     /// option has no effect for images coming from devices without the ability to convert from HEIC to JPG.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/ictruncateaftersuccessfuldownload?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdownloadoption/truncateaftersuccessfuldownload?language=objc)
     pub static ICTruncateAfterSuccessfulDownload: &'static ICDownloadOption;
 }
 

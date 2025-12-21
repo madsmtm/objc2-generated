@@ -21,7 +21,7 @@ extern "C" {
     pub static NINearbyObjectAngleNotAvailable: c_float;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectverticaldirectionestimate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/verticaldirectionestimate-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

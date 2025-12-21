@@ -35,7 +35,7 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnectionoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxpcconnection/options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -6,7 +6,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglsharegrouprec?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct CGLShareGroupRec {
@@ -18,7 +17,6 @@ unsafe impl RefEncode for CGLShareGroupRec {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("CGLShareGroupRec", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cglsharegroupobj?language=objc)
 pub type CGLShareGroupObj = *mut CGLShareGroupRec;
 
 extern "C-unwind" {
@@ -29,7 +27,6 @@ extern "C-unwind" {
     pub fn CGLGetShareGroup(ctx: CGLContextObj) -> CGLShareGroupObj;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/_cl_device_id?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct _cl_device_id {
@@ -41,7 +38,6 @@ unsafe impl RefEncode for _cl_device_id {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Encoding::Struct("_cl_device_id", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cl_device_id?language=objc)
 pub type cl_device_id = *mut _cl_device_id;
 
 extern "C-unwind" {

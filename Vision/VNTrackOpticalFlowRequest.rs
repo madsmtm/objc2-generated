@@ -11,7 +11,7 @@ use crate::*;
 
 /// The level of optical flow computational accuracy.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequestcomputationaccuracy?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vntrackopticalflowrequest/computationaccuracy-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

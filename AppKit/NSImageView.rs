@@ -9,7 +9,7 @@ use crate::*;
 
 /// Values that can be used to enable or constrain display of High Dynamic Range (HDR) content in NSImageViews. Displaying HDR content in an NSImageView requires that the assigned NSImage has HDR content in the ITU-R 2100 color space and also that the output device has Extended Dynamic Range (EDR) capabilities.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagedynamicrange?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/dynamicrange?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

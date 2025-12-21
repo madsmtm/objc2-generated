@@ -121,42 +121,42 @@ extern "C" {
 pub type PDFDocumentAttribute = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumenttitleattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/titleattribute?language=objc)
     pub static PDFDocumentTitleAttribute: &'static PDFDocumentAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentauthorattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/authorattribute?language=objc)
     pub static PDFDocumentAuthorAttribute: &'static PDFDocumentAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentsubjectattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/subjectattribute?language=objc)
     pub static PDFDocumentSubjectAttribute: &'static PDFDocumentAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentcreatorattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/creatorattribute?language=objc)
     pub static PDFDocumentCreatorAttribute: &'static PDFDocumentAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentproducerattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/producerattribute?language=objc)
     pub static PDFDocumentProducerAttribute: &'static PDFDocumentAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentcreationdateattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/creationdateattribute?language=objc)
     pub static PDFDocumentCreationDateAttribute: &'static PDFDocumentAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentmodificationdateattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/modificationdateattribute?language=objc)
     pub static PDFDocumentModificationDateAttribute: &'static PDFDocumentAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentkeywordsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentattribute/keywordsattribute?language=objc)
     pub static PDFDocumentKeywordsAttribute: &'static PDFDocumentAttribute;
 }
 
@@ -165,37 +165,37 @@ extern "C" {
 pub type PDFDocumentWriteOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentownerpasswordoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption/ownerpasswordoption?language=objc)
     pub static PDFDocumentOwnerPasswordOption: &'static PDFDocumentWriteOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentuserpasswordoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption/userpasswordoption?language=objc)
     pub static PDFDocumentUserPasswordOption: &'static PDFDocumentWriteOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentaccesspermissionsoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption/accesspermissionsoption?language=objc)
     pub static PDFDocumentAccessPermissionsOption: &'static PDFDocumentWriteOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentburninannotationsoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption/burninannotationsoption?language=objc)
     pub static PDFDocumentBurnInAnnotationsOption: &'static PDFDocumentWriteOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentsavetextfromocroption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption/savetextfromocroption?language=objc)
     pub static PDFDocumentSaveTextFromOCROption: &'static PDFDocumentWriteOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentsaveimagesasjpegoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption/saveimagesasjpegoption?language=objc)
     pub static PDFDocumentSaveImagesAsJPEGOption: &'static PDFDocumentWriteOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentoptimizeimagesforscreenoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfdocumentwriteoption/optimizeimagesforscreenoption?language=objc)
     pub static PDFDocumentOptimizeImagesForScreenOption: &'static PDFDocumentWriteOption;
 }
 

@@ -2322,63 +2322,63 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiercharacterpicker?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/characterpicker?language=objc)
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierCharacterPicker: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiertextcolorpicker?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/textcolorpicker?language=objc)
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextColorPicker: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiertextstyle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/textstyle?language=objc)
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextStyle: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiertextalignment?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/textalignment?language=objc)
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextAlignment: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiertextlist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/textlist?language=objc)
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextList: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiertextformat?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/textformat?language=objc)
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierTextFormat: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewwillchangenotifyingtextviewnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextview/willchangenotifyingtextviewnotification?language=objc)
     pub static NSTextViewWillChangeNotifyingTextViewNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewdidchangeselectionnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextview/didchangeselectionnotification?language=objc)
     pub static NSTextViewDidChangeSelectionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewdidchangetypingattributesnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextview/didchangetypingattributesnotification?language=objc)
     pub static NSTextViewDidChangeTypingAttributesNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewwillswitchtonslayoutmanagernotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextview/willswitchtonslayoutmanagernotification?language=objc)
     pub static NSTextViewWillSwitchToNSLayoutManagerNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextviewdidswitchtonslayoutmanagernotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextview/didswitchtonslayoutmanagernotification?language=objc)
     pub static NSTextViewDidSwitchToNSLayoutManagerNotification: &'static NSNotificationName;
 }
 
@@ -2419,22 +2419,22 @@ unsafe impl RefEncode for NSFindPanelAction {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsearchoptionspboardtype?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/findpanelsearchoptions?language=objc)
     #[cfg(feature = "NSPasteboard")]
     pub static NSFindPanelSearchOptionsPboardType: &'static NSPasteboardType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboardtypefindpanelsearchoptionkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/findpanelsearchoptionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSPasteboardTypeFindPanelSearchOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelcaseinsensitivesearch?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/findpanelsearchoptionkey/findpanelcaseinsensitivesearch?language=objc)
     pub static NSFindPanelCaseInsensitiveSearch: &'static NSPasteboardTypeFindPanelSearchOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfindpanelsubstringmatch?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspasteboard/pasteboardtype/findpanelsearchoptionkey/findpanelsubstringmatch?language=objc)
     pub static NSFindPanelSubstringMatch: &'static NSPasteboardTypeFindPanelSearchOptionKey;
 }
 

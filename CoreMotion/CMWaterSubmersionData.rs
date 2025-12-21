@@ -6,7 +6,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionevent/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -28,7 +28,7 @@ unsafe impl RefEncode for CMWaterSubmersionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersiondepthstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmwatersubmersionmeasurement/depthstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

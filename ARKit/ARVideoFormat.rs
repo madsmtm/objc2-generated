@@ -14,7 +14,7 @@ use crate::*;
 
 #[cfg(feature = "objc2")]
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arvideoformat?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arconfiguration/videoformat-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

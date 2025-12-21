@@ -11,7 +11,7 @@ use crate::*;
 
 /// A value describing the alignment of a plane anchor.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneanchoralignment?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplaneanchor/alignment-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

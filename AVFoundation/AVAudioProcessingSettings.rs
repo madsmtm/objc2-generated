@@ -37,24 +37,24 @@ extern "C" {
     /// High quality, no pitch correction. Pitch varies with rate.
     /// Variable rate from 1/32 to 32.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithmlowqualityzerolatency?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm/lowqualityzerolatency?language=objc)
     #[deprecated = "Use AVAudioTimePitchAlgorithmTimeDomain instead"]
     pub static AVAudioTimePitchAlgorithmLowQualityZeroLatency:
         Option<&'static AVAudioTimePitchAlgorithm>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithmtimedomain?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm/timedomain?language=objc)
     pub static AVAudioTimePitchAlgorithmTimeDomain: Option<&'static AVAudioTimePitchAlgorithm>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithmspectral?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm/spectral?language=objc)
     pub static AVAudioTimePitchAlgorithmSpectral: Option<&'static AVAudioTimePitchAlgorithm>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithmvarispeed?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avaudiotimepitchalgorithm/varispeed?language=objc)
     pub static AVAudioTimePitchAlgorithmVarispeed: Option<&'static AVAudioTimePitchAlgorithm>;
 }
 

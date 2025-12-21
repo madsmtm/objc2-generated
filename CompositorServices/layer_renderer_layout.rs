@@ -7,7 +7,7 @@ use crate::*;
 /// Constants that specify the organization of the textures you use for
 /// drawing.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_layout?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/layout?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

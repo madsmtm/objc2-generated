@@ -145,7 +145,7 @@ impl NISession {
 
 /// Reasons to remove a nearby object.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobjectremovalreason?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/removalreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -170,7 +170,7 @@ unsafe impl RefEncode for NINearbyObjectRemovalReason {
 
 /// Expose algorithm state to make it possible for apps to coach users.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/nearbyinteraction/nialgorithmconvergencestatus-2fbmj?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

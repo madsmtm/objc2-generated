@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbytecountformatterunits?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/units?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -46,7 +46,7 @@ unsafe impl RefEncode for NSByteCountFormatterUnits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbytecountformattercountstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter/countstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -71,7 +71,7 @@ unsafe impl RefEncode for NSByteCountFormatterCountStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbytecountformatter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/bytecountformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

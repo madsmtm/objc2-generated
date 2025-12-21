@@ -9,12 +9,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagedrawingactions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerenderer/drawingactions?language=objc)
 #[cfg(all(feature = "UIGraphicsRenderer", feature = "block2"))]
 pub type UIGraphicsImageDrawingActions =
     *mut block2::DynBlock<dyn Fn(NonNull<UIGraphicsImageRendererContext>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformatrange?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformat/range?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

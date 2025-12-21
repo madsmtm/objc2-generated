@@ -156,7 +156,7 @@ impl DefaultRetained for NSUbiquitousKeyValueStore {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestoredidchangeexternallynotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore/didchangeexternallynotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUbiquitousKeyValueStoreDidChangeExternallyNotification:
         &'static NSNotificationName;

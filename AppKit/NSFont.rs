@@ -18,7 +18,7 @@ use crate::*;
 extern "C" {
     /// ******* Font Matrix ********
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontidentitymatrix?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/identitymatrix?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSFontIdentityMatrix: NonNull<CGFloat>;
 }
@@ -419,12 +419,12 @@ impl DefaultRetained for NSFont {
 extern "C" {
     /// ******* Notifications ********
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsantialiasthresholdchangednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/antialiasthresholdchangednotification?language=objc)
     pub static NSAntialiasThresholdChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontsetchangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfont/fontsetchangednotification?language=objc)
     pub static NSFontSetChangedNotification: &'static NSNotificationName;
 }
 

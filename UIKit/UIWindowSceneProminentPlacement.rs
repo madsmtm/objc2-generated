@@ -9,7 +9,7 @@ use crate::*;
 extern_class!(
     /// Positions a window scene more prominently than others in the current space.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneprominentplacement?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneprominentplacement-c.class?language=objc)
     #[unsafe(super(UIWindowScenePlacement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowScenePlacement")]

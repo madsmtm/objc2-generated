@@ -11,7 +11,7 @@ extern_protocol!(
     /// loading system that is intended for use by NSURLProtocol
     /// implementors.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotocolclient?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlprotocolclient?language=objc)
     pub unsafe trait NSURLProtocolClient: NSObjectProtocol + Send + Sync {
         #[cfg(all(feature = "NSURLRequest", feature = "NSURLResponse"))]
         /// Indicates to an NSURLProtocolClient that a redirect has
@@ -143,7 +143,7 @@ extern_class!(
     /// data. Concrete subclasses handle the specifics associated with one
     /// or more protocols or URL schemes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotocol?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlprotocol?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLProtocol;

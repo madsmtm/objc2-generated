@@ -12,7 +12,7 @@ use crate::*;
 
 /// This is the type of a reference to an MDLabel.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdlabel?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mdlabelref?language=objc)
 #[doc(alias = "MDLabelRef")]
 #[repr(C)]
 pub struct MDLabel {

@@ -13,7 +13,7 @@ extern "C" {
 
 /// The possible errors returned during LE transactions.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cberror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -75,7 +75,7 @@ extern "C" {
     pub static CBATTErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbatterror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

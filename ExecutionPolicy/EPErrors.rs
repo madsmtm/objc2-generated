@@ -10,7 +10,7 @@ extern "C" {
     pub static EPErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/executionpolicy/eperror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/executionpolicy/eperror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

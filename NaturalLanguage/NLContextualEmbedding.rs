@@ -12,21 +12,21 @@ use crate::*;
 pub type NLContextualEmbeddingKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingkeylanguages?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingkey/languages?language=objc)
     pub static NLContextualEmbeddingKeyLanguages: &'static NLContextualEmbeddingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingkeyscripts?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingkey/scripts?language=objc)
     pub static NLContextualEmbeddingKeyScripts: &'static NLContextualEmbeddingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingkeyrevision?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingkey/revision?language=objc)
     pub static NLContextualEmbeddingKeyRevision: &'static NLContextualEmbeddingKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembeddingassetsresult?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/naturallanguage/nlcontextualembedding/assetsresult?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

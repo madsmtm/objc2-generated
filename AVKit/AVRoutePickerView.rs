@@ -23,7 +23,7 @@ use crate::*;
 ///
 /// Highlighted state of the active picker. The picker has this state when it is highlighted and AirPlay is active.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerviewbuttonstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avkit/avroutepickerview/buttonstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

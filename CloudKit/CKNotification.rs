@@ -7,7 +7,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cknotificationid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cknotification/id?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKNotificationID;
@@ -50,7 +50,7 @@ impl CKNotificationID {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cknotificationtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -348,7 +348,7 @@ impl CKNotification {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerynotificationreason?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerynotification/reason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

@@ -124,17 +124,17 @@ pub unsafe extern "C-unwind" fn NSIsControllerMarker(object: Option<&AnyObject>)
 pub type NSBindingInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsobservedobjectkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindinginfokey/observedobject?language=objc)
     pub static NSObservedObjectKey: &'static NSBindingInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsobservedkeypathkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindinginfokey/observedkeypath?language=objc)
     pub static NSObservedKeyPathKey: &'static NSBindingInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoptionskey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindinginfokey/options?language=objc)
     pub static NSOptionsKey: &'static NSBindingInfoKey;
 }
 
@@ -246,526 +246,526 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalignmentbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/alignment?language=objc)
     pub static NSAlignmentBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalternateimagebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/alternateimage?language=objc)
     pub static NSAlternateImageBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalternatetitlebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/alternatetitle?language=objc)
     pub static NSAlternateTitleBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimatebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/animate?language=objc)
     pub static NSAnimateBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationdelaybinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/animationdelay?language=objc)
     pub static NSAnimationDelayBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsargumentbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/argument?language=objc)
     pub static NSArgumentBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsattributedstringbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/attributedstring?language=objc)
     pub static NSAttributedStringBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontentarraybinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentarray?language=objc)
     pub static NSContentArrayBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontentarrayformultipleselectionbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentarrayformultipleselection?language=objc)
     pub static NSContentArrayForMultipleSelectionBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontentbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/content?language=objc)
     pub static NSContentBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontentdictionarybinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentdictionary?language=objc)
     pub static NSContentDictionaryBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontentheightbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentheight?language=objc)
     pub static NSContentHeightBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontentobjectbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentobject?language=objc)
     pub static NSContentObjectBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontentobjectsbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentobjects?language=objc)
     pub static NSContentObjectsBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontentsetbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentset?language=objc)
     pub static NSContentSetBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontentvaluesbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentvalues?language=objc)
     pub static NSContentValuesBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontentwidthbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/contentwidth?language=objc)
     pub static NSContentWidthBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscriticalvaluebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/criticalvalue?language=objc)
     pub static NSCriticalValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdatabinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/data?language=objc)
     pub static NSDataBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisplaypatterntitlebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/displaypatterntitle?language=objc)
     pub static NSDisplayPatternTitleBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisplaypatternvaluebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/displaypatternvalue?language=objc)
     pub static NSDisplayPatternValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdocumenteditedbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/documentedited?language=objc)
     pub static NSDocumentEditedBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdoubleclickargumentbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/doubleclickargument?language=objc)
     pub static NSDoubleClickArgumentBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdoubleclicktargetbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/doubleclicktarget?language=objc)
     pub static NSDoubleClickTargetBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseditablebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/editable?language=objc)
     pub static NSEditableBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsenabledbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/enabled?language=objc)
     pub static NSEnabledBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsexcludedkeysbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/excludedkeys?language=objc)
     pub static NSExcludedKeysBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfilterpredicatebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/filterpredicate?language=objc)
     pub static NSFilterPredicateBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/font?language=objc)
     pub static NSFontBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontboldbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/fontbold?language=objc)
     pub static NSFontBoldBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontfamilynamebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/fontfamilyname?language=objc)
     pub static NSFontFamilyNameBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontitalicbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/fontitalic?language=objc)
     pub static NSFontItalicBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontnamebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/fontname?language=objc)
     pub static NSFontNameBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfontsizebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/fontsize?language=objc)
     pub static NSFontSizeBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsheadertitlebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/headertitle?language=objc)
     pub static NSHeaderTitleBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshiddenbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/hidden?language=objc)
     pub static NSHiddenBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/image?language=objc)
     pub static NSImageBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsincludedkeysbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/includedkeys?language=objc)
     pub static NSIncludedKeysBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinitialkeybinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/initialkey?language=objc)
     pub static NSInitialKeyBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinitialvaluebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/initialvalue?language=objc)
     pub static NSInitialValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsisindeterminatebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/isindeterminate?language=objc)
     pub static NSIsIndeterminateBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslabelbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/label?language=objc)
     pub static NSLabelBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslocalizedkeydictionarybinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/localizedkeydictionary?language=objc)
     pub static NSLocalizedKeyDictionaryBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmanagedobjectcontextbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/managedobjectcontext?language=objc)
     pub static NSManagedObjectContextBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmaximumrecentsbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/maximumrecents?language=objc)
     pub static NSMaximumRecentsBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmaxvaluebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/maxvalue?language=objc)
     pub static NSMaxValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmaxwidthbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/maxwidth?language=objc)
     pub static NSMaxWidthBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsminvaluebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/minvalue?language=objc)
     pub static NSMinValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsminwidthbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/minwidth?language=objc)
     pub static NSMinWidthBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmixedstateimagebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/mixedstateimage?language=objc)
     pub static NSMixedStateImageBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoffstateimagebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/offstateimage?language=objc)
     pub static NSOffStateImageBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsonstateimagebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/onstateimage?language=objc)
     pub static NSOnStateImageBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspositioningrectbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/positioningrect?language=objc)
     pub static NSPositioningRectBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspredicatebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/predicate?language=objc)
     pub static NSPredicateBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrecentsearchesbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/recentsearches?language=objc)
     pub static NSRecentSearchesBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrepresentedfilenamebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/representedfilename?language=objc)
     pub static NSRepresentedFilenameBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrowheightbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/rowheight?language=objc)
     pub static NSRowHeightBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectedidentifierbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedidentifier?language=objc)
     pub static NSSelectedIdentifierBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectedindexbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedindex?language=objc)
     pub static NSSelectedIndexBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectedlabelbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedlabel?language=objc)
     pub static NSSelectedLabelBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectedobjectbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedobject?language=objc)
     pub static NSSelectedObjectBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectedobjectsbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedobjects?language=objc)
     pub static NSSelectedObjectsBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectedtagbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedtag?language=objc)
     pub static NSSelectedTagBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectedvaluebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedvalue?language=objc)
     pub static NSSelectedValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectedvaluesbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectedvalues?language=objc)
     pub static NSSelectedValuesBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectionindexesbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectionindexes?language=objc)
     pub static NSSelectionIndexesBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectionindexpathsbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/selectionindexpaths?language=objc)
     pub static NSSelectionIndexPathsBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssortdescriptorsbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/sortdescriptors?language=objc)
     pub static NSSortDescriptorsBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstargetbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/target?language=objc)
     pub static NSTargetBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcolorbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/textcolor?language=objc)
     pub static NSTextColorBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitlebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/title?language=objc)
     pub static NSTitleBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstooltipbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/tooltip?language=objc)
     pub static NSToolTipBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstransparentbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/transparent?language=objc)
     pub static NSTransparentBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvaluebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/value?language=objc)
     pub static NSValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvaluepathbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/valuepath?language=objc)
     pub static NSValuePathBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvalueurlbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/valueurl?language=objc)
     pub static NSValueURLBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisiblebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/visible?language=objc)
     pub static NSVisibleBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswarningvaluebinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/warningvalue?language=objc)
     pub static NSWarningValueBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswidthbinding?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingname/width?language=objc)
     pub static NSWidthBinding: &'static NSBindingName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsallowseditingmultiplevaluesselectionbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/allowseditingmultiplevaluesselection?language=objc)
     pub static NSAllowsEditingMultipleValuesSelectionBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsallowsnullargumentbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/allowsnullargument?language=objc)
     pub static NSAllowsNullArgumentBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalwayspresentsapplicationmodalalertsbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/alwayspresentsapplicationmodalalerts?language=objc)
     pub static NSAlwaysPresentsApplicationModalAlertsBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsconditionallysetseditablebindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/conditionallysetseditable?language=objc)
     pub static NSConditionallySetsEditableBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsconditionallysetsenabledbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/conditionallysetsenabled?language=objc)
     pub static NSConditionallySetsEnabledBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsconditionallysetshiddenbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/conditionallysetshidden?language=objc)
     pub static NSConditionallySetsHiddenBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontinuouslyupdatesvaluebindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/continuouslyupdatesvalue?language=objc)
     pub static NSContinuouslyUpdatesValueBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscreatessortdescriptorbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/createssortdescriptor?language=objc)
     pub static NSCreatesSortDescriptorBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeletesobjectsonremovebindingsoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/deletesobjectsonremove?language=objc)
     pub static NSDeletesObjectsOnRemoveBindingsOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisplaynamebindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/displayname?language=objc)
     pub static NSDisplayNameBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisplaypatternbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/displaypattern?language=objc)
     pub static NSDisplayPatternBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontentplacementtagbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/contentplacementtag?language=objc)
     pub static NSContentPlacementTagBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshandlescontentascompoundvaluebindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/handlescontentascompoundvalue?language=objc)
     pub static NSHandlesContentAsCompoundValueBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinsertsnullplaceholderbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/insertsnullplaceholder?language=objc)
     pub static NSInsertsNullPlaceholderBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsinvokesseparatelywitharrayobjectsbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/invokesseparatelywitharrayobjects?language=objc)
     pub static NSInvokesSeparatelyWithArrayObjectsBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmultiplevaluesplaceholderbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/multiplevaluesplaceholder?language=objc)
     pub static NSMultipleValuesPlaceholderBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnoselectionplaceholderbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/noselectionplaceholder?language=objc)
     pub static NSNoSelectionPlaceholderBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnotapplicableplaceholderbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/notapplicableplaceholder?language=objc)
     pub static NSNotApplicablePlaceholderBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnullplaceholderbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/nullplaceholder?language=objc)
     pub static NSNullPlaceholderBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsraisesfornotapplicablekeysbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/raisesfornotapplicablekeys?language=objc)
     pub static NSRaisesForNotApplicableKeysBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspredicateformatbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/predicateformat?language=objc)
     pub static NSPredicateFormatBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectornamebindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/selectorname?language=objc)
     pub static NSSelectorNameBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectsallwhensettingcontentbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/selectsallwhensettingcontent?language=objc)
     pub static NSSelectsAllWhenSettingContentBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvalidatesimmediatelybindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/validatesimmediately?language=objc)
     pub static NSValidatesImmediatelyBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvaluetransformernamebindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/valuetransformername?language=objc)
     pub static NSValueTransformerNameBindingOption: &'static NSBindingOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvaluetransformerbindingoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbindingoption/valuetransformer?language=objc)
     pub static NSValueTransformerBindingOption: &'static NSBindingOption;
 }

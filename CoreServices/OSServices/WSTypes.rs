@@ -8,13 +8,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/errwsinternalerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1508457-anonymous/errwsinternalerror?language=objc)
 pub const errWSInternalError: c_int = -65793;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/errwstransporterror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1508457-anonymous/errwstransporterror?language=objc)
 pub const errWSTransportError: c_int = -65794;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/errwsparseerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1508457-anonymous/errwsparseerror?language=objc)
 pub const errWSParseError: c_int = -65795;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/errwstimeouterror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1508457-anonymous/errwstimeouterror?language=objc)
 pub const errWSTimeoutError: c_int = -65796;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wstypeid?language=objc)

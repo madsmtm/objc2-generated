@@ -12,7 +12,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextlayoutorientation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/textlayoutorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for NSTextLayoutOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsglyphproperty?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/glyphproperty?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -58,7 +58,7 @@ unsafe impl RefEncode for NSGlyphProperty {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolcharacteraction?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/controlcharacteraction?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -97,7 +97,7 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstypesetterbehavior?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslayoutmanager/typesetterbehavior-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

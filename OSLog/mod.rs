@@ -64,7 +64,7 @@ use crate::*;
 /// rotation of these entries was based on both time and space
 /// considerations.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrystorecategory?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentry/storecategory-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -291,7 +291,7 @@ impl OSLogEntryBoundary {
 
 /// The level that this entry was generated at.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentryloglevel?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrylog/level-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -364,7 +364,7 @@ impl OSLogEntryLog {
 
 /// The kind of of signpost emitted.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrysignposttype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogentrysignpost/signposttype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -447,7 +447,7 @@ impl OSLogEntrySignpost {
 /// Iterate backward in time. If no starting position is specified,
 /// start at the latest entry.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogenumeratoroptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogenumerator/options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -506,7 +506,7 @@ impl OSLogEnumerator {
 /// This value can be undefined if the argument data cannot be
 /// decoded; for example, it may be redacted.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponentargumentcategory?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -675,7 +675,7 @@ impl OSLogPosition {
 /// "System" scope indicates the entire system; i.e., all logs. Entries can be
 /// retrieved for the current calling process, i.e., matching pid.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogstorescope?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/oslog/oslogstore/scope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

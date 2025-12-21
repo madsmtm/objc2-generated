@@ -235,37 +235,37 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenewillconnectnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/willconnectnotification?language=objc)
     pub static UISceneWillConnectNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenediddisconnectnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/diddisconnectnotification?language=objc)
     pub static UISceneDidDisconnectNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenedidactivatenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/didactivatenotification?language=objc)
     pub static UISceneDidActivateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenewilldeactivatenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/willdeactivatenotification?language=objc)
     pub static UISceneWillDeactivateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenewillenterforegroundnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/willenterforegroundnotification?language=objc)
     pub static UISceneWillEnterForegroundNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenedidenterbackgroundnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/didenterbackgroundnotification?language=objc)
     pub static UISceneDidEnterBackgroundNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesessionroleimmersivespaceapplication?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession/role-swift.struct/immersivespaceapplication?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
     pub static UISceneSessionRoleImmersiveSpaceApplication: &'static UISceneSessionRole;
 }

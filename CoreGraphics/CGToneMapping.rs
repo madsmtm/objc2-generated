@@ -37,7 +37,7 @@ unsafe impl RefEncode for CGToneMapping {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontenttonemappinginfo?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcontenttonemappinginfo-c.struct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct CGContentToneMappingInfo {

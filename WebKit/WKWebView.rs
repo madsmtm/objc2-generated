@@ -60,7 +60,7 @@ unsafe impl RefEncode for WKMediaCaptureState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkfullscreenstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebview/fullscreenstate-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

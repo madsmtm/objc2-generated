@@ -14,7 +14,7 @@ extern "C" {
 
 /// An error type that you create, or the system creates, to indicate problems with a catalog, match attempt, or signature, or when saving to a user's Shazam library.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherrorcode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/sherror/code?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct SHErrorCode(pub NSInteger);

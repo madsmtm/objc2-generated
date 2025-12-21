@@ -39,7 +39,7 @@ extern_protocol!(
     /// A type that can provide a custom `UIShape`, resolved dynamically based on
     /// context.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uishapeprovider?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uishapeprovider-31jrf?language=objc)
     pub unsafe trait UIShapeProvider: NSObjectProtocol {
         /// Resolves this shape in the provided `context`.
         #[unsafe(method(resolvedShapeInContext:))]
@@ -63,7 +63,7 @@ extern_class!(
     /// You typically use a `UIShape` with APIs like `UIHoverStyle` to represent the
     /// shape of an effect.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uishape?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uishape-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIShape;

@@ -46,8 +46,6 @@ extern "C" {
     ///
     ///
     /// Value must be a NSNumber with a value from 0 to 1.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcandidatesopacityattributename?language=objc)
     pub static IMKCandidatesOpacityAttributeName: &'static NSString;
 }
 

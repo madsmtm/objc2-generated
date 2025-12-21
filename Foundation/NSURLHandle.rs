@@ -83,7 +83,7 @@ extern "C" {
     pub static NSFTPPropertyFTPProxy: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandlestatus?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlhandle/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

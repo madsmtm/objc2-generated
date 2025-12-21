@@ -15,7 +15,7 @@ use crate::*;
 
 /// The type of an aperture mode.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratoraperturemode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/aperturemode-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVAssetImageGeneratorApertureMode = NSString;
 
@@ -24,7 +24,7 @@ extern "C" {
     ///
     /// An image's clean aperture is a region of video free from transition artifacts caused by the encoding of the signal.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratoraperturemodecleanaperture?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/aperturemode-swift.struct/cleanaperture?language=objc)
     pub static AVAssetImageGeneratorApertureModeCleanAperture:
         &'static AVAssetImageGeneratorApertureMode;
 }
@@ -34,7 +34,7 @@ extern "C" {
     ///
     /// The image is not cropped to the clean aperture region, but it is scaled according to the pixel aspect ratio. Use this option when you want to see all the pixels in your video, including the edges.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratoraperturemodeproductionaperture?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/aperturemode-swift.struct/productionaperture?language=objc)
     pub static AVAssetImageGeneratorApertureModeProductionAperture:
         &'static AVAssetImageGeneratorApertureMode;
 }
@@ -44,7 +44,7 @@ extern "C" {
     ///
     /// The image is not cropped to the clean aperture region and is not scaled according to the pixel aspect ratio. The encoded dimensions of the image description are displayed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratoraperturemodeencodedpixels?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/aperturemode-swift.struct/encodedpixels?language=objc)
     pub static AVAssetImageGeneratorApertureModeEncodedPixels:
         &'static AVAssetImageGeneratorApertureMode;
 }
@@ -56,23 +56,23 @@ extern "C" {
 /// SDR movies will vend SDR CGImages matching the source color parameters.  HDR movies will vend HDR CGImages matching the source color parameters.
 /// HTTP Live Streaming assets will currently vend only SDR CGImages.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratordynamicrangepolicy?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/dynamicrangepolicy-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVAssetImageGeneratorDynamicRangePolicy = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratordynamicrangepolicyforcesdr?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/dynamicrangepolicy-swift.struct/forcesdr?language=objc)
     pub static AVAssetImageGeneratorDynamicRangePolicyForceSDR:
         &'static AVAssetImageGeneratorDynamicRangePolicy;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratordynamicrangepolicymatchsource?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/dynamicrangepolicy-swift.struct/matchsource?language=objc)
     pub static AVAssetImageGeneratorDynamicRangePolicyMatchSource:
         &'static AVAssetImageGeneratorDynamicRangePolicy;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegeneratorresult?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetimagegenerator/result?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

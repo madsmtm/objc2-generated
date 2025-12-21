@@ -11,7 +11,7 @@ use crate::*;
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithDirectionalTabs: NSAppKitVersion = 631.0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -41,7 +41,7 @@ unsafe impl RefEncode for NSTabViewType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabposition-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -67,7 +67,7 @@ unsafe impl RefEncode for NSTabPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabviewbordertype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabview/tabviewbordertype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

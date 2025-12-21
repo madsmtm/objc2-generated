@@ -11,7 +11,7 @@ use crate::*;
 
 /// Enumeration of kinds of errors that committing an array of command buffers instances can produce.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commandqueueerror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

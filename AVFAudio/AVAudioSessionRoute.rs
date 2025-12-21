@@ -10,81 +10,81 @@ use crate::*;
 
 /// The location of a data source on an iOS device.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionlocation?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/location?language=objc)
 // NS_TYPED_ENUM
 pub type AVAudioSessionLocation = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionlocationupper?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/location/upper?language=objc)
     pub static AVAudioSessionLocationUpper: &'static AVAudioSessionLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionlocationlower?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/location/lower?language=objc)
     pub static AVAudioSessionLocationLower: &'static AVAudioSessionLocation;
 }
 
 /// The orientation or directionality of a data source on an iOS device.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionorientation?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/orientation?language=objc)
 // NS_TYPED_ENUM
 pub type AVAudioSessionOrientation = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionorientationtop?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/orientation/top?language=objc)
     pub static AVAudioSessionOrientationTop: &'static AVAudioSessionOrientation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionorientationbottom?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/orientation/bottom?language=objc)
     pub static AVAudioSessionOrientationBottom: &'static AVAudioSessionOrientation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionorientationfront?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/orientation/front?language=objc)
     pub static AVAudioSessionOrientationFront: &'static AVAudioSessionOrientation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionorientationback?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/orientation/back?language=objc)
     pub static AVAudioSessionOrientationBack: &'static AVAudioSessionOrientation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionorientationleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/orientation/left?language=objc)
     pub static AVAudioSessionOrientationLeft: &'static AVAudioSessionOrientation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionorientationright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/orientation/right?language=objc)
     pub static AVAudioSessionOrientationRight: &'static AVAudioSessionOrientation;
 }
 
 /// The possible polar patterns for a data source on an iOS device.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionpolarpattern?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/polarpattern?language=objc)
 // NS_TYPED_ENUM
 pub type AVAudioSessionPolarPattern = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionpolarpatternomnidirectional?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/polarpattern/omnidirectional?language=objc)
     pub static AVAudioSessionPolarPatternOmnidirectional: &'static AVAudioSessionPolarPattern;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionpolarpatterncardioid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/polarpattern/cardioid?language=objc)
     pub static AVAudioSessionPolarPatternCardioid: &'static AVAudioSessionPolarPattern;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionpolarpatternsubcardioid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/polarpattern/subcardioid?language=objc)
     pub static AVAudioSessionPolarPatternSubcardioid: &'static AVAudioSessionPolarPattern;
 }
 
 extern "C" {
     /// If you select a data source with AVAudioSessionPolarPatternStereo, then you must call setPreferredInputOrientation:error: on your Audio Session so that left and right are presented from the correct directions.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosessionpolarpatternstereo?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosession/polarpattern/stereo?language=objc)
     pub static AVAudioSessionPolarPatternStereo: &'static AVAudioSessionPolarPattern;
 }
 

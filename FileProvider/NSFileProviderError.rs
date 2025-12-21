@@ -27,7 +27,7 @@ extern "C" {
     pub static NSFileProviderErrorNonExistentItemIdentifierKey: &'static NSErrorUserInfoKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidererrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidererror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

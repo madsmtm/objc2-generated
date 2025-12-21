@@ -17,805 +17,805 @@ use crate::*;
 pub type GCKeyCode = CFIndex;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeya?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keya?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyA: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyb?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyb?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyB: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyc?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyc?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyC: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyd?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyd?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyD: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeye?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keye?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyE: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyf?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyf?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyF: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyg?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyg?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyG: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyh?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyh?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyH: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyi?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyi?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyI: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyj?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyj?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyJ: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyk?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyk?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyK: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyl?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyl?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyL: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeym?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keym?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyM: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyn?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyn?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyN: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyo?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyO: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyp?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyp?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyP: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyq?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyq?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyQ: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyr?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyr?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyR: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeys?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keys?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyS: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyt?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyt?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyT: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyu?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyu?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyU: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyv?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyv?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyV: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyw?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyw?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyW: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyx?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyx?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyX: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyy?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyy?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyY: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeyz?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keyz?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeyZ: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeone?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/one?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeOne: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodetwo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/two?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeTwo: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodethree?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/three?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeThree: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodefour?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/four?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeFour: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodefive?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/five?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeFive: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodesix?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/six?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeSix: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeseven?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/seven?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeSeven: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeeight?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/eight?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeEight: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodenine?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/nine?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeNine: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodezero?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/zero?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeZero: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodereturnorenter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/returnorenter?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeReturnOrEnter: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeescape?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/escape?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeEscape: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodedeleteorbackspace?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/deleteorbackspace?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeDeleteOrBackspace: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodetab?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/tab?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeTab: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodespacebar?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/spacebar?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeSpacebar: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodehyphen?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/hyphen?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeHyphen: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeequalsign?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/equalsign?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeEqualSign: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeopenbracket?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/openbracket?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeOpenBracket: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeclosebracket?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/closebracket?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeCloseBracket: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodebackslash?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/backslash?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeBackslash: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodenonuspound?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/nonuspound?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeNonUSPound: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodesemicolon?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/semicolon?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeSemicolon: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodequote?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/quote?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeQuote: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodegraveaccentandtilde?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/graveaccentandtilde?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeGraveAccentAndTilde: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodecomma?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/comma?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeComma: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeperiod?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/period?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodePeriod: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeslash?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/slash?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeSlash: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodecapslock?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/capslock?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeCapsLock: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f1?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF1: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f2?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF2: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef3?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f3?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF3: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef4?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f4?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF4: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef5?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f5?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF5: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef6?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f6?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF6: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef7?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f7?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF7: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f8?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF8: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef9?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f9?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF9: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef10?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f10?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF10: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef11?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f11?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF11: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef12?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f12?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF12: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef13?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f13?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF13: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef14?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f14?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF14: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef15?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f15?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF15: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef16?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f16?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF16: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef17?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f17?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF17: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef18?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f18?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF18: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef19?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f19?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF19: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodef20?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/f20?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeF20: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeprintscreen?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/printscreen?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodePrintScreen: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodescrolllock?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/scrolllock?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeScrollLock: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodepause?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/pause?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodePause: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeinsert?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/insert?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInsert: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodehome?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/home?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeHome: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodepageup?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/pageup?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodePageUp: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodedeleteforward?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/deleteforward?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeDeleteForward: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeend?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/end?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeEnd: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodepagedown?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/pagedown?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodePageDown: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycoderightarrow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/rightarrow?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeRightArrow: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeleftarrow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/leftarrow?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLeftArrow: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodedownarrow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/downarrow?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeDownArrow: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeuparrow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/uparrow?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeUpArrow: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypadnumlock?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadnumlock?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadNumLock: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypadslash?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadslash?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadSlash: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypadasterisk?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadasterisk?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadAsterisk: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypadhyphen?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadhyphen?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadHyphen: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypadplus?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadplus?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadPlus: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypadenter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadenter?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadEnter: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypad1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad1?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad1: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypad2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad2?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad2: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypad3?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad3?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad3: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypad4?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad4?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad4: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypad5?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad5?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad5: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypad6?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad6?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad6: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypad7?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad7?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad7: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypad8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad8?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad8: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypad9?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad9?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad9: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypad0?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypad0?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypad0: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypadperiod?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadperiod?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadPeriod: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodekeypadequalsign?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/keypadequalsign?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeKeypadEqualSign: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodenonusbackslash?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/nonusbackslash?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeNonUSBackslash: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeapplication?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/application?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeApplication: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodepower?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/power?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodePower: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeinternational1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international1?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational1: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeinternational2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international2?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational2: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeinternational3?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international3?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational3: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeinternational4?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international4?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational4: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeinternational5?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international5?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational5: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeinternational6?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international6?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational6: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeinternational7?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international7?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational7: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeinternational8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international8?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational8: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeinternational9?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/international9?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeInternational9: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodelang1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang1?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG1: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodelang2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang2?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG2: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodelang3?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang3?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG3: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodelang4?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang4?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG4: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodelang5?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang5?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG5: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodelang6?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang6?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG6: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodelang7?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang7?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG7: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodelang8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang8?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG8: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodelang9?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/lang9?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLANG9: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeleftcontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/leftcontrol?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLeftControl: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeleftshift?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/leftshift?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLeftShift: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeleftalt?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/leftalt?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLeftAlt: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycodeleftgui?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/leftgui?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeLeftGUI: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycoderightcontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/rightcontrol?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeRightControl: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycoderightshift?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/rightshift?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeRightShift: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycoderightalt?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/rightalt?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeRightAlt: GCKeyCode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycoderightgui?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gckeycode/rightgui?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static GCKeyCodeRightGUI: GCKeyCode;
 }

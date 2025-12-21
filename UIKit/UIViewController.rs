@@ -129,7 +129,7 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollershowdetailtargetdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontroller/showdetailtargetdidchangenotification?language=objc)
     pub static UIViewControllerShowDetailTargetDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -959,7 +959,7 @@ impl UIViewController {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollerhierarchyinconsistencyexception?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontroller/hierarchyinconsistencyexception?language=objc)
     pub static UIViewControllerHierarchyInconsistencyException: &'static NSExceptionName;
 }
 
@@ -1638,7 +1638,7 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewactionstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewaction/style?language=objc)
 // NS_ENUM
 #[deprecated = "Please use UIContextMenuInteraction."]
 #[repr(transparent)]

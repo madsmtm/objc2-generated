@@ -101,21 +101,21 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafillmodeforwards?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfillmode/forwards?language=objc)
     pub static kCAFillModeForwards: &'static CAMediaTimingFillMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafillmodebackwards?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfillmode/backwards?language=objc)
     pub static kCAFillModeBackwards: &'static CAMediaTimingFillMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafillmodeboth?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfillmode/both?language=objc)
     pub static kCAFillModeBoth: &'static CAMediaTimingFillMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcafillmoderemoved?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfillmode/removed?language=objc)
     pub static kCAFillModeRemoved: &'static CAMediaTimingFillMode;
 }

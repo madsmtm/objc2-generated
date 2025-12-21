@@ -22,8 +22,6 @@ extern_class!(
     /// an app extension’s UI, see
     /// <doc
     /// ://com.apple.documentation/documentation/extensionkit/including-extension-based-ui-in-your-interface>.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/extensionkit/exhostviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]
@@ -156,8 +154,6 @@ impl EXHostViewController {
 
 extern_protocol!(
     /// The delegate for a hosted view controller.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/extensionkit/exhostviewcontrollerdelegate?language=objc)
     pub unsafe trait EXHostViewControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {

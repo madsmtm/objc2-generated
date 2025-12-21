@@ -284,7 +284,6 @@ pub type SecTransformDataBlock = *mut block2::DynBlock<dyn Fn(NonNull<CFType>) -
 #[cfg(feature = "block2")]
 pub type SecTransformInstanceBlock = *mut block2::DynBlock<dyn Fn() -> *mut CFError>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/opaquesectransformimplementation?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueSecTransformImplementation {

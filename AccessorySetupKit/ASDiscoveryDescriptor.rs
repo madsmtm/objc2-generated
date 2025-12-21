@@ -11,7 +11,7 @@ use crate::*;
 
 /// Discovery Range
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptorrange?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/range?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for ASDiscoveryDescriptorRange {
 
 /// A type that defines service roles for Wi-Fi Aware accessories.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptorwifiawareservicerole?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/asdiscoverydescriptor/wifiawareservicerole-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

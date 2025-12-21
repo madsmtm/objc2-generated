@@ -67,7 +67,7 @@ unsafe impl Send for NSEdgeInsets {}
 #[cfg(feature = "objc2-core-foundation")]
 unsafe impl Sync for NSEdgeInsets {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsalignmentoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/alignmentoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

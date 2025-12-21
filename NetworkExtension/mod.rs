@@ -36,7 +36,7 @@ use crate::*;
 
 /// Flow error codes
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neappproxyflowerror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -374,7 +374,7 @@ impl NEProvider {
 
 /// Tunnel Provider error codes
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidererror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netunnelprovidererror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -612,7 +612,7 @@ impl NEAppProxyProvider {
 
 /// VPN error codes
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nevpnerror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -2569,7 +2569,7 @@ impl NEDNSSettingsManager {
 
 /// IP protocols
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nenetworkruleprotocol?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nenetworkrule/protocol?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -3111,7 +3111,7 @@ impl NEFilterProvider {
 
 /// A NEFilterReportFrequency controls the frequency of periodic reports.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreportfrequency?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/frequency?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -3455,7 +3455,7 @@ unsafe impl RefEncode for NEFilterAction {
 
 /// A NEFilterReportEvent represents the event that is being reported by the NEFilterReport.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreportevent?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterreport/event-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -4085,7 +4085,7 @@ extern "C" {
 
 /// Filter grade
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanagergrade?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefiltermanager/grade-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -4268,7 +4268,7 @@ impl NEFilterPacketContext {
 
 /// Verdict for a packet
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketproviderverdict?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpacketprovider/verdict?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -5365,7 +5365,7 @@ unsafe impl NSMutableURLRequestNEHotspotHelper for NSMutableURLRequest {}
 
 /// EAP Type.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationeaptype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/eaptype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -5391,7 +5391,7 @@ unsafe impl RefEncode for NEHotspotConfigurationEAPType {
 
 /// TTLS Inner Authentication Type.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationttlsinnerauthenticationtype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -5419,7 +5419,7 @@ unsafe impl RefEncode for NEHotspotConfigurationTTLSInnerAuthenticationType {
 
 /// TLS version to use during TLS handshke.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspotconfigurationeaptlsversion?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/tlsversion?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -9450,7 +9450,7 @@ extern "C" {
 
 /// App Push Manager error codes
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanagererror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neapppushmanagererror-swift.struct/code?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct NEAppPushManagerError(pub NSInteger);
@@ -10826,7 +10826,7 @@ impl NWTLSParameters {
 
 /// URL Filter Verdicts
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neurlfilterverdict?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neurlfilter/verdict?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

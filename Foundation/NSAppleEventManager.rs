@@ -11,7 +11,6 @@ use objc2_core_services::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/__nsappleeventmanagersuspension?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct __NSAppleEventManagerSuspension {
@@ -24,7 +23,7 @@ unsafe impl RefEncode for __NSAppleEventManagerSuspension {
         Encoding::Pointer(&Encoding::Struct("__NSAppleEventManagerSuspension", &[]));
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanagersuspensionid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanager/suspensionid?language=objc)
 pub type NSAppleEventManagerSuspensionID = *const __NSAppleEventManagerSuspension;
 
 extern "C" {
@@ -38,7 +37,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsappleeventmanagerwillprocessfirsteventnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsappleeventmanagerwillprocessfirstevent?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSAppleEventManagerWillProcessFirstEventNotification: &'static NSNotificationName;
 }

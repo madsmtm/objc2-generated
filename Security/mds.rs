@@ -15,7 +15,7 @@ pub type MDS_HANDLE = CSSM_DL_HANDLE;
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type MDS_DB_HANDLE = CSSM_DL_DB_HANDLE;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/mds_funcs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/mds_funcs-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -145,7 +145,7 @@ unsafe impl RefEncode for mds_funcs {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/mds_funcs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/mds_funcs-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type MDS_FUNCS = mds_funcs;

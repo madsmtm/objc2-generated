@@ -9,14 +9,14 @@ use crate::*;
 
 /// A string indicating a transport for communicating with an authenticator.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransport?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor/transport?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport = NSString;
 
 extern "C" {
     /// Indicates using USB or Lightning to communicate with an authenticator.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransportusb?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor/transport/usb?language=objc)
     pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportUSB:
         &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
 }
@@ -24,7 +24,7 @@ extern "C" {
 extern "C" {
     /// Indiciates using NFC to communicate with an authenticator.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransportnfc?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor/transport/nfc?language=objc)
     pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportNFC:
         &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
 }
@@ -32,7 +32,7 @@ extern "C" {
 extern "C" {
     /// Indicates using Bluetooth, including BLE, to communicate with an authenticator.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptortransportbluetooth?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialdescriptor/transport/bluetooth?language=objc)
     pub static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransportBluetooth:
         &'static ASAuthorizationSecurityKeyPublicKeyCredentialDescriptorTransport;
 }

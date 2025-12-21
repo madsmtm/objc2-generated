@@ -75,10 +75,8 @@ use objc2_security::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmrightblessprivilegedhelper?language=objc)
 pub const kSMRightBlessPrivilegedHelper: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.ServiceManagement.blesshelper\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/ksmrightmodifysystemdaemons?language=objc)
 pub const kSMRightModifySystemDaemons: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.ServiceManagement.daemons.modify\0") };
 extern "C" {

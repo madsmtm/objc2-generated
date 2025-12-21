@@ -38,52 +38,52 @@ unsafe impl RefEncode for SCNGeometryPrimitiveType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysourcesemantic?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type SCNGeometrySourceSemantic = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysourcesemanticvertex?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/vertex?language=objc)
     pub static SCNGeometrySourceSemanticVertex: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysourcesemanticnormal?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/normal?language=objc)
     pub static SCNGeometrySourceSemanticNormal: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysourcesemanticcolor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/color?language=objc)
     pub static SCNGeometrySourceSemanticColor: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysourcesemantictexcoord?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/texcoord?language=objc)
     pub static SCNGeometrySourceSemanticTexcoord: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysourcesemantictangent?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/tangent?language=objc)
     pub static SCNGeometrySourceSemanticTangent: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysourcesemanticvertexcrease?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/vertexcrease?language=objc)
     pub static SCNGeometrySourceSemanticVertexCrease: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysourcesemanticedgecrease?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/edgecrease?language=objc)
     pub static SCNGeometrySourceSemanticEdgeCrease: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysourcesemanticboneweights?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/boneweights?language=objc)
     pub static SCNGeometrySourceSemanticBoneWeights: &'static SCNGeometrySourceSemantic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysourcesemanticboneindices?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scngeometrysource/semantic-swift.struct/boneindices?language=objc)
     pub static SCNGeometrySourceSemanticBoneIndices: &'static SCNGeometrySourceSemantic;
 }
 

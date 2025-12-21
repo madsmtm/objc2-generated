@@ -12,7 +12,7 @@ use objc2_core_graphics::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/hishape?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/hishaperef?language=objc)
 #[doc(alias = "HIShapeRef")]
 #[repr(C)]
 pub struct HIShape {
@@ -28,7 +28,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__HIShape"> for HIShape {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/himutableshape?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/himutableshaperef?language=objc)
 #[doc(alias = "HIMutableShapeRef")]
 #[repr(C)]
 pub struct HIMutableShape {
@@ -44,24 +44,24 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__HIShape"> for HIMutableShape {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/khishapeenumerateinit?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1572715-anonymous/khishapeenumerateinit?language=objc)
 pub const kHIShapeEnumerateInit: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/khishapeenumeraterect?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1572715-anonymous/khishapeenumeraterect?language=objc)
 pub const kHIShapeEnumerateRect: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/khishapeenumerateterminate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1572715-anonymous/khishapeenumerateterminate?language=objc)
 pub const kHIShapeEnumerateTerminate: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/khishapeparsefromtop?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1572714-anonymous/khishapeparsefromtop?language=objc)
 pub const kHIShapeParseFromTop: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/khishapeparsefrombottom?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1572714-anonymous/khishapeparsefrombottom?language=objc)
 pub const kHIShapeParseFromBottom: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/khishapeparsefromleft?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1572714-anonymous/khishapeparsefromleft?language=objc)
 pub const kHIShapeParseFromLeft: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/khishapeparsefromright?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1572714-anonymous/khishapeparsefromright?language=objc)
 pub const kHIShapeParseFromRight: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/khishapeparsefromtopleft?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1572714-anonymous/khishapeparsefromtopleft?language=objc)
 pub const kHIShapeParseFromTopLeft: c_uint = kHIShapeParseFromTop | kHIShapeParseFromLeft;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/khishapeparsefrombottomright?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1572714-anonymous/khishapeparsefrombottomright?language=objc)
 pub const kHIShapeParseFromBottomRight: c_uint = kHIShapeParseFromBottom | kHIShapeParseFromRight;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/hishapeenumerateprocptr?language=objc)

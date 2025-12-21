@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanagersegmenttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanager/segmenttype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -31,7 +31,7 @@ unsafe impl RefEncode for NSTextLayoutManagerSegmentType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanagersegmentoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutmanager/segmentoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -17,7 +17,7 @@ use crate::*;
 
 /// A value describing the context required for successful coaching
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachinggoal?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arcoachingoverlayview/goal-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

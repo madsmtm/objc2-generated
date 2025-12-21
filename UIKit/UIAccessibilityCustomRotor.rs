@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotordirection?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/direction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -27,7 +27,7 @@ unsafe impl RefEncode for UIAccessibilityCustomRotorDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomsystemrotortype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/systemrotortype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -81,7 +81,7 @@ unsafe impl RefEncode for UIAccessibilityCustomSystemRotorType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotorsearch?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotor/search?language=objc)
 #[cfg(feature = "block2")]
 pub type UIAccessibilityCustomRotorSearch = *mut block2::DynBlock<
     dyn Fn(

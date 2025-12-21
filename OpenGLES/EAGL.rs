@@ -7,9 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengles/eagl_major_version?language=objc)
 pub const EAGL_MAJOR_VERSION: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengles/eagl_minor_version?language=objc)
 pub const EAGL_MINOR_VERSION: c_uint = 0;
 /// *********************************************************************
 ///

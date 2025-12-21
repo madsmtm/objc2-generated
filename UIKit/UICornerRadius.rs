@@ -11,7 +11,7 @@ use crate::*;
 extern_class!(
     /// Represents a radius used to round a corner.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornerradius?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornerradius-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICornerRadius;

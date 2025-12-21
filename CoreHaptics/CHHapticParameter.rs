@@ -58,57 +58,57 @@ use crate::*;
 /// The high frequency content an audio event.
 /// Range: 0.0 (frequency content reduced the most) to 1.0 (no reduction of frequency content).  Default: 1.0.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventparameterid?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid?language=objc)
 // NS_TYPED_ENUM
 pub type CHHapticEventParameterID = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventparameteridhapticintensity?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/hapticintensity?language=objc)
     pub static CHHapticEventParameterIDHapticIntensity: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventparameteridhapticsharpness?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/hapticsharpness?language=objc)
     pub static CHHapticEventParameterIDHapticSharpness: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventparameteridattacktime?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/attacktime?language=objc)
     pub static CHHapticEventParameterIDAttackTime: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventparameteriddecaytime?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/decaytime?language=objc)
     pub static CHHapticEventParameterIDDecayTime: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventparameteridreleasetime?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/releasetime?language=objc)
     pub static CHHapticEventParameterIDReleaseTime: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventparameteridsustained?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/sustained?language=objc)
     pub static CHHapticEventParameterIDSustained: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventparameteridaudiovolume?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/audiovolume?language=objc)
     pub static CHHapticEventParameterIDAudioVolume: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventparameteridaudiopitch?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/audiopitch?language=objc)
     pub static CHHapticEventParameterIDAudioPitch: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventparameteridaudiopan?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/audiopan?language=objc)
     pub static CHHapticEventParameterIDAudioPan: &'static CHHapticEventParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventparameteridaudiobrightness?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/parameterid/audiobrightness?language=objc)
     pub static CHHapticEventParameterIDAudioBrightness: &'static CHHapticEventParameterID;
 }
 
@@ -177,74 +177,74 @@ extern "C" {
 /// Range: -1.0 (event releases shorter) to 1.0 (event releases longer).  Default: 0.0 (no effect).
 /// Not all audio event types respond to this parameter.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameterid?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id?language=objc)
 // NS_TYPED_ENUM
 pub type CHHapticDynamicParameterID = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameteridhapticintensitycontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/hapticintensitycontrol?language=objc)
     pub static CHHapticDynamicParameterIDHapticIntensityControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameteridhapticsharpnesscontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/hapticsharpnesscontrol?language=objc)
     pub static CHHapticDynamicParameterIDHapticSharpnessControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameteridhapticattacktimecontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/hapticattacktimecontrol?language=objc)
     pub static CHHapticDynamicParameterIDHapticAttackTimeControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameteridhapticdecaytimecontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/hapticdecaytimecontrol?language=objc)
     pub static CHHapticDynamicParameterIDHapticDecayTimeControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameteridhapticreleasetimecontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/hapticreleasetimecontrol?language=objc)
     pub static CHHapticDynamicParameterIDHapticReleaseTimeControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameteridaudiovolumecontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/audiovolumecontrol?language=objc)
     pub static CHHapticDynamicParameterIDAudioVolumeControl: &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameteridaudiopancontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/audiopancontrol?language=objc)
     pub static CHHapticDynamicParameterIDAudioPanControl: &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameteridaudiobrightnesscontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/audiobrightnesscontrol?language=objc)
     pub static CHHapticDynamicParameterIDAudioBrightnessControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameteridaudiopitchcontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/audiopitchcontrol?language=objc)
     pub static CHHapticDynamicParameterIDAudioPitchControl: &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameteridaudioattacktimecontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/audioattacktimecontrol?language=objc)
     pub static CHHapticDynamicParameterIDAudioAttackTimeControl:
         &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameteridaudiodecaytimecontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/audiodecaytimecontrol?language=objc)
     pub static CHHapticDynamicParameterIDAudioDecayTimeControl: &'static CHHapticDynamicParameterID;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameteridaudioreleasetimecontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticdynamicparameter/id/audioreleasetimecontrol?language=objc)
     pub static CHHapticDynamicParameterIDAudioReleaseTimeControl:
         &'static CHHapticDynamicParameterID;
 }
@@ -383,7 +383,7 @@ extern_class!(
     /// The relativeTime property specifies the amount of time elapsed since the start of the CHHapticParameterCurve before the
     /// value is reached.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticparametercurvecontrolpoint?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticparametercurve/controlpoint?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CHHapticParameterCurveControlPoint;

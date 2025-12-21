@@ -22,7 +22,7 @@ use crate::*;
 /// method for changes that affect the layout of your text, such as text insertions
 /// before a context object or changes to your view’s frame rectangle.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinatortextupdatereason?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/textupdatereason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -63,7 +63,7 @@ unsafe impl RefEncode for NSWritingToolsCoordinatorTextUpdateReason {
 /// its ``NSWritingToolsCoordinator/state`` property. You can use
 /// the current state as a guide to making decisions in other parts of your view.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinatorstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -136,7 +136,7 @@ unsafe impl RefEncode for NSWritingToolsCoordinatorState {
 /// replacements, Writing Tools animates the change automatically and provides
 /// you with the information you need to perform any related animations.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinatortextreplacementreason?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/textreplacementreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -176,7 +176,7 @@ unsafe impl RefEncode for NSWritingToolsCoordinatorTextReplacementReason {
 /// object. The request for your content comes with a scope constant that
 /// indicates how much of your view’s text to provide.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinatorcontextscope?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/contextscope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -222,7 +222,7 @@ unsafe impl RefEncode for NSWritingToolsCoordinatorContextScope {
 /// additional actions related to that animation. For example, during an insertion
 /// animation, you might animate changes to other views in your interface.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinatortextanimation?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/textanimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -641,7 +641,7 @@ extern_protocol!(
     /// Writing Tools waits for you to execute the handlers for animation-related methods
     /// before moving on to the next stage of the animations.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinatordelegate?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswritingtoolscoordinator/delegate-swift.protocol?language=objc)
     pub unsafe trait NSWritingToolsCoordinatorDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSWritingToolsCoordinatorContext", feature = "block2"))]
         /// Asks your delegate to provide the text to evaluate during the Writing Tools

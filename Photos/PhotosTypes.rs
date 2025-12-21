@@ -228,7 +228,7 @@ unsafe impl RefEncode for PHAssetEditOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetplaybackstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/photos/phasset/playbackstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -416,7 +416,7 @@ unsafe impl RefEncode for PHAssetResourceType {
 
 /// The states of an upload job.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjobstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -445,7 +445,7 @@ unsafe impl RefEncode for PHAssetResourceUploadJobState {
 
 /// These actions correspond with the types of fetches we can make on a PHAssetResourceUploadJob and the actions we can also take on those jobs.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjobaction?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceuploadjob/action?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

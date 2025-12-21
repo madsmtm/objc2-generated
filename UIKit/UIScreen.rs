@@ -13,38 +13,38 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreendidconnectnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/didconnectnotification?language=objc)
     #[deprecated = "Use UISceneDelegate or related notifications to be informed of connecting scenes from other screens"]
     pub static UIScreenDidConnectNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreendiddisconnectnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/diddisconnectnotification?language=objc)
     #[deprecated = "Use UISceneDelegate or related notifications to be informed of disconnecting scenes from other screens"]
     pub static UIScreenDidDisconnectNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenmodedidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/modedidchangenotification?language=objc)
     pub static UIScreenModeDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenbrightnessdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/brightnessdidchangenotification?language=objc)
     pub static UIScreenBrightnessDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreencaptureddidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/captureddidchangenotification?language=objc)
     pub static UIScreenCapturedDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenreferencedisplaymodestatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/referencedisplaymodestatusdidchangenotification?language=objc)
     pub static UIScreenReferenceDisplayModeStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenoverscancompensation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/overscancompensation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -69,7 +69,7 @@ unsafe impl RefEncode for UIScreenOverscanCompensation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreenreferencedisplaymodestatus?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscreen/referencedisplaymodestatus-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

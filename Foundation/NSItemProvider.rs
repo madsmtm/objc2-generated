@@ -119,12 +119,12 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidercompletionhandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/completionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "NSObject", feature = "block2"))]
 pub type NSItemProviderCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderloadhandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/loadhandler?language=objc)
 #[cfg(all(
     feature = "NSDictionary",
     feature = "NSError",
@@ -473,12 +473,12 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidererrordomain?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/errordomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSItemProviderErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidererrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovider/errorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

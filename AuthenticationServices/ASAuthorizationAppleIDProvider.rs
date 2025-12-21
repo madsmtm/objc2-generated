@@ -9,7 +9,7 @@ use crate::*;
 
 /// Authorization state of an Apple ID credential.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovidercredentialstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider/credentialstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for ASAuthorizationAppleIDProviderCredentialState {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovidercredentialrevokednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidprovider/credentialrevokednotification?language=objc)
     pub static ASAuthorizationAppleIDProviderCredentialRevokedNotification:
         &'static NSNotificationName;
 }

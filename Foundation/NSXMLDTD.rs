@@ -9,7 +9,7 @@ use crate::*;
 extern_class!(
     /// Defines the order, repetition, and allowable values for a document
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldtd?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldtd?language=objc)
     #[unsafe(super(NSXMLNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSXMLNode")]

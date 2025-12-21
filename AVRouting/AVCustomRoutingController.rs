@@ -10,7 +10,7 @@ use crate::*;
 extern "C" {
     /// A notification the system posts when the list of authorized routes changes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingcontrollerauthorizedroutesdidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/authorizedroutesdidchange?language=objc)
     pub static AVCustomRoutingControllerAuthorizedRoutesDidChangeNotification:
         &'static NSNotificationName;
 }

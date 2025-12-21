@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitembehavior?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/behavior-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -33,7 +33,7 @@ unsafe impl RefEncode for NSSplitViewItemBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitemcollapsebehavior?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/collapsebehavior-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -65,7 +65,7 @@ extern "C" {
     /// This constant can be used with any sizing related
     /// `NSSplitViewItem`properties to unset their values.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitemunspecifieddimension?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewitem/unspecifieddimension?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSSplitViewItemUnspecifiedDimension: CGFloat;
 }

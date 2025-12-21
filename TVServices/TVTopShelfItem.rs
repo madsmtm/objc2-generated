@@ -9,7 +9,7 @@ use crate::*;
 
 /// A set of traits that allows the system to request variants of an image.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfitemimagetraits?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfitem/imagetraits?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

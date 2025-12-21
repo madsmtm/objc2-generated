@@ -236,7 +236,7 @@ extern_protocol!(
 extern_class!(
     /// SCNAnimation represents an animation that targets a specific key path.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimation?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimation-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCNAnimation;

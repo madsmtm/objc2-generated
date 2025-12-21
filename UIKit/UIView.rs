@@ -12,7 +12,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimationcurve?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationcurve?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for UIViewAnimationCurve {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontentmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/contentmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -78,7 +78,7 @@ unsafe impl RefEncode for UIViewContentMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimationtransition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationtransition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -104,7 +104,7 @@ unsafe impl RefEncode for UIViewAnimationTransition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewautoresizing?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/autoresizingmask-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -136,7 +136,7 @@ unsafe impl RefEncode for UIViewAutoresizing {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewanimationoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/animationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -214,7 +214,7 @@ unsafe impl RefEncode for UIViewAnimationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewkeyframeanimationoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/keyframeanimationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -256,7 +256,7 @@ unsafe impl RefEncode for UIViewKeyframeAnimationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisystemanimation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/systemanimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -274,7 +274,7 @@ unsafe impl RefEncode for UISystemAnimation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewtintadjustmentmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/tintadjustmentmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1280,7 +1280,7 @@ impl UIView {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutconstraintaxis?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutconstraint/axis?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1376,7 +1376,7 @@ impl UIView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewnointrinsicmetric?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/nointrinsicmetric?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIViewNoIntrinsicMetric: CGFloat;
 }
@@ -1459,13 +1459,13 @@ impl UIView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutfittingcompressedsize?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/layoutfittingcompressedsize?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UILayoutFittingCompressedSize: CGSize;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutfittingexpandedsize?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiview/layoutfittingexpandedsize?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UILayoutFittingExpandedSize: CGSize;
 }

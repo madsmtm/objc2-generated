@@ -14,7 +14,7 @@ pub type ASAuthorizationProviderAuthorizationOperation = NSString;
 extern "C" {
     /// Operation which is invoked when the extension configuration is removed from the system.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderauthorizationoperationconfigurationremoved?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderauthorizationoperation/configurationremoved?language=objc)
     pub static ASAuthorizationProviderAuthorizationOperationConfigurationRemoved:
         &'static ASAuthorizationProviderAuthorizationOperation;
 }
@@ -22,7 +22,7 @@ extern "C" {
 extern "C" {
     /// Operation which is invoked when a request is sent direct to the extension instead of loaded in an ASWebAuthenticationSession.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderauthorizationoperationdirectrequest?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderauthorizationoperation/directrequest?language=objc)
     pub static ASAuthorizationProviderAuthorizationOperationDirectRequest:
         &'static ASAuthorizationProviderAuthorizationOperation;
 }

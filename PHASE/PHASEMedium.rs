@@ -7,7 +7,7 @@ use crate::*;
 
 /// Medium preset
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasemediumpreset?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasemedium/preset?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

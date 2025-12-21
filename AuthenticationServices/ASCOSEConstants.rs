@@ -10,7 +10,7 @@ pub type ASCOSEAlgorithmIdentifier = NSInteger;
 
 /// The COSE algorithm identifier representing ECDSA with SHA-256.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascosealgorithmidentifieres256?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascosealgorithmidentifier/es256?language=objc)
 pub static ASCOSEAlgorithmIdentifierES256: ASCOSEAlgorithmIdentifier = -7;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascoseellipticcurveidentifier?language=objc)
@@ -19,5 +19,5 @@ pub type ASCOSEEllipticCurveIdentifier = NSInteger;
 
 /// The COSE curve identifier representing the P-256 elliptic curve.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascoseellipticcurveidentifierp256?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascoseellipticcurveidentifier/p256?language=objc)
 pub static ASCOSEEllipticCurveIdentifierP256: ASCOSEEllipticCurveIdentifier = 1;

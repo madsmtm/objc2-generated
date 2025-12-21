@@ -16,7 +16,7 @@ extern "C" {
     pub static UIDocumentBrowserErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowsererrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowsererror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for UIDocumentBrowserErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserimportmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/importmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -58,7 +58,7 @@ unsafe impl RefEncode for UIDocumentBrowserImportMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowseruserinterfacestyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentbrowserviewcontroller/browseruserinterfacestyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

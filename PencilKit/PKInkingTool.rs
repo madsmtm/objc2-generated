@@ -16,7 +16,7 @@ use crate::*;
 extern_class!(
     /// A tool for drawing on a PKCanvasView.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinkingtool?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinkingtoolreference?language=objc)
     #[unsafe(super(PKTool, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKTool")]

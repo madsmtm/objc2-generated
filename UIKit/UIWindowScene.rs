@@ -263,37 +263,37 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenesessionroleapplication?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession/role-swift.struct/windowapplication?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
     pub static UIWindowSceneSessionRoleApplication: &'static UISceneSessionRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenesessionroleexternaldisplaynoninteractive?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession/role-swift.struct/windowexternaldisplaynoninteractive?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
     pub static UIWindowSceneSessionRoleExternalDisplayNonInteractive: &'static UISceneSessionRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenesessionroleexternaldisplay?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession/role-swift.struct/windowexternaldisplay?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
     #[deprecated]
     pub static UIWindowSceneSessionRoleExternalDisplay: &'static UISceneSessionRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenesessionrolevolumetricapplication?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession/role-swift.struct/windowapplicationvolumetric?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
     pub static UIWindowSceneSessionRoleVolumetricApplication: &'static UISceneSessionRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenesessionroleassistiveaccessapplication?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession/role-swift.struct/windowassistiveaccessapplication?language=objc)
     #[cfg(feature = "UISceneDefinitions")]
     pub static UIWindowSceneSessionRoleAssistiveAccessApplication: &'static UISceneSessionRole;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenedismissalanimation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/dismissalanimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

@@ -73,7 +73,7 @@ unsafe impl RefEncode for AVSpeechSynthesisVoiceGender {
 
 /// Markers used in the output event callback. Used for providing metadata on synthesized audio.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarkermark?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesismarker/mark-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -124,16 +124,16 @@ extern "C" {
     pub static AVSpeechSynthesisIPANotationAttribute: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizerbuffercallback?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/buffercallback?language=objc)
 #[cfg(all(feature = "AVAudioBuffer", feature = "block2"))]
 pub type AVSpeechSynthesizerBufferCallback = *mut block2::DynBlock<dyn Fn(NonNull<AVAudioBuffer>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizermarkercallback?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/markercallback?language=objc)
 #[cfg(feature = "block2")]
 pub type AVSpeechSynthesizerMarkerCallback =
     *mut block2::DynBlock<dyn Fn(NonNull<NSArray<AVSpeechSynthesisMarker>>)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesispersonalvoiceauthorizationstatus?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/personalvoiceauthorizationstatus-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -163,7 +163,7 @@ unsafe impl RefEncode for AVSpeechSynthesisPersonalVoiceAuthorizationStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoicetraits?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisvoice/traits?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -192,7 +192,7 @@ unsafe impl RefEncode for AVSpeechSynthesisVoiceTraits {
 extern "C" {
     /// Posted when available voices for speech synthesis on the system have changed. For example, if new 3rd party voices are available through a downloaded app, or if a new personal voice is available and the app is authorized to access personal voices.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisavailablevoicesdidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer/availablevoicesdidchangenotification?language=objc)
     pub static AVSpeechSynthesisAvailableVoicesDidChangeNotification: &'static NSNotificationName;
 }
 

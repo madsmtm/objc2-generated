@@ -10,19 +10,19 @@ extern "C" {
     pub static kCSIdentityErrorDomain: Option<&'static CFString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityunknownauthorityerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1415186-anonymous/kcsidentityunknownauthorityerr?language=objc)
 pub const kCSIdentityUnknownAuthorityErr: c_int = -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityauthoritynotaccessibleerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1415186-anonymous/kcsidentityauthoritynotaccessibleerr?language=objc)
 pub const kCSIdentityAuthorityNotAccessibleErr: c_int = -2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentitypermissionerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1415186-anonymous/kcsidentitypermissionerr?language=objc)
 pub const kCSIdentityPermissionErr: c_int = -3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentitydeletederr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1415186-anonymous/kcsidentitydeletederr?language=objc)
 pub const kCSIdentityDeletedErr: c_int = -4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityinvalidfullnameerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1415186-anonymous/kcsidentityinvalidfullnameerr?language=objc)
 pub const kCSIdentityInvalidFullNameErr: c_int = -5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityduplicatefullnameerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1415186-anonymous/kcsidentityduplicatefullnameerr?language=objc)
 pub const kCSIdentityDuplicateFullNameErr: c_int = -6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityinvalidposixnameerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1415186-anonymous/kcsidentityinvalidposixnameerr?language=objc)
 pub const kCSIdentityInvalidPosixNameErr: c_int = -7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityduplicateposixnameerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1415186-anonymous/kcsidentityduplicateposixnameerr?language=objc)
 pub const kCSIdentityDuplicatePosixNameErr: c_int = -8;

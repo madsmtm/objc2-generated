@@ -148,7 +148,7 @@ unsafe impl RefEncode for CGBitmapLayout {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapparameters?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgbitmapparameters-1cm7j?language=objc)
 #[cfg(all(feature = "CGColorSpace", feature = "CGImage"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]

@@ -9,8 +9,6 @@ use objc2_foundation::*;
 use crate::*;
 
 /// BCChatButtonStyle is used to define the visual style of the button.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcchatbuttonstyle?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -34,7 +32,6 @@ unsafe impl RefEncode for BCChatButtonStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcchatbutton?language=objc)
     #[unsafe(super(NSControl, NSView, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(target_os = "macos")]

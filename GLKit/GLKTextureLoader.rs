@@ -59,7 +59,7 @@ extern "C" {
     pub static GLKTextureLoaderGLErrorKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadererror-swift.struct/code?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2-open-gl")]
 #[cfg(target_os = "macos")]

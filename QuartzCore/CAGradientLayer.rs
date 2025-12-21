@@ -148,16 +148,16 @@ impl DefaultRetained for CAGradientLayer {
 extern "C" {
     /// `type' values. *
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagradientlayeraxial?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cagradientlayertype/axial?language=objc)
     pub static kCAGradientLayerAxial: &'static CAGradientLayerType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagradientlayerradial?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cagradientlayertype/radial?language=objc)
     pub static kCAGradientLayerRadial: &'static CAGradientLayerType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcagradientlayerconic?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/cagradientlayertype/conic?language=objc)
     pub static kCAGradientLayerConic: &'static CAGradientLayerType;
 }

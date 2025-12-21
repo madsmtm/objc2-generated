@@ -100,7 +100,7 @@ extern_class!(
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariantvideoattributes?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariant/videoattributes-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetVariantVideoAttributes;
@@ -156,7 +156,7 @@ impl AVAssetVariantVideoAttributes {
 extern_class!(
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariantvideolayoutattributes?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariant/videoattributes-swift.class/layoutattributes?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetVariantVideoLayoutAttributes;
@@ -211,7 +211,7 @@ extern_class!(
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariantaudioattributes?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariant/audioattributes-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetVariantAudioAttributes;
@@ -264,7 +264,7 @@ extern_class!(
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariantaudiorenditionspecificattributes?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetvariant/audioattributes-swift.class/renditionspecificattributes?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVAssetVariantAudioRenditionSpecificAttributes;

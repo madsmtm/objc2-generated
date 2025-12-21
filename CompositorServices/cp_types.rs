@@ -12,7 +12,7 @@ use crate::*;
 /// The layer assigns sequential indexes to the frames it provides to
 /// your app.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_frame_index_t?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerframeindex?language=objc)
 pub type cp_layer_frame_index_t = u64;
 
 /// The sequential index for a frame in the compositor’s timeline.
@@ -22,7 +22,7 @@ pub type cp_layer_frame_index_t = u64;
 /// index the compositor assigns to that frame. The compositor
 /// presents frames onscreen sequentially based on their indexes.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_compositor_frame_index_t?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/compositorframeindex?language=objc)
 pub type cp_compositor_frame_index_t = u64;
 
 /// A Mach absolute time clock value.
@@ -97,7 +97,7 @@ impl cp_time {
 /// which currently only supports right convention mainly due to foveated
 /// rendering rasterization rate maps using a right axis.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_axis_direction_convention?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/axisdirectionconvention?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -137,7 +137,7 @@ unsafe impl RefEncode for cp_axis_direction_convention {
 ///
 /// See: ``cp_layer_renderer_set_render_quality``
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_render_quality_t?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/renderquality-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type cp_render_quality_t = c_float;
 

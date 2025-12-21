@@ -13,7 +13,7 @@ use crate::*;
 /// Parameter `action`: The
 /// `UIWindowSceneActivationAction`requesting a configuration.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationactionconfigurationprovider?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/activationaction/configurationprovider?language=objc)
 #[cfg(all(
     feature = "UIAction",
     feature = "UIMenuElement",
@@ -28,7 +28,7 @@ extern_class!(
     /// An action that facilitates activating a
     /// `UIWindowScene`when performed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationaction?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/activationaction?language=objc)
     #[unsafe(super(UIAction, UIMenuElement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(all(feature = "UIAction", feature = "UIMenuElement"))]

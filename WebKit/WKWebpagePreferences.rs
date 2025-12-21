@@ -16,7 +16,7 @@ use crate::*;
 /// WKContentModeRecommended behaves like WKContentModeMobile on iPhone and iPad mini
 /// and WKContentModeDesktop on other iPad models as well as Mac.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkcontentmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/contentmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -42,7 +42,7 @@ unsafe impl RefEncode for WKContentMode {
 /// preference for loading a webpage with https, and how failures should be
 /// handled.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferencesupgradetohttpspolicy?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebpagepreferences/upgradetohttpspolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

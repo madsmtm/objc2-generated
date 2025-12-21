@@ -12,7 +12,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/cellstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for UITableViewCellStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellseparatorstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/separatorstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -59,7 +59,7 @@ unsafe impl RefEncode for UITableViewCellSeparatorStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellselectionstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/selectionstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -83,7 +83,7 @@ unsafe impl RefEncode for UITableViewCellSelectionStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellfocusstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/focusstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -103,7 +103,7 @@ unsafe impl RefEncode for UITableViewCellFocusStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcelleditingstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/editingstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -125,7 +125,7 @@ unsafe impl RefEncode for UITableViewCellEditingStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellaccessorytype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/accessorytype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -151,7 +151,7 @@ unsafe impl RefEncode for UITableViewCellAccessoryType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcellstatemask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/statemask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -175,7 +175,7 @@ unsafe impl RefEncode for UITableViewCellStateMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcelldragstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell/dragstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

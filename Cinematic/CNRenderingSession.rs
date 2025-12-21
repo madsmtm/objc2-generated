@@ -167,7 +167,7 @@ impl CNRenderingSessionFrameAttributes {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnrenderingsession?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnrenderingsession-8yghc?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNRenderingSession;

@@ -10,12 +10,9 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgeventmaskforallevents?language=objc)
 pub const kCGEventMaskForAllEvents: c_uint = !0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnotifyeventtapadded?language=objc)
 pub const kCGNotifyEventTapAdded: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.coregraphics.eventTapAdded\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnotifyeventtapremoved?language=objc)
 pub const kCGNotifyEventTapRemoved: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.coregraphics.eventTapRemoved\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgevent?language=objc)
@@ -504,7 +501,6 @@ unsafe impl RefEncode for CGEventTapOptions {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventmask?language=objc)
 pub type CGEventMask = u64;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/__cgeventtapproxy?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct __CGEventTapProxy {
@@ -530,7 +526,6 @@ pub type CGEventTapCallBack = Option<
     ) -> *mut CGEvent,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgeventtapinformation?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]

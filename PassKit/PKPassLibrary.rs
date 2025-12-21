@@ -55,7 +55,7 @@ unsafe impl RefEncode for PKAutomaticPassPresentationSuppressionResult {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarycapability?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary/capability?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -73,7 +73,7 @@ unsafe impl RefEncode for PKPassLibraryCapability {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryauthorizationstatus?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrary/authorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -396,12 +396,12 @@ impl PKPassLibrary {
 pub type PKPassLibraryNotificationName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarydidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationname/pkpasslibrarydidchange?language=objc)
     pub static PKPassLibraryDidChangeNotification: &'static PKPassLibraryNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryremotepaymentpassesdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationname/pkpasslibraryremotepaymentpassesdidchange?language=objc)
     pub static PKPassLibraryRemotePaymentPassesDidChangeNotification:
         &'static PKPassLibraryNotificationName;
 }
@@ -411,31 +411,31 @@ extern "C" {
 pub type PKPassLibraryNotificationKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryaddedpassesuserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationkey/addedpassesuserinfokey?language=objc)
     pub static PKPassLibraryAddedPassesUserInfoKey: &'static PKPassLibraryNotificationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryreplacementpassesuserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationkey/replacementpassesuserinfokey?language=objc)
     pub static PKPassLibraryReplacementPassesUserInfoKey: &'static PKPassLibraryNotificationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryremovedpassinfosuserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationkey/removedpassinfosuserinfokey?language=objc)
     pub static PKPassLibraryRemovedPassInfosUserInfoKey: &'static PKPassLibraryNotificationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarypasstypeidentifieruserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationkey/passtypeidentifieruserinfokey?language=objc)
     pub static PKPassLibraryPassTypeIdentifierUserInfoKey: &'static PKPassLibraryNotificationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryserialnumberuserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationkey/serialnumberuserinfokey?language=objc)
     pub static PKPassLibrarySerialNumberUserInfoKey: &'static PKPassLibraryNotificationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibraryrecoveredpassesuserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasslibrarynotificationkey/recoveredpassesuserinfokey?language=objc)
     pub static PKPassLibraryRecoveredPassesUserInfoKey: &'static PKPassLibraryNotificationKey;
 }

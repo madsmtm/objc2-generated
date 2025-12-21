@@ -10,7 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointsofinterestrequestmaxradius?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalpointsofinterestrequest/maxradius?language=objc)
     #[cfg(feature = "objc2-core-location")]
     pub static MKPointsOfInterestRequestMaxRadius: CLLocationDistance;
 }

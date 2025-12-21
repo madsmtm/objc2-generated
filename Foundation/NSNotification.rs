@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSNotificationName = NSString;
@@ -114,7 +114,7 @@ impl NSNotification {
 extern_class!(
     /// **************    Notification Center    ***************
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotificationcenter?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/notificationcenter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSNotificationCenter;

@@ -12,7 +12,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewindicatorstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/indicatorstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for UIScrollViewIndicatorStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewkeyboarddismissmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/keyboarddismissmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -60,7 +60,7 @@ unsafe impl RefEncode for UIScrollViewKeyboardDismissMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewindexdisplaymode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/indexdisplaymode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -80,7 +80,7 @@ unsafe impl RefEncode for UIScrollViewIndexDisplayMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewcontentinsetadjustmentbehavior?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/contentinsetadjustmentbehavior-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -104,19 +104,19 @@ unsafe impl RefEncode for UIScrollViewContentInsetAdjustmentBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewdecelerationrate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/decelerationrate-swift.struct?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type UIScrollViewDecelerationRate = CGFloat;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewdecelerationratenormal?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/decelerationrate-swift.struct/normal?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIScrollViewDecelerationRateNormal: UIScrollViewDecelerationRate;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollviewdecelerationratefast?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrollview/decelerationrate-swift.struct/fast?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIScrollViewDecelerationRateFast: UIScrollViewDecelerationRate;
 }
@@ -124,7 +124,7 @@ extern "C" {
 extern_class!(
     /// Styles for a scroll view's edge effect.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolledgeeffectstyle?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscrolledgeeffect/style-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

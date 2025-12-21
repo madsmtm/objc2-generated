@@ -20,7 +20,7 @@ extern "C" {
     ///
     /// The notification object is an AVCaptureDevice instance representing the device that became available.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicewasconnectednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/wasconnectednotification?language=objc)
     pub static AVCaptureDeviceWasConnectedNotification: &'static NSNotificationName;
 }
 
@@ -30,7 +30,7 @@ extern "C" {
     ///
     /// The notification object is an AVCaptureDevice instance representing the device that became unavailable.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicewasdisconnectednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/wasdisconnectednotification?language=objc)
     pub static AVCaptureDeviceWasDisconnectedNotification: &'static NSNotificationName;
 }
 
@@ -40,7 +40,7 @@ extern "C" {
     ///
     /// Clients may observe the AVCaptureDeviceSubjectAreaDidChangeNotification to know when an instance of AVCaptureDevice has detected a substantial change to the video subject area. This notification is only sent if you first set subjectAreaChangeMonitoringEnabled to YES.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicesubjectareadidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/subjectareadidchangenotification?language=objc)
     pub static AVCaptureDeviceSubjectAreaDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -451,7 +451,7 @@ impl AVCaptureDevice {
 ///
 /// Indicates that the device is physically located on the front of the system hardware.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceposition?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/position-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -491,7 +491,7 @@ impl AVCaptureDevice {
 ///
 /// The AVCaptureDeviceType string constants are intended to be used in combination with the AVCaptureDeviceDiscoverySession class to obtain a list of devices matching certain search criteria.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVCaptureDeviceType = NSString;
 
@@ -510,35 +510,35 @@ extern "C" {
     ///
     /// Prior to visionOS 3.0, your app must have the `com.apple.developer.avfoundation.uvc-device-access` entitlement in order to discover and use devices of type `AVCaptureDeviceTypeExternal` on visionOS.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypeexternal?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/external?language=objc)
     pub static AVCaptureDeviceTypeExternal: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
     /// A microphone. On iOS and tvOS, only one AVCaptureDevice of type AVCaptureDeviceTypeMicrophone is exposed to the system. The audio routing subsystem decides which physical microphone to use, be it a built in microphone, a wired headset, an external microphone, etc. The microphone device's `localizedName` will change as the audio subsystem switches to a different physical device.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypemicrophone?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/microphone?language=objc)
     pub static AVCaptureDeviceTypeMicrophone: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
     /// A built-in wide angle camera device. These devices are suitable for general purpose use.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinwideanglecamera?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/builtinwideanglecamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInWideAngleCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
     /// A built-in camera device with a longer focal length than a wide angle camera. Note that devices of this type may only be discovered using an AVCaptureDeviceDiscoverySession.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltintelephotocamera?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/builtintelephotocamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInTelephotoCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
     /// A built-in camera device with a shorter focal length than a wide angle camera. Note that devices of this type may only be discovered using an AVCaptureDeviceDiscoverySession.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinultrawidecamera?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/builtinultrawidecamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInUltraWideCamera: &'static AVCaptureDeviceType;
 }
 
@@ -558,7 +558,7 @@ extern "C" {
     ///
     /// Even when locked, exposure duration, ISO, aperture, white balance gains, or lens position may change when the device switches from one camera to the other. The overall exposure, white balance, and focus position however should be consistent.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltindualcamera?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/builtindualcamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInDualCamera: &'static AVCaptureDeviceType;
 }
 
@@ -577,7 +577,7 @@ extern "C" {
     ///
     /// Even when locked, exposure duration, ISO, aperture, white balance gains, or lens position may change when the device switches from one camera to the other. The overall exposure, white balance, and focus position however should be consistent.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltindualwidecamera?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/builtindualwidecamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInDualWideCamera: &'static AVCaptureDeviceType;
 }
 
@@ -595,21 +595,21 @@ extern "C" {
     ///
     /// Even when locked, exposure duration, ISO, aperture, white balance gains, or lens position may change when the device switches from one camera to the other. The overall exposure, white balance, and focus position however should be consistent.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltintriplecamera?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/builtintriplecamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInTripleCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
     /// A device that consists of two cameras, one YUV and one Infrared. The infrared camera provides high quality depth information that is synchronized and perspective corrected to frames produced by the YUV camera. While the resolution of the depth data and YUV frames may differ, their field of view and aspect ratio always match. Note that devices of this type may only be discovered using an AVCaptureDeviceDiscoverySession or -[AVCaptureDevice defaultDeviceWithDeviceType:mediaType:position:].
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltintruedepthcamera?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/builtintruedepthcamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInTrueDepthCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
     /// A device that consists of two cameras, one YUV and one LiDAR. The LiDAR camera provides high quality, high accuracy depth information by measuring the round trip of an artificial light signal emitted by a laser. The depth is synchronized and perspective corrected to frames produced by the paired YUV camera. While the resolution of the depth data and YUV frames may differ, their field of view and aspect ratio always match. Note that devices of this type may only be discovered using an AVCaptureDeviceDiscoverySession or -[AVCaptureDevice defaultDeviceWithDeviceType:mediaType:position:].
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinlidardepthcamera?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/builtinlidardepthcamera?language=objc)
     pub static AVCaptureDeviceTypeBuiltInLiDARDepthCamera: &'static AVCaptureDeviceType;
 }
 
@@ -627,21 +627,21 @@ extern "C" {
     ///
     /// Otherwise, continuity cameras on macOS and Mac Catalyst report that their device type is AVCaptureDeviceTypeBuiltInWideAngleCamera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypecontinuitycamera?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/continuitycamera?language=objc)
     pub static AVCaptureDeviceTypeContinuityCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
     /// A distortion corrected cut out from an ultra wide camera, made to approximate an overhead camera pointing at a desk. Supports multicam operation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypedeskviewcamera?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/deskviewcamera?language=objc)
     pub static AVCaptureDeviceTypeDeskViewCamera: &'static AVCaptureDeviceType;
 }
 
 extern "C" {
     /// A deprecated synonym for AVCaptureDeviceTypeExternal. Please use AVCaptureDeviceTypeExternal instead.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypeexternalunknown?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/externalunknown?language=objc)
     #[deprecated]
     pub static AVCaptureDeviceTypeExternalUnknown: &'static AVCaptureDeviceType;
 }
@@ -649,7 +649,7 @@ extern "C" {
 extern "C" {
     /// A deprecated synonym for AVCaptureDeviceTypeBuiltInDualCamera. Please use AVCaptureDeviceTypeBuiltInDualCamera instead.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinduocamera?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/builtinduocamera?language=objc)
     #[deprecated = "Use AVCaptureDeviceTypeBuiltInDualCamera instead."]
     pub static AVCaptureDeviceTypeBuiltInDuoCamera: &'static AVCaptureDeviceType;
 }
@@ -657,7 +657,7 @@ extern "C" {
 extern "C" {
     /// A deprecated synonym for AVCaptureDeviceTypeMicrophone. Please use AVCaptureDeviceTypeMicrophone instead.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetypebuiltinmicrophone?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/devicetype-swift.struct/builtinmicrophone?language=objc)
     #[deprecated]
     pub static AVCaptureDeviceTypeBuiltInMicrophone: &'static AVCaptureDeviceType;
 }
@@ -762,7 +762,7 @@ impl AVCaptureDevice {
 ///
 /// When the requested zoom factor can be achieved by multiple constituent cameras (see -virtualDeviceSwitchOverVideoZoomFactors), the virtual device chooses the best camera for the scene. The primary condition for this is the focal length; the camera with the longest focal length requires the least amount of digital upscaling and therefore normally provides the highest image quality. Secondary conditions are focus and exposure; when the scene requires focus or exposure to go beyond the limits of the active primary constituent device, a camera with a shorter focal length may be able to deliver a better quality image. Such a device is called a fallback primary constituent device. For example, a telephoto camera with a minimum focus distance of 40cm is not able to deliver a sharp image when the subject in the scene is closer than 40cm. For such a scene, the virtual device will switch to the wide-angle camera which typically has a smaller minimum focus distance and is able to achieve accurate focus on the subject. In this case the wide-angle camera is the fallback primary constitute device.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureprimaryconstituentdeviceswitchingbehavior?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/primaryconstituentdeviceswitchingbehavior-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -802,7 +802,7 @@ unsafe impl RefEncode for AVCapturePrimaryConstituentDeviceSwitchingBehavior {
 ///
 /// Whenever AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionVideoZoomChanged is not included in the restricted switching behavior conditions, AVCapturePrimaryConstituentDeviceSwitchingBehaviorRestricted still allows camera selection when a change in video zoom factor makes a camera eligible or ineligible to be selected as the activePrimaryConstituentDevice. When the video zoom factor decreases to below the switch-over zoom factor of the activePrimaryConstituentDevice, a different camera will be selected to satisfy the requested zoom factor. When the video zoom factor increases and crosses a camera's switch-over zoom factor, this camera becomes eligible to be selected as the activePrimaryConstituentDevice. If exposure and focus allow, this camera then becomes the new activePrimaryConstituentDevice. Similar to the AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditionVideoZoomChanged this also waits for exposure and focus to stabilize. Otherwise the activePrimaryConstituentDevice remains unchanged.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureprimaryconstituentdevicerestrictedswitchingbehaviorconditions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/primaryconstituentdevicerestrictedswitchingbehaviorconditions-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -961,7 +961,7 @@ impl AVCaptureDevice {
 ///
 /// Indicates that the flash should be used automatically depending on ambient light conditions.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureflashmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/flashmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1053,7 +1053,7 @@ impl AVCaptureDevice {
 ///
 /// Indicates that the torch should be used automatically depending on ambient light conditions.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetorchmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/torchmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1078,7 +1078,7 @@ unsafe impl RefEncode for AVCaptureTorchMode {
 extern "C" {
     /// A special value that may be passed to -setTorchModeWithLevel:error: to set the torch to the maximum level currently available. Under thermal duress, the maximum available torch level may be less than 1.0.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemaxavailabletorchlevel?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/maxavailabletorchlevel?language=objc)
     pub static AVCaptureMaxAvailableTorchLevel: c_float;
 }
 
@@ -1165,7 +1165,7 @@ impl AVCaptureDevice {
 ///
 /// Indicates that the device should automatically focus when needed.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturefocusmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/focusmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1196,7 +1196,7 @@ unsafe impl RefEncode for AVCaptureFocusMode {
 ///
 /// Indicates that the autofocus system should restrict the focus range for subject matter that is far from the camera.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureautofocusrangerestriction?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/autofocusrangerestriction-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1221,13 +1221,13 @@ unsafe impl RefEncode for AVCaptureAutoFocusRangeRestriction {
 extern "C" {
     /// A special value that may be passed as the lensPosition parameter of setFocusModeLockedWithLensPosition:completionHandler: to indicate that the caller does not wish to specify a value for the lensPosition property, and that it should instead be set to its current value. Note that the device may be adjusting lensPosition at the time of the call, in which case the value at which lensPosition is locked may differ from the value obtained by querying the lensPosition property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturelenspositioncurrent?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/currentlensposition?language=objc)
     pub static AVCaptureLensPositionCurrent: c_float;
 }
 
 /// Constants indicating the focus behavior when recording a Cinematic Video.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecinematicvideofocusmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/cinematicvideofocusmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1533,7 +1533,7 @@ impl AVCaptureDevice {
 ///
 /// Indicates that the device should only adjust exposure according to user provided ISO, exposureDuration values.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexposuremode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/exposuremode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1560,7 +1560,7 @@ unsafe impl RefEncode for AVCaptureExposureMode {
 extern "C" {
     /// A special value that may be passed as the duration parameter of setExposureModeCustomWithDuration:ISO:completionHandler: to indicate that the caller does not wish to specify a value for the exposureDuration property, and that it should instead be set to its current value. Note that the device may be adjusting exposureDuration at the time of the call, in which case the value to which exposureDuration is set may differ from the value obtained by querying the exposureDuration property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexposuredurationcurrent?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/currentexposureduration?language=objc)
     #[cfg(feature = "objc2-core-media")]
     pub static AVCaptureExposureDurationCurrent: CMTime;
 }
@@ -1568,14 +1568,14 @@ extern "C" {
 extern "C" {
     /// A special value that may be passed as the ISO parameter of setExposureModeCustomWithDuration:ISO:completionHandler: to indicate that the caller does not wish to specify a value for the ISO property, and that it should instead be set to its current value. Note that the device may be adjusting ISO at the time of the call, in which case the value to which ISO is set may differ from the value obtained by querying the ISO property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureisocurrent?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/currentiso?language=objc)
     pub static AVCaptureISOCurrent: c_float;
 }
 
 extern "C" {
     /// A special value that may be passed as the bias parameter of setExposureTargetBias:completionHandler: to indicate that the caller does not wish to specify a value for the exposureTargetBias property, and that it should instead be set to its current value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureexposuretargetbiascurrent?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/currentexposuretargetbias?language=objc)
     pub static AVCaptureExposureTargetBiasCurrent: c_float;
 }
 
@@ -1872,7 +1872,7 @@ impl AVCaptureDevice {
 ///
 /// Indicates that the device should automatically adjust white balance when needed.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancemode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/whitebalancemode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1896,7 +1896,7 @@ unsafe impl RefEncode for AVCaptureWhiteBalanceMode {
 
 /// Structure containing RGB white balance gain values.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancegains?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/whitebalancegains?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVCaptureWhiteBalanceGains {
@@ -1922,7 +1922,7 @@ unsafe impl RefEncode for AVCaptureWhiteBalanceGains {
 
 /// Structure containing CIE 1931 xy chromaticity values.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancechromaticityvalues?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/whitebalancechromaticityvalues?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVCaptureWhiteBalanceChromaticityValues {
@@ -1940,7 +1940,7 @@ unsafe impl RefEncode for AVCaptureWhiteBalanceChromaticityValues {
 
 /// Structure containing a white balance color correlated temperature in kelvin, plus a tint value in the range of [-150 - +150].
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancetemperatureandtintvalues?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/whitebalancetemperatureandtintvalues?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct AVCaptureWhiteBalanceTemperatureAndTintValues {
@@ -1959,7 +1959,7 @@ unsafe impl RefEncode for AVCaptureWhiteBalanceTemperatureAndTintValues {
 extern "C" {
     /// Temperature and tint values ideal for scenes illuminated with a tungsten light source.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancetemperatureandtintvaluestungsten?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/whitebalancetemperatureandtintvalues/tungsten?language=objc)
     pub static AVCaptureWhiteBalanceTemperatureAndTintValuesTungsten:
         AVCaptureWhiteBalanceTemperatureAndTintValues;
 }
@@ -1967,7 +1967,7 @@ extern "C" {
 extern "C" {
     /// Temperature and tint values ideal for scenes illuminated with a fluorescent light source.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancetemperatureandtintvaluesfluorescent?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/whitebalancetemperatureandtintvalues/fluorescent?language=objc)
     pub static AVCaptureWhiteBalanceTemperatureAndTintValuesFluorescent:
         AVCaptureWhiteBalanceTemperatureAndTintValues;
 }
@@ -1975,7 +1975,7 @@ extern "C" {
 extern "C" {
     /// Temperature and tint values ideal for scenes illuminated with natural daylight.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancetemperatureandtintvaluesdaylight?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/whitebalancetemperatureandtintvalues/daylight?language=objc)
     pub static AVCaptureWhiteBalanceTemperatureAndTintValuesDaylight:
         AVCaptureWhiteBalanceTemperatureAndTintValues;
 }
@@ -1983,7 +1983,7 @@ extern "C" {
 extern "C" {
     /// Temperature and tint values ideal for scenes illuminated with natural cloudy daylight.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancetemperatureandtintvaluescloudy?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/whitebalancetemperatureandtintvalues/cloudy?language=objc)
     pub static AVCaptureWhiteBalanceTemperatureAndTintValuesCloudy:
         AVCaptureWhiteBalanceTemperatureAndTintValues;
 }
@@ -1991,7 +1991,7 @@ extern "C" {
 extern "C" {
     /// Temperature and tint values ideal for scenes illuminated with daylight but in heavy shade.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancetemperatureandtintvaluesshadow?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/whitebalancetemperatureandtintvalues/shadow?language=objc)
     pub static AVCaptureWhiteBalanceTemperatureAndTintValuesShadow:
         AVCaptureWhiteBalanceTemperatureAndTintValues;
 }
@@ -1999,7 +1999,7 @@ extern "C" {
 extern "C" {
     /// A special value that may be passed as a parameter of setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler: to indicate that the caller does not wish to specify a value for deviceWhiteBalanceGains, and that gains should instead be locked at their value at the moment that white balance is locked.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturewhitebalancegainscurrent?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/currentwhitebalancegains?language=objc)
     pub static AVCaptureWhiteBalanceGainsCurrent: AVCaptureWhiteBalanceGains;
 }
 
@@ -2395,7 +2395,7 @@ impl AVCaptureDevice {
 
 /// A constant that is used to specify the transport controls' speed.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetransportcontrolsspeed?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/transportcontrolsspeed-swift.typealias?language=objc)
 pub type AVCaptureDeviceTransportControlsSpeed = c_float;
 
 /// Constants indicating the transport controls' current mode of play back, if it has one.
@@ -2405,7 +2405,7 @@ pub type AVCaptureDeviceTransportControlsSpeed = c_float;
 ///
 /// Indicates that the tape transport is threaded through the play head.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicetransportcontrolsplaybackmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/transportcontrolsplaybackmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2714,7 +2714,7 @@ impl AVCaptureDevice {
 ///
 /// Indicates that both the user and application cooperatively share control of the Center Stage feature.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturecenterstagecontrolmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/centerstagecontrolmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2972,7 +2972,7 @@ impl AVCaptureDevice {
 ///
 /// Indicates that microphone audio is being processed to isolate the voice and attenuate other signals.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturemicrophonemode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/microphonemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -3022,7 +3022,7 @@ impl AVCaptureDevice {
 ///
 /// Indicates the system UI for selecting microphone modes.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystemuserinterface?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systemuserinterface?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -3070,7 +3070,7 @@ pub type AVSpatialCaptureDiscomfortReason = NSString;
 extern "C" {
     /// The lighting of the current scene is not bright enough; the playback experience will likely be uncomfortable due to noise differences between the two cameras.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avspatialcapturediscomfortreasonnotenoughlight?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avspatialcapturediscomfortreason/notenoughlight?language=objc)
     pub static AVSpatialCaptureDiscomfortReasonNotEnoughLight:
         &'static AVSpatialCaptureDiscomfortReason;
 }
@@ -3078,7 +3078,7 @@ extern "C" {
 extern "C" {
     /// The focus point of the current scene is too close; the playback experience will likely be uncomfortable due to the subject being closer than the minimum focus distance of one or both of the lenses.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avspatialcapturediscomfortreasonsubjecttooclose?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avspatialcapturediscomfortreason/subjecttooclose?language=objc)
     pub static AVSpatialCaptureDiscomfortReasonSubjectTooClose:
         &'static AVSpatialCaptureDiscomfortReason;
 }
@@ -3109,7 +3109,7 @@ pub type AVCaptureSceneMonitoringStatus = NSString;
 extern "C" {
     /// The light level of the current scene is insufficient for the current set of features to function optimally.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturescenemonitoringstatusnotenoughlight?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturescenemonitoringstatus/notenoughlight?language=objc)
     pub static AVCaptureSceneMonitoringStatusNotEnoughLight:
         &'static AVCaptureSceneMonitoringStatus;
 }
@@ -3130,42 +3130,42 @@ impl AVCaptureDevice {
 
 /// String constants describing the different video aspect ratios you can configure for a particular device.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaspectratio?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/aspectratio?language=objc)
 // NS_TYPED_ENUM
 pub type AVCaptureAspectRatio = NSString;
 
 extern "C" {
     /// An aspect ratio of 1x1.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaspectratio1x1?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/aspectratio/ratio1x1?language=objc)
     pub static AVCaptureAspectRatio1x1: &'static AVCaptureAspectRatio;
 }
 
 extern "C" {
     /// An aspect ratio of 16x9.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaspectratio16x9?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/aspectratio/ratio16x9?language=objc)
     pub static AVCaptureAspectRatio16x9: &'static AVCaptureAspectRatio;
 }
 
 extern "C" {
     /// An aspect ratio of 9x16.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaspectratio9x16?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/aspectratio/ratio9x16?language=objc)
     pub static AVCaptureAspectRatio9x16: &'static AVCaptureAspectRatio;
 }
 
 extern "C" {
     /// An aspect ratio of 4x3.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaspectratio4x3?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/aspectratio/ratio4x3?language=objc)
     pub static AVCaptureAspectRatio4x3: &'static AVCaptureAspectRatio;
 }
 
 extern "C" {
     /// An aspect ratio of 3x4.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureaspectratio3x4?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/aspectratio/ratio3x4?language=objc)
     pub static AVCaptureAspectRatio3x4: &'static AVCaptureAspectRatio;
 }
 
@@ -3358,7 +3358,7 @@ extern_class!(
     ///
     /// This class allows clients to discover devices by providing certain search criteria. The objective of this class is to help find devices by device type and optionally by media type or position and allow you to key-value observe changes to the returned devices list.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicediscoverysession?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/discoverysession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDeviceDiscoverySession;
@@ -3426,7 +3426,7 @@ extern_class!(
     ///
     /// Each instance of AVCaptureDeviceRotationCoordinator allows a client to coordinate with changes to the rotation of an AVCaptureDevice to ensure the camera's video preview and captured output are horizon-level. The coordinator delivers key-value updates on the main queue.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevicerotationcoordinator?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDeviceRotationCoordinator;
@@ -3721,7 +3721,7 @@ unsafe impl RefEncode for AVCaptureVideoStabilizationMode {
 ///
 /// Indicates that autofocus is achieved by phase detection. Phase detection has the ability to achieve focus in many cases without a focus scan. Phase detection autofocus is typically less visually intrusive than contrast detection autofocus.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptureautofocussystem?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/format/autofocussystem-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -3749,7 +3749,7 @@ extern_class!(
     ///
     /// An AVCaptureDevice exposes an array of formats, and its current activeFormat may be queried. The payload for the formats property is an array of AVCaptureDeviceFormat objects and the activeFormat property payload is an AVCaptureDeviceFormat. AVCaptureDeviceFormat is a thin wrapper around a CMFormatDescription, and can carry associated device format information that doesn't go in a CMFormatDescription, such as min and max frame rate. An AVCaptureDeviceFormat object is immutable. Its values do not change for the life of the object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceformat?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/format?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDeviceFormat;
@@ -4458,7 +4458,7 @@ extern_class!(
     ///
     /// An AVCaptureDevice may optionally present an array of inputSources, representing distinct mutually exclusive inputs to the device, for example, an audio AVCaptureDevice might have ADAT optical and analog input sources. A video AVCaptureDevice might have an HDMI input source, or a component input source.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeviceinputsource?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/inputsource?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDeviceInputSource;

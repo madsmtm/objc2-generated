@@ -46,7 +46,7 @@ extern_class!(
     ///
     /// See: UICollectionLayoutListConfiguration.separatorConfiguration
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistseparatorconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilistseparatorconfiguration-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

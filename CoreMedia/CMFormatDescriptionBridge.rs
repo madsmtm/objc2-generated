@@ -29,14 +29,14 @@ extern "C" {
     ///
     /// Passing NULL is equivalent to passing this constant.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_quicktimemovie?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmimagedescriptionflavor/quicktimemovie?language=objc)
     pub static kCMImageDescriptionFlavor_QuickTimeMovie: &'static CMImageDescriptionFlavor;
 }
 
 extern "C" {
     /// Chooses the ISO family sample description format, used in MP4
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_isofamily?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmimagedescriptionflavor/isofamily?language=objc)
     pub static kCMImageDescriptionFlavor_ISOFamily: &'static CMImageDescriptionFlavor;
 }
 
@@ -45,7 +45,7 @@ extern "C" {
     ///
     /// This implies kCMImageDescriptionFlavor_ISOFamily and adds additional rules specific to the 3GP family.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_3gpfamily?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmimagedescriptionflavor/mobile3gpfamily?language=objc)
     pub static kCMImageDescriptionFlavor_3GPFamily: &'static CMImageDescriptionFlavor;
 }
 
@@ -54,7 +54,7 @@ extern "C" {
     ///
     /// This implies kCMImageDescriptionFlavor_ISOFamily and adds additional rules specific to the .m4a, .m4b, and .m4v file formats.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmimagedescriptionflavor_isofamilywithappleextensions?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmimagedescriptionflavor/isofamilywithappleextensions?language=objc)
     pub static kCMImageDescriptionFlavor_ISOFamilyWithAppleExtensions:
         &'static CMImageDescriptionFlavor;
 }
@@ -193,7 +193,7 @@ extern "C" {
     /// A V1 sound description will be written if possible.
     /// If a V1 sound description is written for CBR or PCM audio, the sample tables will need to use the legacy CBR layout.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_quicktimemovie?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsounddescriptionflavor/quicktimemovie?language=objc)
     pub static kCMSoundDescriptionFlavor_QuickTimeMovie: &'static CMSoundDescriptionFlavor;
 }
 
@@ -203,14 +203,14 @@ extern "C" {
     /// A V2 sound description will be written.
     /// V2 Sound Descriptions contain no legacy CBR layout, and use 'lpcm' for all flavors of PCM.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_quicktimemoviev2?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsounddescriptionflavor/quicktimemoviev2?language=objc)
     pub static kCMSoundDescriptionFlavor_QuickTimeMovieV2: &'static CMSoundDescriptionFlavor;
 }
 
 extern "C" {
     /// Chooses the ISO family sample description format, used in MP4, M4A, etc.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_isofamily?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsounddescriptionflavor/isofamily?language=objc)
     pub static kCMSoundDescriptionFlavor_ISOFamily: &'static CMSoundDescriptionFlavor;
 }
 
@@ -219,7 +219,7 @@ extern "C" {
     ///
     /// This implies kCMSoundDescriptionFlavor_ISOFamily and adds additional rules specific to the 3GP family.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmsounddescriptionflavor_3gpfamily?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsounddescriptionflavor/mobile3gpfamily?language=objc)
     pub static kCMSoundDescriptionFlavor_3GPFamily: &'static CMSoundDescriptionFlavor;
 }
 

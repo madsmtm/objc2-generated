@@ -140,12 +140,12 @@ unsafe impl RefEncode for CFRunLoopActivity {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfrunloopdefaultmode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/defaultmode?language=objc)
     pub static kCFRunLoopDefaultMode: Option<&'static CFRunLoopMode>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfrunloopcommonmodes?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfrunloopmode/commonmodes?language=objc)
     pub static kCFRunLoopCommonModes: Option<&'static CFRunLoopMode>;
 }
 

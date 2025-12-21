@@ -189,12 +189,12 @@ extern_protocol!(
 extern "C" {
     /// ** Notifications ***
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstoragewillprocesseditingnotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstorage/willprocesseditingnotification?language=objc)
     pub static NSTextStorageWillProcessEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstoragedidprocesseditingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextstorage/didprocesseditingnotification?language=objc)
     pub static NSTextStorageDidProcessEditingNotification: &'static NSNotificationName;
 }
 

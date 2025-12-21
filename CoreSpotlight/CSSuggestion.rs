@@ -11,7 +11,7 @@ extern "C" {
     pub static CSSuggestionHighlightAttributeName: &'static NSAttributedStringKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssuggestionkind?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssuggestion/suggestionkind-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

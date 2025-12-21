@@ -8,11 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibraryerrordomain?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary/errordomain?language=objc)
     pub static CLKWatchFaceLibraryErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibraryerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/clockkit/clkwatchfacelibrary/errorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

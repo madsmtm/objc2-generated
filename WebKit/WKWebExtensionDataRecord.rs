@@ -9,13 +9,13 @@ use crate::*;
 extern "C" {
     /// Indicates a ``WKWebExtensionDataRecord`` error.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiondatarecorderrordomain?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord/errordomain?language=objc)
     pub static WKWebExtensionDataRecordErrorDomain: &'static NSErrorDomain;
 }
 
 /// Constants used by ``NSError`` to indicate errors in the ``WKWebExtensionDataRecord`` domain.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiondatarecorderror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord/error/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -44,7 +44,7 @@ extern_class!(
     ///
     /// Contains properties and methods to query the data types and sizes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiondatarecord?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datarecord?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

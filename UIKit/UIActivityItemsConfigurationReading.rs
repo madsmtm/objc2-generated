@@ -13,19 +13,19 @@ use crate::*;
 pub type UIActivityItemsConfigurationMetadataKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakeytitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakey/title?language=objc)
     pub static UIActivityItemsConfigurationMetadataKeyTitle:
         &'static UIActivityItemsConfigurationMetadataKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakeymessagebody?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakey/messagebody?language=objc)
     pub static UIActivityItemsConfigurationMetadataKeyMessageBody:
         &'static UIActivityItemsConfigurationMetadataKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakeylinkpresentationmetadata?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakey/linkpresentationmetadata?language=objc)
     pub static UIActivityItemsConfigurationMetadataKeyLinkPresentationMetadata:
         &'static UIActivityItemsConfigurationMetadataKey;
 }
@@ -35,13 +35,13 @@ extern "C" {
 pub type UIActivityItemsConfigurationPreviewIntent = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationpreviewintentfullsize?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationpreviewintent/fullsize?language=objc)
     pub static UIActivityItemsConfigurationPreviewIntentFullSize:
         &'static UIActivityItemsConfigurationPreviewIntent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationpreviewintentthumbnail?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationpreviewintent/thumbnail?language=objc)
     pub static UIActivityItemsConfigurationPreviewIntentThumbnail:
         &'static UIActivityItemsConfigurationPreviewIntent;
 }
@@ -51,13 +51,13 @@ extern "C" {
 pub type UIActivityItemsConfigurationInteraction = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationinteractionshare?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationinteraction/share?language=objc)
     pub static UIActivityItemsConfigurationInteractionShare:
         &'static UIActivityItemsConfigurationInteraction;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationinteractioncopy?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationinteraction/copy?language=objc)
     pub static UIActivityItemsConfigurationInteractionCopy:
         &'static UIActivityItemsConfigurationInteraction;
 }

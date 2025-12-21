@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparserexternalentityresolvingpolicy?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/externalentityresolvingpolicy-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -31,7 +31,7 @@ unsafe impl RefEncode for NSXMLParserExternalEntityResolvingPolicy {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparser?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXMLParser;
@@ -191,7 +191,7 @@ impl NSXMLParser {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparserdelegate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparserdelegate?language=objc)
     pub unsafe trait NSXMLParserDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(parserDidStartDocument:))]
@@ -382,12 +382,12 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparsererrordomain?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errordomain?language=objc)
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSXMLParserErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlparsererror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlparser/errorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

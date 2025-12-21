@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstaskterminationreason?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/process/terminationreason-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -27,7 +27,7 @@ unsafe impl RefEncode for NSTaskTerminationReason {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstask?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/process?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTask;
@@ -318,7 +318,7 @@ impl NSTask {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstaskdidterminatenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/process/didterminatenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSTaskDidTerminateNotification: &'static NSNotificationName;
 }

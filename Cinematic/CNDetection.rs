@@ -75,7 +75,7 @@ extern_class!(
     /// Detections obtained from the cinematic script include a detectionID that can be used to track the detection over time.
     /// Some types of detections also include a detectionGroupID that associates related detections (e.g. the face and torso of the same person).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetection?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndetection-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNDetection;

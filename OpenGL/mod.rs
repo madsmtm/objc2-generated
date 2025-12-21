@@ -243,13 +243,9 @@ use core::ptr::NonNull;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cgl_version_1_0?language=objc)
 pub const CGL_VERSION_1_0: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cgl_version_1_1?language=objc)
 pub const CGL_VERSION_1_1: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cgl_version_1_2?language=objc)
 pub const CGL_VERSION_1_2: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/opengl/cgl_version_1_3?language=objc)
 pub const CGL_VERSION_1_3: c_uint = 1;
 extern "C-unwind" {
     /// # Safety

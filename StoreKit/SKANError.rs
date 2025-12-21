@@ -11,7 +11,7 @@ extern "C" {
     pub static SKANErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skanerror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

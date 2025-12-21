@@ -6,7 +6,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_tracking_area?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct cp_tracking_area {
@@ -24,7 +23,6 @@ unsafe impl RefEncode for cp_tracking_area {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_tracking_area_t?language=objc)
 pub type cp_tracking_area_t = *mut cp_tracking_area;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_hover_effect?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct cp_hover_effect {
@@ -50,7 +48,7 @@ pub type cp_hover_effect_t = *mut cp_hover_effect;
 /// Can change per-frame for the same rendered mesh/object.
 /// A value of 0 is reserved to represent the absence of a tracking area.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_tracking_area_render_value?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/trackingarea/rendervalue-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type cp_tracking_area_render_value = u16;
 
@@ -69,7 +67,7 @@ pub static cp_tracking_area_render_value_invalid: cp_tracking_area_render_value 
 /// There is no reserved values so all values are considered valid
 /// but should be unique.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_tracking_area_identifier?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/trackingarea/identifier-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type cp_tracking_area_identifier = u64;
 

@@ -12,17 +12,17 @@ use crate::*;
 pub type PHASESpatialCategory = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialcategorydirectpathtransmission?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialcategory/directpathtransmission?language=objc)
     pub static PHASESpatialCategoryDirectPathTransmission: &'static PHASESpatialCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialcategoryearlyreflections?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialcategory/earlyreflections?language=objc)
     pub static PHASESpatialCategoryEarlyReflections: &'static PHASESpatialCategory;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialcategorylatereverb?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialcategory/latereverb?language=objc)
     pub static PHASESpatialCategoryLateReverb: &'static PHASESpatialCategory;
 }
 
@@ -38,7 +38,7 @@ extern "C" {
 ///
 /// Late Reverb.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialpipelineflags?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasespatialpipeline/flags-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

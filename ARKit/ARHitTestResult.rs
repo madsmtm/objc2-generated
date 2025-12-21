@@ -10,7 +10,7 @@ use crate::*;
 
 /// Option set of hit-test result types.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresulttype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arhittestresult/resulttype?language=objc)
 // NS_OPTIONS
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

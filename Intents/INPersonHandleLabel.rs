@@ -9,51 +9,51 @@ use crate::*;
 pub type INPersonHandleLabel = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelhome?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/home?language=objc)
     pub static INPersonHandleLabelHome: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelwork?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/work?language=objc)
     pub static INPersonHandleLabelWork: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabeliphone?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/iphone?language=objc)
     pub static INPersonHandleLabeliPhone: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelmobile?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/mobile?language=objc)
     pub static INPersonHandleLabelMobile: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelmain?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/main?language=objc)
     pub static INPersonHandleLabelMain: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelhomefax?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/homefax?language=objc)
     pub static INPersonHandleLabelHomeFax: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelworkfax?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/workfax?language=objc)
     pub static INPersonHandleLabelWorkFax: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelpager?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/pager?language=objc)
     pub static INPersonHandleLabelPager: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelother?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/other?language=objc)
     pub static INPersonHandleLabelOther: Option<&'static INPersonHandleLabel>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabelschool?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/intents/inpersonhandlelabel/school?language=objc)
     pub static INPersonHandleLabelSchool: Option<&'static INPersonHandleLabel>;
 }

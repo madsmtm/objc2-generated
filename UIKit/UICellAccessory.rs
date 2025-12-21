@@ -46,7 +46,7 @@ extern "C" {
 extern_class!(
     /// Abstract base class. Do not instantiate directly.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessory?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessory-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

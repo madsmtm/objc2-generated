@@ -11,12 +11,12 @@ use crate::*;
 pub type VNAnimalIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalidentifierdog?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalidentifier/dog?language=objc)
     pub static VNAnimalIdentifierDog: &'static VNAnimalIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalidentifiercat?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnanimalidentifier/cat?language=objc)
     pub static VNAnimalIdentifierCat: &'static VNAnimalIdentifier;
 }
 

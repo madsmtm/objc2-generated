@@ -5,7 +5,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneactivationstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/activationstate-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -51,7 +51,7 @@ unsafe impl RefEncode for UISceneCaptureState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesessionrole?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesession/role-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type UISceneSessionRole = NSString;
 
@@ -60,7 +60,7 @@ extern "C" {
     pub static UISceneErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

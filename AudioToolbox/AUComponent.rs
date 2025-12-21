@@ -66,9 +66,9 @@ pub const kAudioUnitSubType_SystemOutput: u32 = 0x73797320;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_dlssynth?language=objc)
 pub const kAudioUnitSubType_DLSSynth: u32 = 0x646c7320;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_sampler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_sampler-1sys8?language=objc)
 pub const kAudioUnitSubType_Sampler: u32 = 0x73616d70;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_midisynth?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_midisynth-3su2x?language=objc)
 pub const kAudioUnitSubType_MIDISynth: u32 = 0x6d73796e;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_auconverter?language=objc)
@@ -163,9 +163,9 @@ pub const kAudioUnitSubType_HRTFPanner: u32 = 0x68727466;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_netreceive?language=objc)
 pub const kAudioUnitSubType_NetReceive: u32 = 0x6e726376;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_scheduledsoundplayer?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_scheduledsoundplayer-55u1s?language=objc)
 pub const kAudioUnitSubType_ScheduledSoundPlayer: u32 = 0x7373706c;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_audiofileplayer?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitsubtype_audiofileplayer-6zi0a?language=objc)
 pub const kAudioUnitSubType_AudioFilePlayer: u32 = 0x6166706c;
 
 /// These flags can be set in a callback from an audio unit during an audio unit

@@ -13,7 +13,7 @@ use crate::*;
 ///
 /// This enumeration defines the different states in which a Fall Detection event can be resolved
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectioneventuserresolution?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmfalldetectionevent/userresolution?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

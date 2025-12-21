@@ -76,7 +76,7 @@ impl NSFileProviderDomainVersion {
 
 /// Testing modes.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomaintestingmodes?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/testingmodes-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -471,6 +471,6 @@ extern "C" {
     /// call to addDomain with that invalid UserInfo dictionary will fail with a EINVAL POSIX NSError.
     /// To update this value, the provider must call addDomain with an updated userInfo dictionary
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideruserinfoexperimentidkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideruserinfokey/experimentid?language=objc)
     pub static NSFileProviderUserInfoExperimentIDKey: &'static NSFileProviderUserInfoKey;
 }

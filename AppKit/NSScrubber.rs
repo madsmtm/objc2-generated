@@ -77,7 +77,7 @@ extern_protocol!(
 
 /// Determines the interaction mode for a NSScrubber control.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubbermode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubber/mode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -99,7 +99,7 @@ unsafe impl RefEncode for NSScrubberMode {
 
 /// NSScrubberAlignment specifies the preferred alignment of elements within the control.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubberalignment?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrubber/alignment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

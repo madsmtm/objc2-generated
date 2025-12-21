@@ -24,8 +24,6 @@ extern_class!(
     /// Present this view controller modally from your app, or embed the view controller
     /// as a child in one of your existing view controller interfaces. For example, you
     /// might choose to embed the view controller in a tab of your app’s preferences interface.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/extensionkit/exappextensionbrowserviewcontroller?language=objc)
     #[unsafe(super(NSViewController, NSResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-app-kit")]

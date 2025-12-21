@@ -24,162 +24,162 @@ use crate::*;
 pub type CIFormat = c_int;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatargb8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/argb8?language=objc)
     pub static kCIFormatARGB8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatbgra8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/bgra8?language=objc)
     pub static kCIFormatBGRA8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrgba8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgba8?language=objc)
     pub static kCIFormatRGBA8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrgbx8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgbx8?language=objc)
     pub static kCIFormatRGBX8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatabgr8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/abgr8?language=objc)
     pub static kCIFormatABGR8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrgbah?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgbah?language=objc)
     pub static kCIFormatRGBAh: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrgba16?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgba16?language=objc)
     pub static kCIFormatRGBA16: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrgbaf?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgbaf?language=objc)
     pub static kCIFormatRGBAf: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrgbx16?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgbx16?language=objc)
     pub static kCIFormatRGBX16: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrgbxh?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgbxh?language=objc)
     pub static kCIFormatRGBXh: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrgbxf?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgbxf?language=objc)
     pub static kCIFormatRGBXf: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrgb10?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgb10?language=objc)
     pub static kCIFormatRGB10: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformata8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/a8?language=objc)
     pub static kCIFormatA8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformata16?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/a16?language=objc)
     pub static kCIFormatA16: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatah?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/ah?language=objc)
     pub static kCIFormatAh: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformataf?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/af?language=objc)
     pub static kCIFormatAf: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatr8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/r8?language=objc)
     pub static kCIFormatR8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatr16?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/r16?language=objc)
     pub static kCIFormatR16: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrh?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rh?language=objc)
     pub static kCIFormatRh: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrf?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rf?language=objc)
     pub static kCIFormatRf: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrg8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rg8?language=objc)
     pub static kCIFormatRG8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrg16?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rg16?language=objc)
     pub static kCIFormatRG16: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrgh?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgh?language=objc)
     pub static kCIFormatRGh: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatrgf?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/rgf?language=objc)
     pub static kCIFormatRGf: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatl8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/l8?language=objc)
     pub static kCIFormatL8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatl16?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/l16?language=objc)
     pub static kCIFormatL16: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatlh?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/lh?language=objc)
     pub static kCIFormatLh: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatlf?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/lf?language=objc)
     pub static kCIFormatLf: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatla8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/la8?language=objc)
     pub static kCIFormatLA8: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatla16?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/la16?language=objc)
     pub static kCIFormatLA16: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatlah?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/lah?language=objc)
     pub static kCIFormatLAh: CIFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciformatlaf?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciformat/laf?language=objc)
     pub static kCIFormatLAf: CIFormat;
 }
 
@@ -188,7 +188,7 @@ extern "C" {
 pub type CIImageOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagecolorspace?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/colorspace?language=objc)
     pub static kCIImageColorSpace: &'static CIImageOption;
 }
 
@@ -205,17 +205,17 @@ extern "C" {
     /// * ``CIVector`` : then use it as a `CGRect` to crop and offset.
     /// * Not specified : then it will behave as if False was specified.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageapplycleanaperture?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/applycleanaperture?language=objc)
     pub static kCIImageApplyCleanAperture: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagetonemaphdrtosdr?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/tonemaphdrtosdr?language=objc)
     pub static kCIImageToneMapHDRtoSDR: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageexpandtohdr?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/expandtohdr?language=objc)
     pub static kCIImageExpandToHDR: &'static CIImageOption;
 }
 
@@ -225,7 +225,7 @@ extern "C" {
     ///
     /// The value for this key should be an `NSNumber` instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagecontentheadroom?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/contentheadroom?language=objc)
     pub static kCIImageContentHeadroom: &'static CIImageOption;
 }
 
@@ -235,84 +235,84 @@ extern "C" {
     ///
     /// The value for this key should be an `NSNumber` instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagecontentaveragelightlevel?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/contentaveragelightlevel?language=objc)
     pub static kCIImageContentAverageLightLevel: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagenearestsampling?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/nearestsampling?language=objc)
     pub static kCIImageNearestSampling: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagecacheimmediately?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/cacheimmediately?language=objc)
     pub static kCIImageCacheImmediately: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageproperties?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/properties?language=objc)
     pub static kCIImageProperties: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageapplyorientationproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/applyorientationproperty?language=objc)
     pub static kCIImageApplyOrientationProperty: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagetexturetarget?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/texturetarget?language=objc)
     #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCIImageTextureTarget: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimagetextureformat?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/textureformat?language=objc)
     #[deprecated = "Core Image OpenGL API deprecated. (Define CI_SILENCE_GL_DEPRECATION to silence these warnings)"]
     pub static kCIImageTextureFormat: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageauxiliarydepth?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliarydepth?language=objc)
     pub static kCIImageAuxiliaryDepth: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageauxiliarydisparity?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliarydisparity?language=objc)
     pub static kCIImageAuxiliaryDisparity: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageauxiliaryportraiteffectsmatte?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliaryportraiteffectsmatte?language=objc)
     pub static kCIImageAuxiliaryPortraitEffectsMatte: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageauxiliarysemanticsegmentationskinmatte?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliarysemanticsegmentationskinmatte?language=objc)
     pub static kCIImageAuxiliarySemanticSegmentationSkinMatte: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageauxiliarysemanticsegmentationhairmatte?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliarysemanticsegmentationhairmatte?language=objc)
     pub static kCIImageAuxiliarySemanticSegmentationHairMatte: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageauxiliarysemanticsegmentationteethmatte?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliarysemanticsegmentationteethmatte?language=objc)
     pub static kCIImageAuxiliarySemanticSegmentationTeethMatte: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageauxiliarysemanticsegmentationglassesmatte?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliarysemanticsegmentationglassesmatte?language=objc)
     pub static kCIImageAuxiliarySemanticSegmentationGlassesMatte: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageauxiliarysemanticsegmentationskymatte?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliarysemanticsegmentationskymatte?language=objc)
     pub static kCIImageAuxiliarySemanticSegmentationSkyMatte: &'static CIImageOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageauxiliaryhdrgainmap?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/auxiliaryhdrgainmap?language=objc)
     pub static kCIImageAuxiliaryHDRGainMap: &'static CIImageOption;
 }
 
@@ -1199,27 +1199,27 @@ impl CIImage {
 pub type CIImageAutoAdjustmentOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageautoadjustenhance?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageautoadjustmentoption/enhance?language=objc)
     pub static kCIImageAutoAdjustEnhance: &'static CIImageAutoAdjustmentOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageautoadjustredeye?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageautoadjustmentoption/redeye?language=objc)
     pub static kCIImageAutoAdjustRedEye: &'static CIImageAutoAdjustmentOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageautoadjustfeatures?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageautoadjustmentoption/features?language=objc)
     pub static kCIImageAutoAdjustFeatures: &'static CIImageAutoAdjustmentOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageautoadjustcrop?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageautoadjustmentoption/crop?language=objc)
     pub static kCIImageAutoAdjustCrop: &'static CIImageAutoAdjustmentOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageautoadjustlevel?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageautoadjustmentoption/level?language=objc)
     pub static kCIImageAutoAdjustLevel: &'static CIImageAutoAdjustmentOption;
 }
 

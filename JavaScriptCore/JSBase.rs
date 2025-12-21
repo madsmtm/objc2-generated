@@ -8,7 +8,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/opaquejscontextgroup?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueJSContextGroup {
@@ -25,7 +24,6 @@ unsafe impl RefEncode for OpaqueJSContextGroup {
 /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextgroupref?language=objc)
 pub type JSContextGroupRef = *const OpaqueJSContextGroup;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/opaquejscontext?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueJSContext {
@@ -41,7 +39,6 @@ unsafe impl RefEncode for OpaqueJSContext {
 /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jscontextref?language=objc)
 pub type JSContextRef = *const OpaqueJSContext;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/opaquejsstring?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueJSString {
@@ -57,7 +54,6 @@ unsafe impl RefEncode for OpaqueJSString {
 /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsstringref?language=objc)
 pub type JSStringRef = *mut OpaqueJSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/opaquejsclass?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueJSClass {
@@ -73,7 +69,6 @@ unsafe impl RefEncode for OpaqueJSClass {
 /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jsclassref?language=objc)
 pub type JSClassRef = *mut OpaqueJSClass;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/opaquejspropertynamearray?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueJSPropertyNameArray {
@@ -90,7 +85,6 @@ unsafe impl RefEncode for OpaqueJSPropertyNameArray {
 /// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/jspropertynamearrayref?language=objc)
 pub type JSPropertyNameArrayRef = *mut OpaqueJSPropertyNameArray;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/opaquejspropertynameaccumulator?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueJSPropertyNameAccumulator {
@@ -111,7 +105,6 @@ pub type JSPropertyNameAccumulatorRef = *mut OpaqueJSPropertyNameAccumulator;
 pub type JSTypedArrayBytesDeallocator =
     Option<unsafe extern "C-unwind" fn(*mut c_void, *mut c_void)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/javascriptcore/opaquejsvalue?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueJSValue {

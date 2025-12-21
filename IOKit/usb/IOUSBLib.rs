@@ -8,10 +8,8 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbdeviceclassname?language=objc)
 pub const kIOUSBDeviceClassName: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUSBDevice\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiousbinterfaceclassname?language=objc)
 pub const kIOUSBInterfaceClassName: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOUSBInterface\0") };
 /// The object you use to access USB devices from user space, returned by all versions of the IOUSBFamily
@@ -19,8 +17,6 @@ pub const kIOUSBInterfaceClassName: &CStr =
 ///
 /// The functions listed here will work with any version of the IOUSBDeviceInterface, including
 /// the one shipped with Mac OS X version 10.0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct100?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -395,8 +391,6 @@ unsafe impl RefEncode for IOUSBDeviceStruct100 {
 ///
 /// The functions listed here will work with any version of the IOUSBDeviceInterface, including
 /// the one shipped with Mac OS X version 10.0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface100?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBDeviceInterface100 = IOUSBDeviceStruct100;
 
@@ -406,8 +400,6 @@ pub type IOUSBDeviceInterface100 = IOUSBDeviceStruct100;
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface and
 /// some new functions that are available on Mac OS X version 10.0.4 and later.
 /// Super: IOUSBDeviceInterface
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct182?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -650,8 +642,6 @@ unsafe impl RefEncode for IOUSBDeviceStruct182 {
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface and
 /// some new functions that are available on Mac OS X version 10.0.4 and later.
 /// Super: IOUSBDeviceInterface
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface182?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBDeviceInterface182 = IOUSBDeviceStruct182;
 
@@ -661,8 +651,6 @@ pub type IOUSBDeviceInterface182 = IOUSBDeviceStruct182;
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface,
 /// IOUSBDeviceInterface182, and some new functions that are available on Mac OS X version 10.1.2 and later.
 /// Super: IOUSBDeviceInterface182
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct187?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -834,8 +822,6 @@ unsafe impl RefEncode for IOUSBDeviceStruct187 {
 /// The functions listed here include all of the functions defined for the IOUSBDeviceInterface,
 /// IOUSBDeviceInterface182, and some new functions that are available on Mac OS X version 10.1.2 and later.
 /// Super: IOUSBDeviceInterface182
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface187?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBDeviceInterface187 = IOUSBDeviceStruct187;
 
@@ -846,8 +832,6 @@ pub type IOUSBDeviceInterface187 = IOUSBDeviceStruct187;
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, and some new functions that are available
 /// on Mac OS X version 10.2.3 and later.
 /// Super: IOUSBDeviceInterface187
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct197?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -1033,8 +1017,6 @@ unsafe impl RefEncode for IOUSBDeviceStruct197 {
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, and some new functions that are available
 /// on Mac OS X version 10.2.3 and later.
 /// Super: IOUSBDeviceInterface187
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface197?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBDeviceInterface197 = IOUSBDeviceStruct197;
 
@@ -1045,8 +1027,6 @@ pub type IOUSBDeviceInterface197 = IOUSBDeviceStruct197;
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, IOUSBDeviceInterface197, and some new functions that are available
 /// on Mac OS X version 10.2.3 and later.
 /// Super: IOUSBDeviceInterface197
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct245?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -1205,8 +1185,6 @@ unsafe impl RefEncode for IOUSBDeviceStruct245 {
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, IOUSBDeviceInterface197, and some new functions that are available
 /// on Mac OS X version 10.2.3 and later.
 /// Super: IOUSBDeviceInterface197
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface245?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBDeviceInterface245 = IOUSBDeviceStruct245;
 
@@ -1216,8 +1194,6 @@ pub type IOUSBDeviceInterface245 = IOUSBDeviceStruct245;
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, IOUSBDeviceInterface197, IOUSBDeviceInterface245,
 /// and some new functions that are available on Mac OS X version 10.5 and later.
 /// Super: IOUSBDeviceInterface245
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct300?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -1390,8 +1366,6 @@ unsafe impl RefEncode for IOUSBDeviceStruct300 {
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, IOUSBDeviceInterface197, IOUSBDeviceInterface245,
 /// and some new functions that are available on Mac OS X version 10.5 and later.
 /// Super: IOUSBDeviceInterface245
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface300?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBDeviceInterface300 = IOUSBDeviceStruct300;
 
@@ -1401,8 +1375,6 @@ pub type IOUSBDeviceInterface300 = IOUSBDeviceStruct300;
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, IOUSBDeviceInterface197, IOUSBDeviceInterface245, or IOUSBDeviceInterface300
 /// and some new functions that are available on Mac OS X version 10.5.4 and later.
 /// Super: IOUSBDeviceInterface300
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct320?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -1622,8 +1594,6 @@ unsafe impl RefEncode for IOUSBDeviceStruct320 {
 /// IOUSBDeviceInterface182, IOUSBDeviceInterface187, IOUSBDeviceInterface197, IOUSBDeviceInterface245, or IOUSBDeviceInterface300
 /// and some new functions that are available on Mac OS X version 10.5.4 and later.
 /// Super: IOUSBDeviceInterface300
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface320?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBDeviceInterface320 = IOUSBDeviceStruct320;
 
@@ -1631,8 +1601,6 @@ pub type IOUSBDeviceInterface320 = IOUSBDeviceStruct320;
 ///
 /// This object is functionally identical to IOUSBDeviceInterface320 on macOS, and includes some new functions that are only available on iOS.
 /// Super: IOUSBDeviceInterface320
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct400?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -1802,8 +1770,6 @@ unsafe impl RefEncode for IOUSBDeviceStruct400 {
 ///
 /// This object is functionally identical to IOUSBDeviceInterface320 on macOS, and includes some new functions that are only available on iOS.
 /// Super: IOUSBDeviceInterface320
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface400?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBDeviceInterface400 = IOUSBDeviceStruct400;
 
@@ -1811,8 +1777,6 @@ pub type IOUSBDeviceInterface400 = IOUSBDeviceStruct400;
 ///
 /// The functions listed here include all of the functions defined for IOUSBDeviceInterface400, and some new functions that are available on Mac OS X version 10.7.3 and later.
 /// Super: IOUSBDeviceInterface400
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct500?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -1998,8 +1962,6 @@ unsafe impl RefEncode for IOUSBDeviceStruct500 {
 ///
 /// The functions listed here include all of the functions defined for IOUSBDeviceInterface400, and some new functions that are available on Mac OS X version 10.7.3 and later.
 /// Super: IOUSBDeviceInterface400
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface500?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBDeviceInterface500 = IOUSBDeviceStruct500;
 
@@ -2007,8 +1969,6 @@ pub type IOUSBDeviceInterface500 = IOUSBDeviceStruct500;
 ///
 /// The functions listed here include all of the functions defined for IOUSBDeviceInterface500, and some new functions that are available on Mac OS X version 10.9 and later.
 /// Super: IOUSBDeviceInterface500
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct650?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -2259,8 +2219,6 @@ unsafe impl RefEncode for IOUSBDeviceStruct650 {
 ///
 /// The functions listed here include all of the functions defined for IOUSBDeviceInterface500, and some new functions that are available on Mac OS X version 10.9 and later.
 /// Super: IOUSBDeviceInterface500
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface650?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBDeviceInterface650 = IOUSBDeviceStruct650;
 
@@ -2268,8 +2226,6 @@ pub type IOUSBDeviceInterface650 = IOUSBDeviceStruct650;
 ///
 /// The functions listed here include all of the functions defined for IOUSBDeviceInterface650, and some new functions that are available on macOS 10.14 and later.
 /// Super: IOUSBDeviceInterface650
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdevicestruct942?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -2468,12 +2424,9 @@ unsafe impl RefEncode for IOUSBDeviceStruct942 {
 ///
 /// The functions listed here include all of the functions defined for IOUSBDeviceInterface650, and some new functions that are available on macOS 10.14 and later.
 /// Super: IOUSBDeviceInterface650
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface942?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBDeviceInterface942 = IOUSBDeviceStruct942;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbdeviceinterface?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBDeviceInterface = IOUSBDeviceInterface942;
 
@@ -2482,8 +2435,6 @@ pub type IOUSBDeviceInterface = IOUSBDeviceInterface942;
 ///
 /// The functions listed here will work with any version of the IOUSBInterfaceInterface, including
 /// the one shipped with Mac OS X version 10.0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct100?language=objc)
 #[cfg(all(feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -3133,8 +3084,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct100 {
 ///
 /// The functions listed here will work with any version of the IOUSBInterfaceInterface, including
 /// the one shipped with Mac OS X version 10.0.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface100?language=objc)
 #[cfg(all(feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface100 = IOUSBInterfaceStruct100;
 
@@ -3144,8 +3093,6 @@ pub type IOUSBInterfaceInterface100 = IOUSBInterfaceStruct100;
 /// The functions listed here include all of the functions defined for the IOUSBInterfaceInterface and
 /// some new functions that are available on Mac OS X version 10.0.4 and later.
 /// Super: IOUSBInterfaceInterface
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct182?language=objc)
 #[cfg(all(feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -3592,8 +3539,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct182 {
 /// The functions listed here include all of the functions defined for the IOUSBInterfaceInterface and
 /// some new functions that are available on Mac OS X version 10.0.4 and later.
 /// Super: IOUSBInterfaceInterface
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface182?language=objc)
 #[cfg(all(feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface182 = IOUSBInterfaceStruct182;
 
@@ -3604,8 +3549,6 @@ pub type IOUSBInterfaceInterface182 = IOUSBInterfaceStruct182;
 /// IOUSBInterfaceInterface182, and some new functions that are available on Mac OS X version 10.1
 /// and later.
 /// Super: IOUSBInterfaceInterface182
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct183?language=objc)
 #[cfg(all(feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -3841,8 +3784,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct183 {
 /// IOUSBInterfaceInterface182, and some new functions that are available on Mac OS X version 10.1
 /// and later.
 /// Super: IOUSBInterfaceInterface182
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface183?language=objc)
 #[cfg(all(feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface183 = IOUSBInterfaceStruct183;
 
@@ -3853,8 +3794,6 @@ pub type IOUSBInterfaceInterface183 = IOUSBInterfaceStruct183;
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, and some new functions that are available
 /// on Mac OS X version 10.2 and later.
 /// Super: IOUSBInterfaceInterface183
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct190?language=objc)
 #[cfg(all(feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -4184,8 +4123,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct190 {
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, and some new functions that are available
 /// on Mac OS X version 10.2 and later.
 /// Super: IOUSBInterfaceInterface183
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface190?language=objc)
 #[cfg(all(feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface190 = IOUSBInterfaceStruct190;
 
@@ -4196,8 +4133,6 @@ pub type IOUSBInterfaceInterface190 = IOUSBInterfaceStruct190;
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, and some new
 /// functions that are available on Mac OS X version 10.2.3 and later.
 /// Super: IOUSBInterfaceInterface190
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct192?language=objc)
 #[cfg(all(feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -4690,8 +4625,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct192 {
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, and some new
 /// functions that are available on Mac OS X version 10.2.3 and later.
 /// Super: IOUSBInterfaceInterface190
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface192?language=objc)
 #[cfg(all(feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface192 = IOUSBInterfaceStruct192;
 
@@ -4702,8 +4635,6 @@ pub type IOUSBInterfaceInterface192 = IOUSBInterfaceStruct192;
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, IOUSBInterfaceInterface192,
 /// and some new functions that are available on Mac OS X version 10.2.5 and later.
 /// Super: IOUSBInterfaceInterface192
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct197?language=objc)
 #[cfg(all(feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -5029,8 +4960,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct197 {
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, IOUSBInterfaceInterface192,
 /// and some new functions that are available on Mac OS X version 10.2.5 and later.
 /// Super: IOUSBInterfaceInterface192
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface197?language=objc)
 #[cfg(all(feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface197 = IOUSBInterfaceStruct197;
 
@@ -5041,8 +4970,6 @@ pub type IOUSBInterfaceInterface197 = IOUSBInterfaceStruct197;
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, IOUSBInterfaceInterface192
 /// and IOUSBInterfaceInterface197, as well as some new functions that are available on Mac OS X version 10.4 and later.
 /// Super: IOUSBInterfaceInterface197
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct220?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -5370,8 +5297,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct220 {
 /// IOUSBInterfaceInterface182, IOUSBInterfaceInterface183, IOUSBInterfaceInterface190, IOUSBInterfaceInterface192
 /// and IOUSBInterfaceInterface197, as well as some new functions that are available on Mac OS X version 10.4 and later.
 /// Super: IOUSBInterfaceInterface197
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface220?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface220 = IOUSBInterfaceStruct220;
 
@@ -5383,8 +5308,6 @@ pub type IOUSBInterfaceInterface220 = IOUSBInterfaceStruct220;
 /// IOUSBInterfaceInterface197 and IOUSBInterfaceInterface220, as well as some new functions that are available on
 /// Mac OS X version 10.4.6 and later.
 /// Super: IOUSBInterfaceInterface220
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct245?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -5691,8 +5614,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct245 {
 /// IOUSBInterfaceInterface197 and IOUSBInterfaceInterface220, as well as some new functions that are available on
 /// Mac OS X version 10.4.6 and later.
 /// Super: IOUSBInterfaceInterface220
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface245?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface245 = IOUSBInterfaceStruct245;
 
@@ -5704,8 +5625,6 @@ pub type IOUSBInterfaceInterface245 = IOUSBInterfaceStruct245;
 /// IOUSBInterfaceInterface197, IOUSBInterfaceInterface220 and IOUSBInterfaceInterface245, as well as some new functions
 /// that are available on Mac OS X version 10.5 and later.
 /// Super: IOUSBInterfaceInterface245
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct300?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -6027,8 +5946,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct300 {
 /// IOUSBInterfaceInterface197, IOUSBInterfaceInterface220 and IOUSBInterfaceInterface245, as well as some new functions
 /// that are available on Mac OS X version 10.5 and later.
 /// Super: IOUSBInterfaceInterface245
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface300?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface300 = IOUSBInterfaceStruct300;
 
@@ -6036,8 +5953,6 @@ pub type IOUSBInterfaceInterface300 = IOUSBInterfaceStruct300;
 ///
 /// This object is functionally identical to IOUSBInterfaceInterface300 on macOS, and includes some new functions that are only available on iOS.
 /// Super: IOUSBInterfaceInterface300
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct398?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -6343,8 +6258,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct398 {
 ///
 /// This object is functionally identical to IOUSBInterfaceInterface300 on macOS, and includes some new functions that are only available on iOS.
 /// Super: IOUSBInterfaceInterface300
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface398?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface398 = IOUSBInterfaceStruct398;
 
@@ -6352,8 +6265,6 @@ pub type IOUSBInterfaceInterface398 = IOUSBInterfaceStruct398;
 ///
 /// This object is functionally identical to IOUSBInterfaceInterface300 on macOS, and includes some new functions that are only available on iOS.
 /// Super: IOUSBInterfaceInterface398
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct400?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -6659,8 +6570,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct400 {
 ///
 /// This object is functionally identical to IOUSBInterfaceInterface300 on macOS, and includes some new functions that are only available on iOS.
 /// Super: IOUSBInterfaceInterface398
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface400?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface400 = IOUSBInterfaceStruct400;
 
@@ -6669,8 +6578,6 @@ pub type IOUSBInterfaceInterface400 = IOUSBInterfaceStruct400;
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface400, as well as some new functions that are available on Mac OS X version 10.7.3 and later.
 /// Super: IOUSBInterfaceInterface400
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct500?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -6993,8 +6900,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct500 {
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface400, as well as some new functions that are available on Mac OS X version 10.7.3 and later.
 /// Super: IOUSBInterfaceInterface400
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface500?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface500 = IOUSBInterfaceStruct500;
 
@@ -7003,8 +6908,6 @@ pub type IOUSBInterfaceInterface500 = IOUSBInterfaceStruct500;
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface500, as well as some new functions that are available on Mac OS X version 10.8.2 and later.
 /// Super: IOUSBInterfaceInterface500
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct550?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -7662,8 +7565,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct550 {
 ///
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface500, as well as some new functions that are available on Mac OS X version 10.8.2 and later.
 /// Super: IOUSBInterfaceInterface500
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface550?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface550 = IOUSBInterfaceStruct550;
 
@@ -7673,8 +7574,6 @@ pub type IOUSBInterfaceInterface550 = IOUSBInterfaceStruct550;
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface550, as well as some new functions that are available on
 /// Mac OS X version 10.9 and later.
 /// Super: IOUSBInterfaceInterface550
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct650?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -8114,8 +8013,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct650 {
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface550, as well as some new functions that are available on
 /// Mac OS X version 10.9 and later.
 /// Super: IOUSBInterfaceInterface550
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface650?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface650 = IOUSBInterfaceStruct650;
 
@@ -8125,8 +8022,6 @@ pub type IOUSBInterfaceInterface650 = IOUSBInterfaceStruct650;
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface650, as well as some new functions that are available on
 /// Mac OS X version 10.9 and later.
 /// Super: IOUSBInterfaceInterface650
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct700?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -8534,8 +8429,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct700 {
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface650, as well as some new functions that are available on
 /// Mac OS X version 10.9 and later.
 /// Super: IOUSBInterfaceInterface650
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface700?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface700 = IOUSBInterfaceStruct700;
 
@@ -8545,8 +8438,6 @@ pub type IOUSBInterfaceInterface700 = IOUSBInterfaceStruct700;
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface700, as well as some new functions that are available on
 /// Mac OS X version 10.11 and later.
 /// Super: IOUSBInterfaceInterface700
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct800?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -8971,8 +8862,6 @@ unsafe impl RefEncode for IOUSBInterfaceStruct800 {
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface700, as well as some new functions that are available on
 /// Mac OS X version 10.11 and later.
 /// Super: IOUSBInterfaceInterface700
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface800?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface800 = IOUSBInterfaceStruct800;
 
@@ -8982,8 +8871,6 @@ pub type IOUSBInterfaceInterface800 = IOUSBInterfaceStruct800;
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface800, as well as some new functions that are available on
 /// macOS 10.14 and later.
 /// Super: IOUSBInterfaceInterface800
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfacestruct942?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -9395,11 +9282,8 @@ unsafe impl RefEncode for IOUSBInterfaceStruct942 {
 /// The functions listed here include all of the functions defined for IOUSBInterfaceInterface800, as well as some new functions that are available on
 /// macOS 10.14 and later.
 /// Super: IOUSBInterfaceInterface800
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface942?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface942 = IOUSBInterfaceStruct942;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iousbinterfaceinterface?language=objc)
 #[cfg(all(feature = "AppleUSBDefinitions", feature = "USB", feature = "libc"))]
 pub type IOUSBInterfaceInterface = IOUSBInterfaceInterface942;

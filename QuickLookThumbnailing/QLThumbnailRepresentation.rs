@@ -15,7 +15,7 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentationtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailrepresentation/representationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

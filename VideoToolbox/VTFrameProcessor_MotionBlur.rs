@@ -10,7 +10,7 @@ use crate::*;
 
 /// Configuration value you set to prioritize quality or performance.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfigurationqualityprioritization?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfiguration/qualityprioritization-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -39,7 +39,7 @@ unsafe impl RefEncode for VTMotionBlurConfigurationQualityPrioritization {
 /// A new enum case with higher revision number is added when the processing algorithm is updated.
 /// The ``VTMotionBlurConfiguration/defaultRevision`` property provides the default algorithm revision.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfigurationrevision?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurconfiguration/revision-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -74,7 +74,7 @@ unsafe impl RefEncode for VTMotionBlurConfigurationRevision {
 /// previous submission. Typically, this indicates a jump or a skip in the frame sequence. The processor clears internal
 /// caches when it receives this value in ``VTFrameProcessor/processWithParameters`` function call.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurparameterssubmissionmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionblurparameters/submissionmode-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

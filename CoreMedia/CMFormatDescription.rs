@@ -754,27 +754,27 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_cleanaperture?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_cleanaperture-swift.var?language=objc)
     pub static kCMFormatDescriptionExtension_CleanAperture: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanaperturewidth?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanaperturewidth-swift.var?language=objc)
     pub static kCMFormatDescriptionKey_CleanApertureWidth: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanapertureheight?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanapertureheight-swift.var?language=objc)
     pub static kCMFormatDescriptionKey_CleanApertureHeight: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanaperturehorizontaloffset?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanaperturehorizontaloffset-swift.var?language=objc)
     pub static kCMFormatDescriptionKey_CleanApertureHorizontalOffset: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanapertureverticaloffset?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_cleanapertureverticaloffset-swift.var?language=objc)
     pub static kCMFormatDescriptionKey_CleanApertureVerticalOffset: &'static CFString;
 }
 
@@ -799,67 +799,67 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_fieldcount?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_fieldcount-swift.var?language=objc)
     pub static kCMFormatDescriptionExtension_FieldCount: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_fielddetail?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_fielddetail-swift.var?language=objc)
     pub static kCMFormatDescriptionExtension_FieldDetail: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionfielddetail_temporaltopfirst?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionfielddetail_temporaltopfirst-swift.var?language=objc)
     pub static kCMFormatDescriptionFieldDetail_TemporalTopFirst: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionfielddetail_temporalbottomfirst?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionfielddetail_temporalbottomfirst-swift.var?language=objc)
     pub static kCMFormatDescriptionFieldDetail_TemporalBottomFirst: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionfielddetail_spatialfirstlineearly?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionfielddetail_spatialfirstlineearly-swift.var?language=objc)
     pub static kCMFormatDescriptionFieldDetail_SpatialFirstLineEarly: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionfielddetail_spatialfirstlinelate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionfielddetail_spatialfirstlinelate-swift.var?language=objc)
     pub static kCMFormatDescriptionFieldDetail_SpatialFirstLineLate: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_pixelaspectratio?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_pixelaspectratio-swift.var?language=objc)
     pub static kCMFormatDescriptionExtension_PixelAspectRatio: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_pixelaspectratiohorizontalspacing?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_pixelaspectratiohorizontalspacing-swift.var?language=objc)
     pub static kCMFormatDescriptionKey_PixelAspectRatioHorizontalSpacing: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_pixelaspectratioverticalspacing?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionkey_pixelaspectratioverticalspacing-swift.var?language=objc)
     pub static kCMFormatDescriptionKey_PixelAspectRatioVerticalSpacing: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_colorprimaries?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_colorprimaries-swift.var?language=objc)
     pub static kCMFormatDescriptionExtension_ColorPrimaries: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncolorprimaries_itu_r_709_2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncolorprimaries_itu_r_709_2-swift.var?language=objc)
     pub static kCMFormatDescriptionColorPrimaries_ITU_R_709_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncolorprimaries_ebu_3213?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncolorprimaries_ebu_3213-swift.var?language=objc)
     pub static kCMFormatDescriptionColorPrimaries_EBU_3213: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncolorprimaries_smpte_c?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptioncolorprimaries_smpte_c-swift.var?language=objc)
     pub static kCMFormatDescriptionColorPrimaries_SMPTE_C: &'static CFString;
 }
 
@@ -884,22 +884,22 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_transferfunction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_transferfunction-swift.var?language=objc)
     pub static kCMFormatDescriptionExtension_TransferFunction: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_itu_r_709_2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_itu_r_709_2-swift.var?language=objc)
     pub static kCMFormatDescriptionTransferFunction_ITU_R_709_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_smpte_240m_1995?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_smpte_240m_1995-swift.var?language=objc)
     pub static kCMFormatDescriptionTransferFunction_SMPTE_240M_1995: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_usegamma?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptiontransferfunction_usegamma-swift.var?language=objc)
     pub static kCMFormatDescriptionTransferFunction_UseGamma: &'static CFString;
 }
 
@@ -934,27 +934,27 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_gammalevel?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_gammalevel-swift.var?language=objc)
     pub static kCMFormatDescriptionExtension_GammaLevel: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_ycbcrmatrix?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_ycbcrmatrix-swift.var?language=objc)
     pub static kCMFormatDescriptionExtension_YCbCrMatrix: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionycbcrmatrix_itu_r_709_2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionycbcrmatrix_itu_r_709_2-swift.var?language=objc)
     pub static kCMFormatDescriptionYCbCrMatrix_ITU_R_709_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionycbcrmatrix_itu_r_601_4?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionycbcrmatrix_itu_r_601_4-swift.var?language=objc)
     pub static kCMFormatDescriptionYCbCrMatrix_ITU_R_601_4: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionycbcrmatrix_smpte_240m_1995?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionycbcrmatrix_smpte_240m_1995-swift.var?language=objc)
     pub static kCMFormatDescriptionYCbCrMatrix_SMPTE_240M_1995: &'static CFString;
 }
 
@@ -979,47 +979,47 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_chromalocationtopfield?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_chromalocationtopfield-swift.var?language=objc)
     pub static kCMFormatDescriptionExtension_ChromaLocationTopField: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_chromalocationbottomfield?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_chromalocationbottomfield-swift.var?language=objc)
     pub static kCMFormatDescriptionExtension_ChromaLocationBottomField: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_left?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_left-swift.var?language=objc)
     pub static kCMFormatDescriptionChromaLocation_Left: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_center?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_center-swift.var?language=objc)
     pub static kCMFormatDescriptionChromaLocation_Center: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_topleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_topleft-swift.var?language=objc)
     pub static kCMFormatDescriptionChromaLocation_TopLeft: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_top?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_top-swift.var?language=objc)
     pub static kCMFormatDescriptionChromaLocation_Top: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_bottomleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_bottomleft-swift.var?language=objc)
     pub static kCMFormatDescriptionChromaLocation_BottomLeft: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_bottom?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_bottom-swift.var?language=objc)
     pub static kCMFormatDescriptionChromaLocation_Bottom: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_dv420?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionchromalocation_dv420-swift.var?language=objc)
     pub static kCMFormatDescriptionChromaLocation_DV420: &'static CFString;
 }
 
@@ -1121,7 +1121,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_verbatimimagedescription?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmformatdescriptionextension_verbatimimagedescription-swift.var?language=objc)
     pub static kCMFormatDescriptionExtension_VerbatimImageDescription: &'static CFString;
 }
 

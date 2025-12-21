@@ -9,7 +9,7 @@ use crate::*;
 
 /// The alert styles used by the `alertStyle` property on instances of `NSAlert`.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertstyle?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalert/style?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -39,15 +39,15 @@ unsafe impl RefEncode for NSAlertStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertfirstbuttonreturn?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/alertfirstbuttonreturn?language=objc)
 #[cfg(feature = "NSApplication")]
 pub static NSAlertFirstButtonReturn: NSModalResponse = 1000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertsecondbuttonreturn?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/alertsecondbuttonreturn?language=objc)
 #[cfg(feature = "NSApplication")]
 pub static NSAlertSecondButtonReturn: NSModalResponse = 1001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsalertthirdbuttonreturn?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/alertthirdbuttonreturn?language=objc)
 #[cfg(feature = "NSApplication")]
 pub static NSAlertThirdButtonReturn: NSModalResponse = 1002;
 

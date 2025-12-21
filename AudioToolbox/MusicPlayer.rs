@@ -465,7 +465,6 @@ unsafe impl RefEncode for CABarBeatTime {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaquemusicplayer?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueMusicPlayer {
@@ -480,7 +479,6 @@ unsafe impl RefEncode for OpaqueMusicPlayer {
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicplayer?language=objc)
 pub type MusicPlayer = *mut OpaqueMusicPlayer;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaquemusicsequence?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueMusicSequence {
@@ -495,7 +493,6 @@ unsafe impl RefEncode for OpaqueMusicSequence {
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musicsequence?language=objc)
 pub type MusicSequence = *mut OpaqueMusicSequence;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaquemusictrack?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueMusicTrack {
@@ -510,7 +507,6 @@ unsafe impl RefEncode for OpaqueMusicTrack {
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/musictrack?language=objc)
 pub type MusicTrack = *mut OpaqueMusicTrack;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaquemusiceventiterator?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueMusicEventIterator {

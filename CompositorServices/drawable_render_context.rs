@@ -10,7 +10,6 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_render_context?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct cp_drawable_render_context {

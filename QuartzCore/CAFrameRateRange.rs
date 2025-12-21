@@ -30,7 +30,7 @@ unsafe impl RefEncode for CAFrameRateRange {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caframeraterangedefault?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caframeraterange/default?language=objc)
     pub static CAFrameRateRangeDefault: CAFrameRateRange;
 }
 

@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscelltype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/celltype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -31,7 +31,7 @@ unsafe impl RefEncode for NSCellType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/attribute?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -81,7 +81,7 @@ unsafe impl RefEncode for NSCellAttribute {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellimageposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/imageposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -145,20 +145,20 @@ unsafe impl RefEncode for NSImageScaling {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolstatevalue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/statevalue?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSControlStateValue = NSInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolstatevaluemixed?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/statevalue/mixed?language=objc)
 pub static NSControlStateValueMixed: NSControlStateValue = -1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolstatevalueoff?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/statevalue/off?language=objc)
 pub static NSControlStateValueOff: NSControlStateValue = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolstatevalueon?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/statevalue/on?language=objc)
 pub static NSControlStateValueOn: NSControlStateValue = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellstylemask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/stylemask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -210,7 +210,7 @@ unsafe impl RefEncode for NSControlTint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolsize?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/controlsize-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1092,7 +1092,7 @@ impl NSCell {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellhitresult?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/hitresult?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1148,7 +1148,7 @@ impl NSCell {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackgroundstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/backgroundstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1350,17 +1350,17 @@ impl NSCell {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackgroundstylelight?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/backgroundstyle/light?language=objc)
 #[deprecated]
 pub static NSBackgroundStyleLight: NSBackgroundStyle =
     NSBackgroundStyle(NSBackgroundStyle::Normal.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackgroundstyledark?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/backgroundstyle/dark?language=objc)
 #[deprecated]
 pub static NSBackgroundStyleDark: NSBackgroundStyle =
     NSBackgroundStyle(NSBackgroundStyle::Emphasized.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscellstatevalue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscell/statevalue?language=objc)
 #[deprecated]
 pub type NSCellStateValue = NSControlStateValue;
 
@@ -1389,7 +1389,7 @@ pub static NSSmallControlSize: NSControlSize = NSControlSize(NSControlSize::Smal
 pub static NSMiniControlSize: NSControlSize = NSControlSize(NSControlSize::Mini.0);
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltintdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/currentcontroltintdidchangenotification?language=objc)
     #[deprecated = "Changes to the accent color can be manually observed by implementing -viewDidChangeEffectiveAppearance in a NSView subclass, or by Key-Value Observing the -effectiveAppearance property on NSApplication. Views are automatically redisplayed when the accent color changes."]
     pub static NSControlTintDidChangeNotification: &'static NSNotificationName;
 }

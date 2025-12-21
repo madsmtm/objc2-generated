@@ -17,7 +17,7 @@ extern_class!(
     ///
     /// Provides access to action properties such as popup, icon, and title, with tab-specific values.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionaction?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/action?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

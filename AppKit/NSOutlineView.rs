@@ -1419,53 +1419,53 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineviewdisclosurebuttonkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/disclosurebuttonidentifier?language=objc)
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub static NSOutlineViewDisclosureButtonKey: &'static NSUserInterfaceItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineviewshowhidebuttonkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/showhidebuttonidentifier?language=objc)
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub static NSOutlineViewShowHideButtonKey: &'static NSUserInterfaceItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineviewselectiondidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/selectiondidchangenotification?language=objc)
     pub static NSOutlineViewSelectionDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineviewcolumndidmovenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/columndidmovenotification?language=objc)
     pub static NSOutlineViewColumnDidMoveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineviewcolumndidresizenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/columndidresizenotification?language=objc)
     pub static NSOutlineViewColumnDidResizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineviewselectionischangingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/selectionischangingnotification?language=objc)
     pub static NSOutlineViewSelectionIsChangingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineviewitemwillexpandnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/itemwillexpandnotification?language=objc)
     pub static NSOutlineViewItemWillExpandNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineviewitemdidexpandnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/itemdidexpandnotification?language=objc)
     pub static NSOutlineViewItemDidExpandNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineviewitemwillcollapsenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/itemwillcollapsenotification?language=objc)
     pub static NSOutlineViewItemWillCollapseNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineviewitemdidcollapsenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsoutlineview/itemdidcollapsenotification?language=objc)
     pub static NSOutlineViewItemDidCollapseNotification: &'static NSNotificationName;
 }

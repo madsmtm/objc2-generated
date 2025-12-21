@@ -8,7 +8,7 @@ use crate::*;
 
 /// Anxiety risk level determined by GAD-7 assessment.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessmentrisk?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessment/risk-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for HKGAD7AssessmentRisk {
 
 /// Answer to question on GAD-7 assessment.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessmentanswer?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkgad7assessment/answer?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

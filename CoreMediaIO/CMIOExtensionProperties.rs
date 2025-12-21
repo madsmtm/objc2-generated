@@ -21,7 +21,7 @@ extern "C" {
     ///
     /// The property state for CMIOExtensionPropertyProviderName is a string with a readonly attribute.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertyprovidername?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/providername?language=objc)
     pub static CMIOExtensionPropertyProviderName: &'static CMIOExtensionProperty;
 }
 
@@ -30,7 +30,7 @@ extern "C" {
     ///
     /// The property state for CMIOExtensionPropertyProviderManufacturer is a string with a readonly attribute.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertyprovidermanufacturer?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/providermanufacturer?language=objc)
     pub static CMIOExtensionPropertyProviderManufacturer: &'static CMIOExtensionProperty;
 }
 
@@ -39,7 +39,7 @@ extern "C" {
     ///
     /// The property state for CMIOExtensionPropertyDeviceModel is a string with a readonly attribute.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertydevicemodel?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/devicemodel?language=objc)
     pub static CMIOExtensionPropertyDeviceModel: &'static CMIOExtensionProperty;
 }
 
@@ -50,7 +50,7 @@ extern "C" {
     /// to all requests just as if it were active, but the stream(s) will not provide any data.
     /// The property state for CMIOExtensionPropertyDeviceIsSuspended is a number as boolean with a readonly attribute.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertydeviceissuspended?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/deviceissuspended?language=objc)
     pub static CMIOExtensionPropertyDeviceIsSuspended: &'static CMIOExtensionProperty;
 }
 
@@ -61,7 +61,7 @@ extern "C" {
     /// <IOKit
     /// /audio/IOAudioTypes.h> and with a readonly attribute.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertydevicetransporttype?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/devicetransporttype?language=objc)
     pub static CMIOExtensionPropertyDeviceTransportType: &'static CMIOExtensionProperty;
 }
 
@@ -70,7 +70,7 @@ extern "C" {
     ///
     /// The property state for CMIOExtensionPropertyDeviceLinkedCoreAudioDeviceUID is a string with a readonly attribute.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertydevicelinkedcoreaudiodeviceuid?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/devicelinkedcoreaudiodeviceuid?language=objc)
     pub static CMIOExtensionPropertyDeviceLinkedCoreAudioDeviceUID: &'static CMIOExtensionProperty;
 }
 
@@ -79,7 +79,7 @@ extern "C" {
     ///
     /// The property state for CMIOExtensionPropertyDeviceCanBeDefaultInputDevice is a number representing a boolean value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertydevicecanbedefaultinputdevice?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/devicecanbedefaultinputdevice?language=objc)
     pub static CMIOExtensionPropertyDeviceCanBeDefaultInputDevice: &'static CMIOExtensionProperty;
 }
 
@@ -88,7 +88,7 @@ extern "C" {
     ///
     /// The property state for CMIOExtensionPropertyDeviceCanBeDefaultOutputDevice is a number representing a boolean value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertydevicecanbedefaultoutputdevice?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/devicecanbedefaultoutputdevice?language=objc)
     pub static CMIOExtensionPropertyDeviceCanBeDefaultOutputDevice: &'static CMIOExtensionProperty;
 }
 
@@ -97,7 +97,7 @@ extern "C" {
     ///
     /// The property state for CMIOExtensionPropertyDeviceLatency is a number containing the number of frames of latency in the CMIOExtensionDevice. Note that input and output latency may differ. Further, the CMIOExtensionDevice's CMIOExtensionStreams may have additional latency so they should be queried as well. If both the device and the stream say they have latency, then the total latency for the stream is the device latency summed with the stream latency. This property translates to the kCMIODevicePropertyLatency property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertydevicelatency?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/devicelatency?language=objc)
     pub static CMIOExtensionPropertyDeviceLatency: &'static CMIOExtensionProperty;
 }
 
@@ -106,7 +106,7 @@ extern "C" {
     ///
     /// The property state for CMIOExtensionPropertyStreamActiveFormatIndex is a number.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertystreamactiveformatindex?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streamactiveformatindex?language=objc)
     pub static CMIOExtensionPropertyStreamActiveFormatIndex: &'static CMIOExtensionProperty;
 }
 
@@ -115,7 +115,7 @@ extern "C" {
     ///
     /// The property state for CMIOExtensionPropertyStreamFrameDuration needs to be a dictionary representing a CMTime struct that is consistent with the frame duration specification provided by the current active format.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertystreamframeduration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streamframeduration?language=objc)
     pub static CMIOExtensionPropertyStreamFrameDuration: &'static CMIOExtensionProperty;
 }
 
@@ -124,7 +124,7 @@ extern "C" {
     ///
     /// The property state for CMIOExtensionPropertyStreamMaxFrameDuration needs to be a dictionary representing a CMTime struct.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertystreammaxframeduration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streammaxframeduration?language=objc)
     pub static CMIOExtensionPropertyStreamMaxFrameDuration: &'static CMIOExtensionProperty;
 }
 
@@ -133,7 +133,7 @@ extern "C" {
     ///
     /// The property state for CMIOExtensionPropertyStreamSinkBufferQueueSize is a number. This property translates to the kCMIOStreamPropertyOutputBufferQueueSize property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertystreamsinkbufferqueuesize?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streamsinkbufferqueuesize?language=objc)
     pub static CMIOExtensionPropertyStreamSinkBufferQueueSize: &'static CMIOExtensionProperty;
 }
 
@@ -142,7 +142,7 @@ extern "C" {
     ///
     /// The property state for CMIOExtensionPropertyStreamSinkBuffersRequiredForStartup is a number. This property translates to the kCMIOStreamPropertyOutputBuffersRequiredForStartup property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertystreamsinkbuffersrequiredforstartup?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streamsinkbuffersrequiredforstartup?language=objc)
     pub static CMIOExtensionPropertyStreamSinkBuffersRequiredForStartup:
         &'static CMIOExtensionProperty;
 }
@@ -153,7 +153,7 @@ extern "C" {
     /// A number that is incremented every time a stream's buffers are not being serviced fast enough.
     /// The property state for CMIOExtensionPropertyStreamSinkBufferUnderrunCount is a number with a readonly attribute. This property translates to the kCMIOStreamPropertyOutputBufferUnderrunCount property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertystreamsinkbufferunderruncount?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streamsinkbufferunderruncount?language=objc)
     pub static CMIOExtensionPropertyStreamSinkBufferUnderrunCount: &'static CMIOExtensionProperty;
 }
 
@@ -162,7 +162,7 @@ extern "C" {
     ///
     /// The property state for CMIOExtensionPropertyStreamSinkEndOfData is a number, 1 means that the stream has reached the end and a value of 0 means that more data is (or will be) available. This property translates to the kCMIOStreamPropertyEndOfData property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertystreamsinkendofdata?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streamsinkendofdata?language=objc)
     pub static CMIOExtensionPropertyStreamSinkEndOfData: &'static CMIOExtensionProperty;
 }
 
@@ -171,7 +171,7 @@ extern "C" {
     ///
     /// The property state for CMIOExtensionPropertyStreamLatency is a number containing the number of frames of latency in the CMIOExtensionStream. Note that the owning CMIOExtensionDevice may have additional latency so it should be queried as well. If both the device and the stream say they have latency, then the total latency for the stream is the device latency summed with the stream latency. This property translates to the kCMIOStreamPropertyLatency property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionpropertystreamlatency?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionproperty/streamlatency?language=objc)
     pub static CMIOExtensionPropertyStreamLatency: &'static CMIOExtensionProperty;
 }
 

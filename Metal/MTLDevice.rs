@@ -62,7 +62,7 @@ pub type MTLDeviceNotificationName = NSString;
 extern "C" {
     /// This notification is posted when a new Metal device is added to the system
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicewasaddednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationname/wasadded?language=objc)
     pub static MTLDeviceWasAddedNotification: &'static MTLDeviceNotificationName;
 }
 
@@ -72,7 +72,7 @@ extern "C" {
     /// device array prior to this notification being posted.  Applications should immediately begin the process of releasing all resources
     /// created on the given device, as well as any references to the device itself.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldeviceremovalrequestednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationname/removalrequested?language=objc)
     pub static MTLDeviceRemovalRequestedNotification: &'static MTLDeviceNotificationName;
 }
 
@@ -80,7 +80,7 @@ extern "C" {
     /// This notification is posted if the device is removed while there are still outstanding references to it, due to either a surprise
     /// or forced disconnect by the user.  Applications must expect that any attempt to use the device after this point will fail.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicewasremovednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldevicenotificationname/wasremoved?language=objc)
     pub static MTLDeviceWasRemovedNotification: &'static MTLDeviceNotificationName;
 }
 

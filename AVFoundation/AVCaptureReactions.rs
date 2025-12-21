@@ -20,56 +20,56 @@ pub type AVCaptureReactionType = NSString;
 extern "C" {
     /// Indicates a reaction which features a thumbs-up symbol.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypethumbsup?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/thumbsup?language=objc)
     pub static AVCaptureReactionTypeThumbsUp: &'static AVCaptureReactionType;
 }
 
 extern "C" {
     /// Indicates a reaction which features a thumbs-down symbol.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypethumbsdown?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/thumbsdown?language=objc)
     pub static AVCaptureReactionTypeThumbsDown: &'static AVCaptureReactionType;
 }
 
 extern "C" {
     /// Indicates a reaction which features balloons rising through the scene.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypeballoons?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/balloons?language=objc)
     pub static AVCaptureReactionTypeBalloons: &'static AVCaptureReactionType;
 }
 
 extern "C" {
     /// Indicates a reaction which features one or more heart symbols.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypeheart?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/heart?language=objc)
     pub static AVCaptureReactionTypeHeart: &'static AVCaptureReactionType;
 }
 
 extern "C" {
     /// Indicates a reaction which features fireworks bursting in the background.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypefireworks?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/fireworks?language=objc)
     pub static AVCaptureReactionTypeFireworks: &'static AVCaptureReactionType;
 }
 
 extern "C" {
     /// Indicates a reaction which features a dark and stormy night.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontyperain?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/rain?language=objc)
     pub static AVCaptureReactionTypeRain: &'static AVCaptureReactionType;
 }
 
 extern "C" {
     /// Indicates a reaction which features festive spots of color falling through the scene.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypeconfetti?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/confetti?language=objc)
     pub static AVCaptureReactionTypeConfetti: &'static AVCaptureReactionType;
 }
 
 extern "C" {
     /// Indicates a reaction which features a bright laser display projecting into the scene.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontypelasers?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturereactiontype/lasers?language=objc)
     pub static AVCaptureReactionTypeLasers: &'static AVCaptureReactionType;
 }
 

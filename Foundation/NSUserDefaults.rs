@@ -9,7 +9,7 @@ use crate::*;
 extern "C" {
     /// NSGlobalDomain identifies a domain shared between all applications for a given user. NSGlobalDomain is automatically included in all search lists, after the entries for the search list's domain.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsglobaldomain?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/globaldomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSGlobalDomain: &'static NSString;
 }
@@ -17,7 +17,7 @@ extern "C" {
 extern "C" {
     /// NSArgumentDomain identifies a search list entry containing the commandline arguments the application was launched with, if any. Arguments must be formatted as '-key plistvalue'. NSArgumentDomain is automatically included in all search lists, after forced defaults, but before all other entries. This can be useful for testing purposes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsargumentdomain?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/argumentdomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSArgumentDomain: &'static NSString;
 }
@@ -25,7 +25,7 @@ extern "C" {
 extern "C" {
     /// NSRegistrationDomain identifies a search list entry containing all defaults set with -registerDefaults:, if any. NSRegistrationDomain is automatically included as the final entry of all search lists.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsregistrationdomain?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/registrationdomain?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSRegistrationDomain: &'static NSString;
 }
@@ -60,7 +60,7 @@ extern_class!(
     ///
     /// NSUserDefaults can be observed using Key-Value Observing for any key stored in it. Using NSKeyValueObservingOptionPrior to observe changes from other processes or devices will behave as though NSKeyValueObservingOptionPrior was not specified.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserdefaults?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUserDefaults;
@@ -364,7 +364,7 @@ impl DefaultRetained for NSUserDefaults {
 extern "C" {
     /// NSUserDefaultsSizeLimitExceededNotification is posted on the main queue when more data is stored in user defaults than is allowed. Currently there is no limit for local user defaults except on tvOS, where a warning notification will be posted at 512kB, and the process terminated at 1MB. For ubiquitous defaults, the limit depends on the logged in iCloud user.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserdefaultssizelimitexceedednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/sizelimitexceedednotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUserDefaultsSizeLimitExceededNotification: &'static NSNotificationName;
 }
@@ -374,7 +374,7 @@ extern "C" {
     ///
     /// This is not necessarily an error: ubiquitous defaults set when no iCloud user is logged in will be uploaded the next time one is available if configured to do so.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitoususerdefaultsnocloudaccountnotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/nocloudaccountnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "Notification is never posted"]
     pub static NSUbiquitousUserDefaultsNoCloudAccountNotification: &'static NSNotificationName;
@@ -383,7 +383,7 @@ extern "C" {
 extern "C" {
     /// NSUbiquitousUserDefaultsDidChangeAccountsNotification is posted on the main queue to the default notification center when the user changes the primary iCloud account. The keys and values in the local key-value store have been replaced with those from the new account, regardless of the relative timestamps.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitoususerdefaultsdidchangeaccountsnotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/didchangecloudaccountsnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "Notification is never posted"]
     pub static NSUbiquitousUserDefaultsDidChangeAccountsNotification: &'static NSNotificationName;
@@ -392,7 +392,7 @@ extern "C" {
 extern "C" {
     /// NSUbiquitousUserDefaultsCompletedInitialSyncNotification is posted on the main queue when ubiquitous defaults finish downloading the first time a device is connected to an iCloud account, and when a user switches their primary iCloud account.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsubiquitoususerdefaultscompletedinitialsyncnotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/completedinitialcloudsyncnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "Notification is never posted"]
     pub static NSUbiquitousUserDefaultsCompletedInitialSyncNotification:
@@ -402,7 +402,7 @@ extern "C" {
 extern "C" {
     /// NSUserDefaultsDidChangeNotification is posted whenever any user defaults changed within the current process, but is not posted when ubiquitous defaults change, or when an outside process changes defaults. Using key-value observing to register observers for the specific keys of interest will inform you of all updates, regardless of where they're from.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserdefaultsdidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/userdefaults/didchangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUserDefaultsDidChangeNotification: &'static NSNotificationName;
 }

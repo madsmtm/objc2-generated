@@ -32,7 +32,7 @@ extern "C" {
     pub static CSSearchQueryString: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitemupdatelisteneroptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/cssearchableitem/updatelisteneroptions-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

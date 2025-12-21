@@ -18,7 +18,7 @@ extern_class!(
     /// being delivered to the `errorHandler` of
     /// ``-[UIApplication activateSceneSessionForRequest: errorHandler:]``.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenepushplacement?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenepushplacement-c.class?language=objc)
     #[unsafe(super(UIWindowScenePlacement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowScenePlacement")]

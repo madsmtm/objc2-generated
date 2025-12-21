@@ -9,12 +9,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinteractioncompletionhandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinteractioncontroller/completionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type UIPrintInteractionCompletionHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<UIPrintInteractionController>, Bool, *mut NSError)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintercutterbehavior?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinter/cutterbehavior?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

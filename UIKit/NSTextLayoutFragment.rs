@@ -11,7 +11,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragmentenumerationoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragment/enumerationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -39,7 +39,7 @@ unsafe impl RefEncode for NSTextLayoutFragmentEnumerationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragmentstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlayoutfragment/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

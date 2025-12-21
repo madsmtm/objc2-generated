@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentconfiguration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentconfiguration-2raci?language=objc)
     pub unsafe trait UIContentConfiguration:
         NSObjectProtocol + NSCopying + MainThreadOnly
     {
@@ -30,7 +30,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentview?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentview-3zu2k?language=objc)
     pub unsafe trait UIContentView: NSObjectProtocol + MainThreadOnly {
         /// Returns the current configuration of the view. Setting this property applies the new configuration to the view.
         #[unsafe(method(configuration))]

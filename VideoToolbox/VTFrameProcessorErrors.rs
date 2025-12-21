@@ -17,7 +17,7 @@ extern "C" {
 ///
 /// These error codes are returned in the `NSError` object in the event a method fails.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtframeprocessorerror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

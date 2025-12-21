@@ -9,7 +9,7 @@ use crate::*;
 
 /// Valid values for expectedSendSize and expectedReceiveSize
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgrouptransfersize?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationgroup/transfersize?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

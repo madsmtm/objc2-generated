@@ -12,8 +12,6 @@ use crate::*;
 /// A `sec_protocol_metadata` instance conatins read-only properties of a connected and configured
 /// security protocol. Clients use this object to read information about a protocol instance. Properties
 /// include, for example, the negotiated TLS version, ciphersuite, and peer certificates.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_metadata?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct sec_protocol_metadata {

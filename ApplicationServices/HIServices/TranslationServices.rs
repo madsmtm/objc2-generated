@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/translation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/translationref?language=objc)
 #[doc(alias = "TranslationRef")]
 #[repr(C)]
 pub struct Translation {
@@ -26,15 +26,15 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueTranslationRef"> for Translation {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/badtranslationreferr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1560806-anonymous/badtranslationreferr?language=objc)
 pub const badTranslationRefErr: c_int = -3031;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/translationflags?language=objc)
 pub type TranslationFlags = OptionBits;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/ktranslationdatatranslation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1560805-anonymous/ktranslationdatatranslation?language=objc)
 pub const kTranslationDataTranslation: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/ktranslationfiletranslation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1560805-anonymous/ktranslationfiletranslation?language=objc)
 pub const kTranslationFileTranslation: c_uint = 1 << 1;
 
 unsafe impl ConcreteType for Translation {

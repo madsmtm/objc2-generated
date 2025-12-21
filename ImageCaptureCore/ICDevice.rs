@@ -114,49 +114,49 @@ pub type ICDeviceTransport = NSString;
 extern "C" {
     /// Indicates that the device uses USB transport.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/ictransporttypeusb?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport/transporttypeusb?language=objc)
     pub static ICTransportTypeUSB: &'static ICDeviceTransport;
 }
 
 extern "C" {
     /// Indicates that the device uses FireWire transport.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/ictransporttypefirewire?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport/transporttypefirewire?language=objc)
     pub static ICTransportTypeFireWire: &'static ICDeviceTransport;
 }
 
 extern "C" {
     /// Indicates that the device uses Bluetooth transport.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/ictransporttypebluetooth?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport/transporttypebluetooth?language=objc)
     pub static ICTransportTypeBluetooth: &'static ICDeviceTransport;
 }
 
 extern "C" {
     /// Indicates that the device use mounts as a mass-storage volume.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/ictransporttypemassstorage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport/transporttypemassstorage?language=objc)
     pub static ICTransportTypeMassStorage: &'static ICDeviceTransport;
 }
 
 extern "C" {
     /// Indicates that the device use mounts as a exFat storage volume.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/ictransporttypeexfat?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport/transporttypeexfat?language=objc)
     pub static ICTransportTypeExFAT: &'static ICDeviceTransport;
 }
 
 extern "C" {
     /// Indicates that the device uses TCP/IP transport. These devices are discovered using Bonjour.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/ictransporttypetcpip?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport/transporttypetcpip?language=objc)
     pub static ICTransportTypeTCPIP: &'static ICDeviceTransport;
 }
 
 extern "C" {
     /// Indicates that the device transport is based on proximity instead of a predefined phyiscal layer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/ictransporttypeproximity?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicetransport/transporttypeproximity?language=objc)
     pub static ICTransportTypeProximity: &'static ICDeviceTransport;
 }
 
@@ -167,21 +167,21 @@ pub type ICDeviceStatus = NSString;
 extern "C" {
     /// Key for a non-localized notification string.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icstatusnotificationkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicestatus/statusnotificationkey?language=objc)
     pub static ICStatusNotificationKey: &'static ICDeviceStatus;
 }
 
 extern "C" {
     /// One of values defined in ICReturnCode.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icstatuscodekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicestatus/statuscodekey?language=objc)
     pub static ICStatusCodeKey: &'static ICDeviceStatus;
 }
 
 extern "C" {
     /// Key for a localized notification string.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclocalizedstatusnotificationkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicestatus/localizedstatusnotificationkey?language=objc)
     pub static ICLocalizedStatusNotificationKey: &'static ICDeviceStatus;
 }
 
@@ -192,7 +192,7 @@ pub type ICDeviceCapability = NSString;
 extern "C" {
     /// Indicates either the device is mounted as a mass-storage volume and can be ejected or the it is a remote device with an active connection that can be disconnected.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecanejectordisconnect?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicecapability/canejectordisconnect?language=objc)
     pub static ICDeviceCanEjectOrDisconnect: &'static ICDeviceCapability;
 }
 
@@ -201,7 +201,7 @@ extern "C" {
 pub type ICSessionOptions = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icenumerationchronologicalorder?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icsessionoptions/enumerationchronologicalorder?language=objc)
     pub static ICEnumerationChronologicalOrder: &'static ICSessionOptions;
 }
 
@@ -212,28 +212,28 @@ pub type ICDeviceLocationOptions = NSString;
 extern "C" {
     /// This description is returned for locationDescription property of a device connected to a USB port.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationdescriptionusb?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationoptions/descriptionusb?language=objc)
     pub static ICDeviceLocationDescriptionUSB: &'static ICDeviceLocationOptions;
 }
 
 extern "C" {
     /// This description is returned for locationDescription property of a device connected to a FireWire port.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationdescriptionfirewire?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationoptions/descriptionfirewire?language=objc)
     pub static ICDeviceLocationDescriptionFireWire: &'static ICDeviceLocationOptions;
 }
 
 extern "C" {
     /// This description is returned for locationDescription property of a device connected via Bluetooth.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationdescriptionbluetooth?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationoptions/descriptionbluetooth?language=objc)
     pub static ICDeviceLocationDescriptionBluetooth: &'static ICDeviceLocationOptions;
 }
 
 extern "C" {
     /// This description is returned for locationDescription property of a device that is mounted as a mass-storage volume.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationdescriptionmassstorage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icdevicelocationoptions/descriptionmassstorage?language=objc)
     pub static ICDeviceLocationDescriptionMassStorage: &'static ICDeviceLocationOptions;
 }
 

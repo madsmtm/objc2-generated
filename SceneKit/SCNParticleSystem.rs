@@ -15,87 +15,87 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleproperty?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty?language=objc)
 // NS_TYPED_ENUM
 pub type SCNParticleProperty = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertyposition?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/position?language=objc)
     pub static SCNParticlePropertyPosition: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertyangle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/angle?language=objc)
     pub static SCNParticlePropertyAngle: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertyrotationaxis?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/rotationaxis?language=objc)
     pub static SCNParticlePropertyRotationAxis: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertyvelocity?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/velocity?language=objc)
     pub static SCNParticlePropertyVelocity: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertyangularvelocity?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/angularvelocity?language=objc)
     pub static SCNParticlePropertyAngularVelocity: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertylife?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/life?language=objc)
     pub static SCNParticlePropertyLife: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertycolor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/color?language=objc)
     pub static SCNParticlePropertyColor: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertyopacity?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/opacity?language=objc)
     pub static SCNParticlePropertyOpacity: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertysize?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/size?language=objc)
     pub static SCNParticlePropertySize: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertyframe?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/frame?language=objc)
     pub static SCNParticlePropertyFrame: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertyframerate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/framerate?language=objc)
     pub static SCNParticlePropertyFrameRate: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertybounce?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/bounce?language=objc)
     pub static SCNParticlePropertyBounce: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertycharge?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/charge?language=objc)
     pub static SCNParticlePropertyCharge: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertyfriction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/friction?language=objc)
     pub static SCNParticlePropertyFriction: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertycontactpoint?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/contactpoint?language=objc)
     pub static SCNParticlePropertyContactPoint: &'static SCNParticleProperty;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlepropertycontactnormal?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlesystem/particleproperty/contactnormal?language=objc)
     pub static SCNParticlePropertyContactNormal: &'static SCNParticleProperty;
 }
 

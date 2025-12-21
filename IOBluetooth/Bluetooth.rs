@@ -6,17 +6,11 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesmptimeout?language=objc)
 pub const kBluetoothLESMPTimeout: c_uint = 30;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesmpminencryptionkeysize?language=objc)
 pub const kBluetoothLESMPMinEncryptionKeySize: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothlesmpmaxencryptionkeysize?language=objc)
 pub const kBluetoothLESMPMaxEncryptionKeySize: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kinfostringmaxlength?language=objc)
 pub const kInfoStringMaxLength: c_uint = 35;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kbluetoothhciinquiryresultsmaxresults?language=objc)
 pub const kBluetoothHCIInquiryResultsMaxResults: c_uint = 50;
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kmaxchannelidperside?language=objc)
 pub const kMaxChannelIDPerSide: c_uint = 31;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothconnectionhandle?language=objc)
 pub type BluetoothConnectionHandle = u16;
@@ -5282,7 +5276,6 @@ unsafe impl RefEncode for BluetoothHCIEventModeChangeResults {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/bluetoothhcieventreturnlinkkeysresults_linkkeys?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct BluetoothHCIEventReturnLinkKeysResults_linkKeys {

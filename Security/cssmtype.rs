@@ -88,7 +88,7 @@ pub type CSSM_STRING = [c_char; 68];
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_DATA_PTR = *mut SecAsn1Item;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_guid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_guid-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -117,7 +117,7 @@ unsafe impl RefEncode for cssm_guid {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_guid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_guid-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_GUID = cssm_guid;
@@ -164,7 +164,7 @@ pub const CSSM_PRIVILEGE_SCOPE_PROCESS: c_uint = 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_privilege_scope_thread?language=objc)
 pub const CSSM_PRIVILEGE_SCOPE_THREAD: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_version?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_version-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -184,7 +184,7 @@ unsafe impl RefEncode for cssm_version {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_version?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_version-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_VERSION = cssm_version;
@@ -217,7 +217,7 @@ pub const CSSM_SERVICE_KR: c_uint = 64;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_SERVICE_TYPE = CSSM_SERVICE_MASK;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_subservice_uid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_subservice_uid-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -247,7 +247,7 @@ unsafe impl RefEncode for cssm_subservice_uid {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_subservice_uid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_subservice_uid-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_SUBSERVICE_UID = cssm_subservice_uid;
@@ -340,7 +340,7 @@ pub const CSSM_ADDR_SOCKADDR: c_uint = 3;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_addr_name?language=objc)
 pub const CSSM_ADDR_NAME: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_net_address?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_net_address-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -363,7 +363,7 @@ unsafe impl RefEncode for cssm_net_address {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_net_address?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_net_address-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_NET_ADDRESS = cssm_net_address;
@@ -408,7 +408,7 @@ pub const CSSM_NET_PROTO_CMPS: c_uint = 11;
 pub type CSSM_CALLBACK =
     Option<unsafe extern "C-unwind" fn(CSSM_DATA_PTR, *mut c_void) -> CSSM_RETURN>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crypto_data?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crypto_data-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -437,7 +437,7 @@ unsafe impl RefEncode for cssm_crypto_data {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crypto_data?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crypto_data-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CRYPTO_DATA = cssm_crypto_data;
@@ -755,7 +755,7 @@ pub const CSSM_LIST_TYPE_SEXPR: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_list_element_ptr?language=objc)
 pub type CSSM_LIST_ELEMENT_PTR = *mut cssm_list_element;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_list?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_list-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -782,7 +782,7 @@ unsafe impl RefEncode for cssm_list {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_list?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_list-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_LIST = cssm_list;
@@ -792,7 +792,7 @@ pub type CSSM_LIST = cssm_list;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_LIST_PTR = *mut cssm_list;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_list_element?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_list_element-c.typealias?language=objc)
 #[deprecated]
 pub type CSSM_LIST_ELEMENT = cssm_list_element;
 
@@ -833,7 +833,7 @@ unsafe impl RefEncode for CSSM_TUPLE {
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TUPLE_PTR = *mut CSSM_TUPLE;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tuplegroup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tuplegroup-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -856,7 +856,7 @@ unsafe impl RefEncode for cssm_tuplegroup {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tuplegroup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tuplegroup-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TUPLEGROUP = cssm_tuplegroup;
@@ -891,7 +891,7 @@ pub const CSSM_SAMPLE_TYPE_PROMPTED_BIOMETRIC: c_uint = 83;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_sample_type_threshold?language=objc)
 pub const CSSM_SAMPLE_TYPE_THRESHOLD: c_uint = 123;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_sample?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_sample-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -917,7 +917,7 @@ unsafe impl RefEncode for cssm_sample {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_sample?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_sample-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_SAMPLE = cssm_sample;
@@ -927,7 +927,7 @@ pub type CSSM_SAMPLE = cssm_sample;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_SAMPLE_PTR = *mut cssm_sample;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_samplegroup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_samplegroup-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -950,7 +950,7 @@ unsafe impl RefEncode for cssm_samplegroup {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_samplegroup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_samplegroup-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_SAMPLEGROUP = cssm_samplegroup;
@@ -977,7 +977,7 @@ pub type CSSM_REALLOC =
 pub type CSSM_CALLOC =
     Option<unsafe extern "C-unwind" fn(uint32, CSSM_SIZE, *mut c_void) -> *mut c_void>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_memory_funcs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_memory_funcs-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -1009,7 +1009,7 @@ unsafe impl RefEncode for cssm_memory_funcs {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_memory_funcs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_memory_funcs-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_MEMORY_FUNCS = cssm_memory_funcs;
@@ -1109,7 +1109,7 @@ pub const CSSM_CERT_ENCODING_LAST: c_uint = 32767;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_custom_cert_encoding?language=objc)
 pub const CSSM_CL_CUSTOM_CERT_ENCODING: c_uint = 32768;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encoded_cert?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encoded_cert-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -1137,7 +1137,7 @@ unsafe impl RefEncode for cssm_encoded_cert {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encoded_cert?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encoded_cert-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ENCODED_CERT = cssm_encoded_cert;
@@ -1174,7 +1174,7 @@ pub const CSSM_CERT_PARSE_FORMAT_LAST: c_uint = 32767;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cl_custom_cert_parse_format?language=objc)
 pub const CSSM_CL_CUSTOM_CERT_PARSE_FORMAT: c_uint = 32768;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_parsed_cert?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_parsed_cert-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1201,7 +1201,7 @@ unsafe impl RefEncode for cssm_parsed_cert {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_parsed_cert?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_parsed_cert-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_PARSED_CERT = cssm_parsed_cert;
@@ -1211,7 +1211,7 @@ pub type CSSM_PARSED_CERT = cssm_parsed_cert;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_PARSED_CERT_PTR = *mut cssm_parsed_cert;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_pair?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_pair-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -1234,7 +1234,7 @@ unsafe impl RefEncode for cssm_cert_pair {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_pair?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_pair-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CERT_PAIR = cssm_cert_pair;
@@ -1261,7 +1261,6 @@ pub const CSSM_CERTGROUP_PARSED_CERT: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_certgroup_cert_pair?language=objc)
 pub const CSSM_CERTGROUP_CERT_PAIR: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_certgroup_grouplist?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -1290,7 +1289,7 @@ unsafe impl RefEncode for cssm_certgroup_GroupList {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_certgroup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_certgroup-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -1324,7 +1323,7 @@ unsafe impl RefEncode for cssm_certgroup {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_certgroup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_certgroup-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CERTGROUP = cssm_certgroup;
@@ -1334,7 +1333,7 @@ pub type CSSM_CERTGROUP = cssm_certgroup;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CERTGROUP_PTR = *mut cssm_certgroup;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_base_certs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_base_certs-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -1362,7 +1361,7 @@ unsafe impl RefEncode for cssm_base_certs {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_base_certs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_base_certs-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_BASE_CERTS = cssm_base_certs;
@@ -1372,7 +1371,7 @@ pub type CSSM_BASE_CERTS = cssm_base_certs;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_BASE_CERTS_PTR = *mut cssm_base_certs;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_access_credentials?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_access_credentials-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -1404,7 +1403,7 @@ unsafe impl RefEncode for cssm_access_credentials {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_access_credentials?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_access_credentials-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACCESS_CREDENTIALS = cssm_access_credentials;
@@ -1488,7 +1487,7 @@ pub const CSSM_ACL_AUTHORIZATION_DB_MODIFY: c_uint = 20;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_authorization_db_delete?language=objc)
 pub const CSSM_ACL_AUTHORIZATION_DB_DELETE: c_uint = 17;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_authorizationgroup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_authorizationgroup-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1513,7 +1512,7 @@ unsafe impl RefEncode for cssm_authorizationgroup {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_authorizationgroup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_authorizationgroup-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_AUTHORIZATIONGROUP = cssm_authorizationgroup;
@@ -1523,7 +1522,7 @@ pub type CSSM_AUTHORIZATIONGROUP = cssm_authorizationgroup;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_AUTHORIZATIONGROUP_PTR = *mut cssm_authorizationgroup;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_validity_period?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_validity_period-c.struct?language=objc)
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
@@ -1546,7 +1545,7 @@ unsafe impl RefEncode for cssm_acl_validity_period {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_validity_period?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_validity_period-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_ACL_VALIDITY_PERIOD = cssm_acl_validity_period;
@@ -1556,7 +1555,7 @@ pub type CSSM_ACL_VALIDITY_PERIOD = cssm_acl_validity_period;
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_ACL_VALIDITY_PERIOD_PTR = *mut cssm_acl_validity_period;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_prototype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_prototype-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -1588,7 +1587,7 @@ unsafe impl RefEncode for cssm_acl_entry_prototype {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_prototype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_prototype-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACL_ENTRY_PROTOTYPE = cssm_acl_entry_prototype;
@@ -1598,7 +1597,7 @@ pub type CSSM_ACL_ENTRY_PROTOTYPE = cssm_acl_entry_prototype;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACL_ENTRY_PROTOTYPE_PTR = *mut cssm_acl_entry_prototype;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_owner_prototype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_owner_prototype-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -1621,7 +1620,7 @@ unsafe impl RefEncode for cssm_acl_owner_prototype {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_owner_prototype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_owner_prototype-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_ACL_OWNER_PROTOTYPE = cssm_acl_owner_prototype;
@@ -1643,7 +1642,7 @@ pub type CSSM_ACL_SUBJECT_CALLBACK = Option<
     ) -> CSSM_RETURN,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_input?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_input-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -1672,7 +1671,7 @@ unsafe impl RefEncode for cssm_acl_entry_input {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_input?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_input-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACL_ENTRY_INPUT = cssm_acl_entry_input;
@@ -1682,7 +1681,7 @@ pub type CSSM_ACL_ENTRY_INPUT = cssm_acl_entry_input;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACL_ENTRY_INPUT_PTR = *mut cssm_acl_entry_input;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_resource_control_context?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_resource_control_context-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -1708,7 +1707,7 @@ unsafe impl RefEncode for cssm_resource_control_context {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_resource_control_context?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_resource_control_context-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_RESOURCE_CONTROL_CONTEXT = cssm_resource_control_context;
@@ -1722,7 +1721,7 @@ pub type CSSM_RESOURCE_CONTROL_CONTEXT_PTR = *mut cssm_resource_control_context;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_ACL_HANDLE = CSSM_HANDLE;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_info-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -1748,7 +1747,7 @@ unsafe impl RefEncode for cssm_acl_entry_info {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_entry_info-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACL_ENTRY_INFO = cssm_acl_entry_info;
@@ -1769,7 +1768,7 @@ pub const CSSM_ACL_EDIT_MODE_DELETE: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_edit_mode_replace?language=objc)
 pub const CSSM_ACL_EDIT_MODE_REPLACE: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_edit?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_edit-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -1797,7 +1796,7 @@ unsafe impl RefEncode for cssm_acl_edit {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_edit?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_acl_edit-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ACL_EDIT = cssm_acl_edit;
@@ -1813,7 +1812,7 @@ pub type CSSM_PROC_ADDR = Option<unsafe extern "C-unwind" fn()>;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_proc_addr_ptr?language=objc)
 pub type CSSM_PROC_ADDR_PTR = *mut CSSM_PROC_ADDR;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_func_name_addr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_func_name_addr-swift.struct?language=objc)
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1835,7 +1834,7 @@ unsafe impl RefEncode for cssm_func_name_addr {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_func_name_addr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_func_name_addr-c.typealias?language=objc)
 #[deprecated]
 pub type CSSM_FUNC_NAME_ADDR = cssm_func_name_addr;
 
@@ -1843,7 +1842,7 @@ pub type CSSM_FUNC_NAME_ADDR = cssm_func_name_addr;
 #[deprecated]
 pub type CSSM_FUNC_NAME_ADDR_PTR = *mut cssm_func_name_addr;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_date?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_date-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -1870,7 +1869,7 @@ unsafe impl RefEncode for cssm_date {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_date?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_date-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DATE = cssm_date;
@@ -1880,7 +1879,7 @@ pub type CSSM_DATE = cssm_date;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DATE_PTR = *mut cssm_date;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_range?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_range-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -1900,7 +1899,7 @@ unsafe impl RefEncode for cssm_range {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_range?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_range-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_RANGE = cssm_range;
@@ -1910,7 +1909,7 @@ pub type CSSM_RANGE = cssm_range;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_RANGE_PTR = *mut cssm_range;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_size_data?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_size_data-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -1932,7 +1931,7 @@ unsafe impl RefEncode for cssm_query_size_data {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_size_data?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_size_data-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_QUERY_SIZE_DATA = cssm_query_size_data;
@@ -1949,7 +1948,7 @@ pub type CSSM_HEADERVERSION = uint32;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_keyheader_version?language=objc)
 pub const CSSM_KEYHEADER_VERSION: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_key_size?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_key_size-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -1969,7 +1968,7 @@ unsafe impl RefEncode for cssm_key_size {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_key_size?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_key_size-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_KEY_SIZE = cssm_key_size;
@@ -2432,7 +2431,7 @@ pub const CSSM_ALGMODE_LAST: c_uint = 2147483647;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_algmode_vendor_defined?language=objc)
 pub const CSSM_ALGMODE_VENDOR_DEFINED: c_uint = 2147483648;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_keyheader?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_keyheader-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -2482,7 +2481,7 @@ unsafe impl RefEncode for cssm_keyheader {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_keyheader?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_keyheader-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_KEYHEADER = cssm_keyheader;
@@ -2492,7 +2491,7 @@ pub type CSSM_KEYHEADER = cssm_keyheader;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_KEYHEADER_PTR = *mut cssm_keyheader;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_key?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_key-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -2515,7 +2514,7 @@ unsafe impl RefEncode for cssm_key {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_key?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_key-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_KEY = cssm_key;
@@ -2546,7 +2545,7 @@ pub const CSSM_CSP_HARDWARE: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_hybrid?language=objc)
 pub const CSSM_CSP_HYBRID: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_db_handle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_db_handle-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -2568,7 +2567,7 @@ unsafe impl RefEncode for cssm_dl_db_handle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_db_handle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_db_handle-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DL_DB_HANDLE = cssm_dl_db_handle;
@@ -2814,7 +2813,7 @@ unsafe impl RefEncode for cssm_context_attribute_value {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_context_attribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_context_attribute-c.struct?language=objc)
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -2856,7 +2855,7 @@ unsafe impl RefEncode for cssm_context_attribute {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_context_attribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_context_attribute-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(
     feature = "SecAsn1Types",
@@ -2874,7 +2873,7 @@ pub type CSSM_CONTEXT_ATTRIBUTE = cssm_context_attribute;
 ))]
 pub type CSSM_CONTEXT_ATTRIBUTE_PTR = *mut cssm_context_attribute;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_context?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_context-c.struct?language=objc)
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -2928,7 +2927,7 @@ unsafe impl RefEncode for cssm_context {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_context?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_context-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(
     feature = "SecAsn1Types",
@@ -3015,7 +3014,7 @@ pub const CSSM_PKCS_OAEP_PSOURCE_NONE: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs_oaep_psource_pspecified?language=objc)
 pub const CSSM_PKCS_OAEP_PSOURCE_Pspecified: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs1_oaep_params?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs1_oaep_params-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -3049,7 +3048,7 @@ unsafe impl RefEncode for cssm_pkcs1_oaep_params {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs1_oaep_params?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs1_oaep_params-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_PKCS1_OAEP_PARAMS = cssm_pkcs1_oaep_params;
@@ -3059,7 +3058,7 @@ pub type CSSM_PKCS1_OAEP_PARAMS = cssm_pkcs1_oaep_params;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_PKCS1_OAEP_PARAMS_PTR = *mut cssm_pkcs1_oaep_params;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_operational_statistics?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_operational_statistics-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -3100,7 +3099,7 @@ unsafe impl RefEncode for cssm_csp_operational_statistics {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_operational_statistics?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_csp_operational_statistics-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_CSP_OPERATIONAL_STATISTICS = cssm_csp_operational_statistics;
@@ -3113,7 +3112,7 @@ pub type CSSM_CSP_OPERATIONAL_STATISTICS_PTR = *mut cssm_csp_operational_statist
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_value_not_available?language=objc)
 pub const CSSM_VALUE_NOT_AVAILABLE: c_int = -1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs5_pbkdf1_params?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs5_pbkdf1_params-c.struct?language=objc)
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
@@ -3136,7 +3135,7 @@ unsafe impl RefEncode for cssm_pkcs5_pbkdf1_params {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs5_pbkdf1_params?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs5_pbkdf1_params-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_PKCS5_PBKDF1_PARAMS = cssm_pkcs5_pbkdf1_params;
@@ -3153,7 +3152,7 @@ pub type CSSM_PKCS5_PBKDF2_PRF = uint32;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs5_pbkdf2_prf_hmac_sha1?language=objc)
 pub const CSSM_PKCS5_PBKDF2_PRF_HMAC_SHA1: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs5_pbkdf2_params?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs5_pbkdf2_params-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -3176,7 +3175,7 @@ unsafe impl RefEncode for cssm_pkcs5_pbkdf2_params {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs5_pbkdf2_params?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_pkcs5_pbkdf2_params-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_PKCS5_PBKDF2_PARAMS = cssm_pkcs5_pbkdf2_params;
@@ -3186,7 +3185,7 @@ pub type CSSM_PKCS5_PBKDF2_PARAMS = cssm_pkcs5_pbkdf2_params;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_PKCS5_PBKDF2_PARAMS_PTR = *mut cssm_pkcs5_pbkdf2_params;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kea_derive_params?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kea_derive_params-c.struct?language=objc)
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
@@ -3209,7 +3208,7 @@ unsafe impl RefEncode for cssm_kea_derive_params {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kea_derive_params?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_kea_derive_params-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_KEA_DERIVE_PARAMS = cssm_kea_derive_params;
@@ -3219,7 +3218,7 @@ pub type CSSM_KEA_DERIVE_PARAMS = cssm_kea_derive_params;
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_KEA_DERIVE_PARAMS_PTR = *mut cssm_kea_derive_params;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_authority_id?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_authority_id-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -3245,7 +3244,7 @@ unsafe impl RefEncode for cssm_tp_authority_id {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_authority_id?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_authority_id-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_AUTHORITY_ID = cssm_tp_authority_id;
@@ -3292,7 +3291,7 @@ pub type CSSM_TP_VERIFICATION_RESULTS_CALLBACK = Option<
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_OID_PTR = *mut SecAsn1Oid;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_field?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_field-c.struct?language=objc)
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
@@ -3315,7 +3314,7 @@ unsafe impl RefEncode for cssm_field {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_field?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_field-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_FIELD = cssm_field;
@@ -3325,7 +3324,7 @@ pub type CSSM_FIELD = cssm_field;
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_FIELD_PTR = *mut cssm_field;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_policyinfo?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_policyinfo-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -3353,7 +3352,7 @@ unsafe impl RefEncode for cssm_tp_policyinfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_policyinfo?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_policyinfo-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_POLICYINFO = cssm_tp_policyinfo;
@@ -3401,7 +3400,7 @@ pub const CSSM_TP_STOP_ON_FIRST_FAIL: c_uint = 3;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_timestring?language=objc)
 pub type CSSM_TIMESTRING = *mut c_char;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_db_list?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_db_list-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -3424,7 +3423,7 @@ unsafe impl RefEncode for cssm_dl_db_list {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_db_list?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dl_db_list-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DL_DB_LIST = cssm_dl_db_list;
@@ -3434,7 +3433,7 @@ pub type CSSM_DL_DB_LIST = cssm_dl_db_list;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DL_DB_LIST_PTR = *mut cssm_dl_db_list;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_callerauth_context?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_callerauth_context-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -3473,7 +3472,7 @@ unsafe impl RefEncode for cssm_tp_callerauth_context {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_callerauth_context?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_callerauth_context-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CALLERAUTH_CONTEXT = cssm_tp_callerauth_context;
@@ -3552,7 +3551,7 @@ pub const CSSM_CRL_ENCODING_SEXPR: c_uint = 5;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crl_encoding_multiple?language=objc)
 pub const CSSM_CRL_ENCODING_MULTIPLE: c_uint = 32766;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encoded_crl?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encoded_crl-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -3580,7 +3579,7 @@ unsafe impl RefEncode for cssm_encoded_crl {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encoded_crl?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_encoded_crl-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ENCODED_CRL = cssm_encoded_crl;
@@ -3590,7 +3589,7 @@ pub type CSSM_ENCODED_CRL = cssm_encoded_crl;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_ENCODED_CRL_PTR = *mut cssm_encoded_crl;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_parsed_crl?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_parsed_crl-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -3617,7 +3616,7 @@ unsafe impl RefEncode for cssm_parsed_crl {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_parsed_crl?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_parsed_crl-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_PARSED_CRL = cssm_parsed_crl;
@@ -3627,7 +3626,7 @@ pub type CSSM_PARSED_CRL = cssm_parsed_crl;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_PARSED_CRL_PTR = *mut cssm_parsed_crl;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crl_pair?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crl_pair-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -3650,7 +3649,7 @@ unsafe impl RefEncode for cssm_crl_pair {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crl_pair?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crl_pair-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CRL_PAIR = cssm_crl_pair;
@@ -3677,7 +3676,6 @@ pub const CSSM_CRLGROUP_PARSED_CRL: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crlgroup_crl_pair?language=objc)
 pub const CSSM_CRLGROUP_CRL_PAIR: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crlgroup_groupcrllist?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -3706,7 +3704,7 @@ unsafe impl RefEncode for cssm_crlgroup_GroupCrlList {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crlgroup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crlgroup-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -3738,7 +3736,7 @@ unsafe impl RefEncode for cssm_crlgroup {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crlgroup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_crlgroup-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CRLGROUP = cssm_crlgroup;
@@ -3748,7 +3746,7 @@ pub type CSSM_CRLGROUP = cssm_crlgroup;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CRLGROUP_PTR = *mut cssm_crlgroup;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_fieldgroup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_fieldgroup-c.struct?language=objc)
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
@@ -3771,7 +3769,7 @@ unsafe impl RefEncode for cssm_fieldgroup {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_fieldgroup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_fieldgroup-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_FIELDGROUP = cssm_fieldgroup;
@@ -3806,7 +3804,7 @@ pub const CSSM_EVIDENCE_FORM_POLICYINFO: c_uint = 8;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_evidence_form_tuplegroup?language=objc)
 pub const CSSM_EVIDENCE_FORM_TUPLEGROUP: c_uint = 9;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_evidence?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_evidence-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -3829,7 +3827,7 @@ unsafe impl RefEncode for cssm_evidence {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_evidence?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_evidence-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_EVIDENCE = cssm_evidence;
@@ -3839,7 +3837,7 @@ pub type CSSM_EVIDENCE = cssm_evidence;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_EVIDENCE_PTR = *mut cssm_evidence;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_verify_context?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_verify_context-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -3869,7 +3867,7 @@ unsafe impl RefEncode for cssm_tp_verify_context {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_verify_context?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_verify_context-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_VERIFY_CONTEXT = cssm_tp_verify_context;
@@ -3879,7 +3877,7 @@ pub type CSSM_TP_VERIFY_CONTEXT = cssm_tp_verify_context;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_VERIFY_CONTEXT_PTR = *mut cssm_tp_verify_context;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_verify_context_result?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_verify_context_result-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -3902,7 +3900,7 @@ unsafe impl RefEncode for cssm_tp_verify_context_result {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_verify_context_result?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_verify_context_result-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_VERIFY_CONTEXT_RESULT = cssm_tp_verify_context_result;
@@ -3912,7 +3910,7 @@ pub type CSSM_TP_VERIFY_CONTEXT_RESULT = cssm_tp_verify_context_result;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_VERIFY_CONTEXT_RESULT_PTR = *mut cssm_tp_verify_context_result;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_request_set?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_request_set-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -3935,7 +3933,7 @@ unsafe impl RefEncode for cssm_tp_request_set {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_request_set?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_request_set-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_REQUEST_SET = cssm_tp_request_set;
@@ -3945,7 +3943,7 @@ pub type CSSM_TP_REQUEST_SET = cssm_tp_request_set;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_REQUEST_SET_PTR = *mut cssm_tp_request_set;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_result_set?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_result_set-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -3967,7 +3965,7 @@ unsafe impl RefEncode for cssm_tp_result_set {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_result_set?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_result_set-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_RESULT_SET = cssm_tp_result_set;
@@ -3992,7 +3990,7 @@ pub const CSSM_TP_CONFIRM_ACCEPT: c_uint = 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_confirm_reject?language=objc)
 pub const CSSM_TP_CONFIRM_REJECT: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_confirm_response?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_confirm_response-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -4015,7 +4013,7 @@ unsafe impl RefEncode for cssm_tp_confirm_response {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_confirm_response?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_confirm_response-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_CONFIRM_RESPONSE = cssm_tp_confirm_response;
@@ -4033,7 +4031,7 @@ pub const CSSM_ELAPSED_TIME_UNKNOWN: c_int = -1;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_elapsed_time_complete?language=objc)
 pub const CSSM_ELAPSED_TIME_COMPLETE: c_int = -2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certissue_input?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certissue_input-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -4071,7 +4069,7 @@ unsafe impl RefEncode for cssm_tp_certissue_input {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certissue_input?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certissue_input-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTISSUE_INPUT = cssm_tp_certissue_input;
@@ -4100,7 +4098,7 @@ pub const CSSM_TP_CERTISSUE_NOT_AUTHORIZED: c_uint = 5;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certissue_will_be_revoked?language=objc)
 pub const CSSM_TP_CERTISSUE_WILL_BE_REVOKED: c_uint = 6;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certissue_output?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certissue_output-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -4128,7 +4126,7 @@ unsafe impl RefEncode for cssm_tp_certissue_output {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certissue_output?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certissue_output-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTISSUE_OUTPUT = cssm_tp_certissue_output;
@@ -4172,7 +4170,7 @@ pub const CSSM_TP_CERTCHANGE_REASON_SUSPECTEDCOMPROMISE: c_uint = 6;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certchange_reason_holdrelease?language=objc)
 pub const CSSM_TP_CERTCHANGE_REASON_HOLDRELEASE: c_uint = 7;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certchange_input?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certchange_input-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -4208,7 +4206,7 @@ unsafe impl RefEncode for cssm_tp_certchange_input {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certchange_input?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certchange_input-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTCHANGE_INPUT = cssm_tp_certchange_input;
@@ -4235,7 +4233,7 @@ pub const CSSM_TP_CERTCHANGE_REJECTED: c_uint = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certchange_not_authorized?language=objc)
 pub const CSSM_TP_CERTCHANGE_NOT_AUTHORIZED: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certchange_output?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certchange_output-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -4261,7 +4259,7 @@ unsafe impl RefEncode for cssm_tp_certchange_output {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certchange_output?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certchange_output-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTCHANGE_OUTPUT = cssm_tp_certchange_output;
@@ -4271,7 +4269,7 @@ pub type CSSM_TP_CERTCHANGE_OUTPUT = cssm_tp_certchange_output;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTCHANGE_OUTPUT_PTR = *mut cssm_tp_certchange_output;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certverify_input?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certverify_input-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -4299,7 +4297,7 @@ unsafe impl RefEncode for cssm_tp_certverify_input {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certverify_input?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certverify_input-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTVERIFY_INPUT = cssm_tp_certverify_input;
@@ -4348,7 +4346,7 @@ pub const CSSM_TP_CERTVERIFY_INVALID_NAME_TREE: c_uint = 15;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certverify_unknown_critical_ext?language=objc)
 pub const CSSM_TP_CERTVERIFY_UNKNOWN_CRITICAL_EXT: c_uint = 16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certverify_output?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certverify_output-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -4376,7 +4374,7 @@ unsafe impl RefEncode for cssm_tp_certverify_output {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certverify_output?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certverify_output-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_CERTVERIFY_OUTPUT = cssm_tp_certverify_output;
@@ -4386,7 +4384,7 @@ pub type CSSM_TP_CERTVERIFY_OUTPUT = cssm_tp_certverify_output;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_TP_CERTVERIFY_OUTPUT_PTR = *mut cssm_tp_certverify_output;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certnotarize_input?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certnotarize_input-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -4426,7 +4424,7 @@ unsafe impl RefEncode for cssm_tp_certnotarize_input {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certnotarize_input?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certnotarize_input-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTNOTARIZE_INPUT = cssm_tp_certnotarize_input;
@@ -4453,7 +4451,7 @@ pub const CSSM_TP_CERTNOTARIZE_REJECTED: c_uint = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certnotarize_not_authorized?language=objc)
 pub const CSSM_TP_CERTNOTARIZE_NOT_AUTHORIZED: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certnotarize_output?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certnotarize_output-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -4481,7 +4479,7 @@ unsafe impl RefEncode for cssm_tp_certnotarize_output {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certnotarize_output?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certnotarize_output-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTNOTARIZE_OUTPUT = cssm_tp_certnotarize_output;
@@ -4491,7 +4489,7 @@ pub type CSSM_TP_CERTNOTARIZE_OUTPUT = cssm_tp_certnotarize_output;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTNOTARIZE_OUTPUT_PTR = *mut cssm_tp_certnotarize_output;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaim_input?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaim_input-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -4521,7 +4519,7 @@ unsafe impl RefEncode for cssm_tp_certreclaim_input {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaim_input?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaim_input-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTRECLAIM_INPUT = cssm_tp_certreclaim_input;
@@ -4546,7 +4544,7 @@ pub const CSSM_TP_CERTRECLAIM_REJECTED: c_uint = 3;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaim_not_authorized?language=objc)
 pub const CSSM_TP_CERTRECLAIM_NOT_AUTHORIZED: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaim_output?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaim_output-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -4574,7 +4572,7 @@ unsafe impl RefEncode for cssm_tp_certreclaim_output {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaim_output?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_certreclaim_output-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTRECLAIM_OUTPUT = cssm_tp_certreclaim_output;
@@ -4584,7 +4582,7 @@ pub type CSSM_TP_CERTRECLAIM_OUTPUT = cssm_tp_certreclaim_output;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CERTRECLAIM_OUTPUT_PTR = *mut cssm_tp_certreclaim_output;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlissue_input?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlissue_input-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -4616,7 +4614,7 @@ unsafe impl RefEncode for cssm_tp_crlissue_input {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlissue_input?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlissue_input-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CRLISSUE_INPUT = cssm_tp_crlissue_input;
@@ -4645,7 +4643,7 @@ pub const CSSM_TP_CRLISSUE_REJECTED: c_uint = 5;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlissue_not_authorized?language=objc)
 pub const CSSM_TP_CRLISSUE_NOT_AUTHORIZED: c_uint = 6;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlissue_output?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlissue_output-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -4673,7 +4671,7 @@ unsafe impl RefEncode for cssm_tp_crlissue_output {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlissue_output?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_tp_crlissue_output-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_TP_CRLISSUE_OUTPUT = cssm_tp_crlissue_output;
@@ -4743,7 +4741,7 @@ pub const CSSM_CERT_BUNDLE_ENCODING_SEXPR: c_uint = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_bundle_encoding_pgp?language=objc)
 pub const CSSM_CERT_BUNDLE_ENCODING_PGP: c_uint = 5;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_bundle_header?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_bundle_header-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -4769,7 +4767,7 @@ unsafe impl RefEncode for cssm_cert_bundle_header {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_bundle_header?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_bundle_header-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_CERT_BUNDLE_HEADER = cssm_cert_bundle_header;
@@ -4779,7 +4777,7 @@ pub type CSSM_CERT_BUNDLE_HEADER = cssm_cert_bundle_header;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_CERT_BUNDLE_HEADER_PTR = *mut cssm_cert_bundle_header;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_bundle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_bundle-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -4802,7 +4800,7 @@ unsafe impl RefEncode for cssm_cert_bundle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_bundle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_cert_bundle-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_CERT_BUNDLE = cssm_cert_bundle;
@@ -4885,7 +4883,7 @@ unsafe impl RefEncode for cssm_db_attribute_label {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_attribute_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_attribute_info-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -4913,7 +4911,7 @@ unsafe impl RefEncode for cssm_db_attribute_info {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_attribute_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_attribute_info-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_ATTRIBUTE_INFO = cssm_db_attribute_info;
@@ -4923,7 +4921,7 @@ pub type CSSM_DB_ATTRIBUTE_INFO = cssm_db_attribute_info;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_ATTRIBUTE_INFO_PTR = *mut cssm_db_attribute_info;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_attribute_data?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_attribute_data-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -4951,7 +4949,7 @@ unsafe impl RefEncode for cssm_db_attribute_data {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_attribute_data?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_attribute_data-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_ATTRIBUTE_DATA = cssm_db_attribute_data;
@@ -5017,7 +5015,7 @@ pub const CSSM_DB_CERT_USE_SIGNING: c_uint = 16;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_cert_use_privacy?language=objc)
 pub const CSSM_DB_CERT_USE_PRIVACY: c_uint = 32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_attribute_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_attribute_info-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -5045,7 +5043,7 @@ unsafe impl RefEncode for cssm_db_record_attribute_info {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_attribute_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_attribute_info-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_RECORD_ATTRIBUTE_INFO = cssm_db_record_attribute_info;
@@ -5055,7 +5053,7 @@ pub type CSSM_DB_RECORD_ATTRIBUTE_INFO = cssm_db_record_attribute_info;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_RECORD_ATTRIBUTE_INFO_PTR = *mut cssm_db_record_attribute_info;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_attribute_data?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_attribute_data-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -5085,7 +5083,7 @@ unsafe impl RefEncode for cssm_db_record_attribute_data {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_attribute_data?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_attribute_data-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_RECORD_ATTRIBUTE_DATA = cssm_db_record_attribute_data;
@@ -5095,7 +5093,7 @@ pub type CSSM_DB_RECORD_ATTRIBUTE_DATA = cssm_db_record_attribute_data;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR = *mut cssm_db_record_attribute_data;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_parsing_module_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_parsing_module_info-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -5121,7 +5119,7 @@ unsafe impl RefEncode for cssm_db_parsing_module_info {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_parsing_module_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_parsing_module_info-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DB_PARSING_MODULE_INFO = cssm_db_parsing_module_info;
@@ -5151,7 +5149,7 @@ pub const CSSM_DB_INDEX_ON_ATTRIBUTE: c_uint = 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_index_on_record?language=objc)
 pub const CSSM_DB_INDEX_ON_RECORD: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_index_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_index_info-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -5179,7 +5177,7 @@ unsafe impl RefEncode for cssm_db_index_info {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_index_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_index_info-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_INDEX_INFO = cssm_db_index_info;
@@ -5189,7 +5187,7 @@ pub type CSSM_DB_INDEX_INFO = cssm_db_index_info;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_INDEX_INFO_PTR = *mut cssm_db_index_info;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_unique_record?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_unique_record-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -5212,7 +5210,7 @@ unsafe impl RefEncode for cssm_db_unique_record {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_unique_record?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_unique_record-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_UNIQUE_RECORD = cssm_db_unique_record;
@@ -5222,7 +5220,7 @@ pub type CSSM_DB_UNIQUE_RECORD = cssm_db_unique_record;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_UNIQUE_RECORD_PTR = *mut cssm_db_unique_record;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_index_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_index_info-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -5250,7 +5248,7 @@ unsafe impl RefEncode for cssm_db_record_index_info {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_index_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_record_index_info-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_RECORD_INDEX_INFO = cssm_db_record_index_info;
@@ -5288,7 +5286,7 @@ pub const CSSM_DB_MODIFY_ATTRIBUTE_DELETE: c_uint = 2;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_modify_attribute_replace?language=objc)
 pub const CSSM_DB_MODIFY_ATTRIBUTE_REPLACE: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dbinfo?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dbinfo-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -5324,7 +5322,7 @@ unsafe impl RefEncode for cssm_dbinfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dbinfo?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_dbinfo-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DBINFO = cssm_dbinfo;
@@ -5372,7 +5370,7 @@ pub const CSSM_DB_AND: c_uint = 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_or?language=objc)
 pub const CSSM_DB_OR: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_selection_predicate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_selection_predicate-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -5398,7 +5396,7 @@ unsafe impl RefEncode for cssm_selection_predicate {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_selection_predicate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_selection_predicate-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_SELECTION_PREDICATE = cssm_selection_predicate;
@@ -5414,7 +5412,7 @@ pub const CSSM_QUERY_TIMELIMIT_NONE: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_sizelimit_none?language=objc)
 pub const CSSM_QUERY_SIZELIMIT_NONE: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_limits?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_limits-c.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[deprecated]
 #[repr(C)]
@@ -5437,7 +5435,7 @@ unsafe impl RefEncode for cssm_query_limits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_limits?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_limits-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_QUERY_LIMITS = cssm_query_limits;
@@ -5454,7 +5452,7 @@ pub type CSSM_QUERY_FLAGS = uint32;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query_return_data?language=objc)
 pub const CSSM_QUERY_RETURN_DATA: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -5488,7 +5486,7 @@ unsafe impl RefEncode for cssm_query {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_query-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_QUERY = cssm_query;
@@ -5564,7 +5562,7 @@ pub type CSSM_DL_PKCS11_ATTRIBUTE_PTR = *mut cssm_dl_pkcs11_attributes;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_datastores_unknown?language=objc)
 pub const CSSM_DB_DATASTORES_UNKNOWN: c_uint = 4294967295;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_name_list?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_name_list-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -5586,7 +5584,7 @@ unsafe impl RefEncode for cssm_name_list {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_name_list?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_name_list-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_NAME_LIST = cssm_name_list;
@@ -5605,7 +5603,7 @@ pub const CSSM_DB_TRANSACTIONAL_MODE: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_filesystemscan_mode?language=objc)
 pub const CSSM_DB_FILESYSTEMSCAN_MODE: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_schema_attribute_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_schema_attribute_info-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -5635,7 +5633,7 @@ unsafe impl RefEncode for cssm_db_schema_attribute_info {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_schema_attribute_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_schema_attribute_info-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_SCHEMA_ATTRIBUTE_INFO = cssm_db_schema_attribute_info;
@@ -5645,7 +5643,7 @@ pub type CSSM_DB_SCHEMA_ATTRIBUTE_INFO = cssm_db_schema_attribute_info;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_DB_SCHEMA_ATTRIBUTE_INFO_PTR = *mut cssm_db_schema_attribute_info;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_schema_index_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_schema_index_info-swift.struct?language=objc)
 #[cfg(feature = "cssmconfig")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -5674,7 +5672,7 @@ unsafe impl RefEncode for cssm_db_schema_index_info {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_schema_index_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_db_schema_index_info-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_DB_SCHEMA_INDEX_INFO = cssm_db_schema_index_info;

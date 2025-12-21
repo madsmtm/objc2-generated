@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomactionhandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomaction/handler?language=objc)
 #[cfg(feature = "block2")]
 pub type UIAccessibilityCustomActionHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<UIAccessibilityCustomAction>) -> Bool>;
@@ -244,6 +244,6 @@ impl UIAccessibilityCustomAction {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomactioncategoryedit?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomaction/editcategory?language=objc)
     pub static UIAccessibilityCustomActionCategoryEdit: &'static NSString;
 }

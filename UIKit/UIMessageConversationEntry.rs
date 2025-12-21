@@ -8,7 +8,7 @@ use crate::*;
 
 /// A list of options that represent the kinds of data a message can contain.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimessageconversationentrydatakind?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimessageconversationcontext/messageentry/datakind-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for UIMessageConversationEntryDataKind {
 extern_class!(
     /// A class that represents a message in a message conversation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimessageconversationentry?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimessageconversationcontext/messageentry?language=objc)
     #[unsafe(super(UIConversationEntry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIConversationEntry")]

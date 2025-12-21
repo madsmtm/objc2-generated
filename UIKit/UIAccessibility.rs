@@ -1668,7 +1668,7 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityvoiceoverstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/voiceoverstatusdidchangenotification?language=objc)
     pub static UIAccessibilityVoiceOverStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1681,7 +1681,7 @@ pub extern "C-unwind" fn UIAccessibilityIsMonoAudioEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitymonoaudiostatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/monoaudiostatusdidchangenotification?language=objc)
     pub static UIAccessibilityMonoAudioStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1694,7 +1694,7 @@ pub extern "C-unwind" fn UIAccessibilityIsClosedCaptioningEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityclosedcaptioningstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/closedcaptioningstatusdidchangenotification?language=objc)
     pub static UIAccessibilityClosedCaptioningStatusDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1708,7 +1708,7 @@ pub extern "C-unwind" fn UIAccessibilityIsInvertColorsEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityinvertcolorsstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/invertcolorsstatusdidchangenotification?language=objc)
     pub static UIAccessibilityInvertColorsStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1721,7 +1721,7 @@ pub extern "C-unwind" fn UIAccessibilityIsGuidedAccessEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityguidedaccessstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccessstatusdidchangenotification?language=objc)
     pub static UIAccessibilityGuidedAccessStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1734,7 +1734,7 @@ pub extern "C-unwind" fn UIAccessibilityIsBoldTextEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityboldtextstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/boldtextstatusdidchangenotification?language=objc)
     pub static UIAccessibilityBoldTextStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1748,7 +1748,7 @@ pub extern "C-unwind" fn UIAccessibilityButtonShapesEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitybuttonshapesenabledstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/buttonshapesenabledstatusdidchangenotification?language=objc)
     #[deprecated]
     pub static UIAccessibilityButtonShapesEnabledStatusDidChangeNotification:
         &'static NSNotificationName;
@@ -1763,7 +1763,7 @@ pub extern "C-unwind" fn UIAccessibilityIsGrayscaleEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitygrayscalestatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/grayscalestatusdidchangenotification?language=objc)
     pub static UIAccessibilityGrayscaleStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1776,7 +1776,7 @@ pub extern "C-unwind" fn UIAccessibilityIsReduceTransparencyEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityreducetransparencystatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/reducetransparencystatusdidchangenotification?language=objc)
     pub static UIAccessibilityReduceTransparencyStatusDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1790,7 +1790,7 @@ pub extern "C-unwind" fn UIAccessibilityIsReduceMotionEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityreducemotionstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/reducemotionstatusdidchangenotification?language=objc)
     pub static UIAccessibilityReduceMotionStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1803,7 +1803,7 @@ pub extern "C-unwind" fn UIAccessibilityPrefersCrossFadeTransitions() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitypreferscrossfadetransitionsstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/preferscrossfadetransitionsstatusdidchange?language=objc)
     pub static UIAccessibilityPrefersCrossFadeTransitionsStatusDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1817,7 +1817,7 @@ pub extern "C-unwind" fn UIAccessibilityIsVideoAutoplayEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityvideoautoplaystatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/videoautoplaystatusdidchangenotification?language=objc)
     pub static UIAccessibilityVideoAutoplayStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1830,7 +1830,7 @@ pub extern "C-unwind" fn UIAccessibilityDarkerSystemColorsEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitydarkersystemcolorsstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/darkersystemcolorsstatusdidchangenotification?language=objc)
     pub static UIAccessibilityDarkerSystemColorsStatusDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1844,7 +1844,7 @@ pub extern "C-unwind" fn UIAccessibilityIsSwitchControlRunning() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityswitchcontrolstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/switchcontrolstatusdidchangenotification?language=objc)
     pub static UIAccessibilitySwitchControlStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1857,7 +1857,7 @@ pub extern "C-unwind" fn UIAccessibilityIsSpeakSelectionEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityspeakselectionstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/speakselectionstatusdidchangenotification?language=objc)
     pub static UIAccessibilitySpeakSelectionStatusDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1871,7 +1871,7 @@ pub extern "C-unwind" fn UIAccessibilityIsSpeakScreenEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityspeakscreenstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/speakscreenstatusdidchangenotification?language=objc)
     pub static UIAccessibilitySpeakScreenStatusDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1884,7 +1884,7 @@ pub extern "C-unwind" fn UIAccessibilityIsShakeToUndoEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityshaketoundodidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/shaketoundodidchangenotification?language=objc)
     pub static UIAccessibilityShakeToUndoDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1897,7 +1897,7 @@ pub extern "C-unwind" fn UIAccessibilityIsAssistiveTouchRunning() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityassistivetouchstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/assistivetouchstatusdidchangenotification?language=objc)
     pub static UIAccessibilityAssistiveTouchStatusDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1911,7 +1911,7 @@ pub extern "C-unwind" fn UIAccessibilityShouldDifferentiateWithoutColor() -> boo
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityshoulddifferentiatewithoutcolordidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/differentiatewithoutcolordidchangenotification?language=objc)
     pub static UIAccessibilityShouldDifferentiateWithoutColorDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -1925,7 +1925,7 @@ pub extern "C-unwind" fn UIAccessibilityIsOnOffSwitchLabelsEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityonoffswitchlabelsdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/onoffswitchlabelsdidchangenotification?language=objc)
     pub static UIAccessibilityOnOffSwitchLabelsDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1944,7 +1944,7 @@ pub extern "C-unwind" fn UIAccessibilityRequestGuidedAccessSession(
     unsafe { UIAccessibilityRequestGuidedAccessSession(Bool::new(enable), completion_handler) }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityhearingdeviceear?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/hearingdeviceear?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1980,7 +1980,7 @@ pub extern "C-unwind" fn UIAccessibilityHearingDevicePairedEar() -> UIAccessibil
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilityhearingdevicepairedeardidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/hearingdevicepairedeardidchangenotification?language=objc)
     pub static UIAccessibilityHearingDevicePairedEarDidChangeNotification:
         &'static NSNotificationName;
 }

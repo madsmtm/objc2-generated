@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontrollersidebarlayout?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/sidebar-swift.class/layout?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -84,7 +84,7 @@ impl UITabSidebarScrollTarget {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontrollersidebar?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/sidebar-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -230,7 +230,7 @@ impl UITabBarControllerSidebar {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontrollersidebaranimating?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/sidebar-swift.class/animating?language=objc)
     pub unsafe trait UITabBarControllerSidebarAnimating:
         NSObjectProtocol + MainThreadOnly
     {
@@ -247,7 +247,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontrollersidebardelegate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabbarcontroller/sidebar-swift.class/delegate-swift.protocol?language=objc)
     pub unsafe trait UITabBarControllerSidebarDelegate:
         NSObjectProtocol + MainThreadOnly
     {

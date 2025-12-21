@@ -355,7 +355,7 @@ impl AVAssetTrack {
 
 /// The type of a track association.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype?language=objc)
 // NS_TYPED_ENUM
 pub type AVTrackAssociationType = NSString;
 
@@ -366,7 +366,7 @@ extern "C" {
     ///
     /// Example: Using AVTrackAssociationTypeAudioFallback, a stereo audio track with media subtype kAudioFormatMPEG4AAC could be nominated as the "fallback" for an audio track encoding the same source material but with media subtype kAudioFormatAC3 and a 5.1 channel layout. This would ensure that all clients are capable of playing back some form of the audio.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypeaudiofallback?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype/audiofallback?language=objc)
     pub static AVTrackAssociationTypeAudioFallback: &'static AVTrackAssociationType;
 }
 
@@ -375,7 +375,7 @@ extern "C" {
     ///
     /// This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with a corresponding track that has renderable content while the input parameter should be an instance of AVAssetWriterInput with a corresponding track that contains chapter metadata.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypechapterlist?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype/chapterlist?language=objc)
     pub static AVTrackAssociationTypeChapterList: &'static AVTrackAssociationType;
 }
 
@@ -384,7 +384,7 @@ extern "C" {
     ///
     /// Associations of type AVTrackAssociationTypeForcedSubtitlesOnly are supported only between subtitle tracks. This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with a corresponding subtitle track that contains non-forced subtitles, and the input parameter should be an instance of AVAssetWriterInput with a corresponding subtitle track that contains forced subtitles only.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypeforcedsubtitlesonly?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype/forcedsubtitlesonly?language=objc)
     pub static AVTrackAssociationTypeForcedSubtitlesOnly: &'static AVTrackAssociationType;
 }
 
@@ -393,7 +393,7 @@ extern "C" {
     ///
     /// This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the input parameter should be an instance of AVAssetWriterInput whose selection may depend on the selection of the receiver. In the example above, the receiver would be the instance of AVAssetWriterInput corresponding with the audio track and the input parameter would be the instance of AVAssetWriterInput corresponding with the subtitle track.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypeselectionfollower?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype/selectionfollower?language=objc)
     pub static AVTrackAssociationTypeSelectionFollower: &'static AVTrackAssociationType;
 }
 
@@ -402,7 +402,7 @@ extern "C" {
     ///
     /// This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with a corresponding track that may be a video track or an audio track while the input parameter should be an instance of AVAssetWriterInput with a corresponding timecode track.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypetimecode?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype/timecode?language=objc)
     pub static AVTrackAssociationTypeTimecode: &'static AVTrackAssociationType;
 }
 
@@ -412,7 +412,7 @@ extern "C" {
     /// This track association is optional for AVAssetTracks with the mediaType AVMediaTypeMetadata. When a metadata track lacks this track association, its contents are assumed to describe or annotate the asset as a whole.
     /// This association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with mediaType AVMediaTypeMetadata while the input parameter should be an instance of AVAssetWriterInput that's used to create the track to which the contents of the receiver's corresponding metadata track refer.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtypemetadatareferent?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype/metadatareferent?language=objc)
     pub static AVTrackAssociationTypeMetadataReferent: &'static AVTrackAssociationType;
 }
 
@@ -421,7 +421,7 @@ extern "C" {
     ///
     /// This track association is not symmetric; when used with -[AVAssetWriterInput addTrackAssociationWithTrackOfInput:type:], the receiver should be an instance of AVAssetWriterInput with mediaType, AVMediaTypeMetadata, while the input parameter should be an instance of AVAssetWriterInput for the target track that would be rendered (for example, a video track).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avtrackassociationtyperendermetadatasource?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassettrack/associationtype/rendermetadatasource?language=objc)
     pub static AVTrackAssociationTypeRenderMetadataSource: &'static AVTrackAssociationType;
 }
 

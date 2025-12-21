@@ -157,7 +157,7 @@ extern "C" {
     ///
     /// The object of the notification is nil. In order to start receiving notification you have to instantiate TVUserManager at least once.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvusermanagercurrentuseridentifierdidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvusermanager/currentuseridentifierdidchangenotification?language=objc)
     #[deprecated = "User Management capability get-current-user is no longer supported. Use the capability runs-as-current-user-with-user-independent-keychain, with it there is no need to be notified of user changes."]
     pub static TVUserManagerCurrentUserIdentifierDidChangeNotification: &'static NSNotificationName;
 }

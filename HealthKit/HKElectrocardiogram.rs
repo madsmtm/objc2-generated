@@ -10,7 +10,7 @@ use crate::*;
 ///
 /// the ECG app, enables the generation and analysis of an ECG  similar to a Lead I ECG.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramlead?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/lead?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -30,7 +30,7 @@ unsafe impl RefEncode for HKElectrocardiogramLead {
 
 /// The possible classifications determined for HKElectrocardiograms
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramclassification?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/classification-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -70,7 +70,7 @@ unsafe impl RefEncode for HKElectrocardiogramClassification {
 /// If an HKElectrocardiogram indicates that there are symptoms present, you must do a separate sample query to
 /// retrieve those symptoms.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramsymptomsstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/symptomsstatus-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

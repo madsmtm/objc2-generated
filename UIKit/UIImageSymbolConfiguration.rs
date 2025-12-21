@@ -8,7 +8,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagesymbolscale?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolscale?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for UIImageSymbolScale {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagesymbolweight?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolweight?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -70,7 +70,7 @@ unsafe impl RefEncode for UIImageSymbolWeight {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagesymbolvariablevaluemode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolvariablevaluemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -101,7 +101,7 @@ unsafe impl Send for UIImageSymbolVariableValueMode {}
 
 unsafe impl Sync for UIImageSymbolVariableValueMode {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagesymbolcolorrenderingmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolcolorrenderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -154,7 +154,7 @@ impl UIImageSymbolWeight {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagesymbolconfiguration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimage/symbolconfiguration-swift.class?language=objc)
     #[unsafe(super(UIImageConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIImageConfiguration")]

@@ -16,7 +16,7 @@ extern_class!(
     /// <dns
     /// _sd.h>.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshost?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/host?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Network framework instead, see deprecation notice in <Foundation/NSHost.h>"]

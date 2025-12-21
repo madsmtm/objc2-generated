@@ -7,7 +7,6 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnullwindowid?language=objc)
 pub const kCGNullWindowID: CGWindowID = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowid?language=objc)
 pub type CGWindowID = u32;

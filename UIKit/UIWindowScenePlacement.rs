@@ -9,7 +9,7 @@ use crate::*;
 extern_class!(
     /// Base class for types that describe the placement of a window scene.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneplacement?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneplacement-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIWindowScenePlacement;

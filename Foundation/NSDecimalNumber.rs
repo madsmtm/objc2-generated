@@ -9,25 +9,25 @@ use crate::*;
 extern "C" {
     /// *************    Exceptions        **********
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberexactnessexception?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/decimalnumberexactnessexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberExactnessException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberoverflowexception?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/decimalnumberoverflowexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberOverflowException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberunderflowexception?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/decimalnumberunderflowexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberUnderflowException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecimalnumberdividebyzeroexception?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/decimalnumberdividebyzeroexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDecimalNumberDivideByZeroException: &'static NSExceptionName;
 }

@@ -15,13 +15,13 @@ use crate::*;
 extern "C" {
     /// Indicates a ``WKWebExtension`` error.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionerrordomain?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/errordomain?language=objc)
     pub static WKWebExtensionErrorDomain: &'static NSErrorDomain;
 }
 
 /// Constants used by ``NSError`` to indicate errors in the ``WKWebExtension`` domain.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionerror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/error/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

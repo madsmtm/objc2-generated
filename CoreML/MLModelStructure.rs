@@ -29,7 +29,7 @@ extern_class!(
     /// }];
     /// ```
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructure?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelstructure-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLModelStructure;

@@ -29,7 +29,7 @@ unsafe impl RefEncode for UIContextMenuInteractionCommitStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteractionappearance?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextmenuinteraction/appearance?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

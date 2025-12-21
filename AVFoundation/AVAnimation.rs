@@ -26,7 +26,7 @@ extern "C" {
     /// AVLayerVideoGravityResizeAspect may be used when setting the videoGravity
     /// property of an AVPlayerLayer or AVCaptureVideoPreviewLayer instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avlayervideogravityresizeaspect?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avlayervideogravity/resizeaspect?language=objc)
     pub static AVLayerVideoGravityResizeAspect: Option<&'static AVLayerVideoGravity>;
 }
 
@@ -36,7 +36,7 @@ extern "C" {
     /// AVLayerVideoGravityResizeAspectFill may be used when setting the videoGravity
     /// property of an AVPlayerLayer or AVCaptureVideoPreviewLayer instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avlayervideogravityresizeaspectfill?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avlayervideogravity/resizeaspectfill?language=objc)
     pub static AVLayerVideoGravityResizeAspectFill: Option<&'static AVLayerVideoGravity>;
 }
 
@@ -46,6 +46,6 @@ extern "C" {
     /// AVLayerVideoGravityResize may be used when setting the videoGravity
     /// property of an AVPlayerLayer or AVCaptureVideoPreviewLayer instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avlayervideogravityresize?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avlayervideogravity/resize?language=objc)
     pub static AVLayerVideoGravityResize: Option<&'static AVLayerVideoGravity>;
 }

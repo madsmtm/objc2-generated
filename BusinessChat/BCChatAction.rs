@@ -8,37 +8,28 @@ use objc2_foundation::*;
 use crate::*;
 
 /// BCParameterName is used to define custom parameters when opening the transcript.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcparametername?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type BCParameterName = NSString;
 
 extern "C" {
     /// Intent is used to help the support agent or business system identify the product, service, account, or other context when the customer tapped the button to send the message.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcparameternameintent?language=objc)
     #[deprecated]
     pub static BCParameterNameIntent: &'static BCParameterName;
 }
 
 extern "C" {
     /// Group is used to help the business or customer service platform route the message to the appropriate support agent group.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcparameternamegroup?language=objc)
     #[deprecated]
     pub static BCParameterNameGroup: &'static BCParameterName;
 }
 
 extern "C" {
     /// Body is used to help the customer by providing a pre-configured contextual message that the customer can tap to send to smooth the transition into Business Chat.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcparameternamebody?language=objc)
     #[deprecated]
     pub static BCParameterNameBody: &'static BCParameterName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/businesschat/bcchataction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated]

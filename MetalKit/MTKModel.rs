@@ -17,12 +17,12 @@ use crate::*;
 pub type MTKModelError = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmodelerrordomain?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmodelerror/domain?language=objc)
     pub static MTKModelErrorDomain: &'static MTKModelError;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmodelerrorkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtkmodelerror/key?language=objc)
     pub static MTKModelErrorKey: &'static MTKModelError;
 }
 

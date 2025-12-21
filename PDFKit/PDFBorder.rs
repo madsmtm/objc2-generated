@@ -40,17 +40,17 @@ unsafe impl RefEncode for PDFBorderStyle {
 pub type PDFBorderKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderkeylinewidth?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderkey/linewidth?language=objc)
     pub static PDFBorderKeyLineWidth: &'static PDFBorderKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderkeystyle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderkey/style?language=objc)
     pub static PDFBorderKeyStyle: &'static PDFBorderKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderkeydashpattern?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfborderkey/dashpattern?language=objc)
     pub static PDFBorderKeyDashPattern: &'static PDFBorderKey;
 }
 

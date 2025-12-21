@@ -17,7 +17,7 @@ extern "C" {
 /// Error codes used with DDErrorDomain.
 /// DeviceDiscoveryExtension error code range: 350000-350999.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderrorcode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dderror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

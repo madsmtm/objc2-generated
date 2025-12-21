@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzonecapabilities?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/capabilities-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for CKRecordZoneCapabilities {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzoneencryptionscope?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzone/encryptionscope-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -71,7 +71,7 @@ unsafe impl RefEncode for CKRecordZoneEncryptionScope {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzonedefaultname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordzonedefaultname-8mfij?language=objc)
     pub static CKRecordZoneDefaultName: &'static NSString;
 }
 

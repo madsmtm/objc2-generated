@@ -130,7 +130,7 @@ impl private_NSObjectNSClassDescriptionPrimitives::Sealed for NSObject {}
 unsafe impl NSObjectNSClassDescriptionPrimitives for NSObject {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsclassdescriptionneededforclassnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsclassdescriptionneededforclass?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSClassDescriptionNeededForClassNotification: &'static NSNotificationName;
 }

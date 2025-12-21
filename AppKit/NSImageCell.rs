@@ -41,7 +41,7 @@ unsafe impl RefEncode for NSImageAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageframestyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimageview/framestyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

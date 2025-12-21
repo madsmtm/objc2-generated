@@ -14,16 +14,16 @@ use crate::*;
 pub type DDDeviceProtocolString = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceprotocolstringinvalid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceprotocolstring/invalid?language=objc)
     pub static DDDeviceProtocolStringInvalid: &'static DDDeviceProtocolString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceprotocolstringdial?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceprotocolstring/dial?language=objc)
     pub static DDDeviceProtocolStringDIAL: &'static DDDeviceProtocolString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddeviceprotocol?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/protocol-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -60,7 +60,7 @@ impl DDDeviceProtocol {
 
 /// Category of the device.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicecategory?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/category-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -158,7 +158,7 @@ impl DDDeviceState {
 
 /// State of media playback on the device.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicemediaplaybackstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/mediaplaybackstate-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -212,7 +212,7 @@ unsafe impl RefEncode for DDDeviceSupports {
 
 /// Wi-Fi Aware Service's Role
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevicewifiawareservicerole?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/dddevice/wifiawareservicerole-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

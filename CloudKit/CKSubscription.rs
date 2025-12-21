@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscriptiontype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscription/subscriptiontype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -95,7 +95,7 @@ impl CKSubscription {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscriptionoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckquerysubscription/options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -419,7 +419,7 @@ extern_class!(
     /// to parse that payload.
     /// On tvOS, alerts, badges, sounds, and categories are not handled in push notifications. However, CKSubscriptions remain available to help you avoid polling the server.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cknotificationinfo?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKNotificationInfo;

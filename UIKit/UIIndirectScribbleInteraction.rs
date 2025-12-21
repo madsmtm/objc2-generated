@@ -15,7 +15,7 @@ extern_class!(
     /// - A view that looks like a search field or a text field that in reality is a button, but installs a real text field when tapped
     /// - A view that contains multiple virtual text fields which the user can normally tap and type into, but are not full blown text fields all the time
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiindirectscribbleinteraction?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiindirectscribbleinteraction-2dap8?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -70,7 +70,7 @@ pub type UIScribbleElementIdentifier = AnyObject;
 extern_protocol!(
     /// The protocol to be implemented by the delegate of UIIndirectScribbleInteraction. It will be responsible for supplying a list of writable elements, focusing them, and ultimately providing a real UITextInput that will handle text editing operations.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiindirectscribbleinteractiondelegate?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiindirectscribbleinteractiondelegate-3jmnk?language=objc)
     pub unsafe trait UIIndirectScribbleInteractionDelegate:
         NSObjectProtocol + MainThreadOnly
     {

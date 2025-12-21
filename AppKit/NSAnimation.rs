@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationcurve?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/curve?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -31,7 +31,7 @@ unsafe impl RefEncode for NSAnimationCurve {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationblockingmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/blockingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -53,16 +53,16 @@ unsafe impl RefEncode for NSAnimationBlockingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationprogress?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/progress?language=objc)
 pub type NSAnimationProgress = c_float;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationprogressmarknotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/progressmarknotification?language=objc)
     pub static NSAnimationProgressMarkNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimationprogressmark?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsanimation/progressmarkuserinfokey?language=objc)
     pub static NSAnimationProgressMark: &'static NSString;
 }
 
@@ -291,41 +291,41 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/key?language=objc)
 // NS_TYPED_ENUM
 pub type NSViewAnimationKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationtargetkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/key/target?language=objc)
     pub static NSViewAnimationTargetKey: &'static NSViewAnimationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationstartframekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/key/startframe?language=objc)
     pub static NSViewAnimationStartFrameKey: &'static NSViewAnimationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationendframekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/key/endframe?language=objc)
     pub static NSViewAnimationEndFrameKey: &'static NSViewAnimationKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationeffectkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/key/effect?language=objc)
     pub static NSViewAnimationEffectKey: &'static NSViewAnimationKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationeffectname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/effectname?language=objc)
 // NS_TYPED_ENUM
 pub type NSViewAnimationEffectName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationfadeineffect?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/effectname/fadein?language=objc)
     pub static NSViewAnimationFadeInEffect: &'static NSViewAnimationEffectName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimationfadeouteffect?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewanimation/effectname/fadeout?language=objc)
     pub static NSViewAnimationFadeOutEffect: &'static NSViewAnimationEffectName;
 }
 

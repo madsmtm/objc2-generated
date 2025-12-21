@@ -11,7 +11,7 @@ extern "C" {
     pub static SAErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/safetykit/saerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

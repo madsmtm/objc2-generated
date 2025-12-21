@@ -5,7 +5,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceauthorizationappleidbuttonstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfaceauthorizationappleidbutton/style?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

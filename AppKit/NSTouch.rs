@@ -6,7 +6,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchphase?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/phase-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -38,7 +38,7 @@ unsafe impl RefEncode for NSTouchPhase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/touchtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -58,7 +58,7 @@ unsafe impl RefEncode for NSTouchType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchtypemask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouch/touchtypemask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

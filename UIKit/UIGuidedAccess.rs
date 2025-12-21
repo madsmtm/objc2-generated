@@ -8,11 +8,11 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccesserrordomain?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccesserrordomain?language=objc)
     pub static UIGuidedAccessErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccesserrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccesserror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for UIGuidedAccessErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiguidedaccessrestrictionstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibility/guidedaccessrestrictionstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

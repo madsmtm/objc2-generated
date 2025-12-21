@@ -10,7 +10,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardtimescope?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/timescope-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for GKLeaderboardTimeScope {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardplayerscope?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/playerscope-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -52,7 +52,7 @@ unsafe impl RefEncode for GKLeaderboardPlayerScope {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboardtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkleaderboard/leaderboardtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

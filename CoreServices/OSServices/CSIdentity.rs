@@ -12,7 +12,7 @@ use objc2_security::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentity?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityref?language=objc)
 #[doc(alias = "CSIdentityRef")]
 #[repr(C)]
 pub struct CSIdentity {
@@ -28,7 +28,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"__CSIdentity"> for CSIdentity {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityquery?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityqueryref?language=objc)
 #[doc(alias = "CSIdentityQueryRef")]
 #[repr(C)]
 pub struct CSIdentityQuery {
@@ -49,17 +49,17 @@ extern "C" {
     pub static kCSIdentityGeneratePosixName: Option<&'static CFString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityclassuser?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1512979-anonymous/kcsidentityclassuser?language=objc)
 pub const kCSIdentityClassUser: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityclassgroup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1512979-anonymous/kcsidentityclassgroup?language=objc)
 pub const kCSIdentityClassGroup: c_uint = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityclass?language=objc)
 pub type CSIdentityClass = CFIndex;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityflagnone?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1513010-anonymous/kcsidentityflagnone?language=objc)
 pub const kCSIdentityFlagNone: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityflaghidden?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1513010-anonymous/kcsidentityflaghidden?language=objc)
 pub const kCSIdentityFlagHidden: c_uint = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityflags?language=objc)
@@ -520,7 +520,7 @@ impl CSIdentity {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentitycommitcompleted?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1513007-anonymous/kcsidentitycommitcompleted?language=objc)
 pub const kCSIdentityCommitCompleted: c_uint = 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentitystatusupdatedcallback?language=objc)

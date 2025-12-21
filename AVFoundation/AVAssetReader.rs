@@ -22,7 +22,7 @@ use crate::*;
 ///
 /// Indicates that the asset reader can no longer read samples because reading was canceled with the cancelReading method.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreaderstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetreader/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

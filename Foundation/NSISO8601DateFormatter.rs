@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsiso8601dateformatoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter/options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -53,7 +53,7 @@ unsafe impl RefEncode for NSISO8601DateFormatOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsiso8601dateformatter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/iso8601dateformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

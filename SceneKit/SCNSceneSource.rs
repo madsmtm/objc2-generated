@@ -82,7 +82,7 @@ extern "C" {
 
 /// Scene loading options
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceloadingoption?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption?language=objc)
 // NS_TYPED_ENUM
 pub type SCNSceneSourceLoadingOption = NSString;
 
@@ -91,7 +91,7 @@ extern "C" {
     ///
     /// Use this with a boolean value encapsulated in a NSNumber. The default value is NO.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcecreatenormalsifabsentkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/createnormalsifabsent?language=objc)
     pub static SCNSceneSourceCreateNormalsIfAbsentKey: &'static SCNSceneSourceLoadingOption;
 }
 
@@ -104,7 +104,7 @@ extern "C" {
     /// If the document doesn't pass the consistency check it is then not loaded and an error is returned.
     /// This is slower, but for security reasons it should be set to YES if you are not sure the files you load are valid and have not been tampered with.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcecheckconsistencykey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/checkconsistency?language=objc)
     pub static SCNSceneSourceCheckConsistencyKey: &'static SCNSceneSourceLoadingOption;
 }
 
@@ -116,7 +116,7 @@ extern "C" {
     /// SceneKit will attempt to reduce the scene graph by merging the geometries.
     /// This option is suitable to preview a 3D scene efficiently and when manipulating the scene graph is not needed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceflattenscenekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/flattenscene?language=objc)
     pub static SCNSceneSourceFlattenSceneKey: &'static SCNSceneSourceLoadingOption;
 }
 
@@ -128,7 +128,7 @@ extern "C" {
     /// SceneKit will forbid network accesses, prevent the loading of resources from arbitrary directories, and will not execute
     /// any code present in the loaded files.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceusesafemodekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/usesafemode?language=objc)
     #[deprecated = "No longer supported"]
     pub static SCNSceneSourceUseSafeModeKey: &'static SCNSceneSourceLoadingOption;
 }
@@ -141,7 +141,7 @@ extern "C" {
     /// This is recommended if you want to construct your scene source from a data object, not from an URL,
     /// and need to load resources whose paths are not absolute.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceassetdirectoryurlskey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/assetdirectoryurls?language=objc)
     pub static SCNSceneSourceAssetDirectoryURLsKey: &'static SCNSceneSourceLoadingOption;
 }
 
@@ -152,7 +152,7 @@ extern "C" {
     /// You can force SceneKit to only search for extern resources within the directories specified by the SCNSceneSourceAssetDirectoryURLsKey key.
     /// This can be useful to load a file and its resources from a specific bundle for instance.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceoverrideasseturlskey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/overrideasseturls?language=objc)
     pub static SCNSceneSourceOverrideAssetURLsKey: &'static SCNSceneSourceLoadingOption;
 }
 
@@ -163,7 +163,7 @@ extern "C" {
     /// enable additional features and make the rendering as close as possible to the original intent. If you pass YES,
     /// SceneKit will instead only consider features which are part of the file format specification.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestrictconformancekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/strictconformance?language=objc)
     pub static SCNSceneSourceStrictConformanceKey: &'static SCNSceneSourceLoadingOption;
 }
 
@@ -174,7 +174,7 @@ extern "C" {
     /// For better physics simulation it is recommended to use 1 unit equals to 1 meter.
     /// This option has no effect for SCN files or if the asset is already compressed by Xcode (use the compression options instead).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceconvertunitstometerskey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/convertunitstometers?language=objc)
     pub static SCNSceneSourceConvertUnitsToMetersKey: &'static SCNSceneSourceLoadingOption;
 }
 
@@ -184,7 +184,7 @@ extern "C" {
     /// Use this with a boolean value encapsulated in a NSNumber. The default value is NO.
     /// This option has no effect for SCN files or if the asset is already compressed by Xcode (use the compression options instead).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceconverttoyupkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/converttoyup?language=objc)
     pub static SCNSceneSourceConvertToYUpKey: &'static SCNSceneSourceLoadingOption;
 }
 
@@ -193,7 +193,7 @@ extern "C" {
     ///
     /// See below for the description of each individual key. Defaults to SCNSceneSourceAnimationImportPolicyPlayRepeatedly. On 10.9 and before the behavior is SCNSceneSourceAnimationImportPolicyPlayUsingSceneTimeBase. For compatibility reason if the application was built on 10.9 or before the default behavior is SCNSceneSourceAnimationImportPolicyPlayUsingSceneTimeBase.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceanimationimportpolicykey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/animationimportpolicy?language=objc)
     pub static SCNSceneSourceAnimationImportPolicyKey: &'static SCNSceneSourceLoadingOption;
 }
 
@@ -202,19 +202,19 @@ extern "C" {
     ///
     /// Defaults to YES starting macOS 10.15, iOS 13, tvOS 13 and watchOS 6. Defaults to NO in previous versions.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceloadingoptionpreserveoriginaltopology?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/loadingoption/preserveoriginaltopology?language=objc)
     pub static SCNSceneSourceLoadingOptionPreserveOriginalTopology:
         &'static SCNSceneSourceLoadingOption;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceanimationimportpolicy?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/animationimportpolicy?language=objc)
 // NS_TYPED_ENUM
 pub type SCNSceneSourceAnimationImportPolicy = NSString;
 
 extern "C" {
     /// Add animations to the scene and play them once (repeatCount set to 1).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceanimationimportpolicyplay?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/animationimportpolicy/play?language=objc)
     pub static SCNSceneSourceAnimationImportPolicyPlay:
         &'static SCNSceneSourceAnimationImportPolicy;
 }
@@ -222,7 +222,7 @@ extern "C" {
 extern "C" {
     /// Add animations to the scene and play them repeatedly (repeatCount set to infinity).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceanimationimportpolicyplayrepeatedly?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/animationimportpolicy/playrepeatedly?language=objc)
     pub static SCNSceneSourceAnimationImportPolicyPlayRepeatedly:
         &'static SCNSceneSourceAnimationImportPolicy;
 }
@@ -230,7 +230,7 @@ extern "C" {
 extern "C" {
     /// Only keep animations in the SCNSceneSource and don't add to the animatable elements of the scene.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceanimationimportpolicydonotplay?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/animationimportpolicy/donotplay?language=objc)
     pub static SCNSceneSourceAnimationImportPolicyDoNotPlay:
         &'static SCNSceneSourceAnimationImportPolicy;
 }
@@ -238,7 +238,7 @@ extern "C" {
 extern "C" {
     /// Add animations to the scene and play them using the SCNView/SCNRenderer's scene time (usesSceneTimeBase set to YES)
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourceanimationimportpolicyplayusingscenetimebase?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesource/animationimportpolicy/playusingscenetimebase?language=objc)
     pub static SCNSceneSourceAnimationImportPolicyPlayUsingSceneTimeBase:
         &'static SCNSceneSourceAnimationImportPolicy;
 }

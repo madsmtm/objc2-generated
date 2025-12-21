@@ -15,7 +15,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsautoresizingmaskoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/autoresizingmask-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -71,7 +71,7 @@ unsafe impl RefEncode for NSBorderType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewlayercontentsredrawpolicy?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsredrawpolicy-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -97,7 +97,7 @@ unsafe impl RefEncode for NSViewLayerContentsRedrawPolicy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewlayercontentsplacement?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/layercontentsplacement-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -137,10 +137,10 @@ unsafe impl RefEncode for NSViewLayerContentsPlacement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstrackingrecttag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/trackingrecttag?language=objc)
 pub type NSTrackingRectTag = NSInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstooltiptag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/tooltiptag?language=objc)
 pub type NSToolTipTag = NSInteger;
 
 extern_class!(
@@ -1427,27 +1427,27 @@ impl NSView {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewfullscreenmodeoptionkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/fullscreenmodeoptionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSViewFullScreenModeOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfullscreenmodeallscreens?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/fullscreenmodeoptionkey/fullscreenmodeallscreens?language=objc)
     pub static NSFullScreenModeAllScreens: &'static NSViewFullScreenModeOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfullscreenmodesetting?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/fullscreenmodeoptionkey/fullscreenmodesetting?language=objc)
     pub static NSFullScreenModeSetting: &'static NSViewFullScreenModeOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfullscreenmodewindowlevel?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/fullscreenmodeoptionkey/fullscreenmodewindowlevel?language=objc)
     pub static NSFullScreenModeWindowLevel: &'static NSViewFullScreenModeOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfullscreenmodeapplicationpresentationoptions?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/fullscreenmodeoptionkey/fullscreenmodeapplicationpresentationoptions?language=objc)
     pub static NSFullScreenModeApplicationPresentationOptions:
         &'static NSViewFullScreenModeOptionKey;
 }
@@ -1484,26 +1484,26 @@ impl NSView {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdefinitionoptionkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/definitionoptionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSDefinitionOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdefinitionpresentationtypekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/definitionoptionkey/presentationtype?language=objc)
     pub static NSDefinitionPresentationTypeKey: &'static NSDefinitionOptionKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdefinitionpresentationtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/definitionpresentationtype?language=objc)
 // NS_TYPED_ENUM
 pub type NSDefinitionPresentationType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdefinitionpresentationtypeoverlay?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/definitionpresentationtype/overlay?language=objc)
     pub static NSDefinitionPresentationTypeOverlay: &'static NSDefinitionPresentationType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdefinitionpresentationtypedictionaryapplication?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/definitionpresentationtype/dictionaryapplication?language=objc)
     pub static NSDefinitionPresentationTypeDictionaryApplication:
         &'static NSDefinitionPresentationType;
 }
@@ -1860,7 +1860,7 @@ impl NSView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewframedidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/framedidchangenotification?language=objc)
     pub static NSViewFrameDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -1871,17 +1871,17 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewboundsdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/boundsdidchangenotification?language=objc)
     pub static NSViewBoundsDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewglobalframedidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/globalframedidchangenotification?language=objc)
     #[deprecated = "Use NSOpenGLView instead."]
     pub static NSViewGlobalFrameDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsviewdidupdatetrackingareasnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsview/didupdatetrackingareasnotification?language=objc)
     pub static NSViewDidUpdateTrackingAreasNotification: &'static NSNotificationName;
 }

@@ -292,25 +292,25 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydidstartgatheringnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsmetadataquerydidstartgathering?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidStartGatheringNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerygatheringprogressnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsmetadataquerygatheringprogress?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryGatheringProgressNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydidfinishgatheringnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsmetadataquerydidfinishgathering?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidFinishGatheringNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsmetadataquerydidupdatenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsmetadataquerydidupdate?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSMetadataQueryDidUpdateNotification: &'static NSNotificationName;
 }

@@ -10,7 +10,7 @@ use crate::*;
 ///
 /// Clients may use an AVCaptureSessionPreset to set the format for output on an AVCaptureSession.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpreset?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset?language=objc)
 // NS_TYPED_ENUM
 pub type AVCaptureSessionPreset = NSString;
 
@@ -20,7 +20,7 @@ extern "C" {
     ///
     /// Clients may set an AVCaptureSession instance's sessionPreset to AVCaptureSessionPresetPhoto for full resolution photo quality output.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpresetphoto?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/photo?language=objc)
     pub static AVCaptureSessionPresetPhoto: &'static AVCaptureSessionPreset;
 }
 
@@ -30,7 +30,7 @@ extern "C" {
     ///
     /// Clients may set an AVCaptureSession instance's sessionPreset to AVCaptureSessionPresetHigh to achieve high quality video and audio output. AVCaptureSessionPresetHigh is the default sessionPreset value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpresethigh?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/high?language=objc)
     pub static AVCaptureSessionPresetHigh: &'static AVCaptureSessionPreset;
 }
 
@@ -40,7 +40,7 @@ extern "C" {
     ///
     /// Clients may set an AVCaptureSession instance's sessionPreset to AVCaptureSessionPresetMedium to achieve output video and audio bitrates suitable for sharing over WiFi.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpresetmedium?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/medium?language=objc)
     pub static AVCaptureSessionPresetMedium: &'static AVCaptureSessionPreset;
 }
 
@@ -50,7 +50,7 @@ extern "C" {
     ///
     /// Clients may set an AVCaptureSession instance's sessionPreset to AVCaptureSessionPresetLow to achieve output video and audio bitrates suitable for sharing over 3G.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpresetlow?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/low?language=objc)
     pub static AVCaptureSessionPresetLow: &'static AVCaptureSessionPreset;
 }
 
@@ -60,7 +60,7 @@ extern "C" {
     ///
     /// Clients may set an AVCaptureSession instance's sessionPreset to AVCaptureSessionPreset320x240 to achieve 320x240 output.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpreset320x240?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/qvga320x240?language=objc)
     pub static AVCaptureSessionPreset320x240: &'static AVCaptureSessionPreset;
 }
 
@@ -70,7 +70,7 @@ extern "C" {
     ///
     /// Clients may set an AVCaptureSession instance's sessionPreset to AVCaptureSessionPreset352x288 to achieve CIF quality (352x288) output.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpreset352x288?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/cif352x288?language=objc)
     pub static AVCaptureSessionPreset352x288: &'static AVCaptureSessionPreset;
 }
 
@@ -80,7 +80,7 @@ extern "C" {
     ///
     /// Clients may set an AVCaptureSession instance's sessionPreset to AVCaptureSessionPreset640x480 to achieve VGA quality (640x480) output.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpreset640x480?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/vga640x480?language=objc)
     pub static AVCaptureSessionPreset640x480: &'static AVCaptureSessionPreset;
 }
 
@@ -90,7 +90,7 @@ extern "C" {
     ///
     /// Clients may set an AVCaptureSession instance's sessionPreset to AVCaptureSessionPreset960x540 to achieve quarter HD quality (960x540) output.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpreset960x540?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/qhd960x540?language=objc)
     pub static AVCaptureSessionPreset960x540: &'static AVCaptureSessionPreset;
 }
 
@@ -100,7 +100,7 @@ extern "C" {
     ///
     /// Clients may set an AVCaptureSession instance's sessionPreset to AVCaptureSessionPreset1280x720 to achieve 1280x720 output.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpreset1280x720?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/hd1280x720?language=objc)
     pub static AVCaptureSessionPreset1280x720: &'static AVCaptureSessionPreset;
 }
 
@@ -110,7 +110,7 @@ extern "C" {
     ///
     /// Clients may set an AVCaptureSession instance's sessionPreset to AVCaptureSessionPreset1920x1080 to achieve 1920x1080 output.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpreset1920x1080?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/hd1920x1080?language=objc)
     pub static AVCaptureSessionPreset1920x1080: &'static AVCaptureSessionPreset;
 }
 
@@ -120,7 +120,7 @@ extern "C" {
     ///
     /// Clients may set an AVCaptureSession instance's sessionPreset to AVCaptureSessionPreset3840x2160 to achieve 3840x2160 output.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpreset3840x2160?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/hd4k3840x2160?language=objc)
     pub static AVCaptureSessionPreset3840x2160: &'static AVCaptureSessionPreset;
 }
 
@@ -130,7 +130,7 @@ extern "C" {
     ///
     /// Clients may set an AVCaptureSession instance's sessionPreset to AVCaptureSessionPresetiFrame960x540 to achieve 960x540 quality iFrame H.264 video at ~30 Mbits/sec with AAC audio. QuickTime movies captured in iFrame format are optimal for editing applications.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpresetiframe960x540?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/iframe960x540?language=objc)
     pub static AVCaptureSessionPresetiFrame960x540: &'static AVCaptureSessionPreset;
 }
 
@@ -140,7 +140,7 @@ extern "C" {
     ///
     /// Clients may set an AVCaptureSession instance's sessionPreset to AVCaptureSessionPresetiFrame1280x720 to achieve 1280x720 quality iFrame H.264 video at ~40 Mbits/sec with AAC audio. QuickTime movies captured in iFrame format are optimal for editing applications.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpresetiframe1280x720?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/iframe1280x720?language=objc)
     pub static AVCaptureSessionPresetiFrame1280x720: &'static AVCaptureSessionPreset;
 }
 
@@ -150,6 +150,6 @@ extern "C" {
     ///
     /// By calling -setSessionPreset:, clients can easily configure an AVCaptureSession to produce a desired quality of service level. The session configures its inputs and outputs optimally to produce the QoS level indicated. Clients who need to ensure a particular input format is chosen can use AVCaptureDevice's -setActiveFormat: method. When a client sets the active format on a device, the associated session's -sessionPreset property automatically changes to AVCaptureSessionPresetInputPriority. This change indicates that the input format selected by the client now dictates the quality of service level provided at the outputs. When a client sets the session preset to anything other than AVCaptureSessionPresetInputPriority, the session resumes responsibility for configuring inputs and outputs, and is free to change its inputs' activeFormat as needed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionpresetinputpriority?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/preset/inputpriority?language=objc)
     pub static AVCaptureSessionPresetInputPriority: &'static AVCaptureSessionPreset;
 }

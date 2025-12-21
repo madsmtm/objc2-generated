@@ -72,7 +72,7 @@ unsafe impl RefEncode for VTMotionEstimationInfoFlags {
 /// session, you should call ``VTMotionEstimationSessionInvalidate`` to tear it down and ``CFRelease`` to release the
 /// session object reference.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsession?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationsessionref?language=objc)
 #[doc(alias = "VTMotionEstimationSessionRef")]
 #[repr(C)]
 pub struct VTMotionEstimationSession {

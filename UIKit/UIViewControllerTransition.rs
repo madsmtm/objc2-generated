@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontrollertransition?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontroller/transition?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIViewControllerTransition;
@@ -106,7 +106,7 @@ impl UIViewControllerTransition {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uizoomtransitionsourceviewprovidercontext?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiviewcontroller/transition/zoomsourceviewprovidercontext?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIZoomTransitionSourceViewProviderContext;

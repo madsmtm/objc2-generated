@@ -10,12 +10,12 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayoutautomaticsize?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/automaticsize?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UICollectionViewFlowLayoutAutomaticSize: CGSize;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayoutsectioninsetreference?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewflowlayout/sectioninsetreference-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

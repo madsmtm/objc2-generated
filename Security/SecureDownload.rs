@@ -9,7 +9,6 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/opaquesecuredownload?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueSecureDownload {
@@ -33,8 +32,6 @@ pub const errSecureDownloadInvalidDownload: c_int = -20053;
 
 /// This type is used to indicate whether or not a
 /// signer should be evaluated.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/securedownloadtrustcallbackresult?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct SecureDownloadTrustCallbackResult(pub c_uint);

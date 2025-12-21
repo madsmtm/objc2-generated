@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitconverter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitconverter?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitConverter;
@@ -50,7 +50,7 @@ impl DefaultRetained for NSUnitConverter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitconverterlinear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitconverterlinear?language=objc)
     #[unsafe(super(NSUnitConverter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitConverterLinear;
@@ -115,7 +115,7 @@ impl DefaultRetained for NSUnitConverterLinear {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunit?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unit?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnit;
@@ -172,7 +172,7 @@ impl NSUnit {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdimension?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/dimension?language=objc)
     #[unsafe(super(NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDimension;
@@ -246,7 +246,7 @@ impl NSDimension {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitacceleration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitacceleration?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitAcceleration;
@@ -329,7 +329,7 @@ impl NSUnitAcceleration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitangle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitangle?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitAngle;
@@ -428,7 +428,7 @@ impl NSUnitAngle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitarea?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitarea?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitArea;
@@ -559,7 +559,7 @@ impl NSUnitArea {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitconcentrationmass?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitconcentrationmass?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitConcentrationMass;
@@ -648,7 +648,7 @@ impl NSUnitConcentrationMass {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitdispersion?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitdispersion?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitDispersion;
@@ -727,7 +727,7 @@ impl NSUnitDispersion {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitduration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitduration?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitDuration;
@@ -830,7 +830,7 @@ impl NSUnitDuration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitelectriccharge?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitelectriccharge?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricCharge;
@@ -929,7 +929,7 @@ impl NSUnitElectricCharge {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitelectriccurrent?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitelectriccurrent?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricCurrent;
@@ -1024,7 +1024,7 @@ impl NSUnitElectricCurrent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitelectricpotentialdifference?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitelectricpotentialdifference?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricPotentialDifference;
@@ -1119,7 +1119,7 @@ impl NSUnitElectricPotentialDifference {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitelectricresistance?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitelectricresistance?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitElectricResistance;
@@ -1214,7 +1214,7 @@ impl NSUnitElectricResistance {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitenergy?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitenergy?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitEnergy;
@@ -1309,7 +1309,7 @@ impl NSUnitEnergy {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitfrequency?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitfrequency?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitFrequency;
@@ -1420,7 +1420,7 @@ impl NSUnitFrequency {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitfuelefficiency?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitfuelefficiency?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitFuelEfficiency;
@@ -1507,7 +1507,7 @@ impl NSUnitFuelEfficiency {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitinformationstorage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitinformationstorage?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitInformationStorage;
@@ -1722,7 +1722,7 @@ impl NSUnitInformationStorage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitlength?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitlength?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitLength;
@@ -1885,7 +1885,7 @@ impl NSUnitLength {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitilluminance?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitilluminance?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitIlluminance;
@@ -1964,7 +1964,7 @@ impl NSUnitIlluminance {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitmass?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitmass?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitMass;
@@ -2103,7 +2103,7 @@ impl NSUnitMass {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitpower?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitpower?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitPower;
@@ -2222,7 +2222,7 @@ impl NSUnitPower {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitpressure?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitpressure?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitPressure;
@@ -2337,7 +2337,7 @@ impl NSUnitPressure {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitspeed?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitspeed?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitSpeed;
@@ -2428,7 +2428,7 @@ impl NSUnitSpeed {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunittemperature?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unittemperature?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitTemperature;
@@ -2515,7 +2515,7 @@ impl NSUnitTemperature {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunitvolume?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/unitvolume?language=objc)
     #[unsafe(super(NSDimension, NSUnit, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSUnitVolume;

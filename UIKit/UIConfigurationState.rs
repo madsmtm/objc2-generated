@@ -12,7 +12,7 @@ use crate::*;
 pub type UIConfigurationStateCustomKey = NSString;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationstate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationstate-1smq1?language=objc)
     pub unsafe trait UIConfigurationState:
         NSObjectProtocol + NSCopying + NSSecureCoding + MainThreadOnly
     {

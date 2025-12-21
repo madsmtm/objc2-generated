@@ -7,13 +7,13 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidarchiveoperationexception?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/invalidarchiveoperationexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidArchiveOperationException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvalidunarchiveoperationexception?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/invalidunarchiveoperationexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvalidUnarchiveOperationException: &'static NSExceptionName;
 }

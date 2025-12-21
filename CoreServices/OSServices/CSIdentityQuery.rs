@@ -20,17 +20,17 @@ unsafe impl ConcreteType for CSIdentityQuery {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityquerygenerateupdateevents?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1428995-anonymous/kcsidentityquerygenerateupdateevents?language=objc)
 pub const kCSIdentityQueryGenerateUpdateEvents: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityqueryincludehiddenidentities?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1428995-anonymous/kcsidentityqueryincludehiddenidentities?language=objc)
 pub const kCSIdentityQueryIncludeHiddenIdentities: c_uint = 0x0002;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityqueryflags?language=objc)
 pub type CSIdentityQueryFlags = CFOptionFlags;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityquerystringequals?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429043-anonymous/kcsidentityquerystringequals?language=objc)
 pub const kCSIdentityQueryStringEquals: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityquerystringbeginswith?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429043-anonymous/kcsidentityquerystringbeginswith?language=objc)
 pub const kCSIdentityQueryStringBeginsWith: c_uint = 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityquerystringcomparisonmethod?language=objc)
@@ -221,15 +221,15 @@ impl CSIdentityQuery {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityqueryeventsearchphasefinished?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429005-anonymous/kcsidentityqueryeventsearchphasefinished?language=objc)
 pub const kCSIdentityQueryEventSearchPhaseFinished: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityqueryeventresultsadded?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429005-anonymous/kcsidentityqueryeventresultsadded?language=objc)
 pub const kCSIdentityQueryEventResultsAdded: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityqueryeventresultschanged?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429005-anonymous/kcsidentityqueryeventresultschanged?language=objc)
 pub const kCSIdentityQueryEventResultsChanged: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityqueryeventresultsremoved?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429005-anonymous/kcsidentityqueryeventresultsremoved?language=objc)
 pub const kCSIdentityQueryEventResultsRemoved: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcsidentityqueryeventerroroccurred?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1429005-anonymous/kcsidentityqueryeventerroroccurred?language=objc)
 pub const kCSIdentityQueryEventErrorOccurred: c_uint = 5;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/csidentityqueryevent?language=objc)

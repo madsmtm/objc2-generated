@@ -10,7 +10,7 @@ use crate::*;
 extern "C" {
     /// How far in seconds is this match from the start of the reference audio
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemmatchoffset?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/matchoffset?language=objc)
     #[cfg(feature = "SHMediaItem")]
     pub static SHMediaItemMatchOffset: &'static SHMediaItemProperty;
 }
@@ -18,7 +18,7 @@ extern "C" {
 extern "C" {
     /// How much the match differs in frequency from reference material
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemfrequencyskew?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/frequencyskew?language=objc)
     #[cfg(feature = "SHMediaItem")]
     pub static SHMediaItemFrequencySkew: &'static SHMediaItemProperty;
 }
@@ -26,7 +26,7 @@ extern "C" {
 extern "C" {
     /// The value ranges from 0.0 to 1.0, where 1.0 indicates the highest level of confidence.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemconfidence?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/confidence?language=objc)
     #[cfg(feature = "SHMediaItem")]
     pub static SHMediaItemConfidence: &'static SHMediaItemProperty;
 }

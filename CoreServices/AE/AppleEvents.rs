@@ -10,99 +10,99 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keydirectobject?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keydirectobject?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyDirectObject: AEKeyword = 0x2d2d2d2d;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyerrornumber?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keyerrornumber?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyErrorNumber: AEKeyword = 0x6572726e;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyerrorstring?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keyerrorstring?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyErrorString: AEKeyword = 0x65727273;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyprocessserialnumber?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keyprocessserialnumber?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyProcessSerialNumber: AEKeyword = 0x70736e20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keypredispatch?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keypredispatch?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyPreDispatch: AEKeyword = 0x70686163;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyselectproc?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keyselectproc?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keySelectProc: AEKeyword = 0x73656c68;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaerecordercount?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keyaerecordercount?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAERecorderCount: AEKeyword = 0x72656372;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaeversion?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527206-keyword_parameter_constants/keyaeversion?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAEVersion: AEKeyword = 0x76657273;
 
 /// in a kAEOpenDocuments/kAEReopenApplication event, a typeBoolean value, if true then the process should expect a request to be frontmost to accompany this AppleEvent
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeapplicationactivationexpected?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/4464838-anonymous/kaeapplicationactivationexpected?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEApplicationActivationExpected: AEKeyword = 0x61617064;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kcoreeventclass?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527210-event_class_constants/kcoreeventclass?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kCoreEventClass: DescType = 0x61657674;
 
 /// Event sent as the first AppleEvent to an application which is not launched with a document to open or print or with a URL to open.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeopenapplication?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaeopenapplication?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEOpenApplication: AEEventID = 0x6f617070;
 /// Event that provides an application with a list of documents to open.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeopendocuments?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaeopendocuments?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEOpenDocuments: AEEventID = 0x6f646f63;
 /// Event that provides an application with a list of documents to print.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeprintdocuments?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaeprintdocuments?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEPrintDocuments: AEEventID = 0x70646f63;
 /// Event that provides an application with dragged content, such as text or an image.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeopencontents?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaeopencontents?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEOpenContents: AEEventID = 0x6f636f6e;
 /// Event that causes an application to quit.  May include a property kAEQuitReason indicating what lead to the quit being sent.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaequitapplication?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaequitapplication?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEQuitApplication: AEEventID = 0x71756974;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeanswer?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaeanswer?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEAnswer: AEEventID = 0x616e7372;
 /// Event sent by the Process Manager to an application that launched another application when the launched application quits or terminates.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeapplicationdied?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaeapplicationdied?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEApplicationDied: AEEventID = 0x6f626974;
 /// sent by Mac OS X when the user chooses the Preferences item
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeshowpreferences?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527223-event_id_constants/kaeshowpreferences?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEShowPreferences: AEEventID = 0x70726566;
 
 /// If present in a kAEOpenApplication or kAEReopenApplication AppleEvent, with the value kAEYes, then any saved application state should be restored; if present and kAENo, then any saved application state should not be restored
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyaerestoreappstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/4013044-anonymous/keyaerestoreappstate?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyAERestoreAppState: DescType = 0x7273746f;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaestartrecording?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527224-apple_event_recording_event_id_c/kaestartrecording?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEStartRecording: AEEventID = 0x72656361;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaestoprecording?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527224-apple_event_recording_event_id_c/kaestoprecording?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAEStopRecording: AEEventID = 0x72656363;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenotifystartrecording?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527224-apple_event_recording_event_id_c/kaenotifystartrecording?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAENotifyStartRecording: AEEventID = 0x72656331;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenotifystoprecording?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527224-apple_event_recording_event_id_c/kaenotifystoprecording?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAENotifyStopRecording: AEEventID = 0x72656330;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaenotifyrecording?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527224-apple_event_recording_event_id_c/kaenotifyrecording?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const kAENotifyRecording: AEEventID = 0x72656372;
 
@@ -114,20 +114,20 @@ pub const kAENotifyRecording: AEEventID = 0x72656372;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeeventsource?language=objc)
 pub type AEEventSource = i8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeunknownsource?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527201-event_source_constants/kaeunknownsource?language=objc)
 pub const kAEUnknownSource: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedirectcall?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527201-event_source_constants/kaedirectcall?language=objc)
 pub const kAEDirectCall: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaesameprocess?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527201-event_source_constants/kaesameprocess?language=objc)
 pub const kAESameProcess: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaelocalprocess?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527201-event_source_constants/kaelocalprocess?language=objc)
 pub const kAELocalProcess: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaeremoteprocess?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527201-event_source_constants/kaeremoteprocess?language=objc)
 pub const kAERemoteProcess: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/erraetargetaddressnotpermitted?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527221-anonymous/erraetargetaddressnotpermitted?language=objc)
 pub const errAETargetAddressNotPermitted: c_int = -1742;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/erraeeventnotpermitted?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1527221-anonymous/erraeeventnotpermitted?language=objc)
 pub const errAEEventNotPermitted: c_int = -1743;
 
 /// ************************************************************************
@@ -360,7 +360,6 @@ unsafe impl RefEncode for AERemoteProcessResolverContext {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aeremoteprocessresolver?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct AERemoteProcessResolver {
@@ -534,12 +533,12 @@ pub unsafe extern "C-unwind" fn AEDeterminePermissionToAutomateTarget(
 
 /// Determining whether this can be sent would require prompting the user, and the AppleEvent was sent with kAEDoNotPromptForPermission
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/erraeeventwouldrequireuserconsent?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3025780-anonymous/erraeeventwouldrequireuserconsent?language=objc)
 pub const errAEEventWouldRequireUserConsent: c_int = -1744;
 
 /// If set, and the AppleEvent requires user consent, do not prompt and instead return errAEEventWouldRequireUserConsent
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedonotpromptforuserconsent?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3025781-anonymous/kaedonotpromptforuserconsent?language=objc)
 pub const kAEDoNotPromptForUserConsent: c_uint = 0x00020000;
 
 #[deprecated = "renamed to `AERemoteProcessResolver::processes`"]

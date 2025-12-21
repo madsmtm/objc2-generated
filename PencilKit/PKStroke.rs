@@ -14,7 +14,7 @@ use crate::*;
 extern_class!(
     /// The data model value representing a stroke in a `PKDrawing`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkstroke?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkstrokereference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKStroke;

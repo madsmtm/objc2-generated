@@ -29,7 +29,7 @@ unsafe impl RefEncode for CPAssistantCellActionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpassistantcellvisibility?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem/assistantcellvisibility?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -51,7 +51,7 @@ unsafe impl RefEncode for CPAssistantCellVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpassistantcellposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistitem/assistantcellposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

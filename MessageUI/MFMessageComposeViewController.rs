@@ -79,7 +79,7 @@ extern "C" {
     /// </tt>
     /// has changed. Clients should invalidate any caches and update UI as appropriate.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/messageui/mfmessagecomposeviewcontrollertextmessageavailabilitydidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/messageui/nsnotification/name/mfmessagecomposeviewcontrollertextmessageavailabilitydidchange?language=objc)
     pub static MFMessageComposeViewControllerTextMessageAvailabilityDidChangeNotification:
         &'static NSString;
 }

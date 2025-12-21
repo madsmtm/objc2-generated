@@ -5,12 +5,12 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiniboptionskey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinib/optionskey?language=objc)
 // NS_TYPED_ENUM
 pub type UINibOptionsKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinibexternalobjects?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinib/optionskey/externalobjects?language=objc)
     pub static UINibExternalObjects: &'static UINibOptionsKey;
 }
 

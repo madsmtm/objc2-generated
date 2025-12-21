@@ -18,7 +18,7 @@ use crate::*;
 ///
 /// Constants indicating the type of an AVMetadataObject.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype?language=objc)
 // NS_TYPED_ENUM
 pub type AVMetadataObjectType = NSString;
 
@@ -174,7 +174,7 @@ extern "C" {
     ///
     /// AVMetadataHumanBodyObject objects return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypehumanbody?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/humanbody?language=objc)
     pub static AVMetadataObjectTypeHumanBody: &'static AVMetadataObjectType;
 }
 
@@ -227,7 +227,7 @@ extern "C" {
     ///
     /// AVMetadataHumanFullBodyObject objects return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypehumanfullbody?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/humanfullbody?language=objc)
     pub static AVMetadataObjectTypeHumanFullBody: &'static AVMetadataObjectType;
 }
 
@@ -279,7 +279,7 @@ extern "C" {
     ///
     /// ``AVMetadataCatHeadObject`` objects return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecathead?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/cathead?language=objc)
     pub static AVMetadataObjectTypeCatHead: &'static AVMetadataObjectType;
 }
 
@@ -329,7 +329,7 @@ extern "C" {
     ///
     /// AVMetadataCatBodyObject objects return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecatbody?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/catbody?language=objc)
     pub static AVMetadataObjectTypeCatBody: &'static AVMetadataObjectType;
 }
 
@@ -381,7 +381,7 @@ extern "C" {
     ///
     /// ``AVMetadataDogHeadObject`` objects return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypedoghead?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/doghead?language=objc)
     pub static AVMetadataObjectTypeDogHead: &'static AVMetadataObjectType;
 }
 
@@ -431,7 +431,7 @@ extern "C" {
     ///
     /// AVMetadataDogBodyObject objects return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypedogbody?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/dogbody?language=objc)
     pub static AVMetadataObjectTypeDogBody: &'static AVMetadataObjectType;
 }
 
@@ -484,7 +484,7 @@ extern "C" {
     ///
     /// AVMetadataSalientObject objects return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypesalientobject?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/salientobject?language=objc)
     pub static AVMetadataObjectTypeSalientObject: &'static AVMetadataObjectType;
 }
 
@@ -545,7 +545,7 @@ extern "C" {
     ///
     /// AVMetadataFaceObject objects return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeface?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/face?language=objc)
     pub static AVMetadataObjectTypeFace: &'static AVMetadataObjectType;
 }
 
@@ -634,7 +634,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from UPC-E codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeupcecode?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/upce?language=objc)
     pub static AVMetadataObjectTypeUPCECode: &'static AVMetadataObjectType;
 }
 
@@ -644,7 +644,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from Code 39 codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecode39code?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/code39?language=objc)
     pub static AVMetadataObjectTypeCode39Code: &'static AVMetadataObjectType;
 }
 
@@ -654,7 +654,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from Code 39 mod 43 codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecode39mod43code?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/code39mod43?language=objc)
     pub static AVMetadataObjectTypeCode39Mod43Code: &'static AVMetadataObjectType;
 }
 
@@ -664,7 +664,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from EAN-13 (including UPC-A) codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeean13code?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/ean13?language=objc)
     pub static AVMetadataObjectTypeEAN13Code: &'static AVMetadataObjectType;
 }
 
@@ -674,7 +674,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from EAN-8 codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeean8code?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/ean8?language=objc)
     pub static AVMetadataObjectTypeEAN8Code: &'static AVMetadataObjectType;
 }
 
@@ -684,7 +684,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from Code 93 codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecode93code?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/code93?language=objc)
     pub static AVMetadataObjectTypeCode93Code: &'static AVMetadataObjectType;
 }
 
@@ -694,7 +694,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from Code 128 codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecode128code?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/code128?language=objc)
     pub static AVMetadataObjectTypeCode128Code: &'static AVMetadataObjectType;
 }
 
@@ -704,7 +704,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from PDF417 codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypepdf417code?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/pdf417?language=objc)
     pub static AVMetadataObjectTypePDF417Code: &'static AVMetadataObjectType;
 }
 
@@ -714,7 +714,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from QR codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeqrcode?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/qr?language=objc)
     pub static AVMetadataObjectTypeQRCode: &'static AVMetadataObjectType;
 }
 
@@ -724,7 +724,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from Aztec codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeazteccode?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/aztec?language=objc)
     pub static AVMetadataObjectTypeAztecCode: &'static AVMetadataObjectType;
 }
 
@@ -734,7 +734,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from Interleaved 2 of 5 codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeinterleaved2of5code?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/interleaved2of5?language=objc)
     pub static AVMetadataObjectTypeInterleaved2of5Code: &'static AVMetadataObjectType;
 }
 
@@ -744,7 +744,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from ITF14 codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypeitf14code?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/itf14?language=objc)
     pub static AVMetadataObjectTypeITF14Code: &'static AVMetadataObjectType;
 }
 
@@ -754,7 +754,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from DataMatrix codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypedatamatrixcode?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/datamatrix?language=objc)
     pub static AVMetadataObjectTypeDataMatrixCode: &'static AVMetadataObjectType;
 }
 
@@ -764,7 +764,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from Codabar codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypecodabarcode?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/codabar?language=objc)
     pub static AVMetadataObjectTypeCodabarCode: &'static AVMetadataObjectType;
 }
 
@@ -774,7 +774,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from GS1DataBar codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypegs1databarcode?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/gs1databar?language=objc)
     pub static AVMetadataObjectTypeGS1DataBarCode: &'static AVMetadataObjectType;
 }
 
@@ -784,7 +784,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from GS1DataBarExpanded codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypegs1databarexpandedcode?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/gs1databarexpanded?language=objc)
     pub static AVMetadataObjectTypeGS1DataBarExpandedCode: &'static AVMetadataObjectType;
 }
 
@@ -794,7 +794,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from GS1DataBarLimited codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypegs1databarlimitedcode?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/gs1databarlimited?language=objc)
     pub static AVMetadataObjectTypeGS1DataBarLimitedCode: &'static AVMetadataObjectType;
 }
 
@@ -804,7 +804,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from MicroQR codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypemicroqrcode?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/microqr?language=objc)
     pub static AVMetadataObjectTypeMicroQRCode: &'static AVMetadataObjectType;
 }
 
@@ -814,7 +814,7 @@ extern "C" {
     ///
     /// AVMetadataMachineReadableCodeObject objects generated from MicroPDF417 codes return this constant as their type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobjecttypemicropdf417code?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataobject/objecttype/micropdf417?language=objc)
     pub static AVMetadataObjectTypeMicroPDF417Code: &'static AVMetadataObjectType;
 }
 

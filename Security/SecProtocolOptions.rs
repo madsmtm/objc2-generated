@@ -13,8 +13,6 @@ use crate::*;
 /// such as TLS. Protocol options are used to configure security protocols in the network stack.
 /// For example, clients may set the maximum and minimum allowed TLS versions through protocol
 /// options.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_protocol_options?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct sec_protocol_options {

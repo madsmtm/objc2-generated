@@ -18,7 +18,7 @@ pub const NSBundleExecutableArchitecturePPC64: c_uint = 0x01000012;
 pub const NSBundleExecutableArchitectureARM64: c_uint = 0x0100000c;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/bundle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBundle;
@@ -454,7 +454,7 @@ impl NSString {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundledidloadnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/bundle/didloadnotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSBundleDidLoadNotification: &'static NSNotificationName;
 }
@@ -577,7 +577,7 @@ impl NSBundle {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsbundleresourcerequestlowdiskspacenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsbundleresourcerequestlowdiskspace?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSBundleResourceRequestLowDiskSpaceNotification: &'static NSNotificationName;
 }

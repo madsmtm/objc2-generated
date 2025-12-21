@@ -11,7 +11,7 @@ use crate::*;
 pub type PHProjectType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttypeundefined?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttype/undefined?language=objc)
     pub static PHProjectTypeUndefined: Option<&'static PHProjectType>;
 }
 
@@ -60,37 +60,37 @@ extern "C" {
 pub type PHProjectCategory = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategorybook?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/book?language=objc)
     pub static PHProjectCategoryBook: Option<&'static PHProjectCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategorycalendar?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/calendar?language=objc)
     pub static PHProjectCategoryCalendar: Option<&'static PHProjectCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategorycard?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/card?language=objc)
     pub static PHProjectCategoryCard: Option<&'static PHProjectCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategoryprints?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/prints?language=objc)
     pub static PHProjectCategoryPrints: Option<&'static PHProjectCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategoryslideshow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/slideshow?language=objc)
     pub static PHProjectCategorySlideshow: Option<&'static PHProjectCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategorywalldecor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/walldecor?language=objc)
     pub static PHProjectCategoryWallDecor: Option<&'static PHProjectCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategoryother?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/other?language=objc)
     pub static PHProjectCategoryOther: Option<&'static PHProjectCategory>;
 }
 
@@ -98,6 +98,6 @@ extern "C" {
     /// PHProjectCategoryUndefined is used to indicate that -[PHProjectExtensionController typeDescriptionDataSourceForCategory:invalidator:]
     /// should return the data source which provides all project types descriptions.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategoryundefined?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcategory/undefined?language=objc)
     pub static PHProjectCategoryUndefined: Option<&'static PHProjectCategory>;
 }

@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontrollerarrowdirection?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/arrowdirection-swift.enum?language=objc)
 // NS_ENUM
 #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
 #[repr(transparent)]
@@ -148,31 +148,31 @@ impl UIMenuController {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontrollerwillshowmenunotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/willshowmenunotification?language=objc)
     #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     pub static UIMenuControllerWillShowMenuNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontrollerdidshowmenunotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/didshowmenunotification?language=objc)
     #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     pub static UIMenuControllerDidShowMenuNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontrollerwillhidemenunotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/willhidemenunotification?language=objc)
     #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     pub static UIMenuControllerWillHideMenuNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontrollerdidhidemenunotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/didhidemenunotification?language=objc)
     #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     pub static UIMenuControllerDidHideMenuNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontrollermenuframedidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenucontroller/menuframedidchangenotification?language=objc)
     #[deprecated = "UIMenuController is deprecated. Use UIEditMenuInteraction instead."]
     pub static UIMenuControllerMenuFrameDidChangeNotification: &'static NSNotificationName;
 }

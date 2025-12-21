@@ -7,206 +7,206 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizervoicename?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voicename?language=objc)
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechSynthesizerVoiceName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoiceattributekey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey?language=objc)
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSVoiceAttributeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/name?language=objc)
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceName: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoiceidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/identifier?language=objc)
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceIdentifier: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoiceage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/age?language=objc)
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceAge: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicegender?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/gender?language=objc)
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceGender: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicedemotext?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/demotext?language=objc)
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceDemoText: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicelocaleidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/localeidentifier?language=objc)
     pub static NSVoiceLocaleIdentifier: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicesupportedcharacters?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/supportedcharacters?language=objc)
     pub static NSVoiceSupportedCharacters: &'static NSVoiceAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoiceindividuallyspokencharacters?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voiceattributekey/individuallyspokencharacters?language=objc)
     pub static NSVoiceIndividuallySpokenCharacters: &'static NSVoiceAttributeKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechdictionarykey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/dictionarykey?language=objc)
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechDictionaryKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechdictionarylocaleidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/dictionarykey/localeidentifier?language=objc)
     pub static NSSpeechDictionaryLocaleIdentifier: &'static NSSpeechDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechdictionarymodificationdate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/dictionarykey/modificationdate?language=objc)
     pub static NSSpeechDictionaryModificationDate: &'static NSSpeechDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechdictionarypronunciations?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/dictionarykey/pronunciations?language=objc)
     pub static NSSpeechDictionaryPronunciations: &'static NSSpeechDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechdictionaryabbreviations?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/dictionarykey/abbreviations?language=objc)
     pub static NSSpeechDictionaryAbbreviations: &'static NSSpeechDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechdictionaryentryspelling?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/dictionarykey/entryspelling?language=objc)
     pub static NSSpeechDictionaryEntrySpelling: &'static NSSpeechDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechdictionaryentryphonemes?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/dictionarykey/entryphonemes?language=objc)
     pub static NSSpeechDictionaryEntryPhonemes: &'static NSSpeechDictionaryKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicegendername?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voicegender?language=objc)
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSVoiceGenderName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicegenderneuter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voicegender/neuter?language=objc)
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceGenderNeuter: &'static NSVoiceGenderName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicegendermale?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voicegender/male?language=objc)
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceGenderMale: &'static NSVoiceGenderName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicegenderfemale?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voicegender/female?language=objc)
     #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
     pub static NSVoiceGenderFemale: &'static NSVoiceGenderName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvoicegenderneutral?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/voicegender/neutral?language=objc)
     pub static NSVoiceGenderNeutral: &'static NSVoiceGenderName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechpropertykey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey?language=objc)
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechPropertyKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechstatusproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/status?language=objc)
     pub static NSSpeechStatusProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeecherrorsproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errors?language=objc)
     pub static NSSpeechErrorsProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechinputmodeproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/inputmode?language=objc)
     pub static NSSpeechInputModeProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechcharactermodeproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/charactermode?language=objc)
     pub static NSSpeechCharacterModeProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechnumbermodeproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/numbermode?language=objc)
     pub static NSSpeechNumberModeProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechrateproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/rate?language=objc)
     pub static NSSpeechRateProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechpitchbaseproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/pitchbase?language=objc)
     pub static NSSpeechPitchBaseProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechpitchmodproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/pitchmod?language=objc)
     pub static NSSpeechPitchModProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechvolumeproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/volume?language=objc)
     pub static NSSpeechVolumeProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizerinfoproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/synthesizerinfo?language=objc)
     pub static NSSpeechSynthesizerInfoProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechrecentsyncproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/recentsync?language=objc)
     pub static NSSpeechRecentSyncProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechphonemesymbolsproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemesymbols?language=objc)
     pub static NSSpeechPhonemeSymbolsProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechcurrentvoiceproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/currentvoice?language=objc)
     pub static NSSpeechCurrentVoiceProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechcommanddelimiterproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/commanddelimiter?language=objc)
     pub static NSSpeechCommandDelimiterProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechresetproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/reset?language=objc)
     pub static NSSpeechResetProperty: &'static NSSpeechPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechoutputtofileurlproperty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/outputtofileurl?language=objc)
     pub static NSSpeechOutputToFileURLProperty: &'static NSSpeechPropertyKey;
 }
 
@@ -216,7 +216,7 @@ extern "C" {
     pub static NSVoiceLanguage: &'static NSVoiceAttributeKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechboundary?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/boundary?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -486,142 +486,142 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode?language=objc)
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechMode = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechmodetext?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode/text?language=objc)
     pub static NSSpeechModeText: &'static NSSpeechMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechmodephoneme?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode/phoneme?language=objc)
     pub static NSSpeechModePhoneme: &'static NSSpeechMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechmodenormal?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode/normal?language=objc)
     pub static NSSpeechModeNormal: &'static NSSpeechMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechmodeliteral?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/mode/literal?language=objc)
     pub static NSSpeechModeLiteral: &'static NSSpeechMode;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechstatuskey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/statuskey?language=objc)
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechStatusKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechstatusoutputbusy?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/statuskey/outputbusy?language=objc)
     pub static NSSpeechStatusOutputBusy: &'static NSSpeechStatusKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechstatusoutputpaused?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/statuskey/outputpaused?language=objc)
     pub static NSSpeechStatusOutputPaused: &'static NSSpeechStatusKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechstatusnumberofcharactersleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/statuskey/numberofcharactersleft?language=objc)
     pub static NSSpeechStatusNumberOfCharactersLeft: &'static NSSpeechStatusKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechstatusphonemecode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/statuskey/phonemecode?language=objc)
     pub static NSSpeechStatusPhonemeCode: &'static NSSpeechStatusKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeecherrorkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey?language=objc)
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechErrorKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeecherrorcount?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey/count?language=objc)
     pub static NSSpeechErrorCount: &'static NSSpeechErrorKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeecherroroldestcode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey/oldestcode?language=objc)
     pub static NSSpeechErrorOldestCode: &'static NSSpeechErrorKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeecherroroldestcharacteroffset?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey/oldestcharacteroffset?language=objc)
     pub static NSSpeechErrorOldestCharacterOffset: &'static NSSpeechErrorKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeecherrornewestcode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey/newestcode?language=objc)
     pub static NSSpeechErrorNewestCode: &'static NSSpeechErrorKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeecherrornewestcharacteroffset?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/errorkey/newestcharacteroffset?language=objc)
     pub static NSSpeechErrorNewestCharacterOffset: &'static NSSpeechErrorKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizerinfokey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/synthesizerinfokey?language=objc)
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechSynthesizerInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizerinfoidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/synthesizerinfokey/identifier?language=objc)
     pub static NSSpeechSynthesizerInfoIdentifier: &'static NSSpeechSynthesizerInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizerinfoversion?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/synthesizerinfokey/version?language=objc)
     pub static NSSpeechSynthesizerInfoVersion: &'static NSSpeechSynthesizerInfoKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechphonemeinfokey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemeinfokey?language=objc)
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechPhonemeInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechphonemeinfoopcode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemeinfokey/opcode?language=objc)
     pub static NSSpeechPhonemeInfoOpcode: &'static NSSpeechPhonemeInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechphonemeinfosymbol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemeinfokey/symbol?language=objc)
     pub static NSSpeechPhonemeInfoSymbol: &'static NSSpeechPhonemeInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechphonemeinfoexample?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemeinfokey/example?language=objc)
     pub static NSSpeechPhonemeInfoExample: &'static NSSpeechPhonemeInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechphonemeinfohilitestart?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemeinfokey/hilitestart?language=objc)
     pub static NSSpeechPhonemeInfoHiliteStart: &'static NSSpeechPhonemeInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechphonemeinfohiliteend?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/phonemeinfokey/hiliteend?language=objc)
     pub static NSSpeechPhonemeInfoHiliteEnd: &'static NSSpeechPhonemeInfoKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechcommanddelimiterkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/commanddelimiterkey?language=objc)
 #[deprecated = "Use AVSpeechSynthesizer in AVFoundation instead"]
 // NS_TYPED_ENUM
 pub type NSSpeechCommandDelimiterKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechcommandprefix?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/commanddelimiterkey/prefix?language=objc)
     pub static NSSpeechCommandPrefix: &'static NSSpeechCommandDelimiterKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechcommandsuffix?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspeechsynthesizer/speechpropertykey/commanddelimiterkey/suffix?language=objc)
     pub static NSSpeechCommandSuffix: &'static NSSpeechCommandDelimiterKey;
 }

@@ -9,7 +9,7 @@ use crate::*;
 extern_class!(
     /// Represents an opaque Merkle tree proof of inclusion. Inclusion hashes are provided to verify that the individual device has access to the document.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swpersonidentityproof?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swperson/identityproof?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWPersonIdentityProof;
@@ -67,7 +67,7 @@ impl SWPersonIdentityProof {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swsignedpersonidentityproof?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sharedwithyoucore/swperson/signedidentityproof?language=objc)
     #[unsafe(super(SWPersonIdentityProof, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SWSignedPersonIdentityProof;

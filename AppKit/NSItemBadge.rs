@@ -12,7 +12,7 @@ extern_class!(
     /// This badge provides a way to display small visual indicators, such as counts and text labels, within a toolbar item. Badges can be used to highlight important information,
     /// such as unread notifications or status indicators.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsitembadge?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsitembadge-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSItemBadge;

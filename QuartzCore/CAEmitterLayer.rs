@@ -250,80 +250,80 @@ impl DefaultRetained for CAEmitterLayer {
 extern "C" {
     /// `emitterShape' values. *
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayerpoint?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape/point?language=objc)
     pub static kCAEmitterLayerPoint: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayerline?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape/line?language=objc)
     pub static kCAEmitterLayerLine: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayerrectangle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape/rectangle?language=objc)
     pub static kCAEmitterLayerRectangle: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayercuboid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape/cuboid?language=objc)
     pub static kCAEmitterLayerCuboid: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayercircle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape/circle?language=objc)
     pub static kCAEmitterLayerCircle: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayersphere?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittershape/sphere?language=objc)
     pub static kCAEmitterLayerSphere: &'static CAEmitterLayerEmitterShape;
 }
 
 extern "C" {
     /// `emitterMode' values. *
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayerpoints?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittermode/points?language=objc)
     pub static kCAEmitterLayerPoints: &'static CAEmitterLayerEmitterMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayeroutline?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittermode/outline?language=objc)
     pub static kCAEmitterLayerOutline: &'static CAEmitterLayerEmitterMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayersurface?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittermode/surface?language=objc)
     pub static kCAEmitterLayerSurface: &'static CAEmitterLayerEmitterMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayervolume?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayeremittermode/volume?language=objc)
     pub static kCAEmitterLayerVolume: &'static CAEmitterLayerEmitterMode;
 }
 
 extern "C" {
     /// `renderMode' values. *
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayerunordered?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayerrendermode/unordered?language=objc)
     pub static kCAEmitterLayerUnordered: &'static CAEmitterLayerRenderMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayeroldestfirst?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayerrendermode/oldestfirst?language=objc)
     pub static kCAEmitterLayerOldestFirst: &'static CAEmitterLayerRenderMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayeroldestlast?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayerrendermode/oldestlast?language=objc)
     pub static kCAEmitterLayerOldestLast: &'static CAEmitterLayerRenderMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayerbacktofront?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayerrendermode/backtofront?language=objc)
     pub static kCAEmitterLayerBackToFront: &'static CAEmitterLayerRenderMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcaemitterlayeradditive?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/caemitterlayerrendermode/additive?language=objc)
     pub static kCAEmitterLayerAdditive: &'static CAEmitterLayerRenderMode;
 }

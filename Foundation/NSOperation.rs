@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationqueuepriority?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/operation/queuepriority-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -33,7 +33,7 @@ unsafe impl RefEncode for NSOperationQueuePriority {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/operation?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOperation;
@@ -192,7 +192,7 @@ impl DefaultRetained for NSOperation {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsblockoperation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/blockoperation?language=objc)
     #[unsafe(super(NSOperation, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSBlockOperation;
@@ -314,22 +314,22 @@ impl DefaultRetained for NSInvocationOperation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvocationoperationvoidresultexception?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/invocationoperationvoidresultexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvocationOperationVoidResultException: &'static NSExceptionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsinvocationoperationcancelledexception?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsexceptionname/invocationoperationcancelledexception?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSInvocationOperationCancelledException: &'static NSExceptionName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationqueuedefaultmaxconcurrentoperationcount?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/operationqueue/defaultmaxconcurrentoperationcount?language=objc)
 pub static NSOperationQueueDefaultMaxConcurrentOperationCount: NSInteger = -1;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperationqueue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/operationqueue?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSOperationQueue;

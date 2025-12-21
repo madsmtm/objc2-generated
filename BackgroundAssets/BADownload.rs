@@ -6,7 +6,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloadstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -37,28 +37,28 @@ unsafe impl RefEncode for BADownloadState {
 /// The priority applied to a given download or group of downloads. This is a range from `BADownloaderPriorityMin` to `BADownloaderPriorityMax`.
 /// The priority only applies to how downloads are ordered for your application. Higher priority items will be enqued for download before lower priority items regardless of order in which they are scheduled.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloaderpriority?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/priority-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type BADownloaderPriority = NSInteger;
 
 extern "C" {
     /// A value that represents the lowest priority for a download.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloaderprioritymin?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/priority-swift.struct/min?language=objc)
     pub static BADownloaderPriorityMin: BADownloaderPriority;
 }
 
 extern "C" {
     /// A value that represents average priority for a download.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloaderprioritydefault?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/priority-swift.struct/default?language=objc)
     pub static BADownloaderPriorityDefault: BADownloaderPriority;
 }
 
 extern "C" {
     /// A value that represents the highest priority for a download.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownloaderprioritymax?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundassets/badownload/priority-swift.struct/max?language=objc)
     pub static BADownloaderPriorityMax: BADownloaderPriority;
 }
 

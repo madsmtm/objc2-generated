@@ -4469,16 +4469,11 @@ use objc2_core_midi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audio_toolbox_version?language=objc)
 pub const AUDIO_TOOLBOX_VERSION: c_uint = 1060;
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumentinfokey_name?language=objc)
 pub const kInstrumentInfoKey_Name: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumentinfokey_msb?language=objc)
 pub const kInstrumentInfoKey_MSB: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"MSB\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumentinfokey_lsb?language=objc)
 pub const kInstrumentInfoKey_LSB: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"LSB\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kinstrumentinfokey_program?language=objc)
 pub const kInstrumentInfoKey_Program: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"program\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiohardwareserviceproperty_servicerestarted?language=objc)
@@ -6530,7 +6525,6 @@ pub const kCAClock_InvalidPlayRateError: OSStatus = -66806;
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kcaclock_cannotsettimeerror?language=objc)
 pub const kCAClock_CannotSetTimeError: OSStatus = -66805;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaquecaclock?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueCAClock {

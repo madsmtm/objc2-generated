@@ -6,7 +6,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnibname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnib/name?language=objc)
 pub type NSNibName = NSString;
 
 extern_class!(

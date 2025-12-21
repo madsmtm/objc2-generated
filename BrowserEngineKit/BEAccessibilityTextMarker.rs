@@ -58,7 +58,7 @@ impl BEAccessibilityTextMarker {
 extern_class!(
     /// BEAccessibilityTextMarkerRange holds the start and end markers for a text range.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitytextmarkerrange?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitytextmarker/range?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEAccessibilityTextMarkerRange;

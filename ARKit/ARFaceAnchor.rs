@@ -18,319 +18,319 @@ use crate::*;
 ///
 /// See: -[ARFrame capturedImage]
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocation?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "objc2-foundation")]
 pub type ARBlendShapeLocation = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationbrowdownleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/browdownleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationBrowDownLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationbrowdownright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/browdownright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationBrowDownRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationbrowinnerup?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/browinnerup?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationBrowInnerUp: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationbrowouterupleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/browouterupleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationBrowOuterUpLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationbrowouterupright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/browouterupright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationBrowOuterUpRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationcheekpuff?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/cheekpuff?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationCheekPuff: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationcheeksquintleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/cheeksquintleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationCheekSquintLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationcheeksquintright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/cheeksquintright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationCheekSquintRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationeyeblinkleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyeblinkleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeBlinkLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationeyeblinkright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyeblinkright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeBlinkRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationeyelookdownleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookdownleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookDownLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationeyelookdownright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookdownright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookDownRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationeyelookinleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookinleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookInLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationeyelookinright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookinright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookInRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationeyelookoutleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookoutleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookOutLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationeyelookoutright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookoutright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookOutRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationeyelookupleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookupleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookUpLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationeyelookupright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyelookupright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeLookUpRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationeyesquintleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyesquintleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeSquintLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationeyesquintright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyesquintright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeSquintRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationeyewideleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyewideleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeWideLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationeyewideright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/eyewideright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationEyeWideRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationjawforward?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/jawforward?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationJawForward: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationjawleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/jawleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationJawLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationjawopen?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/jawopen?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationJawOpen: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationjawright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/jawright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationJawRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthclose?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthclose?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthClose: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthdimpleleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthdimpleleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthDimpleLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthdimpleright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthdimpleright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthDimpleRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthfrownleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthfrownleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthFrownLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthfrownright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthfrownright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthFrownRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthfunnel?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthfunnel?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthFunnel: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthlowerdownleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthlowerdownleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthLowerDownLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthlowerdownright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthlowerdownright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthLowerDownRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthpressleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthpressleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthPressLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthpressright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthpressright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthPressRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthpucker?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthpucker?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthPucker: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthrolllower?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthrolllower?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthRollLower: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthrollupper?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthrollupper?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthRollUpper: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthshruglower?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthshruglower?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthShrugLower: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthshrugupper?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthshrugupper?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthShrugUpper: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthsmileleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthsmileleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthSmileLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthsmileright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthsmileright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthSmileRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthstretchleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthstretchleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthStretchLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthstretchright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthstretchright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthStretchRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthupperupleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthupperupleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthUpperUpLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationmouthupperupright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/mouthupperupright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationMouthUpperUpRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationnosesneerleft?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/nosesneerleft?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationNoseSneerLeft: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationnosesneerright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/nosesneerright?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationNoseSneerRight: &'static ARBlendShapeLocation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arblendshapelocationtongueout?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arfaceanchor/blendshapelocation/tongueout?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARBlendShapeLocationTongueOut: &'static ARBlendShapeLocation;
 }

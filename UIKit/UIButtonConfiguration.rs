@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationtextattributestransformer?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationtextattributestransformer-c.typealias?language=objc)
 #[cfg(feature = "block2")]
 pub type UIConfigurationTextAttributesTransformer = *mut block2::DynBlock<
     dyn Fn(

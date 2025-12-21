@@ -108,7 +108,7 @@ unsafe impl RefEncode for CMSampleTimingInfo {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtiminginfoinvalid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsampletiminginfo/invalid?language=objc)
     #[cfg(feature = "CMTime")]
     pub static kCMTimingInfoInvalid: CMSampleTimingInfo;
 }

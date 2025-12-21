@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbuttontype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/buttontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -45,7 +45,7 @@ unsafe impl RefEncode for NSButtonType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbezelstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/bezelstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -477,7 +477,7 @@ impl NSButtonCell {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgradienttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbutton/gradienttype?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]

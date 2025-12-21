@@ -39,57 +39,57 @@ unsafe impl RefEncode for SCNHitTestSearchMode {
 pub type SCNHitTestOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestcliptozrangekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/cliptozrange?language=objc)
     pub static SCNHitTestClipToZRangeKey: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestbackfacecullingkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/backfaceculling?language=objc)
     pub static SCNHitTestBackFaceCullingKey: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestboundingboxonlykey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/boundingboxonly?language=objc)
     pub static SCNHitTestBoundingBoxOnlyKey: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestignorechildnodeskey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/ignorechildnodes?language=objc)
     pub static SCNHitTestIgnoreChildNodesKey: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestrootnodekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/rootnode?language=objc)
     pub static SCNHitTestRootNodeKey: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestignorehiddennodeskey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/ignorehiddennodes?language=objc)
     pub static SCNHitTestIgnoreHiddenNodesKey: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoptioncategorybitmask?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/categorybitmask?language=objc)
     pub static SCNHitTestOptionCategoryBitMask: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoptionsearchmode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/searchmode?language=objc)
     pub static SCNHitTestOptionSearchMode: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoptionignorelightarea?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/ignorelightarea?language=objc)
     pub static SCNHitTestOptionIgnoreLightArea: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestfirstfoundonlykey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/firstfoundonly?language=objc)
     pub static SCNHitTestFirstFoundOnlyKey: &'static SCNHitTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestsortresultskey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnhittestoption/sortresults?language=objc)
     pub static SCNHitTestSortResultsKey: &'static SCNHitTestOption;
 }
 

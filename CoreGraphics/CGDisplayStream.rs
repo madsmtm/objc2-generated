@@ -257,7 +257,7 @@ extern "C" {
     /// source rectangle is specified in display logical coordinates and not in pixels, in order to match the normal convention on
     /// HiDPI displays.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamsourcerect?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/sourcerect?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamSourceRect: &'static CFString;
 }
@@ -268,7 +268,7 @@ extern "C" {
     /// the destination rectangle is always specified in output pixels to match the fact that the output buffer size is also
     /// specified in terms of pixels.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamdestinationrect?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/destinationrect?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamDestinationRect: &'static CFString;
 }
@@ -279,7 +279,7 @@ extern "C" {
     /// the display stream destination rect are not the same, black borders will be inserted at the top/bottom or right/left sides of the destination
     /// in order to preserve the source aspect ratio.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreampreserveaspectratio?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/preserveaspectratio?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamPreserveAspectRatio: &'static CFString;
 }
@@ -287,7 +287,7 @@ extern "C" {
 extern "C" {
     /// Set the desired CGColorSpace of the output frames.  By default the color space will be that of the display.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamcolorspace?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/colorspace?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamColorSpace: &'static CFString;
 }
@@ -295,7 +295,7 @@ extern "C" {
 extern "C" {
     /// Request that the delta between frame updates be at least as much specified by this value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamminimumframetime?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/minimumframetime?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamMinimumFrameTime: &'static CFString;
 }
@@ -303,7 +303,7 @@ extern "C" {
 extern "C" {
     /// Controls whether the cursor is embedded within the provided buffers or not.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamshowcursor?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/showcursor?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamShowCursor: &'static CFString;
 }
@@ -311,7 +311,7 @@ extern "C" {
 extern "C" {
     /// Controls how many frames deep the frame queue will be.  Defaults to N.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamqueuedepth?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/queuedepth?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamQueueDepth: &'static CFString;
 }
@@ -320,23 +320,23 @@ extern "C" {
     /// When outputting frames in 420v or 420f format, this key may be used to control which YCbCr matrix is used
     /// The value should be one of the three kCGDisplayStreamYCbCrMatrix values specified below.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamycbcrmatrix?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/ycbcrmatrix?language=objc)
     #[deprecated = "Please use ScreenCaptureKit instead."]
     pub static kCGDisplayStreamYCbCrMatrix: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamycbcrmatrix_itu_r_709_2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/ycbcrmatrix_itu_r_709_2?language=objc)
     pub static kCGDisplayStreamYCbCrMatrix_ITU_R_709_2: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamycbcrmatrix_itu_r_601_4?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/ycbcrmatrix_itu_r_601_4?language=objc)
     pub static kCGDisplayStreamYCbCrMatrix_ITU_R_601_4: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdisplaystreamycbcrmatrix_smpte_240m_1995?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystream/ycbcrmatrix_smpte_240m_1995?language=objc)
     pub static kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995: &'static CFString;
 }
 

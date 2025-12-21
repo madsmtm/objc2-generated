@@ -9,7 +9,7 @@ use crate::*;
 
 /// Picker Options
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettingsoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/options-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -36,14 +36,14 @@ unsafe impl RefEncode for ASPickerDisplaySettingsOptions {
 
 /// The type used for the accessory picker's discovery timeout value.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettingsdiscoverytimeout?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/discoverytimeout-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type ASPickerDisplaySettingsDiscoveryTimeout = NSTimeInterval;
 
 extern "C" {
     /// A picker discovery timeout value that times out after about about 60 seconds.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettingsdiscoverytimeoutshort?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/discoverytimeout-swift.struct/short?language=objc)
     pub static ASPickerDisplaySettingsDiscoveryTimeoutShort:
         ASPickerDisplaySettingsDiscoveryTimeout;
 }
@@ -51,7 +51,7 @@ extern "C" {
 extern "C" {
     /// A picker discovery timeout value that times out after about two minutes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettingsdiscoverytimeoutmedium?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/discoverytimeout-swift.struct/medium?language=objc)
     pub static ASPickerDisplaySettingsDiscoveryTimeoutMedium:
         ASPickerDisplaySettingsDiscoveryTimeout;
 }
@@ -59,7 +59,7 @@ extern "C" {
 extern "C" {
     /// A picker discovery timeout value that times out after about five minutes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettingsdiscoverytimeoutlong?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/discoverytimeout-swift.struct/long?language=objc)
     pub static ASPickerDisplaySettingsDiscoveryTimeoutLong: ASPickerDisplaySettingsDiscoveryTimeout;
 }
 
@@ -70,7 +70,7 @@ extern "C" {
     /// After performing manual discovery, perform the manual timeout by calling the ``ASAccessorySession`` method ``ASAccessorySession/finishPickerDiscovery(completionHandler:)``.
     /// This process shows a timeout message if your filtering added no accessories to the picker, or returns silently if you updated the picker.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettingsdiscoverytimeoutunbounded?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/accessorysetupkit/aspickerdisplaysettings/discoverytimeout-swift.struct/unbounded?language=objc)
     pub static ASPickerDisplaySettingsDiscoveryTimeoutUnbounded:
         ASPickerDisplaySettingsDiscoveryTimeout;
 }

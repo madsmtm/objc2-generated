@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordtypeshare?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordtypeshare-8b6yt?language=objc)
     #[cfg(feature = "CKRecord")]
     pub static CKRecordTypeShare: &'static CKRecordType;
 }
@@ -26,7 +26,7 @@ extern "C" {
 extern "C" {
     /// Value is a string.  Example for a recipe sharing app: "Pot Roast"
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharetitlekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharetitlekey-9yavd?language=objc)
     #[cfg(feature = "CKRecord")]
     pub static CKShareTitleKey: &'static CKRecordFieldKey;
 }
@@ -38,7 +38,7 @@ extern "C" {
     ///  -[NSImage imageWithData:] or -[UIImage imageWithData:]
     /// ```
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharethumbnailimagedatakey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharethumbnailimagedatakey-1rxdx?language=objc)
     #[cfg(feature = "CKRecord")]
     pub static CKShareThumbnailImageDataKey: &'static CKRecordFieldKey;
 }
@@ -46,7 +46,7 @@ extern "C" {
 extern "C" {
     /// Value is a string representing a UTI.  Example for a recipe sharing app: "com.mycompany.recipe"
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharetypekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharetypekey-204gl?language=objc)
     #[cfg(feature = "CKRecord")]
     pub static CKShareTypeKey: &'static CKRecordFieldKey;
 }

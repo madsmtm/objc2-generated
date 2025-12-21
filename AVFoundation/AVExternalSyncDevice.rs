@@ -126,7 +126,7 @@ extern_class!(
     ///
     /// ``AVExternalSyncDeviceDiscoverySession`` is a singleton that lists the external sync devices connected to the host. The client is expected to key-value observe the ``AVExternalSyncDeviceDiscoverySession/devices`` property for changes to the external sync devices list.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevicediscoverysession?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avexternalsyncdevice/discoverysession?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVExternalSyncDeviceDiscoverySession;

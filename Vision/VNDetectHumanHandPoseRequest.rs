@@ -7,200 +7,200 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "VNTypes")]
 pub type VNHumanHandPoseObservationJointName = VNRecognizedPointKey;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnamewrist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/wrist?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameWrist:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnamethumbcmc?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/thumbcmc?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameThumbCMC:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnamethumbmp?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/thumbmp?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameThumbMP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnamethumbip?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/thumbip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameThumbIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnamethumbtip?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/thumbtip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameThumbTip:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnameindexmcp?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/indexmcp?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameIndexMCP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnameindexpip?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/indexpip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameIndexPIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnameindexdip?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/indexdip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameIndexDIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnameindextip?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/indextip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameIndexTip:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnamemiddlemcp?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/middlemcp?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameMiddleMCP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnamemiddlepip?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/middlepip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameMiddlePIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnamemiddledip?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/middledip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameMiddleDIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnamemiddletip?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/middletip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameMiddleTip:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnameringmcp?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/ringmcp?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameRingMCP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnameringpip?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/ringpip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameRingPIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnameringdip?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/ringdip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameRingDIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnameringtip?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/ringtip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameRingTip:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnamelittlemcp?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/littlemcp?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameLittleMCP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnamelittlepip?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/littlepip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameLittlePIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnamelittledip?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/littledip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameLittleDIP:
         &'static VNHumanHandPoseObservationJointName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointnamelittletip?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointname/littletip?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointNameLittleTip:
         &'static VNHumanHandPoseObservationJointName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointsgroupname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointsgroupname?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "VNTypes")]
 pub type VNHumanHandPoseObservationJointsGroupName = VNRecognizedPointGroupKey;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointsgroupnamethumb?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointsgroupname/thumb?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointsGroupNameThumb:
         &'static VNHumanHandPoseObservationJointsGroupName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointsgroupnameindexfinger?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointsgroupname/indexfinger?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointsGroupNameIndexFinger:
         &'static VNHumanHandPoseObservationJointsGroupName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointsgroupnamemiddlefinger?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointsgroupname/middlefinger?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointsGroupNameMiddleFinger:
         &'static VNHumanHandPoseObservationJointsGroupName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointsgroupnameringfinger?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointsgroupname/ringfinger?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointsGroupNameRingFinger:
         &'static VNHumanHandPoseObservationJointsGroupName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointsgroupnamelittlefinger?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointsgroupname/littlefinger?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointsGroupNameLittleFinger:
         &'static VNHumanHandPoseObservationJointsGroupName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservationjointsgroupnameall?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnhumanhandposeobservation/jointsgroupname/all?language=objc)
     #[cfg(feature = "VNTypes")]
     pub static VNHumanHandPoseObservationJointsGroupNameAll:
         &'static VNHumanHandPoseObservationJointsGroupName;

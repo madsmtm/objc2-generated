@@ -12,7 +12,7 @@ use crate::*;
 extern_class!(
     /// PKInk provides a description of how marks on a PKCanvas render and are created.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkink?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkinkreference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKInk;

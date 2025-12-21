@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mksearchcompletionfiltertype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/filtertype-swift.enum?language=objc)
 // NS_ENUM
 #[deprecated = "Use MKLocalSearchCompleterResultType"]
 #[repr(transparent)]
@@ -30,7 +30,7 @@ unsafe impl RefEncode for MKSearchCompletionFilterType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleterresulttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter/resulttype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -16,7 +16,7 @@ extern_class!(
     ///
     /// A single element within a shape. The attached material defines its acoustical properties.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseshapeelement?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseshape/element?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHASEShapeElement;

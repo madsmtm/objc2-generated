@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentswitchtracking?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/switchtracking?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -33,7 +33,7 @@ unsafe impl RefEncode for NSSegmentSwitchTracking {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/style?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -65,7 +65,7 @@ unsafe impl RefEncode for NSSegmentStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentdistribution?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssegmentedcontrol/distribution?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -8,27 +8,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistaterestorationviewcontrollerstoryboardkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/staterestorationviewcontrollerstoryboardkey?language=objc)
     pub static UIStateRestorationViewControllerStoryboardKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstaterestorationbundleversionkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/staterestorationbundleversionkey?language=objc)
     pub static UIApplicationStateRestorationBundleVersionKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstaterestorationuserinterfaceidiomkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/staterestorationuserinterfaceidiomkey?language=objc)
     pub static UIApplicationStateRestorationUserInterfaceIdiomKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstaterestorationtimestampkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/staterestorationtimestampkey?language=objc)
     pub static UIApplicationStateRestorationTimestampKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstaterestorationsystemversionkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/staterestorationsystemversionkey?language=objc)
     pub static UIApplicationStateRestorationSystemVersionKey: &'static NSString;
 }
 

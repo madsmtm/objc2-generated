@@ -11,7 +11,7 @@ extern "C" {
     /// event connection provides unidirectional communication from the
     /// accessory to the controller.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicpropertysupportseventnotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmcharacteristicpropertysupportseventnotification-19wy1?language=objc)
     pub static HMCharacteristicPropertySupportsEventNotification: &'static NSString;
 }
 

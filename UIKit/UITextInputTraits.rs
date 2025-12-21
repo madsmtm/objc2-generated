@@ -640,234 +640,234 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/name?language=objc)
     pub static UITextContentTypeName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypenameprefix?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/nameprefix?language=objc)
     pub static UITextContentTypeNamePrefix: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypegivenname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/givenname?language=objc)
     pub static UITextContentTypeGivenName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypemiddlename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/middlename?language=objc)
     pub static UITextContentTypeMiddleName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypefamilyname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/familyname?language=objc)
     pub static UITextContentTypeFamilyName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypenamesuffix?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/namesuffix?language=objc)
     pub static UITextContentTypeNameSuffix: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypenickname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/nickname?language=objc)
     pub static UITextContentTypeNickname: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypejobtitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/jobtitle?language=objc)
     pub static UITextContentTypeJobTitle: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeorganizationname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/organizationname?language=objc)
     pub static UITextContentTypeOrganizationName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypelocation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/location?language=objc)
     pub static UITextContentTypeLocation: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypefullstreetaddress?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/fullstreetaddress?language=objc)
     pub static UITextContentTypeFullStreetAddress: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypestreetaddressline1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/streetaddressline1?language=objc)
     pub static UITextContentTypeStreetAddressLine1: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypestreetaddressline2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/streetaddressline2?language=objc)
     pub static UITextContentTypeStreetAddressLine2: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeaddresscity?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/addresscity?language=objc)
     pub static UITextContentTypeAddressCity: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeaddressstate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/addressstate?language=objc)
     pub static UITextContentTypeAddressState: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeaddresscityandstate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/addresscityandstate?language=objc)
     pub static UITextContentTypeAddressCityAndState: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypesublocality?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/sublocality?language=objc)
     pub static UITextContentTypeSublocality: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecountryname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/countryname?language=objc)
     pub static UITextContentTypeCountryName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypepostalcode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/postalcode?language=objc)
     pub static UITextContentTypePostalCode: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypetelephonenumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/telephonenumber?language=objc)
     pub static UITextContentTypeTelephoneNumber: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeemailaddress?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/emailaddress?language=objc)
     pub static UITextContentTypeEmailAddress: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeurl?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/url?language=objc)
     pub static UITextContentTypeURL: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardnumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardnumber?language=objc)
     pub static UITextContentTypeCreditCardNumber: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeusername?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/username?language=objc)
     pub static UITextContentTypeUsername: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypepassword?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/password?language=objc)
     pub static UITextContentTypePassword: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypenewpassword?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/newpassword?language=objc)
     pub static UITextContentTypeNewPassword: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeonetimecode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/onetimecode?language=objc)
     pub static UITextContentTypeOneTimeCode: &'static UITextContentType;
 }
 
 extern "C" {
     /// Parcel tracking numbers such as "FedEx 8602 9191 3550", "1Z50T0536891664106", and "729445720428778".
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeshipmenttrackingnumber?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/shipmenttrackingnumber?language=objc)
     pub static UITextContentTypeShipmentTrackingNumber: &'static UITextContentType;
 }
 
 extern "C" {
     /// Airline flight numbers such as "CZ # 1234", "AA212", and "SW Flight 573".
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypeflightnumber?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/flightnumber?language=objc)
     pub static UITextContentTypeFlightNumber: &'static UITextContentType;
 }
 
 extern "C" {
     /// Dates, times, or durations such as "7-3-2021" or "This Saturday", "12:30", and "10-11am", respectively.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypedatetime?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/datetime?language=objc)
     pub static UITextContentTypeDateTime: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypebirthdate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/birthdate?language=objc)
     pub static UITextContentTypeBirthdate: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypebirthdateday?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/birthdateday?language=objc)
     pub static UITextContentTypeBirthdateDay: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypebirthdatemonth?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/birthdatemonth?language=objc)
     pub static UITextContentTypeBirthdateMonth: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypebirthdateyear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/birthdateyear?language=objc)
     pub static UITextContentTypeBirthdateYear: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardsecuritycode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardsecuritycode?language=objc)
     pub static UITextContentTypeCreditCardSecurityCode: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardname?language=objc)
     pub static UITextContentTypeCreditCardName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardgivenname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardgivenname?language=objc)
     pub static UITextContentTypeCreditCardGivenName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardmiddlename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardmiddlename?language=objc)
     pub static UITextContentTypeCreditCardMiddleName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardfamilyname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardfamilyname?language=objc)
     pub static UITextContentTypeCreditCardFamilyName: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardexpiration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardexpiration?language=objc)
     pub static UITextContentTypeCreditCardExpiration: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardexpirationmonth?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardexpirationmonth?language=objc)
     pub static UITextContentTypeCreditCardExpirationMonth: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardexpirationyear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardexpirationyear?language=objc)
     pub static UITextContentTypeCreditCardExpirationYear: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecreditcardtype?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/creditcardtype?language=objc)
     pub static UITextContentTypeCreditCardType: &'static UITextContentType;
 }
 
 extern "C" {
     /// eSIM activation
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecellulareid?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/cellulareid?language=objc)
     pub static UITextContentTypeCellularEID: &'static UITextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttypecellularimei?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextcontenttype/cellularimei?language=objc)
     pub static UITextContentTypeCellularIMEI: &'static UITextContentType;
 }

@@ -13,7 +13,7 @@ extern "C" {
     pub static GKSessionErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gksessionerror-swift.struct/code?language=objc)
 // NS_ENUM
 #[deprecated = "No longer supported"]
 #[repr(transparent)]

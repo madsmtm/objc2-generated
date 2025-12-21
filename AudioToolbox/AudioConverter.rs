@@ -10,7 +10,6 @@ use objc2_core_audio_types::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaqueaudioconverter?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueAudioConverter {

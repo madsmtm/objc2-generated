@@ -7,16 +7,16 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfieldrecentstitlemenuitemtag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfield/recentstitlemenuitemtag?language=objc)
 pub static NSSearchFieldRecentsTitleMenuItemTag: NSInteger = 1000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfieldrecentsmenuitemtag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfield/recentsmenuitemtag?language=objc)
 pub static NSSearchFieldRecentsMenuItemTag: NSInteger = 1001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfieldclearrecentsmenuitemtag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfield/clearrecentsmenuitemtag?language=objc)
 pub static NSSearchFieldClearRecentsMenuItemTag: NSInteger = 1002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfieldnorecentsmenuitemtag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfield/norecentsmenuitemtag?language=objc)
 pub static NSSearchFieldNoRecentsMenuItemTag: NSInteger = 1003;
 
 extern_class!(

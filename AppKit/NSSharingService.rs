@@ -12,113 +12,113 @@ use crate::*;
 
 /// Built-in sharing services
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicename?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSSharingServiceName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamecomposeemail?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/composeemail?language=objc)
     pub static NSSharingServiceNameComposeEmail: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamecomposemessage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/composemessage?language=objc)
     pub static NSSharingServiceNameComposeMessage: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamesendviaairdrop?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/sendviaairdrop?language=objc)
     pub static NSSharingServiceNameSendViaAirDrop: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameaddtosafarireadinglist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/addtosafarireadinglist?language=objc)
     pub static NSSharingServiceNameAddToSafariReadingList: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameaddtoiphoto?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/addtoiphoto?language=objc)
     pub static NSSharingServiceNameAddToIPhoto: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameaddtoaperture?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/addtoaperture?language=objc)
     pub static NSSharingServiceNameAddToAperture: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameuseasdesktoppicture?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/useasdesktoppicture?language=objc)
     pub static NSSharingServiceNameUseAsDesktopPicture: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostonfacebook?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postonfacebook?language=objc)
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnFacebook: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostontwitter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postontwitter?language=objc)
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnTwitter: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostonsinaweibo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postonsinaweibo?language=objc)
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnSinaWeibo: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostontencentweibo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postontencentweibo?language=objc)
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnTencentWeibo: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostonlinkedin?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postonlinkedin?language=objc)
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostOnLinkedIn: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameuseastwitterprofileimage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/useastwitterprofileimage?language=objc)
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNameUseAsTwitterProfileImage: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameuseasfacebookprofileimage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/useasfacebookprofileimage?language=objc)
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNameUseAsFacebookProfileImage: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenameuseaslinkedinprofileimage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/useaslinkedinprofileimage?language=objc)
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNameUseAsLinkedInProfileImage: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostimageonflickr?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postimageonflickr?language=objc)
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostImageOnFlickr: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostvideoonvimeo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postvideoonvimeo?language=objc)
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostVideoOnVimeo: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostvideoonyouku?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postvideoonyouku?language=objc)
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostVideoOnYouku: &'static NSSharingServiceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamepostvideoontudou?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/postvideoontudou?language=objc)
     #[deprecated = "This service is no longer included with the system."]
     pub static NSSharingServiceNamePostVideoOnTudou: &'static NSSharingServiceName;
 }
@@ -130,7 +130,7 @@ extern "C" {
     ///
     /// When performed, this service gives the user the opportunity to invite participants and start sharing. If the content is already shared, the service instead allows the user to view or modify participation or stop sharing. To detect changes the service makes to the CKShare, implement -sharingService:didSaveShare: and -sharingService:didStopSharing:.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservicenamecloudsharing?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/name/cloudsharing?language=objc)
     pub static NSSharingServiceNameCloudSharing: &'static NSSharingServiceName;
 }
 
@@ -312,7 +312,7 @@ impl NSSharingService {
 ///
 /// The sharing scope can be modified from the default value of NSSharingContentScopeItem by setting a different value in the out parameter in sharingService:sourceWindowForShareItems:sharingContentScope:.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingcontentscope?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/sharingcontentscope?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -442,7 +442,7 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscloudkitsharingserviceoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssharingservice/cloudkitoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

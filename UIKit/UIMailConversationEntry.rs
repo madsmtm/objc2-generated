@@ -9,7 +9,7 @@ use crate::*;
 
 /// A set of categories for an email.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationentrykind?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry/kind-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -46,7 +46,7 @@ unsafe impl RefEncode for UIMailConversationEntryKind {
 extern_class!(
     /// A class that represents a specific email in an email thread.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationentry?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimailconversationcontext/mailentry?language=objc)
     #[unsafe(super(UIConversationEntry, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIConversationEntry")]

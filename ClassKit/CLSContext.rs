@@ -66,42 +66,42 @@ unsafe impl RefEncode for CLSContextType {
 pub type CLSContextTopic = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopicmath?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/math?language=objc)
     pub static CLSContextTopicMath: &'static CLSContextTopic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopicscience?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/science?language=objc)
     pub static CLSContextTopicScience: &'static CLSContextTopic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopicliteracyandwriting?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/literacyandwriting?language=objc)
     pub static CLSContextTopicLiteracyAndWriting: &'static CLSContextTopic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopicworldlanguage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/worldlanguage?language=objc)
     pub static CLSContextTopicWorldLanguage: &'static CLSContextTopic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopicsocialscience?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/socialscience?language=objc)
     pub static CLSContextTopicSocialScience: &'static CLSContextTopic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopiccomputerscienceandengineering?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/computerscienceandengineering?language=objc)
     pub static CLSContextTopicComputerScienceAndEngineering: &'static CLSContextTopic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopicartsandmusic?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/artsandmusic?language=objc)
     pub static CLSContextTopicArtsAndMusic: &'static CLSContextTopic;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopichealthandfitness?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/classkit/clscontexttopic/healthandfitness?language=objc)
     pub static CLSContextTopicHealthAndFitness: &'static CLSContextTopic;
 }
 

@@ -139,7 +139,7 @@ impl NSScreen {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscreencolorspacedidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscreen/colorspacedidchangenotification?language=objc)
     pub static NSScreenColorSpaceDidChangeNotification: &'static NSNotificationName;
 }
 

@@ -6,17 +6,17 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkstoredvaluepassbalancetype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkstoredvaluepassbalance/balancetype-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type PKStoredValuePassBalanceType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkstoredvaluepassbalancetypecash?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkstoredvaluepassbalance/balancetype-swift.struct/cash?language=objc)
     pub static PKStoredValuePassBalanceTypeCash: &'static PKStoredValuePassBalanceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkstoredvaluepassbalancetypeloyaltypoints?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkstoredvaluepassbalance/balancetype-swift.struct/loyaltypoints?language=objc)
     pub static PKStoredValuePassBalanceTypeLoyaltyPoints: &'static PKStoredValuePassBalanceType;
 }
 

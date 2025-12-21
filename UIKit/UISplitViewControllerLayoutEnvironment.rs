@@ -5,7 +5,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontrollerlayoutenvironment?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisplitviewcontroller/layoutenvironment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -33,7 +33,7 @@ unsafe impl RefEncode for UISplitViewControllerLayoutEnvironment {
 extern_class!(
     /// A trait that specifies whether an ancestor split view controller, if any, is expanded or collapsed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitsplitviewcontrollerlayoutenvironment?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitsplitviewcontrollerlayoutenvironment-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

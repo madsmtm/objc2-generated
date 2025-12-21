@@ -9,7 +9,7 @@ use crate::*;
 
 /// The main material that this view displays.  Materials are dynamic, and their exact look depends on the view's effectiveAppearance, blendingMode, state, emphasized, and possibly other factors.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectmaterial?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/material-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -87,7 +87,7 @@ unsafe impl RefEncode for NSVisualEffectMaterial {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectblendingmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/blendingmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -109,7 +109,7 @@ unsafe impl RefEncode for NSVisualEffectBlendingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvisualeffectview/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -8,7 +8,6 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimemaxtimescale?language=objc)
 pub const kCMTimeMaxTimescale: c_uint = 0x7fffffff;
 /// Numerator of rational CMTime.
 ///
@@ -111,27 +110,27 @@ unsafe impl RefEncode for CMTime {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimeinvalid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtime/invalid?language=objc)
     pub static kCMTimeInvalid: CMTime;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimeindefinite?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtime/indefinite?language=objc)
     pub static kCMTimeIndefinite: CMTime;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimepositiveinfinity?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtime/positiveinfinity?language=objc)
     pub static kCMTimePositiveInfinity: CMTime;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimenegativeinfinity?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtime/negativeinfinity?language=objc)
     pub static kCMTimeNegativeInfinity: CMTime;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimezero?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtime/zero?language=objc)
     pub static kCMTimeZero: CMTime;
 }
 

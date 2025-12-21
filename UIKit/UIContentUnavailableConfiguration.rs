@@ -30,7 +30,7 @@ unsafe impl RefEncode for UIContentUnavailableAlignment {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentunavailableconfiguration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontentunavailableconfiguration-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

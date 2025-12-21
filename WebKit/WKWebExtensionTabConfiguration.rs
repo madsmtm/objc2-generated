@@ -12,7 +12,7 @@ extern_class!(
     /// This class holds various options that influence the behavior and initial state of a tab.
     /// The app retains the discretion to disregard any or all of these options, or even opt not to create a tab.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiontabconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

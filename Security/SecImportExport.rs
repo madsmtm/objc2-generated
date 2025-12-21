@@ -8,7 +8,6 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sec_key_import_export_params_version?language=objc)
 pub const SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION: c_uint = 0;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/secexternalformat?language=objc)
 // NS_ENUM

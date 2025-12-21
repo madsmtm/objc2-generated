@@ -12,7 +12,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -190,7 +190,7 @@ pub static NSOtherMouseUp: NSEventType = NSEventType(NSEventType::OtherMouseUp.0
 #[deprecated]
 pub static NSOtherMouseDragged: NSEventType = NSEventType(NSEventType::OtherMouseDragged.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventmask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventtypemask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -378,7 +378,7 @@ impl NSEventMask {
     // TODO: pub fn NSEventMaskFromType(r#type: NSEventType,) -> NSEventMask;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventmodifierflags?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/modifierflags-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -458,7 +458,7 @@ pub static NSFunctionKeyMask: NSEventModifierFlags =
 pub static NSDeviceIndependentModifierFlagsMask: NSEventModifierFlags =
     NSEventModifierFlags(NSEventModifierFlags::DeviceIndependentFlagsMask.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspointingdevicetype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -502,7 +502,7 @@ pub static NSCursorPointingDevice: NSPointingDeviceType =
 pub static NSEraserPointingDevice: NSPointingDeviceType =
     NSPointingDeviceType(NSPointingDeviceType::Eraser.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventbuttonmask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/buttonmask-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -540,7 +540,7 @@ pub static NSPenLowerSideMask: NSEventButtonMask =
 pub static NSPenUpperSideMask: NSEventButtonMask =
     NSEventButtonMask(NSEventButtonMask::PenUpperSide.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventphase?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/phase-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -572,7 +572,7 @@ unsafe impl RefEncode for NSEventPhase {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventgestureaxis?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/gestureaxis?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -594,7 +594,7 @@ unsafe impl RefEncode for NSEventGestureAxis {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventswipetrackingoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/swipetrackingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -616,7 +616,7 @@ unsafe impl RefEncode for NSEventSwipeTrackingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventsubtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/eventsubtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -702,7 +702,7 @@ pub static NSTabletProximityEventSubtype: NSEventSubtype =
 #[deprecated]
 pub static NSTouchEventSubtype: NSEventSubtype = NSEventSubtype(NSEventSubtype::Touch.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspressurebehavior?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/pressurebehavior-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

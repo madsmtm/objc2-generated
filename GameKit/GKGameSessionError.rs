@@ -12,7 +12,7 @@ extern "C" {
     pub static GKGameSessionErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgamesessionerror/code?language=objc)
 // NS_ENUM
 #[deprecated = "GKGameSession is deprecated, use real-time and turn-based matchmaking APIs instead."]
 #[repr(transparent)]

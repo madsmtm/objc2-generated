@@ -9,18 +9,18 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdetentidentifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller/detent/identifier-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UISheetPresentationControllerDetentIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdetentidentifiermedium?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller/detent/identifier-swift.struct/medium?language=objc)
     pub static UISheetPresentationControllerDetentIdentifierMedium:
         &'static UISheetPresentationControllerDetentIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdetentidentifierlarge?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller/detent/identifier-swift.struct/large?language=objc)
     pub static UISheetPresentationControllerDetentIdentifierLarge:
         &'static UISheetPresentationControllerDetentIdentifier;
 }
@@ -49,7 +49,7 @@ extern_protocol!(
 );
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontrollerdetent?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisheetpresentationcontroller/detent?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

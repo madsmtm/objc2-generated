@@ -6,27 +6,27 @@ use crate::*;
 
 /// Constants for specifying data types for a ``WKWebExtensionDataRecord``.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiondatatype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datatype?language=objc)
 // NS_TYPED_ENUM
 pub type WKWebExtensionDataType = NSString;
 
 extern "C" {
     /// Specifies local storage, including `browser.storage.local`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiondatatypelocal?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datatype/local?language=objc)
     pub static WKWebExtensionDataTypeLocal: Option<&'static WKWebExtensionDataType>;
 }
 
 extern "C" {
     /// Specifies session storage, including `browser.storage.session`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiondatatypesession?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datatype/session?language=objc)
     pub static WKWebExtensionDataTypeSession: Option<&'static WKWebExtensionDataType>;
 }
 
 extern "C" {
     /// Specifies synchronized storage, including `browser.storage.sync`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiondatatypesynchronized?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/datatype/synchronized?language=objc)
     pub static WKWebExtensionDataTypeSynchronized: Option<&'static WKWebExtensionDataType>;
 }

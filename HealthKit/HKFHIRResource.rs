@@ -11,62 +11,62 @@ use crate::*;
 pub type HKFHIRResourceType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetypeallergyintolerance?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/allergyintolerance?language=objc)
     pub static HKFHIRResourceTypeAllergyIntolerance: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetypecondition?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/condition?language=objc)
     pub static HKFHIRResourceTypeCondition: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetypecoverage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/coverage?language=objc)
     pub static HKFHIRResourceTypeCoverage: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetypediagnosticreport?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/diagnosticreport?language=objc)
     pub static HKFHIRResourceTypeDiagnosticReport: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetypedocumentreference?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/documentreference?language=objc)
     pub static HKFHIRResourceTypeDocumentReference: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetypeimmunization?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/immunization?language=objc)
     pub static HKFHIRResourceTypeImmunization: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetypemedicationdispense?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/medicationdispense?language=objc)
     pub static HKFHIRResourceTypeMedicationDispense: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetypemedicationorder?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/medicationorder?language=objc)
     pub static HKFHIRResourceTypeMedicationOrder: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetypemedicationrequest?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/medicationrequest?language=objc)
     pub static HKFHIRResourceTypeMedicationRequest: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetypemedicationstatement?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/medicationstatement?language=objc)
     pub static HKFHIRResourceTypeMedicationStatement: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetypeobservation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/observation?language=objc)
     pub static HKFHIRResourceTypeObservation: &'static HKFHIRResourceType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetypeprocedure?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirresourcetype/procedure?language=objc)
     pub static HKFHIRResourceTypeProcedure: &'static HKFHIRResourceType;
 }
 

@@ -9,7 +9,7 @@ use crate::*;
 
 /// Options for describing media capabilities supported by a movie or show.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitemmediaoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselitem/mediaoptions-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

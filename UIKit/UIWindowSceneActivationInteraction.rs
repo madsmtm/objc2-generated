@@ -17,7 +17,7 @@ use crate::*;
 ///
 /// Parameter `location`: Location in the interaction's view for which a configuration is being requested.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationinteractionconfigurationprovider?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/activationinteraction/configurationprovider?language=objc)
 #[cfg(all(
     feature = "UIWindowSceneActivationConfiguration",
     feature = "block2",
@@ -34,7 +34,7 @@ extern_class!(
     /// An interaction that facilitates activating a
     /// `UIWindowScene`when the user pinches out on the interaction's view.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationinteraction?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/activationinteraction?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

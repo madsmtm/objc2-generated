@@ -27,12 +27,12 @@ pub type NSFileProviderSyncAnchor = NSData;
 pub type NSFileProviderPage = NSData;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderinitialpagesortedbydate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderpage/initialpagesortedbydate?language=objc)
     pub static NSFileProviderInitialPageSortedByDate: &'static NSFileProviderPage;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderinitialpagesortedbyname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderpage/initialpagesortedbyname?language=objc)
     pub static NSFileProviderInitialPageSortedByName: &'static NSFileProviderPage;
 }
 

@@ -16,7 +16,7 @@ pub type AVAssetDownloadedAssetEvictionPriority = NSString;
 extern "C" {
     /// Used to mark assets with the highest priority. They will be the last to be purged.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionpriorityimportant?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionpriority/important?language=objc)
     pub static AVAssetDownloadedAssetEvictionPriorityImportant:
         &'static AVAssetDownloadedAssetEvictionPriority;
 }
@@ -24,7 +24,7 @@ extern "C" {
 extern "C" {
     /// Used to mark assets have the default priority. They will be the first to be purged.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionprioritydefault?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetdownloadedassetevictionpriority/default?language=objc)
     pub static AVAssetDownloadedAssetEvictionPriorityDefault:
         &'static AVAssetDownloadedAssetEvictionPriority;
 }

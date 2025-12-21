@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancename?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSAppearanceName = NSString;
 
@@ -116,48 +116,48 @@ impl DefaultRetained for NSAppearance {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenameaqua?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/aqua?language=objc)
     pub static NSAppearanceNameAqua: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenamedarkaqua?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/darkaqua?language=objc)
     pub static NSAppearanceNameDarkAqua: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenamelightcontent?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/lightcontent?language=objc)
     #[deprecated = "Light content should use the default Aqua apppearance."]
     pub static NSAppearanceNameLightContent: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenamevibrantdark?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/vibrantdark?language=objc)
     pub static NSAppearanceNameVibrantDark: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenamevibrantlight?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/vibrantlight?language=objc)
     pub static NSAppearanceNameVibrantLight: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenameaccessibilityhighcontrastaqua?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/accessibilityhighcontrastaqua?language=objc)
     pub static NSAppearanceNameAccessibilityHighContrastAqua: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenameaccessibilityhighcontrastdarkaqua?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/accessibilityhighcontrastdarkaqua?language=objc)
     pub static NSAppearanceNameAccessibilityHighContrastDarkAqua: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenameaccessibilityhighcontrastvibrantlight?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/accessibilityhighcontrastvibrantlight?language=objc)
     pub static NSAppearanceNameAccessibilityHighContrastVibrantLight: &'static NSAppearanceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearancenameaccessibilityhighcontrastvibrantdark?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappearance/name-swift.struct/accessibilityhighcontrastvibrantdark?language=objc)
     pub static NSAppearanceNameAccessibilityHighContrastVibrantDark: &'static NSAppearanceName;
 }
 

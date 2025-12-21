@@ -21,7 +21,7 @@ extern "C" {
 ///
 /// query's result could not be meaningfully computed.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerrorcode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkerror/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterpickercompletionhandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterpickercontroller/completionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type UIPrinterPickerCompletionHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<UIPrinterPickerController>, Bool, *mut NSError)>;

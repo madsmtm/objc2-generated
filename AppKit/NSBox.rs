@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstitleposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/titleposition-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -39,7 +39,7 @@ unsafe impl RefEncode for NSTitlePosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsboxtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/boxtype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -326,10 +326,10 @@ impl NSBox {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsboxsecondary?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/boxtype-swift.enum/secondary?language=objc)
 #[deprecated]
 pub static NSBoxSecondary: NSBoxType = NSBoxType(1);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsboxoldstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbox/boxtype-swift.enum/oldstyle?language=objc)
 #[deprecated = "NSBoxOldStyle is discouraged in modern application design. It should be replaced with either NSBoxPrimary or NSBoxCustom."]
 pub static NSBoxOldStyle: NSBoxType = NSBoxType(3);

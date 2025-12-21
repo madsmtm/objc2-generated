@@ -52,7 +52,7 @@ pub unsafe extern "C-unwind" fn AXPrefersNonBlinkingTextInsertionIndicator() -> 
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axprefersnonblinkingtextinsertionindicatordidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitysettings/prefersnonblinkingtextinsertionindicatordidchangenotification?language=objc)
     pub static AXPrefersNonBlinkingTextInsertionIndicatorDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -66,7 +66,7 @@ pub unsafe extern "C-unwind" fn AXPrefersActionSliderAlternative() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axprefersactionslideralternativedidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitysettings/prefersactionslideralternativedidchangenotification?language=objc)
     pub static AXPrefersActionSliderAlternativeDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -79,11 +79,11 @@ pub unsafe extern "C-unwind" fn AXShowBordersEnabled() -> bool {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axshowbordersenabledstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitysettings/showbordersenabledstatusdidchangenotification?language=objc)
     pub static AXShowBordersEnabledStatusDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axsettingsfeature?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/accessibilitysettings/feature?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

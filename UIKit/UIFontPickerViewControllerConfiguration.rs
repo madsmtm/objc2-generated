@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontpickerviewcontrollerconfiguration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontpickerviewcontroller/configuration-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

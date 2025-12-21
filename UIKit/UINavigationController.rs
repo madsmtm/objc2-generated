@@ -19,7 +19,7 @@ use crate::*;
 /// UINavigationController is rotatable if its top view controller is rotatable.
 /// Navigation between controllers with non-uniform rotatability is currently not supported.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontrolleroperation?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontroller/operation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -42,7 +42,7 @@ unsafe impl RefEncode for UINavigationControllerOperation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontrollerhideshowbarduration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationcontroller/hideshowbarduration?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UINavigationControllerHideShowBarDuration: CGFloat;
 }

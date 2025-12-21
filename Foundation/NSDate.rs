@@ -9,12 +9,12 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssystemclockdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nssystemclockdidchange?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSSystemClockDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimeinterval?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/timeinterval?language=objc)
 pub type NSTimeInterval = c_double;
 
 extern_class!(

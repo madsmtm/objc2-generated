@@ -11,7 +11,7 @@ use crate::*;
 
 /// A value describing app clip code URL decoding state.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arappclipcodeurldecodingstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arappclipcodeanchor/urldecodingstate-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

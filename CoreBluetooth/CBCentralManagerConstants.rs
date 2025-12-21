@@ -234,7 +234,7 @@ extern "C" {
     ///
     /// ```
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectioneventmatchingoptionserviceuuids?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectioneventmatchingoption/serviceuuids?language=objc)
     pub static CBConnectionEventMatchingOptionServiceUUIDs:
         &'static CBConnectionEventMatchingOption;
 }
@@ -261,7 +261,7 @@ extern "C" {
     ///
     /// ```
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectioneventmatchingoptionperipheraluuids?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/corebluetooth/cbconnectioneventmatchingoption/peripheraluuids?language=objc)
     pub static CBConnectionEventMatchingOptionPeripheralUUIDs:
         &'static CBConnectionEventMatchingOption;
 }

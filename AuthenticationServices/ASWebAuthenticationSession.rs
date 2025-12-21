@@ -21,7 +21,7 @@ extern "C" {
 ///
 /// was not elligible to show the authentication UI. For iOS, validate that the UIWindow is in a foreground scene.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerrorcode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessionerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -43,7 +43,7 @@ unsafe impl RefEncode for ASWebAuthenticationSessionErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsessioncompletionhandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aswebauthenticationsession/completionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type ASWebAuthenticationSessionCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut NSURL, *mut NSError)>;

@@ -12,7 +12,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewscrollposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/scrollposition?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -44,7 +44,7 @@ unsafe impl RefEncode for UICollectionViewScrollPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewreorderingcadence?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/reorderingcadence-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -66,7 +66,7 @@ unsafe impl RefEncode for UICollectionViewReorderingCadence {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewselfsizinginvalidation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/selfsizinginvalidation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -92,7 +92,7 @@ unsafe impl RefEncode for UICollectionViewSelfSizingInvalidation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutinteractivetransitioncompletion?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionview/layoutinteractivetransitioncompletion?language=objc)
 #[cfg(feature = "block2")]
 pub type UICollectionViewLayoutInteractiveTransitionCompletion =
     *mut block2::DynBlock<dyn Fn(Bool, Bool)>;
@@ -1914,7 +1914,7 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropintent?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdropproposal/intent-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

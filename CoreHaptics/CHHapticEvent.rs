@@ -29,27 +29,27 @@ use crate::*;
 /// An event which generates an audio signal using a client-supplied waveform (see `CHHapticEngine(registerAudioResource:options:error)`).
 /// Currently, these behave as Transient events (i.e., no looping or enveloping).
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventtype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/eventtype?language=objc)
 // NS_TYPED_ENUM
 pub type CHHapticEventType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventtypehaptictransient?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/eventtype/haptictransient?language=objc)
     pub static CHHapticEventTypeHapticTransient: &'static CHHapticEventType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventtypehapticcontinuous?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/eventtype/hapticcontinuous?language=objc)
     pub static CHHapticEventTypeHapticContinuous: &'static CHHapticEventType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventtypeaudiocontinuous?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/eventtype/audiocontinuous?language=objc)
     pub static CHHapticEventTypeAudioContinuous: &'static CHHapticEventType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticeventtypeaudiocustom?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticevent/eventtype/audiocustom?language=objc)
     pub static CHHapticEventTypeAudioCustom: &'static CHHapticEventType;
 }
 

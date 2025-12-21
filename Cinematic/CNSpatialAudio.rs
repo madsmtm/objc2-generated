@@ -92,7 +92,7 @@ extern_class!(
     /// Users can audition playback of this asset with an immersive audio rendering effect applied by fetching an AVAudioMix containing the necessary metadata serialized in the file as well as any user supplied changes.
     /// Once the results of the audition are satisfactory, clients can create a copy of the asset with the audio effect burned in.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnassetspatialaudioinfo?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnassetspatialaudioinfo-57yc5?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNAssetSpatialAudioInfo;

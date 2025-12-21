@@ -9,7 +9,7 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstimer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/timer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTimer;

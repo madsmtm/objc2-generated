@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackviewgravity?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/gravity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -35,7 +35,7 @@ unsafe impl RefEncode for NSStackViewGravity {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackviewdistribution?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/distribution-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -69,21 +69,21 @@ unsafe impl RefEncode for NSStackViewDistribution {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackviewvisibilitypriority?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/visibilitypriority?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSStackViewVisibilityPriority = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackviewvisibilityprioritymusthold?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/visibilitypriority/musthold?language=objc)
 pub static NSStackViewVisibilityPriorityMustHold: NSStackViewVisibilityPriority = 1000 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackviewvisibilityprioritydetachonlyifnecessary?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/visibilitypriority/detachonlyifnecessary?language=objc)
 pub static NSStackViewVisibilityPriorityDetachOnlyIfNecessary: NSStackViewVisibilityPriority =
     900 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackviewvisibilityprioritynotvisible?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/visibilitypriority/notvisible?language=objc)
 pub static NSStackViewVisibilityPriorityNotVisible: NSStackViewVisibilityPriority = 0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackviewspacingusedefault?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstackview/usedefaultspacing?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub static NSStackViewSpacingUseDefault: CGFloat = c_float::MAX as _;
 

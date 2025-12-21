@@ -119,7 +119,7 @@ pub type CMTagValue = u64;
 /// Field: dataType CMTagDataType for the tag indicating the data type of the value.
 /// Field: value CMTagValue for the value of the CMTag (e.g., a signed 64-bit integer.)
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtag?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtag-c.struct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct CMTag {

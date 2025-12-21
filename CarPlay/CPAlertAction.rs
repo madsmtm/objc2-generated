@@ -9,7 +9,7 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalertactionstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalertaction/style-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

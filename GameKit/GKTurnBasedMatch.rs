@@ -9,7 +9,7 @@ use crate::*;
 
 /// Constants that describe the state of the overall match
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -35,7 +35,7 @@ unsafe impl RefEncode for GKTurnBasedMatchStatus {
 
 /// Constants that describe the state of individual participants in the match
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipantstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedparticipant/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -65,7 +65,7 @@ unsafe impl RefEncode for GKTurnBasedParticipantStatus {
 
 /// Constants that describe the game result for a given participant who has reached the done state.  The developer is free to use these constants or add additional ones
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatchoutcome?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkturnbasedmatch/outcome?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

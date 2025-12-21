@@ -17,20 +17,20 @@ pub type HKFHIRRelease = NSString;
 extern "C" {
     /// The "DSTU2" release: http://hl7.org/fhir/DSTU2/
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirreleasedstu2?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirrelease/dstu2?language=objc)
     pub static HKFHIRReleaseDSTU2: &'static HKFHIRRelease;
 }
 
 extern "C" {
     /// The "R4" release: http://hl7.org/fhir/R4/
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirreleaser4?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirrelease/r4?language=objc)
     pub static HKFHIRReleaseR4: &'static HKFHIRRelease;
 }
 
 extern "C" {
     /// An unknown release
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirreleaseunknown?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkfhirrelease/unknown?language=objc)
     pub static HKFHIRReleaseUnknown: &'static HKFHIRRelease;
 }

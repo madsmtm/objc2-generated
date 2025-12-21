@@ -223,7 +223,7 @@ extern_protocol!(
 extern "C" {
     /// Posted when the large content viewer gets enabled or disabled on the device.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentviewerinteractionenabledstatusdidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uilargecontentviewerinteraction/enabledstatusdidchangenotification?language=objc)
     pub static UILargeContentViewerInteractionEnabledStatusDidChangeNotification:
         &'static NSNotificationName;
 }

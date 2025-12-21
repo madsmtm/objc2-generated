@@ -21,7 +21,7 @@ use crate::*;
 /// NSURLCache is not allowed in any fashion, either in memory or on
 /// disk.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcachestoragepolicy?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcache/storagepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -49,7 +49,7 @@ extern_class!(
     /// It is used to maintain characteristics and attributes of a cached
     /// object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscachedurlresponse?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/cachedurlresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSCachedURLResponse;
@@ -194,7 +194,7 @@ impl DefaultRetained for NSCachedURLResponse {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcache?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcache?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLCache;

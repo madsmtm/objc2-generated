@@ -47,7 +47,7 @@ extern_class!(
     /// }];
     /// ```
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeplan?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlcomputeplan-85vdw?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MLComputePlan;

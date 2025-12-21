@@ -15,7 +15,7 @@ pub type CSSM_BER_TAG = uint8;
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_X509_ALGORITHM_IDENTIFIER_PTR = *mut SecAsn1AlgId;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_type_value_pair?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_type_value_pair-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -43,7 +43,7 @@ unsafe impl RefEncode for cssm_x509_type_value_pair {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_type_value_pair?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_type_value_pair-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_X509_TYPE_VALUE_PAIR = cssm_x509_type_value_pair;
@@ -53,7 +53,7 @@ pub type CSSM_X509_TYPE_VALUE_PAIR = cssm_x509_type_value_pair;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_X509_TYPE_VALUE_PAIR_PTR = *mut cssm_x509_type_value_pair;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_rdn?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_rdn-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -79,7 +79,7 @@ unsafe impl RefEncode for cssm_x509_rdn {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_rdn?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_rdn-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_X509_RDN = cssm_x509_rdn;
@@ -89,7 +89,7 @@ pub type CSSM_X509_RDN = cssm_x509_rdn;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_X509_RDN_PTR = *mut cssm_x509_rdn;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_name?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_name-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -112,7 +112,7 @@ unsafe impl RefEncode for cssm_x509_name {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_name?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_name-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_X509_NAME = cssm_x509_name;
@@ -127,7 +127,7 @@ pub type CSSM_X509_NAME_PTR = *mut cssm_x509_name;
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_X509_SUBJECT_PUBLIC_KEY_INFO_PTR = *mut SecAsn1PubKeyInfo;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_time?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_time-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -150,7 +150,7 @@ unsafe impl RefEncode for cssm_x509_time {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_time?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_time-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_X509_TIME = cssm_x509_time;
@@ -197,7 +197,7 @@ pub type CSSM_X509_VALIDITY_PTR = *mut x509_validity;
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_OPTION = CSSM_BOOL;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_basicconstraints?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_basicconstraints-c.struct?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -225,7 +225,7 @@ unsafe impl RefEncode for cssm_x509ext_basicConstraints {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_basicconstraints?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_basicconstraints-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509EXT_BASICCONSTRAINTS = cssm_x509ext_basicConstraints;
@@ -291,7 +291,7 @@ pub type CSSM_X509EXT_TAGandVALUE = cssm_x509_extensionTagAndValue;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_X509EXT_TAGandVALUE_PTR = *mut cssm_x509_extensionTagAndValue;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_pair?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_pair-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -317,7 +317,7 @@ unsafe impl RefEncode for cssm_x509ext_pair {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_pair?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_pair-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_X509EXT_PAIR = cssm_x509ext_pair;
@@ -355,7 +355,7 @@ unsafe impl RefEncode for cssm_x509ext_value {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_extension?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_extension-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -397,7 +397,7 @@ unsafe impl RefEncode for cssm_x509_extension {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_extension?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_extension-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_EXTENSION = cssm_x509_extension;
@@ -407,7 +407,7 @@ pub type CSSM_X509_EXTENSION = cssm_x509_extension;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_EXTENSION_PTR = *mut cssm_x509_extension;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_extensions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_extensions-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -440,7 +440,7 @@ unsafe impl RefEncode for cssm_x509_extensions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_extensions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_extensions-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_EXTENSIONS = cssm_x509_extensions;
@@ -450,7 +450,7 @@ pub type CSSM_X509_EXTENSIONS = cssm_x509_extensions;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_EXTENSIONS_PTR = *mut cssm_x509_extensions;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_tbs_certificate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_tbs_certificate-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -502,7 +502,7 @@ unsafe impl RefEncode for cssm_x509_tbs_certificate {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_tbs_certificate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_tbs_certificate-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_TBS_CERTIFICATE = cssm_x509_tbs_certificate;
@@ -512,7 +512,7 @@ pub type CSSM_X509_TBS_CERTIFICATE = cssm_x509_tbs_certificate;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_TBS_CERTIFICATE_PTR = *mut cssm_x509_tbs_certificate;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_signature?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_signature-c.struct?language=objc)
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
@@ -535,7 +535,7 @@ unsafe impl RefEncode for cssm_x509_signature {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_signature?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_signature-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_X509_SIGNATURE = cssm_x509_signature;
@@ -545,7 +545,7 @@ pub type CSSM_X509_SIGNATURE = cssm_x509_signature;
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_X509_SIGNATURE_PTR = *mut cssm_x509_signature;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_signed_certificate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_signed_certificate-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -581,7 +581,7 @@ unsafe impl RefEncode for cssm_x509_signed_certificate {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_signed_certificate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_signed_certificate-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_SIGNED_CERTIFICATE = cssm_x509_signed_certificate;
@@ -591,7 +591,7 @@ pub type CSSM_X509_SIGNED_CERTIFICATE = cssm_x509_signed_certificate;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_SIGNED_CERTIFICATE_PTR = *mut cssm_x509_signed_certificate;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_policyqualifierinfo?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_policyqualifierinfo-c.struct?language=objc)
 #[cfg(feature = "SecAsn1Types")]
 #[deprecated]
 #[repr(C)]
@@ -614,7 +614,7 @@ unsafe impl RefEncode for cssm_x509ext_policyQualifierInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_policyqualifierinfo?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_policyqualifierinfo-c.typealias?language=objc)
 #[deprecated]
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_X509EXT_POLICYQUALIFIERINFO = cssm_x509ext_policyQualifierInfo;
@@ -624,7 +624,7 @@ pub type CSSM_X509EXT_POLICYQUALIFIERINFO = cssm_x509ext_policyQualifierInfo;
 #[cfg(feature = "SecAsn1Types")]
 pub type CSSM_X509EXT_POLICYQUALIFIERINFO_PTR = *mut cssm_x509ext_policyQualifierInfo;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_policyqualifiers?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_policyqualifiers-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -650,7 +650,7 @@ unsafe impl RefEncode for cssm_x509ext_policyQualifiers {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_policyqualifiers?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_policyqualifiers-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_X509EXT_POLICYQUALIFIERS = cssm_x509ext_policyQualifiers;
@@ -660,7 +660,7 @@ pub type CSSM_X509EXT_POLICYQUALIFIERS = cssm_x509ext_policyQualifiers;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_X509EXT_POLICYQUALIFIERS_PTR = *mut cssm_x509ext_policyQualifiers;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_policyinfo?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_policyinfo-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[deprecated]
 #[repr(C)]
@@ -686,7 +686,7 @@ unsafe impl RefEncode for cssm_x509ext_policyInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_policyinfo?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509ext_policyinfo-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_X509EXT_POLICYINFO = cssm_x509ext_policyInfo;
@@ -696,7 +696,7 @@ pub type CSSM_X509EXT_POLICYINFO = cssm_x509ext_policyInfo;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 pub type CSSM_X509EXT_POLICYINFO_PTR = *mut cssm_x509ext_policyInfo;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_revoked_cert_entry?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_revoked_cert_entry-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -734,7 +734,7 @@ unsafe impl RefEncode for cssm_x509_revoked_cert_entry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_revoked_cert_entry?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_revoked_cert_entry-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_REVOKED_CERT_ENTRY = cssm_x509_revoked_cert_entry;
@@ -744,7 +744,7 @@ pub type CSSM_X509_REVOKED_CERT_ENTRY = cssm_x509_revoked_cert_entry;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_REVOKED_CERT_ENTRY_PTR = *mut cssm_x509_revoked_cert_entry;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_revoked_cert_list?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_revoked_cert_list-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -780,7 +780,7 @@ unsafe impl RefEncode for cssm_x509_revoked_cert_list {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_revoked_cert_list?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_revoked_cert_list-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_REVOKED_CERT_LIST = cssm_x509_revoked_cert_list;
@@ -790,7 +790,7 @@ pub type CSSM_X509_REVOKED_CERT_LIST = cssm_x509_revoked_cert_list;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_REVOKED_CERT_LIST_PTR = *mut cssm_x509_revoked_cert_list;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_tbs_certlist?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_tbs_certlist-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -836,7 +836,7 @@ unsafe impl RefEncode for cssm_x509_tbs_certlist {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_tbs_certlist?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_tbs_certlist-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_TBS_CERTLIST = cssm_x509_tbs_certlist;
@@ -846,7 +846,7 @@ pub type CSSM_X509_TBS_CERTLIST = cssm_x509_tbs_certlist;
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_TBS_CERTLIST_PTR = *mut cssm_x509_tbs_certlist;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_signed_crl?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_signed_crl-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -882,7 +882,7 @@ unsafe impl RefEncode for cssm_x509_signed_crl {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_signed_crl?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_x509_signed_crl-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_X509_SIGNED_CRL = cssm_x509_signed_crl;

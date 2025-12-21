@@ -51,11 +51,11 @@ extern "C" {
     /// A notification that is posted when UIPointerLockState.locked changes values for a scene.
     /// It contains the related UIScene in the user info dictionary of the notification.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerlockstatedidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerlockstate/didchangenotification?language=objc)
     pub static UIPointerLockStateDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerlockstatesceneuserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointerlockstate/sceneuserinfokey?language=objc)
     pub static UIPointerLockStateSceneUserInfoKey: &'static NSString;
 }

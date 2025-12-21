@@ -181,7 +181,7 @@ impl SCNVector4 {
 #[cfg(feature = "objc2-core-foundation")]
 pub type SCNQuaternion = SCNVector4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnmatrix4-swift.typealias?language=objc)
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
 pub type SCNMatrix4 = CATransform3D;

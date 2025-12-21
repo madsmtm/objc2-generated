@@ -146,12 +146,12 @@ unsafe impl RefEncode for MKMapRect {
 pub type MKZoomScale = CGFloat;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsizeworld?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsize/world?language=objc)
     pub static MKMapSizeWorld: MKMapSize;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprectworld?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/world?language=objc)
     pub static MKMapRectWorld: MKMapRect;
 }
 
@@ -188,7 +188,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprectnull?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmaprect/null?language=objc)
     pub static MKMapRectNull: MKMapRect;
 }
 

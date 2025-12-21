@@ -28,7 +28,7 @@ pub const NSSunOSOperatingSystem: c_uint = 6;
 #[deprecated = "Not supported"]
 pub const NSOSF1OperatingSystem: c_uint = 7;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsoperatingsystemversion?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/operatingsystemversion?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct NSOperatingSystemVersion {
@@ -57,7 +57,7 @@ unsafe impl Send for NSOperatingSystemVersion {}
 unsafe impl Sync for NSOperatingSystemVersion {}
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(PartialEq, Eq, Hash)]
     pub struct NSProcessInfo;
@@ -207,7 +207,7 @@ impl DefaultRetained for NSProcessInfo {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsactivityoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/activityoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -305,7 +305,7 @@ impl NSProcessInfo {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfothermalstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/thermalstate-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -348,13 +348,13 @@ impl NSProcessInfo {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfothermalstatedidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/processinfo/thermalstatedidchangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSProcessInfoThermalStateDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprocessinfopowerstatedidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsprocessinfopowerstatedidchange?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSProcessInfoPowerStateDidChangeNotification: &'static NSNotificationName;
 }

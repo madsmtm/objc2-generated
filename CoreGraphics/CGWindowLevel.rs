@@ -5,41 +5,23 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdesktopwindowlevel?language=objc)
 pub const kCGDesktopWindowLevel: CGWindowLevel = kCGMinimumWindowLevel + 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdesktopiconwindowlevel?language=objc)
 pub const kCGDesktopIconWindowLevel: CGWindowLevel = kCGDesktopWindowLevel + 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgbackstopmenulevel?language=objc)
 pub const kCGBackstopMenuLevel: CGWindowLevel = -20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnormalwindowlevel?language=objc)
 pub const kCGNormalWindowLevel: CGWindowLevel = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfloatingwindowlevel?language=objc)
 pub const kCGFloatingWindowLevel: CGWindowLevel = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgtornoffmenuwindowlevel?language=objc)
 pub const kCGTornOffMenuWindowLevel: CGWindowLevel = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgmodalpanelwindowlevel?language=objc)
 pub const kCGModalPanelWindowLevel: CGWindowLevel = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgutilitywindowlevel?language=objc)
 pub const kCGUtilityWindowLevel: CGWindowLevel = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdockwindowlevel?language=objc)
 pub const kCGDockWindowLevel: CGWindowLevel = 20;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgmainmenuwindowlevel?language=objc)
 pub const kCGMainMenuWindowLevel: CGWindowLevel = 24;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgstatuswindowlevel?language=objc)
 pub const kCGStatusWindowLevel: CGWindowLevel = 25;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgpopupmenuwindowlevel?language=objc)
 pub const kCGPopUpMenuWindowLevel: CGWindowLevel = 101;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgoverlaywindowlevel?language=objc)
 pub const kCGOverlayWindowLevel: CGWindowLevel = 102;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcghelpwindowlevel?language=objc)
 pub const kCGHelpWindowLevel: CGWindowLevel = 200;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgdraggingwindowlevel?language=objc)
 pub const kCGDraggingWindowLevel: CGWindowLevel = 500;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgscreensaverwindowlevel?language=objc)
 pub const kCGScreenSaverWindowLevel: CGWindowLevel = 1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgassistivetechhighwindowlevel?language=objc)
 pub const kCGAssistiveTechHighWindowLevel: CGWindowLevel = 1500;
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcursorwindowlevel?language=objc)
 pub const kCGCursorWindowLevel: CGWindowLevel = kCGMaximumWindowLevel - 1;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgwindowlevelkey?language=objc)
 // NS_ENUM

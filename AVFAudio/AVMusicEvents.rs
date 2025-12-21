@@ -184,7 +184,7 @@ impl AVMIDIChannelEvent {
 
 /// Types of MIDI control change events.  See the General MIDI Specification for details.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangemessagetype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidicontrolchangeevent/messagetype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -608,7 +608,7 @@ impl AVMIDISysexEvent {
 
 /// Constants which indicate which type of MIDI Meta-Event to create.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaeventtype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidimetaevent/eventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -763,7 +763,7 @@ extern "C" {
     /// system to use the instrument currently loaded on the channel referenced by the groupID.  This is the only
     /// supported value at this time.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avextendednoteoneventdefaultinstrument?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avextendednoteonevent/defaultinstrument?language=objc)
     pub static AVExtendedNoteOnEventDefaultInstrument: u32;
 }
 

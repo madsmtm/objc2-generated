@@ -13,7 +13,7 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/belayerhierarchyhostingview?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/layerhierarchyhostingview?language=objc)
     #[unsafe(super(UIView, UIResponder, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

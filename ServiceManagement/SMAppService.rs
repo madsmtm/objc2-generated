@@ -26,7 +26,7 @@ use crate::*;
 ///
 /// An error occurred and no such service could be found
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservicestatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/servicemanagement/smappservice/status-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

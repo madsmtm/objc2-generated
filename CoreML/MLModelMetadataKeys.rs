@@ -15,34 +15,34 @@ pub type MLModelMetadataKey = NSString;
 extern "C" {
     /// A short description of what the model does and/or its purpose
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodeldescriptionkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelmetadatakey/description?language=objc)
     pub static MLModelDescriptionKey: Option<&'static MLModelMetadataKey>;
 }
 
 extern "C" {
     /// A version number encoded as a string
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelversionstringkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelmetadatakey/versionstring?language=objc)
     pub static MLModelVersionStringKey: Option<&'static MLModelMetadataKey>;
 }
 
 extern "C" {
     /// The author of this model
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelauthorkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelmetadatakey/author?language=objc)
     pub static MLModelAuthorKey: Option<&'static MLModelMetadataKey>;
 }
 
 extern "C" {
     /// License information for the model
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodellicensekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelmetadatakey/license?language=objc)
     pub static MLModelLicenseKey: Option<&'static MLModelMetadataKey>;
 }
 
 extern "C" {
     /// Any additional pertinent information specified by the model creator
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelcreatordefinedkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelmetadatakey/creatordefinedkey?language=objc)
     pub static MLModelCreatorDefinedKey: Option<&'static MLModelMetadataKey>;
 }

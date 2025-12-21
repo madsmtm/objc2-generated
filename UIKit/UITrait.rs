@@ -9,7 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdefinition?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdefinition-3572h?language=objc)
     pub unsafe trait UITraitDefinition: MainThreadOnly {
         /// A unique identifier string for the trait (reverse-DNS format recommended).
         /// Allows the trait to be encoded/decoded, and to map both a Swift and Objective-C trait to the same data.
@@ -34,7 +34,7 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitrait?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitrait-1dbah?language=objc)
 pub type UITrait = AnyClass;
 
 extern_protocol!(
@@ -80,7 +80,7 @@ extern_protocol!(
 pub type UIObjectTrait = AnyClass;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraituserinterfaceidiom?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraituserinterfaceidiom-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -117,7 +117,7 @@ impl UITraitUserInterfaceIdiom {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraituserinterfacestyle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraituserinterfacestyle-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -154,7 +154,7 @@ impl UITraitUserInterfaceStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlayoutdirection?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlayoutdirection-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -191,7 +191,7 @@ impl UITraitLayoutDirection {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdisplayscale?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdisplayscale-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -228,7 +228,7 @@ impl UITraitDisplayScale {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraithorizontalsizeclass?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraithorizontalsizeclass-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -265,7 +265,7 @@ impl UITraitHorizontalSizeClass {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitverticalsizeclass?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitverticalsizeclass-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -302,7 +302,7 @@ impl UITraitVerticalSizeClass {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitforcetouchcapability?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitforcetouchcapability-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -339,7 +339,7 @@ impl UITraitForceTouchCapability {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitpreferredcontentsizecategory?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitpreferredcontentsizecategory-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -376,7 +376,7 @@ impl UITraitPreferredContentSizeCategory {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdisplaygamut?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitdisplaygamut-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -413,7 +413,7 @@ impl UITraitDisplayGamut {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitaccessibilitycontrast?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitaccessibilitycontrast-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -450,7 +450,7 @@ impl UITraitAccessibilityContrast {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraituserinterfacelevel?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraituserinterfacelevel-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -487,7 +487,7 @@ impl UITraitUserInterfaceLevel {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlegibilityweight?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitlegibilityweight-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -524,7 +524,7 @@ impl UITraitLegibilityWeight {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitactiveappearance?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitactiveappearance-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -561,7 +561,7 @@ impl UITraitActiveAppearance {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraittoolbaritempresentationsize?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraittoolbaritempresentationsize-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -598,7 +598,7 @@ impl UITraitToolbarItemPresentationSize {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitimagedynamicrange?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitimagedynamicrange-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -635,7 +635,7 @@ impl UITraitImageDynamicRange {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraittypesettinglanguage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraittypesettinglanguage-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -672,7 +672,7 @@ impl UITraitTypesettingLanguage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitscenecapturestate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitscenecapturestate-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -709,7 +709,7 @@ impl UITraitSceneCaptureState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraithdrheadroomusagelimit?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraithdrheadroomusagelimit-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -746,7 +746,7 @@ impl UITraitHDRHeadroomUsageLimit {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitresolvesnaturalalignmentwithbasewritingdirection?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitresolvesnaturalalignmentwithbasewritingdirection-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

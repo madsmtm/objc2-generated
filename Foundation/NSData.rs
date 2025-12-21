@@ -10,7 +10,7 @@ use crate::*;
 
 /// **************    Read/Write Options    ***************
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatareadingoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/readingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -41,7 +41,7 @@ unsafe impl RefEncode for NSDataReadingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatawritingoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/writingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -79,7 +79,7 @@ unsafe impl RefEncode for NSDataWritingOptions {
 
 /// **************    Data Search Options    ***************
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatasearchoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/searchoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -103,7 +103,7 @@ unsafe impl RefEncode for NSDataSearchOptions {
 
 /// **************        Base 64 Options    ***************
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatabase64encodingoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/base64encodingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -129,7 +129,7 @@ unsafe impl RefEncode for NSDataBase64EncodingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatabase64decodingoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/base64decodingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -683,7 +683,7 @@ impl NSMutableData {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdatacompressionalgorithm?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdata/compressionalgorithm?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

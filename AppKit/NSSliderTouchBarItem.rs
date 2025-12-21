@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessorywidth?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessory/width?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type NSSliderAccessoryWidth = CGFloat;
@@ -17,7 +17,7 @@ pub type NSSliderAccessoryWidth = CGFloat;
 extern "C" {
     /// The default width for slider accessories.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessorywidthdefault?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessory/width/default?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSSliderAccessoryWidthDefault: NSSliderAccessoryWidth;
 }
@@ -25,7 +25,7 @@ extern "C" {
 extern "C" {
     /// The standard "wide" width for slider accessories.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessorywidthwide?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsslideraccessory/width/wide?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSSliderAccessoryWidthWide: NSSliderAccessoryWidth;
 }

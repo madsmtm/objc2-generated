@@ -11,8 +11,6 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// This is the type of a reference to MDItems.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/mditem?language=objc)
 #[doc(alias = "MDItemRef")]
 #[repr(C)]
 pub struct MDItem {

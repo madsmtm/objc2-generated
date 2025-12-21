@@ -12,14 +12,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagehintkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagerep/hintkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSImageHintKey = NSString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagerepmatchesdevice?language=objc)
 pub const NSImageRepMatchesDevice: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagelayoutdirection?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimage/layoutdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -326,6 +326,6 @@ impl DefaultRetained for NSImageRep {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagerepregistrydidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsimagerep/registrydidchangenotification?language=objc)
     pub static NSImageRepRegistryDidChangeNotification: &'static NSNotificationName;
 }

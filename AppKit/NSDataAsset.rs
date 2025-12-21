@@ -6,7 +6,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdataassetname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdataasset/name-swift.typealias?language=objc)
 pub type NSDataAssetName = NSString;
 
 extern_class!(

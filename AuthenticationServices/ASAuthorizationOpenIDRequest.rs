@@ -7,27 +7,27 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationopenidoperation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization/openidoperation?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type ASAuthorizationOpenIDOperation = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationoperationimplicit?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization/openidoperation/operationimplicit?language=objc)
     pub static ASAuthorizationOperationImplicit: &'static ASAuthorizationOpenIDOperation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationoperationlogin?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization/openidoperation/operationlogin?language=objc)
     pub static ASAuthorizationOperationLogin: &'static ASAuthorizationOpenIDOperation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationoperationrefresh?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization/openidoperation/operationrefresh?language=objc)
     pub static ASAuthorizationOperationRefresh: &'static ASAuthorizationOpenIDOperation;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationoperationlogout?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorization/openidoperation/operationlogout?language=objc)
     pub static ASAuthorizationOperationLogout: &'static ASAuthorizationOpenIDOperation;
 }
 

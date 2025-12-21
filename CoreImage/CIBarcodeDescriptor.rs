@@ -57,7 +57,7 @@ impl CIBarcodeDescriptor {
 
 /// Constants indicating the percentage of the symbol that is dedicated to error correction.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodeerrorcorrectionlevel?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciqrcodedescriptor/errorcorrectionlevel-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -484,7 +484,7 @@ impl CIPDF417CodeDescriptor {
 /// The error correction capacity for any given Data Matrix symbol is fixed by the size (in rows and columns)
 /// of the symbol. See Table 7 of ISO/IEC 16022:2006(E) for more details.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodeeccversion?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/cidatamatrixcodedescriptor/eccversion-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

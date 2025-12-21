@@ -85,16 +85,16 @@ pub type UIFocusSoundIdentifier = NSString;
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIFocusGroupPriority = NSInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgrouppriorityignored?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgrouppriority/ignored?language=objc)
 pub static UIFocusGroupPriorityIgnored: UIFocusGroupPriority = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgroupprioritypreviouslyfocused?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgrouppriority/previouslyfocused?language=objc)
 pub static UIFocusGroupPriorityPreviouslyFocused: UIFocusGroupPriority = 1000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgrouppriorityprioritized?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgrouppriority/prioritized?language=objc)
 pub static UIFocusGroupPriorityPrioritized: UIFocusGroupPriority = 2000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgroupprioritycurrentlyfocused?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusgrouppriority/currentlyfocused?language=objc)
 pub static UIFocusGroupPriorityCurrentlyFocused: UIFocusGroupPriority = NSIntegerMax as _;
 
 extern_protocol!(
@@ -348,35 +348,35 @@ impl UIFocusUpdateContext {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusdidupdatenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussystem/didupdatenotification?language=objc)
     pub static UIFocusDidUpdateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusmovementdidfailnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussystem/movementdidfailnotification?language=objc)
     pub static UIFocusMovementDidFailNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusupdatecontextkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussystem/focusupdatecontextuserinfokey?language=objc)
     pub static UIFocusUpdateContextKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocusupdateanimationcoordinatorkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussystem/animationcoordinatoruserinfokey?language=objc)
     pub static UIFocusUpdateAnimationCoordinatorKey: &'static NSString;
 }
 
 extern "C" {
     /// Sound identifier for disabling sound during a focus update.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussoundidentifiernone?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussoundidentifier/none?language=objc)
     pub static UIFocusSoundIdentifierNone: &'static UIFocusSoundIdentifier;
 }
 
 extern "C" {
     /// Sound identifier for playing the default sound during a focus update.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussoundidentifierdefault?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocussoundidentifier/default?language=objc)
     pub static UIFocusSoundIdentifierDefault: &'static UIFocusSoundIdentifier;
 }

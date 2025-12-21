@@ -9,7 +9,7 @@ use crate::*;
 
 /// A general region of pleasantness derived from valence logged on a state of mind sample.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindvalenceclassification?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/valenceclassification-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -56,7 +56,7 @@ impl HKStateOfMindValenceClassification {
 
 /// A specific word describing a felt experience.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindlabel?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/label?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -150,7 +150,7 @@ unsafe impl RefEncode for HKStateOfMindLabel {
 
 /// A general facet of life with which a felt experience may be associated.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindassociation?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/association?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -204,7 +204,7 @@ unsafe impl RefEncode for HKStateOfMindAssociation {
 
 /// The kind of feeling type captured by a state of mind log, considering the period of time the reflection concerns.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmindkind?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkstateofmind/kind-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

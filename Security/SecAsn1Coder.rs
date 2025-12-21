@@ -9,7 +9,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/secasn1coder?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct SecAsn1Coder {

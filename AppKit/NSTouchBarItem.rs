@@ -7,21 +7,21 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSTouchBarItemIdentifier = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritempriority?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/priority?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSTouchBarItemPriority = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritempriorityhigh?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/priority/high?language=objc)
 pub static NSTouchBarItemPriorityHigh: NSTouchBarItemPriority = 1000 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemprioritynormal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/priority/normal?language=objc)
 pub static NSTouchBarItemPriorityNormal: NSTouchBarItemPriority = 0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemprioritylow?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/priority/low?language=objc)
 pub static NSTouchBarItemPriorityLow: NSTouchBarItemPriority = -1000 as _;
 
 extern_class!(
@@ -106,21 +106,21 @@ impl NSTouchBarItem {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifierfixedspacesmall?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/fixedspacesmall?language=objc)
     pub static NSTouchBarItemIdentifierFixedSpaceSmall: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifierfixedspacelarge?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/fixedspacelarge?language=objc)
     pub static NSTouchBarItemIdentifierFixedSpaceLarge: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifierflexiblespace?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/flexiblespace?language=objc)
     pub static NSTouchBarItemIdentifierFlexibleSpace: &'static NSTouchBarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifierotheritemsproxy?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/otheritemsproxy?language=objc)
     pub static NSTouchBarItemIdentifierOtherItemsProxy: &'static NSTouchBarItemIdentifier;
 }

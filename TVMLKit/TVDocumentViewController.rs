@@ -15,7 +15,7 @@ extern "C" {
     pub static TVDocumentErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumenterror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumenterror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
@@ -38,55 +38,55 @@ unsafe impl RefEncode for TVDocumentError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentevent?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event?language=objc)
 #[deprecated = "Please use SwiftUI or UIKit"]
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type TVDocumentEvent = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumenteventplay?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/play?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventPlay: &'static TVDocumentEvent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumenteventselect?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/select?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventSelect: &'static TVDocumentEvent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumenteventholdselect?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/holdselect?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventHoldSelect: &'static TVDocumentEvent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumenteventhighlight?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/highlight?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventHighlight: &'static TVDocumentEvent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumenteventload?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/load?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventLoad: &'static TVDocumentEvent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumenteventunload?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/unload?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventUnload: &'static TVDocumentEvent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumenteventappear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/appear?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventAppear: &'static TVDocumentEvent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumenteventdisappear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvdocumentviewcontroller/event/disappear?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVDocumentEventDisappear: &'static TVDocumentEvent;
 }

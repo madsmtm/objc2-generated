@@ -8,7 +8,6 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascriptstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -31,7 +30,6 @@ unsafe impl RefEncode for OSAScriptState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osascriptcontroller?language=objc)
     #[unsafe(super(NSController, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSAScriptController;

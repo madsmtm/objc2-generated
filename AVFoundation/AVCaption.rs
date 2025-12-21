@@ -193,7 +193,7 @@ impl AVCaptionSize {
 ///
 /// Align lines in later position in the block progression direction, or align to the left for Japanese vertical captions, for example.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregiondisplayalignment?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/displayalignment-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -217,7 +217,7 @@ unsafe impl RefEncode for AVCaptionRegionDisplayAlignment {
 
 /// Choices for region writing mode
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregionwritingmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/writingmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -239,7 +239,7 @@ unsafe impl RefEncode for AVCaptionRegionWritingMode {
 
 /// Scrolling effect for a region
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregionscroll?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionregion/scroll-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -553,7 +553,7 @@ impl AVMutableCaptionRegion {
 
 /// Animation effect for a caption
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionanimation?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/animation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -780,7 +780,7 @@ impl AVMutableCaption {
 
 /// Choices for font weight.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionfontweight?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontweight?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -804,7 +804,7 @@ unsafe impl RefEncode for AVCaptionFontWeight {
 
 /// Choices for character style.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionfontstyle?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/fontstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -828,7 +828,7 @@ unsafe impl RefEncode for AVCaptionFontStyle {
 
 /// Choices for character decoration .
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiondecoration?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/decoration?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -879,7 +879,7 @@ unsafe impl RefEncode for AVCaptionDecoration {
 ///
 /// Combine four consecutive digits
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiontextcombine?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textcombine?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -919,7 +919,7 @@ unsafe impl RefEncode for AVCaptionTextCombine {
 ///
 /// Aligned to right in horizontal writing mode or bottom in vertical writing mode.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptiontextalignment?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/textalignment-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1359,7 +1359,7 @@ unsafe impl RefEncode for AVCaptionRubyAlignment {
 extern_class!(
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionruby?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaption/ruby?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptionRuby;

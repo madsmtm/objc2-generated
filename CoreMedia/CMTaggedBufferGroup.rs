@@ -39,7 +39,7 @@ unsafe impl RefEncode for CMTaggedBufferGroupError {
 
 /// An object gathering zero or more buffers (CMSampleBuffer, CVPixelBuffer) each with a CMTagCollection.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroup?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtaggedbuffergroupref?language=objc)
 #[doc(alias = "CMTaggedBufferGroupRef")]
 #[repr(C)]
 pub struct CMTaggedBufferGroup {

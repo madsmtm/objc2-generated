@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotificationactivationtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsusernotification/activationtype-swift.enum?language=objc)
 // NS_ENUM
 #[deprecated = "All NSUserNotifications API should be replaced with UserNotifications.frameworks API"]
 #[repr(transparent)]

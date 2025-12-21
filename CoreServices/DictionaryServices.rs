@@ -10,8 +10,6 @@ use objc2_core_foundation::*;
 use crate::*;
 
 /// Opaque CF object that represents a dictionary file
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/dcsdictionary?language=objc)
 #[doc(alias = "DCSDictionaryRef")]
 #[repr(C)]
 pub struct DCSDictionary {

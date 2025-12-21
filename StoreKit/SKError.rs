@@ -11,7 +11,7 @@ extern "C" {
     pub static SKErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skerror/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

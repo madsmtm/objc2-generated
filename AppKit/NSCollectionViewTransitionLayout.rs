@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewtransitionlayoutanimatedkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewtransitionlayout/animatedkey?language=objc)
 pub type NSCollectionViewTransitionLayoutAnimatedKey = NSString;
 
 extern_class!(

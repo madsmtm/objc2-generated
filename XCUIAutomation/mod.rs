@@ -31,7 +31,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/elementtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -213,7 +213,7 @@ unsafe impl RefEncode for XCUIElementType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiuserinterfacesizeclass?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/sizeclass?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -296,98 +296,98 @@ extern_protocol!(
 
 /// such as the dictionaries returned by XCUIElement.dictionaryRepresentation.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributename?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename?language=objc)
 // NS_TYPED_ENUM
 pub type XCUIElementAttributeName = NSString;
 
 extern "C" {
     /// An array of the element's children.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributenamechildren?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/children?language=objc)
     pub static XCUIElementAttributeNameChildren: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
     /// The element's type, an NSNumber-wrapped XCUIElementType.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributenameelementtype?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/elementtype?language=objc)
     pub static XCUIElementAttributeNameElementType: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
     /// The element's accessibility identifier.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributenameidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/identifier?language=objc)
     pub static XCUIElementAttributeNameIdentifier: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
     /// The element's accessibility value, an NSString or NSNumber.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributenamevalue?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/value?language=objc)
     pub static XCUIElementAttributeNameValue: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
     /// The element's placeholder value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributenameplaceholdervalue?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/placeholdervalue?language=objc)
     pub static XCUIElementAttributeNamePlaceholderValue: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
     /// The element's title.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributenametitle?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/title?language=objc)
     pub static XCUIElementAttributeNameTitle: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
     /// The element's label.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributenamelabel?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/label?language=objc)
     pub static XCUIElementAttributeNameLabel: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
     /// A dictionary representation of the element's frame, as returned by CGRectCreateDictionaryRepresentation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributenameframe?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/frame?language=objc)
     pub static XCUIElementAttributeNameFrame: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
     /// True if the element is enabled, false otherwise, an NSNumber-wrapped BOOL.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributenameenabled?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/enabled?language=objc)
     pub static XCUIElementAttributeNameEnabled: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
     /// True if the element is selected, false otherwise, an NSNumber-wrapped BOOL.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributenameselected?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/selected?language=objc)
     pub static XCUIElementAttributeNameSelected: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
     /// True if the element is focused, false otherwise, an NSNumber-wrapped BOOL.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributenamehasfocus?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/hasfocus?language=objc)
     pub static XCUIElementAttributeNameHasFocus: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
     /// The element's horizontal size class, an NSNumber-wrapped XCUIUserInterfaceSizeClass.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributenamehorizontalsizeclass?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/horizontalsizeclass?language=objc)
     pub static XCUIElementAttributeNameHorizontalSizeClass: &'static XCUIElementAttributeName;
 }
 
 extern "C" {
     /// The element's vertical size class, an NSNumber-wrapped XCUIUserInterfaceSizeClass.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielementattributenameverticalsizeclass?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/attributename/verticalsizeclass?language=objc)
     pub static XCUIElementAttributeNameVerticalSizeClass: &'static XCUIElementAttributeName;
 }
 
@@ -742,232 +742,232 @@ extern_protocol!(
 pub type XCUIKeyboardKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeydelete?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/delete?language=objc)
     pub static XCUIKeyboardKeyDelete: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyreturn?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/return?language=objc)
     pub static XCUIKeyboardKeyReturn: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyenter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/enter?language=objc)
     pub static XCUIKeyboardKeyEnter: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeytab?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/tab?language=objc)
     pub static XCUIKeyboardKeyTab: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyspace?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/space?language=objc)
     pub static XCUIKeyboardKeySpace: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyescape?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/escape?language=objc)
     pub static XCUIKeyboardKeyEscape: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyuparrow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/uparrow?language=objc)
     pub static XCUIKeyboardKeyUpArrow: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeydownarrow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/downarrow?language=objc)
     pub static XCUIKeyboardKeyDownArrow: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyleftarrow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/leftarrow?language=objc)
     pub static XCUIKeyboardKeyLeftArrow: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyrightarrow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/rightarrow?language=objc)
     pub static XCUIKeyboardKeyRightArrow: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f1?language=objc)
     pub static XCUIKeyboardKeyF1: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f2?language=objc)
     pub static XCUIKeyboardKeyF2: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf3?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f3?language=objc)
     pub static XCUIKeyboardKeyF3: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf4?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f4?language=objc)
     pub static XCUIKeyboardKeyF4: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf5?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f5?language=objc)
     pub static XCUIKeyboardKeyF5: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf6?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f6?language=objc)
     pub static XCUIKeyboardKeyF6: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf7?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f7?language=objc)
     pub static XCUIKeyboardKeyF7: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f8?language=objc)
     pub static XCUIKeyboardKeyF8: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf9?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f9?language=objc)
     pub static XCUIKeyboardKeyF9: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf10?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f10?language=objc)
     pub static XCUIKeyboardKeyF10: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf11?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f11?language=objc)
     pub static XCUIKeyboardKeyF11: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf12?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f12?language=objc)
     pub static XCUIKeyboardKeyF12: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf13?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f13?language=objc)
     pub static XCUIKeyboardKeyF13: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf14?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f14?language=objc)
     pub static XCUIKeyboardKeyF14: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf15?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f15?language=objc)
     pub static XCUIKeyboardKeyF15: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf16?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f16?language=objc)
     pub static XCUIKeyboardKeyF16: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf17?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f17?language=objc)
     pub static XCUIKeyboardKeyF17: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf18?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f18?language=objc)
     pub static XCUIKeyboardKeyF18: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyf19?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/f19?language=objc)
     pub static XCUIKeyboardKeyF19: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyforwarddelete?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/forwarddelete?language=objc)
     pub static XCUIKeyboardKeyForwardDelete: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyhome?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/home?language=objc)
     pub static XCUIKeyboardKeyHome: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyend?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/end?language=objc)
     pub static XCUIKeyboardKeyEnd: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeypageup?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/pageup?language=objc)
     pub static XCUIKeyboardKeyPageUp: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeypagedown?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/pagedown?language=objc)
     pub static XCUIKeyboardKeyPageDown: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyclear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/clear?language=objc)
     pub static XCUIKeyboardKeyClear: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyhelp?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/help?language=objc)
     pub static XCUIKeyboardKeyHelp: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeycapslock?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/capslock?language=objc)
     pub static XCUIKeyboardKeyCapsLock: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyshift?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/shift?language=objc)
     pub static XCUIKeyboardKeyShift: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeycontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/control?language=objc)
     pub static XCUIKeyboardKeyControl: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/option?language=objc)
     pub static XCUIKeyboardKeyOption: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeycommand?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/command?language=objc)
     pub static XCUIKeyboardKeyCommand: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyrightshift?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/rightshift?language=objc)
     pub static XCUIKeyboardKeyRightShift: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyrightcontrol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/rightcontrol?language=objc)
     pub static XCUIKeyboardKeyRightControl: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyrightoption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/rightoption?language=objc)
     pub static XCUIKeyboardKeyRightOption: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeyrightcommand?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/rightcommand?language=objc)
     pub static XCUIKeyboardKeyRightCommand: &'static XCUIKeyboardKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkeysecondaryfn?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeyboardkey/secondaryfn?language=objc)
     pub static XCUIKeyboardKeySecondaryFn: &'static XCUIKeyboardKey;
 }
 
@@ -984,7 +984,7 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuikeymodifierflags?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuielement/keymodifierflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1026,19 +1026,19 @@ unsafe impl RefEncode for XCUIKeyModifierFlags {
 pub type XCUIGestureVelocity = CGFloat;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuigesturevelocitydefault?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuigesturevelocity/default?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static XCUIGestureVelocityDefault: XCUIGestureVelocity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuigesturevelocityslow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuigesturevelocity/slow?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static XCUIGestureVelocitySlow: XCUIGestureVelocity;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuigesturevelocityfast?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuigesturevelocity/fast?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static XCUIGestureVelocityFast: XCUIGestureVelocity;
 }
@@ -1527,7 +1527,7 @@ impl XCUIAccessibilityAuditIssue {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiapplicationstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiapplication/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1955,7 +1955,7 @@ impl XCUILocation {
 /// Note: To maintain alignment with UIUserInterfaceStyle, we use `XCUIDeviceAppearanceUnspecified` to describe
 /// UI styles that are unset.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuideviceappearance?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuidevice/appearance-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2194,7 +2194,7 @@ impl XCUIElementQuery {
 
 /// A button on a physical remote control.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremotebutton?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xcuiautomation/xcuiremote/button?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

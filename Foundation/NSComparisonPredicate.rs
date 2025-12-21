@@ -5,7 +5,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicateoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/options-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -29,7 +29,7 @@ unsafe impl RefEncode for NSComparisonPredicateOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicatemodifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/modifier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -51,7 +51,7 @@ unsafe impl RefEncode for NSComparisonPredicateModifier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspredicateoperatortype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparisonpredicate/operator?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

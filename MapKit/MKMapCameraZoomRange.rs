@@ -15,7 +15,7 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapcamerazoomrange?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapview/camerazoomrange-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapCameraZoomRange;

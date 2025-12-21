@@ -178,7 +178,7 @@ extern "C" {
     pub static kWSMethodInvocationTimeoutValue: Option<&'static CFString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/wsmethodinvocationref?language=objc)
 #[doc(alias = "WSMethodInvocationRef")]
 #[repr(C)]
 pub struct WSMethodInvocation {

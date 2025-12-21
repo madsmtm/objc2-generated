@@ -1046,6 +1046,6 @@ impl UITextInputMode {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputcurrentinputmodedidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextinputmode/currentinputmodedidchangenotification?language=objc)
     pub static UITextInputCurrentInputModeDidChangeNotification: &'static NSNotificationName;
 }

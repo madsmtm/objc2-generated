@@ -9,7 +9,7 @@ use crate::*;
 extern_class!(
     /// Use this class to express iOS-specific geometry preferences when calling `-[UIWindowScene requestGeometryUpdateWithPreferences:errorHandler:]`
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenegeometrypreferencesios?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/geometrypreferences/ios?language=objc)
     #[unsafe(super(UIWindowSceneGeometryPreferences, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]

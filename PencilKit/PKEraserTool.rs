@@ -33,7 +33,7 @@ unsafe impl RefEncode for PKEraserType {
 extern_class!(
     /// An eraser tool for erasing parts of a drawing.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkerasertool?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkerasertoolreference?language=objc)
     #[unsafe(super(PKTool, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKTool")]

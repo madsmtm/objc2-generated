@@ -61,7 +61,7 @@ impl CLBackgroundActivitySessionDiagnostic {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbackgroundactivitysession?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clbackgroundactivitysession-4nl4y?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLBackgroundActivitySession;

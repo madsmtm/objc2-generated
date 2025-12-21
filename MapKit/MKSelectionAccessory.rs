@@ -37,7 +37,7 @@ impl MKSelectionAccessory {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitemdetailselectionaccessorycalloutstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkselectionaccessory/mapitemdetailpresentationstyle/calloutstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -60,7 +60,7 @@ unsafe impl RefEncode for MKMapItemDetailSelectionAccessoryCalloutStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapitemdetailselectionaccessorypresentationstyle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkselectionaccessory/mapitemdetailpresentationstyle?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKMapItemDetailSelectionAccessoryPresentationStyle;

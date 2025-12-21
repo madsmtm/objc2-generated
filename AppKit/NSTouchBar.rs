@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbarcustomizationidentifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbar/customizationidentifier-swift.typealias?language=objc)
 pub type NSTouchBarCustomizationIdentifier = NSString;
 
 extern_class!(

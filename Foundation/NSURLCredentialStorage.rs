@@ -9,7 +9,7 @@ use crate::*;
 extern_class!(
     /// NSURLCredentialStorage implements a singleton object (shared instance) which manages the shared credentials cache. Note: Whereas in Mac OS X any application can access any credential with a persistence of NSURLCredentialPersistencePermanent provided the user gives permission, in iPhone OS an application can access only its own credentials.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialstorage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcredentialstorage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLCredentialStorage;
@@ -280,7 +280,7 @@ extern "C" {
     /// This notification is sent on the main thread whenever
     /// the set of stored credentials changes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialstoragechangednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsurlcredentialstoragechanged?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "Notification is never posted"]
     pub static NSURLCredentialStorageChangedNotification: &'static NSNotificationName;

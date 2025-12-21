@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphonedevicemotionhandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager/devicemotionhandler?language=objc)
 #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem", feature = "block2"))]
 pub type CMHeadphoneDeviceMotionHandler =
     *mut block2::DynBlock<dyn Fn(*mut CMDeviceMotion, *mut NSError)>;

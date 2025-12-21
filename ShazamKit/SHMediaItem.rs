@@ -16,84 +16,84 @@ pub type SHMediaItemProperty = NSString;
 extern "C" {
     /// The Shazam media ID
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemshazamid?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/shazamid?language=objc)
     pub static SHMediaItemShazamID: &'static SHMediaItemProperty;
 }
 
 extern "C" {
     /// Title
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemtitle?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/title?language=objc)
     pub static SHMediaItemTitle: &'static SHMediaItemProperty;
 }
 
 extern "C" {
     /// Subtitle
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemsubtitle?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/subtitle?language=objc)
     pub static SHMediaItemSubtitle: &'static SHMediaItemProperty;
 }
 
 extern "C" {
     /// Artist
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemartist?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/artist?language=objc)
     pub static SHMediaItemArtist: &'static SHMediaItemProperty;
 }
 
 extern "C" {
     /// A web URL representing this result
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemweburl?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/weburl?language=objc)
     pub static SHMediaItemWebURL: &'static SHMediaItemProperty;
 }
 
 extern "C" {
     /// The AppleMusic ID
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemapplemusicid?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/applemusicid?language=objc)
     pub static SHMediaItemAppleMusicID: &'static SHMediaItemProperty;
 }
 
 extern "C" {
     /// A link to this media on Apple Music
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemapplemusicurl?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/applemusicurl?language=objc)
     pub static SHMediaItemAppleMusicURL: &'static SHMediaItemProperty;
 }
 
 extern "C" {
     /// A URL to the artwork
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemartworkurl?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/artworkurl?language=objc)
     pub static SHMediaItemArtworkURL: &'static SHMediaItemProperty;
 }
 
 extern "C" {
     /// A URL for a Video associated with the media
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemvideourl?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/videourl?language=objc)
     pub static SHMediaItemVideoURL: &'static SHMediaItemProperty;
 }
 
 extern "C" {
     /// Is this content explicit
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemexplicitcontent?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/explicitcontent?language=objc)
     pub static SHMediaItemExplicitContent: &'static SHMediaItemProperty;
 }
 
 extern "C" {
     /// An array of strings representing the genres of the media item
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemgenres?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/genres?language=objc)
     pub static SHMediaItemGenres: &'static SHMediaItemProperty;
 }
 
 extern "C" {
     /// The International Standard Recording Code
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemisrc?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/isrc?language=objc)
     pub static SHMediaItemISRC: &'static SHMediaItemProperty;
 }
 
@@ -114,7 +114,7 @@ extern "C" {
 extern "C" {
     /// The date when the media item was created
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemcreationdate?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/shazamkit/shmediaitemproperty/creationdate?language=objc)
     pub static SHMediaItemCreationDate: &'static SHMediaItemProperty;
 }
 

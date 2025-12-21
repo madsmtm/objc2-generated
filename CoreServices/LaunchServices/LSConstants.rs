@@ -7,119 +7,119 @@ use crate::*;
 
 /// i386 is no longer supported
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsno32bitenvironmenterr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsno32bitenvironmenterr?language=objc)
 pub const kLSNo32BitEnvironmentErr: OSStatus = -10386;
 /// malformed internet locator file
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsmalformedlocerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsmalformedlocerr?language=objc)
 pub const kLSMalformedLocErr: OSStatus = -10400;
 /// The app cannot be run when inside a Trash folder
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsappintrasherr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsappintrasherr?language=objc)
 pub const kLSAppInTrashErr: OSStatus = -10660;
 /// No compatible executable was found
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsexecutableincorrectformat?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsexecutableincorrectformat?language=objc)
 pub const kLSExecutableIncorrectFormat: OSStatus = -10661;
 /// An item attribute value could not be found with the specified name
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsattributenotfounderr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsattributenotfounderr?language=objc)
 pub const kLSAttributeNotFoundErr: OSStatus = -10662;
 /// The attribute is not settable
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsattributenotsettableerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsattributenotsettableerr?language=objc)
 pub const kLSAttributeNotSettableErr: OSStatus = -10663;
 /// The app is incompatible with the current OS
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsincompatibleapplicationversionerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsincompatibleapplicationversionerr?language=objc)
 pub const kLSIncompatibleApplicationVersionErr: OSStatus = -10664;
 /// PowerPC apps are no longer supported
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsnorosettaenvironmenterr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsnorosettaenvironmenterr?language=objc)
 pub const kLSNoRosettaEnvironmentErr: OSStatus = -10665;
 /// Objective-C garbage collection is no longer supported
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsgarbagecollectionunsupportederr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsgarbagecollectionunsupportederr?language=objc)
 pub const kLSGarbageCollectionUnsupportedErr: OSStatus = -10666;
 /// Unexpected internal error
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsunknownerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsunknownerr?language=objc)
 pub const kLSUnknownErr: OSStatus = -10810;
 /// Item needs to be an application, but is not
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsnotanapplicationerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsnotanapplicationerr?language=objc)
 pub const kLSNotAnApplicationErr: OSStatus = -10811;
 /// Not used in 10.2 and later
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsnotinitializederr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsnotinitializederr?language=objc)
 pub const kLSNotInitializedErr: OSStatus = -10812;
 /// E.g. no kind string
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsdataunavailableerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsdataunavailableerr?language=objc)
 pub const kLSDataUnavailableErr: OSStatus = -10813;
 /// E.g. no application claims the file
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsapplicationnotfounderr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsapplicationnotfounderr?language=objc)
 pub const kLSApplicationNotFoundErr: OSStatus = -10814;
 /// Don't know anything about the type of the item
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsunknowntypeerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsunknowntypeerr?language=objc)
 pub const kLSUnknownTypeErr: OSStatus = -10815;
 /// Not used in 10.3 and later
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsdatatooolderr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsdatatooolderr?language=objc)
 pub const kLSDataTooOldErr: OSStatus = -10816;
 /// Not used in 10.4 and later
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsdataerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsdataerr?language=objc)
 pub const kLSDataErr: OSStatus = -10817;
 /// E.g. launching an already launching application
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klslaunchinprogresserr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klslaunchinprogresserr?language=objc)
 pub const kLSLaunchInProgressErr: OSStatus = -10818;
 /// Not used in 10.3 and later
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsnotregisterederr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsnotregisterederr?language=objc)
 pub const kLSNotRegisteredErr: OSStatus = -10819;
 /// One or more documents are of types (and/or one or more URLs are of schemes) not supported by the target application (sandboxed callers only)
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsappdoesnotclaimtypeerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsappdoesnotclaimtypeerr?language=objc)
 pub const kLSAppDoesNotClaimTypeErr: OSStatus = -10820;
 /// Not used in 10.2 and later
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsappdoesnotsupportschemewarning?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsappdoesnotsupportschemewarning?language=objc)
 pub const kLSAppDoesNotSupportSchemeWarning: OSStatus = -10821;
 /// The server process (registration and recent items) is not available
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsservercommunicationerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsservercommunicationerr?language=objc)
 pub const kLSServerCommunicationErr: OSStatus = -10822;
 /// The extension visibility on this item cannot be changed
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klscannotsetinfoerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klscannotsetinfoerr?language=objc)
 pub const kLSCannotSetInfoErr: OSStatus = -10823;
 /// The item contains no registration info
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsnoregistrationinfoerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsnoregistrationinfoerr?language=objc)
 pub const kLSNoRegistrationInfoErr: OSStatus = -10824;
 /// The app cannot run on the current OS version
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsincompatiblesystemversionerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsincompatiblesystemversionerr?language=objc)
 pub const kLSIncompatibleSystemVersionErr: OSStatus = -10825;
 /// User doesn't have permission to launch the app (managed networks)
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsnolaunchpermissionerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsnolaunchpermissionerr?language=objc)
 pub const kLSNoLaunchPermissionErr: OSStatus = -10826;
 /// The executable is missing
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsnoexecutableerr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsnoexecutableerr?language=objc)
 pub const kLSNoExecutableErr: OSStatus = -10827;
 /// The Classic environment was required but is not available
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsnoclassicenvironmenterr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsnoclassicenvironmenterr?language=objc)
 pub const kLSNoClassicEnvironmentErr: OSStatus = -10828;
 /// The app cannot run simultaneously in two different sessions
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsmultiplesessionsnotsupportederr?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/3074489-anonymous/klsmultiplesessionsnotsupportederr?language=objc)
 pub const kLSMultipleSessionsNotSupportedErr: OSStatus = -10829;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lsrolesmask?language=objc)
@@ -157,7 +157,7 @@ unsafe impl RefEncode for LSRolesMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsunknowntype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1469201-unknown_type_or_creator/klsunknowntype?language=objc)
 pub const kLSUnknownType: OSType = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klsunknowncreator?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1469201-unknown_type_or_creator/klsunknowncreator?language=objc)
 pub const kLSUnknownCreator: OSType = 0;

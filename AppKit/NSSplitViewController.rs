@@ -13,7 +13,7 @@ extern "C" {
     /// This constant can be used with any sizing related
     /// `NSSplitViewController`properties to get the default system behavior.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewcontrollerautomaticdimension?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewcontroller/automaticdimension?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static NSSplitViewControllerAutomaticDimension: CGFloat;
 }

@@ -136,23 +136,17 @@ extern "C" {
     pub static kODNodeOptionsQuerySkippedSubnode: Option<&'static CFString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchany?language=objc)
 pub const kODMatchAny: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchequalto?language=objc)
 pub const kODMatchEqualTo: c_uint = 0x2001;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchbeginswith?language=objc)
 pub const kODMatchBeginsWith: c_uint = 0x2002;
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchcontains?language=objc)
 pub const kODMatchContains: c_uint = 0x2004;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchendswith?language=objc)
 pub const kODMatchEndsWith: c_uint = 0x2003;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchinsensitiveequalto?language=objc)
 #[deprecated = "case matching is defined by attribute schema"]
 pub const kODMatchInsensitiveEqualTo: c_uint = 0x2101;
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchinsensitivebeginswith?language=objc)
 #[deprecated = "case matching is defined by attribute schema"]
 pub const kODMatchInsensitiveBeginsWith: c_uint = 0x2102;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchinsensitivecontains?language=objc)
 #[deprecated = "case matching is defined by attribute schema"]
 pub const kODMatchInsensitiveContains: c_uint = 0x2104;
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchinsensitiveendswith?language=objc)
@@ -160,7 +154,6 @@ pub const kODMatchInsensitiveContains: c_uint = 0x2104;
 pub const kODMatchInsensitiveEndsWith: c_uint = 0x2103;
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchgreaterthan?language=objc)
 pub const kODMatchGreaterThan: c_uint = 0x2006;
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/kodmatchlessthan?language=objc)
 pub const kODMatchLessThan: c_uint = 0x2007;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odmatchtype?language=objc)
@@ -169,7 +162,6 @@ pub type ODMatchType = u32;
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odrecordtype?language=objc)
 pub type ODRecordType = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odattributetype?language=objc)
 pub type ODAttributeType = NSString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/opendirectory/odauthenticationtype?language=objc)

@@ -7,7 +7,7 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeypressstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bekeyentry/keypressstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

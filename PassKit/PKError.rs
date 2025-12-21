@@ -11,7 +11,7 @@ extern "C" {
     pub static PKPassKitErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasskiterrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpasskiterror/code?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PKPassKitErrorCode(pub NSInteger);
@@ -41,7 +41,7 @@ extern "C" {
     pub static PKPaymentErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterror/code?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PKPaymentErrorCode(pub NSInteger);
@@ -73,12 +73,12 @@ unsafe impl RefEncode for PKPaymentErrorCode {
 pub type PKPaymentErrorKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterrorcontactfielduserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterrorkey/contactfielduserinfokey?language=objc)
     pub static PKPaymentErrorContactFieldUserInfoKey: &'static PKPaymentErrorKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterrorpostaladdressuserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymenterrorkey/postaladdressuserinfokey?language=objc)
     pub static PKPaymentErrorPostalAddressUserInfoKey: &'static PKPaymentErrorKey;
 }
 
@@ -87,7 +87,7 @@ extern "C" {
     pub static PKDisbursementErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -114,7 +114,7 @@ unsafe impl RefEncode for PKDisbursementErrorCode {
 pub type PKDisbursementErrorKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementerrorcontactfielduserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkdisbursementerrorkey/contactfielduserinfokey?language=objc)
     pub static PKDisbursementErrorContactFieldUserInfoKey: &'static PKDisbursementErrorKey;
 }
 
@@ -145,7 +145,7 @@ extern "C" {
     pub static PKAddSecureElementPassErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkaddsecureelementpasserror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -183,7 +183,7 @@ extern "C" {
     pub static PKShareSecureElementPassErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksharesecureelementpasserrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksharesecureelementpasserror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

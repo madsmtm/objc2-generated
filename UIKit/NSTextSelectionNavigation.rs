@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigationdirection?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/direction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for NSTextSelectionNavigationDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigationdestination?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/destination?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -67,7 +67,7 @@ unsafe impl RefEncode for NSTextSelectionNavigationDestination {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigationmodifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/modifier?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -91,7 +91,7 @@ unsafe impl RefEncode for NSTextSelectionNavigationModifier {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigationwritingdirection?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/writingdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -111,7 +111,7 @@ unsafe impl RefEncode for NSTextSelectionNavigationWritingDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigationlayoutorientation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextselectionnavigation/layoutorientation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

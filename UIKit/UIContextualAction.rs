@@ -7,13 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualactionhandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualaction/handler-swift.typealias?language=objc)
 #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
 pub type UIContextualActionHandler = *mut block2::DynBlock<
     dyn Fn(NonNull<UIContextualAction>, NonNull<UIView>, NonNull<block2::DynBlock<dyn Fn(Bool)>>),
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualactionstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualaction/style-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

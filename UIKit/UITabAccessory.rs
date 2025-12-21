@@ -41,7 +41,7 @@ impl UITabAccessory {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabaccessoryenvironment?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitabaccessory/environment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -77,7 +77,7 @@ extern_class!(
     /// A trait that specifies the UITabAccessoryEnvironment, if any, that a view is in. It is set on views inside
     /// UITabBarController.bottomAccessory. Defaults to UITabAccessoryEnvironmentUnspecified.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraittabaccessoryenvironment?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraittabaccessoryenvironment-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

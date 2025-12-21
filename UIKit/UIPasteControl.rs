@@ -12,7 +12,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontroldisplaymode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrol/displaymode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for UIPasteControlDisplayMode {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrolconfiguration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipastecontrol/configuration-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

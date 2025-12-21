@@ -41,7 +41,7 @@ extern "C" {
 
 /// Error codes used with errors in the XCTestErrorDomain.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctesterrorcode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctesterror/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -184,7 +184,6 @@ impl DefaultRetained for XCTest {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/_xctestcaseinterruptionexception?language=objc)
     #[unsafe(super(NSException, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct _XCTestCaseInterruptionException;
@@ -282,7 +281,6 @@ pub(crate) extern "C-unwind" fn _XCTPreformattedFailureHandler(
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xctest/_xctassertiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -679,7 +677,7 @@ pub type XCTPerformanceMetric = NSString;
 extern "C" {
     /// Records wall clock time in seconds between startMeasuring/stopMeasuring.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemetric_wallclocktime?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemetric/wallclocktime?language=objc)
     pub static XCTPerformanceMetric_WallClockTime: &'static XCTPerformanceMetric;
 }
 
@@ -1599,7 +1597,6 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/xctest/_xctskipfailureexception?language=objc)
     #[unsafe(super(NSException, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct _XCTSkipFailureException;
@@ -1815,7 +1812,7 @@ impl XCTestSuiteRun {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachmentlifetime?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment/lifetime-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1987,7 +1984,7 @@ impl XCTAttachment {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctimagequality?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctattachment/imagequality?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2268,7 +2265,7 @@ extern_class!(
     /// Describes the rules for matching issues to expected failures and other behaviors related to
     /// expected failure handling.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctexpectedfailureoptions?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctexpectedfailure/options?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTExpectedFailureOptions;
@@ -2425,7 +2422,7 @@ impl DefaultRetained for XCTExpectedFailure {
 
 /// Types of failures and other issues that can be reported for tests.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuetype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/issuetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2466,7 +2463,7 @@ unsafe impl RefEncode for XCTIssueType {
 /// severity. Specifying a numeric severity value other than one corresponding to
 /// a case defined below when initializing an ``XCTIssue`` is unsupported.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissueseverity?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference/severity-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -2498,7 +2495,7 @@ unsafe impl RefEncode for XCTIssueSeverity {
 extern_class!(
     /// Encapsulates all data concerning a test failure or other issue.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissue?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctissuereference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct XCTIssue;
@@ -2806,7 +2803,7 @@ impl XCTMutableIssue {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctmeasurementinvocationoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctmeasureoptions/invocationoptions-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2897,7 +2894,7 @@ impl DefaultRetained for XCTMeasureOptions {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemeasurementpolarity?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/xctest/xctperformancemeasurement/polarity-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -3874,7 +3871,7 @@ impl DefaultRetained for XCTSourceCodeContext {
 /// Values returned by a waiter when it completes, times out, or is interrupted due to another waiter
 /// higher in the call stack timing out.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiterresult?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctwaiter/result?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -4413,7 +4410,7 @@ impl DefaultRetained for XCTestExpectation {
 ///
 /// Returns: Return YES if the expectation is fulfilled, NO if it is not.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xckeyvalueobservingexpectationhandler?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctkvoexpectation/handler-swift.typealias?language=objc)
 #[cfg(feature = "block2")]
 pub type XCKeyValueObservingExpectationHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<AnyObject>, NonNull<NSDictionary>) -> Bool>;
@@ -4557,7 +4554,7 @@ impl XCTKVOExpectation {
 ///
 /// Returns: Return YES if the expectation is fulfilled, NO if it is not.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xcnotificationexpectationhandler?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctnsnotificationexpectation/handler-swift.typealias?language=objc)
 #[cfg(feature = "block2")]
 pub type XCNotificationExpectationHandler =
     *mut block2::DynBlock<dyn Fn(NonNull<NSNotification>) -> Bool>;
@@ -4675,7 +4672,7 @@ impl XCTNSNotificationExpectation {
 /// be queried each time the notification is received to determine whether the expectation should be fulfilled
 /// or not.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xcpredicateexpectationhandler?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctnspredicateexpectation/handler-swift.typealias?language=objc)
 #[cfg(feature = "block2")]
 pub type XCPredicateExpectationHandler = *mut block2::DynBlock<dyn Fn() -> Bool>;
 
@@ -5108,7 +5105,7 @@ extern_conformance!(
 /// be fulfilled or not. This allows the caller to check Darwin state variables or perform other logic
 /// beyond simply verifying that the notification has been posted.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctdarwinnotificationexpectationhandler?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/xctest/xctdarwinnotificationexpectation/handler-swift.typealias?language=objc)
 #[cfg(feature = "block2")]
 pub type XCTDarwinNotificationExpectationHandler = *mut block2::DynBlock<dyn Fn() -> Bool>;
 

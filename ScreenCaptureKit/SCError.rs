@@ -11,7 +11,7 @@ extern "C" {
     pub static SCStreamErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/scstreamerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

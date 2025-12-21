@@ -591,17 +591,17 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltextdidbegineditingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/textdidbegineditingnotification?language=objc)
     pub static NSControlTextDidBeginEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltextdidendeditingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/textdidendeditingnotification?language=objc)
     pub static NSControlTextDidEndEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontroltextdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/textdidchangenotification?language=objc)
     pub static NSControlTextDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -689,7 +689,7 @@ impl NSControl {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrolbordershape?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontrol/bordershape?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

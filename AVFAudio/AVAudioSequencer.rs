@@ -45,8 +45,6 @@ unsafe impl RefEncode for AVMusicSequenceLoadOptions {
 }
 
 /// Used to describe a specific time range within an AVMusicTrack.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avbeatrange?language=objc)
 #[cfg(feature = "AVAudioTypes")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -70,132 +68,132 @@ unsafe impl RefEncode for AVBeatRange {
 
 // TODO: pub fn AVMakeBeatRange(start_beat: AVMusicTimeStamp,length_in_beats: AVMusicTimeStamp,) -> AVBeatRange;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey?language=objc)
 // NS_TYPED_ENUM
 pub type AVAudioSequencerInfoDictionaryKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeyalbum?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/album?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyAlbum: &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeyapproximatedurationinseconds?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/approximatedurationinseconds?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyApproximateDurationInSeconds:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeyartist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/artist?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyArtist: &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeychannellayout?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/channellayout?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyChannelLayout:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeycomments?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/comments?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyComments:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeycomposer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/composer?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyComposer:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeycopyright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/copyright?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyCopyright:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeyencodingapplication?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/encodingapplication?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyEncodingApplication:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeygenre?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/genre?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyGenre: &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeyisrc?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/isrc?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyISRC: &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeykeysignature?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/keysignature?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyKeySignature:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeylyricist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/lyricist?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyLyricist:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeynominalbitrate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/nominalbitrate?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyNominalBitRate:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeyrecordeddate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/recordeddate?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyRecordedDate:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeysourcebitdepth?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/sourcebitdepth?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeySourceBitDepth:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeysourceencoder?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/sourceencoder?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeySourceEncoder:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeysubtitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/subtitle?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeySubTitle:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeytempo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/tempo?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyTempo: &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeytimesignature?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/timesignature?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyTimeSignature:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeytitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/title?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyTitle: &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeytracknumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/tracknumber?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyTrackNumber:
         &'static AVAudioSequencerInfoDictionaryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerinfodictionarykeyyear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencer/infodictionarykey/year?language=objc)
     pub static AVAudioSequencerInfoDictionaryKeyYear: &'static AVAudioSequencerInfoDictionaryKey;
 }
 

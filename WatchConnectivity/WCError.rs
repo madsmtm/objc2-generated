@@ -13,7 +13,7 @@ extern "C" {
 
 /// These are the possible error codes that can be returned from the WatchConnectivity APIs.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerrorcode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/watchconnectivity/wcerror/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

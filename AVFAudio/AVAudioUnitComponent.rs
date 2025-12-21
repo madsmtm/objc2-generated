@@ -335,7 +335,7 @@ extern "C" {
     /// object:      [AVAudioUnitComponentManager sharedAudioUnitComponentManager]];
     /// ```
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanagerregistrationschangednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiounitcomponentmanager/registrationschangednotification?language=objc)
     pub static AVAudioUnitComponentManagerRegistrationsChangedNotification:
         &'static NSNotificationName;
 }

@@ -14,7 +14,7 @@ extern_class!(
     /// This class holds various options that influence the behavior and initial state of a window.
     /// The app retains the discretion to disregard any or all of these options, or even opt not to create a window.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionwindowconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

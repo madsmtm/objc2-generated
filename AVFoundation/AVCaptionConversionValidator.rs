@@ -20,7 +20,7 @@ use crate::*;
 ///
 /// Indicates that the validation operation was stopped prior to completion.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidatorstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionvalidator/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -176,14 +176,14 @@ impl AVCaptionConversionValidator {
 
 /// The type of a caption conversion warning.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionwarningtype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionwarning/warningtype-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVCaptionConversionWarningType = NSString;
 
 extern "C" {
     /// Indicates that one or more captions in the validator's captions array exceed the capacity for media data of the media type and subtype specified by the conversion settings.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionwarningtypeexcessmediadata?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionwarning/warningtype-swift.struct/excessmediadata?language=objc)
     pub static AVCaptionConversionWarningTypeExcessMediaData:
         &'static AVCaptionConversionWarningType;
 }
@@ -240,14 +240,14 @@ impl AVCaptionConversionWarning {
 
 /// The type of a caption conversion adjustment.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionadjustmenttype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionadjustment/adjustmenttype-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVCaptionConversionAdjustmentType = NSString;
 
 extern "C" {
     /// Indicates a timing adjustment.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionadjustmenttypetimerange?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcaptionconversionadjustment/adjustmenttype-swift.struct/timerange?language=objc)
     pub static AVCaptionConversionAdjustmentTypeTimeRange:
         &'static AVCaptionConversionAdjustmentType;
 }

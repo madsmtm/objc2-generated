@@ -15,7 +15,7 @@ use crate::*;
 
 /// Defines possible sources for generating timecode in using a timecode generator.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodesourcetype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecode/sourcetype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -42,7 +42,7 @@ unsafe impl RefEncode for AVCaptureTimecodeSourceType {
 
 /// Constants defining the synchronization status of a timecode generator .
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegeneratorsynchronizationstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodegenerator/synchronizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -87,7 +87,7 @@ extern_class!(
     ///
     /// `AVCaptureTimecodeSource` provides information about a specific timecode source available for synchronization in `AVCaptureTimecodeGenerator`. It includes metadata such as the source’s name, type, and unique identifier.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecodesource?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturetimecode/source?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureTimecodeSource;

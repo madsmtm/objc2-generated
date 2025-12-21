@@ -28,7 +28,7 @@ use crate::*;
 ///
 /// See: -[ARFrame segmentationBuffer]
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arsegmentationclass?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/segmentationclass?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -52,7 +52,7 @@ unsafe impl RefEncode for ARSegmentationClass {
 
 /// A value describing the world mapping status for the area visible in a given frame.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldmappingstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arframe/worldmappingstatus-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

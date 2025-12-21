@@ -42,7 +42,7 @@ extern_class!(
     ///
     /// SCContentSharingPickerConfiguration is an object which can optionally be set on the SCContentSharingPicker for customized configuration.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickerconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickerconfiguration-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SCContentSharingPickerConfiguration<NSCopying: ?Sized = AnyObject>;

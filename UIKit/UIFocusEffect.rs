@@ -48,7 +48,7 @@ impl UIFocusEffect {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocushaloeffectposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifocushaloeffect/position-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

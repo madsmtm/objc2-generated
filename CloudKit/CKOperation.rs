@@ -155,7 +155,7 @@ extern_class!(
     /// + CKOperation -> configuration -> allowsCellularAccess explicitly set to YES
     /// = allow cellular access
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperationconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKOperationConfiguration;

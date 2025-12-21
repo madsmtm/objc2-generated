@@ -10,7 +10,7 @@ extern "C" {
     pub static MCErrorDomain: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/multipeerconnectivity/mcerror/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

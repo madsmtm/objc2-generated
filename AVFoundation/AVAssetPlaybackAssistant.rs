@@ -16,7 +16,7 @@ extern "C" {
     ///
     /// Clients may use this property to determine whether to configure stereo video rendering.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoptionstereovideo?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoption/stereovideo?language=objc)
     pub static AVAssetPlaybackConfigurationOptionStereoVideo:
         &'static AVAssetPlaybackConfigurationOption;
 }
@@ -26,7 +26,7 @@ extern "C" {
     ///
     /// Clients may use this property to determine whether to configure stereo video rendering.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoptionstereomultiviewvideo?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoption/stereomultiviewvideo?language=objc)
     pub static AVAssetPlaybackConfigurationOptionStereoMultiviewVideo:
         &'static AVAssetPlaybackConfigurationOption;
 }
@@ -36,7 +36,7 @@ extern "C" {
     ///
     /// Clients may use this property to determine whether to configure spatial video rendering.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoptionspatialvideo?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoption/spatialvideo?language=objc)
     pub static AVAssetPlaybackConfigurationOptionSpatialVideo:
         &'static AVAssetPlaybackConfigurationOption;
 }
@@ -46,7 +46,7 @@ extern "C" {
     ///
     /// Clients may use this property to determine whether to configure a non-rectilinear projection when displaying video.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoptionnonrectilinearprojection?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoption/nonrectilinearprojection?language=objc)
     pub static AVAssetPlaybackConfigurationOptionNonRectilinearProjection:
         &'static AVAssetPlaybackConfigurationOption;
 }
@@ -56,7 +56,7 @@ extern "C" {
     ///
     /// Clients may use this property to switch into specific display and control modes for Apple Immersive Video playback.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoptionappleimmersivevideo?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetplaybackconfigurationoption/appleimmersivevideo?language=objc)
     pub static AVAssetPlaybackConfigurationOptionAppleImmersiveVideo:
         &'static AVAssetPlaybackConfigurationOption;
 }

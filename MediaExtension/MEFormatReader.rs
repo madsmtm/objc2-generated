@@ -23,7 +23,7 @@ use crate::*;
 ///
 /// The file is capable of being extended by fragments, but does not contain any fragments.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mefileinfofragmentsstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/mefileinfo/fragmentsstatus-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

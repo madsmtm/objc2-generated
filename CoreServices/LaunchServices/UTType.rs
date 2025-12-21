@@ -6,70 +6,57 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kutexportedtypedeclarationskey?language=objc)
     pub static kUTExportedTypeDeclarationsKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kutimportedtypedeclarationskey?language=objc)
     pub static kUTImportedTypeDeclarationsKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttypeidentifierkey?language=objc)
     pub static kUTTypeIdentifierKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttypetagspecificationkey?language=objc)
     pub static kUTTypeTagSpecificationKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttypeconformstokey?language=objc)
     pub static kUTTypeConformsToKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttypedescriptionkey?language=objc)
     pub static kUTTypeDescriptionKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttypeiconfilekey?language=objc)
     pub static kUTTypeIconFileKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttypereferenceurlkey?language=objc)
     pub static kUTTypeReferenceURLKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttypeversionkey?language=objc)
     pub static kUTTypeVersionKey: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttagclassfilenameextension?language=objc)
     #[deprecated = "Use UTTagClassFilenameExtension instead."]
     pub static kUTTagClassFilenameExtension: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttagclassmimetype?language=objc)
     #[deprecated = "Use UTTagClassMIMEType instead."]
     pub static kUTTagClassMIMEType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttagclassnspboardtype?language=objc)
     #[deprecated = "NSPasteboard types are obsolete."]
     pub static kUTTagClassNSPboardType: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/kuttagclassostype?language=objc)
     #[deprecated = "HFS file types are obsolete."]
     pub static kUTTagClassOSType: &'static CFString;
 }

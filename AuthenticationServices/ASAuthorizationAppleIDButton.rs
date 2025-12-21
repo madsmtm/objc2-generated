@@ -11,7 +11,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbuttontype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/buttontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -35,7 +35,7 @@ unsafe impl RefEncode for ASAuthorizationAppleIDButtonType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbuttonstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidbutton/style?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

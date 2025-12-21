@@ -7,7 +7,6 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/osakit/osalanguagefeatures?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -42,7 +41,6 @@ unsafe impl RefEncode for OSALanguageFeatures {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/osakit/osalanguage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct OSALanguage;

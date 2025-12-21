@@ -7,7 +7,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/coreaudiotypes_version?language=objc)
 pub const COREAUDIOTYPES_VERSION: c_uint = 20211130;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/kaudio_noerror?language=objc)
 pub const kAudio_NoError: OSStatus = 0;

@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -27,92 +27,92 @@ unsafe impl RefEncode for NSTextListOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkerformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSTextListMarkerFormat = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkerbox?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/box?language=objc)
     pub static NSTextListMarkerBox: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkercheck?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/check?language=objc)
     pub static NSTextListMarkerCheck: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkercircle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/circle?language=objc)
     pub static NSTextListMarkerCircle: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkerdiamond?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/diamond?language=objc)
     pub static NSTextListMarkerDiamond: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkerdisc?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/disc?language=objc)
     pub static NSTextListMarkerDisc: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkerhyphen?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/hyphen?language=objc)
     pub static NSTextListMarkerHyphen: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkersquare?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/square?language=objc)
     pub static NSTextListMarkerSquare: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkerlowercasehexadecimal?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/lowercasehexadecimal?language=objc)
     pub static NSTextListMarkerLowercaseHexadecimal: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkeruppercasehexadecimal?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/uppercasehexadecimal?language=objc)
     pub static NSTextListMarkerUppercaseHexadecimal: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkeroctal?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/octal?language=objc)
     pub static NSTextListMarkerOctal: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkerlowercasealpha?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/lowercasealpha?language=objc)
     pub static NSTextListMarkerLowercaseAlpha: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkeruppercasealpha?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/uppercasealpha?language=objc)
     pub static NSTextListMarkerUppercaseAlpha: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkerlowercaselatin?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/lowercaselatin?language=objc)
     pub static NSTextListMarkerLowercaseLatin: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkeruppercaselatin?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/uppercaselatin?language=objc)
     pub static NSTextListMarkerUppercaseLatin: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkerlowercaseroman?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/lowercaseroman?language=objc)
     pub static NSTextListMarkerLowercaseRoman: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkeruppercaseroman?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/uppercaseroman?language=objc)
     pub static NSTextListMarkerUppercaseRoman: &'static NSTextListMarkerFormat;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlistmarkerdecimal?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextlist/markerformat-swift.struct/decimal?language=objc)
     pub static NSTextListMarkerDecimal: &'static NSTextListMarkerFormat;
 }
 

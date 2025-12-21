@@ -37,7 +37,7 @@ unsafe impl RefEncode for NSLineBreakMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslinebreakstrategy?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsparagraphstyle/linebreakstrategy-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -63,12 +63,12 @@ unsafe impl RefEncode for NSLineBreakStrategy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexttaboptionkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexttab/optionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSTextTabOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstabcolumnterminatorsattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstexttab/optionkey/columnterminators?language=objc)
     pub static NSTabColumnTerminatorsAttributeName: &'static NSTextTabOptionKey;
 }
 

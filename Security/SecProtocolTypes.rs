@@ -14,8 +14,6 @@ use crate::*;
 /// Security types, including: SecTrustRef, SecIdentityRef, and SecCertificateRef. They allow
 /// clients to use these types in os_object-type APIs and data structures. The underlying
 /// CoreFoundation types may be extracted and used by clients as needed.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_trust?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct sec_trust {
@@ -36,7 +34,6 @@ unsafe impl RefEncode for sec_trust {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_trust_t?language=objc)
 pub type sec_trust_t = *mut sec_trust;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sec_identity?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct sec_identity {
@@ -52,7 +49,6 @@ unsafe impl RefEncode for sec_identity {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/sec_identity_t?language=objc)
 pub type sec_identity_t = *mut sec_identity;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/sec_certificate?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct sec_certificate {

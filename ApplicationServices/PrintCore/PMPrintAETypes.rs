@@ -5,85 +5,50 @@ use core::ptr::NonNull;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmprintsettingsaetype?language=objc)
 pub const kPMPrintSettingsAEType: c_uint = 0x70736574;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmshowprintdialogaetype?language=objc)
 pub const kPMShowPrintDialogAEType: c_uint = 0x70646c67;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmprinteraetype?language=objc)
 pub const kPMPrinterAEType: c_uint = 0x74727072;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcopiesaeprop?language=objc)
 pub const kPMCopiesAEProp: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"copies\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcopiesaekey?language=objc)
 pub const kPMCopiesAEKey: c_uint = 0x6c776370;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcollateaeprop?language=objc)
 pub const kPMCollateAEProp: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"collating\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcollateaekey?language=objc)
 pub const kPMCollateAEKey: c_uint = 0x6c77636c;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfirstpageaeprop?language=objc)
 pub const kPMFirstPageAEProp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"starting page\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfirstpageaekey?language=objc)
 pub const kPMFirstPageAEKey: c_uint = 0x6c776670;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlastpageaeprop?language=objc)
 pub const kPMLastPageAEProp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ending page\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlastpageaekey?language=objc)
 pub const kPMLastPageAEKey: c_uint = 0x6c776c70;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayoutacrossaeprop?language=objc)
 pub const kPMLayoutAcrossAEProp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"pages across\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayoutacrossaekey?language=objc)
 pub const kPMLayoutAcrossAEKey: c_uint = 0x6c776c61;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayoutdownaeprop?language=objc)
 pub const kPMLayoutDownAEProp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"pages down\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayoutdownaekey?language=objc)
 pub const kPMLayoutDownAEKey: c_uint = 0x6c776c64;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmerrorhandlingaeprop?language=objc)
 pub const kPMErrorHandlingAEProp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"error handling\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmerrorhandlingaekey?language=objc)
 pub const kPMErrorHandlingAEKey: c_uint = 0x6c776568;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmprinttimeaeprop?language=objc)
 pub const kPMPrintTimeAEProp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"requested print time\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmprinttimeaekey?language=objc)
 pub const kPMPrintTimeAEKey: c_uint = 0x6c777174;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfeatureaeprop?language=objc)
 pub const kPMFeatureAEProp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"printer features\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfeatureaekey?language=objc)
 pub const kPMFeatureAEKey: c_uint = 0x6c777066;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxnumberaeprop?language=objc)
 pub const kPMFaxNumberAEProp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"fax number\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmfaxnumberaekey?language=objc)
 pub const kPMFaxNumberAEKey: c_uint = 0x6661786e;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmtargetprinteraeprop?language=objc)
 pub const kPMTargetPrinterAEProp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"target printer\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmtargetprinteraekey?language=objc)
 pub const kPMTargetPrinterAEKey: c_uint = 0x74727072;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpdfworkflowaeprop?language=objc)
 pub const kPMPDFWorkFlowAEProp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"PDF work flow\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpdfworkflowaekey?language=objc)
 pub const kPMPDFWorkFlowAEKey: c_uint = 0x77726b66;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpresetaeprop?language=objc)
 pub const kPMPresetAEProp: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"preset\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpresetaekey?language=objc)
 pub const kPMPresetAEKey: c_uint = 0x70727374;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmsaveaspdfaeprop?language=objc)
 pub const kPMSaveAsPDFAEProp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"save as PDF\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmsaveaspdfaekey?language=objc)
 pub const kPMSaveAsPDFAEKey: c_uint = 0x73706466;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmsaveaspsaeprop?language=objc)
 pub const kPMSaveAsPSAEProp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"save as PS\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmsaveaspsaekey?language=objc)
 pub const kPMSaveAsPSAEKey: c_uint = 0x73707320;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmerrorhandlingstandardenum?language=objc)
 pub const kPMErrorHandlingStandardEnum: c_uint = 0x6c777374;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmerrorhandlingdetailedenum?language=objc)
 pub const kPMErrorHandlingDetailedEnum: c_uint = 0x6c776474;

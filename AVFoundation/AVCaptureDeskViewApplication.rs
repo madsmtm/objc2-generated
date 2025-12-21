@@ -82,7 +82,7 @@ extern_class!(
     ///
     /// Developers may use this interface to customize the presentation of the Desk View application upon launch.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeskviewapplicationlaunchconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedeskviewapplication/launchconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureDeskViewApplicationLaunchConfiguration;

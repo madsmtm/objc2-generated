@@ -11,7 +11,7 @@ use crate::*;
 
 /// Configuration value you set to prioritize quality or performance.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfigurationqualityprioritization?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/qualityprioritization-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -38,7 +38,7 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationQualityPrioritizat
 /// A new enum case with a higher revision number is added when the processing algorithm is updated.
 /// The ``VTSuperResolutionScalerConfiguration/defaultRevision`` property provides the default algorithm revision.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfigurationrevision?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/revision-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -62,7 +62,7 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationRevision {
 
 /// Available super-resolution processor input types.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfigurationinputtype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/inputtype-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -88,7 +88,7 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationInputType {
 
 /// Available super-resolution processor model status types.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfigurationmodelstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerconfiguration/modelstatus?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]
@@ -127,7 +127,7 @@ unsafe impl RefEncode for VTSuperResolutionScalerConfigurationModelStatus {
 /// to the previous submission. Typically, this indicates a jump or skip in the frame sequence. The processor clears
 /// internal caches when it receives this value in ``VTFrameProcessor/processWithParameters`` function call.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerparameterssubmissionmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtsuperresolutionscalerparameters/submissionmode-swift.enum?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

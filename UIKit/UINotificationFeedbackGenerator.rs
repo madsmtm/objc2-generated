@@ -8,7 +8,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinotificationfeedbacktype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinotificationfeedbackgenerator/feedbacktype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

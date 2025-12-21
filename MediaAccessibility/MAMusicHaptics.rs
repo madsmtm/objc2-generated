@@ -10,7 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/mamusichapticsmanageractivestatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/mamusichapticsmanager/activestatusdidchangenotification?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static MAMusicHapticsManagerActiveStatusDidChangeNotification: &'static NSNotificationName;
 }

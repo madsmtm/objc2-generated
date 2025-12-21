@@ -23,8 +23,6 @@ extern "C-unwind" {
 }
 
 /// A `sec_object` is a generic, ARC-able type wrapper for common CoreFoundation Security types.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/security/sec_object?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct sec_object {

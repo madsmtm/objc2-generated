@@ -592,107 +592,107 @@ impl UIResponder {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputuparrow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputuparrow?language=objc)
     pub static UIKeyInputUpArrow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputdownarrow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputdownarrow?language=objc)
     pub static UIKeyInputDownArrow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputleftarrow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputleftarrow?language=objc)
     pub static UIKeyInputLeftArrow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputrightarrow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputrightarrow?language=objc)
     pub static UIKeyInputRightArrow: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputescape?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputescape?language=objc)
     pub static UIKeyInputEscape: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputpageup?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputpageup?language=objc)
     pub static UIKeyInputPageUp: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputpagedown?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputpagedown?language=objc)
     pub static UIKeyInputPageDown: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputhome?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputhome?language=objc)
     pub static UIKeyInputHome: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputend?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputend?language=objc)
     pub static UIKeyInputEnd: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputf2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f2?language=objc)
     pub static UIKeyInputF2: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputf3?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f3?language=objc)
     pub static UIKeyInputF3: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputf4?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f4?language=objc)
     pub static UIKeyInputF4: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputf5?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f5?language=objc)
     pub static UIKeyInputF5: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputf6?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f6?language=objc)
     pub static UIKeyInputF6: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputf7?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f7?language=objc)
     pub static UIKeyInputF7: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputf8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f8?language=objc)
     pub static UIKeyInputF8: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputf9?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f9?language=objc)
     pub static UIKeyInputF9: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputf10?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f10?language=objc)
     pub static UIKeyInputF10: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputf11?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f11?language=objc)
     pub static UIKeyInputF11: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputf12?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/f12?language=objc)
     pub static UIKeyInputF12: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyinputdelete?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeycommand/inputdelete?language=objc)
     pub static UIKeyInputDelete: &'static NSString;
 }
 

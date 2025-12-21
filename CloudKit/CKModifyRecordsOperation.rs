@@ -42,7 +42,7 @@ use crate::*;
 /// For non-CKShare records, this policy does not compare the record change tag and therefore will not return
 /// `CKErrorServerRecordChanged`
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecordsavepolicy?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckmodifyrecordsoperation/recordsavepolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

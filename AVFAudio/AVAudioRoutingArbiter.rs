@@ -18,7 +18,7 @@ use crate::*;
 ///
 /// Appropriate for Voice over IP(VoIP) applications.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioroutingarbitrationcategory?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioroutingarbiter/category?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

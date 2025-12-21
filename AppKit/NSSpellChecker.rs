@@ -7,66 +7,66 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingoptionkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSTextCheckingOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingorthographykey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/orthography?language=objc)
     pub static NSTextCheckingOrthographyKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingquoteskey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/quotes?language=objc)
     pub static NSTextCheckingQuotesKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingreplacementskey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/replacements?language=objc)
     pub static NSTextCheckingReplacementsKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingreferencedatekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/referencedate?language=objc)
     pub static NSTextCheckingReferenceDateKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingreferencetimezonekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/referencetimezone?language=objc)
     pub static NSTextCheckingReferenceTimeZoneKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingdocumenturlkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/documenturl?language=objc)
     pub static NSTextCheckingDocumentURLKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingdocumenttitlekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/documenttitle?language=objc)
     pub static NSTextCheckingDocumentTitleKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingdocumentauthorkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/documentauthor?language=objc)
     pub static NSTextCheckingDocumentAuthorKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingregularexpressionskey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/regularexpressions?language=objc)
     pub static NSTextCheckingRegularExpressionsKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckingselectedrangekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/selectedrange?language=objc)
     pub static NSTextCheckingSelectedRangeKey: &'static NSTextCheckingOptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcheckinggenerateinlinepredictionskey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/optionkey/generateinlinepredictionskey?language=objc)
     pub static NSTextCheckingGenerateInlinePredictionsKey: &'static NSTextCheckingOptionKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscorrectionresponse?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionresponse?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -94,7 +94,7 @@ unsafe impl RefEncode for NSCorrectionResponse {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscorrectionindicatortype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/correctionindicatortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -543,43 +543,43 @@ impl DefaultRetained for NSSpellChecker {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellcheckerdidchangeautomaticspellingcorrectionnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/didchangeautomaticspellingcorrectionnotification?language=objc)
     pub static NSSpellCheckerDidChangeAutomaticSpellingCorrectionNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellcheckerdidchangeautomatictextreplacementnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/didchangeautomatictextreplacementnotification?language=objc)
     pub static NSSpellCheckerDidChangeAutomaticTextReplacementNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellcheckerdidchangeautomaticquotesubstitutionnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/didchangeautomaticquotesubstitutionnotification?language=objc)
     pub static NSSpellCheckerDidChangeAutomaticQuoteSubstitutionNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellcheckerdidchangeautomaticdashsubstitutionnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/didchangeautomaticdashsubstitutionnotification?language=objc)
     pub static NSSpellCheckerDidChangeAutomaticDashSubstitutionNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellcheckerdidchangeautomaticcapitalizationnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/didchangeautomaticcapitalizationnotification?language=objc)
     pub static NSSpellCheckerDidChangeAutomaticCapitalizationNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellcheckerdidchangeautomaticperiodsubstitutionnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/didchangeautomaticperiodsubstitutionnotification?language=objc)
     pub static NSSpellCheckerDidChangeAutomaticPeriodSubstitutionNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellcheckerdidchangeautomatictextcompletionnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsspellchecker/didchangeautomatictextcompletionnotification?language=objc)
     pub static NSSpellCheckerDidChangeAutomaticTextCompletionNotification:
         &'static NSNotificationName;
 }

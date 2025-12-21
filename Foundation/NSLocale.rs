@@ -7,7 +7,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalekey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key?language=objc)
 // NS_TYPED_ENUM
 #[cfg(feature = "NSString")]
 pub type NSLocaleKey = NSString;
@@ -304,7 +304,7 @@ impl NSLocale {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalelanguagedirection?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/languagedirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -411,121 +411,121 @@ impl NSLocale {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscurrentlocaledidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/currentlocaledidchangenotification?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSCurrentLocaleDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaleidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/identifier?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleIdentifier: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalelanguagecode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/languagecode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleLanguageCode: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecountrycode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/countrycode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCountryCode: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalescriptcode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/scriptcode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleScriptCode: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalevariantcode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/variantcode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleVariantCode: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaleexemplarcharacterset?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/exemplarcharacterset?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleExemplarCharacterSet: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecalendar?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/calendar?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCalendar: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecollationidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/collationidentifier?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCollationIdentifier: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaleusesmetricsystem?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/usesmetricsystem?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleUsesMetricSystem: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalemeasurementsystem?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/measurementsystem?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleMeasurementSystem: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocaledecimalseparator?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/decimalseparator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleDecimalSeparator: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalegroupingseparator?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/groupingseparator?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleGroupingSeparator: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecurrencysymbol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/currencysymbol?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCurrencySymbol: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecurrencycode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/currencycode?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCurrencyCode: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalecollatoridentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/collatoridentifier?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleCollatorIdentifier: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalequotationbegindelimiterkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/quotationbegindelimiterkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleQuotationBeginDelimiterKey: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalequotationenddelimiterkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/quotationenddelimiterkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleQuotationEndDelimiterKey: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalealternatequotationbegindelimiterkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/alternatequotationbegindelimiterkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleAlternateQuotationBeginDelimiterKey: &'static NSLocaleKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocalealternatequotationenddelimiterkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslocale/key/alternatequotationenddelimiterkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSLocaleAlternateQuotationEndDelimiterKey: &'static NSLocaleKey;
 }

@@ -12,7 +12,7 @@ extern_class!(
     /// scene reappearing. The activated scene will be center aligned with the
     /// replaced scene. There is no impact on the sizing of either scene.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenereplaceplacement?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenereplaceplacement-c.class?language=objc)
     #[unsafe(super(UIWindowScenePlacement, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowScenePlacement")]

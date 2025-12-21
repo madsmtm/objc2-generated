@@ -5,7 +5,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrix2?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GLKMatrix2 {
@@ -20,7 +19,6 @@ unsafe impl RefEncode for GLKMatrix2 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrix3?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GLKMatrix3 {
@@ -35,7 +33,6 @@ unsafe impl RefEncode for GLKMatrix3 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkmatrix4?language=objc)
 #[repr(C, align(16))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GLKMatrix4 {
@@ -50,7 +47,6 @@ unsafe impl RefEncode for GLKMatrix4 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkvector2?language=objc)
 #[repr(C, align(8))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GLKVector2 {
@@ -65,7 +61,6 @@ unsafe impl RefEncode for GLKVector2 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkvector3?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GLKVector3 {
@@ -80,7 +75,6 @@ unsafe impl RefEncode for GLKVector3 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkvector4?language=objc)
 #[repr(C, align(16))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GLKVector4 {
@@ -95,7 +89,6 @@ unsafe impl RefEncode for GLKVector4 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/glkit/glkquaternion?language=objc)
 #[repr(C, align(16))]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GLKQuaternion {

@@ -32,13 +32,13 @@ unsafe impl RefEncode for CMTimeRange {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimerangezero?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerange/zero?language=objc)
     #[cfg(feature = "CMTime")]
     pub static kCMTimeRangeZero: CMTimeRange;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimerangeinvalid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimerange/invalid?language=objc)
     #[cfg(feature = "CMTime")]
     pub static kCMTimeRangeInvalid: CMTimeRange;
 }
@@ -449,7 +449,7 @@ unsafe impl RefEncode for CMTimeMapping {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/kcmtimemappinginvalid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmtimemapping/invalid?language=objc)
     #[cfg(feature = "CMTime")]
     pub static kCMTimeMappingInvalid: CMTimeMapping;
 }

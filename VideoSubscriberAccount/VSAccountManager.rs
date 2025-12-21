@@ -50,7 +50,7 @@ pub type VSCheckAccessOption = NSString;
 extern "C" {
     /// A boolean indicating whether the user may be prompted to grant access.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vscheckaccessoptionprompt?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vscheckaccessoption/prompt?language=objc)
     pub static VSCheckAccessOptionPrompt: &'static VSCheckAccessOption;
 }
 

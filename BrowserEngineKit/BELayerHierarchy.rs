@@ -10,7 +10,7 @@ use objc2_quartz_core::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/belayerhierarchy?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/layerhierarchy?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

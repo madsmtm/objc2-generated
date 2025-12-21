@@ -9,8 +9,6 @@ use crate::*;
 
 extern_class!(
     /// Represents a Classification UI extension request's context.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensioncontext?language=objc)
     #[unsafe(super(NSExtensionContext, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ILClassificationUIExtensionContext;

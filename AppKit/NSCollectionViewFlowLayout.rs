@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewscrolldirection?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/scrolldirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -30,14 +30,14 @@ unsafe impl RefEncode for NSCollectionViewScrollDirection {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementkindsectionheader?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/elementkindsectionheader?language=objc)
     #[cfg(feature = "NSCollectionView")]
     pub static NSCollectionElementKindSectionHeader:
         &'static NSCollectionViewSupplementaryElementKind;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementkindsectionfooter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/elementkindsectionfooter?language=objc)
     #[cfg(feature = "NSCollectionView")]
     pub static NSCollectionElementKindSectionFooter:
         &'static NSCollectionViewSupplementaryElementKind;

@@ -116,7 +116,7 @@ impl UIPointerStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointereffect?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointereffect-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -391,7 +391,7 @@ impl UIPointerHoverEffect {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointershape?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipointershape-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

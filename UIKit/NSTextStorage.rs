@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorageeditactions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorage/editactions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -189,12 +189,12 @@ extern_protocol!(
 extern "C" {
     /// ** Notifications ***
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstoragewillprocesseditingnotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorage/willprocesseditingnotification?language=objc)
     pub static NSTextStorageWillProcessEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstoragedidprocesseditingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nstextstorage/didprocesseditingnotification?language=objc)
     pub static NSTextStorageDidProcessEditingNotification: &'static NSNotificationName;
 }
 

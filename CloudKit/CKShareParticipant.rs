@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantacceptancestatus?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantacceptancestatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -33,7 +33,7 @@ unsafe impl RefEncode for CKShareParticipantAcceptanceStatus {
 
 /// These permissions determine what share participants can do with records inside that share
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantpermission?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantpermission?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -66,7 +66,7 @@ unsafe impl RefEncode for CKShareParticipantPermission {
 /// Shares with ``CloudKit/CKShareParticipantRole/CKShareParticipantRoleAdministrator`` participants will be returned as read-only to devices running OS versions prior to this role being introduced.
 /// Administrator participants on these read-only shares will be returned as ``CloudKit/CKShareParticipantRole/CKShareParticipantRolePrivateUser``.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipantrole?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participantrole?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -92,7 +92,7 @@ unsafe impl RefEncode for CKShareParticipantRole {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipanttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participanttype?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -122,7 +122,7 @@ unsafe impl RefEncode for CKShareParticipantType {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshareparticipant?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckshare/participant?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKShareParticipant;

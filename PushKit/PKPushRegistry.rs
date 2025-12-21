@@ -35,7 +35,7 @@ extern "C" {
     /// <doc
     /// ://com.apple.documentation/documentation/usernotificationsui/customizing_the_appearance_of_notifications>.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushtypevoip?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushtype/voip?language=objc)
     #[cfg(feature = "PKDefines")]
     pub static PKPushTypeVoIP: &'static PKPushType;
 }
@@ -59,7 +59,7 @@ extern "C" {
     /// The system limits you to 50 push notifications per day. If you exceed the
     /// limit, subsequent pushes are not delivered.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushtypecomplication?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushtype/complication?language=objc)
     #[cfg(feature = "PKDefines")]
     #[deprecated = "Complication pushes are supported directly on watchOS now, so this should no longer be used on iOS."]
     pub static PKPushTypeComplication: &'static PKPushType;
@@ -73,7 +73,7 @@ extern "C" {
     /// <doc
     /// ://com.apple.documentation/documentation/fileprovider/nonreplicated_file_provider_extension/content_and_change_tracking/tracking_your_file_provider_s_changes>.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushtypefileprovider?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pushkit/pkpushtype/fileprovider?language=objc)
     #[cfg(feature = "PKDefines")]
     pub static PKPushTypeFileProvider: &'static PKPushType;
 }

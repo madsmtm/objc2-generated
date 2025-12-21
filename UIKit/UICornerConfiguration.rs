@@ -11,7 +11,7 @@ use crate::*;
 extern_class!(
     /// Defines how corner radii are mapped to the corners of a rectangle.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornerconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicornerconfiguration-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UICornerConfiguration;

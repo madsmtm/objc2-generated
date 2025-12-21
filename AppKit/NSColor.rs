@@ -19,7 +19,7 @@ use crate::*;
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithPatternColorLeakFix: NSAppKitVersion = 641.0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolortype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/colortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -41,7 +41,7 @@ unsafe impl RefEncode for NSColorType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorsystemeffect?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/systemeffect?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1064,6 +1064,6 @@ impl private_CIColorNSAppKitAdditions::Sealed for CIColor {}
 unsafe impl CIColorNSAppKitAdditions for CIColor {}
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssystemcolorsdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/systemcolorsdidchangenotification?language=objc)
     pub static NSSystemColorsDidChangeNotification: &'static NSNotificationName;
 }

@@ -10,7 +10,6 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboard?language=objc)
 #[doc(alias = "PasteboardRef")]
 #[repr(C)]
 pub struct Pasteboard {
@@ -29,19 +28,19 @@ cf_objc2_type!(
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboarditemid?language=objc)
 pub type PasteboardItemID = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/badpasteboardsyncerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1526301-anonymous/badpasteboardsyncerr?language=objc)
 pub const badPasteboardSyncErr: c_int = -25130;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/badpasteboardindexerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1526301-anonymous/badpasteboardindexerr?language=objc)
 pub const badPasteboardIndexErr: c_int = -25131;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/badpasteboarditemerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1526301-anonymous/badpasteboarditemerr?language=objc)
 pub const badPasteboardItemErr: c_int = -25132;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/badpasteboardflavorerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1526301-anonymous/badpasteboardflavorerr?language=objc)
 pub const badPasteboardFlavorErr: c_int = -25133;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/duplicatepasteboardflavorerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1526301-anonymous/duplicatepasteboardflavorerr?language=objc)
 pub const duplicatePasteboardFlavorErr: c_int = -25134;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/notpasteboardownererr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1526301-anonymous/notpasteboardownererr?language=objc)
 pub const notPasteboardOwnerErr: c_int = -25135;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/nopasteboardpromisekeepererr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1526301-anonymous/nopasteboardpromisekeepererr?language=objc)
 pub const noPasteboardPromiseKeeperErr: c_int = -25136;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pasteboardsyncflags?language=objc)

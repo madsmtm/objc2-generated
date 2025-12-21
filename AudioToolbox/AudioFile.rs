@@ -12,69 +12,47 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_album?language=objc)
 pub const kAFInfoDictionary_Album: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"album\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_approximatedurationinseconds?language=objc)
 pub const kAFInfoDictionary_ApproximateDurationInSeconds: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"approximate duration in seconds\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_artist?language=objc)
 pub const kAFInfoDictionary_Artist: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"artist\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_channellayout?language=objc)
 pub const kAFInfoDictionary_ChannelLayout: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"channel layout\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_comments?language=objc)
 pub const kAFInfoDictionary_Comments: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"comments\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_composer?language=objc)
 pub const kAFInfoDictionary_Composer: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"composer\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_copyright?language=objc)
 pub const kAFInfoDictionary_Copyright: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"copyright\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_encodingapplication?language=objc)
 pub const kAFInfoDictionary_EncodingApplication: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"encoding application\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_genre?language=objc)
 pub const kAFInfoDictionary_Genre: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"genre\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_isrc?language=objc)
 pub const kAFInfoDictionary_ISRC: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"ISRC\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_keysignature?language=objc)
 pub const kAFInfoDictionary_KeySignature: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"key signature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_lyricist?language=objc)
 pub const kAFInfoDictionary_Lyricist: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"lyricist\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_nominalbitrate?language=objc)
 pub const kAFInfoDictionary_NominalBitRate: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"nominal bit rate\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_recordeddate?language=objc)
 pub const kAFInfoDictionary_RecordedDate: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"recorded date\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_sourcebitdepth?language=objc)
 pub const kAFInfoDictionary_SourceBitDepth: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"source bit depth\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_sourceencoder?language=objc)
 pub const kAFInfoDictionary_SourceEncoder: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"source encoder\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_subtitle?language=objc)
 pub const kAFInfoDictionary_SubTitle: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"subtitle\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_tempo?language=objc)
 pub const kAFInfoDictionary_Tempo: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"tempo\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_timesignature?language=objc)
 pub const kAFInfoDictionary_TimeSignature: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"time signature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_title?language=objc)
 pub const kAFInfoDictionary_Title: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"title\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_tracknumber?language=objc)
 pub const kAFInfoDictionary_TrackNumber: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"track number\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kafinfodictionary_year?language=objc)
 pub const kAFInfoDictionary_Year: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"year\0") };
 /// Identifier for an audio file type.
 ///
@@ -214,7 +192,6 @@ unsafe impl RefEncode for AudioFilePermissions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaqueaudiofileid?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueAudioFileID {

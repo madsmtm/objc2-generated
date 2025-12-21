@@ -331,7 +331,7 @@ extern_class!(
     ///
     /// Subclasses of this type that are used from Swift must fulfill the requirements of a Sendable type.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayervideooutputconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayervideooutput/configuration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVPlayerVideoOutputConfiguration;

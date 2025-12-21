@@ -18,7 +18,7 @@ extern_class!(
     /// Best practice is to lookup what you need up front (outside your critical code) and pass the immutable results to where it's needed.
     /// That way, you're not blocked when you access the information, say inside the rendering portion of your code.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnscript?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnscript-9e1zn?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNScript;

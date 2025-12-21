@@ -8,242 +8,157 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoweradapteridkey?language=objc)
 pub const kIOPSPowerAdapterIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AdapterID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoweradapterwattskey?language=objc)
 pub const kIOPSPowerAdapterWattsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Watts\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoweradapterrevisionkey?language=objc)
 pub const kIOPSPowerAdapterRevisionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AdapterRevision\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoweradapterserialnumberkey?language=objc)
 pub const kIOPSPowerAdapterSerialNumberKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"SerialNumber\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoweradapterfamilykey?language=objc)
 pub const kIOPSPowerAdapterFamilyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"FamilyCode\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoweradaptercurrentkey?language=objc)
 pub const kIOPSPowerAdapterCurrentKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Current\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoweradaptersourcekey?language=objc)
 pub const kIOPSPowerAdapterSourceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Source\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsupsmanagementclaimed?language=objc)
 pub const kIOPSUPSManagementClaimed: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"/IOKit/UPSPowerManagementClaimed\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopslowwarnlevelkey?language=objc)
 pub const kIOPSLowWarnLevelKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Low Warn Level\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsdeadwarnlevelkey?language=objc)
 pub const kIOPSDeadWarnLevelKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Shutdown Level\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsdynamicstorepath?language=objc)
 pub const kIOPSDynamicStorePath: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"/IOKit/PowerSources\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscommanddelayedremovepowerkey?language=objc)
 pub const kIOPSCommandDelayedRemovePowerKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Delayed Remove Power\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscommandenableaudiblealarmkey?language=objc)
 pub const kIOPSCommandEnableAudibleAlarmKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Enable Audible Alarm\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscommandstartupdelaykey?language=objc)
 pub const kIOPSCommandStartupDelayKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Startup Delay\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscommandsetcurrentlimitkey?language=objc)
 pub const kIOPSCommandSetCurrentLimitKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Set Current Limit\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscommandsetrequiredvoltagekey?language=objc)
 pub const kIOPSCommandSetRequiredVoltageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Set Required Voltage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscommandsendcurrentstateofcharge?language=objc)
 pub const kIOPSCommandSendCurrentStateOfCharge: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Send Current State of Charge\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscommandsendcurrenttemperature?language=objc)
 pub const kIOPSCommandSendCurrentTemperature: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Send Current Temperature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspowersourceidkey?language=objc)
 pub const kIOPSPowerSourceIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Power Source ID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspowersourcestatekey?language=objc)
 pub const kIOPSPowerSourceStateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Power Source State\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscurrentcapacitykey?language=objc)
 pub const kIOPSCurrentCapacityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Current Capacity\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsmaxcapacitykey?language=objc)
 pub const kIOPSMaxCapacityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Max Capacity\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsdesigncapacitykey?language=objc)
 pub const kIOPSDesignCapacityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DesignCapacity\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsnominalcapacitykey?language=objc)
 pub const kIOPSNominalCapacityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Nominal Capacity\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstimetoemptykey?language=objc)
 pub const kIOPSTimeToEmptyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Time to Empty\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstimetofullchargekey?language=objc)
 pub const kIOPSTimeToFullChargeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Time to Full Charge\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsischargingkey?language=objc)
 pub const kIOPSIsChargingKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Is Charging\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsinternalfailurekey?language=objc)
 pub const kIOPSInternalFailureKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Internal Failure\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsispresentkey?language=objc)
 pub const kIOPSIsPresentKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Is Present\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsvoltagekey?language=objc)
 pub const kIOPSVoltageKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Voltage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscurrentkey?language=objc)
 pub const kIOPSCurrentKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Current\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstemperaturekey?language=objc)
 pub const kIOPSTemperatureKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Temperature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsnamekey?language=objc)
 pub const kIOPSNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstypekey?language=objc)
 pub const kIOPSTypeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Type\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstransporttypekey?language=objc)
 pub const kIOPSTransportTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Transport Type\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsvendoridkey?language=objc)
 pub const kIOPSVendorIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Vendor ID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsproductidkey?language=objc)
 pub const kIOPSProductIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Product ID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsvendordatakey?language=objc)
 pub const kIOPSVendorDataKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Vendor Specific Data\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsbatteryhealthkey?language=objc)
 pub const kIOPSBatteryHealthKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BatteryHealth\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsbatteryhealthconditionkey?language=objc)
 pub const kIOPSBatteryHealthConditionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BatteryHealthCondition\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsbatteryfailuremodeskey?language=objc)
 pub const kIOPSBatteryFailureModesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BatteryFailureModes\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopshealthconfidencekey?language=objc)
 pub const kIOPSHealthConfidenceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HealthConfidence\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsmaxerrkey?language=objc)
 pub const kIOPSMaxErrKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"MaxErr\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsischargedkey?language=objc)
 pub const kIOPSIsChargedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Is Charged\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsisfinishingchargekey?language=objc)
 pub const kIOPSIsFinishingChargeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Is Finishing Charge\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopshardwareserialnumberkey?language=objc)
 pub const kIOPSHardwareSerialNumberKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Hardware Serial Number\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsserialtransporttype?language=objc)
 pub const kIOPSSerialTransportType: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Serial\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsusbtransporttype?language=objc)
 pub const kIOPSUSBTransportType: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"USB\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsnetworktransporttype?language=objc)
 pub const kIOPSNetworkTransportType: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Ethernet\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsinternaltype?language=objc)
 pub const kIOPSInternalType: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Internal\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsinternalbatterytype?language=objc)
 pub const kIOPSInternalBatteryType: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"InternalBattery\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsupstype?language=objc)
 pub const kIOPSUPSType: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"UPS\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsofflinevalue?language=objc)
 pub const kIOPSOffLineValue: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Off Line\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsacpowervalue?language=objc)
 pub const kIOPSACPowerValue: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"AC Power\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsbatterypowervalue?language=objc)
 pub const kIOPSBatteryPowerValue: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Battery Power\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspoorvalue?language=objc)
 pub const kIOPSPoorValue: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Poor\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfairvalue?language=objc)
 pub const kIOPSFairValue: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Fair\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsgoodvalue?language=objc)
 pub const kIOPSGoodValue: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Good\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopscheckbatteryvalue?language=objc)
 pub const kIOPSCheckBatteryValue: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Check Battery\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopspermanentfailurevalue?language=objc)
 pub const kIOPSPermanentFailureValue: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Permanent Battery Failure\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailureexternalinput?language=objc)
 pub const kIOPSFailureExternalInput: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Externally Indicated Failure\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailuresafetyovervoltage?language=objc)
 pub const kIOPSFailureSafetyOverVoltage: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Safety Over-Voltage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurechargeovertemp?language=objc)
 pub const kIOPSFailureChargeOverTemp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Charge Over-Temperature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailuredischargeovertemp?language=objc)
 pub const kIOPSFailureDischargeOverTemp: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Discharge Over-Temperature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurecellimbalance?language=objc)
 pub const kIOPSFailureCellImbalance: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Cell Imbalance\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurechargefet?language=objc)
 pub const kIOPSFailureChargeFET: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Charge FET\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailuredischargefet?language=objc)
 pub const kIOPSFailureDischargeFET: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Discharge FET\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailuredataflushfault?language=objc)
 pub const kIOPSFailureDataFlushFault: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Data Flush Fault\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurepermanentafecomms?language=objc)
 pub const kIOPSFailurePermanentAFEComms: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Permanent AFE Comms\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailureperiodicafecomms?language=objc)
 pub const kIOPSFailurePeriodicAFEComms: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Periodic AFE Comms\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurechargeovercurrent?language=objc)
 pub const kIOPSFailureChargeOverCurrent: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Charge Over-Current\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailuredischargeovercurrent?language=objc)
 pub const kIOPSFailureDischargeOverCurrent: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Discharge Over-Current\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailureopenthermistor?language=objc)
 pub const kIOPSFailureOpenThermistor: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Open Thermistor\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfailurefuseblown?language=objc)
 pub const kIOPSFailureFuseBlown: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Fuse Blown\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsnotifylowbattery?language=objc)
 pub const kIOPSNotifyLowBattery: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powersources.lowbattery\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsnotifytimeremaining?language=objc)
 pub const kIOPSNotifyTimeRemaining: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powersources.timeremaining\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstimeremainingnotificationkey?language=objc)
 pub const kIOPSTimeRemainingNotificationKey: &CStr = kIOPSNotifyTimeRemaining;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsnotifypowersource?language=objc)
 pub const kIOPSNotifyPowerSource: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powersources.source\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsnotifyattach?language=objc)
 pub const kIOPSNotifyAttach: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powersources.attach\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsnotifyanypowersource?language=objc)
 pub const kIOPSNotifyAnyPowerSource: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powersources\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstimeremainingunknown?language=objc)
 pub const kIOPSTimeRemainingUnknown: CFTimeInterval = -1.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopstimeremainingunlimited?language=objc)
 pub const kIOPSTimeRemainingUnlimited: CFTimeInterval = -2.0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmupspowerkey?language=objc)
 pub const kIOPMUPSPowerKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"UPS Power\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmbatterypowerkey?language=objc)
 pub const kIOPMBatteryPowerKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Battery Power\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmacpowerkey?language=objc)
 pub const kIOPMACPowerKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"AC Power\0") };
 /// Possible return values from
 /// <code>

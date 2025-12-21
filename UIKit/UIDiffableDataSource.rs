@@ -8,7 +8,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcesnapshot?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcesnapshotreference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceSnapshot<
@@ -259,7 +259,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message> DefaultRetaine
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcecellprovider?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcereferencecellprovider?language=objc)
 #[cfg(all(
     feature = "UICollectionView",
     feature = "UICollectionViewCell",
@@ -276,7 +276,7 @@ pub type UICollectionViewDiffableDataSourceCellProvider = *mut block2::DynBlock<
     ) -> *mut UICollectionViewCell,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcesupplementaryviewprovider?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcereferencesupplementaryviewprovider?language=objc)
 #[cfg(all(
     feature = "UICollectionView",
     feature = "UICollectionViewCell",
@@ -294,7 +294,7 @@ pub type UICollectionViewDiffableDataSourceSupplementaryViewProvider = *mut bloc
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcesectiontransaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcesectiontransaction-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceSectionTransaction<
@@ -405,7 +405,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message> DefaultRetaine
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcetransaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsdiffabledatasourcetransaction-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSDiffableDataSourceTransaction<
@@ -855,7 +855,7 @@ impl<ItemType: Message> UICollectionViewDiffableDataSourceSectionSnapshotHandler
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasource?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewdiffabledatasourcereference?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -1110,7 +1110,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdiffabledatasourcecellprovider?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdiffabledatasourcereferencecellprovider?language=objc)
 #[cfg(all(
     feature = "UIResponder",
     feature = "UIScrollView",
@@ -1124,7 +1124,7 @@ pub type UITableViewDiffableDataSourceCellProvider = *mut block2::DynBlock<
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdiffabledatasource?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdiffabledatasourcereference?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

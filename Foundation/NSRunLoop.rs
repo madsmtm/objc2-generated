@@ -9,19 +9,19 @@ use objc2_core_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdefaultrunloopmode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/runloop/mode/default?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSDefaultRunLoopMode: &'static NSRunLoopMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrunloopcommonmodes?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/runloop/mode/common?language=objc)
     #[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
     pub static NSRunLoopCommonModes: &'static NSRunLoopMode;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrunloop?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/runloop?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSRunLoop;

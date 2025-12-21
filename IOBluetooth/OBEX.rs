@@ -11,18 +11,13 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kcharsetstringiso88591?language=objc)
 pub const kCharsetStringISO88591: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CHARSET=ISO-8859-1\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kcharsetstringutf8?language=objc)
 pub const kCharsetStringUTF8: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"UTF-8\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kencodingstringquotedprintable?language=objc)
 pub const kEncodingStringQuotedPrintable: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"QUOTED-PRINTABLE\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kencodingstringbase64?language=objc)
 pub const kEncodingStringBase64: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BASE-64\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/kencodingstring8bit?language=objc)
 pub const kEncodingString8Bit: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"8BIT\0") };
 /// Codes for OBEX errors. If the return value was not in the following range, then it is most likely resulting
 /// from kernel code/IOKit, and you should consult IOReturn.h for those codes.
@@ -646,7 +641,6 @@ pub type OBEXConstants = u8;
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexmaxpacketlength?language=objc)
 pub type OBEXMaxPacketLength = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/opaqueobexsessionref?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueOBEXSessionRef {
@@ -1058,7 +1052,6 @@ unsafe impl RefEncode for OBEXSessionEventTypes {
 /// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessioneventtype?language=objc)
 pub type OBEXSessionEventType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/obexsessionevent_u?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union OBEXSessionEvent_u {

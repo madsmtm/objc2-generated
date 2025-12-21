@@ -9,7 +9,7 @@ use crate::*;
 
 /// Direction to search for an NSAccessibilityCustomRotorItemResult.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotorsearchdirection?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/searchdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -33,7 +33,7 @@ unsafe impl RefEncode for NSAccessibilityCustomRotorSearchDirection {
 /// following types. This allows assistive technologies to assign keyboard
 /// commands and gestures for these common search types.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotortype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/rotortype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -230,7 +230,7 @@ extern_class!(
     /// search parameters. It should be examined to determine the next matching
     /// NSAccessibilityCustomRotorItemResult.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotorsearchparameters?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/searchparameters?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotorSearchParameters;
@@ -309,7 +309,7 @@ extern_class!(
     /// NSAccessibilityCustomRotorItemResults are the objects returned
     /// to assistive technologies that match a search parameter criteria.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotoritemresult?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycustomrotor/itemresult?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSAccessibilityCustomRotorItemResult;

@@ -29,7 +29,7 @@ extern_protocol!(
 extern_class!(
     /// An object that represents a media playback environment
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bemediaenvironment?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bemediaenvironment-n91a?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEMediaEnvironment;
@@ -82,7 +82,7 @@ impl BEMediaEnvironment {
 extern_class!(
     /// An object representing capabilities that can be granted to a helper extension process.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beprocesscapability?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beprocesscapability-7av05?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct BEProcessCapability;

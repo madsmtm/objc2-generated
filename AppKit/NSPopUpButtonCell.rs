@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopuparrowposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbutton/arrowposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -419,6 +419,6 @@ impl NSPopUpButtonCell {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbuttoncellwillpopupnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbuttoncell/willpopupnotification?language=objc)
     pub static NSPopUpButtonCellWillPopUpNotification: &'static NSNotificationName;
 }

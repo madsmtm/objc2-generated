@@ -7,18 +7,18 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetserviceserrorcode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.type.property?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNetServicesErrorCode: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetserviceserrordomain?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errordomain?language=objc)
     #[cfg(all(feature = "NSError", feature = "NSString"))]
     pub static NSNetServicesErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetserviceserror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/errorcode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -52,7 +52,7 @@ unsafe impl RefEncode for NSNetServicesError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetserviceoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice/options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -75,7 +75,7 @@ unsafe impl RefEncode for NSNetServiceOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetservice?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservice?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use nw_connection_t or nw_listener_t in Network framework instead"]
@@ -302,7 +302,7 @@ impl DefaultRetained for NSNetService {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetservicebrowser?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservicebrowser?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use nw_browser_t in Network framework instead"]
@@ -418,7 +418,7 @@ impl DefaultRetained for NSNetServiceBrowser {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetservicedelegate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservicedelegate?language=objc)
     pub unsafe trait NSNetServiceDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(netServiceWillPublish:))]
@@ -485,7 +485,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnetservicebrowserdelegate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/netservicebrowserdelegate?language=objc)
     pub unsafe trait NSNetServiceBrowserDelegate: NSObjectProtocol {
         #[optional]
         #[unsafe(method(netServiceBrowserWillSearch:))]

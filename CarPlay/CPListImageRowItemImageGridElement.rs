@@ -11,7 +11,7 @@ use crate::*;
 
 /// Types of shape used to draw a list item.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemimagegridelementshape?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemimagegridelement/shape?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -7,7 +7,7 @@ use objc2_ui_kit::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextdocumentrequestoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/betextdocumentrequest/options-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

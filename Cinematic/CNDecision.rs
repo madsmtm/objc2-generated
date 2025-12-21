@@ -13,7 +13,7 @@ extern_class!(
     ///
     /// A strong decision keeps focus for as long as possible.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndecision?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cndecision-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNDecision;

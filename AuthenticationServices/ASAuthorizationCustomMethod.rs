@@ -12,7 +12,7 @@ pub type ASAuthorizationCustomMethod = NSString;
 extern "C" {
     /// An authorization method that uses the VideoSubscriberAccount framework to sign in.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethodvideosubscriberaccount?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethod/videosubscriberaccount?language=objc)
     pub static ASAuthorizationCustomMethodVideoSubscriberAccount:
         &'static ASAuthorizationCustomMethod;
 }
@@ -20,13 +20,13 @@ extern "C" {
 extern "C" {
     /// An authorization method that restores an in-app purchase to sign in.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethodrestorepurchase?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethod/restorepurchase?language=objc)
     pub static ASAuthorizationCustomMethodRestorePurchase: &'static ASAuthorizationCustomMethod;
 }
 
 extern "C" {
     /// An authorization method that uses some other sign-in mechanism.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethodother?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationcustommethod/other?language=objc)
     pub static ASAuthorizationCustomMethodOther: &'static ASAuthorizationCustomMethod;
 }

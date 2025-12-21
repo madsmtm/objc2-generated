@@ -32,7 +32,7 @@ use crate::*;
 ///
 /// ```
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensiontabchangedproperties?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/tabchangedproperties?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

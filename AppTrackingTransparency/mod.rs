@@ -41,7 +41,7 @@ use crate::*;
 ///
 /// If authorization to use app tracking data is restricted, the value is: ``AppTrackingTransparency/ATTrackingManager/AuthorizationStatus/restricted``.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanagerauthorizationstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

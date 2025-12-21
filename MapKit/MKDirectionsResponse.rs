@@ -9,7 +9,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionsresponse?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections/response?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKDirectionsResponse;
@@ -118,7 +118,7 @@ impl MKRoute {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkroutestep?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkroute/step?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKRouteStep;
@@ -169,7 +169,7 @@ impl MKRouteStep {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mketaresponse?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections/etaresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MKETAResponse;

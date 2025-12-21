@@ -48,8 +48,6 @@ extern "C" {
     /// they don't exist in the character set. This attribute can be used
     /// to implement decimal tabs, for instance. This attribute is
     /// optional.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coretext/kcttabcolumnterminatorsattributename?language=objc)
     pub static kCTTabColumnTerminatorsAttributeName: &'static CFString;
 }
 

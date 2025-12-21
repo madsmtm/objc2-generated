@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdropoperation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/dropoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -29,7 +29,7 @@ unsafe impl RefEncode for NSTableViewDropOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewcolumnautoresizingstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columnautoresizingstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -57,7 +57,7 @@ unsafe impl RefEncode for NSTableViewColumnAutoresizingStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewgridlinestyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/gridlinestyle?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -83,7 +83,7 @@ unsafe impl RefEncode for NSTableViewGridLineStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewrowsizestyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowsizestyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -109,7 +109,7 @@ unsafe impl RefEncode for NSTableViewRowSizeStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/style-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -135,7 +135,7 @@ unsafe impl RefEncode for NSTableViewStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewselectionhighlightstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/selectionhighlightstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -158,7 +158,7 @@ unsafe impl RefEncode for NSTableViewSelectionHighlightStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdraggingdestinationfeedbackstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/draggingdestinationfeedbackstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -182,7 +182,7 @@ unsafe impl RefEncode for NSTableViewDraggingDestinationFeedbackStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstablerowactionedge?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowactionedge?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -202,10 +202,10 @@ unsafe impl RefEncode for NSTableRowActionEdge {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewautosavename?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/autosavename-swift.typealias?language=objc)
 pub type NSTableViewAutosaveName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewanimationoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/animationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1505,27 +1505,27 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewselectiondidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/selectiondidchangenotification?language=objc)
     pub static NSTableViewSelectionDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewcolumndidmovenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columndidmovenotification?language=objc)
     pub static NSTableViewColumnDidMoveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewcolumndidresizenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/columndidresizenotification?language=objc)
     pub static NSTableViewColumnDidResizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewselectionischangingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/selectionischangingnotification?language=objc)
     pub static NSTableViewSelectionIsChangingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewrowviewkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableview/rowviewidentifier?language=objc)
     #[cfg(feature = "NSUserInterfaceItemIdentification")]
     pub static NSTableViewRowViewKey: &'static NSUserInterfaceItemIdentifier;
 }

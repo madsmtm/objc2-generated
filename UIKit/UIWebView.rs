@@ -12,7 +12,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebviewnavigationtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/navigationtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for UIWebViewNavigationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebpaginationmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -66,7 +66,7 @@ unsafe impl RefEncode for UIWebPaginationMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebpaginationbreakingmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwebview/paginationbreakingmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

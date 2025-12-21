@@ -9,7 +9,7 @@ use crate::*;
 extern_class!(
     /// This class encapsulates input for various WebAuthn extensions during passkey registration.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredentialextensioninput?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspasskeyregistrationcredentialextensioninput-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPasskeyRegistrationCredentialExtensionInput;

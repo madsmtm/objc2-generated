@@ -38,7 +38,7 @@ extern "C" {
 ///
 /// Returned if a decoder is asked to decode a sample without decoding the required reference frame dependencies first.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/meerror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

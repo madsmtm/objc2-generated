@@ -5,27 +5,27 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitytraitmenuitem?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibility/menuitem?language=objc)
     pub static BEAccessibilityTraitMenuItem: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitytraitpopupbutton?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibility/popupbutton?language=objc)
     pub static BEAccessibilityTraitPopUpButton: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitytraitradiobutton?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibility/radiobutton?language=objc)
     pub static BEAccessibilityTraitRadioButton: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitytraitreadonly?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibility/readonly?language=objc)
     pub static BEAccessibilityTraitReadOnly: UIAccessibilityTraits;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilitytraitvisited?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibility/visited?language=objc)
     pub static BEAccessibilityTraitVisited: UIAccessibilityTraits;
 }
 
@@ -35,7 +35,7 @@ extern "C" {
     /// When text inside an editable element changes, or the editing cursor position changes, this notification
     /// must be posted alongside, and after, BEAccessibilityValueChangedNotification.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilityselectionchangednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibility/selectionchangednotification?language=objc)
     pub static BEAccessibilitySelectionChangedNotification: UIAccessibilityNotifications;
 }
 
@@ -48,6 +48,6 @@ extern "C" {
     /// Furthermore, when text inside an editable element changes, or the editing cursor position changes, this notification
     /// must be posted alongside, and before, BEAccessibilitySelectionChangedNotification.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibilityvaluechangednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/beaccessibility/valuechangednotification?language=objc)
     pub static BEAccessibilityValueChangedNotification: UIAccessibilityNotifications;
 }

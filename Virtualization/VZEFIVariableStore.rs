@@ -8,7 +8,7 @@ use crate::*;
 
 /// Options when creating a new EFI variable store.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefivariablestoreinitializationoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzefivariablestore/initializationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

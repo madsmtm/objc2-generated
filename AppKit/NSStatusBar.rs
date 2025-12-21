@@ -8,11 +8,11 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsvariablestatusitemlength?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusitem/variablelength?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub static NSVariableStatusItemLength: CGFloat = -1.0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssquarestatusitemlength?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatusitem/squarelength?language=objc)
 #[cfg(feature = "objc2-core-foundation")]
 pub static NSSquareStatusItemLength: CGFloat = -2.0 as _;
 

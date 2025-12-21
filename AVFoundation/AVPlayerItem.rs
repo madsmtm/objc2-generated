@@ -12,43 +12,43 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemtimejumpednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/timejumpednotification?language=objc)
     pub static AVPlayerItemTimeJumpedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemdidplaytoendtimenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/didplaytoendtimenotification?language=objc)
     pub static AVPlayerItemDidPlayToEndTimeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemfailedtoplaytoendtimenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/failedtoplaytoendtimenotification?language=objc)
     pub static AVPlayerItemFailedToPlayToEndTimeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemplaybackstallednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/playbackstallednotification?language=objc)
     pub static AVPlayerItemPlaybackStalledNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemnewaccesslogentrynotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/newaccesslogentrynotification?language=objc)
     pub static AVPlayerItemNewAccessLogEntryNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemnewerrorlogentrynotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/newerrorlogentrynotification?language=objc)
     pub static AVPlayerItemNewErrorLogEntryNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemrecommendedtimeoffsetfromlivedidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/recommendedtimeoffsetfromlivedidchangenotification?language=objc)
     pub static AVPlayerItemRecommendedTimeOffsetFromLiveDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemmediaselectiondidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/mediaselectiondidchangenotification?language=objc)
     pub static AVPlayerItemMediaSelectionDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -62,13 +62,13 @@ extern "C" {
     ///
     /// Informs the receiver of an AVPlayerItemTimeJumpedNotification that a time jump originated from another AVCoordinatedPlaybackParticipant connected through AVPlayerPlaybackCoordinator. This can be used to inform UI showing why the current time changed. The type of the value for this key is an AVCoordinatedPlaybackParticipant, which is part of the AVPlayerPlaybackCoordinator.otherParticipants array.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemtimejumpedoriginatingparticipantkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/timejumpedoriginatingparticipantkey?language=objc)
     pub static AVPlayerItemTimeJumpedOriginatingParticipantKey: &'static NSString;
 }
 
 /// These constants are returned by the AVPlayerItem status property to indicate whether it can successfully be played.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritem/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

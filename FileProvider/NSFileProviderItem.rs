@@ -17,7 +17,7 @@ extern "C" {
     /// The root of the hierarchical enumeration, i.e the container enumerated when the
     /// user starts browsing your file provider.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderrootcontaineritemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemidentifier/rootcontainer?language=objc)
     pub static NSFileProviderRootContainerItemIdentifier: &'static NSFileProviderItemIdentifier;
 }
 
@@ -48,7 +48,7 @@ extern "C" {
     /// is listed in the materialized containers, see the documentation on
     /// -materializedItemsDidChangeWithCompletionHandler:.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderworkingsetcontaineritemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemidentifier/workingset?language=objc)
     pub static NSFileProviderWorkingSetContainerItemIdentifier:
         &'static NSFileProviderItemIdentifier;
 }
@@ -61,7 +61,7 @@ extern "C" {
     /// Extension should be able to return all trashed items by supporting the creation of a NSFileProviderEnumerator
     /// for the trashed items.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidertrashcontaineritemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritemidentifier/trashcontainer?language=objc)
     pub static NSFileProviderTrashContainerItemIdentifier: &'static NSFileProviderItemIdentifier;
 }
 
@@ -1123,5 +1123,5 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritem?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovideritem-swift.typealias?language=objc)
 pub type NSFileProviderItem = ProtocolObject<dyn NSFileProviderItemProtocol>;

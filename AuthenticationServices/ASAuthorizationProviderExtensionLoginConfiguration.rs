@@ -128,7 +128,7 @@ impl ASAuthorizationProviderExtensionKerberosMapping {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionfederationtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/federationtype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -150,7 +150,7 @@ unsafe impl RefEncode for ASAuthorizationProviderExtensionFederationType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionusersecureenclavekeybiometricpolicy?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionloginconfiguration/usersecureenclavekeybiometricpolicy-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -186,7 +186,7 @@ extern "C" {
     /// A encryption algorithm that uses NIST P-256 elliptic curve key agreement, ConcatKDF key derivation
     /// with a 256-bit digest, and the Advanced Encryption Standard cipher in Galois/Counter Mode with a key length of 256 bits.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmecdhe_a256gcm?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithm/ecdhe_a256gcm?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmECDHE_A256GCM:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
@@ -195,7 +195,7 @@ extern "C" {
     /// A cipher suite for HPKE that uses NIST P-256 elliptic curve key agreement, SHA-2 key derivation
     /// with a 256-bit digest, and the Advanced Encryption Standard cipher in Galois/Counter Mode with a key length of 256 bits.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmhpke_p256_sha256_aes_gcm_256?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithm/hpke_p256_sha256_aes_gcm_256?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_P256_SHA256_AES_GCM_256:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
@@ -204,7 +204,7 @@ extern "C" {
     /// A cipher suite that you use for HPKE using NIST P-384 elliptic curve key agreement, SHA-2 key derivation
     /// with a 384-bit digest, and the Advanced Encryption Standard cipher in Galois/Counter Mode with a key length of 256 bits.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmhpke_p384_sha384_aes_gcm_256?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithm/hpke_p384_sha384_aes_gcm_256?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_P384_SHA384_AES_GCM_256:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
@@ -213,7 +213,7 @@ extern "C" {
     /// A cipher suite for HPKE that uses X25519 elliptic curve key agreement, SHA-2 key derivation
     /// with a 256-bit digest, and the ChaCha20 stream cipher with the Poly1305 message authentication code.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithmhpke_curve25519_sha256_chachapoly?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionencryptionalgorithm/hpke_curve25519_sha256_chachapoly?language=objc)
     pub static ASAuthorizationProviderExtensionEncryptionAlgorithmHPKE_Curve25519_SHA256_ChachaPoly:
         &'static ASAuthorizationProviderExtensionEncryptionAlgorithm;
 }
@@ -223,19 +223,19 @@ extern "C" {
 pub type ASAuthorizationProviderExtensionSigningAlgorithm = NSNumber;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsigningalgorithmes256?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsigningalgorithm/es256?language=objc)
     pub static ASAuthorizationProviderExtensionSigningAlgorithmES256:
         &'static ASAuthorizationProviderExtensionSigningAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsigningalgorithmes384?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsigningalgorithm/es384?language=objc)
     pub static ASAuthorizationProviderExtensionSigningAlgorithmES384:
         &'static ASAuthorizationProviderExtensionSigningAlgorithm;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsigningalgorithmed25519?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asauthorizationproviderextensionsigningalgorithm/ed25519?language=objc)
     pub static ASAuthorizationProviderExtensionSigningAlgorithmEd25519:
         &'static ASAuthorizationProviderExtensionSigningAlgorithm;
 }

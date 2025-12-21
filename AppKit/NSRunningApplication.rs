@@ -9,7 +9,7 @@ use crate::*;
 
 /// The following flags are for `-activateWithOptions:` and equivalent.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationactivationoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/activationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for NSApplicationActivationOptions {
 /// The following activation policies control whether and how an application may be activated.
 /// They are determined by the `Info.plist`.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationactivationpolicy?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/activationpolicy-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

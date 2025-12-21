@@ -14,7 +14,7 @@ extern_protocol!(
     /// action as defined by the system, or reject the currently supplied protection-space
     /// in the challenge.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationchallengesender?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlauthenticationchallengesender?language=objc)
     pub unsafe trait NSURLAuthenticationChallengeSender:
         NSObjectProtocol + Send + Sync
     {
@@ -61,7 +61,7 @@ extern_class!(
     /// provides all the information about the challenge, and has a method
     /// to indicate when it's done.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlauthenticationchallenge?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlauthenticationchallenge?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLAuthenticationChallenge;

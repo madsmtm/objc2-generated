@@ -2748,35 +2748,20 @@ use core::ffi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_5?language=objc)
 pub const kCTVersionNumber10_5: c_uint = 0x00020000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_5_2?language=objc)
 pub const kCTVersionNumber10_5_2: c_uint = 0x00020001;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_5_3?language=objc)
 pub const kCTVersionNumber10_5_3: c_uint = 0x00020002;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_5_5?language=objc)
 pub const kCTVersionNumber10_5_5: c_uint = 0x00020003;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_6?language=objc)
 pub const kCTVersionNumber10_6: c_uint = 0x00030000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_7?language=objc)
 pub const kCTVersionNumber10_7: c_uint = 0x00040000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_8?language=objc)
 pub const kCTVersionNumber10_8: c_uint = 0x00050000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_9?language=objc)
 pub const kCTVersionNumber10_9: c_uint = 0x00060000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_10?language=objc)
 pub const kCTVersionNumber10_10: c_uint = 0x00070000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_11?language=objc)
 pub const kCTVersionNumber10_11: c_uint = 0x00080000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_12?language=objc)
 pub const kCTVersionNumber10_12: c_uint = 0x00090000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_13?language=objc)
 pub const kCTVersionNumber10_13: c_uint = 0x000A0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_14?language=objc)
 pub const kCTVersionNumber10_14: c_uint = 0x000B0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber10_15?language=objc)
 pub const kCTVersionNumber10_15: c_uint = 0x000C0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/coretext/kctversionnumber11_0?language=objc)
 pub const kCTVersionNumber11_0: c_uint = 0x000D0000;
 /// Returns the version of the CoreText framework.
 ///

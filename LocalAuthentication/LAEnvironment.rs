@@ -59,7 +59,7 @@ impl LAEnvironment {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laenvironmentobserver?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/localauthentication/laenvironment/observer?language=objc)
     pub unsafe trait LAEnvironmentObserver: NSObjectProtocol {
         #[cfg(feature = "LAEnvironmentState")]
         /// Called when there has been a change in the environment.

@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblockvaluetype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/valuetype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -29,7 +29,7 @@ unsafe impl RefEncode for NSTextBlockValueType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblockdimension?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/dimension?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -57,7 +57,7 @@ unsafe impl RefEncode for NSTextBlockDimension {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblocklayer?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/layer?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -79,7 +79,7 @@ unsafe impl RefEncode for NSTextBlockLayer {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblockverticalalignment?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextblock/verticalalignment-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -103,7 +103,7 @@ unsafe impl RefEncode for NSTextBlockVerticalAlignment {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttablelayoutalgorithm?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttable/layoutalgorithm-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

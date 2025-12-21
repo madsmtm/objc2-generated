@@ -15,15 +15,11 @@ extern "C" {
 
 extern "C" {
     /// Key used to find an input method's input controller class name from the input method's bundle.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkcontrollerclass?language=objc)
     pub static IMKControllerClass: &'static NSString;
 }
 
 extern "C" {
     /// Key used to find an input method's delegate class name from the input method's bundle.
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/inputmethodkit/imkdelegateclass?language=objc)
     pub static IMKDelegateClass: &'static NSString;
 }
 

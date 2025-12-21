@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountqueryoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccountmanager/queryoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

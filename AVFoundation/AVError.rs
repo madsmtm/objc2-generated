@@ -65,7 +65,7 @@ extern "C" {
     pub static AVErrorDiscontinuityFlagsKey: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/averror-swift.struct/code?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct AVError(pub NSInteger);

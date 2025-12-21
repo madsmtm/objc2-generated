@@ -385,7 +385,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprotocol?language=objc)
     pub unsafe trait NSAccessibility: NSObjectProtocol {
         #[unsafe(method(isAccessibilityElement))]
         #[unsafe(method_family = none)]

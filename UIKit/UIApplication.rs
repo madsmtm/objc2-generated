@@ -62,7 +62,7 @@ unsafe impl RefEncode for UIStatusBarAnimation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationinvalidinterfaceorientationexception?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/invalidinterfaceorientationexception?language=objc)
     pub static UIApplicationInvalidInterfaceOrientationException: &'static NSExceptionName;
 }
 
@@ -144,7 +144,7 @@ unsafe impl RefEncode for UIBackgroundRefreshStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/state?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -171,7 +171,7 @@ unsafe impl RefEncode for UIApplicationState {
 pub type UIBackgroundTaskIdentifier = NSUInteger;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundtaskinvalid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibackgroundtaskidentifier/invalid?language=objc)
     pub static UIBackgroundTaskInvalid: UIBackgroundTaskIdentifier;
 }
 
@@ -182,16 +182,16 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationbackgroundfetchintervalminimum?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/backgroundfetchintervalminimum?language=objc)
     pub static UIApplicationBackgroundFetchIntervalMinimum: NSTimeInterval;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationbackgroundfetchintervalnever?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/backgroundfetchintervalnever?language=objc)
     pub static UIApplicationBackgroundFetchIntervalNever: NSTimeInterval;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenexternalurloptionskey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openexternalurloptionskey?language=objc)
 // NS_TYPED_ENUM
 pub type UIApplicationOpenExternalURLOptionsKey = NSString;
 
@@ -708,7 +708,7 @@ impl UIApplication {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategory?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/category?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -758,7 +758,7 @@ extern "C" {
     pub static UIApplicationCategoryDefaultErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationcategorydefaulterrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/categorydefaulterror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -801,16 +801,16 @@ impl UIApplication {
     extern_methods!();
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionskey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey?language=objc)
 // NS_TYPED_ENUM
 pub type UIApplicationLaunchOptionsKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionskey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openurloptionskey?language=objc)
 #[deprecated = "Use UIScene lifecycle and equivalent properties on UISceneOpenURLOptions from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead."]
 // NS_TYPED_ENUM
 pub type UIApplicationOpenURLOptionsKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationextensionpointidentifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/extensionpointidentifier?language=objc)
 // NS_TYPED_ENUM
 pub type UIApplicationExtensionPointIdentifier = NSString;
 
@@ -1568,101 +1568,101 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdidenterbackgroundnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/didenterbackgroundnotification?language=objc)
     pub static UIApplicationDidEnterBackgroundNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationwillenterforegroundnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/willenterforegroundnotification?language=objc)
     pub static UIApplicationWillEnterForegroundNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdidfinishlaunchingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/didfinishlaunchingnotification?language=objc)
     pub static UIApplicationDidFinishLaunchingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdidbecomeactivenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/didbecomeactivenotification?language=objc)
     pub static UIApplicationDidBecomeActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationwillresignactivenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/willresignactivenotification?language=objc)
     pub static UIApplicationWillResignActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdidreceivememorywarningnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/didreceivememorywarningnotification?language=objc)
     pub static UIApplicationDidReceiveMemoryWarningNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationwillterminatenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/willterminatenotification?language=objc)
     pub static UIApplicationWillTerminateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationsignificanttimechangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/significanttimechangenotification?language=objc)
     pub static UIApplicationSignificantTimeChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationwillchangestatusbarorientationnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/willchangestatusbarorientationnotification?language=objc)
     #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationWillChangeStatusBarOrientationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdidchangestatusbarorientationnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/didchangestatusbarorientationnotification?language=objc)
     #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationDidChangeStatusBarOrientationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstatusbarorientationuserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/statusbarorientationuserinfokey?language=objc)
     #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationStatusBarOrientationUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationwillchangestatusbarframenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/willchangestatusbarframenotification?language=objc)
     #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationWillChangeStatusBarFrameNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationdidchangestatusbarframenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/didchangestatusbarframenotification?language=objc)
     #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationDidChangeStatusBarFrameNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationstatusbarframeuserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/statusbarframeuserinfokey?language=objc)
     #[deprecated = "Use viewWillTransitionToSize:withTransitionCoordinator: instead."]
     pub static UIApplicationStatusBarFrameUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationbackgroundrefreshstatusdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/backgroundrefreshstatusdidchangenotification?language=objc)
     pub static UIApplicationBackgroundRefreshStatusDidChangeNotification:
         &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationprotecteddatawillbecomeunavailable?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/protecteddatawillbecomeunavailablenotification?language=objc)
     pub static UIApplicationProtectedDataWillBecomeUnavailable: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationprotecteddatadidbecomeavailable?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/protecteddatadidbecomeavailablenotification?language=objc)
     pub static UIApplicationProtectedDataDidBecomeAvailable: &'static NSNotificationName;
 }
 
 extern "C" {
     /// UserInfo contains a ``NSURL`` with launch URL to open
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsurlkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/url?language=objc)
     #[deprecated = "Use UIScene lifecycle and UIScene.ConnectionOptions.URLContexts instead."]
     pub static UIApplicationLaunchOptionsURLKey: &'static UIApplicationLaunchOptionsKey;
 }
@@ -1670,7 +1670,7 @@ extern "C" {
 extern "C" {
     /// UserInfo contains a ``NSString`` with the bundle ID of the originating application; non-nil if the originating application and this application share the same team identifier
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionssourceapplicationkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/sourceapplication?language=objc)
     #[deprecated = "Use UIScene lifecycle and UIScene.ConnectionOptions.sourceApplication instead."]
     pub static UIApplicationLaunchOptionsSourceApplicationKey:
         &'static UIApplicationLaunchOptionsKey;
@@ -1679,7 +1679,7 @@ extern "C" {
 extern "C" {
     /// UserInfo contains a ``NSDictionary`` notification payload with property-list objects plus ``NSNull``
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsremotenotificationkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/remotenotification?language=objc)
     #[deprecated = "Continue using UIApplicationDelegate's application(_:didReceiveRemoteNotification:fetchCompletionHandler:) to process silent remote notifications after scene connection."]
     pub static UIApplicationLaunchOptionsRemoteNotificationKey:
         &'static UIApplicationLaunchOptionsKey;
@@ -1688,7 +1688,7 @@ extern "C" {
 extern "C" {
     /// UserInfo contains a ``UILocalNotification``
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionslocalnotificationkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/localnotification?language=objc)
     #[deprecated = "Use UserNotifications Framework's -[UNUserNotificationCenterDelegate didReceiveNotificationResponse:withCompletionHandler:]"]
     pub static UIApplicationLaunchOptionsLocalNotificationKey:
         &'static UIApplicationLaunchOptionsKey;
@@ -1697,7 +1697,7 @@ extern "C" {
 extern "C" {
     /// UserInfo contains a property list annotation object
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsannotationkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/annotation?language=objc)
     #[deprecated = "This dictionary key is no longer used."]
     pub static UIApplicationLaunchOptionsAnnotationKey: &'static UIApplicationLaunchOptionsKey;
 }
@@ -1705,7 +1705,7 @@ extern "C" {
 extern "C" {
     /// The app was launched in response to a CoreLocation event
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionslocationkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/location?language=objc)
     #[deprecated = "Adopt CLLocationUpdate or CLMonitor, or use CLLocationManagerDelegate from CoreLocation to handle expected location events after scene connection."]
     pub static UIApplicationLaunchOptionsLocationKey: &'static UIApplicationLaunchOptionsKey;
 }
@@ -1713,7 +1713,7 @@ extern "C" {
 extern "C" {
     /// UserInfo contains an ``NSArray`` of ``NKAssetDownload`` identifiers
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsnewsstanddownloadskey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/newsstanddownloads?language=objc)
     #[deprecated = "This dictionary key is no longer used."]
     pub static UIApplicationLaunchOptionsNewsstandDownloadsKey:
         &'static UIApplicationLaunchOptionsKey;
@@ -1722,7 +1722,7 @@ extern "C" {
 extern "C" {
     /// UserInfo contains an ``NSArray`` of ``CBCentralManager`` restore identifiers
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsbluetoothcentralskey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/bluetoothcentrals?language=objc)
     #[deprecated = "Store restoration identifiers and reinstantiate central managers with those identifiers on app launch to resume previous functionality."]
     pub static UIApplicationLaunchOptionsBluetoothCentralsKey:
         &'static UIApplicationLaunchOptionsKey;
@@ -1731,7 +1731,7 @@ extern "C" {
 extern "C" {
     /// UserInfo contains an ``NSArray`` of ``CBPeripheralManager`` restore identifiers
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsbluetoothperipheralskey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/bluetoothperipherals?language=objc)
     #[deprecated = "Store restoration identifiers and reinstantiate peripheral managers with those identifiers on app launch to resume previous functionality."]
     pub static UIApplicationLaunchOptionsBluetoothPeripheralsKey:
         &'static UIApplicationLaunchOptionsKey;
@@ -1740,7 +1740,7 @@ extern "C" {
 extern "C" {
     /// UserInfo contains the ``UIApplicationShortcutItem`` used to launch the app
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsshortcutitemkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/shortcutitem?language=objc)
     #[deprecated = "Use UIScene lifecycle and UIScene.ConnectionOptions.shortcutItem instead."]
     pub static UIApplicationLaunchOptionsShortcutItemKey: &'static UIApplicationLaunchOptionsKey;
 }
@@ -1748,7 +1748,7 @@ extern "C" {
 extern "C" {
     /// UserInfo contains a ``UIEventAttribution`` to go along with a URL open on launch
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionseventattributionkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/eventattribution?language=objc)
     #[deprecated = "Use UIScene lifecycle and UIScene.ConnectionOptions.eventAttribution instead."]
     pub static UIApplicationLaunchOptionsEventAttributionKey:
         &'static UIApplicationLaunchOptionsKey;
@@ -1758,7 +1758,7 @@ extern "C" {
     /// Key in options dictionary passed to `application(_:willFinishLaunchingWithOptions:)` and `application(_:didFinishLaunchingWithOptions:)`
     /// and info for `UIApplication.didFinishLaunchingNotification`. Sub-Dictionary present in launch options when user activity is present.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsuseractivitydictionarykey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/useractivitydictionary?language=objc)
     #[deprecated = "Use UIScene lifecycle and UIScene.ConnectionOptions.userActivities instead."]
     pub static UIApplicationLaunchOptionsUserActivityDictionaryKey:
         &'static UIApplicationLaunchOptionsKey;
@@ -1767,7 +1767,7 @@ extern "C" {
 extern "C" {
     /// Key in user activity dictionary for the activity type
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionsuseractivitytypekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/useractivitytype?language=objc)
     #[deprecated = "Use UIScene lifecycle and UIScene.ConnectionOptions.handoffUserActivityType instead."]
     pub static UIApplicationLaunchOptionsUserActivityTypeKey:
         &'static UIApplicationLaunchOptionsKey;
@@ -1776,21 +1776,21 @@ extern "C" {
 extern "C" {
     /// The presence of this key indicates that the app was launched in order to handle a CloudKit sharing invitation. The value of this key is a ``CKShareMetadata`` object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationlaunchoptionscloudkitsharemetadatakey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/launchoptionskey/cloudkitsharemetadata?language=objc)
     #[deprecated = "Use UIScene lifecycle and UIScene.ConnectionOptions.cloudKitShareMetadata instead."]
     pub static UIApplicationLaunchOptionsCloudKitShareMetadataKey:
         &'static UIApplicationLaunchOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopensettingsurlstring?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/opensettingsurlstring?language=objc)
     pub static UIApplicationOpenSettingsURLString: &'static NSString;
 }
 
 extern "C" {
     /// The URL string you use to deep link to settings for default app selection in the Settings app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopendefaultapplicationssettingsurlstring?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/opendefaultapplicationssettingsurlstring?language=objc)
     pub static UIApplicationOpenDefaultApplicationsSettingsURLString: &'static NSString;
 }
 
@@ -1803,7 +1803,7 @@ extern "C" {
     /// An options key for `application(_:open:options:)`. The value is an ``NSString`` containing the bundle ID of the originating application; non-nil if the originating
     /// application and this application share the same team identifier.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionssourceapplicationkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openurloptionskey/sourceapplication?language=objc)
     #[deprecated = "Use UIScene lifecycle and UISceneOpenURLOptions.sourceApplication from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead."]
     pub static UIApplicationOpenURLOptionsSourceApplicationKey:
         &'static UIApplicationOpenURLOptionsKey;
@@ -1813,7 +1813,7 @@ extern "C" {
     /// An options key for `application(_:open:options:)`. The value is a property-list typed object corresponding to what the originating application passed in
     /// `UIDocumentInteractionController`'s annotation property.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionsannotationkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openurloptionskey/annotation?language=objc)
     #[deprecated = "Use UIScene lifecycle and UISceneOpenURLOptions.annotation from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead."]
     pub static UIApplicationOpenURLOptionsAnnotationKey: &'static UIApplicationOpenURLOptionsKey;
 }
@@ -1821,7 +1821,7 @@ extern "C" {
 extern "C" {
     /// An options key for `application(_:open:options:)`. The value is a bool `NSNumber`. Copy the file before use if this value is NO, or is not present.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionsopeninplacekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openurloptionskey/openinplace?language=objc)
     #[deprecated = "Use UIScene lifecycle and UISceneOpenURLOptions.openInPlace from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead."]
     pub static UIApplicationOpenURLOptionsOpenInPlaceKey: &'static UIApplicationOpenURLOptionsKey;
 }
@@ -1829,31 +1829,31 @@ extern "C" {
 extern "C" {
     /// An options key for `application(_:open:options:)`. The value is a `UIEventAttribution` to go along with the URL to open.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionseventattributionkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openurloptionskey/eventattribution?language=objc)
     #[deprecated = "Use UIScene lifecycle and UISceneOpenURLOptions.eventAttribution from a UIOpenURLContext in UIScene.ConnectionOptions.URLContexts instead."]
     pub static UIApplicationOpenURLOptionsEventAttributionKey:
         &'static UIApplicationOpenURLOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationuserdidtakescreenshotnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/userdidtakescreenshotnotification?language=objc)
     pub static UIApplicationUserDidTakeScreenshotNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationkeyboardextensionpointidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/extensionpointidentifier/keyboard?language=objc)
     pub static UIApplicationKeyboardExtensionPointIdentifier:
         &'static UIApplicationExtensionPointIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenurloptionuniversallinksonly?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openexternalurloptionskey/universallinksonly?language=objc)
     pub static UIApplicationOpenURLOptionUniversalLinksOnly:
         &'static UIApplicationOpenExternalURLOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplicationopenexternalurloptionseventattributionkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiapplication/openexternalurloptionskey/eventattribution?language=objc)
     pub static UIApplicationOpenExternalURLOptionsEventAttributionKey:
         &'static UIApplicationOpenExternalURLOptionsKey;
 }

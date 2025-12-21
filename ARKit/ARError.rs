@@ -14,7 +14,7 @@ extern "C" {
     pub static ARErrorDomain: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/arkit/arerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/arkit/arerror/code?language=objc)
 // NS_ERROR_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

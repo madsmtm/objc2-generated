@@ -6,7 +6,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_generalnametype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CE_GeneralNameType(pub c_uint);
@@ -32,7 +31,6 @@ unsafe impl RefEncode for CE_GeneralNameType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_othername?language=objc)
 #[cfg(feature = "SecAsn1Types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -54,7 +52,6 @@ unsafe impl RefEncode for CE_OtherName {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_generalname?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -91,7 +88,6 @@ unsafe impl RefEncode for CE_GeneralName {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_generalnames?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -123,7 +119,6 @@ unsafe impl RefEncode for CE_GeneralNames {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_authoritykeyid?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -181,7 +176,6 @@ pub type CE_KeyUsage = uint16;
 #[cfg(feature = "cssmconfig")]
 pub type CE_CrlReason = uint32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_extendedkeyusage?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -213,7 +207,6 @@ unsafe impl RefEncode for CE_ExtendedKeyUsage {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_basicconstraints?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -240,7 +233,6 @@ unsafe impl RefEncode for CE_BasicConstraints {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_policyqualifierinfo?language=objc)
 #[cfg(feature = "SecAsn1Types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -262,7 +254,6 @@ unsafe impl RefEncode for CE_PolicyQualifierInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_policyinformation?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -289,7 +280,6 @@ unsafe impl RefEncode for CE_PolicyInformation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_certpolicies?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -321,7 +311,6 @@ pub type CE_NetscapeCertType = uint16;
 #[cfg(feature = "cssmconfig")]
 pub type CE_CrlDistReasonFlags = uint8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_crldistributionpointnametype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CE_CrlDistributionPointNameType(pub c_uint);
@@ -342,7 +331,6 @@ unsafe impl RefEncode for CE_CrlDistributionPointNameType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/__ce_distributionpointname_dpn?language=objc)
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -384,7 +372,6 @@ unsafe impl RefEncode for __CE_DistributionPointName_dpn {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_distributionpointname?language=objc)
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -426,7 +413,6 @@ unsafe impl RefEncode for CE_DistributionPointName {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_crldistributionpoint?language=objc)
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -472,7 +458,6 @@ unsafe impl RefEncode for CE_CRLDistributionPoint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_crldistpointssyntax?language=objc)
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -511,7 +496,6 @@ unsafe impl RefEncode for CE_CRLDistPointsSyntax {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_accessdescription?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -543,7 +527,6 @@ unsafe impl RefEncode for CE_AccessDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_authorityinfoaccess?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -580,7 +563,6 @@ unsafe impl RefEncode for CE_AuthorityInfoAccess {
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CE_NameRegistrationAuthorities = CE_GeneralNames;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_semanticsinformation?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -615,7 +597,6 @@ unsafe impl RefEncode for CE_SemanticsInformation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_qc_statement?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -652,7 +633,6 @@ unsafe impl RefEncode for CE_QC_Statement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_qc_statements?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -694,7 +674,6 @@ pub type CE_CrlNumber = uint32;
 #[cfg(feature = "cssmconfig")]
 pub type CE_DeltaCrl = uint32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_issuingdistributionpoint?language=objc)
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -750,7 +729,6 @@ unsafe impl RefEncode for CE_IssuingDistributionPoint {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_generalsubtree?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -789,7 +767,6 @@ unsafe impl RefEncode for CE_GeneralSubtree {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_generalsubtrees?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -821,7 +798,6 @@ unsafe impl RefEncode for CE_GeneralSubtrees {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_nameconstraints?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -856,7 +832,6 @@ unsafe impl RefEncode for CE_NameConstraints {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_policymapping?language=objc)
 #[cfg(feature = "SecAsn1Types")]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -878,7 +853,6 @@ unsafe impl RefEncode for CE_PolicyMapping {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_policymappings?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -900,7 +874,6 @@ unsafe impl RefEncode for CE_PolicyMappings {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_policyconstraints?language=objc)
 #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
@@ -934,7 +907,6 @@ unsafe impl RefEncode for CE_PolicyConstraints {
 #[cfg(feature = "cssmconfig")]
 pub type CE_InhibitAnyPolicy = uint32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_datatype?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct CE_DataType(pub c_uint);
@@ -1052,7 +1024,6 @@ unsafe impl RefEncode for CE_Data {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/ce_dataandtype?language=objc)
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",

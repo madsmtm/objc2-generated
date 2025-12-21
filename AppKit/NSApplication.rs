@@ -17,236 +17,236 @@ use crate::*;
 pub type NSAppKitVersion = c_double;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/current?language=objc)
     pub static NSAppKitVersionNumber: NSAppKitVersion;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_0?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_0?language=objc)
 pub static NSAppKitVersionNumber10_0: NSAppKitVersion = 577 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_1?language=objc)
 pub static NSAppKitVersionNumber10_1: NSAppKitVersion = 620 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_2?language=objc)
 pub static NSAppKitVersionNumber10_2: NSAppKitVersion = 663 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_2_3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_2_3?language=objc)
 pub static NSAppKitVersionNumber10_2_3: NSAppKitVersion = 663.6 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_3?language=objc)
 pub static NSAppKitVersionNumber10_3: NSAppKitVersion = 743 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_3_2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_3_2?language=objc)
 pub static NSAppKitVersionNumber10_3_2: NSAppKitVersion = 743.14 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_3_3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_3_3?language=objc)
 pub static NSAppKitVersionNumber10_3_3: NSAppKitVersion = 743.2 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_3_5?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_3_5?language=objc)
 pub static NSAppKitVersionNumber10_3_5: NSAppKitVersion = 743.24 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_3_7?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_3_7?language=objc)
 pub static NSAppKitVersionNumber10_3_7: NSAppKitVersion = 743.33 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_3_9?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_3_9?language=objc)
 pub static NSAppKitVersionNumber10_3_9: NSAppKitVersion = 743.36 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_4?language=objc)
 pub static NSAppKitVersionNumber10_4: NSAppKitVersion = 824 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_4_1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_4_1?language=objc)
 pub static NSAppKitVersionNumber10_4_1: NSAppKitVersion = 824.1 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_4_3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_4_3?language=objc)
 pub static NSAppKitVersionNumber10_4_3: NSAppKitVersion = 824.23 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_4_4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_4_4?language=objc)
 pub static NSAppKitVersionNumber10_4_4: NSAppKitVersion = 824.33 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_4_7?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_4_7?language=objc)
 pub static NSAppKitVersionNumber10_4_7: NSAppKitVersion = 824.41 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_5?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_5?language=objc)
 pub static NSAppKitVersionNumber10_5: NSAppKitVersion = 949 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_5_2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_5_2?language=objc)
 pub static NSAppKitVersionNumber10_5_2: NSAppKitVersion = 949.27 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_5_3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_5_3?language=objc)
 pub static NSAppKitVersionNumber10_5_3: NSAppKitVersion = 949.33 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_6?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_6?language=objc)
 pub static NSAppKitVersionNumber10_6: NSAppKitVersion = 1038 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_7?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_7?language=objc)
 pub static NSAppKitVersionNumber10_7: NSAppKitVersion = 1138 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_7_2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_7_2?language=objc)
 pub static NSAppKitVersionNumber10_7_2: NSAppKitVersion = 1138.23 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_7_3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_7_3?language=objc)
 pub static NSAppKitVersionNumber10_7_3: NSAppKitVersion = 1138.32 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_7_4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_7_4?language=objc)
 pub static NSAppKitVersionNumber10_7_4: NSAppKitVersion = 1138.47 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_8?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_8?language=objc)
 pub static NSAppKitVersionNumber10_8: NSAppKitVersion = 1187 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_9?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_9?language=objc)
 pub static NSAppKitVersionNumber10_9: NSAppKitVersion = 1265 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_10?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_10?language=objc)
 pub static NSAppKitVersionNumber10_10: NSAppKitVersion = 1343 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_10_2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_10_2?language=objc)
 pub static NSAppKitVersionNumber10_10_2: NSAppKitVersion = 1344 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_10_3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_10_3?language=objc)
 pub static NSAppKitVersionNumber10_10_3: NSAppKitVersion = 1347 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_10_4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_10_4?language=objc)
 pub static NSAppKitVersionNumber10_10_4: NSAppKitVersion = 1348 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_10_5?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_10_5?language=objc)
 pub static NSAppKitVersionNumber10_10_5: NSAppKitVersion = 1348 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_10_max?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_10_max?language=objc)
 pub static NSAppKitVersionNumber10_10_Max: NSAppKitVersion = 1349 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_11?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_11?language=objc)
 pub static NSAppKitVersionNumber10_11: NSAppKitVersion = 1404 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_11_1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_11_1?language=objc)
 pub static NSAppKitVersionNumber10_11_1: NSAppKitVersion = 1404.13 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_11_2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_11_2?language=objc)
 pub static NSAppKitVersionNumber10_11_2: NSAppKitVersion = 1404.34 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_11_3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_11_3?language=objc)
 pub static NSAppKitVersionNumber10_11_3: NSAppKitVersion = 1404.34 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_12?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_12?language=objc)
 pub static NSAppKitVersionNumber10_12: NSAppKitVersion = 1504 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_12_1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_12_1?language=objc)
 pub static NSAppKitVersionNumber10_12_1: NSAppKitVersion = 1504.6 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_12_2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_12_2?language=objc)
 pub static NSAppKitVersionNumber10_12_2: NSAppKitVersion = 1504.76 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_13?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_13?language=objc)
 pub static NSAppKitVersionNumber10_13: NSAppKitVersion = 1561 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_13_1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_13_1?language=objc)
 pub static NSAppKitVersionNumber10_13_1: NSAppKitVersion = 1561.1 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_13_2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_13_2?language=objc)
 pub static NSAppKitVersionNumber10_13_2: NSAppKitVersion = 1561.2 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_13_4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_13_4?language=objc)
 pub static NSAppKitVersionNumber10_13_4: NSAppKitVersion = 1561.4 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_14?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_14?language=objc)
 pub static NSAppKitVersionNumber10_14: NSAppKitVersion = 1671 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_14_1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_14_1?language=objc)
 pub static NSAppKitVersionNumber10_14_1: NSAppKitVersion = 1671.1 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_14_2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_14_2?language=objc)
 pub static NSAppKitVersionNumber10_14_2: NSAppKitVersion = 1671.2 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_14_3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_14_3?language=objc)
 pub static NSAppKitVersionNumber10_14_3: NSAppKitVersion = 1671.3 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_14_4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_14_4?language=objc)
 pub static NSAppKitVersionNumber10_14_4: NSAppKitVersion = 1671.4 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_14_5?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_14_5?language=objc)
 pub static NSAppKitVersionNumber10_14_5: NSAppKitVersion = 1671.5 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_15?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_15?language=objc)
 pub static NSAppKitVersionNumber10_15: NSAppKitVersion = 1894 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_15_1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_15_1?language=objc)
 pub static NSAppKitVersionNumber10_15_1: NSAppKitVersion = 1894.1 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_15_2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_15_2?language=objc)
 pub static NSAppKitVersionNumber10_15_2: NSAppKitVersion = 1894.2 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_15_3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_15_3?language=objc)
 pub static NSAppKitVersionNumber10_15_3: NSAppKitVersion = 1894.3 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_15_4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_15_4?language=objc)
 pub static NSAppKitVersionNumber10_15_4: NSAppKitVersion = 1894.4 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_15_5?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_15_5?language=objc)
 pub static NSAppKitVersionNumber10_15_5: NSAppKitVersion = 1894.5 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber10_15_6?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos10_15_6?language=objc)
 pub static NSAppKitVersionNumber10_15_6: NSAppKitVersion = 1894.6 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber11_0?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos11_0?language=objc)
 pub static NSAppKitVersionNumber11_0: NSAppKitVersion = 2022 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber11_1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos11_1?language=objc)
 pub static NSAppKitVersionNumber11_1: NSAppKitVersion = 2022.2 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber11_2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos11_2?language=objc)
 pub static NSAppKitVersionNumber11_2: NSAppKitVersion = 2022.3 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber11_3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos11_3?language=objc)
 pub static NSAppKitVersionNumber11_3: NSAppKitVersion = 2022.4 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber11_4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos11_4?language=objc)
 pub static NSAppKitVersionNumber11_4: NSAppKitVersion = 2022.5 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber11_5?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos11_5?language=objc)
 pub static NSAppKitVersionNumber11_5: NSAppKitVersion = 2022.6 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber12_0?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos12_0?language=objc)
 pub static NSAppKitVersionNumber12_0: NSAppKitVersion = 2113 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber12_1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos12_1?language=objc)
 pub static NSAppKitVersionNumber12_1: NSAppKitVersion = 2113.2 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber12_2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos12_2?language=objc)
 pub static NSAppKitVersionNumber12_2: NSAppKitVersion = 2113.3 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber12_3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos12_3?language=objc)
 pub static NSAppKitVersionNumber12_3: NSAppKitVersion = 2113.4 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber12_4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos12_4?language=objc)
 pub static NSAppKitVersionNumber12_4: NSAppKitVersion = 2113.5 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber12_5?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos12_5?language=objc)
 pub static NSAppKitVersionNumber12_5: NSAppKitVersion = 2113.6 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber13_0?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos13_0?language=objc)
 pub static NSAppKitVersionNumber13_0: NSAppKitVersion = 2299 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber13_1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos13_1?language=objc)
 pub static NSAppKitVersionNumber13_1: NSAppKitVersion = 2299.3 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber13_2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos13_2?language=objc)
 pub static NSAppKitVersionNumber13_2: NSAppKitVersion = 2299.3 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber13_3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos13_3?language=objc)
 pub static NSAppKitVersionNumber13_3: NSAppKitVersion = 2299.4 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber13_4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos13_4?language=objc)
 pub static NSAppKitVersionNumber13_4: NSAppKitVersion = 2299.5 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber13_5?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos13_5?language=objc)
 pub static NSAppKitVersionNumber13_5: NSAppKitVersion = 2299.6 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber13_6?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos13_6?language=objc)
 pub static NSAppKitVersionNumber13_6: NSAppKitVersion = 2299.7 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber14_0?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos14_0?language=objc)
 pub static NSAppKitVersionNumber14_0: NSAppKitVersion = 2487 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversionnumber14_1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsappkitversion/macos14_1?language=objc)
 pub static NSAppKitVersionNumber14_1: NSAppKitVersion = 2487.2 as _;
 
 extern "C" {
@@ -259,28 +259,28 @@ extern "C" {
     pub static NSEventTrackingRunLoopMode: &'static NSRunLoopMode;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodalresponse?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSModalResponse = NSInteger;
 
 /// Also used as the default response for sheets
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodalresponsestop?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/stop?language=objc)
 pub static NSModalResponseStop: NSModalResponse = -1000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodalresponseabort?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/abort?language=objc)
 pub static NSModalResponseAbort: NSModalResponse = -1001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodalresponsecontinue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/continue?language=objc)
 pub static NSModalResponseContinue: NSModalResponse = -1002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsupdatewindowsrunloopordering?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/updatewindowsrunloopordering?language=objc)
 pub const NSUpdateWindowsRunLoopOrdering: c_uint = 500000;
 
 /// Flags that comprise an application's
 /// `presentationOptions.`
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationpresentationoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -341,7 +341,7 @@ unsafe impl RefEncode for NSApplicationPresentationOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationocclusionstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/occlusionstate-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -362,7 +362,7 @@ unsafe impl RefEncode for NSApplicationOcclusionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowlistoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/windowlistoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -383,7 +383,6 @@ unsafe impl RefEncode for NSWindowListOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/_nsmodalsession?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct _NSModalSession {
@@ -397,10 +396,10 @@ unsafe impl RefEncode for _NSModalSession {
 
 /// Information used by the system during modal sessions.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodalsession?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalsession?language=objc)
 pub type NSModalSession = *mut _NSModalSession;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsrequestuserattentiontype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/requestuserattentiontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -420,7 +419,7 @@ unsafe impl RefEncode for NSRequestUserAttentionType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdelegatereply?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/delegatereply?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1052,7 +1051,7 @@ impl NSApplication {
 
 /// Return values for `-applicationShouldTerminate:`.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationterminatereply?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/terminatereply?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1076,7 +1075,7 @@ unsafe impl RefEncode for NSApplicationTerminateReply {
 
 /// Return values for `-application:printFiles:withSettings:showPrintPanels:`.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationprintreply?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/printreply?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1570,21 +1569,21 @@ impl NSApplication {
 /// Optional keys in `-orderFrontStandardAboutPanelWithOptions:`
 /// `optionsDictionary.`
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionkey?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/aboutpaneloptionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSAboutPanelOptionKey = NSString;
 
 extern "C" {
     /// NSAttributedString displayed in the info area of the panel. If not specified, contents obtained from "Credits.rtf" (.rtfd, .html) in [NSBundle mainBundle]; if not available, blank. Note that  in applications built against the 10.14 SDK or earlier, the credits are shown in light appearance even when the application is running in dark appearance, except when the credits are specified as an attributed string, or come from a file are the text is just pure black. In applications built against the 10.15 SDK or newer, credits will be shown in dark appearance, using the "adaptive color mapping" setting in NSTextView.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptioncredits?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/aboutpaneloptionkey/credits?language=objc)
     pub static NSAboutPanelOptionCredits: &'static NSAboutPanelOptionKey;
 }
 
 extern "C" {
     /// NSString displayed in place of the default app name. If not specified, uses the value of CFBundleName (localizable). Fallback is [[NSProcessInfo processInfo] processName].
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionapplicationname?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/aboutpaneloptionkey/applicationname?language=objc)
     pub static NSAboutPanelOptionApplicationName: &'static NSAboutPanelOptionKey;
 }
 
@@ -1593,21 +1592,21 @@ extern "C" {
     /// "
     /// NSApplicationIcon"]; if not available, generic icon.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionapplicationicon?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/aboutpaneloptionkey/applicationicon?language=objc)
     pub static NSAboutPanelOptionApplicationIcon: &'static NSAboutPanelOptionKey;
 }
 
 extern "C" {
     /// NSString containing the build version number of the application ("58.4", "1.2d3"); displayed as "Version 58.4" or "Version 1.0 (58.4) depending on the presence of ApplicationVersion. If not specified, obtain from the CFBundleVersion key in infoDictionary; if not specified or empty string, leave blank.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionversion?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/aboutpaneloptionkey/version?language=objc)
     pub static NSAboutPanelOptionVersion: &'static NSAboutPanelOptionKey;
 }
 
 extern "C" {
     /// NSString displayed as the marketing version  ("1.0", "Mac OS X", "3", "WebObjects 3.5", ...), before the build version. If not specified, obtain from CFBundleShortVersionString key in infoDictionary. Prefixed with word "Version" if it looks like a number.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaboutpaneloptionapplicationversion?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/aboutpaneloptionkey/applicationversion?language=objc)
     pub static NSAboutPanelOptionApplicationVersion: &'static NSAboutPanelOptionKey;
 }
 
@@ -1666,7 +1665,7 @@ impl NSApplication {
 /// Soft deprecated.
 /// Please use `NSApplication`'s `-registerForRemoteNotifications` along with `-requestAuthorizationWithOptions:` from the `UserNotifications.framework` to specify allowable notification types.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsremotenotificationtype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/remotenotificationtype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1814,72 +1813,72 @@ pub extern "C-unwind" fn NSUnregisterServicesProvider(name: &NSServiceProviderNa
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdidbecomeactivenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didbecomeactivenotification?language=objc)
     pub static NSApplicationDidBecomeActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdidhidenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didhidenotification?language=objc)
     pub static NSApplicationDidHideNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdidfinishlaunchingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didfinishlaunchingnotification?language=objc)
     pub static NSApplicationDidFinishLaunchingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdidresignactivenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didresignactivenotification?language=objc)
     pub static NSApplicationDidResignActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdidunhidenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didunhidenotification?language=objc)
     pub static NSApplicationDidUnhideNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdidupdatenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didupdatenotification?language=objc)
     pub static NSApplicationDidUpdateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationwillbecomeactivenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/willbecomeactivenotification?language=objc)
     pub static NSApplicationWillBecomeActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationwillhidenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/willhidenotification?language=objc)
     pub static NSApplicationWillHideNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationwillfinishlaunchingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/willfinishlaunchingnotification?language=objc)
     pub static NSApplicationWillFinishLaunchingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationwillresignactivenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/willresignactivenotification?language=objc)
     pub static NSApplicationWillResignActiveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationwillunhidenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/willunhidenotification?language=objc)
     pub static NSApplicationWillUnhideNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationwillupdatenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/willupdatenotification?language=objc)
     pub static NSApplicationWillUpdateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationwillterminatenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/willterminatenotification?language=objc)
     pub static NSApplicationWillTerminateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdidchangescreenparametersnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didchangescreenparametersnotification?language=objc)
     pub static NSApplicationDidChangeScreenParametersNotification: &'static NSNotificationName;
 }
 
@@ -1910,14 +1909,14 @@ extern "C" {
 extern "C" {
     /// The following key is present in the userInfo of NSApplicationDidFinishLaunchingNotification.  Its value is an NSNumber containing a bool.  It will be NO if the app was launched to open or print a file, to perform a Service, if the app had saved state that will be restored, or if the app launch was in some other sense not a "default" launch.  Otherwise its value will be YES.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationlaunchisdefaultlaunchkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/launchisdefaultuserinfokey?language=objc)
     pub static NSApplicationLaunchIsDefaultLaunchKey: &'static NSString;
 }
 
 extern "C" {
     /// The following key is present in the userInfo of NSApplicationDidFinishLaunchingNotification. It will be present if your application was launched because a user activated a notification in the Notification Center. Its value is an NSUserNotification object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationlaunchusernotificationkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/launchusernotificationuserinfokey?language=objc)
     pub static NSApplicationLaunchUserNotificationKey: &'static NSString;
 }
 
@@ -1932,7 +1931,7 @@ extern "C" {
 extern "C" {
     /// Upon receiving this notification, you can query the NSApplication for its occlusion state. Note that this only notifies about changes in the state of the occlusion, not when the occlusion region changes. You can use this notification to increase responsiveness and save power, by halting any expensive calculations that the user can not see.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplicationdidchangeocclusionstatenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/didchangeocclusionstatenotification?language=objc)
     pub static NSApplicationDidChangeOcclusionStateNotification: &'static NSNotificationName;
 }
 

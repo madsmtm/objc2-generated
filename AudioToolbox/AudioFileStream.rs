@@ -90,7 +90,6 @@ unsafe impl RefEncode for AudioFileStreamSeekFlags {
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiofilestreampropertyid?language=objc)
 pub type AudioFileStreamPropertyID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaqueaudiofilestreamid?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueAudioFileStreamID {

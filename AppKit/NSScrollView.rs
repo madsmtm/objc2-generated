@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollelasticity?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/elasticity?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -542,27 +542,27 @@ impl NSScrollView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewwillstartlivemagnifynotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/willstartlivemagnifynotification?language=objc)
     pub static NSScrollViewWillStartLiveMagnifyNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewdidendlivemagnifynotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/didendlivemagnifynotification?language=objc)
     pub static NSScrollViewDidEndLiveMagnifyNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewwillstartlivescrollnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/willstartlivescrollnotification?language=objc)
     pub static NSScrollViewWillStartLiveScrollNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewdidlivescrollnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/didlivescrollnotification?language=objc)
     pub static NSScrollViewDidLiveScrollNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewdidendlivescrollnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/didendlivescrollnotification?language=objc)
     pub static NSScrollViewDidEndLiveScrollNotification: &'static NSNotificationName;
 }
 
@@ -635,7 +635,7 @@ impl NSScrollView {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollviewfindbarposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscrollview/findbarposition-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

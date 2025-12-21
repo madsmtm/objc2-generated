@@ -338,69 +338,69 @@ unsafe impl RefEncode for IOUSBHostObjectDestroyOptions {
 pub type IOUSBHostMatchingPropertyKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykeyvendorid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/vendorid?language=objc)
     pub static IOUSBHostMatchingPropertyKeyVendorID: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykeyproductid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/productid?language=objc)
     pub static IOUSBHostMatchingPropertyKeyProductID: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykeyproductidarray?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/productidarray?language=objc)
     pub static IOUSBHostMatchingPropertyKeyProductIDArray: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykeyinterfacenumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/interfacenumber?language=objc)
     pub static IOUSBHostMatchingPropertyKeyInterfaceNumber: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykeyconfigurationvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/configurationvalue?language=objc)
     pub static IOUSBHostMatchingPropertyKeyConfigurationValue:
         &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykeydevicereleasenumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/devicereleasenumber?language=objc)
     pub static IOUSBHostMatchingPropertyKeyDeviceReleaseNumber:
         &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykeyinterfaceclass?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/interfaceclass?language=objc)
     pub static IOUSBHostMatchingPropertyKeyInterfaceClass: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykeyinterfacesubclass?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/interfacesubclass?language=objc)
     pub static IOUSBHostMatchingPropertyKeyInterfaceSubClass: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykeyinterfaceprotocol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/interfaceprotocol?language=objc)
     pub static IOUSBHostMatchingPropertyKeyInterfaceProtocol: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykeydeviceclass?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/deviceclass?language=objc)
     pub static IOUSBHostMatchingPropertyKeyDeviceClass: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykeydevicesubclass?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/devicesubclass?language=objc)
     pub static IOUSBHostMatchingPropertyKeyDeviceSubClass: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykeydeviceprotocol?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/deviceprotocol?language=objc)
     pub static IOUSBHostMatchingPropertyKeyDeviceProtocol: &'static IOUSBHostMatchingPropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykeyspeed?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostmatchingpropertykey/speed?language=objc)
     pub static IOUSBHostMatchingPropertyKeySpeed: &'static IOUSBHostMatchingPropertyKey;
 }
 
@@ -417,22 +417,22 @@ extern "C" {
 pub type IOUSBHostDevicePropertyKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdevicepropertykeyvendorstring?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdevicepropertykey/vendorstring?language=objc)
     pub static IOUSBHostDevicePropertyKeyVendorString: &'static IOUSBHostDevicePropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdevicepropertykeyserialnumberstring?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdevicepropertykey/serialnumberstring?language=objc)
     pub static IOUSBHostDevicePropertyKeySerialNumberString: &'static IOUSBHostDevicePropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdevicepropertykeycontainerid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdevicepropertykey/containerid?language=objc)
     pub static IOUSBHostDevicePropertyKeyContainerID: &'static IOUSBHostDevicePropertyKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdevicepropertykeycurrentconfiguration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostdevicepropertykey/currentconfiguration?language=objc)
     pub static IOUSBHostDevicePropertyKeyCurrentConfiguration: &'static IOUSBHostDevicePropertyKey;
 }
 
@@ -441,7 +441,7 @@ extern "C" {
 pub type IOUSBHostInterfacePropertyKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostinterfacepropertykeyalternatesetting?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostinterfacepropertykey/alternatesetting?language=objc)
     pub static IOUSBHostInterfacePropertyKeyAlternateSetting:
         &'static IOUSBHostInterfacePropertyKey;
 }

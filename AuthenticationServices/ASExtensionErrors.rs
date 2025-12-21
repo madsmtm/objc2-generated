@@ -10,7 +10,7 @@ extern "C" {
     pub static ASExtensionErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/asextensionerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

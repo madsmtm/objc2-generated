@@ -227,7 +227,7 @@ extern "C" {
     /// If set to YES, the editing context might still choose to render first for performance reasons
     /// This option is ignored by the saveLivePhotoToOutput method
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoshouldrenderatplaybacktime?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoeditingoption/shouldrenderatplaybacktime?language=objc)
     pub static PHLivePhotoShouldRenderAtPlaybackTime: &'static PHLivePhotoEditingOption;
 }
 

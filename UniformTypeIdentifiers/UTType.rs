@@ -24,7 +24,7 @@ extern_class!(
     ///
     /// See also: https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/understanding_utis/
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttype?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uniformtypeidentifiers/uttypereference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UTType;

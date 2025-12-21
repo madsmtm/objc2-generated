@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenepresentationstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/presentationstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -29,7 +29,7 @@ unsafe impl RefEncode for UIWindowScenePresentationStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowsceneactivationrequestoptions?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/activationrequestoptions?language=objc)
     #[unsafe(super(UISceneActivationRequestOptions, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UISceneOptions")]

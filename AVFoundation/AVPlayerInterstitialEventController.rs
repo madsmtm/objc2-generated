@@ -11,7 +11,7 @@ use crate::*;
 
 /// These constants can be specified when creating AVPlayerInterstitialEvents in order to configure their behavior.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventrestrictions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/restrictions-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -43,34 +43,34 @@ unsafe impl RefEncode for AVPlayerInterstitialEventRestrictions {
 
 /// A particular cue can be specified when creating AVPlayerInterstitialEvents to override the start time/date to a predefined position.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventcue?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/cue-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVPlayerInterstitialEventCue = NSString;
 
 extern "C" {
     /// No cue specified; event playback should start at event time (or date).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventnocue?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/cue-swift.struct/nocue?language=objc)
     pub static AVPlayerInterstitialEventNoCue: &'static AVPlayerInterstitialEventCue;
 }
 
 extern "C" {
     /// Event playback should occur before starting primary playback, regardless of initial primary playback position.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventjoincue?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/cue-swift.struct/joincue?language=objc)
     pub static AVPlayerInterstitialEventJoinCue: &'static AVPlayerInterstitialEventCue;
 }
 
 extern "C" {
     /// Event playback should occur after primary playback ends without error, either at the end of the primary asset or at the client-specified forward playback end time.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventleavecue?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/cue-swift.struct/leavecue?language=objc)
     pub static AVPlayerInterstitialEventLeaveCue: &'static AVPlayerInterstitialEventCue;
 }
 
 /// These constants specify how an event occupies time on AVPlayerItemIntegratedTimeline.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventtimelineoccupancy?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/timelineoccupancy-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -121,7 +121,7 @@ unsafe impl RefEncode for AVPlayerInterstitialEventAssetListResponseStatus {
 
 /// These constants describe the state for a skippable AVPlayerInterstitialEvent.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventskippableeventstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialevent/skippableeventstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -532,7 +532,7 @@ impl AVPlayerInterstitialEventMonitor {
 extern "C" {
     /// A notification that's posted whenever the value of events of an AVPlayerInterstitialEventMonitor is changed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitoreventsdidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/eventsdidchangenotification?language=objc)
     pub static AVPlayerInterstitialEventMonitorEventsDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -540,7 +540,7 @@ extern "C" {
 extern "C" {
     /// A notification that's posted whenever the currentEvent of an AVPlayerInterstitialEventMonitor changes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorcurrenteventdidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventdidchangenotification?language=objc)
     pub static AVPlayerInterstitialEventMonitorCurrentEventDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -553,7 +553,7 @@ extern "C" {
     /// 2. AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeStatusKey, with a value of type AVPlayerInterstitialEventAssetListResponseStatus, indicating the changed asset response status.
     /// 3. AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeErrorKey, with a value of type NSError that carries additional information about the failure to read the asset list. This key is only present when the new AVPlayerInterstitialEventAssetListResponseStatus is AVPlayerInterstitialEventAssetListResponseStatusUnavailable.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorassetlistresponsestatusdidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/assetlistresponsestatusdidchangenotification?language=objc)
     pub static AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -563,7 +563,7 @@ extern "C" {
     ///
     /// The value corresponding to this key is of type AVPlayerInterstitialEvent.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorassetlistresponsestatusdidchangeeventkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/assetlistresponsestatusdidchangeeventkey?language=objc)
     pub static AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeEventKey:
         &'static NSString;
 }
@@ -573,7 +573,7 @@ extern "C" {
     ///
     /// The value corresponding to this key is of type AVPlayerInterstitialEventAssetListResponseStatus.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorassetlistresponsestatusdidchangestatuskey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/assetlistresponsestatusdidchangestatuskey?language=objc)
     pub static AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeStatusKey:
         &'static NSString;
 }
@@ -583,7 +583,7 @@ extern "C" {
     ///
     /// The value corresponding to this key is of type NSError. This key only exists in the payload of AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeNotification if AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeStatusKey in the same payload points to a value of AVPlayerInterstitialEventAssetListResponseStatusUnavailable.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorassetlistresponsestatusdidchangeerrorkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/assetlistresponsestatusdidchangeerrorkey?language=objc)
     pub static AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeErrorKey:
         &'static NSString;
 }
@@ -591,7 +591,7 @@ extern "C" {
 extern "C" {
     /// A notification that's posted whenever the currentEventSkippableState of an AVPlayerInterstitialEventMonitor changes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorcurrenteventskippablestatedidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskippablestatedidchangenotification?language=objc)
     pub static AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -601,7 +601,7 @@ extern "C" {
     ///
     /// The value corresponding to this key is of type AVPlayerInterstitialEvent.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorcurrenteventskippablestatedidchangeeventkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskippablestatedidchangeeventkey?language=objc)
     pub static AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeEventKey:
         &'static NSString;
 }
@@ -611,7 +611,7 @@ extern "C" {
     ///
     /// The value corresponding to this key is an NSNumber containing type AVPlayerInterstitialEventSkippableEventState.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorcurrenteventskippablestatedidchangestatekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskippablestatedidchangestatekey?language=objc)
     pub static AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeStateKey:
         &'static NSString;
 }
@@ -621,7 +621,7 @@ extern "C" {
     ///
     /// The value corresponding to this key is an NSString that's the localized skip label if a localizedStringsBundle is set on the AVPlayerInterstitialEventController and a skipControlLocalizedLabelBundleKey on the AVPlayerInterstitialEvent whose skippable event state changed. Note that this key will not be present if there is no localizedStringsBundle set, or if the currentEventSkippableState changed to AVPlayerInterstitialEventSkippableEventStateNotSkippable.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorcurrenteventskippablestatedidchangeskipcontrollabelkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskippablestatedidchangeskipcontrollabelkey?language=objc)
     pub static AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeSkipControlLabelKey:
         &'static NSString;
 }
@@ -629,7 +629,7 @@ extern "C" {
 extern "C" {
     /// A notification that's posted whenever an event was skipped via skip control.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorcurrenteventskippednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskippednotification?language=objc)
     pub static AVPlayerInterstitialEventMonitorCurrentEventSkippedNotification:
         &'static NSNotificationName;
 }
@@ -639,7 +639,7 @@ extern "C" {
     ///
     /// The value corresponding to this key is of type AVPlayerInterstitialEvent.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorcurrenteventskippedeventkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/currenteventskippedeventkey?language=objc)
     pub static AVPlayerInterstitialEventMonitorCurrentEventSkippedEventKey: &'static NSString;
 }
 
@@ -650,7 +650,7 @@ extern "C" {
     /// 1. AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledEventKey, with a value that indicates which AVPlayerInterstitialEvent was unscheduled.
     /// 2. AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledErrorKey, with an NSError value. This key will only be present if the AVPlayerInterstitialEvent was unscheduled due to an error.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorinterstitialeventwasunschedulednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/interstitialeventwasunschedulednotification?language=objc)
     pub static AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledNotification:
         &'static NSNotificationName;
 }
@@ -660,7 +660,7 @@ extern "C" {
     ///
     /// The value corresponding to this key is of type AVPlayerInterstitialEvent.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorinterstitialeventwasunscheduledeventkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/interstitialeventwasunscheduledeventkey?language=objc)
     pub static AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledEventKey:
         &'static NSString;
 }
@@ -670,7 +670,7 @@ extern "C" {
     ///
     /// The value corresponding to this key is of type NSError. This key only exists in the payload of AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledNotification if the interstitial event was unscheduled due to an error.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorinterstitialeventwasunschedulederrorkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/interstitialeventwasunschedulederrorkey?language=objc)
     pub static AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledErrorKey:
         &'static NSString;
 }
@@ -685,7 +685,7 @@ extern "C" {
     ///
     /// Note that cancelling an AVPlayerInterstitialEvent after playback started but prior to playback finishing will also trigger this event.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorinterstitialeventdidfinishnotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/interstitialeventdidfinishnotification?language=objc)
     pub static AVPlayerInterstitialEventMonitorInterstitialEventDidFinishNotification:
         &'static NSNotificationName;
 }
@@ -695,7 +695,7 @@ extern "C" {
     ///
     /// The value corresponding to this key is of type AVPlayerInterstitialEvent.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorinterstitialeventdidfinisheventkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/interstitialeventdidfinisheventkey?language=objc)
     pub static AVPlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey:
         &'static NSString;
 }
@@ -705,7 +705,7 @@ extern "C" {
     ///
     /// The value corresponding to this key is of type CMTime as a NSDictionary.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorinterstitialeventdidfinishplayouttimekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/interstitialeventdidfinishplayouttimekey?language=objc)
     pub static AVPlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey:
         &'static NSString;
 }
@@ -715,7 +715,7 @@ extern "C" {
     ///
     /// The value corresponding to this key is of type NSNumber with a BOOL value.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitorinterstitialeventdidfinishdidplayentireeventkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerinterstitialeventmonitor/interstitialeventdidfinishdidplayentireeventkey?language=objc)
     pub static AVPlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey:
         &'static NSString;
 }
@@ -875,7 +875,7 @@ extern "C" {
     ///
     /// The player is waiting for playback because an interstitial event is currently in progress. Interstitial events can be monitored via use of an AVPlayerInterstitialEventMonitor.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerwaitingduringinterstitialeventreason?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayer/waitingreason/interstitialevent?language=objc)
     #[cfg(feature = "AVPlayer")]
     pub static AVPlayerWaitingDuringInterstitialEventReason: &'static AVPlayerWaitingReason;
 }

@@ -11,7 +11,7 @@ use crate::*;
 
 /// Types of shape used to draw a condensed row element.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemcondensedelementshape?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/carplay/cplistimagerowitemcondensedelement/shape?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -56,7 +56,7 @@ pub type AudioSessionID = u32;
 ///
 /// The operation failed because the session is not active.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosessionerrorcode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudiotypes/avaudiosession/errorcode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

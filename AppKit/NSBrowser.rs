@@ -17,10 +17,10 @@ pub static NSAppKitVersionNumberWithContinuousScrollingBrowser: NSAppKitVersion 
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithColumnResizingBrowser: NSAppKitVersion = 685.0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowsercolumnsautosavename?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/columnsautosavename-swift.typealias?language=objc)
 pub type NSBrowserColumnsAutosaveName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowsercolumnresizingtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/columnresizingtype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -42,7 +42,7 @@ unsafe impl RefEncode for NSBrowserColumnResizingType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowserdropoperation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/dropoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -751,7 +751,7 @@ impl NSBrowser {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowsercolumnconfigurationdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbrowser/columnconfigurationdidchangenotification?language=objc)
     pub static NSBrowserColumnConfigurationDidChangeNotification: &'static NSNotificationName;
 }
 

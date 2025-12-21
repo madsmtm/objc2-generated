@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatplayerstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechat/playerstate?language=objc)
 // NS_ENUM
 #[deprecated = "No longer supported"]
 #[repr(transparent)]

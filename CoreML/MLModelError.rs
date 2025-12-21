@@ -19,7 +19,7 @@ extern "C" {
 ///
 /// See also NSError's localizedDescription property, which often contains more detailed information.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelerror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevicebatterystate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/batterystate-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -192,21 +192,21 @@ impl UIUserInterfaceIdiom {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceorientationdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/orientationdidchangenotification?language=objc)
     pub static UIDeviceOrientationDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevicebatterystatedidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/batterystatedidchangenotification?language=objc)
     pub static UIDeviceBatteryStateDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevicebatteryleveldidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/batteryleveldidchangenotification?language=objc)
     pub static UIDeviceBatteryLevelDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uideviceproximitystatedidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidevice/proximitystatedidchangenotification?language=objc)
     pub static UIDeviceProximityStateDidChangeNotification: &'static NSNotificationName;
 }

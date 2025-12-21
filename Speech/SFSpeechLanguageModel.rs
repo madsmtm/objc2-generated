@@ -12,7 +12,7 @@ extern_class!(
     ///
     /// Pass this object to ``SFSpeechLanguageModel/prepareCustomLanguageModelForUrl:configuration:completion:`` to indicate where that method should create the custom language model file, and to ``SFSpeechRecognitionRequest/customizedLanguageModel`` or ``DictationTranscriber/ContentHint/customizedLanguage(modelConfiguration:)`` to indicate where the system should find that model to use.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechlanguagemodelconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/speech/sfspeechlanguagemodel/configuration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SFSpeechLanguageModelConfiguration;

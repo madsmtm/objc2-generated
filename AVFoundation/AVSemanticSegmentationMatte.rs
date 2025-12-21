@@ -17,35 +17,35 @@ use crate::*;
 ///
 /// AVSemanticSegmentationMatteType string constants describe specific types of semantic segmentation matting images that may be captured and stored along with a primary image and may be used to improve the rendering of various effects on that image.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattetype-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVSemanticSegmentationMatteType = NSString;
 
 extern "C" {
     /// A matting image segmenting all skin from all persons in the visible field-of-view of an image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetypeskin?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattetype-swift.struct/skin?language=objc)
     pub static AVSemanticSegmentationMatteTypeSkin: &'static AVSemanticSegmentationMatteType;
 }
 
 extern "C" {
     /// A matting image segmenting all hair from all persons in the visible field-of-view of an image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetypehair?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattetype-swift.struct/hair?language=objc)
     pub static AVSemanticSegmentationMatteTypeHair: &'static AVSemanticSegmentationMatteType;
 }
 
 extern "C" {
     /// A matting image segmenting all teeth from all persons in the visible field-of-view of an image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetypeteeth?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattetype-swift.struct/teeth?language=objc)
     pub static AVSemanticSegmentationMatteTypeTeeth: &'static AVSemanticSegmentationMatteType;
 }
 
 extern "C" {
     /// A matting image segmenting all glasses ( e.g. eyeglasses, sunglasses ) from all persons wearing glasses in the visible field-of-view of an image.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmattetypeglasses?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsemanticsegmentationmatte/mattetype-swift.struct/glasses?language=objc)
     pub static AVSemanticSegmentationMatteTypeGlasses: &'static AVSemanticSegmentationMatteType;
 }
 

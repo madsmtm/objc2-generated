@@ -12,22 +12,22 @@ use crate::*;
 pub type ICAuthorizationStatus = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icauthorizationstatusnotdetermined?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icauthorizationstatus/notdetermined?language=objc)
     pub static ICAuthorizationStatusNotDetermined: &'static ICAuthorizationStatus;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icauthorizationstatusrestricted?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icauthorizationstatus/restricted?language=objc)
     pub static ICAuthorizationStatusRestricted: &'static ICAuthorizationStatus;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icauthorizationstatusdenied?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icauthorizationstatus/denied?language=objc)
     pub static ICAuthorizationStatusDenied: &'static ICAuthorizationStatus;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icauthorizationstatusauthorized?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icauthorizationstatus/authorized?language=objc)
     pub static ICAuthorizationStatusAuthorized: &'static ICAuthorizationStatus;
 }
 

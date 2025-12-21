@@ -8,7 +8,6 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_view_texture_map?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct cp_view_texture_map {
@@ -119,7 +118,6 @@ impl cp_view_texture_map {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_view?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct cp_view {

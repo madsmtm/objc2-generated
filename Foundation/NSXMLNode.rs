@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlnodekind?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -51,7 +51,7 @@ unsafe impl RefEncode for NSXMLNodeKind {
 extern_class!(
     /// The basic unit of an XML document.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlnode?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlnode?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSXMLNode;

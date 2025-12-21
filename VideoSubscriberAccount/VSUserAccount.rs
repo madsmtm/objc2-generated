@@ -48,7 +48,7 @@ unsafe impl RefEncode for VSOriginatingDeviceCategory {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccount?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsuseraccount-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct VSUserAccount;

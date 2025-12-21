@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlayposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlay/position?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -28,7 +28,7 @@ unsafe impl RefEncode for SKOverlayPosition {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlayconfiguration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayConfiguration;
@@ -53,7 +53,7 @@ impl SKOverlayConfiguration {
 extern_class!(
     /// An overlay configuration that can be used to show any app from the App Store.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlayappconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration?language=objc)
     #[unsafe(super(SKOverlayConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayAppConfiguration;
@@ -181,7 +181,7 @@ impl SKOverlayAppConfiguration {
 extern_class!(
     /// An overlay configuration that can be used to show an app clip's full app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlayappclipconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/storekit/skoverlay/appclipconfiguration?language=objc)
     #[unsafe(super(SKOverlayConfiguration, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SKOverlayAppClipConfiguration;

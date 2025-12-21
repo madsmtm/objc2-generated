@@ -16,7 +16,7 @@ extern "C" {
     ///
     /// The rate can change as a result of setting the rate property, either by directly setting the property or calling -setRate:time:. The rate can also change at any time, without any action by the client of the render synchronizer. For example, on iOS if the app's playback is interrupted (e.g. by a phone call or another non-mixable app starting playback), the rate will automatically be set to zero. This notification will be sent in all of those cases.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizerratedidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avsamplebufferrendersynchronizer/ratedidchangenotification?language=objc)
     pub static AVSampleBufferRenderSynchronizerRateDidChangeNotification:
         &'static NSNotificationName;
 }

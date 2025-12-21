@@ -12,7 +12,7 @@ use crate::*;
 /// When set as a value on `NSMenu.presentationStyle`, determines how
 /// the given menu is presented.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenupresentationstyle?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/presentationstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -44,7 +44,7 @@ unsafe impl RefEncode for NSMenuPresentationStyle {
 /// This does not apply to menu items that have distinct
 /// target/action values.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuselectionmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/selectionmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -639,7 +639,7 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuproperties?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/properties?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -679,37 +679,37 @@ impl NSMenu {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenuwillsendactionnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/willsendactionnotification?language=objc)
     pub static NSMenuWillSendActionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenudidsendactionnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/didsendactionnotification?language=objc)
     pub static NSMenuDidSendActionNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenudidadditemnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/didadditemnotification?language=objc)
     pub static NSMenuDidAddItemNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenudidremoveitemnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/didremoveitemnotification?language=objc)
     pub static NSMenuDidRemoveItemNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenudidchangeitemnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/didchangeitemnotification?language=objc)
     pub static NSMenuDidChangeItemNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenudidbegintrackingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/didbegintrackingnotification?language=objc)
     pub static NSMenuDidBeginTrackingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenudidendtrackingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmenu/didendtrackingnotification?language=objc)
     pub static NSMenuDidEndTrackingNotification: &'static NSNotificationName;
 }
 

@@ -6,7 +6,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axhearingdeviceear?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/ear?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -37,7 +37,7 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevicestreamingeardidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/streamingeardidchangenotification?language=objc)
     pub static AXMFiHearingDeviceStreamingEarDidChangeNotification: &'static NSNotificationName;
 }
 
@@ -60,6 +60,6 @@ pub unsafe extern "C-unwind" fn AXMFiHearingDevicePairedUUIDs() -> Retained<NSAr
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevicepaireduuidsdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axmfihearingdevice/paireduuidsdidchangenotification?language=objc)
     pub static AXMFiHearingDevicePairedUUIDsDidChangeNotification: &'static NSNotificationName;
 }

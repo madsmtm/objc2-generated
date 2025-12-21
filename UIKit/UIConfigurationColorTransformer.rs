@@ -6,7 +6,7 @@ use crate::*;
 
 /// A color transformer returns a modified output color based on an input color.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformer?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformer-c.typealias?language=objc)
 #[cfg(all(feature = "UIColor", feature = "block2"))]
 pub type UIConfigurationColorTransformer =
     *mut block2::DynBlock<dyn Fn(NonNull<UIColor>) -> NonNull<UIColor>>;

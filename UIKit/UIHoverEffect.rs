@@ -11,14 +11,14 @@ extern_protocol!(
     /// You don't conform to this protocol directly. Instead, you use a built-in
     /// `UIHoverEffect` like `UIHoverAutomaticEffect`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihovereffect?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihovereffect-ukid?language=objc)
     pub unsafe trait UIHoverEffect: NSObjectProtocol + NSCopying + MainThreadOnly {}
 );
 
 extern_class!(
     /// An effect that applies a highlight to the view on hover.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihoverhighlighteffect?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihoverhighlighteffect-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -60,7 +60,7 @@ impl UIHoverHighlightEffect {
 extern_class!(
     /// An effect that can visually lift the view on hover where appropriate.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihoverlifteffect?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihoverlifteffect-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -103,7 +103,7 @@ extern_class!(
     /// A system-default hover effect that automatically selects the appropriate
     /// effect based on the view to which it is applied.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihoverautomaticeffect?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uihoverautomaticeffect-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

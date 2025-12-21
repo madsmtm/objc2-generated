@@ -36,7 +36,7 @@ extern "C" {
     pub static NSMachErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nserroruserinfokey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nserror/userinfokey?language=objc)
 #[cfg(feature = "NSString")]
 pub type NSErrorUserInfoKey = NSString;
 

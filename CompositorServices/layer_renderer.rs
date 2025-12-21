@@ -11,7 +11,7 @@ use crate::*;
 /// The potential states of the layer renderer, which tell you how to
 /// proceed with drawing operations.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_layer_renderer_state?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -55,7 +55,7 @@ extern_class!(
     /// An opaque type that provides the Metal types and timing
     /// information you need to draw your content.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_object_cp_layer_renderer?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CP_OBJECT_cp_layer_renderer;

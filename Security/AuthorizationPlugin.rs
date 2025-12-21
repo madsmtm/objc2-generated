@@ -114,7 +114,6 @@ pub type AuthorizationPluginRef = *mut c_void;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationmechanismref?language=objc)
 pub type AuthorizationMechanismRef = *mut c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/__opaqueauthorizationengine?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct __OpaqueAuthorizationEngine {

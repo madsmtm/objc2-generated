@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfieldrecentsautosavename?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssearchfield/recentsautosavename-swift.typealias?language=objc)
 pub type NSSearchFieldRecentsAutosaveName = NSString;
 
 extern_protocol!(

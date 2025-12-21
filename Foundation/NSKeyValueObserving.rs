@@ -86,31 +86,31 @@ unsafe impl RefEncode for NSKeyValueSetMutationKind {
 pub type NSKeyValueChangeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekindkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/kindkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeKindKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangenewkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/newkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeNewKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangeoldkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/oldkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeOldKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangeindexeskey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/indexeskey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeIndexesKey: &'static NSKeyValueChangeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangenotificationispriorkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyvaluechangekey/notificationispriorkey?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSKeyValueChangeNotificationIsPriorKey: &'static NSKeyValueChangeKey;
 }

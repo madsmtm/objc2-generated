@@ -12,7 +12,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbaricon?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/icon?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for UISearchBarIcon {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbarstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisearchbar/style?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

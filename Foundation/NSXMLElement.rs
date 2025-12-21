@@ -11,7 +11,7 @@ extern_class!(
     ///
     /// Note: Trying to add a document, namespace, attribute, or node with a parent throws an exception. To add a node with a parent first detach or create a copy of it.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmlelement?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/xmlelement?language=objc)
     #[unsafe(super(NSXMLNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSXMLNode")]

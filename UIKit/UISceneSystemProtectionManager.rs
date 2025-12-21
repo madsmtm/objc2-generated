@@ -10,12 +10,12 @@ extern "C" {
     /// A notification posted when the system protection attributes of a scene change. The object of
     /// the notification is the scene whose protection attributes changed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesystemprotectiondidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/systemprotectiondidchangenotification?language=objc)
     pub static UISceneSystemProtectionDidChangeNotification: &'static NSNotificationName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscenesystemprotectionmanager?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/systemprotectionmanager-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

@@ -12,13 +12,13 @@ use crate::*;
 extern "C" {
     /// The background tasks error domain as a string.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskschedulererrordomain?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler/errordomain?language=objc)
     pub static BGTaskSchedulerErrorDomain: &'static NSErrorDomain;
 }
 
 /// An enumeration of the task scheduling errors.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskschedulererrorcode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler/error/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

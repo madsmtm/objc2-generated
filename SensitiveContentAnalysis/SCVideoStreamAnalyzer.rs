@@ -17,7 +17,7 @@ use crate::*;
 ///
 /// Pass this enum into the ``SCVideoStreamAnalyzer/init(participantUUID:streamDirection:)`` initializer when creating an ``SCVideoStreamAnalyzer`` to analyze video streams.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzerstreamdirection?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalyzer/streamdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

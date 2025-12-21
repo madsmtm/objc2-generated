@@ -12,7 +12,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/style-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for UITableViewStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewscrollposition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/scrollposition?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -58,7 +58,7 @@ unsafe impl RefEncode for UITableViewScrollPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowanimation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/rowanimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -117,17 +117,17 @@ unsafe impl RefEncode for UITableViewContentHuggingElements {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewindexsearch?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/indexsearch?language=objc)
     pub static UITableViewIndexSearch: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewautomaticdimension?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/automaticdimension?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UITableViewAutomaticDimension: CGFloat;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowactionstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewrowaction/style-swift.enum?language=objc)
 // NS_ENUM
 #[deprecated = "Use UIContextualAction and related APIs instead."]
 #[repr(transparent)]
@@ -1025,11 +1025,11 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewselectiondidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/selectiondidchangenotification?language=objc)
     pub static UITableViewSelectionDidChangeNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewseparatorinsetreference?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/separatorinsetreference-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1049,7 +1049,7 @@ unsafe impl RefEncode for UITableViewSeparatorInsetReference {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewselfsizinginvalidation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableview/selfsizinginvalidation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2398,7 +2398,7 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropintent?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewdropproposal/intent-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

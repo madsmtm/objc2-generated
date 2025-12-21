@@ -12,7 +12,7 @@ use objc2_security::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lssharedfilelist?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lssharedfilelistref?language=objc)
 #[doc(alias = "LSSharedFileListRef")]
 #[repr(C)]
 pub struct LSSharedFileList {
@@ -28,7 +28,7 @@ cf_objc2_type!(
     unsafe impl RefEncode<"OpaqueLSSharedFileListRef"> for LSSharedFileList {}
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lssharedfilelistitem?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lssharedfilelistitemref?language=objc)
 #[doc(alias = "LSSharedFileListItemRef")]
 #[repr(C)]
 pub struct LSSharedFileListItem {
@@ -137,9 +137,9 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lssharedfilelistresolutionflags?language=objc)
 pub type LSSharedFileListResolutionFlags = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistnouserinteraction?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1581401-anonymous/klssharedfilelistnouserinteraction?language=objc)
 pub const kLSSharedFileListNoUserInteraction: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/klssharedfilelistdonotmountvolumes?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1581401-anonymous/klssharedfilelistdonotmountvolumes?language=objc)
 pub const kLSSharedFileListDoNotMountVolumes: c_uint = 1 << 1;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/lssharedfilelistchangedprocptr?language=objc)

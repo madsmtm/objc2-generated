@@ -609,22 +609,22 @@ unsafe impl RefEncode for NSTextMovement {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextdidbegineditingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstext/didbegineditingnotification?language=objc)
     pub static NSTextDidBeginEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextdidendeditingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstext/didendeditingnotification?language=objc)
     pub static NSTextDidEndEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstext/didchangenotification?language=objc)
     pub static NSTextDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextmovementuserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstext/movementuserinfokey?language=objc)
     pub static NSTextMovementUserInfoKey: &'static NSString;
 }
 

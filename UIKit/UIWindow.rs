@@ -12,7 +12,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowlevel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/level?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type UIWindowLevel = CGFloat;
@@ -296,95 +296,95 @@ impl UIWindow {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowlevelnormal?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/level/normal?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIWindowLevelNormal: UIWindowLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowlevelalert?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/level/alert?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIWindowLevelAlert: UIWindowLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowlevelstatusbar?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/level/statusbar?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIWindowLevelStatusBar: UIWindowLevel;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowdidbecomevisiblenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/didbecomevisiblenotification?language=objc)
     pub static UIWindowDidBecomeVisibleNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowdidbecomehiddennotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/didbecomehiddennotification?language=objc)
     pub static UIWindowDidBecomeHiddenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowdidbecomekeynotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/didbecomekeynotification?language=objc)
     pub static UIWindowDidBecomeKeyNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowdidresignkeynotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindow/didresignkeynotification?language=objc)
     pub static UIWindowDidResignKeyNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardwillshownotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardwillshownotification?language=objc)
     pub static UIKeyboardWillShowNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboarddidshownotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboarddidshownotification?language=objc)
     pub static UIKeyboardDidShowNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardwillhidenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardwillhidenotification?language=objc)
     pub static UIKeyboardWillHideNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboarddidhidenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboarddidhidenotification?language=objc)
     pub static UIKeyboardDidHideNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardframebeginuserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframebeginuserinfokey?language=objc)
     pub static UIKeyboardFrameBeginUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardframeenduserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardframeenduserinfokey?language=objc)
     pub static UIKeyboardFrameEndUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardanimationdurationuserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardanimationdurationuserinfokey?language=objc)
     pub static UIKeyboardAnimationDurationUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardanimationcurveuserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardanimationcurveuserinfokey?language=objc)
     pub static UIKeyboardAnimationCurveUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardislocaluserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardislocaluserinfokey?language=objc)
     pub static UIKeyboardIsLocalUserInfoKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboardwillchangeframenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboardwillchangeframenotification?language=objc)
     pub static UIKeyboardWillChangeFrameNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uikeyboarddidchangeframenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiresponder/keyboarddidchangeframenotification?language=objc)
     pub static UIKeyboardDidChangeFrameNotification: &'static NSNotificationName;
 }
 

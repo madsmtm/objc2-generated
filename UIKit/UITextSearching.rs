@@ -36,7 +36,7 @@ unsafe impl RefEncode for UITextSearchFoundTextStyle {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchaggregator?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearchaggregator-c.protocol?language=objc)
     pub unsafe trait UITextSearchAggregator: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         /// Returns all currently reported found ranges via
@@ -105,7 +105,7 @@ extern_protocol!(
 );
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearching?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextsearching-53wjq?language=objc)
     pub unsafe trait UITextSearching: NSObjectProtocol + MainThreadOnly {
         #[cfg(feature = "UITextInput")]
         /// Overlap from UITextInput: Returns the currently selected text range, if applicable. Nil otherwise.

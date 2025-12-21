@@ -92,7 +92,7 @@ impl CLServiceSessionDiagnostic {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clservicesession?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clservicesession-2ddhd?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CLServiceSession;

@@ -33,11 +33,11 @@ unsafe impl RefEncode for NSCollectionElementCategory {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionviewdecorationelementkind?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/decorationelementkind?language=objc)
 pub type NSCollectionViewDecorationElementKind = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionelementkindinteritemgapindicator?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/elementkindinteritemgapindicator?language=objc)
     #[cfg(feature = "NSCollectionView")]
     pub static NSCollectionElementKindInterItemGapIndicator:
         &'static NSCollectionViewSupplementaryElementKind;
@@ -175,7 +175,7 @@ impl NSCollectionViewLayoutAttributes {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionupdateaction?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscollectionview/updateaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

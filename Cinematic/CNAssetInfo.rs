@@ -16,7 +16,7 @@ use crate::*;
 extern_class!(
     /// Information associated with an AVAsset for a cinematic video.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnassetinfo?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cnassetinfo-8ja4t?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNAssetInfo;
@@ -139,7 +139,7 @@ impl CNAssetInfo {
 extern_class!(
     /// Information about composition tracks added to an AVComposition for a cinematic asset.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cncompositioninfo?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cinematic/cncompositioninfo-vzoh?language=objc)
     #[unsafe(super(CNAssetInfo, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CNCompositionInfo;

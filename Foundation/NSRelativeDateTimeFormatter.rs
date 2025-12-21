@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativedatetimeformatterstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/datetimestyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -26,7 +26,7 @@ unsafe impl RefEncode for NSRelativeDateTimeFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativedatetimeformatterunitsstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter/unitsstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -51,7 +51,7 @@ unsafe impl RefEncode for NSRelativeDateTimeFormatterUnitsStyle {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsrelativedatetimeformatter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/relativedatetimeformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

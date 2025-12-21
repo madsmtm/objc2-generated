@@ -9,7 +9,7 @@ use crate::*;
 
 /// The shape of an image in the sectioned content style.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfsectioneditemimageshape?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfsectioneditem/imageshape-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

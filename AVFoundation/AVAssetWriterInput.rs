@@ -435,14 +435,14 @@ impl AVAssetWriterInput {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinputmediadatalocation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediadatalocation-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVAssetWriterInputMediaDataLocation = NSString;
 
 extern "C" {
     /// Indicates that the media data should be interleaved with all other media data with this constant.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinputmediadatalocationinterleavedwithmainmediadata?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediadatalocation-swift.struct/interleavedwithmainmediadata?language=objc)
     pub static AVAssetWriterInputMediaDataLocationInterleavedWithMainMediaData:
         &'static AVAssetWriterInputMediaDataLocation;
 }
@@ -450,7 +450,7 @@ extern "C" {
 extern "C" {
     /// Indicates that the media data should be laid out before all the media data with AVAssetWriterInputMediaDataLocationInterleavedWithMainMediaData and not be interleaved.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinputmediadatalocationbeforemainmediadatanotinterleaved?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediadatalocation-swift.struct/beforemainmediadatanotinterleaved?language=objc)
     pub static AVAssetWriterInputMediaDataLocationBeforeMainMediaDataNotInterleaved:
         &'static AVAssetWriterInputMediaDataLocation;
 }
@@ -458,7 +458,7 @@ extern "C" {
 extern "C" {
     /// Indicates that there may be large segments of time without any media data from this track. When mediaDataLocation is set to this value, AVAssetWriter will interleave the media data, but will not wait for media data from this track to achieve tight interleaving with other tracks.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinputmediadatalocationsparselyinterleavedwithmainmediadata?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avassetwriterinput/mediadatalocation-swift.struct/sparselyinterleavedwithmainmediadata?language=objc)
     pub static AVAssetWriterInputMediaDataLocationSparselyInterleavedWithMainMediaData:
         &'static AVAssetWriterInputMediaDataLocation;
 }

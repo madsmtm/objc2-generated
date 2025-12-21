@@ -17,7 +17,7 @@ use crate::*;
 ///
 /// Indicates segment represents playback of an interstitial event.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemsegmenttype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemsegment/segmenttype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -408,7 +408,7 @@ impl AVPlayerItemIntegratedTimeline {
 extern "C" {
     /// A notification which is posted when the snapshot objects provided by this timeline would be out of sync with the current timeline state. See keys below.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerintegratedtimelinesnapshotsoutofsyncnotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/snapshotsoutofsyncnotification?language=objc)
     pub static AVPlayerIntegratedTimelineSnapshotsOutOfSyncNotification:
         &'static NSNotificationName;
 }
@@ -416,7 +416,7 @@ extern "C" {
 extern "C" {
     /// Indicates the reason for the snapshot out of sync notification.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerintegratedtimelinesnapshotsoutofsyncreasonkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimeline/snapshotsoutofsyncreasonkey?language=objc)
     pub static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonKey: &'static NSString;
 }
 
@@ -425,19 +425,19 @@ extern "C" {
 pub type AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerintegratedtimelinesnapshotsoutofsyncreasonsegmentschanged?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerintegratedtimelinesnapshotsoutofsyncreason/segmentschanged?language=objc)
     pub static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonSegmentsChanged:
         &'static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerintegratedtimelinesnapshotsoutofsyncreasoncurrentsegmentchanged?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerintegratedtimelinesnapshotsoutofsyncreason/currentsegmentchanged?language=objc)
     pub static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonCurrentSegmentChanged:
         &'static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerintegratedtimelinesnapshotsoutofsyncreasonloadedtimerangeschanged?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplayerintegratedtimelinesnapshotsoutofsyncreason/loadedtimerangeschanged?language=objc)
     pub static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonLoadedTimeRangesChanged:
         &'static AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
 }

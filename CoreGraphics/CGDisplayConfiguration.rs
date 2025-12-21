@@ -10,7 +10,6 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/_cgdisplayconfigref?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct _CGDisplayConfigRef {

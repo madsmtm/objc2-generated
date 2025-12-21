@@ -14,77 +14,77 @@ use crate::*;
 pub type AVOutputSettingsPreset = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset640x480?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/preset640x480?language=objc)
     pub static AVOutputSettingsPreset640x480: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset960x540?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/preset960x540?language=objc)
     pub static AVOutputSettingsPreset960x540: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset1280x720?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/preset1280x720?language=objc)
     pub static AVOutputSettingsPreset1280x720: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset1920x1080?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/preset1920x1080?language=objc)
     pub static AVOutputSettingsPreset1920x1080: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset3840x2160?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/preset3840x2160?language=objc)
     pub static AVOutputSettingsPreset3840x2160: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresethevc1920x1080?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/hevc1920x1080?language=objc)
     pub static AVOutputSettingsPresetHEVC1920x1080: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresethevc1920x1080withalpha?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/hevc1920x1080withalpha?language=objc)
     pub static AVOutputSettingsPresetHEVC1920x1080WithAlpha: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresethevc3840x2160?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/hevc3840x2160?language=objc)
     pub static AVOutputSettingsPresetHEVC3840x2160: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresethevc3840x2160withalpha?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/hevc3840x2160withalpha?language=objc)
     pub static AVOutputSettingsPresetHEVC3840x2160WithAlpha: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresethevc4320x2160?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/hevc4320x2160?language=objc)
     pub static AVOutputSettingsPresetHEVC4320x2160: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresethevc7680x4320?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/hevc7680x4320?language=objc)
     pub static AVOutputSettingsPresetHEVC7680x4320: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresetmvhevc960x960?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/mvhevc960x960?language=objc)
     pub static AVOutputSettingsPresetMVHEVC960x960: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresetmvhevc1440x1440?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/mvhevc1440x1440?language=objc)
     pub static AVOutputSettingsPresetMVHEVC1440x1440: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresetmvhevc4320x4320?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/mvhevc4320x4320?language=objc)
     pub static AVOutputSettingsPresetMVHEVC4320x4320: &'static AVOutputSettingsPreset;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspresetmvhevc7680x7680?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avoutputsettingspreset/mvhevc7680x7680?language=objc)
     pub static AVOutputSettingsPresetMVHEVC7680x7680: &'static AVOutputSettingsPreset;
 }
 

@@ -12,7 +12,7 @@ extern "C" {
     pub static MTLDynamicLibraryDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtldynamiclibraryerror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

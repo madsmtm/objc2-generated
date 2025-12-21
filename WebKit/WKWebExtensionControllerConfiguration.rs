@@ -12,7 +12,7 @@ extern_class!(
     ///
     /// Contains properties used to configure a ``WKWebExtensionController``.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontrollerconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontroller/configuration-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

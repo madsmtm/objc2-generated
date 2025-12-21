@@ -8,7 +8,7 @@ use crate::*;
 
 /// Describes the action an NSCoder should take when it encounters decode failures (e.g. corrupt data) for non-TopLevel decodes.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsdecodingfailurepolicy?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nscoder/decodingfailurepolicy-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

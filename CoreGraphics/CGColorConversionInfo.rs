@@ -217,12 +217,12 @@ impl CGColorConversionInfo {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorconversionblackpointcompensation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/conversionblackpointcompensation?language=objc)
     pub static kCGColorConversionBlackPointCompensation: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgcolorconversiontrcsize?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgcolor/conversiontrcsize?language=objc)
     pub static kCGColorConversionTRCSize: &'static CFString;
 }
 

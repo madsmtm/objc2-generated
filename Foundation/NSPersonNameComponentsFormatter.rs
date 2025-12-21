@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentsformatterstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/style-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for NSPersonNameComponentsFormatterStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentsformatteroptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter/options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -53,7 +53,7 @@ unsafe impl RefEncode for NSPersonNameComponentsFormatterOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nspersonnamecomponentsformatter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/personnamecomponentsformatter?language=objc)
     #[unsafe(super(NSFormatter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSFormatter")]

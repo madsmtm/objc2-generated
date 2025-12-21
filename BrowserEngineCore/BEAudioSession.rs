@@ -14,7 +14,7 @@ use crate::*;
 extern_class!(
     /// An object that represents an audio session
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginecore/beaudiosession?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/browserenginecore/beaudiosession-6b7ig?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2")]

@@ -20,7 +20,7 @@ extern "C" {
     ///
     /// Use with identifiers for medications, such as ibuprofen or insulin.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkhealthconceptdomainmedication?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkhealthconceptdomain/medication?language=objc)
     pub static HKHealthConceptDomainMedication: &'static HKHealthConceptDomain;
 }
 

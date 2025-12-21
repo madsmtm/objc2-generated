@@ -10,7 +10,7 @@ use crate::*;
 extern_class!(
     /// Holds configuration of one class of tokens
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokendriverconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokendriver/configuration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenDriverConfiguration;
@@ -77,7 +77,7 @@ impl TKTokenDriverConfiguration {
 extern_class!(
     /// Holds configuration of one token identified by unique token's instanceID
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktokenconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKTokenConfiguration;

@@ -11,45 +11,45 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuilderrorcode?language=objc)
 pub type AEBuildErrorCode = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnoerr?language=objc)
 pub const aeBuildSyntaxNoErr: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbadtoken?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxbadtoken?language=objc)
 pub const aeBuildSyntaxBadToken: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbadeof?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxbadeof?language=objc)
 pub const aeBuildSyntaxBadEOF: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoeof?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnoeof?language=objc)
 pub const aeBuildSyntaxNoEOF: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbadnegative?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxbadnegative?language=objc)
 pub const aeBuildSyntaxBadNegative: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxmissingquote?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxmissingquote?language=objc)
 pub const aeBuildSyntaxMissingQuote: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbadhex?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxbadhex?language=objc)
 pub const aeBuildSyntaxBadHex: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxoddhex?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxoddhex?language=objc)
 pub const aeBuildSyntaxOddHex: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoclosehex?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnoclosehex?language=objc)
 pub const aeBuildSyntaxNoCloseHex: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxuncoercedhex?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxuncoercedhex?language=objc)
 pub const aeBuildSyntaxUncoercedHex: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoclosestring?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnoclosestring?language=objc)
 pub const aeBuildSyntaxNoCloseString: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbaddesc?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxbaddesc?language=objc)
 pub const aeBuildSyntaxBadDesc: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxbaddata?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxbaddata?language=objc)
 pub const aeBuildSyntaxBadData: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnocloseparen?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnocloseparen?language=objc)
 pub const aeBuildSyntaxNoCloseParen: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoclosebracket?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnoclosebracket?language=objc)
 pub const aeBuildSyntaxNoCloseBracket: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnoclosebrace?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnoclosebrace?language=objc)
 pub const aeBuildSyntaxNoCloseBrace: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnokey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnokey?language=objc)
 pub const aeBuildSyntaxNoKey: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxnocolon?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxnocolon?language=objc)
 pub const aeBuildSyntaxNoColon: c_uint = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxcoercedlist?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxcoercedlist?language=objc)
 pub const aeBuildSyntaxCoercedList: c_uint = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuildsyntaxuncoerceddoubleat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1573756-anonymous/aebuildsyntaxuncoerceddoubleat?language=objc)
 pub const aeBuildSyntaxUncoercedDoubleAt: c_uint = 19;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/aebuilderror?language=objc)
@@ -82,7 +82,6 @@ extern "C-unwind" {
     pub fn AEPrintDescToHandle(desc: *const AEDesc, result: *mut Handle) -> OSStatus;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/opaqueaestreamref?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueAEStreamRef {

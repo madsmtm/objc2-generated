@@ -8,39 +8,27 @@ use objc2_core_audio_types::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_toplevelkey?language=objc)
 pub const kAudioSettings_TopLevelKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_version?language=objc)
 pub const kAudioSettings_Version: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"version\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_parameters?language=objc)
 pub const kAudioSettings_Parameters: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"parameters\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_settingkey?language=objc)
 pub const kAudioSettings_SettingKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"key\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_settingname?language=objc)
 pub const kAudioSettings_SettingName: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_valuetype?language=objc)
 pub const kAudioSettings_ValueType: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"value type\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_availablevalues?language=objc)
 pub const kAudioSettings_AvailableValues: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"available values\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_limitedvalues?language=objc)
 pub const kAudioSettings_LimitedValues: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"limited values\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_currentvalue?language=objc)
 pub const kAudioSettings_CurrentValue: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"current value\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_summary?language=objc)
 pub const kAudioSettings_Summary: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"summary\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_hint?language=objc)
 pub const kAudioSettings_Hint: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"hint\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiosettings_unit?language=objc)
 pub const kAudioSettings_Unit: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"unit\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocodec?language=objc)
 #[cfg(feature = "AudioComponent")]

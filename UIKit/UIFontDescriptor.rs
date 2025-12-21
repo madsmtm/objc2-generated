@@ -10,7 +10,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorsymbolictraits?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/symbolictraits-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -70,56 +70,56 @@ unsafe impl RefEncode for UIFontDescriptorSymbolicTraits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorclass?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/class?language=objc)
 pub type UIFontDescriptorClass = NSUInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifonttextstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle?language=objc)
 // NS_TYPED_ENUM
 pub type UIFontTextStyle = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorattributename?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename?language=objc)
 // NS_TYPED_ENUM
 pub type UIFontDescriptorAttributeName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptortraitkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/traitkey?language=objc)
 // NS_TYPED_ENUM
 pub type UIFontDescriptorTraitKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorfeaturekey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/featurekey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIFontDescriptorFeatureKey = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontweight?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type UIFontWeight = CGFloat;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontwidth?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/width?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "objc2-core-foundation")]
 pub type UIFontWidth = CGFloat;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorsystemdesign?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/systemdesign?language=objc)
 // NS_TYPED_ENUM
 pub type UIFontDescriptorSystemDesign = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorsystemdesigndefault?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/systemdesign/default?language=objc)
     pub static UIFontDescriptorSystemDesignDefault: &'static UIFontDescriptorSystemDesign;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorsystemdesignrounded?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/systemdesign/rounded?language=objc)
     pub static UIFontDescriptorSystemDesignRounded: &'static UIFontDescriptorSystemDesign;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorsystemdesignserif?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/systemdesign/serif?language=objc)
     pub static UIFontDescriptorSystemDesignSerif: &'static UIFontDescriptorSystemDesign;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorsystemdesignmonospaced?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/systemdesign/monospaced?language=objc)
     pub static UIFontDescriptorSystemDesignMonospaced: &'static UIFontDescriptorSystemDesign;
 }
 
@@ -364,234 +364,234 @@ impl DefaultRetained for UIFontDescriptor {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorfamilyattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/family?language=objc)
     pub static UIFontDescriptorFamilyAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptornameattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/name?language=objc)
     pub static UIFontDescriptorNameAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorfaceattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/face?language=objc)
     pub static UIFontDescriptorFaceAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorsizeattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/size?language=objc)
     pub static UIFontDescriptorSizeAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorvisiblenameattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/visiblename?language=objc)
     pub static UIFontDescriptorVisibleNameAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptormatrixattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/matrix?language=objc)
     pub static UIFontDescriptorMatrixAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorcharactersetattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/characterset?language=objc)
     pub static UIFontDescriptorCharacterSetAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorcascadelistattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/cascadelist?language=objc)
     pub static UIFontDescriptorCascadeListAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptortraitsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/traits?language=objc)
     pub static UIFontDescriptorTraitsAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorfixedadvanceattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/fixedadvance?language=objc)
     pub static UIFontDescriptorFixedAdvanceAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptorfeaturesettingsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/featuresettings?language=objc)
     pub static UIFontDescriptorFeatureSettingsAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptortextstyleattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/attributename/textstyle?language=objc)
     pub static UIFontDescriptorTextStyleAttribute: &'static UIFontDescriptorAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontsymbolictrait?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/traitkey/symbolic?language=objc)
     pub static UIFontSymbolicTrait: &'static UIFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontweighttrait?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/traitkey/weight?language=objc)
     pub static UIFontWeightTrait: &'static UIFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontwidthtrait?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/traitkey/width?language=objc)
     pub static UIFontWidthTrait: &'static UIFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontslanttrait?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/traitkey/slant?language=objc)
     pub static UIFontSlantTrait: &'static UIFontDescriptorTraitKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontweightultralight?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/ultralight?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightUltraLight: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontweightthin?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/thin?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightThin: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontweightlight?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/light?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightLight: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontweightregular?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/regular?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightRegular: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontweightmedium?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/medium?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightMedium: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontweightsemibold?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/semibold?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightSemibold: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontweightbold?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/bold?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightBold: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontweightheavy?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/heavy?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightHeavy: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontweightblack?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/weight/black?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWeightBlack: UIFontWeight;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontwidthcondensed?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/width/condensed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWidthCondensed: UIFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontwidthstandard?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/width/standard?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWidthStandard: UIFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontwidthexpanded?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/width/expanded?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWidthExpanded: UIFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontwidthcompressed?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/width/compressed?language=objc)
     #[cfg(feature = "objc2-core-foundation")]
     pub static UIFontWidthCompressed: UIFontWidth;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontfeaturetypeidentifierkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/featurekey/featureidentifier?language=objc)
     pub static UIFontFeatureTypeIdentifierKey: &'static UIFontDescriptorFeatureKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontfeatureselectoridentifierkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifontdescriptor/featurekey/typeidentifier?language=objc)
     pub static UIFontFeatureSelectorIdentifierKey: &'static UIFontDescriptorFeatureKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifonttextstylelargetitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/largetitle?language=objc)
     pub static UIFontTextStyleLargeTitle: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifonttextstyleextralargetitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/extralargetitle?language=objc)
     pub static UIFontTextStyleExtraLargeTitle: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifonttextstyleextralargetitle2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/extralargetitle2?language=objc)
     pub static UIFontTextStyleExtraLargeTitle2: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifonttextstyletitle1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/title1?language=objc)
     pub static UIFontTextStyleTitle1: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifonttextstyletitle2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/title2?language=objc)
     pub static UIFontTextStyleTitle2: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifonttextstyletitle3?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/title3?language=objc)
     pub static UIFontTextStyleTitle3: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifonttextstyleheadline?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/headline?language=objc)
     pub static UIFontTextStyleHeadline: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifonttextstylesubheadline?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/subheadline?language=objc)
     pub static UIFontTextStyleSubheadline: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifonttextstylebody?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/body?language=objc)
     pub static UIFontTextStyleBody: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifonttextstylecallout?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/callout?language=objc)
     pub static UIFontTextStyleCallout: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifonttextstylefootnote?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/footnote?language=objc)
     pub static UIFontTextStyleFootnote: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifonttextstylecaption1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/caption1?language=objc)
     pub static UIFontTextStyleCaption1: &'static UIFontTextStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifonttextstylecaption2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uifont/textstyle/caption2?language=objc)
     pub static UIFontTextStyleCaption2: &'static UIFontTextStyle;
 }

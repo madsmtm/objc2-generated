@@ -102,7 +102,7 @@ unsafe impl RefEncode for ICReturnCodeOffset {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnthumbnailerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnthumbnailerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -126,7 +126,7 @@ unsafe impl RefEncode for ICReturnThumbnailErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnmetadataerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnmetadataerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -150,7 +150,7 @@ unsafe impl RefEncode for ICReturnMetadataErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnconnectionerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnconnectionerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -182,7 +182,7 @@ unsafe impl RefEncode for ICReturnConnectionErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnptpdeviceerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnptpdeviceerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -202,7 +202,7 @@ unsafe impl RefEncode for ICReturnPTPDeviceErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturndownloaderrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturndownloaderror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -222,7 +222,7 @@ unsafe impl RefEncode for ICReturnDownloadErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturncode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/iclegacyreturn/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -282,7 +282,7 @@ unsafe impl RefEncode for ICLegacyReturnCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturncode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturn/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -378,7 +378,7 @@ unsafe impl RefEncode for ICReturnCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnobjecterrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/imagecapturecore/icreturnobjecterror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

@@ -22,7 +22,7 @@ use crate::*;
 ///
 /// Indicates that photo quality is paramount, even at the expense of shot-to-shot time.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotoqualityprioritization?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/qualityprioritization?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -57,7 +57,7 @@ unsafe impl RefEncode for AVCapturePhotoQualityPrioritization {
 ///
 /// Indicates that the output is not ready to receive requests for a longer duration because it is busy processing.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutputcapturereadiness?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2817,7 +2817,7 @@ impl AVCapturePhoto {
 ///
 /// Indicates that the lens stabilization module was unavailable for use at the time of capture. The module may be available in subsequent captures.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturelensstabilizationstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/lensstabilizationstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -211,13 +211,11 @@ pub type DADiskUnmountOptions = u32;
 /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskejectoptiondefault?language=objc)
 pub const kDADiskEjectOptionDefault: c_uint = 0x00000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskejectoptions?language=objc)
 pub type DADiskEjectOptions = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskclaimoptiondefault?language=objc)
 pub const kDADiskClaimOptionDefault: c_uint = 0x00000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/dadiskclaimoptions?language=objc)
 pub type DADiskClaimOptions = u32;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/diskarbitration/kdadiskoptiondefault?language=objc)

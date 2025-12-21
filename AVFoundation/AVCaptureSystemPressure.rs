@@ -11,42 +11,42 @@ use crate::*;
 ///
 /// The AVCaptureSystemPressureLevel string constants describe varying levels of system pressure that affect capture hardware availability and/or quality.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystempressurelevel?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/level-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type AVCaptureSystemPressureLevel = NSString;
 
 extern "C" {
     /// System pressure level is normal (not pressured).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystempressurelevelnominal?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/level-swift.struct/nominal?language=objc)
     pub static AVCaptureSystemPressureLevelNominal: &'static AVCaptureSystemPressureLevel;
 }
 
 extern "C" {
     /// System pressure is slightly elevated.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystempressurelevelfair?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/level-swift.struct/fair?language=objc)
     pub static AVCaptureSystemPressureLevelFair: &'static AVCaptureSystemPressureLevel;
 }
 
 extern "C" {
     /// System pressure is highly elevated. Capture performance may be impacted. Frame rate throttling is advised.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystempressurelevelserious?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/level-swift.struct/serious?language=objc)
     pub static AVCaptureSystemPressureLevelSerious: &'static AVCaptureSystemPressureLevel;
 }
 
 extern "C" {
     /// System pressure is critically elevated. Capture quality and performance are significantly impacted. Frame rate throttling is highly advised.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystempressurelevelcritical?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/level-swift.struct/critical?language=objc)
     pub static AVCaptureSystemPressureLevelCritical: &'static AVCaptureSystemPressureLevel;
 }
 
 extern "C" {
     /// System pressure is beyond critical. Capture must immediately stop.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystempressurelevelshutdown?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/level-swift.struct/shutdown?language=objc)
     pub static AVCaptureSystemPressureLevelShutdown: &'static AVCaptureSystemPressureLevel;
 }
 
@@ -63,7 +63,7 @@ extern "C" {
 ///
 /// Indicates that the camera module is operating at an elevated temperature.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystempressurefactors?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class/factors-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -97,7 +97,7 @@ extern_class!(
     ///
     /// Beginning in iOS 11.1, AVCaptureDevice can report its current system pressure state. System pressure refers to a state in which capture quality is degraded or capture hardware availability is limited due to factors such as overall system temperature, insufficient battery charge for current peak power requirements, or camera module temperature.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesystempressurestate?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturedevice/systempressurestate-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct AVCaptureSystemPressureState;

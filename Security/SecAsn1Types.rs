@@ -7,7 +7,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_data?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_data-swift.struct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct cssm_data {

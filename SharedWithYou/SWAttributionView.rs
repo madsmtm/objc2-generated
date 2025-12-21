@@ -16,7 +16,7 @@ use crate::*;
 ///
 /// Set the appropriate display context on SWAttributionView before it is added to a window. This informs the system about how the user is consuming the attributed content, and influences future relevancy ranking of the SWHighlight for this view.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionviewdisplaycontext?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/displaycontext-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for SWAttributionViewDisplayContext {
 
 /// The horizontal alignment of SWAttributionView's contents
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionviewhorizontalalignment?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/horizontalalignment-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -70,7 +70,7 @@ unsafe impl RefEncode for SWAttributionViewHorizontalAlignment {
 
 /// The background styling of SWAttributionView's contents
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionviewbackgroundstyle?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/sharedwithyou/swattributionview/backgroundstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

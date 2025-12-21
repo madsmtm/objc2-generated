@@ -24,7 +24,7 @@ use crate::*;
 /// For example, the client can move two sources into place, request to start two sound events (one per source), then call [PHASEEngine update].
 /// These calls will be guaranteed to be processed at the same time.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseupdatemode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseengine/updatemode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -55,7 +55,7 @@ unsafe impl RefEncode for PHASEUpdateMode {
 /// In supported platforms this allows the server to apply privacy sensitive effects such as room virtual acoustics, low latency head-tracking and personalized Spatial Audio.
 /// Updating an engine configured with `PHASERenderingModeClient` syncs any pending API commands to the server for processing.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaserenderingmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseengine/renderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -83,7 +83,7 @@ unsafe impl RefEncode for PHASERenderingMode {
 ///
 /// The sound event is paused.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaserenderingstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/renderingstate-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -190,7 +190,7 @@ extern "C" {
 
 /// General PHASE error codes
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseerror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseerror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -219,7 +219,7 @@ extern "C" {
 
 /// Sound event error.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventerror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -256,7 +256,7 @@ extern "C" {
 
 /// Asset error
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasseterror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -286,7 +286,7 @@ unsafe impl RefEncode for PHASEAssetError {
 
 /// Sound event prepare handler reason
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventpreparehandlerreason?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparehandlerreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -310,7 +310,7 @@ unsafe impl RefEncode for PHASESoundEventPrepareHandlerReason {
 
 /// Sound event start handler reason
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventstarthandlerreason?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/starthandlerreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -334,7 +334,7 @@ unsafe impl RefEncode for PHASESoundEventStartHandlerReason {
 
 /// Sound event seek handler reason
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventseekhandlerreason?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/seekhandlerreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -358,7 +358,7 @@ unsafe impl RefEncode for PHASESoundEventSeekHandlerReason {
 
 /// Sound event prepare state
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundeventpreparestate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phasesoundevent/preparestate-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -392,7 +392,7 @@ unsafe impl RefEncode for PHASESoundEventPrepareState {
 /// If the asset is on disk, it is streamed from disk into memory and prepared during playback.
 /// If the asset is in memory, it is streamed from memory and prepared during playback.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseassettype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/phase/phaseasset/assettype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

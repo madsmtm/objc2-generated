@@ -13,7 +13,7 @@ use crate::*;
 ///
 /// Warning: In other words, this type should be declared with NS_ENUM rather than NS_OPTIONS, but the latter has historical inertia not worth struggling against.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmedialibrary?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/library?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

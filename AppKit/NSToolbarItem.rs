@@ -10,7 +10,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/style-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -30,20 +30,20 @@ unsafe impl RefEncode for NSToolbarItemStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemvisibilitypriority?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/visibilitypriority-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSToolbarItemVisibilityPriority = NSInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemvisibilityprioritystandard?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/visibilitypriority-swift.struct/standard?language=objc)
 pub static NSToolbarItemVisibilityPriorityStandard: NSToolbarItemVisibilityPriority = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemvisibilityprioritylow?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/visibilitypriority-swift.struct/low?language=objc)
 pub static NSToolbarItemVisibilityPriorityLow: NSToolbarItemVisibilityPriority = -1000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemvisibilitypriorityhigh?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/visibilitypriority-swift.struct/high?language=objc)
 pub static NSToolbarItemVisibilityPriorityHigh: NSToolbarItemVisibilityPriority = 1000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemvisibilitypriorityuser?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/visibilitypriority-swift.struct/user?language=objc)
 pub static NSToolbarItemVisibilityPriorityUser: NSToolbarItemVisibilityPriority = 2000;
 
 extern_class!(
@@ -454,7 +454,7 @@ extern_protocol!(
 extern "C" {
     /// A space item of a standard fixed size.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarspaceitemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier/space?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarSpaceItemIdentifier: &'static NSToolbarItemIdentifier;
 }
@@ -462,7 +462,7 @@ extern "C" {
 extern "C" {
     /// A space item of flexible width.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarflexiblespaceitemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier/flexiblespace?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarFlexibleSpaceItemIdentifier: &'static NSToolbarItemIdentifier;
 }
@@ -470,7 +470,7 @@ extern "C" {
 extern "C" {
     /// A standard item that is configured to show the color panel when invoked.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarshowcolorsitemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier/showcolors?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarShowColorsItemIdentifier: &'static NSToolbarItemIdentifier;
 }
@@ -478,7 +478,7 @@ extern "C" {
 extern "C" {
     /// A standard item that is configured to show the font panel when invoked.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarshowfontsitemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier/showfonts?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarShowFontsItemIdentifier: &'static NSToolbarItemIdentifier;
 }
@@ -486,7 +486,7 @@ extern "C" {
 extern "C" {
     /// A standard item that is configured to send -printDocument: to the firstResponder when invoked
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarprintitemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier/print?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarPrintItemIdentifier: &'static NSToolbarItemIdentifier;
 }
@@ -494,7 +494,7 @@ extern "C" {
 extern "C" {
     /// A standard item that is configured to send -toggleSidebar: to the firstResponder when invoked.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbartogglesidebaritemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier/togglesidebar?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarToggleSidebarItemIdentifier: &'static NSToolbarItemIdentifier;
 }
@@ -502,7 +502,7 @@ extern "C" {
 extern "C" {
     /// A standard item that is configured to send -toggleInspector: to the firstResponder when invoked.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbartoggleinspectoritemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier/toggleinspector?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarToggleInspectorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
@@ -510,7 +510,7 @@ extern "C" {
 extern "C" {
     /// A standard item for cloud sharing via NSSharingServiceNameCloudSharing. It validates itself and modifies its appearance by using the NSCloudSharingValidation protocol. It sends -performCloudSharing: to the firstResponder.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarcloudsharingitemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier/cloudsharing?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarCloudSharingItemIdentifier: &'static NSToolbarItemIdentifier;
 }
@@ -518,7 +518,7 @@ extern "C" {
 extern "C" {
     /// A standard item that is configured to send -showWritingTools: to the firstResponder when invoked.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarwritingtoolsitemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier/writingtoolsitemidentifier?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarWritingToolsItemIdentifier: &'static NSToolbarItemIdentifier;
 }
@@ -527,7 +527,7 @@ extern "C" {
     /// Creates a new NSTrackingSeparatorToolbarItem and automatically configures it to track the divider of the sidebar if one is discovered.
     /// Only applies to windows with `NSWindowStyleMaskFullSizeContentView` applied.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarsidebartrackingseparatoritemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier/sidebartrackingseparator?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarSidebarTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
@@ -536,7 +536,7 @@ extern "C" {
     /// Creates a new NSTrackingSeparatorToolbarItem and automatically configures it to track the divider of the inspector if one is discovered.
     /// Only applies to windows with `NSWindowStyleMaskFullSizeContentView` applied.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarinspectortrackingseparatoritemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier/inspectortrackingseparator?language=objc)
     #[cfg(feature = "NSToolbar")]
     pub static NSToolbarInspectorTrackingSeparatorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
@@ -544,14 +544,14 @@ extern "C" {
 extern "C" {
     /// Deprecated Item Identifiers
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarseparatoritemidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier/separator?language=objc)
     #[cfg(feature = "NSToolbar")]
     #[deprecated = "This item is no longer recommended and will be ignored on 10.7 and later."]
     pub static NSToolbarSeparatorItemIdentifier: &'static NSToolbarItemIdentifier;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbarcustomizetoolbaritemidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritem/identifier/customizetoolbar?language=objc)
     #[cfg(feature = "NSToolbar")]
     #[deprecated = "This item is no longer recommended and will be ignored on 10.7 and later."]
     pub static NSToolbarCustomizeToolbarItemIdentifier: &'static NSToolbarItemIdentifier;

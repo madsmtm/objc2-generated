@@ -11,7 +11,7 @@ use crate::*;
 
 /// Constants used by ``WKWebExtensionWindow`` to indicate the type of a window.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionwindowtype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -33,7 +33,7 @@ unsafe impl RefEncode for WKWebExtensionWindowType {
 
 /// Constants used by ``WKWebExtensionWindow`` to indicate possible states of a window.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionwindowstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/windowstate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

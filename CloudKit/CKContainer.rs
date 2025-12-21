@@ -211,7 +211,7 @@ impl CKContainer {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckapplicationpermissions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -233,7 +233,7 @@ unsafe impl RefEncode for CKApplicationPermissions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckapplicationpermissionstatus?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissionstatus?language=objc)
 // NS_ENUM
 #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
 #[repr(transparent)]
@@ -262,7 +262,7 @@ unsafe impl RefEncode for CKApplicationPermissionStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckapplicationpermissionblock?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckcontainer/applicationpermissionblock?language=objc)
 #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
 #[cfg(feature = "block2")]
 pub type CKApplicationPermissionBlock =

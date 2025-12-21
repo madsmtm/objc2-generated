@@ -84,26 +84,26 @@ impl DefaultRetained for CAMediaTimingFunction {
 extern "C" {
     /// Timing function names. *
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcamediatimingfunctionlinear?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfunctionname/linear?language=objc)
     pub static kCAMediaTimingFunctionLinear: &'static CAMediaTimingFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcamediatimingfunctioneasein?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfunctionname/easein?language=objc)
     pub static kCAMediaTimingFunctionEaseIn: &'static CAMediaTimingFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcamediatimingfunctioneaseout?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfunctionname/easeout?language=objc)
     pub static kCAMediaTimingFunctionEaseOut: &'static CAMediaTimingFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcamediatimingfunctioneaseineaseout?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfunctionname/easeineaseout?language=objc)
     pub static kCAMediaTimingFunctionEaseInEaseOut: &'static CAMediaTimingFunctionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/kcamediatimingfunctiondefault?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quartzcore/camediatimingfunctionname/default?language=objc)
     pub static kCAMediaTimingFunctionDefault: &'static CAMediaTimingFunctionName;
 }

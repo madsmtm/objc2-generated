@@ -17,7 +17,7 @@ use crate::*;
 /// state, you can begin drawing. Other states indicate the
 /// drawable is either busy or not assigned to a frame.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_state?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -48,7 +48,7 @@ unsafe impl RefEncode for cp_drawable_state {
 /// Use these constants to determine whether content should
 /// be drawn for certain targets.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_target?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/layerrenderer/drawable/target-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -73,7 +73,6 @@ unsafe impl RefEncode for cp_drawable_target {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct cp_drawable {
@@ -695,7 +694,6 @@ impl cp_drawable {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_drawable_array?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct cp_drawable_array {

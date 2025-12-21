@@ -291,7 +291,7 @@ impl NSView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritemidentifiercandidatelist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.struct/candidatelist?language=objc)
     #[cfg(feature = "NSTouchBarItem")]
     pub static NSTouchBarItemIdentifierCandidateList: &'static NSTouchBarItemIdentifier;
 }

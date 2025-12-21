@@ -94,8 +94,6 @@ extern "C-unwind" {
 /// An accessibility object provides information about the user interface object it represents. This information includes the object's
 /// position in the accessibility hierarchy, its position on the display, details about what it is, and what actions it can perform. Accessibility objects
 /// respond to messages sent by assistive applications and send notifications that describe state changes.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axuielement?language=objc)
 #[doc(alias = "AXUIElementRef")]
 #[repr(C)]
 pub struct AXUIElement {
@@ -1560,8 +1558,6 @@ impl AXUIElement {
 /// ```
 ///
 /// ).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axtextmarker?language=objc)
 #[doc(alias = "AXTextMarkerRef")]
 #[repr(C)]
 pub struct AXTextMarker {
@@ -1670,8 +1666,6 @@ impl AXTextMarker {
 /// ```
 ///
 /// ).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axtextmarkerrange?language=objc)
 #[doc(alias = "AXTextMarkerRangeRef")]
 #[repr(C)]
 pub struct AXTextMarkerRange {
@@ -1838,8 +1832,6 @@ impl AXTextMarkerRange {
 /// ```
 ///
 /// ).
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axobserver?language=objc)
 #[doc(alias = "AXObserverRef")]
 #[repr(C)]
 pub struct AXObserver {

@@ -8,425 +8,273 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kappleclamshellstatekey?language=objc)
 pub const kAppleClamshellStateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AppleClamshellState\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kappleclamshellcausessleepkey?language=objc)
 pub const kAppleClamshellCausesSleepKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AppleClamshellCausesSleep\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsleepwakeuuidkey?language=objc)
 pub const kIOPMSleepWakeUUIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"SleepWakeUUID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmbootsessionuuidkey?language=objc)
 pub const kIOPMBootSessionUUIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BootSessionUUID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdeepsleepenabledkey?language=objc)
 pub const kIOPMDeepSleepEnabledKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Standby Enabled\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdeepsleepdelaykey?language=objc)
 pub const kIOPMDeepSleepDelayKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Standby Delay\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdeepsleepdelayhighkey?language=objc)
 pub const kIOPMDeepSleepDelayHighKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"High Standby Delay\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmstandbybatterythresholdkey?language=objc)
 pub const kIOPMStandbyBatteryThresholdKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Standby Battery Threshold\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdestroyfvkeyonstandbykey?language=objc)
 pub const kIOPMDestroyFVKeyOnStandbyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DestroyFVKeyOnStandby\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmresetpowerstateonwakekey?language=objc)
 pub const kIOPMResetPowerStateOnWakeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOPMResetPowerStateOnWake\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmassertionsdriverkey?language=objc)
 pub const kIOPMAssertionsDriverKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DriverPMAssertions\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmassertionsdriverdetailedkey?language=objc)
 pub const kIOPMAssertionsDriverDetailedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DriverPMAssertionsDetailed\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionidkey?language=objc)
 pub const kIOPMDriverAssertionIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertioncreatedtimekey?language=objc)
 pub const kIOPMDriverAssertionCreatedTimeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CreatedTime\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionmodifiedtimekey?language=objc)
 pub const kIOPMDriverAssertionModifiedTimeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ModifiedTime\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionownerstringkey?language=objc)
 pub const kIOPMDriverAssertionOwnerStringKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Owner\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionownerservicekey?language=objc)
 pub const kIOPMDriverAssertionOwnerServiceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ServicePtr\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionregistryentryidkey?language=objc)
 pub const kIOPMDriverAssertionRegistryEntryIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"RegistryEntryID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionlevelkey?language=objc)
 pub const kIOPMDriverAssertionLevelKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Level\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionassertedkey?language=objc)
 pub const kIOPMDriverAssertionAssertedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Assertions\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmmessageclamshellstatechange?language=objc)
 pub const kIOPMMessageClamshellStateChange: c_uint =
     iokit_family_msg!(sub_iokit_powermanagement, 0x100);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmmessagefeaturechange?language=objc)
 pub const kIOPMMessageFeatureChange: c_uint = iokit_family_msg!(sub_iokit_powermanagement, 0x110);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmmessageinternalbatteryfullydischarged?language=objc)
 pub const kIOPMMessageInternalBatteryFullyDischarged: c_uint =
     iokit_family_msg!(sub_iokit_powermanagement, 0x120);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmmessagesystempowereventoccurred?language=objc)
 pub const kIOPMMessageSystemPowerEventOccurred: c_uint =
     iokit_family_msg!(sub_iokit_powermanagement, 0x130);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmmessagesleepwakeuuidchange?language=objc)
 pub const kIOPMMessageSleepWakeUUIDChange: c_uint =
     iokit_family_msg!(sub_iokit_powermanagement, 0x140);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmmessagedriverassertionschanged?language=objc)
 pub const kIOPMMessageDriverAssertionsChanged: c_uint =
     iokit_family_msg!(sub_iokit_powermanagement, 0x150);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmmessagedarkwakethermalemergency?language=objc)
 pub const kIOPMMessageDarkWakeThermalEmergency: c_uint =
     iokit_family_msg!(sub_iokit_powermanagement, 0x160);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsexternalconnectedkey?language=objc)
 pub const kIOPMPSExternalConnectedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ExternalConnected\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsexternalchargecapablekey?language=objc)
 pub const kIOPMPSExternalChargeCapableKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ExternalChargeCapable\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsbatteryinstalledkey?language=objc)
 pub const kIOPMPSBatteryInstalledKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BatteryInstalled\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsischargingkey?language=objc)
 pub const kIOPMPSIsChargingKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IsCharging\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmfullychargedkey?language=objc)
 pub const kIOPMFullyChargedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"FullyCharged\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsatwarnlevelkey?language=objc)
 pub const kIOPMPSAtWarnLevelKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AtWarnLevel\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsatcriticallevelkey?language=objc)
 pub const kIOPMPSAtCriticalLevelKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AtCriticalLevel\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpscurrentcapacitykey?language=objc)
 pub const kIOPMPSCurrentCapacityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CurrentCapacity\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsmaxcapacitykey?language=objc)
 pub const kIOPMPSMaxCapacityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MaxCapacity\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsdesigncapacitykey?language=objc)
 pub const kIOPMPSDesignCapacityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DesignCapacity\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpstimeremainingkey?language=objc)
 pub const kIOPMPSTimeRemainingKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"TimeRemaining\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsamperagekey?language=objc)
 pub const kIOPMPSAmperageKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Amperage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsvoltagekey?language=objc)
 pub const kIOPMPSVoltageKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Voltage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpscyclecountkey?language=objc)
 pub const kIOPMPSCycleCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CycleCount\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsmaxerrkey?language=objc)
 pub const kIOPMPSMaxErrKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"MaxErr\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterinfokey?language=objc)
 pub const kIOPMPSAdapterInfoKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AdapterInfo\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpslocationkey?language=objc)
 pub const kIOPMPSLocationKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Location\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpserrorconditionkey?language=objc)
 pub const kIOPMPSErrorConditionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ErrorCondition\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsmanufacturerkey?language=objc)
 pub const kIOPMPSManufacturerKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Manufacturer\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsmanufacturedatekey?language=objc)
 pub const kIOPMPSManufactureDateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ManufactureDate\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsmodelkey?language=objc)
 pub const kIOPMPSModelKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Model\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsserialkey?language=objc)
 pub const kIOPMPSSerialKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Serial\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdevicenamekey?language=objc)
 pub const kIOPMDeviceNameKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DeviceName\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpslegacybatteryinfokey?language=objc)
 pub const kIOPMPSLegacyBatteryInfoKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"LegacyBatteryInfo\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsbatteryhealthkey?language=objc)
 pub const kIOPMPSBatteryHealthKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BatteryHealth\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpshealthconfidencekey?language=objc)
 pub const kIOPMPSHealthConfidenceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HealthConfidence\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpscapacityestimatedkey?language=objc)
 pub const kIOPMPSCapacityEstimatedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CapacityEstimated\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsbatterychargestatuskey?language=objc)
 pub const kIOPMPSBatteryChargeStatusKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ChargeStatus\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsbatterytemperaturekey?language=objc)
 pub const kIOPMPSBatteryTemperatureKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Temperature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterdetailskey?language=objc)
 pub const kIOPMPSAdapterDetailsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AdapterDetails\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpschargerconfigurationkey?language=objc)
 pub const kIOPMPSChargerConfigurationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ChargerConfiguration\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmbatterychargestatustoohot?language=objc)
 pub const kIOPMBatteryChargeStatusTooHot: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HighTemperature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmbatterychargestatustoocold?language=objc)
 pub const kIOPMBatteryChargeStatusTooCold: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"LowTemperature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmbatterychargestatustoohotorcold?language=objc)
 pub const kIOPMBatteryChargeStatusTooHotOrCold: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HighOrLowTemperature\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmbatterychargestatusgradient?language=objc)
 pub const kIOPMBatteryChargeStatusGradient: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BatteryTemperatureGradient\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterdetailsidkey?language=objc)
 pub const kIOPMPSAdapterDetailsIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AdapterID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterdetailswattskey?language=objc)
 pub const kIOPMPSAdapterDetailsWattsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Watts\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterdetailsrevisionkey?language=objc)
 pub const kIOPMPSAdapterDetailsRevisionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AdapterRevision\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterdetailsserialnumberkey?language=objc)
 pub const kIOPMPSAdapterDetailsSerialNumberKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"SerialNumber\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterdetailsfamilykey?language=objc)
 pub const kIOPMPSAdapterDetailsFamilyKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"FamilyCode\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterdetailsamperagekey?language=objc)
 pub const kIOPMPSAdapterDetailsAmperageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Current\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterdetailsdescriptionkey?language=objc)
 pub const kIOPMPSAdapterDetailsDescriptionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Description\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterdetailspmuconfigurationkey?language=objc)
 pub const kIOPMPSAdapterDetailsPMUConfigurationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"PMUConfiguration\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterdetailsvoltage?language=objc)
 pub const kIOPMPSAdapterDetailsVoltage: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AdapterVoltage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterdetailssourceidkey?language=objc)
 pub const kIOPMPSAdapterDetailsSourceIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Source\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterdetailserrorflagskey?language=objc)
 pub const kIOPMPSAdapterDetailsErrorFlagsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ErrorFlags\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterdetailssharedsourcekey?language=objc)
 pub const kIOPMPSAdapterDetailsSharedSourceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"SharedSource\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsadapterdetailscloakedkey?language=objc)
 pub const kIOPMPSAdapterDetailsCloakedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CloakedSource\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpsinvalidwakesecondskey?language=objc)
 pub const kIOPMPSInvalidWakeSecondsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BatteryInvalidWakeSeconds\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpspostchargewaitsecondskey?language=objc)
 pub const kIOPMPSPostChargeWaitSecondsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"PostChargeWaitSeconds\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpspostdishargewaitsecondskey?language=objc)
 pub const kIOPMPSPostDishargeWaitSecondsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"PostDischargeWaitSeconds\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmgraphicspowerlimitskey?language=objc)
 pub const kIOPMGraphicsPowerLimitsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Graphics_Power_Limits\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmgraphicspowerlimitperformancekey?language=objc)
 pub const kIOPMGraphicsPowerLimitPerformanceKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Graphics_Power_Performance\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmcpupowerlimitskey?language=objc)
 pub const kIOPMCPUPowerLimitsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CPU_Power_Limits\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmcpupowerlimitprocessorspeedkey?language=objc)
 pub const kIOPMCPUPowerLimitProcessorSpeedKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CPU_Speed_Limit\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmcpupowerlimitprocessorcountkey?language=objc)
 pub const kIOPMCPUPowerLimitProcessorCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CPU_Available_CPUs\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmcpupowerlimitschedulertimekey?language=objc)
 pub const kIOPMCPUPowerLimitSchedulerTimeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"CPU_Scheduler_Limit\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmthermallevelwarningkey?language=objc)
 pub const kIOPMThermalLevelWarningKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Thermal_Level_Warning\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmthermalwarninglevelnormal?language=objc)
 pub const kIOPMThermalWarningLevelNormal: c_uint = kIOPMThermalLevelNormal;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmthermalwarningleveldanger?language=objc)
 pub const kIOPMThermalWarningLevelDanger: c_uint = kIOPMThermalLevelWarning;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmthermalwarninglevelcrisis?language=objc)
 pub const kIOPMThermalWarningLevelCrisis: c_uint = kIOPMThermalLevelCritical;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingwakeonringkey?language=objc)
 pub const kIOPMSettingWakeOnRingKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Wake On Modem Ring\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingrestartonpowerlosskey?language=objc)
 pub const kIOPMSettingRestartOnPowerLossKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Automatic Restart On Power Loss\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingwakeonacchangekey?language=objc)
 pub const kIOPMSettingWakeOnACChangeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Wake On AC Change\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingsleeponpowerbuttonkey?language=objc)
 pub const kIOPMSettingSleepOnPowerButtonKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Sleep On Power Button\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingwakeonclamshellkey?language=objc)
 pub const kIOPMSettingWakeOnClamshellKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Wake On Clamshell Open\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingreducebrightnesskey?language=objc)
 pub const kIOPMSettingReduceBrightnessKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ReduceBrightness\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingdisplaysleepusesdimkey?language=objc)
 pub const kIOPMSettingDisplaySleepUsesDimKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Display Sleep Uses Dim\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingtimezoneoffsetkey?language=objc)
 pub const kIOPMSettingTimeZoneOffsetKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"TimeZoneOffsetSeconds\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingmobilemotionmodulekey?language=objc)
 pub const kIOPMSettingMobileMotionModuleKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MobileMotionModule\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettinggraphicsswitchkey?language=objc)
 pub const kIOPMSettingGraphicsSwitchKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"GPUSwitch\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingpromodecontrol?language=objc)
 pub const kIOPMSettingProModeControl: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ProModeControl\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingpromodedefer?language=objc)
 pub const kIOPMSettingProModeDefer: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ProModeDefer\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingautowakesecondskey?language=objc)
 pub const kIOPMSettingAutoWakeSecondsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"wake\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingautowakecalendarkey?language=objc)
 pub const kIOPMSettingAutoWakeCalendarKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"WakeByCalendarDate\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingautopowersecondskey?language=objc)
 pub const kIOPMSettingAutoPowerSecondsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"poweron\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingautopowercalendarkey?language=objc)
 pub const kIOPMSettingAutoPowerCalendarKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"PowerByCalendarDate\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingdebugwakerelativekey?language=objc)
 pub const kIOPMSettingDebugWakeRelativeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"WakeRelativeToSleep\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingdebugpowerrelativekey?language=objc)
 pub const kIOPMSettingDebugPowerRelativeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"PowerRelativeToShutdown\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsettingmaintenancewakecalendarkey?language=objc)
 pub const kIOPMSettingMaintenanceWakeCalendarKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MaintenanceWakeCalendarDate\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kmaxtype?language=objc)
 pub const kMaxType: c_uint = kPMLastAggressivenessType - 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioremsleepenabledkey?language=objc)
 pub const kIOREMSleepEnabledKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"REMSleepEnabled\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobatteryinfokey?language=objc)
 pub const kIOBatteryInfoKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOBatteryInfo\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobatterycurrentchargekey?language=objc)
 pub const kIOBatteryCurrentChargeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Current\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobatterycapacitykey?language=objc)
 pub const kIOBatteryCapacityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Capacity\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobatteryflagskey?language=objc)
 pub const kIOBatteryFlagsKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Flags\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobatteryvoltagekey?language=objc)
 pub const kIOBatteryVoltageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Voltage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobatteryamperagekey?language=objc)
 pub const kIOBatteryAmperageKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Amperage\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobatterycyclecountkey?language=objc)
 pub const kIOBatteryCycleCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"Cycle Count\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmmessagebatterystatushaschanged?language=objc)
 pub const kIOPMMessageBatteryStatusHasChanged: c_uint = iokit_family_msg!(sub_iokit_pmu, 0x100);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmumessagelegacyautowake?language=objc)
 pub const kIOPMUMessageLegacyAutoWake: c_uint = iokit_family_msg!(sub_iokit_pmu, 0x200);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmumessagelegacyautopower?language=objc)
 pub const kIOPMUMessageLegacyAutoPower: c_uint = iokit_family_msg!(sub_iokit_pmu, 0x210);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmautowake?language=objc)
 pub const kIOPMAutoWake: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"wake\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmautopoweron?language=objc)
 pub const kIOPMAutoPowerOn: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"poweron\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmautowakeorpoweron?language=objc)
 pub const kIOPMAutoWakeOrPowerOn: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"wakepoweron\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmautosleep?language=objc)
 pub const kIOPMAutoSleep: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"sleep\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmautoshutdown?language=objc)
 pub const kIOPMAutoShutdown: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"shutdown\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmautorestart?language=objc)
 pub const kIOPMAutoRestart: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"restart\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpowereventtimekey?language=objc)
 pub const kIOPMPowerEventTimeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"time\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpowereventappnamekey?language=objc)
 pub const kIOPMPowerEventAppNameKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"scheduledby\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpowereventapppidkey?language=objc)
 pub const kIOPMPowerEventAppPIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"appPID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpowereventtypekey?language=objc)
 pub const kIOPMPowerEventTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"eventtype\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsetaggressiveness?language=objc)
 pub const kPMSetAggressiveness: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmgetaggressiveness?language=objc)
 pub const kPMGetAggressiveness: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsleepsystem?language=objc)
 pub const kPMSleepSystem: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmallowpowerchange?language=objc)
 pub const kPMAllowPowerChange: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmcancelpowerchange?language=objc)
 pub const kPMCancelPowerChange: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmshutdownsystem?language=objc)
 pub const kPMShutdownSystem: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmrestartsystem?language=objc)
 pub const kPMRestartSystem: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsleepsystemoptions?language=objc)
 pub const kPMSleepSystemOptions: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsetmaintenancewakecalendar?language=objc)
 pub const kPMSetMaintenanceWakeCalendar: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsetuserassertionlevels?language=objc)
 pub const kPMSetUserAssertionLevels: c_uint = 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmactivitytickle?language=objc)
 pub const kPMActivityTickle: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmgetsystemsleeptype?language=objc)
 pub const kPMGetSystemSleepType: c_uint = 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsetclamshellsleepstate?language=objc)
 pub const kPMSetClamshellSleepState: c_uint = 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsleepwakewatchdogenable?language=objc)
 pub const kPMSleepWakeWatchdogEnable: c_uint = 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsleepwakedebugtrig?language=objc)
 pub const kPMSleepWakeDebugTrig: c_uint = 14;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsetdisplaypoweron?language=objc)
 pub const kPMSetDisplayPowerOn: c_uint = 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsetdisplaystate?language=objc)
 pub const kPMSetDisplayState: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmrequestidlesleeprevert?language=objc)
 pub const kPMRequestIdleSleepRevert: c_uint = 17;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsetldmhibernationdisable?language=objc)
 pub const kPMSetLDMHibernationDisable: c_uint = 18;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/knumpmmethods?language=objc)
 pub const kNumPMMethods: c_uint = 19;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemloadadvisorynotifyname?language=objc)
 pub const kIOSystemLoadAdvisoryNotifyName: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.system.powermanagement.SystemLoadAdvisory\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmcpupowernotificationkey?language=objc)
 pub const kIOPMCPUPowerNotificationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.system.power.CPU\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmthermalwarningnotificationkey?language=objc)
 pub const kIOPMThermalWarningNotificationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"com.apple.system.power.thermal_warning\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmmaxpowerstates?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499944-anonymous/kiopmmaxpowerstates?language=objc)
 pub const kIOPMMaxPowerStates: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmmaxpowerstates?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499944-anonymous/iopmmaxpowerstates?language=objc)
 pub const IOPMMaxPowerStates: c_uint = kIOPMMaxPowerStates;
 
 /// Bits are used in defining capabilityFlags, inputPowerRequirements, and outputPowerCharacter in the IOPMPowerState structure.
@@ -491,59 +339,59 @@ pub const IOPMMaxPowerStates: c_uint = kIOPMMaxPowerStates;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmpowerflags?language=objc)
 pub type IOPMPowerFlags = c_ulong;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpoweron?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmpoweron?language=objc)
 pub const kIOPMPowerOn: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdeviceusable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmdeviceusable?language=objc)
 pub const kIOPMDeviceUsable: c_uint = 0x00008000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmlowpower?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmlowpower?language=objc)
 pub const kIOPMLowPower: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpreventidlesleep?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmpreventidlesleep?language=objc)
 pub const kIOPMPreventIdleSleep: c_uint = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsleepcapability?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmsleepcapability?language=objc)
 pub const kIOPMSleepCapability: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmrestartcapability?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmrestartcapability?language=objc)
 pub const kIOPMRestartCapability: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsleep?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmsleep?language=objc)
 pub const kIOPMSleep: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmrestart?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmrestart?language=objc)
 pub const kIOPMRestart: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopminitialdevicestate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopminitialdevicestate?language=objc)
 pub const kIOPMInitialDeviceState: c_uint = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmrootdomainstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499606-anonymous/kiopmrootdomainstate?language=objc)
 pub const kIOPMRootDomainState: c_uint = 0x00000200;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmclocknormal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499578-anonymous/kiopmclocknormal?language=objc)
 pub const kIOPMClockNormal: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmclockrunning?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499578-anonymous/kiopmclockrunning?language=objc)
 pub const kIOPMClockRunning: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpreventsystemsleep?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499578-anonymous/kiopmpreventsystemsleep?language=objc)
 pub const kIOPMPreventSystemSleep: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdoze?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499578-anonymous/kiopmdoze?language=objc)
 pub const kIOPMDoze: c_uint = 0x0400;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmchildclamp?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499578-anonymous/kiopmchildclamp?language=objc)
 pub const kIOPMChildClamp: c_uint = 0x0080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmchildclamp2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499578-anonymous/kiopmchildclamp2?language=objc)
 pub const kIOPMChildClamp2: c_uint = 0x0200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmnotpowermanaged?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499578-anonymous/kiopmnotpowermanaged?language=objc)
 pub const kIOPMNotPowerManaged: c_uint = 0x0800;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmmaxperformance?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmmaxperformance?language=objc)
 pub const kIOPMMaxPerformance: c_uint = 0x4000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpassthrough?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmpassthrough?language=objc)
 pub const kIOPMPassThrough: c_uint = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmauxpoweron?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmauxpoweron?language=objc)
 pub const kIOPMAuxPowerOn: c_uint = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmnotattainable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmnotattainable?language=objc)
 pub const kIOPMNotAttainable: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmcontextretained?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmcontextretained?language=objc)
 pub const kIOPMContextRetained: c_uint = 0x2000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmconfigretained?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmconfigretained?language=objc)
 pub const kIOPMConfigRetained: c_uint = 0x1000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmstaticpowervalid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmstaticpowervalid?language=objc)
 pub const kIOPMStaticPowerValid: c_uint = 0x0800;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsoftsleep?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmsoftsleep?language=objc)
 pub const kIOPMSoftSleep: c_uint = 0x0400;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmcapabilitiesmask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499741-anonymous/kiopmcapabilitiesmask?language=objc)
 pub const kIOPMCapabilitiesMask: c_uint = kIOPMPowerOn
     | kIOPMDeviceUsable
     | kIOPMMaxPerformance
@@ -552,272 +400,268 @@ pub const kIOPMCapabilitiesMask: c_uint = kIOPMPowerOn
     | kIOPMSleepCapability
     | kIOPMRestartCapability;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmnotattainable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmnotattainable?language=objc)
 pub const IOPMNotAttainable: c_uint = kIOPMNotAttainable;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmpoweron?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmpoweron?language=objc)
 pub const IOPMPowerOn: c_uint = kIOPMPowerOn;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmclocknormal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmclocknormal?language=objc)
 pub const IOPMClockNormal: c_uint = kIOPMClockNormal;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmclockrunning?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmclockrunning?language=objc)
 pub const IOPMClockRunning: c_uint = kIOPMClockRunning;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmauxpoweron?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmauxpoweron?language=objc)
 pub const IOPMAuxPowerOn: c_uint = kIOPMAuxPowerOn;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmdeviceusable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmdeviceusable?language=objc)
 pub const IOPMDeviceUsable: c_uint = kIOPMDeviceUsable;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmmaxperformance?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmmaxperformance?language=objc)
 pub const IOPMMaxPerformance: c_uint = kIOPMMaxPerformance;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmcontextretained?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmcontextretained?language=objc)
 pub const IOPMContextRetained: c_uint = kIOPMContextRetained;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmconfigretained?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmconfigretained?language=objc)
 pub const IOPMConfigRetained: c_uint = kIOPMConfigRetained;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmnotpowermanaged?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmnotpowermanaged?language=objc)
 pub const IOPMNotPowerManaged: c_uint = kIOPMNotPowerManaged;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmsoftsleep?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499804-anonymous/iopmsoftsleep?language=objc)
 pub const IOPMSoftSleep: c_uint = kIOPMSoftSleep;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmnexthigherstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499612-anonymous/kiopmnexthigherstate?language=objc)
 pub const kIOPMNextHigherState: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmhigheststate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499612-anonymous/kiopmhigheststate?language=objc)
 pub const kIOPMHighestState: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmnextlowerstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499612-anonymous/kiopmnextlowerstate?language=objc)
 pub const kIOPMNextLowerState: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmloweststate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499612-anonymous/kiopmloweststate?language=objc)
 pub const kIOPMLowestState: c_uint = 4;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmnexthigherstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499983-anonymous/iopmnexthigherstate?language=objc)
 pub const IOPMNextHigherState: c_uint = kIOPMNextHigherState;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmhigheststate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499983-anonymous/iopmhigheststate?language=objc)
 pub const IOPMHighestState: c_uint = kIOPMHighestState;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmnextlowerstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499983-anonymous/iopmnextlowerstate?language=objc)
 pub const IOPMNextLowerState: c_uint = kIOPMNextLowerState;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmloweststate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499983-anonymous/iopmloweststate?language=objc)
 pub const IOPMLowestState: c_uint = kIOPMLowestState;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmbroadcastaggressiveness?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499682-anonymous/kiopmbroadcastaggressiveness?language=objc)
 pub const kIOPMBroadcastAggressiveness: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmunidledevice?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499682-anonymous/kiopmunidledevice?language=objc)
 pub const kIOPMUnidleDevice: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmunknown?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499938-anonymous/kiopmunknown?language=objc)
 pub const kIOPMUnknown: c_uint = 0xFFFF;
 
 /// kIOPMDriverAssertionCPUBit
 /// When set, PM kernel will prefer to leave the CPU and core hardware
 /// running in "Dark Wake" state, instead of sleeping.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertioncpubit?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertioncpubit?language=objc)
 pub const kIOPMDriverAssertionCPUBit: c_uint = 0x01;
 /// kIOPMDriverAssertionPreventSystemIdleSleepBit
 /// When set, the system should not idle sleep. This does not prevent
 /// demand sleep.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionpreventsystemidlesleepbit?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionpreventsystemidlesleepbit?language=objc)
 pub const kIOPMDriverAssertionPreventSystemIdleSleepBit: c_uint = 0x02;
 /// kIOPMDriverAssertionUSBExternalDeviceBit
 /// When set, driver is informing PM that an external USB device is attached.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionusbexternaldevicebit?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionusbexternaldevicebit?language=objc)
 pub const kIOPMDriverAssertionUSBExternalDeviceBit: c_uint = 0x04;
 /// kIOPMDriverAssertionBluetoothHIDDevicePairedBit
 /// When set, driver is informing PM that a Bluetooth HID device is paired.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionbluetoothhiddevicepairedbit?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionbluetoothhiddevicepairedbit?language=objc)
 pub const kIOPMDriverAssertionBluetoothHIDDevicePairedBit: c_uint = 0x08;
 /// kIOPMDriverAssertionExternalMediaMountedBit
 /// When set, driver is informing PM that an external media is mounted.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionexternalmediamountedbit?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionexternalmediamountedbit?language=objc)
 pub const kIOPMDriverAssertionExternalMediaMountedBit: c_uint = 0x10;
 /// kIOPMDriverAssertionReservedBit5
 /// Reserved for Thunderbolt.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionreservedbit5?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionreservedbit5?language=objc)
 pub const kIOPMDriverAssertionReservedBit5: c_uint = 0x20;
 /// kIOPMDriverAssertionPreventDisplaySleepBit
 /// When set, the display should remain powered on while the system's awake.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionpreventdisplaysleepbit?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionpreventdisplaysleepbit?language=objc)
 pub const kIOPMDriverAssertionPreventDisplaySleepBit: c_uint = 0x40;
 /// kIOPMDriverAssertionReservedBit7
 /// Reserved for storage family.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionreservedbit7?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionreservedbit7?language=objc)
 pub const kIOPMDriverAssertionReservedBit7: c_uint = 0x80;
 /// kIOPMDriverAssertionMagicPacketWakeEnabledBit
 /// When set, driver is informing PM that magic packet wake is enabled.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionmagicpacketwakeenabledbit?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionmagicpacketwakeenabledbit?language=objc)
 pub const kIOPMDriverAssertionMagicPacketWakeEnabledBit: c_uint = 0x100;
 /// kIOPMDriverAssertionNetworkKeepAliveActiveBit
 /// When set, driver is informing PM that it is holding the network
 /// interface up to do TCPKeepAlive
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionnetworkkeepaliveactivebit?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1499698-anonymous/kiopmdriverassertionnetworkkeepaliveactivebit?language=objc)
 pub const kIOPMDriverAssertionNetworkKeepAliveActiveBit: c_uint = 0x200;
 /// kIOPMDriverAssertionForceWakeupBit
 /// When set, the system will immediately wake up the CPU after going to sleep.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionforcewakeupbit?language=objc)
 pub const kIOPMDriverAssertionForceWakeupBit: c_uint = 0x400;
 /// kIOPMDriverAssertionForceFullWakeupBit
 /// When set, the system will immediately do a full wakeup after going to sleep.
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdriverassertionforcefullwakeupbit?language=objc)
 pub const kIOPMDriverAssertionForceFullWakeupBit: c_uint = 0x800;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kclamshellstatebit?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499920-anonymous/kclamshellstatebit?language=objc)
 pub const kClamshellStateBit: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kclamshellsleepbit?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499920-anonymous/kclamshellsleepbit?language=objc)
 pub const kClamshellSleepBit: c_uint = 1 << 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kinflowforciblyenabledbit?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499872-anonymous/kinflowforciblyenabledbit?language=objc)
 pub const kInflowForciblyEnabledBit: c_uint = 1 << 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsleepnow?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmsleepnow?language=objc)
 pub const kIOPMSleepNow: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmallowsleep?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmallowsleep?language=objc)
 pub const kIOPMAllowSleep: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpreventsleep?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmpreventsleep?language=objc)
 pub const kIOPMPreventSleep: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpowerbutton?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmpowerbutton?language=objc)
 pub const kIOPMPowerButton: c_uint = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmclamshellclosed?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmclamshellclosed?language=objc)
 pub const kIOPMClamshellClosed: c_uint = 1 << 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpoweremergency?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmpoweremergency?language=objc)
 pub const kIOPMPowerEmergency: c_uint = 1 << 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdisableclamshell?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmdisableclamshell?language=objc)
 pub const kIOPMDisableClamshell: c_uint = 1 << 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmenableclamshell?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmenableclamshell?language=objc)
 pub const kIOPMEnableClamshell: c_uint = 1 << 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmprocessorspeedchange?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmprocessorspeedchange?language=objc)
 pub const kIOPMProcessorSpeedChange: c_uint = 1 << 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmovertemp?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmovertemp?language=objc)
 pub const kIOPMOverTemp: c_uint = 1 << 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmclamshellopened?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmclamshellopened?language=objc)
 pub const kIOPMClamshellOpened: c_uint = 1 << 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmdwovertemp?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmdwovertemp?language=objc)
 pub const kIOPMDWOverTemp: c_uint = 1 << 11;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpowerbuttonup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmpowerbuttonup?language=objc)
 pub const kIOPMPowerButtonUp: c_uint = 1 << 12;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpromodeengaged?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmpromodeengaged?language=objc)
 pub const kIOPMProModeEngaged: c_uint = 1 << 13;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpromodedisengaged?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499747-anonymous/kiopmpromodedisengaged?language=objc)
 pub const kIOPMProModeDisengaged: c_uint = 1 << 14;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmnoerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmnoerr?language=objc)
 pub const kIOPMNoErr: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmackimplied?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmackimplied?language=objc)
 pub const kIOPMAckImplied: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmwillacklater?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmwillacklater?language=objc)
 pub const kIOPMWillAckLater: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmbadspecification?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmbadspecification?language=objc)
 pub const kIOPMBadSpecification: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmnosuchstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmnosuchstate?language=objc)
 pub const kIOPMNoSuchState: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmcannotraisepower?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmcannotraisepower?language=objc)
 pub const kIOPMCannotRaisePower: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmparametererror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmparametererror?language=objc)
 pub const kIOPMParameterError: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmnotyetinitialized?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/kiopmnotyetinitialized?language=objc)
 pub const kIOPMNotYetInitialized: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmnoerr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmnoerr?language=objc)
 pub const IOPMNoErr: c_uint = kIOPMNoErr;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmackimplied?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmackimplied?language=objc)
 pub const IOPMAckImplied: c_uint = kIOPMAckImplied;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmwillacklater?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmwillacklater?language=objc)
 pub const IOPMWillAckLater: c_uint = kIOPMWillAckLater;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmbadspecification?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmbadspecification?language=objc)
 pub const IOPMBadSpecification: c_uint = kIOPMBadSpecification;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmnosuchstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmnosuchstate?language=objc)
 pub const IOPMNoSuchState: c_uint = kIOPMNoSuchState;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmcannotraisepower?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmcannotraisepower?language=objc)
 pub const IOPMCannotRaisePower: c_uint = kIOPMCannotRaisePower;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmparametererror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmparametererror?language=objc)
 pub const IOPMParameterError: c_uint = kIOPMParameterError;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmnotyetinitialized?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499915-anonymous/iopmnotyetinitialized?language=objc)
 pub const IOPMNotYetInitialized: c_uint = kIOPMNotYetInitialized;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpslocationleft?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499980-anonymous/kiopmpslocationleft?language=objc)
 pub const kIOPMPSLocationLeft: c_uint = 1001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpslocationright?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499980-anonymous/kiopmpslocationright?language=objc)
 pub const kIOPMPSLocationRight: c_uint = 1002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmundefinedvalue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499953-anonymous/kiopmundefinedvalue?language=objc)
 pub const kIOPMUndefinedValue: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmpoorvalue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499953-anonymous/kiopmpoorvalue?language=objc)
 pub const kIOPMPoorValue: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmfairvalue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499953-anonymous/kiopmfairvalue?language=objc)
 pub const kIOPMFairValue: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmgoodvalue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499953-anonymous/kiopmgoodvalue?language=objc)
 pub const kIOPMGoodValue: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodedisconnected?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodedisconnected?language=objc)
 pub const kIOPSFamilyCodeDisconnected: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodefirewire?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodefirewire?language=objc)
 pub const kIOPSFamilyCodeFirewire: c_int = iokit_family_err!(sub_iokit_firewire, 0);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeusbhost?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbhost?language=objc)
 pub const kIOPSFamilyCodeUSBHost: c_int = iokit_family_err!(sub_iokit_usb, 0);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeusbhostsuspended?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbhostsuspended?language=objc)
 pub const kIOPSFamilyCodeUSBHostSuspended: c_int = iokit_family_err!(sub_iokit_usb, 1);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeusbdevice?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbdevice?language=objc)
 pub const kIOPSFamilyCodeUSBDevice: c_int = iokit_family_err!(sub_iokit_usb, 2);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeusbadapter?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbadapter?language=objc)
 pub const kIOPSFamilyCodeUSBAdapter: c_int = iokit_family_err!(sub_iokit_usb, 3);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeusbchargingportdedicated?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbchargingportdedicated?language=objc)
 pub const kIOPSFamilyCodeUSBChargingPortDedicated: c_int = iokit_family_err!(sub_iokit_usb, 4);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeusbchargingportdownstream?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbchargingportdownstream?language=objc)
 pub const kIOPSFamilyCodeUSBChargingPortDownstream: c_int = iokit_family_err!(sub_iokit_usb, 5);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeusbchargingport?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbchargingport?language=objc)
 pub const kIOPSFamilyCodeUSBChargingPort: c_int = iokit_family_err!(sub_iokit_usb, 6);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeusbunknown?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbunknown?language=objc)
 pub const kIOPSFamilyCodeUSBUnknown: c_int = iokit_family_err!(sub_iokit_usb, 7);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeusbcbrick?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbcbrick?language=objc)
 pub const kIOPSFamilyCodeUSBCBrick: c_int = iokit_family_err!(sub_iokit_usb, 8);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeusbctypec?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbctypec?language=objc)
 pub const kIOPSFamilyCodeUSBCTypeC: c_int = iokit_family_err!(sub_iokit_usb, 9);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeusbcpd?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeusbcpd?language=objc)
 pub const kIOPSFamilyCodeUSBCPD: c_int = iokit_family_err!(sub_iokit_usb, 10);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeac?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeac?language=objc)
 pub const kIOPSFamilyCodeAC: c_int = iokit_family_err!(sub_iokit_pmu, 0);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeexternal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal?language=objc)
 pub const kIOPSFamilyCodeExternal: c_int = iokit_family_err!(sub_iokit_pmu, 1);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeexternal2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal2?language=objc)
 pub const kIOPSFamilyCodeExternal2: c_int = iokit_family_err!(sub_iokit_pmu, 2);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeexternal3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal3?language=objc)
 pub const kIOPSFamilyCodeExternal3: c_int = iokit_family_err!(sub_iokit_pmu, 3);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeexternal4?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal4?language=objc)
 pub const kIOPSFamilyCodeExternal4: c_int = iokit_family_err!(sub_iokit_pmu, 4);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeexternal5?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal5?language=objc)
 pub const kIOPSFamilyCodeExternal5: c_int = iokit_family_err!(sub_iokit_pmu, 5);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeexternal6?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal6?language=objc)
 pub const kIOPSFamilyCodeExternal6: c_int = iokit_family_err!(sub_iokit_pmu, 6);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeexternal7?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal7?language=objc)
 pub const kIOPSFamilyCodeExternal7: c_int = iokit_family_err!(sub_iokit_pmu, 7);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeexternal8?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeexternal8?language=objc)
 pub const kIOPSFamilyCodeExternal8: c_int = iokit_family_err!(sub_iokit_pmu, 8);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsfamilycodeunsupportedregion?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2876283-anonymous/kiopsfamilycodeunsupportedregion?language=objc)
 pub const kIOPSFamilyCodeUnsupportedRegion: c_int = iokit_family_err!(sub_iokit_pmu, 9);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsadaptererrorflagnoerrors?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2947185-anonymous/kiopsadaptererrorflagnoerrors?language=objc)
 pub const kIOPSAdapterErrorFlagNoErrors: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsadaptererrorflaginsufficientavailablepower?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2947185-anonymous/kiopsadaptererrorflaginsufficientavailablepower?language=objc)
 pub const kIOPSAdapterErrorFlagInsufficientAvailablePower: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsadaptererrorflagforeignobjectdetected?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2947185-anonymous/kiopsadaptererrorflagforeignobjectdetected?language=objc)
 pub const kIOPSAdapterErrorFlagForeignObjectDetected: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopsadaptererrorflagdeviceneedstoberepositioned?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2947185-anonymous/kiopsadaptererrorflagdeviceneedstoberepositioned?language=objc)
 pub const kIOPSAdapterErrorFlagDeviceNeedsToBeRepositioned: c_uint = 1 << 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmthermallevelnormal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499874-anonymous/kiopmthermallevelnormal?language=objc)
 pub const kIOPMThermalLevelNormal: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmthermalleveldanger?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499874-anonymous/kiopmthermalleveldanger?language=objc)
 pub const kIOPMThermalLevelDanger: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmthermallevelcritical?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499874-anonymous/kiopmthermallevelcritical?language=objc)
 pub const kIOPMThermalLevelCritical: c_uint = 10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmthermallevelwarning?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499874-anonymous/kiopmthermallevelwarning?language=objc)
 pub const kIOPMThermalLevelWarning: c_uint = 100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmthermalleveltrap?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499874-anonymous/kiopmthermalleveltrap?language=objc)
 pub const kIOPMThermalLevelTrap: c_uint = 110;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmthermallevelunknown?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499874-anonymous/kiopmthermallevelunknown?language=objc)
 pub const kIOPMThermalLevelUnknown: c_uint = 255;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmcalendarstruct?language=objc)
@@ -854,58 +698,58 @@ unsafe impl RefEncode for IOPMCalendarStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmgeneralaggressiveness?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmgeneralaggressiveness?language=objc)
 pub const kPMGeneralAggressiveness: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmminutestodim?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmminutestodim?language=objc)
 pub const kPMMinutesToDim: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmminutestospindown?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmminutestospindown?language=objc)
 pub const kPMMinutesToSpinDown: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmminutestosleep?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmminutestosleep?language=objc)
 pub const kPMMinutesToSleep: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmethernetwakeonlansettings?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmethernetwakeonlansettings?language=objc)
 pub const kPMEthernetWakeOnLANSettings: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmsetprocessorspeed?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmsetprocessorspeed?language=objc)
 pub const kPMSetProcessorSpeed: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmpowersource?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmpowersource?language=objc)
 pub const kPMPowerSource: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmmotionsensor?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmmotionsensor?language=objc)
 pub const kPMMotionSensor: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kpmlastaggressivenesstype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499984-anonymous/kpmlastaggressivenesstype?language=objc)
 pub const kPMLastAggressivenessType: c_uint = 8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopminternalpower?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499583-anonymous/kiopminternalpower?language=objc)
 pub const kIOPMInternalPower: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmexternalpower?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499583-anonymous/kiopmexternalpower?language=objc)
 pub const kIOPMExternalPower: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobatteryinstalled?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499788-anonymous/kiobatteryinstalled?language=objc)
 pub const kIOBatteryInstalled: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobatterycharge?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499788-anonymous/kiobatterycharge?language=objc)
 pub const kIOBatteryCharge: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobatterychargerconnect?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499788-anonymous/kiobatterychargerconnect?language=objc)
 pub const kIOBatteryChargerConnect: c_uint = 1 << 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmacinstalled?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmacinstalled?language=objc)
 pub const kIOPMACInstalled: c_uint = kIOBatteryChargerConnect;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmbatterycharging?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmbatterycharging?language=objc)
 pub const kIOPMBatteryCharging: c_uint = kIOBatteryCharge;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmbatteryinstalled?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmbatteryinstalled?language=objc)
 pub const kIOPMBatteryInstalled: c_uint = kIOBatteryInstalled;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmupsinstalled?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmupsinstalled?language=objc)
 pub const kIOPMUPSInstalled: c_uint = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmbatteryatwarn?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmbatteryatwarn?language=objc)
 pub const kIOPMBatteryAtWarn: c_uint = 1 << 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmbatterydepleted?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmbatterydepleted?language=objc)
 pub const kIOPMBatteryDepleted: c_uint = 1 << 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmacnochargecapability?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmacnochargecapability?language=objc)
 pub const kIOPMACnoChargeCapability: c_uint = 1 << 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmrawlowbattery?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmrawlowbattery?language=objc)
 pub const kIOPMRawLowBattery: c_uint = 1 << 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmforcelowspeed?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmforcelowspeed?language=objc)
 pub const kIOPMForceLowSpeed: c_uint = 1 << 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmclosedclamshell?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmclosedclamshell?language=objc)
 pub const kIOPMClosedClamshell: c_uint = 1 << 9;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmclamshellstateonwake?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499853-anonymous/kiopmclamshellstateonwake?language=objc)
 pub const kIOPMClamshellStateOnWake: c_uint = 1 << 10;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopowerstatechangenotification?language=objc)
@@ -1024,20 +868,19 @@ unsafe impl RefEncode for IOPMSystemCapabilityChangeParameters {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilitywillchange?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499721-iopmsystemcapabilitychangeflags/kiopmsystemcapabilitywillchange?language=objc)
 pub const kIOPMSystemCapabilityWillChange: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilitydidchange?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499721-iopmsystemcapabilitychangeflags/kiopmsystemcapabilitydidchange?language=objc)
 pub const kIOPMSystemCapabilityDidChange: c_uint = 0x02;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilitycpu?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499977-anonymous/kiopmsystemcapabilitycpu?language=objc)
 pub const kIOPMSystemCapabilityCPU: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilitygraphics?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499977-anonymous/kiopmsystemcapabilitygraphics?language=objc)
 pub const kIOPMSystemCapabilityGraphics: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilityaudio?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499977-anonymous/kiopmsystemcapabilityaudio?language=objc)
 pub const kIOPMSystemCapabilityAudio: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilitynetwork?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1499977-anonymous/kiopmsystemcapabilitynetwork?language=objc)
 pub const kIOPMSystemCapabilityNetwork: c_uint = 0x08;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmsystemcapabilityaot?language=objc)
 pub const kIOPMSystemCapabilityAOT: c_uint = 0x10;
 
 /// Finds the Root Power Domain IOService.
@@ -1561,7 +1404,7 @@ pub extern "C-unwind" fn IOPMCopyScheduledPowerEvents() -> Option<CFRetained<CFA
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmassertionid?language=objc)
 pub type IOPMAssertionID = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmnullassertionid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1557135-kiopmnullassertionid/kiopmnullassertionid?language=objc)
 pub const kIOPMNullAssertionID: c_uint = 0;
 
 /// Type for AssertionLevel argument to IOPMAssertionCreate
@@ -1593,11 +1436,11 @@ pub type IOPMAssertionLevel = u32;
 
 /// Level for a disabled assertion, passed as an argument to IOPMAssertionCreate.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmassertionleveloff?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557096-assertion/kiopmassertionleveloff?language=objc)
 pub const kIOPMAssertionLevelOff: c_uint = 0;
 /// Level for an enabled assertion, passed as an argument to IOPMAssertionCreate.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopmassertionlevelon?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/1557096-assertion/kiopmassertionlevelon?language=objc)
 pub const kIOPMAssertionLevelOn: c_uint = 255;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopmuseractivetype?language=objc)
@@ -2335,11 +2178,11 @@ extern "C-unwind" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iosystemloadadvisorylevel?language=objc)
 pub type IOSystemLoadAdvisoryLevel = c_int;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemloadadvisorylevelbad?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1557122-anonymous/kiosystemloadadvisorylevelbad?language=objc)
 pub const kIOSystemLoadAdvisoryLevelBad: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemloadadvisorylevelok?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1557122-anonymous/kiosystemloadadvisorylevelok?language=objc)
 pub const kIOSystemLoadAdvisoryLevelOK: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystemloadadvisorylevelgreat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1557122-anonymous/kiosystemloadadvisorylevelgreat?language=objc)
 pub const kIOSystemLoadAdvisoryLevelGreat: c_uint = 3;
 
 /// Returns a hint about whether now would be a good time to perform time-insensitive

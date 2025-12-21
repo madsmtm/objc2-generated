@@ -19,7 +19,7 @@ extern "C" {
     ///
     /// The notification object is the AVCaptureSession instance that encountered a runtime error. The userInfo dictionary contains an NSError for the key AVCaptureSessionErrorKey.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionruntimeerrornotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/runtimeerrornotification?language=objc)
     pub static AVCaptureSessionRuntimeErrorNotification: &'static NSNotificationName;
 }
 
@@ -39,7 +39,7 @@ extern "C" {
     ///
     /// Clients may observe the AVCaptureSessionDidStartRunningNotification to know when an instance of AVCaptureSession starts running.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessiondidstartrunningnotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/didstartrunningnotification?language=objc)
     pub static AVCaptureSessionDidStartRunningNotification: &'static NSNotificationName;
 }
 
@@ -49,7 +49,7 @@ extern "C" {
     ///
     /// Clients may observe the AVCaptureSessionDidStopRunningNotification to know when an instance of AVCaptureSession stops running. An AVCaptureSession instance may stop running automatically due to external system conditions, such as the device going to sleep, or being locked by a user.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessiondidstoprunningnotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/didstoprunningnotification?language=objc)
     pub static AVCaptureSessionDidStopRunningNotification: &'static NSNotificationName;
 }
 
@@ -61,13 +61,13 @@ extern "C" {
     ///
     /// Beginning in iOS 9.0, the AVCaptureSessionWasInterruptedNotification userInfo dictionary contains an AVCaptureSessionInterruptionReasonKey indicating the reason for the interruption.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessionwasinterruptednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/wasinterruptednotification?language=objc)
     pub static AVCaptureSessionWasInterruptedNotification: &'static NSNotificationName;
 }
 
 /// Constants indicating interruption reason. One of these is returned with the ``AVCaptureSessionWasInterruptedNotification`` (see ``AVCaptureSessionInterruptionReasonKey``).
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionreason?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -129,7 +129,7 @@ extern "C" {
     ///
     /// Clients may observe the AVCaptureSessionInterruptionEndedNotification to know when an instance of AVCaptureSession ceases to be interrupted, for example, when a phone call ends, and hardware resources needed to run the session are again available. When appropriate, the AVCaptureSession instance that was previously stopped in response to an interruption will automatically restart once the interruption ends.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesessioninterruptionendednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcapturesession/interruptionendednotification?language=objc)
     pub static AVCaptureSessionInterruptionEndedNotification: &'static NSNotificationName;
 }
 

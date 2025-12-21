@@ -18,7 +18,6 @@ pub type CGPDFInteger = c_long;
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfreal?language=objc)
 pub type CGPDFReal = CGFloat;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfobject?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct CGPDFObject {

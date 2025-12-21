@@ -23,7 +23,7 @@ use crate::*;
 /// For example, if a user is viewing a Memory in the Photos app and from that chooses the 'Create Project' option, the
 /// creationSource provided in PHProjectInfo will be PHProjectCreationSourceMemory.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectcreationsource?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectinfo/creationsource-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -191,7 +191,7 @@ impl PHProjectInfo {
 /// - PHProjectSectionTypeContent: any section representing general content in a project
 /// - PHProjectSectionTypeAuxiliary: auxiliary content (for example, cover flap in a book)
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsectiontype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectsection/sectiontype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -468,7 +468,7 @@ impl PHProjectElement {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectregionofinterestidentifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojectregionofinterest/identifier-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type PHProjectRegionOfInterestIdentifier = NSString;
 
@@ -666,7 +666,7 @@ impl PHProjectAssetElement {
 
 /// Options for PHProjectTextElementType
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelementtype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phprojecttextelement/elementtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

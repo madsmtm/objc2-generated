@@ -8,7 +8,7 @@ use crate::*;
 
 /// The type of value represented by the service identifier.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialserviceidentifiertype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/ascredentialserviceidentifier/identifiertype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

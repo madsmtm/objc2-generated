@@ -12,45 +12,45 @@ use crate::*;
 pub type NSValueTransformerName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnegatebooleantransformername?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvaluetransformername/negatebooleantransformername?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSNegateBooleanTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisniltransformername?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvaluetransformername/isniltransformername?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIsNilTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsisnotniltransformername?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvaluetransformername/isnotniltransformername?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSIsNotNilTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsunarchivefromdatatransformername?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvaluetransformername/unarchivefromdatatransformername?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nskeyedunarchivefromdatatransformername?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvaluetransformername/keyedunarchivefromdatatransformername?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated]
     pub static NSKeyedUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nssecureunarchivefromdatatransformername?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvaluetransformername/secureunarchivefromdatatransformername?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSSecureUnarchiveFromDataTransformerName: &'static NSValueTransformerName;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsvaluetransformer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/valuetransformer?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSValueTransformer;

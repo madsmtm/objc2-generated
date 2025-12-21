@@ -12,7 +12,7 @@ use crate::*;
 ///
 /// only from the main document domain
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookieacceptpolicy?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookie/acceptpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -41,7 +41,7 @@ extern_class!(
     /// set of cookies.  It also has convenience methods to parse and
     /// generate cookie-related HTTP header fields.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiestorage?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpcookiestorage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHTTPCookieStorage;
@@ -254,7 +254,7 @@ extern "C" {
     /// distributed notification center whenever the accept cookies
     /// preference is changed
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiemanageracceptpolicychangednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nshttpcookiemanageracceptpolicychanged?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     #[deprecated = "Notification is never posted"]
     pub static NSHTTPCookieManagerAcceptPolicyChangedNotification: &'static NSNotificationName;
@@ -263,7 +263,7 @@ extern "C" {
 extern "C" {
     /// Notification sent when the set of cookies changes
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpcookiemanagercookieschangednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nshttpcookiemanagercookieschanged?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSHTTPCookieManagerCookiesChangedNotification: &'static NSNotificationName;
 }

@@ -24,7 +24,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_api_version?language=objc)
 pub const DISPATCH_API_VERSION: c_uint = 20181008;
 impl DispatchTime {
     /// Create a dispatch_time_t relative to the current value of the default or
@@ -604,7 +603,6 @@ impl DispatchQueue {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_main_q?language=objc)
     pub static _dispatch_main_q: DispatchQueue;
 }
 
@@ -658,7 +656,6 @@ pub extern "C" fn dispatch_get_global_queue(
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_queue_attr_concurrent?language=objc)
     pub static _dispatch_queue_attr_concurrent: DispatchQueueAttr;
 }
 
@@ -724,7 +721,7 @@ impl DispatchQueueAttr {
 /// autorelease pool around the execution of a block that is submitted to it
 /// asynchronously. This is the behavior of the global concurrent queues.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchautoreleasefrequency?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_autorelease_frequency_t?language=objc)
 #[doc(alias = "dispatch_autorelease_frequency_t")]
 // NS_ENUM
 #[repr(transparent)]
@@ -2413,62 +2410,50 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_data_add?language=objc)
     pub static _dispatch_source_type_data_add: dispatch_source_type_s;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_data_or?language=objc)
     pub static _dispatch_source_type_data_or: dispatch_source_type_s;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_data_replace?language=objc)
     pub static _dispatch_source_type_data_replace: dispatch_source_type_s;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_mach_send?language=objc)
     pub static _dispatch_source_type_mach_send: dispatch_source_type_s;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_mach_recv?language=objc)
     pub static _dispatch_source_type_mach_recv: dispatch_source_type_s;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_memorypressure?language=objc)
     pub static _dispatch_source_type_memorypressure: dispatch_source_type_s;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_proc?language=objc)
     pub static _dispatch_source_type_proc: dispatch_source_type_s;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_read?language=objc)
     pub static _dispatch_source_type_read: dispatch_source_type_s;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_signal?language=objc)
     pub static _dispatch_source_type_signal: dispatch_source_type_s;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_timer?language=objc)
     pub static _dispatch_source_type_timer: dispatch_source_type_s;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_vnode?language=objc)
     pub static _dispatch_source_type_vnode: dispatch_source_type_s;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_write?language=objc)
     pub static _dispatch_source_type_write: dispatch_source_type_s;
 }
 
@@ -3227,18 +3212,15 @@ impl DispatchOnce {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_data_empty?language=objc)
     pub static _dispatch_data_empty: DispatchData;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_data_destructor_free?language=objc)
     #[cfg(feature = "block2")]
     pub static _dispatch_data_destructor_free: dispatch_block_t;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_data_destructor_munmap?language=objc)
     #[cfg(feature = "block2")]
     pub static _dispatch_data_destructor_munmap: dispatch_block_t;
 }

@@ -35,7 +35,6 @@ impl MTLPackedFloatQuaternion {
     // TODO: pub fn MTLPackedFloatQuaternionMake(x: c_float,y: c_float,z: c_float,w: c_float,) -> MTLPackedFloatQuaternion;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpackedfloat4x3?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLPackedFloat4x3 {
@@ -52,8 +51,6 @@ unsafe impl RefEncode for MTLPackedFloat4x3 {
 }
 
 /// An axis aligned bounding box with a min and max point
-///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaxisalignedboundingbox?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MTLAxisAlignedBoundingBox {

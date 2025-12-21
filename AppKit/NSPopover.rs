@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverappearance?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/appearance-swift.enum?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -32,7 +32,7 @@ unsafe impl RefEncode for NSPopoverAppearance {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverbehavior?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/behavior-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -259,41 +259,41 @@ impl NSPopover {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverclosereasonkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/closereasonuserinfokey?language=objc)
     pub static NSPopoverCloseReasonKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverclosereasonvalue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/closereason?language=objc)
 // NS_TYPED_ENUM
 pub type NSPopoverCloseReasonValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverclosereasonstandard?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/closereason/standard?language=objc)
     pub static NSPopoverCloseReasonStandard: &'static NSPopoverCloseReasonValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverclosereasondetachtowindow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/closereason/detachtowindow?language=objc)
     pub static NSPopoverCloseReasonDetachToWindow: &'static NSPopoverCloseReasonValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverwillshownotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/willshownotification?language=objc)
     pub static NSPopoverWillShowNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverdidshownotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/didshownotification?language=objc)
     pub static NSPopoverDidShowNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverwillclosenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/willclosenotification?language=objc)
     pub static NSPopoverWillCloseNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopoverdidclosenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopover/didclosenotification?language=objc)
     pub static NSPopoverDidCloseNotification: &'static NSNotificationName;
 }
 

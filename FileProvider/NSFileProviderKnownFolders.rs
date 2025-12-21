@@ -10,7 +10,7 @@ use crate::*;
 extern_class!(
     /// Specify the location of a known folder in the replicated tree.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocation?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/location?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileProviderKnownFolderLocation;

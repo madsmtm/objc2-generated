@@ -9,10 +9,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewautosavename?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview/autosavename-swift.typealias?language=objc)
 pub type NSSplitViewAutosaveName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewdividerstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview/dividerstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -411,12 +411,12 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewwillresizesubviewsnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview/willresizesubviewsnotification?language=objc)
     pub static NSSplitViewWillResizeSubviewsNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitviewdidresizesubviewsnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssplitview/didresizesubviewsnotification?language=objc)
     pub static NSSplitViewDidResizeSubviewsNotification: &'static NSNotificationName;
 }
 

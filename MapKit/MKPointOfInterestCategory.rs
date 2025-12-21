@@ -9,369 +9,369 @@ use crate::*;
 pub type MKPointOfInterestCategory = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryanimalservice?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/animalservice?language=objc)
     pub static MKPointOfInterestCategoryAnimalService: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryairport?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/airport?language=objc)
     pub static MKPointOfInterestCategoryAirport: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryamusementpark?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/amusementpark?language=objc)
     pub static MKPointOfInterestCategoryAmusementPark: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryaquarium?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/aquarium?language=objc)
     pub static MKPointOfInterestCategoryAquarium: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryatm?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/atm?language=objc)
     pub static MKPointOfInterestCategoryATM: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryautomotiverepair?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/automotiverepair?language=objc)
     pub static MKPointOfInterestCategoryAutomotiveRepair:
         Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorybakery?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/bakery?language=objc)
     pub static MKPointOfInterestCategoryBakery: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorybank?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/bank?language=objc)
     pub static MKPointOfInterestCategoryBank: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorybaseball?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/baseball?language=objc)
     pub static MKPointOfInterestCategoryBaseball: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorybasketball?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/basketball?language=objc)
     pub static MKPointOfInterestCategoryBasketball: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorybeach?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/beach?language=objc)
     pub static MKPointOfInterestCategoryBeach: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorybeauty?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/beauty?language=objc)
     pub static MKPointOfInterestCategoryBeauty: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorybowling?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/bowling?language=objc)
     pub static MKPointOfInterestCategoryBowling: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorybrewery?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/brewery?language=objc)
     pub static MKPointOfInterestCategoryBrewery: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorycafe?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/cafe?language=objc)
     pub static MKPointOfInterestCategoryCafe: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorycampground?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/campground?language=objc)
     pub static MKPointOfInterestCategoryCampground: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorycarrental?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/carrental?language=objc)
     pub static MKPointOfInterestCategoryCarRental: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorycastle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/castle?language=objc)
     pub static MKPointOfInterestCategoryCastle: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryconventioncenter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/conventioncenter?language=objc)
     pub static MKPointOfInterestCategoryConventionCenter:
         Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorydistillery?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/distillery?language=objc)
     pub static MKPointOfInterestCategoryDistillery: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryevcharger?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/evcharger?language=objc)
     pub static MKPointOfInterestCategoryEVCharger: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryfairground?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/fairground?language=objc)
     pub static MKPointOfInterestCategoryFairground: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryfirestation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/firestation?language=objc)
     pub static MKPointOfInterestCategoryFireStation: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryfishing?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/fishing?language=objc)
     pub static MKPointOfInterestCategoryFishing: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryfitnesscenter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/fitnesscenter?language=objc)
     pub static MKPointOfInterestCategoryFitnessCenter: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryfoodmarket?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/foodmarket?language=objc)
     pub static MKPointOfInterestCategoryFoodMarket: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryfortress?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/fortress?language=objc)
     pub static MKPointOfInterestCategoryFortress: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorygasstation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/gasstation?language=objc)
     pub static MKPointOfInterestCategoryGasStation: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorygolf?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/golf?language=objc)
     pub static MKPointOfInterestCategoryGolf: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorygokart?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/gokart?language=objc)
     pub static MKPointOfInterestCategoryGoKart: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryhiking?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/hiking?language=objc)
     pub static MKPointOfInterestCategoryHiking: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryhospital?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/hospital?language=objc)
     pub static MKPointOfInterestCategoryHospital: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryhotel?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/hotel?language=objc)
     pub static MKPointOfInterestCategoryHotel: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorykayaking?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/kayaking?language=objc)
     pub static MKPointOfInterestCategoryKayaking: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorylandmark?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/landmark?language=objc)
     pub static MKPointOfInterestCategoryLandmark: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorylaundry?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/laundry?language=objc)
     pub static MKPointOfInterestCategoryLaundry: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorylibrary?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/library?language=objc)
     pub static MKPointOfInterestCategoryLibrary: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorymailbox?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/mailbox?language=objc)
     pub static MKPointOfInterestCategoryMailbox: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorymarina?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/marina?language=objc)
     pub static MKPointOfInterestCategoryMarina: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryminigolf?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/minigolf?language=objc)
     pub static MKPointOfInterestCategoryMiniGolf: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorymovietheater?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/movietheater?language=objc)
     pub static MKPointOfInterestCategoryMovieTheater: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorymuseum?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/museum?language=objc)
     pub static MKPointOfInterestCategoryMuseum: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorymusicvenue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/musicvenue?language=objc)
     pub static MKPointOfInterestCategoryMusicVenue: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorynationalmonument?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/nationalmonument?language=objc)
     pub static MKPointOfInterestCategoryNationalMonument:
         Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorynationalpark?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/nationalpark?language=objc)
     pub static MKPointOfInterestCategoryNationalPark: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorynightlife?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/nightlife?language=objc)
     pub static MKPointOfInterestCategoryNightlife: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorypark?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/park?language=objc)
     pub static MKPointOfInterestCategoryPark: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryparking?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/parking?language=objc)
     pub static MKPointOfInterestCategoryParking: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorypharmacy?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/pharmacy?language=objc)
     pub static MKPointOfInterestCategoryPharmacy: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryplanetarium?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/planetarium?language=objc)
     pub static MKPointOfInterestCategoryPlanetarium: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorypolice?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/police?language=objc)
     pub static MKPointOfInterestCategoryPolice: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorypostoffice?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/postoffice?language=objc)
     pub static MKPointOfInterestCategoryPostOffice: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorypublictransport?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/publictransport?language=objc)
     pub static MKPointOfInterestCategoryPublicTransport: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryrestaurant?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/restaurant?language=objc)
     pub static MKPointOfInterestCategoryRestaurant: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryrestroom?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/restroom?language=objc)
     pub static MKPointOfInterestCategoryRestroom: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryrockclimbing?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/rockclimbing?language=objc)
     pub static MKPointOfInterestCategoryRockClimbing: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryrvpark?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/rvpark?language=objc)
     pub static MKPointOfInterestCategoryRVPark: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryschool?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/school?language=objc)
     pub static MKPointOfInterestCategorySchool: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryskatepark?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/skatepark?language=objc)
     pub static MKPointOfInterestCategorySkatePark: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryskating?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/skating?language=objc)
     pub static MKPointOfInterestCategorySkating: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryskiing?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/skiing?language=objc)
     pub static MKPointOfInterestCategorySkiing: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorysoccer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/soccer?language=objc)
     pub static MKPointOfInterestCategorySoccer: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryspa?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/spa?language=objc)
     pub static MKPointOfInterestCategorySpa: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorystadium?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/stadium?language=objc)
     pub static MKPointOfInterestCategoryStadium: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorystore?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/store?language=objc)
     pub static MKPointOfInterestCategoryStore: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorysurfing?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/surfing?language=objc)
     pub static MKPointOfInterestCategorySurfing: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryswimming?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/swimming?language=objc)
     pub static MKPointOfInterestCategorySwimming: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorytennis?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/tennis?language=objc)
     pub static MKPointOfInterestCategoryTennis: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorytheater?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/theater?language=objc)
     pub static MKPointOfInterestCategoryTheater: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryuniversity?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/university?language=objc)
     pub static MKPointOfInterestCategoryUniversity: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategorywinery?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/winery?language=objc)
     pub static MKPointOfInterestCategoryWinery: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryvolleyball?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/volleyball?language=objc)
     pub static MKPointOfInterestCategoryVolleyball: Option<&'static MKPointOfInterestCategory>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategoryzoo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkpointofinterestcategory/zoo?language=objc)
     pub static MKPointOfInterestCategoryZoo: Option<&'static MKPointOfInterestCategory>;
 }

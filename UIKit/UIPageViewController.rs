@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontrollernavigationorientation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/navigationorientation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -27,7 +27,7 @@ unsafe impl RefEncode for UIPageViewControllerNavigationOrientation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontrollerspinelocation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/spinelocation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -51,7 +51,7 @@ unsafe impl RefEncode for UIPageViewControllerSpineLocation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontrollernavigationdirection?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/navigationdirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -71,7 +71,7 @@ unsafe impl RefEncode for UIPageViewControllerNavigationDirection {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontrollertransitionstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/transitionstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -91,17 +91,17 @@ unsafe impl RefEncode for UIPageViewControllerTransitionStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontrolleroptionskey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/optionskey?language=objc)
 // NS_TYPED_ENUM
 pub type UIPageViewControllerOptionsKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontrolleroptionspinelocationkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/optionskey/spinelocation?language=objc)
     pub static UIPageViewControllerOptionSpineLocationKey: &'static UIPageViewControllerOptionsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontrolleroptioninterpagespacingkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipageviewcontroller/optionskey/interpagespacing?language=objc)
     pub static UIPageViewControllerOptionInterPageSpacingKey:
         &'static UIPageViewControllerOptionsKey;
 }

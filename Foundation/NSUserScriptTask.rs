@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserscripttaskcompletionhandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserscripttask/completionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "block2"))]
 pub type NSUserScriptTaskCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
@@ -69,7 +69,7 @@ impl DefaultRetained for NSUserScriptTask {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserunixtaskcompletionhandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserunixtask/completionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "block2"))]
 pub type NSUserUnixTaskCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
@@ -171,7 +171,7 @@ impl DefaultRetained for NSUserUnixTask {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserapplescripttaskcompletionhandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserapplescripttask/completionhandler?language=objc)
 #[cfg(all(
     feature = "NSAppleEventDescriptor",
     feature = "NSError",
@@ -244,7 +244,7 @@ impl DefaultRetained for NSUserAppleScriptTask {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserautomatortaskcompletionhandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsuserautomatortask/completionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "block2"))]
 pub type NSUserAutomatorTaskCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut AnyObject, *mut NSError)>;

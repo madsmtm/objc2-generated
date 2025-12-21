@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_state_funcs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_state_funcs-c.struct?language=objc)
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -105,7 +105,7 @@ unsafe impl RefEncode for cssm_state_funcs {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_state_funcs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_state_funcs-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(
     feature = "SecAsn1Types",
@@ -127,7 +127,7 @@ pub type CSSM_STATE_FUNCS = cssm_state_funcs;
 ))]
 pub type CSSM_STATE_FUNCS_PTR = *mut cssm_state_funcs;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_manager_registration_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_manager_registration_info-c.struct?language=objc)
 #[cfg(all(
     feature = "SecAsn1Types",
     feature = "cssmconfig",
@@ -182,7 +182,7 @@ unsafe impl RefEncode for cssm_manager_registration_info {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_manager_registration_info?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_manager_registration_info-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(
     feature = "SecAsn1Types",

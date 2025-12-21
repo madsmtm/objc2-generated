@@ -197,7 +197,7 @@ unsafe impl ConcreteType for CFWriteStream {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertydatawritten?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreampropertykey/datawritten?language=objc)
     pub static kCFStreamPropertyDataWritten: Option<&'static CFStreamPropertyKey>;
 }
 
@@ -322,27 +322,27 @@ extern "C-unwind" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertyappendtofile?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreampropertykey/appendtofile?language=objc)
     pub static kCFStreamPropertyAppendToFile: Option<&'static CFStreamPropertyKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertyfilecurrentoffset?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreampropertykey/filecurrentoffset?language=objc)
     pub static kCFStreamPropertyFileCurrentOffset: Option<&'static CFStreamPropertyKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocketnativehandle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreampropertykey/socketnativehandle?language=objc)
     pub static kCFStreamPropertySocketNativeHandle: Option<&'static CFStreamPropertyKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocketremotehostname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreampropertykey/socketremotehostname?language=objc)
     pub static kCFStreamPropertySocketRemoteHostName: Option<&'static CFStreamPropertyKey>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/kcfstreampropertysocketremoteportnumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/corefoundation/cfstreampropertykey/socketremoteportnumber?language=objc)
     pub static kCFStreamPropertySocketRemotePortNumber: Option<&'static CFStreamPropertyKey>;
 }
 

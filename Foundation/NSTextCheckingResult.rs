@@ -5,7 +5,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -220,67 +220,67 @@ impl NSTextCheckingResult {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingnamekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/name?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingNameKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingjobtitlekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/jobtitle?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingJobTitleKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingorganizationkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/organization?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingOrganizationKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingstreetkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/street?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingStreetKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingcitykey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/city?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingCityKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingstatekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/state?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingStateKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingzipkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/zip?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingZIPKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingcountrykey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/country?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingCountryKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingphonekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/phone?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingPhoneKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingairlinekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/airline?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingAirlineKey: &'static NSTextCheckingKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingflightkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nstextcheckingkey/flight?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSTextCheckingFlightKey: &'static NSTextCheckingKey;
 }

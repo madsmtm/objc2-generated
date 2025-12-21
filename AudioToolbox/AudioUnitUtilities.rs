@@ -53,7 +53,6 @@ unsafe impl RefEncode for AudioUnitEventType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aulistenerbase?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct AUListenerBase {

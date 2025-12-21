@@ -12,7 +12,7 @@ extern "C" {
     /// For supported behaviour, this array should have a maximum size of one less than the amount of possible Share Sheet modes
     /// Currently at most one object should be provided
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakeycollaborationmoderestrictions?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityitemsconfigurationmetadatakey/collaborationmoderestrictions?language=objc)
     #[cfg(feature = "UIActivityItemsConfigurationReading")]
     pub static UIActivityItemsConfigurationMetadataKeyCollaborationModeRestrictions:
         &'static UIActivityItemsConfigurationMetadataKey;
@@ -47,7 +47,7 @@ extern_class!(
     /// Optionally, an extra alert button can be provided for a "recovery suggestion". This can give a user a way to fix whatever is causing this type of sharing to be disabled
     /// If no reason is provided, the corresponding mode will not show up as an option
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivitycollaborationmoderestriction?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller/collaborationmoderestriction?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIActivityCollaborationModeRestriction;

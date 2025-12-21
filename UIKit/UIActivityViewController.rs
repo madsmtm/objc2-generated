@@ -29,12 +29,12 @@ unsafe impl RefEncode for UIActivitySectionTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontrollercompletionhandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller/completionhandler-swift.typealias?language=objc)
 #[cfg(all(feature = "UIActivity", feature = "block2"))]
 pub type UIActivityViewControllerCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut UIActivityType, Bool)>;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontrollercompletionwithitemshandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller/completionwithitemshandler-swift.typealias?language=objc)
 #[cfg(all(feature = "UIActivity", feature = "block2"))]
 pub type UIActivityViewControllerCompletionWithItemsHandler =
     *mut block2::DynBlock<dyn Fn(*mut UIActivityType, Bool, *mut NSArray, *mut NSError)>;

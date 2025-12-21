@@ -131,7 +131,7 @@ extern "C" {
 extern_class!(
     /// This class represents a protection space requiring authentication.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlprotectionspace?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlprotectionspace?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLProtectionSpace;

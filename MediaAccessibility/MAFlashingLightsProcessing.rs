@@ -57,7 +57,7 @@ impl MAFlashingLightsProcessorResult {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/maflashinglightsprocessoroptionkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/mediaaccessibility/maflashinglightsprocessor/optionkey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "objc2-foundation")]
 pub type MAFlashingLightsProcessorOptionKey = NSString;

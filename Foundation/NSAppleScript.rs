@@ -6,31 +6,31 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrormessage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescript/errormessage?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorMessage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrornumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescript/errornumber?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorNumber: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrorappname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescript/errorappname?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorAppName: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrorbriefmessage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescript/errorbriefmessage?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorBriefMessage: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescripterrorrange?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsapplescript/errorrange?language=objc)
     #[cfg(feature = "NSString")]
     pub static NSAppleScriptErrorRange: &'static NSString;
 }

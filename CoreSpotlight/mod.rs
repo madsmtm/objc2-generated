@@ -149,7 +149,6 @@ use core::ffi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corespotlight/corespotlightapiversion?language=objc)
 pub const CoreSpotlightAPIVersion: c_uint = 40;
 extern "C" {
     /// Project version number for CoreSpotlight.

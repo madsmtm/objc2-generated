@@ -10,27 +10,27 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontextfromviewcontrollerkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontextviewcontrollerkey/from?language=objc)
     #[cfg(feature = "UIViewControllerTransitionCoordinator")]
     pub static UITransitionContextFromViewControllerKey:
         &'static UITransitionContextViewControllerKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontexttoviewcontrollerkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontextviewcontrollerkey/to?language=objc)
     #[cfg(feature = "UIViewControllerTransitionCoordinator")]
     pub static UITransitionContextToViewControllerKey:
         &'static UITransitionContextViewControllerKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontextfromviewkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontextviewkey/from?language=objc)
     #[cfg(feature = "UIViewControllerTransitionCoordinator")]
     pub static UITransitionContextFromViewKey: &'static UITransitionContextViewKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontexttoviewkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitransitioncontextviewkey/to?language=objc)
     #[cfg(feature = "UIViewControllerTransitionCoordinator")]
     pub static UITransitionContextToViewKey: &'static UITransitionContextViewKey;
 }

@@ -10,7 +10,7 @@ use objc2_foundation::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshareablepassmetadatapreview?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkshareablepassmetadata/preview-swift.class?language=objc)
     #[unsafe(super(PKAddPassMetadataPreview, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "PKAddSecureElementPassConfiguration")]

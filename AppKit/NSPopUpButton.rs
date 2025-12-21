@@ -610,6 +610,6 @@ impl NSPopUpButton {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbuttonwillpopupnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupbutton/willpopupnotification?language=objc)
     pub static NSPopUpButtonWillPopUpNotification: &'static NSNotificationName;
 }

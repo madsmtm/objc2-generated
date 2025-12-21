@@ -12,14 +12,14 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnviewoption?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnview/option?language=objc)
 // NS_TYPED_ENUM
 pub type SCNViewOption = NSString;
 
 extern "C" {
     /// Pass it as the key in the options dictionary given to initWithFrame:options:. The value is a NSNumber wrapping a SCNRenderingAPI. You can also select the preferred rendering API directly from the SCNView inspector in InterfaceBuilder.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnpreferredrenderingapikey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnview/option/preferredrenderingapi?language=objc)
     pub static SCNPreferredRenderingAPIKey: &'static SCNViewOption;
 }
 
@@ -28,14 +28,14 @@ extern "C" {
     /// <MTLDevice
     /// >.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnpreferreddevicekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnview/option/preferreddevice?language=objc)
     pub static SCNPreferredDeviceKey: &'static SCNViewOption;
 }
 
 extern "C" {
     /// The value is a NSNumber wrapping a BOOL. Defaults to NO.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnpreferlowpowerdevicekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnview/option/preferlowpowerdevice?language=objc)
     pub static SCNPreferLowPowerDeviceKey: &'static SCNViewOption;
 }
 

@@ -149,7 +149,7 @@ impl BEScrollView {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollviewscrollupdatephase?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/browserenginekit/bescrollviewscrollupdate/phase-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

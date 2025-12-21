@@ -108,7 +108,7 @@ extern "C" {
     pub static GKVoiceChatServiceErrorDomain: Option<&'static NSString>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkvoicechatserviceerror-swift.struct/code?language=objc)
 // NS_ENUM
 #[deprecated = "No longer supported"]
 #[repr(transparent)]

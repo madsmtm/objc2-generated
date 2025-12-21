@@ -8,7 +8,7 @@ use crate::*;
 
 /// Depression risk level determined by PHQ-9 assessment.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessmentrisk?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessment/risk-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for HKPHQ9AssessmentRisk {
 
 /// Answer to question on PHQ-9 assessment.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessmentanswer?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkphq9assessment/answer?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -684,7 +684,7 @@ extern "C" {
     /// |
     /// | _geometry.position.xyz += _geometry.normal * (Amplitude * _geometry.position.y * _geometry.position.x) * sin(scn_frame.time);
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypointgeometry?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/geometry?language=objc)
     pub static SCNShaderModifierEntryPointGeometry: &'static SCNShaderModifierEntryPoint;
 }
 
@@ -768,7 +768,7 @@ extern "C" {
     /// | f1 = f1 * f1 * 2.0 * (3. * 2. * f1);
     /// | _surface.diffuse = mix(float4(1.0), float4(0.0), f1);
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypointsurface?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/surface?language=objc)
     pub static SCNShaderModifierEntryPointSurface: &'static SCNShaderModifierEntryPoint;
 }
 
@@ -821,7 +821,7 @@ extern "C" {
     /// | dotProduct = max(0.0, pow(max(0.0, dot(_surface.normal, halfVector)), _surface.shininess));
     /// | _lightingContribution.specular += (dotProduct * _light.intensity.rgb);
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypointlightingmodel?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/lightingmodel?language=objc)
     pub static SCNShaderModifierEntryPointLightingModel: &'static SCNShaderModifierEntryPoint;
 }
 
@@ -859,6 +859,6 @@ extern "C" {
     /// Metal Shading Language
     /// | _output.color.rgb = 1.0 - _output.color.rgb;
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypointfragment?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnshadermodifierentrypoint/fragment?language=objc)
     pub static SCNShaderModifierEntryPointFragment: &'static SCNShaderModifierEntryPoint;
 }

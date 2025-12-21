@@ -157,7 +157,7 @@ impl NSFileProviderExtension {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileproviderdomainremovalmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/domainremovalmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -807,7 +807,7 @@ impl NSFileProviderManager {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanagerdisconnectionoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/fileprovider/nsfileprovidermanager/disconnectionoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

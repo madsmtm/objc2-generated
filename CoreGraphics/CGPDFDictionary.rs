@@ -9,7 +9,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionary?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct CGPDFDictionary {

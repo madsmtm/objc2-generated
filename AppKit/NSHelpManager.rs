@@ -7,13 +7,13 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpbookname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpmanager/bookname?language=objc)
 pub type NSHelpBookName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpanchorname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpmanager/anchorname?language=objc)
 pub type NSHelpAnchorName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpmanagercontexthelpkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpmanager/contexthelpkey?language=objc)
 pub type NSHelpManagerContextHelpKey = NSString;
 
 extern_class!(
@@ -114,12 +114,12 @@ impl NSHelpManager {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontexthelpmodedidactivatenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpmanager/contexthelpmodedidactivatenotification?language=objc)
     pub static NSContextHelpModeDidActivateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscontexthelpmodediddeactivatenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nshelpmanager/contexthelpmodediddeactivatenotification?language=objc)
     pub static NSContextHelpModeDidDeactivateNotification: &'static NSNotificationName;
 }
 

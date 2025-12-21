@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsattachmentcharacter?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextattachment/character?language=objc)
 pub const NSAttachmentCharacter: c_uint = 0xFFFC;
 
 extern_protocol!(

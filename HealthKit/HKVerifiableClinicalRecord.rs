@@ -13,7 +13,7 @@ pub type HKVerifiableClinicalRecordSourceType = NSString;
 extern "C" {
     /// Represents a SMART Health Card source type for a verifiable record.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsourcetypesmarthealthcard?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsourcetype/smarthealthcard?language=objc)
     pub static HKVerifiableClinicalRecordSourceTypeSMARTHealthCard:
         &'static HKVerifiableClinicalRecordSourceType;
 }
@@ -21,7 +21,7 @@ extern "C" {
 extern "C" {
     /// Represents a EU Digital COVID Certificate source type for a verifiable record.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsourcetypeeudigitalcovidcertificate?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsourcetype/eudigitalcovidcertificate?language=objc)
     pub static HKVerifiableClinicalRecordSourceTypeEUDigitalCOVIDCertificate:
         &'static HKVerifiableClinicalRecordSourceType;
 }
@@ -33,7 +33,7 @@ pub type HKVerifiableClinicalRecordCredentialType = NSString;
 extern "C" {
     /// Represents the COVID-19 credential type for a verifiable record.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtypecovid19?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtype/covid19?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeCOVID19:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
@@ -41,7 +41,7 @@ extern "C" {
 extern "C" {
     /// Represents the immunization credential type for a verifiable record.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtypeimmunization?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtype/immunization?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeImmunization:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
@@ -49,7 +49,7 @@ extern "C" {
 extern "C" {
     /// Represents the laboratory credential type for a verifiable record.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtypelaboratory?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtype/laboratory?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeLaboratory:
         &'static HKVerifiableClinicalRecordCredentialType;
 }
@@ -57,7 +57,7 @@ extern "C" {
 extern "C" {
     /// Represents the recovery credential type for a verifiable record.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtyperecovery?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordcredentialtype/recovery?language=objc)
     pub static HKVerifiableClinicalRecordCredentialTypeRecovery:
         &'static HKVerifiableClinicalRecordCredentialType;
 }

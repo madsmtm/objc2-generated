@@ -12,7 +12,7 @@ use crate::*;
 /// This type is an option set in Swift.
 /// In Objective-C, you use the cases of this enumeration to create a bit field.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemattribute?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attribute?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -86,7 +86,7 @@ unsafe impl RefEncode for FSItemAttribute {
 
 /// An enumeration of item types, such as file, directory, or symbolic link.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemtype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/itemtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -131,7 +131,7 @@ unsafe impl RefEncode for FSItemType {
 /// Use this type when packing items for an enumeration in ``FSDirectoryEntryPacker/packEntry(name:itemType:itemID:nextCookie:attributes:)``.
 /// Either provide a unique identifier like an inode number, or one of the special enumeration cases this type defines, like ``FSItem/Identifier/rootDirectory``.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemid?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/identifier?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -206,7 +206,7 @@ impl FSItem {
 extern_class!(
     /// Attributes of an item, such as size, creation and modification times, and user and group identifiers.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemattributes?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/attributes?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSItemAttributes;
@@ -389,7 +389,7 @@ extern_class!(
     /// FSKit calls the ``wasAttributeConsumed(_:)`` method to determine whether the file system successfully used a given attribute.
     /// Only set the attributes that your file system supports.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemsetattributesrequest?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/setattributesrequest?language=objc)
     #[unsafe(super(FSItemAttributes, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSItemSetAttributesRequest;
@@ -450,7 +450,7 @@ extern_class!(
     ///
     /// Methods that retrieve attributes use this type and inspect the ``wantedAttributes`` property to determine which attributes to provide. FSKit calls the ``isAttributeWanted(_:)`` method to determine whether the request requires a given attribute.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemgetattributesrequest?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitem/getattributesrequest?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSItemGetAttributesRequest;

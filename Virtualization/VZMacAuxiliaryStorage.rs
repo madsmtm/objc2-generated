@@ -8,7 +8,7 @@ use crate::*;
 
 /// Options when creating a new auxiliary storage.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacauxiliarystorageinitializationoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/virtualization/vzmacauxiliarystorage/initializationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

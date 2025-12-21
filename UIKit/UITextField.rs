@@ -12,7 +12,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextborderstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/borderstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -36,7 +36,7 @@ unsafe impl RefEncode for UITextBorderStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfieldviewmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/viewmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -60,7 +60,7 @@ unsafe impl RefEncode for UITextFieldViewMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfielddidendeditingreason?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/didendeditingreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -910,21 +910,21 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfieldtextdidbegineditingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/textdidbegineditingnotification?language=objc)
     pub static UITextFieldTextDidBeginEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfieldtextdidendeditingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/textdidendeditingnotification?language=objc)
     pub static UITextFieldTextDidEndEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfieldtextdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/textdidchangenotification?language=objc)
     pub static UITextFieldTextDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfielddidendeditingreasonkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextfield/didendeditingreasonuserinfokey?language=objc)
     pub static UITextFieldDidEndEditingReasonKey: &'static NSString;
 }

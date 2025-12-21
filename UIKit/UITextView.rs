@@ -498,7 +498,7 @@ extern_protocol!(
 
 /// The type of border around the text view.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextviewborderstyle?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextview/borderstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1192,16 +1192,16 @@ impl UITextView {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextviewtextdidbegineditingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextview/textdidbegineditingnotification?language=objc)
     pub static UITextViewTextDidBeginEditingNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextviewtextdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextview/textdidchangenotification?language=objc)
     pub static UITextViewTextDidChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextviewtextdidendeditingnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextview/textdidendeditingnotification?language=objc)
     pub static UITextViewTextDidEndEditingNotification: &'static NSNotificationName;
 }

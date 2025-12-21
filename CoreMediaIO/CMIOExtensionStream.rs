@@ -15,7 +15,7 @@ use crate::*;
 ///
 /// Indicates that the stream is a sink; i.e., consumes sample buffers for playback.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamdirection?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/direction-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -43,7 +43,7 @@ unsafe impl RefEncode for CMIOExtensionStreamDirection {
 ///
 /// Indicates that the stream's clock is specific to the device hosting the stream; this clock type cannot be set directly by the extension, but instead is set automatically when a  CMIOExtensionStreamCustomClockConfiguration is used when creating a CMIOExtensionStream.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamclocktype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/clocktype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -75,7 +75,7 @@ unsafe impl RefEncode for CMIOExtensionStreamClockType {
 ///
 /// Indicates that there is a stream discontinuity of type dropped sample.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstreamdiscontinuityflags?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioextensionstream/discontinuityflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

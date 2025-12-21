@@ -13,28 +13,28 @@ use crate::*;
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UILayoutPriority = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutpriorityrequired?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutpriority/required?language=objc)
 pub static UILayoutPriorityRequired: UILayoutPriority = 1000 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutprioritydefaulthigh?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutpriority/defaulthigh?language=objc)
 pub static UILayoutPriorityDefaultHigh: UILayoutPriority = 750 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutprioritydragthatcanresizescene?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutpriority/dragthatcanresizescene?language=objc)
 pub static UILayoutPriorityDragThatCanResizeScene: UILayoutPriority = 510 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutpriorityscenesizestayput?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutpriority/scenesizestayput?language=objc)
 pub static UILayoutPrioritySceneSizeStayPut: UILayoutPriority = 500 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutprioritydragthatcannotresizescene?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutpriority/dragthatcannotresizescene?language=objc)
 pub static UILayoutPriorityDragThatCannotResizeScene: UILayoutPriority = 490 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutprioritydefaultlow?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutpriority/defaultlow?language=objc)
 pub static UILayoutPriorityDefaultLow: UILayoutPriority = 250 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutpriorityfittingsizelevel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uilayoutpriority/fittingsizelevel?language=objc)
 pub static UILayoutPriorityFittingSizeLevel: UILayoutPriority = 50 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutrelation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutconstraint/relation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -56,7 +56,7 @@ unsafe impl RefEncode for NSLayoutRelation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutconstraint/attribute?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -116,7 +116,7 @@ unsafe impl RefEncode for NSLayoutAttribute {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutformatoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/nslayoutconstraint/formatoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

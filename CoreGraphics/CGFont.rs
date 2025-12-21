@@ -379,22 +379,22 @@ impl CGFont {
 extern "C" {
     /// * Keys for the font variation axis dictionary. **
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontvariationaxisname?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/variationaxisname?language=objc)
     pub static kCGFontVariationAxisName: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontvariationaxisminvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/variationaxisminvalue?language=objc)
     pub static kCGFontVariationAxisMinValue: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontvariationaxismaxvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/variationaxismaxvalue?language=objc)
     pub static kCGFontVariationAxisMaxValue: &'static CFString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgfontvariationaxisdefaultvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgfont/variationaxisdefaultvalue?language=objc)
     pub static kCGFontVariationAxisDefaultValue: &'static CFString;
 }
 

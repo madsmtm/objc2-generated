@@ -11,7 +11,7 @@ pub static NSUndoCloseGroupingRunLoopOrdering: NSUInteger = 350000;
 
 /// A key used to set and get user info for undo and redo actions
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanageruserinfokey?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/undomanager/userinfokey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 #[cfg(feature = "NSString")]
 pub type NSUndoManagerUserInfoKey = NSString;
@@ -23,7 +23,7 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanager?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/undomanager?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -410,49 +410,49 @@ impl NSUndoManager {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagercheckpointnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagercheckpoint?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerCheckpointNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerwillundochangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerwillundochange?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerWillUndoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerwillredochangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerwillredochange?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerWillRedoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerdidundochangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerdidundochange?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidUndoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerdidredochangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerdidredochange?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidRedoChangeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerdidopenundogroupnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerdidopenundogroup?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidOpenUndoGroupNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerwillcloseundogroupnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerwillcloseundogroup?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerWillCloseUndoGroupNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsundomanagerdidcloseundogroupnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotification/name-swift.struct/nsundomanagerdidcloseundogroup?language=objc)
     #[cfg(all(feature = "NSNotification", feature = "NSString"))]
     pub static NSUndoManagerDidCloseUndoGroupNotification: &'static NSNotificationName;
 }

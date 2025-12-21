@@ -10,7 +10,7 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearch?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchref?language=objc)
 #[doc(alias = "SKSearchRef")]
 #[repr(C)]
 pub struct SKSearch {
@@ -40,13 +40,13 @@ unsafe impl ConcreteType for SKSearch {
 /// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchoptions?language=objc)
 pub type SKSearchOptions = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ksksearchoptiondefault?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448600-anonymous/ksksearchoptiondefault?language=objc)
 pub const kSKSearchOptionDefault: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ksksearchoptionnorelevancescores?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448600-anonymous/ksksearchoptionnorelevancescores?language=objc)
 pub const kSKSearchOptionNoRelevanceScores: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ksksearchoptionspacemeansor?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448600-anonymous/ksksearchoptionspacemeansor?language=objc)
 pub const kSKSearchOptionSpaceMeansOR: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/ksksearchoptionfindsimilar?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1448600-anonymous/ksksearchoptionfindsimilar?language=objc)
 pub const kSKSearchOptionFindSimilar: c_uint = 1 << 2;
 
 impl SKSearch {
@@ -222,7 +222,7 @@ impl SKIndex {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchgroup?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchgroupref?language=objc)
 #[doc(alias = "SKSearchGroupRef")]
 #[repr(C)]
 pub struct SKSearchGroup {
@@ -249,7 +249,7 @@ unsafe impl ConcreteType for SKSearchGroup {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchresults?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/sksearchresultsref?language=objc)
 #[doc(alias = "SKSearchResultsRef")]
 #[repr(C)]
 pub struct SKSearchResults {

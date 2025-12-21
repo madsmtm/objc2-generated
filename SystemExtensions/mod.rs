@@ -71,7 +71,7 @@ extern "C" {
     pub static OSRelatedKernelExtensionKey: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -113,7 +113,7 @@ unsafe impl RefEncode for OSSystemExtensionErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionreplacementaction?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/replacementaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -139,7 +139,7 @@ unsafe impl RefEncode for OSSystemExtensionReplacementAction {
 
 /// Describes additional result feedback after completion of a system extension request
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequestresult?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/systemextensions/ossystemextensionrequest/result?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

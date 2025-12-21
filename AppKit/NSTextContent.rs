@@ -12,217 +12,217 @@ use crate::*;
 pub type NSTextContentType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypeusername?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/username?language=objc)
     pub static NSTextContentTypeUsername: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypepassword?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/password?language=objc)
     pub static NSTextContentTypePassword: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypeonetimecode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/onetimecode?language=objc)
     pub static NSTextContentTypeOneTimeCode: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypenewpassword?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/newpassword?language=objc)
     pub static NSTextContentTypeNewPassword: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/name?language=objc)
     pub static NSTextContentTypeName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypenameprefix?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/nameprefix?language=objc)
     pub static NSTextContentTypeNamePrefix: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypegivenname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/givenname?language=objc)
     pub static NSTextContentTypeGivenName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypemiddlename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/middlename?language=objc)
     pub static NSTextContentTypeMiddleName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypefamilyname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/familyname?language=objc)
     pub static NSTextContentTypeFamilyName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypenamesuffix?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/namesuffix?language=objc)
     pub static NSTextContentTypeNameSuffix: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypenickname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/nickname?language=objc)
     pub static NSTextContentTypeNickname: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypejobtitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/jobtitle?language=objc)
     pub static NSTextContentTypeJobTitle: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypeorganizationname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/organizationname?language=objc)
     pub static NSTextContentTypeOrganizationName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypelocation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/location?language=objc)
     pub static NSTextContentTypeLocation: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypefullstreetaddress?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/fullstreetaddress?language=objc)
     pub static NSTextContentTypeFullStreetAddress: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypestreetaddressline1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/streetaddressline1?language=objc)
     pub static NSTextContentTypeStreetAddressLine1: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypestreetaddressline2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/streetaddressline2?language=objc)
     pub static NSTextContentTypeStreetAddressLine2: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypeaddresscity?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/addresscity?language=objc)
     pub static NSTextContentTypeAddressCity: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypeaddressstate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/addressstate?language=objc)
     pub static NSTextContentTypeAddressState: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypeaddresscityandstate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/addresscityandstate?language=objc)
     pub static NSTextContentTypeAddressCityAndState: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypesublocality?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/sublocality?language=objc)
     pub static NSTextContentTypeSublocality: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypecountryname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/countryname?language=objc)
     pub static NSTextContentTypeCountryName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypepostalcode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/postalcode?language=objc)
     pub static NSTextContentTypePostalCode: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypetelephonenumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/telephonenumber?language=objc)
     pub static NSTextContentTypeTelephoneNumber: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypeemailaddress?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/emailaddress?language=objc)
     pub static NSTextContentTypeEmailAddress: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypeurl?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/url?language=objc)
     pub static NSTextContentTypeURL: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypecreditcardnumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardnumber?language=objc)
     pub static NSTextContentTypeCreditCardNumber: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypecreditcardname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardname?language=objc)
     pub static NSTextContentTypeCreditCardName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypecreditcardgivenname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardgivenname?language=objc)
     pub static NSTextContentTypeCreditCardGivenName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypecreditcardmiddlename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardmiddlename?language=objc)
     pub static NSTextContentTypeCreditCardMiddleName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypecreditcardfamilyname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardfamilyname?language=objc)
     pub static NSTextContentTypeCreditCardFamilyName: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypecreditcardsecuritycode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardsecuritycode?language=objc)
     pub static NSTextContentTypeCreditCardSecurityCode: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypecreditcardexpiration?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardexpiration?language=objc)
     pub static NSTextContentTypeCreditCardExpiration: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypecreditcardexpirationmonth?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardexpirationmonth?language=objc)
     pub static NSTextContentTypeCreditCardExpirationMonth: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypecreditcardexpirationyear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardexpirationyear?language=objc)
     pub static NSTextContentTypeCreditCardExpirationYear: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypecreditcardtype?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/creditcardtype?language=objc)
     pub static NSTextContentTypeCreditCardType: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypeshipmenttrackingnumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/shipmenttrackingnumber?language=objc)
     pub static NSTextContentTypeShipmentTrackingNumber: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypeflightnumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/flightnumber?language=objc)
     pub static NSTextContentTypeFlightNumber: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypedatetime?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/datetime?language=objc)
     pub static NSTextContentTypeDateTime: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypebirthdate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/birthdate?language=objc)
     pub static NSTextContentTypeBirthdate: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypebirthdateday?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/birthdateday?language=objc)
     pub static NSTextContentTypeBirthdateDay: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypebirthdatemonth?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/birthdatemonth?language=objc)
     pub static NSTextContentTypeBirthdateMonth: &'static NSTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttypebirthdateyear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstextcontenttype/birthdateyear?language=objc)
     pub static NSTextContentTypeBirthdateYear: &'static NSTextContentType;
 }
 

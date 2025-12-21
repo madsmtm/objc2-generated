@@ -229,7 +229,7 @@ pub static NSCompositeColor: NSCompositingOperation =
 pub static NSCompositeLuminosity: NSCompositingOperation =
     NSCompositingOperation(NSCompositingOperation::Luminosity.0);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackingstoretype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backingstoretype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -253,7 +253,7 @@ unsafe impl RefEncode for NSBackingStoreType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindoworderingmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/orderingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -350,42 +350,42 @@ unsafe impl RefEncode for NSColorRenderingIntent {
 pub type NSColorSpaceName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscalibratedwhitecolorspace?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/calibratedwhite?language=objc)
     pub static NSCalibratedWhiteColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscalibratedrgbcolorspace?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/calibratedrgb?language=objc)
     pub static NSCalibratedRGBColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicewhitecolorspace?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/devicewhite?language=objc)
     pub static NSDeviceWhiteColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicergbcolorspace?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/devicergb?language=objc)
     pub static NSDeviceRGBColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicecmykcolorspace?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/devicecmyk?language=objc)
     pub static NSDeviceCMYKColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnamedcolorspace?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/named?language=objc)
     pub static NSNamedColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspatterncolorspace?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/pattern?language=objc)
     pub static NSPatternColorSpace: &'static NSColorSpaceName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscustomcolorspace?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorspacename/custom?language=objc)
     pub static NSCustomColorSpace: &'static NSColorSpaceName;
 }
 
@@ -401,7 +401,7 @@ extern "C" {
     pub static NSDeviceBlackColorSpace: &'static NSColorSpaceName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdepth?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/depth?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -549,32 +549,32 @@ unsafe impl RefEncode for NSDisplayGamut {
 pub type NSDeviceDescriptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeviceresolution?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicedescriptionkey/resolution?language=objc)
     pub static NSDeviceResolution: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicecolorspacename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicedescriptionkey/colorspacename?language=objc)
     pub static NSDeviceColorSpaceName: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicebitspersample?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicedescriptionkey/bitspersample?language=objc)
     pub static NSDeviceBitsPerSample: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeviceisscreen?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicedescriptionkey/isscreen?language=objc)
     pub static NSDeviceIsScreen: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdeviceisprinter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicedescriptionkey/isprinter?language=objc)
     pub static NSDeviceIsPrinter: &'static NSDeviceDescriptionKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicesize?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdevicedescriptionkey/size?language=objc)
     pub static NSDeviceSize: &'static NSDeviceDescriptionKey;
 }
 

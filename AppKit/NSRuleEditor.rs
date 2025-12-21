@@ -9,46 +9,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditorpredicatepartkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSRuleEditorPredicatePartKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditorpredicateleftexpression?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey/leftexpression?language=objc)
     pub static NSRuleEditorPredicateLeftExpression: &'static NSRuleEditorPredicatePartKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditorpredicaterightexpression?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey/rightexpression?language=objc)
     pub static NSRuleEditorPredicateRightExpression: &'static NSRuleEditorPredicatePartKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditorpredicatecomparisonmodifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey/comparisonmodifier?language=objc)
     pub static NSRuleEditorPredicateComparisonModifier: &'static NSRuleEditorPredicatePartKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditorpredicateoptions?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey/options?language=objc)
     pub static NSRuleEditorPredicateOptions: &'static NSRuleEditorPredicatePartKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditorpredicateoperatortype?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey/operatortype?language=objc)
     pub static NSRuleEditorPredicateOperatorType: &'static NSRuleEditorPredicatePartKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditorpredicatecustomselector?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey/customselector?language=objc)
     pub static NSRuleEditorPredicateCustomSelector: &'static NSRuleEditorPredicatePartKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditorpredicatecompoundtype?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/predicatepartkey/compoundtype?language=objc)
     pub static NSRuleEditorPredicateCompoundType: &'static NSRuleEditorPredicatePartKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditornestingmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/nestingmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -72,7 +72,7 @@ unsafe impl RefEncode for NSRuleEditorNestingMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditorrowtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/rowtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -514,6 +514,6 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditorrowsdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsruleeditor/rowsdidchangenotification?language=objc)
     pub static NSRuleEditorRowsDidChangeNotification: &'static NSNotificationName;
 }

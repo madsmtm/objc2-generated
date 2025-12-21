@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewrapperreadingoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filewrapper/readingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -28,7 +28,7 @@ unsafe impl RefEncode for NSFileWrapperReadingOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewrapperwritingoptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/filewrapper/writingoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -51,7 +51,7 @@ unsafe impl RefEncode for NSFileWrapperWritingOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsfilewrapper?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/filewrapper?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSFileWrapper;

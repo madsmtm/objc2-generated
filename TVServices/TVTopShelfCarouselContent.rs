@@ -8,7 +8,7 @@ use crate::*;
 
 /// The style of the carousel content.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselcontentstyle?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/tvservices/tvtopshelfcarouselcontent/style-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

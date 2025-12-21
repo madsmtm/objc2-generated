@@ -11,7 +11,7 @@ use objc2_uniform_type_identifiers::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerationrequestrepresentationtypes?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request/representationtypes-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -38,7 +38,7 @@ unsafe impl RefEncode for QLThumbnailGenerationRequestRepresentationTypes {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerationrequest?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/quicklookthumbnailing/qlthumbnailgenerator/request?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct QLThumbnailGenerationRequest;

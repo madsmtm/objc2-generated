@@ -6,11 +6,9 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnotifyguiconsolesessionchanged?language=objc)
 pub const kCGNotifyGUIConsoleSessionChanged: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.coregraphics.GUIConsoleSessionChanged\0")
 };
-/// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/kcgnotifyguisessionuserchanged?language=objc)
 pub const kCGNotifyGUISessionUserChanged: &CStr = unsafe {
     CStr::from_bytes_with_nul_unchecked(b"com.apple.coregraphics.GUISessionUserChanged\0")
 };

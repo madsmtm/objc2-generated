@@ -10,13 +10,13 @@ use crate::*;
 extern "C" {
     /// Indicates a ``WKWebExtensionMatchPattern`` error.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionmatchpatternerrordomain?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/errordomain?language=objc)
     pub static WKWebExtensionMatchPatternErrorDomain: &'static NSErrorDomain;
 }
 
 /// Constants used by ``NSError`` to indicate errors in the ``WKWebExtensionMatchPattern`` domain.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionmatchpatternerror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/error/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -42,7 +42,7 @@ unsafe impl RefEncode for WKWebExtensionMatchPatternError {
 
 /// Constants used by ``WKWebExtensionMatchPattern`` to indicate matching options.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionmatchpatternoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern/options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -76,7 +76,7 @@ extern_class!(
     /// _urls>` pattern, match patterns
     /// consist of three parts: scheme, host, and path.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionmatchpattern?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/matchpattern?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

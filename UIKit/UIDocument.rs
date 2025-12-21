@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentchangekind?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/changekind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -31,7 +31,7 @@ unsafe impl RefEncode for UIDocumentChangeKind {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentsaveoperation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/saveoperation?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -51,7 +51,7 @@ unsafe impl RefEncode for UIDocumentSaveOperation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/state?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -81,17 +81,17 @@ unsafe impl RefEncode for UIDocumentState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentcreationintent?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/creationintent?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type UIDocumentCreationIntent = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentcreationintentdefault?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/creationintent/default?language=objc)
     pub static UIDocumentCreationIntentDefault: &'static UIDocumentCreationIntent;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentstatechangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/statechangednotification?language=objc)
     pub static UIDocumentStateChangedNotification: &'static NSNotificationName;
 }
 
@@ -99,14 +99,14 @@ extern "C" {
     /// A notification that the document posts when copying the file from a readonly location in order to write changes.
     /// This notification will be posted on the file presenter queue.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentdidmovetowritablelocationnotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/didmovetowritablelocationnotification?language=objc)
     pub static UIDocumentDidMoveToWritableLocationNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// The key in a `UIDocumentDidMoveToWritableLocationNotification`'s `userInfo` dictionary that contains the previous readonly file URL.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocumentdidmovetowritablelocationoldurlkey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/didmovetowritablelocationoldurlkey?language=objc)
     pub static UIDocumentDidMoveToWritableLocationOldURLKey: &'static NSString;
 }
 
@@ -372,7 +372,7 @@ extern_conformance!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nsuseractivitydocumenturlkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uidocument/useractivityurlkey?language=objc)
     pub static NSUserActivityDocumentURLKey: &'static NSString;
 }
 

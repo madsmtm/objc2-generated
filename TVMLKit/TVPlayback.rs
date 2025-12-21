@@ -16,7 +16,7 @@ use crate::*;
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type TVPlaybackEvent = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitemtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/mediatype?language=objc)
 #[deprecated = "Please use SwiftUI or UIKit"]
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type TVMediaItemType = NSString;
@@ -27,36 +27,36 @@ pub type TVMediaItemType = NSString;
 pub type TVPlaybackEventProperty = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitemtypevideo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/mediatype/video?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemTypeVideo: &'static TVMediaItemType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitemtypeaudio?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/mediatype/audio?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemTypeAudio: &'static TVMediaItemType;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitemcontentratingdomain?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/contentratingdomain-swift.struct?language=objc)
 #[deprecated = "Please use SwiftUI or UIKit"]
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type TVMediaItemContentRatingDomain = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitemcontentratingdomainmovie?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/contentratingdomain-swift.struct/movie?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemContentRatingDomainMovie: &'static TVMediaItemContentRatingDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitemcontentratingdomaintvshow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/contentratingdomain-swift.struct/tvshow?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemContentRatingDomainTVShow: &'static TVMediaItemContentRatingDomain;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitemcontentratingdomainmusic?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/contentratingdomain-swift.struct/music?language=objc)
     #[deprecated = "Please use SwiftUI or UIKit"]
     pub static TVMediaItemContentRatingDomainMusic: &'static TVMediaItemContentRatingDomain;
 }
@@ -105,7 +105,7 @@ unsafe impl RefEncode for TVPlaybackState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylistrepeatmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/repeatmode-swift.enum?language=objc)
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
@@ -131,7 +131,7 @@ unsafe impl RefEncode for TVPlaylistRepeatMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylistendaction?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvplaylist/endaction-swift.enum?language=objc)
 // NS_ENUM
 #[deprecated = "Please use SwiftUI or UIKit"]
 #[repr(transparent)]
@@ -396,7 +396,7 @@ impl TVMediaItem {
 extern_class!(
     /// /////////////////////////////////////////////////////////////////////////////
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvtimerange?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/timerange?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]
@@ -442,7 +442,7 @@ impl TVTimeRange {
 extern_class!(
     /// /////////////////////////////////////////////////////////////////////////////
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvhighlightgroup?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/highlightgroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]
@@ -483,7 +483,7 @@ impl TVHighlightGroup {
 extern_class!(
     /// /////////////////////////////////////////////////////////////////////////////
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvhighlight?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/tvmlkit/tvmediaitem/highlight?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Please use SwiftUI or UIKit"]

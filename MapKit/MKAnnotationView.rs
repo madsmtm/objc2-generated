@@ -17,7 +17,7 @@ extern "C" {
     pub static MKAnnotationCalloutInfoDidChangeNotification: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewdragstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/dragstate-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -47,32 +47,32 @@ unsafe impl RefEncode for MKAnnotationViewDragState {
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type MKFeatureDisplayPriority = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturedisplaypriorityrequired?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturedisplaypriority/required?language=objc)
 pub static MKFeatureDisplayPriorityRequired: MKFeatureDisplayPriority = 1000 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturedisplayprioritydefaulthigh?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturedisplaypriority/defaulthigh?language=objc)
 pub static MKFeatureDisplayPriorityDefaultHigh: MKFeatureDisplayPriority = 750 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturedisplayprioritydefaultlow?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkfeaturedisplaypriority/defaultlow?language=objc)
 pub static MKFeatureDisplayPriorityDefaultLow: MKFeatureDisplayPriority = 250 as _;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewzpriority?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type MKAnnotationViewZPriority = c_float;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewzprioritymax?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewzpriority/max?language=objc)
 pub static MKAnnotationViewZPriorityMax: MKAnnotationViewZPriority = 1000 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewzprioritydefaultselected?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewzpriority/defaultselected?language=objc)
 pub static MKAnnotationViewZPriorityDefaultSelected: MKAnnotationViewZPriority = 1000 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewzprioritydefaultunselected?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewzpriority/defaultunselected?language=objc)
 pub static MKAnnotationViewZPriorityDefaultUnselected: MKAnnotationViewZPriority = 500 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewzprioritymin?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewzpriority/min?language=objc)
 pub static MKAnnotationViewZPriorityMin: MKAnnotationViewZPriority = 0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationviewcollisionmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkannotationview/collisionmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

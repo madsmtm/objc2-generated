@@ -14,7 +14,7 @@ use crate::*;
 pub type FSOperationID = NSUInteger;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/fskit/fsoperationidunspecified?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/fskit/fsoperationid/unspecified?language=objc)
     pub static FSOperationIDUnspecified: FSOperationID;
 }
 

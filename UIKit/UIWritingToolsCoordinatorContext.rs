@@ -60,7 +60,7 @@ extern_class!(
     /// object. You might add this attribute if the text string includes a code
     /// listing or readonly content that you don’t want Writing Tools to change.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinatorcontext?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwritingtoolscoordinator/context?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIWritingToolsCoordinatorContext;

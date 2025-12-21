@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitemlargetitledisplaymode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/largetitledisplaymode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -37,7 +37,7 @@ unsafe impl RefEncode for UINavigationItemLargeTitleDisplayMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitembackbuttondisplaymode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/backbuttondisplaymode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -62,7 +62,7 @@ unsafe impl RefEncode for UINavigationItemBackButtonDisplayMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitemsearchbarplacement?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/searchbarplacement-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -99,7 +99,7 @@ unsafe impl RefEncode for UINavigationItemSearchBarPlacement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitemstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitem/itemstyle?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -125,7 +125,7 @@ unsafe impl RefEncode for UINavigationItemStyle {
 }
 
 extern_protocol!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitemrenamedelegate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitemrenamedelegate-96g5t?language=objc)
     pub unsafe trait UINavigationItemRenameDelegate:
         NSObjectProtocol + MainThreadOnly
     {

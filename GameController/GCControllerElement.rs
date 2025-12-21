@@ -27,7 +27,7 @@ use crate::*;
 ///
 /// See: GCControllerElement.preferredSystemGestureState
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcsystemgesturestate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerelement/systemgesturestate?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -12,7 +12,7 @@ use objc2_user_notifications::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneconnectionoptions?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/connectionoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -68,7 +68,7 @@ impl UISceneConnectionOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneopenurloptions?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/openurloptions?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -109,7 +109,7 @@ impl UISceneOpenURLOptions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneopenexternalurloptions?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/openexternalurloptions?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -184,7 +184,7 @@ unsafe impl RefEncode for UISceneCollectionJoinBehavior {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisceneactivationrequestoptions?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiscene/activationrequestoptions?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

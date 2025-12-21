@@ -18,7 +18,7 @@ pub type FSDirectoryCookie = u64;
 extern "C" {
     /// The constant initial value for the directory-enumeration cookie.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdirectorycookieinitial?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdirectorycookie/initial?language=objc)
     pub static FSDirectoryCookieInitial: FSDirectoryCookie;
 }
 
@@ -33,7 +33,7 @@ pub type FSDirectoryVerifier = u64;
 extern "C" {
     /// The constant initial value for the directory-enumeration verifier.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdirectoryverifierinitial?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsdirectoryverifier/initial?language=objc)
     pub static FSDirectoryVerifierInitial: FSDirectoryVerifier;
 }
 
@@ -99,7 +99,7 @@ extern_class!(
     ///
     /// > Important: Don't subclass this class.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeidentifier?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/identifier?language=objc)
     #[unsafe(super(FSEntityIdentifier, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "FSEntityIdentifier")]
@@ -251,7 +251,7 @@ impl FSDirectoryEntryPacker {
 ///
 /// A case-sensitive volume is a volume that treats upper and lower case characters in file and directory names as being distinct from each other. For example, `FILE.TXT` and `file.TXT` are different names in a case-sensitive volume, and the same name in a case-insensitive volume.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumecaseformat?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/caseformat?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -279,7 +279,7 @@ unsafe impl RefEncode for FSVolumeCaseFormat {
 extern_class!(
     /// A type that represents capabillities supported by a volume, such as hard and symbolic links, journaling, and large file sizes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumesupportedcapabilities?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/supportedcapabilities?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct FSVolumeSupportedCapabilities;
@@ -625,7 +625,7 @@ extern_protocol!(
     ///
     /// Properties that represent limits and have a numeric type use `-1` to represent no limit.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumepathconfoperations?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/pathconfoperations?language=objc)
     pub unsafe trait FSVolumePathConfOperations: NSObjectProtocol {
         /// A property that represents the maximum number of hard links to the object.
         #[unsafe(method(maximumLinkCount))]
@@ -914,7 +914,7 @@ extern_protocol!(
     ///
     /// > Note: This protocol extends ``FSVolumePathConfOperations``, so your volume implementation must also conform to that protocol.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeoperations?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/operations?language=objc)
     pub unsafe trait FSVolumeOperations:
         NSObjectProtocol + FSVolumePathConfOperations
     {
@@ -1326,7 +1326,7 @@ extern_protocol!(
 
 /// Flags to specify the policy when setting extended file attributes.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fssetxattrpolicy?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/setxattrpolicy?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1357,7 +1357,7 @@ unsafe impl RefEncode for FSSetXattrPolicy {
 extern_protocol!(
     /// Methods and properties implemented by volumes that natively or partially support extended attributes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumexattroperations?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/xattroperations?language=objc)
     pub unsafe trait FSVolumeXattrOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
@@ -1445,7 +1445,7 @@ extern_protocol!(
 
 /// Defined modes for opening a file.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeopenmodes?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/openmodes?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1483,7 +1483,7 @@ extern_protocol!(
     ///
     /// If a file system volume doesn't conform to this protocol, the kernel layer can skip making such calls to the volume.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeopencloseoperations?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/opencloseoperations?language=objc)
     pub unsafe trait FSVolumeOpenCloseOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
@@ -1542,7 +1542,7 @@ extern_protocol!(
     /// In that case, files with the ``FSItem/Attribute/inhibitKernelOffloadedIO`` attribute set use this protocol, and those without it use ``FSVolumeKernelOffloadedIOOperations``.
     /// A volume that doesn't conform to either protocol can't support any I/O operation.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumereadwriteoperations?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/readwriteoperations?language=objc)
     pub unsafe trait FSVolumeReadWriteOperations: NSObjectProtocol {
         #[cfg(all(
             feature = "FSItem",
@@ -1600,7 +1600,7 @@ extern_protocol!(
 
 /// A bitmask of access rights.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsaccessmask?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accessmask?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1672,7 +1672,7 @@ unsafe impl RefEncode for FSAccessMask {
 extern_protocol!(
     /// Methods and properties implemented by volumes that want to enforce access check operations.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeaccesscheckoperations?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/accesscheckoperations?language=objc)
     pub unsafe trait FSVolumeAccessCheckOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
@@ -1710,7 +1710,7 @@ extern_protocol!(
 extern_protocol!(
     /// Methods and properties implemented by volumes that support renaming the volume.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumerenameoperations?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/renameoperations?language=objc)
     pub unsafe trait FSVolumeRenameOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
@@ -1745,7 +1745,7 @@ extern_protocol!(
 
 /// Behavior flags for preallocation operations.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fspreallocateflags?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/preallocateflags?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1790,7 +1790,7 @@ extern_protocol!(
     ///
     /// In a kernel-based file system, you typically preallocate space with the `VNOP_ALLOCATE` operation, called from `fcntl(F_PREALLOCATE)`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumepreallocateoperations?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/preallocateoperations?language=objc)
     pub unsafe trait FSVolumePreallocateOperations: NSObjectProtocol {
         /// A Boolean value that instructs FSKit not to call this protocol's methods, even if the volume conforms to it.
         ///
@@ -1837,7 +1837,7 @@ extern_protocol!(
 ///
 /// > Note: To avoid performing deactivation calls, Objective-C developers use the value `FSItemDeactivationNever`. In Swift, use an empty option set (`[]`).
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsitemdeactivationoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/itemdeactivationoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1877,7 +1877,7 @@ unsafe impl RefEncode for FSItemDeactivationOptions {
 extern_protocol!(
     /// Methods and properties implemented by volumes that support deactivating items.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolumeitemdeactivation?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/fskit/fsvolume/itemdeactivation?language=objc)
     pub unsafe trait FSVolumeItemDeactivation: NSObjectProtocol {
         /// A property that tells FSKit to which types of items the deactivation applies, if any.
         ///

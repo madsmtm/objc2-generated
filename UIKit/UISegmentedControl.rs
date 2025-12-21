@@ -41,10 +41,10 @@ unsafe impl RefEncode for UISegmentedControlStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrolnosegment?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/nosegment?language=objc)
 pub const UISegmentedControlNoSegment: c_int = -1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrolsegment?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uisegmentedcontrol/segment?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -9,7 +9,6 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhaptictimeimmediate?language=objc)
 pub const CHHapticTimeImmediate: NSTimeInterval = 0.0;
 /// A block which is called asynchronously when a call to start or stop the haptic engine completes.
 ///
@@ -17,7 +16,7 @@ pub const CHHapticTimeImmediate: NSTimeInterval = 0.0;
 ///
 /// All callbacks are delivered on an internal queue which guarantees proper delivery order and allows reentrant calls to the API.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticcompletionhandler?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/completionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CHHapticCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
 
@@ -29,7 +28,7 @@ pub type CHHapticCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>
 ///
 /// Do not stop the engine.  This is useful if the client expects more activity.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticenginefinishedaction?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/finishedaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -56,7 +55,7 @@ unsafe impl RefEncode for CHHapticEngineFinishedAction {
 ///
 /// All callbacks are delivered on an internal queue which guarantees proper delivery order and allows reentrant calls to the API.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticenginefinishedhandler?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/finishedhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CHHapticEngineFinishedHandler =
     *mut block2::DynBlock<dyn Fn(*mut NSError) -> CHHapticEngineFinishedAction>;
@@ -84,7 +83,7 @@ pub type CHHapticEngineFinishedHandler =
 ///
 /// An error has occurred.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticenginestoppedreason?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedreason?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -122,7 +121,7 @@ unsafe impl RefEncode for CHHapticEngineStoppedReason {
 /// This handler is NOT called if the client directly calls stopWithCompletionHandler:.
 /// All callbacks are delivered on an internal queue which guarantees proper delivery order and allows reentrant calls to the API.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticenginestoppedhandler?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/stoppedhandler-swift.typealias?language=objc)
 #[cfg(feature = "block2")]
 pub type CHHapticEngineStoppedHandler = *mut block2::DynBlock<dyn Fn(CHHapticEngineStoppedReason)>;
 
@@ -132,7 +131,7 @@ pub type CHHapticEngineStoppedHandler = *mut block2::DynBlock<dyn Fn(CHHapticEng
 /// pattern players.  The engine must of course be restarted.  CHHapticPatterns do not need to be re-created.
 /// All callbacks are delivered on an internal queue which guarantees proper delivery order and allows reentrant calls to the API.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengineresethandler?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengine/resethandler-swift.typealias?language=objc)
 #[cfg(feature = "block2")]
 pub type CHHapticEngineResetHandler = *mut block2::DynBlock<dyn Fn()>;
 

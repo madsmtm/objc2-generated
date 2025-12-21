@@ -13,13 +13,13 @@ use crate::*;
 extern "C" {
     /// Indicates a ``WKWebExtensionContext`` error.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontexterrordomain?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/errordomain?language=objc)
     pub static WKWebExtensionContextErrorDomain: &'static NSErrorDomain;
 }
 
 /// Constants used by ``NSError`` to indicate errors in the ``WKWebExtensionContext`` domain.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontexterror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/error/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -50,13 +50,13 @@ unsafe impl RefEncode for WKWebExtensionContextError {
 extern "C" {
     /// This notification is sent whenever a ``WKWebExtensionContext`` has new errors or errors were cleared.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontexterrorsdidupdatenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/errorsdidupdatenotification?language=objc)
     pub static WKWebExtensionContextErrorsDidUpdateNotification: &'static NSNotificationName;
 }
 
 /// Constants used to indicate permission status in ``WKWebExtensionContext``.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontextpermissionstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -89,21 +89,21 @@ unsafe impl RefEncode for WKWebExtensionContextPermissionStatus {
 extern "C" {
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly granted permissions.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontextpermissionsweregrantednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionsweregrantednotification?language=objc)
     pub static WKWebExtensionContextPermissionsWereGrantedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly denied permissions.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontextpermissionsweredeniednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionsweredeniednotification?language=objc)
     pub static WKWebExtensionContextPermissionsWereDeniedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly removed granted permissions.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontextgrantedpermissionswereremovednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/grantedpermissionswereremovednotification?language=objc)
     pub static WKWebExtensionContextGrantedPermissionsWereRemovedNotification:
         &'static NSNotificationName;
 }
@@ -111,7 +111,7 @@ extern "C" {
 extern "C" {
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly removed denied permissions.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontextdeniedpermissionswereremovednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/deniedpermissionswereremovednotification?language=objc)
     pub static WKWebExtensionContextDeniedPermissionsWereRemovedNotification:
         &'static NSNotificationName;
 }
@@ -119,7 +119,7 @@ extern "C" {
 extern "C" {
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly granted permission match patterns.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontextpermissionmatchpatternsweregrantednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionmatchpatternsweregrantednotification?language=objc)
     pub static WKWebExtensionContextPermissionMatchPatternsWereGrantedNotification:
         &'static NSNotificationName;
 }
@@ -127,7 +127,7 @@ extern "C" {
 extern "C" {
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly denied permission match patterns.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontextpermissionmatchpatternsweredeniednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/permissionmatchpatternsweredeniednotification?language=objc)
     pub static WKWebExtensionContextPermissionMatchPatternsWereDeniedNotification:
         &'static NSNotificationName;
 }
@@ -135,7 +135,7 @@ extern "C" {
 extern "C" {
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly removed granted permission match patterns.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontextgrantedpermissionmatchpatternswereremovednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/grantedpermissionmatchpatternswereremovednotification?language=objc)
     pub static WKWebExtensionContextGrantedPermissionMatchPatternsWereRemovedNotification:
         &'static NSNotificationName;
 }
@@ -143,21 +143,21 @@ extern "C" {
 extern "C" {
     /// This notification is sent whenever a ``WKWebExtensionContext`` has newly removed denied permission match patterns.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontextdeniedpermissionmatchpatternswereremovednotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/deniedpermissionmatchpatternswereremovednotification?language=objc)
     pub static WKWebExtensionContextDeniedPermissionMatchPatternsWereRemovedNotification:
         &'static NSNotificationName;
 }
 
 /// Constants for specifying ``WKWebExtensionContext`` information in notifications.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontextnotificationuserinfokey?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/notificationuserinfokey?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type WKWebExtensionContextNotificationUserInfoKey = NSString;
 
 extern "C" {
     /// The corresponding value represents the affected permissions in ``WKWebExtensionContext`` notifications.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontextnotificationuserinfokeypermissions?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/notificationuserinfokey/permissions?language=objc)
     pub static WKWebExtensionContextNotificationUserInfoKeyPermissions:
         &'static WKWebExtensionContextNotificationUserInfoKey;
 }
@@ -165,7 +165,7 @@ extern "C" {
 extern "C" {
     /// The corresponding value represents the affected permission match patterns in ``WKWebExtensionContext`` notifications.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontextnotificationuserinfokeymatchpatterns?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensioncontext/notificationuserinfokey/matchpatterns?language=objc)
     pub static WKWebExtensionContextNotificationUserInfoKeyMatchPatterns:
         &'static WKWebExtensionContextNotificationUserInfoKey;
 }

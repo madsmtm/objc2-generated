@@ -32,7 +32,7 @@ unsafe impl RefEncode for ASPublicKeyCredentialClientDataCrossOriginValue {
 extern_class!(
     /// This object represents the client data for a public key credential request, as defined in the WebAuthentication standard.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspublickeycredentialclientdata?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/authenticationservices/aspublickeycredentialclientdata-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct ASPublicKeyCredentialClientData;

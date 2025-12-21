@@ -661,7 +661,7 @@ unsafe impl RefEncode for MLCConvolutionType {
 
 /// A padding policy that you specify for a convolution or pooling layer.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpaddingpolicy?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpaddingpolicy-14ba7?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -718,7 +718,7 @@ unsafe impl RefEncode for MLCPaddingType {
 
 /// A pooling function type for a pooling layer.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpoolingtype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcpoolingtype-8hrit?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]

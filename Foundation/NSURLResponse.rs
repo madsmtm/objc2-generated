@@ -17,7 +17,7 @@ extern_class!(
     /// NSURLConnection and NSURLConnectionDelegate for more information
     /// about receiving the content data for a URL load.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlresponse?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlresponse?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLResponse;
@@ -175,7 +175,7 @@ extern_class!(
     /// provides conveniences for accessing information specific to HTTP
     /// protocol responses.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nshttpurlresponse?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/httpurlresponse?language=objc)
     #[unsafe(super(NSURLResponse, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSHTTPURLResponse;

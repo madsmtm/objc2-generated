@@ -8,16 +8,12 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmduplexdefault?language=objc)
 pub const kPMDuplexDefault: c_uint = kPMDuplexNone;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmdestinationtypedefault?language=objc)
 pub const kPMDestinationTypeDefault: c_uint = kPMDestinationPrinter;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcolorspacemodelcount?language=objc)
 pub const kPMColorSpaceModelCount: c_uint = 4;
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmobject?language=objc)
 pub type PMObject = *const c_void;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/opaquepmprintsettings?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaquePMPrintSettings {
@@ -34,7 +30,6 @@ unsafe impl RefEncode for OpaquePMPrintSettings {
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmprintsettings?language=objc)
 pub type PMPrintSettings = *mut OpaquePMPrintSettings;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/opaquepmpageformat?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaquePMPageFormat {
@@ -50,7 +45,6 @@ unsafe impl RefEncode for OpaquePMPageFormat {
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmpageformat?language=objc)
 pub type PMPageFormat = *mut OpaquePMPageFormat;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/opaquepmprintsession?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaquePMPrintSession {
@@ -67,7 +61,6 @@ unsafe impl RefEncode for OpaquePMPrintSession {
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmprintsession?language=objc)
 pub type PMPrintSession = *mut OpaquePMPrintSession;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/opaquepmprinter?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaquePMPrinter {
@@ -83,7 +76,6 @@ unsafe impl RefEncode for OpaquePMPrinter {
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmprinter?language=objc)
 pub type PMPrinter = *mut OpaquePMPrinter;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/opaquepmserver?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaquePMServer {
@@ -99,7 +91,6 @@ unsafe impl RefEncode for OpaquePMServer {
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmserver?language=objc)
 pub type PMServer = *mut OpaquePMServer;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/opaquepmpreset?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaquePMPreset {
@@ -115,7 +106,6 @@ unsafe impl RefEncode for OpaquePMPreset {
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmpreset?language=objc)
 pub type PMPreset = *mut OpaquePMPreset;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/opaquepmpaper?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaquePMPaper {
@@ -131,232 +121,232 @@ unsafe impl RefEncode for OpaquePMPaper {
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmpaper?language=objc)
 pub type PMPaper = *mut OpaquePMPaper;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcancel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506795-user_cancellation_constant/kpmcancel?language=objc)
 pub const kPMCancel: c_uint = 0x0080;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmdestinationtype?language=objc)
 pub type PMDestinationType = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmdestinationinvalid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506831-anonymous/kpmdestinationinvalid?language=objc)
 pub const kPMDestinationInvalid: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmdestinationprinter?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506831-anonymous/kpmdestinationprinter?language=objc)
 pub const kPMDestinationPrinter: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmdestinationfile?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506831-anonymous/kpmdestinationfile?language=objc)
 pub const kPMDestinationFile: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmdestinationfax?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506831-anonymous/kpmdestinationfax?language=objc)
 pub const kPMDestinationFax: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmdestinationpreview?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506831-anonymous/kpmdestinationpreview?language=objc)
 pub const kPMDestinationPreview: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmdestinationprocesspdf?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506831-anonymous/kpmdestinationprocesspdf?language=objc)
 pub const kPMDestinationProcessPDF: c_uint = 5;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmorientation?language=objc)
 pub type PMOrientation = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmportrait?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506750-anonymous/kpmportrait?language=objc)
 pub const kPMPortrait: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlandscape?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506750-anonymous/kpmlandscape?language=objc)
 pub const kPMLandscape: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmreverseportrait?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506750-anonymous/kpmreverseportrait?language=objc)
 pub const kPMReversePortrait: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmreverselandscape?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506750-anonymous/kpmreverselandscape?language=objc)
 pub const kPMReverseLandscape: c_uint = 4;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmprinterstate?language=objc)
 pub type PMPrinterState = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmprinteridle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506818-anonymous/kpmprinteridle?language=objc)
 pub const kPMPrinterIdle: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmprinterprocessing?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506818-anonymous/kpmprinterprocessing?language=objc)
 pub const kPMPrinterProcessing: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmprinterstopped?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506818-anonymous/kpmprinterstopped?language=objc)
 pub const kPMPrinterStopped: c_uint = 5;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmcolorspacemodel?language=objc)
 pub type PMColorSpaceModel = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmunknowncolorspacemodel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506820-anonymous/kpmunknowncolorspacemodel?language=objc)
 pub const kPMUnknownColorSpaceModel: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmgraycolorspacemodel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506820-anonymous/kpmgraycolorspacemodel?language=objc)
 pub const kPMGrayColorSpaceModel: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmrgbcolorspacemodel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506820-anonymous/kpmrgbcolorspacemodel?language=objc)
 pub const kPMRGBColorSpaceModel: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmcmykcolorspacemodel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506820-anonymous/kpmcmykcolorspacemodel?language=objc)
 pub const kPMCMYKColorSpaceModel: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmdevncolorspacemodel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506820-anonymous/kpmdevncolorspacemodel?language=objc)
 pub const kPMDevNColorSpaceModel: c_uint = 4;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmqualitymode?language=objc)
 pub type PMQualityMode = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmqualitylowest?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506743-anonymous/kpmqualitylowest?language=objc)
 pub const kPMQualityLowest: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmqualityinksaver?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506743-anonymous/kpmqualityinksaver?language=objc)
 pub const kPMQualityInkSaver: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmqualitydraft?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506743-anonymous/kpmqualitydraft?language=objc)
 pub const kPMQualityDraft: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmqualitynormal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506743-anonymous/kpmqualitynormal?language=objc)
 pub const kPMQualityNormal: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmqualityphoto?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506743-anonymous/kpmqualityphoto?language=objc)
 pub const kPMQualityPhoto: c_uint = 0x000B;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmqualitybest?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506743-anonymous/kpmqualitybest?language=objc)
 pub const kPMQualityBest: c_uint = 0x000D;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmqualityhighest?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506743-anonymous/kpmqualityhighest?language=objc)
 pub const kPMQualityHighest: c_uint = 0x000F;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmpapertype?language=objc)
 pub type PMPaperType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpapertypeunknown?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506811-anonymous/kpmpapertypeunknown?language=objc)
 pub const kPMPaperTypeUnknown: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpapertypeplain?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506811-anonymous/kpmpapertypeplain?language=objc)
 pub const kPMPaperTypePlain: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpapertypecoated?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506811-anonymous/kpmpapertypecoated?language=objc)
 pub const kPMPaperTypeCoated: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpapertypepremium?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506811-anonymous/kpmpapertypepremium?language=objc)
 pub const kPMPaperTypePremium: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpapertypeglossy?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506811-anonymous/kpmpapertypeglossy?language=objc)
 pub const kPMPaperTypeGlossy: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpapertypetransparency?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506811-anonymous/kpmpapertypetransparency?language=objc)
 pub const kPMPaperTypeTransparency: c_uint = 0x0005;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmpapertypetshirt?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506811-anonymous/kpmpapertypetshirt?language=objc)
 pub const kPMPaperTypeTShirt: c_uint = 0x0006;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmscalingalignment?language=objc)
 pub type PMScalingAlignment = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmscalingpintopleft?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506734-anonymous/kpmscalingpintopleft?language=objc)
 pub const kPMScalingPinTopLeft: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmscalingpintopright?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506734-anonymous/kpmscalingpintopright?language=objc)
 pub const kPMScalingPinTopRight: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmscalingpinbottomleft?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506734-anonymous/kpmscalingpinbottomleft?language=objc)
 pub const kPMScalingPinBottomLeft: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmscalingpinbottomright?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506734-anonymous/kpmscalingpinbottomright?language=objc)
 pub const kPMScalingPinBottomRight: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmscalingcenteronpaper?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506734-anonymous/kpmscalingcenteronpaper?language=objc)
 pub const kPMScalingCenterOnPaper: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmscalingcenteronimgarea?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506734-anonymous/kpmscalingcenteronimgarea?language=objc)
 pub const kPMScalingCenterOnImgArea: c_uint = 6;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmduplexmode?language=objc)
 pub type PMDuplexMode = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmduplexnone?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506751-anonymous/kpmduplexnone?language=objc)
 pub const kPMDuplexNone: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmduplexnotumble?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506751-anonymous/kpmduplexnotumble?language=objc)
 pub const kPMDuplexNoTumble: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmduplextumble?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506751-anonymous/kpmduplextumble?language=objc)
 pub const kPMDuplexTumble: c_uint = 0x0003;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmsimplextumble?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506751-anonymous/kpmsimplextumble?language=objc)
 pub const kPMSimplexTumble: c_uint = 0x0004;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmlayoutdirection?language=objc)
 pub type PMLayoutDirection = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayoutleftrighttopbottom?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayoutleftrighttopbottom?language=objc)
 pub const kPMLayoutLeftRightTopBottom: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayoutleftrightbottomtop?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayoutleftrightbottomtop?language=objc)
 pub const kPMLayoutLeftRightBottomTop: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayoutrightlefttopbottom?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayoutrightlefttopbottom?language=objc)
 pub const kPMLayoutRightLeftTopBottom: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayoutrightleftbottomtop?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayoutrightleftbottomtop?language=objc)
 pub const kPMLayoutRightLeftBottomTop: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayouttopbottomleftright?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayouttopbottomleftright?language=objc)
 pub const kPMLayoutTopBottomLeftRight: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayouttopbottomrightleft?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayouttopbottomrightleft?language=objc)
 pub const kPMLayoutTopBottomRightLeft: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayoutbottomtopleftright?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayoutbottomtopleftright?language=objc)
 pub const kPMLayoutBottomTopLeftRight: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmlayoutbottomtoprightleft?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506805-anonymous/kpmlayoutbottomtoprightleft?language=objc)
 pub const kPMLayoutBottomTopRightLeft: c_uint = 8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmbordertype?language=objc)
 pub type PMBorderType = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmbordersinglehairline?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506808-anonymous/kpmbordersinglehairline?language=objc)
 pub const kPMBorderSingleHairline: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmborderdoublehairline?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506808-anonymous/kpmborderdoublehairline?language=objc)
 pub const kPMBorderDoubleHairline: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmbordersinglethickline?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506808-anonymous/kpmbordersinglethickline?language=objc)
 pub const kPMBorderSingleThickline: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmborderdoublethickline?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506808-anonymous/kpmborderdoublethickline?language=objc)
 pub const kPMBorderDoubleThickline: c_uint = 4;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmprintdialogoptionflags?language=objc)
 pub type PMPrintDialogOptionFlags = OptionBits;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmhideinlineitems?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmhideinlineitems?language=objc)
 pub const kPMHideInlineItems: c_uint = 0 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmshowdefaultinlineitems?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowdefaultinlineitems?language=objc)
 pub const kPMShowDefaultInlineItems: c_uint = 1 << 15;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmshowinlinecopies?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowinlinecopies?language=objc)
 pub const kPMShowInlineCopies: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmshowinlinepagerange?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowinlinepagerange?language=objc)
 pub const kPMShowInlinePageRange: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmshowinlinepagerangewithselection?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowinlinepagerangewithselection?language=objc)
 pub const kPMShowInlinePageRangeWithSelection: c_uint = 1 << 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmshowinlinepapersize?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowinlinepapersize?language=objc)
 pub const kPMShowInlinePaperSize: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmshowinlineorientation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowinlineorientation?language=objc)
 pub const kPMShowInlineOrientation: c_uint = 1 << 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmshowinlinescale?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowinlinescale?language=objc)
 pub const kPMShowInlineScale: c_uint = 1 << 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmshowpageattributespde?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506772-anonymous/kpmshowpageattributespde?language=objc)
 pub const kPMShowPageAttributesPDE: c_uint = 1 << 8;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmppddomain?language=objc)
 pub type PMPPDDomain = u16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kallppddomains?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506762-anonymous/kallppddomains?language=objc)
 pub const kAllPPDDomains: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/ksystemppddomain?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506762-anonymous/ksystemppddomain?language=objc)
 pub const kSystemPPDDomain: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/klocalppddomain?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506762-anonymous/klocalppddomain?language=objc)
 pub const kLocalPPDDomain: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/knetworkppddomain?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506762-anonymous/knetworkppddomain?language=objc)
 pub const kNetworkPPDDomain: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kuserppddomain?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506762-anonymous/kuserppddomain?language=objc)
 pub const kUserPPDDomain: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kcupsppddomain?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506762-anonymous/kcupsppddomain?language=objc)
 pub const kCUPSPPDDomain: c_uint = 6;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmnoerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpmnoerror?language=objc)
 pub const kPMNoError: c_int = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmgeneralerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpmgeneralerror?language=objc)
 pub const kPMGeneralError: c_int = -30870;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmoutofscope?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpmoutofscope?language=objc)
 pub const kPMOutOfScope: c_int = -30871;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpminvalidparameter?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpminvalidparameter?language=objc)
 pub const kPMInvalidParameter: c_int = -50;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmnodefaultprinter?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpmnodefaultprinter?language=objc)
 pub const kPMNoDefaultPrinter: c_int = -30872;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmnotimplemented?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpmnotimplemented?language=objc)
 pub const kPMNotImplemented: c_int = -30873;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmnosuchentry?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpmnosuchentry?language=objc)
 pub const kPMNoSuchEntry: c_int = -30874;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpminvalidprintsettings?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpminvalidprintsettings?language=objc)
 pub const kPMInvalidPrintSettings: c_int = -30875;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpminvalidpageformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpminvalidpageformat?language=objc)
 pub const kPMInvalidPageFormat: c_int = -30876;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmvalueoutofrange?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506722-anonymous/kpmvalueoutofrange?language=objc)
 pub const kPMValueOutOfRange: c_int = -30877;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpminvalidprintsession?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506800-anonymous/kpminvalidprintsession?language=objc)
 pub const kPMInvalidPrintSession: c_int = -30879;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpminvalidprinter?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506800-anonymous/kpminvalidprinter?language=objc)
 pub const kPMInvalidPrinter: c_int = -30880;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmobjectinuse?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506800-anonymous/kpmobjectinuse?language=objc)
 pub const kPMObjectInUse: c_int = -30881;
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpminvalidpreset?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506800-anonymous/kpminvalidpreset?language=objc)
 pub const kPMInvalidPreset: c_int = -30899;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmprintallpages?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506768-print_all_pages_constant/kpmprintallpages?language=objc)
 pub const kPMPrintAllPages: c_int = -1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kpmunlocked?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1506830-anonymous/kpmunlocked?language=objc)
 pub const kPMUnlocked: c_uint = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmrect?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/core_printing/pmrect?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct PMRect {
@@ -405,7 +395,7 @@ unsafe impl RefEncode for PMResolution {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/pmlanguageinfo?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/core_printing/pmlanguageinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct PMLanguageInfo {

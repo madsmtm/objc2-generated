@@ -139,79 +139,79 @@ unsafe impl RefEncode for PDFWidgetCellState {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtypetext?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/text?language=objc)
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeText: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtypelink?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/link?language=objc)
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeLink: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtypefreetext?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/freetext?language=objc)
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeFreeText: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtypeline?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/line?language=objc)
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeLine: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtypesquare?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/square?language=objc)
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeSquare: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtypecircle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/circle?language=objc)
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeCircle: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtypehighlight?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/highlight?language=objc)
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeHighlight: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtypeunderline?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/underline?language=objc)
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeUnderline: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtypestrikeout?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/strikeout?language=objc)
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeStrikeOut: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtypeink?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/ink?language=objc)
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeInk: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtypestamp?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/stamp?language=objc)
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeStamp: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtypepopup?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/popup?language=objc)
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypePopup: &'static PDFAnnotationSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtypewidget?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationsubtype/widget?language=objc)
     #[cfg(feature = "PDFAnnotation")]
     pub static PDFAnnotationSubtypeWidget: &'static PDFAnnotationSubtype;
 }
@@ -221,22 +221,22 @@ extern "C" {
 pub type PDFAnnotationWidgetSubtype = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationwidgetsubtypebutton?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationwidgetsubtype/button?language=objc)
     pub static PDFAnnotationWidgetSubtypeButton: &'static PDFAnnotationWidgetSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationwidgetsubtypechoice?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationwidgetsubtype/choice?language=objc)
     pub static PDFAnnotationWidgetSubtypeChoice: &'static PDFAnnotationWidgetSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationwidgetsubtypesignature?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationwidgetsubtype/signature?language=objc)
     pub static PDFAnnotationWidgetSubtypeSignature: &'static PDFAnnotationWidgetSubtype;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationwidgetsubtypetext?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationwidgetsubtype/text?language=objc)
     pub static PDFAnnotationWidgetSubtypeText: &'static PDFAnnotationWidgetSubtype;
 }
 
@@ -245,32 +245,32 @@ extern "C" {
 pub type PDFAnnotationLineEndingStyle = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstylenone?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyle/none?language=objc)
     pub static PDFAnnotationLineEndingStyleNone: &'static PDFAnnotationLineEndingStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstylesquare?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyle/square?language=objc)
     pub static PDFAnnotationLineEndingStyleSquare: &'static PDFAnnotationLineEndingStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstylecircle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyle/circle?language=objc)
     pub static PDFAnnotationLineEndingStyleCircle: &'static PDFAnnotationLineEndingStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstylediamond?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyle/diamond?language=objc)
     pub static PDFAnnotationLineEndingStyleDiamond: &'static PDFAnnotationLineEndingStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyleopenarrow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyle/openarrow?language=objc)
     pub static PDFAnnotationLineEndingStyleOpenArrow: &'static PDFAnnotationLineEndingStyle;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyleclosedarrow?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationlineendingstyle/closedarrow?language=objc)
     pub static PDFAnnotationLineEndingStyleClosedArrow: &'static PDFAnnotationLineEndingStyle;
 }
 
@@ -279,37 +279,37 @@ extern "C" {
 pub type PDFAnnotationTextIconType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontypecomment?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype/comment?language=objc)
     pub static PDFAnnotationTextIconTypeComment: &'static PDFAnnotationTextIconType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontypekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype/key?language=objc)
     pub static PDFAnnotationTextIconTypeKey: &'static PDFAnnotationTextIconType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontypenote?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype/note?language=objc)
     pub static PDFAnnotationTextIconTypeNote: &'static PDFAnnotationTextIconType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontypehelp?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype/help?language=objc)
     pub static PDFAnnotationTextIconTypeHelp: &'static PDFAnnotationTextIconType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontypenewparagraph?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype/newparagraph?language=objc)
     pub static PDFAnnotationTextIconTypeNewParagraph: &'static PDFAnnotationTextIconType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontypeparagraph?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype/paragraph?language=objc)
     pub static PDFAnnotationTextIconTypeParagraph: &'static PDFAnnotationTextIconType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontypeinsert?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationtexticontype/insert?language=objc)
     pub static PDFAnnotationTextIconTypeInsert: &'static PDFAnnotationTextIconType;
 }
 
@@ -318,22 +318,22 @@ extern "C" {
 pub type PDFAnnotationHighlightingMode = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationhighlightingmodenone?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationhighlightingmode/none?language=objc)
     pub static PDFAnnotationHighlightingModeNone: &'static PDFAnnotationHighlightingMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationhighlightingmodeinvert?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationhighlightingmode/invert?language=objc)
     pub static PDFAnnotationHighlightingModeInvert: &'static PDFAnnotationHighlightingMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationhighlightingmodeoutline?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationhighlightingmode/outline?language=objc)
     pub static PDFAnnotationHighlightingModeOutline: &'static PDFAnnotationHighlightingMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationhighlightingmodepush?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfannotationhighlightingmode/push?language=objc)
     pub static PDFAnnotationHighlightingModePush: &'static PDFAnnotationHighlightingMode;
 }
 

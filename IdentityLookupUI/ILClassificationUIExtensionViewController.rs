@@ -13,8 +13,6 @@ use crate::*;
 
 extern_class!(
     /// Represents a view controller to subclass for displaying classification UI
-    ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/identitylookupui/ilclassificationuiextensionviewcontroller?language=objc)
     #[unsafe(super(UIViewController, UIResponder, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "objc2-ui-kit")]

@@ -12,7 +12,7 @@ use objc2_ui_kit::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arreferenceobjectarchiveextension?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/arkit/arreferenceobject/archiveextension?language=objc)
     #[cfg(feature = "objc2-foundation")]
     pub static ARReferenceObjectArchiveExtension: &'static NSString;
 }

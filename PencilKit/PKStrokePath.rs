@@ -12,7 +12,7 @@ use crate::*;
 extern_class!(
     /// A uniform cubic B-spline representing the point data of a `PKStroke`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkstrokepath?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkstrokepathreference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKStrokePath;

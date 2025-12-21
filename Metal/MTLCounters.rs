@@ -15,77 +15,77 @@ use crate::*;
 pub type MTLCommonCounter = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountertimestamp?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/timestamp?language=objc)
     pub static MTLCommonCounterTimestamp: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountertessellationinputpatches?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/tessellationinputpatches?language=objc)
     pub static MTLCommonCounterTessellationInputPatches: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountervertexinvocations?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/vertexinvocations?language=objc)
     pub static MTLCommonCounterVertexInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterposttessellationvertexinvocations?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/posttessellationvertexinvocations?language=objc)
     pub static MTLCommonCounterPostTessellationVertexInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterclipperinvocations?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/clipperinvocations?language=objc)
     pub static MTLCommonCounterClipperInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterclipperprimitivesout?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/clipperprimitivesout?language=objc)
     pub static MTLCommonCounterClipperPrimitivesOut: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterfragmentinvocations?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/fragmentinvocations?language=objc)
     pub static MTLCommonCounterFragmentInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterfragmentspassed?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/fragmentspassed?language=objc)
     pub static MTLCommonCounterFragmentsPassed: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountercomputekernelinvocations?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/computekernelinvocations?language=objc)
     pub static MTLCommonCounterComputeKernelInvocations: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountertotalcycles?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/totalcycles?language=objc)
     pub static MTLCommonCounterTotalCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountervertexcycles?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/vertexcycles?language=objc)
     pub static MTLCommonCounterVertexCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountertessellationcycles?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/tessellationcycles?language=objc)
     pub static MTLCommonCounterTessellationCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterposttessellationvertexcycles?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/posttessellationvertexcycles?language=objc)
     pub static MTLCommonCounterPostTessellationVertexCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterfragmentcycles?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/fragmentcycles?language=objc)
     pub static MTLCommonCounterFragmentCycles: &'static MTLCommonCounter;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterrendertargetwritecycles?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounter/rendertargetwritecycles?language=objc)
     pub static MTLCommonCounterRenderTargetWriteCycles: &'static MTLCommonCounter;
 }
 
@@ -99,17 +99,17 @@ extern "C" {
 pub type MTLCommonCounterSet = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountersettimestamp?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterset/timestamp?language=objc)
     pub static MTLCommonCounterSetTimestamp: &'static MTLCommonCounterSet;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountersetstageutilization?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterset/stageutilization?language=objc)
     pub static MTLCommonCounterSetStageUtilization: &'static MTLCommonCounterSet;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncountersetstatistic?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcommoncounterset/statistic?language=objc)
     pub static MTLCommonCounterSetStatistic: &'static MTLCommonCounterSet;
 }
 
@@ -371,7 +371,7 @@ extern "C" {
 ///
 /// There was some other error in allocating the counter sample buffer.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffererror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcountersamplebuffererror-swift.struct/code?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

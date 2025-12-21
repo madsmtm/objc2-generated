@@ -12,49 +12,49 @@ use crate::*;
 pub type NSLinguisticTagScheme = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemetokentype?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/tokentype?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeTokenType: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemelexicalclass?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/lexicalclass?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeLexicalClass: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemenametype?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/nametype?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeNameType: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemenametypeorlexicalclass?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/nametypeorlexicalclass?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeNameTypeOrLexicalClass: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemelemma?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/lemma?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeLemma: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemelanguage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/language?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeLanguage: &'static NSLinguisticTagScheme;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagschemescript?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagscheme/script?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSchemeScript: &'static NSLinguisticTagScheme;
@@ -66,217 +66,217 @@ extern "C" {
 pub type NSLinguisticTag = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagword?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/word?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagWord: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpunctuation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/punctuation?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPunctuation: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagwhitespace?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/whitespace?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagWhitespace: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagother?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/other?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOther: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagnoun?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/noun?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagNoun: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagverb?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/verb?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagVerb: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagadjective?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/adjective?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagAdjective: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagadverb?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/adverb?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagAdverb: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpronoun?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/pronoun?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPronoun: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagdeterminer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/determiner?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagDeterminer: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagparticle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/particle?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagParticle: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpreposition?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/preposition?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPreposition: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagnumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/number?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagNumber: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagconjunction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/conjunction?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagConjunction: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaginterjection?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/interjection?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagInterjection: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagclassifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/classifier?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagClassifier: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagidiom?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/idiom?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagIdiom: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagotherword?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/otherword?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOtherWord: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagsentenceterminator?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/sentenceterminator?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagSentenceTerminator: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagopenquote?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/openquote?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOpenQuote: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagclosequote?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/closequote?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagCloseQuote: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagopenparenthesis?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/openparenthesis?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOpenParenthesis: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagcloseparenthesis?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/closeparenthesis?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagCloseParenthesis: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagwordjoiner?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/wordjoiner?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagWordJoiner: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagdash?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/dash?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagDash: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagotherpunctuation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/otherpunctuation?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOtherPunctuation: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagparagraphbreak?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/paragraphbreak?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagParagraphBreak: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagotherwhitespace?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/otherwhitespace?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOtherWhitespace: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagpersonalname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/personalname?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPersonalName: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagplacename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/placename?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagPlaceName: &'static NSLinguisticTag;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagorganizationname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictag/organizationname?language=objc)
     #[cfg(feature = "NSString")]
     #[deprecated = "All NSLinguisticTagger API should be replaced with NaturalLanguage.framework API"]
     pub static NSLinguisticTagOrganizationName: &'static NSLinguisticTag;
@@ -306,7 +306,7 @@ unsafe impl RefEncode for NSLinguisticTaggerUnit {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictaggeroptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/foundation/nslinguistictagger/options?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

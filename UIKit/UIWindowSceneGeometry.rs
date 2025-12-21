@@ -37,7 +37,7 @@ unsafe impl RefEncode for UIWindowSceneResizingRestrictions {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenegeometry?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/geometry?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIWindowSceneGeometry;

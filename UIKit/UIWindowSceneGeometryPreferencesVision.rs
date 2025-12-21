@@ -17,7 +17,7 @@ extern "C" {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenegeometrypreferencesvision?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/geometrypreferences/vision?language=objc)
     #[unsafe(super(UIWindowSceneGeometryPreferences, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]

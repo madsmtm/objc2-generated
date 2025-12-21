@@ -10,7 +10,7 @@ extern_class!(
     /// MLModelCollectionEntry
     /// Information about a model in a model collection.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelcollectionentry?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreml/mlmodelcollection/entry?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use Background Assets or NSURLSession instead."]

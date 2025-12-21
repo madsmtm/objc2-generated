@@ -9,7 +9,7 @@ use crate::*;
 #[cfg(feature = "cssmconfig")]
 pub type CSSM_MANAGER_EVENT_TYPES = uint32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_manager_event_notification?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_manager_event_notification-c.struct?language=objc)
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 #[deprecated]
 #[repr(C)]
@@ -51,7 +51,7 @@ unsafe impl RefEncode for cssm_manager_event_notification {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_manager_event_notification?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/security/cssm_manager_event_notification-c.typealias?language=objc)
 #[deprecated]
 #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
 pub type CSSM_MANAGER_EVENT_NOTIFICATION = cssm_manager_event_notification;

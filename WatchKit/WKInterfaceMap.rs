@@ -37,7 +37,7 @@ unsafe impl RefEncode for WKInterfaceMapPinColor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemapusertrackingmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkinterfacemap/usertrackingmode?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

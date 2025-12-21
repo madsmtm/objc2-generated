@@ -38,67 +38,67 @@ extern "C" {
 pub type AVVideoCodecType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypehevc?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectype/hevc?language=objc)
     pub static AVVideoCodecTypeHEVC: Option<&'static AVVideoCodecType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeh264?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectype/h264?language=objc)
     pub static AVVideoCodecTypeH264: Option<&'static AVVideoCodecType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypejpeg?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectype/jpeg?language=objc)
     pub static AVVideoCodecTypeJPEG: Option<&'static AVVideoCodecType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypejpegxl?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectype/jpegxl?language=objc)
     pub static AVVideoCodecTypeJPEGXL: Option<&'static AVVideoCodecType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleprores4444?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectype/prores4444?language=objc)
     pub static AVVideoCodecTypeAppleProRes4444: Option<&'static AVVideoCodecType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleprores4444xq?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectype/appleprores4444xq?language=objc)
     pub static AVVideoCodecTypeAppleProRes4444XQ: Option<&'static AVVideoCodecType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleprores422?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectype/prores422?language=objc)
     pub static AVVideoCodecTypeAppleProRes422: Option<&'static AVVideoCodecType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleprores422hq?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectype/prores422hq?language=objc)
     pub static AVVideoCodecTypeAppleProRes422HQ: Option<&'static AVVideoCodecType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleprores422lt?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectype/prores422lt?language=objc)
     pub static AVVideoCodecTypeAppleProRes422LT: Option<&'static AVVideoCodecType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleprores422proxy?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectype/prores422proxy?language=objc)
     pub static AVVideoCodecTypeAppleProRes422Proxy: Option<&'static AVVideoCodecType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleproresraw?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectype/proresraw?language=objc)
     pub static AVVideoCodecTypeAppleProResRAW: Option<&'static AVVideoCodecType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypeappleproresrawhq?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectype/proresrawhq?language=objc)
     pub static AVVideoCodecTypeAppleProResRAWHQ: Option<&'static AVVideoCodecType>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectypehevcwithalpha?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideocodectype/hevcwithalpha?language=objc)
     pub static AVVideoCodecTypeHEVCWithAlpha: Option<&'static AVVideoCodecType>;
 }
 
@@ -518,7 +518,7 @@ extern "C" {
     ///
     /// An image's clean aperture is a region of video free from transition artifacts caused by the encoding of the signal.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoaperturemodecleanaperture?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoaperturemode/cleanaperture?language=objc)
     pub static AVVideoApertureModeCleanAperture: Option<&'static AVVideoApertureMode>;
 }
 
@@ -527,7 +527,7 @@ extern "C" {
     ///
     /// The image is not cropped to the clean aperture region, but it is scaled according to the pixel aspect ratio. Use this option when you want to see all the pixels in your video, including the edges.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoaperturemodeproductionaperture?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoaperturemode/productionaperture?language=objc)
     pub static AVVideoApertureModeProductionAperture: Option<&'static AVVideoApertureMode>;
 }
 
@@ -536,6 +536,6 @@ extern "C" {
     ///
     /// The image is not cropped to the clean aperture region and is not scaled according to the pixel aspect ratio. The encoded dimensions of the image description are displayed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoaperturemodeencodedpixels?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avvideoaperturemode/encodedpixels?language=objc)
     pub static AVVideoApertureModeEncodedPixels: Option<&'static AVVideoApertureMode>;
 }

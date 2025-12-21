@@ -10,442 +10,286 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioacceleratorclassname?language=objc)
 pub const kIOAcceleratorClassName: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOAccelerator\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kcurrentgraphicsinterfaceversion?language=objc)
 pub const kCurrentGraphicsInterfaceVersion: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kcurrentgraphicsinterfacerevision?language=objc)
 pub const kCurrentGraphicsInterfaceRevision: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioacceltypeskey?language=objc)
 pub const kIOAccelTypesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOAccelTypes\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioaccelindexkey?language=objc)
 pub const kIOAccelIndexKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOAccelIndex\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioaccelrevisionkey?language=objc)
 pub const kIOAccelRevisionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOAccelRevision\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io1bitindexedpixels?language=objc)
 pub const IO1BitIndexedPixels: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"P\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io2bitindexedpixels?language=objc)
 pub const IO2BitIndexedPixels: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"PP\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io4bitindexedpixels?language=objc)
 pub const IO4BitIndexedPixels: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"PPPP\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io8bitindexedpixels?language=objc)
 pub const IO8BitIndexedPixels: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"PPPPPPPP\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io16bitdirectpixels?language=objc)
 pub const IO16BitDirectPixels: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"-RRRRRGGGGGBBBBB\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io32bitdirectpixels?language=objc)
 pub const IO32BitDirectPixels: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"--------RRRRRRRRGGGGGGGGBBBBBBBB\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio30bitdirectpixels?language=objc)
 pub const kIO30BitDirectPixels: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"--RRRRRRRRRRGGGGGGGGGGBBBBBBBBBB\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio64bitdirectpixels?language=objc)
 pub const kIO64BitDirectPixels: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"-16R16G16B16\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio16bitfloatpixels?language=objc)
 pub const kIO16BitFloatPixels: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"-16FR16FG16FB16\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio32bitfloatpixels?language=objc)
 pub const kIO32BitFloatPixels: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"-32FR32FG32FB32\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioyuv422pixels?language=objc)
 pub const IOYUV422Pixels: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Y4U2V2\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io8bitoverlaypixels?language=objc)
 pub const IO8BitOverlayPixels: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"O8\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopagedpixels?language=objc)
 pub const IOPagedPixels: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"Page1\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io_sampletypealpha?language=objc)
 pub const IO_SampleTypeAlpha: c_uint = b'A' as _;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/io_sampletypeskip?language=objc)
 pub const IO_SampleTypeSkip: c_uint = b'-' as _;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbsetgammasyncnotspecified?language=objc)
 pub const kIOFBSetGammaSyncNotSpecified: c_int = -1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbsetgammasyncnosync?language=objc)
 pub const kIOFBSetGammaSyncNoSync: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbsetgammasyncverticalblanksync?language=objc)
 pub const kIOFBSetGammaSyncVerticalBlankSync: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayattributeskey?language=objc)
 pub const kIODisplayAttributesKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayAttributes\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaysupportsunderscankey?language=objc)
 pub const kIODisplaySupportsUnderscanKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplaySupportsUnderscan\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaysupportsbasicaudiokey?language=objc)
 pub const kIODisplaySupportsBasicAudioKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplaySupportsBasicAudio\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaysupportsycbcr444key?language=objc)
 pub const kIODisplaySupportsYCbCr444Key: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplaySupportsYCbCr444\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaysupportsycbcr422key?language=objc)
 pub const kIODisplaySupportsYCbCr422Key: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplaySupportsYCbCr422\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayselectedcolormodekey?language=objc)
 pub const kIODisplaySelectedColorModeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"cmod\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioframebufferinfokey?language=objc)
 pub const kIOFramebufferInfoKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFramebufferInformation\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbwidthkey?language=objc)
 pub const kIOFBWidthKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBWidth\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbheightkey?language=objc)
 pub const kIOFBHeightKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBHeight\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbrefreshratekey?language=objc)
 pub const kIOFBRefreshRateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBRefreshRate\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbflagskey?language=objc)
 pub const kIOFBFlagsKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBFlags\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbbytesperrowkey?language=objc)
 pub const kIOFBBytesPerRowKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBBytesPerRow\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbbytesperplanekey?language=objc)
 pub const kIOFBBytesPerPlaneKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBBytesPerPlane\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbbitsperpixelkey?language=objc)
 pub const kIOFBBitsPerPixelKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBBitsPerPixel\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbcomponentcountkey?language=objc)
 pub const kIOFBComponentCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBComponentCount\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbbitspercomponentkey?language=objc)
 pub const kIOFBBitsPerComponentKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBBitsPerComponent\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbdetailedtimingskey?language=objc)
 pub const kIOFBDetailedTimingsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBDetailedTimings\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbtimingrangekey?language=objc)
 pub const kIOFBTimingRangeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBTimingRange\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbscalerinfokey?language=objc)
 pub const kIOFBScalerInfoKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBScalerInfo\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbcursorinfokey?language=objc)
 pub const kIOFBCursorInfoKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBCursorInfo\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbhdmidongleromkey?language=objc)
 pub const kIOFBHDMIDongleROMKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBHDMIDongleROM\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbhostaccessflagskey?language=objc)
 pub const kIOFBHostAccessFlagsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBHostAccessFlags\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmemorysizekey?language=objc)
 pub const kIOFBMemorySizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBMemorySize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbneedsrefreshkey?language=objc)
 pub const kIOFBNeedsRefreshKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBNeedsRefresh\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbprobeoptionskey?language=objc)
 pub const kIOFBProbeOptionsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBProbeOptions\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbgammawidthkey?language=objc)
 pub const kIOFBGammaWidthKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBGammaWidth\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbgammacountkey?language=objc)
 pub const kIOFBGammaCountKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBGammaCount\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbclutdeferkey?language=objc)
 pub const kIOFBCLUTDeferKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBCLUTDefer\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbdisplayportconfigurationdatakey?language=objc)
 pub const kIOFBDisplayPortConfigurationDataKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"dpcd-registers\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohibernatepreviewactivekey?language=objc)
 pub const kIOHibernatePreviewActiveKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOHibernatePreviewActive\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohibernateefigfxstatuskey?language=objc)
 pub const kIOHibernateEFIGfxStatusKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IOHibernateEFIGfxStatus\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbavsignaltypekey?language=objc)
 pub const kIOFBAVSignalTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"av-signal-type\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbconfigkey?language=objc)
 pub const kIOFBConfigKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBConfig\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmodeskey?language=objc)
 pub const kIOFBModesKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"IOFBModes\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmodeidkey?language=objc)
 pub const kIOFBModeIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"ID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmodedmkey?language=objc)
 pub const kIOFBModeDMKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"DM\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmodetmkey?language=objc)
 pub const kIOFBModeTMKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"TM\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmodeaidkey?language=objc)
 pub const kIOFBModeAIDKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"AID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmodedfkey?language=objc)
 pub const kIOFBModeDFKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"DF\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmodepikey?language=objc)
 pub const kIOFBModePIKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"PI\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayedidkey?language=objc)
 pub const kIODisplayEDIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayEDID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayedidoriginalkey?language=objc)
 pub const kIODisplayEDIDOriginalKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayEDIDOriginal\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaylocationkey?language=objc)
 pub const kIODisplayLocationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayLocation\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayconnectflagskey?language=objc)
 pub const kIODisplayConnectFlagsKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayConnectFlags\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayhasbacklightkey?language=objc)
 pub const kIODisplayHasBacklightKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayHasBacklight\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayisdigitalkey?language=objc)
 pub const kIODisplayIsDigitalKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayIsDigital\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaybundlekey?language=objc)
 pub const kDisplayBundleKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayBundle\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kappledisplaytypekey?language=objc)
 pub const kAppleDisplayTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AppleDisplayType\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kapplesensekey?language=objc)
 pub const kAppleSenseKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"AppleSense\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaymccsversionkey?language=objc)
 pub const kIODisplayMCCSVersionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayMCCSVersion\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaytechnologytypekey?language=objc)
 pub const kIODisplayTechnologyTypeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayTechnologyType\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayusagetimekey?language=objc)
 pub const kIODisplayUsageTimeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayUsageTime\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayfirmwarelevelkey?language=objc)
 pub const kIODisplayFirmwareLevelKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayFirmwareLevel\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayvendorid?language=objc)
 pub const kDisplayVendorID: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayVendorID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayproductid?language=objc)
 pub const kDisplayProductID: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayProductID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayserialnumber?language=objc)
 pub const kDisplaySerialNumber: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplaySerialNumber\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayserialstring?language=objc)
 pub const kDisplaySerialString: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplaySerialString\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayweekofmanufacture?language=objc)
 pub const kDisplayWeekOfManufacture: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayWeekManufacture\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayyearofmanufacture?language=objc)
 pub const kDisplayYearOfManufacture: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayYearManufacture\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayproductname?language=objc)
 pub const kDisplayProductName: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayProductName\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaywhitepointx?language=objc)
 pub const kDisplayWhitePointX: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayWhitePointX\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaywhitepointy?language=objc)
 pub const kDisplayWhitePointY: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayWhitePointY\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayredpointx?language=objc)
 pub const kDisplayRedPointX: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayRedPointX\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayredpointy?language=objc)
 pub const kDisplayRedPointY: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayRedPointY\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaygreenpointx?language=objc)
 pub const kDisplayGreenPointX: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayGreenPointX\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaygreenpointy?language=objc)
 pub const kDisplayGreenPointY: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayGreenPointY\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaybluepointx?language=objc)
 pub const kDisplayBluePointX: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayBluePointX\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaybluepointy?language=objc)
 pub const kDisplayBluePointY: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayBluePointY\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaywhitegamma?language=objc)
 pub const kDisplayWhiteGamma: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayWhiteGamma\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayredgamma?language=objc)
 pub const kDisplayRedGamma: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayRedGamma\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaygreengamma?language=objc)
 pub const kDisplayGreenGamma: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayGreenGamma\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaybluegamma?language=objc)
 pub const kDisplayBlueGamma: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayBlueGamma\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaygammachannels?language=objc)
 pub const kDisplayGammaChannels: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayGammaChannels\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaygammaentrycount?language=objc)
 pub const kDisplayGammaEntryCount: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayGammaEntryCount\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaygammaentrysize?language=objc)
 pub const kDisplayGammaEntrySize: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayGammaEntrySize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaygammatable?language=objc)
 pub const kDisplayGammaTable: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayGammaTable\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaybrightnessaffectsgamma?language=objc)
 pub const kDisplayBrightnessAffectsGamma: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayBrightnessAffectsGamma\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayviewangleaffectsgamma?language=objc)
 pub const kDisplayViewAngleAffectsGamma: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayViewAngleAffectsGamma\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaycsprofile?language=objc)
 pub const kDisplayCSProfile: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayCSProfile\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayhorizontalimagesize?language=objc)
 pub const kDisplayHorizontalImageSize: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayHorizontalImageSize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayverticalimagesize?language=objc)
 pub const kDisplayVerticalImageSize: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayVerticalImageSize\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayfixedpixelformat?language=objc)
 pub const kDisplayFixedPixelFormat: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplayFixedPixelFormat\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixellayout?language=objc)
 pub const kDisplaySubPixelLayout: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplaySubPixelLayout\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixelconfiguration?language=objc)
 pub const kDisplaySubPixelConfiguration: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplaySubPixelConfiguration\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixelshape?language=objc)
 pub const kDisplaySubPixelShape: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"DisplaySubPixelShape\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayoverridematchingkey?language=objc)
 pub const kIODisplayOverrideMatchingKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayOverrideMatching\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayparameterskey?language=objc)
 pub const kIODisplayParametersKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayParameters\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayguidkey?language=objc)
 pub const kIODisplayGUIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayGUID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayvaluekey?language=objc)
 pub const kIODisplayValueKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"value\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayminvaluekey?language=objc)
 pub const kIODisplayMinValueKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"min\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaymaxvaluekey?language=objc)
 pub const kIODisplayMaxValueKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"max\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaybrightnessprobekey?language=objc)
 pub const kIODisplayBrightnessProbeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"brightness-probe\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaylinearbrightnessprobekey?language=objc)
 pub const kIODisplayLinearBrightnessProbeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"linear-brightness-probe\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaybrightnesskey?language=objc)
 pub const kIODisplayBrightnessKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"brightness\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaylinearbrightnesskey?language=objc)
 pub const kIODisplayLinearBrightnessKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"linear-brightness\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayusablelinearbrightnesskey?language=objc)
 pub const kIODisplayUsableLinearBrightnessKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"usable-linear-brightness\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaybrightnessfadekey?language=objc)
 pub const kIODisplayBrightnessFadeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"brightness-fade\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaycontrastkey?language=objc)
 pub const kIODisplayContrastKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"contrast\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayhorizontalpositionkey?language=objc)
 pub const kIODisplayHorizontalPositionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"horizontal-position\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayhorizontalsizekey?language=objc)
 pub const kIODisplayHorizontalSizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"horizontal-size\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayverticalpositionkey?language=objc)
 pub const kIODisplayVerticalPositionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"vertical-position\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayverticalsizekey?language=objc)
 pub const kIODisplayVerticalSizeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"vertical-size\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaytrapezoidkey?language=objc)
 pub const kIODisplayTrapezoidKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"trapezoid\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaypincushionkey?language=objc)
 pub const kIODisplayPincushionKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"pincushion\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayparallelogramkey?language=objc)
 pub const kIODisplayParallelogramKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"parallelogram\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayrotationkey?language=objc)
 pub const kIODisplayRotationKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"rotation\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaytheatremodekey?language=objc)
 pub const kIODisplayTheatreModeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"theatre-mode\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaytheatremodewindowkey?language=objc)
 pub const kIODisplayTheatreModeWindowKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"theatre-mode-window\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayoverscankey?language=objc)
 pub const kIODisplayOverscanKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"oscn\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayvideobestkey?language=objc)
 pub const kIODisplayVideoBestKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"vbst\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayspeakervolumekey?language=objc)
 pub const kIODisplaySpeakerVolumeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"speaker-volume\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayspeakerselectkey?language=objc)
 pub const kIODisplaySpeakerSelectKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"speaker-select\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaymicrophonevolumekey?language=objc)
 pub const kIODisplayMicrophoneVolumeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"microphone-volume\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayambientlightsensorkey?language=objc)
 pub const kIODisplayAmbientLightSensorKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ambient-light-sensor\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayaudiomuteandscreenblankkey?language=objc)
 pub const kIODisplayAudioMuteAndScreenBlankKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"audio-mute-and-screen-blank\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayaudiotreblekey?language=objc)
 pub const kIODisplayAudioTrebleKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"audio-treble\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayaudiobasskey?language=objc)
 pub const kIODisplayAudioBassKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"audio-bass\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayaudiobalancelrkey?language=objc)
 pub const kIODisplayAudioBalanceLRKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"audio-balance-LR\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayaudioprocessormodekey?language=objc)
 pub const kIODisplayAudioProcessorModeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"audio-processor-mode\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaypowermodekey?language=objc)
 pub const kIODisplayPowerModeKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"power-mode\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaymanufacturerspecifickey?language=objc)
 pub const kIODisplayManufacturerSpecificKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"manufacturer-specific\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaypowerstatekey?language=objc)
 pub const kIODisplayPowerStateKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"dsyp\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaycontrolleridkey?language=objc)
 pub const kIODisplayControllerIDKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayControllerID\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaycapabilitystringkey?language=objc)
 pub const kIODisplayCapabilityStringKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IODisplayCapabilityString\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayredgammascalekey?language=objc)
 pub const kIODisplayRedGammaScaleKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"rgsc\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaygreengammascalekey?language=objc)
 pub const kIODisplayGreenGammaScaleKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ggsc\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaybluegammascalekey?language=objc)
 pub const kIODisplayBlueGammaScaleKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"bgsc\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaygammascalekey?language=objc)
 pub const kIODisplayGammaScaleKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"gsc \0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayparameterscommitkey?language=objc)
 pub const kIODisplayParametersCommitKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"commit\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayparametersdefaultkey?language=objc)
 pub const kIODisplayParametersDefaultKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"defaults\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayparametersflushkey?language=objc)
 pub const kIODisplayParametersFlushKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"flush\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioacceleratorclienttypes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAcceleratorClientTypes(pub c_uint);
@@ -514,7 +358,7 @@ unsafe impl RefEncode for IOAccelSize {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioaccelvolatilesurface?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1588678-anonymous/kioaccelvolatilesurface?language=objc)
 pub const kIOAccelVolatileSurface: c_uint = 0x00000001;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioaccelsurfaceinformation?language=objc)
@@ -616,7 +460,7 @@ unsafe impl RefEncode for IOAccelSurfaceScaling {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioaccelid?language=objc)
 pub type IOAccelID = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioaccelprivateid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1588694-anonymous/kioaccelprivateid?language=objc)
 pub const kIOAccelPrivateID: c_uint = 0x00000001;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioacceldeviceregion?language=objc)
@@ -645,7 +489,6 @@ unsafe impl RefEncode for IOAccelDeviceRegion {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacememorytypes?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAccelSurfaceMemoryTypes(pub c_uint);
@@ -664,7 +507,6 @@ unsafe impl RefEncode for eIOAccelSurfaceMemoryTypes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/eioaccelsurfacemethods?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
 pub struct eIOAccelSurfaceMethods(pub c_uint);
@@ -884,90 +726,89 @@ pub type IOBlitCompletionToken = i32;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblittype?language=objc)
 pub type IOBlitType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypeverbmask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypeverbmask?language=objc)
 pub const kIOBlitTypeVerbMask: c_uint = 0x000000ff;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittyperects?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittyperects?language=objc)
 pub const kIOBlitTypeRects: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypecopyrects?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypecopyrects?language=objc)
 pub const kIOBlitTypeCopyRects: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypelines?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypelines?language=objc)
 pub const kIOBlitTypeLines: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypescanlines?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypescanlines?language=objc)
 pub const kIOBlitTypeScanlines: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypecopyregion?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypecopyregion?language=objc)
 pub const kIOBlitTypeCopyRegion: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypemovecursor?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypemovecursor?language=objc)
 pub const kIOBlitTypeMoveCursor: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypeshowcursor?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypeshowcursor?language=objc)
 pub const kIOBlitTypeShowCursor: c_uint = 6;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypehidecursor?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypehidecursor?language=objc)
 pub const kIOBlitTypeHideCursor: c_uint = 7;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypemonoexpand?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypemonoexpand?language=objc)
 pub const kIOBlitTypeMonoExpand: c_uint = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypecolorspaceconvert?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypecolorspaceconvert?language=objc)
 pub const kIOBlitTypeColorSpaceConvert: c_uint = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypescale?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypescale?language=objc)
 pub const kIOBlitTypeScale: c_uint = 0x00000400;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypesourcekeycolormodemask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypesourcekeycolormodemask?language=objc)
 pub const kIOBlitTypeSourceKeyColorModeMask: c_uint = 0x00003000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypedestkeycolormodemask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypedestkeycolormodemask?language=objc)
 pub const kIOBlitTypeDestKeyColorModeMask: c_uint = 0x0000c000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypesourcekeycolorequal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypesourcekeycolorequal?language=objc)
 pub const kIOBlitTypeSourceKeyColorEqual: c_uint = 0x00001000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypesourcekeycolornotequal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypesourcekeycolornotequal?language=objc)
 pub const kIOBlitTypeSourceKeyColorNotEqual: c_uint = 0x00002000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypedestkeycolorequal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypedestkeycolorequal?language=objc)
 pub const kIOBlitTypeDestKeyColorEqual: c_uint = 0x00004000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypedestkeycolornotequal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypedestkeycolornotequal?language=objc)
 pub const kIOBlitTypeDestKeyColorNotEqual: c_uint = 0x00008000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypeoperationmask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypeoperationmask?language=objc)
 pub const kIOBlitTypeOperationMask: c_uint = 0x0fff0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypeoperationshift?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypeoperationshift?language=objc)
 pub const kIOBlitTypeOperationShift: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypeoperationtypemask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypeoperationtypemask?language=objc)
 pub const kIOBlitTypeOperationTypeMask: c_uint = 0x0f000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblittypeoperationtype0?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblittypeoperationtype0?language=objc)
 pub const kIOBlitTypeOperationType0: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitcopyoperation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblitcopyoperation?language=objc)
 pub const kIOBlitCopyOperation: c_uint = 0x00000000 | kIOBlitTypeOperationType0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitoroperation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblitoroperation?language=objc)
 pub const kIOBlitOrOperation: c_uint = 0x00010000 | kIOBlitTypeOperationType0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitxoroperation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblitxoroperation?language=objc)
 pub const kIOBlitXorOperation: c_uint = 0x00020000 | kIOBlitTypeOperationType0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitblendoperation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblitblendoperation?language=objc)
 pub const kIOBlitBlendOperation: c_uint = 0x00030000 | kIOBlitTypeOperationType0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblithighlightoperation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553423-anonymous/kioblithighlightoperation?language=objc)
 pub const kIOBlitHighlightOperation: c_uint = 0x00040000 | kIOBlitTypeOperationType0;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitsourcetype?language=objc)
 pub type IOBlitSourceType = u32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitsourcedefault?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553507-anonymous/kioblitsourcedefault?language=objc)
 pub const kIOBlitSourceDefault: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitsourceframebuffer?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553507-anonymous/kioblitsourceframebuffer?language=objc)
 pub const kIOBlitSourceFramebuffer: c_uint = 0x00001000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitsourcememory?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553507-anonymous/kioblitsourcememory?language=objc)
 pub const kIOBlitSourceMemory: c_uint = 0x00002000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitsourceoolmemory?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553507-anonymous/kioblitsourceoolmemory?language=objc)
 pub const kIOBlitSourceOOLMemory: c_uint = 0x00003000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitsourcepattern?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553507-anonymous/kioblitsourcepattern?language=objc)
 pub const kIOBlitSourcePattern: c_uint = 0x00004000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitsourceoolpattern?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553507-anonymous/kioblitsourceoolpattern?language=objc)
 pub const kIOBlitSourceOOLPattern: c_uint = 0x00005000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitsourcesolid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553507-anonymous/kioblitsourcesolid?language=objc)
 pub const kIOBlitSourceSolid: c_uint = 0x00006000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitsourcecgssurface?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553507-anonymous/kioblitsourcecgssurface?language=objc)
 pub const kIOBlitSourceCGSSurface: c_uint = 0x00007000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitsourceissame?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553507-anonymous/kioblitsourceissame?language=objc)
 pub const kIOBlitSourceIsSame: c_uint = 0x80000000;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitsourcedesttype?language=objc)
 pub type IOBlitSourceDestType = IOBlitSourceType;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitdestframebuffer?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553543-anonymous/kioblitdestframebuffer?language=objc)
 pub const kIOBlitDestFramebuffer: c_uint = 0x00000001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitoperationstruct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitOperationStruct {
@@ -1001,10 +842,8 @@ unsafe impl RefEncode for IOBlitOperationStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitoperation?language=objc)
 pub type IOBlitOperation = IOBlitOperationStruct;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitrectanglestruct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitRectangleStruct {
@@ -1032,10 +871,8 @@ unsafe impl RefEncode for IOBlitRectangleStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitrectangle?language=objc)
 pub type IOBlitRectangle = IOBlitRectangleStruct;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitrectanglesstruct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitRectanglesStruct {
@@ -1061,10 +898,8 @@ unsafe impl RefEncode for IOBlitRectanglesStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitrectangles?language=objc)
 pub type IOBlitRectangles = IOBlitRectanglesStruct;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitcopyrectanglestruct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitCopyRectangleStruct {
@@ -1096,10 +931,8 @@ unsafe impl RefEncode for IOBlitCopyRectangleStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitcopyrectangle?language=objc)
 pub type IOBlitCopyRectangle = IOBlitCopyRectangleStruct;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitcopyrectanglesstruct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitCopyRectanglesStruct {
@@ -1125,10 +958,8 @@ unsafe impl RefEncode for IOBlitCopyRectanglesStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitcopyrectangles?language=objc)
 pub type IOBlitCopyRectangles = IOBlitCopyRectanglesStruct;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitcopyregionstruct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOBlitCopyRegionStruct {
@@ -1156,10 +987,8 @@ unsafe impl RefEncode for IOBlitCopyRegionStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitcopyregion?language=objc)
 pub type IOBlitCopyRegion = IOBlitCopyRegionStruct;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitvertexstruct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitVertexStruct {
@@ -1178,10 +1007,8 @@ unsafe impl RefEncode for IOBlitVertexStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitvertex?language=objc)
 pub type IOBlitVertex = IOBlitVertexStruct;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitverticesstruct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitVerticesStruct {
@@ -1207,10 +1034,8 @@ unsafe impl RefEncode for IOBlitVerticesStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitvertices?language=objc)
 pub type IOBlitVertices = IOBlitVerticesStruct;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitscanlinesstruct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitScanlinesStruct {
@@ -1240,10 +1065,8 @@ unsafe impl RefEncode for IOBlitScanlinesStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitscanlines?language=objc)
 pub type IOBlitScanlines = IOBlitScanlinesStruct;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitcursorstruct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOBlitCursorStruct {
@@ -1264,10 +1087,8 @@ unsafe impl RefEncode for IOBlitCursorStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitcursor?language=objc)
 pub type IOBlitCursor = IOBlitCursorStruct;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/_ioblitmemory?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct _IOBlitMemory {
@@ -1283,77 +1104,76 @@ unsafe impl RefEncode for _IOBlitMemory {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitmemoryref?language=objc)
 pub type IOBlitMemoryRef = *mut _IOBlitMemory;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio1monochromepixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553444-anonymous/kio1monochromepixelformat?language=objc)
 pub const kIO1MonochromePixelFormat: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio2indexedpixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553444-anonymous/kio2indexedpixelformat?language=objc)
 pub const kIO2IndexedPixelFormat: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio4indexedpixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553444-anonymous/kio4indexedpixelformat?language=objc)
 pub const kIO4IndexedPixelFormat: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio8indexedpixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553444-anonymous/kio8indexedpixelformat?language=objc)
 pub const kIO8IndexedPixelFormat: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio16be555pixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553444-anonymous/kio16be555pixelformat?language=objc)
 pub const kIO16BE555PixelFormat: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio24rgbpixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553444-anonymous/kio24rgbpixelformat?language=objc)
 pub const kIO24RGBPixelFormat: c_uint = 0x00000018;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio32argbpixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553444-anonymous/kio32argbpixelformat?language=objc)
 pub const kIO32ARGBPixelFormat: c_uint = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio1indexedgraypixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553444-anonymous/kio1indexedgraypixelformat?language=objc)
 pub const kIO1IndexedGrayPixelFormat: c_uint = 0x00000021;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio2indexedgraypixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553444-anonymous/kio2indexedgraypixelformat?language=objc)
 pub const kIO2IndexedGrayPixelFormat: c_uint = 0x00000022;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio4indexedgraypixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553444-anonymous/kio4indexedgraypixelformat?language=objc)
 pub const kIO4IndexedGrayPixelFormat: c_uint = 0x00000024;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio8indexedgraypixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553444-anonymous/kio8indexedgraypixelformat?language=objc)
 pub const kIO8IndexedGrayPixelFormat: c_uint = 0x00000028;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio16le555pixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kio16le555pixelformat?language=objc)
 pub const kIO16LE555PixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x4c353535);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio16le5551pixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kio16le5551pixelformat?language=objc)
 pub const kIO16LE5551PixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x35353531);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio16be565pixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kio16be565pixelformat?language=objc)
 pub const kIO16BE565PixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x42353635);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio16le565pixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kio16le565pixelformat?language=objc)
 pub const kIO16LE565PixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x4c353635);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio24bgrpixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kio24bgrpixelformat?language=objc)
 pub const kIO24BGRPixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x32344247);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio32bgrapixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kio32bgrapixelformat?language=objc)
 pub const kIO32BGRAPixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x42475241);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio32abgrpixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kio32abgrpixelformat?language=objc)
 pub const kIO32ABGRPixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x41424752);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio32rgbapixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kio32rgbapixelformat?language=objc)
 pub const kIO32RGBAPixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x52474241);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioyuvspixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kioyuvspixelformat?language=objc)
 pub const kIOYUVSPixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x79757673);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioyuvupixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kioyuvupixelformat?language=objc)
 pub const kIOYUVUPixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x79757675);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioyvu9pixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kioyvu9pixelformat?language=objc)
 pub const kIOYVU9PixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x59565539);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioyuv411pixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kioyuv411pixelformat?language=objc)
 pub const kIOYUV411PixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x59343131);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioyvyu422pixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kioyvyu422pixelformat?language=objc)
 pub const kIOYVYU422PixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x59565955);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiouyvy422pixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kiouyvy422pixelformat?language=objc)
 pub const kIOUYVY422PixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x55595659);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioyuv211pixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kioyuv211pixelformat?language=objc)
 pub const kIOYUV211PixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x59323131);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio2vuypixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553429-anonymous/kio2vuypixelformat?language=objc)
 pub const kIO2vuyPixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x32767579);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio16le4444pixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553440-anonymous/kio16le4444pixelformat?language=objc)
 pub const kIO16LE4444PixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x4c343434);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio16be4444pixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553440-anonymous/kio16be4444pixelformat?language=objc)
 pub const kIO16BE4444PixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x42343434);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio64bgrapixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553440-anonymous/kio64bgrapixelformat?language=objc)
 pub const kIO64BGRAPixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x42313649);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio64rgbafloatpixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553440-anonymous/kio64rgbafloatpixelformat?language=objc)
 pub const kIO64RGBAFloatPixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x42313646);
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kio128rgbafloatpixelformat?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553440-anonymous/kio128rgbafloatpixelformat?language=objc)
 pub const kIO128RGBAFloatPixelFormat: c_uint = IO_FOUR_CHAR_CODE!(0x42333246);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitmemoryrequireshostflush?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553472-anonymous/kioblitmemoryrequireshostflush?language=objc)
 pub const kIOBlitMemoryRequiresHostFlush: c_uint = 0x00000001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitsurfacestruct_memory?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union IOBlitSurfaceStruct_memory {
@@ -1372,7 +1192,6 @@ unsafe impl RefEncode for IOBlitSurfaceStruct_memory {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitsurfacestruct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub struct IOBlitSurfaceStruct {
@@ -1410,57 +1229,56 @@ unsafe impl RefEncode for IOBlitSurfaceStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitsurface?language=objc)
 pub type IOBlitSurface = IOBlitSurfaceStruct;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitmemory?language=objc)
 pub type IOBlitMemory = IOBlitSurface;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitsynchronizewaitbeamexit?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553524-anonymous/kioblitsynchronizewaitbeamexit?language=objc)
 pub const kIOBlitSynchronizeWaitBeamExit: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitsynchronizeflushhostwrites?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553524-anonymous/kioblitsynchronizeflushhostwrites?language=objc)
 pub const kIOBlitSynchronizeFlushHostWrites: c_uint = 0x00000002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitwaitcontext?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553388-anonymous/kioblitwaitcontext?language=objc)
 pub const kIOBlitWaitContext: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitwaitall2d?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553388-anonymous/kioblitwaitall2d?language=objc)
 pub const kIOBlitWaitAll2D: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitwaitglobal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553388-anonymous/kioblitwaitglobal?language=objc)
 pub const kIOBlitWaitGlobal: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitwaitall?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553388-anonymous/kioblitwaitall?language=objc)
 pub const kIOBlitWaitAll: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitwaitcheck?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553388-anonymous/kioblitwaitcheck?language=objc)
 pub const kIOBlitWaitCheck: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitflushwithswap?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553388-anonymous/kioblitflushwithswap?language=objc)
 pub const kIOBlitFlushWithSwap: c_uint = 0x00010000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblithascgssurface?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553467-anonymous/kioblithascgssurface?language=objc)
 pub const kIOBlitHasCGSSurface: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitfixedsource?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553467-anonymous/kioblitfixedsource?language=objc)
 pub const kIOBlitFixedSource: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitbeamsyncswaps?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553467-anonymous/kioblitbeamsyncswaps?language=objc)
 pub const kIOBlitBeamSyncSwaps: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitreferencesource?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553467-anonymous/kioblitreferencesource?language=objc)
 pub const kIOBlitReferenceSource: c_uint = 0x00000008;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitunlockwithswap?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553496-anonymous/kioblitunlockwithswap?language=objc)
 pub const kIOBlitUnlockWithSwap: c_uint = 0x80000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitframebufferdestination?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553499-anonymous/kioblitframebufferdestination?language=objc)
 pub const kIOBlitFramebufferDestination: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitsurfacedestination?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553499-anonymous/kioblitsurfacedestination?language=objc)
 pub const kIOBlitSurfaceDestination: c_uint = 0x00000001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitbeamsync?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553542-anonymous/kioblitbeamsync?language=objc)
 pub const kIOBlitBeamSync: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitbeamsyncalways?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553542-anonymous/kioblitbeamsyncalways?language=objc)
 pub const kIOBlitBeamSyncAlways: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitbeamsyncspin?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553542-anonymous/kioblitbeamsyncspin?language=objc)
 pub const kIOBlitBeamSyncSpin: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitalloptions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553542-anonymous/kioblitalloptions?language=objc)
 pub const kIOBlitAllOptions: c_uint = 0xffffffff;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioblitcolorspacetypes?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1553533-anonymous/kioblitcolorspacetypes?language=objc)
 pub const kIOBlitColorSpaceTypes: c_uint = IO_FOUR_CHAR_CODE!(0x63737063);
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioblitaccumulateptr?language=objc)
@@ -1493,7 +1311,6 @@ pub type IOBlitterPtr = Option<
     ) -> IOReturn,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iographicsacceleratorinterfacestruct?language=objc)
 #[cfg(feature = "libc")]
 #[repr(C)]
 #[allow(unpredictable_function_pointer_comparisons)]
@@ -1626,7 +1443,6 @@ unsafe impl RefEncode for IOGraphicsAcceleratorInterfaceStruct {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iographicsacceleratorinterface?language=objc)
 #[cfg(feature = "libc")]
 pub type IOGraphicsAcceleratorInterface = IOGraphicsAcceleratorInterfaceStruct;
 
@@ -1661,25 +1477,25 @@ pub type IODisplayProductID = u32;
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iodisplaymodeid?language=objc)
 pub type IODisplayModeID = i32;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomaxpixelbits?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505518-anonymous/kiomaxpixelbits?language=objc)
 pub const kIOMaxPixelBits: c_uint = 64;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopixelencoding?language=objc)
 pub type IOPixelEncoding = [c_char; 64];
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioclutpixels?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505207-anonymous/kioclutpixels?language=objc)
 pub const kIOCLUTPixels: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofixedclutpixels?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505207-anonymous/kiofixedclutpixels?language=objc)
 pub const kIOFixedCLUTPixels: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorgbdirectpixels?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505207-anonymous/kiorgbdirectpixels?language=objc)
 pub const kIORGBDirectPixels: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomonodirectpixels?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505207-anonymous/kiomonodirectpixels?language=objc)
 pub const kIOMonoDirectPixels: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomonoinversedirectpixels?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505207-anonymous/kiomonoinversedirectpixels?language=objc)
 pub const kIOMonoInverseDirectPixels: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorgbsigneddirectpixels?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505207-anonymous/kiorgbsigneddirectpixels?language=objc)
 pub const kIORGBSignedDirectPixels: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorgbsignedfloatingpointpixels?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505207-anonymous/kiorgbsignedfloatingpointpixels?language=objc)
 pub const kIORGBSignedFloatingPointPixels: c_uint = 6;
 
 /// A structure defining the format of a framebuffer.
@@ -1804,48 +1620,48 @@ unsafe impl RefEncode for IODisplayModeInformation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodesafetyflags?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodesafetyflags?language=objc)
 pub const kDisplayModeSafetyFlags: c_uint = 0x00000007;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodealwaysshowflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodealwaysshowflag?language=objc)
 pub const kDisplayModeAlwaysShowFlag: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodenevershowflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodenevershowflag?language=objc)
 pub const kDisplayModeNeverShowFlag: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodenotresizeflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodenotresizeflag?language=objc)
 pub const kDisplayModeNotResizeFlag: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymoderequirespanflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymoderequirespanflag?language=objc)
 pub const kDisplayModeRequiresPanFlag: c_uint = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodeinterlacedflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodeinterlacedflag?language=objc)
 pub const kDisplayModeInterlacedFlag: c_uint = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodesimulscanflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodesimulscanflag?language=objc)
 pub const kDisplayModeSimulscanFlag: c_uint = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodebuiltinflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodebuiltinflag?language=objc)
 pub const kDisplayModeBuiltInFlag: c_uint = 0x00000400;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodenotpresetflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodenotpresetflag?language=objc)
 pub const kDisplayModeNotPresetFlag: c_uint = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodestretchedflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodestretchedflag?language=objc)
 pub const kDisplayModeStretchedFlag: c_uint = 0x00000800;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodenotgraphicsqualityflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodenotgraphicsqualityflag?language=objc)
 pub const kDisplayModeNotGraphicsQualityFlag: c_uint = 0x00001000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodevalidateagainstdisplay?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodevalidateagainstdisplay?language=objc)
 pub const kDisplayModeValidateAgainstDisplay: c_uint = 0x00002000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodetelevisionflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodetelevisionflag?language=objc)
 pub const kDisplayModeTelevisionFlag: c_uint = 0x00100000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodevalidformirroringflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodevalidformirroringflag?language=objc)
 pub const kDisplayModeValidForMirroringFlag: c_uint = 0x00200000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodeacceleratorbackedflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodeacceleratorbackedflag?language=objc)
 pub const kDisplayModeAcceleratorBackedFlag: c_uint = 0x00400000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodevalidforhiresflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodevalidforhiresflag?language=objc)
 pub const kDisplayModeValidForHiResFlag: c_uint = 0x00800000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodevalidforairplayflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodevalidforairplayflag?language=objc)
 pub const kDisplayModeValidForAirPlayFlag: c_uint = 0x01000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodenativeflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505967-anonymous/kdisplaymodenativeflag?language=objc)
 pub const kDisplayModeNativeFlag: c_uint = 0x02000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodevalidflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505948-anonymous/kdisplaymodevalidflag?language=objc)
 pub const kDisplayModeValidFlag: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodesafeflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505948-anonymous/kdisplaymodesafeflag?language=objc)
 pub const kDisplayModeSafeFlag: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaymodedefaultflag?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505948-anonymous/kdisplaymodedefaultflag?language=objc)
 pub const kDisplayModeDefaultFlag: c_uint = 0x00000004;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/ioframebufferinformation?language=objc)
@@ -1886,19 +1702,19 @@ unsafe impl RefEncode for IOFramebufferInformation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kframebuffersupportscopybackcache?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505824-anonymous/kframebuffersupportscopybackcache?language=objc)
 pub const kFramebufferSupportsCopybackCache: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kframebuffersupportswritethrucache?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505824-anonymous/kframebuffersupportswritethrucache?language=objc)
 pub const kFramebufferSupportsWritethruCache: c_uint = 0x00020000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kframebuffersupportsgammacorrection?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505824-anonymous/kframebuffersupportsgammacorrection?language=objc)
 pub const kFramebufferSupportsGammaCorrection: c_uint = 0x00040000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kframebufferdisablealtivecaccess?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505824-anonymous/kframebufferdisablealtivecaccess?language=objc)
 pub const kFramebufferDisableAltivecAccess: c_uint = 0x00080000;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iopixelaperture?language=objc)
 pub type IOPixelAperture = IOIndex;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbsystemaperture?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506176-anonymous/kiofbsystemaperture?language=objc)
 pub const kIOFBSystemAperture: c_uint = 0;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iocolorcomponent?language=objc)
@@ -1912,7 +1728,7 @@ pub type IOColorComponent = u16;
 /// Field: green Value of green component 0-65535.
 /// Field: blue Value of blue component 0-65535.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iocolorentry?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iographicstypes_h_user-space/iocolorentry?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct IOColorEntry {
@@ -1940,69 +1756,69 @@ unsafe impl RefEncode for IOColorEntry {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ksetclutbyvalue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505878-anonymous/ksetclutbyvalue?language=objc)
 pub const kSetCLUTByValue: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ksetclutimmediately?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505878-anonymous/ksetclutimmediately?language=objc)
 pub const kSetCLUTImmediately: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ksetclutwithluminance?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505878-anonymous/ksetclutwithluminance?language=objc)
 pub const kSetCLUTWithLuminance: c_uint = 0x00000004;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopowerstateattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiopowerstateattribute?language=objc)
 pub const kIOPowerStateAttribute: c_uint = 0x70777273;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopowerattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiopowerattribute?language=objc)
 pub const kIOPowerAttribute: c_uint = 0x706f7772;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodriverpowerattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiodriverpowerattribute?language=objc)
 pub const kIODriverPowerAttribute: c_uint = 0x64706f77;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohardwarecursorattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiohardwarecursorattribute?language=objc)
 pub const kIOHardwareCursorAttribute: c_uint = 0x63727372;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomirrorattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiomirrorattribute?language=objc)
 pub const kIOMirrorAttribute: c_uint = 0x6d697272;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomirrordefaultattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiomirrordefaultattribute?language=objc)
 pub const kIOMirrorDefaultAttribute: c_uint = 0x6d726466;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocapturedattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiocapturedattribute?language=objc)
 pub const kIOCapturedAttribute: c_uint = 0x63617064;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocursorcontrolattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiocursorcontrolattribute?language=objc)
 pub const kIOCursorControlAttribute: c_uint = 0x63727363;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosystempowerattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiosystempowerattribute?language=objc)
 pub const kIOSystemPowerAttribute: c_uint = 0x73707772;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowindowserveractiveattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiowindowserveractiveattribute?language=objc)
 pub const kIOWindowServerActiveAttribute: c_uint = 0x77737276;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiovramsaveattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiovramsaveattribute?language=objc)
 pub const kIOVRAMSaveAttribute: c_uint = 0x76727376;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodeferclutsetattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiodeferclutsetattribute?language=objc)
 pub const kIODeferCLUTSetAttribute: c_uint = 0x76636c74;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioclamshellstateattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kioclamshellstateattribute?language=objc)
 pub const kIOClamshellStateAttribute: c_uint = 0x636c616d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbdisplayporttrainingattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiofbdisplayporttrainingattribute?language=objc)
 pub const kIOFBDisplayPortTrainingAttribute: c_uint = 0x64707461;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbdisplaystate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiofbdisplaystate?language=objc)
 pub const kIOFBDisplayState: c_uint = 0x64737474;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbvariablerefreshrate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiofbvariablerefreshrate?language=objc)
 pub const kIOFBVariableRefreshRate: c_uint = 0x7672723f;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofblimithdcpattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiofblimithdcpattribute?language=objc)
 pub const kIOFBLimitHDCPAttribute: c_uint = 0x68646370;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofblimithdcpstateattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiofblimithdcpstateattribute?language=objc)
 pub const kIOFBLimitHDCPStateAttribute: c_uint = 0x73484443;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbstop?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiofbstop?language=objc)
 pub const kIOFBStop: c_uint = 0x73746f70;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbredgammascaleattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiofbredgammascaleattribute?language=objc)
 pub const kIOFBRedGammaScaleAttribute: c_uint = 0x67736c72;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbgreengammascaleattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiofbgreengammascaleattribute?language=objc)
 pub const kIOFBGreenGammaScaleAttribute: c_uint = 0x67736c67;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbbluegammascaleattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiofbbluegammascaleattribute?language=objc)
 pub const kIOFBBlueGammaScaleAttribute: c_uint = 0x67736c62;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbhdrmetadataattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiofbhdrmetadataattribute?language=objc)
 pub const kIOFBHDRMetaDataAttribute: c_uint = 0x6864726d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobuiltinpanelpowerattribute?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505726-anonymous/kiobuiltinpanelpowerattribute?language=objc)
 pub const kIOBuiltinPanelPowerAttribute: c_uint = 0x706e6c70;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbhdcplimit_allowall?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2923432-anonymous/kiofbhdcplimit_allowall?language=objc)
 pub const kIOFBHDCPLimit_AllowAll: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbhdcplimit_nohdcp1x?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2923432-anonymous/kiofbhdcplimit_nohdcp1x?language=objc)
 pub const kIOFBHDCPLimit_NoHDCP1x: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbhdcplimit_nohdcp20type0?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2923432-anonymous/kiofbhdcplimit_nohdcp20type0?language=objc)
 pub const kIOFBHDCPLimit_NoHDCP20Type0: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbhdcplimit_nohdcp20type1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2923432-anonymous/kiofbhdcplimit_nohdcp20type1?language=objc)
 pub const kIOFBHDCPLimit_NoHDCP20Type1: c_uint = 1 << 2;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iofbhdrmetadatav1?language=objc)
@@ -2051,7 +1867,6 @@ unsafe impl RefEncode for IOFBHDRMetaDataV1 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iofbhdrmetadata?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union IOFBHDRMetaData {
@@ -2068,77 +1883,77 @@ unsafe impl RefEncode for IOFBHDRMetaData {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbdisplaystate_alreadyactive?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2824251-anonymous/kiofbdisplaystate_alreadyactive?language=objc)
 pub const kIOFBDisplayState_AlreadyActive: c_uint = 1 << 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbdisplaystate_restoredprofile?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2824251-anonymous/kiofbdisplaystate_restoredprofile?language=objc)
 pub const kIOFBDisplayState_RestoredProfile: c_uint = 1 << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbdisplaystate_pipelineblack?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2824251-anonymous/kiofbdisplaystate_pipelineblack?language=objc)
 pub const kIOFBDisplayState_PipelineBlack: c_uint = 1 << 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbdisplaystate_mask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2824251-anonymous/kiofbdisplaystate_mask?language=objc)
 pub const kIOFBDisplayState_Mask: c_uint = kIOFBDisplayState_AlreadyActive
     | kIOFBDisplayState_RestoredProfile
     | kIOFBDisplayState_PipelineBlack;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowsaa_unaccelerated?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645069-anonymous/kiowsaa_unaccelerated?language=objc)
 pub const kIOWSAA_Unaccelerated: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowsaa_accelerated?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645069-anonymous/kiowsaa_accelerated?language=objc)
 pub const kIOWSAA_Accelerated: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowsaa_from_accelerated?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645069-anonymous/kiowsaa_from_accelerated?language=objc)
 pub const kIOWSAA_From_Accelerated: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowsaa_to_accelerated?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645069-anonymous/kiowsaa_to_accelerated?language=objc)
 pub const kIOWSAA_To_Accelerated: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowsaa_sleep?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645069-anonymous/kiowsaa_sleep?language=objc)
 pub const kIOWSAA_Sleep: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowsaa_hibernate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645069-anonymous/kiowsaa_hibernate?language=objc)
 pub const kIOWSAA_Hibernate: c_uint = kIOWSAA_Sleep;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowsaa_driveropen?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645069-anonymous/kiowsaa_driveropen?language=objc)
 pub const kIOWSAA_DriverOpen: c_uint = 5;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowsaa_statemask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645069-anonymous/kiowsaa_statemask?language=objc)
 pub const kIOWSAA_StateMask: c_uint = 0xF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowsaa_transactional?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645069-anonymous/kiowsaa_transactional?language=objc)
 pub const kIOWSAA_Transactional: c_uint = 0x10;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowsaa_deferstart?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645069-anonymous/kiowsaa_deferstart?language=objc)
 pub const kIOWSAA_DeferStart: c_uint = 0x100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowsaa_deferend?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645069-anonymous/kiowsaa_deferend?language=objc)
 pub const kIOWSAA_DeferEnd: c_uint = 0x200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowsaa_nonconsoledevice?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645069-anonymous/kiowsaa_nonconsoledevice?language=objc)
 pub const kIOWSAA_NonConsoleDevice: c_uint = 0x400;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiowsaa_reserved?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1645069-anonymous/kiowsaa_reserved?language=objc)
 pub const kIOWSAA_Reserved: c_uint = 0xF0000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbns_rendezvous?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2980982-anonymous/kiofbns_rendezvous?language=objc)
 pub const kIOFBNS_Rendezvous: c_uint = 0x87654321;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbns_messagemask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2980982-anonymous/kiofbns_messagemask?language=objc)
 pub const kIOFBNS_MessageMask: c_uint = 0x0000000f;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbns_sleep?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2980982-anonymous/kiofbns_sleep?language=objc)
 pub const kIOFBNS_Sleep: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbns_wake?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2980982-anonymous/kiofbns_wake?language=objc)
 pub const kIOFBNS_Wake: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbns_doze?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2980982-anonymous/kiofbns_doze?language=objc)
 pub const kIOFBNS_Doze: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbns_dim?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2980982-anonymous/kiofbns_dim?language=objc)
 pub const kIOFBNS_Dim: c_uint = 0x03;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbns_undim?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2980982-anonymous/kiofbns_undim?language=objc)
 pub const kIOFBNS_UnDim: c_uint = 0x04;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbns_displaystatemask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2980982-anonymous/kiofbns_displaystatemask?language=objc)
 pub const kIOFBNS_DisplayStateMask: c_uint = 0x00000f00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbns_displaystateshift?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2980982-anonymous/kiofbns_displaystateshift?language=objc)
 pub const kIOFBNS_DisplayStateShift: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbns_generationmask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2980982-anonymous/kiofbns_generationmask?language=objc)
 pub const kIOFBNS_GenerationMask: c_uint = 0x7fff0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbns_generationshift?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2980982-anonymous/kiofbns_generationshift?language=objc)
 pub const kIOFBNS_GenerationShift: c_uint = 16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomirrorisprimary?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505460-anonymous/kiomirrorisprimary?language=objc)
 pub const kIOMirrorIsPrimary: c_uint = 0x80000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomirrorhwclipped?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505460-anonymous/kiomirrorhwclipped?language=objc)
 pub const kIOMirrorHWClipped: c_uint = 0x40000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomirrorismirrored?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505460-anonymous/kiomirrorismirrored?language=objc)
 pub const kIOMirrorIsMirrored: c_uint = 0x20000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomirrordefault?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505284-anonymous/kiomirrordefault?language=objc)
 pub const kIOMirrorDefault: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomirrorforced?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505284-anonymous/kiomirrorforced?language=objc)
 pub const kIOMirrorForced: c_uint = 0x00000002;
 
 /// / Display mode timing information
@@ -2352,7 +2167,6 @@ unsafe impl RefEncode for IODetailedTimingInformationV2 {
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iodetailedtiminginformation?language=objc)
 pub type IODetailedTimingInformation = IODetailedTimingInformationV2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iotiminginformation_detailedinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy)]
 pub union IOTimingInformation_detailedInfo {
@@ -2402,90 +2216,90 @@ unsafe impl RefEncode for IOTimingInformation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodetailedtimingvalid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505422-anonymous/kiodetailedtimingvalid?language=objc)
 pub const kIODetailedTimingValid: c_uint = 0x80000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscalinginfovalid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505422-anonymous/kioscalinginfovalid?language=objc)
 pub const kIOScalingInfoValid: c_uint = 0x40000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscalestretchtofit?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506046-anonymous/kioscalestretchtofit?language=objc)
 pub const kIOScaleStretchToFit: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscalerotateflags?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506046-anonymous/kioscalerotateflags?language=objc)
 pub const kIOScaleRotateFlags: c_uint = 0x000000f0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscaleswapaxes?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506046-anonymous/kioscaleswapaxes?language=objc)
 pub const kIOScaleSwapAxes: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscaleinvertx?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506046-anonymous/kioscaleinvertx?language=objc)
 pub const kIOScaleInvertX: c_uint = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscaleinverty?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506046-anonymous/kioscaleinverty?language=objc)
 pub const kIOScaleInvertY: c_uint = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscalerotate0?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506046-anonymous/kioscalerotate0?language=objc)
 pub const kIOScaleRotate0: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscalerotate90?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506046-anonymous/kioscalerotate90?language=objc)
 pub const kIOScaleRotate90: c_uint = kIOScaleSwapAxes | kIOScaleInvertX;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscalerotate180?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506046-anonymous/kioscalerotate180?language=objc)
 pub const kIOScaleRotate180: c_uint = kIOScaleInvertX | kIOScaleInvertY;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscalerotate270?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506046-anonymous/kioscalerotate270?language=objc)
 pub const kIOScaleRotate270: c_uint = kIOScaleSwapAxes | kIOScaleInvertY;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopixelencodingnotsupported?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937864-anonymous/kiopixelencodingnotsupported?language=objc)
 pub const kIOPixelEncodingNotSupported: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopixelencodingrgb444?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937864-anonymous/kiopixelencodingrgb444?language=objc)
 pub const kIOPixelEncodingRGB444: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopixelencodingycbcr444?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937864-anonymous/kiopixelencodingycbcr444?language=objc)
 pub const kIOPixelEncodingYCbCr444: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopixelencodingycbcr422?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937864-anonymous/kiopixelencodingycbcr422?language=objc)
 pub const kIOPixelEncodingYCbCr422: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopixelencodingycbcr420?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937864-anonymous/kiopixelencodingycbcr420?language=objc)
 pub const kIOPixelEncodingYCbCr420: c_uint = 0x0008;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobitspercolorcomponentnotsupported?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937905-anonymous/kiobitspercolorcomponentnotsupported?language=objc)
 pub const kIOBitsPerColorComponentNotSupported: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobitspercolorcomponent6?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937905-anonymous/kiobitspercolorcomponent6?language=objc)
 pub const kIOBitsPerColorComponent6: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobitspercolorcomponent8?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937905-anonymous/kiobitspercolorcomponent8?language=objc)
 pub const kIOBitsPerColorComponent8: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobitspercolorcomponent10?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937905-anonymous/kiobitspercolorcomponent10?language=objc)
 pub const kIOBitsPerColorComponent10: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobitspercolorcomponent12?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937905-anonymous/kiobitspercolorcomponent12?language=objc)
 pub const kIOBitsPerColorComponent12: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiobitspercolorcomponent16?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937905-anonymous/kiobitspercolorcomponent16?language=objc)
 pub const kIOBitsPerColorComponent16: c_uint = 0x0010;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocolorimetrynotsupported?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937868-anonymous/kiocolorimetrynotsupported?language=objc)
 pub const kIOColorimetryNotSupported: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocolorimetrynativergb?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937868-anonymous/kiocolorimetrynativergb?language=objc)
 pub const kIOColorimetryNativeRGB: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocolorimetrysrgb?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937868-anonymous/kiocolorimetrysrgb?language=objc)
 pub const kIOColorimetrysRGB: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocolorimetrydcip3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937868-anonymous/kiocolorimetrydcip3?language=objc)
 pub const kIOColorimetryDCIP3: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocolorimetryadobergb?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937868-anonymous/kiocolorimetryadobergb?language=objc)
 pub const kIOColorimetryAdobeRGB: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocolorimetryxvycc?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937868-anonymous/kiocolorimetryxvycc?language=objc)
 pub const kIOColorimetryxvYCC: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocolorimetrywgrgb?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937868-anonymous/kiocolorimetrywgrgb?language=objc)
 pub const kIOColorimetryWGRGB: c_uint = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocolorimetrybt601?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937868-anonymous/kiocolorimetrybt601?language=objc)
 pub const kIOColorimetryBT601: c_uint = 0x0040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocolorimetrybt709?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937868-anonymous/kiocolorimetrybt709?language=objc)
 pub const kIOColorimetryBT709: c_uint = 0x0080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocolorimetrybt2020?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937868-anonymous/kiocolorimetrybt2020?language=objc)
 pub const kIOColorimetryBT2020: c_uint = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocolorimetrybt2100?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937868-anonymous/kiocolorimetrybt2100?language=objc)
 pub const kIOColorimetryBT2100: c_uint = 0x0200;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodynamicrangenotsupported?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937899-anonymous/kiodynamicrangenotsupported?language=objc)
 pub const kIODynamicRangeNotSupported: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodynamicrangesdr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937899-anonymous/kiodynamicrangesdr?language=objc)
 pub const kIODynamicRangeSDR: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodynamicrangehdr10?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937899-anonymous/kiodynamicrangehdr10?language=objc)
 pub const kIODynamicRangeHDR10: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodynamicrangedolbynormalmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937899-anonymous/kiodynamicrangedolbynormalmode?language=objc)
 pub const kIODynamicRangeDolbyNormalMode: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodynamicrangedolbytunnelmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937899-anonymous/kiodynamicrangedolbytunnelmode?language=objc)
 pub const kIODynamicRangeDolbyTunnelMode: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodynamicrangetraditionalgammahdr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937899-anonymous/kiodynamicrangetraditionalgammahdr?language=objc)
 pub const kIODynamicRangeTraditionalGammaHDR: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodynamicrangetraditionalgammasdr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937899-anonymous/kiodynamicrangetraditionalgammasdr?language=objc)
 pub const kIODynamicRangeTraditionalGammaSDR: c_uint = 0x0020;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iofbdisplaymodedescription?language=objc)
@@ -2959,128 +2773,128 @@ unsafe impl RefEncode for IODisplayTimingRangeV2 {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/iodisplaytimingrange?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/kernel/iodisplaytimingrange?language=objc)
 pub type IODisplayTimingRange = IODisplayTimingRangeV2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingrangev2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3131297-anonymous/kiotimingrangev2?language=objc)
 pub const kIOTimingRangeV2: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingrangev1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/3131297-anonymous/kiotimingrangev1?language=objc)
 pub const kIOTimingRangeV1: c_uint = 0x00000000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangepixelencodingnotsupported?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937903-anonymous/kiorangepixelencodingnotsupported?language=objc)
 pub const kIORangePixelEncodingNotSupported: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangepixelencodingrgb444?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937903-anonymous/kiorangepixelencodingrgb444?language=objc)
 pub const kIORangePixelEncodingRGB444: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangepixelencodingycbcr444?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937903-anonymous/kiorangepixelencodingycbcr444?language=objc)
 pub const kIORangePixelEncodingYCbCr444: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangepixelencodingycbcr422?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937903-anonymous/kiorangepixelencodingycbcr422?language=objc)
 pub const kIORangePixelEncodingYCbCr422: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangepixelencodingycbcr420?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937903-anonymous/kiorangepixelencodingycbcr420?language=objc)
 pub const kIORangePixelEncodingYCbCr420: c_uint = 0x0008;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangebitspercolorcomponentnotsupported?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937874-anonymous/kiorangebitspercolorcomponentnotsupported?language=objc)
 pub const kIORangeBitsPerColorComponentNotSupported: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangebitspercolorcomponent6?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937874-anonymous/kiorangebitspercolorcomponent6?language=objc)
 pub const kIORangeBitsPerColorComponent6: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangebitspercolorcomponent8?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937874-anonymous/kiorangebitspercolorcomponent8?language=objc)
 pub const kIORangeBitsPerColorComponent8: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangebitspercolorcomponent10?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937874-anonymous/kiorangebitspercolorcomponent10?language=objc)
 pub const kIORangeBitsPerColorComponent10: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangebitspercolorcomponent12?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937874-anonymous/kiorangebitspercolorcomponent12?language=objc)
 pub const kIORangeBitsPerColorComponent12: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangebitspercolorcomponent16?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937874-anonymous/kiorangebitspercolorcomponent16?language=objc)
 pub const kIORangeBitsPerColorComponent16: c_uint = 0x0010;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangecolorimetrynotsupported?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937876-anonymous/kiorangecolorimetrynotsupported?language=objc)
 pub const kIORangeColorimetryNotSupported: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangecolorimetrynativergb?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937876-anonymous/kiorangecolorimetrynativergb?language=objc)
 pub const kIORangeColorimetryNativeRGB: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangecolorimetrysrgb?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937876-anonymous/kiorangecolorimetrysrgb?language=objc)
 pub const kIORangeColorimetrysRGB: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangecolorimetrydcip3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937876-anonymous/kiorangecolorimetrydcip3?language=objc)
 pub const kIORangeColorimetryDCIP3: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangecolorimetryadobergb?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937876-anonymous/kiorangecolorimetryadobergb?language=objc)
 pub const kIORangeColorimetryAdobeRGB: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangecolorimetryxvycc?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937876-anonymous/kiorangecolorimetryxvycc?language=objc)
 pub const kIORangeColorimetryxvYCC: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangecolorimetrywgrgb?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937876-anonymous/kiorangecolorimetrywgrgb?language=objc)
 pub const kIORangeColorimetryWGRGB: c_uint = 0x0020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangecolorimetrybt601?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937876-anonymous/kiorangecolorimetrybt601?language=objc)
 pub const kIORangeColorimetryBT601: c_uint = 0x0040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangecolorimetrybt709?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937876-anonymous/kiorangecolorimetrybt709?language=objc)
 pub const kIORangeColorimetryBT709: c_uint = 0x0080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangecolorimetrybt2020?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937876-anonymous/kiorangecolorimetrybt2020?language=objc)
 pub const kIORangeColorimetryBT2020: c_uint = 0x0100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangecolorimetrybt2100?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937876-anonymous/kiorangecolorimetrybt2100?language=objc)
 pub const kIORangeColorimetryBT2100: c_uint = 0x0200;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangedynamicrangenotsupported?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937884-anonymous/kiorangedynamicrangenotsupported?language=objc)
 pub const kIORangeDynamicRangeNotSupported: c_uint = 0x0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangedynamicrangesdr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937884-anonymous/kiorangedynamicrangesdr?language=objc)
 pub const kIORangeDynamicRangeSDR: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangedynamicrangehdr10?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937884-anonymous/kiorangedynamicrangehdr10?language=objc)
 pub const kIORangeDynamicRangeHDR10: c_uint = 0x0002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangedynamicrangedolbynormalmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937884-anonymous/kiorangedynamicrangedolbynormalmode?language=objc)
 pub const kIORangeDynamicRangeDolbyNormalMode: c_uint = 0x0004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangedynamicrangedolbytunnelmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937884-anonymous/kiorangedynamicrangedolbytunnelmode?language=objc)
 pub const kIORangeDynamicRangeDolbyTunnelMode: c_uint = 0x0008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangedynamicrangetraditionalgammahdr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937884-anonymous/kiorangedynamicrangetraditionalgammahdr?language=objc)
 pub const kIORangeDynamicRangeTraditionalGammaHDR: c_uint = 0x0010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangedynamicrangetraditionalgammasdr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/2937884-anonymous/kiorangedynamicrangetraditionalgammasdr?language=objc)
 pub const kIORangeDynamicRangeTraditionalGammaSDR: c_uint = 0x0020;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangesupportssignal_0700_0300?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505569-anonymous/kiorangesupportssignal_0700_0300?language=objc)
 pub const kIORangeSupportsSignal_0700_0300: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangesupportssignal_0714_0286?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505569-anonymous/kiorangesupportssignal_0714_0286?language=objc)
 pub const kIORangeSupportsSignal_0714_0286: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangesupportssignal_1000_0400?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505569-anonymous/kiorangesupportssignal_1000_0400?language=objc)
 pub const kIORangeSupportsSignal_1000_0400: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangesupportssignal_0700_0000?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505569-anonymous/kiorangesupportssignal_0700_0000?language=objc)
 pub const kIORangeSupportsSignal_0700_0000: c_uint = 0x00000008;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangesupportsseparatesyncs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505885-anonymous/kiorangesupportsseparatesyncs?language=objc)
 pub const kIORangeSupportsSeparateSyncs: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangesupportssyncongreen?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505885-anonymous/kiorangesupportssyncongreen?language=objc)
 pub const kIORangeSupportsSyncOnGreen: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangesupportscompositesync?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505885-anonymous/kiorangesupportscompositesync?language=objc)
 pub const kIORangeSupportsCompositeSync: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangesupportsvsyncserration?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505885-anonymous/kiorangesupportsvsyncserration?language=objc)
 pub const kIORangeSupportsVSyncSerration: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangesupportsvrr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505885-anonymous/kiorangesupportsvrr?language=objc)
 pub const kIORangeSupportsVRR: c_uint = 0x00000010;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangesupportsinterlacedceatiming?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505173-anonymous/kiorangesupportsinterlacedceatiming?language=objc)
 pub const kIORangeSupportsInterlacedCEATiming: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangesupportsinterlacedceatimingwithconfirm?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505173-anonymous/kiorangesupportsinterlacedceatimingwithconfirm?language=objc)
 pub const kIORangeSupportsInterlacedCEATimingWithConfirm: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiorangesupportsmultialignedtiming?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505173-anonymous/kiorangesupportsmultialignedtiming?language=objc)
 pub const kIORangeSupportsMultiAlignedTiming: c_uint = 0x00000040;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodigitalsignal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505418-anonymous/kiodigitalsignal?language=objc)
 pub const kIODigitalSignal: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioanalogsetupexpected?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505418-anonymous/kioanalogsetupexpected?language=objc)
 pub const kIOAnalogSetupExpected: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiointerlacedceatiming?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505418-anonymous/kiointerlacedceatiming?language=objc)
 pub const kIOInterlacedCEATiming: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiontsctiming?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505418-anonymous/kiontsctiming?language=objc)
 pub const kIONTSCTiming: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiopaltiming?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505418-anonymous/kiopaltiming?language=objc)
 pub const kIOPALTiming: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodscblockpredenable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505418-anonymous/kiodscblockpredenable?language=objc)
 pub const kIODSCBlockPredEnable: c_uint = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiomultialignedtiming?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505418-anonymous/kiomultialignedtiming?language=objc)
 pub const kIOMultiAlignedTiming: c_uint = 0x00000040;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioanalogsignallevel_0700_0300?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506050-anonymous/kioanalogsignallevel_0700_0300?language=objc)
 pub const kIOAnalogSignalLevel_0700_0300: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioanalogsignallevel_0714_0286?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506050-anonymous/kioanalogsignallevel_0714_0286?language=objc)
 pub const kIOAnalogSignalLevel_0714_0286: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioanalogsignallevel_1000_0400?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506050-anonymous/kioanalogsignallevel_1000_0400?language=objc)
 pub const kIOAnalogSignalLevel_1000_0400: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioanalogsignallevel_0700_0000?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506050-anonymous/kioanalogsignallevel_0700_0000?language=objc)
 pub const kIOAnalogSignalLevel_0700_0000: c_uint = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosyncpositivepolarity?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505133-anonymous/kiosyncpositivepolarity?language=objc)
 pub const kIOSyncPositivePolarity: c_uint = 0x00000001;
 
 /// A structure defining the scaling capabilities of a framebuffer.
@@ -3145,223 +2959,223 @@ unsafe impl RefEncode for IODisplayScalerInformation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscalestretchonly?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506158-anonymous/kioscalestretchonly?language=objc)
 pub const kIOScaleStretchOnly: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscalecanupsamplepixels?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506158-anonymous/kioscalecanupsamplepixels?language=objc)
 pub const kIOScaleCanUpSamplePixels: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscalecandownsamplepixels?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506158-anonymous/kioscalecandownsamplepixels?language=objc)
 pub const kIOScaleCanDownSamplePixels: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscalecanscaleinterlaced?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506158-anonymous/kioscalecanscaleinterlaced?language=objc)
 pub const kIOScaleCanScaleInterlaced: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscalecansupportinset?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506158-anonymous/kioscalecansupportinset?language=objc)
 pub const kIOScaleCanSupportInset: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscalecanrotate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506158-anonymous/kioscalecanrotate?language=objc)
 pub const kIOScaleCanRotate: c_uint = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioscalecanborderinsetonly?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506158-anonymous/kioscalecanborderinsetonly?language=objc)
 pub const kIOScaleCanBorderInsetOnly: c_uint = 0x00000040;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/korconnections?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505309-anonymous/korconnections?language=objc)
 pub const kOrConnections: c_uint = 0xffffffe;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kandconnections?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505309-anonymous/kandconnections?language=objc)
 pub const kAndConnections: c_uint = 0xffffffd;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionflags?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionflags?language=objc)
 pub const kConnectionFlags: c_uint = 0x666c6773;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionsyncenable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionsyncenable?language=objc)
 pub const kConnectionSyncEnable: c_uint = 0x73796e63;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionsyncflags?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionsyncflags?language=objc)
 pub const kConnectionSyncFlags: c_uint = 0x73796366;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionsupportsapplesense?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionsupportsapplesense?language=objc)
 pub const kConnectionSupportsAppleSense: c_uint = 0x61736e73;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionsupportsllddcsense?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionsupportsllddcsense?language=objc)
 pub const kConnectionSupportsLLDDCSense: c_uint = 0x6c646463;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionsupportshlddcsense?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionsupportshlddcsense?language=objc)
 pub const kConnectionSupportsHLDDCSense: c_uint = 0x68646463;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionenable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionenable?language=objc)
 pub const kConnectionEnable: c_uint = 0x656e6162;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectioncheckenable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectioncheckenable?language=objc)
 pub const kConnectionCheckEnable: c_uint = 0x63656e61;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionprobe?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionprobe?language=objc)
 pub const kConnectionProbe: c_uint = 0x70726f62;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionignore?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionignore?language=objc)
 pub const kConnectionIgnore: c_uint = 0x00696772;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionchanged?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionchanged?language=objc)
 pub const kConnectionChanged: c_uint = 0x63686e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionpower?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionpower?language=objc)
 pub const kConnectionPower: c_uint = 0x706f7772;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionpostwake?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionpostwake?language=objc)
 pub const kConnectionPostWake: c_uint = 0x7077616b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectiondisplayparametercount?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectiondisplayparametercount?language=objc)
 pub const kConnectionDisplayParameterCount: c_uint = 0x70636e74;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectiondisplayparameters?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectiondisplayparameters?language=objc)
 pub const kConnectionDisplayParameters: c_uint = 0x7061726d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionoverscan?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionoverscan?language=objc)
 pub const kConnectionOverscan: c_uint = 0x6f73636e;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionvideobest?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionvideobest?language=objc)
 pub const kConnectionVideoBest: c_uint = 0x76627374;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionredgammascale?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionredgammascale?language=objc)
 pub const kConnectionRedGammaScale: c_uint = 0x72677363;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectiongreengammascale?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectiongreengammascale?language=objc)
 pub const kConnectionGreenGammaScale: c_uint = 0x67677363;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionbluegammascale?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionbluegammascale?language=objc)
 pub const kConnectionBlueGammaScale: c_uint = 0x62677363;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectiongammascale?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectiongammascale?language=objc)
 pub const kConnectionGammaScale: c_uint = 0x67736320;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionflushparameters?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionflushparameters?language=objc)
 pub const kConnectionFlushParameters: c_uint = 0x666c7573;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionvblmultiplier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionvblmultiplier?language=objc)
 pub const kConnectionVBLMultiplier: c_uint = 0x76626c6d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionhandledisplayportevent?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionhandledisplayportevent?language=objc)
 pub const kConnectionHandleDisplayPortEvent: c_uint = 0x64706972;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionpaneltimingdisable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionpaneltimingdisable?language=objc)
 pub const kConnectionPanelTimingDisable: c_uint = 0x706e6c74;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectioncolormode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectioncolormode?language=objc)
 pub const kConnectionColorMode: c_uint = 0x63797576;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectioncolormodessupported?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectioncolormodessupported?language=objc)
 pub const kConnectionColorModesSupported: c_uint = 0x636f6c72;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectioncolordepthssupported?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectioncolordepthssupported?language=objc)
 pub const kConnectionColorDepthsSupported: c_uint = 0x20627063;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectioncontrollerdepthssupported?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectioncontrollerdepthssupported?language=objc)
 pub const kConnectionControllerDepthsSupported: c_uint = 0x00677264;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectioncontrollercolordepth?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectioncontrollercolordepth?language=objc)
 pub const kConnectionControllerColorDepth: c_uint = 0x00647064;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectioncontrollerdithercontrol?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectioncontrollerdithercontrol?language=objc)
 pub const kConnectionControllerDitherControl: c_uint = 0x00676463;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectiondisplayflags?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectiondisplayflags?language=objc)
 pub const kConnectionDisplayFlags: c_uint = 0x64666c67;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionenableaudio?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionenableaudio?language=objc)
 pub const kConnectionEnableAudio: c_uint = 0x61756420;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionaudiostreaming?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionaudiostreaming?language=objc)
 pub const kConnectionAudioStreaming: c_uint = 0x61756473;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kconnectionstartofframetime?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505380-anonymous/kconnectionstartofframetime?language=objc)
 pub const kConnectionStartOfFrameTime: c_uint = 0x736f6674;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioconnectionbuiltin?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505618-anonymous/kioconnectionbuiltin?language=objc)
 pub const kIOConnectionBuiltIn: c_uint = 0x00000800;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kioconnectionstereosync?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505618-anonymous/kioconnectionstereosync?language=objc)
 pub const kIOConnectionStereoSync: c_uint = 0x00008000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohsyncdisable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505143-anonymous/kiohsyncdisable?language=objc)
 pub const kIOHSyncDisable: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiovsyncdisable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505143-anonymous/kiovsyncdisable?language=objc)
 pub const kIOVSyncDisable: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiocsyncdisable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505143-anonymous/kiocsyncdisable?language=objc)
 pub const kIOCSyncDisable: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kionoseparatesynccontrol?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505143-anonymous/kionoseparatesynccontrol?language=objc)
 pub const kIONoSeparateSyncControl: c_uint = 0x00000040;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotristatesyncs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505143-anonymous/kiotristatesyncs?language=objc)
 pub const kIOTriStateSyncs: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosynconblue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505143-anonymous/kiosynconblue?language=objc)
 pub const kIOSyncOnBlue: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosyncongreen?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505143-anonymous/kiosyncongreen?language=objc)
 pub const kIOSyncOnGreen: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiosynconred?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505143-anonymous/kiosynconred?language=objc)
 pub const kIOSyncOnRed: c_uint = 0x00000020;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodpeventstart?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506076-anonymous/kiodpeventstart?language=objc)
 pub const kIODPEventStart: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodpeventidle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506076-anonymous/kiodpeventidle?language=objc)
 pub const kIODPEventIdle: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodpeventforceretrain?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506076-anonymous/kiodpeventforceretrain?language=objc)
 pub const kIODPEventForceRetrain: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodpeventremotecontrolcommandpending?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506076-anonymous/kiodpeventremotecontrolcommandpending?language=objc)
 pub const kIODPEventRemoteControlCommandPending: c_uint = 256;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodpeventautomatedtestrequest?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506076-anonymous/kiodpeventautomatedtestrequest?language=objc)
 pub const kIODPEventAutomatedTestRequest: c_uint = 257;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodpeventcontentprotection?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506076-anonymous/kiodpeventcontentprotection?language=objc)
 pub const kIODPEventContentProtection: c_uint = 258;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodpeventmccs?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506076-anonymous/kiodpeventmccs?language=objc)
 pub const kIODPEventMCCS: c_uint = 259;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodpeventsinkspecific?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506076-anonymous/kiodpeventsinkspecific?language=objc)
 pub const kIODPEventSinkSpecific: c_uint = 260;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaycolormode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505163-anonymous/kiodisplaycolormode?language=objc)
 pub const kIODisplayColorMode: c_uint = kConnectionColorMode;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayrgbcolorcomponentbitsunknown?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayrgbcolorcomponentbitsunknown?language=objc)
 pub const kIODisplayRGBColorComponentBitsUnknown: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayrgbcolorcomponentbits6?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayrgbcolorcomponentbits6?language=objc)
 pub const kIODisplayRGBColorComponentBits6: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayrgbcolorcomponentbits8?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayrgbcolorcomponentbits8?language=objc)
 pub const kIODisplayRGBColorComponentBits8: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayrgbcolorcomponentbits10?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayrgbcolorcomponentbits10?language=objc)
 pub const kIODisplayRGBColorComponentBits10: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayrgbcolorcomponentbits12?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayrgbcolorcomponentbits12?language=objc)
 pub const kIODisplayRGBColorComponentBits12: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayrgbcolorcomponentbits14?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayrgbcolorcomponentbits14?language=objc)
 pub const kIODisplayRGBColorComponentBits14: c_uint = 0x00000010;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayrgbcolorcomponentbits16?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayrgbcolorcomponentbits16?language=objc)
 pub const kIODisplayRGBColorComponentBits16: c_uint = 0x00000020;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayycbcr444colorcomponentbitsunknown?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayycbcr444colorcomponentbitsunknown?language=objc)
 pub const kIODisplayYCbCr444ColorComponentBitsUnknown: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayycbcr444colorcomponentbits6?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayycbcr444colorcomponentbits6?language=objc)
 pub const kIODisplayYCbCr444ColorComponentBits6: c_uint = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayycbcr444colorcomponentbits8?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayycbcr444colorcomponentbits8?language=objc)
 pub const kIODisplayYCbCr444ColorComponentBits8: c_uint = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayycbcr444colorcomponentbits10?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayycbcr444colorcomponentbits10?language=objc)
 pub const kIODisplayYCbCr444ColorComponentBits10: c_uint = 0x00000400;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayycbcr444colorcomponentbits12?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayycbcr444colorcomponentbits12?language=objc)
 pub const kIODisplayYCbCr444ColorComponentBits12: c_uint = 0x00000800;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayycbcr444colorcomponentbits14?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayycbcr444colorcomponentbits14?language=objc)
 pub const kIODisplayYCbCr444ColorComponentBits14: c_uint = 0x00001000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayycbcr444colorcomponentbits16?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayycbcr444colorcomponentbits16?language=objc)
 pub const kIODisplayYCbCr444ColorComponentBits16: c_uint = 0x00002000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayycbcr422colorcomponentbitsunknown?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayycbcr422colorcomponentbitsunknown?language=objc)
 pub const kIODisplayYCbCr422ColorComponentBitsUnknown: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayycbcr422colorcomponentbits6?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayycbcr422colorcomponentbits6?language=objc)
 pub const kIODisplayYCbCr422ColorComponentBits6: c_uint = 0x00010000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayycbcr422colorcomponentbits8?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayycbcr422colorcomponentbits8?language=objc)
 pub const kIODisplayYCbCr422ColorComponentBits8: c_uint = 0x00020000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayycbcr422colorcomponentbits10?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayycbcr422colorcomponentbits10?language=objc)
 pub const kIODisplayYCbCr422ColorComponentBits10: c_uint = 0x00040000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayycbcr422colorcomponentbits12?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayycbcr422colorcomponentbits12?language=objc)
 pub const kIODisplayYCbCr422ColorComponentBits12: c_uint = 0x00080000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayycbcr422colorcomponentbits14?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayycbcr422colorcomponentbits14?language=objc)
 pub const kIODisplayYCbCr422ColorComponentBits14: c_uint = 0x00100000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayycbcr422colorcomponentbits16?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505087-anonymous/kiodisplayycbcr422colorcomponentbits16?language=objc)
 pub const kIODisplayYCbCr422ColorComponentBits16: c_uint = 0x00200000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayditherdisable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505962-anonymous/kiodisplayditherdisable?language=objc)
 pub const kIODisplayDitherDisable: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayditherspatial?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505962-anonymous/kiodisplayditherspatial?language=objc)
 pub const kIODisplayDitherSpatial: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaydithertemporal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505962-anonymous/kiodisplaydithertemporal?language=objc)
 pub const kIODisplayDitherTemporal: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayditherframeratecontrol?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505962-anonymous/kiodisplayditherframeratecontrol?language=objc)
 pub const kIODisplayDitherFrameRateControl: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayditherdefault?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505962-anonymous/kiodisplayditherdefault?language=objc)
 pub const kIODisplayDitherDefault: c_uint = 0x00000080;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayditherall?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505962-anonymous/kiodisplayditherall?language=objc)
 pub const kIODisplayDitherAll: c_uint = 0x000000FF;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayditherrgbshift?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505962-anonymous/kiodisplayditherrgbshift?language=objc)
 pub const kIODisplayDitherRGBShift: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayditherycbcr444shift?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505962-anonymous/kiodisplayditherycbcr444shift?language=objc)
 pub const kIODisplayDitherYCbCr444Shift: c_uint = 8;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayditherycbcr422shift?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505962-anonymous/kiodisplayditherycbcr422shift?language=objc)
 pub const kIODisplayDitherYCbCr422Shift: c_uint = 16;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayneedsceaunderscan?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505242-anonymous/kiodisplayneedsceaunderscan?language=objc)
 pub const kIODisplayNeedsCEAUnderscan: c_uint = 0x00000001;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaypowerstateoff?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505026-anonymous/kiodisplaypowerstateoff?language=objc)
 pub const kIODisplayPowerStateOff: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaypowerstateminusable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505026-anonymous/kiodisplaypowerstateminusable?language=objc)
 pub const kIODisplayPowerStateMinUsable: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaypowerstateon?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505026-anonymous/kiodisplaypowerstateon?language=objc)
 pub const kIODisplayPowerStateOn: c_uint = 2;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbserverconnecttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506132-anonymous/kiofbserverconnecttype?language=objc)
 pub const kIOFBServerConnectType: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbsharedconnecttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506132-anonymous/kiofbsharedconnecttype?language=objc)
 pub const kIOFBSharedConnectType: c_uint = 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiogdiagnosegtracetype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506132-anonymous/kiogdiagnosegtracetype?language=objc)
 pub const kIOGDiagnoseGTraceType: c_uint = 11452;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiogdiagnoseconnecttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506132-anonymous/kiogdiagnoseconnecttype?language=objc)
 pub const kIOGDiagnoseConnectType: c_uint = 38744;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayassertionconnecttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506132-anonymous/kiodisplayassertionconnecttype?language=objc)
 pub const kIODisplayAssertionConnectType: c_uint = 61074;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbuserrequestprobe?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506133-anonymous/kiofbuserrequestprobe?language=objc)
 pub const kIOFBUserRequestProbe: c_uint = 0x00000001;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iogpoint?language=objc)
@@ -3428,23 +3242,23 @@ unsafe impl RefEncode for IOGBounds {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ktransparentencoding?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505437-anonymous/ktransparentencoding?language=objc)
 pub const kTransparentEncoding: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kinvertingencoding?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505437-anonymous/kinvertingencoding?language=objc)
 pub const kInvertingEncoding: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ktransparentencodingshift?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505894-anonymous/ktransparentencodingshift?language=objc)
 pub const kTransparentEncodingShift: c_uint = kTransparentEncoding << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/ktransparentencodedpixel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505894-anonymous/ktransparentencodedpixel?language=objc)
 pub const kTransparentEncodedPixel: c_uint = 0x01 << kTransparentEncodingShift;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kinvertingencodingshift?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505894-anonymous/kinvertingencodingshift?language=objc)
 pub const kInvertingEncodingShift: c_uint = kInvertingEncoding << 1;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kinvertingencodedpixel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505894-anonymous/kinvertingencodedpixel?language=objc)
 pub const kInvertingEncodedPixel: c_uint = 0x01 << kInvertingEncodingShift;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khardwarecursordescriptormajorversion?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505708-anonymous/khardwarecursordescriptormajorversion?language=objc)
 pub const kHardwareCursorDescriptorMajorVersion: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khardwarecursordescriptorminorversion?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505708-anonymous/khardwarecursordescriptorminorversion?language=objc)
 pub const kHardwareCursorDescriptorMinorVersion: c_uint = 0x0000;
 
 /// A structure defining the format of a hardware cursor.
@@ -3462,7 +3276,7 @@ pub const kHardwareCursorDescriptorMinorVersion: c_uint = 0x0000;
 /// Field: supportedSpecialEncodings Mask of supported special pixel values, eg. kTransparentEncodedPixel, kInvertingEncodedPixel.
 /// Field: specialEncodings Array of pixel values for each supported special encoding.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohardwarecursordescriptor?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iographicstypes_h_user-space/iohardwarecursordescriptor?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHardwareCursorDescriptor {
@@ -3504,9 +3318,9 @@ unsafe impl RefEncode for IOHardwareCursorDescriptor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khardwarecursorinfomajorversion?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505880-anonymous/khardwarecursorinfomajorversion?language=objc)
 pub const kHardwareCursorInfoMajorVersion: c_uint = 0x0001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/khardwarecursorinfominorversion?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505880-anonymous/khardwarecursorinfominorversion?language=objc)
 pub const kHardwareCursorInfoMinorVersion: c_uint = 0x0000;
 
 /// A structure defining the converted data of a hardware cursor.
@@ -3522,7 +3336,7 @@ pub const kHardwareCursorInfoMinorVersion: c_uint = 0x0000;
 /// Field: cursorHotSpotY Cursor's hotspot.
 /// Field: reserved Reserved, set to zero.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohardwarecursorinfo?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iographicstypes_h_user-space/iohardwarecursorinfo?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct IOHardwareCursorInfo {
@@ -3560,166 +3374,166 @@ unsafe impl RefEncode for IOHardwareCursorInfo {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbvblinterrupttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505137-anonymous/kiofbvblinterrupttype?language=objc)
 pub const kIOFBVBLInterruptType: c_uint = 0x76626c20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbhblinterrupttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505137-anonymous/kiofbhblinterrupttype?language=objc)
 pub const kIOFBHBLInterruptType: c_uint = 0x68626c20;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbframeinterrupttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505137-anonymous/kiofbframeinterrupttype?language=objc)
 pub const kIOFBFrameInterruptType: c_uint = 0x6672616d;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbconnectinterrupttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505137-anonymous/kiofbconnectinterrupttype?language=objc)
 pub const kIOFBConnectInterruptType: c_uint = 0x64636920;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbchangedinterrupttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505137-anonymous/kiofbchangedinterrupttype?language=objc)
 pub const kIOFBChangedInterruptType: c_uint = 0x63686e67;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbofflineinterrupttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505137-anonymous/kiofbofflineinterrupttype?language=objc)
 pub const kIOFBOfflineInterruptType: c_uint = 0x72656d76;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbonlineinterrupttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505137-anonymous/kiofbonlineinterrupttype?language=objc)
 pub const kIOFBOnlineInterruptType: c_uint = 0x61646420;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbdisplayportinterrupttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505137-anonymous/kiofbdisplayportinterrupttype?language=objc)
 pub const kIOFBDisplayPortInterruptType: c_uint = 0x64706972;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbdisplayportlinkchangeinterrupttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505137-anonymous/kiofbdisplayportlinkchangeinterrupttype?language=objc)
 pub const kIOFBDisplayPortLinkChangeInterruptType: c_uint = 0x64706c6b;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmccsinterrupttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505137-anonymous/kiofbmccsinterrupttype?language=objc)
 pub const kIOFBMCCSInterruptType: c_uint = 0x6d636373;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbwakeinterrupttype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505137-anonymous/kiofbwakeinterrupttype?language=objc)
 pub const kIOFBWakeInterruptType: c_uint = 0x7677616b;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidinvalid?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidinvalid?language=objc)
 pub const kIOTimingIDInvalid: c_uint = 0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapple_fixedratelcd?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapple_fixedratelcd?language=objc)
 pub const kIOTimingIDApple_FixedRateLCD: c_uint = 42;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapple_512x384_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapple_512x384_60hz?language=objc)
 pub const kIOTimingIDApple_512x384_60hz: c_uint = 130;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapple_560x384_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapple_560x384_60hz?language=objc)
 pub const kIOTimingIDApple_560x384_60hz: c_uint = 135;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapple_640x480_67hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapple_640x480_67hz?language=objc)
 pub const kIOTimingIDApple_640x480_67hz: c_uint = 140;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapple_640x400_67hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapple_640x400_67hz?language=objc)
 pub const kIOTimingIDApple_640x400_67hz: c_uint = 145;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_640x480_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_640x480_60hz?language=objc)
 pub const kIOTimingIDVESA_640x480_60hz: c_uint = 150;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_640x480_72hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_640x480_72hz?language=objc)
 pub const kIOTimingIDVESA_640x480_72hz: c_uint = 152;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_640x480_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_640x480_75hz?language=objc)
 pub const kIOTimingIDVESA_640x480_75hz: c_uint = 154;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_640x480_85hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_640x480_85hz?language=objc)
 pub const kIOTimingIDVESA_640x480_85hz: c_uint = 158;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidgtf_640x480_120hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidgtf_640x480_120hz?language=objc)
 pub const kIOTimingIDGTF_640x480_120hz: c_uint = 159;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapple_640x870_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapple_640x870_75hz?language=objc)
 pub const kIOTimingIDApple_640x870_75hz: c_uint = 160;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapple_640x818_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapple_640x818_75hz?language=objc)
 pub const kIOTimingIDApple_640x818_75hz: c_uint = 165;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapple_832x624_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapple_832x624_75hz?language=objc)
 pub const kIOTimingIDApple_832x624_75hz: c_uint = 170;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_800x600_56hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_800x600_56hz?language=objc)
 pub const kIOTimingIDVESA_800x600_56hz: c_uint = 180;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_800x600_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_800x600_60hz?language=objc)
 pub const kIOTimingIDVESA_800x600_60hz: c_uint = 182;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_800x600_72hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_800x600_72hz?language=objc)
 pub const kIOTimingIDVESA_800x600_72hz: c_uint = 184;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_800x600_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_800x600_75hz?language=objc)
 pub const kIOTimingIDVESA_800x600_75hz: c_uint = 186;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_800x600_85hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_800x600_85hz?language=objc)
 pub const kIOTimingIDVESA_800x600_85hz: c_uint = 188;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1024x768_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1024x768_60hz?language=objc)
 pub const kIOTimingIDVESA_1024x768_60hz: c_uint = 190;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1024x768_70hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1024x768_70hz?language=objc)
 pub const kIOTimingIDVESA_1024x768_70hz: c_uint = 200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1024x768_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1024x768_75hz?language=objc)
 pub const kIOTimingIDVESA_1024x768_75hz: c_uint = 204;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1024x768_85hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1024x768_85hz?language=objc)
 pub const kIOTimingIDVESA_1024x768_85hz: c_uint = 208;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapple_1024x768_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapple_1024x768_75hz?language=objc)
 pub const kIOTimingIDApple_1024x768_75hz: c_uint = 210;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1152x864_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1152x864_75hz?language=objc)
 pub const kIOTimingIDVESA_1152x864_75hz: c_uint = 215;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapple_1152x870_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapple_1152x870_75hz?language=objc)
 pub const kIOTimingIDApple_1152x870_75hz: c_uint = 220;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapplentsc_st?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapplentsc_st?language=objc)
 pub const kIOTimingIDAppleNTSC_ST: c_uint = 230;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapplentsc_ff?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapplentsc_ff?language=objc)
 pub const kIOTimingIDAppleNTSC_FF: c_uint = 232;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapplentsc_stconv?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapplentsc_stconv?language=objc)
 pub const kIOTimingIDAppleNTSC_STconv: c_uint = 234;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapplentsc_ffconv?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapplentsc_ffconv?language=objc)
 pub const kIOTimingIDAppleNTSC_FFconv: c_uint = 236;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapplepal_st?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapplepal_st?language=objc)
 pub const kIOTimingIDApplePAL_ST: c_uint = 238;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapplepal_ff?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapplepal_ff?language=objc)
 pub const kIOTimingIDApplePAL_FF: c_uint = 240;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapplepal_stconv?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapplepal_stconv?language=objc)
 pub const kIOTimingIDApplePAL_STconv: c_uint = 242;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapplepal_ffconv?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapplepal_ffconv?language=objc)
 pub const kIOTimingIDApplePAL_FFconv: c_uint = 244;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1280x960_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1280x960_75hz?language=objc)
 pub const kIOTimingIDVESA_1280x960_75hz: c_uint = 250;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1280x960_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1280x960_60hz?language=objc)
 pub const kIOTimingIDVESA_1280x960_60hz: c_uint = 252;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1280x960_85hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1280x960_85hz?language=objc)
 pub const kIOTimingIDVESA_1280x960_85hz: c_uint = 254;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1280x1024_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1280x1024_60hz?language=objc)
 pub const kIOTimingIDVESA_1280x1024_60hz: c_uint = 260;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1280x1024_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1280x1024_75hz?language=objc)
 pub const kIOTimingIDVESA_1280x1024_75hz: c_uint = 262;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1280x1024_85hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1280x1024_85hz?language=objc)
 pub const kIOTimingIDVESA_1280x1024_85hz: c_uint = 268;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1600x1200_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1600x1200_60hz?language=objc)
 pub const kIOTimingIDVESA_1600x1200_60hz: c_uint = 280;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1600x1200_65hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1600x1200_65hz?language=objc)
 pub const kIOTimingIDVESA_1600x1200_65hz: c_uint = 282;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1600x1200_70hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1600x1200_70hz?language=objc)
 pub const kIOTimingIDVESA_1600x1200_70hz: c_uint = 284;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1600x1200_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1600x1200_75hz?language=objc)
 pub const kIOTimingIDVESA_1600x1200_75hz: c_uint = 286;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1600x1200_80hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1600x1200_80hz?language=objc)
 pub const kIOTimingIDVESA_1600x1200_80hz: c_uint = 288;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1600x1200_85hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1600x1200_85hz?language=objc)
 pub const kIOTimingIDVESA_1600x1200_85hz: c_uint = 289;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1792x1344_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1792x1344_60hz?language=objc)
 pub const kIOTimingIDVESA_1792x1344_60hz: c_uint = 296;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1792x1344_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1792x1344_75hz?language=objc)
 pub const kIOTimingIDVESA_1792x1344_75hz: c_uint = 298;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1856x1392_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1856x1392_60hz?language=objc)
 pub const kIOTimingIDVESA_1856x1392_60hz: c_uint = 300;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1856x1392_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1856x1392_75hz?language=objc)
 pub const kIOTimingIDVESA_1856x1392_75hz: c_uint = 302;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1920x1440_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1920x1440_60hz?language=objc)
 pub const kIOTimingIDVESA_1920x1440_60hz: c_uint = 304;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1920x1440_75hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1920x1440_75hz?language=objc)
 pub const kIOTimingIDVESA_1920x1440_75hz: c_uint = 306;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidsmpte240m_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidsmpte240m_60hz?language=objc)
 pub const kIOTimingIDSMPTE240M_60hz: c_uint = 400;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidfilmrate_48hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidfilmrate_48hz?language=objc)
 pub const kIOTimingIDFilmRate_48hz: c_uint = 410;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidsony_1600x1024_76hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidsony_1600x1024_76hz?language=objc)
 pub const kIOTimingIDSony_1600x1024_76hz: c_uint = 500;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidsony_1920x1080_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidsony_1920x1080_60hz?language=objc)
 pub const kIOTimingIDSony_1920x1080_60hz: c_uint = 510;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidsony_1920x1080_72hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidsony_1920x1080_72hz?language=objc)
 pub const kIOTimingIDSony_1920x1080_72hz: c_uint = 520;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidsony_1920x1200_76hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidsony_1920x1200_76hz?language=objc)
 pub const kIOTimingIDSony_1920x1200_76hz: c_uint = 540;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidapple_0x0_0hz_offline?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidapple_0x0_0hz_offline?language=objc)
 pub const kIOTimingIDApple_0x0_0hz_Offline: c_uint = 550;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_848x480_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_848x480_60hz?language=objc)
 pub const kIOTimingIDVESA_848x480_60hz: c_uint = 570;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiotimingidvesa_1360x768_60hz?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505298-anonymous/kiotimingidvesa_1360x768_60hz?language=objc)
 pub const kIOTimingIDVESA_1360x768_60hz: c_uint = 590;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohibernatepreviewactive?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505122-anonymous/kiohibernatepreviewactive?language=objc)
 pub const kIOHibernatePreviewActive: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiohibernatepreviewupdates?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505122-anonymous/kiohibernatepreviewupdates?language=objc)
 pub const kIOHibernatePreviewUpdates: c_uint = 0x00000002;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbavsignaltypeunknown?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506041-anonymous/kiofbavsignaltypeunknown?language=objc)
 pub const kIOFBAVSignalTypeUnknown: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbavsignaltypevga?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506041-anonymous/kiofbavsignaltypevga?language=objc)
 pub const kIOFBAVSignalTypeVGA: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbavsignaltypedvi?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506041-anonymous/kiofbavsignaltypedvi?language=objc)
 pub const kIOFBAVSignalTypeDVI: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbavsignaltypehdmi?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506041-anonymous/kiofbavsignaltypehdmi?language=objc)
 pub const kIOFBAVSignalTypeHDMI: c_uint = 0x00000008;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbavsignaltypedp?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506041-anonymous/kiofbavsignaltypedp?language=objc)
 pub const kIOFBAVSignalTypeDP: c_uint = 0x00000010;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/iokit/iofbdplinkconfig?language=objc)
@@ -3774,88 +3588,88 @@ unsafe impl RefEncode for IOFBDPLinkConfig {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbbitraterbr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505973-anonymous/kiofbbitraterbr?language=objc)
 pub const kIOFBBitRateRBR: c_uint = 0x06;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbbitratehbr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505973-anonymous/kiofbbitratehbr?language=objc)
 pub const kIOFBBitRateHBR: c_uint = 0x0A;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbbitratehbr2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505973-anonymous/kiofbbitratehbr2?language=objc)
 pub const kIOFBBitRateHBR2: c_uint = 0x14;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofblinkvoltagelevel0?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506002-anonymous/kiofblinkvoltagelevel0?language=objc)
 pub const kIOFBLinkVoltageLevel0: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofblinkvoltagelevel1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506002-anonymous/kiofblinkvoltagelevel1?language=objc)
 pub const kIOFBLinkVoltageLevel1: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofblinkvoltagelevel2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506002-anonymous/kiofblinkvoltagelevel2?language=objc)
 pub const kIOFBLinkVoltageLevel2: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofblinkvoltagelevel3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1506002-anonymous/kiofblinkvoltagelevel3?language=objc)
 pub const kIOFBLinkVoltageLevel3: c_uint = 0x03;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofblinkpreemphasislevel0?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505311-anonymous/kiofblinkpreemphasislevel0?language=objc)
 pub const kIOFBLinkPreEmphasisLevel0: c_uint = 0x00;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofblinkpreemphasislevel1?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505311-anonymous/kiofblinkpreemphasislevel1?language=objc)
 pub const kIOFBLinkPreEmphasisLevel1: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofblinkpreemphasislevel2?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505311-anonymous/kiofblinkpreemphasislevel2?language=objc)
 pub const kIOFBLinkPreEmphasisLevel2: c_uint = 0x02;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofblinkpreemphasislevel3?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505311-anonymous/kiofblinkpreemphasislevel3?language=objc)
 pub const kIOFBLinkPreEmphasisLevel3: c_uint = 0x03;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofblinkdownspreadnone?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505883-anonymous/kiofblinkdownspreadnone?language=objc)
 pub const kIOFBLinkDownspreadNone: c_uint = 0x0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofblinkdownspreadmax?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505883-anonymous/kiofblinkdownspreadmax?language=objc)
 pub const kIOFBLinkDownspreadMax: c_uint = 0x1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofblinkscramblernormal?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505077-anonymous/kiofblinkscramblernormal?language=objc)
 pub const kIOFBLinkScramblerNormal: c_uint = 0x0;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofblinkscrambleralternate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505077-anonymous/kiofblinkscrambleralternate?language=objc)
 pub const kIOFBLinkScramblerAlternate: c_uint = 0x1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayvendoridunknown?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505632-anonymous/kdisplayvendoridunknown?language=objc)
 pub const kDisplayVendorIDUnknown: c_uint = 0x756e6b6e;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplayproductidgeneric?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505632-anonymous/kdisplayproductidgeneric?language=objc)
 pub const kDisplayProductIDGeneric: c_uint = 0x717;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixellayoutundefined?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixellayoutundefined?language=objc)
 pub const kDisplaySubPixelLayoutUndefined: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixellayoutrgb?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixellayoutrgb?language=objc)
 pub const kDisplaySubPixelLayoutRGB: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixellayoutbgr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixellayoutbgr?language=objc)
 pub const kDisplaySubPixelLayoutBGR: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixellayoutquadgbl?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixellayoutquadgbl?language=objc)
 pub const kDisplaySubPixelLayoutQuadGBL: c_uint = 0x00000003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixellayoutquadgbr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixellayoutquadgbr?language=objc)
 pub const kDisplaySubPixelLayoutQuadGBR: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixelconfigurationundefined?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixelconfigurationundefined?language=objc)
 pub const kDisplaySubPixelConfigurationUndefined: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixelconfigurationdelta?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixelconfigurationdelta?language=objc)
 pub const kDisplaySubPixelConfigurationDelta: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixelconfigurationstripe?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixelconfigurationstripe?language=objc)
 pub const kDisplaySubPixelConfigurationStripe: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixelconfigurationstripeoffset?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixelconfigurationstripeoffset?language=objc)
 pub const kDisplaySubPixelConfigurationStripeOffset: c_uint = 0x00000003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixelconfigurationquad?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixelconfigurationquad?language=objc)
 pub const kDisplaySubPixelConfigurationQuad: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixelshapeundefined?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixelshapeundefined?language=objc)
 pub const kDisplaySubPixelShapeUndefined: c_uint = 0x00000000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixelshaperound?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixelshaperound?language=objc)
 pub const kDisplaySubPixelShapeRound: c_uint = 0x00000001;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixelshapesquare?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixelshapesquare?language=objc)
 pub const kDisplaySubPixelShapeSquare: c_uint = 0x00000002;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixelshaperectangular?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixelshaperectangular?language=objc)
 pub const kDisplaySubPixelShapeRectangular: c_uint = 0x00000003;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixelshapeoval?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixelshapeoval?language=objc)
 pub const kDisplaySubPixelShapeOval: c_uint = 0x00000004;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kdisplaysubpixelshapeelliptical?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1505320-anonymous/kdisplaysubpixelshapeelliptical?language=objc)
 pub const kDisplaySubPixelShapeElliptical: c_uint = 0x00000005;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbnumcursorframes?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589167-cursorparameters/kiofbnumcursorframes?language=objc)
 pub const kIOFBNumCursorFrames: c_uint = 4;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbnumcursorframesshift?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589167-cursorparameters/kiofbnumcursorframesshift?language=objc)
 pub const kIOFBNumCursorFramesShift: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmaxcursordepth?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589167-cursorparameters/kiofbmaxcursordepth?language=objc)
 pub const kIOFBMaxCursorDepth: c_uint = 32;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmaxcursorwidth?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589167-cursorparameters/kiofbmaxcursorwidth?language=objc)
 pub const kIOFBMaxCursorWidth: c_uint = 256;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbmaxcursorframes?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589167-cursorparameters/kiofbmaxcursorframes?language=objc)
 pub const kIOFBMaxCursorFrames: c_uint = 32;
 
 /// Cursor image for 1-bit cursor.
@@ -3992,29 +3806,29 @@ unsafe impl RefEncode for bm38Cursor {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbcursorimagenew?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589146-anonymous/kiofbcursorimagenew?language=objc)
 pub const kIOFBCursorImageNew: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbcursorhwcapable?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589146-anonymous/kiofbcursorhwcapable?language=objc)
 pub const kIOFBCursorHWCapable: c_uint = 0x02;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbhardwarecursoractive?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589136-anonymous/kiofbhardwarecursoractive?language=objc)
 pub const kIOFBHardwareCursorActive: c_uint = 0x01;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbhardwarecursorinvram?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589136-anonymous/kiofbhardwarecursorinvram?language=objc)
 pub const kIOFBHardwareCursorInVRAM: c_uint = 0x02;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbshmemversionmask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589180-anonymous/kiofbshmemversionmask?language=objc)
 pub const kIOFBShmemVersionMask: c_uint = 0x000000ff;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbtenptoneshmemversion?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589180-anonymous/kiofbtenptoneshmemversion?language=objc)
 pub const kIOFBTenPtOneShmemVersion: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbtenpttwoshmemversion?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589180-anonymous/kiofbtenpttwoshmemversion?language=objc)
 pub const kIOFBTenPtTwoShmemVersion: c_uint = 3;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbcurrentshmemversion?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589180-anonymous/kiofbcurrentshmemversion?language=objc)
 pub const kIOFBCurrentShmemVersion: c_uint = 2;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbshmemcursornumframesmask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589180-anonymous/kiofbshmemcursornumframesmask?language=objc)
 pub const kIOFBShmemCursorNumFramesMask: c_uint = 0x00ff0000;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbshmemcursornumframesshift?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589180-anonymous/kiofbshmemcursornumframesshift?language=objc)
 pub const kIOFBShmemCursorNumFramesShift: c_uint = 16;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiofbcursormemory?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1589180-anonymous/kiofbcursormemory?language=objc)
 pub const kIOFBCursorMemory: c_uint = 100;
 
 extern "C-unwind" {
@@ -4037,11 +3851,11 @@ extern "C-unwind" {
     ) -> libc::kern_return_t;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaymatchinginfo?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574851-iodisplaydictionaryoptions/kiodisplaymatchinginfo?language=objc)
 pub const kIODisplayMatchingInfo: c_uint = 0x00000100;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplayonlypreferredname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574851-iodisplaydictionaryoptions/kiodisplayonlypreferredname?language=objc)
 pub const kIODisplayOnlyPreferredName: c_uint = 0x00000200;
-/// [Apple's documentation](https://developer.apple.com/documentation/iokit/kiodisplaynoproductname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/iokit/1574851-iodisplaydictionaryoptions/kiodisplaynoproductname?language=objc)
 pub const kIODisplayNoProductName: c_uint = 0x00000400;
 
 /// Create a CFDictionary with information about display hardware.

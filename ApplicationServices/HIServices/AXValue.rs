@@ -61,7 +61,6 @@ pub static kAXValueAXErrorType: u32 = AXValueType::AXError.0;
 /// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kaxvalueillegaltype?language=objc)
 pub static kAXValueIllegalType: u32 = AXValueType::Illegal.0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/applicationservices/axvalue?language=objc)
 #[doc(alias = "AXValueRef")]
 #[repr(C)]
 pub struct AXValue {

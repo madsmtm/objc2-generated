@@ -216,7 +216,7 @@ extern "C" {
     /// ``CIVector`` with 2 values |  rectangular tiles of width x height.
     /// `NSNull`                   |  can be called for any possible origin and size.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageprovidertilesize?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/providertilesize?language=objc)
     #[cfg(feature = "CIImage")]
     pub static kCIImageProviderTileSize: &'static CIImageOption;
 }
@@ -231,7 +231,7 @@ extern "C" {
     ///
     /// The value object is retained until the image is deallocated.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/kciimageprovideruserinfo?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/coreimage/ciimageoption/provideruserinfo?language=objc)
     #[cfg(feature = "CIImage")]
     pub static kCIImageProviderUserInfo: &'static CIImageOption;
 }

@@ -12,7 +12,7 @@ use crate::*;
 ///
 /// The matte generated per frame can be full resolution of the captured camera image or half resolution. The caller chooses one of the options from ARMatteResolution during initialization.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/armatteresolution?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/armattegenerator/resolution?language=objc)
 // NS_ENUM
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

@@ -52,7 +52,7 @@ extern "C" {
     /// This data stream stores ambient light sensor data from devices when the screen is on.
     /// Fetches from this stream return objects of type SRAmbientLightSample.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorambientlightsensor?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/ambientlightsensor?language=objc)
     pub static SRSensorAmbientLightSensor: &'static SRSensor;
 }
 
@@ -65,7 +65,7 @@ extern "C" {
     /// <CMRecordedAccelerometerData
     /// *> * as defined in the CoreMotion framework.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensoraccelerometer?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/accelerometer?language=objc)
     pub static SRSensorAccelerometer: &'static SRSensor;
 }
 
@@ -78,7 +78,7 @@ extern "C" {
     /// <CMRecordedRotationRateData
     /// *> * as defined in the CoreMotion framework.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorrotationrate?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/rotationrate?language=objc)
     pub static SRSensorRotationRate: &'static SRSensor;
 }
 
@@ -96,7 +96,7 @@ extern "C" {
     ///
     /// Fetches from this stream return objects of type SRVisit.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorvisits?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/visits?language=objc)
     pub static SRSensorVisits: &'static SRSensor;
 }
 
@@ -107,7 +107,7 @@ extern "C" {
     /// This stream stores information about your step count.
     /// Fetches from this stream return objects of type CMPedometerData as defined in the CoreMotion framework.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorpedometerdata?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/pedometerdata?language=objc)
     pub static SRSensorPedometerData: &'static SRSensor;
 }
 
@@ -127,7 +127,7 @@ extern "C" {
     ///
     /// Fetches from this stream return objects of type SRDeviceUsageReport.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensordeviceusagereport?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/deviceusagereport?language=objc)
     pub static SRSensorDeviceUsageReport: &'static SRSensor;
 }
 
@@ -144,7 +144,7 @@ extern "C" {
     ///
     /// Fetches from this stream return objects of type SRMessagesUsageReport.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensormessagesusagereport?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/messagesusagereport?language=objc)
     pub static SRSensorMessagesUsageReport: &'static SRSensor;
 }
 
@@ -161,7 +161,7 @@ extern "C" {
     ///
     /// Fetches from this stream return objects of type SRPhoneUsageReport.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorphoneusagereport?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/phoneusagereport?language=objc)
     pub static SRSensorPhoneUsageReport: &'static SRSensor;
 }
 
@@ -178,7 +178,7 @@ extern "C" {
     ///
     /// Fetches from this stream return objects of type SRWristDetection.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensoronwriststate?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/onwriststate?language=objc)
     pub static SRSensorOnWristState: &'static SRSensor;
 }
 
@@ -197,7 +197,7 @@ extern "C" {
     ///
     /// Fetches from this stream return objects of type SRKeyboardMetrics.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorkeyboardmetrics?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/keyboardmetrics?language=objc)
     pub static SRSensorKeyboardMetrics: &'static SRSensor;
 }
 
@@ -217,7 +217,7 @@ extern "C" {
     /// Fetches from this stream return objects of type
     /// `SRSpeechMetrics`
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorsirispeechmetrics?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/sirispeechmetrics?language=objc)
     pub static SRSensorSiriSpeechMetrics: &'static SRSensor;
 }
 
@@ -237,7 +237,7 @@ extern "C" {
     /// Fetches from this stream return objects of type
     /// `SRSpeechMetrics`
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensortelephonyspeechmetrics?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/telephonyspeechmetrics?language=objc)
     pub static SRSensorTelephonySpeechMetrics: &'static SRSensor;
 }
 
@@ -256,7 +256,7 @@ extern "C" {
     /// <CMRecordedPressureData
     /// *> * as defined in the CoreMotion framework.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorambientpressure?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/ambientpressure?language=objc)
     pub static SRSensorAmbientPressure: &'static SRSensor;
 }
 
@@ -273,7 +273,7 @@ extern "C" {
     ///
     /// Fetches from this stream return objects of type SRMediaEvent.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensormediaevents?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/mediaevents?language=objc)
     pub static SRSensorMediaEvents: &'static SRSensor;
 }
 
@@ -292,7 +292,7 @@ extern "C" {
     ///
     /// Fetches from this stream return objects of type SRWristTemperatureSession.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorwristtemperature?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/wristtemperature?language=objc)
     pub static SRSensorWristTemperature: &'static SRSensor;
 }
 
@@ -303,7 +303,7 @@ extern "C" {
     /// Fetches from this stream return objects of type
     /// `CMHighFrequencyHeartRateData`
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorheartrate?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/heartrate?language=objc)
     pub static SRSensorHeartRate: &'static SRSensor;
 }
 
@@ -321,7 +321,7 @@ extern "C" {
     ///
     /// Fetches from this stream return objects of type SRFaceMetrics.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorfacemetrics?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/facemetrics?language=objc)
     pub static SRSensorFaceMetrics: &'static SRSensor;
 }
 
@@ -333,7 +333,7 @@ extern "C" {
     /// Fetches from this stream return objects of type
     /// `CMOdometerData`as defined in the CoreMotion framework.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorodometer?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/odometer?language=objc)
     pub static SRSensorOdometer: &'static SRSensor;
 }
 
@@ -345,7 +345,7 @@ extern "C" {
     /// Fetches from this stream return objects of type
     /// `NSArray<SRElectrocardiogramSample`*> *
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorelectrocardiogram?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/electrocardiogram?language=objc)
     pub static SRSensorElectrocardiogram: &'static SRSensor;
 }
 
@@ -357,7 +357,7 @@ extern "C" {
     /// Fetches from this stream return objects of type
     /// `NSArray<SRPhotoplethysmogramSample`*> *
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorphotoplethysmogram?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/photoplethysmogram?language=objc)
     pub static SRSensorPhotoplethysmogram: &'static SRSensor;
 }
 
@@ -369,7 +369,7 @@ extern "C" {
     /// Fetches from this stream return objects of type
     /// `SRAcousticSettings`
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensoracousticsettings?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/acousticsettings?language=objc)
     pub static SRSensorAcousticSettings: &'static SRSensor;
 }
 
@@ -381,7 +381,7 @@ extern "C" {
     /// Fetches from this stream return objects of type
     /// `SRSleepSession`
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensorsleepsessions?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srsensor/sleepsessions?language=objc)
     pub static SRSensorSleepSessions: &'static SRSensor;
 }
 
@@ -975,7 +975,7 @@ extern "C" {
     pub static SRErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerrorcode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srerror/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1006,7 +1006,7 @@ unsafe impl RefEncode for SRErrorCode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsensorplacement?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/sensorplacement?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1040,7 +1040,7 @@ unsafe impl RefEncode for SRAmbientLightSensorPlacement {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightchromaticity?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srambientlightsample/chromaticity-swift.struct?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct SRAmbientLightChromaticity {
@@ -1098,7 +1098,7 @@ impl SRAmbientLightSample {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srlocationcategory?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srvisit/locationcategory-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1178,152 +1178,152 @@ impl SRVisit {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorykey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey?language=objc)
 // NS_TYPED_ENUM
 pub type SRDeviceUsageCategoryKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorygames?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/games?language=objc)
     pub static SRDeviceUsageCategoryGames: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorybusiness?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/business?language=objc)
     pub static SRDeviceUsageCategoryBusiness: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategoryweather?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/weather?language=objc)
     pub static SRDeviceUsageCategoryWeather: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategoryutilities?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/utilities?language=objc)
     pub static SRDeviceUsageCategoryUtilities: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorytravel?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/travel?language=objc)
     pub static SRDeviceUsageCategoryTravel: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorysports?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/sports?language=objc)
     pub static SRDeviceUsageCategorySports: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorysocialnetworking?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/socialnetworking?language=objc)
     pub static SRDeviceUsageCategorySocialNetworking: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategoryreference?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/reference?language=objc)
     pub static SRDeviceUsageCategoryReference: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategoryproductivity?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/productivity?language=objc)
     pub static SRDeviceUsageCategoryProductivity: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategoryphotoandvideo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/photoandvideo?language=objc)
     pub static SRDeviceUsageCategoryPhotoAndVideo: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorynews?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/news?language=objc)
     pub static SRDeviceUsageCategoryNews: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorynavigation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/navigation?language=objc)
     pub static SRDeviceUsageCategoryNavigation: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorymusic?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/music?language=objc)
     pub static SRDeviceUsageCategoryMusic: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorylifestyle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/lifestyle?language=objc)
     pub static SRDeviceUsageCategoryLifestyle: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategoryhealthandfitness?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/healthandfitness?language=objc)
     pub static SRDeviceUsageCategoryHealthAndFitness: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategoryfinance?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/finance?language=objc)
     pub static SRDeviceUsageCategoryFinance: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategoryentertainment?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/entertainment?language=objc)
     pub static SRDeviceUsageCategoryEntertainment: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategoryeducation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/education?language=objc)
     pub static SRDeviceUsageCategoryEducation: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorybooks?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/books?language=objc)
     pub static SRDeviceUsageCategoryBooks: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorymedical?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/medical?language=objc)
     pub static SRDeviceUsageCategoryMedical: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorynewsstand?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/newsstand?language=objc)
     pub static SRDeviceUsageCategoryNewsstand: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorycatalogs?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/catalogs?language=objc)
     pub static SRDeviceUsageCategoryCatalogs: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorykids?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/kids?language=objc)
     pub static SRDeviceUsageCategoryKids: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorymiscellaneous?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/miscellaneous?language=objc)
     pub static SRDeviceUsageCategoryMiscellaneous: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategoryfoodanddrink?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/foodanddrink?language=objc)
     pub static SRDeviceUsageCategoryFoodAndDrink: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorydevelopertools?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/developertools?language=objc)
     pub static SRDeviceUsageCategoryDeveloperTools: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorygraphicsanddesign?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/graphicsanddesign?language=objc)
     pub static SRDeviceUsageCategoryGraphicsAndDesign: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategoryshopping?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/shopping?language=objc)
     pub static SRDeviceUsageCategoryShopping: &'static SRDeviceUsageCategoryKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagecategorystickers?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/categorykey/stickers?language=objc)
     pub static SRDeviceUsageCategoryStickers: &'static SRDeviceUsageCategoryKey;
 }
 
@@ -1474,7 +1474,7 @@ impl SRDeviceUsageReport {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srtextinputsessiontype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srtextinputsession/sessiontype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -1540,7 +1540,7 @@ impl SRTextInputSession {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srapplicationusage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/applicationusage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRApplicationUsage;
@@ -1611,7 +1611,7 @@ impl SRApplicationUsage {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srnotificationevent?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage/event-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -1662,7 +1662,7 @@ unsafe impl RefEncode for SRNotificationEvent {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srnotificationusage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/notificationusage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRNotificationUsage;
@@ -1699,7 +1699,7 @@ impl SRNotificationUsage {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwebusage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srdeviceusagereport/webusage?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRWebUsage;
@@ -1986,7 +1986,7 @@ impl SRKeyboardMetrics {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardprobabilitymetric?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/probabilitymetric?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRKeyboardProbabilityMetric<UnitType: ?Sized = AnyObject>;
@@ -2391,7 +2391,7 @@ impl SRKeyboardMetrics {
 
 /// Categories of sentiment from words or emoji
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetricssentimentcategory?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srkeyboardmetrics/sentimentcategory?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2560,7 +2560,7 @@ pub unsafe trait NSStringSRDeletionRecord:
 impl private_NSStringSRDeletionRecord::Sealed for NSString {}
 unsafe impl NSStringSRDeletionRecord for NSString {}
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristlocation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristdetection/wristlocation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2580,7 +2580,7 @@ unsafe impl RefEncode for SRWristLocation {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srcrownorientation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristdetection/crownorientation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -2658,7 +2658,7 @@ impl SRWristDetection {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristtemperaturecondition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srwristtemperature/condition-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -3173,7 +3173,7 @@ impl SRAudioLevel {
 ///
 /// Audio stream bypassed the system voice processor.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srspeechmetricssessionflags?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srspeechmetrics/sessionflags-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -3323,7 +3323,7 @@ impl SRSpeechMetrics {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srfacemetricscontext?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srfacemetrics/context-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -3522,7 +3522,7 @@ impl SRFaceMetrics {
 
 /// The state of the ECG session when this sample was taken
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsessionstate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -3554,7 +3554,7 @@ unsafe impl RefEncode for SRElectrocardiogramSessionState {
 ///
 /// A session, usually of undefined duration, where the user is not provided coaching to guide the ECG readings
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsessionguidance?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsession/sessionguidance-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -3658,7 +3658,7 @@ impl SRElectrocardiogramSession {
 /// These flags can provide some indication of data validity or other system conditions
 /// that may influence how the recorded data should be treated.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramdataflags?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramdata/flags-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -3749,7 +3749,7 @@ impl SRElectrocardiogramData {
 
 /// Which lead was used to record the ECG data
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramlead?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srelectrocardiogramsample/lead-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -3863,18 +3863,18 @@ impl SRElectrocardiogramSample {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramopticalsamplecondition?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramopticalsample/condition?language=objc)
 // NS_TYPED_ENUM
 pub type SRPhotoplethysmogramOpticalSampleCondition = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramopticalsampleconditionsignalsaturation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramopticalsample/condition/signalsaturation?language=objc)
     pub static SRPhotoplethysmogramOpticalSampleConditionSignalSaturation:
         &'static SRPhotoplethysmogramOpticalSampleCondition;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramopticalsampleconditionunreliablenoise?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramopticalsample/condition/unreliablenoise?language=objc)
     pub static SRPhotoplethysmogramOpticalSampleConditionUnreliableNoise:
         &'static SRPhotoplethysmogramOpticalSampleCondition;
 }
@@ -4205,7 +4205,7 @@ impl SRPhotoplethysmogramAccelerometerSample {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsampleusage?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsample/usage-swift.struct?language=objc)
 // NS_TYPED_ENUM
 pub type SRPhotoplethysmogramSampleUsage = NSString;
 
@@ -4215,7 +4215,7 @@ extern "C" {
     ///
     /// Typically driven by the user using the HeartRate app or a workout session.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsampleusageforegroundheartrate?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsample/usage-swift.struct/foregroundheartrate?language=objc)
     pub static SRPhotoplethysmogramSampleUsageForegroundHeartRate:
         &'static SRPhotoplethysmogramSampleUsage;
 }
@@ -4227,7 +4227,7 @@ extern "C" {
     /// Typically driven by the user performing a reflect or breathe session
     /// in the Mindfulness app.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsampleusagedeepbreathing?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsample/usage-swift.struct/deepbreathing?language=objc)
     pub static SRPhotoplethysmogramSampleUsageDeepBreathing:
         &'static SRPhotoplethysmogramSampleUsage;
 }
@@ -4238,7 +4238,7 @@ extern "C" {
     ///
     /// Typically driven by the user using the BloodOxygen app
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsampleusageforegroundbloodoxygen?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsample/usage-swift.struct/foregroundbloodoxygen?language=objc)
     pub static SRPhotoplethysmogramSampleUsageForegroundBloodOxygen:
         &'static SRPhotoplethysmogramSampleUsage;
 }
@@ -4250,7 +4250,7 @@ extern "C" {
     /// These are driven by the system to perform the various heart features of watchOS
     /// (e.g., background blood oxygen, afib notifications, low cardio notifications, etc)
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsampleusagebackgroundsystem?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/sensorkit/srphotoplethysmogramsample/usage-swift.struct/backgroundsystem?language=objc)
     pub static SRPhotoplethysmogramSampleUsageBackgroundSystem:
         &'static SRPhotoplethysmogramSampleUsage;
 }
@@ -4370,7 +4370,7 @@ impl SRPhotoplethysmogramSample {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingssamplelifetime?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/samplelifetime?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -4390,7 +4390,7 @@ unsafe impl RefEncode for SRAcousticSettingsSampleLifetime {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibilitybackgroundsoundsname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class/name?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -4438,7 +4438,7 @@ unsafe impl RefEncode for SRAcousticSettingsAccessibilityBackgroundSoundsName {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibilityheadphoneaccommodationsmediaenhancetuning?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhancetuning-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -4466,7 +4466,7 @@ unsafe impl RefEncode for SRAcousticSettingsAccessibilityHeadphoneAccommodations
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibilityheadphoneaccommodationsmediaenhanceboosting?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceboosting-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -4498,7 +4498,7 @@ unsafe impl RefEncode
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibilityheadphoneaccommodationsmediaenhanceapplication?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class/mediaenhanceapplication-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -4537,7 +4537,7 @@ unsafe impl RefEncode
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsmusiceq?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/musiceq?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRAcousticSettingsMusicEQ;
@@ -4610,7 +4610,7 @@ impl SRAcousticSettingsMusicEQ {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibilitybackgroundsounds?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/backgroundsounds-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRAcousticSettingsAccessibilityBackgroundSounds;
@@ -4733,7 +4733,7 @@ impl SRAcousticSettingsAccessibilityBackgroundSounds {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibilityheadphoneaccommodations?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility/headphoneaccommodations-swift.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRAcousticSettingsAccessibilityHeadphoneAccommodations;
@@ -4840,7 +4840,7 @@ impl SRAcousticSettingsAccessibilityHeadphoneAccommodations {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettingsaccessibility?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/sensorkit/sracousticsettings/accessibility?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct SRAcousticSettingsAccessibility;

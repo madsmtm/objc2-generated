@@ -695,7 +695,6 @@ impl CMBufferQueue {
     }
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coremedia/opaquecmbufferqueuetriggertoken?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct opaqueCMBufferQueueTriggerToken {

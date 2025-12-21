@@ -12,7 +12,7 @@ extern_class!(
     ///
     /// Each HKElectrocardiogramVoltageMeasurement object corresponds to the voltage quantities across all leads for a given instance in time.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogramvoltagemeasurement?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkelectrocardiogram/voltagemeasurement?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct HKElectrocardiogramVoltageMeasurement;

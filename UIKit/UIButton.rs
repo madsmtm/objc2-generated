@@ -12,7 +12,7 @@ use objc2_quartz_core::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttontype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/buttontype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -46,7 +46,7 @@ unsafe impl RefEncode for UIButtonType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonrole?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/role-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -87,7 +87,7 @@ pub type UIButtonPointerStyleProvider = *mut block2::DynBlock<
     ) -> *mut UIPointerStyle,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibuttonconfigurationupdatehandler?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton/configurationupdatehandler-swift.typealias?language=objc)
 #[cfg(all(
     feature = "UIControl",
     feature = "UIResponder",

@@ -14,137 +14,137 @@ use crate::*;
 pub type WKTextContentType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/name?language=objc)
     pub static WKTextContentTypeName: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypenameprefix?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/nameprefix?language=objc)
     pub static WKTextContentTypeNamePrefix: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypegivenname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/givenname?language=objc)
     pub static WKTextContentTypeGivenName: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypemiddlename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/middlename?language=objc)
     pub static WKTextContentTypeMiddleName: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypefamilyname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/familyname?language=objc)
     pub static WKTextContentTypeFamilyName: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypenamesuffix?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/namesuffix?language=objc)
     pub static WKTextContentTypeNameSuffix: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypenickname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/nickname?language=objc)
     pub static WKTextContentTypeNickname: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypejobtitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/jobtitle?language=objc)
     pub static WKTextContentTypeJobTitle: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypeorganizationname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/organizationname?language=objc)
     pub static WKTextContentTypeOrganizationName: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypelocation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/location?language=objc)
     pub static WKTextContentTypeLocation: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypefullstreetaddress?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/fullstreetaddress?language=objc)
     pub static WKTextContentTypeFullStreetAddress: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypestreetaddressline1?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/streetaddressline1?language=objc)
     pub static WKTextContentTypeStreetAddressLine1: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypestreetaddressline2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/streetaddressline2?language=objc)
     pub static WKTextContentTypeStreetAddressLine2: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypeaddresscity?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/addresscity?language=objc)
     pub static WKTextContentTypeAddressCity: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypeaddressstate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/addressstate?language=objc)
     pub static WKTextContentTypeAddressState: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypeaddresscityandstate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/addresscityandstate?language=objc)
     pub static WKTextContentTypeAddressCityAndState: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypesublocality?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/sublocality?language=objc)
     pub static WKTextContentTypeSublocality: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypecountryname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/countryname?language=objc)
     pub static WKTextContentTypeCountryName: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypepostalcode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/postalcode?language=objc)
     pub static WKTextContentTypePostalCode: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypetelephonenumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/telephonenumber?language=objc)
     pub static WKTextContentTypeTelephoneNumber: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypeemailaddress?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/emailaddress?language=objc)
     pub static WKTextContentTypeEmailAddress: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypeurl?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/url?language=objc)
     pub static WKTextContentTypeURL: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypecreditcardnumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/creditcardnumber?language=objc)
     pub static WKTextContentTypeCreditCardNumber: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypeusername?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/username?language=objc)
     pub static WKTextContentTypeUsername: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypepassword?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/password?language=objc)
     pub static WKTextContentTypePassword: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypenewpassword?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/newpassword?language=objc)
     pub static WKTextContentTypeNewPassword: &'static WKTextContentType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttypeonetimecode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wktextcontenttype/onetimecode?language=objc)
     pub static WKTextContentTypeOneTimeCode: &'static WKTextContentType;
 }
 

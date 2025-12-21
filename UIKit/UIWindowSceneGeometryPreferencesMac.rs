@@ -11,7 +11,7 @@ use crate::*;
 extern_class!(
     /// Use this class to express macOS-specific geometry preferences when calling `-[UIWindowScene requestGeometryUpdateWithPreferences:errorHandler:]`
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenegeometrypreferencesmac?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/geometrypreferences/mac?language=objc)
     #[unsafe(super(UIWindowSceneGeometryPreferences, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "UIWindowSceneGeometryPreferences")]

@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritemselectionmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/selectionmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -29,7 +29,7 @@ unsafe impl RefEncode for NSPickerTouchBarItemSelectionMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritemcontrolrepresentation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspickertouchbaritem/controlrepresentation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

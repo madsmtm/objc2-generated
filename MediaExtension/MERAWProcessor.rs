@@ -176,7 +176,7 @@ extern_class!(
     ///
     /// The MERAWProcessingListElementParameter protocol provides an interface for VideoToolbox to query descriptions of the different elements in a parameter list  for a List element in a MERAWProcessingParameter.  A distinct MERAWProcessingListElementParameter is created for each list element.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/merawprocessinglistelementparameter?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/listelement?language=objc)
     #[unsafe(super(MERAWProcessingParameter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MERAWProcessingListElementParameter;
@@ -220,7 +220,7 @@ impl MERAWProcessingListElementParameter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/merawprocessingbooleanparameter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/boolean?language=objc)
     #[unsafe(super(MERAWProcessingParameter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MERAWProcessingBooleanParameter;
@@ -333,7 +333,7 @@ impl MERAWProcessingBooleanParameter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/merawprocessingintegerparameter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/integer?language=objc)
     #[unsafe(super(MERAWProcessingParameter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MERAWProcessingIntegerParameter;
@@ -463,7 +463,7 @@ impl MERAWProcessingIntegerParameter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/merawprocessingfloatparameter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/floatingpoint?language=objc)
     #[unsafe(super(MERAWProcessingParameter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MERAWProcessingFloatParameter;
@@ -594,7 +594,7 @@ impl MERAWProcessingFloatParameter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/merawprocessinglistparameter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/list?language=objc)
     #[unsafe(super(MERAWProcessingParameter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MERAWProcessingListParameter;
@@ -717,7 +717,7 @@ impl MERAWProcessingListParameter {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/merawprocessingsubgroupparameter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/mediaextension/merawprocessingparameter/subgroup?language=objc)
     #[unsafe(super(MERAWProcessingParameter, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct MERAWProcessingSubGroupParameter;

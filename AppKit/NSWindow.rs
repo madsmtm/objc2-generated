@@ -20,7 +20,7 @@ pub static NSAppKitVersionNumberWithCustomSheetPosition: NSAppKitVersion = 686.0
 #[cfg(feature = "NSApplication")]
 pub static NSAppKitVersionNumberWithDeferredWindowDisplaySupport: NSAppKitVersion = 1019.0 as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowstylemask?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/stylemask-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -65,20 +65,20 @@ unsafe impl RefEncode for NSWindowStyleMask {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodalresponseok?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/ok?language=objc)
 #[cfg(feature = "NSApplication")]
 pub static NSModalResponseOK: NSModalResponse = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodalresponsecancel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/modalresponse/cancel?language=objc)
 #[cfg(feature = "NSApplication")]
 pub static NSModalResponseCancel: NSModalResponse = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdisplaywindowrunloopordering?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/displaywindowrunloopordering?language=objc)
 pub const NSDisplayWindowRunLoopOrdering: c_uint = 600000;
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsresetcursorrectsrunloopordering?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsapplication/resetcursorrectsrunloopordering?language=objc)
 pub const NSResetCursorRectsRunLoopOrdering: c_uint = 700000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowsharingtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/sharingtype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -140,7 +140,7 @@ unsafe impl RefEncode for NSWindowSharingType {
 /// `minFullScreenContentSize`is too large to fit. A window can explicitly disallow itself from being placed in a full screen tile by including
 /// `NSWindowCollectionBehaviorFullScreenDisallowsTiling.`This is useful for non-full screen capable windows to explicitly prevent themselves from being tiled. It can also be used by a full screen window to prevent any other windows from being placed in its full screen tile.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowcollectionbehavior?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/collectionbehavior-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -190,7 +190,7 @@ unsafe impl RefEncode for NSWindowCollectionBehavior {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowanimationbehavior?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/animationbehavior-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -218,7 +218,7 @@ unsafe impl RefEncode for NSWindowAnimationBehavior {
 
 /// Options used in `+windowNumbersWithOptions:`.  If no options are specified, the returned list contains window numbers for visible windows on the active space belonging to the calling application.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindownumberlistoptions?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/numberlistoptions?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -240,7 +240,7 @@ unsafe impl RefEncode for NSWindowNumberListOptions {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowocclusionstate?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/occlusionstate-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -260,38 +260,38 @@ unsafe impl RefEncode for NSWindowOcclusionState {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowlevel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSWindowLevel = NSInteger;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsnormalwindowlevel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/normal?language=objc)
 pub static NSNormalWindowLevel: NSWindowLevel = 0;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsfloatingwindowlevel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/floating?language=objc)
 pub static NSFloatingWindowLevel: NSWindowLevel = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nssubmenuwindowlevel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/submenu?language=objc)
 pub static NSSubmenuWindowLevel: NSWindowLevel = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstornoffmenuwindowlevel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/tornoffmenu?language=objc)
 pub static NSTornOffMenuWindowLevel: NSWindowLevel = 3;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmainmenuwindowlevel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/mainmenu?language=objc)
 pub static NSMainMenuWindowLevel: NSWindowLevel = 24;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstatuswindowlevel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/statusbar?language=objc)
 pub static NSStatusWindowLevel: NSWindowLevel = 25;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsmodalpanelwindowlevel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/modalpanel?language=objc)
 pub static NSModalPanelWindowLevel: NSWindowLevel = 8;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nspopupmenuwindowlevel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/popupmenu?language=objc)
 pub static NSPopUpMenuWindowLevel: NSWindowLevel = 101;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsscreensaverwindowlevel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/screensaver?language=objc)
 pub static NSScreenSaverWindowLevel: NSWindowLevel = 1000;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsselectiondirection?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/selectiondirection?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -315,7 +315,7 @@ unsafe impl RefEncode for NSSelectionDirection {
 
 /// Standard window buttons.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowbutton?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -343,7 +343,7 @@ unsafe impl RefEncode for NSWindowButton {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowtitlevisibility?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/titlevisibility-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -363,7 +363,7 @@ unsafe impl RefEncode for NSWindowTitleVisibility {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowtoolbarstyle?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/toolbarstyle-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -389,10 +389,10 @@ unsafe impl RefEncode for NSWindowToolbarStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nseventdurationforever?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsevent/foreverduration?language=objc)
 pub static NSEventDurationForever: NSTimeInterval = c_double::MAX as _;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowusertabbingpreference?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/usertabbingpreference-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -414,7 +414,7 @@ unsafe impl RefEncode for NSWindowUserTabbingPreference {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowtabbingmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/tabbingmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -460,13 +460,13 @@ unsafe impl RefEncode for NSTitlebarSeparatorStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowframeautosavename?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/frameautosavename-swift.typealias?language=objc)
 pub type NSWindowFrameAutosaveName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowpersistableframedescriptor?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/persistableframedescriptor?language=objc)
 pub type NSWindowPersistableFrameDescriptor = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowtabbingidentifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/tabbingidentifier-swift.typealias?language=objc)
 pub type NSWindowTabbingIdentifier = NSString;
 
 extern_class!(
@@ -2638,82 +2638,82 @@ extern_protocol!(
 );
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidbecomekeynotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didbecomekeynotification?language=objc)
     pub static NSWindowDidBecomeKeyNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidbecomemainnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didbecomemainnotification?language=objc)
     pub static NSWindowDidBecomeMainNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidchangescreennotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didchangescreennotification?language=objc)
     pub static NSWindowDidChangeScreenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdiddeminiaturizenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/diddeminiaturizenotification?language=objc)
     pub static NSWindowDidDeminiaturizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidexposenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didexposenotification?language=objc)
     pub static NSWindowDidExposeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidminiaturizenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didminiaturizenotification?language=objc)
     pub static NSWindowDidMiniaturizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidmovenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didmovenotification?language=objc)
     pub static NSWindowDidMoveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidresignkeynotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didresignkeynotification?language=objc)
     pub static NSWindowDidResignKeyNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidresignmainnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didresignmainnotification?language=objc)
     pub static NSWindowDidResignMainNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidresizenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didresizenotification?language=objc)
     pub static NSWindowDidResizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidupdatenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didupdatenotification?language=objc)
     pub static NSWindowDidUpdateNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowwillclosenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willclosenotification?language=objc)
     pub static NSWindowWillCloseNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowwillminiaturizenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willminiaturizenotification?language=objc)
     pub static NSWindowWillMiniaturizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowwillmovenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willmovenotification?language=objc)
     pub static NSWindowWillMoveNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowwillbeginsheetnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willbeginsheetnotification?language=objc)
     pub static NSWindowWillBeginSheetNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidendsheetnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didendsheetnotification?language=objc)
     pub static NSWindowDidEndSheetNotification: &'static NSNotificationName;
 }
 
@@ -2727,17 +2727,17 @@ extern "C" {
     /// `backingScaleFactor`and
     /// `colorSpace`at the time of the notification, to determine which of these two properties (potentially both) changed.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidchangebackingpropertiesnotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didchangebackingpropertiesnotification?language=objc)
     pub static NSWindowDidChangeBackingPropertiesNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackingpropertyoldscalefactorkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/oldscalefactoruserinfokey?language=objc)
     pub static NSBackingPropertyOldScaleFactorKey: &'static NSString;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsbackingpropertyoldcolorspacekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/oldcolorspaceuserinfokey?language=objc)
     pub static NSBackingPropertyOldColorSpaceKey: &'static NSString;
 }
 
@@ -2745,61 +2745,61 @@ extern "C" {
     /// `NSWindowDidChangeScreenProfileNotification`is posted when a window's display's color profile changes, or when the window moves to a display that has a different color profile.  When running on 10.7.3 or later, this notification is still posted for compatibility, but modern applications should instead watch for
     /// `NSWindowDidChangeBackingPropertiesNotification,`which is posted for both color space and resolution changes, and facilitates handling both in a single update and redisplay pass.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidchangescreenprofilenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didchangescreenprofilenotification?language=objc)
     pub static NSWindowDidChangeScreenProfileNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// `NSWindowWillStartLiveResizeNotification`is sent when the user starts a live resize operation via a mouseDown in the resize corner.  The notification will be sent before the window size is changed.  Note that this notification is sent once for a sequence of window resize operations
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowwillstartliveresizenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willstartliveresizenotification?language=objc)
     pub static NSWindowWillStartLiveResizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
     /// `NSWindowDidEndLiveResizeNotification`is sent after the user ends a live resize operation via a mouseUp in the resize corner.  The notification will be sent after the final window size change.    Note that this notification is sent once for a sequence of window resize operations
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidendliveresizenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didendliveresizenotification?language=objc)
     pub static NSWindowDidEndLiveResizeNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowwillenterfullscreennotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willenterfullscreennotification?language=objc)
     pub static NSWindowWillEnterFullScreenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidenterfullscreennotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didenterfullscreennotification?language=objc)
     pub static NSWindowDidEnterFullScreenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowwillexitfullscreennotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willexitfullscreennotification?language=objc)
     pub static NSWindowWillExitFullScreenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidexitfullscreennotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didexitfullscreennotification?language=objc)
     pub static NSWindowDidExitFullScreenNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowwillenterversionbrowsernotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willenterversionbrowsernotification?language=objc)
     pub static NSWindowWillEnterVersionBrowserNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidenterversionbrowsernotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didenterversionbrowsernotification?language=objc)
     pub static NSWindowDidEnterVersionBrowserNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowwillexitversionbrowsernotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/willexitversionbrowsernotification?language=objc)
     pub static NSWindowWillExitVersionBrowserNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidexitversionbrowsernotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didexitversionbrowsernotification?language=objc)
     pub static NSWindowDidExitVersionBrowserNotification: &'static NSNotificationName;
 }
 
@@ -2807,11 +2807,11 @@ extern "C" {
     /// Upon receiving this notification, you can query the
     /// `NSWindow`for its current occlusion state. Note that this only notifies about changes in the state of the occlusion, not when the occlusion region changes. You can use this notification to increase responsiveness and save power, by halting any expensive calculations that the user can not see.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowdidchangeocclusionstatenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/didchangeocclusionstatenotification?language=objc)
     pub static NSWindowDidChangeOcclusionStateNotification: &'static NSNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowbackinglocation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/backinglocation-swift.enum?language=objc)
 // NS_ENUM
 #[deprecated]
 #[repr(transparent)]
@@ -3063,14 +3063,14 @@ pub static NSHUDWindowMask: NSWindowStyleMask = NSWindowStyleMask(NSWindowStyleM
 #[deprecated = "NSUnscaledWindowMask is deprecated and has no effect. The scale factor for a window backing store is dynamic and dependent on the screen it is placed on."]
 pub static NSUnscaledWindowMask: NSWindowStyleMask = NSWindowStyleMask(1 << 11);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowfullscreenbutton?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/buttontype/fullscreenbutton?language=objc)
 #[deprecated = "The standard window button for NSWindowFullScreenButton is always nil; use NSWindowZoomButton instead"]
 pub static NSWindowFullScreenButton: NSWindowButton = NSWindowButton(7);
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsdockwindowlevel?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/level-swift.struct/dock?language=objc)
 #[deprecated]
 pub static NSDockWindowLevel: NSWindowLevel = 20;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindowsharingreadwrite?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nswindow/sharingtype-swift.enum/readwrite?language=objc)
 #[deprecated = "Use NSWindowSharingReadOnly instead"]
 pub static NSWindowSharingReadWrite: NSWindowSharingType = NSWindowSharingType(2);

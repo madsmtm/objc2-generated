@@ -52,7 +52,7 @@ impl UIMenuSystem {
     );
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystemelementgrouppreference?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/elementgrouppreference?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -83,7 +83,7 @@ unsafe impl Sync for UIMenuSystemElementGroupPreference {}
 
 /// Represents a preference for the structure of Find elements in the main menu.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystemfindelementgroupconfigurationstyle?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/findelementgroupconfiguration/style-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -119,7 +119,7 @@ extern_class!(
     /// Represents a configuration for find elements, should they be present.
     /// You don't create one of these directly. A configuration is provided as part of a `UIMainMenuSystemConfiguration`.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystemfindelementgroupconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimenusystem/findelementgroupconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

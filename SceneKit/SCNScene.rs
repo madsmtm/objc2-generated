@@ -38,27 +38,27 @@ extern "C" {
 ///
 /// These keys can be used with the -[SCNScene attributeForKey:] method.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnsceneattribute?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscene/attribute?language=objc)
 // NS_TYPED_ENUM
 pub type SCNSceneAttribute = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenestarttimeattributekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscene/attribute/starttime?language=objc)
     pub static SCNSceneStartTimeAttributeKey: &'static SCNSceneAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnsceneendtimeattributekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscene/attribute/endtime?language=objc)
     pub static SCNSceneEndTimeAttributeKey: &'static SCNSceneAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnsceneframerateattributekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscene/attribute/framerate?language=objc)
     pub static SCNSceneFrameRateAttributeKey: &'static SCNSceneAttribute;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnsceneupaxisattributekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscene/attribute/upaxis?language=objc)
     pub static SCNSceneUpAxisAttributeKey: &'static SCNSceneAttribute;
 }
 

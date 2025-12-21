@@ -121,7 +121,7 @@ extern_class!(
     /// When it notices an account change, it will send an ``CKSyncEngine/Event/accountChange(_:)`` to your delegate.
     /// It's your responsibility to react appropriately to this change and update your local persistence.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengine?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncengine-4b4w9?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKSyncEngine;
@@ -260,7 +260,7 @@ impl CKSyncEngine {
 extern_protocol!(
     /// An interface by which `CKSyncEngine` communicates with your application.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginedelegate?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksyncenginedelegate-3c38p?language=objc)
     pub unsafe trait CKSyncEngineDelegate: NSObjectProtocol {
         #[cfg(feature = "CKSyncEngineEvent")]
         /// Called when an event occurs during the sync engine's operation.

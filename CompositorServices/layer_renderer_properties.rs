@@ -11,7 +11,6 @@ use objc2_metal::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_texture_topology?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct cp_texture_topology {

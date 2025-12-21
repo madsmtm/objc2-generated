@@ -11,7 +11,7 @@ use crate::*;
 ///
 /// See also: SAEmergencyResponseManagerVoiceCallStatus
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/saemergencyresponsemanagervoicecallstatus?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/safetykit/saemergencyresponsemanager/voicecallstatus?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

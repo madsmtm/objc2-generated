@@ -22,7 +22,7 @@ extern "C" {
 extern_class!(
     /// The data model object for storing drawing data created from PKCanvasView.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkdrawing?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/pencilkit/pkdrawingreference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PKDrawing;

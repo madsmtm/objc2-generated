@@ -37,7 +37,7 @@ unsafe impl RefEncode for NSLineBreakMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nslinebreakstrategy?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/linebreakstrategy-swift.struct?language=objc)
 // NS_OPTIONS
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -63,12 +63,12 @@ unsafe impl RefEncode for NSLineBreakStrategy {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttaboptionkey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttab/optionkey?language=objc)
 // NS_TYPED_ENUM
 pub type NSTextTabOptionKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstabcolumnterminatorsattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttab/optionkey/columnterminators?language=objc)
     pub static NSTabColumnTerminatorsAttributeName: &'static NSTextTabOptionKey;
 }
 
@@ -646,7 +646,7 @@ impl NSMutableParagraphStyle {
 
 /// ********************** Deprecated ***********************
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstexttabtype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsparagraphstyle/texttabtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

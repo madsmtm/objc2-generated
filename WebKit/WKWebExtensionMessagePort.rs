@@ -10,13 +10,13 @@ use crate::*;
 extern "C" {
     /// Indicates a ``WKWebExtensionMessagePort`` error.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionmessageporterrordomain?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/messageport/errordomain?language=objc)
     pub static WKWebExtensionMessagePortErrorDomain: &'static NSErrorDomain;
 }
 
 /// Constants used by ``NSError`` to indicate errors in the ``WKWebExtensionMessagePort`` domain.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionmessageporterror?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/messageport/error/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -43,7 +43,7 @@ extern_class!(
     ///
     /// Contains properties and methods to handle message exchanges with a web extension.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextensionmessageport?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/wkwebextension/messageport?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

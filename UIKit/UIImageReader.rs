@@ -97,7 +97,7 @@ impl DefaultRetained for UIImageReaderConfiguration {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagereader?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiimagereader-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIImageReader;

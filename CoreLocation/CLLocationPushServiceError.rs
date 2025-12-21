@@ -10,7 +10,7 @@ extern "C" {
     pub static CLLocationPushServiceErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationpushserviceerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/corelocation/cllocationpushserviceerror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

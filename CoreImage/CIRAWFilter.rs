@@ -18,47 +18,47 @@ use crate::*;
 pub type CIRAWDecoderVersion = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversionnone?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/none?language=objc)
     pub static CIRAWDecoderVersionNone: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion9?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version9?language=objc)
     pub static CIRAWDecoderVersion9: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion9dng?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version9dng?language=objc)
     pub static CIRAWDecoderVersion9DNG: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion8?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version8?language=objc)
     pub static CIRAWDecoderVersion8: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion8dng?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version8dng?language=objc)
     pub static CIRAWDecoderVersion8DNG: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion7?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version7?language=objc)
     pub static CIRAWDecoderVersion7: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion7dng?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version7dng?language=objc)
     pub static CIRAWDecoderVersion7DNG: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion6?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version6?language=objc)
     pub static CIRAWDecoderVersion6: &'static CIRAWDecoderVersion;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion6dng?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cirawdecoderversion/version6dng?language=objc)
     pub static CIRAWDecoderVersion6DNG: &'static CIRAWDecoderVersion;
 }
 

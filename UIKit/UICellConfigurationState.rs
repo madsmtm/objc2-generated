@@ -59,7 +59,7 @@ unsafe impl RefEncode for UICellConfigurationDropState {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationstate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellconfigurationstate-c.class?language=objc)
     #[unsafe(super(UIViewConfigurationState, NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

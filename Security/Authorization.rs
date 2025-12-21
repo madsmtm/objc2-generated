@@ -9,7 +9,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationexternalformlength?language=objc)
 pub const kAuthorizationExternalFormLength: c_uint = 32;
 /// [Apple's documentation](https://developer.apple.com/documentation/security/errauthorizationsuccess?language=objc)
 pub const errAuthorizationSuccess: OSStatus = 0;
@@ -84,7 +83,6 @@ unsafe impl RefEncode for AuthorizationFlags {
 /// [Apple's documentation](https://developer.apple.com/documentation/security/kauthorizationflagcannotpreauthorize?language=objc)
 pub const kAuthorizationFlagCanNotPreAuthorize: c_uint = 1;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/security/authorizationopaqueref?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct AuthorizationOpaqueRef {

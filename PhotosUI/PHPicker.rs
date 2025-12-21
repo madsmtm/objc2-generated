@@ -83,7 +83,7 @@ unsafe impl Sync for PHPickerConfigurationSelection {}
 /// An enum that determines the mode of
 /// `PHPickerViewController.`
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickermode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickermode-c.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -148,7 +148,7 @@ extern_class!(
     /// A filter that restricts which types of assets
     /// `PHPickerViewController`can show.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerfilter?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerfilter-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerFilter;
@@ -336,7 +336,7 @@ extern_class!(
     /// A configuration for
     /// `PHPickerViewController.`
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerconfiguration-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerConfiguration;
@@ -505,7 +505,7 @@ extern_class!(
     /// A user selected asset from
     /// `PHPickerViewController.`
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerresult?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerresult-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct PHPickerResult;
@@ -541,7 +541,7 @@ extern_protocol!(
     /// A set of methods that the delegate must implement to respond to
     /// `PHPickerViewController`user events.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerviewcontrollerdelegate?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/photosui/phpickerviewcontrollerdelegate-9y5xc?language=objc)
     pub unsafe trait PHPickerViewControllerDelegate:
         NSObjectProtocol + MainThreadOnly
     {

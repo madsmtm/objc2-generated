@@ -8,7 +8,6 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/iobluetooth/opaqueprivobexsessiondata?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaquePrivOBEXSessionData {

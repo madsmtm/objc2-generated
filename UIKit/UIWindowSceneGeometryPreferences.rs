@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 use crate::*;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenegeometrypreferences?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscene/geometrypreferences?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct UIWindowSceneGeometryPreferences;

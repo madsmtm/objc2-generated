@@ -75,7 +75,7 @@ extern_class!(
     /// A configuration for the main menu system.
     /// You can specify whether or not certain elements are present in the initial main menu, as well as a block to build the menu using a UIMenuBuilder.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimainmenusystemconfiguration?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uimainmenusystem/configuration?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

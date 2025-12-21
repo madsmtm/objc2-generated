@@ -7,10 +7,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorlistname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorlist/name-swift.typealias?language=objc)
 pub type NSColorListName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolor/name?language=objc)
 pub type NSColorName = NSString;
 
 extern_class!(
@@ -121,6 +121,6 @@ impl DefaultRetained for NSColorList {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorlistdidchangenotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nscolorlist/didchangenotification?language=objc)
     pub static NSColorListDidChangeNotification: &'static NSNotificationName;
 }

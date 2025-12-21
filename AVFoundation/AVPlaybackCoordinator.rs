@@ -11,14 +11,14 @@ use crate::*;
 
 /// Describes why an AVCoordinatedPlaybackParticipant is not currently available to participate in coordinated playback.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspensionreason?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension/reason-swift.struct?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type AVCoordinatedPlaybackSuspensionReason = NSString;
 
 extern "C" {
     /// The participant's audio session was interrupted.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspensionreasonaudiosessioninterrupted?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension/reason-swift.struct/audiosessioninterrupted?language=objc)
     pub static AVCoordinatedPlaybackSuspensionReasonAudioSessionInterrupted:
         &'static AVCoordinatedPlaybackSuspensionReason;
 }
@@ -26,7 +26,7 @@ extern "C" {
 extern "C" {
     /// The player is buffering data after a stall.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspensionreasonstallrecovery?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension/reason-swift.struct/stallrecovery?language=objc)
     pub static AVCoordinatedPlaybackSuspensionReasonStallRecovery:
         &'static AVCoordinatedPlaybackSuspensionReason;
 }
@@ -34,7 +34,7 @@ extern "C" {
 extern "C" {
     /// The participant is presented with interstitial content instead of the main player.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspensionreasonplayinginterstitial?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension/reason-swift.struct/playinginterstitial?language=objc)
     pub static AVCoordinatedPlaybackSuspensionReasonPlayingInterstitial:
         &'static AVCoordinatedPlaybackSuspensionReason;
 }
@@ -42,7 +42,7 @@ extern "C" {
 extern "C" {
     /// The participant cannot participate in coordinated playback.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspensionreasoncoordinatedplaybacknotpossible?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension/reason-swift.struct/coordinatedplaybacknotpossible?language=objc)
     pub static AVCoordinatedPlaybackSuspensionReasonCoordinatedPlaybackNotPossible:
         &'static AVCoordinatedPlaybackSuspensionReason;
 }
@@ -50,7 +50,7 @@ extern "C" {
 extern "C" {
     /// The participant's playback object is in a state that requires manual intervention by the user to resume playback.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspensionreasonuseractionrequired?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension/reason-swift.struct/useractionrequired?language=objc)
     pub static AVCoordinatedPlaybackSuspensionReasonUserActionRequired:
         &'static AVCoordinatedPlaybackSuspensionReason;
 }
@@ -58,7 +58,7 @@ extern "C" {
 extern "C" {
     /// The participant is actively changing current time.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspensionreasonuserischangingcurrenttime?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avcoordinatedplaybacksuspension/reason-swift.struct/userischangingcurrenttime?language=objc)
     pub static AVCoordinatedPlaybackSuspensionReasonUserIsChangingCurrentTime:
         &'static AVCoordinatedPlaybackSuspensionReason;
 }
@@ -123,7 +123,7 @@ impl AVCoordinatedPlaybackSuspension {
 extern "C" {
     /// Posted by the playback coordinator when its otherParticipants property changes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinatorotherparticipantsdidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/otherparticipantsdidchangenotification?language=objc)
     pub static AVPlaybackCoordinatorOtherParticipantsDidChangeNotification:
         &'static NSNotificationName;
 }
@@ -131,7 +131,7 @@ extern "C" {
 extern "C" {
     /// Posted by the playback coordinator when its suspensionReasons property changes.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinatorsuspensionreasonsdidchangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avplaybackcoordinator/suspensionreasonsdidchangenotification?language=objc)
     pub static AVPlaybackCoordinatorSuspensionReasonsDidChangeNotification:
         &'static NSNotificationName;
 }

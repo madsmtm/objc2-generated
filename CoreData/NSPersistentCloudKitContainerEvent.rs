@@ -6,7 +6,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainereventtype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/eventtype?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -29,17 +29,17 @@ unsafe impl RefEncode for NSPersistentCloudKitContainerEventType {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainereventchangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/eventchangednotification?language=objc)
     pub static NSPersistentCloudKitContainerEventChangedNotification: &'static NSNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainereventuserinfokey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/eventnotificationuserinfokey?language=objc)
     pub static NSPersistentCloudKitContainerEventUserInfoKey: &'static NSString;
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainerevent?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentcloudkitcontainer/event?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSPersistentCloudKitContainerEvent;

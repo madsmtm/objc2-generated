@@ -9,7 +9,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspdfdrawingactions?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspdfrenderer/drawingactions?language=objc)
 #[cfg(all(feature = "UIGraphicsRenderer", feature = "block2"))]
 pub type UIGraphicsPDFDrawingActions =
     *mut block2::DynBlock<dyn Fn(NonNull<UIGraphicsPDFRendererContext>)>;

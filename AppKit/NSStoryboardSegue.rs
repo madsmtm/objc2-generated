@@ -7,7 +7,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardsegueidentifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardsegue/identifier-swift.typealias?language=objc)
 pub type NSStoryboardSegueIdentifier = NSString;
 
 extern_class!(

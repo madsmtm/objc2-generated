@@ -6,7 +6,7 @@ use crate::*;
 
 /// The state of a game activity.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivitystate?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkgameactivity/state-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

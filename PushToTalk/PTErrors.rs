@@ -15,7 +15,7 @@ extern "C" {
     pub static PTChannelErrorDomain: Option<&'static NSErrorDomain>;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptinstantiationerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptinstantiationerror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -48,7 +48,7 @@ unsafe impl RefEncode for PTInstantiationError {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelerror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/pushtotalk/ptchannelerror-swift.struct/code?language=objc)
 // NS_ERROR_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

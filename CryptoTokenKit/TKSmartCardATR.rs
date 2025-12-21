@@ -40,7 +40,7 @@ unsafe impl RefEncode for TKSmartCardProtocol {
 extern_class!(
     /// Represents single interface-bytes group of ATR.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardatrinterfacegroup?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/cryptotokenkit/tksmartcardatr/interfacegroup?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct TKSmartCardATRInterfaceGroup;

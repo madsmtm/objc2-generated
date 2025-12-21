@@ -6,10 +6,10 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboard/name?language=objc)
 pub type NSStoryboardName = NSString;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardsceneidentifier?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboard/sceneidentifier?language=objc)
 pub type NSStoryboardSceneIdentifier = NSString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardcontrollercreator?language=objc)

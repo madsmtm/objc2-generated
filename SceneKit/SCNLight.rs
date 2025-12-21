@@ -13,42 +13,42 @@ use crate::*;
 ///
 /// Describes the various light types available.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlighttype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype?language=objc)
 // NS_TYPED_ENUM
 pub type SCNLightType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlighttypeambient?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/ambient?language=objc)
     pub static SCNLightTypeAmbient: &'static SCNLightType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlighttypeomni?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/omni?language=objc)
     pub static SCNLightTypeOmni: &'static SCNLightType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlighttypedirectional?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/directional?language=objc)
     pub static SCNLightTypeDirectional: &'static SCNLightType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlighttypespot?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/spot?language=objc)
     pub static SCNLightTypeSpot: &'static SCNLightType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlighttypeies?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/ies?language=objc)
     pub static SCNLightTypeIES: &'static SCNLightType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlighttypeprobe?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/probe?language=objc)
     pub static SCNLightTypeProbe: &'static SCNLightType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlighttypearea?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnlight/lighttype/area?language=objc)
     pub static SCNLightTypeArea: &'static SCNLightType;
 }
 

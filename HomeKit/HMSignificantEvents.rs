@@ -14,13 +14,13 @@ pub type HMSignificantEvent = NSString;
 extern "C" {
     /// Event corresponding to sunrise
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmsignificanteventsunrise?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmsignificantevent/sunrise?language=objc)
     pub static HMSignificantEventSunrise: &'static HMSignificantEvent;
 }
 
 extern "C" {
     /// Event corresponding to sunset
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmsignificanteventsunset?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmsignificantevent/sunset?language=objc)
     pub static HMSignificantEventSunset: &'static HMSignificantEvent;
 }

@@ -8,10 +8,10 @@ use crate::*;
 
 /// The number of discrete control positions supported by the DualSense adaptive triggers. Each of these positions can be configured separately in multi-position feedback and multi-position vibration modes.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggerdiscretepositioncount?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/discretepositioncount?language=objc)
 pub const GCDualSenseAdaptiveTriggerDiscretePositionCount: c_uint = 10;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggermode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/mode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -42,7 +42,7 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggerstatus?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/status-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -91,7 +91,7 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerStatus {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggerpositionalamplitudes?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/positionalamplitudes?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCDualSenseAdaptiveTriggerPositionalAmplitudes {
@@ -107,7 +107,7 @@ unsafe impl RefEncode for GCDualSenseAdaptiveTriggerPositionalAmplitudes {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetriggerpositionalresistivestrengths?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcdualsenseadaptivetrigger/positionalresistivestrengths?language=objc)
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct GCDualSenseAdaptiveTriggerPositionalResistiveStrengths {

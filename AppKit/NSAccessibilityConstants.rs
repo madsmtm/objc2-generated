@@ -8,424 +8,424 @@ use objc2_foundation::*;
 use crate::*;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityerrorcodeexceptioninfo?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/errorcodeexceptioninfo?language=objc)
     pub static NSAccessibilityErrorCodeExceptionInfo: &'static NSString;
 }
 
 /// * Accessibility Constants **
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityattributename?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilityAttributeName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityroleattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/role?language=objc)
     pub static NSAccessibilityRoleAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityroledescriptionattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/roledescription?language=objc)
     pub static NSAccessibilityRoleDescriptionAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysubroleattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/subrole?language=objc)
     pub static NSAccessibilitySubroleAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityhelpattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/help?language=objc)
     pub static NSAccessibilityHelpAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityvalueattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/value?language=objc)
     pub static NSAccessibilityValueAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityminvalueattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/minvalue?language=objc)
     pub static NSAccessibilityMinValueAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymaxvalueattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/maxvalue?language=objc)
     pub static NSAccessibilityMaxValueAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityenabledattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/enabled?language=objc)
     pub static NSAccessibilityEnabledAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfocusedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/focused?language=objc)
     pub static NSAccessibilityFocusedAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityparentattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/parent?language=objc)
     pub static NSAccessibilityParentAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitychildrenattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/children?language=objc)
     pub static NSAccessibilityChildrenAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitywindowattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/window?language=objc)
     pub static NSAccessibilityWindowAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytopleveluielementattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/topleveluielement?language=objc)
     pub static NSAccessibilityTopLevelUIElementAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityselectedchildrenattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selectedchildren?language=objc)
     pub static NSAccessibilitySelectedChildrenAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityvisiblechildrenattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/visiblechildren?language=objc)
     pub static NSAccessibilityVisibleChildrenAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitypositionattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/position?language=objc)
     pub static NSAccessibilityPositionAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysizeattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/size?language=objc)
     pub static NSAccessibilitySizeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycontentsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/contents?language=objc)
     pub static NSAccessibilityContentsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytitleattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/title?language=objc)
     pub static NSAccessibilityTitleAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydescriptionattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/description?language=objc)
     pub static NSAccessibilityDescriptionAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityshownmenuattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/shownmenu?language=objc)
     pub static NSAccessibilityShownMenuAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityvaluedescriptionattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/valuedescription?language=objc)
     pub static NSAccessibilityValueDescriptionAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysharedfocuselementsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/sharedfocuselements?language=objc)
     pub static NSAccessibilitySharedFocusElementsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitypreviouscontentsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/previouscontents?language=objc)
     pub static NSAccessibilityPreviousContentsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitynextcontentsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/nextcontents?language=objc)
     pub static NSAccessibilityNextContentsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityheaderattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/header?language=objc)
     pub static NSAccessibilityHeaderAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityeditedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/edited?language=objc)
     pub static NSAccessibilityEditedAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytabsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/tabs?language=objc)
     pub static NSAccessibilityTabsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityhorizontalscrollbarattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/horizontalscrollbar?language=objc)
     pub static NSAccessibilityHorizontalScrollBarAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityverticalscrollbarattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/verticalscrollbar?language=objc)
     pub static NSAccessibilityVerticalScrollBarAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityoverflowbuttonattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/overflowbutton?language=objc)
     pub static NSAccessibilityOverflowButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityincrementbuttonattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/incrementbutton?language=objc)
     pub static NSAccessibilityIncrementButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydecrementbuttonattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/decrementbutton?language=objc)
     pub static NSAccessibilityDecrementButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfilenameattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/filename?language=objc)
     pub static NSAccessibilityFilenameAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityexpandedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/expanded?language=objc)
     pub static NSAccessibilityExpandedAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityselectedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selected?language=objc)
     pub static NSAccessibilitySelectedAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysplittersattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/splitters?language=objc)
     pub static NSAccessibilitySplittersAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydocumentattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/document?language=objc)
     pub static NSAccessibilityDocumentAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityactivationpointattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/activationpoint?language=objc)
     pub static NSAccessibilityActivationPointAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityurlattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/url?language=objc)
     pub static NSAccessibilityURLAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityindexattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/index?language=objc)
     pub static NSAccessibilityIndexAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrowcountattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/rowcount?language=objc)
     pub static NSAccessibilityRowCountAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycolumncountattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/columncount?language=objc)
     pub static NSAccessibilityColumnCountAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityorderedbyrowattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/orderedbyrow?language=objc)
     pub static NSAccessibilityOrderedByRowAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitywarningvalueattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/warningvalue?language=objc)
     pub static NSAccessibilityWarningValueAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycriticalvalueattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/criticalvalue?language=objc)
     pub static NSAccessibilityCriticalValueAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityplaceholdervalueattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/placeholdervalue?language=objc)
     pub static NSAccessibilityPlaceholderValueAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycontainsprotectedcontentattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/containsprotectedcontent?language=objc)
     pub static NSAccessibilityContainsProtectedContentAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityalternateuivisibleattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/alternateuivisible?language=objc)
     pub static NSAccessibilityAlternateUIVisibleAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrequiredattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/required?language=objc)
     pub static NSAccessibilityRequiredAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityautointeractableattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/autointeractableattribute?language=objc)
     pub static NSAccessibilityAutoInteractableAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydatetimecomponentsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/datetimecomponentsattribute?language=objc)
     pub static NSAccessibilityDateTimeComponentsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityembeddedimagedescriptionattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/embeddedimagedescriptionattribute?language=objc)
     pub static NSAccessibilityEmbeddedImageDescriptionAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitypathattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/pathattribute?language=objc)
     pub static NSAccessibilityPathAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytextinputmarkedrangeattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/textinputmarkedrangeattribute?language=objc)
     pub static NSAccessibilityTextInputMarkedRangeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityblockquotelevelattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/blockquotelevelattribute?language=objc)
     pub static NSAccessibilityBlockQuoteLevelAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityheadinglevelattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/headinglevelattribute?language=objc)
     pub static NSAccessibilityHeadingLevelAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylanguageattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/languageattribute?language=objc)
     pub static NSAccessibilityLanguageAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityvisitedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/visitedattribute?language=objc)
     pub static NSAccessibilityVisitedAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytitleuielementattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/titleuielement?language=objc)
     pub static NSAccessibilityTitleUIElementAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityservesastitleforuielementsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/servesastitleforuielements?language=objc)
     pub static NSAccessibilityServesAsTitleForUIElementsAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylinkeduielementsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/linkeduielements?language=objc)
     pub static NSAccessibilityLinkedUIElementsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityselectedtextattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selectedtext?language=objc)
     pub static NSAccessibilitySelectedTextAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityselectedtextrangeattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selectedtextrange?language=objc)
     pub static NSAccessibilitySelectedTextRangeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitynumberofcharactersattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/numberofcharacters?language=objc)
     pub static NSAccessibilityNumberOfCharactersAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityvisiblecharacterrangeattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/visiblecharacterrange?language=objc)
     pub static NSAccessibilityVisibleCharacterRangeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysharedtextuielementsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/sharedtextuielements?language=objc)
     pub static NSAccessibilitySharedTextUIElementsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysharedcharacterrangeattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/sharedcharacterrange?language=objc)
     pub static NSAccessibilitySharedCharacterRangeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityinsertionpointlinenumberattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/insertionpointlinenumber?language=objc)
     pub static NSAccessibilityInsertionPointLineNumberAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityselectedtextrangesattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selectedtextranges?language=objc)
     pub static NSAccessibilitySelectedTextRangesAttribute: &'static NSAccessibilityAttributeName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityparameterizedattributename?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilityParameterizedAttributeName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylineforindexparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/lineforindex?language=objc)
     pub static NSAccessibilityLineForIndexParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrangeforlineparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/rangeforline?language=objc)
     pub static NSAccessibilityRangeForLineParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitystringforrangeparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/stringforrange?language=objc)
     pub static NSAccessibilityStringForRangeParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrangeforpositionparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/rangeforposition?language=objc)
     pub static NSAccessibilityRangeForPositionParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrangeforindexparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/rangeforindex?language=objc)
     pub static NSAccessibilityRangeForIndexParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityboundsforrangeparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/boundsforrange?language=objc)
     pub static NSAccessibilityBoundsForRangeParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrtfforrangeparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/rtfforrange?language=objc)
     pub static NSAccessibilityRTFForRangeParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitystylerangeforindexparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/stylerangeforindex?language=objc)
     pub static NSAccessibilityStyleRangeForIndexParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityattributedstringforrangeparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/attributedstringforrange?language=objc)
     pub static NSAccessibilityAttributedStringForRangeParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
@@ -506,19 +506,19 @@ extern "C" {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitychildreninnavigationorderattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/childreninnavigationorderattribute?language=objc)
     pub static NSAccessibilityChildrenInNavigationOrderAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityindexforchilduielementattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/indexforchilduielementattribute?language=objc)
     pub static NSAccessibilityIndexForChildUIElementAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityindexforchilduielementinnavigationorderattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/indexforchilduielementinnavigationorderattribute?language=objc)
     pub static NSAccessibilityIndexForChildUIElementInNavigationOrderAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
@@ -568,22 +568,22 @@ extern "C" {
     pub static NSAccessibilityTextCompletionAttribute: &'static NSString;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannotationattributekey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/annotationattributekey?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilityAnnotationAttributeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannotationlabel?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/annotationattributekey/label?language=objc)
     pub static NSAccessibilityAnnotationLabel: &'static NSAccessibilityAnnotationAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannotationelement?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/annotationattributekey/element?language=objc)
     pub static NSAccessibilityAnnotationElement: &'static NSAccessibilityAnnotationAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannotationlocation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/annotationattributekey/location?language=objc)
     pub static NSAccessibilityAnnotationLocation: &'static NSAccessibilityAnnotationAttributeKey;
 }
 
@@ -609,127 +609,127 @@ unsafe impl RefEncode for NSAccessibilityAnnotationPosition {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfontattributekey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/fontattributekey?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilityFontAttributeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfontnamekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/fontattributekey/fontname?language=objc)
     pub static NSAccessibilityFontNameKey: &'static NSAccessibilityFontAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfontfamilykey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/fontattributekey/fontfamily?language=objc)
     pub static NSAccessibilityFontFamilyKey: &'static NSAccessibilityFontAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityvisiblenamekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/fontattributekey/visiblename?language=objc)
     pub static NSAccessibilityVisibleNameKey: &'static NSAccessibilityFontAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfontsizekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/fontattributekey/fontsize?language=objc)
     pub static NSAccessibilityFontSizeKey: &'static NSAccessibilityFontAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymainattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/main?language=objc)
     pub static NSAccessibilityMainAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityminimizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/minimized?language=objc)
     pub static NSAccessibilityMinimizedAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityclosebuttonattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/closebutton?language=objc)
     pub static NSAccessibilityCloseButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityzoombuttonattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/zoombutton?language=objc)
     pub static NSAccessibilityZoomButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityminimizebuttonattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/minimizebutton?language=objc)
     pub static NSAccessibilityMinimizeButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytoolbarbuttonattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/toolbarbutton?language=objc)
     pub static NSAccessibilityToolbarButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityproxyattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/proxy?language=objc)
     pub static NSAccessibilityProxyAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitygrowareaattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/growarea?language=objc)
     pub static NSAccessibilityGrowAreaAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymodalattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/modal?language=objc)
     pub static NSAccessibilityModalAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydefaultbuttonattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/defaultbutton?language=objc)
     pub static NSAccessibilityDefaultButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycancelbuttonattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/cancelbutton?language=objc)
     pub static NSAccessibilityCancelButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfullscreenbuttonattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/fullscreenbutton?language=objc)
     pub static NSAccessibilityFullScreenButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymenubarattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/menubar?language=objc)
     pub static NSAccessibilityMenuBarAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitywindowsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/windows?language=objc)
     pub static NSAccessibilityWindowsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfrontmostattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/frontmost?language=objc)
     pub static NSAccessibilityFrontmostAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityhiddenattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/hidden?language=objc)
     pub static NSAccessibilityHiddenAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymainwindowattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/mainwindow?language=objc)
     pub static NSAccessibilityMainWindowAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfocusedwindowattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/focusedwindow?language=objc)
     pub static NSAccessibilityFocusedWindowAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfocuseduielementattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/focuseduielement?language=objc)
     pub static NSAccessibilityFocusedUIElementAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityextrasmenubarattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/extrasmenubar?language=objc)
     pub static NSAccessibilityExtrasMenuBarAttribute: &'static NSAccessibilityAttributeName;
 }
 
@@ -756,190 +756,190 @@ unsafe impl RefEncode for NSAccessibilityOrientation {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityorientationattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/orientation?language=objc)
     pub static NSAccessibilityOrientationAttribute: &'static NSAccessibilityAttributeName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityorientationvalue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/orientationvalue?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilityOrientationValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityverticalorientationvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/orientationvalue/vertical?language=objc)
     pub static NSAccessibilityVerticalOrientationValue: &'static NSAccessibilityOrientationValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityhorizontalorientationvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/orientationvalue/horizontal?language=objc)
     pub static NSAccessibilityHorizontalOrientationValue: &'static NSAccessibilityOrientationValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunknownorientationvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/orientationvalue/unknown?language=objc)
     pub static NSAccessibilityUnknownOrientationValue: &'static NSAccessibilityOrientationValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycolumntitlesattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/columntitles?language=objc)
     pub static NSAccessibilityColumnTitlesAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchbuttonattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/searchbutton?language=objc)
     pub static NSAccessibilitySearchButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchmenuattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/searchmenu?language=objc)
     pub static NSAccessibilitySearchMenuAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityclearbuttonattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/clearbutton?language=objc)
     pub static NSAccessibilityClearButtonAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrowsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/rows?language=objc)
     pub static NSAccessibilityRowsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityvisiblerowsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/visiblerows?language=objc)
     pub static NSAccessibilityVisibleRowsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityselectedrowsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selectedrows?language=objc)
     pub static NSAccessibilitySelectedRowsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycolumnsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/columns?language=objc)
     pub static NSAccessibilityColumnsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityvisiblecolumnsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/visiblecolumns?language=objc)
     pub static NSAccessibilityVisibleColumnsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityselectedcolumnsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selectedcolumns?language=objc)
     pub static NSAccessibilitySelectedColumnsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysortdirectionattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/sortdirection?language=objc)
     pub static NSAccessibilitySortDirectionAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityselectedcellsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/selectedcells?language=objc)
     pub static NSAccessibilitySelectedCellsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityvisiblecellsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/visiblecells?language=objc)
     pub static NSAccessibilityVisibleCellsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrowheaderuielementsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/rowheaderuielements?language=objc)
     pub static NSAccessibilityRowHeaderUIElementsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycolumnheaderuielementsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/columnheaderuielements?language=objc)
     pub static NSAccessibilityColumnHeaderUIElementsAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycellforcolumnandrowparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/cellforcolumnandrow?language=objc)
     pub static NSAccessibilityCellForColumnAndRowParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrowindexrangeattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/rowindexrange?language=objc)
     pub static NSAccessibilityRowIndexRangeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycolumnindexrangeattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/columnindexrange?language=objc)
     pub static NSAccessibilityColumnIndexRangeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityhorizontalunitsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/horizontalunits?language=objc)
     pub static NSAccessibilityHorizontalUnitsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityverticalunitsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/verticalunits?language=objc)
     pub static NSAccessibilityVerticalUnitsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityhorizontalunitdescriptionattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/horizontalunitdescription?language=objc)
     pub static NSAccessibilityHorizontalUnitDescriptionAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityverticalunitdescriptionattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/verticalunitdescription?language=objc)
     pub static NSAccessibilityVerticalUnitDescriptionAttribute:
         &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylayoutpointforscreenpointparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/layoutpointforscreenpoint?language=objc)
     pub static NSAccessibilityLayoutPointForScreenPointParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylayoutsizeforscreensizeparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/layoutsizeforscreensize?language=objc)
     pub static NSAccessibilityLayoutSizeForScreenSizeParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityscreenpointforlayoutpointparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/screenpointforlayoutpoint?language=objc)
     pub static NSAccessibilityScreenPointForLayoutPointParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityscreensizeforlayoutsizeparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/screensizeforlayoutsize?language=objc)
     pub static NSAccessibilityScreenSizeForLayoutSizeParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityhandlesattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/handles?language=objc)
     pub static NSAccessibilityHandlesAttribute: &'static NSAccessibilityAttributeName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysortdirectionvalue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/sortdirectionvalue?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilitySortDirectionValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityascendingsortdirectionvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/sortdirectionvalue/ascending?language=objc)
     pub static NSAccessibilityAscendingSortDirectionValue:
         &'static NSAccessibilitySortDirectionValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydescendingsortdirectionvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/sortdirectionvalue/descending?language=objc)
     pub static NSAccessibilityDescendingSortDirectionValue:
         &'static NSAccessibilitySortDirectionValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunknownsortdirectionvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/sortdirectionvalue/unknown?language=objc)
     pub static NSAccessibilityUnknownSortDirectionValue: &'static NSAccessibilitySortDirectionValue;
 }
 
@@ -966,140 +966,140 @@ unsafe impl RefEncode for NSAccessibilitySortDirection {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydisclosingattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/disclosing?language=objc)
     pub static NSAccessibilityDisclosingAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydisclosedrowsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/disclosedrows?language=objc)
     pub static NSAccessibilityDisclosedRowsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydisclosedbyrowattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/disclosedbyrow?language=objc)
     pub static NSAccessibilityDisclosedByRowAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydisclosurelevelattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/disclosurelevel?language=objc)
     pub static NSAccessibilityDisclosureLevelAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityallowedvaluesattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/allowedvalues?language=objc)
     pub static NSAccessibilityAllowedValuesAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylabeluielementsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/labeluielements?language=objc)
     pub static NSAccessibilityLabelUIElementsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylabelvalueattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/labelvalue?language=objc)
     pub static NSAccessibilityLabelValueAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymatteholeattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/mattehole?language=objc)
     #[deprecated]
     pub static NSAccessibilityMatteHoleAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymattecontentuielementattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/mattecontentuielement?language=objc)
     #[deprecated]
     pub static NSAccessibilityMatteContentUIElementAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymarkeruielementsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/markeruielements?language=objc)
     pub static NSAccessibilityMarkerUIElementsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymarkervaluesattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/markervalues?language=objc)
     pub static NSAccessibilityMarkerValuesAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymarkergroupuielementattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/markergroupuielement?language=objc)
     pub static NSAccessibilityMarkerGroupUIElementAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunitsattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/units?language=objc)
     pub static NSAccessibilityUnitsAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunitdescriptionattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/unitdescription?language=objc)
     pub static NSAccessibilityUnitDescriptionAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymarkertypeattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/markertype?language=objc)
     pub static NSAccessibilityMarkerTypeAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymarkertypedescriptionattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/markertypedescription?language=objc)
     pub static NSAccessibilityMarkerTypeDescriptionAttribute: &'static NSAccessibilityAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityidentifierattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/attribute/identifier?language=objc)
     pub static NSAccessibilityIdentifierAttribute: &'static NSAccessibilityAttributeName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkertypevalue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilityRulerMarkerTypeValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylefttabstopmarkertypevalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/lefttabstop?language=objc)
     pub static NSAccessibilityLeftTabStopMarkerTypeValue:
         &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrighttabstopmarkertypevalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/righttabstop?language=objc)
     pub static NSAccessibilityRightTabStopMarkerTypeValue:
         &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycentertabstopmarkertypevalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/centertabstop?language=objc)
     pub static NSAccessibilityCenterTabStopMarkerTypeValue:
         &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydecimaltabstopmarkertypevalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/decimaltabstop?language=objc)
     pub static NSAccessibilityDecimalTabStopMarkerTypeValue:
         &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityheadindentmarkertypevalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/headindent?language=objc)
     pub static NSAccessibilityHeadIndentMarkerTypeValue:
         &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytailindentmarkertypevalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/tailindent?language=objc)
     pub static NSAccessibilityTailIndentMarkerTypeValue:
         &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfirstlineindentmarkertypevalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/firstlineindent?language=objc)
     pub static NSAccessibilityFirstLineIndentMarkerTypeValue:
         &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunknownmarkertypevalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulermarkertypevalue/unknown?language=objc)
     pub static NSAccessibilityUnknownMarkerTypeValue: &'static NSAccessibilityRulerMarkerTypeValue;
 }
 
@@ -1135,32 +1135,32 @@ unsafe impl RefEncode for NSAccessibilityRulerMarkerType {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulerunitvalue?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulerunitvalue?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilityRulerUnitValue = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityinchesunitvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulerunitvalue/inches?language=objc)
     pub static NSAccessibilityInchesUnitValue: &'static NSAccessibilityRulerUnitValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycentimetersunitvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulerunitvalue/centimeters?language=objc)
     pub static NSAccessibilityCentimetersUnitValue: &'static NSAccessibilityRulerUnitValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitypointsunitvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulerunitvalue/points?language=objc)
     pub static NSAccessibilityPointsUnitValue: &'static NSAccessibilityRulerUnitValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitypicasunitvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulerunitvalue/picas?language=objc)
     pub static NSAccessibilityPicasUnitValue: &'static NSAccessibilityRulerUnitValue;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunknownunitvalue?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/rulerunitvalue/unknown?language=objc)
     pub static NSAccessibilityUnknownUnitValue: &'static NSAccessibilityRulerUnitValue;
 }
 
@@ -1190,799 +1190,799 @@ unsafe impl RefEncode for NSAccessibilityUnits {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityactionname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type NSAccessibilityActionName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitypressaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/press?language=objc)
     pub static NSAccessibilityPressAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityincrementaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/increment?language=objc)
     pub static NSAccessibilityIncrementAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydecrementaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/decrement?language=objc)
     pub static NSAccessibilityDecrementAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityconfirmaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/confirm?language=objc)
     pub static NSAccessibilityConfirmAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitypickaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/pick?language=objc)
     pub static NSAccessibilityPickAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycancelaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/cancel?language=objc)
     pub static NSAccessibilityCancelAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityraiseaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/raise?language=objc)
     pub static NSAccessibilityRaiseAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityshowmenuaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/showmenu?language=objc)
     pub static NSAccessibilityShowMenuAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydeleteaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/delete?language=objc)
     pub static NSAccessibilityDeleteAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityscrolltovisibleaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/scrolltovisibleaction?language=objc)
     pub static NSAccessibilityScrollToVisibleAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityshowalternateuiaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/showalternateui?language=objc)
     pub static NSAccessibilityShowAlternateUIAction: &'static NSAccessibilityActionName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityshowdefaultuiaction?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/action/showdefaultui?language=objc)
     pub static NSAccessibilityShowDefaultUIAction: &'static NSAccessibilityActionName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitynotificationname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilityNotificationName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymainwindowchangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/mainwindowchanged?language=objc)
     pub static NSAccessibilityMainWindowChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfocusedwindowchangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/focusedwindowchanged?language=objc)
     pub static NSAccessibilityFocusedWindowChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfocuseduielementchangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/focuseduielementchanged?language=objc)
     pub static NSAccessibilityFocusedUIElementChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityapplicationactivatednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/applicationactivated?language=objc)
     pub static NSAccessibilityApplicationActivatedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityapplicationdeactivatednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/applicationdeactivated?language=objc)
     pub static NSAccessibilityApplicationDeactivatedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityapplicationhiddennotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/applicationhidden?language=objc)
     pub static NSAccessibilityApplicationHiddenNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityapplicationshownnotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/applicationshown?language=objc)
     pub static NSAccessibilityApplicationShownNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitywindowcreatednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/windowcreated?language=objc)
     pub static NSAccessibilityWindowCreatedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitywindowmovednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/windowmoved?language=objc)
     pub static NSAccessibilityWindowMovedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitywindowresizednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/windowresized?language=objc)
     pub static NSAccessibilityWindowResizedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitywindowminiaturizednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/windowminiaturized?language=objc)
     pub static NSAccessibilityWindowMiniaturizedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitywindowdeminiaturizednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/windowdeminiaturized?language=objc)
     pub static NSAccessibilityWindowDeminiaturizedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydrawercreatednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/drawercreated?language=objc)
     pub static NSAccessibilityDrawerCreatedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysheetcreatednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/sheetcreated?language=objc)
     pub static NSAccessibilitySheetCreatedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityuielementdestroyednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/uielementdestroyed?language=objc)
     pub static NSAccessibilityUIElementDestroyedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityvaluechangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/valuechanged?language=objc)
     pub static NSAccessibilityValueChangedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytitlechangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/titlechanged?language=objc)
     pub static NSAccessibilityTitleChangedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityresizednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/resized?language=objc)
     pub static NSAccessibilityResizedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymovednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/moved?language=objc)
     pub static NSAccessibilityMovedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycreatednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/created?language=objc)
     pub static NSAccessibilityCreatedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylayoutchangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/layoutchanged?language=objc)
     pub static NSAccessibilityLayoutChangedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityhelptagcreatednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/helptagcreated?language=objc)
     pub static NSAccessibilityHelpTagCreatedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityselectedtextchangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/selectedtextchanged?language=objc)
     pub static NSAccessibilitySelectedTextChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrowcountchangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/rowcountchanged?language=objc)
     pub static NSAccessibilityRowCountChangedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityselectedchildrenchangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/selectedchildrenchanged?language=objc)
     pub static NSAccessibilitySelectedChildrenChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityselectedrowschangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/selectedrowschanged?language=objc)
     pub static NSAccessibilitySelectedRowsChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityselectedcolumnschangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/selectedcolumnschanged?language=objc)
     pub static NSAccessibilitySelectedColumnsChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrowexpandednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/rowexpanded?language=objc)
     pub static NSAccessibilityRowExpandedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrowcollapsednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/rowcollapsed?language=objc)
     pub static NSAccessibilityRowCollapsedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityautocorrectionoccurrednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilityautocorrectionoccurred?language=objc)
     pub static NSAccessibilityAutocorrectionOccurredNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytextinputmarkingsessionbegannotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitytextinputmarkingsessionbegan?language=objc)
     pub static NSAccessibilityTextInputMarkingSessionBeganNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytextinputmarkingsessionendednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitytextinputmarkingsessionended?language=objc)
     pub static NSAccessibilityTextInputMarkingSessionEndedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydraggingsourcedragbegannotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitydraggingsourcedragbegan?language=objc)
     pub static NSAccessibilityDraggingSourceDragBeganNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydraggingsourcedragendednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitydraggingsourcedragended?language=objc)
     pub static NSAccessibilityDraggingSourceDragEndedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydraggingdestinationdropallowednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitydraggingdestinationdropallowed?language=objc)
     pub static NSAccessibilityDraggingDestinationDropAllowedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydraggingdestinationdropnotallowednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitydraggingdestinationdropnotallowed?language=objc)
     pub static NSAccessibilityDraggingDestinationDropNotAllowedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydraggingdestinationdragacceptednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitydraggingdestinationdragaccepted?language=objc)
     pub static NSAccessibilityDraggingDestinationDragAcceptedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydraggingdestinationdragnotacceptednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/nsaccessibilitydraggingdestinationdragnotaccepted?language=objc)
     pub static NSAccessibilityDraggingDestinationDragNotAcceptedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityselectedcellschangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/selectedcellschanged?language=objc)
     pub static NSAccessibilitySelectedCellsChangedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunitschangednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/unitschanged?language=objc)
     pub static NSAccessibilityUnitsChangedNotification: &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityselectedchildrenmovednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/selectedchildrenmoved?language=objc)
     pub static NSAccessibilitySelectedChildrenMovedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannouncementrequestednotification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notification/announcementrequested?language=objc)
     pub static NSAccessibilityAnnouncementRequestedNotification:
         &'static NSAccessibilityNotificationName;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrole?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilityRole = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunknownrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/unknown?language=objc)
     pub static NSAccessibilityUnknownRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitybuttonrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/button?language=objc)
     pub static NSAccessibilityButtonRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityradiobuttonrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/radiobutton?language=objc)
     pub static NSAccessibilityRadioButtonRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycheckboxrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/checkbox?language=objc)
     pub static NSAccessibilityCheckBoxRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysliderrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/slider?language=objc)
     pub static NSAccessibilitySliderRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytabgrouprole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/tabgroup?language=objc)
     pub static NSAccessibilityTabGroupRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytextfieldrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/textfield?language=objc)
     pub static NSAccessibilityTextFieldRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitystatictextrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/statictext?language=objc)
     pub static NSAccessibilityStaticTextRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytextarearole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/textarea?language=objc)
     pub static NSAccessibilityTextAreaRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityscrollarearole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/scrollarea?language=objc)
     pub static NSAccessibilityScrollAreaRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitypopupbuttonrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/popupbutton?language=objc)
     pub static NSAccessibilityPopUpButtonRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymenubuttonrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/menubutton?language=objc)
     pub static NSAccessibilityMenuButtonRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytablerole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/table?language=objc)
     pub static NSAccessibilityTableRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityapplicationrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/application?language=objc)
     pub static NSAccessibilityApplicationRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitygrouprole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/group?language=objc)
     pub static NSAccessibilityGroupRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityradiogrouprole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/radiogroup?language=objc)
     pub static NSAccessibilityRadioGroupRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylistrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/list?language=objc)
     pub static NSAccessibilityListRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityscrollbarrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/scrollbar?language=objc)
     pub static NSAccessibilityScrollBarRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityvalueindicatorrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/valueindicator?language=objc)
     pub static NSAccessibilityValueIndicatorRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityimagerole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/image?language=objc)
     pub static NSAccessibilityImageRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymenubarrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/menubar?language=objc)
     pub static NSAccessibilityMenuBarRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymenubaritemrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/menubaritem?language=objc)
     pub static NSAccessibilityMenuBarItemRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymenurole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/menu?language=objc)
     pub static NSAccessibilityMenuRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymenuitemrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/menuitem?language=objc)
     pub static NSAccessibilityMenuItemRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycolumnrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/column?language=objc)
     pub static NSAccessibilityColumnRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrowrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/row?language=objc)
     pub static NSAccessibilityRowRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytoolbarrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/toolbar?language=objc)
     pub static NSAccessibilityToolbarRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitybusyindicatorrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/busyindicator?language=objc)
     pub static NSAccessibilityBusyIndicatorRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprogressindicatorrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/progressindicator?language=objc)
     pub static NSAccessibilityProgressIndicatorRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitywindowrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/window?language=objc)
     pub static NSAccessibilityWindowRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydrawerrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/drawer?language=objc)
     pub static NSAccessibilityDrawerRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysystemwiderole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/systemwide?language=objc)
     pub static NSAccessibilitySystemWideRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityoutlinerole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/outline?language=objc)
     pub static NSAccessibilityOutlineRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityincrementorrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/incrementor?language=objc)
     pub static NSAccessibilityIncrementorRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitybrowserrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/browser?language=objc)
     pub static NSAccessibilityBrowserRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycomboboxrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/combobox?language=objc)
     pub static NSAccessibilityComboBoxRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysplitgrouprole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/splitgroup?language=objc)
     pub static NSAccessibilitySplitGroupRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysplitterrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/splitter?language=objc)
     pub static NSAccessibilitySplitterRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycolorwellrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/colorwell?language=objc)
     pub static NSAccessibilityColorWellRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitygrowarearole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/growarea?language=objc)
     pub static NSAccessibilityGrowAreaRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysheetrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/sheet?language=objc)
     pub static NSAccessibilitySheetRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityhelptagrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/helptag?language=objc)
     pub static NSAccessibilityHelpTagRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymatterole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/matte?language=objc)
     pub static NSAccessibilityMatteRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulerrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/ruler?language=objc)
     pub static NSAccessibilityRulerRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrulermarkerrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/rulermarker?language=objc)
     pub static NSAccessibilityRulerMarkerRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylinkrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/link?language=objc)
     pub static NSAccessibilityLinkRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydisclosuretrianglerole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/disclosuretriangle?language=objc)
     pub static NSAccessibilityDisclosureTriangleRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitygridrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/grid?language=objc)
     pub static NSAccessibilityGridRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityrelevanceindicatorrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/relevanceindicator?language=objc)
     pub static NSAccessibilityRelevanceIndicatorRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydatetimearearole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/datetimearearole?language=objc)
     pub static NSAccessibilityDateTimeAreaRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylevelindicatorrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/levelindicator?language=objc)
     pub static NSAccessibilityLevelIndicatorRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycellrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/cell?language=objc)
     pub static NSAccessibilityCellRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitypopoverrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/popover?language=objc)
     pub static NSAccessibilityPopoverRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitypagerole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/pagerole?language=objc)
     pub static NSAccessibilityPageRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityheadingrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/headingrole?language=objc)
     pub static NSAccessibilityHeadingRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylistmarkerrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/listmarkerrole?language=objc)
     pub static NSAccessibilityListMarkerRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitywebarearole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/webarearole?language=objc)
     pub static NSAccessibilityWebAreaRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylayoutarearole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/layoutarea?language=objc)
     pub static NSAccessibilityLayoutAreaRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylayoutitemrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/layoutitem?language=objc)
     pub static NSAccessibilityLayoutItemRole: &'static NSAccessibilityRole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityhandlerole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/role/handle?language=objc)
     pub static NSAccessibilityHandleRole: &'static NSAccessibilityRole;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysubrole?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilitySubrole = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunknownsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/unknown?language=objc)
     pub static NSAccessibilityUnknownSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityclosebuttonsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/closebutton?language=objc)
     pub static NSAccessibilityCloseButtonSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityzoombuttonsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/zoombutton?language=objc)
     pub static NSAccessibilityZoomButtonSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityminimizebuttonsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/minimizebutton?language=objc)
     pub static NSAccessibilityMinimizeButtonSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytoolbarbuttonsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/toolbarbutton?language=objc)
     pub static NSAccessibilityToolbarButtonSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytablerowsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/tablerow?language=objc)
     pub static NSAccessibilityTableRowSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityoutlinerowsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/outlinerow?language=objc)
     pub static NSAccessibilityOutlineRowSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysecuretextfieldsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/securetextfield?language=objc)
     pub static NSAccessibilitySecureTextFieldSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitystandardwindowsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/standardwindow?language=objc)
     pub static NSAccessibilityStandardWindowSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydialogsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/dialog?language=objc)
     pub static NSAccessibilityDialogSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysystemdialogsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/systemdialog?language=objc)
     pub static NSAccessibilitySystemDialogSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfloatingwindowsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/floatingwindow?language=objc)
     pub static NSAccessibilityFloatingWindowSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysystemfloatingwindowsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/systemfloatingwindow?language=objc)
     pub static NSAccessibilitySystemFloatingWindowSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityincrementarrowsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/incrementarrow?language=objc)
     pub static NSAccessibilityIncrementArrowSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydecrementarrowsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/decrementarrow?language=objc)
     pub static NSAccessibilityDecrementArrowSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityincrementpagesubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/incrementpage?language=objc)
     pub static NSAccessibilityIncrementPageSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydecrementpagesubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/decrementpage?language=objc)
     pub static NSAccessibilityDecrementPageSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchfieldsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/searchfield?language=objc)
     pub static NSAccessibilitySearchFieldSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytextattachmentsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/textattachment?language=objc)
     pub static NSAccessibilityTextAttachmentSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytextlinksubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/textlink?language=objc)
     pub static NSAccessibilityTextLinkSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytimelinesubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/timeline?language=objc)
     pub static NSAccessibilityTimelineSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysortbuttonsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/sortbutton?language=objc)
     pub static NSAccessibilitySortButtonSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityratingindicatorsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/ratingindicator?language=objc)
     pub static NSAccessibilityRatingIndicatorSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycontentlistsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/contentlist?language=objc)
     pub static NSAccessibilityContentListSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydefinitionlistsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/definitionlist?language=objc)
     pub static NSAccessibilityDefinitionListSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfullscreenbuttonsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/fullscreenbutton?language=objc)
     pub static NSAccessibilityFullScreenButtonSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytogglesubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/toggle?language=objc)
     pub static NSAccessibilityToggleSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityswitchsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/switch?language=objc)
     pub static NSAccessibilitySwitchSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydescriptionlistsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/descriptionlist?language=objc)
     pub static NSAccessibilityDescriptionListSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytabbuttonsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/tabbuttonsubrole?language=objc)
     pub static NSAccessibilityTabButtonSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycollectionlistsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/collectionlistsubrole?language=objc)
     pub static NSAccessibilityCollectionListSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysectionlistsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/sectionlistsubrole?language=objc)
     pub static NSAccessibilitySectionListSubrole: &'static NSAccessibilitySubrole;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysuggestionsubrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/subrole/suggestionsubrole?language=objc)
     pub static NSAccessibilitySuggestionSubrole: &'static NSAccessibilitySubrole;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitynotificationuserinfokey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notificationuserinfokey?language=objc)
 // NS_TYPED_ENUM
 pub type NSAccessibilityNotificationUserInfoKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityuielementskey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notificationuserinfokey/uielements?language=objc)
     pub static NSAccessibilityUIElementsKey: &'static NSAccessibilityNotificationUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityprioritykey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notificationuserinfokey/priority?language=objc)
     pub static NSAccessibilityPriorityKey: &'static NSAccessibilityNotificationUserInfoKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityannouncementkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/notificationuserinfokey/announcement?language=objc)
     pub static NSAccessibilityAnnouncementKey: &'static NSAccessibilityNotificationUserInfoKey;
 }
 
@@ -2024,13 +2024,13 @@ unsafe impl RefEncode for NSAccessibilityPriorityLevel {
 pub type NSAccessibilityLoadingToken = AnyObject;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityuielementsforsearchpredicateparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/uielementsforsearchpredicateparameterizedattribute?language=objc)
     pub static NSAccessibilityUIElementsForSearchPredicateParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityresultsforsearchpredicateparameterizedattribute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibility-swift.struct/parameterizedattribute/resultsforsearchpredicateparameterizedattribute?language=objc)
     pub static NSAccessibilityResultsForSearchPredicateParameterizedAttribute:
         &'static NSAccessibilityParameterizedAttributeName;
 }
@@ -2100,212 +2100,212 @@ extern "C" {
 pub type NSAccessibilitySearchKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityanytypesearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/anytypesearchkey?language=objc)
     pub static NSAccessibilityAnyTypeSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityarticlesearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/articlesearchkey?language=objc)
     pub static NSAccessibilityArticleSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityblockquotesamelevelsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/blockquotesamelevelsearchkey?language=objc)
     pub static NSAccessibilityBlockquoteSameLevelSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityblockquotesearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/blockquotesearchkey?language=objc)
     pub static NSAccessibilityBlockquoteSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityboldfontsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/boldfontsearchkey?language=objc)
     pub static NSAccessibilityBoldFontSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitybuttonsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/buttonsearchkey?language=objc)
     pub static NSAccessibilityButtonSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycheckboxsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/checkboxsearchkey?language=objc)
     pub static NSAccessibilityCheckBoxSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitycontrolsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/controlsearchkey?language=objc)
     pub static NSAccessibilityControlSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitydifferenttypesearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/differenttypesearchkey?language=objc)
     pub static NSAccessibilityDifferentTypeSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfontchangesearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/fontchangesearchkey?language=objc)
     pub static NSAccessibilityFontChangeSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityfontcolorchangesearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/fontcolorchangesearchkey?language=objc)
     pub static NSAccessibilityFontColorChangeSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityframesearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/framesearchkey?language=objc)
     pub static NSAccessibilityFrameSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitygraphicsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/graphicsearchkey?language=objc)
     pub static NSAccessibilityGraphicSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityheadinglevel1searchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headinglevel1searchkey?language=objc)
     pub static NSAccessibilityHeadingLevel1SearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityheadinglevel2searchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headinglevel2searchkey?language=objc)
     pub static NSAccessibilityHeadingLevel2SearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityheadinglevel3searchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headinglevel3searchkey?language=objc)
     pub static NSAccessibilityHeadingLevel3SearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityheadinglevel4searchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headinglevel4searchkey?language=objc)
     pub static NSAccessibilityHeadingLevel4SearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityheadinglevel5searchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headinglevel5searchkey?language=objc)
     pub static NSAccessibilityHeadingLevel5SearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityheadinglevel6searchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headinglevel6searchkey?language=objc)
     pub static NSAccessibilityHeadingLevel6SearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityheadingsamelevelsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headingsamelevelsearchkey?language=objc)
     pub static NSAccessibilityHeadingSameLevelSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityheadingsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/headingsearchkey?language=objc)
     pub static NSAccessibilityHeadingSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityitalicfontsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/italicfontsearchkey?language=objc)
     pub static NSAccessibilityItalicFontSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitykeyboardfocusablesearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/keyboardfocusablesearchkey?language=objc)
     pub static NSAccessibilityKeyboardFocusableSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylandmarksearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/landmarksearchkey?language=objc)
     pub static NSAccessibilityLandmarkSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylinksearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/linksearchkey?language=objc)
     pub static NSAccessibilityLinkSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitylistsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/listsearchkey?language=objc)
     pub static NSAccessibilityListSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityliveregionsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/liveregionsearchkey?language=objc)
     pub static NSAccessibilityLiveRegionSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitymisspelledwordsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/misspelledwordsearchkey?language=objc)
     pub static NSAccessibilityMisspelledWordSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityoutlinesearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/outlinesearchkey?language=objc)
     pub static NSAccessibilityOutlineSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityplaintextsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/plaintextsearchkey?language=objc)
     pub static NSAccessibilityPlainTextSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityradiogroupsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/radiogroupsearchkey?language=objc)
     pub static NSAccessibilityRadioGroupSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysametypesearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/sametypesearchkey?language=objc)
     pub static NSAccessibilitySameTypeSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitystatictextsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/statictextsearchkey?language=objc)
     pub static NSAccessibilityStaticTextSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitystylechangesearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/stylechangesearchkey?language=objc)
     pub static NSAccessibilityStyleChangeSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytablesamelevelsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/tablesamelevelsearchkey?language=objc)
     pub static NSAccessibilityTableSameLevelSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytablesearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/tablesearchkey?language=objc)
     pub static NSAccessibilityTableSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytextfieldsearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/textfieldsearchkey?language=objc)
     pub static NSAccessibilityTextFieldSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytextstatechangetypekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/textstatechangetypekey?language=objc)
     pub static NSAccessibilityTextStateChangeTypeKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitytextstatesynckey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/textstatesynckey?language=objc)
     pub static NSAccessibilityTextStateSyncKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunderlinesearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/underlinesearchkey?language=objc)
     pub static NSAccessibilityUnderlineSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityunvisitedlinksearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/unvisitedlinksearchkey?language=objc)
     pub static NSAccessibilityUnvisitedLinkSearchKey: &'static NSAccessibilitySearchKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilityvisitedlinksearchkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsaccessibilitysearchkey/visitedlinksearchkey?language=objc)
     pub static NSAccessibilityVisitedLinkSearchKey: &'static NSAccessibilitySearchKey;
 }
 

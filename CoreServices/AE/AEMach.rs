@@ -4,11 +4,11 @@ use core::ffi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/keyreplyportattr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1571648-keyreplyportattr/keyreplyportattr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const keyReplyPortAttr: AEKeyword = 0x72657070;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/typereplyportattr?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/coreservices/1571649-typereplyportattr/typereplyportattr?language=objc)
 #[cfg(feature = "AEDataModel")]
 pub const typeReplyPortAttr: DescType = keyReplyPortAttr;
 

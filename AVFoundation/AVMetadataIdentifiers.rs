@@ -9,715 +9,715 @@ use crate::*;
 pub type AVMetadataIdentifier = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifiertitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiertitle?language=objc)
     pub static AVMetadataCommonIdentifierTitle: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifiercreator?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiercreator?language=objc)
     pub static AVMetadataCommonIdentifierCreator: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifiersubject?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiersubject?language=objc)
     pub static AVMetadataCommonIdentifierSubject: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifierdescription?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierdescription?language=objc)
     pub static AVMetadataCommonIdentifierDescription: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifierpublisher?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierpublisher?language=objc)
     pub static AVMetadataCommonIdentifierPublisher: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifiercontributor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiercontributor?language=objc)
     pub static AVMetadataCommonIdentifierContributor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifiercreationdate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiercreationdate?language=objc)
     pub static AVMetadataCommonIdentifierCreationDate: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifierlastmodifieddate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierlastmodifieddate?language=objc)
     pub static AVMetadataCommonIdentifierLastModifiedDate: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifiertype?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiertype?language=objc)
     pub static AVMetadataCommonIdentifierType: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifierformat?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierformat?language=objc)
     pub static AVMetadataCommonIdentifierFormat: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifierassetidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierassetidentifier?language=objc)
     pub static AVMetadataCommonIdentifierAssetIdentifier: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifiersource?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiersource?language=objc)
     pub static AVMetadataCommonIdentifierSource: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifierlanguage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierlanguage?language=objc)
     pub static AVMetadataCommonIdentifierLanguage: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifierrelation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierrelation?language=objc)
     pub static AVMetadataCommonIdentifierRelation: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifierlocation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierlocation?language=objc)
     pub static AVMetadataCommonIdentifierLocation: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifiercopyrights?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiercopyrights?language=objc)
     pub static AVMetadataCommonIdentifierCopyrights: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifieralbumname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifieralbumname?language=objc)
     pub static AVMetadataCommonIdentifierAlbumName: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifierauthor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierauthor?language=objc)
     pub static AVMetadataCommonIdentifierAuthor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifierartist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierartist?language=objc)
     pub static AVMetadataCommonIdentifierArtist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifierartwork?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifierartwork?language=objc)
     pub static AVMetadataCommonIdentifierArtwork: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifiermake?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiermake?language=objc)
     pub static AVMetadataCommonIdentifierMake: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifiermodel?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiermodel?language=objc)
     pub static AVMetadataCommonIdentifierModel: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifiersoftware?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifiersoftware?language=objc)
     pub static AVMetadataCommonIdentifierSoftware: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadatacommonidentifieraccessibilitydescription?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/commonidentifieraccessibilitydescription?language=objc)
     pub static AVMetadataCommonIdentifierAccessibilityDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataalbum?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataalbum?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataAlbum: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataarranger?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataarranger?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataArranger: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataartist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataartist?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataArtist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataauthor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataauthor?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataAuthor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatachapter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatachapter?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataChapter: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatacomment?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatacomment?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataComment: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatacomposer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatacomposer?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataComposer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatacopyright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatacopyright?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataCopyright:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatacreationdate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatacreationdate?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataCreationDate:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatadescription?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatadescription?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatadirector?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatadirector?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataDirector: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatadisclaimer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatadisclaimer?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataDisclaimer:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataencodedby?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataencodedby?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataEncodedBy:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatafullname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatafullname?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataFullName: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatagenre?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatagenre?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataGenre: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatahostcomputer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatahostcomputer?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataHostComputer:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatainformation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatainformation?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataInformation:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatakeywords?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatakeywords?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataKeywords: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatamake?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatamake?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataMake: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatamodel?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatamodel?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataModel: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataoriginalartist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataoriginalartist?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataOriginalArtist:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataoriginalformat?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataoriginalformat?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataOriginalFormat:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataoriginalsource?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataoriginalsource?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataOriginalSource:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataperformers?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataperformers?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataPerformers:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataproducer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataproducer?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataProducer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatapublisher?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatapublisher?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataPublisher:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataproduct?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataproduct?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataProduct: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatasoftware?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatasoftware?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataSoftware: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataspecialplaybackrequirements?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataspecialplaybackrequirements?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataSpecialPlaybackRequirements:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatatrack?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatatrack?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataTrack: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatawarning?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatawarning?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataWarning: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatawriter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatawriter?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataWriter: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataurllink?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataurllink?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataURLLink: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatalocationiso6709?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatalocationiso6709?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataLocationISO6709:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatatrackname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatatrackname?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataTrackName:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatacredits?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatacredits?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataCredits: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataphonogramrights?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataphonogramrights?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataPhonogramRights:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdatataggedcharacteristic?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdatataggedcharacteristic?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataTaggedCharacteristic:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimeuserdataaccessibilitydescription?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimeuserdataaccessibilitydescription?language=objc)
     pub static AVMetadataIdentifierQuickTimeUserDataAccessibilityDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierisouserdatacopyright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/isouserdatacopyright?language=objc)
     pub static AVMetadataIdentifierISOUserDataCopyright: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierisouserdatadate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/isouserdatadate?language=objc)
     pub static AVMetadataIdentifierISOUserDataDate: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierisouserdatataggedcharacteristic?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/isouserdatataggedcharacteristic?language=objc)
     pub static AVMetadataIdentifierISOUserDataTaggedCharacteristic:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierisouserdataaccessibilitydescription?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/isouserdataaccessibilitydescription?language=objc)
     pub static AVMetadataIdentifierISOUserDataAccessibilityDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdatacopyright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatacopyright?language=objc)
     pub static AVMetadataIdentifier3GPUserDataCopyright: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdataauthor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdataauthor?language=objc)
     pub static AVMetadataIdentifier3GPUserDataAuthor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdataperformer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdataperformer?language=objc)
     pub static AVMetadataIdentifier3GPUserDataPerformer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdatagenre?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatagenre?language=objc)
     pub static AVMetadataIdentifier3GPUserDataGenre: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdatarecordingyear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatarecordingyear?language=objc)
     pub static AVMetadataIdentifier3GPUserDataRecordingYear: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdatalocation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatalocation?language=objc)
     pub static AVMetadataIdentifier3GPUserDataLocation: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdatatitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatatitle?language=objc)
     pub static AVMetadataIdentifier3GPUserDataTitle: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdatadescription?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatadescription?language=objc)
     pub static AVMetadataIdentifier3GPUserDataDescription: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdatacollection?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatacollection?language=objc)
     pub static AVMetadataIdentifier3GPUserDataCollection: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdatauserrating?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatauserrating?language=objc)
     pub static AVMetadataIdentifier3GPUserDataUserRating: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdatathumbnail?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatathumbnail?language=objc)
     pub static AVMetadataIdentifier3GPUserDataThumbnail: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdataalbumandtrack?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdataalbumandtrack?language=objc)
     pub static AVMetadataIdentifier3GPUserDataAlbumAndTrack: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdatakeywordlist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatakeywordlist?language=objc)
     pub static AVMetadataIdentifier3GPUserDataKeywordList: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdatamediaclassification?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatamediaclassification?language=objc)
     pub static AVMetadataIdentifier3GPUserDataMediaClassification:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier3gpuserdatamediarating?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/identifier3gpuserdatamediarating?language=objc)
     pub static AVMetadataIdentifier3GPUserDataMediaRating: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataauthor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataauthor?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataAuthor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacomment?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacomment?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataComment: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacopyright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacopyright?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCopyright:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacreationdate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacreationdate?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCreationDate:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatadirector?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadirector?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataDirector: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatadisplayname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadisplayname?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataDisplayName:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatainformation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatainformation?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataInformation:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatakeywords?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatakeywords?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataKeywords: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataproducer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataproducer?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataProducer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatapublisher?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatapublisher?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataPublisher:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataalbum?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataalbum?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataAlbum: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataartist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataartist?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataArtist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataartwork?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataartwork?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataArtwork: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatadescription?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadescription?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatasoftware?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatasoftware?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataSoftware: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatayear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatayear?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataYear: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatagenre?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatagenre?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataGenre: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataixml?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataixml?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataiXML: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalocationiso6709?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalocationiso6709?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLocationISO6709:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatamake?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatamake?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataMake: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatamodel?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatamodel?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataModel: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataarranger?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataarranger?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataArranger: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataencodedby?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataencodedby?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataEncodedBy:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataoriginalartist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataoriginalartist?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataOriginalArtist:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataperformer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataperformer?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataPerformer:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacomposer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacomposer?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataComposer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacredits?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacredits?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCredits: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataphonogramrights?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataphonogramrights?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataPhonogramRights:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacameraidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacameraidentifier?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCameraIdentifier:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacameraframereadouttime?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacameraframereadouttime?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCameraFrameReadoutTime:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatatitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatatitle?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataTitle: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacollectionuser?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacollectionuser?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCollectionUser:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataratinguser?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataratinguser?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataRatingUser:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalocationname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalocationname?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLocationName:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalocationbody?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalocationbody?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLocationBody:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalocationnote?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalocationnote?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLocationNote:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalocationrole?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalocationrole?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLocationRole:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalocationdate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalocationdate?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLocationDate:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatadirectionfacing?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadirectionfacing?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataDirectionFacing:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatadirectionmotion?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadirectionmotion?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataDirectionMotion:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatapreferredaffinetransform?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatapreferredaffinetransform?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataPreferredAffineTransform:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatadetectedface?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadetectedface?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataDetectedFace:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatadetectedhumanbody?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadetectedhumanbody?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataDetectedHumanBody:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatadetectedcatbody?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadetectedcatbody?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataDetectedCatBody:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatadetecteddogbody?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadetecteddogbody?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataDetectedDogBody:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatadetectedsalientobject?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatadetectedsalientobject?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataDetectedSalientObject:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatavideoorientation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatavideoorientation?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataVideoOrientation:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacontentidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacontentidentifier?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataContentIdentifier:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataaccessibilitydescription?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataaccessibilitydescription?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataAccessibilityDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataismontage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataismontage?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataIsMontage:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -727,7 +727,7 @@ extern "C" {
     ///
     /// Historically, some apps have played movies recorded at frame rates of 120fps or higher in slow motion by default. With the introduction of this metadata, apps that record high-frame-rate movies may add this movie-level metadata to indicate whether the movie is intended to be played at the full frame rate (1) or at a slow motion rate (0). Apps that play movies may use this metadata, when present, to guide their behavior.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatafullframerateplaybackintent?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatafullframerateplaybackintent?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataFullFrameRatePlaybackIntent:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -737,7 +737,7 @@ extern "C" {
     ///
     /// This movie-level metadata is automatically added (with a value of 1) to a movie recorded using the Cinematic Video API. Clients can override it with a value of 0 to signal that this movie is not to be treated as a Cinematic Video by Apple's software like Photos.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacinematicvideointent?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacinematicvideointent?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCinematicVideoIntent:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -745,7 +745,7 @@ extern "C" {
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_UTF8 indicating the sensitivity of the camera to light in terms of ISO exposure index (e.g. "800"). See SMPTE RDD 18.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacameraisosensitivity?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacameraisosensitivity?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCameraISOSensitivity:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -753,7 +753,7 @@ extern "C" {
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_UTF8 indicating the white balance value defined by the temperature in Kelvin units (e.g. "5500K" or "5500"). See SMPTE RDD 18.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacamerawhitebalance?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacamerawhitebalance?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCameraWhiteBalance:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -761,7 +761,7 @@ extern "C" {
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_RawData indicating the reference white balance multiplication factor data for ProRes RAW.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatawhitebalancebycctwhitebalancefactors?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatawhitebalancebycctwhitebalancefactors?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataWhiteBalanceByCCTWhiteBalanceFactors:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -769,7 +769,7 @@ extern "C" {
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_RawData indicating the reference color translation matrix data for ProRes RAW.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatawhitebalancebycctcolormatrices?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatawhitebalancebycctcolormatrices?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataWhiteBalanceByCCTColorMatrices:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -777,7 +777,7 @@ extern "C" {
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_UTF8 indicating the exposure period expressed as an angle in minutes (1/60 degree) (e.g. "21600" or "360.00deg"").
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacamerashutterspeedangle?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacamerashutterspeedangle?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCameraShutterSpeedAngle:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -785,7 +785,7 @@ extern "C" {
 extern "C" {
     /// A value of type kCMMetadataBaseDataType_UTF8 indicating the exposure period expressed as a time per one frame/field period in seconds.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacamerashutterspeedtime?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacamerashutterspeedtime?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCameraShutterSpeedTime:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -795,7 +795,7 @@ extern "C" {
     ///
     /// This is track-level metadata for video track that is associated with the camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacameralensirisfnumber?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacameralensirisfnumber?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCameraLensIrisFNumber:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -805,7 +805,7 @@ extern "C" {
     ///
     /// This is track-level metadata for video track that is associated with the camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacameralensmodel?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacameralensmodel?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCameraLensModel:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -815,7 +815,7 @@ extern "C" {
     ///
     /// This is track-level metadata for video track that is associated with the camera.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatacamerafocallength35mmequivalent?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatacamerafocallength35mmequivalent?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataCameraFocalLength35mmEquivalent:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -825,7 +825,7 @@ extern "C" {
     ///
     /// Clients capturing LivePhoto content may add this movie-level metadata to signify that the movie content should only be used (when swiping between photos, or force-touching a photo) if it's sufficiently dynamic. For instance, photos of static scenes or documents are to be excluded from the Live Photo experience.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataautolivephoto?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataautolivephoto?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataAutoLivePhoto:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -836,7 +836,7 @@ extern "C" {
     /// Live Photo movies may be algorithmically scored from 0. to 1. on their level of vitality. A Live Photo movie with a low vitality score offers little dynamism to the still photo it accompanies. The vitality score is normalized and independent of the vitality scoring version of the algorithm (see AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScoringVersion). If a Live Photo movie contains the AVMetadataIdentifierQuickTimeMetadataAutoLivePhoto key and its value is non-zero, apps should read the AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScore value and only display the movie's content if the score is 0.5 or higher.
     /// If the capture session includes a metadata output configured to provide face, dog, or cat metadata objects, their presence will greatly increase the vitality score.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalivephotovitalityscore?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalivephotovitalityscore?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScore:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -846,7 +846,7 @@ extern "C" {
     ///
     /// The version of the algorithm that scored the Live Photo movie for vitality.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalivephotovitalityscoringversion?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalivephotovitalityscoringversion?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScoringVersion:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -856,7 +856,7 @@ extern "C" {
     ///
     /// The video may be scored by a heuristic which considers factors such as exposure and focus. The value ranges from 0-1, where a score below 0.5 indicates the asset has serious flaws.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataspatialovercapturequalityscore?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataspatialovercapturequalityscore?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScore:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -866,7 +866,7 @@ extern "C" {
     ///
     /// The version of the algorithm that provided the spatial over capture quality score.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataspatialovercapturequalityscoringversion?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataspatialovercapturequalityscoringversion?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScoringVersion:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -876,7 +876,7 @@ extern "C" {
     ///
     /// The horizontal accuracy of the provided location data (usually specified by AVMetadataIdentifierQuickTimeMetadataLocationISO6709).
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatalocationhorizontalaccuracyinmeters?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatalocationhorizontalaccuracyinmeters?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataLocationHorizontalAccuracyInMeters:
         Option<&'static AVMetadataIdentifier>;
 }
@@ -886,7 +886,7 @@ extern "C" {
     ///
     /// The static presentation metadata, Apple Immersive Media Embedded (AIME), for Apple Immersive Video that originates from ImmersiveMediaSupport framework's VenueDescriptor.aimeData.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadataaimedata?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadataaimedata?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataAIMEData: Option<&'static AVMetadataIdentifier>;
 }
 
@@ -895,772 +895,772 @@ extern "C" {
     ///
     /// The presentation timed metadata for Apple Immerisve Video. Value is a JSON-encoding of ImmersiveMediaSupport framework's PresentationDescriptor object.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierquicktimemetadatapresentationimmersivemedia?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/quicktimemetadatapresentationimmersivemedia?language=objc)
     pub static AVMetadataIdentifierQuickTimeMetadataPresentationImmersiveMedia:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataalbum?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataalbum?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataAlbum: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataartist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataartist?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataArtist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatausercomment?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatausercomment?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataUserComment: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatacoverart?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatacoverart?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataCoverArt: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatacopyright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatacopyright?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataCopyright: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatareleasedate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatareleasedate?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataReleaseDate: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataencodedby?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataencodedby?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataEncodedBy: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatapredefinedgenre?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatapredefinedgenre?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataPredefinedGenre:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatausergenre?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatausergenre?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataUserGenre: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatasongname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatasongname?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataSongName: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatatracksubtitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatatracksubtitle?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataTrackSubTitle:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataencodingtool?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataencodingtool?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataEncodingTool:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatacomposer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatacomposer?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataComposer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataalbumartist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataalbumartist?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataAlbumArtist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataaccountkind?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataaccountkind?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataAccountKind: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataappleid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataappleid?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataAppleID: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataartistid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataartistid?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataArtistID: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatasongid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatasongid?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataSongID: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatadisccompilation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatadisccompilation?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataDiscCompilation:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatadiscnumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatadiscnumber?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataDiscNumber: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatagenreid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatagenreid?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataGenreID: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatagrouping?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatagrouping?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataGrouping: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataplaylistid?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataplaylistid?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataPlaylistID: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatacontentrating?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatacontentrating?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataContentRating:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatabeatspermin?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatabeatspermin?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataBeatsPerMin: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatatracknumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatatracknumber?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataTrackNumber: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataartdirector?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataartdirector?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataArtDirector: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataarranger?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataarranger?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataArranger: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataauthor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataauthor?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataAuthor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatalyrics?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatalyrics?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataLyrics: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataacknowledgement?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataacknowledgement?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataAcknowledgement:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataconductor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataconductor?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataConductor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatadescription?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatadescription?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataDescription: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatadirector?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatadirector?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataDirector: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataeq?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataeq?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataEQ: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatalinernotes?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatalinernotes?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataLinerNotes: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatarecordcompany?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatarecordcompany?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataRecordCompany:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataoriginalartist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataoriginalartist?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataOriginalArtist:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataphonogramrights?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataphonogramrights?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataPhonogramRights:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataproducer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataproducer?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataProducer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataperformer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataperformer?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataPerformer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatapublisher?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatapublisher?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataPublisher: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatasoundengineer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatasoundengineer?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataSoundEngineer:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatasoloist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatasoloist?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataSoloist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatacredits?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatacredits?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataCredits: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadatathanks?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadatathanks?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataThanks: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataonlineextras?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataonlineextras?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataOnlineExtras:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifieritunesmetadataexecproducer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/itunesmetadataexecproducer?language=objc)
     pub static AVMetadataIdentifieriTunesMetadataExecProducer:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataaudioencryption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataaudioencryption?language=objc)
     pub static AVMetadataIdentifierID3MetadataAudioEncryption:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataattachedpicture?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataattachedpicture?language=objc)
     pub static AVMetadataIdentifierID3MetadataAttachedPicture:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataaudioseekpointindex?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataaudioseekpointindex?language=objc)
     pub static AVMetadataIdentifierID3MetadataAudioSeekPointIndex:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatacomments?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacomments?language=objc)
     pub static AVMetadataIdentifierID3MetadataComments: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatacommercial?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacommercial?language=objc)
     pub static AVMetadataIdentifierID3MetadataCommercial: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatacommerical?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacommerical?language=objc)
     #[deprecated = "No longer supported"]
     pub static AVMetadataIdentifierID3MetadataCommerical: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataencryption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataencryption?language=objc)
     pub static AVMetadataIdentifierID3MetadataEncryption: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataequalization?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataequalization?language=objc)
     pub static AVMetadataIdentifierID3MetadataEqualization: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataequalization2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataequalization2?language=objc)
     pub static AVMetadataIdentifierID3MetadataEqualization2: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataeventtimingcodes?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataeventtimingcodes?language=objc)
     pub static AVMetadataIdentifierID3MetadataEventTimingCodes:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatageneralencapsulatedobject?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatageneralencapsulatedobject?language=objc)
     pub static AVMetadataIdentifierID3MetadataGeneralEncapsulatedObject:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatagroupidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatagroupidentifier?language=objc)
     pub static AVMetadataIdentifierID3MetadataGroupIdentifier:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatainvolvedpeoplelist_v23?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatainvolvedpeoplelist_v23?language=objc)
     pub static AVMetadataIdentifierID3MetadataInvolvedPeopleList_v23:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatalink?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatalink?language=objc)
     pub static AVMetadataIdentifierID3MetadataLink: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatamusiccdidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatamusiccdidentifier?language=objc)
     pub static AVMetadataIdentifierID3MetadataMusicCDIdentifier:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatampeglocationlookuptable?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatampeglocationlookuptable?language=objc)
     pub static AVMetadataIdentifierID3MetadataMPEGLocationLookupTable:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataownership?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataownership?language=objc)
     pub static AVMetadataIdentifierID3MetadataOwnership: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataprivate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataprivate?language=objc)
     pub static AVMetadataIdentifierID3MetadataPrivate: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataplaycounter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataplaycounter?language=objc)
     pub static AVMetadataIdentifierID3MetadataPlayCounter: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatapopularimeter?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatapopularimeter?language=objc)
     pub static AVMetadataIdentifierID3MetadataPopularimeter: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatapositionsynchronization?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatapositionsynchronization?language=objc)
     pub static AVMetadataIdentifierID3MetadataPositionSynchronization:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatarecommendedbuffersize?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatarecommendedbuffersize?language=objc)
     pub static AVMetadataIdentifierID3MetadataRecommendedBufferSize:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatarelativevolumeadjustment?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatarelativevolumeadjustment?language=objc)
     pub static AVMetadataIdentifierID3MetadataRelativeVolumeAdjustment:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatarelativevolumeadjustment2?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatarelativevolumeadjustment2?language=objc)
     pub static AVMetadataIdentifierID3MetadataRelativeVolumeAdjustment2:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatareverb?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatareverb?language=objc)
     pub static AVMetadataIdentifierID3MetadataReverb: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataseek?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataseek?language=objc)
     pub static AVMetadataIdentifierID3MetadataSeek: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatasignature?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatasignature?language=objc)
     pub static AVMetadataIdentifierID3MetadataSignature: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatasynchronizedlyric?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatasynchronizedlyric?language=objc)
     pub static AVMetadataIdentifierID3MetadataSynchronizedLyric:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatasynchronizedtempocodes?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatasynchronizedtempocodes?language=objc)
     pub static AVMetadataIdentifierID3MetadataSynchronizedTempoCodes:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataalbumtitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataalbumtitle?language=objc)
     pub static AVMetadataIdentifierID3MetadataAlbumTitle: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatabeatsperminute?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatabeatsperminute?language=objc)
     pub static AVMetadataIdentifierID3MetadataBeatsPerMinute: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatacomposer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacomposer?language=objc)
     pub static AVMetadataIdentifierID3MetadataComposer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatacontenttype?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacontenttype?language=objc)
     pub static AVMetadataIdentifierID3MetadataContentType: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatacopyright?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacopyright?language=objc)
     pub static AVMetadataIdentifierID3MetadataCopyright: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatadate?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatadate?language=objc)
     pub static AVMetadataIdentifierID3MetadataDate: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataencodingtime?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataencodingtime?language=objc)
     pub static AVMetadataIdentifierID3MetadataEncodingTime: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataplaylistdelay?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataplaylistdelay?language=objc)
     pub static AVMetadataIdentifierID3MetadataPlaylistDelay: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataoriginalreleasetime?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataoriginalreleasetime?language=objc)
     pub static AVMetadataIdentifierID3MetadataOriginalReleaseTime:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatarecordingtime?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatarecordingtime?language=objc)
     pub static AVMetadataIdentifierID3MetadataRecordingTime: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatareleasetime?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatareleasetime?language=objc)
     pub static AVMetadataIdentifierID3MetadataReleaseTime: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatataggingtime?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatataggingtime?language=objc)
     pub static AVMetadataIdentifierID3MetadataTaggingTime: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataencodedby?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataencodedby?language=objc)
     pub static AVMetadataIdentifierID3MetadataEncodedBy: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatalyricist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatalyricist?language=objc)
     pub static AVMetadataIdentifierID3MetadataLyricist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatafiletype?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatafiletype?language=objc)
     pub static AVMetadataIdentifierID3MetadataFileType: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatatime?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatatime?language=objc)
     pub static AVMetadataIdentifierID3MetadataTime: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatainvolvedpeoplelist_v24?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatainvolvedpeoplelist_v24?language=objc)
     pub static AVMetadataIdentifierID3MetadataInvolvedPeopleList_v24:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatacontentgroupdescription?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacontentgroupdescription?language=objc)
     pub static AVMetadataIdentifierID3MetadataContentGroupDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatatitledescription?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatatitledescription?language=objc)
     pub static AVMetadataIdentifierID3MetadataTitleDescription:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatasubtitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatasubtitle?language=objc)
     pub static AVMetadataIdentifierID3MetadataSubTitle: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatainitialkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatainitialkey?language=objc)
     pub static AVMetadataIdentifierID3MetadataInitialKey: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatalanguage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatalanguage?language=objc)
     pub static AVMetadataIdentifierID3MetadataLanguage: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatalength?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatalength?language=objc)
     pub static AVMetadataIdentifierID3MetadataLength: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatamusiciancreditslist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatamusiciancreditslist?language=objc)
     pub static AVMetadataIdentifierID3MetadataMusicianCreditsList:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatamediatype?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatamediatype?language=objc)
     pub static AVMetadataIdentifierID3MetadataMediaType: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatamood?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatamood?language=objc)
     pub static AVMetadataIdentifierID3MetadataMood: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataoriginalalbumtitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataoriginalalbumtitle?language=objc)
     pub static AVMetadataIdentifierID3MetadataOriginalAlbumTitle:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataoriginalfilename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataoriginalfilename?language=objc)
     pub static AVMetadataIdentifierID3MetadataOriginalFilename:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataoriginallyricist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataoriginallyricist?language=objc)
     pub static AVMetadataIdentifierID3MetadataOriginalLyricist:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataoriginalartist?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataoriginalartist?language=objc)
     pub static AVMetadataIdentifierID3MetadataOriginalArtist: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataoriginalreleaseyear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataoriginalreleaseyear?language=objc)
     pub static AVMetadataIdentifierID3MetadataOriginalReleaseYear:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatafileowner?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatafileowner?language=objc)
     pub static AVMetadataIdentifierID3MetadataFileOwner: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataleadperformer?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataleadperformer?language=objc)
     pub static AVMetadataIdentifierID3MetadataLeadPerformer: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataband?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataband?language=objc)
     pub static AVMetadataIdentifierID3MetadataBand: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataconductor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataconductor?language=objc)
     pub static AVMetadataIdentifierID3MetadataConductor: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatamodifiedby?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatamodifiedby?language=objc)
     pub static AVMetadataIdentifierID3MetadataModifiedBy: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatapartofaset?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatapartofaset?language=objc)
     pub static AVMetadataIdentifierID3MetadataPartOfASet: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataproducednotice?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataproducednotice?language=objc)
     pub static AVMetadataIdentifierID3MetadataProducedNotice: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatapublisher?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatapublisher?language=objc)
     pub static AVMetadataIdentifierID3MetadataPublisher: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatatracknumber?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatatracknumber?language=objc)
     pub static AVMetadataIdentifierID3MetadataTrackNumber: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatarecordingdates?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatarecordingdates?language=objc)
     pub static AVMetadataIdentifierID3MetadataRecordingDates: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatainternetradiostationname?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatainternetradiostationname?language=objc)
     pub static AVMetadataIdentifierID3MetadataInternetRadioStationName:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatainternetradiostationowner?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatainternetradiostationowner?language=objc)
     pub static AVMetadataIdentifierID3MetadataInternetRadioStationOwner:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatasize?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatasize?language=objc)
     pub static AVMetadataIdentifierID3MetadataSize: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataalbumsortorder?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataalbumsortorder?language=objc)
     pub static AVMetadataIdentifierID3MetadataAlbumSortOrder: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataperformersortorder?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataperformersortorder?language=objc)
     pub static AVMetadataIdentifierID3MetadataPerformerSortOrder:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatatitlesortorder?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatatitlesortorder?language=objc)
     pub static AVMetadataIdentifierID3MetadataTitleSortOrder: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatainternationalstandardrecordingcode?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatainternationalstandardrecordingcode?language=objc)
     pub static AVMetadataIdentifierID3MetadataInternationalStandardRecordingCode:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataencodedwith?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataencodedwith?language=objc)
     pub static AVMetadataIdentifierID3MetadataEncodedWith: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatasetsubtitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatasetsubtitle?language=objc)
     pub static AVMetadataIdentifierID3MetadataSetSubtitle: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatayear?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatayear?language=objc)
     pub static AVMetadataIdentifierID3MetadataYear: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatausertext?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatausertext?language=objc)
     pub static AVMetadataIdentifierID3MetadataUserText: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatauniquefileidentifier?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatauniquefileidentifier?language=objc)
     pub static AVMetadataIdentifierID3MetadataUniqueFileIdentifier:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatatermsofuse?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatatermsofuse?language=objc)
     pub static AVMetadataIdentifierID3MetadataTermsOfUse: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataunsynchronizedlyric?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataunsynchronizedlyric?language=objc)
     pub static AVMetadataIdentifierID3MetadataUnsynchronizedLyric:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatacommercialinformation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacommercialinformation?language=objc)
     pub static AVMetadataIdentifierID3MetadataCommercialInformation:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatacopyrightinformation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatacopyrightinformation?language=objc)
     pub static AVMetadataIdentifierID3MetadataCopyrightInformation:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataofficialaudiofilewebpage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataofficialaudiofilewebpage?language=objc)
     pub static AVMetadataIdentifierID3MetadataOfficialAudioFileWebpage:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataofficialartistwebpage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataofficialartistwebpage?language=objc)
     pub static AVMetadataIdentifierID3MetadataOfficialArtistWebpage:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataofficialaudiosourcewebpage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataofficialaudiosourcewebpage?language=objc)
     pub static AVMetadataIdentifierID3MetadataOfficialAudioSourceWebpage:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataofficialinternetradiostationhomepage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataofficialinternetradiostationhomepage?language=objc)
     pub static AVMetadataIdentifierID3MetadataOfficialInternetRadioStationHomepage:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatapayment?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatapayment?language=objc)
     pub static AVMetadataIdentifierID3MetadataPayment: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadataofficialpublisherwebpage?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadataofficialpublisherwebpage?language=objc)
     pub static AVMetadataIdentifierID3MetadataOfficialPublisherWebpage:
         Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifierid3metadatauserurl?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/id3metadatauserurl?language=objc)
     pub static AVMetadataIdentifierID3MetadataUserURL: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifiericymetadatastreamtitle?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/icymetadatastreamtitle?language=objc)
     pub static AVMetadataIdentifierIcyMetadataStreamTitle: Option<&'static AVMetadataIdentifier>;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifiericymetadatastreamurl?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/avfoundation/avmetadataidentifier/icymetadatastreamurl?language=objc)
     pub static AVMetadataIdentifierIcyMetadataStreamURL: Option<&'static AVMetadataIdentifier>;
 }

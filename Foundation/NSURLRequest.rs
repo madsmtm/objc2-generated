@@ -50,7 +50,7 @@ use crate::*;
 /// confirms its validity, otherwise the URL is loaded from the
 /// origin source.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequestcachepolicy?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/cachepolicy-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -98,7 +98,7 @@ unsafe impl RefEncode for NSURLRequestCachePolicy {
 ///
 /// traffic (such as a file download).
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequestnetworkservicetype?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/networkservicetype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -142,7 +142,7 @@ unsafe impl RefEncode for NSURLRequestNetworkServiceType {
 ///
 /// the user.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequestattribution?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlrequest/attribution-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

@@ -52,7 +52,7 @@ unsafe impl RefEncode for UIPencilPreferredAction {
 ///
 /// If the gesture is discrete, the phase will be ``UIPencilInteractionPhaseEnded``
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteractionphase?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction/phase?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -236,7 +236,7 @@ impl UIPencilHoverPose {
 extern_class!(
     /// An object that describes a tap performed on the pencil
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteractiontap?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction/tap?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]
@@ -272,7 +272,7 @@ impl UIPencilInteractionTap {
 extern_class!(
     /// An object that describes a squeeze performed on the pencil
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteractionsqueeze?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uipencilinteraction/squeeze?language=objc)
     #[unsafe(super(NSObject))]
     #[thread_kind = MainThreadOnly]
     #[derive(Debug, PartialEq, Eq, Hash)]

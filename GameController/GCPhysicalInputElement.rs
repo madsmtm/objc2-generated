@@ -43,7 +43,7 @@ extern_class!(
     /// `GCPhysicalInputElementCollection`contains the collection of
     /// input elements found in a device's physical input profile.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputelementcollection?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcphysicalinputelementcollection-c.class?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct GCPhysicalInputElementCollection<

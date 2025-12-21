@@ -8,7 +8,7 @@ use crate::*;
 
 /// Define what type of document this is.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldocumentcontentkind?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldocument/contentkind?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -37,7 +37,7 @@ extern_class!(
     ///
     /// Note: if the application of a method would result in more than one element in the children array, an exception is thrown. Trying to add a document, namespace, attribute, or node with a parent also throws an exception. To add a node with a parent first detach or create a copy of it.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsxmldocument?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/xmldocument?language=objc)
     #[unsafe(super(NSXMLNode, NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[cfg(feature = "NSXMLNode")]

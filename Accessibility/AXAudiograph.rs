@@ -62,7 +62,7 @@ extern_protocol!(
     }
 );
 
-/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptorscale?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/scaletype-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -569,7 +569,7 @@ impl AXDataSeriesDescriptor {
 /// Describes the content direction of the chart (i.e. the direction in which the X axis is rendered).
 /// For example, a bar chart might be leftToRight, while a pie chart might be radialClockwise.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptorcontentdirection?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/accessibility/axchartdescriptor/contentdirection-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

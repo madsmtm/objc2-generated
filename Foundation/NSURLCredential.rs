@@ -13,7 +13,7 @@ use crate::*;
 /// Note: Whereas in Mac OS X any application can access any credential provided the user gives permission, on iOS an application can
 /// access only its own credentials.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredentialpersistence?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcredential/persistence-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -40,7 +40,7 @@ unsafe impl RefEncode for NSURLCredentialPersistence {
 extern_class!(
     /// This class is an immutable object representing an authentication credential.  The actual type of the credential is determined by the constructor called in the categories declared below.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/nsurlcredential?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/foundation/urlcredential?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSURLCredential;

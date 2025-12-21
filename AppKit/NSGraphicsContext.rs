@@ -13,32 +13,32 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontextattributekey?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontext/attributekey?language=objc)
 // NS_TYPED_ENUM
 pub type NSGraphicsContextAttributeKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontextdestinationattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontext/attributekey/destination?language=objc)
     pub static NSGraphicsContextDestinationAttributeName: &'static NSGraphicsContextAttributeKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontextrepresentationformatattributename?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontext/attributekey/representationformat?language=objc)
     pub static NSGraphicsContextRepresentationFormatAttributeName:
         &'static NSGraphicsContextAttributeKey;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontextrepresentationformatname?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontext/representationformatname?language=objc)
 // NS_TYPED_ENUM
 pub type NSGraphicsContextRepresentationFormatName = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontextpsformat?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontext/representationformatname/postscript?language=objc)
     pub static NSGraphicsContextPSFormat: &'static NSGraphicsContextRepresentationFormatName;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontextpdfformat?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsgraphicscontext/representationformatname/pdf?language=objc)
     pub static NSGraphicsContextPDFFormat: &'static NSGraphicsContextRepresentationFormatName;
 }
 

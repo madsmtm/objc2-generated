@@ -10,16 +10,12 @@ use objc2_core_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentconfigurationinfo_validationresult?language=objc)
 pub const kAudioComponentConfigurationInfo_ValidationResult: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ValidationResult\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentvalidationparameter_timeout?language=objc)
 pub const kAudioComponentValidationParameter_TimeOut: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"TimeOut\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentvalidationparameter_forcevalidation?language=objc)
 pub const kAudioComponentValidationParameter_ForceValidation: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ForceValidation\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiocomponentvalidationparameter_loadoutofprocess?language=objc)
 pub const kAudioComponentValidationParameter_LoadOutOfProcess: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"LoadOutOfProcess\0") };
 /// Flags found in AudioComponentDescription.componentFlags.
@@ -150,7 +146,6 @@ unsafe impl RefEncode for AudioComponentDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaqueaudiocomponent?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueAudioComponent {
@@ -186,7 +181,6 @@ unsafe impl RefEncode for OpaqueAudioComponent {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audiocomponent?language=objc)
 pub type AudioComponent = *mut OpaqueAudioComponent;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/opaqueaudiocomponentinstance?language=objc)
 #[repr(C)]
 #[derive(Debug)]
 pub struct OpaqueAudioComponentInstance {

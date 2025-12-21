@@ -6,7 +6,7 @@ use objc2::__framework_prelude::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcecellprovider?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcereferencecellprovider?language=objc)
 #[cfg(all(
     feature = "NSControl",
     feature = "NSResponder",
@@ -24,7 +24,7 @@ pub type NSTableViewDiffableDataSourceCellProvider = *mut block2::DynBlock<
     ) -> NonNull<NSView>,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcerowprovider?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcereferencerowprovider?language=objc)
 #[cfg(all(
     feature = "NSControl",
     feature = "NSResponder",
@@ -37,7 +37,7 @@ pub type NSTableViewDiffableDataSourceRowProvider = *mut block2::DynBlock<
     dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSTableRowView>,
 >;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcesectionheaderviewprovider?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcereferencesectionheaderviewprovider?language=objc)
 #[cfg(all(
     feature = "NSControl",
     feature = "NSResponder",
@@ -50,7 +50,7 @@ pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider = *mut block2::D
 >;
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasource?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstableviewdiffabledatasourcereference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct NSTableViewDiffableDataSource<

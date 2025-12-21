@@ -12,71 +12,46 @@ use objc2_core_midi::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetversionkey?language=objc)
 pub const kAUPresetVersionKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"version\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresettypekey?language=objc)
 pub const kAUPresetTypeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"type\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetsubtypekey?language=objc)
 pub const kAUPresetSubtypeKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"subtype\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetmanufacturerkey?language=objc)
 pub const kAUPresetManufacturerKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"manufacturer\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetdatakey?language=objc)
 pub const kAUPresetDataKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"data\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetnamekey?language=objc)
 pub const kAUPresetNameKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetnumberkey?language=objc)
 pub const kAUPresetNumberKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"preset-number\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetrenderqualitykey?language=objc)
 pub const kAUPresetRenderQualityKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"render-quality\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetcpuloadkey?language=objc)
 pub const kAUPresetCPULoadKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"cpu-load\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetelementnamekey?language=objc)
 pub const kAUPresetElementNameKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"element-name\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetexternalfilerefs?language=objc)
 pub const kAUPresetExternalFileRefs: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"file-references\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetvstdatakey?language=objc)
 pub const kAUPresetVSTDataKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"vstdata\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetvstpresetkey?language=objc)
 pub const kAUPresetVSTPresetKey: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"vstpreset\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetmasdatakey?language=objc)
 pub const kAUPresetMASDataKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"masdata\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaupresetpartkey?language=objc)
 pub const kAUPresetPartKey: &CStr = unsafe { CStr::from_bytes_with_nul_unchecked(b"part\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_hascustomview?language=objc)
 pub const kAudioUnitConfigurationInfo_HasCustomView: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"HasCustomView\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_channelconfigurations?language=objc)
 pub const kAudioUnitConfigurationInfo_ChannelConfigurations: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"ChannelConfigurations\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_initialinputs?language=objc)
 pub const kAudioUnitConfigurationInfo_InitialInputs: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"InitialInputs\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_initialoutputs?language=objc)
 pub const kAudioUnitConfigurationInfo_InitialOutputs: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"InitialOutputs\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_iconurl?language=objc)
 pub const kAudioUnitConfigurationInfo_IconURL: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"IconURL\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_buscountwritable?language=objc)
 pub const kAudioUnitConfigurationInfo_BusCountWritable: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"BusCountWritable\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_supportedchannellayouttags?language=objc)
 pub const kAudioUnitConfigurationInfo_SupportedChannelLayoutTags: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"SupportedChannelLayoutTags\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_midiprotocol?language=objc)
 pub const kAudioUnitConfigurationInfo_MIDIProtocol: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MIDIProtocol\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_migratefromplugin?language=objc)
 pub const kAudioUnitConfigurationInfo_MigrateFromPlugin: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"MigrateFromPlugin\0") };
-/// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitconfigurationinfo_availablearchitectures?language=objc)
 pub const kAudioUnitConfigurationInfo_AvailableArchitectures: &CStr =
     unsafe { CStr::from_bytes_with_nul_unchecked(b"AvailableArchitectures\0") };
 /// [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/kaudiounitscope_global?language=objc)

@@ -11,7 +11,7 @@ extern "C" {
     pub static ILMessageFilterErrorDomain: &'static NSErrorDomain;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererror?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/identitylookup/ilmessagefiltererror-swift.struct/code?language=objc)
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct ILMessageFilterError(pub NSInteger);

@@ -15,34 +15,34 @@ use crate::*;
 pub type PDFAppearanceCharacteristicsKey = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskeybackgroundcolor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskey/backgroundcolor?language=objc)
     pub static PDFAppearanceCharacteristicsKeyBackgroundColor:
         &'static PDFAppearanceCharacteristicsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskeybordercolor?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskey/bordercolor?language=objc)
     pub static PDFAppearanceCharacteristicsKeyBorderColor: &'static PDFAppearanceCharacteristicsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskeyrotation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskey/rotation?language=objc)
     pub static PDFAppearanceCharacteristicsKeyRotation: &'static PDFAppearanceCharacteristicsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskeycaption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskey/caption?language=objc)
     pub static PDFAppearanceCharacteristicsKeyCaption: &'static PDFAppearanceCharacteristicsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskeyrollovercaption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskey/rollovercaption?language=objc)
     pub static PDFAppearanceCharacteristicsKeyRolloverCaption:
         &'static PDFAppearanceCharacteristicsKey;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskeydowncaption?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfappearancecharacteristicskey/downcaption?language=objc)
     pub static PDFAppearanceCharacteristicsKeyDownCaption: &'static PDFAppearanceCharacteristicsKey;
 }
 

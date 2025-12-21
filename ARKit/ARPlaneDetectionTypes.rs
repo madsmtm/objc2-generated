@@ -7,7 +7,7 @@ use crate::*;
 
 /// Option set indicating the type of planes to detect.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arplanedetection?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/arkit/arworldtrackingconfiguration/planedetection-swift.struct?language=objc)
 // NS_OPTIONS
 #[cfg(feature = "objc2")]
 #[repr(transparent)]

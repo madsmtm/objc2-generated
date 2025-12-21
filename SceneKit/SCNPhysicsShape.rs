@@ -6,46 +6,46 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshapeoption?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option?language=objc)
 // NS_TYPED_ENUM
 pub type SCNPhysicsShapeOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshapetypekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option/type?language=objc)
     pub static SCNPhysicsShapeTypeKey: &'static SCNPhysicsShapeOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshapekeepascompoundkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option/keepascompound?language=objc)
     pub static SCNPhysicsShapeKeepAsCompoundKey: &'static SCNPhysicsShapeOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshapescalekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option/scale?language=objc)
     pub static SCNPhysicsShapeScaleKey: &'static SCNPhysicsShapeOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshapeoptioncollisionmargin?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/option/collisionmargin?language=objc)
     pub static SCNPhysicsShapeOptionCollisionMargin: &'static SCNPhysicsShapeOption;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshapetype?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/shapetype?language=objc)
 // NS_TYPED_ENUM
 pub type SCNPhysicsShapeType = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshapetypeboundingbox?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/shapetype/boundingbox?language=objc)
     pub static SCNPhysicsShapeTypeBoundingBox: &'static SCNPhysicsShapeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshapetypeconvexhull?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/shapetype/convexhull?language=objc)
     pub static SCNPhysicsShapeTypeConvexHull: &'static SCNPhysicsShapeType;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshapetypeconcavepolyhedron?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsshape/shapetype/concavepolyhedron?language=objc)
     pub static SCNPhysicsShapeTypeConcavePolyhedron: &'static SCNPhysicsShapeType;
 }
 

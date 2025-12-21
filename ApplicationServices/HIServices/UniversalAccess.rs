@@ -12,11 +12,11 @@ pub type UAZoomChangeFocusType = u32;
 
 /// An event is requesting focus.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kuazoomfocustypeother?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1553162-uazoomfocustypes/kuazoomfocustypeother?language=objc)
 pub const kUAZoomFocusTypeOther: c_uint = 0;
 /// The text insertion point has moved.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/kuazoomfocustypeinsertionpoint?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/applicationservices/1553162-uazoomfocustypes/kuazoomfocustypeinsertionpoint?language=objc)
 pub const kUAZoomFocusTypeInsertionPoint: c_uint = 1;
 
 /// Determines if the Universal Access zoom feature is enabled.

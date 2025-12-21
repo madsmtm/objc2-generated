@@ -15,7 +15,7 @@ pub type VSAccountProviderAuthenticationScheme = NSString;
 extern "C" {
     /// The authentication scheme for responses that use the SAML protocol.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountproviderauthenticationschemesaml?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountproviderauthenticationscheme/saml?language=objc)
     pub static VSAccountProviderAuthenticationSchemeSAML:
         &'static VSAccountProviderAuthenticationScheme;
 }
@@ -23,7 +23,7 @@ extern "C" {
 extern "C" {
     /// The identifier for responses that use any authentication protocol.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountproviderauthenticationschemeapi?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/videosubscriberaccount/vsaccountproviderauthenticationscheme/api?language=objc)
     pub static VSAccountProviderAuthenticationSchemeAPI:
         &'static VSAccountProviderAuthenticationScheme;
 }

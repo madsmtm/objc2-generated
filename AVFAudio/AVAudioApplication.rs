@@ -15,7 +15,7 @@ use crate::*;
 ///
 /// The user has been asked and has granted permission.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplicationrecordpermission?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/recordpermission-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -49,7 +49,7 @@ unsafe impl RefEncode for AVAudioApplicationRecordPermission {
 ///
 /// Introduced: ios(18.2) visionos(2.2)
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplicationmicrophoneinjectionpermission?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/microphoneinjectionpermission-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -85,7 +85,7 @@ extern "C" {
     /// state change. When the record session subsequently goes active, the `inputMuted` state will be applied, and this notification will be dispatched
     /// with the latest input muted state.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplicationinputmutestatechangenotification?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/inputmutestatechangenotification?language=objc)
     pub static AVAudioApplicationInputMuteStateChangeNotification: &'static NSNotificationName;
 }
 
@@ -93,7 +93,7 @@ extern "C" {
     /// Keys for AVAudioApplicationInputMuteStateChangeNotification
     /// Value is NSNumber type with boolean value 0 for unmuted or value 1 for muted (samples zeroed out)
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplicationmutestatekey?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudioapplication/mutestatekey?language=objc)
     pub static AVAudioApplicationMuteStateKey: &'static NSString;
 }
 

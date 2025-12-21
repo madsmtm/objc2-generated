@@ -12,7 +12,7 @@ use crate::*;
 /// Otherwise, the individual properties are displayed adjacent to one another.
 /// Subitems will inherit the group's action if no action is defined on the subitem and will validate based on that action when autovalidates is enabled.
 ///
-/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroupselectionmode?language=objc)
+/// See also [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/selectionmode-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -34,7 +34,7 @@ unsafe impl RefEncode for NSToolbarItemGroupSelectionMode {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroupcontrolrepresentation?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/appkit/nstoolbaritemgroup/controlrepresentation-swift.enum?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]

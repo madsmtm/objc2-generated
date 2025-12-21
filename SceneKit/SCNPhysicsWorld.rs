@@ -9,41 +9,41 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicstestoption?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testoption?language=objc)
 // NS_TYPED_ENUM
 pub type SCNPhysicsTestOption = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicstestcollisionbitmaskkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testoption/collisionbitmask?language=objc)
     pub static SCNPhysicsTestCollisionBitMaskKey: &'static SCNPhysicsTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicstestsearchmodekey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testoption/searchmode?language=objc)
     pub static SCNPhysicsTestSearchModeKey: &'static SCNPhysicsTestOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicstestbackfacecullingkey?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testoption/backfaceculling?language=objc)
     pub static SCNPhysicsTestBackfaceCullingKey: &'static SCNPhysicsTestOption;
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicstestsearchmode?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testsearchmode?language=objc)
 // NS_TYPED_ENUM
 pub type SCNPhysicsTestSearchMode = NSString;
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicstestsearchmodeany?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testsearchmode/any?language=objc)
     pub static SCNPhysicsTestSearchModeAny: &'static SCNPhysicsTestSearchMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicstestsearchmodeclosest?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testsearchmode/closest?language=objc)
     pub static SCNPhysicsTestSearchModeClosest: &'static SCNPhysicsTestSearchMode;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicstestsearchmodeall?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnphysicsworld/testsearchmode/all?language=objc)
     pub static SCNPhysicsTestSearchModeAll: &'static SCNPhysicsTestSearchMode;
 }
 

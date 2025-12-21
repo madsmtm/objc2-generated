@@ -6,7 +6,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckreferenceaction?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecord/referenceaction?language=objc)
 // NS_ENUM
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
@@ -27,7 +27,7 @@ unsafe impl RefEncode for CKReferenceAction {
 }
 
 extern_class!(
-    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckreference?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/ckrecord/reference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct CKReference;

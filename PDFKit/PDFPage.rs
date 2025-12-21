@@ -80,7 +80,7 @@ unsafe impl RefEncode for PDFDisplayBox {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpageimageinitializationoption?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpage/imageinitializationoption?language=objc)
 // NS_TYPED_ENUM
 pub type PDFPageImageInitializationOption = NSString;
 
@@ -302,23 +302,23 @@ impl PDFPage {
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpageimageinitializationoptionmediabox?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpage/imageinitializationoption/mediabox?language=objc)
     pub static PDFPageImageInitializationOptionMediaBox: &'static PDFPageImageInitializationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpageimageinitializationoptionrotation?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpage/imageinitializationoption/rotation?language=objc)
     pub static PDFPageImageInitializationOptionRotation: &'static PDFPageImageInitializationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpageimageinitializationoptionupscaleifsmaller?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpage/imageinitializationoption/upscaleifsmaller?language=objc)
     pub static PDFPageImageInitializationOptionUpscaleIfSmaller:
         &'static PDFPageImageInitializationOption;
 }
 
 extern "C" {
-    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpageimageinitializationoptioncompressionquality?language=objc)
+    /// [Apple's documentation](https://developer.apple.com/documentation/pdfkit/pdfpage/imageinitializationoption/compressionquality?language=objc)
     pub static PDFPageImageInitializationOptionCompressionQuality:
         &'static PDFPageImageInitializationOption;
 }

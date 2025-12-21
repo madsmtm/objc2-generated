@@ -9,7 +9,7 @@ use crate::*;
 extern_class!(
     /// A shortcut is an action that can be suggested by the system or added to Siri.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcut?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/intents/inshortcutreference?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
     pub struct INShortcut;

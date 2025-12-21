@@ -6,7 +6,7 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproductperiodunit?language=objc)
+/// [Apple's documentation](https://developer.apple.com/documentation/storekit/skproduct/periodunit?language=objc)
 // NS_ENUM
 #[deprecated = "Use Product.SubscriptionPeriod.Unit"]
 #[repr(transparent)]
