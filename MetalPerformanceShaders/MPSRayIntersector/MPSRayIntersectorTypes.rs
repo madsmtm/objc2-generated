@@ -13,7 +13,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsraypackedorigindirection?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSRayPackedOriginDirection {
     /// Ray origin. The intersection test will be skipped if the origin contains NaNs
     /// or infinities.
@@ -43,7 +43,7 @@ unsafe impl RefEncode for MPSRayPackedOriginDirection {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrayoriginmindistancedirectionmaxdistance?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSRayOriginMinDistanceDirectionMaxDistance {
     /// Ray origin. The intersection test will be skipped if the origin contains NaNs
     /// or infinities.
@@ -85,7 +85,7 @@ unsafe impl RefEncode for MPSRayOriginMinDistanceDirectionMaxDistance {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsrayoriginmaskdirectionmaxdistance?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MPSRayOriginMaskDirectionMaxDistance {
     /// Ray origin. The intersection test will be skipped if the origin contains NaNs
     /// or infinities.

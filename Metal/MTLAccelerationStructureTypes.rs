@@ -37,7 +37,7 @@ impl MTLPackedFloatQuaternion {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpackedfloat4x3?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLPackedFloat4x3 {
     pub columns: [MTLPackedFloat3; 4],
 }
@@ -55,7 +55,7 @@ unsafe impl RefEncode for MTLPackedFloat4x3 {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaxisalignedboundingbox?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLAxisAlignedBoundingBox {
     /// Minimum point
     pub min: MTLPackedFloat3,
@@ -80,7 +80,7 @@ unsafe impl RefEncode for MTLAxisAlignedBoundingBox {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtlcomponenttransform?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLComponentTransform {
     /// The scale of the instance applied before rotation alongside shear and pivot
     pub scale: MTLPackedFloat3,

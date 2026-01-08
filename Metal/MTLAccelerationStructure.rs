@@ -1922,7 +1922,7 @@ impl DefaultRetained for MTLAccelerationStructureMotionCurveGeometryDescriptor {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureinstancedescriptor?language=objc)
 #[cfg(feature = "MTLAccelerationStructureTypes")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLAccelerationStructureInstanceDescriptor {
     /// Transformation matrix describing how to transform the bottom-level acceleration structure.
     pub transformationMatrix: MTLPackedFloat4x3,
@@ -1958,7 +1958,7 @@ unsafe impl RefEncode for MTLAccelerationStructureInstanceDescriptor {
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlaccelerationstructureuseridinstancedescriptor?language=objc)
 #[cfg(feature = "MTLAccelerationStructureTypes")]
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
 pub struct MTLAccelerationStructureUserIDInstanceDescriptor {
     /// Transformation matrix describing how to transform the bottom-level acceleration structure.
     pub transformationMatrix: MTLPackedFloat4x3,
