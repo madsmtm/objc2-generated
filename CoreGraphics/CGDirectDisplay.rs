@@ -165,12 +165,12 @@ pub extern "C-unwind" fn CGDisplayPixelsHigh(display: CGDirectDisplayID) -> usiz
 pub unsafe extern "C-unwind" fn CGDisplayCopyAllDisplayModes(
     display: CGDirectDisplayID,
     options: Option<&CFDictionary>,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CGDisplayMode>>> {
     extern "C-unwind" {
         fn CGDisplayCopyAllDisplayModes(
             display: CGDirectDisplayID,
             options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CGDisplayMode>>>;
     }
     let ret = unsafe { CGDisplayCopyAllDisplayModes(display, options) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -650,9 +650,11 @@ pub type CGDisplayErr = CGError;
 #[inline]
 pub unsafe extern "C-unwind" fn CGDisplayAvailableModes(
     dsp: CGDirectDisplayID,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
     extern "C-unwind" {
-        fn CGDisplayAvailableModes(dsp: CGDirectDisplayID) -> Option<NonNull<CFArray>>;
+        fn CGDisplayAvailableModes(
+            dsp: CGDirectDisplayID,
+        ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
     }
     let ret = unsafe { CGDisplayAvailableModes(dsp) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -670,7 +672,7 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParameters(
     width: usize,
     height: usize,
     exact_match: *mut libc::boolean_t,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn CGDisplayBestModeForParameters(
             display: CGDirectDisplayID,
@@ -678,7 +680,7 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParameters(
             width: usize,
             height: usize,
             exact_match: *mut libc::boolean_t,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe {
         CGDisplayBestModeForParameters(display, bits_per_pixel, width, height, exact_match)
@@ -699,7 +701,7 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParametersAndRefreshRate(
     height: usize,
     refresh_rate: CGRefreshRate,
     exact_match: *mut libc::boolean_t,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn CGDisplayBestModeForParametersAndRefreshRate(
             display: CGDirectDisplayID,
@@ -708,7 +710,7 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParametersAndRefreshRate(
             height: usize,
             refresh_rate: CGRefreshRate,
             exact_match: *mut libc::boolean_t,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe {
         CGDisplayBestModeForParametersAndRefreshRate(
@@ -727,9 +729,11 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParametersAndRefreshRate(
 #[inline]
 pub unsafe extern "C-unwind" fn CGDisplayCurrentMode(
     display: CGDirectDisplayID,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
-        fn CGDisplayCurrentMode(display: CGDirectDisplayID) -> Option<NonNull<CFDictionary>>;
+        fn CGDisplayCurrentMode(
+            display: CGDirectDisplayID,
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { CGDisplayCurrentMode(display) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -738,12 +742,11 @@ pub unsafe extern "C-unwind" fn CGDisplayCurrentMode(
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `mode` generic must be of the correct type.
-    /// - `mode` generic must be of the correct type.
+    /// `mode` generic should be of the correct type.
     #[cfg(feature = "CGError")]
     #[deprecated = "No longer supported"]
     pub fn CGDisplaySwitchToMode(
         display: CGDirectDisplayID,
-        mode: Option<&CFDictionary>,
+        mode: Option<&CFDictionary<CFString, CFType>>,
     ) -> CGError;
 }

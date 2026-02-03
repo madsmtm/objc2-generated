@@ -11,20 +11,19 @@ use crate::*;
 /// # Safety
 ///
 /// - `media_box` must be a valid pointer or null.
-/// - `auxiliary_info` generic must be of the correct type.
-/// - `auxiliary_info` generic must be of the correct type.
+/// - `auxiliary_info` generic should be of the correct type.
 #[cfg(all(feature = "CGContext", feature = "CGDataConsumer"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CGPDFContextCreate(
     consumer: Option<&CGDataConsumer>,
     media_box: *const CGRect,
-    auxiliary_info: Option<&CFDictionary>,
+    auxiliary_info: Option<&CFDictionary<CFString, CFType>>,
 ) -> Option<CFRetained<CGContext>> {
     extern "C-unwind" {
         fn CGPDFContextCreate(
             consumer: Option<&CGDataConsumer>,
             media_box: *const CGRect,
-            auxiliary_info: Option<&CFDictionary>,
+            auxiliary_info: Option<&CFDictionary<CFString, CFType>>,
         ) -> Option<NonNull<CGContext>>;
     }
     let ret = unsafe { CGPDFContextCreate(consumer, media_box, auxiliary_info) };
@@ -34,20 +33,19 @@ pub unsafe extern "C-unwind" fn CGPDFContextCreate(
 /// # Safety
 ///
 /// - `media_box` must be a valid pointer or null.
-/// - `auxiliary_info` generic must be of the correct type.
-/// - `auxiliary_info` generic must be of the correct type.
+/// - `auxiliary_info` generic should be of the correct type.
 #[cfg(feature = "CGContext")]
 #[inline]
 pub unsafe extern "C-unwind" fn CGPDFContextCreateWithURL(
     url: Option<&CFURL>,
     media_box: *const CGRect,
-    auxiliary_info: Option<&CFDictionary>,
+    auxiliary_info: Option<&CFDictionary<CFString, CFType>>,
 ) -> Option<CFRetained<CGContext>> {
     extern "C-unwind" {
         fn CGPDFContextCreateWithURL(
             url: Option<&CFURL>,
             media_box: *const CGRect,
-            auxiliary_info: Option<&CFDictionary>,
+            auxiliary_info: Option<&CFDictionary<CFString, CFType>>,
         ) -> Option<NonNull<CGContext>>;
     }
     let ret = unsafe { CGPDFContextCreateWithURL(url, media_box, auxiliary_info) };
@@ -66,10 +64,12 @@ pub extern "C-unwind" fn CGPDFContextClose(context: Option<&CGContext>) {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `page_info` generic must be of the correct type.
-    /// - `page_info` generic must be of the correct type.
+    /// `page_info` generic should be of the correct type.
     #[cfg(feature = "CGContext")]
-    pub fn CGPDFContextBeginPage(context: Option<&CGContext>, page_info: Option<&CFDictionary>);
+    pub fn CGPDFContextBeginPage(
+        context: Option<&CGContext>,
+        page_info: Option<&CFDictionary<CFString, CFType>>,
+    );
 }
 
 #[cfg(feature = "CGContext")]

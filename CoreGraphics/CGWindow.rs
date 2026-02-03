@@ -162,12 +162,12 @@ unsafe impl RefEncode for CGWindowListOption {
 pub extern "C-unwind" fn CGWindowListCopyWindowInfo(
     option: CGWindowListOption,
     relative_to_window: CGWindowID,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CFDictionary>>> {
     extern "C-unwind" {
         fn CGWindowListCopyWindowInfo(
             option: CGWindowListOption,
             relative_to_window: CGWindowID,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFDictionary>>>;
     }
     let ret = unsafe { CGWindowListCopyWindowInfo(option, relative_to_window) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -194,11 +194,11 @@ pub extern "C-unwind" fn CGWindowListCreate(
 #[inline]
 pub unsafe extern "C-unwind" fn CGWindowListCreateDescriptionFromArray(
     window_array: Option<&CFArray>,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CFDictionary>>> {
     extern "C-unwind" {
         fn CGWindowListCreateDescriptionFromArray(
             window_array: Option<&CFArray>,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFDictionary>>>;
     }
     let ret = unsafe { CGWindowListCreateDescriptionFromArray(window_array) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

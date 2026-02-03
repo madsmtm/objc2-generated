@@ -119,20 +119,19 @@ impl CGGradient {
 
     /// # Safety
     ///
-    /// - `colors` generic must be of the correct type.
-    /// - `locations` must be a valid pointer or null.
+    /// `locations` must be a valid pointer or null.
     #[doc(alias = "CGGradientCreateWithColors")]
-    #[cfg(feature = "CGColorSpace")]
+    #[cfg(all(feature = "CGColor", feature = "CGColorSpace"))]
     #[inline]
     pub unsafe fn with_colors(
         space: Option<&CGColorSpace>,
-        colors: Option<&CFArray>,
+        colors: Option<&CFArray<CGColor>>,
         locations: *const CGFloat,
     ) -> Option<CFRetained<CGGradient>> {
         extern "C-unwind" {
             fn CGGradientCreateWithColors(
                 space: Option<&CGColorSpace>,
-                colors: Option<&CFArray>,
+                colors: Option<&CFArray<CGColor>>,
                 locations: *const CGFloat,
             ) -> Option<NonNull<CGGradient>>;
         }

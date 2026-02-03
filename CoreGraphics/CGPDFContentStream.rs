@@ -89,9 +89,13 @@ impl CGPDFContentStream {
     /// `cs` must be a valid pointer.
     #[doc(alias = "CGPDFContentStreamGetStreams")]
     #[inline]
-    pub unsafe fn streams(cs: CGPDFContentStreamRef) -> Option<CFRetained<CFArray>> {
+    pub unsafe fn streams(
+        cs: CGPDFContentStreamRef,
+    ) -> Option<CFRetained<CFArray<CGPDFContentStream>>> {
         extern "C-unwind" {
-            fn CGPDFContentStreamGetStreams(cs: CGPDFContentStreamRef) -> Option<NonNull<CFArray>>;
+            fn CGPDFContentStreamGetStreams(
+                cs: CGPDFContentStreamRef,
+            ) -> Option<NonNull<CFArray<CGPDFContentStream>>>;
         }
         let ret = unsafe { CGPDFContentStreamGetStreams(cs) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })

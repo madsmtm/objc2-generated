@@ -116,20 +116,16 @@ impl CGFont {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// - `variations` generic must be of the correct type.
-    /// - `variations` generic must be of the correct type.
     #[doc(alias = "CGFontCreateCopyWithVariations")]
     #[inline]
-    pub unsafe fn new_copy_with_variations(
+    pub fn new_copy_with_variations(
         font: Option<&CGFont>,
-        variations: Option<&CFDictionary>,
+        variations: Option<&CFDictionary<CFString, CFNumber>>,
     ) -> Option<CFRetained<CGFont>> {
         extern "C-unwind" {
             fn CGFontCreateCopyWithVariations(
                 font: Option<&CGFont>,
-                variations: Option<&CFDictionary>,
+                variations: Option<&CFDictionary<CFString, CFNumber>>,
             ) -> Option<NonNull<CGFont>>;
         }
         let ret = unsafe { CGFontCreateCopyWithVariations(font, variations) };
@@ -248,9 +244,13 @@ impl CGFont {
 
     #[doc(alias = "CGFontCopyVariationAxes")]
     #[inline]
-    pub fn variation_axes(font: Option<&CGFont>) -> Option<CFRetained<CFArray>> {
+    pub fn variation_axes(
+        font: Option<&CGFont>,
+    ) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFNumber>>>> {
         extern "C-unwind" {
-            fn CGFontCopyVariationAxes(font: Option<&CGFont>) -> Option<NonNull<CFArray>>;
+            fn CGFontCopyVariationAxes(
+                font: Option<&CGFont>,
+            ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFNumber>>>>;
         }
         let ret = unsafe { CGFontCopyVariationAxes(font) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -258,9 +258,13 @@ impl CGFont {
 
     #[doc(alias = "CGFontCopyVariations")]
     #[inline]
-    pub fn variations(font: Option<&CGFont>) -> Option<CFRetained<CFDictionary>> {
+    pub fn variations(
+        font: Option<&CGFont>,
+    ) -> Option<CFRetained<CFDictionary<CFString, CFNumber>>> {
         extern "C-unwind" {
-            fn CGFontCopyVariations(font: Option<&CGFont>) -> Option<NonNull<CFDictionary>>;
+            fn CGFontCopyVariations(
+                font: Option<&CGFont>,
+            ) -> Option<NonNull<CFDictionary<CFString, CFNumber>>>;
         }
         let ret = unsafe { CGFontCopyVariations(font) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

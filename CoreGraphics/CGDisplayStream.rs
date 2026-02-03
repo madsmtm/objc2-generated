@@ -383,8 +383,7 @@ impl CGDisplayStream {
     ///
     /// # Safety
     ///
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic should be of the correct type.
     /// - `handler` must be a valid pointer or null.
     #[doc(alias = "CGDisplayStreamCreate")]
     #[cfg(all(
@@ -400,7 +399,7 @@ impl CGDisplayStream {
         output_width: usize,
         output_height: usize,
         pixel_format: i32,
-        properties: Option<&CFDictionary>,
+        properties: Option<&CFDictionary<CFString, CFType>>,
         handler: CGDisplayStreamFrameAvailableHandler,
     ) -> Option<CFRetained<CGDisplayStream>> {
         extern "C-unwind" {
@@ -409,7 +408,7 @@ impl CGDisplayStream {
                 output_width: usize,
                 output_height: usize,
                 pixel_format: i32,
-                properties: Option<&CFDictionary>,
+                properties: Option<&CFDictionary<CFString, CFType>>,
                 handler: CGDisplayStreamFrameAvailableHandler,
             ) -> Option<NonNull<CGDisplayStream>>;
         }
@@ -449,8 +448,7 @@ impl CGDisplayStream {
     ///
     /// # Safety
     ///
-    /// - `properties` generic must be of the correct type.
-    /// - `properties` generic must be of the correct type.
+    /// - `properties` generic should be of the correct type.
     /// - `queue` possibly has additional threading requirements.
     /// - `handler` must be a valid pointer or null.
     #[doc(alias = "CGDisplayStreamCreateWithDispatchQueue")]
@@ -468,7 +466,7 @@ impl CGDisplayStream {
         output_width: usize,
         output_height: usize,
         pixel_format: i32,
-        properties: Option<&CFDictionary>,
+        properties: Option<&CFDictionary<CFString, CFType>>,
         queue: &DispatchQueue,
         handler: CGDisplayStreamFrameAvailableHandler,
     ) -> Option<CFRetained<CGDisplayStream>> {
@@ -478,7 +476,7 @@ impl CGDisplayStream {
                 output_width: usize,
                 output_height: usize,
                 pixel_format: i32,
-                properties: Option<&CFDictionary>,
+                properties: Option<&CFDictionary<CFString, CFType>>,
                 queue: &DispatchQueue,
                 handler: CGDisplayStreamFrameAvailableHandler,
             ) -> Option<NonNull<CGDisplayStream>>;

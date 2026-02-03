@@ -429,13 +429,12 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `config` must be a valid pointer or null.
-    /// - `mode` generic must be of the correct type.
-    /// - `mode` generic must be of the correct type.
+    /// - `mode` generic should be of the correct type.
     #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
     #[deprecated = "No longer supported"]
     pub fn CGConfigureDisplayMode(
         config: CGDisplayConfigRef,
         display: CGDirectDisplayID,
-        mode: Option<&CFDictionary>,
+        mode: Option<&CFDictionary<CFString, CFType>>,
     ) -> CGError;
 }
