@@ -604,53 +604,54 @@ extern "C" {
     pub static _dispatch_main_q: DispatchQueue;
 }
 
-/// Returns a well-known global concurrent queue of a given quality of service
-/// class.
-///
-///
-/// See dispatch_queue_global_t.
-///
-///
-/// Parameter `identifier`: A quality of service class defined in qos_class_t or a priority defined in
-/// dispatch_queue_priority_t.
-///
-/// It is recommended to use quality of service class values to identify the
-/// well-known global concurrent queues:
-/// - QOS_CLASS_USER_INTERACTIVE
-/// - QOS_CLASS_USER_INITIATED
-/// - QOS_CLASS_DEFAULT
-/// - QOS_CLASS_UTILITY
-/// - QOS_CLASS_BACKGROUND
-///
-/// The global concurrent queues may still be identified by their priority,
-/// which map to the following QOS classes:
-/// - DISPATCH_QUEUE_PRIORITY_HIGH:         QOS_CLASS_USER_INITIATED
-/// - DISPATCH_QUEUE_PRIORITY_DEFAULT:      QOS_CLASS_DEFAULT
-/// - DISPATCH_QUEUE_PRIORITY_LOW:          QOS_CLASS_UTILITY
-/// - DISPATCH_QUEUE_PRIORITY_BACKGROUND:   QOS_CLASS_BACKGROUND
-///
-///
-/// Parameter `flags`: Reserved for future use. Passing any value other than zero may result in
-/// a NULL return value.
-///
-///
-/// Returns: Returns the requested global queue or NULL if the requested global queue
-/// does not exist.
-#[must_use]
-#[inline]
-pub extern "C" fn dispatch_get_global_queue(
-    identifier: isize,
-    flags: usize,
-) -> DispatchRetained<DispatchQueue> {
-    extern "C" {
-        fn dispatch_get_global_queue(
-            identifier: isize,
-            flags: usize,
-        ) -> Option<NonNull<DispatchQueue>>;
+impl DispatchQueue {
+    /// Returns a well-known global concurrent queue of a given quality of service
+    /// class.
+    ///
+    ///
+    /// See dispatch_queue_global_t.
+    ///
+    ///
+    /// Parameter `identifier`: A quality of service class defined in qos_class_t or a priority defined in
+    /// dispatch_queue_priority_t.
+    ///
+    /// It is recommended to use quality of service class values to identify the
+    /// well-known global concurrent queues:
+    /// - QOS_CLASS_USER_INTERACTIVE
+    /// - QOS_CLASS_USER_INITIATED
+    /// - QOS_CLASS_DEFAULT
+    /// - QOS_CLASS_UTILITY
+    /// - QOS_CLASS_BACKGROUND
+    ///
+    /// The global concurrent queues may still be identified by their priority,
+    /// which map to the following QOS classes:
+    /// - DISPATCH_QUEUE_PRIORITY_HIGH:         QOS_CLASS_USER_INITIATED
+    /// - DISPATCH_QUEUE_PRIORITY_DEFAULT:      QOS_CLASS_DEFAULT
+    /// - DISPATCH_QUEUE_PRIORITY_LOW:          QOS_CLASS_UTILITY
+    /// - DISPATCH_QUEUE_PRIORITY_BACKGROUND:   QOS_CLASS_BACKGROUND
+    ///
+    ///
+    /// Parameter `flags`: Reserved for future use. Passing any value other than zero may result in
+    /// a NULL return value.
+    ///
+    ///
+    /// Returns: Returns the requested global queue or NULL if the requested global queue
+    /// does not exist.
+    #[doc(alias = "dispatch_get_global_queue")]
+    #[must_use]
+    #[inline]
+    pub(crate) fn __global(identifier: isize, flags: usize) -> DispatchRetained<DispatchQueue> {
+        extern "C" {
+            fn dispatch_get_global_queue(
+                identifier: isize,
+                flags: usize,
+            ) -> Option<NonNull<DispatchQueue>>;
+        }
+        let ret = unsafe { dispatch_get_global_queue(identifier, flags) };
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { DispatchRetained::retain(ret) }
     }
-    let ret = unsafe { dispatch_get_global_queue(identifier, flags) };
-    let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
-    unsafe { DispatchRetained::retain(ret) }
 }
 
 extern "C" {
@@ -1446,9 +1447,7 @@ impl DispatchQueue {
         }
         unsafe { dispatch_barrier_async_and_wait_f(self, context, work) }
     }
-}
 
-extern "C" {
     /// Associates a subsystem-specific context with a dispatch queue, for a key
     /// unique to the subsystem.
     ///
@@ -1480,15 +1479,25 @@ extern "C" {
     /// - `key` must be a valid pointer.
     /// - `context` must be a valid pointer or null.
     /// - `destructor` must be implemented correctly.
-    pub fn dispatch_queue_set_specific(
-        queue: &DispatchQueue,
+    #[doc(alias = "dispatch_queue_set_specific")]
+    #[inline]
+    pub(crate) unsafe fn __set_specific(
+        &self,
         key: NonNull<c_void>,
         context: *mut c_void,
         destructor: dispatch_function_t,
-    );
-}
+    ) {
+        extern "C" {
+            fn dispatch_queue_set_specific(
+                queue: &DispatchQueue,
+                key: NonNull<c_void>,
+                context: *mut c_void,
+                destructor: dispatch_function_t,
+            );
+        }
+        unsafe { dispatch_queue_set_specific(self, key, context, destructor) }
+    }
 
-impl DispatchQueue {
     /// Returns the subsystem-specific context associated with a dispatch queue, for
     /// a key unique to the subsystem.
     ///
@@ -2967,46 +2976,45 @@ impl DispatchGroup {
         }
         unsafe { dispatch_group_async_f(self, queue, context, work) }
     }
-}
 
-/// Wait synchronously until all the blocks associated with a group have
-/// completed or until the specified timeout has elapsed.
-///
-///
-/// This function waits for the completion of the blocks associated with the
-/// given dispatch group, and returns after all blocks have completed or when
-/// the specified timeout has elapsed.
-///
-/// This function will return immediately if there are no blocks associated
-/// with the dispatch group (i.e. the group is empty).
-///
-/// The result of calling this function from multiple threads simultaneously
-/// with the same dispatch group is undefined.
-///
-/// After the successful return of this function, the dispatch group is empty.
-/// It may either be released with dispatch_release() or re-used for additional
-/// blocks. See dispatch_group_async() for more information.
-///
-///
-/// Parameter `group`: The dispatch group to wait on.
-/// The result of passing NULL in this parameter is undefined.
-///
-///
-/// Parameter `timeout`: When to timeout (see dispatch_time). As a convenience, there are the
-/// DISPATCH_TIME_NOW and DISPATCH_TIME_FOREVER constants.
-///
-///
-/// Returns: Returns zero on success (all blocks associated with the group completed
-/// within the specified timeout) or non-zero on error (i.e. timed out).
-#[inline]
-pub extern "C" fn dispatch_group_wait(group: &DispatchGroup, timeout: DispatchTime) -> isize {
-    extern "C" {
-        fn dispatch_group_wait(group: &DispatchGroup, timeout: DispatchTime) -> isize;
+    /// Wait synchronously until all the blocks associated with a group have
+    /// completed or until the specified timeout has elapsed.
+    ///
+    ///
+    /// This function waits for the completion of the blocks associated with the
+    /// given dispatch group, and returns after all blocks have completed or when
+    /// the specified timeout has elapsed.
+    ///
+    /// This function will return immediately if there are no blocks associated
+    /// with the dispatch group (i.e. the group is empty).
+    ///
+    /// The result of calling this function from multiple threads simultaneously
+    /// with the same dispatch group is undefined.
+    ///
+    /// After the successful return of this function, the dispatch group is empty.
+    /// It may either be released with dispatch_release() or re-used for additional
+    /// blocks. See dispatch_group_async() for more information.
+    ///
+    ///
+    /// Parameter `group`: The dispatch group to wait on.
+    /// The result of passing NULL in this parameter is undefined.
+    ///
+    ///
+    /// Parameter `timeout`: When to timeout (see dispatch_time). As a convenience, there are the
+    /// DISPATCH_TIME_NOW and DISPATCH_TIME_FOREVER constants.
+    ///
+    ///
+    /// Returns: Returns zero on success (all blocks associated with the group completed
+    /// within the specified timeout) or non-zero on error (i.e. timed out).
+    #[doc(alias = "dispatch_group_wait")]
+    #[inline]
+    pub(crate) fn __wait(&self, timeout: DispatchTime) -> isize {
+        extern "C" {
+            fn dispatch_group_wait(group: &DispatchGroup, timeout: DispatchTime) -> isize;
+        }
+        unsafe { dispatch_group_wait(self, timeout) }
     }
-    unsafe { dispatch_group_wait(group, timeout) }
-}
 
-impl DispatchGroup {
     /// # Safety
     ///
     /// - `queue` possibly has additional threading requirements.
@@ -3066,9 +3074,7 @@ impl DispatchGroup {
         }
         unsafe { dispatch_group_notify_f(self, queue, context, work) }
     }
-}
 
-extern "C" {
     /// Manually indicate a block has entered the group
     ///
     ///
@@ -3079,10 +3085,15 @@ extern "C" {
     ///
     /// Parameter `group`: The dispatch group to update.
     /// The result of passing NULL in this parameter is undefined.
-    pub fn dispatch_group_enter(group: &DispatchGroup);
-}
+    #[doc(alias = "dispatch_group_enter")]
+    #[inline]
+    pub(crate) unsafe fn __enter(&self) {
+        extern "C" {
+            fn dispatch_group_enter(group: &DispatchGroup);
+        }
+        unsafe { dispatch_group_enter(self) }
+    }
 
-impl DispatchGroup {
     /// Manually indicate a block in the group has completed
     ///
     ///
