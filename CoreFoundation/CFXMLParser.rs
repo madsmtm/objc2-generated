@@ -249,11 +249,13 @@ impl CFXMLParser {
     /// - `allocator` might not allow `None`.
     /// - `xml_data` might not allow `None`.
     /// - `data_source` might not allow `None`.
+    /// - `call_backs` struct field `version` must be set correctly.
     /// - `call_backs` struct field `createXMLStructure` must be implemented correctly.
     /// - `call_backs` struct field `addChild` must be implemented correctly.
     /// - `call_backs` struct field `endXMLStructure` must be implemented correctly.
     /// - `call_backs` struct field `resolveExternalEntity` must be implemented correctly.
     /// - `call_backs` struct field `handleError` must be implemented correctly.
+    /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
     /// - `context` struct field `release` must be implemented correctly.
@@ -300,11 +302,13 @@ impl CFXMLParser {
     ///
     /// - `allocator` might not allow `None`.
     /// - `data_source` might not allow `None`.
+    /// - `call_backs` struct field `version` must be set correctly.
     /// - `call_backs` struct field `createXMLStructure` must be implemented correctly.
     /// - `call_backs` struct field `addChild` must be implemented correctly.
     /// - `call_backs` struct field `endXMLStructure` must be implemented correctly.
     /// - `call_backs` struct field `resolveExternalEntity` must be implemented correctly.
     /// - `call_backs` struct field `handleError` must be implemented correctly.
+    /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
     /// - `context` struct field `release` must be implemented correctly.
@@ -346,6 +350,7 @@ impl CFXMLParser {
 
     /// # Safety
     ///
+    /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
     /// - `context` struct field `release` must be implemented correctly.
@@ -362,6 +367,7 @@ impl CFXMLParser {
 
     /// # Safety
     ///
+    /// - `call_backs` struct field `version` must be set correctly.
     /// - `call_backs` struct field `createXMLStructure` must be implemented correctly.
     /// - `call_backs` struct field `addChild` must be implemented correctly.
     /// - `call_backs` struct field `endXMLStructure` must be implemented correctly.

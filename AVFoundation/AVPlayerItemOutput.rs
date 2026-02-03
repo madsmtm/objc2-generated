@@ -68,6 +68,10 @@ impl AVPlayerItemOutput {
         /// Parameter `timestamp`: The CoreVideo timestamp value to convert to item time.
         ///
         /// Returns: The equivalent item time.
+        ///
+        /// # Safety
+        ///
+        /// `timestamp` struct field `version` must be set correctly.
         #[unsafe(method(itemTimeForCVTimeStamp:))]
         #[unsafe(method_family = none)]
         pub unsafe fn itemTimeForCVTimeStamp(&self, timestamp: CVTimeStamp) -> CMTime;

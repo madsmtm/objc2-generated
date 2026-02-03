@@ -311,6 +311,7 @@ impl SCNetworkConnection {
     /// # Safety
     ///
     /// - `callout` must be implemented correctly.
+    /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer or null.
     /// - `context` struct field `retain` must be implemented correctly.
     /// - `context` struct field `release` must be implemented correctly.

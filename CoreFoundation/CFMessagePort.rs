@@ -105,6 +105,7 @@ impl CFMessagePort {
     /// - `allocator` might not allow `None`.
     /// - `name` might not allow `None`.
     /// - `callout` must be implemented correctly.
+    /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
     /// - `context` struct field `release` must be implemented correctly.
@@ -182,6 +183,7 @@ impl CFMessagePort {
 
     /// # Safety
     ///
+    /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
     /// - `context` struct field `release` must be implemented correctly.

@@ -77,6 +77,7 @@ impl CGFunction {
     /// - `info` must be a valid pointer or null.
     /// - `domain` must be a valid pointer or null.
     /// - `range` must be a valid pointer or null.
+    /// - `callbacks` struct field `version` must be set correctly.
     /// - `callbacks` struct field `evaluate` must be implemented correctly.
     /// - `callbacks` struct field `releaseInfo` must be implemented correctly.
     #[doc(alias = "CGFunctionCreate")]

@@ -365,11 +365,13 @@ impl CFDictionary {
     /// - `allocator` might not allow `None`.
     /// - `keys` must be a valid pointer or null.
     /// - `values` must be a valid pointer or null.
+    /// - `key_call_backs` struct field `version` must be set correctly.
     /// - `key_call_backs` struct field `retain` must be implemented correctly.
     /// - `key_call_backs` struct field `release` must be implemented correctly.
     /// - `key_call_backs` struct field `copyDescription` must be implemented correctly.
     /// - `key_call_backs` struct field `equal` must be implemented correctly.
     /// - `key_call_backs` struct field `hash` must be implemented correctly.
+    /// - `value_call_backs` struct field `version` must be set correctly.
     /// - `value_call_backs` struct field `retain` must be implemented correctly.
     /// - `value_call_backs` struct field `release` must be implemented correctly.
     /// - `value_call_backs` struct field `copyDescription` must be implemented correctly.
@@ -521,11 +523,13 @@ impl CFMutableDictionary {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
+    /// - `key_call_backs` struct field `version` must be set correctly.
     /// - `key_call_backs` struct field `retain` must be implemented correctly.
     /// - `key_call_backs` struct field `release` must be implemented correctly.
     /// - `key_call_backs` struct field `copyDescription` must be implemented correctly.
     /// - `key_call_backs` struct field `equal` must be implemented correctly.
     /// - `key_call_backs` struct field `hash` must be implemented correctly.
+    /// - `value_call_backs` struct field `version` must be set correctly.
     /// - `value_call_backs` struct field `retain` must be implemented correctly.
     /// - `value_call_backs` struct field `release` must be implemented correctly.
     /// - `value_call_backs` struct field `copyDescription` must be implemented correctly.

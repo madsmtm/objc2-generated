@@ -180,7 +180,9 @@ impl CGColorConversionInfo {
     /// # Safety
     ///
     /// - `dst_data` must be a valid pointer.
+    /// - `dst_format` struct field `version` must be set correctly.
     /// - `src_data` must be a valid pointer.
+    /// - `src_format` struct field `version` must be set correctly.
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     #[doc(alias = "CGColorConversionInfoConvertData")]

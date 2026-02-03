@@ -175,6 +175,7 @@ impl CTRunDelegate {
     ///
     /// # Safety
     ///
+    /// - `callbacks` struct field `version` must be set correctly.
     /// - `callbacks` struct field `dealloc` must be implemented correctly.
     /// - `callbacks` struct field `getAscent` must be implemented correctly.
     /// - `callbacks` struct field `getDescent` must be implemented correctly.

@@ -160,6 +160,7 @@ impl CFBag {
     ///
     /// - `allocator` might not allow `None`.
     /// - `values` must be a valid pointer.
+    /// - `call_backs` struct field `version` must be set correctly.
     /// - `call_backs` struct field `retain` must be implemented correctly.
     /// - `call_backs` struct field `release` must be implemented correctly.
     /// - `call_backs` struct field `copyDescription` must be implemented correctly.
@@ -211,6 +212,7 @@ impl CFMutableBag {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
+    /// - `call_backs` struct field `version` must be set correctly.
     /// - `call_backs` struct field `retain` must be implemented correctly.
     /// - `call_backs` struct field `release` must be implemented correctly.
     /// - `call_backs` struct field `copyDescription` must be implemented correctly.

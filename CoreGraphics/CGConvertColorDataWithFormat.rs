@@ -46,9 +46,11 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `dst_data` must be a valid pointer.
+    /// - `dst_format` struct field `version` must be set correctly.
     /// - `dst_format` struct field `colorspace_info` must be a valid pointer.
     /// - `dst_format` struct field `decode` must be a valid pointer.
     /// - `src_data` must be a valid pointer.
+    /// - `src_format` struct field `version` must be set correctly.
     /// - `src_format` struct field `colorspace_info` must be a valid pointer.
     /// - `src_format` struct field `decode` must be a valid pointer.
     /// - `options` generic must be of the correct type.

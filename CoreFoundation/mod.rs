@@ -2005,6 +2005,7 @@ impl CFAllocator {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
+    /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
     /// - `context` struct field `release` must be implemented correctly.
@@ -2211,6 +2212,7 @@ impl CFAllocator {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
+    /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
     /// - `context` struct field `release` must be implemented correctly.

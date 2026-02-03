@@ -133,6 +133,7 @@ impl CGDataProvider {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
+    /// - `callbacks` struct field `version` must be set correctly.
     /// - `callbacks` struct field `getBytes` must be implemented correctly.
     /// - `callbacks` struct field `skipForward` must be implemented correctly.
     /// - `callbacks` struct field `rewind` must be implemented correctly.
@@ -157,6 +158,7 @@ impl CGDataProvider {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
+    /// - `callbacks` struct field `version` must be set correctly.
     /// - `callbacks` struct field `getBytePointer` must be implemented correctly.
     /// - `callbacks` struct field `releaseBytePointer` must be implemented correctly.
     /// - `callbacks` struct field `getBytesAtPosition` must be implemented correctly.

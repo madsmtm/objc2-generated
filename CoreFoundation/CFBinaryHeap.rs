@@ -227,10 +227,12 @@ impl CFBinaryHeap {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
+    /// - `call_backs` struct field `version` must be set correctly.
     /// - `call_backs` struct field `retain` must be implemented correctly.
     /// - `call_backs` struct field `release` must be implemented correctly.
     /// - `call_backs` struct field `copyDescription` must be implemented correctly.
     /// - `call_backs` struct field `compare` must be implemented correctly.
+    /// - `compare_context` struct field `version` must be set correctly.
     /// - `compare_context` struct field `info` must be a valid pointer.
     /// - `compare_context` struct field `retain` must be implemented correctly.
     /// - `compare_context` struct field `release` must be implemented correctly.

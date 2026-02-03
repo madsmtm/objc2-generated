@@ -91,6 +91,7 @@ impl CGPSConverter {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
+    /// - `callbacks` struct field `version` must be set correctly.
     /// - `callbacks` struct field `beginDocument` must be implemented correctly.
     /// - `callbacks` struct field `endDocument` must be implemented correctly.
     /// - `callbacks` struct field `beginPage` must be implemented correctly.

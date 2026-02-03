@@ -752,6 +752,7 @@ impl CFReadStream {
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
+    /// - `client_context` struct field `version` must be set correctly.
     /// - `client_context` struct field `info` must be a valid pointer.
     /// - `client_context` struct field `retain` must be implemented correctly.
     /// - `client_context` struct field `release` must be implemented correctly.
@@ -782,6 +783,7 @@ impl CFWriteStream {
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
+    /// - `client_context` struct field `version` must be set correctly.
     /// - `client_context` struct field `info` must be a valid pointer.
     /// - `client_context` struct field `retain` must be implemented correctly.
     /// - `client_context` struct field `release` must be implemented correctly.
