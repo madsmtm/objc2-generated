@@ -984,7 +984,7 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_queue_create_with_target")]
     #[must_use]
     #[inline]
-    pub(crate) unsafe fn __new_with_target(
+    pub unsafe fn with_target(
         label: Option<&CStr>,
         attr: Option<&DispatchQueueAttr>,
         target: Option<&DispatchQueue>,
@@ -1057,7 +1057,7 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_queue_create")]
     #[must_use]
     #[inline]
-    pub(crate) fn __new(
+    pub fn new(
         label: Option<&CStr>,
         attr: Option<&DispatchQueueAttr>,
     ) -> DispatchRetained<DispatchQueue> {
@@ -4144,7 +4144,7 @@ impl DispatchWorkloop {
     #[doc(alias = "dispatch_workloop_create")]
     #[must_use]
     #[inline]
-    pub(crate) fn __new(label: Option<&CStr>) -> DispatchRetained<DispatchWorkloop> {
+    pub fn new(label: Option<&CStr>) -> DispatchRetained<DispatchWorkloop> {
         extern "C" {
             fn dispatch_workloop_create(label: *const c_char) -> Option<NonNull<DispatchWorkloop>>;
         }
@@ -4178,7 +4178,7 @@ impl DispatchWorkloop {
     #[doc(alias = "dispatch_workloop_create_inactive")]
     #[must_use]
     #[inline]
-    pub(crate) fn __new_inactive(label: Option<&CStr>) -> DispatchRetained<DispatchWorkloop> {
+    pub fn new_inactive(label: Option<&CStr>) -> DispatchRetained<DispatchWorkloop> {
         extern "C" {
             fn dispatch_workloop_create_inactive(
                 label: *const c_char,
