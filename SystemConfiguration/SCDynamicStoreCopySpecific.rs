@@ -20,21 +20,17 @@ impl SCDynamicStore {
     /// Returns: Returns the current computer name;
     /// NULL if the name has not been set or if an error was encountered.
     /// You must release the returned value.
-    ///
-    /// # Safety
-    ///
-    /// `name_encoding` must be a valid pointer or null.
     #[doc(alias = "SCDynamicStoreCopyComputerName")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
-    pub unsafe fn computer_name(
+    pub fn computer_name(
         store: Option<&SCDynamicStore>,
-        name_encoding: *mut CFStringEncoding,
+        name_encoding: Option<&mut CFStringEncoding>,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCDynamicStoreCopyComputerName(
                 store: Option<&SCDynamicStore>,
-                name_encoding: *mut CFStringEncoding,
+                name_encoding: Option<&mut CFStringEncoding>,
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { SCDynamicStoreCopyComputerName(store, name_encoding) };
@@ -64,24 +60,19 @@ impl SCDynamicStore {
     /// Returns: Returns the user currently logged into the system;
     /// NULL if no user is logged in or if an error was encountered.
     /// You must release the returned value.
-    ///
-    /// # Safety
-    ///
-    /// - `uid` must be a valid pointer or null.
-    /// - `gid` must be a valid pointer or null.
     #[doc(alias = "SCDynamicStoreCopyConsoleUser")]
     #[cfg(all(feature = "SCDynamicStore", feature = "libc"))]
     #[inline]
-    pub unsafe fn console_user(
+    pub fn console_user(
         store: Option<&SCDynamicStore>,
-        uid: *mut libc::uid_t,
-        gid: *mut libc::gid_t,
+        uid: Option<&mut libc::uid_t>,
+        gid: Option<&mut libc::gid_t>,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn SCDynamicStoreCopyConsoleUser(
                 store: Option<&SCDynamicStore>,
-                uid: *mut libc::uid_t,
-                gid: *mut libc::gid_t,
+                uid: Option<&mut libc::uid_t>,
+                gid: Option<&mut libc::gid_t>,
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { SCDynamicStoreCopyConsoleUser(store, uid, gid) };
@@ -349,11 +340,13 @@ impl SCDynamicStore {
     #[doc(alias = "SCDynamicStoreCopyProxies")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
-    pub fn proxies(store: Option<&SCDynamicStore>) -> Option<CFRetained<CFDictionary>> {
+    pub fn proxies(
+        store: Option<&SCDynamicStore>,
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn SCDynamicStoreCopyProxies(
                 store: Option<&SCDynamicStore>,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { SCDynamicStoreCopyProxies(store) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

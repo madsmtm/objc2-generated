@@ -262,20 +262,20 @@ impl SCNetworkConnection {
     ///
     /// - `selection_options` generic must be of the correct type.
     /// - `selection_options` generic must be of the correct type.
-    /// - `service_id` must be a valid pointer.
-    /// - `user_options` must be a valid pointer.
+    /// - `service_id` must be a valid pointer or null.
+    /// - `user_options` must be a valid pointer or null.
     #[doc(alias = "SCNetworkConnectionCopyUserPreferences")]
     #[inline]
     pub unsafe fn user_preferences(
         selection_options: Option<&CFDictionary>,
-        service_id: NonNull<*const CFString>,
-        user_options: NonNull<*const CFDictionary>,
+        service_id: &mut *const CFString,
+        user_options: &mut *const CFDictionary<CFString, CFType>,
     ) -> bool {
         extern "C-unwind" {
             fn SCNetworkConnectionCopyUserPreferences(
                 selection_options: Option<&CFDictionary>,
-                service_id: NonNull<*const CFString>,
-                user_options: NonNull<*const CFDictionary>,
+                service_id: &mut *const CFString,
+                user_options: &mut *const CFDictionary<CFString, CFType>,
             ) -> Boolean;
         }
         let ret = unsafe {
@@ -311,21 +311,24 @@ impl SCNetworkConnection {
     /// # Safety
     ///
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer or null.
+    /// - `context` struct field 2 must be a valid pointer or null.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "SCNetworkConnectionCreateWithServiceID")]
     #[inline]
     pub unsafe fn with_service_id(
         allocator: Option<&CFAllocator>,
         service_id: &CFString,
         callout: SCNetworkConnectionCallBack,
-        context: *mut SCNetworkConnectionContext,
+        context: Option<&SCNetworkConnectionContext>,
     ) -> Option<CFRetained<SCNetworkConnection>> {
         extern "C-unwind" {
             fn SCNetworkConnectionCreateWithServiceID(
                 allocator: Option<&CFAllocator>,
                 service_id: &CFString,
                 callout: SCNetworkConnectionCallBack,
-                context: *mut SCNetworkConnectionContext,
+                context: Option<&SCNetworkConnectionContext>,
             ) -> Option<NonNull<SCNetworkConnection>>;
         }
         let ret = unsafe {
@@ -425,11 +428,11 @@ impl SCNetworkConnection {
     /// If NULL is returned, the error can be retrieved using the SCError function.
     #[doc(alias = "SCNetworkConnectionCopyExtendedStatus")]
     #[inline]
-    pub fn extended_status(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn extended_status(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn SCNetworkConnectionCopyExtendedStatus(
                 connection: &SCNetworkConnection,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { SCNetworkConnectionCopyExtendedStatus(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -474,11 +477,11 @@ impl SCNetworkConnection {
     /// If NULL is returned, the error can be retrieved using the SCError function.
     #[doc(alias = "SCNetworkConnectionCopyStatistics")]
     #[inline]
-    pub fn statistics(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn statistics(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn SCNetworkConnectionCopyStatistics(
                 connection: &SCNetworkConnection,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { SCNetworkConnectionCopyStatistics(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -532,15 +535,18 @@ impl SCNetworkConnection {
     ///
     /// # Safety
     ///
-    /// - `user_options` generic must be of the correct type.
-    /// - `user_options` generic must be of the correct type.
+    /// `user_options` generic should be of the correct type.
     #[doc(alias = "SCNetworkConnectionStart")]
     #[inline]
-    pub unsafe fn start(&self, user_options: Option<&CFDictionary>, linger: bool) -> bool {
+    pub unsafe fn start(
+        &self,
+        user_options: Option<&CFDictionary<CFString, CFType>>,
+        linger: bool,
+    ) -> bool {
         extern "C-unwind" {
             fn SCNetworkConnectionStart(
                 connection: &SCNetworkConnection,
-                user_options: Option<&CFDictionary>,
+                user_options: Option<&CFDictionary<CFString, CFType>>,
                 linger: Boolean,
             ) -> Boolean;
         }
@@ -590,11 +596,11 @@ impl SCNetworkConnection {
     /// If NULL is returned, the error can be retrieved using the SCError function.
     #[doc(alias = "SCNetworkConnectionCopyUserOptions")]
     #[inline]
-    pub fn user_options(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn user_options(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn SCNetworkConnectionCopyUserOptions(
                 connection: &SCNetworkConnection,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { SCNetworkConnectionCopyUserOptions(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

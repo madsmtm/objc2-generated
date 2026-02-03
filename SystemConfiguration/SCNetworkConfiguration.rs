@@ -280,9 +280,9 @@ impl SCNetworkInterface {
     /// You must release the returned value.
     #[doc(alias = "SCNetworkInterfaceCopyAll")]
     #[inline]
-    pub fn all() -> CFRetained<CFArray> {
+    pub fn all() -> CFRetained<CFArray<SCNetworkInterface>> {
         extern "C-unwind" {
-            fn SCNetworkInterfaceCopyAll() -> Option<NonNull<CFArray>>;
+            fn SCNetworkInterfaceCopyAll() -> Option<NonNull<CFArray<SCNetworkInterface>>>;
         }
         let ret = unsafe { SCNetworkInterfaceCopyAll() };
         let ret =
@@ -299,11 +299,11 @@ impl SCNetworkInterface {
     /// NULL if no interface types are supported.
     #[doc(alias = "SCNetworkInterfaceGetSupportedInterfaceTypes")]
     #[inline]
-    pub fn supported_interface_types(&self) -> Option<CFRetained<CFArray>> {
+    pub fn supported_interface_types(&self) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
             fn SCNetworkInterfaceGetSupportedInterfaceTypes(
                 interface: &SCNetworkInterface,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { SCNetworkInterfaceGetSupportedInterfaceTypes(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -318,11 +318,11 @@ impl SCNetworkInterface {
     /// NULL if no protocol types are supported.
     #[doc(alias = "SCNetworkInterfaceGetSupportedProtocolTypes")]
     #[inline]
-    pub fn supported_protocol_types(&self) -> Option<CFRetained<CFArray>> {
+    pub fn supported_protocol_types(&self) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
             fn SCNetworkInterfaceGetSupportedProtocolTypes(
                 interface: &SCNetworkInterface,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { SCNetworkInterfaceGetSupportedProtocolTypes(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -578,17 +578,17 @@ impl SCNetworkInterface {
     #[inline]
     pub unsafe fn media_options(
         &self,
-        current: *mut *const CFDictionary,
-        active: *mut *const CFDictionary,
-        available: *mut *const CFArray,
+        current: Option<&mut *const CFDictionary<CFString, CFType>>,
+        active: Option<&mut *const CFDictionary<CFString, CFType>>,
+        available: Option<&mut *const CFArray<CFString>>,
         filter: bool,
     ) -> bool {
         extern "C-unwind" {
             fn SCNetworkInterfaceCopyMediaOptions(
                 interface: &SCNetworkInterface,
-                current: *mut *const CFDictionary,
-                active: *mut *const CFDictionary,
-                available: *mut *const CFArray,
+                current: Option<&mut *const CFDictionary<CFString, CFType>>,
+                active: Option<&mut *const CFDictionary<CFString, CFType>>,
+                available: Option<&mut *const CFArray<CFString>>,
                 filter: Boolean,
             ) -> Boolean;
         }
@@ -608,10 +608,11 @@ impl SCNetworkInterface {
     /// 100baseTX, etc).  NULL if no subtypes are available.
     #[doc(alias = "SCNetworkInterfaceCopyMediaSubTypes")]
     #[inline]
-    pub fn media_sub_types(available: &CFArray) -> Option<CFRetained<CFArray>> {
+    pub fn media_sub_types(available: &CFArray<CFString>) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
-            fn SCNetworkInterfaceCopyMediaSubTypes(available: &CFArray)
-                -> Option<NonNull<CFArray>>;
+            fn SCNetworkInterfaceCopyMediaSubTypes(
+                available: &CFArray<CFString>,
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { SCNetworkInterfaceCopyMediaSubTypes(available) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -634,14 +635,14 @@ impl SCNetworkInterface {
     #[doc(alias = "SCNetworkInterfaceCopyMediaSubTypeOptions")]
     #[inline]
     pub fn media_sub_type_options(
-        available: &CFArray,
+        available: &CFArray<CFString>,
         sub_type: &CFString,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
             fn SCNetworkInterfaceCopyMediaSubTypeOptions(
-                available: &CFArray,
+                available: &CFArray<CFString>,
                 sub_type: &CFString,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { SCNetworkInterfaceCopyMediaSubTypeOptions(available, sub_type) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -665,26 +666,20 @@ impl SCNetworkInterface {
     /// could not be determined.
     ///
     /// Returns: TRUE if requested information has been returned.
-    ///
-    /// # Safety
-    ///
-    /// - `mtu_cur` must be a valid pointer or null.
-    /// - `mtu_min` must be a valid pointer or null.
-    /// - `mtu_max` must be a valid pointer or null.
     #[doc(alias = "SCNetworkInterfaceCopyMTU")]
     #[inline]
-    pub unsafe fn mtu(
+    pub fn mtu(
         &self,
-        mtu_cur: *mut c_int,
-        mtu_min: *mut c_int,
-        mtu_max: *mut c_int,
+        mtu_cur: Option<&mut c_int>,
+        mtu_min: Option<&mut c_int>,
+        mtu_max: Option<&mut c_int>,
     ) -> bool {
         extern "C-unwind" {
             fn SCNetworkInterfaceCopyMTU(
                 interface: &SCNetworkInterface,
-                mtu_cur: *mut c_int,
-                mtu_min: *mut c_int,
-                mtu_max: *mut c_int,
+                mtu_cur: Option<&mut c_int>,
+                mtu_min: Option<&mut c_int>,
+                mtu_max: Option<&mut c_int>,
             ) -> Boolean;
         }
         let ret = unsafe { SCNetworkInterfaceCopyMTU(self, mtu_cur, mtu_min, mtu_max) };
@@ -705,12 +700,16 @@ impl SCNetworkInterface {
     /// Returns: TRUE if the configuration was updated; FALSE if an error was encountered.
     #[doc(alias = "SCNetworkInterfaceSetMediaOptions")]
     #[inline]
-    pub fn set_media_options(&self, subtype: Option<&CFString>, options: Option<&CFArray>) -> bool {
+    pub fn set_media_options(
+        &self,
+        subtype: Option<&CFString>,
+        options: Option<&CFArray<CFString>>,
+    ) -> bool {
         extern "C-unwind" {
             fn SCNetworkInterfaceSetMediaOptions(
                 interface: &SCNetworkInterface,
                 subtype: Option<&CFString>,
-                options: Option<&CFArray>,
+                options: Option<&CFArray<CFString>>,
             ) -> Boolean;
         }
         let ret = unsafe { SCNetworkInterfaceSetMediaOptions(self, subtype, options) };
@@ -776,9 +775,13 @@ impl SCNetworkInterface {
 /// You must release the returned value.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub extern "C-unwind" fn SCBondInterfaceCopyAll(prefs: &SCPreferences) -> CFRetained<CFArray> {
+pub extern "C-unwind" fn SCBondInterfaceCopyAll(
+    prefs: &SCPreferences,
+) -> CFRetained<CFArray<SCBondInterface>> {
     extern "C-unwind" {
-        fn SCBondInterfaceCopyAll(prefs: &SCPreferences) -> Option<NonNull<CFArray>>;
+        fn SCBondInterfaceCopyAll(
+            prefs: &SCPreferences,
+        ) -> Option<NonNull<CFArray<SCBondInterface>>>;
     }
     let ret = unsafe { SCBondInterfaceCopyAll(prefs) };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -796,11 +799,11 @@ pub extern "C-unwind" fn SCBondInterfaceCopyAll(prefs: &SCPreferences) -> CFReta
 #[inline]
 pub extern "C-unwind" fn SCBondInterfaceCopyAvailableMemberInterfaces(
     prefs: &SCPreferences,
-) -> CFRetained<CFArray> {
+) -> CFRetained<CFArray<SCBondInterface>> {
     extern "C-unwind" {
         fn SCBondInterfaceCopyAvailableMemberInterfaces(
             prefs: &SCPreferences,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<SCBondInterface>>>;
     }
     let ret = unsafe { SCBondInterfaceCopyAvailableMemberInterfaces(prefs) };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -847,9 +850,11 @@ pub extern "C-unwind" fn SCBondInterfaceRemove(bond: &SCBondInterface) -> bool {
 #[inline]
 pub extern "C-unwind" fn SCBondInterfaceGetMemberInterfaces(
     bond: &SCBondInterface,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<SCBondInterface>>> {
     extern "C-unwind" {
-        fn SCBondInterfaceGetMemberInterfaces(bond: &SCBondInterface) -> Option<NonNull<CFArray>>;
+        fn SCBondInterfaceGetMemberInterfaces(
+            bond: &SCBondInterface,
+        ) -> Option<NonNull<CFArray<SCBondInterface>>>;
     }
     let ret = unsafe { SCBondInterfaceGetMemberInterfaces(bond) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -864,9 +869,11 @@ pub extern "C-unwind" fn SCBondInterfaceGetMemberInterfaces(
 #[inline]
 pub extern "C-unwind" fn SCBondInterfaceGetOptions(
     bond: &SCBondInterface,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
-        fn SCBondInterfaceGetOptions(bond: &SCBondInterface) -> Option<NonNull<CFDictionary>>;
+        fn SCBondInterfaceGetOptions(
+            bond: &SCBondInterface,
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { SCBondInterfaceGetOptions(bond) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -879,18 +886,16 @@ pub extern "C-unwind" fn SCBondInterfaceGetOptions(
 /// Parameter `members`: The desired member interfaces.
 ///
 /// Returns: TRUE if the configuration was stored; FALSE if an error was encountered.
-///
-/// # Safety
-///
-/// `members` generic must be of the correct type.
 #[inline]
-pub unsafe extern "C-unwind" fn SCBondInterfaceSetMemberInterfaces(
+pub extern "C-unwind" fn SCBondInterfaceSetMemberInterfaces(
     bond: &SCBondInterface,
-    members: &CFArray,
+    members: &CFArray<SCBondInterface>,
 ) -> bool {
     extern "C-unwind" {
-        fn SCBondInterfaceSetMemberInterfaces(bond: &SCBondInterface, members: &CFArray)
-            -> Boolean;
+        fn SCBondInterfaceSetMemberInterfaces(
+            bond: &SCBondInterface,
+            members: &CFArray<SCBondInterface>,
+        ) -> Boolean;
     }
     let ret = unsafe { SCBondInterfaceSetMemberInterfaces(bond, members) };
     ret != 0
@@ -928,16 +933,17 @@ pub extern "C-unwind" fn SCBondInterfaceSetLocalizedDisplayName(
 ///
 /// # Safety
 ///
-/// - `new_options` generic must be of the correct type.
-/// - `new_options` generic must be of the correct type.
+/// `new_options` generic should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn SCBondInterfaceSetOptions(
     bond: &SCBondInterface,
-    new_options: &CFDictionary,
+    new_options: &CFDictionary<CFString, CFType>,
 ) -> bool {
     extern "C-unwind" {
-        fn SCBondInterfaceSetOptions(bond: &SCBondInterface, new_options: &CFDictionary)
-            -> Boolean;
+        fn SCBondInterfaceSetOptions(
+            bond: &SCBondInterface,
+            new_options: &CFDictionary<CFString, CFType>,
+        ) -> Boolean;
     }
     let ret = unsafe { SCBondInterfaceSetOptions(bond, new_options) };
     ret != 0
@@ -981,11 +987,11 @@ impl SCBondStatus {
     /// Returns: The list of interfaces.
     #[doc(alias = "SCBondStatusGetMemberInterfaces")]
     #[inline]
-    pub fn member_interfaces(&self) -> Option<CFRetained<CFArray>> {
+    pub fn member_interfaces(&self) -> Option<CFRetained<CFArray<SCBondInterface>>> {
         extern "C-unwind" {
             fn SCBondStatusGetMemberInterfaces(
                 bond_status: &SCBondStatus,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<SCBondInterface>>>;
         }
         let ret = unsafe { SCBondStatusGetMemberInterfaces(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -1027,9 +1033,13 @@ impl SCBondStatus {
 /// You must release the returned value.
 #[cfg(feature = "SCPreferences")]
 #[inline]
-pub extern "C-unwind" fn SCVLANInterfaceCopyAll(prefs: &SCPreferences) -> CFRetained<CFArray> {
+pub extern "C-unwind" fn SCVLANInterfaceCopyAll(
+    prefs: &SCPreferences,
+) -> CFRetained<CFArray<SCVLANInterface>> {
     extern "C-unwind" {
-        fn SCVLANInterfaceCopyAll(prefs: &SCPreferences) -> Option<NonNull<CFArray>>;
+        fn SCVLANInterfaceCopyAll(
+            prefs: &SCPreferences,
+        ) -> Option<NonNull<CFArray<SCVLANInterface>>>;
     }
     let ret = unsafe { SCVLANInterfaceCopyAll(prefs) };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -1042,9 +1052,11 @@ pub extern "C-unwind" fn SCVLANInterfaceCopyAll(prefs: &SCPreferences) -> CFReta
 /// Returns: The list of interfaces.
 /// You must release the returned value.
 #[inline]
-pub extern "C-unwind" fn SCVLANInterfaceCopyAvailablePhysicalInterfaces() -> CFRetained<CFArray> {
+pub extern "C-unwind" fn SCVLANInterfaceCopyAvailablePhysicalInterfaces(
+) -> CFRetained<CFArray<SCVLANInterface>> {
     extern "C-unwind" {
-        fn SCVLANInterfaceCopyAvailablePhysicalInterfaces() -> Option<NonNull<CFArray>>;
+        fn SCVLANInterfaceCopyAvailablePhysicalInterfaces(
+        ) -> Option<NonNull<CFArray<SCVLANInterface>>>;
     }
     let ret = unsafe { SCVLANInterfaceCopyAvailablePhysicalInterfaces() };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -1142,9 +1154,11 @@ pub extern "C-unwind" fn SCVLANInterfaceGetTag(
 #[inline]
 pub extern "C-unwind" fn SCVLANInterfaceGetOptions(
     vlan: &SCVLANInterface,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
-        fn SCVLANInterfaceGetOptions(vlan: &SCVLANInterface) -> Option<NonNull<CFDictionary>>;
+        fn SCVLANInterfaceGetOptions(
+            vlan: &SCVLANInterface,
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { SCVLANInterfaceGetOptions(vlan) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -1214,16 +1228,17 @@ pub extern "C-unwind" fn SCVLANInterfaceSetLocalizedDisplayName(
 ///
 /// # Safety
 ///
-/// - `new_options` generic must be of the correct type.
-/// - `new_options` generic must be of the correct type.
+/// `new_options` generic should be of the correct type.
 #[inline]
 pub unsafe extern "C-unwind" fn SCVLANInterfaceSetOptions(
     vlan: &SCVLANInterface,
-    new_options: &CFDictionary,
+    new_options: &CFDictionary<CFString, CFType>,
 ) -> bool {
     extern "C-unwind" {
-        fn SCVLANInterfaceSetOptions(vlan: &SCVLANInterface, new_options: &CFDictionary)
-            -> Boolean;
+        fn SCVLANInterfaceSetOptions(
+            vlan: &SCVLANInterface,
+            new_options: &CFDictionary<CFString, CFType>,
+        ) -> Boolean;
     }
     let ret = unsafe { SCVLANInterfaceSetOptions(vlan, new_options) };
     ret != 0
@@ -1385,9 +1400,11 @@ impl SCNetworkService {
     #[doc(alias = "SCNetworkServiceCopyAll")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
-    pub fn all(prefs: &SCPreferences) -> Option<CFRetained<CFArray>> {
+    pub fn all(prefs: &SCPreferences) -> Option<CFRetained<CFArray<SCNetworkService>>> {
         extern "C-unwind" {
-            fn SCNetworkServiceCopyAll(prefs: &SCPreferences) -> Option<NonNull<CFArray>>;
+            fn SCNetworkServiceCopyAll(
+                prefs: &SCPreferences,
+            ) -> Option<NonNull<CFArray<SCNetworkService>>>;
         }
         let ret = unsafe { SCNetworkServiceCopyAll(prefs) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -1401,11 +1418,11 @@ impl SCNetworkService {
     /// You must release the returned value.
     #[doc(alias = "SCNetworkServiceCopyProtocols")]
     #[inline]
-    pub fn protocols(&self) -> Option<CFRetained<CFArray>> {
+    pub fn protocols(&self) -> Option<CFRetained<CFArray<SCNetworkProtocol>>> {
         extern "C-unwind" {
             fn SCNetworkServiceCopyProtocols(
                 service: &SCNetworkService,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<SCNetworkProtocol>>>;
         }
         let ret = unsafe { SCNetworkServiceCopyProtocols(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -1712,9 +1729,10 @@ impl SCNetworkSet {
     #[doc(alias = "SCNetworkSetCopyAll")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
-    pub fn all(prefs: &SCPreferences) -> Option<CFRetained<CFArray>> {
+    pub fn all(prefs: &SCPreferences) -> Option<CFRetained<CFArray<SCNetworkSet>>> {
         extern "C-unwind" {
-            fn SCNetworkSetCopyAll(prefs: &SCPreferences) -> Option<NonNull<CFArray>>;
+            fn SCNetworkSetCopyAll(prefs: &SCPreferences)
+                -> Option<NonNull<CFArray<SCNetworkSet>>>;
         }
         let ret = unsafe { SCNetworkSetCopyAll(prefs) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -1744,9 +1762,11 @@ impl SCNetworkSet {
     /// You must release the returned value.
     #[doc(alias = "SCNetworkSetCopyServices")]
     #[inline]
-    pub fn services(&self) -> Option<CFRetained<CFArray>> {
+    pub fn services(&self) -> Option<CFRetained<CFArray<SCNetworkService>>> {
         extern "C-unwind" {
-            fn SCNetworkSetCopyServices(set: &SCNetworkSet) -> Option<NonNull<CFArray>>;
+            fn SCNetworkSetCopyServices(
+                set: &SCNetworkSet,
+            ) -> Option<NonNull<CFArray<SCNetworkService>>>;
         }
         let ret = unsafe { SCNetworkSetCopyServices(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -1834,9 +1854,11 @@ impl SCNetworkSet {
     /// was encountered.
     #[doc(alias = "SCNetworkSetGetServiceOrder")]
     #[inline]
-    pub fn service_order(&self) -> Option<CFRetained<CFArray>> {
+    pub fn service_order(&self) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
-            fn SCNetworkSetGetServiceOrder(set: &SCNetworkSet) -> Option<NonNull<CFArray>>;
+            fn SCNetworkSetGetServiceOrder(
+                set: &SCNetworkSet,
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { SCNetworkSetGetServiceOrder(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -1920,15 +1942,14 @@ impl SCNetworkSet {
     /// Parameter `newOrder`: The ordered list of CFStringRef service identifiers for the set.
     ///
     /// Returns: TRUE if the new service order was saved; FALSE if an error was encountered.
-    ///
-    /// # Safety
-    ///
-    /// `new_order` generic must be of the correct type.
     #[doc(alias = "SCNetworkSetSetServiceOrder")]
     #[inline]
-    pub unsafe fn set_service_order(&self, new_order: &CFArray) -> bool {
+    pub fn set_service_order(&self, new_order: &CFArray<CFString>) -> bool {
         extern "C-unwind" {
-            fn SCNetworkSetSetServiceOrder(set: &SCNetworkSet, new_order: &CFArray) -> Boolean;
+            fn SCNetworkSetSetServiceOrder(
+                set: &SCNetworkSet,
+                new_order: &CFArray<CFString>,
+            ) -> Boolean;
         }
         let ret = unsafe { SCNetworkSetSetServiceOrder(self, new_order) };
         ret != 0

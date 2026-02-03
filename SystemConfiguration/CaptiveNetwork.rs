@@ -22,15 +22,11 @@ use crate::*;
 /// Parameter `ssidArray`: A CFArray of CFStrings of the SSIDs.
 ///
 /// Returns: Returns TRUE if the operation succeeded, FALSE otherwise.
-///
-/// # Safety
-///
-/// `ssid_array` generic must be of the correct type.
 #[deprecated]
 #[inline]
-pub unsafe extern "C-unwind" fn CNSetSupportedSSIDs(ssid_array: &CFArray) -> bool {
+pub extern "C-unwind" fn CNSetSupportedSSIDs(ssid_array: &CFArray<CFString>) -> bool {
     extern "C-unwind" {
-        fn CNSetSupportedSSIDs(ssid_array: &CFArray) -> Boolean;
+        fn CNSetSupportedSSIDs(ssid_array: &CFArray<CFString>) -> Boolean;
     }
     let ret = unsafe { CNSetSupportedSSIDs(ssid_array) };
     ret != 0
@@ -76,9 +72,9 @@ pub extern "C-unwind" fn CNMarkPortalOffline(interface_name: &CFString) -> bool 
 /// Returns NULL if an error was encountered.
 /// You MUST release the returned value.
 #[inline]
-pub extern "C-unwind" fn CNCopySupportedInterfaces() -> Option<CFRetained<CFArray>> {
+pub extern "C-unwind" fn CNCopySupportedInterfaces() -> Option<CFRetained<CFArray<CFString>>> {
     extern "C-unwind" {
-        fn CNCopySupportedInterfaces() -> Option<NonNull<CFArray>>;
+        fn CNCopySupportedInterfaces() -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { CNCopySupportedInterfaces() };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -143,9 +139,11 @@ extern "C" {
 #[inline]
 pub extern "C-unwind" fn CNCopyCurrentNetworkInfo(
     interface_name: &CFString,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFPropertyList>>> {
     extern "C-unwind" {
-        fn CNCopyCurrentNetworkInfo(interface_name: &CFString) -> Option<NonNull<CFDictionary>>;
+        fn CNCopyCurrentNetworkInfo(
+            interface_name: &CFString,
+        ) -> Option<NonNull<CFDictionary<CFString, CFPropertyList>>>;
     }
     let ret = unsafe { CNCopyCurrentNetworkInfo(interface_name) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

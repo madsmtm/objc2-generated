@@ -40,25 +40,28 @@ pub unsafe extern "C-unwind" fn DHCPClientPreferencesSetApplicationOptions(
     ret != 0
 }
 
-extern "C-unwind" {
-    /// Copies the requested DHCP options for the
-    /// given application ID.
-    ///
-    /// Parameter `applicationID`: The application's preference ID, for example
-    /// "com.apple.SystemPreferences".
-    ///
-    /// Parameter `count`: The number of elements in the returned array.
-    ///
-    /// Returns: Returns the list of options for the given application ID, or
-    /// NULL if no options are defined or an error occurred.
-    ///
-    /// When you are finished, use free() to release a non-NULL return value.
-    ///
-    /// # Safety
-    ///
-    /// `count` must be a valid pointer.
-    pub fn DHCPClientPreferencesCopyApplicationOptions(
-        application_id: &CFString,
-        count: NonNull<CFIndex>,
-    ) -> *mut u8;
+/// Copies the requested DHCP options for the
+/// given application ID.
+///
+/// Parameter `applicationID`: The application's preference ID, for example
+/// "com.apple.SystemPreferences".
+///
+/// Parameter `count`: The number of elements in the returned array.
+///
+/// Returns: Returns the list of options for the given application ID, or
+/// NULL if no options are defined or an error occurred.
+///
+/// When you are finished, use free() to release a non-NULL return value.
+#[inline]
+pub extern "C-unwind" fn DHCPClientPreferencesCopyApplicationOptions(
+    application_id: &CFString,
+    count: &mut CFIndex,
+) -> *mut u8 {
+    extern "C-unwind" {
+        fn DHCPClientPreferencesCopyApplicationOptions(
+            application_id: &CFString,
+            count: &mut CFIndex,
+        ) -> *mut u8;
+    }
+    unsafe { DHCPClientPreferencesCopyApplicationOptions(application_id, count) }
 }

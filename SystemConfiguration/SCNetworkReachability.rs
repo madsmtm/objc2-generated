@@ -279,16 +279,12 @@ impl SCNetworkReachability {
     /// Returns: Returns a reference to the new immutable SCNetworkReachabilityRef.
     ///
     /// You must release the returned value.
-    ///
-    /// # Safety
-    ///
-    /// `nodename` must be a valid pointer.
     #[doc(alias = "SCNetworkReachabilityCreateWithName")]
     #[deprecated]
     #[inline]
-    pub unsafe fn with_name(
+    pub fn with_name(
         allocator: Option<&CFAllocator>,
-        nodename: NonNull<c_char>,
+        nodename: &CStr,
     ) -> Option<CFRetained<SCNetworkReachability>> {
         extern "C-unwind" {
             fn SCNetworkReachabilityCreateWithName(
@@ -296,7 +292,12 @@ impl SCNetworkReachability {
                 nodename: NonNull<c_char>,
             ) -> Option<NonNull<SCNetworkReachability>>;
         }
-        let ret = unsafe { SCNetworkReachabilityCreateWithName(allocator, nodename) };
+        let ret = unsafe {
+            SCNetworkReachabilityCreateWithName(
+                allocator,
+                NonNull::new(nodename.as_ptr().cast_mut()).unwrap(),
+            )
+        };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }
@@ -327,18 +328,14 @@ impl SCNetworkReachability {
     ///
     /// Returns: Returns TRUE if the network connection flags are valid;
     /// FALSE if the status could not be determined.
-    ///
-    /// # Safety
-    ///
-    /// `flags` must be a valid pointer.
     #[doc(alias = "SCNetworkReachabilityGetFlags")]
     #[deprecated]
     #[inline]
-    pub unsafe fn flags(&self, flags: NonNull<SCNetworkReachabilityFlags>) -> bool {
+    pub fn flags(&self, flags: &mut SCNetworkReachabilityFlags) -> bool {
         extern "C-unwind" {
             fn SCNetworkReachabilityGetFlags(
                 target: &SCNetworkReachability,
-                flags: NonNull<SCNetworkReachabilityFlags>,
+                flags: &mut SCNetworkReachabilityFlags,
             ) -> Boolean;
         }
         let ret = unsafe { SCNetworkReachabilityGetFlags(self, flags) };
@@ -363,20 +360,23 @@ impl SCNetworkReachability {
     /// # Safety
     ///
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer or null.
+    /// - `context` struct field 2 must be a valid pointer or null.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "SCNetworkReachabilitySetCallback")]
     #[deprecated]
     #[inline]
     pub unsafe fn set_callback(
         &self,
         callout: SCNetworkReachabilityCallBack,
-        context: *mut SCNetworkReachabilityContext,
+        context: Option<&SCNetworkReachabilityContext>,
     ) -> bool {
         extern "C-unwind" {
             fn SCNetworkReachabilitySetCallback(
                 target: &SCNetworkReachability,
                 callout: SCNetworkReachabilityCallBack,
-                context: *mut SCNetworkReachabilityContext,
+                context: Option<&SCNetworkReachabilityContext>,
             ) -> Boolean;
         }
         let ret = unsafe { SCNetworkReachabilitySetCallback(self, callout, context) };

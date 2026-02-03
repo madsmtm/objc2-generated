@@ -140,21 +140,24 @@ impl SCDynamicStore {
     /// # Safety
     ///
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer or null.
+    /// - `context` struct field 2 must be a valid pointer or null.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "SCDynamicStoreCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         name: &CFString,
         callout: SCDynamicStoreCallBack,
-        context: *mut SCDynamicStoreContext,
+        context: Option<&SCDynamicStoreContext>,
     ) -> Option<CFRetained<SCDynamicStore>> {
         extern "C-unwind" {
             fn SCDynamicStoreCreate(
                 allocator: Option<&CFAllocator>,
                 name: &CFString,
                 callout: SCDynamicStoreCallBack,
-                context: *mut SCDynamicStoreContext,
+                context: Option<&SCDynamicStoreContext>,
             ) -> Option<NonNull<SCDynamicStore>>;
         }
         let ret = unsafe { SCDynamicStoreCreate(allocator, name, callout, context) };
@@ -222,26 +225,27 @@ impl SCDynamicStore {
     ///
     /// # Safety
     ///
-    /// - `store_options` generic must be of the correct type.
-    /// - `store_options` generic must be of the correct type.
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer or null.
+    /// - `context` struct field 2 must be a valid pointer or null.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "SCDynamicStoreCreateWithOptions")]
     #[inline]
     pub unsafe fn with_options(
         allocator: Option<&CFAllocator>,
         name: &CFString,
-        store_options: Option<&CFDictionary>,
+        store_options: Option<&CFDictionary<CFString, CFPropertyList>>,
         callout: SCDynamicStoreCallBack,
-        context: *mut SCDynamicStoreContext,
+        context: Option<&SCDynamicStoreContext>,
     ) -> Option<CFRetained<SCDynamicStore>> {
         extern "C-unwind" {
             fn SCDynamicStoreCreateWithOptions(
                 allocator: Option<&CFAllocator>,
                 name: &CFString,
-                store_options: Option<&CFDictionary>,
+                store_options: Option<&CFDictionary<CFString, CFPropertyList>>,
                 callout: SCDynamicStoreCallBack,
-                context: *mut SCDynamicStoreContext,
+                context: Option<&SCDynamicStoreContext>,
             ) -> Option<NonNull<SCDynamicStore>>;
         }
         let ret = unsafe {
@@ -341,12 +345,12 @@ impl SCDynamicStore {
     pub fn key_list(
         store: Option<&SCDynamicStore>,
         pattern: &CFString,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
             fn SCDynamicStoreCopyKeyList(
                 store: Option<&SCDynamicStore>,
                 pattern: &CFString,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { SCDynamicStoreCopyKeyList(store, pattern) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -455,24 +459,19 @@ impl SCDynamicStore {
     /// key-value pairs of keys that matched the specified patterns;
     /// NULL if an error was encountered.
     /// You must release the returned value.
-    ///
-    /// # Safety
-    ///
-    /// - `keys` generic must be of the correct type.
-    /// - `patterns` generic must be of the correct type.
     #[doc(alias = "SCDynamicStoreCopyMultiple")]
     #[inline]
-    pub unsafe fn multiple(
+    pub fn multiple(
         store: Option<&SCDynamicStore>,
-        keys: Option<&CFArray>,
-        patterns: Option<&CFArray>,
-    ) -> Option<CFRetained<CFDictionary>> {
+        keys: Option<&CFArray<CFString>>,
+        patterns: Option<&CFArray<CFString>>,
+    ) -> Option<CFRetained<CFDictionary<CFString, CFPropertyList>>> {
         extern "C-unwind" {
             fn SCDynamicStoreCopyMultiple(
                 store: Option<&SCDynamicStore>,
-                keys: Option<&CFArray>,
-                patterns: Option<&CFArray>,
-            ) -> Option<NonNull<CFDictionary>>;
+                keys: Option<&CFArray<CFString>>,
+                patterns: Option<&CFArray<CFString>>,
+            ) -> Option<NonNull<CFDictionary<CFString, CFPropertyList>>>;
         }
         let ret = unsafe { SCDynamicStoreCopyMultiple(store, keys, patterns) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -521,27 +520,20 @@ impl SCDynamicStore {
     /// Parameter `keysToNotify`: An array of keys to flag as changed (without changing their values).
     ///
     /// Returns: Returns TRUE if the dynamic store updates were successful; FALSE if an error was encountered.
-    ///
-    /// # Safety
-    ///
-    /// - `keys_to_set` generic must be of the correct type.
-    /// - `keys_to_set` generic must be of the correct type.
-    /// - `keys_to_remove` generic must be of the correct type.
-    /// - `keys_to_notify` generic must be of the correct type.
     #[doc(alias = "SCDynamicStoreSetMultiple")]
     #[inline]
-    pub unsafe fn set_multiple(
+    pub fn set_multiple(
         store: Option<&SCDynamicStore>,
-        keys_to_set: Option<&CFDictionary>,
-        keys_to_remove: Option<&CFArray>,
-        keys_to_notify: Option<&CFArray>,
+        keys_to_set: Option<&CFDictionary<CFString, CFPropertyList>>,
+        keys_to_remove: Option<&CFArray<CFString>>,
+        keys_to_notify: Option<&CFArray<CFString>>,
     ) -> bool {
         extern "C-unwind" {
             fn SCDynamicStoreSetMultiple(
                 store: Option<&SCDynamicStore>,
-                keys_to_set: Option<&CFDictionary>,
-                keys_to_remove: Option<&CFArray>,
-                keys_to_notify: Option<&CFArray>,
+                keys_to_set: Option<&CFDictionary<CFString, CFPropertyList>>,
+                keys_to_remove: Option<&CFArray<CFString>>,
+                keys_to_notify: Option<&CFArray<CFString>>,
             ) -> Boolean;
         }
         let ret = unsafe {
@@ -604,23 +596,18 @@ impl SCDynamicStore {
     ///
     /// Returns: Returns TRUE if the set of notification keys and patterns was successfully
     /// updated; FALSE if an error was encountered.
-    ///
-    /// # Safety
-    ///
-    /// - `keys` generic must be of the correct type.
-    /// - `patterns` generic must be of the correct type.
     #[doc(alias = "SCDynamicStoreSetNotificationKeys")]
     #[inline]
-    pub unsafe fn set_notification_keys(
+    pub fn set_notification_keys(
         &self,
-        keys: Option<&CFArray>,
-        patterns: Option<&CFArray>,
+        keys: Option<&CFArray<CFString>>,
+        patterns: Option<&CFArray<CFString>>,
     ) -> bool {
         extern "C-unwind" {
             fn SCDynamicStoreSetNotificationKeys(
                 store: &SCDynamicStore,
-                keys: Option<&CFArray>,
-                patterns: Option<&CFArray>,
+                keys: Option<&CFArray<CFString>>,
+                patterns: Option<&CFArray<CFString>>,
             ) -> Boolean;
         }
         let ret = unsafe { SCDynamicStoreSetNotificationKeys(self, keys, patterns) };
@@ -640,9 +627,11 @@ impl SCDynamicStore {
     /// You must release the returned value.
     #[doc(alias = "SCDynamicStoreCopyNotifiedKeys")]
     #[inline]
-    pub fn notified_keys(&self) -> Option<CFRetained<CFArray>> {
+    pub fn notified_keys(&self) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
-            fn SCDynamicStoreCopyNotifiedKeys(store: &SCDynamicStore) -> Option<NonNull<CFArray>>;
+            fn SCDynamicStoreCopyNotifiedKeys(
+                store: &SCDynamicStore,
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { SCDynamicStoreCopyNotifiedKeys(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

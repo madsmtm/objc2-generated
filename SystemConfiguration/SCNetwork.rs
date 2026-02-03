@@ -54,21 +54,20 @@ pub type SCNetworkConnectionFlags = u32;
 ///
 /// # Safety
 ///
-/// - `address` must be a valid pointer.
-/// - `flags` must be a valid pointer.
+/// `address` must be a valid pointer.
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByAddress(
     address: NonNull<libc::sockaddr>,
     addrlen: libc::socklen_t,
-    flags: NonNull<SCNetworkConnectionFlags>,
+    flags: &mut SCNetworkConnectionFlags,
 ) -> bool {
     extern "C-unwind" {
         fn SCNetworkCheckReachabilityByAddress(
             address: NonNull<libc::sockaddr>,
             addrlen: libc::socklen_t,
-            flags: NonNull<SCNetworkConnectionFlags>,
+            flags: &mut SCNetworkConnectionFlags,
         ) -> Boolean;
     }
     let ret = unsafe { SCNetworkCheckReachabilityByAddress(address, addrlen, flags) };
@@ -102,24 +101,21 @@ pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByAddress(
 ///
 /// Returns: Returns TRUE if the network connection flags are valid;
 /// FALSE if the status could not be determined.
-///
-/// # Safety
-///
-/// - `nodename` must be a valid pointer.
-/// - `flags` must be a valid pointer.
 #[deprecated = "No longer supported"]
 #[inline]
-pub unsafe extern "C-unwind" fn SCNetworkCheckReachabilityByName(
-    nodename: NonNull<c_char>,
-    flags: NonNull<SCNetworkConnectionFlags>,
+pub extern "C-unwind" fn SCNetworkCheckReachabilityByName(
+    nodename: &CStr,
+    flags: &mut SCNetworkConnectionFlags,
 ) -> bool {
     extern "C-unwind" {
         fn SCNetworkCheckReachabilityByName(
             nodename: NonNull<c_char>,
-            flags: NonNull<SCNetworkConnectionFlags>,
+            flags: &mut SCNetworkConnectionFlags,
         ) -> Boolean;
     }
-    let ret = unsafe { SCNetworkCheckReachabilityByName(nodename, flags) };
+    let ret = unsafe {
+        SCNetworkCheckReachabilityByName(NonNull::new(nodename.as_ptr().cast_mut()).unwrap(), flags)
+    };
     ret != 0
 }
 

@@ -339,9 +339,11 @@ impl SCPreferences {
     /// You must release the returned value.
     #[doc(alias = "SCPreferencesCopyKeyList")]
     #[inline]
-    pub fn key_list(&self) -> Option<CFRetained<CFArray>> {
+    pub fn key_list(&self) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
-            fn SCPreferencesCopyKeyList(prefs: &SCPreferences) -> Option<NonNull<CFArray>>;
+            fn SCPreferencesCopyKeyList(
+                prefs: &SCPreferences,
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { SCPreferencesCopyKeyList(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -481,19 +483,22 @@ impl SCPreferences {
     /// # Safety
     ///
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer or null.
+    /// - `context` struct field 2 must be a valid pointer or null.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "SCPreferencesSetCallback")]
     #[inline]
     pub unsafe fn set_callback(
         &self,
         callout: SCPreferencesCallBack,
-        context: *mut SCPreferencesContext,
+        context: Option<&SCPreferencesContext>,
     ) -> bool {
         extern "C-unwind" {
             fn SCPreferencesSetCallback(
                 prefs: &SCPreferences,
                 callout: SCPreferencesCallBack,
-                context: *mut SCPreferencesContext,
+                context: Option<&SCPreferencesContext>,
             ) -> Boolean;
         }
         let ret = unsafe { SCPreferencesSetCallback(self, callout, context) };

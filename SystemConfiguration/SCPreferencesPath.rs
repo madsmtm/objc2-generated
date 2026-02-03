@@ -42,12 +42,15 @@ impl SCPreferences {
     #[doc(alias = "SCPreferencesPathGetValue")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
-    pub fn path_get_value(&self, path: &CFString) -> Option<CFRetained<CFDictionary>> {
+    pub fn path_get_value(
+        &self,
+        path: &CFString,
+    ) -> Option<CFRetained<CFDictionary<CFString, CFPropertyList>>> {
         extern "C-unwind" {
             fn SCPreferencesPathGetValue(
                 prefs: &SCPreferences,
                 path: &CFString,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFPropertyList>>>;
         }
         let ret = unsafe { SCPreferencesPathGetValue(self, path) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -86,20 +89,19 @@ impl SCPreferences {
     /// stored at the specified path.
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
-    ///
-    /// # Safety
-    ///
-    /// - `value` generic must be of the correct type.
-    /// - `value` generic must be of the correct type.
     #[doc(alias = "SCPreferencesPathSetValue")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
-    pub unsafe fn path_set_value(&self, path: &CFString, value: &CFDictionary) -> bool {
+    pub fn path_set_value(
+        &self,
+        path: &CFString,
+        value: &CFDictionary<CFString, CFPropertyList>,
+    ) -> bool {
         extern "C-unwind" {
             fn SCPreferencesPathSetValue(
                 prefs: &SCPreferences,
                 path: &CFString,
-                value: &CFDictionary,
+                value: &CFDictionary<CFString, CFPropertyList>,
             ) -> Boolean;
         }
         let ret = unsafe { SCPreferencesPathSetValue(self, path, value) };
