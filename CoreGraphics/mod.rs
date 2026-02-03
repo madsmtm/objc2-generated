@@ -208,6 +208,13 @@ pub use self::__CGBitmapContext::kCGAdaptiveMaximumBitDepth;
     feature = "CGBitmapContext",
     feature = "CGColorSpace",
     feature = "CGContext",
+    feature = "CGImage"
+))]
+pub use self::__CGBitmapContext::CGBitmapContextCreate;
+#[cfg(all(
+    feature = "CGBitmapContext",
+    feature = "CGColorSpace",
+    feature = "CGContext",
     feature = "CGImage",
     feature = "CGRenderingBufferProvider",
     feature = "block2"
@@ -219,6 +226,13 @@ pub use self::__CGBitmapContext::CGBitmapContextCreateAdaptive;
     feature = "CGImage"
 ))]
 pub use self::__CGBitmapContext::CGBitmapContextCreateImage;
+#[cfg(all(
+    feature = "CGBitmapContext",
+    feature = "CGColorSpace",
+    feature = "CGContext",
+    feature = "CGImage"
+))]
+pub use self::__CGBitmapContext::CGBitmapContextCreateWithData;
 #[cfg(all(
     feature = "CGBitmapContext",
     feature = "CGContext",
@@ -784,8 +798,6 @@ pub use self::__CGEvent::CGRequestListenEventAccess;
 #[cfg(feature = "CGEvent")]
 pub use self::__CGEvent::CGRequestPostEventAccess;
 #[cfg(feature = "CGEventTypes")]
-pub(crate) use self::__CGEventTypes::__CGEventTapProxy;
-#[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::kCGEventMaskForAllEvents;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::kCGNotifyEventTapAdded;
@@ -833,6 +845,8 @@ pub use self::__CGEventTypes::CGMouseButton;
 pub use self::__CGEventTypes::CGScrollEventUnit;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGScrollPhase;
+#[cfg(feature = "CGEventTypes")]
+pub(crate) use self::__CGEventTypes::__CGEventTapProxy;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGFontIndexInvalid;
 #[cfg(feature = "CGFont")]
