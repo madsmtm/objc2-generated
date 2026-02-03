@@ -526,55 +526,7 @@ pub use self::__VTCompressionSession::VTCompressionOutputHandler;
 #[cfg(feature = "VTCompressionSession")]
 pub use self::__VTCompressionSession::VTCompressionSession;
 #[cfg(feature = "VTCompressionSession")]
-pub use self::__VTCompressionSession::VTCompressionSessionBeginPass;
-#[cfg(all(feature = "VTCompressionSession", feature = "objc2-core-media"))]
-pub use self::__VTCompressionSession::VTCompressionSessionCompleteFrames;
-#[cfg(all(
-    feature = "VTCompressionSession",
-    feature = "VTErrors",
-    feature = "objc2-core-media"
-))]
-pub use self::__VTCompressionSession::VTCompressionSessionCreate;
-#[cfg(all(
-    feature = "VTCompressionSession",
-    feature = "VTErrors",
-    feature = "objc2-core-media",
-    feature = "objc2-core-video"
-))]
-pub use self::__VTCompressionSession::VTCompressionSessionEncodeFrame;
-#[cfg(all(
-    feature = "VTCompressionSession",
-    feature = "VTErrors",
-    feature = "block2",
-    feature = "objc2-core-media",
-    feature = "objc2-core-video"
-))]
-pub use self::__VTCompressionSession::VTCompressionSessionEncodeFrameWithOutputHandler;
-#[cfg(all(
-    feature = "VTCompressionSession",
-    feature = "VTErrors",
-    feature = "objc2-core-media"
-))]
-pub use self::__VTCompressionSession::VTCompressionSessionEncodeMultiImageFrame;
-#[cfg(all(
-    feature = "VTCompressionSession",
-    feature = "VTErrors",
-    feature = "block2",
-    feature = "objc2-core-media"
-))]
-pub use self::__VTCompressionSession::VTCompressionSessionEncodeMultiImageFrameWithOutputHandler;
-#[cfg(feature = "VTCompressionSession")]
-pub use self::__VTCompressionSession::VTCompressionSessionEndPass;
-#[cfg(all(feature = "VTCompressionSession", feature = "objc2-core-video"))]
-pub use self::__VTCompressionSession::VTCompressionSessionGetPixelBufferPool;
-#[cfg(all(feature = "VTCompressionSession", feature = "objc2-core-media"))]
-pub use self::__VTCompressionSession::VTCompressionSessionGetTimeRangesForNextPass;
-#[cfg(feature = "VTCompressionSession")]
-pub use self::__VTCompressionSession::VTCompressionSessionInvalidate;
-#[cfg(feature = "VTCompressionSession")]
 pub use self::__VTCompressionSession::VTCompressionSessionOptionFlags;
-#[cfg(feature = "VTCompressionSession")]
-pub use self::__VTCompressionSession::VTCompressionSessionPrepareToEncodeFrames;
 #[cfg(feature = "VTCompressionSession")]
 pub use self::__VTCompressionSession::VTIsStereoMVHEVCEncodeSupported;
 #[cfg(feature = "VTDecompressionProperties")]
@@ -713,65 +665,6 @@ pub use self::__VTDecompressionSession::VTDecompressionOutputHandler;
 pub use self::__VTDecompressionSession::VTDecompressionOutputMultiImageCallback;
 #[cfg(feature = "VTDecompressionSession")]
 pub use self::__VTDecompressionSession::VTDecompressionSession;
-#[cfg(all(feature = "VTDecompressionSession", feature = "objc2-core-media"))]
-pub use self::__VTDecompressionSession::VTDecompressionSessionCanAcceptFormatDescription;
-#[cfg(all(feature = "VTDecompressionSession", feature = "objc2-core-video"))]
-pub use self::__VTDecompressionSession::VTDecompressionSessionCopyBlackPixelBuffer;
-#[cfg(all(
-    feature = "VTDecompressionSession",
-    feature = "VTErrors",
-    feature = "objc2-core-media",
-    feature = "objc2-core-video"
-))]
-pub use self::__VTDecompressionSession::VTDecompressionSessionCreate;
-#[cfg(all(
-    feature = "VTDecompressionSession",
-    feature = "VTErrors",
-    feature = "objc2-core-media"
-))]
-pub use self::__VTDecompressionSession::VTDecompressionSessionDecodeFrame;
-#[cfg(all(
-    feature = "VTDecompressionSession",
-    feature = "VTErrors",
-    feature = "block2",
-    feature = "objc2-core-media",
-    feature = "objc2-core-video"
-))]
-pub use self::__VTDecompressionSession::VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler;
-#[cfg(all(
-    feature = "VTDecompressionSession",
-    feature = "VTErrors",
-    feature = "objc2-core-media"
-))]
-pub use self::__VTDecompressionSession::VTDecompressionSessionDecodeFrameWithOptions;
-#[cfg(all(
-    feature = "VTDecompressionSession",
-    feature = "VTErrors",
-    feature = "block2",
-    feature = "objc2-core-media",
-    feature = "objc2-core-video"
-))]
-pub use self::__VTDecompressionSession::VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler;
-#[cfg(all(
-    feature = "VTDecompressionSession",
-    feature = "VTErrors",
-    feature = "block2",
-    feature = "objc2-core-media",
-    feature = "objc2-core-video"
-))]
-pub use self::__VTDecompressionSession::VTDecompressionSessionDecodeFrameWithOutputHandler;
-#[cfg(feature = "VTDecompressionSession")]
-pub use self::__VTDecompressionSession::VTDecompressionSessionFinishDelayedFrames;
-#[cfg(feature = "VTDecompressionSession")]
-pub use self::__VTDecompressionSession::VTDecompressionSessionInvalidate;
-#[cfg(all(
-    feature = "VTDecompressionSession",
-    feature = "VTErrors",
-    feature = "objc2-core-media"
-))]
-pub use self::__VTDecompressionSession::VTDecompressionSessionSetMultiImageCallback;
-#[cfg(feature = "VTDecompressionSession")]
-pub use self::__VTDecompressionSession::VTDecompressionSessionWaitForAsynchronousFrames;
 #[cfg(all(feature = "VTDecompressionSession", feature = "objc2-core-media"))]
 pub use self::__VTDecompressionSession::VTIsHardwareDecodeSupported;
 #[cfg(feature = "VTDecompressionSession")]
@@ -954,22 +847,6 @@ pub use self::__VTFrameProcessor_TemporalNoiseFilter::VTTemporalNoiseFilterConfi
 pub use self::__VTFrameProcessor_TemporalNoiseFilter::VTTemporalNoiseFilterParameters;
 #[cfg(feature = "VTFrameSilo")]
 pub use self::__VTFrameSilo::VTFrameSilo;
-#[cfg(all(feature = "VTFrameSilo", feature = "objc2-core-media"))]
-pub use self::__VTFrameSilo::VTFrameSiloAddSampleBuffer;
-#[cfg(all(
-    feature = "VTFrameSilo",
-    feature = "block2",
-    feature = "objc2-core-media"
-))]
-pub use self::__VTFrameSilo::VTFrameSiloCallBlockForEachSampleBuffer;
-#[cfg(all(feature = "VTFrameSilo", feature = "objc2-core-media"))]
-pub use self::__VTFrameSilo::VTFrameSiloCallFunctionForEachSampleBuffer;
-#[cfg(all(feature = "VTFrameSilo", feature = "objc2-core-media"))]
-pub use self::__VTFrameSilo::VTFrameSiloCreate;
-#[cfg(feature = "VTFrameSilo")]
-pub use self::__VTFrameSilo::VTFrameSiloGetProgressOfCurrentPass;
-#[cfg(all(feature = "VTFrameSilo", feature = "objc2-core-media"))]
-pub use self::__VTFrameSilo::VTFrameSiloSetTimeRangesForNextPass;
 #[cfg(feature = "VTHDRPerFrameMetadataGenerationSession")]
 pub use self::__VTHDRPerFrameMetadataGenerationSession::kVTHDRPerFrameMetadataGenerationHDRFormatType_DolbyVision;
 #[cfg(feature = "VTHDRPerFrameMetadataGenerationSession")]
@@ -978,13 +855,6 @@ pub use self::__VTHDRPerFrameMetadataGenerationSession::kVTHDRPerFrameMetadataGe
 pub use self::__VTHDRPerFrameMetadataGenerationSession::VTHDRPerFrameMetadataGenerationHDRFormatType;
 #[cfg(feature = "VTHDRPerFrameMetadataGenerationSession")]
 pub use self::__VTHDRPerFrameMetadataGenerationSession::VTHDRPerFrameMetadataGenerationSession;
-#[cfg(all(
-    feature = "VTHDRPerFrameMetadataGenerationSession",
-    feature = "objc2-core-video"
-))]
-pub use self::__VTHDRPerFrameMetadataGenerationSession::VTHDRPerFrameMetadataGenerationSessionAttachMetadata;
-#[cfg(feature = "VTHDRPerFrameMetadataGenerationSession")]
-pub use self::__VTHDRPerFrameMetadataGenerationSession::VTHDRPerFrameMetadataGenerationSessionCreate;
 #[cfg(feature = "VTMotionEstimationSession")]
 pub use self::__VTMotionEstimationSession::VTMotionEstimationFrameFlags;
 #[cfg(feature = "VTMotionEstimationSession")]
@@ -997,20 +867,6 @@ pub use self::__VTMotionEstimationSession::VTMotionEstimationInfoFlags;
 pub use self::__VTMotionEstimationSession::VTMotionEstimationOutputHandler;
 #[cfg(feature = "VTMotionEstimationSession")]
 pub use self::__VTMotionEstimationSession::VTMotionEstimationSession;
-#[cfg(feature = "VTMotionEstimationSession")]
-pub use self::__VTMotionEstimationSession::VTMotionEstimationSessionCompleteFrames;
-#[cfg(feature = "VTMotionEstimationSession")]
-pub use self::__VTMotionEstimationSession::VTMotionEstimationSessionCopySourcePixelBufferAttributes;
-#[cfg(feature = "VTMotionEstimationSession")]
-pub use self::__VTMotionEstimationSession::VTMotionEstimationSessionCreate;
-#[cfg(all(
-    feature = "VTMotionEstimationSession",
-    feature = "block2",
-    feature = "objc2-core-video"
-))]
-pub use self::__VTMotionEstimationSession::VTMotionEstimationSessionEstimateMotionVectors;
-#[cfg(feature = "VTMotionEstimationSession")]
-pub use self::__VTMotionEstimationSession::VTMotionEstimationSessionInvalidate;
 #[cfg(feature = "VTMotionEstimationSessionProperties")]
 pub use self::__VTMotionEstimationSessionProperties::kVTMotionEstimationSessionCreationOption_DetectTrueMotion;
 #[cfg(feature = "VTMotionEstimationSessionProperties")]
@@ -1023,10 +879,6 @@ pub use self::__VTMotionEstimationSessionProperties::kVTMotionEstimationSessionC
 pub use self::__VTMultiPassStorage::kVTMultiPassStorageCreationOption_DoNotDelete;
 #[cfg(feature = "VTMultiPassStorage")]
 pub use self::__VTMultiPassStorage::VTMultiPassStorage;
-#[cfg(feature = "VTMultiPassStorage")]
-pub use self::__VTMultiPassStorage::VTMultiPassStorageClose;
-#[cfg(all(feature = "VTMultiPassStorage", feature = "objc2-core-media"))]
-pub use self::__VTMultiPassStorage::VTMultiPassStorageCreate;
 #[cfg(feature = "VTPixelRotationProperties")]
 pub use self::__VTPixelRotationProperties::kVTPixelRotationPropertyKey_FlipHorizontalOrientation;
 #[cfg(feature = "VTPixelRotationProperties")]
@@ -1043,12 +895,6 @@ pub use self::__VTPixelRotationProperties::kVTRotation_CCW90;
 pub use self::__VTPixelRotationProperties::kVTRotation_CW90;
 #[cfg(feature = "VTPixelRotationSession")]
 pub use self::__VTPixelRotationSession::VTPixelRotationSession;
-#[cfg(feature = "VTPixelRotationSession")]
-pub use self::__VTPixelRotationSession::VTPixelRotationSessionCreate;
-#[cfg(feature = "VTPixelRotationSession")]
-pub use self::__VTPixelRotationSession::VTPixelRotationSessionInvalidate;
-#[cfg(all(feature = "VTPixelRotationSession", feature = "objc2-core-video"))]
-pub use self::__VTPixelRotationSession::VTPixelRotationSessionRotateImage;
 #[cfg(feature = "VTPixelTransferProperties")]
 pub use self::__VTPixelTransferProperties::kVTDownsamplingMode_Average;
 #[cfg(feature = "VTPixelTransferProperties")]
@@ -1081,12 +927,6 @@ pub use self::__VTPixelTransferProperties::kVTScalingMode_Normal;
 pub use self::__VTPixelTransferProperties::kVTScalingMode_Trim;
 #[cfg(feature = "VTPixelTransferSession")]
 pub use self::__VTPixelTransferSession::VTPixelTransferSession;
-#[cfg(feature = "VTPixelTransferSession")]
-pub use self::__VTPixelTransferSession::VTPixelTransferSessionCreate;
-#[cfg(feature = "VTPixelTransferSession")]
-pub use self::__VTPixelTransferSession::VTPixelTransferSessionInvalidate;
-#[cfg(all(feature = "VTPixelTransferSession", feature = "objc2-core-video"))]
-pub use self::__VTPixelTransferSession::VTPixelTransferSessionTransferImage;
 #[cfg(feature = "VTProfessionalVideoWorkflow")]
 pub use self::__VTProfessionalVideoWorkflow::VTRegisterProfessionalVideoWorkflowVideoDecoders;
 #[cfg(feature = "VTProfessionalVideoWorkflow")]
@@ -1149,26 +989,6 @@ pub use self::__VTRAWProcessingSession::VTRAWProcessingOutputHandler;
 pub use self::__VTRAWProcessingSession::VTRAWProcessingParameterChangeHandler;
 #[cfg(feature = "VTRAWProcessingSession")]
 pub use self::__VTRAWProcessingSession::VTRAWProcessingSession;
-#[cfg(feature = "VTRAWProcessingSession")]
-pub use self::__VTRAWProcessingSession::VTRAWProcessingSessionCompleteFrames;
-#[cfg(feature = "VTRAWProcessingSession")]
-pub use self::__VTRAWProcessingSession::VTRAWProcessingSessionCopyProcessingParameters;
-#[cfg(all(feature = "VTRAWProcessingSession", feature = "objc2-core-media"))]
-pub use self::__VTRAWProcessingSession::VTRAWProcessingSessionCreate;
-#[cfg(feature = "VTRAWProcessingSession")]
-pub use self::__VTRAWProcessingSession::VTRAWProcessingSessionInvalidate;
-#[cfg(all(
-    feature = "VTRAWProcessingSession",
-    feature = "block2",
-    feature = "objc2-core-video"
-))]
-pub use self::__VTRAWProcessingSession::VTRAWProcessingSessionProcessFrame;
-#[cfg(all(feature = "VTRAWProcessingSession", feature = "block2"))]
-pub use self::__VTRAWProcessingSession::VTRAWProcessingSessionSetParameterChangedHander;
-#[cfg(all(feature = "VTRAWProcessingSession", feature = "block2"))]
-pub use self::__VTRAWProcessingSession::VTRAWProcessingSessionSetParameterChangedHandler;
-#[cfg(feature = "VTRAWProcessingSession")]
-pub use self::__VTRAWProcessingSession::VTRAWProcessingSessionSetProcessingParameters;
 #[cfg(feature = "VTSession")]
 pub use self::__VTSession::kVTPropertyDocumentationKey;
 #[cfg(feature = "VTSession")]

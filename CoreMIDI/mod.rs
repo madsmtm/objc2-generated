@@ -212,8 +212,6 @@ pub use self::__MIDIMessages::MIDICVStatus;
 #[cfg(feature = "MIDIMessages")]
 pub use self::__MIDIMessages::MIDIChannelNumber;
 #[cfg(all(feature = "MIDIMessages", feature = "MIDIServices"))]
-pub use self::__MIDIMessages::MIDIEventListForEachEvent;
-#[cfg(all(feature = "MIDIMessages", feature = "MIDIServices"))]
 pub use self::__MIDIMessages::MIDIEventVisitor;
 #[cfg(feature = "MIDIMessages")]
 pub use self::__MIDIMessages::MIDIMessageType;
@@ -472,13 +470,7 @@ pub use self::__MIDIServices::MIDIEntityRef;
 #[cfg(feature = "MIDIServices")]
 pub use self::__MIDIServices::MIDIEventList;
 #[cfg(feature = "MIDIServices")]
-pub use self::__MIDIServices::MIDIEventListAdd;
-#[cfg(feature = "MIDIServices")]
-pub use self::__MIDIServices::MIDIEventListInit;
-#[cfg(feature = "MIDIServices")]
 pub use self::__MIDIServices::MIDIEventPacket;
-#[cfg(all(feature = "MIDIServices", feature = "objc2-core-foundation"))]
-pub use self::__MIDIServices::MIDIEventPacketSysexBytesForGroup;
 #[cfg(feature = "MIDIServices")]
 pub use self::__MIDIServices::MIDIFlushOutput;
 #[cfg(feature = "MIDIServices")]
@@ -557,10 +549,6 @@ pub use self::__MIDIServices::MIDIOutputPortCreate;
 pub use self::__MIDIServices::MIDIPacket;
 #[cfg(feature = "MIDIServices")]
 pub use self::__MIDIServices::MIDIPacketList;
-#[cfg(feature = "MIDIServices")]
-pub use self::__MIDIServices::MIDIPacketListAdd;
-#[cfg(feature = "MIDIServices")]
-pub use self::__MIDIServices::MIDIPacketListInit;
 #[cfg(feature = "MIDIServices")]
 pub use self::__MIDIServices::MIDIPortConnectSource;
 #[cfg(feature = "MIDIServices")]
@@ -687,8 +675,6 @@ pub use self::__MIDIThruConnection::MIDIThruConnectionFind;
 pub use self::__MIDIThruConnection::MIDIThruConnectionGetParams;
 #[cfg(all(feature = "MIDIServices", feature = "MIDIThruConnection"))]
 pub use self::__MIDIThruConnection::MIDIThruConnectionParams;
-#[cfg(all(feature = "MIDIServices", feature = "MIDIThruConnection"))]
-pub use self::__MIDIThruConnection::MIDIThruConnectionParamsInitialize;
 #[cfg(all(feature = "MIDIServices", feature = "MIDIThruConnection"))]
 pub use self::__MIDIThruConnection::MIDIThruConnectionRef;
 #[cfg(all(

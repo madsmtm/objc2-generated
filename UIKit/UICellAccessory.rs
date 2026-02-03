@@ -1133,19 +1133,3 @@ impl UICellAccessoryCustomView {
         pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
-
-extern "C-unwind" {
-    #[cfg(feature = "block2")]
-    #[deprecated = "renamed to `UICellAccessory::position_before_accessory_of_class`"]
-    pub fn UICellAccessoryPositionBeforeAccessoryOfClass(
-        accessory_class: &AnyClass,
-    ) -> UICellAccessoryPosition;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "block2")]
-    #[deprecated = "renamed to `UICellAccessory::position_after_accessory_of_class`"]
-    pub fn UICellAccessoryPositionAfterAccessoryOfClass(
-        accessory_class: &AnyClass,
-    ) -> UICellAccessoryPosition;
-}

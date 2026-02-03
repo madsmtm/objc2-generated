@@ -67,24 +67,3 @@ extern "C" {
     /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklook/kqlthumbnailoptionscalefactorkey?language=objc)
     pub static kQLThumbnailOptionScaleFactorKey: Option<&'static CFString>;
 }
-
-#[cfg(feature = "objc2-core-graphics")]
-#[deprecated = "renamed to `QLThumbnail::image_create`"]
-#[inline]
-pub unsafe extern "C-unwind" fn QLThumbnailImageCreate(
-    allocator: Option<&CFAllocator>,
-    url: Option<&CFURL>,
-    max_thumbnail_size: CGSize,
-    options: Option<&CFDictionary>,
-) -> Option<CFRetained<CGImage>> {
-    extern "C-unwind" {
-        fn QLThumbnailImageCreate(
-            allocator: Option<&CFAllocator>,
-            url: Option<&CFURL>,
-            max_thumbnail_size: CGSize,
-            options: Option<&CFDictionary>,
-        ) -> Option<NonNull<CGImage>>;
-    }
-    let ret = unsafe { QLThumbnailImageCreate(allocator, url, max_thumbnail_size, options) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}

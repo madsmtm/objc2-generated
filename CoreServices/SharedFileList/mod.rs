@@ -41,66 +41,8 @@ pub use self::__LSSharedFileList::kLSSharedFileListVolumesNetworkVisible;
 #[cfg(feature = "LSSharedFileList")]
 pub use self::__LSSharedFileList::LSSharedFileList;
 #[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListAddObserver;
-#[cfg(feature = "LSSharedFileList")]
 pub use self::__LSSharedFileList::LSSharedFileListChangedProcPtr;
-#[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListCopyProperty;
-#[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListCopySnapshot;
-#[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListCreate;
-#[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListGetSeedValue;
-#[cfg(all(
-    feature = "CarbonCore",
-    feature = "Files",
-    feature = "IconsCore",
-    feature = "LSSharedFileList",
-    feature = "LaunchServices"
-))]
-pub use self::__LSSharedFileList::LSSharedFileListInsertItemFSRef;
-#[cfg(all(
-    feature = "IconsCore",
-    feature = "LSSharedFileList",
-    feature = "LaunchServices"
-))]
-pub use self::__LSSharedFileList::LSSharedFileListInsertItemURL;
 #[cfg(feature = "LSSharedFileList")]
 pub use self::__LSSharedFileList::LSSharedFileListItem;
 #[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListItemCopyDisplayName;
-#[cfg(all(
-    feature = "IconsCore",
-    feature = "LSSharedFileList",
-    feature = "LaunchServices"
-))]
-pub use self::__LSSharedFileList::LSSharedFileListItemCopyIconRef;
-#[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListItemCopyProperty;
-#[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListItemCopyResolvedURL;
-#[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListItemGetID;
-#[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListItemMove;
-#[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListItemRemove;
-#[cfg(all(
-    feature = "CarbonCore",
-    feature = "Files",
-    feature = "LSSharedFileList"
-))]
-pub use self::__LSSharedFileList::LSSharedFileListItemResolve;
-#[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListItemSetProperty;
-#[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListRemoveAllItems;
-#[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListRemoveObserver;
-#[cfg(feature = "LSSharedFileList")]
 pub use self::__LSSharedFileList::LSSharedFileListResolutionFlags;
-#[cfg(all(feature = "LSSharedFileList", feature = "objc2-security"))]
-pub use self::__LSSharedFileList::LSSharedFileListSetAuthorization;
-#[cfg(feature = "LSSharedFileList")]
-pub use self::__LSSharedFileList::LSSharedFileListSetProperty;

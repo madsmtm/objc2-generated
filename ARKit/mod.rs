@@ -473,14 +473,6 @@ pub use self::__ARSkeleton::ARSkeleton;
 pub use self::__ARSkeleton::ARSkeleton2D;
 #[cfg(all(feature = "ARSkeleton", feature = "objc2"))]
 pub use self::__ARSkeleton::ARSkeleton3D;
-#[cfg(all(
-    feature = "ARSkeleton",
-    feature = "ARSkeletonDefinition",
-    feature = "objc2",
-    feature = "objc2-foundation",
-    feature = "objc2-vision"
-))]
-pub use self::__ARSkeleton::ARSkeletonJointNameForRecognizedPointKey;
 #[cfg(all(feature = "ARSkeletonDefinition", feature = "objc2"))]
 pub use self::__ARSkeletonDefinition::ARSkeletonDefinition;
 #[cfg(all(feature = "ARSkeletonDefinition", feature = "objc2-foundation"))]

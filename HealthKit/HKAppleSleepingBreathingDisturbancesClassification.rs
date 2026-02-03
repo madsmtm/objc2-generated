@@ -67,18 +67,3 @@ pub unsafe extern "C-unwind" fn HKAppleSleepingBreathingDisturbancesMinimumQuant
     unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
-
-#[cfg(feature = "HKQuantity")]
-#[deprecated = "renamed to `HKAppleSleepingBreathingDisturbancesClassification::for_quantity`"]
-#[inline]
-pub unsafe extern "C-unwind" fn HKAppleSleepingBreathingDisturbancesClassificationForQuantity(
-    value: &HKQuantity,
-) -> Option<Retained<NSNumber>> {
-    extern "C-unwind" {
-        fn HKAppleSleepingBreathingDisturbancesClassificationForQuantity(
-            value: &HKQuantity,
-        ) -> *mut NSNumber;
-    }
-    let ret = unsafe { HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value) };
-    unsafe { Retained::retain_autoreleased(ret) }
-}

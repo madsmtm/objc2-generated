@@ -166,25 +166,3 @@ impl cp_view {
         unsafe { cp_view_get_view_texture_map(view) }
     }
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `cp_view_texture_map::texture_index`"]
-    pub fn cp_view_texture_map_get_texture_index(view_texture_map: cp_view_texture_map_t) -> usize;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `cp_view_texture_map::slice_index`"]
-    pub fn cp_view_texture_map_get_slice_index(view_texture_map: cp_view_texture_map_t) -> usize;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "objc2-metal")]
-    #[deprecated = "renamed to `cp_view_texture_map::viewport`"]
-    pub fn cp_view_texture_map_get_viewport(view_texture_map: cp_view_texture_map_t)
-        -> MTLViewport;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `cp_view::view_texture_map`"]
-    pub fn cp_view_get_view_texture_map(view: cp_view_t) -> cp_view_texture_map_t;
-}

@@ -1446,24 +1446,3 @@ impl AVCaptionRuby {
         pub unsafe fn alignment(&self) -> AVCaptionRubyAlignment;
     );
 }
-
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "renamed to `AVCaptionDimension::new`"]
-    pub fn AVCaptionDimensionMake(value: CGFloat, units: AVCaptionUnitsType) -> AVCaptionDimension;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "renamed to `AVCaptionPoint::new`"]
-    pub fn AVCaptionPointMake(x: AVCaptionDimension, y: AVCaptionDimension) -> AVCaptionPoint;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "renamed to `AVCaptionSize::new`"]
-    pub fn AVCaptionSizeMake(
-        width: AVCaptionDimension,
-        height: AVCaptionDimension,
-    ) -> AVCaptionSize;
-}

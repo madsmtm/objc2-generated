@@ -109,60 +109,8 @@ pub use self::__CVBuffer::kCVBufferTimeValueKey;
 pub use self::__CVBuffer::CVAttachmentMode;
 #[cfg(feature = "CVBuffer")]
 pub use self::__CVBuffer::CVBuffer;
-#[cfg(feature = "CVBuffer")]
-pub use self::__CVBuffer::CVBufferCopyAttachment;
-#[cfg(feature = "CVBuffer")]
-pub use self::__CVBuffer::CVBufferCopyAttachments;
-#[cfg(feature = "CVBuffer")]
-pub use self::__CVBuffer::CVBufferGetAttachment;
-#[cfg(feature = "CVBuffer")]
-pub use self::__CVBuffer::CVBufferGetAttachments;
-#[cfg(feature = "CVBuffer")]
-pub use self::__CVBuffer::CVBufferHasAttachment;
-#[cfg(feature = "CVBuffer")]
-pub use self::__CVBuffer::CVBufferPropagateAttachments;
-#[cfg(feature = "CVBuffer")]
-pub use self::__CVBuffer::CVBufferRemoveAllAttachments;
-#[cfg(feature = "CVBuffer")]
-pub use self::__CVBuffer::CVBufferRemoveAttachment;
-#[cfg(feature = "CVBuffer")]
-pub use self::__CVBuffer::CVBufferSetAttachment;
-#[cfg(feature = "CVBuffer")]
-pub use self::__CVBuffer::CVBufferSetAttachments;
 #[cfg(feature = "CVDisplayLink")]
 pub use self::__CVDisplayLink::CVDisplayLink;
-#[cfg(all(feature = "CVDisplayLink", feature = "CVReturn"))]
-pub use self::__CVDisplayLink::CVDisplayLinkCreateWithActiveCGDisplays;
-#[cfg(all(
-    feature = "CVDisplayLink",
-    feature = "CVReturn",
-    feature = "objc2-core-graphics"
-))]
-pub use self::__CVDisplayLink::CVDisplayLinkCreateWithCGDisplay;
-#[cfg(all(
-    feature = "CVDisplayLink",
-    feature = "CVReturn",
-    feature = "objc2-core-graphics"
-))]
-pub use self::__CVDisplayLink::CVDisplayLinkCreateWithCGDisplays;
-#[cfg(all(
-    feature = "CVDisplayLink",
-    feature = "CVReturn",
-    feature = "objc2-core-graphics"
-))]
-pub use self::__CVDisplayLink::CVDisplayLinkCreateWithOpenGLDisplayMask;
-#[cfg(feature = "CVDisplayLink")]
-pub use self::__CVDisplayLink::CVDisplayLinkGetActualOutputVideoRefreshPeriod;
-#[cfg(all(feature = "CVDisplayLink", feature = "objc2-core-graphics"))]
-pub use self::__CVDisplayLink::CVDisplayLinkGetCurrentCGDisplay;
-#[cfg(all(feature = "CVBase", feature = "CVDisplayLink", feature = "CVReturn"))]
-pub use self::__CVDisplayLink::CVDisplayLinkGetCurrentTime;
-#[cfg(all(feature = "CVBase", feature = "CVDisplayLink"))]
-pub use self::__CVDisplayLink::CVDisplayLinkGetNominalOutputVideoRefreshPeriod;
-#[cfg(all(feature = "CVBase", feature = "CVDisplayLink"))]
-pub use self::__CVDisplayLink::CVDisplayLinkGetOutputVideoLatency;
-#[cfg(feature = "CVDisplayLink")]
-pub use self::__CVDisplayLink::CVDisplayLinkIsRunning;
 #[cfg(all(feature = "CVBase", feature = "CVDisplayLink", feature = "CVReturn"))]
 pub use self::__CVDisplayLink::CVDisplayLinkOutputCallback;
 #[cfg(all(
@@ -172,34 +120,6 @@ pub use self::__CVDisplayLink::CVDisplayLinkOutputCallback;
     feature = "block2"
 ))]
 pub use self::__CVDisplayLink::CVDisplayLinkOutputHandler;
-#[cfg(all(
-    feature = "CVDisplayLink",
-    feature = "CVReturn",
-    feature = "objc2-core-graphics"
-))]
-pub use self::__CVDisplayLink::CVDisplayLinkSetCurrentCGDisplay;
-#[cfg(all(
-    feature = "CVDisplayLink",
-    feature = "CVReturn",
-    feature = "objc2-open-gl"
-))]
-#[cfg(target_os = "macos")]
-pub use self::__CVDisplayLink::CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext;
-#[cfg(all(feature = "CVBase", feature = "CVDisplayLink", feature = "CVReturn"))]
-pub use self::__CVDisplayLink::CVDisplayLinkSetOutputCallback;
-#[cfg(all(
-    feature = "CVBase",
-    feature = "CVDisplayLink",
-    feature = "CVReturn",
-    feature = "block2"
-))]
-pub use self::__CVDisplayLink::CVDisplayLinkSetOutputHandler;
-#[cfg(all(feature = "CVDisplayLink", feature = "CVReturn"))]
-pub use self::__CVDisplayLink::CVDisplayLinkStart;
-#[cfg(all(feature = "CVDisplayLink", feature = "CVReturn"))]
-pub use self::__CVDisplayLink::CVDisplayLinkStop;
-#[cfg(all(feature = "CVBase", feature = "CVDisplayLink", feature = "CVReturn"))]
-pub use self::__CVDisplayLink::CVDisplayLinkTranslateTime;
 #[cfg(feature = "CVHostTime")]
 pub use self::__CVHostTime::CVGetCurrentHostTime;
 #[cfg(feature = "CVHostTime")]
@@ -424,24 +344,6 @@ pub use self::__CVMetalBuffer::CVMetalBufferGetTypeID;
 pub use self::__CVMetalBufferCache::kCVMetalBufferCacheMaximumBufferAgeKey;
 #[cfg(feature = "CVMetalBufferCache")]
 pub use self::__CVMetalBufferCache::CVMetalBufferCache;
-#[cfg(all(
-    feature = "CVMetalBufferCache",
-    feature = "CVReturn",
-    feature = "objc2",
-    feature = "objc2-metal"
-))]
-#[cfg(not(target_os = "watchos"))]
-pub use self::__CVMetalBufferCache::CVMetalBufferCacheCreate;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVMetalBuffer",
-    feature = "CVMetalBufferCache",
-    feature = "CVReturn"
-))]
-pub use self::__CVMetalBufferCache::CVMetalBufferCacheCreateBufferFromImage;
-#[cfg(all(feature = "CVBase", feature = "CVMetalBufferCache"))]
-pub use self::__CVMetalBufferCache::CVMetalBufferCacheFlush;
 #[cfg(feature = "CVMetalTexture")]
 pub use self::__CVMetalTexture::kCVMetalTextureStorageMode;
 #[cfg(feature = "CVMetalTexture")]
@@ -473,26 +375,6 @@ pub use self::__CVMetalTexture::CVMetalTextureIsFlipped;
 pub use self::__CVMetalTextureCache::kCVMetalTextureCacheMaximumTextureAgeKey;
 #[cfg(feature = "CVMetalTextureCache")]
 pub use self::__CVMetalTextureCache::CVMetalTextureCache;
-#[cfg(all(
-    feature = "CVMetalTextureCache",
-    feature = "CVReturn",
-    feature = "objc2",
-    feature = "objc2-metal"
-))]
-#[cfg(not(target_os = "watchos"))]
-pub use self::__CVMetalTextureCache::CVMetalTextureCacheCreate;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVMetalTexture",
-    feature = "CVMetalTextureCache",
-    feature = "CVReturn",
-    feature = "objc2-metal"
-))]
-#[cfg(not(target_os = "watchos"))]
-pub use self::__CVMetalTextureCache::CVMetalTextureCacheCreateTextureFromImage;
-#[cfg(all(feature = "CVBase", feature = "CVMetalTextureCache"))]
-pub use self::__CVMetalTextureCache::CVMetalTextureCacheFlush;
 #[cfg(feature = "CVOpenGLBuffer")]
 pub use self::__CVOpenGLBuffer::kCVOpenGLBufferHeight;
 #[cfg(feature = "CVOpenGLBuffer")]
@@ -539,20 +421,6 @@ pub use self::__CVOpenGLBufferPool::kCVOpenGLBufferPoolMaximumBufferAgeKey;
 pub use self::__CVOpenGLBufferPool::kCVOpenGLBufferPoolMinimumBufferCountKey;
 #[cfg(feature = "CVOpenGLBufferPool")]
 pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPool;
-#[cfg(all(feature = "CVOpenGLBufferPool", feature = "CVReturn"))]
-pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolCreate;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVOpenGLBuffer",
-    feature = "CVOpenGLBufferPool",
-    feature = "CVReturn"
-))]
-pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolCreateOpenGLBuffer;
-#[cfg(feature = "CVOpenGLBufferPool")]
-pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolGetAttributes;
-#[cfg(feature = "CVOpenGLBufferPool")]
-pub use self::__CVOpenGLBufferPool::CVOpenGLBufferPoolGetOpenGLBufferAttributes;
 #[cfg(all(
     feature = "CVBuffer",
     feature = "CVImageBuffer",
@@ -593,23 +461,6 @@ pub use self::__CVOpenGLTextureCache::kCVOpenGLTextureCacheChromaSamplingModeHig
 pub use self::__CVOpenGLTextureCache::kCVOpenGLTextureCacheChromaSamplingModeKey;
 #[cfg(feature = "CVOpenGLTextureCache")]
 pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCache;
-#[cfg(all(
-    feature = "CVOpenGLTextureCache",
-    feature = "CVReturn",
-    feature = "objc2-open-gl"
-))]
-#[cfg(target_os = "macos")]
-pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheCreate;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVOpenGLTexture",
-    feature = "CVOpenGLTextureCache",
-    feature = "CVReturn"
-))]
-pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheCreateTextureFromImage;
-#[cfg(all(feature = "CVBase", feature = "CVOpenGLTextureCache"))]
-pub use self::__CVOpenGLTextureCache::CVOpenGLTextureCacheFlush;
 #[cfg(feature = "CVPixelBuffer")]
 pub use self::__CVPixelBuffer::kCVPixelBufferBytesPerRowAlignmentKey;
 #[cfg(feature = "CVPixelBuffer")]
@@ -1073,32 +924,8 @@ pub use self::__CVPixelBufferPool::kCVPixelBufferPoolMaximumBufferAgeKey;
 pub use self::__CVPixelBufferPool::kCVPixelBufferPoolMinimumBufferCountKey;
 #[cfg(feature = "CVPixelBufferPool")]
 pub use self::__CVPixelBufferPool::CVPixelBufferPool;
-#[cfg(all(feature = "CVPixelBufferPool", feature = "CVReturn"))]
-pub use self::__CVPixelBufferPool::CVPixelBufferPoolCreate;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer",
-    feature = "CVPixelBufferPool",
-    feature = "CVReturn"
-))]
-pub use self::__CVPixelBufferPool::CVPixelBufferPoolCreatePixelBuffer;
-#[cfg(all(
-    feature = "CVBuffer",
-    feature = "CVImageBuffer",
-    feature = "CVPixelBuffer",
-    feature = "CVPixelBufferPool",
-    feature = "CVReturn"
-))]
-pub use self::__CVPixelBufferPool::CVPixelBufferPoolCreatePixelBufferWithAuxAttributes;
-#[cfg(all(feature = "CVBase", feature = "CVPixelBufferPool"))]
-pub use self::__CVPixelBufferPool::CVPixelBufferPoolFlush;
 #[cfg(all(feature = "CVBase", feature = "CVPixelBufferPool"))]
 pub use self::__CVPixelBufferPool::CVPixelBufferPoolFlushFlags;
-#[cfg(feature = "CVPixelBufferPool")]
-pub use self::__CVPixelBufferPool::CVPixelBufferPoolGetAttributes;
-#[cfg(feature = "CVPixelBufferPool")]
-pub use self::__CVPixelBufferPool::CVPixelBufferPoolGetPixelBufferAttributes;
 #[cfg(feature = "CVPixelFormatDescription")]
 pub use self::__CVPixelFormatDescription::kCVPixelFormatBitsPerBlock;
 #[cfg(feature = "CVPixelFormatDescription")]

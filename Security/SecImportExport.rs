@@ -444,30 +444,3 @@ extern "C-unwind" {
         items: NonNull<*const CFArray>,
     ) -> OSStatus;
 }
-
-extern "C-unwind" {
-    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated = "renamed to `SecKeychainItem::export`"]
-    pub fn SecKeychainItemExport(
-        keychain_item_or_array: &CFType,
-        output_format: SecExternalFormat,
-        flags: SecItemImportExportFlags,
-        key_params: *const SecKeyImportExportParameters,
-        exported_data: NonNull<*const CFData>,
-    ) -> OSStatus;
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "SecBase", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated = "renamed to `SecKeychainItem::import`"]
-    pub fn SecKeychainItemImport(
-        imported_data: &CFData,
-        file_name_or_extension: Option<&CFString>,
-        input_format: *mut SecExternalFormat,
-        item_type: *mut SecExternalItemType,
-        flags: SecItemImportExportFlags,
-        key_params: *const SecKeyImportExportParameters,
-        import_keychain: Option<&SecKeychain>,
-        out_items: *mut *const CFArray,
-    ) -> OSStatus;
-}

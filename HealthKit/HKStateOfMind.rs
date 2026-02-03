@@ -363,15 +363,3 @@ impl HKStateOfMind {
         pub unsafe fn new() -> Retained<Self>;
     );
 }
-
-#[deprecated = "renamed to `HKStateOfMindValenceClassification::for_valence`"]
-#[inline]
-pub unsafe extern "C-unwind" fn HKStateOfMindValenceClassificationForValence(
-    valence: c_double,
-) -> Option<Retained<NSNumber>> {
-    extern "C-unwind" {
-        fn HKStateOfMindValenceClassificationForValence(valence: c_double) -> *mut NSNumber;
-    }
-    let ret = unsafe { HKStateOfMindValenceClassificationForValence(valence) };
-    unsafe { Retained::retain_autoreleased(ret) }
-}

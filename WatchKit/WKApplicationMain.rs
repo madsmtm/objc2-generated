@@ -28,12 +28,3 @@ impl WKApplication {
         unsafe { WKApplicationMain(argc, argv, application_delegate_class_name) }
     }
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `WKApplication::__main`"]
-    pub fn WKApplicationMain(
-        argc: c_int,
-        argv: NonNull<*mut c_char>,
-        application_delegate_class_name: Option<&NSString>,
-    ) -> c_int;
-}

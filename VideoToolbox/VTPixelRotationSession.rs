@@ -129,26 +129,3 @@ impl VTPixelRotationSession {
         unsafe { VTPixelRotationSessionRotateImage(self, source_buffer, destination_buffer) }
     }
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `VTPixelRotationSession::create`"]
-    pub fn VTPixelRotationSessionCreate(
-        allocator: Option<&CFAllocator>,
-        pixel_rotation_session_out: NonNull<*mut VTPixelRotationSession>,
-    ) -> OSStatus;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `VTPixelRotationSession::invalidate`"]
-    pub fn VTPixelRotationSessionInvalidate(session: &VTPixelRotationSession);
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-video")]
-    #[deprecated = "renamed to `VTPixelRotationSession::rotate_image`"]
-    pub fn VTPixelRotationSessionRotateImage(
-        session: &VTPixelRotationSession,
-        source_buffer: &CVPixelBuffer,
-        destination_buffer: &CVPixelBuffer,
-    ) -> OSStatus;
-}

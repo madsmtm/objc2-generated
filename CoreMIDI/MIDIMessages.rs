@@ -751,13 +751,3 @@ impl MIDIEventList {
         unsafe { MIDIEventListForEachEvent(evtlist, visitor, visitor_context) }
     }
 }
-
-extern "C-unwind" {
-    #[cfg(feature = "MIDIServices")]
-    #[deprecated = "renamed to `MIDIEventList::for_each_event`"]
-    pub fn MIDIEventListForEachEvent(
-        evtlist: *const MIDIEventList,
-        visitor: MIDIEventVisitor,
-        visitor_context: *mut c_void,
-    );
-}

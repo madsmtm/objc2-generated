@@ -130,26 +130,3 @@ impl VTPixelTransferSession {
         unsafe { VTPixelTransferSessionTransferImage(self, source_buffer, destination_buffer) }
     }
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `VTPixelTransferSession::create`"]
-    pub fn VTPixelTransferSessionCreate(
-        allocator: Option<&CFAllocator>,
-        pixel_transfer_session_out: NonNull<*mut VTPixelTransferSession>,
-    ) -> OSStatus;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `VTPixelTransferSession::invalidate`"]
-    pub fn VTPixelTransferSessionInvalidate(session: &VTPixelTransferSession);
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-video")]
-    #[deprecated = "renamed to `VTPixelTransferSession::transfer_image`"]
-    pub fn VTPixelTransferSessionTransferImage(
-        session: &VTPixelTransferSession,
-        source_buffer: &CVPixelBuffer,
-        destination_buffer: &CVPixelBuffer,
-    ) -> OSStatus;
-}

@@ -172,58 +172,6 @@ pub use self::__GLKMatrix4::GLKMatrix4Invert;
 pub use self::__GLKMatrix4::GLKMatrix4InvertAndTranspose;
 #[cfg(feature = "GLKMatrixStack")]
 pub use self::__GLKMatrixStack::GLKMatrixStack;
-#[cfg(all(feature = "GLKMatrixStack", feature = "objc2-core-foundation"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackCreate;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackGetMatrix2;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackGetMatrix3;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackGetMatrix3Inverse;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackGetMatrix3InverseTranspose;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackGetMatrix4;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackGetMatrix4Inverse;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackGetMatrix4InverseTranspose;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackLoadMatrix4;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackMultiplyMatrix4;
-#[cfg(feature = "GLKMatrixStack")]
-pub use self::__GLKMatrixStack::GLKMatrixStackMultiplyMatrixStack;
-#[cfg(feature = "GLKMatrixStack")]
-pub use self::__GLKMatrixStack::GLKMatrixStackPop;
-#[cfg(feature = "GLKMatrixStack")]
-pub use self::__GLKMatrixStack::GLKMatrixStackPush;
-#[cfg(feature = "GLKMatrixStack")]
-pub use self::__GLKMatrixStack::GLKMatrixStackRotate;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackRotateWithVector3;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackRotateWithVector4;
-#[cfg(feature = "GLKMatrixStack")]
-pub use self::__GLKMatrixStack::GLKMatrixStackRotateX;
-#[cfg(feature = "GLKMatrixStack")]
-pub use self::__GLKMatrixStack::GLKMatrixStackRotateY;
-#[cfg(feature = "GLKMatrixStack")]
-pub use self::__GLKMatrixStack::GLKMatrixStackRotateZ;
-#[cfg(feature = "GLKMatrixStack")]
-pub use self::__GLKMatrixStack::GLKMatrixStackScale;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackScaleWithVector3;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackScaleWithVector4;
-#[cfg(feature = "GLKMatrixStack")]
-pub use self::__GLKMatrixStack::GLKMatrixStackSize;
-#[cfg(feature = "GLKMatrixStack")]
-pub use self::__GLKMatrixStack::GLKMatrixStackTranslate;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackTranslateWithVector3;
-#[cfg(all(feature = "GLKMathTypes", feature = "GLKMatrixStack"))]
-pub use self::__GLKMatrixStack::GLKMatrixStackTranslateWithVector4;
 #[cfg(feature = "GLKModel")]
 pub use self::__GLKModel::kGLKModelErrorDomain;
 #[cfg(feature = "GLKModel")]

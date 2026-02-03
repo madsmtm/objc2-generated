@@ -314,19 +314,9 @@ pub use self::__HKAppleSleepingBreathingDisturbancesClassification::HKAppleSleep
     feature = "HKAppleSleepingBreathingDisturbancesClassification",
     feature = "HKQuantity"
 ))]
-pub use self::__HKAppleSleepingBreathingDisturbancesClassification::HKAppleSleepingBreathingDisturbancesClassificationForQuantity;
-#[cfg(all(
-    feature = "HKAppleSleepingBreathingDisturbancesClassification",
-    feature = "HKQuantity"
-))]
 pub use self::__HKAppleSleepingBreathingDisturbancesClassification::HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification;
 #[cfg(feature = "HKAppleWalkingSteadinessClassification")]
 pub use self::__HKAppleWalkingSteadinessClassification::HKAppleWalkingSteadinessClassification;
-#[cfg(all(
-    feature = "HKAppleWalkingSteadinessClassification",
-    feature = "HKQuantity"
-))]
-pub use self::__HKAppleWalkingSteadinessClassification::HKAppleWalkingSteadinessClassificationForQuantity;
 #[cfg(all(
     feature = "HKAppleWalkingSteadinessClassification",
     feature = "HKQuantity"
@@ -1059,8 +1049,6 @@ pub use self::__HKStateOfMind::HKStateOfMindKind;
 pub use self::__HKStateOfMind::HKStateOfMindLabel;
 #[cfg(feature = "HKStateOfMind")]
 pub use self::__HKStateOfMind::HKStateOfMindValenceClassification;
-#[cfg(feature = "HKStateOfMind")]
-pub use self::__HKStateOfMind::HKStateOfMindValenceClassificationForValence;
 #[cfg(feature = "HKStatistics")]
 pub use self::__HKStatistics::HKStatistics;
 #[cfg(feature = "HKStatistics")]

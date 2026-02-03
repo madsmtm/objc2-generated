@@ -156,24 +156,3 @@ impl cp_tracking_area {
         unsafe { cp_tracking_area_add_automatic_hover_effect(tracking_area) }
     }
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `cp_tracking_area::render_value`"]
-    pub fn cp_tracking_area_get_render_value(
-        tracking_area: cp_tracking_area_t,
-    ) -> cp_tracking_area_render_value;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `cp_tracking_area::identifier`"]
-    pub fn cp_tracking_area_get_identifier(
-        tracking_area: cp_tracking_area_t,
-    ) -> cp_tracking_area_identifier;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `cp_tracking_area::add_automatic_hover_effect`"]
-    pub fn cp_tracking_area_add_automatic_hover_effect(
-        tracking_area: cp_tracking_area_t,
-    ) -> cp_hover_effect_t;
-}

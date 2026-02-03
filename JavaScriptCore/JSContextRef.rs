@@ -259,39 +259,3 @@ extern "C-unwind" {
     #[cfg(feature = "JSBase")]
     pub fn JSGlobalContextSetInspectable(ctx: JSGlobalContextRef, inspectable: bool);
 }
-
-extern "C-unwind" {
-    #[cfg(feature = "JSBase")]
-    #[deprecated = "renamed to `JSContext::group_create`"]
-    pub fn JSContextGroupCreate() -> JSContextGroupRef;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "JSBase")]
-    #[deprecated = "renamed to `JSContext::group_retain`"]
-    pub fn JSContextGroupRetain(group: JSContextGroupRef) -> JSContextGroupRef;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "JSBase")]
-    #[deprecated = "renamed to `JSContext::group_release`"]
-    pub fn JSContextGroupRelease(group: JSContextGroupRef);
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "JSBase")]
-    #[deprecated = "renamed to `JSContext::global_object`"]
-    pub fn JSContextGetGlobalObject(ctx: JSContextRef) -> JSObjectRef;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "JSBase")]
-    #[deprecated = "renamed to `JSContext::group`"]
-    pub fn JSContextGetGroup(ctx: JSContextRef) -> JSContextGroupRef;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "JSBase")]
-    #[deprecated = "renamed to `JSContext::global_context`"]
-    pub fn JSContextGetGlobalContext(ctx: JSContextRef) -> JSGlobalContextRef;
-}

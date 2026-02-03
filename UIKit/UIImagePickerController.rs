@@ -686,14 +686,3 @@ extern "C-unwind" {
         context_info: *mut c_void,
     );
 }
-
-extern "C-unwind" {
-    #[cfg(feature = "UIImage")]
-    #[deprecated = "renamed to `UIImage::write_to_saved_photos_album`"]
-    pub fn UIImageWriteToSavedPhotosAlbum(
-        image: &UIImage,
-        completion_target: Option<&AnyObject>,
-        completion_selector: Option<Sel>,
-        context_info: *mut c_void,
-    );
-}

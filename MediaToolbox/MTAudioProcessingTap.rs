@@ -465,39 +465,3 @@ impl MTAudioProcessingTap {
         }
     }
 }
-
-extern "C-unwind" {
-    #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
-    #[deprecated = "renamed to `MTAudioProcessingTap::create`"]
-    pub fn MTAudioProcessingTapCreate(
-        allocator: Option<&CFAllocator>,
-        callbacks: NonNull<MTAudioProcessingTapCallbacks>,
-        flags: MTAudioProcessingTapCreationFlags,
-        tap_out: NonNull<*const MTAudioProcessingTap>,
-    ) -> OSStatus;
-}
-
-#[deprecated = "renamed to `MTAudioProcessingTap::storage`"]
-#[inline]
-pub unsafe extern "C-unwind" fn MTAudioProcessingTapGetStorage(
-    tap: &MTAudioProcessingTap,
-) -> NonNull<c_void> {
-    extern "C-unwind" {
-        fn MTAudioProcessingTapGetStorage(tap: &MTAudioProcessingTap) -> Option<NonNull<c_void>>;
-    }
-    let ret = unsafe { MTAudioProcessingTapGetStorage(tap) };
-    ret.expect("function was marked as returning non-null, but actually returned NULL")
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "objc2-core-audio-types", feature = "objc2-core-media"))]
-    #[deprecated = "renamed to `MTAudioProcessingTap::source_audio`"]
-    pub fn MTAudioProcessingTapGetSourceAudio(
-        tap: &MTAudioProcessingTap,
-        number_frames: CMItemCount,
-        buffer_list_in_out: NonNull<AudioBufferList>,
-        flags_out: *mut MTAudioProcessingTapFlags,
-        time_range_out: *mut CMTimeRange,
-        number_frames_out: *mut CMItemCount,
-    ) -> OSStatus;
-}

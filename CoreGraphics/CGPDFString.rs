@@ -77,37 +77,3 @@ impl CGPDFString {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGPDFString::length`"]
-    pub fn CGPDFStringGetLength(string: CGPDFStringRef) -> usize;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGPDFString::byte_ptr`"]
-    pub fn CGPDFStringGetBytePtr(string: CGPDFStringRef) -> *const c_uchar;
-}
-
-#[deprecated = "renamed to `CGPDFString::text_string`"]
-#[inline]
-pub unsafe extern "C-unwind" fn CGPDFStringCopyTextString(
-    string: CGPDFStringRef,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CGPDFStringCopyTextString(string: CGPDFStringRef) -> Option<NonNull<CFString>>;
-    }
-    let ret = unsafe { CGPDFStringCopyTextString(string) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[deprecated = "renamed to `CGPDFString::date`"]
-#[inline]
-pub unsafe extern "C-unwind" fn CGPDFStringCopyDate(
-    string: CGPDFStringRef,
-) -> Option<CFRetained<CFDate>> {
-    extern "C-unwind" {
-        fn CGPDFStringCopyDate(string: CGPDFStringRef) -> Option<NonNull<CFDate>>;
-    }
-    let ret = unsafe { CGPDFStringCopyDate(string) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}

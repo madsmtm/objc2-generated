@@ -85,32 +85,3 @@ impl CGPDFOperatorTable {
         unsafe { CGPDFOperatorTableSetCallback(table, name, callback) }
     }
 }
-
-#[deprecated = "renamed to `CGPDFOperatorTable::create`"]
-#[inline]
-pub extern "C-unwind" fn CGPDFOperatorTableCreate() -> CGPDFOperatorTableRef {
-    extern "C-unwind" {
-        fn CGPDFOperatorTableCreate() -> CGPDFOperatorTableRef;
-    }
-    unsafe { CGPDFOperatorTableCreate() }
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGPDFOperatorTable::retain`"]
-    pub fn CGPDFOperatorTableRetain(table: CGPDFOperatorTableRef) -> CGPDFOperatorTableRef;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGPDFOperatorTable::release`"]
-    pub fn CGPDFOperatorTableRelease(table: CGPDFOperatorTableRef);
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "CGPDFScanner")]
-    #[deprecated = "renamed to `CGPDFOperatorTable::set_callback`"]
-    pub fn CGPDFOperatorTableSetCallback(
-        table: CGPDFOperatorTableRef,
-        name: *const c_char,
-        callback: CGPDFOperatorCallback,
-    );
-}

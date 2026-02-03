@@ -41,11 +41,7 @@ pub use self::__DDDevice::DDDevice;
 #[cfg(feature = "DDDevice")]
 pub use self::__DDDevice::DDDeviceCategory;
 #[cfg(feature = "DDDevice")]
-pub use self::__DDDevice::DDDeviceCategoryToString;
-#[cfg(feature = "DDDevice")]
 pub use self::__DDDevice::DDDeviceMediaPlaybackState;
-#[cfg(feature = "DDDevice")]
-pub use self::__DDDevice::DDDeviceMediaPlaybackStateToString;
 #[cfg(feature = "DDDevice")]
 pub use self::__DDDevice::DDDeviceProtocol;
 #[cfg(feature = "DDDevice")]
@@ -55,11 +51,7 @@ pub use self::__DDDevice::DDDeviceProtocolStringDIAL;
 #[cfg(feature = "DDDevice")]
 pub use self::__DDDevice::DDDeviceProtocolStringInvalid;
 #[cfg(feature = "DDDevice")]
-pub use self::__DDDevice::DDDeviceProtocolToString;
-#[cfg(feature = "DDDevice")]
 pub use self::__DDDevice::DDDeviceState;
-#[cfg(feature = "DDDevice")]
-pub use self::__DDDevice::DDDeviceStateToString;
 #[cfg(feature = "DDDevice")]
 pub use self::__DDDevice::DDDeviceSupports;
 #[cfg(feature = "DDDevice")]
@@ -78,7 +70,5 @@ pub use self::__DDEvent::DDDeviceEvent;
 pub use self::__DDEvent::DDEventHandler;
 #[cfg(feature = "DDEvent")]
 pub use self::__DDEvent::DDEventType;
-#[cfg(feature = "DDEvent")]
-pub use self::__DDEvent::DDEventTypeToString;
 #[cfg(feature = "DDExtension")]
 pub use self::__DDExtension::DDDiscoverySession;

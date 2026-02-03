@@ -834,16 +834,12 @@ pub use self::__AVCaption::AVCaptionAnimation;
 pub use self::__AVCaption::AVCaptionDecoration;
 #[cfg(all(feature = "AVCaption", feature = "objc2-core-foundation"))]
 pub use self::__AVCaption::AVCaptionDimension;
-#[cfg(all(feature = "AVCaption", feature = "objc2-core-foundation"))]
-pub use self::__AVCaption::AVCaptionDimensionMake;
 #[cfg(feature = "AVCaption")]
 pub use self::__AVCaption::AVCaptionFontStyle;
 #[cfg(feature = "AVCaption")]
 pub use self::__AVCaption::AVCaptionFontWeight;
 #[cfg(all(feature = "AVCaption", feature = "objc2-core-foundation"))]
 pub use self::__AVCaption::AVCaptionPoint;
-#[cfg(all(feature = "AVCaption", feature = "objc2-core-foundation"))]
-pub use self::__AVCaption::AVCaptionPointMake;
 #[cfg(feature = "AVCaption")]
 pub use self::__AVCaption::AVCaptionRegion;
 #[cfg(feature = "AVCaption")]
@@ -860,8 +856,6 @@ pub use self::__AVCaption::AVCaptionRubyAlignment;
 pub use self::__AVCaption::AVCaptionRubyPosition;
 #[cfg(all(feature = "AVCaption", feature = "objc2-core-foundation"))]
 pub use self::__AVCaption::AVCaptionSize;
-#[cfg(all(feature = "AVCaption", feature = "objc2-core-foundation"))]
-pub use self::__AVCaption::AVCaptionSizeMake;
 #[cfg(feature = "AVCaption")]
 pub use self::__AVCaption::AVCaptionTextAlignment;
 #[cfg(feature = "AVCaption")]
@@ -1278,20 +1272,6 @@ pub use self::__AVCaptureSystemPressure::AVCaptureSystemPressureState;
 pub use self::__AVCaptureSystemZoomSlider::AVCaptureSystemZoomSlider;
 #[cfg(all(feature = "AVCaptureTimecodeGenerator", feature = "objc2-core-media"))]
 pub use self::__AVCaptureTimecodeGenerator::AVCaptureTimecode;
-#[cfg(all(feature = "AVCaptureTimecodeGenerator", feature = "objc2-core-media"))]
-pub use self::__AVCaptureTimecodeGenerator::AVCaptureTimecodeAdvancedByFrames;
-#[cfg(all(
-    feature = "AVCaptureTimecodeGenerator",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-media"
-))]
-pub use self::__AVCaptureTimecodeGenerator::AVCaptureTimecodeCreateMetadataSampleBufferAssociatedWithPresentationTimeStamp;
-#[cfg(all(
-    feature = "AVCaptureTimecodeGenerator",
-    feature = "objc2-core-foundation",
-    feature = "objc2-core-media"
-))]
-pub use self::__AVCaptureTimecodeGenerator::AVCaptureTimecodeCreateMetadataSampleBufferForDuration;
 #[cfg(feature = "AVCaptureTimecodeGenerator")]
 pub use self::__AVCaptureTimecodeGenerator::AVCaptureTimecodeGenerator;
 #[cfg(feature = "AVCaptureTimecodeGenerator")]

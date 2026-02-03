@@ -164,107 +164,21 @@ pub use self::__CFArray::kCFTypeArrayCallBacks;
 #[cfg(feature = "CFArray")]
 pub use self::__CFArray::CFArray;
 #[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayAppendArray;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayAppendValue;
-#[cfg(feature = "CFArray")]
 pub use self::__CFArray::CFArrayApplierFunction;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayApplyFunction;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayBSearchValues;
 #[cfg(feature = "CFArray")]
 pub use self::__CFArray::CFArrayCallBacks;
 #[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayContainsValue;
-#[cfg(feature = "CFArray")]
 pub use self::__CFArray::CFArrayCopyDescriptionCallBack;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayCreate;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayCreateCopy;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayCreateMutable;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayCreateMutableCopy;
 #[cfg(feature = "CFArray")]
 pub use self::__CFArray::CFArrayEqualCallBack;
 #[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayExchangeValuesAtIndices;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayGetCount;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayGetCountOfValue;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayGetFirstIndexOfValue;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayGetLastIndexOfValue;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayGetValueAtIndex;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayGetValues;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayInsertValueAtIndex;
-#[cfg(feature = "CFArray")]
 pub use self::__CFArray::CFArrayReleaseCallBack;
 #[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayRemoveAllValues;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayRemoveValueAtIndex;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArrayReplaceValues;
-#[cfg(feature = "CFArray")]
 pub use self::__CFArray::CFArrayRetainCallBack;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArraySetValueAtIndex;
-#[cfg(feature = "CFArray")]
-pub use self::__CFArray::CFArraySortValues;
 #[cfg(feature = "CFArray")]
 pub use self::__CFArray::CFMutableArray;
 #[cfg(feature = "CFAttributedString")]
 pub use self::__CFAttributedString::CFAttributedString;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringBeginEditing;
-#[cfg(all(feature = "CFAttributedString", feature = "CFDictionary"))]
-pub use self::__CFAttributedString::CFAttributedStringCreate;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringCreateCopy;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringCreateMutable;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringCreateMutableCopy;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringCreateWithSubstring;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringEndEditing;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringGetAttribute;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringGetAttributeAndLongestEffectiveRange;
-#[cfg(all(feature = "CFAttributedString", feature = "CFDictionary"))]
-pub use self::__CFAttributedString::CFAttributedStringGetAttributes;
-#[cfg(all(feature = "CFAttributedString", feature = "CFDictionary"))]
-pub use self::__CFAttributedString::CFAttributedStringGetAttributesAndLongestEffectiveRange;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringGetBidiLevelsAndResolvedDirections;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringGetLength;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringGetMutableString;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringGetStatisticalWritingDirections;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringGetString;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringRemoveAttribute;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringReplaceAttributedString;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringReplaceString;
-#[cfg(feature = "CFAttributedString")]
-pub use self::__CFAttributedString::CFAttributedStringSetAttribute;
-#[cfg(all(feature = "CFAttributedString", feature = "CFDictionary"))]
-pub use self::__CFAttributedString::CFAttributedStringSetAttributes;
 #[cfg(feature = "CFAttributedString")]
 pub use self::__CFAttributedString::CFMutableAttributedString;
 #[cfg(feature = "CFBag")]
@@ -274,51 +188,19 @@ pub use self::__CFBag::kCFTypeBagCallBacks;
 #[cfg(feature = "CFBag")]
 pub use self::__CFBag::CFBag;
 #[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagAddValue;
-#[cfg(feature = "CFBag")]
 pub use self::__CFBag::CFBagApplierFunction;
-#[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagApplyFunction;
 #[cfg(feature = "CFBag")]
 pub use self::__CFBag::CFBagCallBacks;
 #[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagContainsValue;
-#[cfg(feature = "CFBag")]
 pub use self::__CFBag::CFBagCopyDescriptionCallBack;
 #[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagCreate;
-#[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagCreateCopy;
-#[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagCreateMutable;
-#[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagCreateMutableCopy;
-#[cfg(feature = "CFBag")]
 pub use self::__CFBag::CFBagEqualCallBack;
-#[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagGetCount;
-#[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagGetCountOfValue;
-#[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagGetValue;
-#[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagGetValueIfPresent;
-#[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagGetValues;
 #[cfg(feature = "CFBag")]
 pub use self::__CFBag::CFBagHashCallBack;
 #[cfg(feature = "CFBag")]
 pub use self::__CFBag::CFBagReleaseCallBack;
 #[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagRemoveAllValues;
-#[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagRemoveValue;
-#[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagReplaceValue;
-#[cfg(feature = "CFBag")]
 pub use self::__CFBag::CFBagRetainCallBack;
-#[cfg(feature = "CFBag")]
-pub use self::__CFBag::CFBagSetValue;
 #[cfg(feature = "CFBag")]
 pub use self::__CFBag::CFMutableBag;
 #[cfg(feature = "CFBinaryHeap")]
@@ -326,73 +208,15 @@ pub use self::__CFBinaryHeap::kCFStringBinaryHeapCallBacks;
 #[cfg(feature = "CFBinaryHeap")]
 pub use self::__CFBinaryHeap::CFBinaryHeap;
 #[cfg(feature = "CFBinaryHeap")]
-pub use self::__CFBinaryHeap::CFBinaryHeapAddValue;
-#[cfg(feature = "CFBinaryHeap")]
 pub use self::__CFBinaryHeap::CFBinaryHeapApplierFunction;
-#[cfg(feature = "CFBinaryHeap")]
-pub use self::__CFBinaryHeap::CFBinaryHeapApplyFunction;
 #[cfg(feature = "CFBinaryHeap")]
 pub use self::__CFBinaryHeap::CFBinaryHeapCallBacks;
 #[cfg(feature = "CFBinaryHeap")]
 pub use self::__CFBinaryHeap::CFBinaryHeapCompareContext;
-#[cfg(feature = "CFBinaryHeap")]
-pub use self::__CFBinaryHeap::CFBinaryHeapContainsValue;
-#[cfg(feature = "CFBinaryHeap")]
-pub use self::__CFBinaryHeap::CFBinaryHeapCreate;
-#[cfg(feature = "CFBinaryHeap")]
-pub use self::__CFBinaryHeap::CFBinaryHeapCreateCopy;
-#[cfg(feature = "CFBinaryHeap")]
-pub use self::__CFBinaryHeap::CFBinaryHeapGetCount;
-#[cfg(feature = "CFBinaryHeap")]
-pub use self::__CFBinaryHeap::CFBinaryHeapGetCountOfValue;
-#[cfg(feature = "CFBinaryHeap")]
-pub use self::__CFBinaryHeap::CFBinaryHeapGetMinimum;
-#[cfg(feature = "CFBinaryHeap")]
-pub use self::__CFBinaryHeap::CFBinaryHeapGetMinimumIfPresent;
-#[cfg(feature = "CFBinaryHeap")]
-pub use self::__CFBinaryHeap::CFBinaryHeapGetValues;
-#[cfg(feature = "CFBinaryHeap")]
-pub use self::__CFBinaryHeap::CFBinaryHeapRemoveAllValues;
-#[cfg(feature = "CFBinaryHeap")]
-pub use self::__CFBinaryHeap::CFBinaryHeapRemoveMinimumValue;
 #[cfg(feature = "CFBitVector")]
 pub use self::__CFBitVector::CFBit;
 #[cfg(feature = "CFBitVector")]
 pub use self::__CFBitVector::CFBitVector;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorContainsBit;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorCreate;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorCreateCopy;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorCreateMutable;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorCreateMutableCopy;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorFlipBitAtIndex;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorFlipBits;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorGetBitAtIndex;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorGetBits;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorGetCount;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorGetCountOfBit;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorGetFirstIndexOfBit;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorGetLastIndexOfBit;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorSetAllBits;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorSetBitAtIndex;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorSetBits;
-#[cfg(feature = "CFBitVector")]
-pub use self::__CFBitVector::CFBitVectorSetCount;
 #[cfg(feature = "CFBitVector")]
 pub use self::__CFBitVector::CFMutableBitVector;
 #[cfg(feature = "CFBundle")]
@@ -422,114 +246,6 @@ pub use self::__CFBundle::kCFBundleVersionKey;
 #[cfg(feature = "CFBundle")]
 pub use self::__CFBundle::CFBundle;
 #[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleCloseBundleResourceMap;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopyAuxiliaryExecutableURL;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopyBuiltInPlugInsURL;
-#[cfg(all(feature = "CFArray", feature = "CFBundle"))]
-pub use self::__CFBundle::CFBundleCopyBundleLocalizations;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopyBundleURL;
-#[cfg(all(feature = "CFArray", feature = "CFBundle"))]
-pub use self::__CFBundle::CFBundleCopyExecutableArchitectures;
-#[cfg(all(feature = "CFArray", feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopyExecutableArchitecturesForURL;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopyExecutableURL;
-#[cfg(all(feature = "CFBundle", feature = "CFDictionary", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopyInfoDictionaryForURL;
-#[cfg(all(feature = "CFBundle", feature = "CFDictionary", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopyInfoDictionaryInDirectory;
-#[cfg(all(feature = "CFArray", feature = "CFBundle"))]
-pub use self::__CFBundle::CFBundleCopyLocalizationsForPreferences;
-#[cfg(all(feature = "CFArray", feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopyLocalizationsForURL;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleCopyLocalizedString;
-#[cfg(all(feature = "CFArray", feature = "CFBundle"))]
-pub use self::__CFBundle::CFBundleCopyLocalizedStringForLocalizations;
-#[cfg(all(feature = "CFArray", feature = "CFBundle"))]
-pub use self::__CFBundle::CFBundleCopyPreferredLocalizationsFromArray;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopyPrivateFrameworksURL;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopyResourceURL;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopyResourceURLForLocalization;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopyResourceURLInDirectory;
-#[cfg(all(feature = "CFArray", feature = "CFBundle"))]
-pub use self::__CFBundle::CFBundleCopyResourceURLsOfType;
-#[cfg(all(feature = "CFArray", feature = "CFBundle"))]
-pub use self::__CFBundle::CFBundleCopyResourceURLsOfTypeForLocalization;
-#[cfg(all(feature = "CFArray", feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopyResourceURLsOfTypeInDirectory;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopyResourcesDirectoryURL;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopySharedFrameworksURL;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopySharedSupportURL;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCopySupportFilesDirectoryURL;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCreate;
-#[cfg(all(feature = "CFArray", feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleCreateBundlesFromDirectory;
-#[cfg(all(feature = "CFArray", feature = "CFBundle"))]
-pub use self::__CFBundle::CFBundleGetAllBundles;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleGetBundleWithIdentifier;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleGetDataPointerForName;
-#[cfg(all(feature = "CFArray", feature = "CFBundle"))]
-pub use self::__CFBundle::CFBundleGetDataPointersForNames;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleGetDevelopmentRegion;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleGetFunctionPointerForName;
-#[cfg(all(feature = "CFArray", feature = "CFBundle"))]
-pub use self::__CFBundle::CFBundleGetFunctionPointersForNames;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleGetIdentifier;
-#[cfg(all(feature = "CFBundle", feature = "CFDictionary"))]
-pub use self::__CFBundle::CFBundleGetInfoDictionary;
-#[cfg(all(feature = "CFBundle", feature = "CFDictionary"))]
-pub use self::__CFBundle::CFBundleGetLocalInfoDictionary;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleGetMainBundle;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleGetPackageInfo;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleGetPackageInfoInDirectory;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleGetPlugIn;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleGetValueForInfoDictionaryKey;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleGetVersionNumber;
-#[cfg(all(feature = "CFBundle", feature = "libc"))]
-pub use self::__CFBundle::CFBundleIsArchitectureLoadable;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleIsExecutableLoadable;
-#[cfg(all(feature = "CFBundle", feature = "CFURL"))]
-pub use self::__CFBundle::CFBundleIsExecutableLoadableForURL;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleIsExecutableLoaded;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleLoadExecutable;
-#[cfg(all(feature = "CFBundle", feature = "CFError"))]
-pub use self::__CFBundle::CFBundleLoadExecutableAndReturnError;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleOpenBundleResourceFiles;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleOpenBundleResourceMap;
-#[cfg(all(feature = "CFBundle", feature = "CFError"))]
-pub use self::__CFBundle::CFBundlePreflightExecutable;
-#[cfg(feature = "CFBundle")]
-pub use self::__CFBundle::CFBundleUnloadExecutable;
-#[cfg(feature = "CFBundle")]
 pub use self::__CFBundle::CFPlugIn;
 #[cfg(feature = "CFByteOrder")]
 pub use self::__CFByteOrder::CFByteOrder;
@@ -550,119 +266,17 @@ pub use self::__CFCalendar::kCFCalendarComponentsWrap;
 #[cfg(feature = "CFCalendar")]
 pub use self::__CFCalendar::CFCalendar;
 #[cfg(feature = "CFCalendar")]
-pub use self::__CFCalendar::CFCalendarCopyCurrent;
-#[cfg(all(feature = "CFCalendar", feature = "CFLocale"))]
-pub use self::__CFCalendar::CFCalendarCopyLocale;
-#[cfg(all(feature = "CFCalendar", feature = "CFDate"))]
-pub use self::__CFCalendar::CFCalendarCopyTimeZone;
-#[cfg(all(feature = "CFCalendar", feature = "CFLocale"))]
-pub use self::__CFCalendar::CFCalendarCreateWithIdentifier;
-#[cfg(feature = "CFCalendar")]
-pub use self::__CFCalendar::CFCalendarGetFirstWeekday;
-#[cfg(all(feature = "CFCalendar", feature = "CFLocale"))]
-pub use self::__CFCalendar::CFCalendarGetIdentifier;
-#[cfg(feature = "CFCalendar")]
-pub use self::__CFCalendar::CFCalendarGetMaximumRangeOfUnit;
-#[cfg(feature = "CFCalendar")]
-pub use self::__CFCalendar::CFCalendarGetMinimumDaysInFirstWeek;
-#[cfg(feature = "CFCalendar")]
-pub use self::__CFCalendar::CFCalendarGetMinimumRangeOfUnit;
-#[cfg(all(feature = "CFCalendar", feature = "CFDate"))]
-pub use self::__CFCalendar::CFCalendarGetOrdinalityOfUnit;
-#[cfg(all(feature = "CFCalendar", feature = "CFDate"))]
-pub use self::__CFCalendar::CFCalendarGetRangeOfUnit;
-#[cfg(all(feature = "CFCalendar", feature = "CFDate"))]
-pub use self::__CFCalendar::CFCalendarGetTimeRangeOfUnit;
-#[cfg(feature = "CFCalendar")]
-pub use self::__CFCalendar::CFCalendarSetFirstWeekday;
-#[cfg(all(feature = "CFCalendar", feature = "CFLocale"))]
-pub use self::__CFCalendar::CFCalendarSetLocale;
-#[cfg(feature = "CFCalendar")]
-pub use self::__CFCalendar::CFCalendarSetMinimumDaysInFirstWeek;
-#[cfg(all(feature = "CFCalendar", feature = "CFDate"))]
-pub use self::__CFCalendar::CFCalendarSetTimeZone;
-#[cfg(feature = "CFCalendar")]
 pub use self::__CFCalendar::CFCalendarUnit;
 #[cfg(feature = "CFCharacterSet")]
 pub use self::__CFCharacterSet::CFCharacterSet;
 #[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetAddCharactersInRange;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetAddCharactersInString;
-#[cfg(all(feature = "CFCharacterSet", feature = "CFData"))]
-pub use self::__CFCharacterSet::CFCharacterSetCreateBitmapRepresentation;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetCreateCopy;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetCreateInvertedSet;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetCreateMutable;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetCreateMutableCopy;
-#[cfg(all(feature = "CFCharacterSet", feature = "CFData"))]
-pub use self::__CFCharacterSet::CFCharacterSetCreateWithBitmapRepresentation;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetCreateWithCharactersInRange;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetCreateWithCharactersInString;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetGetPredefined;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetHasMemberInPlane;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetIntersect;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetInvert;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetIsCharacterMember;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetIsLongCharacterMember;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetIsSupersetOfSet;
-#[cfg(feature = "CFCharacterSet")]
 pub use self::__CFCharacterSet::CFCharacterSetPredefinedSet;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetRemoveCharactersInRange;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetRemoveCharactersInString;
-#[cfg(feature = "CFCharacterSet")]
-pub use self::__CFCharacterSet::CFCharacterSetUnion;
 #[cfg(feature = "CFCharacterSet")]
 pub use self::__CFCharacterSet::CFMutableCharacterSet;
 #[cfg(feature = "CFData")]
 pub use self::__CFData::CFData;
 #[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataAppendBytes;
-#[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataCreate;
-#[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataCreateCopy;
-#[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataCreateMutable;
-#[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataCreateMutableCopy;
-#[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataCreateWithBytesNoCopy;
-#[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataDeleteBytes;
-#[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataFind;
-#[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataGetBytePtr;
-#[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataGetBytes;
-#[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataGetLength;
-#[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataGetMutableBytePtr;
-#[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataIncreaseLength;
-#[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataReplaceBytes;
-#[cfg(feature = "CFData")]
 pub use self::__CFData::CFDataSearchFlags;
-#[cfg(feature = "CFData")]
-pub use self::__CFData::CFDataSetLength;
 #[cfg(feature = "CFData")]
 pub use self::__CFData::CFMutableData;
 #[cfg(feature = "CFDate")]
@@ -688,19 +302,7 @@ pub use self::__CFDate::CFAbsoluteTimeGetWeekOfYear;
 #[cfg(feature = "CFDate")]
 pub use self::__CFDate::CFDate;
 #[cfg(feature = "CFDate")]
-pub use self::__CFDate::CFDateCompare;
-#[cfg(feature = "CFDate")]
-pub use self::__CFDate::CFDateCreate;
-#[cfg(feature = "CFDate")]
-pub use self::__CFDate::CFDateGetAbsoluteTime;
-#[cfg(feature = "CFDate")]
-pub use self::__CFDate::CFDateGetTimeIntervalSinceDate;
-#[cfg(feature = "CFDate")]
 pub use self::__CFDate::CFGregorianDate;
-#[cfg(feature = "CFDate")]
-pub use self::__CFDate::CFGregorianDateGetAbsoluteTime;
-#[cfg(feature = "CFDate")]
-pub use self::__CFDate::CFGregorianDateIsValid;
 #[cfg(feature = "CFDate")]
 pub use self::__CFDate::CFGregorianUnitFlags;
 #[cfg(feature = "CFDate")]
@@ -770,35 +372,7 @@ pub use self::__CFDateFormatter::kCFDateFormatterWeekdaySymbols;
 #[cfg(feature = "CFDateFormatter")]
 pub use self::__CFDateFormatter::CFDateFormatter;
 #[cfg(feature = "CFDateFormatter")]
-pub use self::__CFDateFormatter::CFDateFormatterCopyProperty;
-#[cfg(all(feature = "CFDateFormatter", feature = "CFLocale"))]
-pub use self::__CFDateFormatter::CFDateFormatterCreate;
-#[cfg(all(feature = "CFDateFormatter", feature = "CFLocale"))]
-pub use self::__CFDateFormatter::CFDateFormatterCreateDateFormatFromTemplate;
-#[cfg(all(feature = "CFDate", feature = "CFDateFormatter"))]
-pub use self::__CFDateFormatter::CFDateFormatterCreateDateFromString;
-#[cfg(feature = "CFDateFormatter")]
-pub use self::__CFDateFormatter::CFDateFormatterCreateISO8601Formatter;
-#[cfg(all(feature = "CFDate", feature = "CFDateFormatter"))]
-pub use self::__CFDateFormatter::CFDateFormatterCreateStringWithAbsoluteTime;
-#[cfg(all(feature = "CFDate", feature = "CFDateFormatter"))]
-pub use self::__CFDateFormatter::CFDateFormatterCreateStringWithDate;
-#[cfg(all(feature = "CFDate", feature = "CFDateFormatter"))]
-pub use self::__CFDateFormatter::CFDateFormatterGetAbsoluteTimeFromString;
-#[cfg(feature = "CFDateFormatter")]
-pub use self::__CFDateFormatter::CFDateFormatterGetDateStyle;
-#[cfg(feature = "CFDateFormatter")]
-pub use self::__CFDateFormatter::CFDateFormatterGetFormat;
-#[cfg(all(feature = "CFDateFormatter", feature = "CFLocale"))]
-pub use self::__CFDateFormatter::CFDateFormatterGetLocale;
-#[cfg(feature = "CFDateFormatter")]
-pub use self::__CFDateFormatter::CFDateFormatterGetTimeStyle;
-#[cfg(feature = "CFDateFormatter")]
 pub use self::__CFDateFormatter::CFDateFormatterKey;
-#[cfg(feature = "CFDateFormatter")]
-pub use self::__CFDateFormatter::CFDateFormatterSetFormat;
-#[cfg(feature = "CFDateFormatter")]
-pub use self::__CFDateFormatter::CFDateFormatterSetProperty;
 #[cfg(feature = "CFDateFormatter")]
 pub use self::__CFDateFormatter::CFDateFormatterStyle;
 #[cfg(feature = "CFDateFormatter")]
@@ -812,39 +386,11 @@ pub use self::__CFDictionary::kCFTypeDictionaryValueCallBacks;
 #[cfg(feature = "CFDictionary")]
 pub use self::__CFDictionary::CFDictionary;
 #[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryAddValue;
-#[cfg(feature = "CFDictionary")]
 pub use self::__CFDictionary::CFDictionaryApplierFunction;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryApplyFunction;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryContainsKey;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryContainsValue;
 #[cfg(feature = "CFDictionary")]
 pub use self::__CFDictionary::CFDictionaryCopyDescriptionCallBack;
 #[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryCreate;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryCreateCopy;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryCreateMutable;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryCreateMutableCopy;
-#[cfg(feature = "CFDictionary")]
 pub use self::__CFDictionary::CFDictionaryEqualCallBack;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryGetCount;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryGetCountOfKey;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryGetCountOfValue;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryGetKeysAndValues;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryGetValue;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryGetValueIfPresent;
 #[cfg(feature = "CFDictionary")]
 pub use self::__CFDictionary::CFDictionaryHashCallBack;
 #[cfg(feature = "CFDictionary")]
@@ -852,15 +398,7 @@ pub use self::__CFDictionary::CFDictionaryKeyCallBacks;
 #[cfg(feature = "CFDictionary")]
 pub use self::__CFDictionary::CFDictionaryReleaseCallBack;
 #[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryRemoveAllValues;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryRemoveValue;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionaryReplaceValue;
-#[cfg(feature = "CFDictionary")]
 pub use self::__CFDictionary::CFDictionaryRetainCallBack;
-#[cfg(feature = "CFDictionary")]
-pub use self::__CFDictionary::CFDictionarySetValue;
 #[cfg(feature = "CFDictionary")]
 pub use self::__CFDictionary::CFDictionaryValueCallBacks;
 #[cfg(feature = "CFDictionary")]
@@ -892,23 +430,7 @@ pub use self::__CFError::kCFErrorUnderlyingErrorKey;
 #[cfg(feature = "CFError")]
 pub use self::__CFError::CFError;
 #[cfg(feature = "CFError")]
-pub use self::__CFError::CFErrorCopyDescription;
-#[cfg(feature = "CFError")]
-pub use self::__CFError::CFErrorCopyFailureReason;
-#[cfg(feature = "CFError")]
-pub use self::__CFError::CFErrorCopyRecoverySuggestion;
-#[cfg(all(feature = "CFDictionary", feature = "CFError"))]
-pub use self::__CFError::CFErrorCopyUserInfo;
-#[cfg(all(feature = "CFDictionary", feature = "CFError"))]
-pub use self::__CFError::CFErrorCreate;
-#[cfg(feature = "CFError")]
-pub use self::__CFError::CFErrorCreateWithUserInfoKeysAndValues;
-#[cfg(feature = "CFError")]
 pub use self::__CFError::CFErrorDomain;
-#[cfg(feature = "CFError")]
-pub use self::__CFError::CFErrorGetCode;
-#[cfg(feature = "CFError")]
-pub use self::__CFError::CFErrorGetDomain;
 #[cfg(feature = "CFFileDescriptor")]
 pub use self::__CFFileDescriptor::kCFFileDescriptorReadCallBack;
 #[cfg(feature = "CFFileDescriptor")]
@@ -920,53 +442,11 @@ pub use self::__CFFileDescriptor::CFFileDescriptorCallBack;
 #[cfg(feature = "CFFileDescriptor")]
 pub use self::__CFFileDescriptor::CFFileDescriptorContext;
 #[cfg(feature = "CFFileDescriptor")]
-pub use self::__CFFileDescriptor::CFFileDescriptorCreate;
-#[cfg(all(feature = "CFFileDescriptor", feature = "CFRunLoop"))]
-pub use self::__CFFileDescriptor::CFFileDescriptorCreateRunLoopSource;
-#[cfg(feature = "CFFileDescriptor")]
-pub use self::__CFFileDescriptor::CFFileDescriptorDisableCallBacks;
-#[cfg(feature = "CFFileDescriptor")]
-pub use self::__CFFileDescriptor::CFFileDescriptorEnableCallBacks;
-#[cfg(feature = "CFFileDescriptor")]
-pub use self::__CFFileDescriptor::CFFileDescriptorGetContext;
-#[cfg(feature = "CFFileDescriptor")]
-pub use self::__CFFileDescriptor::CFFileDescriptorGetNativeDescriptor;
-#[cfg(feature = "CFFileDescriptor")]
-pub use self::__CFFileDescriptor::CFFileDescriptorInvalidate;
-#[cfg(feature = "CFFileDescriptor")]
-pub use self::__CFFileDescriptor::CFFileDescriptorIsValid;
-#[cfg(feature = "CFFileDescriptor")]
 pub use self::__CFFileDescriptor::CFFileDescriptorNativeDescriptor;
 #[cfg(feature = "CFFileSecurity")]
 pub use self::__CFFileSecurity::CFFileSecurity;
 #[cfg(feature = "CFFileSecurity")]
 pub use self::__CFFileSecurity::CFFileSecurityClearOptions;
-#[cfg(feature = "CFFileSecurity")]
-pub use self::__CFFileSecurity::CFFileSecurityClearProperties;
-#[cfg(all(feature = "CFFileSecurity", feature = "CFUUID"))]
-pub use self::__CFFileSecurity::CFFileSecurityCopyGroupUUID;
-#[cfg(all(feature = "CFFileSecurity", feature = "CFUUID"))]
-pub use self::__CFFileSecurity::CFFileSecurityCopyOwnerUUID;
-#[cfg(feature = "CFFileSecurity")]
-pub use self::__CFFileSecurity::CFFileSecurityCreate;
-#[cfg(feature = "CFFileSecurity")]
-pub use self::__CFFileSecurity::CFFileSecurityCreateCopy;
-#[cfg(all(feature = "CFFileSecurity", feature = "libc"))]
-pub use self::__CFFileSecurity::CFFileSecurityGetGroup;
-#[cfg(all(feature = "CFFileSecurity", feature = "libc"))]
-pub use self::__CFFileSecurity::CFFileSecurityGetMode;
-#[cfg(all(feature = "CFFileSecurity", feature = "libc"))]
-pub use self::__CFFileSecurity::CFFileSecurityGetOwner;
-#[cfg(all(feature = "CFFileSecurity", feature = "libc"))]
-pub use self::__CFFileSecurity::CFFileSecuritySetGroup;
-#[cfg(all(feature = "CFFileSecurity", feature = "CFUUID"))]
-pub use self::__CFFileSecurity::CFFileSecuritySetGroupUUID;
-#[cfg(all(feature = "CFFileSecurity", feature = "libc"))]
-pub use self::__CFFileSecurity::CFFileSecuritySetMode;
-#[cfg(all(feature = "CFFileSecurity", feature = "libc"))]
-pub use self::__CFFileSecurity::CFFileSecuritySetOwner;
-#[cfg(all(feature = "CFFileSecurity", feature = "CFUUID"))]
-pub use self::__CFFileSecurity::CFFileSecuritySetOwnerUUID;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::kCFBanglaCalendar;
 #[cfg(feature = "CFLocale")]
@@ -1061,50 +541,6 @@ pub use self::__CFLocale::kCFVikramCalendar;
 pub use self::__CFLocale::CFCalendarIdentifier;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::CFLocale;
-#[cfg(all(feature = "CFArray", feature = "CFLocale"))]
-pub use self::__CFLocale::CFLocaleCopyAvailableLocaleIdentifiers;
-#[cfg(all(feature = "CFArray", feature = "CFLocale"))]
-pub use self::__CFLocale::CFLocaleCopyCommonISOCurrencyCodes;
-#[cfg(feature = "CFLocale")]
-pub use self::__CFLocale::CFLocaleCopyCurrent;
-#[cfg(feature = "CFLocale")]
-pub use self::__CFLocale::CFLocaleCopyDisplayNameForPropertyValue;
-#[cfg(all(feature = "CFArray", feature = "CFLocale"))]
-pub use self::__CFLocale::CFLocaleCopyISOCountryCodes;
-#[cfg(all(feature = "CFArray", feature = "CFLocale"))]
-pub use self::__CFLocale::CFLocaleCopyISOCurrencyCodes;
-#[cfg(all(feature = "CFArray", feature = "CFLocale"))]
-pub use self::__CFLocale::CFLocaleCopyISOLanguageCodes;
-#[cfg(all(feature = "CFArray", feature = "CFLocale"))]
-pub use self::__CFLocale::CFLocaleCopyPreferredLanguages;
-#[cfg(feature = "CFLocale")]
-pub use self::__CFLocale::CFLocaleCreate;
-#[cfg(feature = "CFLocale")]
-pub use self::__CFLocale::CFLocaleCreateCanonicalLanguageIdentifierFromString;
-#[cfg(feature = "CFLocale")]
-pub use self::__CFLocale::CFLocaleCreateCanonicalLocaleIdentifierFromScriptManagerCodes;
-#[cfg(feature = "CFLocale")]
-pub use self::__CFLocale::CFLocaleCreateCanonicalLocaleIdentifierFromString;
-#[cfg(all(feature = "CFDictionary", feature = "CFLocale"))]
-pub use self::__CFLocale::CFLocaleCreateComponentsFromLocaleIdentifier;
-#[cfg(feature = "CFLocale")]
-pub use self::__CFLocale::CFLocaleCreateCopy;
-#[cfg(all(feature = "CFDictionary", feature = "CFLocale"))]
-pub use self::__CFLocale::CFLocaleCreateLocaleIdentifierFromComponents;
-#[cfg(feature = "CFLocale")]
-pub use self::__CFLocale::CFLocaleCreateLocaleIdentifierFromWindowsLocaleCode;
-#[cfg(feature = "CFLocale")]
-pub use self::__CFLocale::CFLocaleGetIdentifier;
-#[cfg(feature = "CFLocale")]
-pub use self::__CFLocale::CFLocaleGetLanguageCharacterDirection;
-#[cfg(feature = "CFLocale")]
-pub use self::__CFLocale::CFLocaleGetLanguageLineDirection;
-#[cfg(feature = "CFLocale")]
-pub use self::__CFLocale::CFLocaleGetSystem;
-#[cfg(feature = "CFLocale")]
-pub use self::__CFLocale::CFLocaleGetValue;
-#[cfg(feature = "CFLocale")]
-pub use self::__CFLocale::CFLocaleGetWindowsLocaleCodeFromLocaleIdentifier;
 #[cfg(feature = "CFLocale")]
 pub use self::__CFLocale::CFLocaleIdentifier;
 #[cfg(feature = "CFLocale")]
@@ -1118,25 +554,7 @@ pub use self::__CFMachPort::CFMachPortCallBack;
 #[cfg(feature = "CFMachPort")]
 pub use self::__CFMachPort::CFMachPortContext;
 #[cfg(feature = "CFMachPort")]
-pub use self::__CFMachPort::CFMachPortCreate;
-#[cfg(all(feature = "CFMachPort", feature = "CFRunLoop"))]
-pub use self::__CFMachPort::CFMachPortCreateRunLoopSource;
-#[cfg(all(feature = "CFMachPort", feature = "libc"))]
-pub use self::__CFMachPort::CFMachPortCreateWithPort;
-#[cfg(feature = "CFMachPort")]
-pub use self::__CFMachPort::CFMachPortGetContext;
-#[cfg(feature = "CFMachPort")]
-pub use self::__CFMachPort::CFMachPortGetInvalidationCallBack;
-#[cfg(all(feature = "CFMachPort", feature = "libc"))]
-pub use self::__CFMachPort::CFMachPortGetPort;
-#[cfg(feature = "CFMachPort")]
-pub use self::__CFMachPort::CFMachPortInvalidate;
-#[cfg(feature = "CFMachPort")]
 pub use self::__CFMachPort::CFMachPortInvalidationCallBack;
-#[cfg(feature = "CFMachPort")]
-pub use self::__CFMachPort::CFMachPortIsValid;
-#[cfg(feature = "CFMachPort")]
-pub use self::__CFMachPort::CFMachPortSetInvalidationCallBack;
 #[cfg(feature = "CFMessagePort")]
 pub use self::__CFMessagePort::kCFMessagePortBecameInvalidError;
 #[cfg(feature = "CFMessagePort")]
@@ -1155,34 +573,8 @@ pub use self::__CFMessagePort::CFMessagePort;
 pub use self::__CFMessagePort::CFMessagePortCallBack;
 #[cfg(feature = "CFMessagePort")]
 pub use self::__CFMessagePort::CFMessagePortContext;
-#[cfg(all(feature = "CFData", feature = "CFMessagePort"))]
-pub use self::__CFMessagePort::CFMessagePortCreateLocal;
-#[cfg(feature = "CFMessagePort")]
-pub use self::__CFMessagePort::CFMessagePortCreateRemote;
-#[cfg(all(feature = "CFMessagePort", feature = "CFRunLoop"))]
-pub use self::__CFMessagePort::CFMessagePortCreateRunLoopSource;
-#[cfg(feature = "CFMessagePort")]
-pub use self::__CFMessagePort::CFMessagePortGetContext;
-#[cfg(feature = "CFMessagePort")]
-pub use self::__CFMessagePort::CFMessagePortGetInvalidationCallBack;
-#[cfg(feature = "CFMessagePort")]
-pub use self::__CFMessagePort::CFMessagePortGetName;
-#[cfg(feature = "CFMessagePort")]
-pub use self::__CFMessagePort::CFMessagePortInvalidate;
 #[cfg(feature = "CFMessagePort")]
 pub use self::__CFMessagePort::CFMessagePortInvalidationCallBack;
-#[cfg(feature = "CFMessagePort")]
-pub use self::__CFMessagePort::CFMessagePortIsRemote;
-#[cfg(feature = "CFMessagePort")]
-pub use self::__CFMessagePort::CFMessagePortIsValid;
-#[cfg(all(feature = "CFData", feature = "CFDate", feature = "CFMessagePort"))]
-pub use self::__CFMessagePort::CFMessagePortSendRequest;
-#[cfg(all(feature = "CFMessagePort", feature = "dispatch2"))]
-pub use self::__CFMessagePort::CFMessagePortSetDispatchQueue;
-#[cfg(feature = "CFMessagePort")]
-pub use self::__CFMessagePort::CFMessagePortSetInvalidationCallBack;
-#[cfg(feature = "CFMessagePort")]
-pub use self::__CFMessagePort::CFMessagePortSetName;
 #[cfg(feature = "CFNotificationCenter")]
 pub use self::__CFNotificationCenter::kCFNotificationDeliverImmediately;
 #[cfg(feature = "CFNotificationCenter")]
@@ -1191,22 +583,6 @@ pub use self::__CFNotificationCenter::kCFNotificationPostToAllSessions;
 pub use self::__CFNotificationCenter::CFNotificationCallback;
 #[cfg(feature = "CFNotificationCenter")]
 pub use self::__CFNotificationCenter::CFNotificationCenter;
-#[cfg(all(feature = "CFDictionary", feature = "CFNotificationCenter"))]
-pub use self::__CFNotificationCenter::CFNotificationCenterAddObserver;
-#[cfg(feature = "CFNotificationCenter")]
-pub use self::__CFNotificationCenter::CFNotificationCenterGetDarwinNotifyCenter;
-#[cfg(feature = "CFNotificationCenter")]
-pub use self::__CFNotificationCenter::CFNotificationCenterGetDistributedCenter;
-#[cfg(feature = "CFNotificationCenter")]
-pub use self::__CFNotificationCenter::CFNotificationCenterGetLocalCenter;
-#[cfg(all(feature = "CFDictionary", feature = "CFNotificationCenter"))]
-pub use self::__CFNotificationCenter::CFNotificationCenterPostNotification;
-#[cfg(all(feature = "CFDictionary", feature = "CFNotificationCenter"))]
-pub use self::__CFNotificationCenter::CFNotificationCenterPostNotificationWithOptions;
-#[cfg(feature = "CFNotificationCenter")]
-pub use self::__CFNotificationCenter::CFNotificationCenterRemoveEveryObserver;
-#[cfg(feature = "CFNotificationCenter")]
-pub use self::__CFNotificationCenter::CFNotificationCenterRemoveObserver;
 #[cfg(feature = "CFNotificationCenter")]
 pub use self::__CFNotificationCenter::CFNotificationName;
 #[cfg(feature = "CFNotificationCenter")]
@@ -1224,21 +600,7 @@ pub use self::__CFNumber::kCFNumberPositiveInfinity;
 #[cfg(feature = "CFNumber")]
 pub use self::__CFNumber::CFBoolean;
 #[cfg(feature = "CFNumber")]
-pub use self::__CFNumber::CFBooleanGetValue;
-#[cfg(feature = "CFNumber")]
 pub use self::__CFNumber::CFNumber;
-#[cfg(feature = "CFNumber")]
-pub use self::__CFNumber::CFNumberCompare;
-#[cfg(feature = "CFNumber")]
-pub use self::__CFNumber::CFNumberCreate;
-#[cfg(feature = "CFNumber")]
-pub use self::__CFNumber::CFNumberGetByteSize;
-#[cfg(feature = "CFNumber")]
-pub use self::__CFNumber::CFNumberGetType;
-#[cfg(feature = "CFNumber")]
-pub use self::__CFNumber::CFNumberGetValue;
-#[cfg(feature = "CFNumber")]
-pub use self::__CFNumber::CFNumberIsFloatType;
 #[cfg(feature = "CFNumber")]
 pub use self::__CFNumber::CFNumberType;
 #[cfg(feature = "CFNumberFormatter")]
@@ -1322,26 +684,6 @@ pub use self::__CFNumberFormatter::kCFNumberFormatterZeroSymbol;
 #[cfg(feature = "CFNumberFormatter")]
 pub use self::__CFNumberFormatter::CFNumberFormatter;
 #[cfg(feature = "CFNumberFormatter")]
-pub use self::__CFNumberFormatter::CFNumberFormatterCopyProperty;
-#[cfg(all(feature = "CFLocale", feature = "CFNumberFormatter"))]
-pub use self::__CFNumberFormatter::CFNumberFormatterCreate;
-#[cfg(all(feature = "CFNumber", feature = "CFNumberFormatter"))]
-pub use self::__CFNumberFormatter::CFNumberFormatterCreateNumberFromString;
-#[cfg(all(feature = "CFNumber", feature = "CFNumberFormatter"))]
-pub use self::__CFNumberFormatter::CFNumberFormatterCreateStringWithNumber;
-#[cfg(all(feature = "CFNumber", feature = "CFNumberFormatter"))]
-pub use self::__CFNumberFormatter::CFNumberFormatterCreateStringWithValue;
-#[cfg(feature = "CFNumberFormatter")]
-pub use self::__CFNumberFormatter::CFNumberFormatterGetDecimalInfoForCurrencyCode;
-#[cfg(feature = "CFNumberFormatter")]
-pub use self::__CFNumberFormatter::CFNumberFormatterGetFormat;
-#[cfg(all(feature = "CFLocale", feature = "CFNumberFormatter"))]
-pub use self::__CFNumberFormatter::CFNumberFormatterGetLocale;
-#[cfg(feature = "CFNumberFormatter")]
-pub use self::__CFNumberFormatter::CFNumberFormatterGetStyle;
-#[cfg(all(feature = "CFNumber", feature = "CFNumberFormatter"))]
-pub use self::__CFNumberFormatter::CFNumberFormatterGetValueFromString;
-#[cfg(feature = "CFNumberFormatter")]
 pub use self::__CFNumberFormatter::CFNumberFormatterKey;
 #[cfg(feature = "CFNumberFormatter")]
 pub use self::__CFNumberFormatter::CFNumberFormatterOptionFlags;
@@ -1349,10 +691,6 @@ pub use self::__CFNumberFormatter::CFNumberFormatterOptionFlags;
 pub use self::__CFNumberFormatter::CFNumberFormatterPadPosition;
 #[cfg(feature = "CFNumberFormatter")]
 pub use self::__CFNumberFormatter::CFNumberFormatterRoundingMode;
-#[cfg(feature = "CFNumberFormatter")]
-pub use self::__CFNumberFormatter::CFNumberFormatterSetFormat;
-#[cfg(feature = "CFNumberFormatter")]
-pub use self::__CFNumberFormatter::CFNumberFormatterSetProperty;
 #[cfg(feature = "CFNumberFormatter")]
 pub use self::__CFNumberFormatter::CFNumberFormatterStyle;
 #[cfg(feature = "CFPlugIn")]
@@ -1365,59 +703,18 @@ pub use self::__CFPlugIn::kCFPlugInFactoriesKey;
 pub use self::__CFPlugIn::kCFPlugInTypesKey;
 #[cfg(feature = "CFPlugIn")]
 pub use self::__CFPlugIn::kCFPlugInUnloadFunctionKey;
-#[cfg(all(feature = "CFPlugIn", feature = "CFUUID"))]
-pub use self::__CFPlugIn::CFPlugInAddInstanceForFactory;
-#[cfg(all(feature = "CFBundle", feature = "CFPlugIn", feature = "CFURL"))]
-pub use self::__CFPlugIn::CFPlugInCreate;
 #[cfg(all(feature = "CFBundle", feature = "CFPlugIn"))]
 pub use self::__CFPlugIn::CFPlugInDynamicRegisterFunction;
 #[cfg(all(feature = "CFPlugIn", feature = "CFUUID"))]
 pub use self::__CFPlugIn::CFPlugInFactoryFunction;
-#[cfg(all(feature = "CFArray", feature = "CFPlugIn", feature = "CFUUID"))]
-pub use self::__CFPlugIn::CFPlugInFindFactoriesForPlugInType;
-#[cfg(all(
-    feature = "CFArray",
-    feature = "CFBundle",
-    feature = "CFPlugIn",
-    feature = "CFUUID"
-))]
-pub use self::__CFPlugIn::CFPlugInFindFactoriesForPlugInTypeInPlugIn;
-#[cfg(all(feature = "CFBundle", feature = "CFPlugIn"))]
-pub use self::__CFPlugIn::CFPlugInGetBundle;
 #[cfg(feature = "CFPlugIn")]
 pub use self::__CFPlugIn::CFPlugInInstance;
-#[cfg(all(feature = "CFPlugIn", feature = "CFUUID"))]
-pub use self::__CFPlugIn::CFPlugInInstanceCreate;
-#[cfg(feature = "CFPlugIn")]
-pub use self::__CFPlugIn::CFPlugInInstanceCreateWithInstanceDataSize;
 #[cfg(feature = "CFPlugIn")]
 pub use self::__CFPlugIn::CFPlugInInstanceDeallocateInstanceDataFunction;
 #[cfg(feature = "CFPlugIn")]
-pub use self::__CFPlugIn::CFPlugInInstanceGetFactoryName;
-#[cfg(feature = "CFPlugIn")]
-pub use self::__CFPlugIn::CFPlugInInstanceGetInstanceData;
-#[cfg(feature = "CFPlugIn")]
 pub use self::__CFPlugIn::CFPlugInInstanceGetInterfaceFunction;
-#[cfg(feature = "CFPlugIn")]
-pub use self::__CFPlugIn::CFPlugInInstanceGetInterfaceFunctionTable;
-#[cfg(all(feature = "CFBundle", feature = "CFPlugIn"))]
-pub use self::__CFPlugIn::CFPlugInIsLoadOnDemand;
-#[cfg(all(feature = "CFPlugIn", feature = "CFUUID"))]
-pub use self::__CFPlugIn::CFPlugInRegisterFactoryFunction;
-#[cfg(all(feature = "CFBundle", feature = "CFPlugIn", feature = "CFUUID"))]
-pub use self::__CFPlugIn::CFPlugInRegisterFactoryFunctionByName;
-#[cfg(all(feature = "CFPlugIn", feature = "CFUUID"))]
-pub use self::__CFPlugIn::CFPlugInRegisterPlugInType;
-#[cfg(all(feature = "CFPlugIn", feature = "CFUUID"))]
-pub use self::__CFPlugIn::CFPlugInRemoveInstanceForFactory;
-#[cfg(all(feature = "CFBundle", feature = "CFPlugIn"))]
-pub use self::__CFPlugIn::CFPlugInSetLoadOnDemand;
 #[cfg(all(feature = "CFBundle", feature = "CFPlugIn"))]
 pub use self::__CFPlugIn::CFPlugInUnloadFunction;
-#[cfg(all(feature = "CFPlugIn", feature = "CFUUID"))]
-pub use self::__CFPlugIn::CFPlugInUnregisterFactory;
-#[cfg(all(feature = "CFPlugIn", feature = "CFUUID"))]
-pub use self::__CFPlugIn::CFPlugInUnregisterPlugInType;
 #[cfg(all(feature = "CFPlugInCOM", feature = "CFUUID"))]
 pub use self::__CFPlugInCOM::IUnknownVTbl;
 #[cfg(feature = "CFPlugInCOM")]
@@ -1519,32 +816,6 @@ pub use self::__CFRunLoop::CFRunLoop;
 #[cfg(feature = "CFRunLoop")]
 pub use self::__CFRunLoop::CFRunLoopActivity;
 #[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopAddCommonMode;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopAddObserver;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopAddSource;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopAddTimer;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopContainsObserver;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopContainsSource;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopContainsTimer;
-#[cfg(all(feature = "CFArray", feature = "CFRunLoop"))]
-pub use self::__CFRunLoop::CFRunLoopCopyAllModes;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopCopyCurrentMode;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopGetCurrent;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopGetMain;
-#[cfg(all(feature = "CFDate", feature = "CFRunLoop"))]
-pub use self::__CFRunLoop::CFRunLoopGetNextTimerFireDate;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopIsWaiting;
-#[cfg(feature = "CFRunLoop")]
 pub use self::__CFRunLoop::CFRunLoopMode;
 #[cfg(feature = "CFRunLoop")]
 pub use self::__CFRunLoop::CFRunLoopObserver;
@@ -1552,34 +823,6 @@ pub use self::__CFRunLoop::CFRunLoopObserver;
 pub use self::__CFRunLoop::CFRunLoopObserverCallBack;
 #[cfg(feature = "CFRunLoop")]
 pub use self::__CFRunLoop::CFRunLoopObserverContext;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopObserverCreate;
-#[cfg(all(feature = "CFRunLoop", feature = "block2"))]
-pub use self::__CFRunLoop::CFRunLoopObserverCreateWithHandler;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopObserverDoesRepeat;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopObserverGetActivities;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopObserverGetContext;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopObserverGetOrder;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopObserverInvalidate;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopObserverIsValid;
-#[cfg(all(feature = "CFRunLoop", feature = "block2"))]
-pub use self::__CFRunLoop::CFRunLoopPerformBlock;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopRemoveObserver;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopRemoveSource;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopRemoveTimer;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopRun;
-#[cfg(all(feature = "CFDate", feature = "CFRunLoop"))]
-pub use self::__CFRunLoop::CFRunLoopRunInMode;
 #[cfg(feature = "CFRunLoop")]
 pub use self::__CFRunLoop::CFRunLoopRunResult;
 #[cfg(feature = "CFRunLoop")]
@@ -1589,51 +832,11 @@ pub use self::__CFRunLoop::CFRunLoopSourceContext;
 #[cfg(all(feature = "CFRunLoop", feature = "libc"))]
 pub use self::__CFRunLoop::CFRunLoopSourceContext1;
 #[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopSourceCreate;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopSourceGetContext;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopSourceGetOrder;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopSourceInvalidate;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopSourceIsValid;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopSourceSignal;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopStop;
-#[cfg(feature = "CFRunLoop")]
 pub use self::__CFRunLoop::CFRunLoopTimer;
 #[cfg(feature = "CFRunLoop")]
 pub use self::__CFRunLoop::CFRunLoopTimerCallBack;
 #[cfg(feature = "CFRunLoop")]
 pub use self::__CFRunLoop::CFRunLoopTimerContext;
-#[cfg(all(feature = "CFDate", feature = "CFRunLoop"))]
-pub use self::__CFRunLoop::CFRunLoopTimerCreate;
-#[cfg(all(feature = "CFDate", feature = "CFRunLoop", feature = "block2"))]
-pub use self::__CFRunLoop::CFRunLoopTimerCreateWithHandler;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopTimerDoesRepeat;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopTimerGetContext;
-#[cfg(all(feature = "CFDate", feature = "CFRunLoop"))]
-pub use self::__CFRunLoop::CFRunLoopTimerGetInterval;
-#[cfg(all(feature = "CFDate", feature = "CFRunLoop"))]
-pub use self::__CFRunLoop::CFRunLoopTimerGetNextFireDate;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopTimerGetOrder;
-#[cfg(all(feature = "CFDate", feature = "CFRunLoop"))]
-pub use self::__CFRunLoop::CFRunLoopTimerGetTolerance;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopTimerInvalidate;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopTimerIsValid;
-#[cfg(all(feature = "CFDate", feature = "CFRunLoop"))]
-pub use self::__CFRunLoop::CFRunLoopTimerSetNextFireDate;
-#[cfg(all(feature = "CFDate", feature = "CFRunLoop"))]
-pub use self::__CFRunLoop::CFRunLoopTimerSetTolerance;
-#[cfg(feature = "CFRunLoop")]
-pub use self::__CFRunLoop::CFRunLoopWakeUp;
 #[cfg(feature = "CFSet")]
 pub use self::__CFSet::kCFCopyStringSetCallBacks;
 #[cfg(feature = "CFSet")]
@@ -1643,51 +846,19 @@ pub use self::__CFSet::CFMutableSet;
 #[cfg(feature = "CFSet")]
 pub use self::__CFSet::CFSet;
 #[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetAddValue;
-#[cfg(feature = "CFSet")]
 pub use self::__CFSet::CFSetApplierFunction;
-#[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetApplyFunction;
 #[cfg(feature = "CFSet")]
 pub use self::__CFSet::CFSetCallBacks;
 #[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetContainsValue;
-#[cfg(feature = "CFSet")]
 pub use self::__CFSet::CFSetCopyDescriptionCallBack;
 #[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetCreate;
-#[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetCreateCopy;
-#[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetCreateMutable;
-#[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetCreateMutableCopy;
-#[cfg(feature = "CFSet")]
 pub use self::__CFSet::CFSetEqualCallBack;
-#[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetGetCount;
-#[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetGetCountOfValue;
-#[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetGetValue;
-#[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetGetValueIfPresent;
-#[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetGetValues;
 #[cfg(feature = "CFSet")]
 pub use self::__CFSet::CFSetHashCallBack;
 #[cfg(feature = "CFSet")]
 pub use self::__CFSet::CFSetReleaseCallBack;
 #[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetRemoveAllValues;
-#[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetRemoveValue;
-#[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetReplaceValue;
-#[cfg(feature = "CFSet")]
 pub use self::__CFSet::CFSetRetainCallBack;
-#[cfg(feature = "CFSet")]
-pub use self::__CFSet::CFSetSetValue;
 #[cfg(feature = "CFSocket")]
 pub use self::__CFSocket::kCFSocketAutomaticallyReenableAcceptCallBack;
 #[cfg(feature = "CFSocket")]
@@ -1720,64 +891,14 @@ pub use self::__CFSocket::CFSocket;
 pub use self::__CFSocket::CFSocketCallBack;
 #[cfg(feature = "CFSocket")]
 pub use self::__CFSocket::CFSocketCallBackType;
-#[cfg(all(feature = "CFData", feature = "CFDate", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketConnectToAddress;
 #[cfg(feature = "CFSocket")]
 pub use self::__CFSocket::CFSocketContext;
-#[cfg(all(feature = "CFData", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketCopyAddress;
-#[cfg(all(feature = "CFData", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketCopyPeerAddress;
-#[cfg(all(feature = "CFData", feature = "CFDate", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketCopyRegisteredSocketSignature;
-#[cfg(all(feature = "CFData", feature = "CFDate", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketCopyRegisteredValue;
-#[cfg(all(feature = "CFData", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketCreate;
-#[cfg(all(feature = "CFData", feature = "CFDate", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketCreateConnectedToSocketSignature;
-#[cfg(all(feature = "CFRunLoop", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketCreateRunLoopSource;
-#[cfg(all(feature = "CFData", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketCreateWithNative;
-#[cfg(all(feature = "CFData", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketCreateWithSocketSignature;
-#[cfg(feature = "CFSocket")]
-pub use self::__CFSocket::CFSocketDisableCallBacks;
-#[cfg(feature = "CFSocket")]
-pub use self::__CFSocket::CFSocketEnableCallBacks;
 #[cfg(feature = "CFSocket")]
 pub use self::__CFSocket::CFSocketError;
 #[cfg(feature = "CFSocket")]
-pub use self::__CFSocket::CFSocketGetContext;
-#[cfg(feature = "CFSocket")]
-pub use self::__CFSocket::CFSocketGetDefaultNameRegistryPortNumber;
-#[cfg(feature = "CFSocket")]
-pub use self::__CFSocket::CFSocketGetNative;
-#[cfg(feature = "CFSocket")]
-pub use self::__CFSocket::CFSocketGetSocketFlags;
-#[cfg(feature = "CFSocket")]
-pub use self::__CFSocket::CFSocketInvalidate;
-#[cfg(feature = "CFSocket")]
-pub use self::__CFSocket::CFSocketIsValid;
-#[cfg(feature = "CFSocket")]
 pub use self::__CFSocket::CFSocketNativeHandle;
-#[cfg(all(feature = "CFData", feature = "CFDate", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketRegisterSocketSignature;
-#[cfg(all(feature = "CFData", feature = "CFDate", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketRegisterValue;
-#[cfg(all(feature = "CFData", feature = "CFDate", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketSendData;
-#[cfg(all(feature = "CFData", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketSetAddress;
-#[cfg(feature = "CFSocket")]
-pub use self::__CFSocket::CFSocketSetDefaultNameRegistryPortNumber;
-#[cfg(feature = "CFSocket")]
-pub use self::__CFSocket::CFSocketSetSocketFlags;
 #[cfg(all(feature = "CFData", feature = "CFSocket"))]
 pub use self::__CFSocket::CFSocketSignature;
-#[cfg(all(feature = "CFData", feature = "CFDate", feature = "CFSocket"))]
-pub use self::__CFSocket::CFSocketUnregister;
 #[cfg(feature = "CFStream")]
 pub use self::__CFStream::kCFStreamErrorDomainSOCKS;
 #[cfg(feature = "CFStream")]
@@ -1829,40 +950,6 @@ pub use self::__CFStream::CFReadStream;
 #[cfg(feature = "CFStream")]
 pub use self::__CFStream::CFReadStreamClientCallBack;
 #[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFReadStreamClose;
-#[cfg(all(feature = "CFStream", feature = "dispatch2"))]
-pub use self::__CFStream::CFReadStreamCopyDispatchQueue;
-#[cfg(all(feature = "CFError", feature = "CFStream"))]
-pub use self::__CFStream::CFReadStreamCopyError;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFReadStreamCopyProperty;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFReadStreamCreateWithBytesNoCopy;
-#[cfg(all(feature = "CFStream", feature = "CFURL"))]
-pub use self::__CFStream::CFReadStreamCreateWithFile;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFReadStreamGetBuffer;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFReadStreamGetError;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFReadStreamGetStatus;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFReadStreamHasBytesAvailable;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFReadStreamOpen;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFReadStreamRead;
-#[cfg(all(feature = "CFRunLoop", feature = "CFStream"))]
-pub use self::__CFStream::CFReadStreamScheduleWithRunLoop;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFReadStreamSetClient;
-#[cfg(all(feature = "CFStream", feature = "dispatch2"))]
-pub use self::__CFStream::CFReadStreamSetDispatchQueue;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFReadStreamSetProperty;
-#[cfg(all(feature = "CFRunLoop", feature = "CFStream"))]
-pub use self::__CFStream::CFReadStreamUnscheduleFromRunLoop;
-#[cfg(feature = "CFStream")]
 pub use self::__CFStream::CFStreamClientContext;
 #[cfg(feature = "CFStream")]
 pub use self::__CFStream::CFStreamCreateBoundPair;
@@ -1885,41 +972,7 @@ pub use self::__CFStream::CFStreamStatus;
 #[cfg(feature = "CFStream")]
 pub use self::__CFStream::CFWriteStream;
 #[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFWriteStreamCanAcceptBytes;
-#[cfg(feature = "CFStream")]
 pub use self::__CFStream::CFWriteStreamClientCallBack;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFWriteStreamClose;
-#[cfg(all(feature = "CFStream", feature = "dispatch2"))]
-pub use self::__CFStream::CFWriteStreamCopyDispatchQueue;
-#[cfg(all(feature = "CFError", feature = "CFStream"))]
-pub use self::__CFStream::CFWriteStreamCopyError;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFWriteStreamCopyProperty;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFWriteStreamCreateWithAllocatedBuffers;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFWriteStreamCreateWithBuffer;
-#[cfg(all(feature = "CFStream", feature = "CFURL"))]
-pub use self::__CFStream::CFWriteStreamCreateWithFile;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFWriteStreamGetError;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFWriteStreamGetStatus;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFWriteStreamOpen;
-#[cfg(all(feature = "CFRunLoop", feature = "CFStream"))]
-pub use self::__CFStream::CFWriteStreamScheduleWithRunLoop;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFWriteStreamSetClient;
-#[cfg(all(feature = "CFStream", feature = "dispatch2"))]
-pub use self::__CFStream::CFWriteStreamSetDispatchQueue;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFWriteStreamSetProperty;
-#[cfg(all(feature = "CFRunLoop", feature = "CFStream"))]
-pub use self::__CFStream::CFWriteStreamUnscheduleFromRunLoop;
-#[cfg(feature = "CFStream")]
-pub use self::__CFStream::CFWriteStreamWrite;
 #[cfg(feature = "CFString")]
 pub use self::__CFString::kCFStringEncodingInvalidId;
 #[cfg(feature = "CFString")]
@@ -1959,173 +1012,15 @@ pub use self::__CFString::CFShow;
 #[cfg(feature = "CFString")]
 pub use self::__CFString::CFShowStr;
 #[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringAppend;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringAppendCString;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringAppendCharacters;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringAppendPascalString;
-#[cfg(feature = "CFString")]
 pub use self::__CFString::CFStringBuiltInEncodings;
-#[cfg(all(feature = "CFLocale", feature = "CFString"))]
-pub use self::__CFString::CFStringCapitalize;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCompare;
 #[cfg(feature = "CFString")]
 pub use self::__CFString::CFStringCompareFlags;
 #[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCompareWithOptions;
-#[cfg(all(feature = "CFLocale", feature = "CFString"))]
-pub use self::__CFString::CFStringCompareWithOptionsAndLocale;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringConvertEncodingToIANACharSetName;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringConvertEncodingToNSStringEncoding;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringConvertEncodingToWindowsCodepage;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringConvertIANACharSetNameToEncoding;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringConvertNSStringEncodingToEncoding;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringConvertWindowsCodepageToEncoding;
-#[cfg(all(feature = "CFArray", feature = "CFString"))]
-pub use self::__CFString::CFStringCreateArrayBySeparatingStrings;
-#[cfg(all(feature = "CFArray", feature = "CFString"))]
-pub use self::__CFString::CFStringCreateArrayWithFindResults;
-#[cfg(all(feature = "CFArray", feature = "CFString"))]
-pub use self::__CFString::CFStringCreateByCombiningStrings;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCreateCopy;
-#[cfg(all(feature = "CFData", feature = "CFString"))]
-pub use self::__CFString::CFStringCreateExternalRepresentation;
-#[cfg(all(feature = "CFData", feature = "CFString"))]
-pub use self::__CFString::CFStringCreateFromExternalRepresentation;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCreateMutable;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCreateMutableCopy;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCreateMutableWithExternalCharactersNoCopy;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCreateWithBytes;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCreateWithBytesNoCopy;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCreateWithCString;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCreateWithCStringNoCopy;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCreateWithCharacters;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCreateWithCharactersNoCopy;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCreateWithFileSystemRepresentation;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCreateWithPascalString;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCreateWithPascalStringNoCopy;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringCreateWithSubstring;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringDelete;
-#[cfg(feature = "CFString")]
 pub use self::__CFString::CFStringEncoding;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringFind;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringFindAndReplace;
-#[cfg(all(feature = "CFCharacterSet", feature = "CFString"))]
-pub use self::__CFString::CFStringFindCharacterFromSet;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringFindWithOptions;
-#[cfg(all(feature = "CFLocale", feature = "CFString"))]
-pub use self::__CFString::CFStringFindWithOptionsAndLocale;
-#[cfg(all(feature = "CFLocale", feature = "CFString"))]
-pub use self::__CFString::CFStringFold;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetBytes;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetCString;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetCStringPtr;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetCharacterAtIndex;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetCharacters;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetCharactersPtr;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetDoubleValue;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetFastestEncoding;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetFileSystemRepresentation;
-#[cfg(all(feature = "CFLocale", feature = "CFString"))]
-pub use self::__CFString::CFStringGetHyphenationLocationBeforeIndex;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetIntValue;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetLength;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetLineBounds;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetListOfAvailableEncodings;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetMaximumSizeForEncoding;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetMaximumSizeOfFileSystemRepresentation;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetMostCompatibleMacStringEncoding;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetNameOfEncoding;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetParagraphBounds;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetPascalString;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetPascalStringPtr;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetRangeOfComposedCharactersAtIndex;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetSmallestEncoding;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringGetSystemEncoding;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringHasPrefix;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringHasSuffix;
 #[cfg(feature = "CFString")]
 pub use self::__CFString::CFStringInlineBuffer;
 #[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringInsert;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringIsEncodingAvailable;
-#[cfg(all(feature = "CFLocale", feature = "CFString"))]
-pub use self::__CFString::CFStringIsHyphenationAvailableForLocale;
-#[cfg(all(feature = "CFLocale", feature = "CFString"))]
-pub use self::__CFString::CFStringLowercase;
-#[cfg(feature = "CFString")]
 pub use self::__CFString::CFStringNormalizationForm;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringNormalize;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringPad;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringReplace;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringReplaceAll;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringSetExternalCharactersNoCopy;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringTransform;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringTrim;
-#[cfg(feature = "CFString")]
-pub use self::__CFString::CFStringTrimWhitespace;
-#[cfg(all(feature = "CFLocale", feature = "CFString"))]
-pub use self::__CFString::CFStringUppercase;
 #[cfg(feature = "CFStringEncodingExt")]
 pub use self::__CFStringEncodingExt::CFStringEncodings;
 #[cfg(feature = "CFStringTokenizer")]
@@ -2145,109 +1040,23 @@ pub use self::__CFStringTokenizer::kCFStringTokenizerUnitWordBoundary;
 #[cfg(feature = "CFStringTokenizer")]
 pub use self::__CFStringTokenizer::CFStringTokenizer;
 #[cfg(feature = "CFStringTokenizer")]
-pub use self::__CFStringTokenizer::CFStringTokenizerAdvanceToNextToken;
-#[cfg(feature = "CFStringTokenizer")]
-pub use self::__CFStringTokenizer::CFStringTokenizerCopyBestStringLanguage;
-#[cfg(feature = "CFStringTokenizer")]
-pub use self::__CFStringTokenizer::CFStringTokenizerCopyCurrentTokenAttribute;
-#[cfg(all(feature = "CFLocale", feature = "CFStringTokenizer"))]
-pub use self::__CFStringTokenizer::CFStringTokenizerCreate;
-#[cfg(all(feature = "CFArray", feature = "CFStringTokenizer"))]
-pub use self::__CFStringTokenizer::CFStringTokenizerGetCurrentSubTokens;
-#[cfg(feature = "CFStringTokenizer")]
-pub use self::__CFStringTokenizer::CFStringTokenizerGetCurrentTokenRange;
-#[cfg(feature = "CFStringTokenizer")]
-pub use self::__CFStringTokenizer::CFStringTokenizerGoToTokenAtIndex;
-#[cfg(feature = "CFStringTokenizer")]
-pub use self::__CFStringTokenizer::CFStringTokenizerSetString;
-#[cfg(feature = "CFStringTokenizer")]
 pub use self::__CFStringTokenizer::CFStringTokenizerTokenType;
 #[cfg(all(feature = "CFNotificationCenter", feature = "CFTimeZone"))]
 pub use self::__CFTimeZone::kCFTimeZoneSystemTimeZoneDidChangeNotification;
-#[cfg(all(feature = "CFDate", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneCopyAbbreviation;
-#[cfg(all(feature = "CFDictionary", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneCopyAbbreviationDictionary;
-#[cfg(all(feature = "CFDate", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneCopyDefault;
-#[cfg(all(feature = "CFArray", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneCopyKnownNames;
-#[cfg(all(feature = "CFDate", feature = "CFLocale", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneCopyLocalizedName;
-#[cfg(all(feature = "CFDate", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneCopySystem;
-#[cfg(all(feature = "CFData", feature = "CFDate", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneCreate;
-#[cfg(all(feature = "CFDate", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneCreateWithName;
-#[cfg(all(feature = "CFDate", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneCreateWithTimeIntervalFromGMT;
-#[cfg(all(feature = "CFData", feature = "CFDate", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneGetData;
-#[cfg(all(feature = "CFDate", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneGetDaylightSavingTimeOffset;
-#[cfg(all(feature = "CFDate", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneGetName;
-#[cfg(all(feature = "CFDate", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneGetNextDaylightSavingTimeTransition;
-#[cfg(all(feature = "CFDate", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneGetSecondsFromGMT;
-#[cfg(all(feature = "CFDate", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneIsDaylightSavingTime;
 #[cfg(feature = "CFTimeZone")]
 pub use self::__CFTimeZone::CFTimeZoneNameStyle;
-#[cfg(feature = "CFTimeZone")]
-pub use self::__CFTimeZone::CFTimeZoneResetSystem;
-#[cfg(all(feature = "CFDictionary", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneSetAbbreviationDictionary;
-#[cfg(all(feature = "CFDate", feature = "CFTimeZone"))]
-pub use self::__CFTimeZone::CFTimeZoneSetDefault;
 #[cfg(feature = "CFTree")]
 pub use self::__CFTree::CFTree;
 #[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeAppendChild;
-#[cfg(feature = "CFTree")]
 pub use self::__CFTree::CFTreeApplierFunction;
-#[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeApplyFunctionToChildren;
 #[cfg(feature = "CFTree")]
 pub use self::__CFTree::CFTreeContext;
 #[cfg(feature = "CFTree")]
 pub use self::__CFTree::CFTreeCopyDescriptionCallBack;
 #[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeCreate;
-#[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeFindRoot;
-#[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeGetChildAtIndex;
-#[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeGetChildCount;
-#[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeGetChildren;
-#[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeGetContext;
-#[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeGetFirstChild;
-#[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeGetNextSibling;
-#[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeGetParent;
-#[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeInsertSibling;
-#[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreePrependChild;
-#[cfg(feature = "CFTree")]
 pub use self::__CFTree::CFTreeReleaseCallBack;
 #[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeRemove;
-#[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeRemoveAllChildren;
-#[cfg(feature = "CFTree")]
 pub use self::__CFTree::CFTreeRetainCallBack;
-#[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeSetContext;
-#[cfg(feature = "CFTree")]
-pub use self::__CFTree::CFTreeSortChildren;
 #[cfg(feature = "CFURLAccess")]
 pub use self::__CFURLAccess::kCFURLFileDirectoryContents;
 #[cfg(feature = "CFURLAccess")]
@@ -2264,45 +1073,14 @@ pub use self::__CFURLAccess::kCFURLFilePOSIXMode;
 pub use self::__CFURLAccess::kCFURLHTTPStatusCode;
 #[cfg(feature = "CFURLAccess")]
 pub use self::__CFURLAccess::kCFURLHTTPStatusLine;
-#[cfg(all(
-    feature = "CFArray",
-    feature = "CFData",
-    feature = "CFDictionary",
-    feature = "CFURL",
-    feature = "CFURLAccess"
-))]
-pub use self::__CFURLAccess::CFURLCreateDataAndPropertiesFromResource;
-#[cfg(all(feature = "CFURL", feature = "CFURLAccess"))]
-pub use self::__CFURLAccess::CFURLCreatePropertyFromResource;
-#[cfg(all(feature = "CFURL", feature = "CFURLAccess"))]
-pub use self::__CFURLAccess::CFURLDestroyResource;
 #[cfg(feature = "CFURLAccess")]
 pub use self::__CFURLAccess::CFURLError;
-#[cfg(all(
-    feature = "CFData",
-    feature = "CFDictionary",
-    feature = "CFURL",
-    feature = "CFURLAccess"
-))]
-pub use self::__CFURLAccess::CFURLWriteDataAndPropertiesToResource;
 #[cfg(feature = "CFURLEnumerator")]
 pub use self::__CFURLEnumerator::CFURLEnumerator;
-#[cfg(all(feature = "CFArray", feature = "CFURL", feature = "CFURLEnumerator"))]
-pub use self::__CFURLEnumerator::CFURLEnumeratorCreateForDirectoryURL;
-#[cfg(all(feature = "CFArray", feature = "CFURLEnumerator"))]
-pub use self::__CFURLEnumerator::CFURLEnumeratorCreateForMountedVolumes;
-#[cfg(feature = "CFURLEnumerator")]
-pub use self::__CFURLEnumerator::CFURLEnumeratorGetDescendentLevel;
-#[cfg(all(feature = "CFError", feature = "CFURL", feature = "CFURLEnumerator"))]
-pub use self::__CFURLEnumerator::CFURLEnumeratorGetNextURL;
-#[cfg(feature = "CFURLEnumerator")]
-pub use self::__CFURLEnumerator::CFURLEnumeratorGetSourceDidChange;
 #[cfg(feature = "CFURLEnumerator")]
 pub use self::__CFURLEnumerator::CFURLEnumeratorOptions;
 #[cfg(feature = "CFURLEnumerator")]
 pub use self::__CFURLEnumerator::CFURLEnumeratorResult;
-#[cfg(feature = "CFURLEnumerator")]
-pub use self::__CFURLEnumerator::CFURLEnumeratorSkipDescendents;
 #[cfg(feature = "CFUserNotification")]
 pub use self::__CFUserNotification::kCFUserNotificationAlertAccessibilityIdentifierKey;
 #[cfg(feature = "CFUserNotification")]
@@ -2367,32 +1145,6 @@ pub use self::__CFUserNotification::kCFUserNotificationUseRadioButtonsFlag;
 pub use self::__CFUserNotification::CFUserNotification;
 #[cfg(feature = "CFUserNotification")]
 pub use self::__CFUserNotification::CFUserNotificationCallBack;
-#[cfg(feature = "CFUserNotification")]
-pub use self::__CFUserNotification::CFUserNotificationCancel;
-#[cfg(all(
-    feature = "CFDate",
-    feature = "CFDictionary",
-    feature = "CFUserNotification"
-))]
-pub use self::__CFUserNotification::CFUserNotificationCreate;
-#[cfg(all(feature = "CFRunLoop", feature = "CFUserNotification"))]
-pub use self::__CFUserNotification::CFUserNotificationCreateRunLoopSource;
-#[cfg(all(feature = "CFDate", feature = "CFURL", feature = "CFUserNotification"))]
-pub use self::__CFUserNotification::CFUserNotificationDisplayAlert;
-#[cfg(all(feature = "CFDate", feature = "CFURL", feature = "CFUserNotification"))]
-pub use self::__CFUserNotification::CFUserNotificationDisplayNotice;
-#[cfg(all(feature = "CFDictionary", feature = "CFUserNotification"))]
-pub use self::__CFUserNotification::CFUserNotificationGetResponseDictionary;
-#[cfg(feature = "CFUserNotification")]
-pub use self::__CFUserNotification::CFUserNotificationGetResponseValue;
-#[cfg(all(feature = "CFDate", feature = "CFUserNotification"))]
-pub use self::__CFUserNotification::CFUserNotificationReceiveResponse;
-#[cfg(all(
-    feature = "CFDate",
-    feature = "CFDictionary",
-    feature = "CFUserNotification"
-))]
-pub use self::__CFUserNotification::CFUserNotificationUpdate;
 #[cfg(all(feature = "CFURL", feature = "CFUtilities"))]
 pub use self::__CFUtilities::CFCopyHomeDirectoryURL;
 #[cfg(feature = "CFXMLNode")]
@@ -2420,18 +1172,6 @@ pub use self::__CFXMLNode::CFXMLExternalID;
 #[cfg(feature = "CFXMLNode")]
 pub use self::__CFXMLNode::CFXMLNode;
 #[cfg(feature = "CFXMLNode")]
-pub use self::__CFXMLNode::CFXMLNodeCreate;
-#[cfg(feature = "CFXMLNode")]
-pub use self::__CFXMLNode::CFXMLNodeCreateCopy;
-#[cfg(feature = "CFXMLNode")]
-pub use self::__CFXMLNode::CFXMLNodeGetInfoPtr;
-#[cfg(feature = "CFXMLNode")]
-pub use self::__CFXMLNode::CFXMLNodeGetString;
-#[cfg(feature = "CFXMLNode")]
-pub use self::__CFXMLNode::CFXMLNodeGetTypeCode;
-#[cfg(feature = "CFXMLNode")]
-pub use self::__CFXMLNode::CFXMLNodeGetVersion;
-#[cfg(feature = "CFXMLNode")]
 pub use self::__CFXMLNode::CFXMLNodeTypeCode;
 #[cfg(all(feature = "CFURL", feature = "CFXMLNode"))]
 pub use self::__CFXMLNode::CFXMLNotationInfo;
@@ -2458,8 +1198,6 @@ pub use self::__CFXMLParser::CFXMLCreateStringByUnescapingEntities;
 #[cfg(feature = "CFXMLParser")]
 pub use self::__CFXMLParser::CFXMLParser;
 #[cfg(feature = "CFXMLParser")]
-pub use self::__CFXMLParser::CFXMLParserAbort;
-#[cfg(feature = "CFXMLParser")]
 pub use self::__CFXMLParser::CFXMLParserAddChildCallBack;
 #[cfg(all(
     feature = "CFData",
@@ -2472,51 +1210,14 @@ pub use self::__CFXMLParser::CFXMLParserCallBacks;
 pub use self::__CFXMLParser::CFXMLParserContext;
 #[cfg(feature = "CFXMLParser")]
 pub use self::__CFXMLParser::CFXMLParserCopyDescriptionCallBack;
-#[cfg(feature = "CFXMLParser")]
-pub use self::__CFXMLParser::CFXMLParserCopyErrorDescription;
-#[cfg(all(
-    feature = "CFData",
-    feature = "CFURL",
-    feature = "CFXMLNode",
-    feature = "CFXMLParser"
-))]
-pub use self::__CFXMLParser::CFXMLParserCreate;
-#[cfg(all(
-    feature = "CFData",
-    feature = "CFURL",
-    feature = "CFXMLNode",
-    feature = "CFXMLParser"
-))]
-pub use self::__CFXMLParser::CFXMLParserCreateWithDataFromURL;
 #[cfg(all(feature = "CFXMLNode", feature = "CFXMLParser"))]
 pub use self::__CFXMLParser::CFXMLParserCreateXMLStructureCallBack;
 #[cfg(feature = "CFXMLParser")]
 pub use self::__CFXMLParser::CFXMLParserEndXMLStructureCallBack;
-#[cfg(all(
-    feature = "CFData",
-    feature = "CFURL",
-    feature = "CFXMLNode",
-    feature = "CFXMLParser"
-))]
-pub use self::__CFXMLParser::CFXMLParserGetCallBacks;
-#[cfg(feature = "CFXMLParser")]
-pub use self::__CFXMLParser::CFXMLParserGetContext;
-#[cfg(feature = "CFXMLParser")]
-pub use self::__CFXMLParser::CFXMLParserGetDocument;
-#[cfg(feature = "CFXMLParser")]
-pub use self::__CFXMLParser::CFXMLParserGetLineNumber;
-#[cfg(feature = "CFXMLParser")]
-pub use self::__CFXMLParser::CFXMLParserGetLocation;
-#[cfg(all(feature = "CFURL", feature = "CFXMLParser"))]
-pub use self::__CFXMLParser::CFXMLParserGetSourceURL;
-#[cfg(feature = "CFXMLParser")]
-pub use self::__CFXMLParser::CFXMLParserGetStatusCode;
 #[cfg(feature = "CFXMLParser")]
 pub use self::__CFXMLParser::CFXMLParserHandleErrorCallBack;
 #[cfg(feature = "CFXMLParser")]
 pub use self::__CFXMLParser::CFXMLParserOptions;
-#[cfg(feature = "CFXMLParser")]
-pub use self::__CFXMLParser::CFXMLParserParse;
 #[cfg(feature = "CFXMLParser")]
 pub use self::__CFXMLParser::CFXMLParserReleaseCallBack;
 #[cfg(all(
@@ -2834,163 +1535,13 @@ pub use self::__CFURL::CFURLBookmarkFileCreationOptions;
 #[cfg(feature = "CFURL")]
 pub use self::__CFURL::CFURLBookmarkResolutionOptions;
 #[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCanBeDecomposed;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLClearResourcePropertyCache;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLClearResourcePropertyCacheForKey;
-#[cfg(feature = "CFURL")]
 pub use self::__CFURL::CFURLComponentType;
 #[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyAbsoluteURL;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyFileSystemPath;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyFragment;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyHostName;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyLastPathComponent;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyNetLocation;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyParameterString;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyPassword;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyPath;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyPathExtension;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyQueryString;
-#[cfg(all(
-    feature = "CFArray",
-    feature = "CFDictionary",
-    feature = "CFError",
-    feature = "CFURL"
-))]
-pub use self::__CFURL::CFURLCopyResourcePropertiesForKeys;
-#[cfg(all(feature = "CFError", feature = "CFURL"))]
-pub use self::__CFURL::CFURLCopyResourcePropertyForKey;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyResourceSpecifier;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyScheme;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyStrictPath;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCopyUserName;
-#[cfg(all(feature = "CFString", feature = "CFURL"))]
-pub use self::__CFURL::CFURLCreateAbsoluteURLWithBytes;
-#[cfg(all(
-    feature = "CFArray",
-    feature = "CFData",
-    feature = "CFError",
-    feature = "CFURL"
-))]
-pub use self::__CFURL::CFURLCreateBookmarkData;
-#[cfg(all(feature = "CFData", feature = "CFURL"))]
-pub use self::__CFURL::CFURLCreateBookmarkDataFromAliasRecord;
-#[cfg(all(feature = "CFData", feature = "CFError", feature = "CFURL"))]
-pub use self::__CFURL::CFURLCreateBookmarkDataFromFile;
-#[cfg(all(
-    feature = "CFArray",
-    feature = "CFData",
-    feature = "CFError",
-    feature = "CFURL"
-))]
-pub use self::__CFURL::CFURLCreateByResolvingBookmarkData;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCreateCopyAppendingPathComponent;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCreateCopyAppendingPathExtension;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCreateCopyDeletingLastPathComponent;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCreateCopyDeletingPathExtension;
-#[cfg(all(feature = "CFData", feature = "CFString", feature = "CFURL"))]
-pub use self::__CFURL::CFURLCreateData;
-#[cfg(all(feature = "CFError", feature = "CFURL"))]
-pub use self::__CFURL::CFURLCreateFilePathURL;
-#[cfg(all(feature = "CFError", feature = "CFURL"))]
-pub use self::__CFURL::CFURLCreateFileReferenceURL;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCreateFromFileSystemRepresentation;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCreateFromFileSystemRepresentationRelativeToBase;
-#[cfg(all(
-    feature = "CFArray",
-    feature = "CFData",
-    feature = "CFDictionary",
-    feature = "CFURL"
-))]
-pub use self::__CFURL::CFURLCreateResourcePropertiesForKeysFromBookmarkData;
-#[cfg(all(feature = "CFData", feature = "CFURL"))]
-pub use self::__CFURL::CFURLCreateResourcePropertyForKeyFromBookmarkData;
-#[cfg(all(feature = "CFString", feature = "CFURL"))]
-pub use self::__CFURL::CFURLCreateStringByAddingPercentEscapes;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCreateStringByReplacingPercentEscapes;
-#[cfg(all(feature = "CFString", feature = "CFURL"))]
-pub use self::__CFURL::CFURLCreateStringByReplacingPercentEscapesUsingEncoding;
-#[cfg(all(feature = "CFString", feature = "CFURL"))]
-pub use self::__CFURL::CFURLCreateWithBytes;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCreateWithFileSystemPath;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCreateWithFileSystemPathRelativeToBase;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLCreateWithString;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLGetBaseURL;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLGetByteRangeForComponent;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLGetBytes;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLGetFileSystemRepresentation;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLGetPortNumber;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLGetString;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLHasDirectoryPath;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLIsFileReferenceURL;
-#[cfg(feature = "CFURL")]
 pub use self::__CFURL::CFURLPathStyle;
-#[cfg(all(feature = "CFError", feature = "CFURL"))]
-pub use self::__CFURL::CFURLResourceIsReachable;
-#[cfg(all(feature = "CFDictionary", feature = "CFError", feature = "CFURL"))]
-pub use self::__CFURL::CFURLSetResourcePropertiesForKeys;
-#[cfg(all(feature = "CFError", feature = "CFURL"))]
-pub use self::__CFURL::CFURLSetResourcePropertyForKey;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLSetTemporaryResourcePropertyForKey;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLStartAccessingSecurityScopedResource;
-#[cfg(feature = "CFURL")]
-pub use self::__CFURL::CFURLStopAccessingSecurityScopedResource;
-#[cfg(all(feature = "CFData", feature = "CFError", feature = "CFURL"))]
-pub use self::__CFURL::CFURLWriteBookmarkDataToFile;
 #[cfg(feature = "CFURL")]
 pub use self::__CFURL::CFURL;
 #[cfg(feature = "CFUUID")]
 pub use self::__CFUUID::CFUUIDBytes;
-#[cfg(feature = "CFUUID")]
-pub use self::__CFUUID::CFUUIDCreate;
-#[cfg(feature = "CFUUID")]
-pub use self::__CFUUID::CFUUIDCreateFromString;
-#[cfg(feature = "CFUUID")]
-pub use self::__CFUUID::CFUUIDCreateFromUUIDBytes;
-#[cfg(feature = "CFUUID")]
-pub use self::__CFUUID::CFUUIDCreateString;
-#[cfg(feature = "CFUUID")]
-pub use self::__CFUUID::CFUUIDCreateWithBytes;
-#[cfg(feature = "CFUUID")]
-pub use self::__CFUUID::CFUUIDGetConstantUUIDWithBytes;
-#[cfg(feature = "CFUUID")]
-pub use self::__CFUUID::CFUUIDGetUUIDBytes;
 #[cfg(feature = "CFUUID")]
 pub use self::__CFUUID::CFUUID;
 use core::cell::UnsafeCell;
@@ -3725,158 +2276,4 @@ pub extern "C-unwind" fn CFGetAllocator(cf: Option<&CFType>) -> Option<CFRetaine
     }
     let ret = unsafe { CFGetAllocator(cf) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
-
-#[deprecated = "renamed to `CFAllocator::set_default`"]
-#[inline]
-pub extern "C-unwind" fn CFAllocatorSetDefault(allocator: Option<&CFAllocator>) {
-    extern "C-unwind" {
-        fn CFAllocatorSetDefault(allocator: Option<&CFAllocator>);
-    }
-    unsafe { CFAllocatorSetDefault(allocator) }
-}
-
-#[deprecated = "renamed to `CFAllocator::default`"]
-#[inline]
-pub extern "C-unwind" fn CFAllocatorGetDefault() -> Option<CFRetained<CFAllocator>> {
-    extern "C-unwind" {
-        fn CFAllocatorGetDefault() -> Option<NonNull<CFAllocator>>;
-    }
-    let ret = unsafe { CFAllocatorGetDefault() };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
-
-#[deprecated = "renamed to `CFAllocator::new`"]
-#[inline]
-pub unsafe extern "C-unwind" fn CFAllocatorCreate(
-    allocator: Option<&CFAllocator>,
-    context: *mut CFAllocatorContext,
-) -> Option<CFRetained<CFAllocator>> {
-    extern "C-unwind" {
-        fn CFAllocatorCreate(
-            allocator: Option<&CFAllocator>,
-            context: *mut CFAllocatorContext,
-        ) -> Option<NonNull<CFAllocator>>;
-    }
-    let ret = unsafe { CFAllocatorCreate(allocator, context) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[cfg(feature = "libc")]
-#[deprecated = "renamed to `CFAllocator::with_zone`"]
-#[inline]
-pub unsafe extern "C-unwind" fn CFAllocatorCreateWithZone(
-    allocator: Option<&CFAllocator>,
-    zone: *mut libc::malloc_zone_t,
-) -> Option<CFRetained<CFAllocator>> {
-    extern "C-unwind" {
-        fn CFAllocatorCreateWithZone(
-            allocator: Option<&CFAllocator>,
-            zone: *mut libc::malloc_zone_t,
-        ) -> Option<NonNull<CFAllocator>>;
-    }
-    let ret = unsafe { CFAllocatorCreateWithZone(allocator, zone) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFAllocator::allocate_typed`"]
-    pub fn CFAllocatorAllocateTyped(
-        allocator: Option<&CFAllocator>,
-        size: CFIndex,
-        descriptor: CFAllocatorTypeID,
-        hint: CFOptionFlags,
-    ) -> *mut c_void;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFAllocator::reallocate_typed`"]
-    pub fn CFAllocatorReallocateTyped(
-        allocator: Option<&CFAllocator>,
-        ptr: *mut c_void,
-        newsize: CFIndex,
-        descriptor: CFAllocatorTypeID,
-        hint: CFOptionFlags,
-    ) -> *mut c_void;
-}
-
-#[deprecated = "renamed to `CFAllocator::allocate_bytes`"]
-#[inline]
-pub extern "C-unwind" fn CFAllocatorAllocateBytes(
-    allocator: Option<&CFAllocator>,
-    size: CFIndex,
-    hint: CFOptionFlags,
-) -> *mut c_void {
-    extern "C-unwind" {
-        fn CFAllocatorAllocateBytes(
-            allocator: Option<&CFAllocator>,
-            size: CFIndex,
-            hint: CFOptionFlags,
-        ) -> *mut c_void;
-    }
-    unsafe { CFAllocatorAllocateBytes(allocator, size, hint) }
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFAllocator::reallocate_bytes`"]
-    pub fn CFAllocatorReallocateBytes(
-        allocator: Option<&CFAllocator>,
-        ptr: *mut c_void,
-        newsize: CFIndex,
-        hint: CFOptionFlags,
-    ) -> *mut c_void;
-}
-
-#[deprecated = "renamed to `CFAllocator::allocate`"]
-#[inline]
-pub extern "C-unwind" fn CFAllocatorAllocate(
-    allocator: Option<&CFAllocator>,
-    size: CFIndex,
-    hint: CFOptionFlags,
-) -> *mut c_void {
-    extern "C-unwind" {
-        fn CFAllocatorAllocate(
-            allocator: Option<&CFAllocator>,
-            size: CFIndex,
-            hint: CFOptionFlags,
-        ) -> *mut c_void;
-    }
-    unsafe { CFAllocatorAllocate(allocator, size, hint) }
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFAllocator::reallocate`"]
-    pub fn CFAllocatorReallocate(
-        allocator: Option<&CFAllocator>,
-        ptr: *mut c_void,
-        newsize: CFIndex,
-        hint: CFOptionFlags,
-    ) -> *mut c_void;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFAllocator::deallocate`"]
-    pub fn CFAllocatorDeallocate(allocator: Option<&CFAllocator>, ptr: *mut c_void);
-}
-
-#[deprecated = "renamed to `CFAllocator::preferred_size_for_size`"]
-#[inline]
-pub extern "C-unwind" fn CFAllocatorGetPreferredSizeForSize(
-    allocator: Option<&CFAllocator>,
-    size: CFIndex,
-    hint: CFOptionFlags,
-) -> CFIndex {
-    extern "C-unwind" {
-        fn CFAllocatorGetPreferredSizeForSize(
-            allocator: Option<&CFAllocator>,
-            size: CFIndex,
-            hint: CFOptionFlags,
-        ) -> CFIndex;
-    }
-    unsafe { CFAllocatorGetPreferredSizeForSize(allocator, size, hint) }
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `CFAllocator::context`"]
-    pub fn CFAllocatorGetContext(allocator: Option<&CFAllocator>, context: *mut CFAllocatorContext);
 }

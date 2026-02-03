@@ -478,39 +478,3 @@ unsafe impl Encode for CMIOStreamScheduledOutputNotificationProcAndRefCon {
 unsafe impl RefEncode for CMIOStreamScheduledOutputNotificationProcAndRefCon {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
-
-extern "C-unwind" {
-    #[cfg(feature = "CMIOHardwareObject")]
-    #[deprecated = "renamed to `CMIOStreamDeck::play`"]
-    pub fn CMIOStreamDeckPlay(stream_id: CMIOStreamID) -> OSStatus;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "CMIOHardwareObject")]
-    #[deprecated = "renamed to `CMIOStreamDeck::stop`"]
-    pub fn CMIOStreamDeckStop(stream_id: CMIOStreamID) -> OSStatus;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "CMIOHardwareObject")]
-    #[deprecated = "renamed to `CMIOStreamDeck::jog`"]
-    pub fn CMIOStreamDeckJog(stream_id: CMIOStreamID, speed: i32) -> OSStatus;
-}
-
-#[cfg(feature = "CMIOHardwareObject")]
-#[deprecated = "renamed to `CMIOStreamDeck::cue_to`"]
-#[inline]
-pub unsafe extern "C-unwind" fn CMIOStreamDeckCueTo(
-    stream_id: CMIOStreamID,
-    frame_number: u64,
-    play_on_cue: bool,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn CMIOStreamDeckCueTo(
-            stream_id: CMIOStreamID,
-            frame_number: u64,
-            play_on_cue: Boolean,
-        ) -> OSStatus;
-    }
-    unsafe { CMIOStreamDeckCueTo(stream_id, frame_number, play_on_cue as _) }
-}

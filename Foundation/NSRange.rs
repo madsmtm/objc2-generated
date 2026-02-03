@@ -69,15 +69,3 @@ impl NSValue {
         pub unsafe fn rangeValue(&self) -> NSRange;
     );
 }
-
-#[cfg(feature = "NSString")]
-#[deprecated = "renamed to `NSString::from_range`"]
-#[inline]
-pub extern "C-unwind" fn NSStringFromRange(range: NSRange) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn NSStringFromRange(range: NSRange) -> *mut NSString;
-    }
-    let ret = unsafe { NSStringFromRange(range) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}

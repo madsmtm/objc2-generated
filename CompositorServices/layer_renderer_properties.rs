@@ -260,16 +260,3 @@ extern "C-unwind" {
         properties: &cp_layer_renderer_properties_t,
     ) -> cp_tracking_area_render_value;
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `cp_texture_topology::array_length`"]
-    pub fn cp_texture_topology_get_array_length(texture_topology: cp_texture_topology_t) -> u64;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "objc2-metal")]
-    #[deprecated = "renamed to `cp_texture_topology::texture_type`"]
-    pub fn cp_texture_topology_get_texture_type(
-        texture_topology: cp_texture_topology_t,
-    ) -> MTLTextureType;
-}

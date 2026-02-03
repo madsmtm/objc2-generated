@@ -149,39 +149,3 @@ impl VTHDRPerFrameMetadataGenerationSession {
         }
     }
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `VTHDRPerFrameMetadataGenerationSession::create`"]
-    pub fn VTHDRPerFrameMetadataGenerationSessionCreate(
-        allocator: Option<&CFAllocator>,
-        frames_per_second: c_float,
-        options: Option<&CFDictionary>,
-        hdr_per_frame_metadata_generation_session_out: NonNull<
-            *mut VTHDRPerFrameMetadataGenerationSession,
-        >,
-    ) -> OSStatus;
-}
-
-#[cfg(feature = "objc2-core-video")]
-#[deprecated = "renamed to `VTHDRPerFrameMetadataGenerationSession::attach_metadata`"]
-#[inline]
-pub unsafe extern "C-unwind" fn VTHDRPerFrameMetadataGenerationSessionAttachMetadata(
-    hdr_per_frame_metadata_generation_session: &VTHDRPerFrameMetadataGenerationSession,
-    pixel_buffer: &CVPixelBuffer,
-    scene_change: bool,
-) -> OSStatus {
-    extern "C-unwind" {
-        fn VTHDRPerFrameMetadataGenerationSessionAttachMetadata(
-            hdr_per_frame_metadata_generation_session: &VTHDRPerFrameMetadataGenerationSession,
-            pixel_buffer: &CVPixelBuffer,
-            scene_change: Boolean,
-        ) -> OSStatus;
-    }
-    unsafe {
-        VTHDRPerFrameMetadataGenerationSessionAttachMetadata(
-            hdr_per_frame_metadata_generation_session,
-            pixel_buffer,
-            scene_change as _,
-        )
-    }
-}

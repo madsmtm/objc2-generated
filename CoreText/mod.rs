@@ -322,145 +322,6 @@ pub use self::__CTFont::ATSFontRef;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFont;
 #[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyAttribute;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyAvailableTables;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyCharacterSet;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyDefaultCascadeListForLanguages;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyDisplayName;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyFamilyName;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyFeatureSettings;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyFeatures;
-#[cfg(all(feature = "CTFont", feature = "CTFontDescriptor"))]
-pub use self::__CTFont::CTFontCopyFontDescriptor;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyFullName;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "CTFontDescriptor",
-    feature = "objc2-core-graphics"
-))]
-pub use self::__CTFont::CTFontCopyGraphicsFont;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyLocalizedName;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyName;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
-pub use self::__CTFont::CTFontCopyNameForGlyph;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyPostScriptName;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopySupportedLanguages;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyTable;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyTraits;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyVariation;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCopyVariationAxes;
-#[cfg(all(feature = "CTFont", feature = "CTFontDescriptor"))]
-pub use self::__CTFont::CTFontCreateCopyWithAttributes;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCreateCopyWithFamily;
-#[cfg(all(feature = "CTFont", feature = "CTFontTraits"))]
-pub use self::__CTFont::CTFontCreateCopyWithSymbolicTraits;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCreateForString;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCreateForStringWithLanguage;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
-pub use self::__CTFont::CTFontCreatePathForGlyph;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCreateUIFontForLanguage;
-#[cfg(all(feature = "CTFont", feature = "CTFontDescriptor"))]
-pub use self::__CTFont::CTFontCreateWithFontDescriptor;
-#[cfg(all(feature = "CTFont", feature = "CTFontDescriptor"))]
-pub use self::__CTFont::CTFontCreateWithFontDescriptorAndOptions;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "CTFontDescriptor",
-    feature = "objc2-core-graphics"
-))]
-pub use self::__CTFont::CTFontCreateWithGraphicsFont;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCreateWithName;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCreateWithNameAndOptions;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontCreateWithQuickdrawInstance;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
-pub use self::__CTFont::CTFontDrawGlyphs;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "CTRunDelegate",
-    feature = "objc2",
-    feature = "objc2-core-graphics"
-))]
-pub use self::__CTFont::CTFontDrawImageFromAdaptiveImageProviderAtPoint;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "CTFontDescriptor",
-    feature = "objc2-core-graphics"
-))]
-pub use self::__CTFont::CTFontGetAdvancesForGlyphs;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetAscent;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetBoundingBox;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "CTFontDescriptor",
-    feature = "objc2-core-graphics"
-))]
-pub use self::__CTFont::CTFontGetBoundingRectsForGlyphs;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetCapHeight;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetDescent;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetGlyphCount;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
-pub use self::__CTFont::CTFontGetGlyphWithName;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
-pub use self::__CTFont::CTFontGetGlyphsForCharacters;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetLeading;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
-pub use self::__CTFont::CTFontGetLigatureCaretPositions;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetMatrix;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
-pub use self::__CTFont::CTFontGetOpticalBoundsForGlyphs;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetSize;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetSlantAngle;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetStringEncoding;
-#[cfg(all(feature = "CTFont", feature = "CTFontTraits"))]
-pub use self::__CTFont::CTFontGetSymbolicTraits;
-#[cfg(all(feature = "CTFont", feature = "CTRunDelegate", feature = "objc2"))]
-pub use self::__CTFont::CTFontGetTypographicBoundsForAdaptiveImageProvider;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetUnderlinePosition;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetUnderlineThickness;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetUnitsPerEm;
-#[cfg(all(feature = "CTFont", feature = "objc2-core-graphics"))]
-pub use self::__CTFont::CTFontGetVerticalTranslationsForGlyphs;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontGetXHeight;
-#[cfg(feature = "CTFont")]
-pub use self::__CTFont::CTFontHasTable;
-#[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontOptions;
 #[cfg(feature = "CTFont")]
 pub use self::__CTFont::CTFontTableOptions;
@@ -477,35 +338,7 @@ pub use self::__CTFontCollection::kCTFontCollectionRemoveDuplicatesOption;
 #[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollection;
 #[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionCopyExclusionDescriptors;
-#[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionCopyFontAttribute;
-#[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionCopyFontAttributes;
-#[cfg(feature = "CTFontCollection")]
 pub use self::__CTFontCollection::CTFontCollectionCopyOptions;
-#[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionCopyQueryDescriptors;
-#[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionCreateCopyWithFontDescriptors;
-#[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionCreateFromAvailableFonts;
-#[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionCreateMatchingFontDescriptors;
-#[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionCreateMatchingFontDescriptorsForFamily;
-#[cfg(all(feature = "CTFontCollection", feature = "CTFontDescriptor"))]
-pub use self::__CTFontCollection::CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback;
-#[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionCreateMatchingFontDescriptorsWithOptions;
-#[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionCreateMutableCopy;
-#[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionCreateWithFontDescriptors;
-#[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionSetExclusionDescriptors;
-#[cfg(feature = "CTFontCollection")]
-pub use self::__CTFontCollection::CTFontCollectionSetQueryDescriptors;
 #[cfg(all(feature = "CTFontCollection", feature = "CTFontDescriptor"))]
 pub use self::__CTFontCollection::CTFontCollectionSortDescriptorsCallback;
 #[cfg(feature = "CTFontCollection")]
@@ -592,32 +425,6 @@ pub use self::__CTFontDescriptor::kCTFontVariationAttribute;
 pub use self::__CTFontDescriptor::kCTFontVariationAxesAttribute;
 #[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptor;
-#[cfg(feature = "CTFontDescriptor")]
-pub use self::__CTFontDescriptor::CTFontDescriptorCopyAttribute;
-#[cfg(feature = "CTFontDescriptor")]
-pub use self::__CTFontDescriptor::CTFontDescriptorCopyAttributes;
-#[cfg(feature = "CTFontDescriptor")]
-pub use self::__CTFontDescriptor::CTFontDescriptorCopyLocalizedAttribute;
-#[cfg(feature = "CTFontDescriptor")]
-pub use self::__CTFontDescriptor::CTFontDescriptorCreateCopyWithAttributes;
-#[cfg(feature = "CTFontDescriptor")]
-pub use self::__CTFontDescriptor::CTFontDescriptorCreateCopyWithFamily;
-#[cfg(feature = "CTFontDescriptor")]
-pub use self::__CTFontDescriptor::CTFontDescriptorCreateCopyWithFeature;
-#[cfg(all(feature = "CTFontDescriptor", feature = "CTFontTraits"))]
-pub use self::__CTFontDescriptor::CTFontDescriptorCreateCopyWithSymbolicTraits;
-#[cfg(feature = "CTFontDescriptor")]
-pub use self::__CTFontDescriptor::CTFontDescriptorCreateCopyWithVariation;
-#[cfg(feature = "CTFontDescriptor")]
-pub use self::__CTFontDescriptor::CTFontDescriptorCreateMatchingFontDescriptor;
-#[cfg(feature = "CTFontDescriptor")]
-pub use self::__CTFontDescriptor::CTFontDescriptorCreateMatchingFontDescriptors;
-#[cfg(feature = "CTFontDescriptor")]
-pub use self::__CTFontDescriptor::CTFontDescriptorCreateWithAttributes;
-#[cfg(feature = "CTFontDescriptor")]
-pub use self::__CTFontDescriptor::CTFontDescriptorCreateWithNameAndSize;
-#[cfg(all(feature = "CTFontDescriptor", feature = "block2"))]
-pub use self::__CTFontDescriptor::CTFontDescriptorMatchFontDescriptorsWithProgressHandler;
 #[cfg(feature = "CTFontDescriptor")]
 pub use self::__CTFontDescriptor::CTFontDescriptorMatchingState;
 #[cfg(all(feature = "CTFontDescriptor", feature = "block2"))]
@@ -726,108 +533,26 @@ pub use self::__CTFrame::kCTFramePathWidthAttributeName;
 pub use self::__CTFrame::kCTFrameProgressionAttributeName;
 #[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::CTFrame;
-#[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
-pub use self::__CTFrame::CTFrameDraw;
-#[cfg(feature = "CTFrame")]
-pub use self::__CTFrame::CTFrameGetFrameAttributes;
-#[cfg(feature = "CTFrame")]
-pub use self::__CTFrame::CTFrameGetLineOrigins;
-#[cfg(feature = "CTFrame")]
-pub use self::__CTFrame::CTFrameGetLines;
-#[cfg(all(feature = "CTFrame", feature = "objc2-core-graphics"))]
-pub use self::__CTFrame::CTFrameGetPath;
-#[cfg(feature = "CTFrame")]
-pub use self::__CTFrame::CTFrameGetStringRange;
-#[cfg(feature = "CTFrame")]
-pub use self::__CTFrame::CTFrameGetVisibleStringRange;
 #[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::CTFramePathFillRule;
 #[cfg(feature = "CTFrame")]
 pub use self::__CTFrame::CTFrameProgression;
 #[cfg(feature = "CTFramesetter")]
 pub use self::__CTFramesetter::CTFramesetter;
-#[cfg(all(
-    feature = "CTFrame",
-    feature = "CTFramesetter",
-    feature = "objc2-core-graphics"
-))]
-pub use self::__CTFramesetter::CTFramesetterCreateFrame;
-#[cfg(feature = "CTFramesetter")]
-pub use self::__CTFramesetter::CTFramesetterCreateWithAttributedString;
-#[cfg(all(feature = "CTFramesetter", feature = "CTTypesetter"))]
-pub use self::__CTFramesetter::CTFramesetterCreateWithTypesetter;
-#[cfg(all(feature = "CTFramesetter", feature = "CTTypesetter"))]
-pub use self::__CTFramesetter::CTFramesetterGetTypesetter;
-#[cfg(feature = "CTFramesetter")]
-pub use self::__CTFramesetter::CTFramesetterSuggestFrameSizeWithConstraints;
 #[cfg(feature = "CTGlyphInfo")]
 pub use self::__CTGlyphInfo::CTCharacterCollection;
 #[cfg(feature = "CTGlyphInfo")]
 pub use self::__CTGlyphInfo::CTGlyphInfo;
-#[cfg(all(feature = "CTGlyphInfo", feature = "objc2-core-graphics"))]
-pub use self::__CTGlyphInfo::CTGlyphInfoCreateWithCharacterIdentifier;
-#[cfg(all(
-    feature = "CTFont",
-    feature = "CTGlyphInfo",
-    feature = "objc2-core-graphics"
-))]
-pub use self::__CTGlyphInfo::CTGlyphInfoCreateWithGlyph;
-#[cfg(all(feature = "CTFont", feature = "CTGlyphInfo"))]
-pub use self::__CTGlyphInfo::CTGlyphInfoCreateWithGlyphName;
-#[cfg(feature = "CTGlyphInfo")]
-pub use self::__CTGlyphInfo::CTGlyphInfoGetCharacterCollection;
-#[cfg(all(feature = "CTGlyphInfo", feature = "objc2-core-graphics"))]
-pub use self::__CTGlyphInfo::CTGlyphInfoGetCharacterIdentifier;
-#[cfg(all(feature = "CTGlyphInfo", feature = "objc2-core-graphics"))]
-pub use self::__CTGlyphInfo::CTGlyphInfoGetGlyph;
-#[cfg(feature = "CTGlyphInfo")]
-pub use self::__CTGlyphInfo::CTGlyphInfoGetGlyphName;
 #[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLine;
 #[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineBoundsOptions;
-#[cfg(feature = "CTLine")]
-pub use self::__CTLine::CTLineCreateJustifiedLine;
-#[cfg(feature = "CTLine")]
-pub use self::__CTLine::CTLineCreateTruncatedLine;
-#[cfg(feature = "CTLine")]
-pub use self::__CTLine::CTLineCreateWithAttributedString;
-#[cfg(all(feature = "CTLine", feature = "objc2-core-graphics"))]
-pub use self::__CTLine::CTLineDraw;
-#[cfg(all(feature = "CTLine", feature = "block2"))]
-pub use self::__CTLine::CTLineEnumerateCaretOffsets;
-#[cfg(feature = "CTLine")]
-pub use self::__CTLine::CTLineGetBoundsWithOptions;
-#[cfg(feature = "CTLine")]
-pub use self::__CTLine::CTLineGetGlyphCount;
-#[cfg(feature = "CTLine")]
-pub use self::__CTLine::CTLineGetGlyphRuns;
-#[cfg(all(feature = "CTLine", feature = "objc2-core-graphics"))]
-pub use self::__CTLine::CTLineGetImageBounds;
-#[cfg(feature = "CTLine")]
-pub use self::__CTLine::CTLineGetOffsetForStringIndex;
-#[cfg(feature = "CTLine")]
-pub use self::__CTLine::CTLineGetPenOffsetForFlush;
-#[cfg(feature = "CTLine")]
-pub use self::__CTLine::CTLineGetStringIndexForPosition;
-#[cfg(feature = "CTLine")]
-pub use self::__CTLine::CTLineGetStringRange;
-#[cfg(feature = "CTLine")]
-pub use self::__CTLine::CTLineGetTrailingWhitespaceWidth;
-#[cfg(feature = "CTLine")]
-pub use self::__CTLine::CTLineGetTypographicBounds;
 #[cfg(feature = "CTLine")]
 pub use self::__CTLine::CTLineTruncationType;
 #[cfg(feature = "CTParagraphStyle")]
 pub use self::__CTParagraphStyle::CTLineBreakMode;
 #[cfg(feature = "CTParagraphStyle")]
 pub use self::__CTParagraphStyle::CTParagraphStyle;
-#[cfg(feature = "CTParagraphStyle")]
-pub use self::__CTParagraphStyle::CTParagraphStyleCreate;
-#[cfg(feature = "CTParagraphStyle")]
-pub use self::__CTParagraphStyle::CTParagraphStyleCreateCopy;
-#[cfg(feature = "CTParagraphStyle")]
-pub use self::__CTParagraphStyle::CTParagraphStyleGetValueForSpecifier;
 #[cfg(feature = "CTParagraphStyle")]
 pub use self::__CTParagraphStyle::CTParagraphStyleSetting;
 #[cfg(feature = "CTParagraphStyle")]
@@ -845,59 +570,11 @@ pub use self::__CTRubyAnnotation::CTRubyAlignment;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyAnnotation;
 #[cfg(feature = "CTRubyAnnotation")]
-pub use self::__CTRubyAnnotation::CTRubyAnnotationCreate;
-#[cfg(feature = "CTRubyAnnotation")]
-pub use self::__CTRubyAnnotation::CTRubyAnnotationCreateCopy;
-#[cfg(feature = "CTRubyAnnotation")]
-pub use self::__CTRubyAnnotation::CTRubyAnnotationCreateWithAttributes;
-#[cfg(feature = "CTRubyAnnotation")]
-pub use self::__CTRubyAnnotation::CTRubyAnnotationGetAlignment;
-#[cfg(feature = "CTRubyAnnotation")]
-pub use self::__CTRubyAnnotation::CTRubyAnnotationGetOverhang;
-#[cfg(feature = "CTRubyAnnotation")]
-pub use self::__CTRubyAnnotation::CTRubyAnnotationGetSizeFactor;
-#[cfg(feature = "CTRubyAnnotation")]
-pub use self::__CTRubyAnnotation::CTRubyAnnotationGetTextForPosition;
-#[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyOverhang;
 #[cfg(feature = "CTRubyAnnotation")]
 pub use self::__CTRubyAnnotation::CTRubyPosition;
 #[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRun;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-graphics"))]
-pub use self::__CTRun::CTRunDraw;
-#[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunGetAdvances;
-#[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunGetAdvancesPtr;
-#[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunGetAttributes;
-#[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunGetBaseAdvancesAndOrigins;
-#[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunGetGlyphCount;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-graphics"))]
-pub use self::__CTRun::CTRunGetGlyphs;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-graphics"))]
-pub use self::__CTRun::CTRunGetGlyphsPtr;
-#[cfg(all(feature = "CTRun", feature = "objc2-core-graphics"))]
-pub use self::__CTRun::CTRunGetImageBounds;
-#[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunGetPositions;
-#[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunGetPositionsPtr;
-#[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunGetStatus;
-#[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunGetStringIndices;
-#[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunGetStringIndicesPtr;
-#[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunGetStringRange;
-#[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunGetTextMatrix;
-#[cfg(feature = "CTRun")]
-pub use self::__CTRun::CTRunGetTypographicBounds;
 #[cfg(feature = "CTRun")]
 pub use self::__CTRun::CTRunStatus;
 #[cfg(feature = "CTRunDelegate")]
@@ -911,15 +588,11 @@ pub use self::__CTRunDelegate::CTRunDelegate;
 #[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateCallbacks;
 #[cfg(feature = "CTRunDelegate")]
-pub use self::__CTRunDelegate::CTRunDelegateCreate;
-#[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateDeallocateCallback;
 #[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateGetAscentCallback;
 #[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateGetDescentCallback;
-#[cfg(feature = "CTRunDelegate")]
-pub use self::__CTRunDelegate::CTRunDelegateGetRefCon;
 #[cfg(feature = "CTRunDelegate")]
 pub use self::__CTRunDelegate::CTRunDelegateGetWidthCallback;
 #[cfg(feature = "CTStringAttributes")]
@@ -986,14 +659,6 @@ pub use self::__CTStringAttributes::CTUnderlineStyleModifiers;
 pub use self::__CTTextTab::kCTTabColumnTerminatorsAttributeName;
 #[cfg(feature = "CTTextTab")]
 pub use self::__CTTextTab::CTTextTab;
-#[cfg(all(feature = "CTParagraphStyle", feature = "CTTextTab"))]
-pub use self::__CTTextTab::CTTextTabCreate;
-#[cfg(all(feature = "CTParagraphStyle", feature = "CTTextTab"))]
-pub use self::__CTTextTab::CTTextTabGetAlignment;
-#[cfg(feature = "CTTextTab")]
-pub use self::__CTTextTab::CTTextTabGetLocation;
-#[cfg(feature = "CTTextTab")]
-pub use self::__CTTextTab::CTTextTabGetOptions;
 #[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::kCTTypesetterOptionAllowUnboundedLayout;
 #[cfg(feature = "CTTypesetter")]
@@ -1002,22 +667,6 @@ pub use self::__CTTypesetter::kCTTypesetterOptionDisableBidiProcessing;
 pub use self::__CTTypesetter::kCTTypesetterOptionForcedEmbeddingLevel;
 #[cfg(feature = "CTTypesetter")]
 pub use self::__CTTypesetter::CTTypesetter;
-#[cfg(all(feature = "CTLine", feature = "CTTypesetter"))]
-pub use self::__CTTypesetter::CTTypesetterCreateLine;
-#[cfg(all(feature = "CTLine", feature = "CTTypesetter"))]
-pub use self::__CTTypesetter::CTTypesetterCreateLineWithOffset;
-#[cfg(feature = "CTTypesetter")]
-pub use self::__CTTypesetter::CTTypesetterCreateWithAttributedString;
-#[cfg(feature = "CTTypesetter")]
-pub use self::__CTTypesetter::CTTypesetterCreateWithAttributedStringAndOptions;
-#[cfg(feature = "CTTypesetter")]
-pub use self::__CTTypesetter::CTTypesetterSuggestClusterBreak;
-#[cfg(feature = "CTTypesetter")]
-pub use self::__CTTypesetter::CTTypesetterSuggestClusterBreakWithOffset;
-#[cfg(feature = "CTTypesetter")]
-pub use self::__CTTypesetter::CTTypesetterSuggestLineBreak;
-#[cfg(feature = "CTTypesetter")]
-pub use self::__CTTypesetter::CTTypesetterSuggestLineBreakWithOffset;
 #[cfg(feature = "SFNTLayoutTypes")]
 pub use self::__SFNTLayoutTypes::kANKRCurrentVersion;
 #[cfg(feature = "SFNTLayoutTypes")]

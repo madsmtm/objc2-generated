@@ -2051,17 +2051,3 @@ impl NSApplication {
         pub fn context(&self) -> Option<Retained<NSGraphicsContext>>;
     );
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `NSApplication::__main`"]
-    pub fn NSApplicationMain(argc: c_int, argv: NonNull<NonNull<c_char>>) -> c_int;
-}
-
-#[deprecated = "renamed to `NSApplication::load`"]
-#[inline]
-pub extern "C-unwind" fn NSApplicationLoad() -> bool {
-    extern "C-unwind" {
-        fn NSApplicationLoad() -> Bool;
-    }
-    unsafe { NSApplicationLoad() }.as_bool()
-}

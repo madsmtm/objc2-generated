@@ -1040,30 +1040,6 @@ pub use self::__NSDebug::NSZombieEnabled;
 #[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSCalculationError;
 #[cfg(feature = "NSDecimal")]
-pub use self::__NSDecimal::NSDecimalAdd;
-#[cfg(feature = "NSDecimal")]
-pub use self::__NSDecimal::NSDecimalCompact;
-#[cfg(all(feature = "NSDecimal", feature = "NSObjCRuntime"))]
-pub use self::__NSDecimal::NSDecimalCompare;
-#[cfg(feature = "NSDecimal")]
-pub use self::__NSDecimal::NSDecimalCopy;
-#[cfg(feature = "NSDecimal")]
-pub use self::__NSDecimal::NSDecimalDivide;
-#[cfg(feature = "NSDecimal")]
-pub use self::__NSDecimal::NSDecimalMultiply;
-#[cfg(feature = "NSDecimal")]
-pub use self::__NSDecimal::NSDecimalMultiplyByPowerOf10;
-#[cfg(feature = "NSDecimal")]
-pub use self::__NSDecimal::NSDecimalNormalize;
-#[cfg(feature = "NSDecimal")]
-pub use self::__NSDecimal::NSDecimalPower;
-#[cfg(feature = "NSDecimal")]
-pub use self::__NSDecimal::NSDecimalRound;
-#[cfg(all(feature = "NSDecimal", feature = "NSString"))]
-pub use self::__NSDecimal::NSDecimalString;
-#[cfg(feature = "NSDecimal")]
-pub use self::__NSDecimal::NSDecimalSubtract;
-#[cfg(feature = "NSDecimal")]
 pub use self::__NSDecimal::NSRoundingMode;
 #[cfg(all(feature = "NSDecimalNumber", feature = "NSValue"))]
 pub use self::__NSDecimalNumber::NSDecimalNumber;
@@ -1491,8 +1467,6 @@ pub use self::__NSGeometry::NSDivideRect;
 #[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSEdgeInsets;
 #[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
-pub use self::__NSGeometry::NSEdgeInsetsEqual;
-#[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSEdgeInsetsZero;
 #[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSEqualPoints;
@@ -1548,24 +1522,6 @@ pub use self::__NSGeometry::NSSizeArray;
 pub use self::__NSGeometry::NSSizeFromString;
 #[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSSizePointer;
-#[cfg(all(
-    feature = "NSGeometry",
-    feature = "NSString",
-    feature = "objc2-core-foundation"
-))]
-pub use self::__NSGeometry::NSStringFromPoint;
-#[cfg(all(
-    feature = "NSGeometry",
-    feature = "NSString",
-    feature = "objc2-core-foundation"
-))]
-pub use self::__NSGeometry::NSStringFromRect;
-#[cfg(all(
-    feature = "NSGeometry",
-    feature = "NSString",
-    feature = "objc2-core-foundation"
-))]
-pub use self::__NSGeometry::NSStringFromSize;
 #[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
 pub use self::__NSGeometry::NSUnionRect;
 #[cfg(all(feature = "NSGeometry", feature = "objc2-core-foundation"))]
@@ -1702,8 +1658,6 @@ pub use self::__NSHashTable::NSOwnedPointerHashCallBacks;
 pub use self::__NSHashTable::NSPointerToStructHashCallBacks;
 #[cfg(feature = "NSHashTable")]
 pub use self::__NSHashTable::NSResetHashTable;
-#[cfg(all(feature = "NSHashTable", feature = "NSString"))]
-pub use self::__NSHashTable::NSStringFromHashTable;
 #[cfg(feature = "NSHost")]
 pub use self::__NSHost::NSHost;
 #[cfg(feature = "NSISO8601DateFormatter")]
@@ -2105,8 +2059,6 @@ pub use self::__NSMapTable::NSOwnedPointerMapKeyCallBacks;
 pub use self::__NSMapTable::NSOwnedPointerMapValueCallBacks;
 #[cfg(feature = "NSMapTable")]
 pub use self::__NSMapTable::NSResetMapTable;
-#[cfg(all(feature = "NSMapTable", feature = "NSString"))]
-pub use self::__NSMapTable::NSStringFromMapTable;
 #[cfg(all(feature = "NSFormatter", feature = "NSMassFormatter"))]
 pub use self::__NSMassFormatter::NSMassFormatter;
 #[cfg(feature = "NSMassFormatter")]
@@ -2789,12 +2741,6 @@ pub use self::__NSObjCRuntime::NSRunLoopMode;
 pub use self::__NSObjCRuntime::NSSelectorFromString;
 #[cfg(feature = "NSObjCRuntime")]
 pub use self::__NSObjCRuntime::NSSortOptions;
-#[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
-pub use self::__NSObjCRuntime::NSStringFromClass;
-#[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
-pub use self::__NSObjCRuntime::NSStringFromProtocol;
-#[cfg(all(feature = "NSObjCRuntime", feature = "NSString"))]
-pub use self::__NSObjCRuntime::NSStringFromSelector;
 #[cfg(all(feature = "NSObject", feature = "NSZone"))]
 pub use self::__NSObject::NSAllocateObject;
 #[cfg(feature = "NSObject")]
@@ -3037,8 +2983,6 @@ pub use self::__NSRange::NSIntersectionRange;
 pub use self::__NSRange::NSRangeFromString;
 #[cfg(feature = "NSRange")]
 pub use self::__NSRange::NSRangePointer;
-#[cfg(all(feature = "NSRange", feature = "NSString"))]
-pub use self::__NSRange::NSStringFromRange;
 #[cfg(feature = "NSRange")]
 pub use self::__NSRange::NSUnionRange;
 #[cfg(feature = "NSRegularExpression")]

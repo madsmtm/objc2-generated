@@ -185,23 +185,3 @@ impl ARSkeleton {
         unsafe { Retained::retain_autoreleased(ret) }
     }
 }
-
-#[cfg(all(
-    feature = "ARSkeletonDefinition",
-    feature = "objc2",
-    feature = "objc2-foundation",
-    feature = "objc2-vision"
-))]
-#[deprecated = "renamed to `ARSkeleton::joint_name_for_recognized_point_key`"]
-#[inline]
-pub unsafe extern "C-unwind" fn ARSkeletonJointNameForRecognizedPointKey(
-    recognized_point_key: &VNRecognizedPointKey,
-) -> Option<Retained<ARSkeletonJointName>> {
-    extern "C-unwind" {
-        fn ARSkeletonJointNameForRecognizedPointKey(
-            recognized_point_key: &VNRecognizedPointKey,
-        ) -> *mut ARSkeletonJointName;
-    }
-    let ret = unsafe { ARSkeletonJointNameForRecognizedPointKey(recognized_point_key) };
-    unsafe { Retained::retain_autoreleased(ret) }
-}

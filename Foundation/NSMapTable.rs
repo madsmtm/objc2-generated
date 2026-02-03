@@ -679,15 +679,3 @@ extern "C" {
     #[deprecated = "Not supported"]
     pub static NSIntMapValueCallBacks: NSMapTableValueCallBacks;
 }
-
-#[cfg(feature = "NSString")]
-#[deprecated = "renamed to `NSString::from_map_table`"]
-#[inline]
-pub unsafe extern "C-unwind" fn NSStringFromMapTable(table: &NSMapTable) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn NSStringFromMapTable(table: &NSMapTable) -> *mut NSString;
-    }
-    let ret = unsafe { NSStringFromMapTable(table) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}

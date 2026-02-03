@@ -616,24 +616,3 @@ impl MPSState {
         unsafe { MPSStateBatchResourceSize(batch) }
     }
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `MPSState::batch_increment_read_count`"]
-    pub fn MPSStateBatchIncrementReadCount(
-        batch: Option<&MPSStateBatch>,
-        amount: NSInteger,
-    ) -> NSUInteger;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `MPSState::batch_synchronize`"]
-    pub fn MPSStateBatchSynchronize(
-        batch: &MPSStateBatch,
-        cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
-    );
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `MPSState::batch_resource_size`"]
-    pub fn MPSStateBatchResourceSize(batch: Option<&MPSStateBatch>) -> NSUInteger;
-}

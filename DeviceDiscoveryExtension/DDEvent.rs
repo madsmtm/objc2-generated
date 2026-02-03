@@ -106,14 +106,3 @@ impl DDDeviceEvent {
         pub unsafe fn new() -> Retained<Self>;
     );
 }
-
-#[deprecated = "renamed to `DDEventType::to_string`"]
-#[inline]
-pub unsafe extern "C-unwind" fn DDEventTypeToString(in_value: DDEventType) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn DDEventTypeToString(in_value: DDEventType) -> *mut NSString;
-    }
-    let ret = unsafe { DDEventTypeToString(in_value) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}

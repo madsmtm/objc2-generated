@@ -100,28 +100,3 @@ impl SecTrustedApplication {
         unsafe { SecTrustedApplicationSetData(self, data) }
     }
 }
-
-extern "C-unwind" {
-    #[cfg(feature = "SecBase")]
-    #[deprecated = "renamed to `SecTrustedApplication::create_from_path`"]
-    pub fn SecTrustedApplicationCreateFromPath(
-        path: *const c_char,
-        app: NonNull<*mut SecTrustedApplication>,
-    ) -> OSStatus;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "SecBase")]
-    #[deprecated = "renamed to `SecTrustedApplication::copy_data`"]
-    pub fn SecTrustedApplicationCopyData(
-        app_ref: &SecTrustedApplication,
-        data: NonNull<*const CFData>,
-    ) -> OSStatus;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "SecBase")]
-    #[deprecated = "renamed to `SecTrustedApplication::set_data`"]
-    pub fn SecTrustedApplicationSetData(app_ref: &SecTrustedApplication, data: &CFData)
-        -> OSStatus;
-}

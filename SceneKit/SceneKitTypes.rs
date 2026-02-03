@@ -336,15 +336,3 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnprogramcompilationerror?language=objc)
 pub const SCNProgramCompilationError: c_uint = 1;
-
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "renamed to `SCNVector3::equal_to_vector3`"]
-    pub fn SCNVector3EqualToVector3(a: SCNVector3, b: SCNVector3) -> bool;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "renamed to `SCNVector4::equal_to_vector4`"]
-    pub fn SCNVector4EqualToVector4(a: SCNVector4, b: SCNVector4) -> bool;
-}

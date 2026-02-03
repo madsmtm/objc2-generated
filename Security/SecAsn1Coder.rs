@@ -176,13 +176,3 @@ extern "C-unwind" {
     #[deprecated = "SecAsn1 is not supported"]
     pub fn SecAsn1OidCompare(oid1: NonNull<SecAsn1Oid>, oid2: NonNull<SecAsn1Oid>) -> bool;
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `SecAsn1Coder::create`"]
-    pub fn SecAsn1CoderCreate(coder: NonNull<SecAsn1CoderRef>) -> OSStatus;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `SecAsn1Coder::release`"]
-    pub fn SecAsn1CoderRelease(coder: SecAsn1CoderRef) -> OSStatus;
-}

@@ -6770,41 +6770,11 @@ pub use self::__hid::IOHIDCompletionAction;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDDevice;
 #[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceActivate;
-#[cfg(feature = "hid")]
 pub use self::__hid::IOHIDDeviceCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceCancel;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceClose;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceConformsTo;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceCopyMatchingElements;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceCopyValueMultiple;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceCopyValueMultipleWithCallback;
-#[cfg(all(feature = "hid", feature = "libc"))]
-pub use self::__hid::IOHIDDeviceCreate;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDDeviceDeviceInterface;
 #[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceGetProperty;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceGetReport;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceGetReportWithCallback;
-#[cfg(all(feature = "hid", feature = "libc"))]
-pub use self::__hid::IOHIDDeviceGetService;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceGetValue;
-#[cfg(feature = "hid")]
 pub use self::__hid::IOHIDDeviceGetValueOptions;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceGetValueWithCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceGetValueWithOptions;
 #[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDDeviceInterface;
 #[cfg(all(feature = "hid", feature = "libc"))]
@@ -6812,51 +6782,13 @@ pub use self::__hid::IOHIDDeviceInterface121;
 #[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDDeviceInterface122;
 #[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceOpen;
-#[cfg(feature = "hid")]
 pub use self::__hid::IOHIDDeviceQueueInterface;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceRegisterInputReportCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceRegisterInputReportWithTimeStampCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceRegisterInputValueCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceRegisterRemovalCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceScheduleWithRunLoop;
-#[cfg(all(feature = "dispatch2", feature = "hid"))]
-pub use self::__hid::IOHIDDeviceSetCancelHandler;
-#[cfg(all(feature = "dispatch2", feature = "hid"))]
-pub use self::__hid::IOHIDDeviceSetDispatchQueue;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceSetInputValueMatching;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceSetInputValueMatchingMultiple;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceSetProperty;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceSetReport;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceSetReportWithCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceSetValue;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceSetValueMultiple;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceSetValueMultipleWithCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceSetValueWithCallback;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDDeviceTimeStampedDeviceInterface;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDDeviceTransactionInterface;
 #[cfg(feature = "hid")]
-pub use self::__hid::IOHIDDeviceUnscheduleFromRunLoop;
-#[cfg(feature = "hid")]
 pub use self::__hid::IOHIDElement;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementAttach;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDElementCallbackFunction;
 #[cfg(feature = "hid")]
@@ -6866,67 +6798,7 @@ pub use self::__hid::IOHIDElementCommitDirection;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDElementCookie;
 #[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementCopyAttached;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementCreateWithDictionary;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementDetach;
-#[cfg(feature = "hid")]
 pub use self::__hid::IOHIDElementFlags;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetChildren;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetCollectionType;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetCookie;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetDevice;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetLogicalMax;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetLogicalMin;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetName;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetParent;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetPhysicalMax;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetPhysicalMin;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetProperty;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetReportCount;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetReportID;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetReportSize;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetType;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetUnit;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetUnitExponent;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetUsage;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementGetUsagePage;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementHasNullState;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementHasPreferredState;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementIsArray;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementIsNonLinear;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementIsRelative;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementIsVirtual;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementIsWrapping;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDElementSetProperty;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDElementType;
 #[cfg(feature = "hid")]
@@ -6938,51 +6810,7 @@ pub use self::__hid::IOHIDKeyboardPhysicalLayoutType;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDManager;
 #[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerActivate;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerCancel;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerClose;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerCopyDevices;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerCreate;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerGetProperty;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerOpen;
-#[cfg(feature = "hid")]
 pub use self::__hid::IOHIDManagerOptions;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerRegisterDeviceMatchingCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerRegisterDeviceRemovalCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerRegisterInputReportCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerRegisterInputReportWithTimeStampCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerRegisterInputValueCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerSaveToPropertyDomain;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerScheduleWithRunLoop;
-#[cfg(all(feature = "dispatch2", feature = "hid"))]
-pub use self::__hid::IOHIDManagerSetCancelHandler;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerSetDeviceMatching;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerSetDeviceMatchingMultiple;
-#[cfg(all(feature = "dispatch2", feature = "hid"))]
-pub use self::__hid::IOHIDManagerSetDispatchQueue;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerSetInputValueMatching;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerSetInputValueMatchingMultiple;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerSetProperty;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDManagerUnscheduleFromRunLoop;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDOptionsType;
 #[cfg(all(feature = "hid", feature = "libc"))]
@@ -6991,46 +6819,10 @@ pub use self::__hid::IOHIDOutputTransactionInterface;
 pub use self::__hid::IOHIDPointerEventOptions;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDQueue;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueActivate;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueAddElement;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueCancel;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueContainsElement;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueCopyNextValue;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueCopyNextValueWithTimeout;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueCreate;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueGetDepth;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueGetDevice;
 #[cfg(all(feature = "hid", feature = "libc"))]
 pub use self::__hid::IOHIDQueueInterface;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDQueueOptionsType;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueRegisterValueAvailableCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueRemoveElement;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueScheduleWithRunLoop;
-#[cfg(all(feature = "dispatch2", feature = "hid"))]
-pub use self::__hid::IOHIDQueueSetCancelHandler;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueSetDepth;
-#[cfg(all(feature = "dispatch2", feature = "hid"))]
-pub use self::__hid::IOHIDQueueSetDispatchQueue;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueStart;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueStop;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDQueueUnscheduleFromRunLoop;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDReportCallback;
 #[cfg(feature = "hid")]
@@ -7048,59 +6840,13 @@ pub use self::__hid::IOHIDStandardType;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDTransaction;
 #[cfg(feature = "hid")]
-pub use self::__hid::IOHIDTransactionAddElement;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDTransactionClear;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDTransactionCommit;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDTransactionCommitWithCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDTransactionContainsElement;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDTransactionCreate;
-#[cfg(feature = "hid")]
 pub use self::__hid::IOHIDTransactionDirectionType;
 #[cfg(feature = "hid")]
-pub use self::__hid::IOHIDTransactionGetDevice;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDTransactionGetDirection;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDTransactionGetValue;
-#[cfg(feature = "hid")]
 pub use self::__hid::IOHIDTransactionOptions;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDTransactionRemoveElement;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDTransactionScheduleWithRunLoop;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDTransactionSetDirection;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDTransactionSetValue;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDTransactionUnscheduleFromRunLoop;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDValue;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDValueCallback;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDValueCreateWithBytes;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDValueCreateWithBytesNoCopy;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDValueCreateWithIntegerValue;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDValueGetBytePtr;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDValueGetElement;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDValueGetIntegerValue;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDValueGetLength;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDValueGetScaledValue;
-#[cfg(feature = "hid")]
-pub use self::__hid::IOHIDValueGetTimeStamp;
 #[cfg(feature = "hid")]
 pub use self::__hid::IOHIDValueMultipleCallback;
 #[cfg(feature = "hid")]
@@ -7343,14 +7089,6 @@ pub use self::__hidsystem::IOHIDCopyCFTypeParameter;
 pub use self::__hidsystem::IOHIDCreateSharedMemory;
 #[cfg(feature = "hidsystem")]
 pub use self::__hidsystem::IOHIDEventSystemClient;
-#[cfg(feature = "hidsystem")]
-pub use self::__hidsystem::IOHIDEventSystemClientCopyProperty;
-#[cfg(feature = "hidsystem")]
-pub use self::__hidsystem::IOHIDEventSystemClientCopyServices;
-#[cfg(feature = "hidsystem")]
-pub use self::__hidsystem::IOHIDEventSystemClientCreateSimpleClient;
-#[cfg(feature = "hidsystem")]
-pub use self::__hidsystem::IOHIDEventSystemClientSetProperty;
 #[cfg(all(feature = "hidsystem", feature = "libc"))]
 pub use self::__hidsystem::IOHIDGetAccelerationWithKey;
 #[cfg(all(feature = "hidsystem", feature = "libc"))]
@@ -7380,14 +7118,6 @@ pub use self::__hidsystem::IOHIDRequestType;
 #[cfg(feature = "hidsystem")]
 pub use self::__hidsystem::IOHIDServiceClient;
 #[cfg(all(feature = "hidsystem", feature = "libc"))]
-pub use self::__hidsystem::IOHIDServiceClientConformsTo;
-#[cfg(feature = "hidsystem")]
-pub use self::__hidsystem::IOHIDServiceClientCopyProperty;
-#[cfg(feature = "hidsystem")]
-pub use self::__hidsystem::IOHIDServiceClientGetRegistryID;
-#[cfg(feature = "hidsystem")]
-pub use self::__hidsystem::IOHIDServiceClientSetProperty;
-#[cfg(all(feature = "hidsystem", feature = "libc"))]
 pub use self::__hidsystem::IOHIDSetAccelerationWithKey;
 #[cfg(all(feature = "hidsystem", feature = "libc"))]
 pub use self::__hidsystem::IOHIDSetCFTypeParameter;
@@ -7415,30 +7145,10 @@ pub use self::__hidsystem::IOHIDSetVirtualDisplayBounds;
 pub use self::__hidsystem::IOHIDUnregisterVirtualDisplay;
 #[cfg(feature = "hidsystem")]
 pub use self::__hidsystem::IOHIDUserDevice;
-#[cfg(feature = "hidsystem")]
-pub use self::__hidsystem::IOHIDUserDeviceActivate;
-#[cfg(feature = "hidsystem")]
-pub use self::__hidsystem::IOHIDUserDeviceCancel;
-#[cfg(feature = "hidsystem")]
-pub use self::__hidsystem::IOHIDUserDeviceCopyProperty;
-#[cfg(feature = "hidsystem")]
-pub use self::__hidsystem::IOHIDUserDeviceCreateWithProperties;
 #[cfg(all(feature = "block2", feature = "hid", feature = "hidsystem"))]
 pub use self::__hidsystem::IOHIDUserDeviceGetReportBlock;
 #[cfg(feature = "hidsystem")]
-pub use self::__hidsystem::IOHIDUserDeviceHandleReportWithTimeStamp;
-#[cfg(feature = "hidsystem")]
 pub use self::__hidsystem::IOHIDUserDeviceOptions;
-#[cfg(all(feature = "block2", feature = "hid", feature = "hidsystem"))]
-pub use self::__hidsystem::IOHIDUserDeviceRegisterGetReportBlock;
-#[cfg(all(feature = "block2", feature = "hid", feature = "hidsystem"))]
-pub use self::__hidsystem::IOHIDUserDeviceRegisterSetReportBlock;
-#[cfg(all(feature = "dispatch2", feature = "hidsystem"))]
-pub use self::__hidsystem::IOHIDUserDeviceSetCancelHandler;
-#[cfg(all(feature = "dispatch2", feature = "hidsystem"))]
-pub use self::__hidsystem::IOHIDUserDeviceSetDispatchQueue;
-#[cfg(feature = "hidsystem")]
-pub use self::__hidsystem::IOHIDUserDeviceSetProperty;
 #[cfg(all(feature = "block2", feature = "hid", feature = "hidsystem"))]
 pub use self::__hidsystem::IOHIDUserDeviceSetReportBlock;
 #[cfg(all(feature = "hidsystem", feature = "libc"))]
@@ -12689,58 +12399,4 @@ unsafe impl Encode for OSClassDescription {
 #[cfg(feature = "objc2")]
 unsafe impl RefEncode for OSClassDescription {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
-}
-
-#[cfg(feature = "libc")]
-#[deprecated = "renamed to `IONotificationPort::create`"]
-#[inline]
-pub extern "C-unwind" fn IONotificationPortCreate(
-    main_port: libc::mach_port_t,
-) -> IONotificationPortRef {
-    extern "C-unwind" {
-        fn IONotificationPortCreate(main_port: libc::mach_port_t) -> IONotificationPortRef;
-    }
-    unsafe { IONotificationPortCreate(main_port) }
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `IONotificationPort::destroy`"]
-    pub fn IONotificationPortDestroy(notify: IONotificationPortRef);
-}
-
-#[deprecated = "renamed to `IONotificationPort::run_loop_source`"]
-#[inline]
-pub unsafe extern "C-unwind" fn IONotificationPortGetRunLoopSource(
-    notify: IONotificationPortRef,
-) -> Option<CFRetained<CFRunLoopSource>> {
-    extern "C-unwind" {
-        fn IONotificationPortGetRunLoopSource(
-            notify: IONotificationPortRef,
-        ) -> Option<NonNull<CFRunLoopSource>>;
-    }
-    let ret = unsafe { IONotificationPortGetRunLoopSource(notify) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated = "renamed to `IONotificationPort::mach_port`"]
-    pub fn IONotificationPortGetMachPort(notify: IONotificationPortRef) -> libc::mach_port_t;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "libc")]
-    #[deprecated = "renamed to `IONotificationPort::set_importance_receiver`"]
-    pub fn IONotificationPortSetImportanceReceiver(
-        notify: IONotificationPortRef,
-    ) -> libc::kern_return_t;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "dispatch2")]
-    #[deprecated = "renamed to `IONotificationPort::set_dispatch_queue`"]
-    pub fn IONotificationPortSetDispatchQueue(
-        notify: IONotificationPortRef,
-        queue: Option<&DispatchQueue>,
-    );
 }

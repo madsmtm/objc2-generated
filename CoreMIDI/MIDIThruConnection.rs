@@ -480,11 +480,3 @@ extern "C-unwind" {
         out_connection_list: NonNull<NonNull<CFData>>,
     ) -> OSStatus;
 }
-
-extern "C-unwind" {
-    #[cfg(feature = "MIDIServices")]
-    #[deprecated = "renamed to `MIDIThruConnectionParams::initialize`"]
-    pub fn MIDIThruConnectionParamsInitialize(
-        in_connection_params: NonNull<MIDIThruConnectionParams>,
-    );
-}

@@ -30,8 +30,6 @@ mod __NSExceptionHandler;
 #[cfg(feature = "NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSExceptionHandler;
 #[cfg(feature = "NSExceptionHandler")]
-pub use self::__NSExceptionHandler::NSExceptionHandlerResume;
-#[cfg(feature = "NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHandleOtherExceptionMask;
 #[cfg(feature = "NSExceptionHandler")]
 pub use self::__NSExceptionHandler::NSHandleTopLevelExceptionMask;

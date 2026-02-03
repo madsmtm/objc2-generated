@@ -657,35 +657,3 @@ pub unsafe trait NSCoderUIGeometryKeyedCoding:
 
 impl private_NSCoderUIGeometryKeyedCoding::Sealed for NSCoder {}
 unsafe impl NSCoderUIGeometryKeyedCoding for NSCoder {}
-
-#[cfg(feature = "objc2-core-foundation")]
-#[deprecated = "renamed to `UIEdgeInsets::from_string`"]
-#[inline]
-pub extern "C-unwind" fn UIEdgeInsetsFromString(string: &NSString) -> UIEdgeInsets {
-    extern "C-unwind" {
-        fn UIEdgeInsetsFromString(string: &NSString) -> UIEdgeInsets;
-    }
-    unsafe { UIEdgeInsetsFromString(string) }
-}
-
-#[cfg(feature = "objc2-core-foundation")]
-#[deprecated = "renamed to `NSDirectionalEdgeInsets::from_string`"]
-#[inline]
-pub extern "C-unwind" fn NSDirectionalEdgeInsetsFromString(
-    string: &NSString,
-) -> NSDirectionalEdgeInsets {
-    extern "C-unwind" {
-        fn NSDirectionalEdgeInsetsFromString(string: &NSString) -> NSDirectionalEdgeInsets;
-    }
-    unsafe { NSDirectionalEdgeInsetsFromString(string) }
-}
-
-#[cfg(feature = "objc2-core-foundation")]
-#[deprecated = "renamed to `UIOffset::from_string`"]
-#[inline]
-pub extern "C-unwind" fn UIOffsetFromString(string: &NSString) -> UIOffset {
-    extern "C-unwind" {
-        fn UIOffsetFromString(string: &NSString) -> UIOffset;
-    }
-    unsafe { UIOffsetFromString(string) }
-}

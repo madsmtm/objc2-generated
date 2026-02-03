@@ -62,8 +62,3 @@ impl CGError {
         unsafe { CGErrorSetCallback(callback) }
     }
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGError::set_callback`"]
-    pub fn CGErrorSetCallback(callback: CGErrorCallback);
-}

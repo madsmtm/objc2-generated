@@ -336,15 +336,3 @@ impl UIImageSymbolConfiguration {
         pub fn configurationWithLocale(locale: Option<&NSLocale>) -> Retained<Self>;
     );
 }
-
-#[cfg(all(feature = "UIFontDescriptor", feature = "objc2-core-foundation"))]
-#[deprecated = "renamed to `UIImageSymbolWeight::for_font_weight`"]
-#[inline]
-pub extern "C-unwind" fn UIImageSymbolWeightForFontWeight(
-    font_weight: UIFontWeight,
-) -> UIImageSymbolWeight {
-    extern "C-unwind" {
-        fn UIImageSymbolWeightForFontWeight(font_weight: UIFontWeight) -> UIImageSymbolWeight;
-    }
-    unsafe { UIImageSymbolWeightForFontWeight(font_weight) }
-}

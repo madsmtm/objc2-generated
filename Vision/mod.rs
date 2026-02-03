@@ -931,8 +931,6 @@ pub use self::__VNTypes::VNVideoProcessingOption;
 pub use self::__VNTypes::VNVideoProcessingOptionFrameCadence;
 #[cfg(feature = "VNTypes")]
 pub use self::__VNTypes::VNVideoProcessingOptionTimeInterval;
-#[cfg(all(feature = "VNTypes", feature = "VNUtils"))]
-pub use self::__VNUtils::VNElementTypeSize;
 #[cfg(all(feature = "VNUtils", feature = "objc2-core-foundation"))]
 pub use self::__VNUtils::VNImagePointForNormalizedPoint;
 #[cfg(all(feature = "VNUtils", feature = "objc2-core-foundation"))]

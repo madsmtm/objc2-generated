@@ -858,37 +858,3 @@ impl UIImage {
         unsafe { Retained::retain_autoreleased(ret) }
     }
 }
-
-#[deprecated = "renamed to `UIImage::png_representation`"]
-#[inline]
-pub extern "C-unwind" fn UIImagePNGRepresentation(image: &UIImage) -> Option<Retained<NSData>> {
-    extern "C-unwind" {
-        fn UIImagePNGRepresentation(image: &UIImage) -> *mut NSData;
-    }
-    let ret = unsafe { UIImagePNGRepresentation(image) };
-    unsafe { Retained::retain_autoreleased(ret) }
-}
-
-#[cfg(feature = "objc2-core-foundation")]
-#[deprecated = "renamed to `UIImage::jpeg_representation`"]
-#[inline]
-pub extern "C-unwind" fn UIImageJPEGRepresentation(
-    image: &UIImage,
-    compression_quality: CGFloat,
-) -> Option<Retained<NSData>> {
-    extern "C-unwind" {
-        fn UIImageJPEGRepresentation(image: &UIImage, compression_quality: CGFloat) -> *mut NSData;
-    }
-    let ret = unsafe { UIImageJPEGRepresentation(image, compression_quality) };
-    unsafe { Retained::retain_autoreleased(ret) }
-}
-
-#[deprecated = "renamed to `UIImage::heic_representation`"]
-#[inline]
-pub extern "C-unwind" fn UIImageHEICRepresentation(image: &UIImage) -> Option<Retained<NSData>> {
-    extern "C-unwind" {
-        fn UIImageHEICRepresentation(image: &UIImage) -> *mut NSData;
-    }
-    let ret = unsafe { UIImageHEICRepresentation(image) };
-    unsafe { Retained::retain_autoreleased(ret) }
-}

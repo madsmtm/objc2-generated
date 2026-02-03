@@ -215,14 +215,3 @@ impl UIEvent {
         pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
-
-#[deprecated = "renamed to `UIEventButtonMask::for_button_number`"]
-#[inline]
-pub extern "C-unwind" fn UIEventButtonMaskForButtonNumber(
-    button_number: NSInteger,
-) -> UIEventButtonMask {
-    extern "C-unwind" {
-        fn UIEventButtonMaskForButtonNumber(button_number: NSInteger) -> UIEventButtonMask;
-    }
-    unsafe { UIEventButtonMaskForButtonNumber(button_number) }
-}

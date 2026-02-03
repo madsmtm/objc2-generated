@@ -781,14 +781,6 @@ pub use self::__CMIOHardwareStream::CMIOStreamCopyBufferQueue;
 #[cfg(feature = "CMIOHardwareStream")]
 pub use self::__CMIOHardwareStream::CMIOStreamDeck;
 #[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
-pub use self::__CMIOHardwareStream::CMIOStreamDeckCueTo;
-#[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
-pub use self::__CMIOHardwareStream::CMIOStreamDeckJog;
-#[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
-pub use self::__CMIOHardwareStream::CMIOStreamDeckPlay;
-#[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
-pub use self::__CMIOHardwareStream::CMIOStreamDeckStop;
-#[cfg(all(feature = "CMIOHardwareObject", feature = "CMIOHardwareStream"))]
 pub use self::__CMIOHardwareStream::CMIOStreamID;
 #[cfg(feature = "CMIOHardwareStream")]
 pub use self::__CMIOHardwareStream::CMIOStreamScheduledOutputNotificationProc;

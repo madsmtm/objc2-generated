@@ -2370,8 +2370,6 @@ pub use self::__UIApplication::UIApplicationLaunchOptionsUserActivityDictionaryK
 #[cfg(feature = "UIApplication")]
 pub use self::__UIApplication::UIApplicationLaunchOptionsUserActivityTypeKey;
 #[cfg(feature = "UIApplication")]
-pub use self::__UIApplication::UIApplicationMain;
-#[cfg(feature = "UIApplication")]
 pub use self::__UIApplication::UIApplicationOpenDefaultApplicationsSettingsURLString;
 #[cfg(feature = "UIApplication")]
 pub use self::__UIApplication::UIApplicationOpenExternalURLOptionsEventAttributionKey;
@@ -2451,8 +2449,6 @@ pub use self::__UIAttachmentBehavior::UIAttachmentBehaviorType;
 pub use self::__UIAttachmentBehavior::UIFloatRange;
 #[cfg(all(feature = "UIAttachmentBehavior", feature = "objc2-core-foundation"))]
 pub use self::__UIAttachmentBehavior::UIFloatRangeInfinite;
-#[cfg(all(feature = "UIAttachmentBehavior", feature = "objc2-core-foundation"))]
-pub use self::__UIAttachmentBehavior::UIFloatRangeIsInfinite;
 #[cfg(all(feature = "UIAttachmentBehavior", feature = "objc2-core-foundation"))]
 pub use self::__UIAttachmentBehavior::UIFloatRangeZero;
 #[cfg(feature = "UIBackgroundConfiguration")]
@@ -2611,10 +2607,6 @@ pub use self::__UICellAccessory::UICellAccessoryPlacement;
 pub use self::__UICellAccessory::UICellAccessoryPopUpMenu;
 #[cfg(all(feature = "UICellAccessory", feature = "block2"))]
 pub use self::__UICellAccessory::UICellAccessoryPosition;
-#[cfg(all(feature = "UICellAccessory", feature = "block2"))]
-pub use self::__UICellAccessory::UICellAccessoryPositionAfterAccessoryOfClass;
-#[cfg(all(feature = "UICellAccessory", feature = "block2"))]
-pub use self::__UICellAccessory::UICellAccessoryPositionBeforeAccessoryOfClass;
 #[cfg(feature = "UICellAccessory")]
 pub use self::__UICellAccessory::UICellAccessoryReorder;
 #[cfg(all(feature = "UICellAccessory", feature = "objc2-core-foundation"))]
@@ -3288,8 +3280,6 @@ pub use self::__UIEvent::UIEvent;
 #[cfg(feature = "UIEvent")]
 pub use self::__UIEvent::UIEventButtonMask;
 #[cfg(feature = "UIEvent")]
-pub use self::__UIEvent::UIEventButtonMaskForButtonNumber;
-#[cfg(feature = "UIEvent")]
 pub use self::__UIEvent::UIEventSubtype;
 #[cfg(feature = "UIEvent")]
 pub use self::__UIEvent::UIEventType;
@@ -3522,8 +3512,6 @@ pub use self::__UIGeometry::NSCoderUIGeometryKeyedCoding;
 #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::NSDirectionalEdgeInsets;
 #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-pub use self::__UIGeometry::NSDirectionalEdgeInsetsFromString;
-#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::NSDirectionalEdgeInsetsZero;
 #[cfg(feature = "UIGeometry")]
 pub use self::__UIGeometry::NSDirectionalRectEdge;
@@ -3552,13 +3540,9 @@ pub use self::__UIGeometry::UIDirectionalRectEdge;
 #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::UIEdgeInsets;
 #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-pub use self::__UIGeometry::UIEdgeInsetsFromString;
-#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::UIEdgeInsetsZero;
 #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::UIOffset;
-#[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
-pub use self::__UIGeometry::UIOffsetFromString;
 #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
 pub use self::__UIGeometry::UIOffsetZero;
 #[cfg(feature = "UIGeometry")]
@@ -3681,8 +3665,6 @@ pub use self::__UIGuidedAccess::UIGuidedAccessErrorDomain;
 pub use self::__UIGuidedAccess::UIGuidedAccessRestrictionDelegate;
 #[cfg(feature = "UIGuidedAccess")]
 pub use self::__UIGuidedAccess::UIGuidedAccessRestrictionState;
-#[cfg(feature = "UIGuidedAccess")]
-pub use self::__UIGuidedAccess::UIGuidedAccessRestrictionStateForIdentifier;
 #[cfg(feature = "UIHoverEffect")]
 pub use self::__UIHoverEffect::UIHoverAutomaticEffect;
 #[cfg(feature = "UIHoverEffect")]
@@ -3703,13 +3685,7 @@ pub use self::__UIImage::CIImageUIKitAdditions;
 #[cfg(feature = "UIImage")]
 pub use self::__UIImage::UIImage;
 #[cfg(feature = "UIImage")]
-pub use self::__UIImage::UIImageHEICRepresentation;
-#[cfg(all(feature = "UIImage", feature = "objc2-core-foundation"))]
-pub use self::__UIImage::UIImageJPEGRepresentation;
-#[cfg(feature = "UIImage")]
 pub use self::__UIImage::UIImageOrientation;
-#[cfg(feature = "UIImage")]
-pub use self::__UIImage::UIImagePNGRepresentation;
 #[cfg(feature = "UIImage")]
 pub use self::__UIImage::UIImageRenderingMode;
 #[cfg(feature = "UIImage")]
@@ -3761,8 +3737,6 @@ pub use self::__UIImagePickerController::UIImagePickerControllerQualityType;
 pub use self::__UIImagePickerController::UIImagePickerControllerReferenceURL;
 #[cfg(feature = "UIImagePickerController")]
 pub use self::__UIImagePickerController::UIImagePickerControllerSourceType;
-#[cfg(all(feature = "UIImage", feature = "UIImagePickerController"))]
-pub use self::__UIImagePickerController::UIImageWriteToSavedPhotosAlbum;
 #[cfg(feature = "UIImagePickerController")]
 pub use self::__UIImagePickerController::UISaveVideoAtPathToSavedPhotosAlbum;
 #[cfg(feature = "UIImagePickerController")]
@@ -3790,12 +3764,6 @@ pub use self::__UIImageSymbolConfiguration::UIImageSymbolScale;
 pub use self::__UIImageSymbolConfiguration::UIImageSymbolVariableValueMode;
 #[cfg(feature = "UIImageSymbolConfiguration")]
 pub use self::__UIImageSymbolConfiguration::UIImageSymbolWeight;
-#[cfg(all(
-    feature = "UIFontDescriptor",
-    feature = "UIImageSymbolConfiguration",
-    feature = "objc2-core-foundation"
-))]
-pub use self::__UIImageSymbolConfiguration::UIImageSymbolWeightForFontWeight;
 #[cfg(all(feature = "UIImageView", feature = "UIResponder", feature = "UIView"))]
 pub use self::__UIImageView::UIImageView;
 #[cfg(all(feature = "UIFeedbackGenerator", feature = "UIImpactFeedbackGenerator"))]
@@ -5968,8 +5936,6 @@ pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorDelegate;
 pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorState;
 #[cfg(feature = "UIWritingToolsCoordinator")]
 pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorTextAnimation;
-#[cfg(feature = "UIWritingToolsCoordinator")]
-pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorTextAnimationDebugDescription;
 #[cfg(feature = "UIWritingToolsCoordinator")]
 pub use self::__UIWritingToolsCoordinator::UIWritingToolsCoordinatorTextReplacementReason;
 #[cfg(feature = "UIWritingToolsCoordinator")]

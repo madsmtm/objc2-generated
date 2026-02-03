@@ -98,23 +98,3 @@ impl SecKeychainSearch {
         unsafe { SecKeychainSearchCopyNext(self, item_ref) }
     }
 }
-
-extern "C-unwind" {
-    #[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-    #[deprecated = "renamed to `SecKeychainSearch::create_from_attributes`"]
-    pub fn SecKeychainSearchCreateFromAttributes(
-        keychain_or_array: Option<&CFType>,
-        item_class: SecItemClass,
-        attr_list: *const SecKeychainAttributeList,
-        search_ref: NonNull<*mut SecKeychainSearch>,
-    ) -> OSStatus;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "SecBase")]
-    #[deprecated = "renamed to `SecKeychainSearch::copy_next`"]
-    pub fn SecKeychainSearchCopyNext(
-        search_ref: &SecKeychainSearch,
-        item_ref: NonNull<*mut SecKeychainItem>,
-    ) -> OSStatus;
-}

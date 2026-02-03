@@ -1439,30 +1439,3 @@ impl MPSTemporaryImage {
         pub unsafe fn new() -> Retained<Self>;
     );
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `MPSImage::batch_increment_read_count`"]
-    pub fn MPSImageBatchIncrementReadCount(batch: &MPSImageBatch, amount: NSInteger) -> NSUInteger;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `MPSImage::batch_synchronize`"]
-    pub fn MPSImageBatchSynchronize(
-        batch: &MPSImageBatch,
-        cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
-    );
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `MPSImage::batch_resource_size`"]
-    pub fn MPSImageBatchResourceSize(batch: &MPSImageBatch) -> NSUInteger;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "block2")]
-    #[deprecated = "renamed to `MPSImage::batch_iterate`"]
-    pub fn MPSImageBatchIterate(
-        batch: &MPSImageBatch,
-        iterator_block: &block2::DynBlock<dyn Fn(NonNull<MPSImage>, NSUInteger) -> NSInteger>,
-    ) -> NSInteger;
-}

@@ -546,15 +546,3 @@ extern "C" {
     #[deprecated = "Not supported"]
     pub static NSIntHashCallBacks: NSHashTableCallBacks;
 }
-
-#[cfg(feature = "NSString")]
-#[deprecated = "renamed to `NSString::from_hash_table`"]
-#[inline]
-pub unsafe extern "C-unwind" fn NSStringFromHashTable(table: &NSHashTable) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn NSStringFromHashTable(table: &NSHashTable) -> *mut NSString;
-    }
-    let ret = unsafe { NSStringFromHashTable(table) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}

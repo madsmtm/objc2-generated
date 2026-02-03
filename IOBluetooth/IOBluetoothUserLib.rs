@@ -434,29 +434,3 @@ extern "C-unwind" {
     #[deprecated]
     pub fn IOBluetoothRemoveSCOAudioDevice(device: Option<&IOBluetoothDeviceRef>) -> IOReturn;
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `IOBluetoothUserNotificationRef::unregister`"]
-    pub fn IOBluetoothUserNotificationUnregister(notification_ref: &IOBluetoothUserNotificationRef);
-}
-
-#[cfg(feature = "objc2-core-foundation")]
-#[deprecated = "renamed to `IOBluetoothL2CAPChannelRef::register_for_channel_close_notification`"]
-#[inline]
-pub unsafe extern "C-unwind" fn IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(
-    channel: &IOBluetoothL2CAPChannelRef,
-    callback: IOBluetoothUserNotificationCallback,
-    in_ref_con: *mut c_void,
-) -> Option<CFRetained<IOBluetoothUserNotificationRef>> {
-    extern "C-unwind" {
-        fn IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(
-            channel: &IOBluetoothL2CAPChannelRef,
-            callback: IOBluetoothUserNotificationCallback,
-            in_ref_con: *mut c_void,
-        ) -> Option<NonNull<IOBluetoothUserNotificationRef>>;
-    }
-    let ret = unsafe {
-        IOBluetoothL2CAPChannelRegisterForChannelCloseNotification(channel, callback, in_ref_con)
-    };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}

@@ -140,14 +140,3 @@ unsafe impl RefEncode for cp_axis_direction_convention {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/compositorservices/cp_render_quality_t?language=objc)
 // NS_TYPED_EXTENSIBLE_ENUM
 pub type cp_render_quality_t = c_float;
-
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-foundation")]
-    #[deprecated = "renamed to `cp_time::to_cf_time_interval`"]
-    pub fn cp_time_to_cf_time_interval(time: cp_time_t) -> CFTimeInterval;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `cp_time::wait_until`"]
-    pub fn cp_time_wait_until(time: cp_time_t);
-}

@@ -166,18 +166,3 @@ pub unsafe extern "C-unwind" fn NSDataFromGCGamepadSnapShotDataV100(
     let ret = unsafe { NSDataFromGCGamepadSnapShotDataV100(snapshot_data) };
     unsafe { Retained::retain_autoreleased(ret) }
 }
-
-#[deprecated = "renamed to `GCGamepadSnapShotDataV100::from_ns_data`"]
-#[inline]
-pub unsafe extern "C-unwind" fn GCGamepadSnapShotDataV100FromNSData(
-    snapshot_data: *mut GCGamepadSnapShotDataV100,
-    data: Option<&NSData>,
-) -> bool {
-    extern "C-unwind" {
-        fn GCGamepadSnapShotDataV100FromNSData(
-            snapshot_data: *mut GCGamepadSnapShotDataV100,
-            data: Option<&NSData>,
-        ) -> Bool;
-    }
-    unsafe { GCGamepadSnapShotDataV100FromNSData(snapshot_data, data) }.as_bool()
-}

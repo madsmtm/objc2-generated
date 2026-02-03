@@ -236,31 +236,3 @@ extern_protocol!(
         ) -> Option<Retained<CGImage>>;
     }
 );
-
-#[deprecated = "renamed to `CTRunDelegate::new`"]
-#[inline]
-pub unsafe extern "C-unwind" fn CTRunDelegateCreate(
-    callbacks: NonNull<CTRunDelegateCallbacks>,
-    ref_con: *mut c_void,
-) -> Option<CFRetained<CTRunDelegate>> {
-    extern "C-unwind" {
-        fn CTRunDelegateCreate(
-            callbacks: NonNull<CTRunDelegateCallbacks>,
-            ref_con: *mut c_void,
-        ) -> Option<NonNull<CTRunDelegate>>;
-    }
-    let ret = unsafe { CTRunDelegateCreate(callbacks, ref_con) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}
-
-#[deprecated = "renamed to `CTRunDelegate::ref_con`"]
-#[inline]
-pub unsafe extern "C-unwind" fn CTRunDelegateGetRefCon(
-    run_delegate: &CTRunDelegate,
-) -> NonNull<c_void> {
-    extern "C-unwind" {
-        fn CTRunDelegateGetRefCon(run_delegate: &CTRunDelegate) -> Option<NonNull<c_void>>;
-    }
-    let ret = unsafe { CTRunDelegateGetRefCon(run_delegate) };
-    ret.expect("function was marked as returning non-null, but actually returned NULL")
-}

@@ -1263,18 +1263,3 @@ extern_protocol!(
         );
     }
 );
-
-#[deprecated = "renamed to `UIWritingToolsCoordinatorTextAnimation::debug_description`"]
-#[inline]
-pub extern "C-unwind" fn UIWritingToolsCoordinatorTextAnimationDebugDescription(
-    animation_type: UIWritingToolsCoordinatorTextAnimation,
-) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn UIWritingToolsCoordinatorTextAnimationDebugDescription(
-            animation_type: UIWritingToolsCoordinatorTextAnimation,
-        ) -> *mut NSString;
-    }
-    let ret = unsafe { UIWritingToolsCoordinatorTextAnimationDebugDescription(animation_type) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}

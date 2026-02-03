@@ -78,84 +78,10 @@ pub use self::__QLGenerator::QLPreviewPDFStyle;
 #[cfg(feature = "QLGenerator")]
 pub use self::__QLGenerator::QLPreviewRequest;
 #[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLPreviewRequestCopyContentUTI;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLPreviewRequestCopyOptions;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLPreviewRequestCopyURL;
-#[cfg(all(feature = "QLGenerator", feature = "objc2-core-graphics"))]
-pub use self::__QLGenerator::QLPreviewRequestCreateContext;
-#[cfg(all(feature = "QLGenerator", feature = "objc2-core-graphics"))]
-pub use self::__QLGenerator::QLPreviewRequestCreatePDFContext;
-#[cfg(all(feature = "QLGenerator", feature = "objc2-core-graphics"))]
-pub use self::__QLGenerator::QLPreviewRequestFlushContext;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLPreviewRequestGetDocumentObject;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLPreviewRequestGetGeneratorBundle;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLPreviewRequestIsCancelled;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLPreviewRequestSetDataRepresentation;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLPreviewRequestSetDocumentObject;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLPreviewRequestSetURLRepresentation;
-#[cfg(feature = "QLGenerator")]
 pub use self::__QLGenerator::QLThumbnailRequest;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLThumbnailRequestCopyContentUTI;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLThumbnailRequestCopyOptions;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLThumbnailRequestCopyURL;
-#[cfg(all(feature = "QLGenerator", feature = "objc2-core-graphics"))]
-pub use self::__QLGenerator::QLThumbnailRequestCreateContext;
-#[cfg(all(feature = "QLGenerator", feature = "objc2-core-graphics"))]
-pub use self::__QLGenerator::QLThumbnailRequestFlushContext;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLThumbnailRequestGetDocumentObject;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLThumbnailRequestGetGeneratorBundle;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLThumbnailRequestGetMaximumSize;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLThumbnailRequestIsCancelled;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLThumbnailRequestSetDocumentObject;
-#[cfg(all(feature = "QLGenerator", feature = "objc2-core-graphics"))]
-pub use self::__QLGenerator::QLThumbnailRequestSetImage;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLThumbnailRequestSetImageAtURL;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLThumbnailRequestSetImageWithData;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLThumbnailRequestSetThumbnailWithDataRepresentation;
-#[cfg(feature = "QLGenerator")]
-pub use self::__QLGenerator::QLThumbnailRequestSetThumbnailWithURLRepresentation;
 #[cfg(feature = "QLThumbnail")]
 pub use self::__QLThumbnail::QLThumbnail;
-#[cfg(feature = "QLThumbnail")]
-pub use self::__QLThumbnail::QLThumbnailCancel;
-#[cfg(feature = "QLThumbnail")]
-pub use self::__QLThumbnail::QLThumbnailCopyDocumentURL;
-#[cfg(all(feature = "QLThumbnail", feature = "objc2-core-graphics"))]
-pub use self::__QLThumbnail::QLThumbnailCopyImage;
-#[cfg(feature = "QLThumbnail")]
-pub use self::__QLThumbnail::QLThumbnailCopyOptions;
-#[cfg(feature = "QLThumbnail")]
-pub use self::__QLThumbnail::QLThumbnailCreate;
-#[cfg(all(feature = "QLThumbnail", feature = "dispatch2"))]
-pub use self::__QLThumbnail::QLThumbnailDispatchAsync;
-#[cfg(feature = "QLThumbnail")]
-pub use self::__QLThumbnail::QLThumbnailGetContentRect;
-#[cfg(feature = "QLThumbnail")]
-pub use self::__QLThumbnail::QLThumbnailGetMaximumSize;
-#[cfg(feature = "QLThumbnail")]
-pub use self::__QLThumbnail::QLThumbnailIsCancelled;
 #[cfg(feature = "QLThumbnailImage")]
 pub use self::__QLThumbnailImage::kQLThumbnailOptionIconModeKey;
 #[cfg(feature = "QLThumbnailImage")]
 pub use self::__QLThumbnailImage::kQLThumbnailOptionScaleFactorKey;
-#[cfg(all(feature = "QLThumbnailImage", feature = "objc2-core-graphics"))]
-pub use self::__QLThumbnailImage::QLThumbnailImageCreate;

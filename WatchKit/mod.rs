@@ -159,8 +159,6 @@ pub use self::__WKAlertAction::WKAlertActionStyle;
 pub use self::__WKApplication::WKApplication;
 #[cfg(feature = "WKApplication")]
 pub use self::__WKApplication::WKApplicationDelegate;
-#[cfg(feature = "WKApplicationMain")]
-pub use self::__WKApplicationMain::WKApplicationMain;
 #[cfg(feature = "WKAudioFileAsset")]
 pub use self::__WKAudioFileAsset::WKAudioFileAsset;
 #[cfg(feature = "WKAudioFilePlayer")]

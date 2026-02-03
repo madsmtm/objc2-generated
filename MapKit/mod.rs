@@ -355,41 +355,15 @@ pub use self::__MKGeometry::MKCoordinateForMapPoint;
 #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
 pub use self::__MKGeometry::MKCoordinateRegion;
 #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
-pub use self::__MKGeometry::MKCoordinateRegionForMapRect;
-#[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
-pub use self::__MKGeometry::MKCoordinateRegionMakeWithDistance;
-#[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
 pub use self::__MKGeometry::MKCoordinateSpan;
 #[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapPoint;
-#[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
-pub use self::__MKGeometry::MKMapPointForCoordinate;
 #[cfg(all(feature = "MKGeometry", feature = "objc2-core-location"))]
 pub use self::__MKGeometry::MKMapPointsPerMeterAtLatitude;
 #[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRect;
 #[cfg(feature = "MKGeometry")]
-pub use self::__MKGeometry::MKMapRectContainsPoint;
-#[cfg(feature = "MKGeometry")]
-pub use self::__MKGeometry::MKMapRectContainsRect;
-#[cfg(all(feature = "MKGeometry", feature = "objc2-core-foundation"))]
-pub use self::__MKGeometry::MKMapRectDivide;
-#[cfg(feature = "MKGeometry")]
-pub use self::__MKGeometry::MKMapRectInset;
-#[cfg(feature = "MKGeometry")]
-pub use self::__MKGeometry::MKMapRectIntersection;
-#[cfg(feature = "MKGeometry")]
-pub use self::__MKGeometry::MKMapRectIntersectsRect;
-#[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectNull;
-#[cfg(feature = "MKGeometry")]
-pub use self::__MKGeometry::MKMapRectOffset;
-#[cfg(feature = "MKGeometry")]
-pub use self::__MKGeometry::MKMapRectRemainder;
-#[cfg(feature = "MKGeometry")]
-pub use self::__MKGeometry::MKMapRectSpans180thMeridian;
-#[cfg(feature = "MKGeometry")]
-pub use self::__MKGeometry::MKMapRectUnion;
 #[cfg(feature = "MKGeometry")]
 pub use self::__MKGeometry::MKMapRectWorld;
 #[cfg(feature = "MKGeometry")]

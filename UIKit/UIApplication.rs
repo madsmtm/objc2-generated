@@ -1857,13 +1857,3 @@ extern "C" {
     pub static UIApplicationOpenExternalURLOptionsEventAttributionKey:
         &'static UIApplicationOpenExternalURLOptionsKey;
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `UIApplication::__main`"]
-    pub fn UIApplicationMain(
-        argc: c_int,
-        argv: NonNull<*mut c_char>,
-        principal_class_name: Option<&NSString>,
-        delegate_class_name: Option<&NSString>,
-    ) -> c_int;
-}

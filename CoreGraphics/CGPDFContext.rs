@@ -487,12 +487,3 @@ pub extern "C-unwind" fn CGPDFContextEndTag(context: &CGContext) {
     }
     unsafe { CGPDFContextEndTag(context) }
 }
-
-#[deprecated = "renamed to `CGPDFTagType::name`"]
-#[inline]
-pub extern "C-unwind" fn CGPDFTagTypeGetName(tag_type: CGPDFTagType) -> *const c_char {
-    extern "C-unwind" {
-        fn CGPDFTagTypeGetName(tag_type: CGPDFTagType) -> *const c_char;
-    }
-    unsafe { CGPDFTagTypeGetName(tag_type) }
-}

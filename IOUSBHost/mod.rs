@@ -621,66 +621,6 @@ pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCITransferComp
 pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCITransferCompletionMessageData1TransferStructurePhase;
 #[cfg(feature = "IOUSBHostControllerInterfaceDefinitions")]
 pub use self::__IOUSBHostControllerInterfaceDefinitions::IOUSBHostCIUserClientVersion;
-#[cfg(all(
-    feature = "IOUSBHostControllerInterfaceDefinitions",
-    feature = "IOUSBHostControllerInterfaceHelpers"
-))]
-pub use self::__IOUSBHostControllerInterfaceHelpers::IOUSBHostCIControllerStateToString;
-#[cfg(all(
-    feature = "IOUSBHostControllerInterfaceDefinitions",
-    feature = "IOUSBHostControllerInterfaceHelpers"
-))]
-pub use self::__IOUSBHostControllerInterfaceHelpers::IOUSBHostCIDeviceSpeedToString;
-#[cfg(all(
-    feature = "IOUSBHostControllerInterfaceDefinitions",
-    feature = "IOUSBHostControllerInterfaceHelpers"
-))]
-pub use self::__IOUSBHostControllerInterfaceHelpers::IOUSBHostCIDeviceStateToString;
-#[cfg(all(
-    feature = "IOUSBHostControllerInterfaceDefinitions",
-    feature = "IOUSBHostControllerInterfaceHelpers"
-))]
-pub use self::__IOUSBHostControllerInterfaceHelpers::IOUSBHostCIEndpointStateToString;
-#[cfg(all(
-    feature = "IOUSBHostControllerInterfaceDefinitions",
-    feature = "IOUSBHostControllerInterfaceHelpers"
-))]
-pub use self::__IOUSBHostControllerInterfaceHelpers::IOUSBHostCIExceptionTypeToString;
-#[cfg(all(
-    feature = "IOUSBHostControllerInterfaceDefinitions",
-    feature = "IOUSBHostControllerInterfaceHelpers"
-))]
-pub use self::__IOUSBHostControllerInterfaceHelpers::IOUSBHostCILinkStateEnabled;
-#[cfg(all(
-    feature = "IOUSBHostControllerInterfaceDefinitions",
-    feature = "IOUSBHostControllerInterfaceHelpers"
-))]
-pub use self::__IOUSBHostControllerInterfaceHelpers::IOUSBHostCILinkStateToString;
-#[cfg(all(
-    feature = "IOUSBHostControllerInterfaceDefinitions",
-    feature = "IOUSBHostControllerInterfaceHelpers"
-))]
-pub use self::__IOUSBHostControllerInterfaceHelpers::IOUSBHostCIMessageStatusFromIOReturn;
-#[cfg(all(
-    feature = "IOUSBHostControllerInterfaceDefinitions",
-    feature = "IOUSBHostControllerInterfaceHelpers"
-))]
-pub use self::__IOUSBHostControllerInterfaceHelpers::IOUSBHostCIMessageStatusToIOReturn;
-#[cfg(all(
-    feature = "IOUSBHostControllerInterfaceDefinitions",
-    feature = "IOUSBHostControllerInterfaceHelpers"
-))]
-pub use self::__IOUSBHostControllerInterfaceHelpers::IOUSBHostCIMessageStatusToString;
-#[cfg(all(
-    feature = "IOUSBHostControllerInterfaceDefinitions",
-    feature = "IOUSBHostControllerInterfaceHelpers"
-))]
-pub use self::__IOUSBHostControllerInterfaceHelpers::IOUSBHostCIMessageTypeToString;
-#[cfg(all(
-    feature = "IOUSBHostControllerInterfaceDefinitions",
-    feature = "IOUSBHostControllerInterfaceHelpers"
-))]
-pub use self::__IOUSBHostControllerInterfaceHelpers::IOUSBHostCIPortStateToString;
 #[cfg(feature = "IOUSBHostDefinitions")]
 pub use self::__IOUSBHostDefinitions::IOUSBHostAbortOption;
 #[cfg(all(feature = "IOUSBHostDefinitions", feature = "block2"))]

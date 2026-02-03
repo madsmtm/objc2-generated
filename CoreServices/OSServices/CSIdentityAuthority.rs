@@ -79,17 +79,3 @@ impl CSIdentityAuthority {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }
-
-#[deprecated = "renamed to `CSIdentityAuthority::localized_name`"]
-#[inline]
-pub unsafe extern "C-unwind" fn CSIdentityAuthorityCopyLocalizedName(
-    authority: &CSIdentityAuthority,
-) -> Option<CFRetained<CFString>> {
-    extern "C-unwind" {
-        fn CSIdentityAuthorityCopyLocalizedName(
-            authority: &CSIdentityAuthority,
-        ) -> Option<NonNull<CFString>>;
-    }
-    let ret = unsafe { CSIdentityAuthorityCopyLocalizedName(authority) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}

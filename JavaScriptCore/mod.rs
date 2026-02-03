@@ -102,18 +102,6 @@ pub use self::__JSBase::OpaqueJSValue;
 #[cfg(all(feature = "JSContext", feature = "objc2"))]
 pub use self::__JSContext::JSContext;
 #[cfg(all(feature = "JSBase", feature = "JSContextRef"))]
-pub use self::__JSContextRef::JSContextGetGlobalContext;
-#[cfg(all(feature = "JSBase", feature = "JSContextRef"))]
-pub use self::__JSContextRef::JSContextGetGlobalObject;
-#[cfg(all(feature = "JSBase", feature = "JSContextRef"))]
-pub use self::__JSContextRef::JSContextGetGroup;
-#[cfg(all(feature = "JSBase", feature = "JSContextRef"))]
-pub use self::__JSContextRef::JSContextGroupCreate;
-#[cfg(all(feature = "JSBase", feature = "JSContextRef"))]
-pub use self::__JSContextRef::JSContextGroupRelease;
-#[cfg(all(feature = "JSBase", feature = "JSContextRef"))]
-pub use self::__JSContextRef::JSContextGroupRetain;
-#[cfg(all(feature = "JSBase", feature = "JSContextRef"))]
 pub use self::__JSContextRef::JSGlobalContextCopyName;
 #[cfg(all(feature = "JSBase", feature = "JSContextRef"))]
 pub use self::__JSContextRef::JSGlobalContextCreate;
@@ -339,81 +327,5 @@ pub use self::__JSValueRef::JSRelationCondition;
 pub use self::__JSValueRef::JSType;
 #[cfg(feature = "JSValueRef")]
 pub use self::__JSValueRef::JSTypedArrayType;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueCompare;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueCompareDouble;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueCompareInt64;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueCompareUInt64;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueCreateJSONString;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueGetType;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueGetTypedArrayType;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueIsArray;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueIsBigInt;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueIsBoolean;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueIsDate;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueIsEqual;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueIsInstanceOfConstructor;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueIsNull;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueIsNumber;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueIsObject;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueIsObjectOfClass;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueIsStrictEqual;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueIsString;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueIsSymbol;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueIsUndefined;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueMakeBoolean;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueMakeFromJSONString;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueMakeNull;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueMakeNumber;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueMakeString;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueMakeSymbol;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueMakeUndefined;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueProtect;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueToBoolean;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueToInt32;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueToInt64;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueToNumber;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueToObject;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueToStringCopy;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueToUInt32;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueToUInt64;
-#[cfg(all(feature = "JSBase", feature = "JSValueRef"))]
-pub use self::__JSValueRef::JSValueUnprotect;
 #[cfg(all(feature = "JSVirtualMachine", feature = "objc2"))]
 pub use self::__JSVirtualMachine::JSVirtualMachine;

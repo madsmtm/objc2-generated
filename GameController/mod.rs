@@ -380,8 +380,6 @@ pub use self::__GCExtendedGamepad::GCExtendedGamepadValueChangedHandler;
 pub use self::__GCExtendedGamepadSnapshot::GCCurrentExtendedGamepadSnapshotDataVersion;
 #[cfg(feature = "GCExtendedGamepadSnapshot")]
 pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapShotDataV100;
-#[cfg(feature = "GCExtendedGamepadSnapshot")]
-pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapShotDataV100FromNSData;
 #[cfg(all(
     feature = "GCExtendedGamepad",
     feature = "GCExtendedGamepadSnapshot",
@@ -390,8 +388,6 @@ pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapShotDataV100From
 pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshot;
 #[cfg(feature = "GCExtendedGamepadSnapshot")]
 pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshotData;
-#[cfg(feature = "GCExtendedGamepadSnapshot")]
-pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshotDataFromNSData;
 #[cfg(feature = "GCExtendedGamepadSnapshot")]
 pub use self::__GCExtendedGamepadSnapshot::GCExtendedGamepadSnapshotDataVersion;
 #[cfg(feature = "GCExtendedGamepadSnapshot")]
@@ -409,8 +405,6 @@ pub use self::__GCGamepad::GCGamepad;
 pub use self::__GCGamepad::GCGamepadValueChangedHandler;
 #[cfg(feature = "GCGamepadSnapshot")]
 pub use self::__GCGamepadSnapshot::GCGamepadSnapShotDataV100;
-#[cfg(feature = "GCGamepadSnapshot")]
-pub use self::__GCGamepadSnapshot::GCGamepadSnapShotDataV100FromNSData;
 #[cfg(all(
     feature = "GCGamepad",
     feature = "GCGamepadSnapshot",
@@ -1106,8 +1100,6 @@ pub use self::__GCMicroGamepad::GCMicroGamepadValueChangedHandler;
 pub use self::__GCMicroGamepadSnapshot::GCCurrentMicroGamepadSnapshotDataVersion;
 #[cfg(feature = "GCMicroGamepadSnapshot")]
 pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapShotDataV100;
-#[cfg(feature = "GCMicroGamepadSnapshot")]
-pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapShotDataV100FromNSData;
 #[cfg(all(
     feature = "GCMicroGamepad",
     feature = "GCMicroGamepadSnapshot",
@@ -1116,8 +1108,6 @@ pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapShotDataV100FromNSData
 pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshot;
 #[cfg(feature = "GCMicroGamepadSnapshot")]
 pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshotData;
-#[cfg(feature = "GCMicroGamepadSnapshot")]
-pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshotDataFromNSData;
 #[cfg(feature = "GCMicroGamepadSnapshot")]
 pub use self::__GCMicroGamepadSnapshot::GCMicroGamepadSnapshotDataVersion;
 #[cfg(feature = "GCMicroGamepadSnapshot")]

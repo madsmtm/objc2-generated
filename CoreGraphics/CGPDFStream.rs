@@ -83,25 +83,3 @@ impl CGPDFStream {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }
-
-extern "C-unwind" {
-    #[cfg(feature = "CGPDFDictionary")]
-    #[deprecated = "renamed to `CGPDFStream::dictionary`"]
-    pub fn CGPDFStreamGetDictionary(stream: CGPDFStreamRef) -> CGPDFDictionaryRef;
-}
-
-#[deprecated = "renamed to `CGPDFStream::data`"]
-#[inline]
-pub unsafe extern "C-unwind" fn CGPDFStreamCopyData(
-    stream: CGPDFStreamRef,
-    format: *mut CGPDFDataFormat,
-) -> Option<CFRetained<CFData>> {
-    extern "C-unwind" {
-        fn CGPDFStreamCopyData(
-            stream: CGPDFStreamRef,
-            format: *mut CGPDFDataFormat,
-        ) -> Option<NonNull<CFData>>;
-    }
-    let ret = unsafe { CGPDFStreamCopyData(stream, format) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}

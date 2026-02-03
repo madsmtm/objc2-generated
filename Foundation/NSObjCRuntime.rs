@@ -363,39 +363,3 @@ unsafe impl RefEncode for NSQualityOfService {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsnotfound?language=objc)
 pub static NSNotFound: NSInteger = NSIntegerMax as _;
-
-#[cfg(feature = "NSString")]
-#[deprecated = "renamed to `NSString::from_selector`"]
-#[inline]
-pub unsafe extern "C-unwind" fn NSStringFromSelector(a_selector: Sel) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn NSStringFromSelector(a_selector: Sel) -> *mut NSString;
-    }
-    let ret = unsafe { NSStringFromSelector(a_selector) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}
-
-#[cfg(feature = "NSString")]
-#[deprecated = "renamed to `NSString::from_class`"]
-#[inline]
-pub extern "C-unwind" fn NSStringFromClass(a_class: &AnyClass) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn NSStringFromClass(a_class: &AnyClass) -> *mut NSString;
-    }
-    let ret = unsafe { NSStringFromClass(a_class) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}
-
-#[cfg(feature = "NSString")]
-#[deprecated = "renamed to `NSString::from_protocol`"]
-#[inline]
-pub unsafe extern "C-unwind" fn NSStringFromProtocol(proto: &AnyProtocol) -> Retained<NSString> {
-    extern "C-unwind" {
-        fn NSStringFromProtocol(proto: &AnyProtocol) -> *mut NSString;
-    }
-    let ret = unsafe { NSStringFromProtocol(proto) };
-    unsafe { Retained::retain_autoreleased(ret) }
-        .expect("function was marked as returning non-null, but actually returned NULL")
-}

@@ -88,79 +88,15 @@ pub use self::__SCDynamicStore::kSCDynamicStoreUseSessionKeys;
 #[cfg(feature = "SCDynamicStore")]
 pub use self::__SCDynamicStore::SCDynamicStore;
 #[cfg(feature = "SCDynamicStore")]
-pub use self::__SCDynamicStore::SCDynamicStoreAddTemporaryValue;
-#[cfg(feature = "SCDynamicStore")]
-pub use self::__SCDynamicStore::SCDynamicStoreAddValue;
-#[cfg(feature = "SCDynamicStore")]
 pub use self::__SCDynamicStore::SCDynamicStoreCallBack;
 #[cfg(feature = "SCDynamicStore")]
 pub use self::__SCDynamicStore::SCDynamicStoreContext;
-#[cfg(feature = "SCDynamicStore")]
-pub use self::__SCDynamicStore::SCDynamicStoreCopyKeyList;
-#[cfg(feature = "SCDynamicStore")]
-pub use self::__SCDynamicStore::SCDynamicStoreCopyMultiple;
-#[cfg(feature = "SCDynamicStore")]
-pub use self::__SCDynamicStore::SCDynamicStoreCopyNotifiedKeys;
-#[cfg(feature = "SCDynamicStore")]
-pub use self::__SCDynamicStore::SCDynamicStoreCopyValue;
-#[cfg(feature = "SCDynamicStore")]
-pub use self::__SCDynamicStore::SCDynamicStoreCreate;
-#[cfg(feature = "SCDynamicStore")]
-pub use self::__SCDynamicStore::SCDynamicStoreCreateRunLoopSource;
-#[cfg(feature = "SCDynamicStore")]
-pub use self::__SCDynamicStore::SCDynamicStoreCreateWithOptions;
-#[cfg(feature = "SCDynamicStore")]
-pub use self::__SCDynamicStore::SCDynamicStoreNotifyValue;
-#[cfg(feature = "SCDynamicStore")]
-pub use self::__SCDynamicStore::SCDynamicStoreRemoveValue;
-#[cfg(all(feature = "SCDynamicStore", feature = "dispatch2"))]
-pub use self::__SCDynamicStore::SCDynamicStoreSetDispatchQueue;
-#[cfg(feature = "SCDynamicStore")]
-pub use self::__SCDynamicStore::SCDynamicStoreSetMultiple;
-#[cfg(feature = "SCDynamicStore")]
-pub use self::__SCDynamicStore::SCDynamicStoreSetNotificationKeys;
-#[cfg(feature = "SCDynamicStore")]
-pub use self::__SCDynamicStore::SCDynamicStoreSetValue;
 #[cfg(feature = "SCDynamicStoreCopyDHCPInfo")]
 pub use self::__SCDynamicStoreCopyDHCPInfo::DHCPInfoGetLeaseExpirationTime;
 #[cfg(feature = "SCDynamicStoreCopyDHCPInfo")]
 pub use self::__SCDynamicStoreCopyDHCPInfo::DHCPInfoGetLeaseStartTime;
 #[cfg(feature = "SCDynamicStoreCopyDHCPInfo")]
 pub use self::__SCDynamicStoreCopyDHCPInfo::DHCPInfoGetOptionData;
-#[cfg(all(feature = "SCDynamicStore", feature = "SCDynamicStoreCopyDHCPInfo"))]
-pub use self::__SCDynamicStoreCopyDHCPInfo::SCDynamicStoreCopyDHCPInfo;
-#[cfg(all(feature = "SCDynamicStore", feature = "SCDynamicStoreCopySpecific"))]
-pub use self::__SCDynamicStoreCopySpecific::SCDynamicStoreCopyComputerName;
-#[cfg(all(
-    feature = "SCDynamicStore",
-    feature = "SCDynamicStoreCopySpecific",
-    feature = "libc"
-))]
-pub use self::__SCDynamicStoreCopySpecific::SCDynamicStoreCopyConsoleUser;
-#[cfg(all(feature = "SCDynamicStore", feature = "SCDynamicStoreCopySpecific"))]
-pub use self::__SCDynamicStoreCopySpecific::SCDynamicStoreCopyLocalHostName;
-#[cfg(all(feature = "SCDynamicStore", feature = "SCDynamicStoreCopySpecific"))]
-pub use self::__SCDynamicStoreCopySpecific::SCDynamicStoreCopyLocation;
-#[cfg(all(feature = "SCDynamicStore", feature = "SCDynamicStoreCopySpecific"))]
-pub use self::__SCDynamicStoreCopySpecific::SCDynamicStoreCopyProxies;
-#[cfg(feature = "SCDynamicStoreKey")]
-pub use self::__SCDynamicStoreKey::SCDynamicStoreKeyCreateComputerName;
-#[cfg(feature = "SCDynamicStoreKey")]
-pub use self::__SCDynamicStoreKey::SCDynamicStoreKeyCreateConsoleUser;
-#[cfg(feature = "SCDynamicStoreKey")]
-pub use self::__SCDynamicStoreKey::SCDynamicStoreKeyCreateHostNames;
-#[cfg(feature = "SCDynamicStoreKey")]
-pub use self::__SCDynamicStoreKey::SCDynamicStoreKeyCreateLocation;
-#[cfg(feature = "SCDynamicStoreKey")]
-pub use self::__SCDynamicStoreKey::SCDynamicStoreKeyCreateNetworkGlobalEntity;
-#[cfg(feature = "SCDynamicStoreKey")]
-pub use self::__SCDynamicStoreKey::SCDynamicStoreKeyCreateNetworkInterface;
-#[cfg(feature = "SCDynamicStoreKey")]
-pub use self::__SCDynamicStoreKey::SCDynamicStoreKeyCreateNetworkInterfaceEntity;
-#[cfg(feature = "SCDynamicStoreKey")]
-pub use self::__SCDynamicStoreKey::SCDynamicStoreKeyCreateNetworkServiceEntity;
-#[cfg(feature = "SCDynamicStoreKey")]
-pub use self::__SCDynamicStoreKey::SCDynamicStoreKeyCreateProxies;
 #[cfg(feature = "SCNetwork")]
 pub use self::__SCNetwork::kSCNetworkFlagsConnectionAutomatic;
 #[cfg(feature = "SCNetwork")]
@@ -268,127 +204,13 @@ pub use self::__SCNetworkConfiguration::SCBondInterfaceSetOptions;
 #[cfg(feature = "SCNetworkConfiguration")]
 pub use self::__SCNetworkConfiguration::SCBondStatus;
 #[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCBondStatusGetInterfaceStatus;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCBondStatusGetMemberInterfaces;
-#[cfg(feature = "SCNetworkConfiguration")]
 pub use self::__SCNetworkConfiguration::SCNetworkInterface;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceCopyAll;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceCopyMTU;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceCopyMediaOptions;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceCopyMediaSubTypeOptions;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceCopyMediaSubTypes;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceCreateWithInterface;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceForceConfigurationRefresh;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceGetBSDName;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceGetConfiguration;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceGetExtendedConfiguration;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceGetHardwareAddressString;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceGetInterface;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceGetInterfaceType;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceGetLocalizedDisplayName;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceGetSupportedInterfaceTypes;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceGetSupportedProtocolTypes;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceSetConfiguration;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceSetExtendedConfiguration;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceSetMTU;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkInterfaceSetMediaOptions;
 #[cfg(feature = "SCNetworkConfiguration")]
 pub use self::__SCNetworkConfiguration::SCNetworkProtocol;
 #[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkProtocolGetConfiguration;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkProtocolGetEnabled;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkProtocolGetProtocolType;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkProtocolSetConfiguration;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkProtocolSetEnabled;
-#[cfg(feature = "SCNetworkConfiguration")]
 pub use self::__SCNetworkConfiguration::SCNetworkService;
 #[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceAddProtocolType;
-#[cfg(all(feature = "SCNetworkConfiguration", feature = "SCPreferences"))]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceCopy;
-#[cfg(all(feature = "SCNetworkConfiguration", feature = "SCPreferences"))]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceCopyAll;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceCopyProtocol;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceCopyProtocols;
-#[cfg(all(feature = "SCNetworkConfiguration", feature = "SCPreferences"))]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceCreate;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceEstablishDefaultConfiguration;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceGetEnabled;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceGetInterface;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceGetName;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceGetServiceID;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceRemove;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceRemoveProtocolType;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceSetEnabled;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkServiceSetName;
-#[cfg(feature = "SCNetworkConfiguration")]
 pub use self::__SCNetworkConfiguration::SCNetworkSet;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkSetAddService;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkSetContainsInterface;
-#[cfg(all(feature = "SCNetworkConfiguration", feature = "SCPreferences"))]
-pub use self::__SCNetworkConfiguration::SCNetworkSetCopy;
-#[cfg(all(feature = "SCNetworkConfiguration", feature = "SCPreferences"))]
-pub use self::__SCNetworkConfiguration::SCNetworkSetCopyAll;
-#[cfg(all(feature = "SCNetworkConfiguration", feature = "SCPreferences"))]
-pub use self::__SCNetworkConfiguration::SCNetworkSetCopyCurrent;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkSetCopyServices;
-#[cfg(all(feature = "SCNetworkConfiguration", feature = "SCPreferences"))]
-pub use self::__SCNetworkConfiguration::SCNetworkSetCreate;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkSetGetName;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkSetGetServiceOrder;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkSetGetSetID;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkSetRemove;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkSetRemoveService;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkSetSetCurrent;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkSetSetName;
-#[cfg(feature = "SCNetworkConfiguration")]
-pub use self::__SCNetworkConfiguration::SCNetworkSetSetServiceOrder;
 #[cfg(feature = "SCNetworkConfiguration")]
 pub use self::__SCNetworkConfiguration::SCVLANInterface;
 #[cfg(all(feature = "SCNetworkConfiguration", feature = "SCPreferences"))]
@@ -418,115 +240,25 @@ pub use self::__SCNetworkConnection::SCNetworkConnectionCallBack;
 #[cfg(feature = "SCNetworkConnection")]
 pub use self::__SCNetworkConnection::SCNetworkConnectionContext;
 #[cfg(feature = "SCNetworkConnection")]
-pub use self::__SCNetworkConnection::SCNetworkConnectionCopyExtendedStatus;
-#[cfg(feature = "SCNetworkConnection")]
-pub use self::__SCNetworkConnection::SCNetworkConnectionCopyServiceID;
-#[cfg(feature = "SCNetworkConnection")]
-pub use self::__SCNetworkConnection::SCNetworkConnectionCopyStatistics;
-#[cfg(feature = "SCNetworkConnection")]
-pub use self::__SCNetworkConnection::SCNetworkConnectionCopyUserOptions;
-#[cfg(feature = "SCNetworkConnection")]
-pub use self::__SCNetworkConnection::SCNetworkConnectionCopyUserPreferences;
-#[cfg(feature = "SCNetworkConnection")]
-pub use self::__SCNetworkConnection::SCNetworkConnectionCreateWithServiceID;
-#[cfg(feature = "SCNetworkConnection")]
-pub use self::__SCNetworkConnection::SCNetworkConnectionGetStatus;
-#[cfg(feature = "SCNetworkConnection")]
 pub use self::__SCNetworkConnection::SCNetworkConnectionPPPStatus;
 #[cfg(feature = "SCNetworkConnection")]
-pub use self::__SCNetworkConnection::SCNetworkConnectionScheduleWithRunLoop;
-#[cfg(all(feature = "SCNetworkConnection", feature = "dispatch2"))]
-pub use self::__SCNetworkConnection::SCNetworkConnectionSetDispatchQueue;
-#[cfg(feature = "SCNetworkConnection")]
-pub use self::__SCNetworkConnection::SCNetworkConnectionStart;
-#[cfg(feature = "SCNetworkConnection")]
 pub use self::__SCNetworkConnection::SCNetworkConnectionStatus;
-#[cfg(feature = "SCNetworkConnection")]
-pub use self::__SCNetworkConnection::SCNetworkConnectionStop;
-#[cfg(feature = "SCNetworkConnection")]
-pub use self::__SCNetworkConnection::SCNetworkConnectionUnscheduleFromRunLoop;
 #[cfg(feature = "SCNetworkReachability")]
 pub use self::__SCNetworkReachability::SCNetworkReachability;
 #[cfg(feature = "SCNetworkReachability")]
 pub use self::__SCNetworkReachability::SCNetworkReachabilityCallBack;
 #[cfg(feature = "SCNetworkReachability")]
 pub use self::__SCNetworkReachability::SCNetworkReachabilityContext;
-#[cfg(all(feature = "SCNetworkReachability", feature = "libc"))]
-pub use self::__SCNetworkReachability::SCNetworkReachabilityCreateWithAddress;
-#[cfg(all(feature = "SCNetworkReachability", feature = "libc"))]
-pub use self::__SCNetworkReachability::SCNetworkReachabilityCreateWithAddressPair;
-#[cfg(feature = "SCNetworkReachability")]
-pub use self::__SCNetworkReachability::SCNetworkReachabilityCreateWithName;
 #[cfg(feature = "SCNetworkReachability")]
 pub use self::__SCNetworkReachability::SCNetworkReachabilityFlags;
-#[cfg(feature = "SCNetworkReachability")]
-pub use self::__SCNetworkReachability::SCNetworkReachabilityGetFlags;
-#[cfg(feature = "SCNetworkReachability")]
-pub use self::__SCNetworkReachability::SCNetworkReachabilityScheduleWithRunLoop;
-#[cfg(feature = "SCNetworkReachability")]
-pub use self::__SCNetworkReachability::SCNetworkReachabilitySetCallback;
-#[cfg(all(feature = "SCNetworkReachability", feature = "dispatch2"))]
-pub use self::__SCNetworkReachability::SCNetworkReachabilitySetDispatchQueue;
-#[cfg(feature = "SCNetworkReachability")]
-pub use self::__SCNetworkReachability::SCNetworkReachabilityUnscheduleFromRunLoop;
 #[cfg(feature = "SCPreferences")]
 pub use self::__SCPreferences::SCPreferences;
 #[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesAddValue;
-#[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesApplyChanges;
-#[cfg(feature = "SCPreferences")]
 pub use self::__SCPreferences::SCPreferencesCallBack;
-#[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesCommitChanges;
 #[cfg(feature = "SCPreferences")]
 pub use self::__SCPreferences::SCPreferencesContext;
 #[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesCopyKeyList;
-#[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesCreate;
-#[cfg(all(feature = "SCPreferences", feature = "objc2-security"))]
-pub use self::__SCPreferences::SCPreferencesCreateWithAuthorization;
-#[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesGetSignature;
-#[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesGetValue;
-#[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesLock;
-#[cfg(feature = "SCPreferences")]
 pub use self::__SCPreferences::SCPreferencesNotification;
-#[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesRemoveValue;
-#[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesScheduleWithRunLoop;
-#[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesSetCallback;
-#[cfg(all(feature = "SCPreferences", feature = "dispatch2"))]
-pub use self::__SCPreferences::SCPreferencesSetDispatchQueue;
-#[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesSetValue;
-#[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesSynchronize;
-#[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesUnlock;
-#[cfg(feature = "SCPreferences")]
-pub use self::__SCPreferences::SCPreferencesUnscheduleFromRunLoop;
-#[cfg(all(feature = "SCPreferences", feature = "SCPreferencesPath"))]
-pub use self::__SCPreferencesPath::SCPreferencesPathCreateUniqueChild;
-#[cfg(all(feature = "SCPreferences", feature = "SCPreferencesPath"))]
-pub use self::__SCPreferencesPath::SCPreferencesPathGetLink;
-#[cfg(all(feature = "SCPreferences", feature = "SCPreferencesPath"))]
-pub use self::__SCPreferencesPath::SCPreferencesPathGetValue;
-#[cfg(all(feature = "SCPreferences", feature = "SCPreferencesPath"))]
-pub use self::__SCPreferencesPath::SCPreferencesPathRemoveValue;
-#[cfg(all(feature = "SCPreferences", feature = "SCPreferencesPath"))]
-pub use self::__SCPreferencesPath::SCPreferencesPathSetLink;
-#[cfg(all(feature = "SCPreferences", feature = "SCPreferencesPath"))]
-pub use self::__SCPreferencesPath::SCPreferencesPathSetValue;
-#[cfg(all(feature = "SCPreferences", feature = "SCPreferencesSetSpecific"))]
-pub use self::__SCPreferencesSetSpecific::SCPreferencesSetComputerName;
-#[cfg(all(feature = "SCPreferences", feature = "SCPreferencesSetSpecific"))]
-pub use self::__SCPreferencesSetSpecific::SCPreferencesSetLocalHostName;
 #[cfg(feature = "SCSchemaDefinitions")]
 pub use self::__SCSchemaDefinitions::kSCCompAnyRegex;
 #[cfg(feature = "SCSchemaDefinitions")]

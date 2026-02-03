@@ -112,16 +112,6 @@ pub use self::__DADisk::kDADiskDescriptionVolumeTypeKey;
 pub use self::__DADisk::kDADiskDescriptionVolumeUUIDKey;
 #[cfg(feature = "DADisk")]
 pub use self::__DADisk::DADisk;
-#[cfg(feature = "DADisk")]
-pub use self::__DADisk::DADiskCopyDescription;
-#[cfg(feature = "DADisk")]
-pub use self::__DADisk::DADiskCopyWholeDisk;
-#[cfg(all(feature = "DADisk", feature = "DASession"))]
-pub use self::__DADisk::DADiskCreateFromBSDName;
-#[cfg(all(feature = "DADisk", feature = "DASession"))]
-pub use self::__DADisk::DADiskCreateFromVolumePath;
-#[cfg(feature = "DADisk")]
-pub use self::__DADisk::DADiskGetBSDName;
 #[cfg(feature = "DADissenter")]
 pub use self::__DADissenter::kDAReturnBadArgument;
 #[cfg(feature = "DADissenter")]
@@ -151,31 +141,11 @@ pub use self::__DADissenter::kDAReturnUnsupported;
 #[cfg(feature = "DADissenter")]
 pub use self::__DADissenter::DADissenter;
 #[cfg(all(feature = "DADissenter", feature = "libc"))]
-pub use self::__DADissenter::DADissenterCreate;
-#[cfg(all(feature = "DADissenter", feature = "libc"))]
-pub use self::__DADissenter::DADissenterGetStatus;
-#[cfg(feature = "DADissenter")]
-pub use self::__DADissenter::DADissenterGetStatusString;
-#[cfg(all(feature = "DADissenter", feature = "libc"))]
 pub use self::__DADissenter::DAReturn;
 #[cfg(feature = "DASession")]
 pub use self::__DASession::DAApprovalSession;
 #[cfg(feature = "DASession")]
-pub use self::__DASession::DAApprovalSessionCreate;
-#[cfg(feature = "DASession")]
-pub use self::__DASession::DAApprovalSessionScheduleWithRunLoop;
-#[cfg(feature = "DASession")]
-pub use self::__DASession::DAApprovalSessionUnscheduleFromRunLoop;
-#[cfg(feature = "DASession")]
 pub use self::__DASession::DASession;
-#[cfg(feature = "DASession")]
-pub use self::__DASession::DASessionCreate;
-#[cfg(feature = "DASession")]
-pub use self::__DASession::DASessionScheduleWithRunLoop;
-#[cfg(all(feature = "DASession", feature = "dispatch2"))]
-pub use self::__DASession::DASessionSetDispatchQueue;
-#[cfg(feature = "DASession")]
-pub use self::__DASession::DASessionUnscheduleFromRunLoop;
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2_core_foundation::*;
@@ -997,113 +967,4 @@ extern "C-unwind" {
         callback: NonNull<c_void>,
         context: *mut c_void,
     );
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
-    #[deprecated = "renamed to `DADisk::mount`"]
-    pub fn DADiskMount(
-        disk: &DADisk,
-        path: Option<&CFURL>,
-        options: DADiskMountOptions,
-        callback: DADiskMountCallback,
-        context: *mut c_void,
-    );
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
-    #[deprecated = "renamed to `DADisk::mount_with_arguments`"]
-    pub fn DADiskMountWithArguments(
-        disk: &DADisk,
-        path: Option<&CFURL>,
-        options: DADiskMountOptions,
-        callback: DADiskMountCallback,
-        context: *mut c_void,
-        arguments: *mut *const CFString,
-    );
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
-    #[deprecated = "renamed to `DADisk::rename`"]
-    pub fn DADiskRename(
-        disk: &DADisk,
-        name: &CFString,
-        options: DADiskRenameOptions,
-        callback: DADiskRenameCallback,
-        context: *mut c_void,
-    );
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
-    #[deprecated = "renamed to `DADisk::unmount`"]
-    pub fn DADiskUnmount(
-        disk: &DADisk,
-        options: DADiskUnmountOptions,
-        callback: DADiskUnmountCallback,
-        context: *mut c_void,
-    );
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
-    #[deprecated = "renamed to `DADisk::eject`"]
-    pub fn DADiskEject(
-        disk: &DADisk,
-        options: DADiskEjectOptions,
-        callback: DADiskEjectCallback,
-        context: *mut c_void,
-    );
-}
-
-extern "C-unwind" {
-    #[cfg(all(feature = "DADisk", feature = "DADissenter"))]
-    #[deprecated = "renamed to `DADisk::claim`"]
-    pub fn DADiskClaim(
-        disk: &DADisk,
-        options: DADiskClaimOptions,
-        release: DADiskClaimReleaseCallback,
-        release_context: *mut c_void,
-        callback: DADiskClaimCallback,
-        callback_context: *mut c_void,
-    );
-}
-
-#[cfg(feature = "DADisk")]
-#[deprecated = "renamed to `DADisk::is_claimed`"]
-#[inline]
-pub unsafe extern "C-unwind" fn DADiskIsClaimed(disk: &DADisk) -> bool {
-    extern "C-unwind" {
-        fn DADiskIsClaimed(disk: &DADisk) -> Boolean;
-    }
-    let ret = unsafe { DADiskIsClaimed(disk) };
-    ret != 0
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "DADisk")]
-    #[deprecated = "renamed to `DADisk::unclaim`"]
-    pub fn DADiskUnclaim(disk: &DADisk);
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "DADisk")]
-    #[deprecated = "renamed to `DADisk::options`"]
-    pub fn DADiskGetOptions(disk: &DADisk) -> DADiskOptions;
-}
-
-#[cfg(all(feature = "DADisk", feature = "DADissenter", feature = "libc"))]
-#[deprecated = "renamed to `DADisk::set_options`"]
-#[inline]
-pub unsafe extern "C-unwind" fn DADiskSetOptions(
-    disk: &DADisk,
-    options: DADiskOptions,
-    value: bool,
-) -> DAReturn {
-    extern "C-unwind" {
-        fn DADiskSetOptions(disk: &DADisk, options: DADiskOptions, value: Boolean) -> DAReturn;
-    }
-    unsafe { DADiskSetOptions(disk, options, value as _) }
 }

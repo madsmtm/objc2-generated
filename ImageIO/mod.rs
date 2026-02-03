@@ -135,32 +135,6 @@ pub use self::__CGImageDestination::kCGImagePropertyEncoder;
 pub use self::__CGImageDestination::kCGImagePropertyPVREncoder;
 #[cfg(feature = "CGImageDestination")]
 pub use self::__CGImageDestination::CGImageDestination;
-#[cfg(feature = "CGImageDestination")]
-pub use self::__CGImageDestination::CGImageDestinationAddAuxiliaryDataInfo;
-#[cfg(all(feature = "CGImageDestination", feature = "objc2-core-graphics"))]
-pub use self::__CGImageDestination::CGImageDestinationAddImage;
-#[cfg(all(
-    feature = "CGImageDestination",
-    feature = "CGImageMetadata",
-    feature = "objc2-core-graphics"
-))]
-pub use self::__CGImageDestination::CGImageDestinationAddImageAndMetadata;
-#[cfg(all(feature = "CGImageDestination", feature = "CGImageSource"))]
-pub use self::__CGImageDestination::CGImageDestinationAddImageFromSource;
-#[cfg(all(feature = "CGImageDestination", feature = "CGImageSource"))]
-pub use self::__CGImageDestination::CGImageDestinationCopyImageSource;
-#[cfg(feature = "CGImageDestination")]
-pub use self::__CGImageDestination::CGImageDestinationCopyTypeIdentifiers;
-#[cfg(feature = "CGImageDestination")]
-pub use self::__CGImageDestination::CGImageDestinationCreateWithData;
-#[cfg(all(feature = "CGImageDestination", feature = "objc2-core-graphics"))]
-pub use self::__CGImageDestination::CGImageDestinationCreateWithDataConsumer;
-#[cfg(feature = "CGImageDestination")]
-pub use self::__CGImageDestination::CGImageDestinationCreateWithURL;
-#[cfg(feature = "CGImageDestination")]
-pub use self::__CGImageDestination::CGImageDestinationFinalize;
-#[cfg(feature = "CGImageDestination")]
-pub use self::__CGImageDestination::CGImageDestinationSetProperties;
 #[cfg(feature = "CGImageMetadata")]
 pub use self::__CGImageMetadata::kCFErrorDomainCGImageMetadata;
 #[cfg(feature = "CGImageMetadata")]
@@ -208,53 +182,11 @@ pub use self::__CGImageMetadata::kCGImageMetadataPrefixXMPRights;
 #[cfg(feature = "CGImageMetadata")]
 pub use self::__CGImageMetadata::CGImageMetadata;
 #[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataCopyStringValueWithPath;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataCopyTagMatchingImageProperty;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataCopyTagWithPath;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataCopyTags;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataCreateFromXMPData;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataCreateMutable;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataCreateMutableCopy;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataCreateXMPData;
-#[cfg(all(feature = "CGImageMetadata", feature = "block2"))]
-pub use self::__CGImageMetadata::CGImageMetadataEnumerateTagsUsingBlock;
-#[cfg(feature = "CGImageMetadata")]
 pub use self::__CGImageMetadata::CGImageMetadataErrors;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataRegisterNamespaceForPrefix;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataRemoveTagWithPath;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataSetTagWithPath;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataSetValueMatchingImageProperty;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataSetValueWithPath;
 #[cfg(feature = "CGImageMetadata")]
 pub use self::__CGImageMetadata::CGImageMetadataTag;
 #[cfg(all(feature = "CGImageMetadata", feature = "block2"))]
 pub use self::__CGImageMetadata::CGImageMetadataTagBlock;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataTagCopyName;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataTagCopyNamespace;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataTagCopyPrefix;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataTagCopyQualifiers;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataTagCopyValue;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataTagCreate;
-#[cfg(feature = "CGImageMetadata")]
-pub use self::__CGImageMetadata::CGImageMetadataTagGetType;
 #[cfg(feature = "CGImageMetadata")]
 pub use self::__CGImageMetadata::CGImageMetadataType;
 #[cfg(feature = "CGImageMetadata")]
@@ -1662,44 +1594,4 @@ pub use self::__CGImageSource::kCGImageSourceTypeIdentifierHint;
 #[cfg(feature = "CGImageSource")]
 pub use self::__CGImageSource::CGImageSource;
 #[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceCopyAuxiliaryDataInfoAtIndex;
-#[cfg(all(feature = "CGImageMetadata", feature = "CGImageSource"))]
-pub use self::__CGImageSource::CGImageSourceCopyMetadataAtIndex;
-#[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceCopyProperties;
-#[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceCopyPropertiesAtIndex;
-#[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceCopyTypeIdentifiers;
-#[cfg(all(feature = "CGImageSource", feature = "objc2-core-graphics"))]
-pub use self::__CGImageSource::CGImageSourceCreateImageAtIndex;
-#[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceCreateIncremental;
-#[cfg(all(feature = "CGImageSource", feature = "objc2-core-graphics"))]
-pub use self::__CGImageSource::CGImageSourceCreateThumbnailAtIndex;
-#[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceCreateWithData;
-#[cfg(all(feature = "CGImageSource", feature = "objc2-core-graphics"))]
-pub use self::__CGImageSource::CGImageSourceCreateWithDataProvider;
-#[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceCreateWithURL;
-#[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceGetCount;
-#[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceGetPrimaryImageIndex;
-#[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceGetStatus;
-#[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceGetStatusAtIndex;
-#[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceGetType;
-#[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceRemoveCacheAtIndex;
-#[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceSetAllowableTypes;
-#[cfg(feature = "CGImageSource")]
 pub use self::__CGImageSource::CGImageSourceStatus;
-#[cfg(feature = "CGImageSource")]
-pub use self::__CGImageSource::CGImageSourceUpdateData;
-#[cfg(all(feature = "CGImageSource", feature = "objc2-core-graphics"))]
-pub use self::__CGImageSource::CGImageSourceUpdateDataProvider;

@@ -107,22 +107,3 @@ impl SecIdentitySearch {
         unsafe { SecIdentitySearchCopyNext(self, identity) }
     }
 }
-
-extern "C-unwind" {
-    #[cfg(all(feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated = "renamed to `SecIdentitySearch::create`"]
-    pub fn SecIdentitySearchCreate(
-        keychain_or_array: Option<&CFType>,
-        key_usage: CSSM_KEYUSE,
-        search_ref: *mut *mut SecIdentitySearch,
-    ) -> OSStatus;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "SecBase")]
-    #[deprecated = "renamed to `SecIdentitySearch::copy_next`"]
-    pub fn SecIdentitySearchCopyNext(
-        search_ref: &SecIdentitySearch,
-        identity: *mut *mut SecIdentity,
-    ) -> OSStatus;
-}

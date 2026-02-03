@@ -104,17 +104,3 @@ impl CGPDFObject {
         unsafe { CGPDFObjectGetValue(object, r#type, value) }
     }
 }
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGPDFObject::type`"]
-    pub fn CGPDFObjectGetType(object: CGPDFObjectRef) -> CGPDFObjectType;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `CGPDFObject::value`"]
-    pub fn CGPDFObjectGetValue(
-        object: CGPDFObjectRef,
-        r#type: CGPDFObjectType,
-        value: *mut c_void,
-    ) -> bool;
-}

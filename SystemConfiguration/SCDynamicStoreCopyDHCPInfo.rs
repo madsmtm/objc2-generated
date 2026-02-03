@@ -125,20 +125,3 @@ pub unsafe extern "C-unwind" fn DHCPInfoGetLeaseExpirationTime(
     let ret = unsafe { DHCPInfoGetLeaseExpirationTime(info) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
-
-#[cfg(feature = "SCDynamicStore")]
-#[deprecated = "renamed to `SCDynamicStore::dhcp_info`"]
-#[inline]
-pub extern "C-unwind" fn SCDynamicStoreCopyDHCPInfo(
-    store: Option<&SCDynamicStore>,
-    service_id: Option<&CFString>,
-) -> Option<CFRetained<CFDictionary>> {
-    extern "C-unwind" {
-        fn SCDynamicStoreCopyDHCPInfo(
-            store: Option<&SCDynamicStore>,
-            service_id: Option<&CFString>,
-        ) -> Option<NonNull<CFDictionary>>;
-    }
-    let ret = unsafe { SCDynamicStoreCopyDHCPInfo(store, service_id) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}

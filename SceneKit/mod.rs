@@ -779,12 +779,8 @@ pub use self::__SceneKitTypes::SCNQuaternion;
 #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
 pub use self::__SceneKitTypes::SCNVector3;
 #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-pub use self::__SceneKitTypes::SCNVector3EqualToVector3;
-#[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
 pub use self::__SceneKitTypes::SCNVector3Zero;
 #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
 pub use self::__SceneKitTypes::SCNVector4;
-#[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
-pub use self::__SceneKitTypes::SCNVector4EqualToVector4;
 #[cfg(all(feature = "SceneKitTypes", feature = "objc2-core-foundation"))]
 pub use self::__SceneKitTypes::SCNVector4Zero;

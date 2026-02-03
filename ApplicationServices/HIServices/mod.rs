@@ -128,80 +128,16 @@ pub use self::__AXUIElement::AXIsProcessTrustedWithOptions;
 pub use self::__AXUIElement::AXMakeProcessTrusted;
 #[cfg(feature = "AXUIElement")]
 pub use self::__AXUIElement::AXObserver;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXObserverAddNotification;
 #[cfg(feature = "AXUIElement")]
 pub use self::__AXUIElement::AXObserverCallback;
 #[cfg(feature = "AXUIElement")]
 pub use self::__AXUIElement::AXObserverCallbackWithInfo;
-#[cfg(all(feature = "AXError", feature = "AXUIElement", feature = "libc"))]
-pub use self::__AXUIElement::AXObserverCreate;
-#[cfg(all(feature = "AXError", feature = "AXUIElement", feature = "libc"))]
-pub use self::__AXUIElement::AXObserverCreateWithInfoCallback;
-#[cfg(feature = "AXUIElement")]
-pub use self::__AXUIElement::AXObserverGetRunLoopSource;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXObserverRemoveNotification;
 #[cfg(feature = "AXUIElement")]
 pub use self::__AXUIElement::AXTextMarker;
 #[cfg(feature = "AXUIElement")]
-pub use self::__AXUIElement::AXTextMarkerCreate;
-#[cfg(feature = "AXUIElement")]
-pub use self::__AXUIElement::AXTextMarkerGetBytePtr;
-#[cfg(feature = "AXUIElement")]
-pub use self::__AXUIElement::AXTextMarkerGetLength;
-#[cfg(feature = "AXUIElement")]
 pub use self::__AXUIElement::AXTextMarkerRange;
 #[cfg(feature = "AXUIElement")]
-pub use self::__AXUIElement::AXTextMarkerRangeCopyEndMarker;
-#[cfg(feature = "AXUIElement")]
-pub use self::__AXUIElement::AXTextMarkerRangeCopyStartMarker;
-#[cfg(feature = "AXUIElement")]
-pub use self::__AXUIElement::AXTextMarkerRangeCreate;
-#[cfg(feature = "AXUIElement")]
-pub use self::__AXUIElement::AXTextMarkerRangeCreateWithBytes;
-#[cfg(feature = "AXUIElement")]
 pub use self::__AXUIElement::AXUIElement;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXUIElementCopyActionDescription;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXUIElementCopyActionNames;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXUIElementCopyAttributeNames;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXUIElementCopyAttributeValue;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXUIElementCopyAttributeValues;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXUIElementCopyElementAtPosition;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXUIElementCopyMultipleAttributeValues;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXUIElementCopyParameterizedAttributeNames;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXUIElementCopyParameterizedAttributeValue;
-#[cfg(all(feature = "AXUIElement", feature = "libc"))]
-pub use self::__AXUIElement::AXUIElementCreateApplication;
-#[cfg(feature = "AXUIElement")]
-pub use self::__AXUIElement::AXUIElementCreateSystemWide;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXUIElementGetAttributeValueCount;
-#[cfg(all(feature = "AXError", feature = "AXUIElement", feature = "libc"))]
-pub use self::__AXUIElement::AXUIElementGetPid;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXUIElementIsAttributeSettable;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXUIElementPerformAction;
-#[cfg(all(
-    feature = "AXError",
-    feature = "AXUIElement",
-    feature = "objc2-core-graphics"
-))]
-pub use self::__AXUIElement::AXUIElementPostKeyboardEvent;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXUIElementSetAttributeValue;
-#[cfg(all(feature = "AXError", feature = "AXUIElement"))]
-pub use self::__AXUIElement::AXUIElementSetMessagingTimeout;
 #[cfg(feature = "AXValue")]
 pub use self::__AXValue::kAXValueAXErrorType;
 #[cfg(feature = "AXValue")]
@@ -216,12 +152,6 @@ pub use self::__AXValue::kAXValueCGSizeType;
 pub use self::__AXValue::kAXValueIllegalType;
 #[cfg(feature = "AXValue")]
 pub use self::__AXValue::AXValue;
-#[cfg(feature = "AXValue")]
-pub use self::__AXValue::AXValueCreate;
-#[cfg(feature = "AXValue")]
-pub use self::__AXValue::AXValueGetType;
-#[cfg(feature = "AXValue")]
-pub use self::__AXValue::AXValueGetValue;
 #[cfg(feature = "AXValue")]
 pub use self::__AXValue::AXValueType;
 #[cfg(feature = "HIShape")]
@@ -247,59 +177,7 @@ pub use self::__HIShape::HIMutableShape;
 #[cfg(feature = "HIShape")]
 pub use self::__HIShape::HIShape;
 #[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeContainsPoint;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeCreateCopy;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeCreateDifference;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeCreateEmpty;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeCreateIntersection;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeCreateMutable;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeCreateMutableCopy;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeCreateMutableWithRect;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeCreateUnion;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeCreateWithRect;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeCreateXor;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeDifference;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeEnumerate;
-#[cfg(feature = "HIShape")]
 pub use self::__HIShape::HIShapeEnumerateProcPtr;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeGetBounds;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeInset;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeIntersect;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeIntersectsRect;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeIsEmpty;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeIsRectangular;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeOffset;
-#[cfg(all(feature = "HIShape", feature = "objc2-core-graphics"))]
-pub use self::__HIShape::HIShapeReplacePathInCGContext;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeSetEmpty;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeSetWithShape;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeUnion;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeUnionWithRect;
-#[cfg(feature = "HIShape")]
-pub use self::__HIShape::HIShapeXor;
 #[cfg(feature = "Icons")]
 pub use self::__Icons::atAbsoluteCenter;
 #[cfg(feature = "Icons")]
@@ -977,43 +855,15 @@ pub use self::__Pasteboard::notPasteboardOwnerErr;
 #[cfg(feature = "Pasteboard")]
 pub use self::__Pasteboard::Pasteboard;
 #[cfg(feature = "Pasteboard")]
-pub use self::__Pasteboard::PasteboardClear;
-#[cfg(feature = "Pasteboard")]
-pub use self::__Pasteboard::PasteboardCopyItemFlavorData;
-#[cfg(feature = "Pasteboard")]
-pub use self::__Pasteboard::PasteboardCopyItemFlavors;
-#[cfg(feature = "Pasteboard")]
-pub use self::__Pasteboard::PasteboardCopyName;
-#[cfg(feature = "Pasteboard")]
-pub use self::__Pasteboard::PasteboardCopyPasteLocation;
-#[cfg(feature = "Pasteboard")]
-pub use self::__Pasteboard::PasteboardCreate;
-#[cfg(feature = "Pasteboard")]
 pub use self::__Pasteboard::PasteboardFlavorFlags;
-#[cfg(feature = "Pasteboard")]
-pub use self::__Pasteboard::PasteboardGetItemCount;
-#[cfg(feature = "Pasteboard")]
-pub use self::__Pasteboard::PasteboardGetItemFlavorFlags;
-#[cfg(feature = "Pasteboard")]
-pub use self::__Pasteboard::PasteboardGetItemIdentifier;
 #[cfg(feature = "Pasteboard")]
 pub use self::__Pasteboard::PasteboardItemID;
 #[cfg(feature = "Pasteboard")]
 pub use self::__Pasteboard::PasteboardPromiseKeeperProcPtr;
 #[cfg(feature = "Pasteboard")]
-pub use self::__Pasteboard::PasteboardPutItemFlavor;
-#[cfg(feature = "Pasteboard")]
-pub use self::__Pasteboard::PasteboardResolvePromises;
-#[cfg(feature = "Pasteboard")]
-pub use self::__Pasteboard::PasteboardSetPasteLocation;
-#[cfg(feature = "Pasteboard")]
-pub use self::__Pasteboard::PasteboardSetPromiseKeeper;
-#[cfg(feature = "Pasteboard")]
 pub use self::__Pasteboard::PasteboardStandardLocation;
 #[cfg(feature = "Pasteboard")]
 pub use self::__Pasteboard::PasteboardSyncFlags;
-#[cfg(feature = "Pasteboard")]
-pub use self::__Pasteboard::PasteboardSynchronize;
 #[cfg(feature = "Processes")]
 pub use self::__Processes::activDev;
 #[cfg(feature = "Processes")]
@@ -1191,21 +1041,7 @@ pub use self::__TranslationServices::kTranslationFileTranslation;
 #[cfg(feature = "TranslationServices")]
 pub use self::__TranslationServices::Translation;
 #[cfg(feature = "TranslationServices")]
-pub use self::__TranslationServices::TranslationCopyDestinationType;
-#[cfg(feature = "TranslationServices")]
-pub use self::__TranslationServices::TranslationCopySourceType;
-#[cfg(feature = "TranslationServices")]
-pub use self::__TranslationServices::TranslationCreate;
-#[cfg(feature = "TranslationServices")]
-pub use self::__TranslationServices::TranslationCreateWithSourceArray;
-#[cfg(feature = "TranslationServices")]
 pub use self::__TranslationServices::TranslationFlags;
-#[cfg(feature = "TranslationServices")]
-pub use self::__TranslationServices::TranslationGetTranslationFlags;
-#[cfg(feature = "TranslationServices")]
-pub use self::__TranslationServices::TranslationPerformForData;
-#[cfg(feature = "TranslationServices")]
-pub use self::__TranslationServices::TranslationPerformForURL;
 #[cfg(feature = "UniversalAccess")]
 pub use self::__UniversalAccess::kUAZoomFocusTypeInsertionPoint;
 #[cfg(feature = "UniversalAccess")]

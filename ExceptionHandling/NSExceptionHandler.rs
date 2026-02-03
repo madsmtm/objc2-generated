@@ -182,8 +182,3 @@ pub unsafe trait NSObjectNSExceptionHandlerDelegate:
 
 impl private_NSObjectNSExceptionHandlerDelegate::Sealed for NSObject {}
 unsafe impl NSObjectNSExceptionHandlerDelegate for NSObject {}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `NSExceptionHandler::resume`"]
-    pub fn NSExceptionHandlerResume();
-}

@@ -69,37 +69,3 @@ impl SCPreferences {
         ret != 0
     }
 }
-
-#[cfg(feature = "SCPreferences")]
-#[deprecated = "renamed to `SCPreferences::set_computer_name`"]
-#[inline]
-pub extern "C-unwind" fn SCPreferencesSetComputerName(
-    prefs: &SCPreferences,
-    name: Option<&CFString>,
-    name_encoding: CFStringEncoding,
-) -> bool {
-    extern "C-unwind" {
-        fn SCPreferencesSetComputerName(
-            prefs: &SCPreferences,
-            name: Option<&CFString>,
-            name_encoding: CFStringEncoding,
-        ) -> Boolean;
-    }
-    let ret = unsafe { SCPreferencesSetComputerName(prefs, name, name_encoding) };
-    ret != 0
-}
-
-#[cfg(feature = "SCPreferences")]
-#[deprecated = "renamed to `SCPreferences::set_local_host_name`"]
-#[inline]
-pub extern "C-unwind" fn SCPreferencesSetLocalHostName(
-    prefs: &SCPreferences,
-    name: Option<&CFString>,
-) -> bool {
-    extern "C-unwind" {
-        fn SCPreferencesSetLocalHostName(prefs: &SCPreferences, name: Option<&CFString>)
-            -> Boolean;
-    }
-    let ret = unsafe { SCPreferencesSetLocalHostName(prefs, name) };
-    ret != 0
-}

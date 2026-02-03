@@ -218,10 +218,6 @@ pub use self::__CAEmitterLayer::CAEmitterLayerRenderMode;
 pub use self::__CAFrameRateRange::CAFrameRateRange;
 #[cfg(feature = "CAFrameRateRange")]
 pub use self::__CAFrameRateRange::CAFrameRateRangeDefault;
-#[cfg(feature = "CAFrameRateRange")]
-pub use self::__CAFrameRateRange::CAFrameRateRangeIsEqualToRange;
-#[cfg(feature = "CAFrameRateRange")]
-pub use self::__CAFrameRateRange::CAFrameRateRangeMake;
 #[cfg(feature = "CAGradientLayer")]
 pub use self::__CAGradientLayer::kCAGradientLayerAxial;
 #[cfg(feature = "CAGradientLayer")]
@@ -445,33 +441,7 @@ pub use self::__CATransaction::CATransaction;
 #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3D;
 #[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-pub use self::__CATransform3D::CATransform3DConcat;
-#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-pub use self::__CATransform3D::CATransform3DEqualToTransform;
-#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-pub use self::__CATransform3D::CATransform3DGetAffineTransform;
-#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
 pub use self::__CATransform3D::CATransform3DIdentity;
-#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-pub use self::__CATransform3D::CATransform3DInvert;
-#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-pub use self::__CATransform3D::CATransform3DIsAffine;
-#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-pub use self::__CATransform3D::CATransform3DIsIdentity;
-#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-pub use self::__CATransform3D::CATransform3DMakeAffineTransform;
-#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-pub use self::__CATransform3D::CATransform3DMakeRotation;
-#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-pub use self::__CATransform3D::CATransform3DMakeScale;
-#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-pub use self::__CATransform3D::CATransform3DMakeTranslation;
-#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-pub use self::__CATransform3D::CATransform3DRotate;
-#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-pub use self::__CATransform3D::CATransform3DScale;
-#[cfg(all(feature = "CATransform3D", feature = "objc2-core-foundation"))]
-pub use self::__CATransform3D::CATransform3DTranslate;
 #[cfg(feature = "CATransform3D")]
 pub use self::__CATransform3D::NSValueCATransform3DAdditions;
 #[cfg(all(feature = "CALayer", feature = "CATransformLayer"))]

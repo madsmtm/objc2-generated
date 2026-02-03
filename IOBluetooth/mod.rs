@@ -2487,8 +2487,6 @@ pub use self::__IOBluetoothUserLib::IOBluetoothDeviceSearchTypesBits;
 pub use self::__IOBluetoothUserLib::IOBluetoothIgnoreHIDDevice;
 #[cfg(feature = "IOBluetoothUserLib")]
 pub use self::__IOBluetoothUserLib::IOBluetoothL2CAPChannelRef;
-#[cfg(all(feature = "IOBluetoothUserLib", feature = "objc2-core-foundation"))]
-pub use self::__IOBluetoothUserLib::IOBluetoothL2CAPChannelRegisterForChannelCloseNotification;
 #[cfg(feature = "IOBluetoothUserLib")]
 pub use self::__IOBluetoothUserLib::IOBluetoothObjectID;
 #[cfg(feature = "IOBluetoothUserLib")]
@@ -2511,8 +2509,6 @@ pub use self::__IOBluetoothUserLib::IOBluetoothUserNotificationCallback;
 pub use self::__IOBluetoothUserLib::IOBluetoothUserNotificationChannelDirection;
 #[cfg(feature = "IOBluetoothUserLib")]
 pub use self::__IOBluetoothUserLib::IOBluetoothUserNotificationRef;
-#[cfg(feature = "IOBluetoothUserLib")]
-pub use self::__IOBluetoothUserLib::IOBluetoothUserNotificationUnregister;
 #[cfg(feature = "IOBluetoothUtilities")]
 pub use self::__IOBluetoothUtilities::IOBluetoothFindNumberOfRegistryEntriesOfClassName;
 #[cfg(all(

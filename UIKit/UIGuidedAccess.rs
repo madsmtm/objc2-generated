@@ -145,16 +145,3 @@ pub extern "C-unwind" fn UIGuidedAccessConfigureAccessibilityFeatures(
         UIGuidedAccessConfigureAccessibilityFeatures(features, Bool::new(enabled), completion)
     }
 }
-
-#[deprecated = "renamed to `UIGuidedAccessRestrictionState::for_identifier`"]
-#[inline]
-pub extern "C-unwind" fn UIGuidedAccessRestrictionStateForIdentifier(
-    restriction_identifier: &NSString,
-) -> UIGuidedAccessRestrictionState {
-    extern "C-unwind" {
-        fn UIGuidedAccessRestrictionStateForIdentifier(
-            restriction_identifier: &NSString,
-        ) -> UIGuidedAccessRestrictionState;
-    }
-    unsafe { UIGuidedAccessRestrictionStateForIdentifier(restriction_identifier) }
-}

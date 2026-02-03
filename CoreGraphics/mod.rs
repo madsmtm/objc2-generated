@@ -273,44 +273,6 @@ pub use self::__CGColor::kCGColorClear;
 pub use self::__CGColor::kCGColorWhite;
 #[cfg(feature = "CGColor")]
 pub use self::__CGColor::CGColor;
-#[cfg(all(feature = "CGColor", feature = "CGColorSpace"))]
-pub use self::__CGColor::CGColorCreate;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorCreateCopy;
-#[cfg(all(feature = "CGColor", feature = "CGColorSpace"))]
-pub use self::__CGColor::CGColorCreateCopyByMatchingToColorSpace;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorCreateCopyWithAlpha;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorCreateGenericCMYK;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorCreateGenericGray;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorCreateGenericGrayGamma2_2;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorCreateGenericRGB;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorCreateSRGB;
-#[cfg(all(feature = "CGColor", feature = "CGColorSpace"))]
-pub use self::__CGColor::CGColorCreateWithContentHeadroom;
-#[cfg(all(feature = "CGColor", feature = "CGColorSpace", feature = "CGPattern"))]
-pub use self::__CGColor::CGColorCreateWithPattern;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorEqualToColor;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorGetAlpha;
-#[cfg(all(feature = "CGColor", feature = "CGColorSpace"))]
-pub use self::__CGColor::CGColorGetColorSpace;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorGetComponents;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorGetConstantColor;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorGetContentHeadroom;
-#[cfg(feature = "CGColor")]
-pub use self::__CGColor::CGColorGetNumberOfComponents;
-#[cfg(all(feature = "CGColor", feature = "CGPattern"))]
-pub use self::__CGColor::CGColorGetPattern;
 #[cfg(feature = "CGColorConversionInfo")]
 pub use self::__CGColorConversionInfo::kCGColorConversionBlackPointCompensation;
 #[cfg(feature = "CGColorConversionInfo")]
@@ -319,18 +281,6 @@ pub use self::__CGColorConversionInfo::kCGColorConversionTRCSize;
 pub use self::__CGColorConversionInfo::CGColorBufferFormat;
 #[cfg(feature = "CGColorConversionInfo")]
 pub use self::__CGColorConversionInfo::CGColorConversionInfo;
-#[cfg(all(feature = "CGColorConversionInfo", feature = "CGImage"))]
-pub use self::__CGColorConversionInfo::CGColorConversionInfoConvertData;
-#[cfg(all(feature = "CGColorConversionInfo", feature = "CGColorSpace"))]
-pub use self::__CGColorConversionInfo::CGColorConversionInfoCreate;
-#[cfg(all(
-    feature = "CGColorConversionInfo",
-    feature = "CGColorSpace",
-    feature = "CGToneMapping"
-))]
-pub use self::__CGColorConversionInfo::CGColorConversionInfoCreateForToneMapping;
-#[cfg(all(feature = "CGColorConversionInfo", feature = "CGColorSpace"))]
-pub use self::__CGColorConversionInfo::CGColorConversionInfoCreateWithOptions;
 #[cfg(feature = "CGColorConversionInfo")]
 pub use self::__CGColorConversionInfo::CGColorConversionInfoTransformType;
 #[cfg(feature = "CGColorSpace")]
@@ -418,325 +368,11 @@ pub use self::__CGColorSpace::CGColorRenderingIntent;
 #[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpace;
 #[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCopyBaseColorSpace;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCopyICCData;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCopyICCProfile;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCopyName;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCopyPropertyList;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreateCopyWithStandardRange;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreateDeviceCMYK;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreateDeviceGray;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreateDeviceRGB;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreateExtended;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreateExtendedLinearized;
-#[cfg(all(feature = "CGColorSpace", feature = "CGDataProvider"))]
-pub use self::__CGColorSpace::CGColorSpaceCreateICCBased;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreateIndexed;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreateLinearized;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreatePattern;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreateWithICCData;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreateWithICCProfile;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreateWithName;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreateWithPlatformColorSpace;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceCreateWithPropertyList;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceGetBaseColorSpace;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceGetColorTable;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceGetColorTableCount;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceGetModel;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceGetName;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceGetNumberOfComponents;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceIsHDR;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceIsHLGBased;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceIsPQBased;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceIsWideGamutRGB;
-#[cfg(feature = "CGColorSpace")]
 pub use self::__CGColorSpace::CGColorSpaceModel;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceSupportsOutput;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceUsesExtendedRange;
-#[cfg(feature = "CGColorSpace")]
-pub use self::__CGColorSpace::CGColorSpaceUsesITUR_2100TF;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGBlendMode;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGContext;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextAddArc;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextAddArcToPoint;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextAddCurveToPoint;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextAddEllipseInRect;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextAddLineToPoint;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextAddLines;
-#[cfg(all(feature = "CGContext", feature = "CGPath"))]
-pub use self::__CGContext::CGContextAddPath;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextAddQuadCurveToPoint;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextAddRect;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextAddRects;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextBeginPage;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextBeginPath;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextBeginTransparencyLayer;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextBeginTransparencyLayerWithRect;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextClearRect;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextClip;
-#[cfg(all(feature = "CGContext", feature = "CGImage"))]
-pub use self::__CGContext::CGContextClipToMask;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextClipToRect;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextClipToRects;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextClosePath;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextConcatCTM;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextConvertPointToDeviceSpace;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextConvertPointToUserSpace;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextConvertRectToDeviceSpace;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextConvertRectToUserSpace;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextConvertSizeToDeviceSpace;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextConvertSizeToUserSpace;
-#[cfg(all(feature = "CGContext", feature = "CGPath"))]
-pub use self::__CGContext::CGContextCopyPath;
-#[cfg(all(feature = "CGContext", feature = "CGGradient"))]
-pub use self::__CGContext::CGContextDrawConicGradient;
-#[cfg(all(feature = "CGContext", feature = "CGImage"))]
-pub use self::__CGContext::CGContextDrawImage;
-#[cfg(all(feature = "CGContext", feature = "CGImage", feature = "CGToneMapping"))]
-pub use self::__CGContext::CGContextDrawImageApplyingToneMapping;
-#[cfg(all(feature = "CGContext", feature = "CGGradient"))]
-pub use self::__CGContext::CGContextDrawLinearGradient;
-#[cfg(all(feature = "CGContext", feature = "CGPDFDocument"))]
-pub use self::__CGContext::CGContextDrawPDFDocument;
-#[cfg(all(feature = "CGContext", feature = "CGPDFPage"))]
-pub use self::__CGContext::CGContextDrawPDFPage;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextDrawPath;
-#[cfg(all(feature = "CGContext", feature = "CGGradient"))]
-pub use self::__CGContext::CGContextDrawRadialGradient;
-#[cfg(all(feature = "CGContext", feature = "CGShading"))]
-pub use self::__CGContext::CGContextDrawShading;
-#[cfg(all(feature = "CGContext", feature = "CGImage"))]
-pub use self::__CGContext::CGContextDrawTiledImage;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextEOClip;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextEOFillPath;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextEndPage;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextEndTransparencyLayer;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextFillEllipseInRect;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextFillPath;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextFillRect;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextFillRects;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextFlush;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextGetCTM;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextGetClipBoundingBox;
-#[cfg(all(feature = "CGContext", feature = "CGToneMapping"))]
-pub use self::__CGContext::CGContextGetContentToneMappingInfo;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextGetEDRTargetHeadroom;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextGetInterpolationQuality;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextGetPathBoundingBox;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextGetPathCurrentPoint;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextGetTextMatrix;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextGetTextPosition;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextGetUserSpaceToDeviceSpaceTransform;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextIsPathEmpty;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextMoveToPoint;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextPathContainsPoint;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextReplacePathWithStrokedPath;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextResetClip;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextRestoreGState;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextRotateCTM;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSaveGState;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextScaleCTM;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSelectFont;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetAllowsAntialiasing;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetAllowsFontSmoothing;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetAllowsFontSubpixelPositioning;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetAllowsFontSubpixelQuantization;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetAlpha;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetBlendMode;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetCMYKFillColor;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetCMYKStrokeColor;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetCharacterSpacing;
-#[cfg(all(feature = "CGContext", feature = "CGToneMapping"))]
-pub use self::__CGContext::CGContextSetContentToneMappingInfo;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetEDRTargetHeadroom;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetFillColor;
-#[cfg(all(feature = "CGColorSpace", feature = "CGContext"))]
-pub use self::__CGContext::CGContextSetFillColorSpace;
-#[cfg(all(feature = "CGColor", feature = "CGContext"))]
-pub use self::__CGContext::CGContextSetFillColorWithColor;
-#[cfg(all(feature = "CGContext", feature = "CGPattern"))]
-pub use self::__CGContext::CGContextSetFillPattern;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetFlatness;
-#[cfg(all(feature = "CGContext", feature = "CGFont"))]
-pub use self::__CGContext::CGContextSetFont;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetFontSize;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetGrayFillColor;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetGrayStrokeColor;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetInterpolationQuality;
-#[cfg(all(feature = "CGContext", feature = "CGPath"))]
-pub use self::__CGContext::CGContextSetLineCap;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetLineDash;
-#[cfg(all(feature = "CGContext", feature = "CGPath"))]
-pub use self::__CGContext::CGContextSetLineJoin;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetLineWidth;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetMiterLimit;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetPatternPhase;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetRGBFillColor;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetRGBStrokeColor;
-#[cfg(all(feature = "CGColorSpace", feature = "CGContext"))]
-pub use self::__CGContext::CGContextSetRenderingIntent;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetShadow;
-#[cfg(all(feature = "CGColor", feature = "CGContext"))]
-pub use self::__CGContext::CGContextSetShadowWithColor;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetShouldAntialias;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetShouldSmoothFonts;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetShouldSubpixelPositionFonts;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetShouldSubpixelQuantizeFonts;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetStrokeColor;
-#[cfg(all(feature = "CGColorSpace", feature = "CGContext"))]
-pub use self::__CGContext::CGContextSetStrokeColorSpace;
-#[cfg(all(feature = "CGColor", feature = "CGContext"))]
-pub use self::__CGContext::CGContextSetStrokeColorWithColor;
-#[cfg(all(feature = "CGContext", feature = "CGPattern"))]
-pub use self::__CGContext::CGContextSetStrokePattern;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetTextDrawingMode;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetTextMatrix;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSetTextPosition;
-#[cfg(all(feature = "CGContext", feature = "CGFont"))]
-pub use self::__CGContext::CGContextShowGlyphs;
-#[cfg(all(feature = "CGContext", feature = "CGFont"))]
-pub use self::__CGContext::CGContextShowGlyphsAtPoint;
-#[cfg(all(feature = "CGContext", feature = "CGFont"))]
-pub use self::__CGContext::CGContextShowGlyphsAtPositions;
-#[cfg(all(feature = "CGContext", feature = "CGFont"))]
-pub use self::__CGContext::CGContextShowGlyphsWithAdvances;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextShowText;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextShowTextAtPoint;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextStrokeEllipseInRect;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextStrokeLineSegments;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextStrokePath;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextStrokeRect;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextStrokeRectWithWidth;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSynchronize;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextSynchronizeAttributes;
-#[cfg(feature = "CGContext")]
-pub use self::__CGContext::CGContextTranslateCTM;
 #[cfg(feature = "CGContext")]
 pub use self::__CGContext::CGInterpolationQuality;
 #[cfg(feature = "CGContext")]
@@ -762,31 +398,11 @@ pub use self::__CGDataConsumer::CGDataConsumer;
 #[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerCallbacks;
 #[cfg(feature = "CGDataConsumer")]
-pub use self::__CGDataConsumer::CGDataConsumerCreate;
-#[cfg(feature = "CGDataConsumer")]
-pub use self::__CGDataConsumer::CGDataConsumerCreateWithCFData;
-#[cfg(feature = "CGDataConsumer")]
-pub use self::__CGDataConsumer::CGDataConsumerCreateWithURL;
-#[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerPutBytesCallback;
 #[cfg(feature = "CGDataConsumer")]
 pub use self::__CGDataConsumer::CGDataConsumerReleaseInfoCallback;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProvider;
-#[cfg(feature = "CGDataProvider")]
-pub use self::__CGDataProvider::CGDataProviderCopyData;
-#[cfg(all(feature = "CGDataProvider", feature = "libc"))]
-pub use self::__CGDataProvider::CGDataProviderCreateDirect;
-#[cfg(all(feature = "CGDataProvider", feature = "libc"))]
-pub use self::__CGDataProvider::CGDataProviderCreateSequential;
-#[cfg(feature = "CGDataProvider")]
-pub use self::__CGDataProvider::CGDataProviderCreateWithCFData;
-#[cfg(feature = "CGDataProvider")]
-pub use self::__CGDataProvider::CGDataProviderCreateWithData;
-#[cfg(feature = "CGDataProvider")]
-pub use self::__CGDataProvider::CGDataProviderCreateWithFilename;
-#[cfg(feature = "CGDataProvider")]
-pub use self::__CGDataProvider::CGDataProviderCreateWithURL;
 #[cfg(all(feature = "CGDataProvider", feature = "libc"))]
 pub use self::__CGDataProvider::CGDataProviderDirectCallbacks;
 #[cfg(feature = "CGDataProvider")]
@@ -795,8 +411,6 @@ pub use self::__CGDataProvider::CGDataProviderGetBytePointerCallback;
 pub use self::__CGDataProvider::CGDataProviderGetBytesAtPositionCallback;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderGetBytesCallback;
-#[cfg(feature = "CGDataProvider")]
-pub use self::__CGDataProvider::CGDataProviderGetInfo;
 #[cfg(feature = "CGDataProvider")]
 pub use self::__CGDataProvider::CGDataProviderReleaseBytePointerCallback;
 #[cfg(feature = "CGDataProvider")]
@@ -859,24 +473,6 @@ pub use self::__CGDirectDisplay::CGDisplayIDToOpenGLDisplayMask;
 pub use self::__CGDirectDisplay::CGDisplayIsCaptured;
 #[cfg(feature = "CGDirectDisplay")]
 pub use self::__CGDirectDisplay::CGDisplayMode;
-#[cfg(feature = "CGDirectDisplay")]
-pub use self::__CGDirectDisplay::CGDisplayModeCopyPixelEncoding;
-#[cfg(feature = "CGDirectDisplay")]
-pub use self::__CGDirectDisplay::CGDisplayModeGetHeight;
-#[cfg(feature = "CGDirectDisplay")]
-pub use self::__CGDirectDisplay::CGDisplayModeGetIODisplayModeID;
-#[cfg(feature = "CGDirectDisplay")]
-pub use self::__CGDirectDisplay::CGDisplayModeGetIOFlags;
-#[cfg(feature = "CGDirectDisplay")]
-pub use self::__CGDirectDisplay::CGDisplayModeGetPixelHeight;
-#[cfg(feature = "CGDirectDisplay")]
-pub use self::__CGDirectDisplay::CGDisplayModeGetPixelWidth;
-#[cfg(feature = "CGDirectDisplay")]
-pub use self::__CGDirectDisplay::CGDisplayModeGetRefreshRate;
-#[cfg(feature = "CGDirectDisplay")]
-pub use self::__CGDirectDisplay::CGDisplayModeGetWidth;
-#[cfg(feature = "CGDirectDisplay")]
-pub use self::__CGDirectDisplay::CGDisplayModeIsUsableForDesktopGUI;
 #[cfg(all(feature = "CGDirectDisplay", feature = "CGError"))]
 pub use self::__CGDirectDisplay::CGDisplayMoveCursorToPoint;
 #[cfg(feature = "CGDirectDisplay")]
@@ -1146,23 +742,6 @@ pub use self::__CGDisplayStream::kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStream;
 #[cfg(all(
-    feature = "CGDirectDisplay",
-    feature = "CGDisplayStream",
-    feature = "block2",
-    feature = "objc2-io-surface"
-))]
-#[cfg(not(target_os = "watchos"))]
-pub use self::__CGDisplayStream::CGDisplayStreamCreate;
-#[cfg(all(
-    feature = "CGDirectDisplay",
-    feature = "CGDisplayStream",
-    feature = "block2",
-    feature = "dispatch2",
-    feature = "objc2-io-surface"
-))]
-#[cfg(not(target_os = "watchos"))]
-pub use self::__CGDisplayStream::CGDisplayStreamCreateWithDispatchQueue;
-#[cfg(all(
     feature = "CGDisplayStream",
     feature = "block2",
     feature = "objc2-io-surface"
@@ -1172,21 +751,7 @@ pub use self::__CGDisplayStream::CGDisplayStreamFrameAvailableHandler;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamFrameStatus;
 #[cfg(feature = "CGDisplayStream")]
-pub use self::__CGDisplayStream::CGDisplayStreamGetRunLoopSource;
-#[cfg(all(feature = "CGDisplayStream", feature = "CGError"))]
-pub use self::__CGDisplayStream::CGDisplayStreamStart;
-#[cfg(all(feature = "CGDisplayStream", feature = "CGError"))]
-pub use self::__CGDisplayStream::CGDisplayStreamStop;
-#[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamUpdate;
-#[cfg(feature = "CGDisplayStream")]
-pub use self::__CGDisplayStream::CGDisplayStreamUpdateCreateMergedUpdate;
-#[cfg(feature = "CGDisplayStream")]
-pub use self::__CGDisplayStream::CGDisplayStreamUpdateGetDropCount;
-#[cfg(feature = "CGDisplayStream")]
-pub use self::__CGDisplayStream::CGDisplayStreamUpdateGetMovedRectsDelta;
-#[cfg(feature = "CGDisplayStream")]
-pub use self::__CGDisplayStream::CGDisplayStreamUpdateGetRects;
 #[cfg(feature = "CGDisplayStream")]
 pub use self::__CGDisplayStream::CGDisplayStreamUpdateRectType;
 #[cfg(feature = "CGEXRToneMappingGamma")]
@@ -1203,78 +768,6 @@ pub use self::__CGEXRToneMappingGamma::CGEXRToneMappingGammaGetDefaultOptions;
 pub use self::__CGError::CGError;
 #[cfg(feature = "CGError")]
 pub use self::__CGError::CGErrorCallback;
-#[cfg(feature = "CGError")]
-pub use self::__CGError::CGErrorSetCallback;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventCreate;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventCreateCopy;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventCreateData;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventCreateFromData;
-#[cfg(all(
-    feature = "CGEvent",
-    feature = "CGEventTypes",
-    feature = "CGRemoteOperation"
-))]
-pub use self::__CGEvent::CGEventCreateKeyboardEvent;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventCreateMouseEvent;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventCreateScrollWheelEvent2;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventCreateSourceFromEvent;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventGetDoubleValueField;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventGetFlags;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventGetIntegerValueField;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventGetLocation;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventGetTimestamp;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventGetType;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventGetUnflippedLocation;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventKeyboardGetUnicodeString;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventKeyboardSetUnicodeString;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventPost;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventPostToPSN;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes", feature = "libc"))]
-pub use self::__CGEvent::CGEventPostToPid;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventSetDoubleValueField;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventSetFlags;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventSetIntegerValueField;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventSetLocation;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventSetSource;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventSetTimestamp;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventSetType;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventTapCreate;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventTapCreateForPSN;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes", feature = "libc"))]
-pub use self::__CGEvent::CGEventTapCreateForPid;
-#[cfg(feature = "CGEvent")]
-pub use self::__CGEvent::CGEventTapEnable;
-#[cfg(feature = "CGEvent")]
-pub use self::__CGEvent::CGEventTapIsEnabled;
-#[cfg(all(feature = "CGEvent", feature = "CGEventTypes"))]
-pub use self::__CGEvent::CGEventTapPostEvent;
 #[cfg(all(
     feature = "CGError",
     feature = "CGEvent",
@@ -1290,52 +783,8 @@ pub use self::__CGEvent::CGPreflightPostEventAccess;
 pub use self::__CGEvent::CGRequestListenEventAccess;
 #[cfg(feature = "CGEvent")]
 pub use self::__CGEvent::CGRequestPostEventAccess;
-#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
-pub use self::__CGEventSource::CGEventSourceButtonState;
-#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
-pub use self::__CGEventSource::CGEventSourceCounterForEventType;
-#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
-pub use self::__CGEventSource::CGEventSourceCreate;
-#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
-pub use self::__CGEventSource::CGEventSourceFlagsState;
-#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
-pub use self::__CGEventSource::CGEventSourceGetKeyboardType;
-#[cfg(all(
-    feature = "CGEventSource",
-    feature = "CGEventTypes",
-    feature = "CGRemoteOperation"
-))]
-pub use self::__CGEventSource::CGEventSourceGetLocalEventsFilterDuringSuppressionState;
-#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
-pub use self::__CGEventSource::CGEventSourceGetLocalEventsSuppressionInterval;
-#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
-pub use self::__CGEventSource::CGEventSourceGetPixelsPerLine;
-#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
-pub use self::__CGEventSource::CGEventSourceGetSourceStateID;
-#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
-pub use self::__CGEventSource::CGEventSourceGetUserData;
-#[cfg(all(
-    feature = "CGEventSource",
-    feature = "CGEventTypes",
-    feature = "CGRemoteOperation"
-))]
-pub use self::__CGEventSource::CGEventSourceKeyState;
-#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
-pub use self::__CGEventSource::CGEventSourceSecondsSinceLastEventType;
-#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
-pub use self::__CGEventSource::CGEventSourceSetKeyboardType;
-#[cfg(all(
-    feature = "CGEventSource",
-    feature = "CGEventTypes",
-    feature = "CGRemoteOperation"
-))]
-pub use self::__CGEventSource::CGEventSourceSetLocalEventsFilterDuringSuppressionState;
-#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
-pub use self::__CGEventSource::CGEventSourceSetLocalEventsSuppressionInterval;
-#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
-pub use self::__CGEventSource::CGEventSourceSetPixelsPerLine;
-#[cfg(all(feature = "CGEventSource", feature = "CGEventTypes"))]
-pub use self::__CGEventSource::CGEventSourceSetUserData;
+#[cfg(feature = "CGEventTypes")]
+pub(crate) use self::__CGEventTypes::__CGEventTapProxy;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::kCGEventMaskForAllEvents;
 #[cfg(feature = "CGEventTypes")]
@@ -1384,8 +833,6 @@ pub use self::__CGEventTypes::CGMouseButton;
 pub use self::__CGEventTypes::CGScrollEventUnit;
 #[cfg(feature = "CGEventTypes")]
 pub use self::__CGEventTypes::CGScrollPhase;
-#[cfg(feature = "CGEventTypes")]
-pub(crate) use self::__CGEventTypes::__CGEventTapProxy;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::kCGFontIndexInvalid;
 #[cfg(feature = "CGFont")]
@@ -1403,56 +850,6 @@ pub use self::__CGFont::kCGGlyphMax;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFont;
 #[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontCanCreatePostScriptSubset;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontCopyFullName;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontCopyGlyphNameForGlyph;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontCopyPostScriptName;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontCopyTableForTag;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontCopyTableTags;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontCopyVariationAxes;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontCopyVariations;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontCreateCopyWithVariations;
-#[cfg(all(feature = "CGDataProvider", feature = "CGFont"))]
-pub use self::__CGFont::CGFontCreateWithDataProvider;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontCreateWithFontName;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontCreateWithPlatformFont;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontGetAscent;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontGetCapHeight;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontGetDescent;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontGetFontBBox;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontGetGlyphAdvances;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontGetGlyphBBoxes;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontGetGlyphWithGlyphName;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontGetItalicAngle;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontGetLeading;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontGetNumberOfGlyphs;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontGetStemV;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontGetUnitsPerEm;
-#[cfg(feature = "CGFont")]
-pub use self::__CGFont::CGFontGetXHeight;
-#[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontIndex;
 #[cfg(feature = "CGFont")]
 pub use self::__CGFont::CGFontPostScriptFormat;
@@ -1464,8 +861,6 @@ pub use self::__CGFont::CGGlyphDeprecatedEnum;
 pub use self::__CGFunction::CGFunction;
 #[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionCallbacks;
-#[cfg(feature = "CGFunction")]
-pub use self::__CGFunction::CGFunctionCreate;
 #[cfg(feature = "CGFunction")]
 pub use self::__CGFunction::CGFunctionEvaluateCallback;
 #[cfg(feature = "CGFunction")]
@@ -1542,16 +937,8 @@ pub use self::__CGGeometry::CGSizeMakeWithDictionaryRepresentation;
 pub use self::__CGGeometry::CGSizeZero;
 #[cfg(feature = "CGGradient")]
 pub use self::__CGGradient::CGGradient;
-#[cfg(all(feature = "CGColorSpace", feature = "CGGradient"))]
-pub use self::__CGGradient::CGGradientCreateWithColorComponents;
-#[cfg(all(feature = "CGColorSpace", feature = "CGGradient"))]
-pub use self::__CGGradient::CGGradientCreateWithColors;
-#[cfg(all(feature = "CGColorSpace", feature = "CGGradient"))]
-pub use self::__CGGradient::CGGradientCreateWithContentHeadroom;
 #[cfg(feature = "CGGradient")]
 pub use self::__CGGradient::CGGradientDrawingOptions;
-#[cfg(feature = "CGGradient")]
-pub use self::__CGGradient::CGGradientGetContentHeadroom;
 #[cfg(feature = "CGITUToneMapping")]
 pub use self::__CGITUToneMapping::kCGSkipBoostToHDR;
 #[cfg(feature = "CGITUToneMapping")]
@@ -1571,157 +958,21 @@ pub use self::__CGImage::CGImageAlphaInfo;
 #[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageByteOrderInfo;
 #[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageCalculateContentAverageLightLevel;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageCalculateContentHeadroom;
-#[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImageComponentInfo;
 #[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageContainsImageSpecificToneMappingMetadata;
-#[cfg(all(
-    feature = "CGColorSpace",
-    feature = "CGDataProvider",
-    feature = "CGImage"
-))]
-pub use self::__CGImage::CGImageCreate;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageCreateCopy;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageCreateCopyWithCalculatedHDRStats;
-#[cfg(all(feature = "CGColorSpace", feature = "CGImage"))]
-pub use self::__CGImage::CGImageCreateCopyWithColorSpace;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageCreateCopyWithContentAverageLightLevel;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageCreateCopyWithContentHeadroom;
-#[cfg(all(
-    feature = "CGColorSpace",
-    feature = "CGDataProvider",
-    feature = "CGImage"
-))]
-pub use self::__CGImage::CGImageCreateWithContentHeadroom;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageCreateWithImageInRect;
-#[cfg(all(
-    feature = "CGColorSpace",
-    feature = "CGDataProvider",
-    feature = "CGImage"
-))]
-pub use self::__CGImage::CGImageCreateWithJPEGDataProvider;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageCreateWithMask;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageCreateWithMaskingColors;
-#[cfg(all(
-    feature = "CGColorSpace",
-    feature = "CGDataProvider",
-    feature = "CGImage"
-))]
-pub use self::__CGImage::CGImageCreateWithPNGDataProvider;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetAlphaInfo;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetBitmapInfo;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetBitsPerComponent;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetBitsPerPixel;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetByteOrderInfo;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetBytesPerRow;
-#[cfg(all(feature = "CGColorSpace", feature = "CGImage"))]
-pub use self::__CGImage::CGImageGetColorSpace;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetContentAverageLightLevel;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetContentHeadroom;
-#[cfg(all(feature = "CGDataProvider", feature = "CGImage"))]
-pub use self::__CGImage::CGImageGetDataProvider;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetDecode;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetHeight;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetPixelFormatInfo;
-#[cfg(all(feature = "CGColorSpace", feature = "CGImage"))]
-pub use self::__CGImage::CGImageGetRenderingIntent;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetShouldInterpolate;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetUTType;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageGetWidth;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageIsMask;
-#[cfg(all(feature = "CGDataProvider", feature = "CGImage"))]
-pub use self::__CGImage::CGImageMaskCreate;
-#[cfg(feature = "CGImage")]
 pub use self::__CGImage::CGImagePixelFormatInfo;
-#[cfg(feature = "CGImage")]
-pub use self::__CGImage::CGImageShouldToneMap;
-#[cfg(all(feature = "CGContext", feature = "CGLayer"))]
-pub use self::__CGLayer::CGContextDrawLayerAtPoint;
-#[cfg(all(feature = "CGContext", feature = "CGLayer"))]
-pub use self::__CGLayer::CGContextDrawLayerInRect;
 #[cfg(feature = "CGLayer")]
 pub use self::__CGLayer::CGLayer;
-#[cfg(all(feature = "CGContext", feature = "CGLayer"))]
-pub use self::__CGLayer::CGLayerCreateWithContext;
-#[cfg(all(feature = "CGContext", feature = "CGLayer"))]
-pub use self::__CGLayer::CGLayerGetContext;
-#[cfg(feature = "CGLayer")]
-pub use self::__CGLayer::CGLayerGetSize;
 #[cfg(feature = "CGPDFArray")]
 pub use self::__CGPDFArray::CGPDFArray;
 #[cfg(all(feature = "CGPDFArray", feature = "CGPDFObject", feature = "block2"))]
 pub use self::__CGPDFArray::CGPDFArrayApplierBlock;
-#[cfg(all(feature = "CGPDFArray", feature = "CGPDFObject", feature = "block2"))]
-pub use self::__CGPDFArray::CGPDFArrayApplyBlock;
-#[cfg(feature = "CGPDFArray")]
-pub use self::__CGPDFArray::CGPDFArrayGetArray;
-#[cfg(all(feature = "CGPDFArray", feature = "CGPDFObject"))]
-pub use self::__CGPDFArray::CGPDFArrayGetBoolean;
-#[cfg(feature = "CGPDFArray")]
-pub use self::__CGPDFArray::CGPDFArrayGetCount;
-#[cfg(all(feature = "CGPDFArray", feature = "CGPDFDictionary"))]
-pub use self::__CGPDFArray::CGPDFArrayGetDictionary;
-#[cfg(all(feature = "CGPDFArray", feature = "CGPDFObject"))]
-pub use self::__CGPDFArray::CGPDFArrayGetInteger;
-#[cfg(feature = "CGPDFArray")]
-pub use self::__CGPDFArray::CGPDFArrayGetName;
-#[cfg(feature = "CGPDFArray")]
-pub use self::__CGPDFArray::CGPDFArrayGetNull;
-#[cfg(all(feature = "CGPDFArray", feature = "CGPDFObject"))]
-pub use self::__CGPDFArray::CGPDFArrayGetNumber;
-#[cfg(all(feature = "CGPDFArray", feature = "CGPDFObject"))]
-pub use self::__CGPDFArray::CGPDFArrayGetObject;
-#[cfg(all(feature = "CGPDFArray", feature = "CGPDFStream"))]
-pub use self::__CGPDFArray::CGPDFArrayGetStream;
-#[cfg(all(feature = "CGPDFArray", feature = "CGPDFString"))]
-pub use self::__CGPDFArray::CGPDFArrayGetString;
 #[cfg(feature = "CGPDFArray")]
 pub use self::__CGPDFArray::CGPDFArrayRef;
 #[cfg(feature = "CGPDFContentStream")]
 pub use self::__CGPDFContentStream::CGPDFContentStream;
-#[cfg(all(feature = "CGPDFContentStream", feature = "CGPDFPage"))]
-pub use self::__CGPDFContentStream::CGPDFContentStreamCreateWithPage;
-#[cfg(all(
-    feature = "CGPDFContentStream",
-    feature = "CGPDFDictionary",
-    feature = "CGPDFStream"
-))]
-pub use self::__CGPDFContentStream::CGPDFContentStreamCreateWithStream;
-#[cfg(all(feature = "CGPDFContentStream", feature = "CGPDFObject"))]
-pub use self::__CGPDFContentStream::CGPDFContentStreamGetResource;
-#[cfg(feature = "CGPDFContentStream")]
-pub use self::__CGPDFContentStream::CGPDFContentStreamGetStreams;
 #[cfg(feature = "CGPDFContentStream")]
 pub use self::__CGPDFContentStream::CGPDFContentStreamRef;
-#[cfg(feature = "CGPDFContentStream")]
-pub use self::__CGPDFContentStream::CGPDFContentStreamRelease;
-#[cfg(feature = "CGPDFContentStream")]
-pub use self::__CGPDFContentStream::CGPDFContentStreamRetain;
 #[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::kCGPDFContextAccessPermissions;
 #[cfg(feature = "CGPDFContext")]
@@ -1828,8 +1079,6 @@ pub use self::__CGPDFContext::CGPDFContextSetURLForRect;
 pub use self::__CGPDFContext::CGPDFTagProperty;
 #[cfg(feature = "CGPDFContext")]
 pub use self::__CGPDFContext::CGPDFTagType;
-#[cfg(feature = "CGPDFContext")]
-pub use self::__CGPDFContext::CGPDFTagTypeGetName;
 #[cfg(feature = "CGPDFDictionary")]
 pub use self::__CGPDFDictionary::CGPDFDictionary;
 #[cfg(all(
@@ -1840,34 +1089,6 @@ pub use self::__CGPDFDictionary::CGPDFDictionary;
 pub use self::__CGPDFDictionary::CGPDFDictionaryApplierBlock;
 #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFObject"))]
 pub use self::__CGPDFDictionary::CGPDFDictionaryApplierFunction;
-#[cfg(all(
-    feature = "CGPDFDictionary",
-    feature = "CGPDFObject",
-    feature = "block2"
-))]
-pub use self::__CGPDFDictionary::CGPDFDictionaryApplyBlock;
-#[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFObject"))]
-pub use self::__CGPDFDictionary::CGPDFDictionaryApplyFunction;
-#[cfg(all(feature = "CGPDFArray", feature = "CGPDFDictionary"))]
-pub use self::__CGPDFDictionary::CGPDFDictionaryGetArray;
-#[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFObject"))]
-pub use self::__CGPDFDictionary::CGPDFDictionaryGetBoolean;
-#[cfg(feature = "CGPDFDictionary")]
-pub use self::__CGPDFDictionary::CGPDFDictionaryGetCount;
-#[cfg(feature = "CGPDFDictionary")]
-pub use self::__CGPDFDictionary::CGPDFDictionaryGetDictionary;
-#[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFObject"))]
-pub use self::__CGPDFDictionary::CGPDFDictionaryGetInteger;
-#[cfg(feature = "CGPDFDictionary")]
-pub use self::__CGPDFDictionary::CGPDFDictionaryGetName;
-#[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFObject"))]
-pub use self::__CGPDFDictionary::CGPDFDictionaryGetNumber;
-#[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFObject"))]
-pub use self::__CGPDFDictionary::CGPDFDictionaryGetObject;
-#[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFStream"))]
-pub use self::__CGPDFDictionary::CGPDFDictionaryGetStream;
-#[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFString"))]
-pub use self::__CGPDFDictionary::CGPDFDictionaryGetString;
 #[cfg(feature = "CGPDFDictionary")]
 pub use self::__CGPDFDictionary::CGPDFDictionaryRef;
 #[cfg(feature = "CGPDFDocument")]
@@ -1882,58 +1103,12 @@ pub use self::__CGPDFDocument::kCGPDFOutlineTitle;
 pub use self::__CGPDFDocument::CGPDFAccessPermissions;
 #[cfg(feature = "CGPDFDocument")]
 pub use self::__CGPDFDocument::CGPDFDocument;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentAllowsCopying;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentAllowsPrinting;
-#[cfg(all(feature = "CGDataProvider", feature = "CGPDFDocument"))]
-pub use self::__CGPDFDocument::CGPDFDocumentCreateWithProvider;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentCreateWithURL;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentGetAccessPermissions;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentGetArtBox;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentGetBleedBox;
-#[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFDocument"))]
-pub use self::__CGPDFDocument::CGPDFDocumentGetCatalog;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentGetCropBox;
-#[cfg(all(feature = "CGPDFArray", feature = "CGPDFDocument"))]
-pub use self::__CGPDFDocument::CGPDFDocumentGetID;
-#[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFDocument"))]
-pub use self::__CGPDFDocument::CGPDFDocumentGetInfo;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentGetMediaBox;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentGetNumberOfPages;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentGetOutline;
-#[cfg(all(feature = "CGPDFDocument", feature = "CGPDFPage"))]
-pub use self::__CGPDFDocument::CGPDFDocumentGetPage;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentGetRotationAngle;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentGetTrimBox;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentGetVersion;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentIsEncrypted;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentIsUnlocked;
-#[cfg(feature = "CGPDFDocument")]
-pub use self::__CGPDFDocument::CGPDFDocumentUnlockWithPassword;
 #[cfg(feature = "CGPDFObject")]
 pub use self::__CGPDFObject::CGPDFBoolean;
 #[cfg(feature = "CGPDFObject")]
 pub use self::__CGPDFObject::CGPDFInteger;
 #[cfg(feature = "CGPDFObject")]
 pub use self::__CGPDFObject::CGPDFObject;
-#[cfg(feature = "CGPDFObject")]
-pub use self::__CGPDFObject::CGPDFObjectGetType;
-#[cfg(feature = "CGPDFObject")]
-pub use self::__CGPDFObject::CGPDFObjectGetValue;
 #[cfg(feature = "CGPDFObject")]
 pub use self::__CGPDFObject::CGPDFObjectRef;
 #[cfg(feature = "CGPDFObject")]
@@ -1945,115 +1120,37 @@ pub use self::__CGPDFOperatorTable::CGPDFOperatorCallback;
 #[cfg(feature = "CGPDFOperatorTable")]
 pub use self::__CGPDFOperatorTable::CGPDFOperatorTable;
 #[cfg(feature = "CGPDFOperatorTable")]
-pub use self::__CGPDFOperatorTable::CGPDFOperatorTableCreate;
-#[cfg(feature = "CGPDFOperatorTable")]
 pub use self::__CGPDFOperatorTable::CGPDFOperatorTableRef;
-#[cfg(feature = "CGPDFOperatorTable")]
-pub use self::__CGPDFOperatorTable::CGPDFOperatorTableRelease;
-#[cfg(feature = "CGPDFOperatorTable")]
-pub use self::__CGPDFOperatorTable::CGPDFOperatorTableRetain;
-#[cfg(all(feature = "CGPDFOperatorTable", feature = "CGPDFScanner"))]
-pub use self::__CGPDFOperatorTable::CGPDFOperatorTableSetCallback;
 #[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFBox;
 #[cfg(feature = "CGPDFPage")]
 pub use self::__CGPDFPage::CGPDFPage;
-#[cfg(feature = "CGPDFPage")]
-pub use self::__CGPDFPage::CGPDFPageGetBoxRect;
-#[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFPage"))]
-pub use self::__CGPDFPage::CGPDFPageGetDictionary;
-#[cfg(all(feature = "CGPDFDocument", feature = "CGPDFPage"))]
-pub use self::__CGPDFPage::CGPDFPageGetDocument;
-#[cfg(feature = "CGPDFPage")]
-pub use self::__CGPDFPage::CGPDFPageGetDrawingTransform;
-#[cfg(feature = "CGPDFPage")]
-pub use self::__CGPDFPage::CGPDFPageGetPageNumber;
-#[cfg(feature = "CGPDFPage")]
-pub use self::__CGPDFPage::CGPDFPageGetRotationAngle;
 #[cfg(feature = "CGPDFScanner")]
 pub use self::__CGPDFScanner::CGPDFScanner;
-#[cfg(all(
-    feature = "CGPDFContentStream",
-    feature = "CGPDFOperatorTable",
-    feature = "CGPDFScanner"
-))]
-pub use self::__CGPDFScanner::CGPDFScannerCreate;
-#[cfg(all(feature = "CGPDFContentStream", feature = "CGPDFScanner"))]
-pub use self::__CGPDFScanner::CGPDFScannerGetContentStream;
-#[cfg(all(feature = "CGPDFArray", feature = "CGPDFScanner"))]
-pub use self::__CGPDFScanner::CGPDFScannerPopArray;
-#[cfg(all(feature = "CGPDFObject", feature = "CGPDFScanner"))]
-pub use self::__CGPDFScanner::CGPDFScannerPopBoolean;
-#[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFScanner"))]
-pub use self::__CGPDFScanner::CGPDFScannerPopDictionary;
-#[cfg(all(feature = "CGPDFObject", feature = "CGPDFScanner"))]
-pub use self::__CGPDFScanner::CGPDFScannerPopInteger;
-#[cfg(feature = "CGPDFScanner")]
-pub use self::__CGPDFScanner::CGPDFScannerPopName;
-#[cfg(all(feature = "CGPDFObject", feature = "CGPDFScanner"))]
-pub use self::__CGPDFScanner::CGPDFScannerPopNumber;
-#[cfg(all(feature = "CGPDFObject", feature = "CGPDFScanner"))]
-pub use self::__CGPDFScanner::CGPDFScannerPopObject;
-#[cfg(all(feature = "CGPDFScanner", feature = "CGPDFStream"))]
-pub use self::__CGPDFScanner::CGPDFScannerPopStream;
-#[cfg(all(feature = "CGPDFScanner", feature = "CGPDFString"))]
-pub use self::__CGPDFScanner::CGPDFScannerPopString;
 #[cfg(feature = "CGPDFScanner")]
 pub use self::__CGPDFScanner::CGPDFScannerRef;
-#[cfg(feature = "CGPDFScanner")]
-pub use self::__CGPDFScanner::CGPDFScannerRelease;
-#[cfg(feature = "CGPDFScanner")]
-pub use self::__CGPDFScanner::CGPDFScannerRetain;
-#[cfg(feature = "CGPDFScanner")]
-pub use self::__CGPDFScanner::CGPDFScannerScan;
-#[cfg(feature = "CGPDFScanner")]
-pub use self::__CGPDFScanner::CGPDFScannerStop;
 #[cfg(feature = "CGPDFStream")]
 pub use self::__CGPDFStream::CGPDFDataFormat;
 #[cfg(feature = "CGPDFStream")]
 pub use self::__CGPDFStream::CGPDFStream;
 #[cfg(feature = "CGPDFStream")]
-pub use self::__CGPDFStream::CGPDFStreamCopyData;
-#[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFStream"))]
-pub use self::__CGPDFStream::CGPDFStreamGetDictionary;
-#[cfg(feature = "CGPDFStream")]
 pub use self::__CGPDFStream::CGPDFStreamRef;
 #[cfg(feature = "CGPDFString")]
 pub use self::__CGPDFString::CGPDFString;
 #[cfg(feature = "CGPDFString")]
-pub use self::__CGPDFString::CGPDFStringCopyDate;
-#[cfg(feature = "CGPDFString")]
-pub use self::__CGPDFString::CGPDFStringCopyTextString;
-#[cfg(feature = "CGPDFString")]
-pub use self::__CGPDFString::CGPDFStringGetBytePtr;
-#[cfg(feature = "CGPDFString")]
-pub use self::__CGPDFString::CGPDFStringGetLength;
-#[cfg(feature = "CGPDFString")]
 pub use self::__CGPDFString::CGPDFStringRef;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverter;
-#[cfg(feature = "CGPSConverter")]
-pub use self::__CGPSConverter::CGPSConverterAbort;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterBeginDocumentCallback;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterBeginPageCallback;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterCallbacks;
-#[cfg(all(
-    feature = "CGDataConsumer",
-    feature = "CGDataProvider",
-    feature = "CGPSConverter"
-))]
-pub use self::__CGPSConverter::CGPSConverterConvert;
-#[cfg(feature = "CGPSConverter")]
-pub use self::__CGPSConverter::CGPSConverterCreate;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterEndDocumentCallback;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterEndPageCallback;
-#[cfg(feature = "CGPSConverter")]
-pub use self::__CGPSConverter::CGPSConverterIsConverting;
 #[cfg(feature = "CGPSConverter")]
 pub use self::__CGPSConverter::CGPSConverterMessageCallback;
 #[cfg(feature = "CGPSConverter")]
@@ -2069,105 +1166,17 @@ pub use self::__CGPath::CGMutablePath;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPath;
 #[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathAddArc;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathAddArcToPoint;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathAddCurveToPoint;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathAddEllipseInRect;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathAddLineToPoint;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathAddLines;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathAddPath;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathAddQuadCurveToPoint;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathAddRect;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathAddRects;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathAddRelativeArc;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathAddRoundedRect;
-#[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathApplierFunction;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathApply;
 #[cfg(all(feature = "CGPath", feature = "block2"))]
 pub use self::__CGPath::CGPathApplyBlock;
-#[cfg(all(feature = "CGPath", feature = "block2"))]
-pub use self::__CGPath::CGPathApplyWithBlock;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCloseSubpath;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathContainsPoint;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateCopy;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateCopyByDashingPath;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateCopyByFlattening;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateCopyByIntersectingPath;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateCopyByNormalizing;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateCopyByStrokingPath;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateCopyBySubtractingPath;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateCopyBySymmetricDifferenceOfPath;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateCopyByTransformingPath;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateCopyByUnioningPath;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateCopyOfLineByIntersectingPath;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateCopyOfLineBySubtractingPath;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateMutable;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateMutableCopy;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateMutableCopyByTransformingPath;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateSeparateComponents;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateWithEllipseInRect;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateWithRect;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathCreateWithRoundedRect;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathElement;
 #[cfg(feature = "CGPath")]
 pub use self::__CGPath::CGPathElementType;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathEqualToPath;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathGetBoundingBox;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathGetCurrentPoint;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathGetPathBoundingBox;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathIntersectsPath;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathIsEmpty;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathIsRect;
-#[cfg(feature = "CGPath")]
-pub use self::__CGPath::CGPathMoveToPoint;
 #[cfg(feature = "CGPattern")]
 pub use self::__CGPattern::CGPattern;
 #[cfg(all(feature = "CGContext", feature = "CGPattern"))]
 pub use self::__CGPattern::CGPatternCallbacks;
-#[cfg(all(feature = "CGContext", feature = "CGPattern"))]
-pub use self::__CGPattern::CGPatternCreate;
 #[cfg(all(feature = "CGContext", feature = "CGPattern"))]
 pub use self::__CGPattern::CGPatternDrawPatternCallback;
 #[cfg(feature = "CGPattern")]
@@ -2248,12 +1257,6 @@ pub use self::__CGRemoteOperation::CGWindowServerCreateServerPort;
 pub use self::__CGRenderingBufferProvider::CGRenderingBufferLockBytePtr;
 #[cfg(feature = "CGRenderingBufferProvider")]
 pub use self::__CGRenderingBufferProvider::CGRenderingBufferProvider;
-#[cfg(all(feature = "CGRenderingBufferProvider", feature = "block2"))]
-pub use self::__CGRenderingBufferProvider::CGRenderingBufferProviderCreate;
-#[cfg(feature = "CGRenderingBufferProvider")]
-pub use self::__CGRenderingBufferProvider::CGRenderingBufferProviderCreateWithCFData;
-#[cfg(feature = "CGRenderingBufferProvider")]
-pub use self::__CGRenderingBufferProvider::CGRenderingBufferProviderGetSize;
 #[cfg(feature = "CGRenderingBufferProvider")]
 pub use self::__CGRenderingBufferProvider::CGRenderingBufferUnlockBytePtr;
 #[cfg(feature = "CGSession")]
@@ -2264,32 +1267,6 @@ pub use self::__CGSession::kCGNotifyGUISessionUserChanged;
 pub use self::__CGSession::CGSessionCopyCurrentDictionary;
 #[cfg(feature = "CGShading")]
 pub use self::__CGShading::CGShading;
-#[cfg(all(
-    feature = "CGColorSpace",
-    feature = "CGFunction",
-    feature = "CGShading"
-))]
-pub use self::__CGShading::CGShadingCreateAxial;
-#[cfg(all(
-    feature = "CGColorSpace",
-    feature = "CGFunction",
-    feature = "CGShading"
-))]
-pub use self::__CGShading::CGShadingCreateAxialWithContentHeadroom;
-#[cfg(all(
-    feature = "CGColorSpace",
-    feature = "CGFunction",
-    feature = "CGShading"
-))]
-pub use self::__CGShading::CGShadingCreateRadial;
-#[cfg(all(
-    feature = "CGColorSpace",
-    feature = "CGFunction",
-    feature = "CGShading"
-))]
-pub use self::__CGShading::CGShadingCreateRadialWithContentHeadroom;
-#[cfg(feature = "CGShading")]
-pub use self::__CGShading::CGShadingGetContentHeadroom;
 #[cfg(feature = "CGToneMapping")]
 pub use self::__CGToneMapping::kCGContentAverageLightLevel;
 #[cfg(feature = "CGToneMapping")]

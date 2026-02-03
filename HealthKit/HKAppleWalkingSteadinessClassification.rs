@@ -102,24 +102,3 @@ pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessMaximumQuantityForClassi
     unsafe { Retained::retain_autoreleased(ret) }
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
-
-#[cfg(feature = "HKQuantity")]
-#[deprecated = "renamed to `HKAppleWalkingSteadinessClassification::for_quantity`"]
-#[inline]
-pub unsafe extern "C-unwind" fn HKAppleWalkingSteadinessClassificationForQuantity(
-    value: &HKQuantity,
-    classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
-    error_out: *mut *mut NSError,
-) -> bool {
-    extern "C-unwind" {
-        fn HKAppleWalkingSteadinessClassificationForQuantity(
-            value: &HKQuantity,
-            classification_out: NonNull<HKAppleWalkingSteadinessClassification>,
-            error_out: *mut *mut NSError,
-        ) -> Bool;
-    }
-    unsafe {
-        HKAppleWalkingSteadinessClassificationForQuantity(value, classification_out, error_out)
-    }
-    .as_bool()
-}

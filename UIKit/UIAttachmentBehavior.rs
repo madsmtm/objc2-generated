@@ -325,13 +325,3 @@ impl UIAttachmentBehavior {
         pub fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
-
-#[cfg(feature = "objc2-core-foundation")]
-#[deprecated = "renamed to `UIFloatRange::is_infinite`"]
-#[inline]
-pub extern "C-unwind" fn UIFloatRangeIsInfinite(range: UIFloatRange) -> bool {
-    extern "C-unwind" {
-        fn UIFloatRangeIsInfinite(range: UIFloatRange) -> Bool;
-    }
-    unsafe { UIFloatRangeIsInfinite(range) }.as_bool()
-}

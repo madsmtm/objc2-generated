@@ -435,42 +435,6 @@ pub use self::__AuthorizationTags::kAuthorizationRightExecute;
 #[cfg(feature = "CMSDecoder")]
 pub use self::__CMSDecoder::CMSDecoder;
 #[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderCopyAllCerts;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderCopyContent;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderCopyDetachedContent;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderCopyEncapsulatedContentType;
-#[cfg(all(feature = "CMSDecoder", feature = "SecBase"))]
-pub use self::__CMSDecoder::CMSDecoderCopySignerCert;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderCopySignerEmailAddress;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderCopySignerSigningTime;
-#[cfg(all(feature = "CMSDecoder", feature = "SecTrust"))]
-pub use self::__CMSDecoder::CMSDecoderCopySignerStatus;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderCopySignerTimestamp;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderCopySignerTimestampCertificates;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderCopySignerTimestampWithPolicy;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderCreate;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderFinalizeMessage;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderGetNumSigners;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderIsContentEncrypted;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderSetDetachedContent;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderSetSearchKeychain;
-#[cfg(feature = "CMSDecoder")]
-pub use self::__CMSDecoder::CMSDecoderUpdateMessage;
-#[cfg(feature = "CMSDecoder")]
 pub use self::__CMSDecoder::CMSSignerStatus;
 #[cfg(feature = "CMSEncoder")]
 pub use self::__CMSEncoder::kCMSEncoderDigestAlgorithmSHA1;
@@ -484,46 +448,6 @@ pub use self::__CMSEncoder::CMSEncode;
 pub use self::__CMSEncoder::CMSEncodeContent;
 #[cfg(feature = "CMSEncoder")]
 pub use self::__CMSEncoder::CMSEncoder;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderAddRecipients;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderAddSignedAttributes;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderAddSigners;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderAddSupportingCerts;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderCopyEncapsulatedContentType;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderCopyEncodedContent;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderCopyRecipients;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderCopySignerTimestamp;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderCopySignerTimestampWithPolicy;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderCopySigners;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderCopySupportingCerts;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderCreate;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderGetCertificateChainMode;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderGetHasDetachedContent;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderSetCertificateChainMode;
-#[cfg(all(feature = "CMSEncoder", feature = "SecAsn1Types"))]
-pub use self::__CMSEncoder::CMSEncoderSetEncapsulatedContentType;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderSetEncapsulatedContentTypeOID;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderSetHasDetachedContent;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderSetSignerAlgorithm;
-#[cfg(feature = "CMSEncoder")]
-pub use self::__CMSEncoder::CMSEncoderUpdateContent;
 #[cfg(feature = "CMSEncoder")]
 pub use self::__CMSEncoder::CMSSignedAttributes;
 #[cfg(feature = "CSCommon")]
@@ -1080,53 +1004,6 @@ pub use self::__CipherSuite::TLS_RSA_WITH_NULL_SHA256;
 pub use self::__CipherSuite::TLS_RSA_WITH_RC4_128_MD5;
 #[cfg(feature = "CipherSuite")]
 pub use self::__CipherSuite::TLS_RSA_WITH_RC4_128_SHA;
-#[cfg(all(feature = "SecACL", feature = "SecBase"))]
-pub use self::__SecACL::SecACLCopyAuthorizations;
-#[cfg(all(feature = "SecACL", feature = "SecBase", feature = "cssmconfig"))]
-pub use self::__SecACL::SecACLCopyContents;
-#[cfg(all(
-    feature = "SecACL",
-    feature = "SecBase",
-    feature = "cssmapple",
-    feature = "cssmconfig"
-))]
-pub use self::__SecACL::SecACLCopySimpleContents;
-#[cfg(all(
-    feature = "SecACL",
-    feature = "SecBase",
-    feature = "cssmapple",
-    feature = "cssmconfig"
-))]
-pub use self::__SecACL::SecACLCreateFromSimpleContents;
-#[cfg(all(feature = "SecACL", feature = "SecBase", feature = "cssmconfig"))]
-pub use self::__SecACL::SecACLCreateWithSimpleContents;
-#[cfg(all(
-    feature = "SecACL",
-    feature = "SecBase",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecACL::SecACLGetAuthorizations;
-#[cfg(all(feature = "SecACL", feature = "SecBase"))]
-pub use self::__SecACL::SecACLRemove;
-#[cfg(all(
-    feature = "SecACL",
-    feature = "SecBase",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecACL::SecACLSetAuthorizations;
-#[cfg(all(feature = "SecACL", feature = "SecBase", feature = "cssmconfig"))]
-pub use self::__SecACL::SecACLSetContents;
-#[cfg(all(
-    feature = "SecACL",
-    feature = "SecBase",
-    feature = "cssmapple",
-    feature = "cssmconfig"
-))]
-pub use self::__SecACL::SecACLSetSimpleContents;
-#[cfg(all(feature = "SecACL", feature = "SecBase"))]
-pub use self::__SecACL::SecACLUpdateAuthorizations;
 #[cfg(all(feature = "SecACL", feature = "cssmconfig"))]
 pub use self::__SecACL::SecKeychainPromptSelector;
 #[cfg(feature = "SecAccess")]
@@ -1183,45 +1060,10 @@ pub use self::__SecAccess::kSecMatchBits;
 pub use self::__SecAccess::kSecUseOnlyGID;
 #[cfg(feature = "SecAccess")]
 pub use self::__SecAccess::kSecUseOnlyUID;
-#[cfg(all(feature = "SecAccess", feature = "SecBase"))]
-pub use self::__SecAccess::SecAccessCopyACLList;
-#[cfg(all(feature = "SecAccess", feature = "SecBase"))]
-pub use self::__SecAccess::SecAccessCopyMatchingACLList;
-#[cfg(all(feature = "SecAccess", feature = "SecBase", feature = "libc"))]
-pub use self::__SecAccess::SecAccessCopyOwnerAndACL;
-#[cfg(all(
-    feature = "SecAccess",
-    feature = "SecBase",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecAccess::SecAccessCopySelectedACLList;
-#[cfg(all(feature = "SecAccess", feature = "SecBase"))]
-pub use self::__SecAccess::SecAccessCreate;
-#[cfg(all(
-    feature = "SecAccess",
-    feature = "SecAsn1Types",
-    feature = "SecBase",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecAccess::SecAccessCreateFromOwnerAndACL;
-#[cfg(all(feature = "SecAccess", feature = "SecBase", feature = "libc"))]
-pub use self::__SecAccess::SecAccessCreateWithOwnerAndACL;
-#[cfg(all(
-    feature = "SecAccess",
-    feature = "SecAsn1Types",
-    feature = "SecBase",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecAccess::SecAccessGetOwnerAndACL;
 #[cfg(feature = "SecAccess")]
 pub use self::__SecAccess::SecAccessOwnerType;
 #[cfg(feature = "SecAccessControl")]
 pub use self::__SecAccessControl::SecAccessControlCreateFlags;
-#[cfg(all(feature = "SecAccessControl", feature = "SecBase"))]
-pub use self::__SecAccessControl::SecAccessControlCreateWithFlags;
 #[cfg(all(feature = "SecAsn1Coder", feature = "SecAsn1Types"))]
 pub use self::__SecAsn1Coder::SecAsn1AllocCopy;
 #[cfg(all(feature = "SecAsn1Coder", feature = "SecAsn1Types"))]
@@ -1231,11 +1073,7 @@ pub use self::__SecAsn1Coder::SecAsn1AllocItem;
 #[cfg(feature = "SecAsn1Coder")]
 pub use self::__SecAsn1Coder::SecAsn1Coder;
 #[cfg(feature = "SecAsn1Coder")]
-pub use self::__SecAsn1Coder::SecAsn1CoderCreate;
-#[cfg(feature = "SecAsn1Coder")]
 pub use self::__SecAsn1Coder::SecAsn1CoderRef;
-#[cfg(feature = "SecAsn1Coder")]
-pub use self::__SecAsn1Coder::SecAsn1CoderRelease;
 #[cfg(all(feature = "SecAsn1Coder", feature = "SecAsn1Types"))]
 pub use self::__SecAsn1Coder::SecAsn1Decode;
 #[cfg(all(feature = "SecAsn1Coder", feature = "SecAsn1Types"))]
@@ -2406,111 +2244,6 @@ pub use self::__SecCertificate::kSecSerialNumberItemAttr;
 pub use self::__SecCertificate::kSecSubjectItemAttr;
 #[cfg(feature = "SecCertificate")]
 pub use self::__SecCertificate::kSecSubjectKeyIdentifierItemAttr;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateAddToKeychain;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyCommonName;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyData;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyEmailAddresses;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyKey;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyLongDescription;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyNormalizedIssuerContent;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyNormalizedIssuerSequence;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyNormalizedSubjectContent;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyNormalizedSubjectSequence;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyNotValidAfterDate;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyNotValidBeforeDate;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecCertificate",
-    feature = "cssmconfig"
-))]
-pub use self::__SecCertificate::SecCertificateCopyPreference;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyPreferred;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyPublicKey;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopySerialNumber;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopySerialNumberData;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyShortDescription;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopySubjectSummary;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCopyValues;
-#[cfg(all(
-    feature = "SecAsn1Types",
-    feature = "SecBase",
-    feature = "SecCertificate",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecCertificate::SecCertificateCreateFromData;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateCreateWithData;
-#[cfg(all(
-    feature = "SecAsn1Types",
-    feature = "SecBase",
-    feature = "SecCertificate"
-))]
-pub use self::__SecCertificate::SecCertificateGetAlgorithmID;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecCertificate",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecCertificate::SecCertificateGetCLHandle;
-#[cfg(all(
-    feature = "SecAsn1Types",
-    feature = "SecBase",
-    feature = "SecCertificate",
-    feature = "cssmtype"
-))]
-pub use self::__SecCertificate::SecCertificateGetData;
-#[cfg(all(
-    feature = "SecAsn1Types",
-    feature = "SecBase",
-    feature = "SecCertificate",
-    feature = "cssmconfig",
-    feature = "x509defs"
-))]
-pub use self::__SecCertificate::SecCertificateGetIssuer;
-#[cfg(all(
-    feature = "SecAsn1Types",
-    feature = "SecBase",
-    feature = "SecCertificate",
-    feature = "cssmconfig",
-    feature = "x509defs"
-))]
-pub use self::__SecCertificate::SecCertificateGetSubject;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecCertificate",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecCertificate::SecCertificateGetType;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecCertificate",
-    feature = "cssmconfig"
-))]
-pub use self::__SecCertificate::SecCertificateSetPreference;
-#[cfg(all(feature = "SecBase", feature = "SecCertificate"))]
-pub use self::__SecCertificate::SecCertificateSetPreferred;
 #[cfg(feature = "SecCertificate")]
 pub use self::__SecCertificate::SecKeyUsage;
 #[cfg(feature = "SecCertificateOIDs")]
@@ -2847,28 +2580,6 @@ pub use self::__SecCode::kSecGuestAttributeMachPort;
 pub use self::__SecCode::kSecGuestAttributePid;
 #[cfg(feature = "SecCode")]
 pub use self::__SecCode::kSecGuestAttributeSubarchitecture;
-#[cfg(all(feature = "CSCommon", feature = "SecCode"))]
-pub use self::__SecCode::SecCodeCheckValidity;
-#[cfg(all(feature = "CSCommon", feature = "SecCode"))]
-pub use self::__SecCode::SecCodeCheckValidityWithErrors;
-#[cfg(all(feature = "CSCommon", feature = "SecCode"))]
-pub use self::__SecCode::SecCodeCopyDesignatedRequirement;
-#[cfg(all(feature = "CSCommon", feature = "SecCode"))]
-pub use self::__SecCode::SecCodeCopyGuestWithAttributes;
-#[cfg(all(feature = "CSCommon", feature = "SecCode"))]
-pub use self::__SecCode::SecCodeCopyHost;
-#[cfg(all(feature = "CSCommon", feature = "SecCode"))]
-pub use self::__SecCode::SecCodeCopyPath;
-#[cfg(all(feature = "CSCommon", feature = "SecCode"))]
-pub use self::__SecCode::SecCodeCopySelf;
-#[cfg(all(feature = "CSCommon", feature = "SecCode"))]
-pub use self::__SecCode::SecCodeCopySigningInformation;
-#[cfg(all(feature = "CSCommon", feature = "SecCode"))]
-pub use self::__SecCode::SecCodeCopyStaticCode;
-#[cfg(all(feature = "CSCommon", feature = "SecCode"))]
-pub use self::__SecCode::SecCodeMapMemory;
-#[cfg(all(feature = "CSCommon", feature = "SecCode"))]
-pub use self::__SecCode::SecCodeValidateFileResource;
 #[cfg(feature = "SecCodeHost")]
 pub use self::__SecCodeHost::kSecCSDedicatedHost;
 #[cfg(feature = "SecCodeHost")]
@@ -3051,46 +2762,8 @@ pub use self::__SecEncryptTransform::SecEncryptTransformGetTypeID;
 pub use self::__SecIdentity::kSecIdentityDomainDefault;
 #[cfg(feature = "SecIdentity")]
 pub use self::__SecIdentity::kSecIdentityDomainKerberosKDC;
-#[cfg(all(feature = "SecBase", feature = "SecIdentity"))]
-pub use self::__SecIdentity::SecIdentityCopyCertificate;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecIdentity",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecIdentity::SecIdentityCopyPreference;
-#[cfg(all(feature = "SecBase", feature = "SecIdentity"))]
-pub use self::__SecIdentity::SecIdentityCopyPreferred;
-#[cfg(all(feature = "SecBase", feature = "SecIdentity"))]
-pub use self::__SecIdentity::SecIdentityCopyPrivateKey;
-#[cfg(all(feature = "SecBase", feature = "SecIdentity"))]
-pub use self::__SecIdentity::SecIdentityCopySystemIdentity;
-#[cfg(all(feature = "SecBase", feature = "SecIdentity"))]
-pub use self::__SecIdentity::SecIdentityCreate;
-#[cfg(all(feature = "SecBase", feature = "SecIdentity"))]
-pub use self::__SecIdentity::SecIdentityCreateWithCertificate;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecIdentity",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecIdentity::SecIdentitySetPreference;
-#[cfg(all(feature = "SecBase", feature = "SecIdentity"))]
-pub use self::__SecIdentity::SecIdentitySetPreferred;
-#[cfg(all(feature = "SecBase", feature = "SecIdentity"))]
-pub use self::__SecIdentity::SecIdentitySetSystemIdentity;
 #[cfg(feature = "SecIdentitySearch")]
 pub use self::__SecIdentitySearch::SecIdentitySearch;
-#[cfg(all(feature = "SecBase", feature = "SecIdentitySearch"))]
-pub use self::__SecIdentitySearch::SecIdentitySearchCopyNext;
-#[cfg(all(
-    feature = "SecIdentitySearch",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecIdentitySearch::SecIdentitySearchCreate;
 #[cfg(feature = "SecImportExport")]
 pub use self::__SecImportExport::kSecImportExportAccess;
 #[cfg(feature = "SecImportExport")]
@@ -3130,20 +2803,6 @@ pub use self::__SecImportExport::SecKeyImportExportFlags;
     feature = "cssmtype"
 ))]
 pub use self::__SecImportExport::SecKeyImportExportParameters;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecImportExport",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecImportExport::SecKeychainItemExport;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecImportExport",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecImportExport::SecKeychainItemImport;
 #[cfg(feature = "SecImportExport")]
 pub use self::__SecImportExport::SecPKCS12Import;
 #[cfg(feature = "SecImportExport")]
@@ -3722,87 +3381,14 @@ pub use self::__SecKey::kSecPublicKeyAttrs;
 pub use self::__SecKey::SecCredentialType;
 #[cfg(feature = "SecKey")]
 pub use self::__SecKey::SecKeyAlgorithm;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyCopyAttributes;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyCopyExternalRepresentation;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyCopyKeyExchangeResult;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyCopyPublicKey;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyCreateDecryptedData;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyCreateEncryptedData;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyCreateFromData;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecKey",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecKey::SecKeyCreatePair;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyCreateRandomKey;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyCreateSignature;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyCreateWithData;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyDeriveFromPassword;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecKey",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecKey::SecKeyGenerate;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyGeneratePair;
 #[cfg(all(feature = "SecBase", feature = "SecKey", feature = "block2"))]
 pub use self::__SecKey::SecKeyGeneratePairBlock;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyGenerateSymmetric;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyGetBlockSize;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecKey",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecKey::SecKeyGetCSPHandle;
-#[cfg(all(
-    feature = "SecAsn1Types",
-    feature = "SecBase",
-    feature = "SecKey",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecKey::SecKeyGetCSSMKey;
-#[cfg(all(
-    feature = "SecAsn1Types",
-    feature = "SecBase",
-    feature = "SecKey",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecKey::SecKeyGetCredentials;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyIsAlgorithmSupported;
 #[cfg(feature = "SecKey")]
 pub use self::__SecKey::SecKeyKeyExchangeParameter;
 #[cfg(feature = "SecKey")]
 pub use self::__SecKey::SecKeyOperationType;
 #[cfg(feature = "SecKey")]
 pub use self::__SecKey::SecKeySizes;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyUnwrapSymmetric;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyVerifySignature;
-#[cfg(all(feature = "SecBase", feature = "SecKey"))]
-pub use self::__SecKey::SecKeyWrapSymmetric;
 #[cfg(feature = "SecKey")]
 pub use self::__SecKey::SecPadding;
 #[cfg(feature = "SecKeychain")]
@@ -3814,95 +3400,15 @@ pub use self::__SecKeychain::kSecWritePermStatus;
 #[cfg(feature = "SecKeychain")]
 pub use self::__SecKeychain::SecAuthenticationType;
 #[cfg(all(feature = "SecBase", feature = "SecKeychain", feature = "libc"))]
-pub use self::__SecKeychain::SecKeychainAddCallback;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainAddGenericPassword;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainAddInternetPassword;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainAttributeInfoForItemID;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain", feature = "libc"))]
 pub use self::__SecKeychain::SecKeychainCallback;
 #[cfg(all(feature = "SecBase", feature = "SecKeychain", feature = "libc"))]
 pub use self::__SecKeychain::SecKeychainCallbackInfo;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainCopyAccess;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainCopyDefault;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainCopyDomainDefault;
-#[cfg(feature = "SecKeychain")]
-pub use self::__SecKeychain::SecKeychainCopyDomainSearchList;
-#[cfg(feature = "SecKeychain")]
-pub use self::__SecKeychain::SecKeychainCopySearchList;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainCopySettings;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainCreate;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainDelete;
 #[cfg(feature = "SecKeychain")]
 pub use self::__SecKeychain::SecKeychainEvent;
 #[cfg(feature = "SecKeychain")]
 pub use self::__SecKeychain::SecKeychainEventMask;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainFindGenericPassword;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainFindInternetPassword;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainFreeAttributeInfo;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecKeychain",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecKeychain::SecKeychainGetCSPHandle;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecKeychain",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecKeychain::SecKeychainGetDLDBHandle;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainGetPath;
-#[cfg(feature = "SecKeychain")]
-pub use self::__SecKeychain::SecKeychainGetPreferenceDomain;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainGetStatus;
-#[cfg(feature = "SecKeychain")]
-pub use self::__SecKeychain::SecKeychainGetUserInteractionAllowed;
-#[cfg(feature = "SecKeychain")]
-pub use self::__SecKeychain::SecKeychainGetVersion;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainLock;
-#[cfg(feature = "SecKeychain")]
-pub use self::__SecKeychain::SecKeychainLockAll;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainOpen;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain", feature = "libc"))]
-pub use self::__SecKeychain::SecKeychainRemoveCallback;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainSetAccess;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainSetDefault;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainSetDomainDefault;
-#[cfg(feature = "SecKeychain")]
-pub use self::__SecKeychain::SecKeychainSetDomainSearchList;
-#[cfg(feature = "SecKeychain")]
-pub use self::__SecKeychain::SecKeychainSetPreferenceDomain;
-#[cfg(feature = "SecKeychain")]
-pub use self::__SecKeychain::SecKeychainSetSearchList;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainSetSettings;
-#[cfg(feature = "SecKeychain")]
-pub use self::__SecKeychain::SecKeychainSetUserInteractionAllowed;
 #[cfg(feature = "SecKeychain")]
 pub use self::__SecKeychain::SecKeychainSettings;
-#[cfg(all(feature = "SecBase", feature = "SecKeychain"))]
-pub use self::__SecKeychain::SecKeychainUnlock;
 #[cfg(feature = "SecKeychain")]
 pub use self::__SecKeychain::SecPreferencesDomain;
 #[cfg(feature = "SecKeychain")]
@@ -3913,59 +3419,8 @@ pub use self::__SecKeychainItem::SecAFPServerSignature;
 pub use self::__SecKeychainItem::SecItemAttr;
 #[cfg(feature = "SecKeychainItem")]
 pub use self::__SecKeychainItem::SecItemClass;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-pub use self::__SecKeychainItem::SecKeychainItemCopyAccess;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-pub use self::__SecKeychainItem::SecKeychainItemCopyAttributesAndData;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-pub use self::__SecKeychainItem::SecKeychainItemCopyContent;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-pub use self::__SecKeychainItem::SecKeychainItemCopyFromPersistentReference;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-pub use self::__SecKeychainItem::SecKeychainItemCopyKeychain;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-pub use self::__SecKeychainItem::SecKeychainItemCreateCopy;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-pub use self::__SecKeychainItem::SecKeychainItemCreateFromContent;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-pub use self::__SecKeychainItem::SecKeychainItemCreatePersistentReference;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-pub use self::__SecKeychainItem::SecKeychainItemDelete;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-pub use self::__SecKeychainItem::SecKeychainItemFreeAttributesAndData;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-pub use self::__SecKeychainItem::SecKeychainItemFreeContent;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecKeychainItem",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecKeychainItem::SecKeychainItemGetDLDBHandle;
-#[cfg(all(
-    feature = "SecAsn1Types",
-    feature = "SecBase",
-    feature = "SecKeychainItem",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecKeychainItem::SecKeychainItemGetUniqueRecordID;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-pub use self::__SecKeychainItem::SecKeychainItemModifyAttributesAndData;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-pub use self::__SecKeychainItem::SecKeychainItemModifyContent;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainItem"))]
-pub use self::__SecKeychainItem::SecKeychainItemSetAccess;
 #[cfg(feature = "SecKeychainItem")]
 pub use self::__SecKeychainItem::SecPublicKeyHash;
-#[cfg(all(feature = "SecBase", feature = "SecKeychainSearch"))]
-pub use self::__SecKeychainSearch::SecKeychainSearchCopyNext;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecKeychainItem",
-    feature = "SecKeychainSearch"
-))]
-pub use self::__SecKeychainSearch::SecKeychainSearchCreateFromAttributes;
 #[cfg(feature = "SecPolicy")]
 pub use self::__SecPolicy::kSecPolicyAppleCodeSigning;
 #[cfg(feature = "SecPolicy")]
@@ -4048,76 +3503,10 @@ pub use self::__SecPolicy::kSecRevocationPreferCRL;
 pub use self::__SecPolicy::kSecRevocationRequirePositiveResponse;
 #[cfg(feature = "SecPolicy")]
 pub use self::__SecPolicy::kSecRevocationUseAnyAvailableMethod;
-#[cfg(all(feature = "SecBase", feature = "SecPolicy"))]
-pub use self::__SecPolicy::SecPolicyCopyProperties;
-#[cfg(all(feature = "SecBase", feature = "SecPolicy"))]
-pub use self::__SecPolicy::SecPolicyCreateBasicX509;
-#[cfg(all(feature = "SecBase", feature = "SecPolicy"))]
-pub use self::__SecPolicy::SecPolicyCreateRevocation;
-#[cfg(all(feature = "SecBase", feature = "SecPolicy"))]
-pub use self::__SecPolicy::SecPolicyCreateSSL;
-#[cfg(all(feature = "SecBase", feature = "SecPolicy"))]
-pub use self::__SecPolicy::SecPolicyCreateWithOID;
-#[cfg(all(feature = "SecBase", feature = "SecPolicy"))]
-pub use self::__SecPolicy::SecPolicyCreateWithProperties;
-#[cfg(all(feature = "SecAsn1Types", feature = "SecBase", feature = "SecPolicy"))]
-pub use self::__SecPolicy::SecPolicyGetOID;
-#[cfg(all(
-    feature = "SecBase",
-    feature = "SecPolicy",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecPolicy::SecPolicyGetTPHandle;
-#[cfg(all(feature = "SecAsn1Types", feature = "SecBase", feature = "SecPolicy"))]
-pub use self::__SecPolicy::SecPolicyGetValue;
-#[cfg(all(feature = "SecBase", feature = "SecPolicy"))]
-pub use self::__SecPolicy::SecPolicySetProperties;
-#[cfg(all(feature = "SecAsn1Types", feature = "SecBase", feature = "SecPolicy"))]
-pub use self::__SecPolicy::SecPolicySetValue;
 #[cfg(feature = "SecPolicySearch")]
 pub use self::__SecPolicySearch::SecPolicySearch;
-#[cfg(all(feature = "SecBase", feature = "SecPolicySearch"))]
-pub use self::__SecPolicySearch::SecPolicySearchCopyNext;
-#[cfg(all(
-    feature = "SecAsn1Types",
-    feature = "SecPolicySearch",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecPolicySearch::SecPolicySearchCreate;
 #[cfg(feature = "SecProtocolMetadata")]
 pub use self::__SecProtocolMetadata::sec_protocol_metadata;
-#[cfg(all(
-    feature = "SecProtocolMetadata",
-    feature = "SecProtocolTypes",
-    feature = "block2"
-))]
-pub use self::__SecProtocolMetadata::sec_protocol_metadata_access_peer_certificate_chain;
-#[cfg(all(feature = "SecProtocolMetadata", feature = "block2"))]
-pub use self::__SecProtocolMetadata::sec_protocol_metadata_access_supported_signature_algorithms;
-#[cfg(feature = "SecProtocolMetadata")]
-pub use self::__SecProtocolMetadata::sec_protocol_metadata_challenge_parameters_are_equal;
-#[cfg(feature = "SecProtocolMetadata")]
-pub use self::__SecProtocolMetadata::sec_protocol_metadata_copy_negotiated_protocol;
-#[cfg(feature = "SecProtocolMetadata")]
-pub use self::__SecProtocolMetadata::sec_protocol_metadata_copy_server_name;
-#[cfg(feature = "SecProtocolMetadata")]
-pub use self::__SecProtocolMetadata::sec_protocol_metadata_get_early_data_accepted;
-#[cfg(all(feature = "CipherSuite", feature = "SecProtocolMetadata"))]
-pub use self::__SecProtocolMetadata::sec_protocol_metadata_get_negotiated_ciphersuite;
-#[cfg(feature = "SecProtocolMetadata")]
-pub use self::__SecProtocolMetadata::sec_protocol_metadata_get_negotiated_protocol;
-#[cfg(all(feature = "SecProtocolMetadata", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolMetadata::sec_protocol_metadata_get_negotiated_protocol_version;
-#[cfg(all(feature = "SecProtocolMetadata", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolMetadata::sec_protocol_metadata_get_negotiated_tls_ciphersuite;
-#[cfg(all(feature = "SecProtocolMetadata", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolMetadata::sec_protocol_metadata_get_negotiated_tls_protocol_version;
-#[cfg(feature = "SecProtocolMetadata")]
-pub use self::__SecProtocolMetadata::sec_protocol_metadata_get_server_name;
-#[cfg(feature = "SecProtocolMetadata")]
-pub use self::__SecProtocolMetadata::sec_protocol_metadata_peers_are_equal;
 #[cfg(feature = "SecProtocolMetadata")]
 pub use self::__SecProtocolMetadata::sec_protocol_metadata_t;
 #[cfg(feature = "SecProtocolObject")]
@@ -4152,64 +3541,6 @@ pub use self::__SecProtocolOptions::sec_protocol_key_update_t;
 #[cfg(feature = "SecProtocolOptions")]
 pub use self::__SecProtocolOptions::sec_protocol_options;
 #[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_add_tls_application_protocol;
-#[cfg(all(feature = "CipherSuite", feature = "SecProtocolOptions"))]
-pub use self::__SecProtocolOptions::sec_protocol_options_add_tls_ciphersuite;
-#[cfg(all(feature = "CipherSuite", feature = "SecProtocolOptions"))]
-pub use self::__SecProtocolOptions::sec_protocol_options_add_tls_ciphersuite_group;
-#[cfg(all(feature = "SecProtocolOptions", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolOptions::sec_protocol_options_append_tls_ciphersuite;
-#[cfg(all(feature = "SecProtocolOptions", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolOptions::sec_protocol_options_append_tls_ciphersuite_group;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_are_equal;
-#[cfg(all(feature = "SecProtocolOptions", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolOptions::sec_protocol_options_get_default_max_dtls_protocol_version;
-#[cfg(all(feature = "SecProtocolOptions", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolOptions::sec_protocol_options_get_default_max_tls_protocol_version;
-#[cfg(all(feature = "SecProtocolOptions", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolOptions::sec_protocol_options_get_default_min_dtls_protocol_version;
-#[cfg(all(feature = "SecProtocolOptions", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolOptions::sec_protocol_options_get_default_min_tls_protocol_version;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_get_enable_encrypted_client_hello;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_get_quic_use_legacy_codepoint;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_enable_encrypted_client_hello;
-#[cfg(all(feature = "SecProtocolOptions", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_local_identity;
-#[cfg(all(feature = "SecProtocolOptions", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_max_tls_protocol_version;
-#[cfg(all(feature = "SecProtocolOptions", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_min_tls_protocol_version;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_peer_authentication_optional;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_peer_authentication_required;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_quic_use_legacy_codepoint;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_tls_false_start_enabled;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_tls_is_fallback_attempt;
-#[cfg(all(feature = "SecProtocolOptions", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_tls_max_version;
-#[cfg(all(feature = "SecProtocolOptions", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_tls_min_version;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_tls_ocsp_enabled;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_tls_renegotiation_enabled;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_tls_resumption_enabled;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_tls_sct_enabled;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_tls_server_name;
-#[cfg(feature = "SecProtocolOptions")]
-pub use self::__SecProtocolOptions::sec_protocol_options_set_tls_tickets_enabled;
-#[cfg(feature = "SecProtocolOptions")]
 pub use self::__SecProtocolOptions::sec_protocol_options_t;
 #[cfg(all(feature = "SecProtocolOptions", feature = "block2"))]
 pub use self::__SecProtocolOptions::sec_protocol_verify_complete_t;
@@ -4222,32 +3553,14 @@ pub use self::__SecProtocolOptions::sec_protocol_verify_complete_t;
 pub use self::__SecProtocolOptions::sec_protocol_verify_t;
 #[cfg(feature = "SecProtocolTypes")]
 pub use self::__SecProtocolTypes::sec_certificate;
-#[cfg(all(feature = "SecBase", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolTypes::sec_certificate_copy_ref;
-#[cfg(all(feature = "SecBase", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolTypes::sec_certificate_create;
 #[cfg(feature = "SecProtocolTypes")]
 pub use self::__SecProtocolTypes::sec_certificate_t;
 #[cfg(feature = "SecProtocolTypes")]
 pub use self::__SecProtocolTypes::sec_identity;
-#[cfg(all(feature = "SecProtocolTypes", feature = "block2"))]
-pub use self::__SecProtocolTypes::sec_identity_access_certificates;
-#[cfg(feature = "SecProtocolTypes")]
-pub use self::__SecProtocolTypes::sec_identity_copy_certificates_ref;
-#[cfg(all(feature = "SecBase", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolTypes::sec_identity_copy_ref;
-#[cfg(all(feature = "SecBase", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolTypes::sec_identity_create;
-#[cfg(all(feature = "SecBase", feature = "SecProtocolTypes"))]
-pub use self::__SecProtocolTypes::sec_identity_create_with_certificates;
 #[cfg(feature = "SecProtocolTypes")]
 pub use self::__SecProtocolTypes::sec_identity_t;
 #[cfg(feature = "SecProtocolTypes")]
 pub use self::__SecProtocolTypes::sec_trust;
-#[cfg(all(feature = "SecProtocolTypes", feature = "SecTrust"))]
-pub use self::__SecProtocolTypes::sec_trust_copy_ref;
-#[cfg(all(feature = "SecProtocolTypes", feature = "SecTrust"))]
-pub use self::__SecProtocolTypes::sec_trust_create;
 #[cfg(feature = "SecProtocolTypes")]
 pub use self::__SecProtocolTypes::sec_trust_t;
 #[cfg(feature = "SecProtocolTypes")]
@@ -4264,16 +3577,6 @@ pub use self::__SecRandom::kSecRandomDefault;
 pub use self::__SecRandom::SecRandomCopyBytes;
 #[cfg(feature = "SecRandom")]
 pub use self::__SecRandom::SecRandomRef;
-#[cfg(all(feature = "CSCommon", feature = "SecRequirement"))]
-pub use self::__SecRequirement::SecRequirementCopyData;
-#[cfg(all(feature = "CSCommon", feature = "SecRequirement"))]
-pub use self::__SecRequirement::SecRequirementCopyString;
-#[cfg(all(feature = "CSCommon", feature = "SecRequirement"))]
-pub use self::__SecRequirement::SecRequirementCreateWithData;
-#[cfg(all(feature = "CSCommon", feature = "SecRequirement"))]
-pub use self::__SecRequirement::SecRequirementCreateWithString;
-#[cfg(all(feature = "CSCommon", feature = "SecRequirement"))]
-pub use self::__SecRequirement::SecRequirementCreateWithStringAndErrors;
 #[cfg(feature = "SecSharedCredential")]
 pub use self::__SecSharedCredential::kSecSharedPassword;
 #[cfg(all(feature = "SecSharedCredential", feature = "block2"))]
@@ -4346,26 +3649,8 @@ pub use self::__SecStaticCode::kSecCodeAttributeBundleVersion;
 pub use self::__SecStaticCode::kSecCodeAttributeSubarchitecture;
 #[cfg(feature = "SecStaticCode")]
 pub use self::__SecStaticCode::kSecCodeAttributeUniversalFileOffset;
-#[cfg(all(feature = "CSCommon", feature = "SecStaticCode"))]
-pub use self::__SecStaticCode::SecStaticCodeCheckValidity;
-#[cfg(all(feature = "CSCommon", feature = "SecStaticCode"))]
-pub use self::__SecStaticCode::SecStaticCodeCheckValidityWithErrors;
-#[cfg(all(feature = "CSCommon", feature = "SecStaticCode"))]
-pub use self::__SecStaticCode::SecStaticCodeCreateWithPath;
-#[cfg(all(feature = "CSCommon", feature = "SecStaticCode"))]
-pub use self::__SecStaticCode::SecStaticCodeCreateWithPathAndAttributes;
 #[cfg(feature = "SecTask")]
 pub use self::__SecTask::SecTask;
-#[cfg(feature = "SecTask")]
-pub use self::__SecTask::SecTaskCopySigningIdentifier;
-#[cfg(feature = "SecTask")]
-pub use self::__SecTask::SecTaskCopyValueForEntitlement;
-#[cfg(feature = "SecTask")]
-pub use self::__SecTask::SecTaskCopyValuesForEntitlements;
-#[cfg(feature = "SecTask")]
-pub use self::__SecTask::SecTaskCreateFromSelf;
-#[cfg(feature = "SecTask")]
-pub use self::__SecTask::SecTaskGetCodeSignStatus;
 #[cfg(feature = "SecTransform")]
 pub use self::__SecTransform::kSecTransformAbortAttributeName;
 #[cfg(feature = "SecTransform")]
@@ -4479,109 +3764,19 @@ pub use self::__SecTrust::SecTrust;
 #[cfg(all(feature = "SecTrust", feature = "block2"))]
 pub use self::__SecTrust::SecTrustCallback;
 #[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustCopyAnchorCertificates;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustCopyCertificateChain;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustCopyCustomAnchorCertificates;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustCopyExceptions;
-#[cfg(all(feature = "SecBase", feature = "SecTrust"))]
-pub use self::__SecTrust::SecTrustCopyKey;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustCopyPolicies;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustCopyProperties;
-#[cfg(all(feature = "SecBase", feature = "SecTrust"))]
-pub use self::__SecTrust::SecTrustCopyPublicKey;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustCopyResult;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustCreateWithCertificates;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustEvaluate;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustEvaluateWithError;
-#[cfg(all(feature = "SecBase", feature = "SecTrust"))]
-pub use self::__SecTrust::SecTrustGetCertificateAtIndex;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustGetCertificateCount;
-#[cfg(all(feature = "SecTrust", feature = "cssmconfig", feature = "cssmtype"))]
-pub use self::__SecTrust::SecTrustGetCssmResult;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustGetCssmResultCode;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustGetNetworkFetchAllowed;
-#[cfg(all(
-    feature = "SecAsn1Types",
-    feature = "SecTrust",
-    feature = "cssmapple",
-    feature = "cssmconfig",
-    feature = "cssmtype"
-))]
-pub use self::__SecTrust::SecTrustGetResult;
-#[cfg(all(feature = "SecTrust", feature = "cssmconfig", feature = "cssmtype"))]
-pub use self::__SecTrust::SecTrustGetTPHandle;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustGetTrustResult;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustGetVerifyTime;
-#[cfg(feature = "SecTrust")]
 pub use self::__SecTrust::SecTrustOptionFlags;
 #[cfg(feature = "SecTrust")]
 pub use self::__SecTrust::SecTrustResultType;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustSetAnchorCertificates;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustSetAnchorCertificatesOnly;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustSetExceptions;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustSetKeychains;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustSetNetworkFetchAllowed;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustSetOCSPResponse;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustSetOptions;
-#[cfg(all(feature = "SecTrust", feature = "cssmconfig", feature = "cssmtype"))]
-pub use self::__SecTrust::SecTrustSetParameters;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustSetPolicies;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustSetSignedCertificateTimestamps;
-#[cfg(feature = "SecTrust")]
-pub use self::__SecTrust::SecTrustSetVerifyDate;
 #[cfg(feature = "SecTrust")]
 pub use self::__SecTrust::SecTrustUserSetting;
 #[cfg(all(feature = "SecTrust", feature = "block2"))]
 pub use self::__SecTrust::SecTrustWithErrorCallback;
 #[cfg(feature = "SecTrustSettings")]
-pub use self::__SecTrustSettings::SecTrustSettingsCopyCertificates;
-#[cfg(all(feature = "SecBase", feature = "SecTrustSettings"))]
-pub use self::__SecTrustSettings::SecTrustSettingsCopyModificationDate;
-#[cfg(all(feature = "SecBase", feature = "SecTrustSettings"))]
-pub use self::__SecTrustSettings::SecTrustSettingsCopyTrustSettings;
-#[cfg(feature = "SecTrustSettings")]
-pub use self::__SecTrustSettings::SecTrustSettingsCreateExternalRepresentation;
-#[cfg(feature = "SecTrustSettings")]
 pub use self::__SecTrustSettings::SecTrustSettingsDomain;
 #[cfg(feature = "SecTrustSettings")]
-pub use self::__SecTrustSettings::SecTrustSettingsImportExternalRepresentation;
-#[cfg(feature = "SecTrustSettings")]
 pub use self::__SecTrustSettings::SecTrustSettingsKeyUsage;
-#[cfg(all(feature = "SecBase", feature = "SecTrustSettings"))]
-pub use self::__SecTrustSettings::SecTrustSettingsRemoveTrustSettings;
 #[cfg(feature = "SecTrustSettings")]
 pub use self::__SecTrustSettings::SecTrustSettingsResult;
-#[cfg(all(feature = "SecBase", feature = "SecTrustSettings"))]
-pub use self::__SecTrustSettings::SecTrustSettingsSetTrustSettings;
-#[cfg(all(feature = "SecBase", feature = "SecTrustedApplication"))]
-pub use self::__SecTrustedApplication::SecTrustedApplicationCopyData;
-#[cfg(all(feature = "SecBase", feature = "SecTrustedApplication"))]
-pub use self::__SecTrustedApplication::SecTrustedApplicationCreateFromPath;
-#[cfg(all(feature = "SecBase", feature = "SecTrustedApplication"))]
-pub use self::__SecTrustedApplication::SecTrustedApplicationSetData;
 #[cfg(feature = "SecureDownload")]
 pub use self::__SecureDownload::errSecureDownloadInvalidDownload;
 #[cfg(feature = "SecureDownload")]

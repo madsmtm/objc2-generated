@@ -2572,11 +2572,7 @@ pub use self::__AppleEvents::AERemoteProcessResolverCallback;
 #[cfg(feature = "AppleEvents")]
 pub use self::__AppleEvents::AERemoteProcessResolverContext;
 #[cfg(feature = "AppleEvents")]
-pub use self::__AppleEvents::AERemoteProcessResolverGetProcesses;
-#[cfg(feature = "AppleEvents")]
 pub use self::__AppleEvents::AERemoteProcessResolverRef;
-#[cfg(feature = "AppleEvents")]
-pub use self::__AppleEvents::AERemoteProcessResolverScheduleWithRunLoop;
 #[cfg(all(feature = "AEDataModel", feature = "AppleEvents"))]
 pub use self::__AppleEvents::AERemoveEventHandler;
 #[cfg(all(feature = "AEDataModel", feature = "AppleEvents"))]

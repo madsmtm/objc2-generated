@@ -111,20 +111,3 @@ impl VTMultiPassStorage {
         unsafe { VTMultiPassStorageClose(self) }
     }
 }
-
-extern "C-unwind" {
-    #[cfg(feature = "objc2-core-media")]
-    #[deprecated = "renamed to `VTMultiPassStorage::create`"]
-    pub fn VTMultiPassStorageCreate(
-        allocator: Option<&CFAllocator>,
-        file_url: Option<&CFURL>,
-        time_range: CMTimeRange,
-        options: Option<&CFDictionary>,
-        multi_pass_storage_out: NonNull<*mut VTMultiPassStorage>,
-    ) -> OSStatus;
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `VTMultiPassStorage::close`"]
-    pub fn VTMultiPassStorageClose(multi_pass_storage: &VTMultiPassStorage) -> OSStatus;
-}

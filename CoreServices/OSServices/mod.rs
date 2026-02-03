@@ -43,85 +43,13 @@ pub use self::__CSIdentity::kCSIdentityGeneratePosixName;
 #[cfg(feature = "CSIdentity")]
 pub use self::__CSIdentity::CSIdentity;
 #[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityAddAlias;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityAddMember;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityAuthenticateUsingPassword;
-#[cfg(feature = "CSIdentity")]
 pub use self::__CSIdentity::CSIdentityClass;
 #[cfg(feature = "CSIdentity")]
 pub use self::__CSIdentity::CSIdentityClientContext;
-#[cfg(all(feature = "CSIdentity", feature = "objc2-security"))]
-pub use self::__CSIdentity::CSIdentityCommit;
-#[cfg(all(feature = "CSIdentity", feature = "objc2-security"))]
-pub use self::__CSIdentity::CSIdentityCommitAsynchronously;
-#[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
-pub use self::__CSIdentity::CSIdentityCreate;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityCreateCopy;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityCreateGroupMembershipQuery;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityCreatePersistentReference;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityDelete;
 #[cfg(feature = "CSIdentity")]
 pub use self::__CSIdentity::CSIdentityFlags;
 #[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityGetAliases;
-#[cfg(all(feature = "CSIdentity", feature = "CSIdentityAuthority"))]
-pub use self::__CSIdentity::CSIdentityGetAuthority;
-#[cfg(all(feature = "CSIdentity", feature = "objc2-security"))]
-pub use self::__CSIdentity::CSIdentityGetCertificate;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityGetClass;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityGetEmailAddress;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityGetFullName;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityGetImageData;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityGetImageDataType;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityGetImageURL;
-#[cfg(all(feature = "CSIdentity", feature = "libc"))]
-pub use self::__CSIdentity::CSIdentityGetPosixID;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityGetPosixName;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityGetUUID;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityIsCommitting;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityIsEnabled;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityIsHidden;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityIsMemberOfGroup;
-#[cfg(feature = "CSIdentity")]
 pub use self::__CSIdentity::CSIdentityQuery;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityRemoveAlias;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityRemoveClient;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentityRemoveMember;
-#[cfg(all(feature = "CSIdentity", feature = "objc2-security"))]
-pub use self::__CSIdentity::CSIdentitySetCertificate;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentitySetEmailAddress;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentitySetFullName;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentitySetImageData;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentitySetImageURL;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentitySetIsEnabled;
-#[cfg(feature = "CSIdentity")]
-pub use self::__CSIdentity::CSIdentitySetPassword;
 #[cfg(feature = "CSIdentity")]
 pub use self::__CSIdentity::CSIdentityStatusUpdatedCallback;
 #[cfg(feature = "CSIdentityAuthority")]
@@ -132,8 +60,6 @@ pub use self::__CSIdentityAuthority::CSGetLocalIdentityAuthority;
 pub use self::__CSIdentityAuthority::CSGetManagedIdentityAuthority;
 #[cfg(feature = "CSIdentityAuthority")]
 pub use self::__CSIdentityAuthority::CSIdentityAuthority;
-#[cfg(feature = "CSIdentityAuthority")]
-pub use self::__CSIdentityAuthority::CSIdentityAuthorityCopyLocalizedName;
 #[cfg(feature = "CSIdentityBase")]
 pub use self::__CSIdentityBase::kCSIdentityAuthorityNotAccessibleErr;
 #[cfg(feature = "CSIdentityBase")]
@@ -172,49 +98,12 @@ pub use self::__CSIdentityQuery::kCSIdentityQueryStringBeginsWith;
 pub use self::__CSIdentityQuery::kCSIdentityQueryStringEquals;
 #[cfg(all(feature = "CSIdentity", feature = "CSIdentityQuery"))]
 pub use self::__CSIdentityQuery::CSIdentityQueryClientContext;
-#[cfg(all(feature = "CSIdentity", feature = "CSIdentityQuery"))]
-pub use self::__CSIdentityQuery::CSIdentityQueryCopyResults;
-#[cfg(all(
-    feature = "CSIdentity",
-    feature = "CSIdentityAuthority",
-    feature = "CSIdentityQuery"
-))]
-pub use self::__CSIdentityQuery::CSIdentityQueryCreate;
-#[cfg(all(feature = "CSIdentity", feature = "CSIdentityQuery"))]
-pub use self::__CSIdentityQuery::CSIdentityQueryCreateForCurrentUser;
-#[cfg(all(
-    feature = "CSIdentity",
-    feature = "CSIdentityAuthority",
-    feature = "CSIdentityQuery"
-))]
-pub use self::__CSIdentityQuery::CSIdentityQueryCreateForName;
-#[cfg(all(feature = "CSIdentity", feature = "CSIdentityQuery"))]
-pub use self::__CSIdentityQuery::CSIdentityQueryCreateForPersistentReference;
-#[cfg(all(
-    feature = "CSIdentity",
-    feature = "CSIdentityAuthority",
-    feature = "CSIdentityQuery",
-    feature = "libc"
-))]
-pub use self::__CSIdentityQuery::CSIdentityQueryCreateForPosixID;
-#[cfg(all(
-    feature = "CSIdentity",
-    feature = "CSIdentityAuthority",
-    feature = "CSIdentityQuery"
-))]
-pub use self::__CSIdentityQuery::CSIdentityQueryCreateForUUID;
 #[cfg(feature = "CSIdentityQuery")]
 pub use self::__CSIdentityQuery::CSIdentityQueryEvent;
-#[cfg(all(feature = "CSIdentity", feature = "CSIdentityQuery"))]
-pub use self::__CSIdentityQuery::CSIdentityQueryExecute;
-#[cfg(all(feature = "CSIdentity", feature = "CSIdentityQuery"))]
-pub use self::__CSIdentityQuery::CSIdentityQueryExecuteAsynchronously;
 #[cfg(feature = "CSIdentityQuery")]
 pub use self::__CSIdentityQuery::CSIdentityQueryFlags;
 #[cfg(all(feature = "CSIdentity", feature = "CSIdentityQuery"))]
 pub use self::__CSIdentityQuery::CSIdentityQueryReceiveEventCallback;
-#[cfg(all(feature = "CSIdentity", feature = "CSIdentityQuery"))]
-pub use self::__CSIdentityQuery::CSIdentityQueryStop;
 #[cfg(feature = "CSIdentityQuery")]
 pub use self::__CSIdentityQuery::CSIdentityQueryStringComparisonMethod;
 #[cfg(feature = "IconStorage")]
@@ -367,66 +256,20 @@ pub use self::__WSMethodInvocation::kWSStreamErrorError;
 pub use self::__WSMethodInvocation::kWSStreamErrorMessage;
 #[cfg(feature = "WSMethodInvocation")]
 pub use self::__WSMethodInvocation::WSMethodInvocation;
-#[cfg(all(feature = "WSMethodInvocation", feature = "WSTypes"))]
-pub use self::__WSMethodInvocation::WSMethodInvocationAddDeserializationOverride;
-#[cfg(all(feature = "WSMethodInvocation", feature = "WSTypes"))]
-pub use self::__WSMethodInvocation::WSMethodInvocationAddSerializationOverride;
 #[cfg(feature = "WSMethodInvocation")]
 pub use self::__WSMethodInvocation::WSMethodInvocationCallBackProcPtr;
 #[cfg(feature = "WSMethodInvocation")]
-pub use self::__WSMethodInvocation::WSMethodInvocationCopyParameters;
-#[cfg(feature = "WSMethodInvocation")]
-pub use self::__WSMethodInvocation::WSMethodInvocationCopyProperty;
-#[cfg(feature = "WSMethodInvocation")]
-pub use self::__WSMethodInvocation::WSMethodInvocationCopySerialization;
-#[cfg(feature = "WSMethodInvocation")]
-pub use self::__WSMethodInvocation::WSMethodInvocationCreate;
-#[cfg(feature = "WSMethodInvocation")]
-pub use self::__WSMethodInvocation::WSMethodInvocationCreateFromSerialization;
-#[cfg(feature = "WSMethodInvocation")]
 pub use self::__WSMethodInvocation::WSMethodInvocationDeserializationProcPtr;
 #[cfg(feature = "WSMethodInvocation")]
-pub use self::__WSMethodInvocation::WSMethodInvocationInvoke;
-#[cfg(feature = "WSMethodInvocation")]
-pub use self::__WSMethodInvocation::WSMethodInvocationScheduleWithRunLoop;
-#[cfg(feature = "WSMethodInvocation")]
 pub use self::__WSMethodInvocation::WSMethodInvocationSerializationProcPtr;
-#[cfg(all(feature = "WSMethodInvocation", feature = "WSTypes"))]
-pub use self::__WSMethodInvocation::WSMethodInvocationSetCallBack;
-#[cfg(feature = "WSMethodInvocation")]
-pub use self::__WSMethodInvocation::WSMethodInvocationSetParameters;
-#[cfg(feature = "WSMethodInvocation")]
-pub use self::__WSMethodInvocation::WSMethodInvocationSetProperty;
-#[cfg(feature = "WSMethodInvocation")]
-pub use self::__WSMethodInvocation::WSMethodInvocationUnscheduleFromRunLoop;
 #[cfg(feature = "WSMethodInvocation")]
 pub use self::__WSMethodInvocation::WSMethodResultIsFault;
 #[cfg(feature = "WSProtocolHandler")]
 pub use self::__WSProtocolHandler::WSProtocolHandler;
 #[cfg(feature = "WSProtocolHandler")]
-pub use self::__WSProtocolHandler::WSProtocolHandlerCopyFaultDocument;
-#[cfg(feature = "WSProtocolHandler")]
-pub use self::__WSProtocolHandler::WSProtocolHandlerCopyProperty;
-#[cfg(feature = "WSProtocolHandler")]
-pub use self::__WSProtocolHandler::WSProtocolHandlerCopyReplyDictionary;
-#[cfg(feature = "WSProtocolHandler")]
-pub use self::__WSProtocolHandler::WSProtocolHandlerCopyReplyDocument;
-#[cfg(feature = "WSProtocolHandler")]
-pub use self::__WSProtocolHandler::WSProtocolHandlerCopyRequestDictionary;
-#[cfg(feature = "WSProtocolHandler")]
-pub use self::__WSProtocolHandler::WSProtocolHandlerCopyRequestDocument;
-#[cfg(feature = "WSProtocolHandler")]
-pub use self::__WSProtocolHandler::WSProtocolHandlerCreate;
-#[cfg(feature = "WSProtocolHandler")]
 pub use self::__WSProtocolHandler::WSProtocolHandlerDeserializationProcPtr;
 #[cfg(feature = "WSProtocolHandler")]
 pub use self::__WSProtocolHandler::WSProtocolHandlerSerializationProcPtr;
-#[cfg(all(feature = "WSProtocolHandler", feature = "WSTypes"))]
-pub use self::__WSProtocolHandler::WSProtocolHandlerSetDeserializationOverride;
-#[cfg(feature = "WSProtocolHandler")]
-pub use self::__WSProtocolHandler::WSProtocolHandlerSetProperty;
-#[cfg(all(feature = "WSProtocolHandler", feature = "WSTypes"))]
-pub use self::__WSProtocolHandler::WSProtocolHandlerSetSerializationOverride;
 #[cfg(feature = "WSTypes")]
 pub use self::__WSTypes::errWSInternalError;
 #[cfg(feature = "WSTypes")]

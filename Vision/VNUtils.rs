@@ -237,9 +237,3 @@ impl VNElementType {
         unsafe { VNElementTypeSize(self) }
     }
 }
-
-extern "C-unwind" {
-    #[cfg(feature = "VNTypes")]
-    #[deprecated = "renamed to `VNElementType::size`"]
-    pub fn VNElementTypeSize(element_type: VNElementType) -> NSUInteger;
-}

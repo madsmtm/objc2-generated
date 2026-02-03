@@ -541,30 +541,3 @@ pub const errAEEventWouldRequireUserConsent: c_int = -1744;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreservices/kaedonotpromptforuserconsent?language=objc)
 pub const kAEDoNotPromptForUserConsent: c_uint = 0x00020000;
-
-#[deprecated = "renamed to `AERemoteProcessResolver::processes`"]
-#[inline]
-pub unsafe extern "C-unwind" fn AERemoteProcessResolverGetProcesses(
-    r#ref: AERemoteProcessResolverRef,
-    out_error: *mut CFStreamError,
-) -> Option<CFRetained<CFArray>> {
-    extern "C-unwind" {
-        fn AERemoteProcessResolverGetProcesses(
-            r#ref: AERemoteProcessResolverRef,
-            out_error: *mut CFStreamError,
-        ) -> Option<NonNull<CFArray>>;
-    }
-    let ret = unsafe { AERemoteProcessResolverGetProcesses(r#ref, out_error) };
-    ret.map(|ret| unsafe { CFRetained::retain(ret) })
-}
-
-extern "C-unwind" {
-    #[deprecated = "renamed to `AERemoteProcessResolver::schedule_with_run_loop`"]
-    pub fn AERemoteProcessResolverScheduleWithRunLoop(
-        r#ref: AERemoteProcessResolverRef,
-        run_loop: Option<&CFRunLoop>,
-        run_loop_mode: Option<&CFString>,
-        callback: AERemoteProcessResolverCallback,
-        ctx: *const AERemoteProcessResolverContext,
-    );
-}

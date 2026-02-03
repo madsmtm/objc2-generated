@@ -2224,10 +2224,6 @@ pub use self::__NSApplication::NSApplicationLaunchRemoteNotificationKey;
 #[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationLaunchUserNotificationKey;
 #[cfg(feature = "NSApplication")]
-pub use self::__NSApplication::NSApplicationLoad;
-#[cfg(feature = "NSApplication")]
-pub use self::__NSApplication::NSApplicationMain;
-#[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationOcclusionState;
 #[cfg(feature = "NSApplication")]
 pub use self::__NSApplication::NSApplicationPresentationOptions;

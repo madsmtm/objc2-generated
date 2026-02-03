@@ -48,26 +48,12 @@ pub use self::__MTAudioProcessingTap::MTAudioProcessingTap;
     feature = "objc2-core-media"
 ))]
 pub use self::__MTAudioProcessingTap::MTAudioProcessingTapCallbacks;
-#[cfg(all(
-    feature = "MTAudioProcessingTap",
-    feature = "objc2-core-audio-types",
-    feature = "objc2-core-media"
-))]
-pub use self::__MTAudioProcessingTap::MTAudioProcessingTapCreate;
 #[cfg(feature = "MTAudioProcessingTap")]
 pub use self::__MTAudioProcessingTap::MTAudioProcessingTapCreationFlags;
 #[cfg(feature = "MTAudioProcessingTap")]
 pub use self::__MTAudioProcessingTap::MTAudioProcessingTapFinalizeCallback;
 #[cfg(feature = "MTAudioProcessingTap")]
 pub use self::__MTAudioProcessingTap::MTAudioProcessingTapFlags;
-#[cfg(all(
-    feature = "MTAudioProcessingTap",
-    feature = "objc2-core-audio-types",
-    feature = "objc2-core-media"
-))]
-pub use self::__MTAudioProcessingTap::MTAudioProcessingTapGetSourceAudio;
-#[cfg(feature = "MTAudioProcessingTap")]
-pub use self::__MTAudioProcessingTap::MTAudioProcessingTapGetStorage;
 #[cfg(feature = "MTAudioProcessingTap")]
 pub use self::__MTAudioProcessingTap::MTAudioProcessingTapInitCallback;
 #[cfg(all(

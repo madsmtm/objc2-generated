@@ -106,14 +106,6 @@ pub use self::__MPSImage::MPSImage;
 #[cfg(feature = "MPSImage")]
 pub use self::__MPSImage::MPSImageAllocator;
 #[cfg(feature = "MPSImage")]
-pub use self::__MPSImage::MPSImageBatchIncrementReadCount;
-#[cfg(all(feature = "MPSImage", feature = "block2"))]
-pub use self::__MPSImage::MPSImageBatchIterate;
-#[cfg(feature = "MPSImage")]
-pub use self::__MPSImage::MPSImageBatchResourceSize;
-#[cfg(feature = "MPSImage")]
-pub use self::__MPSImage::MPSImageBatchSynchronize;
-#[cfg(feature = "MPSImage")]
 pub use self::__MPSImage::MPSImageDescriptor;
 #[cfg(feature = "MPSImage")]
 pub use self::__MPSImage::MPSImageReadWriteParams;
@@ -171,12 +163,6 @@ pub use self::__MPSNDArray::MPSTemporaryNDArray;
 pub use self::__MPSState::MPSState;
 #[cfg(feature = "MPSState")]
 pub use self::__MPSState::MPSStateBatch;
-#[cfg(feature = "MPSState")]
-pub use self::__MPSState::MPSStateBatchIncrementReadCount;
-#[cfg(feature = "MPSState")]
-pub use self::__MPSState::MPSStateBatchResourceSize;
-#[cfg(feature = "MPSState")]
-pub use self::__MPSState::MPSStateBatchSynchronize;
 #[cfg(feature = "MPSState")]
 pub use self::__MPSState::MPSStateResourceList;
 #[cfg(feature = "MPSState")]

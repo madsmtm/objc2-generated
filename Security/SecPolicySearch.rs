@@ -111,23 +111,3 @@ impl SecPolicySearch {
         unsafe { SecPolicySearchCopyNext(self, policy_ref) }
     }
 }
-
-extern "C-unwind" {
-    #[cfg(all(feature = "SecAsn1Types", feature = "cssmconfig", feature = "cssmtype"))]
-    #[deprecated = "renamed to `SecPolicySearch::create`"]
-    pub fn SecPolicySearchCreate(
-        cert_type: CSSM_CERT_TYPE,
-        policy_oid: NonNull<SecAsn1Oid>,
-        value: *const SecAsn1Item,
-        search_ref: NonNull<*mut SecPolicySearch>,
-    ) -> OSStatus;
-}
-
-extern "C-unwind" {
-    #[cfg(feature = "SecBase")]
-    #[deprecated = "renamed to `SecPolicySearch::copy_next`"]
-    pub fn SecPolicySearchCopyNext(
-        search_ref: &SecPolicySearch,
-        policy_ref: NonNull<*mut SecPolicy>,
-    ) -> OSStatus;
-}

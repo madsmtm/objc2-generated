@@ -155,24 +155,3 @@ impl SecAccessControl {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }
-
-#[cfg(feature = "SecBase")]
-#[deprecated = "renamed to `SecAccessControl::with_flags`"]
-#[inline]
-pub unsafe extern "C-unwind" fn SecAccessControlCreateWithFlags(
-    allocator: Option<&CFAllocator>,
-    protection: &CFType,
-    flags: SecAccessControlCreateFlags,
-    error: *mut *mut CFError,
-) -> Option<CFRetained<SecAccessControl>> {
-    extern "C-unwind" {
-        fn SecAccessControlCreateWithFlags(
-            allocator: Option<&CFAllocator>,
-            protection: &CFType,
-            flags: SecAccessControlCreateFlags,
-            error: *mut *mut CFError,
-        ) -> Option<NonNull<SecAccessControl>>;
-    }
-    let ret = unsafe { SecAccessControlCreateWithFlags(allocator, protection, flags, error) };
-    ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
-}

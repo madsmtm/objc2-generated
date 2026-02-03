@@ -86,64 +86,12 @@ pub use self::__cp_types::cp_render_quality_t;
 pub use self::__cp_types::cp_time;
 #[cfg(feature = "cp_types")]
 pub use self::__cp_types::cp_time_t;
-#[cfg(all(feature = "cp_types", feature = "objc2-core-foundation"))]
-pub use self::__cp_types::cp_time_to_cf_time_interval;
-#[cfg(feature = "cp_types")]
-pub use self::__cp_types::cp_time_wait_until;
 #[cfg(feature = "drawable")]
 pub use self::__drawable::cp_drawable;
-#[cfg(all(feature = "drawable", feature = "drawable_render_context"))]
-pub use self::__drawable::cp_drawable_add_mtl4_render_context;
-#[cfg(all(
-    feature = "drawable",
-    feature = "drawable_render_context",
-    feature = "objc2-metal"
-))]
-pub use self::__drawable::cp_drawable_add_render_context;
-#[cfg(all(feature = "drawable", feature = "tracking_area"))]
-pub use self::__drawable::cp_drawable_add_tracking_area;
 #[cfg(feature = "drawable")]
 pub use self::__drawable::cp_drawable_array;
 #[cfg(feature = "drawable")]
-pub use self::__drawable::cp_drawable_array_get_count;
-#[cfg(feature = "drawable")]
-pub use self::__drawable::cp_drawable_array_get_drawable;
-#[cfg(feature = "drawable")]
 pub use self::__drawable::cp_drawable_array_t;
-#[cfg(all(feature = "drawable", feature = "objc2-metal"))]
-pub use self::__drawable::cp_drawable_encode_present;
-#[cfg(all(feature = "drawable", feature = "objc2-metal"))]
-pub use self::__drawable::cp_drawable_get_color_texture;
-#[cfg(all(feature = "drawable", feature = "objc2-metal"))]
-pub use self::__drawable::cp_drawable_get_depth_texture;
-#[cfg(all(feature = "drawable", feature = "objc2-metal"))]
-pub use self::__drawable::cp_drawable_get_flipped_rasterization_rate_map;
-#[cfg(all(feature = "drawable", feature = "frame_timing"))]
-pub use self::__drawable::cp_drawable_get_frame_timing;
-#[cfg(all(feature = "cp_types", feature = "drawable"))]
-pub use self::__drawable::cp_drawable_get_presentation_frame_index;
-#[cfg(all(feature = "drawable", feature = "objc2-metal"))]
-pub use self::__drawable::cp_drawable_get_rasterization_rate_map;
-#[cfg(feature = "drawable")]
-pub use self::__drawable::cp_drawable_get_rasterization_rate_map_count;
-#[cfg(feature = "drawable")]
-pub use self::__drawable::cp_drawable_get_state;
-#[cfg(feature = "drawable")]
-pub use self::__drawable::cp_drawable_get_target;
-#[cfg(feature = "drawable")]
-pub use self::__drawable::cp_drawable_get_texture_count;
-#[cfg(all(feature = "drawable", feature = "objc2-metal"))]
-pub use self::__drawable::cp_drawable_get_tracking_areas_texture;
-#[cfg(feature = "drawable")]
-pub use self::__drawable::cp_drawable_get_tracking_areas_texture_count;
-#[cfg(all(feature = "drawable", feature = "view"))]
-pub use self::__drawable::cp_drawable_get_view;
-#[cfg(feature = "drawable")]
-pub use self::__drawable::cp_drawable_get_view_count;
-#[cfg(feature = "drawable")]
-pub use self::__drawable::cp_drawable_is_content_capture_protected;
-#[cfg(feature = "drawable")]
-pub use self::__drawable::cp_drawable_mtl4_encode_present;
 #[cfg(feature = "drawable")]
 pub use self::__drawable::cp_drawable_state;
 #[cfg(feature = "drawable")]
@@ -152,48 +100,14 @@ pub use self::__drawable::cp_drawable_t;
 pub use self::__drawable::cp_drawable_target;
 #[cfg(feature = "drawable_render_context")]
 pub use self::__drawable_render_context::cp_drawable_render_context;
-#[cfg(all(feature = "drawable_render_context", feature = "objc2-metal"))]
-pub use self::__drawable_render_context::cp_drawable_render_context_draw_mask_on_stencil_attachment;
-#[cfg(all(feature = "drawable_render_context", feature = "objc2-metal"))]
-pub use self::__drawable_render_context::cp_drawable_render_context_end_encoding;
-#[cfg(all(feature = "drawable_render_context", feature = "objc2-metal"))]
-pub use self::__drawable_render_context::cp_drawable_render_context_mtl4_draw_mask_on_stencil_attachment;
-#[cfg(all(feature = "drawable_render_context", feature = "objc2-metal"))]
-pub use self::__drawable_render_context::cp_drawable_render_context_mtl4_end_encoding;
 #[cfg(feature = "drawable_render_context")]
 pub use self::__drawable_render_context::cp_drawable_render_context_t;
 #[cfg(feature = "frame")]
 pub use self::__frame::cp_frame;
 #[cfg(feature = "frame")]
-pub use self::__frame::cp_frame_end_submission;
-#[cfg(feature = "frame")]
-pub use self::__frame::cp_frame_end_update;
-#[cfg(all(feature = "drawable", feature = "frame"))]
-pub use self::__frame::cp_frame_get_drawable_target_view_count;
-#[cfg(all(feature = "cp_types", feature = "frame"))]
-pub use self::__frame::cp_frame_get_frame_index;
-#[cfg(all(feature = "frame", feature = "frame_timing"))]
-pub use self::__frame::cp_frame_predict_timing;
-#[cfg(all(feature = "drawable", feature = "frame"))]
-pub use self::__frame::cp_frame_query_drawable;
-#[cfg(all(feature = "drawable", feature = "frame"))]
-pub use self::__frame::cp_frame_query_drawables;
-#[cfg(feature = "frame")]
-pub use self::__frame::cp_frame_start_submission;
-#[cfg(feature = "frame")]
-pub use self::__frame::cp_frame_start_update;
-#[cfg(feature = "frame")]
 pub use self::__frame::cp_frame_t;
 #[cfg(feature = "frame_timing")]
 pub use self::__frame_timing::cp_frame_timing;
-#[cfg(all(feature = "cp_types", feature = "frame_timing"))]
-pub use self::__frame_timing::cp_frame_timing_get_optimal_input_time;
-#[cfg(all(feature = "cp_types", feature = "frame_timing"))]
-pub use self::__frame_timing::cp_frame_timing_get_presentation_time;
-#[cfg(all(feature = "cp_types", feature = "frame_timing"))]
-pub use self::__frame_timing::cp_frame_timing_get_rendering_deadline;
-#[cfg(all(feature = "cp_types", feature = "frame_timing"))]
-pub use self::__frame_timing::cp_frame_timing_get_trackable_anchor_time;
 #[cfg(feature = "frame_timing")]
 pub use self::__frame_timing::cp_frame_timing_t;
 #[cfg(all(feature = "layer_renderer", feature = "layer_renderer_configuration"))]
@@ -348,10 +262,6 @@ pub use self::__layer_renderer_properties::cp_layer_renderer_properties_t;
 #[cfg(feature = "layer_renderer_properties")]
 pub use self::__layer_renderer_properties::cp_texture_topology;
 #[cfg(feature = "layer_renderer_properties")]
-pub use self::__layer_renderer_properties::cp_texture_topology_get_array_length;
-#[cfg(all(feature = "layer_renderer_properties", feature = "objc2-metal"))]
-pub use self::__layer_renderer_properties::cp_texture_topology_get_texture_type;
-#[cfg(feature = "layer_renderer_properties")]
 pub use self::__layer_renderer_properties::cp_texture_topology_t;
 #[cfg(feature = "layer_renderer_properties")]
 pub use self::__layer_renderer_properties::CP_OBJECT_cp_layer_renderer_properties;
@@ -361,12 +271,6 @@ pub use self::__tracking_area::cp_hover_effect;
 pub use self::__tracking_area::cp_hover_effect_t;
 #[cfg(feature = "tracking_area")]
 pub use self::__tracking_area::cp_tracking_area;
-#[cfg(feature = "tracking_area")]
-pub use self::__tracking_area::cp_tracking_area_add_automatic_hover_effect;
-#[cfg(feature = "tracking_area")]
-pub use self::__tracking_area::cp_tracking_area_get_identifier;
-#[cfg(feature = "tracking_area")]
-pub use self::__tracking_area::cp_tracking_area_get_render_value;
 #[cfg(feature = "tracking_area")]
 pub use self::__tracking_area::cp_tracking_area_identifier;
 #[cfg(feature = "tracking_area")]
@@ -380,16 +284,8 @@ pub use self::__tracking_area::cp_tracking_area_t;
 #[cfg(feature = "view")]
 pub use self::__view::cp_view;
 #[cfg(feature = "view")]
-pub use self::__view::cp_view_get_view_texture_map;
-#[cfg(feature = "view")]
 pub use self::__view::cp_view_t;
 #[cfg(feature = "view")]
 pub use self::__view::cp_view_texture_map;
-#[cfg(feature = "view")]
-pub use self::__view::cp_view_texture_map_get_slice_index;
-#[cfg(feature = "view")]
-pub use self::__view::cp_view_texture_map_get_texture_index;
-#[cfg(all(feature = "objc2-metal", feature = "view"))]
-pub use self::__view::cp_view_texture_map_get_viewport;
 #[cfg(feature = "view")]
 pub use self::__view::cp_view_texture_map_t;

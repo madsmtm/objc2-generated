@@ -105,122 +105,18 @@ pub use self::__IOSurfaceRef::kIOSurfacePlaneWidth;
 pub use self::__IOSurfaceRef::kIOSurfaceSubsampling;
 #[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
 pub use self::__IOSurfaceRef::kIOSurfaceWidth;
-#[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
-pub use self::__IOSurfaceRef::IOSurfaceAlignProperty;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceAllowsPixelSizeCasting;
 #[cfg(feature = "IOSurfaceRef")]
 pub use self::__IOSurfaceRef::IOSurfaceComponentName;
 #[cfg(feature = "IOSurfaceRef")]
 pub use self::__IOSurfaceRef::IOSurfaceComponentRange;
 #[cfg(feature = "IOSurfaceRef")]
 pub use self::__IOSurfaceRef::IOSurfaceComponentType;
-#[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
-pub use self::__IOSurfaceRef::IOSurfaceCopyAllValues;
-#[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
-pub use self::__IOSurfaceRef::IOSurfaceCopyValue;
-#[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
-pub use self::__IOSurfaceRef::IOSurfaceCreate;
-#[cfg(all(feature = "IOSurfaceRef", feature = "libc"))]
-pub use self::__IOSurfaceRef::IOSurfaceCreateMachPort;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceDecrementUseCount;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetAllocSize;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetBaseAddress;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetBaseAddressOfPlane;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetBitDepthOfComponentOfPlane;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetBitOffsetOfComponentOfPlane;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetBytesPerElement;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetBytesPerElementOfPlane;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetBytesPerRow;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetBytesPerRowOfPlane;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetElementHeight;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetElementHeightOfPlane;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetElementWidth;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetElementWidthOfPlane;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetHeight;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetHeightOfPlane;
-#[cfg(all(feature = "IOSurfaceRef", feature = "IOSurfaceTypes"))]
-pub use self::__IOSurfaceRef::IOSurfaceGetID;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetNameOfComponentOfPlane;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetNumberOfComponentsOfPlane;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetPixelFormat;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetPlaneCount;
-#[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
-pub use self::__IOSurfaceRef::IOSurfaceGetPropertyAlignment;
-#[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
-pub use self::__IOSurfaceRef::IOSurfaceGetPropertyMaximum;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetRangeOfComponentOfPlane;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetSeed;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetSubsampling;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetTypeOfComponentOfPlane;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetUseCount;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetWidth;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceGetWidthOfPlane;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceIncrementUseCount;
-#[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceIsInUse;
-#[cfg(all(feature = "IOSurfaceRef", feature = "IOSurfaceTypes", feature = "libc"))]
-pub use self::__IOSurfaceRef::IOSurfaceLock;
-#[cfg(all(
-    feature = "IOSurfaceRef",
-    feature = "IOSurfaceTypes",
-    feature = "objc2-core-foundation"
-))]
-pub use self::__IOSurfaceRef::IOSurfaceLookup;
-#[cfg(all(
-    feature = "IOSurfaceRef",
-    feature = "libc",
-    feature = "objc2-core-foundation"
-))]
-pub use self::__IOSurfaceRef::IOSurfaceLookupFromMachPort;
 #[cfg(feature = "IOSurfaceRef")]
 pub use self::__IOSurfaceRef::IOSurfaceMemoryLedgerFlags;
 #[cfg(feature = "IOSurfaceRef")]
 pub use self::__IOSurfaceRef::IOSurfaceMemoryLedgerTags;
 #[cfg(feature = "IOSurfaceRef")]
-pub use self::__IOSurfaceRef::IOSurfaceRemoveAllValues;
-#[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
-pub use self::__IOSurfaceRef::IOSurfaceRemoveValue;
-#[cfg(all(feature = "IOSurfaceRef", feature = "libc"))]
-pub use self::__IOSurfaceRef::IOSurfaceSetOwnershipIdentity;
-#[cfg(all(feature = "IOSurfaceRef", feature = "libc"))]
-pub use self::__IOSurfaceRef::IOSurfaceSetPurgeable;
-#[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
-pub use self::__IOSurfaceRef::IOSurfaceSetValue;
-#[cfg(all(feature = "IOSurfaceRef", feature = "objc2-core-foundation"))]
-pub use self::__IOSurfaceRef::IOSurfaceSetValues;
-#[cfg(feature = "IOSurfaceRef")]
 pub use self::__IOSurfaceRef::IOSurfaceSubsampling;
-#[cfg(all(feature = "IOSurfaceRef", feature = "IOSurfaceTypes", feature = "libc"))]
-pub use self::__IOSurfaceRef::IOSurfaceUnlock;
 #[cfg(feature = "IOSurfaceTypes")]
 pub use self::__IOSurfaceTypes::kIOSurfaceCopybackCache;
 #[cfg(feature = "IOSurfaceTypes")]
