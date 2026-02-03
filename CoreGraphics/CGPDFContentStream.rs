@@ -103,16 +103,14 @@ impl CGPDFContentStream {
 
     /// # Safety
     ///
-    /// - `cs` must be a valid pointer.
-    /// - `category` must be a valid pointer.
-    /// - `name` must be a valid pointer.
+    /// `cs` must be a valid pointer.
     #[doc(alias = "CGPDFContentStreamGetResource")]
     #[cfg(feature = "CGPDFObject")]
     #[inline]
     pub unsafe fn resource(
         cs: CGPDFContentStreamRef,
-        category: NonNull<c_char>,
-        name: NonNull<c_char>,
+        category: &CStr,
+        name: &CStr,
     ) -> CGPDFObjectRef {
         extern "C-unwind" {
             fn CGPDFContentStreamGetResource(
@@ -121,6 +119,12 @@ impl CGPDFContentStream {
                 name: NonNull<c_char>,
             ) -> CGPDFObjectRef;
         }
-        unsafe { CGPDFContentStreamGetResource(cs, category, name) }
+        unsafe {
+            CGPDFContentStreamGetResource(
+                cs,
+                NonNull::new(category.as_ptr().cast_mut()).unwrap(),
+                NonNull::new(name.as_ptr().cast_mut()).unwrap(),
+            )
+        }
     }
 }

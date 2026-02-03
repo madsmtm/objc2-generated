@@ -66,14 +66,13 @@ impl CGPDFOperatorTable {
     /// # Safety
     ///
     /// - `table` must be a valid pointer.
-    /// - `name` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     #[doc(alias = "CGPDFOperatorTableSetCallback")]
     #[cfg(feature = "CGPDFScanner")]
     #[inline]
     pub unsafe fn set_callback(
         table: CGPDFOperatorTableRef,
-        name: NonNull<c_char>,
+        name: &CStr,
         callback: CGPDFOperatorCallback,
     ) {
         extern "C-unwind" {
@@ -83,6 +82,12 @@ impl CGPDFOperatorTable {
                 callback: CGPDFOperatorCallback,
             );
         }
-        unsafe { CGPDFOperatorTableSetCallback(table, name, callback) }
+        unsafe {
+            CGPDFOperatorTableSetCallback(
+                table,
+                NonNull::new(name.as_ptr().cast_mut()).unwrap(),
+                callback,
+            )
+        }
     }
 }

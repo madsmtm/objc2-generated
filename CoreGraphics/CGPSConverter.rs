@@ -91,20 +91,26 @@ impl CGPSConverter {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `callbacks` must be a valid pointer.
+    /// - `callbacks` struct field 2 must be implemented correctly.
+    /// - `callbacks` struct field 3 must be implemented correctly.
+    /// - `callbacks` struct field 4 must be implemented correctly.
+    /// - `callbacks` struct field 5 must be implemented correctly.
+    /// - `callbacks` struct field 6 must be implemented correctly.
+    /// - `callbacks` struct field 7 must be implemented correctly.
+    /// - `callbacks` struct field 8 must be implemented correctly.
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     #[doc(alias = "CGPSConverterCreate")]
     #[inline]
     pub unsafe fn new(
         info: *mut c_void,
-        callbacks: NonNull<CGPSConverterCallbacks>,
+        callbacks: &CGPSConverterCallbacks,
         options: Option<&CFDictionary>,
     ) -> Option<CFRetained<CGPSConverter>> {
         extern "C-unwind" {
             fn CGPSConverterCreate(
                 info: *mut c_void,
-                callbacks: NonNull<CGPSConverterCallbacks>,
+                callbacks: &CGPSConverterCallbacks,
                 options: Option<&CFDictionary>,
             ) -> Option<NonNull<CGPSConverter>>;
         }

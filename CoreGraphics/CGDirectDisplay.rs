@@ -48,68 +48,63 @@ pub extern "C-unwind" fn CGMainDisplayID() -> CGDirectDisplayID {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `displays` must be a valid pointer or null.
-    /// - `matching_display_count` must be a valid pointer or null.
+    /// `displays` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGGetDisplaysWithPoint(
         point: CGPoint,
         max_displays: u32,
         displays: *mut CGDirectDisplayID,
-        matching_display_count: *mut u32,
+        matching_display_count: Option<&mut u32>,
     ) -> CGError;
 }
 
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `displays` must be a valid pointer or null.
-    /// - `matching_display_count` must be a valid pointer or null.
+    /// `displays` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGGetDisplaysWithRect(
         rect: CGRect,
         max_displays: u32,
         displays: *mut CGDirectDisplayID,
-        matching_display_count: *mut u32,
+        matching_display_count: Option<&mut u32>,
     ) -> CGError;
 }
 
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `displays` must be a valid pointer or null.
-    /// - `matching_display_count` must be a valid pointer or null.
+    /// `displays` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGGetDisplaysWithOpenGLDisplayMask(
         mask: CGOpenGLDisplayMask,
         max_displays: u32,
         displays: *mut CGDirectDisplayID,
-        matching_display_count: *mut u32,
+        matching_display_count: Option<&mut u32>,
     ) -> CGError;
 }
 
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `active_displays` must be a valid pointer or null.
-    /// - `display_count` must be a valid pointer or null.
+    /// `active_displays` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGGetActiveDisplayList(
         max_displays: u32,
         active_displays: *mut CGDirectDisplayID,
-        display_count: *mut u32,
+        display_count: Option<&mut u32>,
     ) -> CGError;
 }
 
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `online_displays` must be a valid pointer or null.
-    /// - `display_count` must be a valid pointer or null.
+    /// `online_displays` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGGetOnlineDisplayList(
         max_displays: u32,
         online_displays: *mut CGDirectDisplayID,
-        display_count: *mut u32,
+        display_count: Option<&mut u32>,
     ) -> CGError;
 }
 
@@ -352,31 +347,48 @@ pub extern "C-unwind" fn CGSetDisplayTransferByFormula(
     }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `red_min` must be a valid pointer or null.
-    /// - `red_max` must be a valid pointer or null.
-    /// - `red_gamma` must be a valid pointer or null.
-    /// - `green_min` must be a valid pointer or null.
-    /// - `green_max` must be a valid pointer or null.
-    /// - `green_gamma` must be a valid pointer or null.
-    /// - `blue_min` must be a valid pointer or null.
-    /// - `blue_max` must be a valid pointer or null.
-    /// - `blue_gamma` must be a valid pointer or null.
-    #[cfg(feature = "CGError")]
-    pub fn CGGetDisplayTransferByFormula(
-        display: CGDirectDisplayID,
-        red_min: *mut CGGammaValue,
-        red_max: *mut CGGammaValue,
-        red_gamma: *mut CGGammaValue,
-        green_min: *mut CGGammaValue,
-        green_max: *mut CGGammaValue,
-        green_gamma: *mut CGGammaValue,
-        blue_min: *mut CGGammaValue,
-        blue_max: *mut CGGammaValue,
-        blue_gamma: *mut CGGammaValue,
-    ) -> CGError;
+#[cfg(feature = "CGError")]
+#[inline]
+pub extern "C-unwind" fn CGGetDisplayTransferByFormula(
+    display: CGDirectDisplayID,
+    red_min: Option<&mut CGGammaValue>,
+    red_max: Option<&mut CGGammaValue>,
+    red_gamma: Option<&mut CGGammaValue>,
+    green_min: Option<&mut CGGammaValue>,
+    green_max: Option<&mut CGGammaValue>,
+    green_gamma: Option<&mut CGGammaValue>,
+    blue_min: Option<&mut CGGammaValue>,
+    blue_max: Option<&mut CGGammaValue>,
+    blue_gamma: Option<&mut CGGammaValue>,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGGetDisplayTransferByFormula(
+            display: CGDirectDisplayID,
+            red_min: Option<&mut CGGammaValue>,
+            red_max: Option<&mut CGGammaValue>,
+            red_gamma: Option<&mut CGGammaValue>,
+            green_min: Option<&mut CGGammaValue>,
+            green_max: Option<&mut CGGammaValue>,
+            green_gamma: Option<&mut CGGammaValue>,
+            blue_min: Option<&mut CGGammaValue>,
+            blue_max: Option<&mut CGGammaValue>,
+            blue_gamma: Option<&mut CGGammaValue>,
+        ) -> CGError;
+    }
+    unsafe {
+        CGGetDisplayTransferByFormula(
+            display,
+            red_min,
+            red_max,
+            red_gamma,
+            green_min,
+            green_max,
+            green_gamma,
+            blue_min,
+            blue_max,
+            blue_gamma,
+        )
+    }
 }
 
 #[inline]
@@ -409,7 +421,6 @@ extern "C-unwind" {
     /// - `red_table` must be a valid pointer or null.
     /// - `green_table` must be a valid pointer or null.
     /// - `blue_table` must be a valid pointer or null.
-    /// - `sample_count` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     pub fn CGGetDisplayTransferByTable(
         display: CGDirectDisplayID,
@@ -417,7 +428,7 @@ extern "C-unwind" {
         red_table: *mut CGGammaValue,
         green_table: *mut CGGammaValue,
         blue_table: *mut CGGammaValue,
-        sample_count: *mut u32,
+        sample_count: Option<&mut u32>,
     ) -> CGError;
 }
 
@@ -619,12 +630,12 @@ pub extern "C-unwind" fn CGDisplayMoveCursorToPoint(
     unsafe { CGDisplayMoveCursorToPoint(display, point) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `delta_x` must be a valid pointer or null.
-    /// - `delta_y` must be a valid pointer or null.
-    pub fn CGGetLastMouseDelta(delta_x: *mut i32, delta_y: *mut i32);
+#[inline]
+pub extern "C-unwind" fn CGGetLastMouseDelta(delta_x: Option<&mut i32>, delta_y: Option<&mut i32>) {
+    extern "C-unwind" {
+        fn CGGetLastMouseDelta(delta_x: Option<&mut i32>, delta_y: Option<&mut i32>);
+    }
+    unsafe { CGGetLastMouseDelta(delta_x, delta_y) }
 }
 
 #[cfg(feature = "CGContext")]
@@ -660,9 +671,6 @@ pub unsafe extern "C-unwind" fn CGDisplayAvailableModes(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// # Safety
-///
-/// `exact_match` must be a valid pointer or null.
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -671,7 +679,7 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParameters(
     bits_per_pixel: usize,
     width: usize,
     height: usize,
-    exact_match: *mut libc::boolean_t,
+    exact_match: Option<&mut libc::boolean_t>,
 ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn CGDisplayBestModeForParameters(
@@ -679,7 +687,7 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParameters(
             bits_per_pixel: usize,
             width: usize,
             height: usize,
-            exact_match: *mut libc::boolean_t,
+            exact_match: Option<&mut libc::boolean_t>,
         ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe {
@@ -688,9 +696,6 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParameters(
     ret.map(|ret| unsafe { CFRetained::retain(ret) })
 }
 
-/// # Safety
-///
-/// `exact_match` must be a valid pointer or null.
 #[cfg(feature = "libc")]
 #[deprecated = "No longer supported"]
 #[inline]
@@ -700,7 +705,7 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParametersAndRefreshRate(
     width: usize,
     height: usize,
     refresh_rate: CGRefreshRate,
-    exact_match: *mut libc::boolean_t,
+    exact_match: Option<&mut libc::boolean_t>,
 ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn CGDisplayBestModeForParametersAndRefreshRate(
@@ -709,7 +714,7 @@ pub unsafe extern "C-unwind" fn CGDisplayBestModeForParametersAndRefreshRate(
             width: usize,
             height: usize,
             refresh_rate: CGRefreshRate,
-            exact_match: *mut libc::boolean_t,
+            exact_match: Option<&mut libc::boolean_t>,
         ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe {

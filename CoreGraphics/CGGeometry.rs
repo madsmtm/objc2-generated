@@ -205,18 +205,24 @@ pub extern "C-unwind" fn CGRectOffset(rect: CGRect, dx: CGFloat, dy: CGFloat) ->
     unsafe { CGRectOffset(rect, dx, dy) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `slice` must be a valid pointer.
-    /// - `remainder` must be a valid pointer.
-    pub fn CGRectDivide(
-        rect: CGRect,
-        slice: NonNull<CGRect>,
-        remainder: NonNull<CGRect>,
-        amount: CGFloat,
-        edge: CGRectEdge,
-    );
+#[inline]
+pub extern "C-unwind" fn CGRectDivide(
+    rect: CGRect,
+    slice: &mut CGRect,
+    remainder: &mut CGRect,
+    amount: CGFloat,
+    edge: CGRectEdge,
+) {
+    extern "C-unwind" {
+        fn CGRectDivide(
+            rect: CGRect,
+            slice: &mut CGRect,
+            remainder: &mut CGRect,
+            amount: CGFloat,
+            edge: CGRectEdge,
+        );
+    }
+    unsafe { CGRectDivide(rect, slice, remainder, amount, edge) }
 }
 
 #[inline]
@@ -261,10 +267,9 @@ extern "C-unwind" {
     ///
     /// - `dict` generic must be of the correct type.
     /// - `dict` generic must be of the correct type.
-    /// - `point` must be a valid pointer.
     pub fn CGPointMakeWithDictionaryRepresentation(
         dict: &CFDictionary,
-        point: NonNull<CGPoint>,
+        point: &mut CGPoint,
     ) -> bool;
 }
 
@@ -285,11 +290,7 @@ extern "C-unwind" {
     ///
     /// - `dict` generic must be of the correct type.
     /// - `dict` generic must be of the correct type.
-    /// - `size` must be a valid pointer.
-    pub fn CGSizeMakeWithDictionaryRepresentation(
-        dict: &CFDictionary,
-        size: NonNull<CGSize>,
-    ) -> bool;
+    pub fn CGSizeMakeWithDictionaryRepresentation(dict: &CFDictionary, size: &mut CGSize) -> bool;
 }
 
 #[inline]
@@ -309,11 +310,7 @@ extern "C-unwind" {
     ///
     /// - `dict` generic must be of the correct type.
     /// - `dict` generic must be of the correct type.
-    /// - `rect` must be a valid pointer.
-    pub fn CGRectMakeWithDictionaryRepresentation(
-        dict: &CFDictionary,
-        rect: NonNull<CGRect>,
-    ) -> bool;
+    pub fn CGRectMakeWithDictionaryRepresentation(dict: &CFDictionary, rect: &mut CGRect) -> bool;
 }
 
 // TODO: pub fn CGPointMake(x: CGFloat,y: CGFloat,) -> CGPoint;

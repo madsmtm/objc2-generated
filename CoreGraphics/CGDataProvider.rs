@@ -133,18 +133,21 @@ impl CGDataProvider {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `callbacks` must be a valid pointer.
+    /// - `callbacks` struct field 2 must be implemented correctly.
+    /// - `callbacks` struct field 3 must be implemented correctly.
+    /// - `callbacks` struct field 4 must be implemented correctly.
+    /// - `callbacks` struct field 5 must be implemented correctly.
     #[doc(alias = "CGDataProviderCreateSequential")]
     #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn new_sequential(
         info: *mut c_void,
-        callbacks: NonNull<CGDataProviderSequentialCallbacks>,
+        callbacks: &CGDataProviderSequentialCallbacks,
     ) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
             fn CGDataProviderCreateSequential(
                 info: *mut c_void,
-                callbacks: NonNull<CGDataProviderSequentialCallbacks>,
+                callbacks: &CGDataProviderSequentialCallbacks,
             ) -> Option<NonNull<CGDataProvider>>;
         }
         let ret = unsafe { CGDataProviderCreateSequential(info, callbacks) };
@@ -154,20 +157,23 @@ impl CGDataProvider {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `callbacks` must be a valid pointer.
+    /// - `callbacks` struct field 2 must be implemented correctly.
+    /// - `callbacks` struct field 3 must be implemented correctly.
+    /// - `callbacks` struct field 4 must be implemented correctly.
+    /// - `callbacks` struct field 5 must be implemented correctly.
     #[doc(alias = "CGDataProviderCreateDirect")]
     #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn new_direct(
         info: *mut c_void,
         size: libc::off_t,
-        callbacks: NonNull<CGDataProviderDirectCallbacks>,
+        callbacks: &CGDataProviderDirectCallbacks,
     ) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
             fn CGDataProviderCreateDirect(
                 info: *mut c_void,
                 size: libc::off_t,
-                callbacks: NonNull<CGDataProviderDirectCallbacks>,
+                callbacks: &CGDataProviderDirectCallbacks,
             ) -> Option<NonNull<CGDataProvider>>;
         }
         let ret = unsafe { CGDataProviderCreateDirect(info, size, callbacks) };
@@ -225,18 +231,17 @@ impl CGDataProvider {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `filename` must be a valid pointer.
     #[doc(alias = "CGDataProviderCreateWithFilename")]
     #[inline]
-    pub unsafe fn with_filename(filename: NonNull<c_char>) -> Option<CFRetained<CGDataProvider>> {
+    pub fn with_filename(filename: &CStr) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
             fn CGDataProviderCreateWithFilename(
                 filename: NonNull<c_char>,
             ) -> Option<NonNull<CGDataProvider>>;
         }
-        let ret = unsafe { CGDataProviderCreateWithFilename(filename) };
+        let ret = unsafe {
+            CGDataProviderCreateWithFilename(NonNull::new(filename.as_ptr().cast_mut()).unwrap())
+        };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 

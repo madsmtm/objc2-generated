@@ -71,11 +71,13 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `rects` must be a valid pointer or null.
-    /// - `count` must be a valid pointer or null.
+    /// `rects` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     #[deprecated = "No longer supported"]
-    pub fn CGWaitForScreenRefreshRects(rects: *mut *mut CGRect, count: *mut u32) -> CGError;
+    pub fn CGWaitForScreenRefreshRects(
+        rects: Option<&mut *mut CGRect>,
+        count: Option<&mut u32>,
+    ) -> CGError;
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgscreenupdateoperation?language=objc)
@@ -158,18 +160,15 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `current_operation` must be a valid pointer or null.
-    /// - `rects` must be a valid pointer or null.
-    /// - `rect_count` must be a valid pointer or null.
-    /// - `delta` must be a valid pointer or null.
+    /// `rects` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
     #[deprecated = "No longer supported"]
     pub fn CGWaitForScreenUpdateRects(
         requested_operations: CGScreenUpdateOperation,
-        current_operation: *mut CGScreenUpdateOperation,
-        rects: *mut *mut CGRect,
-        rect_count: *mut usize,
-        delta: *mut CGScreenUpdateMoveDelta,
+        current_operation: Option<&mut CGScreenUpdateOperation>,
+        rects: Option<&mut *mut CGRect>,
+        rect_count: Option<&mut usize>,
+        delta: Option<&mut CGScreenUpdateMoveDelta>,
     ) -> CGError;
 }
 

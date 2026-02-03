@@ -260,22 +260,21 @@ impl CGEvent {
 
     /// # Safety
     ///
-    /// - `actual_string_length` must be a valid pointer or null.
-    /// - `unicode_string` must be a valid pointer or null.
+    /// `unicode_string` must be a valid pointer or null.
     #[doc(alias = "CGEventKeyboardGetUnicodeString")]
     #[cfg(feature = "CGEventTypes")]
     #[inline]
     pub unsafe fn keyboard_get_unicode_string(
         event: Option<&CGEvent>,
         max_string_length: UniCharCount,
-        actual_string_length: *mut UniCharCount,
+        actual_string_length: Option<&mut UniCharCount>,
         unicode_string: *mut UniChar,
     ) {
         extern "C-unwind" {
             fn CGEventKeyboardGetUnicodeString(
                 event: Option<&CGEvent>,
                 max_string_length: UniCharCount,
-                actual_string_length: *mut UniCharCount,
+                actual_string_length: Option<&mut UniCharCount>,
                 unicode_string: *mut UniChar,
             );
         }
@@ -528,13 +527,12 @@ impl CGEvent {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `tap_list` must be a valid pointer or null.
-    /// - `event_tap_count` must be a valid pointer or null.
+    /// `tap_list` must be a valid pointer or null.
     #[cfg(all(feature = "CGError", feature = "CGEventTypes", feature = "libc"))]
     pub fn CGGetEventTapList(
         max_number_of_taps: u32,
         tap_list: *mut CGEventTapInformation,
-        event_tap_count: *mut u32,
+        event_tap_count: Option<&mut u32>,
     ) -> CGError;
 }
 

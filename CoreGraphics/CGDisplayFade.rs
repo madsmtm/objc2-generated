@@ -39,15 +39,19 @@ extern "C-unwind" {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplayreservationinterval?language=objc)
 pub type CGDisplayReservationInterval = c_float;
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `token` must be a valid pointer or null.
-    #[cfg(feature = "CGError")]
-    pub fn CGAcquireDisplayFadeReservation(
-        seconds: CGDisplayReservationInterval,
-        token: *mut CGDisplayFadeReservationToken,
-    ) -> CGError;
+#[cfg(feature = "CGError")]
+#[inline]
+pub extern "C-unwind" fn CGAcquireDisplayFadeReservation(
+    seconds: CGDisplayReservationInterval,
+    token: Option<&mut CGDisplayFadeReservationToken>,
+) -> CGError {
+    extern "C-unwind" {
+        fn CGAcquireDisplayFadeReservation(
+            seconds: CGDisplayReservationInterval,
+            token: Option<&mut CGDisplayFadeReservationToken>,
+        ) -> CGError;
+    }
+    unsafe { CGAcquireDisplayFadeReservation(seconds, token) }
 }
 
 #[cfg(feature = "CGError")]

@@ -77,7 +77,8 @@ impl CGFunction {
     /// - `info` must be a valid pointer or null.
     /// - `domain` must be a valid pointer or null.
     /// - `range` must be a valid pointer or null.
-    /// - `callbacks` must be a valid pointer.
+    /// - `callbacks` struct field 2 must be implemented correctly.
+    /// - `callbacks` struct field 3 must be implemented correctly.
     #[doc(alias = "CGFunctionCreate")]
     #[inline]
     pub unsafe fn new(
@@ -86,7 +87,7 @@ impl CGFunction {
         domain: *const CGFloat,
         range_dimension: usize,
         range: *const CGFloat,
-        callbacks: NonNull<CGFunctionCallbacks>,
+        callbacks: &CGFunctionCallbacks,
     ) -> Option<CFRetained<CGFunction>> {
         extern "C-unwind" {
             fn CGFunctionCreate(
@@ -95,7 +96,7 @@ impl CGFunction {
                 domain: *const CGFloat,
                 range_dimension: usize,
                 range: *const CGFloat,
-                callbacks: NonNull<CGFunctionCallbacks>,
+                callbacks: &CGFunctionCallbacks,
             ) -> Option<NonNull<CGFunction>>;
         }
         let ret = unsafe {

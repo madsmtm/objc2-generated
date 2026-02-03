@@ -329,14 +329,14 @@ impl CGColorSpace {
     #[doc(alias = "CGColorSpaceCreateCalibratedGray")]
     #[inline]
     pub fn new_calibrated_gray(
-        white_point: &mut [CGFloat; 3],
-        black_point: Option<&mut [CGFloat; 3]>,
+        white_point: &[CGFloat; 3],
+        black_point: Option<&[CGFloat; 3]>,
         gamma: CGFloat,
     ) -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreateCalibratedGray(
-                white_point: &mut [CGFloat; 3],
-                black_point: Option<&mut [CGFloat; 3]>,
+                white_point: &[CGFloat; 3],
+                black_point: Option<&[CGFloat; 3]>,
                 gamma: CGFloat,
             ) -> Option<NonNull<CGColorSpace>>;
         }
@@ -347,17 +347,17 @@ impl CGColorSpace {
     #[doc(alias = "CGColorSpaceCreateCalibratedRGB")]
     #[inline]
     pub fn new_calibrated_rgb(
-        white_point: &mut [CGFloat; 3],
-        black_point: Option<&mut [CGFloat; 3]>,
-        gamma: Option<&mut [CGFloat; 3]>,
-        matrix: Option<&mut [CGFloat; 9]>,
+        white_point: &[CGFloat; 3],
+        black_point: Option<&[CGFloat; 3]>,
+        gamma: Option<&[CGFloat; 3]>,
+        matrix: Option<&[CGFloat; 9]>,
     ) -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreateCalibratedRGB(
-                white_point: &mut [CGFloat; 3],
-                black_point: Option<&mut [CGFloat; 3]>,
-                gamma: Option<&mut [CGFloat; 3]>,
-                matrix: Option<&mut [CGFloat; 9]>,
+                white_point: &[CGFloat; 3],
+                black_point: Option<&[CGFloat; 3]>,
+                gamma: Option<&[CGFloat; 3]>,
+                matrix: Option<&[CGFloat; 9]>,
             ) -> Option<NonNull<CGColorSpace>>;
         }
         let ret =
@@ -368,15 +368,15 @@ impl CGColorSpace {
     #[doc(alias = "CGColorSpaceCreateLab")]
     #[inline]
     pub fn new_lab(
-        white_point: &mut [CGFloat; 3],
-        black_point: Option<&mut [CGFloat; 3]>,
-        range: Option<&mut [CGFloat; 4]>,
+        white_point: &[CGFloat; 3],
+        black_point: Option<&[CGFloat; 3]>,
+        range: Option<&[CGFloat; 4]>,
     ) -> Option<CFRetained<CGColorSpace>> {
         extern "C-unwind" {
             fn CGColorSpaceCreateLab(
-                white_point: &mut [CGFloat; 3],
-                black_point: Option<&mut [CGFloat; 3]>,
-                range: Option<&mut [CGFloat; 4]>,
+                white_point: &[CGFloat; 3],
+                black_point: Option<&[CGFloat; 3]>,
+                range: Option<&[CGFloat; 4]>,
             ) -> Option<NonNull<CGColorSpace>>;
         }
         let ret = unsafe { CGColorSpaceCreateLab(white_point, black_point, range) };

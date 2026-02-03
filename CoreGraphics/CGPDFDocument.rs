@@ -106,18 +106,14 @@ impl CGPDFDocument {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// - `major_version` must be a valid pointer.
-    /// - `minor_version` must be a valid pointer.
     #[doc(alias = "CGPDFDocumentGetVersion")]
     #[inline]
-    pub unsafe fn version(&self, major_version: NonNull<c_int>, minor_version: NonNull<c_int>) {
+    pub fn version(&self, major_version: &mut c_int, minor_version: &mut c_int) {
         extern "C-unwind" {
             fn CGPDFDocumentGetVersion(
                 document: &CGPDFDocument,
-                major_version: NonNull<c_int>,
-                minor_version: NonNull<c_int>,
+                major_version: &mut c_int,
+                minor_version: &mut c_int,
             );
         }
         unsafe { CGPDFDocumentGetVersion(self, major_version, minor_version) }
@@ -132,19 +128,21 @@ impl CGPDFDocument {
         unsafe { CGPDFDocumentIsEncrypted(self) }
     }
 
-    /// # Safety
-    ///
-    /// `password` must be a valid pointer.
     #[doc(alias = "CGPDFDocumentUnlockWithPassword")]
     #[inline]
-    pub unsafe fn unlock_with_password(&self, password: NonNull<c_char>) -> bool {
+    pub fn unlock_with_password(&self, password: &CStr) -> bool {
         extern "C-unwind" {
             fn CGPDFDocumentUnlockWithPassword(
                 document: &CGPDFDocument,
                 password: NonNull<c_char>,
             ) -> bool;
         }
-        unsafe { CGPDFDocumentUnlockWithPassword(self, password) }
+        unsafe {
+            CGPDFDocumentUnlockWithPassword(
+                self,
+                NonNull::new(password.as_ptr().cast_mut()).unwrap(),
+            )
+        }
     }
 
     #[doc(alias = "CGPDFDocumentIsUnlocked")]

@@ -268,22 +268,21 @@ impl CGFont {
 
     /// # Safety
     ///
-    /// - `glyphs` must be a valid pointer.
-    /// - `advances` must be a valid pointer.
+    /// `glyphs` must be a valid pointer.
     #[doc(alias = "CGFontGetGlyphAdvances")]
     #[inline]
     pub unsafe fn glyph_advances(
         &self,
         glyphs: NonNull<CGGlyph>,
         count: usize,
-        advances: NonNull<c_int>,
+        advances: &mut c_int,
     ) -> bool {
         extern "C-unwind" {
             fn CGFontGetGlyphAdvances(
                 font: &CGFont,
                 glyphs: NonNull<CGGlyph>,
                 count: usize,
-                advances: NonNull<c_int>,
+                advances: &mut c_int,
             ) -> bool;
         }
         unsafe { CGFontGetGlyphAdvances(self, glyphs, count, advances) }
@@ -291,22 +290,21 @@ impl CGFont {
 
     /// # Safety
     ///
-    /// - `glyphs` must be a valid pointer.
-    /// - `bboxes` must be a valid pointer.
+    /// `glyphs` must be a valid pointer.
     #[doc(alias = "CGFontGetGlyphBBoxes")]
     #[inline]
     pub unsafe fn glyph_b_boxes(
         &self,
         glyphs: NonNull<CGGlyph>,
         count: usize,
-        bboxes: NonNull<CGRect>,
+        bboxes: &mut CGRect,
     ) -> bool {
         extern "C-unwind" {
             fn CGFontGetGlyphBBoxes(
                 font: &CGFont,
                 glyphs: NonNull<CGGlyph>,
                 count: usize,
-                bboxes: NonNull<CGRect>,
+                bboxes: &mut CGRect,
             ) -> bool;
         }
         unsafe { CGFontGetGlyphBBoxes(self, glyphs, count, bboxes) }
@@ -357,7 +355,7 @@ impl CGFont {
         format: CGFontPostScriptFormat,
         glyphs: *const CGGlyph,
         count: usize,
-        encoding: Option<&mut [CGGlyph; 256]>,
+        encoding: Option<&[CGGlyph; 256]>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CGFontCreatePostScriptSubset(
@@ -366,7 +364,7 @@ impl CGFont {
                 format: CGFontPostScriptFormat,
                 glyphs: *const CGGlyph,
                 count: usize,
-                encoding: Option<&mut [CGGlyph; 256]>,
+                encoding: Option<&[CGGlyph; 256]>,
             ) -> Option<NonNull<CFData>>;
         }
         let ret = unsafe {
@@ -379,12 +377,12 @@ impl CGFont {
     #[inline]
     pub fn post_script_encoding(
         &self,
-        encoding: Option<&mut [CGGlyph; 256]>,
+        encoding: Option<&[CGGlyph; 256]>,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CGFontCreatePostScriptEncoding(
                 font: &CGFont,
-                encoding: Option<&mut [CGGlyph; 256]>,
+                encoding: Option<&[CGGlyph; 256]>,
             ) -> Option<NonNull<CFData>>;
         }
         let ret = unsafe { CGFontCreatePostScriptEncoding(self, encoding) };

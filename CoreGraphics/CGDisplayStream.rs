@@ -146,23 +146,19 @@ impl CGDisplayStreamUpdate {
     /// Parameter `rectCount`: A pointer to where the count of the number of rectangles in the array is to be returned. Must not be NULL.
     ///
     /// Returns: A pointer to the array of CGRectangles.  This array should not be freed by the caller.
-    ///
-    /// # Safety
-    ///
-    /// `rect_count` must be a valid pointer.
     #[doc(alias = "CGDisplayStreamUpdateGetRects")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    pub unsafe fn rects(
+    pub fn rects(
         update_ref: Option<&CGDisplayStreamUpdate>,
         rect_type: CGDisplayStreamUpdateRectType,
-        rect_count: NonNull<usize>,
+        rect_count: &mut usize,
     ) -> *const CGRect {
         extern "C-unwind" {
             fn CGDisplayStreamUpdateGetRects(
                 update_ref: Option<&CGDisplayStreamUpdate>,
                 rect_type: CGDisplayStreamUpdateRectType,
-                rect_count: NonNull<usize>,
+                rect_count: &mut usize,
             ) -> *const CGRect;
         }
         unsafe { CGDisplayStreamUpdateGetRects(update_ref, rect_type, rect_count) }
@@ -207,24 +203,19 @@ impl CGDisplayStreamUpdate {
     /// Parameter `dy`: A pointer to a CGFloat to store the y component of the movement delta
     ///
     /// The delta values describe the offset from the moved rectangles back to the source location.
-    ///
-    /// # Safety
-    ///
-    /// - `dx` must be a valid pointer.
-    /// - `dy` must be a valid pointer.
     #[doc(alias = "CGDisplayStreamUpdateGetMovedRectsDelta")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    pub unsafe fn moved_rects_delta(
+    pub fn moved_rects_delta(
         update_ref: Option<&CGDisplayStreamUpdate>,
-        dx: NonNull<CGFloat>,
-        dy: NonNull<CGFloat>,
+        dx: &mut CGFloat,
+        dy: &mut CGFloat,
     ) {
         extern "C-unwind" {
             fn CGDisplayStreamUpdateGetMovedRectsDelta(
                 update_ref: Option<&CGDisplayStreamUpdate>,
-                dx: NonNull<CGFloat>,
-                dy: NonNull<CGFloat>,
+                dx: &mut CGFloat,
+                dy: &mut CGFloat,
             );
         }
         unsafe { CGDisplayStreamUpdateGetMovedRectsDelta(update_ref, dx, dy) }

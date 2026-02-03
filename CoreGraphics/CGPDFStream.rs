@@ -65,18 +65,17 @@ impl CGPDFStream {
 
     /// # Safety
     ///
-    /// - `stream` must be a valid pointer.
-    /// - `format` must be a valid pointer.
+    /// `stream` must be a valid pointer.
     #[doc(alias = "CGPDFStreamCopyData")]
     #[inline]
     pub unsafe fn data(
         stream: CGPDFStreamRef,
-        format: NonNull<CGPDFDataFormat>,
+        format: &mut CGPDFDataFormat,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CGPDFStreamCopyData(
                 stream: CGPDFStreamRef,
-                format: NonNull<CGPDFDataFormat>,
+                format: &mut CGPDFDataFormat,
             ) -> Option<NonNull<CFData>>;
         }
         let ret = unsafe { CGPDFStreamCopyData(stream, format) };

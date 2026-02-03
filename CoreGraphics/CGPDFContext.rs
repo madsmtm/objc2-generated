@@ -10,19 +10,18 @@ use crate::*;
 
 /// # Safety
 ///
-/// - `media_box` must be a valid pointer or null.
-/// - `auxiliary_info` generic should be of the correct type.
+/// `auxiliary_info` generic should be of the correct type.
 #[cfg(all(feature = "CGContext", feature = "CGDataConsumer"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CGPDFContextCreate(
     consumer: &CGDataConsumer,
-    media_box: *const CGRect,
+    media_box: Option<&CGRect>,
     auxiliary_info: Option<&CFDictionary<CFString, CFType>>,
 ) -> Option<CFRetained<CGContext>> {
     extern "C-unwind" {
         fn CGPDFContextCreate(
             consumer: &CGDataConsumer,
-            media_box: *const CGRect,
+            media_box: Option<&CGRect>,
             auxiliary_info: Option<&CFDictionary<CFString, CFType>>,
         ) -> Option<NonNull<CGContext>>;
     }
@@ -32,19 +31,18 @@ pub unsafe extern "C-unwind" fn CGPDFContextCreate(
 
 /// # Safety
 ///
-/// - `media_box` must be a valid pointer or null.
-/// - `auxiliary_info` generic should be of the correct type.
+/// `auxiliary_info` generic should be of the correct type.
 #[cfg(feature = "CGContext")]
 #[inline]
 pub unsafe extern "C-unwind" fn CGPDFContextCreateWithURL(
     url: &CFURL,
-    media_box: *const CGRect,
+    media_box: Option<&CGRect>,
     auxiliary_info: Option<&CFDictionary<CFString, CFType>>,
 ) -> Option<CFRetained<CGContext>> {
     extern "C-unwind" {
         fn CGPDFContextCreateWithURL(
             url: &CFURL,
-            media_box: *const CGRect,
+            media_box: Option<&CGRect>,
             auxiliary_info: Option<&CFDictionary<CFString, CFType>>,
         ) -> Option<NonNull<CGContext>>;
     }

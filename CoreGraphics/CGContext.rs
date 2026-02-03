@@ -1352,15 +1352,11 @@ impl CGContext {
     }
 
     /// Output page functions. *
-    ///
-    /// # Safety
-    ///
-    /// `media_box` must be a valid pointer or null.
     #[doc(alias = "CGContextBeginPage")]
     #[inline]
-    pub unsafe fn begin_page(&self, media_box: *const CGRect) {
+    pub fn begin_page(&self, media_box: Option<&CGRect>) {
         extern "C-unwind" {
-            fn CGContextBeginPage(c: &CGContext, media_box: *const CGRect);
+            fn CGContextBeginPage(c: &CGContext, media_box: Option<&CGRect>);
         }
         unsafe { CGContextBeginPage(self, media_box) }
     }
@@ -1599,18 +1595,10 @@ impl CGContext {
         unsafe { CGContextConvertRectToUserSpace(self, rect) }
     }
 
-    /// # Safety
-    ///
-    /// `name` must be a valid pointer.
     #[doc(alias = "CGContextSelectFont")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn select_font(
-        &self,
-        name: NonNull<c_char>,
-        size: CGFloat,
-        text_encoding: CGTextEncoding,
-    ) {
+    pub fn select_font(&self, name: &CStr, size: CGFloat, text_encoding: CGTextEncoding) {
         extern "C-unwind" {
             fn CGContextSelectFont(
                 c: &CGContext,
@@ -1619,35 +1607,36 @@ impl CGContext {
                 text_encoding: CGTextEncoding,
             );
         }
-        unsafe { CGContextSelectFont(self, name, size, text_encoding) }
+        unsafe {
+            CGContextSelectFont(
+                self,
+                NonNull::new(name.as_ptr().cast_mut()).unwrap(),
+                size,
+                text_encoding,
+            )
+        }
     }
 
-    /// # Safety
-    ///
-    /// `string` must be a valid pointer.
     #[doc(alias = "CGContextShowText")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn show_text(&self, string: NonNull<c_char>, length: usize) {
+    pub fn show_text(&self, string: &CStr, length: usize) {
         extern "C-unwind" {
             fn CGContextShowText(c: &CGContext, string: NonNull<c_char>, length: usize);
         }
-        unsafe { CGContextShowText(self, string, length) }
+        unsafe {
+            CGContextShowText(
+                self,
+                NonNull::new(string.as_ptr().cast_mut()).unwrap(),
+                length,
+            )
+        }
     }
 
-    /// # Safety
-    ///
-    /// `string` must be a valid pointer.
     #[doc(alias = "CGContextShowTextAtPoint")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn show_text_at_point(
-        &self,
-        x: CGFloat,
-        y: CGFloat,
-        string: NonNull<c_char>,
-        length: usize,
-    ) {
+    pub fn show_text_at_point(&self, x: CGFloat, y: CGFloat, string: &CStr, length: usize) {
         extern "C-unwind" {
             fn CGContextShowTextAtPoint(
                 c: &CGContext,
@@ -1657,7 +1646,15 @@ impl CGContext {
                 length: usize,
             );
         }
-        unsafe { CGContextShowTextAtPoint(self, x, y, string, length) }
+        unsafe {
+            CGContextShowTextAtPoint(
+                self,
+                x,
+                y,
+                NonNull::new(string.as_ptr().cast_mut()).unwrap(),
+                length,
+            )
+        }
     }
 
     /// # Safety

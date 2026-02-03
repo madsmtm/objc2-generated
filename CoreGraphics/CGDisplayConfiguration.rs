@@ -31,7 +31,7 @@ extern "C-unwind" {
     ///
     /// `config` must be a valid pointer or null.
     #[cfg(feature = "CGError")]
-    pub fn CGBeginDisplayConfiguration(config: *mut CGDisplayConfigRef) -> CGError;
+    pub fn CGBeginDisplayConfiguration(config: Option<&mut CGDisplayConfigRef>) -> CGError;
 }
 
 extern "C-unwind" {

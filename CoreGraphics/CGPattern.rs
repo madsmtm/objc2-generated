@@ -101,7 +101,8 @@ impl CGPattern {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `callbacks` must be a valid pointer.
+    /// - `callbacks` struct field 2 must be implemented correctly.
+    /// - `callbacks` struct field 3 must be implemented correctly.
     #[doc(alias = "CGPatternCreate")]
     #[cfg(feature = "CGContext")]
     #[inline]
@@ -113,7 +114,7 @@ impl CGPattern {
         y_step: CGFloat,
         tiling: CGPatternTiling,
         is_colored: bool,
-        callbacks: NonNull<CGPatternCallbacks>,
+        callbacks: &CGPatternCallbacks,
     ) -> Option<CFRetained<CGPattern>> {
         extern "C-unwind" {
             fn CGPatternCreate(
@@ -124,7 +125,7 @@ impl CGPattern {
                 y_step: CGFloat,
                 tiling: CGPatternTiling,
                 is_colored: bool,
-                callbacks: NonNull<CGPatternCallbacks>,
+                callbacks: &CGPatternCallbacks,
             ) -> Option<NonNull<CGPattern>>;
         }
         let ret = unsafe {

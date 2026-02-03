@@ -73,17 +73,18 @@ impl CGDataConsumer {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `cbks` must be a valid pointer.
+    /// - `cbks` struct field 1 must be implemented correctly.
+    /// - `cbks` struct field 2 must be implemented correctly.
     #[doc(alias = "CGDataConsumerCreate")]
     #[inline]
     pub unsafe fn new(
         info: *mut c_void,
-        cbks: NonNull<CGDataConsumerCallbacks>,
+        cbks: &CGDataConsumerCallbacks,
     ) -> Option<CFRetained<CGDataConsumer>> {
         extern "C-unwind" {
             fn CGDataConsumerCreate(
                 info: *mut c_void,
-                cbks: NonNull<CGDataConsumerCallbacks>,
+                cbks: &CGDataConsumerCallbacks,
             ) -> Option<NonNull<CGDataConsumer>>;
         }
         let ret = unsafe { CGDataConsumerCreate(info, cbks) };

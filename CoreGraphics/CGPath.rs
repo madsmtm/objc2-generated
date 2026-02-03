@@ -126,19 +126,16 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `transform` must be a valid pointer or null.
     #[doc(alias = "CGPathCreateCopyByTransformingPath")]
     #[inline]
-    pub unsafe fn copy_by_transforming_path(
+    pub fn copy_by_transforming_path(
         &self,
-        transform: *const CGAffineTransform,
+        transform: Option<&CGAffineTransform>,
     ) -> Option<CFRetained<CGPath>> {
         extern "C-unwind" {
             fn CGPathCreateCopyByTransformingPath(
                 path: &CGPath,
-                transform: *const CGAffineTransform,
+                transform: Option<&CGAffineTransform>,
             ) -> Option<NonNull<CGPath>>;
         }
         let ret = unsafe { CGPathCreateCopyByTransformingPath(self, transform) };
@@ -157,19 +154,16 @@ impl CGMutablePath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `transform` must be a valid pointer or null.
     #[doc(alias = "CGPathCreateMutableCopyByTransformingPath")]
     #[inline]
-    pub unsafe fn new_copy_by_transforming_path(
+    pub fn new_copy_by_transforming_path(
         path: &CGPath,
-        transform: *const CGAffineTransform,
+        transform: Option<&CGAffineTransform>,
     ) -> Option<CFRetained<CGMutablePath>> {
         extern "C-unwind" {
             fn CGPathCreateMutableCopyByTransformingPath(
                 path: &CGPath,
-                transform: *const CGAffineTransform,
+                transform: Option<&CGAffineTransform>,
             ) -> Option<NonNull<CGMutablePath>>;
         }
         let ret = unsafe { CGPathCreateMutableCopyByTransformingPath(path, transform) };
@@ -178,19 +172,13 @@ impl CGMutablePath {
 }
 
 impl CGPath {
-    /// # Safety
-    ///
-    /// `transform` must be a valid pointer or null.
     #[doc(alias = "CGPathCreateWithRect")]
     #[inline]
-    pub unsafe fn with_rect(
-        rect: CGRect,
-        transform: *const CGAffineTransform,
-    ) -> CFRetained<CGPath> {
+    pub fn with_rect(rect: CGRect, transform: Option<&CGAffineTransform>) -> CFRetained<CGPath> {
         extern "C-unwind" {
             fn CGPathCreateWithRect(
                 rect: CGRect,
-                transform: *const CGAffineTransform,
+                transform: Option<&CGAffineTransform>,
             ) -> Option<NonNull<CGPath>>;
         }
         let ret = unsafe { CGPathCreateWithRect(rect, transform) };
@@ -199,19 +187,16 @@ impl CGPath {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// # Safety
-    ///
-    /// `transform` must be a valid pointer or null.
     #[doc(alias = "CGPathCreateWithEllipseInRect")]
     #[inline]
-    pub unsafe fn with_ellipse_in_rect(
+    pub fn with_ellipse_in_rect(
         rect: CGRect,
-        transform: *const CGAffineTransform,
+        transform: Option<&CGAffineTransform>,
     ) -> CFRetained<CGPath> {
         extern "C-unwind" {
             fn CGPathCreateWithEllipseInRect(
                 rect: CGRect,
-                transform: *const CGAffineTransform,
+                transform: Option<&CGAffineTransform>,
             ) -> Option<NonNull<CGPath>>;
         }
         let ret = unsafe { CGPathCreateWithEllipseInRect(rect, transform) };
@@ -220,23 +205,20 @@ impl CGPath {
         unsafe { CFRetained::from_raw(ret) }
     }
 
-    /// # Safety
-    ///
-    /// `transform` must be a valid pointer or null.
     #[doc(alias = "CGPathCreateWithRoundedRect")]
     #[inline]
-    pub unsafe fn with_rounded_rect(
+    pub fn with_rounded_rect(
         rect: CGRect,
         corner_width: CGFloat,
         corner_height: CGFloat,
-        transform: *const CGAffineTransform,
+        transform: Option<&CGAffineTransform>,
     ) -> CFRetained<CGPath> {
         extern "C-unwind" {
             fn CGPathCreateWithRoundedRect(
                 rect: CGRect,
                 corner_width: CGFloat,
                 corner_height: CGFloat,
-                transform: *const CGAffineTransform,
+                transform: Option<&CGAffineTransform>,
             ) -> Option<NonNull<CGPath>>;
         }
         let ret =
@@ -248,14 +230,11 @@ impl CGPath {
 }
 
 impl CGMutablePath {
-    /// # Safety
-    ///
-    /// `transform` must be a valid pointer or null.
     #[doc(alias = "CGPathAddRoundedRect")]
     #[inline]
-    pub unsafe fn add_rounded_rect(
+    pub fn add_rounded_rect(
         &self,
-        transform: *const CGAffineTransform,
+        transform: Option<&CGAffineTransform>,
         rect: CGRect,
         corner_width: CGFloat,
         corner_height: CGFloat,
@@ -263,7 +242,7 @@ impl CGMutablePath {
         extern "C-unwind" {
             fn CGPathAddRoundedRect(
                 path: &CGMutablePath,
-                transform: *const CGAffineTransform,
+                transform: Option<&CGAffineTransform>,
                 rect: CGRect,
                 corner_width: CGFloat,
                 corner_height: CGFloat,
@@ -276,13 +255,12 @@ impl CGMutablePath {
 impl CGPath {
     /// # Safety
     ///
-    /// - `transform` must be a valid pointer or null.
-    /// - `lengths` must be a valid pointer or null.
+    /// `lengths` must be a valid pointer or null.
     #[doc(alias = "CGPathCreateCopyByDashingPath")]
     #[inline]
     pub unsafe fn copy_by_dashing_path(
         &self,
-        transform: *const CGAffineTransform,
+        transform: Option<&CGAffineTransform>,
         phase: CGFloat,
         lengths: *const CGFloat,
         count: usize,
@@ -290,7 +268,7 @@ impl CGPath {
         extern "C-unwind" {
             fn CGPathCreateCopyByDashingPath(
                 path: &CGPath,
-                transform: *const CGAffineTransform,
+                transform: Option<&CGAffineTransform>,
                 phase: CGFloat,
                 lengths: *const CGFloat,
                 count: usize,
@@ -300,14 +278,11 @@ impl CGPath {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `transform` must be a valid pointer or null.
     #[doc(alias = "CGPathCreateCopyByStrokingPath")]
     #[inline]
-    pub unsafe fn copy_by_stroking_path(
+    pub fn copy_by_stroking_path(
         &self,
-        transform: *const CGAffineTransform,
+        transform: Option<&CGAffineTransform>,
         line_width: CGFloat,
         line_cap: CGLineCap,
         line_join: CGLineJoin,
@@ -316,7 +291,7 @@ impl CGPath {
         extern "C-unwind" {
             fn CGPathCreateCopyByStrokingPath(
                 path: &CGPath,
-                transform: *const CGAffineTransform,
+                transform: Option<&CGAffineTransform>,
                 line_width: CGFloat,
                 line_cap: CGLineCap,
                 line_join: CGLineJoin,
@@ -348,17 +323,13 @@ impl CGPath {
 
 impl CGMutablePath {
     /// * Path construction functions. **
-    ///
-    /// # Safety
-    ///
-    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathMoveToPoint")]
     #[inline]
-    pub unsafe fn move_to_point(&self, m: *const CGAffineTransform, x: CGFloat, y: CGFloat) {
+    pub fn move_to_point(&self, m: Option<&CGAffineTransform>, x: CGFloat, y: CGFloat) {
         extern "C-unwind" {
             fn CGPathMoveToPoint(
                 path: &CGMutablePath,
-                m: *const CGAffineTransform,
+                m: Option<&CGAffineTransform>,
                 x: CGFloat,
                 y: CGFloat,
             );
@@ -366,16 +337,13 @@ impl CGMutablePath {
         unsafe { CGPathMoveToPoint(self, m, x, y) }
     }
 
-    /// # Safety
-    ///
-    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddLineToPoint")]
     #[inline]
-    pub unsafe fn add_line_to_point(&self, m: *const CGAffineTransform, x: CGFloat, y: CGFloat) {
+    pub fn add_line_to_point(&self, m: Option<&CGAffineTransform>, x: CGFloat, y: CGFloat) {
         extern "C-unwind" {
             fn CGPathAddLineToPoint(
                 path: &CGMutablePath,
-                m: *const CGAffineTransform,
+                m: Option<&CGAffineTransform>,
                 x: CGFloat,
                 y: CGFloat,
             );
@@ -383,14 +351,11 @@ impl CGMutablePath {
         unsafe { CGPathAddLineToPoint(self, m, x, y) }
     }
 
-    /// # Safety
-    ///
-    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddQuadCurveToPoint")]
     #[inline]
-    pub unsafe fn add_quad_curve_to_point(
+    pub fn add_quad_curve_to_point(
         &self,
-        m: *const CGAffineTransform,
+        m: Option<&CGAffineTransform>,
         cpx: CGFloat,
         cpy: CGFloat,
         x: CGFloat,
@@ -399,7 +364,7 @@ impl CGMutablePath {
         extern "C-unwind" {
             fn CGPathAddQuadCurveToPoint(
                 path: &CGMutablePath,
-                m: *const CGAffineTransform,
+                m: Option<&CGAffineTransform>,
                 cpx: CGFloat,
                 cpy: CGFloat,
                 x: CGFloat,
@@ -409,14 +374,11 @@ impl CGMutablePath {
         unsafe { CGPathAddQuadCurveToPoint(self, m, cpx, cpy, x, y) }
     }
 
-    /// # Safety
-    ///
-    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddCurveToPoint")]
     #[inline]
-    pub unsafe fn add_curve_to_point(
+    pub fn add_curve_to_point(
         &self,
-        m: *const CGAffineTransform,
+        m: Option<&CGAffineTransform>,
         cp1x: CGFloat,
         cp1y: CGFloat,
         cp2x: CGFloat,
@@ -427,7 +389,7 @@ impl CGMutablePath {
         extern "C-unwind" {
             fn CGPathAddCurveToPoint(
                 path: &CGMutablePath,
-                m: *const CGAffineTransform,
+                m: Option<&CGAffineTransform>,
                 cp1x: CGFloat,
                 cp1y: CGFloat,
                 cp2x: CGFloat,
@@ -449,35 +411,30 @@ impl CGMutablePath {
     }
 
     /// * Path construction convenience functions. **
-    ///
-    /// # Safety
-    ///
-    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddRect")]
     #[inline]
-    pub unsafe fn add_rect(&self, m: *const CGAffineTransform, rect: CGRect) {
+    pub fn add_rect(&self, m: Option<&CGAffineTransform>, rect: CGRect) {
         extern "C-unwind" {
-            fn CGPathAddRect(path: &CGMutablePath, m: *const CGAffineTransform, rect: CGRect);
+            fn CGPathAddRect(path: &CGMutablePath, m: Option<&CGAffineTransform>, rect: CGRect);
         }
         unsafe { CGPathAddRect(self, m, rect) }
     }
 
     /// # Safety
     ///
-    /// - `m` must be a valid pointer or null.
-    /// - `rects` must be a valid pointer or null.
+    /// `rects` must be a valid pointer or null.
     #[doc(alias = "CGPathAddRects")]
     #[inline]
     pub unsafe fn add_rects(
         &self,
-        m: *const CGAffineTransform,
+        m: Option<&CGAffineTransform>,
         rects: *const CGRect,
         count: usize,
     ) {
         extern "C-unwind" {
             fn CGPathAddRects(
                 path: &CGMutablePath,
-                m: *const CGAffineTransform,
+                m: Option<&CGAffineTransform>,
                 rects: *const CGRect,
                 count: usize,
             );
@@ -487,20 +444,19 @@ impl CGMutablePath {
 
     /// # Safety
     ///
-    /// - `m` must be a valid pointer or null.
-    /// - `points` must be a valid pointer or null.
+    /// `points` must be a valid pointer or null.
     #[doc(alias = "CGPathAddLines")]
     #[inline]
     pub unsafe fn add_lines(
         &self,
-        m: *const CGAffineTransform,
+        m: Option<&CGAffineTransform>,
         points: *const CGPoint,
         count: usize,
     ) {
         extern "C-unwind" {
             fn CGPathAddLines(
                 path: &CGMutablePath,
-                m: *const CGAffineTransform,
+                m: Option<&CGAffineTransform>,
                 points: *const CGPoint,
                 count: usize,
             );
@@ -508,30 +464,24 @@ impl CGMutablePath {
         unsafe { CGPathAddLines(self, m, points, count) }
     }
 
-    /// # Safety
-    ///
-    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddEllipseInRect")]
     #[inline]
-    pub unsafe fn add_ellipse_in_rect(&self, m: *const CGAffineTransform, rect: CGRect) {
+    pub fn add_ellipse_in_rect(&self, m: Option<&CGAffineTransform>, rect: CGRect) {
         extern "C-unwind" {
             fn CGPathAddEllipseInRect(
                 path: &CGMutablePath,
-                m: *const CGAffineTransform,
+                m: Option<&CGAffineTransform>,
                 rect: CGRect,
             );
         }
         unsafe { CGPathAddEllipseInRect(self, m, rect) }
     }
 
-    /// # Safety
-    ///
-    /// `matrix` must be a valid pointer or null.
     #[doc(alias = "CGPathAddRelativeArc")]
     #[inline]
-    pub unsafe fn add_relative_arc(
+    pub fn add_relative_arc(
         &self,
-        matrix: *const CGAffineTransform,
+        matrix: Option<&CGAffineTransform>,
         x: CGFloat,
         y: CGFloat,
         radius: CGFloat,
@@ -541,7 +491,7 @@ impl CGMutablePath {
         extern "C-unwind" {
             fn CGPathAddRelativeArc(
                 path: &CGMutablePath,
-                matrix: *const CGAffineTransform,
+                matrix: Option<&CGAffineTransform>,
                 x: CGFloat,
                 y: CGFloat,
                 radius: CGFloat,
@@ -552,14 +502,11 @@ impl CGMutablePath {
         unsafe { CGPathAddRelativeArc(self, matrix, x, y, radius, start_angle, delta) }
     }
 
-    /// # Safety
-    ///
-    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddArc")]
     #[inline]
-    pub unsafe fn add_arc(
+    pub fn add_arc(
         &self,
-        m: *const CGAffineTransform,
+        m: Option<&CGAffineTransform>,
         x: CGFloat,
         y: CGFloat,
         radius: CGFloat,
@@ -570,7 +517,7 @@ impl CGMutablePath {
         extern "C-unwind" {
             fn CGPathAddArc(
                 path: &CGMutablePath,
-                m: *const CGAffineTransform,
+                m: Option<&CGAffineTransform>,
                 x: CGFloat,
                 y: CGFloat,
                 radius: CGFloat,
@@ -582,14 +529,11 @@ impl CGMutablePath {
         unsafe { CGPathAddArc(self, m, x, y, radius, start_angle, end_angle, clockwise) }
     }
 
-    /// # Safety
-    ///
-    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddArcToPoint")]
     #[inline]
-    pub unsafe fn add_arc_to_point(
+    pub fn add_arc_to_point(
         &self,
-        m: *const CGAffineTransform,
+        m: Option<&CGAffineTransform>,
         x1: CGFloat,
         y1: CGFloat,
         x2: CGFloat,
@@ -599,7 +543,7 @@ impl CGMutablePath {
         extern "C-unwind" {
             fn CGPathAddArcToPoint(
                 path: &CGMutablePath,
-                m: *const CGAffineTransform,
+                m: Option<&CGAffineTransform>,
                 x1: CGFloat,
                 y1: CGFloat,
                 x2: CGFloat,
@@ -610,14 +554,11 @@ impl CGMutablePath {
         unsafe { CGPathAddArcToPoint(self, m, x1, y1, x2, y2, radius) }
     }
 
-    /// # Safety
-    ///
-    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathAddPath")]
     #[inline]
-    pub unsafe fn add_path(&self, m: *const CGAffineTransform, path2: &CGPath) {
+    pub fn add_path(&self, m: Option<&CGAffineTransform>, path2: &CGPath) {
         extern "C-unwind" {
-            fn CGPathAddPath(path1: &CGMutablePath, m: *const CGAffineTransform, path2: &CGPath);
+            fn CGPathAddPath(path1: &CGMutablePath, m: Option<&CGAffineTransform>, path2: &CGPath);
         }
         unsafe { CGPathAddPath(self, m, path2) }
     }
@@ -634,14 +575,11 @@ impl CGPath {
         unsafe { CGPathIsEmpty(self) }
     }
 
-    /// # Safety
-    ///
-    /// `rect` must be a valid pointer or null.
     #[doc(alias = "CGPathIsRect")]
     #[inline]
-    pub unsafe fn is_rect(&self, rect: *mut CGRect) -> bool {
+    pub fn is_rect(&self, rect: Option<&mut CGRect>) -> bool {
         extern "C-unwind" {
-            fn CGPathIsRect(path: &CGPath, rect: *mut CGRect) -> bool;
+            fn CGPathIsRect(path: &CGPath, rect: Option<&mut CGRect>) -> bool;
         }
         unsafe { CGPathIsRect(self, rect) }
     }
@@ -673,21 +611,18 @@ impl CGPath {
         unsafe { CGPathGetPathBoundingBox(self) }
     }
 
-    /// # Safety
-    ///
-    /// `m` must be a valid pointer or null.
     #[doc(alias = "CGPathContainsPoint")]
     #[inline]
-    pub unsafe fn contains_point(
+    pub fn contains_point(
         &self,
-        m: *const CGAffineTransform,
+        m: Option<&CGAffineTransform>,
         point: CGPoint,
         eo_fill: bool,
     ) -> bool {
         extern "C-unwind" {
             fn CGPathContainsPoint(
                 path: &CGPath,
-                m: *const CGAffineTransform,
+                m: Option<&CGAffineTransform>,
                 point: CGPoint,
                 eo_fill: bool,
             ) -> bool;
