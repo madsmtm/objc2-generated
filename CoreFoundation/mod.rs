@@ -747,12 +747,13 @@ pub use self::__CFPreferences::CFPreferencesAppValueIsForced;
 pub use self::__CFPreferences::CFPreferencesCopyAppValue;
 #[cfg(all(feature = "CFArray", feature = "CFPreferences"))]
 pub use self::__CFPreferences::CFPreferencesCopyApplicationList;
-#[cfg(all(feature = "CFArray", feature = "CFPreferences"))]
+#[cfg(all(feature = "CFArray", feature = "CFPreferences", feature = "CFString"))]
 pub use self::__CFPreferences::CFPreferencesCopyKeyList;
 #[cfg(all(
     feature = "CFArray",
     feature = "CFDictionary",
-    feature = "CFPreferences"
+    feature = "CFPreferences",
+    feature = "CFString"
 ))]
 pub use self::__CFPreferences::CFPreferencesCopyMultiple;
 #[cfg(feature = "CFPreferences")]

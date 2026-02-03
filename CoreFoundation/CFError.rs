@@ -124,24 +124,23 @@ impl CFError {
     ///
     /// - `allocator` might not allow `None`.
     /// - `domain` might not allow `None`.
-    /// - `user_info` generic must be of the correct type.
-    /// - `user_info` generic must be of the correct type.
+    /// - `user_info` generic should be of the correct type.
     /// - `user_info` might not allow `None`.
     #[doc(alias = "CFErrorCreate")]
-    #[cfg(feature = "CFDictionary")]
+    #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         domain: Option<&CFErrorDomain>,
         code: CFIndex,
-        user_info: Option<&CFDictionary>,
+        user_info: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CFError>> {
         extern "C-unwind" {
             fn CFErrorCreate(
                 allocator: Option<&CFAllocator>,
                 domain: Option<&CFErrorDomain>,
                 code: CFIndex,
-                user_info: Option<&CFDictionary>,
+                user_info: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CFError>>;
         }
         let ret = unsafe { CFErrorCreate(allocator, domain, code, user_info) };
@@ -241,11 +240,13 @@ impl CFError {
     ///
     /// Returns: The user info of the CFError.
     #[doc(alias = "CFErrorCopyUserInfo")]
-    #[cfg(feature = "CFDictionary")]
+    #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
-    pub fn user_info(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn user_info(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
-            fn CFErrorCopyUserInfo(err: &CFError) -> Option<NonNull<CFDictionary>>;
+            fn CFErrorCopyUserInfo(
+                err: &CFError,
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CFErrorCopyUserInfo(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

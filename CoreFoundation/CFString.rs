@@ -1183,7 +1183,6 @@ impl CFString {
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
-    /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - `separator_string` might not allow `None`.
     #[doc(alias = "CFStringCreateByCombiningStrings")]
@@ -1191,13 +1190,13 @@ impl CFString {
     #[inline]
     pub unsafe fn new_by_combining_strings(
         alloc: Option<&CFAllocator>,
-        the_array: Option<&CFArray>,
+        the_array: Option<&CFArray<CFString>>,
         separator_string: Option<&CFString>,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFStringCreateByCombiningStrings(
                 alloc: Option<&CFAllocator>,
-                the_array: Option<&CFArray>,
+                the_array: Option<&CFArray<CFString>>,
                 separator_string: Option<&CFString>,
             ) -> Option<NonNull<CFString>>;
         }
@@ -1212,13 +1211,13 @@ impl CFString {
         alloc: Option<&CFAllocator>,
         the_string: Option<&CFString>,
         separator_string: Option<&CFString>,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
             fn CFStringCreateArrayBySeparatingStrings(
                 alloc: Option<&CFAllocator>,
                 the_string: Option<&CFString>,
                 separator_string: Option<&CFString>,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret =
             unsafe { CFStringCreateArrayBySeparatingStrings(alloc, the_string, separator_string) };

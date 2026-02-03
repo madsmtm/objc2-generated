@@ -64,22 +64,21 @@ impl CFAttributedString {
     ///
     /// - `alloc` might not allow `None`.
     /// - `str` might not allow `None`.
-    /// - `attributes` generic must be of the correct type.
-    /// - `attributes` generic must be of the correct type.
+    /// - `attributes` generic should be of the correct type.
     /// - `attributes` might not allow `None`.
     #[doc(alias = "CFAttributedStringCreate")]
-    #[cfg(feature = "CFDictionary")]
+    #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
     pub unsafe fn new(
         alloc: Option<&CFAllocator>,
         str: Option<&CFString>,
-        attributes: Option<&CFDictionary>,
+        attributes: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CFAttributedString>> {
         extern "C-unwind" {
             fn CFAttributedStringCreate(
                 alloc: Option<&CFAllocator>,
                 str: Option<&CFString>,
-                attributes: Option<&CFDictionary>,
+                attributes: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CFAttributedString>>;
         }
         let ret = unsafe { CFAttributedStringCreate(alloc, str, attributes) };
@@ -157,19 +156,19 @@ impl CFAttributedString {
     ///
     /// `effective_range` must be a valid pointer.
     #[doc(alias = "CFAttributedStringGetAttributes")]
-    #[cfg(feature = "CFDictionary")]
+    #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
     pub unsafe fn attributes(
         &self,
         loc: CFIndex,
         effective_range: *mut CFRange,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CFAttributedStringGetAttributes(
                 a_str: &CFAttributedString,
                 loc: CFIndex,
                 effective_range: *mut CFRange,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CFAttributedStringGetAttributes(self, loc, effective_range) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -207,21 +206,21 @@ impl CFAttributedString {
     ///
     /// `longest_effective_range` must be a valid pointer.
     #[doc(alias = "CFAttributedStringGetAttributesAndLongestEffectiveRange")]
-    #[cfg(feature = "CFDictionary")]
+    #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
     pub unsafe fn attributes_and_longest_effective_range(
         &self,
         loc: CFIndex,
         in_range: CFRange,
         longest_effective_range: *mut CFRange,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CFAttributedStringGetAttributesAndLongestEffectiveRange(
                 a_str: &CFAttributedString,
                 loc: CFIndex,
                 in_range: CFRange,
                 longest_effective_range: *mut CFRange,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe {
             CFAttributedStringGetAttributesAndLongestEffectiveRange(
@@ -355,23 +354,22 @@ impl CFMutableAttributedString {
     /// # Safety
     ///
     /// - `a_str` might not allow `None`.
-    /// - `replacement` generic must be of the correct type.
-    /// - `replacement` generic must be of the correct type.
+    /// - `replacement` generic should be of the correct type.
     /// - `replacement` might not allow `None`.
     #[doc(alias = "CFAttributedStringSetAttributes")]
-    #[cfg(feature = "CFDictionary")]
+    #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
     pub unsafe fn set_attributes(
         a_str: Option<&CFMutableAttributedString>,
         range: CFRange,
-        replacement: Option<&CFDictionary>,
+        replacement: Option<&CFDictionary<CFString, CFType>>,
         clear_other_attributes: bool,
     ) {
         extern "C-unwind" {
             fn CFAttributedStringSetAttributes(
                 a_str: Option<&CFMutableAttributedString>,
                 range: CFRange,
-                replacement: Option<&CFDictionary>,
+                replacement: Option<&CFDictionary<CFString, CFType>>,
                 clear_other_attributes: Boolean,
             );
         }

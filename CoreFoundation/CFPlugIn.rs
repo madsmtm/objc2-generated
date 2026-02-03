@@ -115,11 +115,11 @@ impl CFPlugIn {
     #[inline]
     pub fn find_factories_for_plug_in_type(
         type_uuid: Option<&CFUUID>,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<CFUUID>>> {
         extern "C-unwind" {
             fn CFPlugInFindFactoriesForPlugInType(
                 type_uuid: Option<&CFUUID>,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFUUID>>>;
         }
         let ret = unsafe { CFPlugInFindFactoriesForPlugInType(type_uuid) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -131,12 +131,12 @@ impl CFPlugIn {
     pub fn find_factories_for_plug_in_type_in_plug_in(
         type_uuid: Option<&CFUUID>,
         plug_in: Option<&CFPlugIn>,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<CFUUID>>> {
         extern "C-unwind" {
             fn CFPlugInFindFactoriesForPlugInTypeInPlugIn(
                 type_uuid: Option<&CFUUID>,
                 plug_in: Option<&CFPlugIn>,
-            ) -> Option<NonNull<CFArray>>;
+            ) -> Option<NonNull<CFArray<CFUUID>>>;
         }
         let ret = unsafe { CFPlugInFindFactoriesForPlugInTypeInPlugIn(type_uuid, plug_in) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

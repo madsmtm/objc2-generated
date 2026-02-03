@@ -45,18 +45,17 @@ impl CFUserNotification {
     ///
     /// - `allocator` might not allow `None`.
     /// - `error` must be a valid pointer.
-    /// - `dictionary` generic must be of the correct type.
-    /// - `dictionary` generic must be of the correct type.
+    /// - `dictionary` generic should be of the correct type.
     /// - `dictionary` might not allow `None`.
     #[doc(alias = "CFUserNotificationCreate")]
-    #[cfg(all(feature = "CFDate", feature = "CFDictionary"))]
+    #[cfg(all(feature = "CFDate", feature = "CFDictionary", feature = "CFString"))]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         timeout: CFTimeInterval,
         flags: CFOptionFlags,
         error: *mut i32,
-        dictionary: Option<&CFDictionary>,
+        dictionary: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CFUserNotification>> {
         extern "C-unwind" {
             fn CFUserNotificationCreate(
@@ -64,7 +63,7 @@ impl CFUserNotification {
                 timeout: CFTimeInterval,
                 flags: CFOptionFlags,
                 error: *mut i32,
-                dictionary: Option<&CFDictionary>,
+                dictionary: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CFUserNotification>>;
         }
         let ret = unsafe { CFUserNotificationCreate(allocator, timeout, flags, error, dictionary) };
@@ -114,13 +113,13 @@ impl CFUserNotification {
     }
 
     #[doc(alias = "CFUserNotificationGetResponseDictionary")]
-    #[cfg(feature = "CFDictionary")]
+    #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
-    pub fn response_dictionary(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn response_dictionary(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CFUserNotificationGetResponseDictionary(
                 user_notification: &CFUserNotification,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CFUserNotificationGetResponseDictionary(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -128,24 +127,23 @@ impl CFUserNotification {
 
     /// # Safety
     ///
-    /// - `dictionary` generic must be of the correct type.
-    /// - `dictionary` generic must be of the correct type.
+    /// - `dictionary` generic should be of the correct type.
     /// - `dictionary` might not allow `None`.
     #[doc(alias = "CFUserNotificationUpdate")]
-    #[cfg(all(feature = "CFDate", feature = "CFDictionary"))]
+    #[cfg(all(feature = "CFDate", feature = "CFDictionary", feature = "CFString"))]
     #[inline]
     pub unsafe fn update(
         &self,
         timeout: CFTimeInterval,
         flags: CFOptionFlags,
-        dictionary: Option<&CFDictionary>,
+        dictionary: Option<&CFDictionary<CFString, CFType>>,
     ) -> i32 {
         extern "C-unwind" {
             fn CFUserNotificationUpdate(
                 user_notification: &CFUserNotification,
                 timeout: CFTimeInterval,
                 flags: CFOptionFlags,
-                dictionary: Option<&CFDictionary>,
+                dictionary: Option<&CFDictionary<CFString, CFType>>,
             ) -> i32;
         }
         unsafe { CFUserNotificationUpdate(self, timeout, flags, dictionary) }

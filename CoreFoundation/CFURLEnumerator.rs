@@ -77,23 +77,22 @@ impl CFURLEnumerator {
     ///
     /// - `alloc` might not allow `None`.
     /// - `directory_url` might not allow `None`.
-    /// - `property_keys` generic must be of the correct type.
     /// - `property_keys` might not allow `None`.
     #[doc(alias = "CFURLEnumeratorCreateForDirectoryURL")]
-    #[cfg(all(feature = "CFArray", feature = "CFURL"))]
+    #[cfg(all(feature = "CFArray", feature = "CFString", feature = "CFURL"))]
     #[inline]
     pub unsafe fn new_for_directory_url(
         alloc: Option<&CFAllocator>,
         directory_url: Option<&CFURL>,
         option: CFURLEnumeratorOptions,
-        property_keys: Option<&CFArray>,
+        property_keys: Option<&CFArray<CFString>>,
     ) -> Option<CFRetained<CFURLEnumerator>> {
         extern "C-unwind" {
             fn CFURLEnumeratorCreateForDirectoryURL(
                 alloc: Option<&CFAllocator>,
                 directory_url: Option<&CFURL>,
                 option: CFURLEnumeratorOptions,
-                property_keys: Option<&CFArray>,
+                property_keys: Option<&CFArray<CFString>>,
             ) -> Option<NonNull<CFURLEnumerator>>;
         }
         let ret = unsafe {
@@ -105,21 +104,20 @@ impl CFURLEnumerator {
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
-    /// - `property_keys` generic must be of the correct type.
     /// - `property_keys` might not allow `None`.
     #[doc(alias = "CFURLEnumeratorCreateForMountedVolumes")]
-    #[cfg(feature = "CFArray")]
+    #[cfg(all(feature = "CFArray", feature = "CFString"))]
     #[inline]
     pub unsafe fn new_for_mounted_volumes(
         alloc: Option<&CFAllocator>,
         option: CFURLEnumeratorOptions,
-        property_keys: Option<&CFArray>,
+        property_keys: Option<&CFArray<CFString>>,
     ) -> Option<CFRetained<CFURLEnumerator>> {
         extern "C-unwind" {
             fn CFURLEnumeratorCreateForMountedVolumes(
                 alloc: Option<&CFAllocator>,
                 option: CFURLEnumeratorOptions,
-                property_keys: Option<&CFArray>,
+                property_keys: Option<&CFArray<CFString>>,
             ) -> Option<NonNull<CFURLEnumerator>>;
         }
         let ret = unsafe { CFURLEnumeratorCreateForMountedVolumes(alloc, option, property_keys) };

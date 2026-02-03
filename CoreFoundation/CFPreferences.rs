@@ -147,21 +147,21 @@ pub extern "C-unwind" fn CFPreferencesCopyValue(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(all(feature = "CFArray", feature = "CFDictionary"))]
+#[cfg(all(feature = "CFArray", feature = "CFDictionary", feature = "CFString"))]
 #[inline]
 pub extern "C-unwind" fn CFPreferencesCopyMultiple(
-    keys_to_fetch: Option<&CFArray>,
+    keys_to_fetch: Option<&CFArray<CFString>>,
     application_id: &CFString,
     user_name: &CFString,
     host_name: &CFString,
-) -> CFRetained<CFDictionary> {
+) -> CFRetained<CFDictionary<CFString, CFType>> {
     extern "C-unwind" {
         fn CFPreferencesCopyMultiple(
-            keys_to_fetch: Option<&CFArray>,
+            keys_to_fetch: Option<&CFArray<CFString>>,
             application_id: &CFString,
             user_name: &CFString,
             host_name: &CFString,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret =
         unsafe { CFPreferencesCopyMultiple(keys_to_fetch, application_id, user_name, host_name) };
@@ -185,13 +185,11 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `keys_to_set` generic must be of the correct type.
-    /// - `keys_to_set` generic must be of the correct type.
-    /// - `keys_to_remove` generic must be of the correct type.
-    #[cfg(all(feature = "CFArray", feature = "CFDictionary"))]
+    /// `keys_to_set` generic should be of the correct type.
+    #[cfg(all(feature = "CFArray", feature = "CFDictionary", feature = "CFString"))]
     pub fn CFPreferencesSetMultiple(
-        keys_to_set: Option<&CFDictionary>,
-        keys_to_remove: Option<&CFArray>,
+        keys_to_set: Option<&CFDictionary<CFString, CFType>>,
+        keys_to_remove: Option<&CFArray<CFString>>,
         application_id: &CFString,
         user_name: &CFString,
         host_name: &CFString,
@@ -232,19 +230,19 @@ pub extern "C-unwind" fn CFPreferencesCopyApplicationList(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-#[cfg(feature = "CFArray")]
+#[cfg(all(feature = "CFArray", feature = "CFString"))]
 #[inline]
 pub extern "C-unwind" fn CFPreferencesCopyKeyList(
     application_id: &CFString,
     user_name: &CFString,
     host_name: &CFString,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CFString>>> {
     extern "C-unwind" {
         fn CFPreferencesCopyKeyList(
             application_id: &CFString,
             user_name: &CFString,
             host_name: &CFString,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFString>>>;
     }
     let ret = unsafe { CFPreferencesCopyKeyList(application_id, user_name, host_name) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

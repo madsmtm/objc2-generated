@@ -14,7 +14,6 @@ impl CFURL {
     /// - `url` might not allow `None`.
     /// - `resource_data` must be a valid pointer.
     /// - `properties` must be a valid pointer.
-    /// - `desired_properties` generic must be of the correct type.
     /// - `desired_properties` might not allow `None`.
     /// - `error_code` must be a valid pointer.
     #[doc(alias = "CFURLCreateDataAndPropertiesFromResource")]
@@ -22,6 +21,7 @@ impl CFURL {
         feature = "CFArray",
         feature = "CFData",
         feature = "CFDictionary",
+        feature = "CFString",
         feature = "CFURL"
     ))]
     #[deprecated = "For resource data, use the CFReadStream API. For file resource properties, use CFURLCopyResourcePropertiesForKeys."]
@@ -30,8 +30,8 @@ impl CFURL {
         alloc: Option<&CFAllocator>,
         url: Option<&CFURL>,
         resource_data: *mut *const CFData,
-        properties: *mut *const CFDictionary,
-        desired_properties: Option<&CFArray>,
+        properties: *mut *const CFDictionary<CFString, CFType>,
+        desired_properties: Option<&CFArray<CFString>>,
         error_code: *mut i32,
     ) -> bool {
         extern "C-unwind" {
@@ -39,8 +39,8 @@ impl CFURL {
                 alloc: Option<&CFAllocator>,
                 url: Option<&CFURL>,
                 resource_data: *mut *const CFData,
-                properties: *mut *const CFDictionary,
-                desired_properties: Option<&CFArray>,
+                properties: *mut *const CFDictionary<CFString, CFType>,
+                desired_properties: Option<&CFArray<CFString>>,
                 error_code: *mut i32,
             ) -> Boolean;
         }
@@ -60,25 +60,29 @@ impl CFURL {
     /// # Safety
     ///
     /// - `data_to_write` might not allow `None`.
-    /// - `properties_to_write` generic must be of the correct type.
-    /// - `properties_to_write` generic must be of the correct type.
+    /// - `properties_to_write` generic should be of the correct type.
     /// - `properties_to_write` might not allow `None`.
     /// - `error_code` must be a valid pointer.
     #[doc(alias = "CFURLWriteDataAndPropertiesToResource")]
-    #[cfg(all(feature = "CFData", feature = "CFDictionary", feature = "CFURL"))]
+    #[cfg(all(
+        feature = "CFData",
+        feature = "CFDictionary",
+        feature = "CFString",
+        feature = "CFURL"
+    ))]
     #[deprecated = "For resource data, use the CFWriteStream API. For file resource properties, use CFURLSetResourcePropertiesForKeys."]
     #[inline]
     pub unsafe fn write_data_and_properties_to_resource(
         &self,
         data_to_write: Option<&CFData>,
-        properties_to_write: Option<&CFDictionary>,
+        properties_to_write: Option<&CFDictionary<CFString, CFType>>,
         error_code: *mut i32,
     ) -> bool {
         extern "C-unwind" {
             fn CFURLWriteDataAndPropertiesToResource(
                 url: &CFURL,
                 data_to_write: Option<&CFData>,
-                properties_to_write: Option<&CFDictionary>,
+                properties_to_write: Option<&CFDictionary<CFString, CFType>>,
                 error_code: *mut i32,
             ) -> Boolean;
         }

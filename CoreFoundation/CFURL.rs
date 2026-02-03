@@ -867,23 +867,27 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `keys` generic must be of the correct type.
     /// - `keys` might not allow `None`.
     /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLCopyResourcePropertiesForKeys")]
-    #[cfg(all(feature = "CFArray", feature = "CFDictionary", feature = "CFError"))]
+    #[cfg(all(
+        feature = "CFArray",
+        feature = "CFDictionary",
+        feature = "CFError",
+        feature = "CFString"
+    ))]
     #[inline]
     pub unsafe fn resource_properties_for_keys(
         &self,
-        keys: Option<&CFArray>,
+        keys: Option<&CFArray<CFString>>,
         error: *mut *mut CFError,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CFURLCopyResourcePropertiesForKeys(
                 url: &CFURL,
-                keys: Option<&CFArray>,
+                keys: Option<&CFArray<CFString>>,
                 error: *mut *mut CFError,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CFURLCopyResourcePropertiesForKeys(self, keys, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -918,22 +922,21 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `keyed_property_values` generic must be of the correct type.
-    /// - `keyed_property_values` generic must be of the correct type.
+    /// - `keyed_property_values` generic should be of the correct type.
     /// - `keyed_property_values` might not allow `None`.
     /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLSetResourcePropertiesForKeys")]
-    #[cfg(all(feature = "CFDictionary", feature = "CFError"))]
+    #[cfg(all(feature = "CFDictionary", feature = "CFError", feature = "CFString"))]
     #[inline]
     pub unsafe fn set_resource_properties_for_keys(
         &self,
-        keyed_property_values: Option<&CFDictionary>,
+        keyed_property_values: Option<&CFDictionary<CFString, CFType>>,
         error: *mut *mut CFError,
     ) -> bool {
         extern "C-unwind" {
             fn CFURLSetResourcePropertiesForKeys(
                 url: &CFURL,
-                keyed_property_values: Option<&CFDictionary>,
+                keyed_property_values: Option<&CFDictionary<CFString, CFType>>,
                 error: *mut *mut CFError,
             ) -> Boolean;
         }
@@ -1738,18 +1741,22 @@ impl CFURL {
     ///
     /// - `allocator` might not allow `None`.
     /// - `url` might not allow `None`.
-    /// - `resource_properties_to_include` generic must be of the correct type.
     /// - `resource_properties_to_include` might not allow `None`.
     /// - `relative_to_url` might not allow `None`.
     /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateBookmarkData")]
-    #[cfg(all(feature = "CFArray", feature = "CFData", feature = "CFError"))]
+    #[cfg(all(
+        feature = "CFArray",
+        feature = "CFData",
+        feature = "CFError",
+        feature = "CFString"
+    ))]
     #[inline]
     pub unsafe fn new_bookmark_data(
         allocator: Option<&CFAllocator>,
         url: Option<&CFURL>,
         options: CFURLBookmarkCreationOptions,
-        resource_properties_to_include: Option<&CFArray>,
+        resource_properties_to_include: Option<&CFArray<CFString>>,
         relative_to_url: Option<&CFURL>,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFData>> {
@@ -1758,7 +1765,7 @@ impl CFURL {
                 allocator: Option<&CFAllocator>,
                 url: Option<&CFURL>,
                 options: CFURLBookmarkCreationOptions,
-                resource_properties_to_include: Option<&CFArray>,
+                resource_properties_to_include: Option<&CFArray<CFString>>,
                 relative_to_url: Option<&CFURL>,
                 error: *mut *mut CFError,
             ) -> Option<NonNull<CFData>>;
@@ -1781,19 +1788,23 @@ impl CFURL {
     /// - `allocator` might not allow `None`.
     /// - `bookmark` might not allow `None`.
     /// - `relative_to_url` might not allow `None`.
-    /// - `resource_properties_to_include` generic must be of the correct type.
     /// - `resource_properties_to_include` might not allow `None`.
     /// - `is_stale` must be a valid pointer.
     /// - `error` must be a valid pointer.
     #[doc(alias = "CFURLCreateByResolvingBookmarkData")]
-    #[cfg(all(feature = "CFArray", feature = "CFData", feature = "CFError"))]
+    #[cfg(all(
+        feature = "CFArray",
+        feature = "CFData",
+        feature = "CFError",
+        feature = "CFString"
+    ))]
     #[inline]
     pub unsafe fn new_by_resolving_bookmark_data(
         allocator: Option<&CFAllocator>,
         bookmark: Option<&CFData>,
         options: CFURLBookmarkResolutionOptions,
         relative_to_url: Option<&CFURL>,
-        resource_properties_to_include: Option<&CFArray>,
+        resource_properties_to_include: Option<&CFArray<CFString>>,
         is_stale: *mut Boolean,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFURL>> {
@@ -1803,7 +1814,7 @@ impl CFURL {
                 bookmark: Option<&CFData>,
                 options: CFURLBookmarkResolutionOptions,
                 relative_to_url: Option<&CFURL>,
-                resource_properties_to_include: Option<&CFArray>,
+                resource_properties_to_include: Option<&CFArray<CFString>>,
                 is_stale: *mut Boolean,
                 error: *mut *mut CFError,
             ) -> Option<NonNull<CFURL>>;
@@ -1825,23 +1836,27 @@ impl CFURL {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `resource_properties_to_return` generic must be of the correct type.
     /// - `resource_properties_to_return` might not allow `None`.
     /// - `bookmark` might not allow `None`.
     #[doc(alias = "CFURLCreateResourcePropertiesForKeysFromBookmarkData")]
-    #[cfg(all(feature = "CFArray", feature = "CFData", feature = "CFDictionary"))]
+    #[cfg(all(
+        feature = "CFArray",
+        feature = "CFData",
+        feature = "CFDictionary",
+        feature = "CFString"
+    ))]
     #[inline]
     pub unsafe fn new_resource_properties_for_keys_from_bookmark_data(
         allocator: Option<&CFAllocator>,
-        resource_properties_to_return: Option<&CFArray>,
+        resource_properties_to_return: Option<&CFArray<CFString>>,
         bookmark: Option<&CFData>,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CFURLCreateResourcePropertiesForKeysFromBookmarkData(
                 allocator: Option<&CFAllocator>,
-                resource_properties_to_return: Option<&CFArray>,
+                resource_properties_to_return: Option<&CFArray<CFString>>,
                 bookmark: Option<&CFData>,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe {
             CFURLCreateResourcePropertiesForKeysFromBookmarkData(

@@ -194,9 +194,9 @@ impl CFRunLoop {
     #[doc(alias = "CFRunLoopCopyAllModes")]
     #[cfg(feature = "CFArray")]
     #[inline]
-    pub fn all_modes(&self) -> Option<CFRetained<CFArray>> {
+    pub fn all_modes(&self) -> Option<CFRetained<CFArray<CFRunLoopMode>>> {
         extern "C-unwind" {
-            fn CFRunLoopCopyAllModes(rl: &CFRunLoop) -> Option<NonNull<CFArray>>;
+            fn CFRunLoopCopyAllModes(rl: &CFRunLoop) -> Option<NonNull<CFArray<CFRunLoopMode>>>;
         }
         let ret = unsafe { CFRunLoopCopyAllModes(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })

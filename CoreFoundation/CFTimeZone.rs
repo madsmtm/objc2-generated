@@ -63,22 +63,23 @@ impl CFTimeZone {
     }
 
     #[doc(alias = "CFTimeZoneCopyKnownNames")]
-    #[cfg(feature = "CFArray")]
+    #[cfg(all(feature = "CFArray", feature = "CFString"))]
     #[inline]
-    pub fn known_names() -> Option<CFRetained<CFArray>> {
+    pub fn known_names() -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
-            fn CFTimeZoneCopyKnownNames() -> Option<NonNull<CFArray>>;
+            fn CFTimeZoneCopyKnownNames() -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CFTimeZoneCopyKnownNames() };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     #[doc(alias = "CFTimeZoneCopyAbbreviationDictionary")]
-    #[cfg(feature = "CFDictionary")]
+    #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
-    pub fn abbreviation_dictionary() -> Option<CFRetained<CFDictionary>> {
+    pub fn abbreviation_dictionary() -> Option<CFRetained<CFDictionary<CFString, CFString>>> {
         extern "C-unwind" {
-            fn CFTimeZoneCopyAbbreviationDictionary() -> Option<NonNull<CFDictionary>>;
+            fn CFTimeZoneCopyAbbreviationDictionary(
+            ) -> Option<NonNull<CFDictionary<CFString, CFString>>>;
         }
         let ret = unsafe { CFTimeZoneCopyAbbreviationDictionary() };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -86,15 +87,13 @@ impl CFTimeZone {
 
     /// # Safety
     ///
-    /// - `dict` generic must be of the correct type.
-    /// - `dict` generic must be of the correct type.
-    /// - `dict` might not allow `None`.
+    /// `dict` might not allow `None`.
     #[doc(alias = "CFTimeZoneSetAbbreviationDictionary")]
-    #[cfg(feature = "CFDictionary")]
+    #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
-    pub unsafe fn set_abbreviation_dictionary(dict: Option<&CFDictionary>) {
+    pub unsafe fn set_abbreviation_dictionary(dict: Option<&CFDictionary<CFString, CFString>>) {
         extern "C-unwind" {
-            fn CFTimeZoneSetAbbreviationDictionary(dict: Option<&CFDictionary>);
+            fn CFTimeZoneSetAbbreviationDictionary(dict: Option<&CFDictionary<CFString, CFString>>);
         }
         unsafe { CFTimeZoneSetAbbreviationDictionary(dict) }
     }
