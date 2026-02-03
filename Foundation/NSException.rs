@@ -188,6 +188,10 @@ impl NSException {
         #[unsafe(method(callStackSymbols))]
         #[unsafe(method_family = none)]
         pub fn callStackSymbols(&self) -> Retained<NSArray<NSString>>;
+
+        #[unsafe(method(raise))]
+        #[unsafe(method_family = none)]
+        pub fn __raise(&self);
     );
 }
 

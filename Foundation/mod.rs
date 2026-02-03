@@ -2748,15 +2748,7 @@ pub use self::__NSObject::NSCoding;
 #[cfg(all(feature = "NSObject", feature = "NSZone"))]
 pub use self::__NSObject::NSCopyObject;
 #[cfg(feature = "NSObject")]
-pub use self::__NSObject::NSDeallocateObject;
-#[cfg(feature = "NSObject")]
-pub use self::__NSObject::NSDecrementExtraRefCountWasZero;
-#[cfg(feature = "NSObject")]
 pub use self::__NSObject::NSDiscardableContent;
-#[cfg(feature = "NSObject")]
-pub use self::__NSObject::NSExtraRefCount;
-#[cfg(feature = "NSObject")]
-pub use self::__NSObject::NSIncrementExtraRefCount;
 #[cfg(feature = "NSObject")]
 pub use self::__NSObject::NSObjectNSCoderMethods;
 #[cfg(feature = "NSObject")]

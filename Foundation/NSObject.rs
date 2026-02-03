@@ -140,13 +140,6 @@ pub unsafe extern "C-unwind" fn NSAllocateObject(
         .expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `object` should be of the correct type.
-    pub fn NSDeallocateObject(object: &AnyObject);
-}
-
 /// # Safety
 ///
 /// - `object` should be of the correct type.
@@ -185,29 +178,4 @@ pub unsafe extern "C-unwind" fn NSShouldRetainWithZone(
         fn NSShouldRetainWithZone(an_object: &AnyObject, requested_zone: *mut NSZone) -> Bool;
     }
     unsafe { NSShouldRetainWithZone(an_object, requested_zone) }.as_bool()
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `object` should be of the correct type.
-    pub fn NSIncrementExtraRefCount(object: &AnyObject);
-}
-
-/// # Safety
-///
-/// `object` should be of the correct type.
-#[inline]
-pub unsafe extern "C-unwind" fn NSDecrementExtraRefCountWasZero(object: &AnyObject) -> bool {
-    extern "C-unwind" {
-        fn NSDecrementExtraRefCountWasZero(object: &AnyObject) -> Bool;
-    }
-    unsafe { NSDecrementExtraRefCountWasZero(object) }.as_bool()
-}
-
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `object` should be of the correct type.
-    pub fn NSExtraRefCount(object: &AnyObject) -> NSUInteger;
 }

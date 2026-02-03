@@ -213,6 +213,10 @@ impl NSData {
         #[unsafe(method(length))]
         #[unsafe(method_family = none)]
         pub fn length(&self) -> NSUInteger;
+
+        #[unsafe(method(bytes))]
+        #[unsafe(method_family = none)]
+        pub fn __bytes(&self) -> *const c_void;
     );
 }
 
@@ -857,6 +861,10 @@ extern_conformance!(
 
 impl NSMutableData {
     extern_methods!(
+        #[unsafe(method(mutableBytes))]
+        #[unsafe(method_family = none)]
+        pub fn __mutableBytes(&self) -> *mut c_void;
+
         /// Setter for [`length`][Self::length].
         #[unsafe(method(setLength:))]
         #[unsafe(method_family = none)]

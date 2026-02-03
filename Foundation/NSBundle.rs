@@ -337,6 +337,16 @@ impl NSBundle {
             table_name: Option<&NSString>,
         ) -> Retained<NSString>;
 
+        #[cfg(all(feature = "NSAttributedString", feature = "NSString"))]
+        #[unsafe(method(localizedAttributedStringForKey:value:table:))]
+        #[unsafe(method_family = none)]
+        pub fn localizedAttributedStringForKey_value_table(
+            &self,
+            key: &NSString,
+            value: Option<&NSString>,
+            table_name: Option<&NSString>,
+        ) -> Retained<NSAttributedString>;
+
         #[cfg(all(feature = "NSArray", feature = "NSString"))]
         /// Look up a localized string given a list of available localizations.
         /// - Parameters:

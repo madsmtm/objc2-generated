@@ -318,6 +318,50 @@ impl NSItemProvider {
             visibility: NSItemProviderRepresentationVisibility,
         );
 
+        #[cfg(all(feature = "NSError", feature = "NSProgress", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - `a_class` must implement NSItemProviderWriting.
+        /// - `load_handler` block must be sendable.
+        #[unsafe(method(registerObjectOfClass:visibility:loadHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn registerObjectOfClass_visibility_loadHandler(
+            &self,
+            a_class: &AnyClass,
+            visibility: NSItemProviderRepresentationVisibility,
+            load_handler: &block2::DynBlock<
+                dyn Fn(
+                    NonNull<
+                        block2::DynBlock<
+                            dyn Fn(*mut ProtocolObject<dyn NSItemProviderWriting>, *mut NSError),
+                        >,
+                    >,
+                ) -> *mut NSProgress,
+            >,
+        );
+
+        /// # Safety
+        ///
+        /// `a_class` must implement NSItemProviderReading.
+        #[unsafe(method(canLoadObjectOfClass:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn canLoadObjectOfClass(&self, a_class: &AnyClass) -> bool;
+
+        #[cfg(all(feature = "NSError", feature = "NSProgress", feature = "block2"))]
+        /// # Safety
+        ///
+        /// - `a_class` must implement NSItemProviderReading.
+        /// - `completion_handler` block must be sendable.
+        #[unsafe(method(loadObjectOfClass:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn loadObjectOfClass_completionHandler(
+            &self,
+            a_class: &AnyClass,
+            completion_handler: &block2::DynBlock<
+                dyn Fn(*mut ProtocolObject<dyn NSItemProviderReading>, *mut NSError),
+            >,
+        ) -> Retained<NSProgress>;
+
         #[cfg(all(feature = "NSObject", feature = "NSString"))]
         /// # Safety
         ///
