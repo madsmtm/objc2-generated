@@ -127,15 +127,14 @@ impl GKSession {
         /// - `peers` might not allow `None`.
         /// - `error` might not allow `None`.
         #[deprecated = "No longer supported."]
-        #[unsafe(method(sendData:toPeers:withDataMode:error:))]
+        #[unsafe(method(sendData:toPeers:withDataMode:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendData_toPeers_withDataMode_error(
             &self,
             data: Option<&NSData>,
             peers: Option<&NSArray>,
             mode: GKSendDataMode,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "GKPublicConstants")]
         /// Asynchronous delivery to all peers.  Returns YES if delivery started, NO if unable to start sending, and error will be set.  Delivery will be reliable or unreliable as set by mode.
@@ -145,14 +144,13 @@ impl GKSession {
         /// - `data` might not allow `None`.
         /// - `error` might not allow `None`.
         #[deprecated = "No longer supported."]
-        #[unsafe(method(sendDataToAllPeers:withDataMode:error:))]
+        #[unsafe(method(sendDataToAllPeers:withDataMode:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn sendDataToAllPeers_withDataMode_error(
             &self,
             data: Option<&NSData>,
             mode: GKSendDataMode,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Set the handler to receive data sent from remote peers.
         ///
@@ -202,13 +200,12 @@ impl GKSession {
         /// - `peer_id` might not allow `None`.
         /// - `error` might not allow `None`.
         #[deprecated]
-        #[unsafe(method(acceptConnectionFromPeer:error:))]
+        #[unsafe(method(acceptConnectionFromPeer:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn acceptConnectionFromPeer_error(
             &self,
             peer_id: Option<&NSString>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// # Safety
         ///

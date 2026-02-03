@@ -214,15 +214,14 @@ impl ODNode {
         /// - `in_record_name` might not allow `None`.
         /// - `in_password` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(setCredentialsWithRecordType:recordName:password:error:))]
+        #[unsafe(method(setCredentialsWithRecordType:recordName:password:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCredentialsWithRecordType_recordName_password_error(
             &self,
             in_record_type: Option<&ODRecordType>,
             in_record_name: Option<&NSString>,
             in_password: Option<&NSString>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Allows use of other OpenDirectory types of authentications to set the credentials for an ODNode
@@ -243,7 +242,7 @@ impl ODNode {
         /// - `out_context` should be of the correct type.
         /// - `out_context` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(setCredentialsWithRecordType:authenticationType:authenticationItems:continueItems:context:error:))]
+        #[unsafe(method(setCredentialsWithRecordType:authenticationType:authenticationItems:continueItems:context:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCredentialsWithRecordType_authenticationType_authenticationItems_continueItems_context_error(
             &self,
@@ -252,8 +251,7 @@ impl ODNode {
             in_items: Option<&NSArray>,
             out_items: Option<&mut Option<Retained<NSArray>>>,
             out_context: Option<&mut Option<Retained<AnyObject>>>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Unsupported method.
         ///
@@ -264,13 +262,12 @@ impl ODNode {
         /// - `in_cache_name` might not allow `None`.
         /// - `out_error` might not allow `None`.
         #[deprecated]
-        #[unsafe(method(setCredentialsUsingKerberosCache:error:))]
+        #[unsafe(method(setCredentialsUsingKerberosCache:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCredentialsUsingKerberosCache_error(
             &self,
             in_cache_name: Option<&NSString>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(
             feature = "CFOpenDirectory",
@@ -418,13 +415,12 @@ impl ODNode {
         /// - `policies` might not allow `None`.
         /// - `error` might not allow `None`.
         #[deprecated = "use setAccountPolicies:error:"]
-        #[unsafe(method(setPolicies:error:))]
+        #[unsafe(method(setPolicies:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPolicies_error(
             &self,
             policies: Option<&NSDictionary>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will set a specific policy setting for the node.
@@ -438,14 +434,13 @@ impl ODNode {
         /// - `value` might not allow `None`.
         /// - `error` might not allow `None`.
         #[deprecated = "use addAccountPolicy:toCategory:error:"]
-        #[unsafe(method(setPolicy:value:error:))]
+        #[unsafe(method(setPolicy:value:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPolicy_value_error(
             &self,
             policy: Option<&ODPolicyType>,
             value: Option<&AnyObject>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will remove a specific policy setting from the node.
@@ -457,13 +452,12 @@ impl ODNode {
         /// - `policy` might not allow `None`.
         /// - `error` might not allow `None`.
         #[deprecated = "use removeAccountPolicy:fromCategory:error:"]
-        #[unsafe(method(removePolicy:error:))]
+        #[unsafe(method(removePolicy:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn removePolicy_error(
             &self,
             policy: Option<&ODPolicyType>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will add an account policy to the node for the specified category.
@@ -494,14 +488,13 @@ impl ODNode {
         /// - `policy` might not allow `None`.
         /// - `category` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(addAccountPolicy:toCategory:error:))]
+        #[unsafe(method(addAccountPolicy:toCategory:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAccountPolicy_toCategory_error(
             &self,
             policy: Option<&NSDictionary>,
             category: Option<&ODPolicyCategoryType>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will remove an account policy from the node for the specified category.
@@ -523,14 +516,13 @@ impl ODNode {
         /// - `policy` might not allow `None`.
         /// - `category` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(removeAccountPolicy:fromCategory:error:))]
+        #[unsafe(method(removeAccountPolicy:fromCategory:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAccountPolicy_fromCategory_error(
             &self,
             policy: Option<&NSDictionary>,
             category: Option<&ODPolicyCategoryType>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// This will set the policies for the node.
         ///
@@ -559,13 +551,12 @@ impl ODNode {
         /// - `policies` generic should be of the correct type.
         /// - `policies` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(setAccountPolicies:error:))]
+        #[unsafe(method(setAccountPolicies:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccountPolicies_error(
             &self,
             policies: Option<&NSDictionary>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Returns a dictionary containing any policies configured for the node.
         ///
@@ -613,14 +604,13 @@ impl ODNode {
         /// - `password` might not allow `None`.
         /// - `record_name` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(passwordContentCheck:forRecordName:error:))]
+        #[unsafe(method(passwordContentCheck:forRecordName:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn passwordContentCheck_forRecordName_error(
             &self,
             password: Option<&NSString>,
             record_name: Option<&NSString>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
     );
 }
 

@@ -109,14 +109,13 @@ impl SFAuthorization {
         ///
         /// - `right_name` must be a valid pointer.
         /// - `error` might not allow `None`.
-        #[unsafe(method(obtainWithRight:flags:error:))]
+        #[unsafe(method(obtainWithRight:flags:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn obtainWithRight_flags_error(
             &self,
             right_name: AuthorizationString,
             flags: AuthorizationFlags,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "objc2-security")]
         /// Call obtainWithRights to gain the rights to have access to privileged operations. On success, YES is returned.
@@ -137,7 +136,7 @@ impl SFAuthorization {
         /// - `environment` must be a valid pointer.
         /// - `authorized_rights` must be a valid pointer.
         /// - `error` might not allow `None`.
-        #[unsafe(method(obtainWithRights:flags:environment:authorizedRights:error:))]
+        #[unsafe(method(obtainWithRights:flags:environment:authorizedRights:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn obtainWithRights_flags_environment_authorizedRights_error(
             &self,
@@ -145,8 +144,7 @@ impl SFAuthorization {
             flags: AuthorizationFlags,
             environment: *const AuthorizationEnvironment,
             authorized_rights: *mut *mut AuthorizationRights,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
     );
 }
 

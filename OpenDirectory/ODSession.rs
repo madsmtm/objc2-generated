@@ -200,14 +200,13 @@ impl ODSession {
         /// - `configuration` might not allow `None`.
         /// - `authorization` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(addConfiguration:authorization:error:))]
+        #[unsafe(method(addConfiguration:authorization:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn addConfiguration_authorization_error(
             &self,
             configuration: Option<&ODConfiguration>,
             authorization: Option<&SFAuthorization>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "ODConfiguration", feature = "objc2-security-foundation"))]
         /// Deletes an existing configuration from the ODSession.
@@ -220,14 +219,13 @@ impl ODSession {
         /// - `configuration` might not allow `None`.
         /// - `authorization` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(deleteConfiguration:authorization:error:))]
+        #[unsafe(method(deleteConfiguration:authorization:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteConfiguration_authorization_error(
             &self,
             configuration: Option<&ODConfiguration>,
             authorization: Option<&SFAuthorization>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "objc2-security-foundation")]
         /// Deletes an existing configuration from the ODSession.
@@ -240,14 +238,13 @@ impl ODSession {
         /// - `nodename` might not allow `None`.
         /// - `authorization` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(deleteConfigurationWithNodename:authorization:error:))]
+        #[unsafe(method(deleteConfigurationWithNodename:authorization:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn deleteConfigurationWithNodename_authorization_error(
             &self,
             nodename: Option<&NSString>,
             authorization: Option<&SFAuthorization>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
     );
 }
 

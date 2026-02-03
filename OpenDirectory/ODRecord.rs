@@ -40,14 +40,13 @@ impl ODRecord {
         /// - `in_username` might not allow `None`.
         /// - `in_password` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(setNodeCredentials:password:error:))]
+        #[unsafe(method(setNodeCredentials:password:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNodeCredentials_password_error(
             &self,
             in_username: Option<&NSString>,
             in_password: Option<&NSString>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Similar to calling -[ODNode setCredentialsWithRecordType:] except credentials are only set for this particular record's
@@ -69,7 +68,7 @@ impl ODRecord {
         /// - `out_context` should be of the correct type.
         /// - `out_context` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(setNodeCredentialsWithRecordType:authenticationType:authenticationItems:continueItems:context:error:))]
+        #[unsafe(method(setNodeCredentialsWithRecordType:authenticationType:authenticationItems:continueItems:context:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNodeCredentialsWithRecordType_authenticationType_authenticationItems_continueItems_context_error(
             &self,
@@ -78,8 +77,7 @@ impl ODRecord {
             in_items: Option<&NSArray>,
             out_items: Option<&mut Option<Retained<NSArray>>>,
             out_context: Option<&mut Option<Retained<AnyObject>>>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Unsupported method.
         ///
@@ -90,13 +88,12 @@ impl ODRecord {
         /// - `in_cache_name` might not allow `None`.
         /// - `out_error` might not allow `None`.
         #[deprecated]
-        #[unsafe(method(setNodeCredentialsUsingKerberosCache:error:))]
+        #[unsafe(method(setNodeCredentialsUsingKerberosCache:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNodeCredentialsUsingKerberosCache_error(
             &self,
             in_cache_name: Option<&NSString>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Returns a dictionary containing the password policy for the record if available.
         ///
@@ -123,13 +120,12 @@ impl ODRecord {
         ///
         /// - `in_password` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(verifyPassword:error:))]
+        #[unsafe(method(verifyPassword:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn verifyPassword_error(
             &self,
             in_password: Option<&NSString>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Allows use of other OpenDirectory types of authentications
@@ -150,7 +146,7 @@ impl ODRecord {
         /// - `out_context` should be of the correct type.
         /// - `out_context` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(verifyExtendedWithAuthenticationType:authenticationItems:continueItems:context:error:))]
+        #[unsafe(method(verifyExtendedWithAuthenticationType:authenticationItems:continueItems:context:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn verifyExtendedWithAuthenticationType_authenticationItems_continueItems_context_error(
             &self,
@@ -158,8 +154,7 @@ impl ODRecord {
             in_items: Option<&NSArray>,
             out_items: Option<&mut Option<Retained<NSArray>>>,
             out_context: Option<&mut Option<Retained<AnyObject>>>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Changes the password for a record
         ///
@@ -171,14 +166,13 @@ impl ODRecord {
         /// - `old_password` might not allow `None`.
         /// - `new_password` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(changePassword:toPassword:error:))]
+        #[unsafe(method(changePassword:toPassword:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn changePassword_toPassword_error(
             &self,
             old_password: Option<&NSString>,
             new_password: Option<&NSString>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Synchronizes the record from the Directory in order to get current data and/or commit pending changes
         ///
@@ -191,12 +185,9 @@ impl ODRecord {
         /// # Safety
         ///
         /// `out_error` might not allow `None`.
-        #[unsafe(method(synchronizeAndReturnError:))]
+        #[unsafe(method(synchronizeAndReturnError:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn synchronizeAndReturnError(
-            &self,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        pub unsafe fn synchronizeAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         /// Type of the record.
         ///
@@ -263,14 +254,13 @@ impl ODRecord {
         /// - `in_value_or_values` might not allow `None`.
         /// - `in_attribute` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(setValue:forAttribute:error:))]
+        #[unsafe(method(setValue:forAttribute:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValue_forAttribute_error(
             &self,
             in_value_or_values: Option<&AnyObject>,
             in_attribute: Option<&ODAttributeType>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Removes all the values for an attribute.
@@ -282,13 +272,12 @@ impl ODRecord {
         ///
         /// - `in_attribute` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(removeValuesForAttribute:error:))]
+        #[unsafe(method(removeValuesForAttribute:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeValuesForAttribute_error(
             &self,
             in_attribute: Option<&ODAttributeType>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Will add a value to an attribute
@@ -302,14 +291,13 @@ impl ODRecord {
         /// - `in_value` might not allow `None`.
         /// - `in_attribute` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(addValue:toAttribute:error:))]
+        #[unsafe(method(addValue:toAttribute:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn addValue_toAttribute_error(
             &self,
             in_value: Option<&AnyObject>,
             in_attribute: Option<&ODAttributeType>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// Will remove a value from an attribute
@@ -323,14 +311,13 @@ impl ODRecord {
         /// - `in_value` might not allow `None`.
         /// - `in_attribute` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(removeValue:fromAttribute:error:))]
+        #[unsafe(method(removeValue:fromAttribute:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeValue_fromAttribute_error(
             &self,
             in_value: Option<&AnyObject>,
             in_attribute: Option<&ODAttributeType>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Deletes the record from the node and invalidates the record.
         ///
@@ -340,12 +327,9 @@ impl ODRecord {
         /// # Safety
         ///
         /// `out_error` might not allow `None`.
-        #[unsafe(method(deleteRecordAndReturnError:))]
+        #[unsafe(method(deleteRecordAndReturnError:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn deleteRecordAndReturnError(
-            &self,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        pub unsafe fn deleteRecordAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         /// This will copy any policies configured for the record.
         ///
@@ -404,13 +388,12 @@ impl ODRecord {
         /// - `policies` might not allow `None`.
         /// - `error` might not allow `None`.
         #[deprecated = "use setAccountPolicies:error:"]
-        #[unsafe(method(setPolicies:error:))]
+        #[unsafe(method(setPolicies:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPolicies_error(
             &self,
             policies: Option<&NSDictionary>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will set a specific policy setting for the record.
@@ -424,14 +407,13 @@ impl ODRecord {
         /// - `value` might not allow `None`.
         /// - `error` might not allow `None`.
         #[deprecated = "use addAccountPolicy:toCategory:error:"]
-        #[unsafe(method(setPolicy:value:error:))]
+        #[unsafe(method(setPolicy:value:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPolicy_value_error(
             &self,
             policy: Option<&ODPolicyType>,
             value: Option<&AnyObject>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will remove a specific policy setting from the record.
@@ -443,13 +425,12 @@ impl ODRecord {
         /// - `policy` might not allow `None`.
         /// - `error` might not allow `None`.
         #[deprecated = "use removeAccountPolicy:fromCategory:error:"]
-        #[unsafe(method(removePolicy:error:))]
+        #[unsafe(method(removePolicy:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn removePolicy_error(
             &self,
             policy: Option<&ODPolicyType>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will add a specific policy to the specific category for the record.
@@ -480,14 +461,13 @@ impl ODRecord {
         /// - `policy` might not allow `None`.
         /// - `category` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(addAccountPolicy:toCategory:error:))]
+        #[unsafe(method(addAccountPolicy:toCategory:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn addAccountPolicy_toCategory_error(
             &self,
             policy: Option<&NSDictionary>,
             category: Option<&ODPolicyCategoryType>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "CFOpenDirectory", feature = "CFOpenDirectoryConstants"))]
         /// This will remove a specific policy from the specific category for the record.
@@ -509,14 +489,13 @@ impl ODRecord {
         /// - `policy` might not allow `None`.
         /// - `category` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(removeAccountPolicy:fromCategory:error:))]
+        #[unsafe(method(removeAccountPolicy:fromCategory:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAccountPolicy_fromCategory_error(
             &self,
             policy: Option<&NSDictionary>,
             category: Option<&ODPolicyCategoryType>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// This will set the policies for the record.
         ///
@@ -545,13 +524,12 @@ impl ODRecord {
         /// - `policies` generic should be of the correct type.
         /// - `policies` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(setAccountPolicies:error:))]
+        #[unsafe(method(setAccountPolicies:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAccountPolicies_error(
             &self,
             policies: Option<&NSDictionary>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Returns a dictionary containing any policies configured for the record.
         ///
@@ -602,12 +580,9 @@ impl ODRecord {
         /// # Safety
         ///
         /// `error` might not allow `None`.
-        #[unsafe(method(authenticationAllowedAndReturnError:))]
+        #[unsafe(method(authenticationAllowedAndReturnError:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn authenticationAllowedAndReturnError(
-            &self,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        pub unsafe fn authenticationAllowedAndReturnError(&self) -> Result<(), Retained<NSError>>;
 
         /// Determines if policies allow the password change.
         ///
@@ -633,13 +608,12 @@ impl ODRecord {
         ///
         /// - `new_password` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(passwordChangeAllowed:error:))]
+        #[unsafe(method(passwordChangeAllowed:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn passwordChangeAllowed_error(
             &self,
             new_password: Option<&NSString>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Determines if the password will expire within the specified time.
         ///
@@ -741,13 +715,12 @@ impl ODRecord {
         ///
         /// - `in_record` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(addMemberRecord:error:))]
+        #[unsafe(method(addMemberRecord:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn addMemberRecord_error(
             &self,
             in_record: Option<&ODRecord>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Will remove the record as a member from the group record
         ///
@@ -759,13 +732,12 @@ impl ODRecord {
         ///
         /// - `in_record` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(removeMemberRecord:error:))]
+        #[unsafe(method(removeMemberRecord:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeMemberRecord_error(
             &self,
             in_record: Option<&ODRecord>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Will use membership APIs to determine if inRecord is a member of the group
         ///
@@ -777,12 +749,11 @@ impl ODRecord {
         ///
         /// - `in_record` might not allow `None`.
         /// - `out_error` might not allow `None`.
-        #[unsafe(method(isMemberRecord:error:))]
+        #[unsafe(method(isMemberRecord:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn isMemberRecord_error(
             &self,
             in_record: Option<&ODRecord>,
-            out_error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
     );
 }

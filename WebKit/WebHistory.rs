@@ -91,13 +91,12 @@ impl WebHistory {
         /// - `url` might not allow `None`.
         /// - `error` might not allow `None`.
         #[deprecated]
-        #[unsafe(method(loadFromURL:error:))]
+        #[unsafe(method(loadFromURL:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadFromURL_error(
             &self,
             url: Option<&NSURL>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Save history to URL. It is the client's responsibility to call this at appropriate times.
         ///
@@ -112,13 +111,9 @@ impl WebHistory {
         /// - `url` might not allow `None`.
         /// - `error` might not allow `None`.
         #[deprecated]
-        #[unsafe(method(saveToURL:error:))]
+        #[unsafe(method(saveToURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn saveToURL_error(
-            &self,
-            url: Option<&NSURL>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        pub unsafe fn saveToURL_error(&self, url: Option<&NSURL>) -> Result<(), Retained<NSError>>;
 
         /// Parameter `newItems`: An array of WebHistoryItems to add to the WebHistory.
         ///

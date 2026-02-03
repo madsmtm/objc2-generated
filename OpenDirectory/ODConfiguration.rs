@@ -341,13 +341,12 @@ impl ODConfiguration {
         ///
         /// - `authorization` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(saveUsingAuthorization:error:))]
+        #[unsafe(method(saveUsingAuthorization:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveUsingAuthorization_error(
             &self,
             authorization: Option<&SFAuthorization>,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Adds a trust account with the provided name and password using the credentials provided by the user.
         ///
@@ -365,7 +364,7 @@ impl ODConfiguration {
         /// - `username` might not allow `None`.
         /// - `password` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(addTrustType:trustAccount:trustPassword:username:password:joinExisting:error:))]
+        #[unsafe(method(addTrustType:trustAccount:trustPassword:username:password:joinExisting:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn addTrustType_trustAccount_trustPassword_username_password_joinExisting_error(
             &self,
@@ -375,8 +374,7 @@ impl ODConfiguration {
             username: Option<&NSString>,
             password: Option<&NSString>,
             join: bool,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
 
         /// Removes trust using the provided username and password.
         ///
@@ -388,15 +386,14 @@ impl ODConfiguration {
         /// - `username` might not allow `None`.
         /// - `password` might not allow `None`.
         /// - `error` might not allow `None`.
-        #[unsafe(method(removeTrustUsingUsername:password:deleteTrustAccount:error:))]
+        #[unsafe(method(removeTrustUsingUsername:password:deleteTrustAccount:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeTrustUsingUsername_password_deleteTrustAccount_error(
             &self,
             username: Option<&NSString>,
             password: Option<&NSString>,
             delete_account: bool,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> bool;
+        ) -> Result<(), Retained<NSError>>;
     );
 }
 
