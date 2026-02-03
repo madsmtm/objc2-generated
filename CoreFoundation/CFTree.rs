@@ -150,17 +150,21 @@ impl CFTree {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` might not allow `None`.
     #[doc(alias = "CFTreeCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        context: *const CFTreeContext,
+        context: Option<&CFTreeContext>,
     ) -> Option<CFRetained<CFTree>> {
         extern "C-unwind" {
             fn CFTreeCreate(
                 allocator: Option<&CFAllocator>,
-                context: *const CFTreeContext,
+                context: Option<&CFTreeContext>,
             ) -> Option<NonNull<CFTree>>;
         }
         let ret = unsafe { CFTreeCreate(allocator, context) };
@@ -228,12 +232,15 @@ impl CFTree {
     ///
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFTreeGetContext")]
     #[inline]
-    pub unsafe fn context(&self, context: *mut CFTreeContext) {
+    pub unsafe fn context(&self, context: &mut CFTreeContext) {
         extern "C-unwind" {
-            fn CFTreeGetContext(tree: &CFTree, context: *mut CFTreeContext);
+            fn CFTreeGetContext(tree: &CFTree, context: &mut CFTreeContext);
         }
         unsafe { CFTreeGetContext(self, context) }
     }
@@ -366,12 +373,16 @@ impl CFTree {
     ///
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` might not allow `None`.
     #[doc(alias = "CFTreeSetContext")]
     #[inline]
-    pub unsafe fn set_context(&self, context: *const CFTreeContext) {
+    pub unsafe fn set_context(&self, context: Option<&CFTreeContext>) {
         extern "C-unwind" {
-            fn CFTreeSetContext(tree: &CFTree, context: *const CFTreeContext);
+            fn CFTreeSetContext(tree: &CFTree, context: Option<&CFTreeContext>);
         }
         unsafe { CFTreeSetContext(self, context) }
     }

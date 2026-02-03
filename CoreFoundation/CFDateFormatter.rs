@@ -32,24 +32,22 @@ cf_objc2_type!(
 impl CFDateFormatter {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `tmplate` might not allow `None`.
-    /// - `locale` might not allow `None`.
+    /// `allocator` might not allow `None`.
     #[doc(alias = "CFDateFormatterCreateDateFormatFromTemplate")]
     #[cfg(feature = "CFLocale")]
     #[inline]
     pub unsafe fn new_date_format_from_template(
         allocator: Option<&CFAllocator>,
-        tmplate: Option<&CFString>,
+        tmplate: &CFString,
         options: CFOptionFlags,
-        locale: Option<&CFLocale>,
+        locale: &CFLocale,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFDateFormatterCreateDateFormatFromTemplate(
                 allocator: Option<&CFAllocator>,
-                tmplate: Option<&CFString>,
+                tmplate: &CFString,
                 options: CFOptionFlags,
-                locale: Option<&CFLocale>,
+                locale: &CFLocale,
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe {
@@ -168,21 +166,20 @@ impl CFDateFormatter {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `locale` might not allow `None`.
+    /// `allocator` might not allow `None`.
     #[doc(alias = "CFDateFormatterCreate")]
     #[cfg(feature = "CFLocale")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        locale: Option<&CFLocale>,
+        locale: &CFLocale,
         date_style: CFDateFormatterStyle,
         time_style: CFDateFormatterStyle,
     ) -> Option<CFRetained<CFDateFormatter>> {
         extern "C-unwind" {
             fn CFDateFormatterCreate(
                 allocator: Option<&CFAllocator>,
-                locale: Option<&CFLocale>,
+                locale: &CFLocale,
                 date_style: CFDateFormatterStyle,
                 time_style: CFDateFormatterStyle,
             ) -> Option<NonNull<CFDateFormatter>>;
@@ -230,17 +227,11 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `format_string` might not allow `None`.
     #[doc(alias = "CFDateFormatterSetFormat")]
     #[inline]
-    pub unsafe fn set_format(&self, format_string: Option<&CFString>) {
+    pub fn set_format(&self, format_string: &CFString) {
         extern "C-unwind" {
-            fn CFDateFormatterSetFormat(
-                formatter: &CFDateFormatter,
-                format_string: Option<&CFString>,
-            );
+            fn CFDateFormatterSetFormat(formatter: &CFDateFormatter, format_string: &CFString);
         }
         unsafe { CFDateFormatterSetFormat(self, format_string) }
     }
@@ -249,20 +240,19 @@ impl CFDateFormatter {
     ///
     /// - `allocator` might not allow `None`.
     /// - `formatter` might not allow `None`.
-    /// - `date` might not allow `None`.
     #[doc(alias = "CFDateFormatterCreateStringWithDate")]
     #[cfg(feature = "CFDate")]
     #[inline]
     pub unsafe fn new_string_with_date(
         allocator: Option<&CFAllocator>,
         formatter: Option<&CFDateFormatter>,
-        date: Option<&CFDate>,
+        date: &CFDate,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFDateFormatterCreateStringWithDate(
                 allocator: Option<&CFAllocator>,
                 formatter: Option<&CFDateFormatter>,
-                date: Option<&CFDate>,
+                date: &CFDate,
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CFDateFormatterCreateStringWithDate(allocator, formatter, date) };
@@ -296,23 +286,21 @@ impl CFDateFormatter {
     ///
     /// - `allocator` might not allow `None`.
     /// - `formatter` might not allow `None`.
-    /// - `string` might not allow `None`.
-    /// - `rangep` must be a valid pointer.
     #[doc(alias = "CFDateFormatterCreateDateFromString")]
     #[cfg(feature = "CFDate")]
     #[inline]
     pub unsafe fn new_date_from_string(
         allocator: Option<&CFAllocator>,
         formatter: Option<&CFDateFormatter>,
-        string: Option<&CFString>,
-        rangep: *mut CFRange,
+        string: &CFString,
+        rangep: Option<&mut CFRange>,
     ) -> Option<CFRetained<CFDate>> {
         extern "C-unwind" {
             fn CFDateFormatterCreateDateFromString(
                 allocator: Option<&CFAllocator>,
                 formatter: Option<&CFDateFormatter>,
-                string: Option<&CFString>,
-                rangep: *mut CFRange,
+                string: &CFString,
+                rangep: Option<&mut CFRange>,
             ) -> Option<NonNull<CFDate>>;
         }
         let ret =
@@ -320,26 +308,21 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// - `string` might not allow `None`.
-    /// - `rangep` must be a valid pointer.
-    /// - `atp` must be a valid pointer.
     #[doc(alias = "CFDateFormatterGetAbsoluteTimeFromString")]
     #[cfg(feature = "CFDate")]
     #[inline]
-    pub unsafe fn absolute_time_from_string(
+    pub fn absolute_time_from_string(
         &self,
-        string: Option<&CFString>,
-        rangep: *mut CFRange,
-        atp: *mut CFAbsoluteTime,
+        string: &CFString,
+        rangep: Option<&mut CFRange>,
+        atp: &mut CFAbsoluteTime,
     ) -> bool {
         extern "C-unwind" {
             fn CFDateFormatterGetAbsoluteTimeFromString(
                 formatter: &CFDateFormatter,
-                string: Option<&CFString>,
-                rangep: *mut CFRange,
-                atp: *mut CFAbsoluteTime,
+                string: &CFString,
+                rangep: Option<&mut CFRange>,
+                atp: &mut CFAbsoluteTime,
             ) -> Boolean;
         }
         let ret = unsafe { CFDateFormatterGetAbsoluteTimeFromString(self, string, rangep, atp) };
@@ -348,32 +331,27 @@ impl CFDateFormatter {
 
     /// # Safety
     ///
-    /// - `key` might not allow `None`.
-    /// - `value` should be of the correct type.
-    /// - `value` might not allow `None`.
+    /// `value` should be of the correct type.
     #[doc(alias = "CFDateFormatterSetProperty")]
     #[inline]
-    pub unsafe fn set_property(&self, key: Option<&CFString>, value: Option<&CFType>) {
+    pub unsafe fn set_property(&self, key: &CFString, value: Option<&CFType>) {
         extern "C-unwind" {
             fn CFDateFormatterSetProperty(
                 formatter: &CFDateFormatter,
-                key: Option<&CFString>,
+                key: &CFString,
                 value: Option<&CFType>,
             );
         }
         unsafe { CFDateFormatterSetProperty(self, key, value) }
     }
 
-    /// # Safety
-    ///
-    /// `key` might not allow `None`.
     #[doc(alias = "CFDateFormatterCopyProperty")]
     #[inline]
-    pub unsafe fn property(&self, key: Option<&CFDateFormatterKey>) -> Option<CFRetained<CFType>> {
+    pub fn property(&self, key: &CFDateFormatterKey) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CFDateFormatterCopyProperty(
                 formatter: &CFDateFormatter,
-                key: Option<&CFDateFormatterKey>,
+                key: &CFDateFormatterKey,
             ) -> Option<NonNull<CFType>>;
         }
         let ret = unsafe { CFDateFormatterCopyProperty(self, key) };

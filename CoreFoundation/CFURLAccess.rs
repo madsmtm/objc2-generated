@@ -13,9 +13,11 @@ impl CFURL {
     /// - `alloc` might not allow `None`.
     /// - `url` might not allow `None`.
     /// - `resource_data` must be a valid pointer.
+    /// - `resource_data` might not allow `None`.
     /// - `properties` must be a valid pointer.
+    /// - `properties` might not allow `None`.
     /// - `desired_properties` might not allow `None`.
-    /// - `error_code` must be a valid pointer.
+    /// - `error_code` might not allow `None`.
     #[doc(alias = "CFURLCreateDataAndPropertiesFromResource")]
     #[cfg(all(
         feature = "CFArray",
@@ -29,19 +31,19 @@ impl CFURL {
     pub unsafe fn new_data_and_properties_from_resource(
         alloc: Option<&CFAllocator>,
         url: Option<&CFURL>,
-        resource_data: *mut *const CFData,
-        properties: *mut *const CFDictionary<CFString, CFType>,
+        resource_data: Option<&mut *const CFData>,
+        properties: Option<&mut *const CFDictionary<CFString, CFType>>,
         desired_properties: Option<&CFArray<CFString>>,
-        error_code: *mut i32,
+        error_code: Option<&mut i32>,
     ) -> bool {
         extern "C-unwind" {
             fn CFURLCreateDataAndPropertiesFromResource(
                 alloc: Option<&CFAllocator>,
                 url: Option<&CFURL>,
-                resource_data: *mut *const CFData,
-                properties: *mut *const CFDictionary<CFString, CFType>,
+                resource_data: Option<&mut *const CFData>,
+                properties: Option<&mut *const CFDictionary<CFString, CFType>>,
                 desired_properties: Option<&CFArray<CFString>>,
-                error_code: *mut i32,
+                error_code: Option<&mut i32>,
             ) -> Boolean;
         }
         let ret = unsafe {
@@ -62,7 +64,7 @@ impl CFURL {
     /// - `data_to_write` might not allow `None`.
     /// - `properties_to_write` generic should be of the correct type.
     /// - `properties_to_write` might not allow `None`.
-    /// - `error_code` must be a valid pointer.
+    /// - `error_code` might not allow `None`.
     #[doc(alias = "CFURLWriteDataAndPropertiesToResource")]
     #[cfg(all(
         feature = "CFData",
@@ -76,14 +78,14 @@ impl CFURL {
         &self,
         data_to_write: Option<&CFData>,
         properties_to_write: Option<&CFDictionary<CFString, CFType>>,
-        error_code: *mut i32,
+        error_code: Option<&mut i32>,
     ) -> bool {
         extern "C-unwind" {
             fn CFURLWriteDataAndPropertiesToResource(
                 url: &CFURL,
                 data_to_write: Option<&CFData>,
                 properties_to_write: Option<&CFDictionary<CFString, CFType>>,
-                error_code: *mut i32,
+                error_code: Option<&mut i32>,
             ) -> Boolean;
         }
         let ret = unsafe {
@@ -99,14 +101,14 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// `error_code` must be a valid pointer.
+    /// `error_code` might not allow `None`.
     #[doc(alias = "CFURLDestroyResource")]
     #[cfg(feature = "CFURL")]
     #[deprecated = "Use CFURLGetFileSystemRepresentation and removefile(3) instead."]
     #[inline]
-    pub unsafe fn destroy_resource(&self, error_code: *mut i32) -> bool {
+    pub unsafe fn destroy_resource(&self, error_code: Option<&mut i32>) -> bool {
         extern "C-unwind" {
-            fn CFURLDestroyResource(url: &CFURL, error_code: *mut i32) -> Boolean;
+            fn CFURLDestroyResource(url: &CFURL, error_code: Option<&mut i32>) -> Boolean;
         }
         let ret = unsafe { CFURLDestroyResource(self, error_code) };
         ret != 0
@@ -117,7 +119,7 @@ impl CFURL {
     /// - `alloc` might not allow `None`.
     /// - `url` might not allow `None`.
     /// - `property` might not allow `None`.
-    /// - `error_code` must be a valid pointer.
+    /// - `error_code` might not allow `None`.
     #[doc(alias = "CFURLCreatePropertyFromResource")]
     #[cfg(feature = "CFURL")]
     #[deprecated = "For file resource properties, use CFURLCopyResourcePropertyForKey."]
@@ -126,14 +128,14 @@ impl CFURL {
         alloc: Option<&CFAllocator>,
         url: Option<&CFURL>,
         property: Option<&CFString>,
-        error_code: *mut i32,
+        error_code: Option<&mut i32>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CFURLCreatePropertyFromResource(
                 alloc: Option<&CFAllocator>,
                 url: Option<&CFURL>,
                 property: Option<&CFString>,
-                error_code: *mut i32,
+                error_code: Option<&mut i32>,
             ) -> Option<NonNull<CFType>>;
         }
         let ret = unsafe { CFURLCreatePropertyFromResource(alloc, url, property, error_code) };

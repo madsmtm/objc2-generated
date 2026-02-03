@@ -99,19 +99,14 @@ impl CFDate {
 
     /// # Safety
     ///
-    /// - `other_date` might not allow `None`.
-    /// - `context` must be a valid pointer.
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFDateCompare")]
     #[inline]
-    pub unsafe fn compare(
-        &self,
-        other_date: Option<&CFDate>,
-        context: *mut c_void,
-    ) -> CFComparisonResult {
+    pub unsafe fn compare(&self, other_date: &CFDate, context: *mut c_void) -> CFComparisonResult {
         extern "C-unwind" {
             fn CFDateCompare(
                 the_date: &CFDate,
-                other_date: Option<&CFDate>,
+                other_date: &CFDate,
                 context: *mut c_void,
             ) -> CFComparisonResult;
         }
@@ -255,13 +250,10 @@ impl CFGregorianDate {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `tz` might not allow `None`.
     #[doc(alias = "CFGregorianDateGetAbsoluteTime")]
     #[deprecated = "Use CFCalendar or NSCalendar API instead"]
     #[inline]
-    pub unsafe fn absolute_time(self, tz: Option<&CFTimeZone>) -> CFAbsoluteTime {
+    pub fn absolute_time(self, tz: Option<&CFTimeZone>) -> CFAbsoluteTime {
         extern "C-unwind" {
             fn CFGregorianDateGetAbsoluteTime(
                 gdate: CFGregorianDate,
@@ -272,62 +264,89 @@ impl CFGregorianDate {
     }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `tz` might not allow `None`.
-    #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-    pub fn CFAbsoluteTimeGetGregorianDate(
-        at: CFAbsoluteTime,
-        tz: Option<&CFTimeZone>,
-    ) -> CFGregorianDate;
+#[deprecated = "Use CFCalendar or NSCalendar API instead"]
+#[inline]
+pub extern "C-unwind" fn CFAbsoluteTimeGetGregorianDate(
+    at: CFAbsoluteTime,
+    tz: Option<&CFTimeZone>,
+) -> CFGregorianDate {
+    extern "C-unwind" {
+        fn CFAbsoluteTimeGetGregorianDate(
+            at: CFAbsoluteTime,
+            tz: Option<&CFTimeZone>,
+        ) -> CFGregorianDate;
+    }
+    unsafe { CFAbsoluteTimeGetGregorianDate(at, tz) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `tz` might not allow `None`.
-    #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-    pub fn CFAbsoluteTimeAddGregorianUnits(
-        at: CFAbsoluteTime,
-        tz: Option<&CFTimeZone>,
-        units: CFGregorianUnits,
-    ) -> CFAbsoluteTime;
+#[deprecated = "Use CFCalendar or NSCalendar API instead"]
+#[inline]
+pub extern "C-unwind" fn CFAbsoluteTimeAddGregorianUnits(
+    at: CFAbsoluteTime,
+    tz: Option<&CFTimeZone>,
+    units: CFGregorianUnits,
+) -> CFAbsoluteTime {
+    extern "C-unwind" {
+        fn CFAbsoluteTimeAddGregorianUnits(
+            at: CFAbsoluteTime,
+            tz: Option<&CFTimeZone>,
+            units: CFGregorianUnits,
+        ) -> CFAbsoluteTime;
+    }
+    unsafe { CFAbsoluteTimeAddGregorianUnits(at, tz, units) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `tz` might not allow `None`.
-    #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-    pub fn CFAbsoluteTimeGetDifferenceAsGregorianUnits(
-        at1: CFAbsoluteTime,
-        at2: CFAbsoluteTime,
-        tz: Option<&CFTimeZone>,
-        unit_flags: CFOptionFlags,
-    ) -> CFGregorianUnits;
+#[deprecated = "Use CFCalendar or NSCalendar API instead"]
+#[inline]
+pub extern "C-unwind" fn CFAbsoluteTimeGetDifferenceAsGregorianUnits(
+    at1: CFAbsoluteTime,
+    at2: CFAbsoluteTime,
+    tz: Option<&CFTimeZone>,
+    unit_flags: CFOptionFlags,
+) -> CFGregorianUnits {
+    extern "C-unwind" {
+        fn CFAbsoluteTimeGetDifferenceAsGregorianUnits(
+            at1: CFAbsoluteTime,
+            at2: CFAbsoluteTime,
+            tz: Option<&CFTimeZone>,
+            unit_flags: CFOptionFlags,
+        ) -> CFGregorianUnits;
+    }
+    unsafe { CFAbsoluteTimeGetDifferenceAsGregorianUnits(at1, at2, tz, unit_flags) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `tz` might not allow `None`.
-    #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-    pub fn CFAbsoluteTimeGetDayOfWeek(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32;
+#[deprecated = "Use CFCalendar or NSCalendar API instead"]
+#[inline]
+pub extern "C-unwind" fn CFAbsoluteTimeGetDayOfWeek(
+    at: CFAbsoluteTime,
+    tz: Option<&CFTimeZone>,
+) -> i32 {
+    extern "C-unwind" {
+        fn CFAbsoluteTimeGetDayOfWeek(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32;
+    }
+    unsafe { CFAbsoluteTimeGetDayOfWeek(at, tz) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `tz` might not allow `None`.
-    #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-    pub fn CFAbsoluteTimeGetDayOfYear(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32;
+#[deprecated = "Use CFCalendar or NSCalendar API instead"]
+#[inline]
+pub extern "C-unwind" fn CFAbsoluteTimeGetDayOfYear(
+    at: CFAbsoluteTime,
+    tz: Option<&CFTimeZone>,
+) -> i32 {
+    extern "C-unwind" {
+        fn CFAbsoluteTimeGetDayOfYear(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32;
+    }
+    unsafe { CFAbsoluteTimeGetDayOfYear(at, tz) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `tz` might not allow `None`.
-    #[deprecated = "Use CFCalendar or NSCalendar API instead"]
-    pub fn CFAbsoluteTimeGetWeekOfYear(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32;
+#[deprecated = "Use CFCalendar or NSCalendar API instead"]
+#[inline]
+pub extern "C-unwind" fn CFAbsoluteTimeGetWeekOfYear(
+    at: CFAbsoluteTime,
+    tz: Option<&CFTimeZone>,
+) -> i32 {
+    extern "C-unwind" {
+        fn CFAbsoluteTimeGetWeekOfYear(at: CFAbsoluteTime, tz: Option<&CFTimeZone>) -> i32;
+    }
+    unsafe { CFAbsoluteTimeGetWeekOfYear(at, tz) }
 }

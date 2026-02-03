@@ -188,18 +188,17 @@ impl CFCharacterSet {
     ///
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `the_string` might not allow `None`.
+    /// `alloc` might not allow `None`.
     #[doc(alias = "CFCharacterSetCreateWithCharactersInString")]
     #[inline]
     pub unsafe fn with_characters_in_string(
         alloc: Option<&CFAllocator>,
-        the_string: Option<&CFString>,
+        the_string: &CFString,
     ) -> Option<CFRetained<CFCharacterSet>> {
         extern "C-unwind" {
             fn CFCharacterSetCreateWithCharactersInString(
                 alloc: Option<&CFAllocator>,
-                the_string: Option<&CFString>,
+                the_string: &CFString,
             ) -> Option<NonNull<CFCharacterSet>>;
         }
         let ret = unsafe { CFCharacterSetCreateWithCharactersInString(alloc, the_string) };
@@ -234,19 +233,18 @@ impl CFCharacterSet {
     ///
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `the_data` might not allow `None`.
+    /// `alloc` might not allow `None`.
     #[doc(alias = "CFCharacterSetCreateWithBitmapRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
     pub unsafe fn with_bitmap_representation(
         alloc: Option<&CFAllocator>,
-        the_data: Option<&CFData>,
+        the_data: &CFData,
     ) -> Option<CFRetained<CFCharacterSet>> {
         extern "C-unwind" {
             fn CFCharacterSetCreateWithBitmapRepresentation(
                 alloc: Option<&CFAllocator>,
-                the_data: Option<&CFData>,
+                the_data: &CFData,
             ) -> Option<NonNull<CFCharacterSet>>;
         }
         let ret = unsafe { CFCharacterSetCreateWithBitmapRepresentation(alloc, the_data) };
@@ -269,18 +267,17 @@ impl CFCharacterSet {
     ///
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `the_set` might not allow `None`.
+    /// `alloc` might not allow `None`.
     #[doc(alias = "CFCharacterSetCreateInvertedSet")]
     #[inline]
     pub unsafe fn new_inverted_set(
         alloc: Option<&CFAllocator>,
-        the_set: Option<&CFCharacterSet>,
+        the_set: &CFCharacterSet,
     ) -> Option<CFRetained<CFCharacterSet>> {
         extern "C-unwind" {
             fn CFCharacterSetCreateInvertedSet(
                 alloc: Option<&CFAllocator>,
-                the_set: Option<&CFCharacterSet>,
+                the_set: &CFCharacterSet,
             ) -> Option<NonNull<CFCharacterSet>>;
         }
         let ret = unsafe { CFCharacterSetCreateInvertedSet(alloc, the_set) };
@@ -294,17 +291,13 @@ impl CFCharacterSet {
     ///
     /// Parameter `theOtherset`: The character set to be checked whether or not it is a subset of theSet.
     /// If this parameter is not a valid CFCharacterSet, the behavior is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `the_otherset` might not allow `None`.
     #[doc(alias = "CFCharacterSetIsSupersetOfSet")]
     #[inline]
-    pub unsafe fn is_superset_of_set(&self, the_otherset: Option<&CFCharacterSet>) -> bool {
+    pub fn is_superset_of_set(&self, the_otherset: &CFCharacterSet) -> bool {
         extern "C-unwind" {
             fn CFCharacterSetIsSupersetOfSet(
                 the_set: &CFCharacterSet,
-                the_otherset: Option<&CFCharacterSet>,
+                the_otherset: &CFCharacterSet,
             ) -> Boolean;
         }
         let ret = unsafe { CFCharacterSetIsSupersetOfSet(self, the_otherset) };
@@ -498,19 +491,18 @@ impl CFCharacterSet {
     ///
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `the_set` might not allow `None`.
+    /// `alloc` might not allow `None`.
     #[doc(alias = "CFCharacterSetCreateBitmapRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
     pub unsafe fn new_bitmap_representation(
         alloc: Option<&CFAllocator>,
-        the_set: Option<&CFCharacterSet>,
+        the_set: &CFCharacterSet,
     ) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFCharacterSetCreateBitmapRepresentation(
                 alloc: Option<&CFAllocator>,
-                the_set: Option<&CFCharacterSet>,
+                the_set: &CFCharacterSet,
             ) -> Option<NonNull<CFData>>;
         }
         let ret = unsafe { CFCharacterSetCreateBitmapRepresentation(alloc, the_set) };
@@ -591,18 +583,17 @@ impl CFMutableCharacterSet {
     ///
     /// # Safety
     ///
-    /// - `the_set` might not allow `None`.
-    /// - `the_string` might not allow `None`.
+    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetAddCharactersInString")]
     #[inline]
     pub unsafe fn add_characters_in_string(
         the_set: Option<&CFMutableCharacterSet>,
-        the_string: Option<&CFString>,
+        the_string: &CFString,
     ) {
         extern "C-unwind" {
             fn CFCharacterSetAddCharactersInString(
                 the_set: Option<&CFMutableCharacterSet>,
-                the_string: Option<&CFString>,
+                the_string: &CFString,
             );
         }
         unsafe { CFCharacterSetAddCharactersInString(the_set, the_string) }
@@ -620,18 +611,17 @@ impl CFMutableCharacterSet {
     ///
     /// # Safety
     ///
-    /// - `the_set` might not allow `None`.
-    /// - `the_string` might not allow `None`.
+    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetRemoveCharactersInString")]
     #[inline]
     pub unsafe fn remove_characters_in_string(
         the_set: Option<&CFMutableCharacterSet>,
-        the_string: Option<&CFString>,
+        the_string: &CFString,
     ) {
         extern "C-unwind" {
             fn CFCharacterSetRemoveCharactersInString(
                 the_set: Option<&CFMutableCharacterSet>,
-                the_string: Option<&CFString>,
+                the_string: &CFString,
             );
         }
         unsafe { CFCharacterSetRemoveCharactersInString(the_set, the_string) }
@@ -650,18 +640,14 @@ impl CFMutableCharacterSet {
     ///
     /// # Safety
     ///
-    /// - `the_set` might not allow `None`.
-    /// - `the_other_set` might not allow `None`.
+    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetUnion")]
     #[inline]
-    pub unsafe fn union(
-        the_set: Option<&CFMutableCharacterSet>,
-        the_other_set: Option<&CFCharacterSet>,
-    ) {
+    pub unsafe fn union(the_set: Option<&CFMutableCharacterSet>, the_other_set: &CFCharacterSet) {
         extern "C-unwind" {
             fn CFCharacterSetUnion(
                 the_set: Option<&CFMutableCharacterSet>,
-                the_other_set: Option<&CFCharacterSet>,
+                the_other_set: &CFCharacterSet,
             );
         }
         unsafe { CFCharacterSetUnion(the_set, the_other_set) }
@@ -680,18 +666,17 @@ impl CFMutableCharacterSet {
     ///
     /// # Safety
     ///
-    /// - `the_set` might not allow `None`.
-    /// - `the_other_set` might not allow `None`.
+    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetIntersect")]
     #[inline]
     pub unsafe fn intersect(
         the_set: Option<&CFMutableCharacterSet>,
-        the_other_set: Option<&CFCharacterSet>,
+        the_other_set: &CFCharacterSet,
     ) {
         extern "C-unwind" {
             fn CFCharacterSetIntersect(
                 the_set: Option<&CFMutableCharacterSet>,
-                the_other_set: Option<&CFCharacterSet>,
+                the_other_set: &CFCharacterSet,
             );
         }
         unsafe { CFCharacterSetIntersect(the_set, the_other_set) }

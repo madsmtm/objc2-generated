@@ -80,18 +80,17 @@ impl CFBitVector {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `bv` might not allow `None`.
+    /// `allocator` might not allow `None`.
     #[doc(alias = "CFBitVectorCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
-        bv: Option<&CFBitVector>,
+        bv: &CFBitVector,
     ) -> Option<CFRetained<CFBitVector>> {
         extern "C-unwind" {
             fn CFBitVectorCreateCopy(
                 allocator: Option<&CFAllocator>,
-                bv: Option<&CFBitVector>,
+                bv: &CFBitVector,
             ) -> Option<NonNull<CFBitVector>>;
         }
         let ret = unsafe { CFBitVectorCreateCopy(allocator, bv) };
@@ -121,20 +120,19 @@ impl CFMutableBitVector {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `bv` might not allow `None`.
+    /// `allocator` might not allow `None`.
     #[doc(alias = "CFBitVectorCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        bv: Option<&CFBitVector>,
+        bv: &CFBitVector,
     ) -> Option<CFRetained<CFMutableBitVector>> {
         extern "C-unwind" {
             fn CFBitVectorCreateMutableCopy(
                 allocator: Option<&CFAllocator>,
                 capacity: CFIndex,
-                bv: Option<&CFBitVector>,
+                bv: &CFBitVector,
             ) -> Option<NonNull<CFMutableBitVector>>;
         }
         let ret = unsafe { CFBitVectorCreateMutableCopy(allocator, capacity, bv) };

@@ -223,18 +223,14 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// # Safety
-    ///
-    /// - `package_type` must be a valid pointer.
-    /// - `package_creator` must be a valid pointer.
     #[doc(alias = "CFBundleGetPackageInfo")]
     #[inline]
-    pub unsafe fn package_info(&self, package_type: *mut u32, package_creator: *mut u32) {
+    pub fn package_info(&self, package_type: Option<&mut u32>, package_creator: Option<&mut u32>) {
         extern "C-unwind" {
             fn CFBundleGetPackageInfo(
                 bundle: &CFBundle,
-                package_type: *mut u32,
-                package_creator: *mut u32,
+                package_type: Option<&mut u32>,
+                package_creator: Option<&mut u32>,
             );
         }
         unsafe { CFBundleGetPackageInfo(self, package_type, package_creator) }
@@ -355,24 +351,19 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// - `url` might not allow `None`.
-    /// - `package_type` must be a valid pointer.
-    /// - `package_creator` must be a valid pointer.
     #[doc(alias = "CFBundleGetPackageInfoInDirectory")]
     #[cfg(feature = "CFURL")]
     #[inline]
-    pub unsafe fn package_info_in_directory(
-        url: Option<&CFURL>,
-        package_type: *mut u32,
-        package_creator: *mut u32,
+    pub fn package_info_in_directory(
+        url: &CFURL,
+        package_type: Option<&mut u32>,
+        package_creator: Option<&mut u32>,
     ) -> bool {
         extern "C-unwind" {
             fn CFBundleGetPackageInfoInDirectory(
-                url: Option<&CFURL>,
-                package_type: *mut u32,
-                package_creator: *mut u32,
+                url: &CFURL,
+                package_type: Option<&mut u32>,
+                package_creator: Option<&mut u32>,
             ) -> Boolean;
         }
         let ret = unsafe { CFBundleGetPackageInfoInDirectory(url, package_type, package_creator) };
@@ -448,30 +439,23 @@ impl CFBundle {
     /// - tableName: The name of the strings file to search.
     /// - localizations: An array of BCP 47 language codes corresponding to available localizations. Bundle compares the array against its available localizations, and uses the best result to retrieve the localized string. If empty, we treat it as no localization is available, and may return a fallback.
     /// - Returns: A localized version of the string designated by ``key`` in table ``tableName``.
-    ///
-    /// # Safety
-    ///
-    /// - `key` might not allow `None`.
-    /// - `value` might not allow `None`.
-    /// - `table_name` might not allow `None`.
-    /// - `localizations` might not allow `None`.
     #[doc(alias = "CFBundleCopyLocalizedStringForLocalizations")]
     #[cfg(all(feature = "CFArray", feature = "CFString"))]
     #[inline]
-    pub unsafe fn localized_string_for_localizations(
+    pub fn localized_string_for_localizations(
         &self,
-        key: Option<&CFString>,
+        key: &CFString,
         value: Option<&CFString>,
-        table_name: Option<&CFString>,
-        localizations: Option<&CFArray<CFString>>,
+        table_name: &CFString,
+        localizations: &CFArray<CFString>,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFBundleCopyLocalizedStringForLocalizations(
                 bundle: &CFBundle,
-                key: Option<&CFString>,
+                key: &CFString,
                 value: Option<&CFString>,
-                table_name: Option<&CFString>,
-                localizations: Option<&CFArray<CFString>>,
+                table_name: &CFString,
+                localizations: &CFArray<CFString>,
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe {
@@ -542,18 +526,15 @@ impl CFBundle {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `loc_array` might not allow `None`.
     #[doc(alias = "CFBundleCopyPreferredLocalizationsFromArray")]
     #[cfg(all(feature = "CFArray", feature = "CFString"))]
     #[inline]
     pub unsafe fn preferred_localizations_from_array(
-        loc_array: Option<&CFArray<CFString>>,
+        loc_array: &CFArray<CFString>,
     ) -> Option<CFRetained<CFArray<CFString>>> {
         extern "C-unwind" {
             fn CFBundleCopyPreferredLocalizationsFromArray(
-                loc_array: Option<&CFArray<CFString>>,
+                loc_array: &CFArray<CFString>,
             ) -> Option<NonNull<CFArray<CFString>>>;
         }
         let ret = unsafe { CFBundleCopyPreferredLocalizationsFromArray(loc_array) };
@@ -799,21 +780,20 @@ impl CFBundle {
 
     /// # Safety
     ///
-    /// - `function_names` might not allow `None`.
-    /// - `ftbl` must be a valid pointer.
+    /// `ftbl` must be a valid pointer.
     #[doc(alias = "CFBundleGetFunctionPointersForNames")]
     #[cfg(all(feature = "CFArray", feature = "CFString"))]
     #[inline]
     pub unsafe fn function_pointers_for_names(
         &self,
-        function_names: Option<&CFArray<CFString>>,
-        ftbl: *mut *mut c_void,
+        function_names: &CFArray<CFString>,
+        ftbl: &mut *mut c_void,
     ) {
         extern "C-unwind" {
             fn CFBundleGetFunctionPointersForNames(
                 bundle: &CFBundle,
-                function_names: Option<&CFArray<CFString>>,
-                ftbl: *mut *mut c_void,
+                function_names: &CFArray<CFString>,
+                ftbl: &mut *mut c_void,
             );
         }
         unsafe { CFBundleGetFunctionPointersForNames(self, function_names, ftbl) }
@@ -833,20 +813,19 @@ impl CFBundle {
 
     /// # Safety
     ///
-    /// - `symbol_names` might not allow `None`.
-    /// - `stbl` must be a valid pointer.
+    /// `stbl` must be a valid pointer.
     #[doc(alias = "CFBundleGetDataPointersForNames")]
     #[cfg(all(feature = "CFArray", feature = "CFString"))]
     #[inline]
     pub unsafe fn data_pointers_for_names(
         &self,
-        symbol_names: Option<&CFArray<CFString>>,
+        symbol_names: &CFArray<CFString>,
         stbl: *mut *mut c_void,
     ) {
         extern "C-unwind" {
             fn CFBundleGetDataPointersForNames(
                 bundle: &CFBundle,
-                symbol_names: Option<&CFArray<CFString>>,
+                symbol_names: &CFArray<CFString>,
                 stbl: *mut *mut c_void,
             );
         }

@@ -227,22 +227,28 @@ impl CFBinaryHeap {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `call_backs` must be a valid pointer.
-    /// - `compare_context` must be a valid pointer.
+    /// - `call_backs` struct field 2 must be implemented correctly.
+    /// - `call_backs` struct field 3 must be implemented correctly.
+    /// - `call_backs` struct field 4 must be implemented correctly.
+    /// - `call_backs` struct field 5 must be implemented correctly.
+    /// - `compare_context` struct field 2 must be a valid pointer.
+    /// - `compare_context` struct field 3 must be implemented correctly.
+    /// - `compare_context` struct field 4 must be implemented correctly.
+    /// - `compare_context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFBinaryHeapCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        call_backs: *const CFBinaryHeapCallBacks,
-        compare_context: *const CFBinaryHeapCompareContext,
+        call_backs: Option<&CFBinaryHeapCallBacks>,
+        compare_context: Option<&CFBinaryHeapCompareContext>,
     ) -> Option<CFRetained<CFBinaryHeap>> {
         extern "C-unwind" {
             fn CFBinaryHeapCreate(
                 allocator: Option<&CFAllocator>,
                 capacity: CFIndex,
-                call_backs: *const CFBinaryHeapCallBacks,
-                compare_context: *const CFBinaryHeapCompareContext,
+                call_backs: Option<&CFBinaryHeapCallBacks>,
+                compare_context: Option<&CFBinaryHeapCompareContext>,
             ) -> Option<NonNull<CFBinaryHeap>>;
         }
         let ret = unsafe { CFBinaryHeapCreate(allocator, capacity, call_backs, compare_context) };
@@ -282,19 +288,18 @@ impl CFBinaryHeap {
     ///
     /// - `allocator` might not allow `None`.
     /// - `heap` generic must be of the correct type.
-    /// - `heap` might not allow `None`.
     #[doc(alias = "CFBinaryHeapCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        heap: Option<&CFBinaryHeap>,
+        heap: &CFBinaryHeap,
     ) -> Option<CFRetained<CFBinaryHeap>> {
         extern "C-unwind" {
             fn CFBinaryHeapCreateCopy(
                 allocator: Option<&CFAllocator>,
                 capacity: CFIndex,
-                heap: Option<&CFBinaryHeap>,
+                heap: &CFBinaryHeap,
             ) -> Option<NonNull<CFBinaryHeap>>;
         }
         let ret = unsafe { CFBinaryHeapCreateCopy(allocator, capacity, heap) };
@@ -415,11 +420,11 @@ impl CFBinaryHeap {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFBinaryHeapGetMinimumIfPresent")]
     #[inline]
-    pub unsafe fn minimum_if_present(&self, value: *mut *const c_void) -> bool {
+    pub unsafe fn minimum_if_present(&self, value: &mut *const c_void) -> bool {
         extern "C-unwind" {
             fn CFBinaryHeapGetMinimumIfPresent(
                 heap: &CFBinaryHeap,
-                value: *mut *const c_void,
+                value: &mut *const c_void,
             ) -> Boolean;
         }
         let ret = unsafe { CFBinaryHeapGetMinimumIfPresent(self, value) };

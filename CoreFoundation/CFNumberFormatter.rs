@@ -81,20 +81,19 @@ unsafe impl RefEncode for CFNumberFormatterStyle {
 impl CFNumberFormatter {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `locale` might not allow `None`.
+    /// `allocator` might not allow `None`.
     #[doc(alias = "CFNumberFormatterCreate")]
     #[cfg(feature = "CFLocale")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        locale: Option<&CFLocale>,
+        locale: &CFLocale,
         style: CFNumberFormatterStyle,
     ) -> Option<CFRetained<CFNumberFormatter>> {
         extern "C-unwind" {
             fn CFNumberFormatterCreate(
                 allocator: Option<&CFAllocator>,
-                locale: Option<&CFLocale>,
+                locale: &CFLocale,
                 style: CFNumberFormatterStyle,
             ) -> Option<NonNull<CFNumberFormatter>>;
         }
@@ -136,17 +135,11 @@ impl CFNumberFormatter {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `format_string` might not allow `None`.
     #[doc(alias = "CFNumberFormatterSetFormat")]
     #[inline]
-    pub unsafe fn set_format(&self, format_string: Option<&CFString>) {
+    pub fn set_format(&self, format_string: &CFString) {
         extern "C-unwind" {
-            fn CFNumberFormatterSetFormat(
-                formatter: &CFNumberFormatter,
-                format_string: Option<&CFString>,
-            );
+            fn CFNumberFormatterSetFormat(formatter: &CFNumberFormatter, format_string: &CFString);
         }
         unsafe { CFNumberFormatterSetFormat(self, format_string) }
     }
@@ -155,20 +148,19 @@ impl CFNumberFormatter {
     ///
     /// - `allocator` might not allow `None`.
     /// - `formatter` might not allow `None`.
-    /// - `number` might not allow `None`.
     #[doc(alias = "CFNumberFormatterCreateStringWithNumber")]
     #[cfg(feature = "CFNumber")]
     #[inline]
     pub unsafe fn new_string_with_number(
         allocator: Option<&CFAllocator>,
         formatter: Option<&CFNumberFormatter>,
-        number: Option<&CFNumber>,
+        number: &CFNumber,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFNumberFormatterCreateStringWithNumber(
                 allocator: Option<&CFAllocator>,
                 formatter: Option<&CFNumberFormatter>,
-                number: Option<&CFNumber>,
+                number: &CFNumber,
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe { CFNumberFormatterCreateStringWithNumber(allocator, formatter, number) };
@@ -231,24 +223,22 @@ impl CFNumberFormatter {
     ///
     /// - `allocator` might not allow `None`.
     /// - `formatter` might not allow `None`.
-    /// - `string` might not allow `None`.
-    /// - `rangep` must be a valid pointer.
     #[doc(alias = "CFNumberFormatterCreateNumberFromString")]
     #[cfg(feature = "CFNumber")]
     #[inline]
     pub unsafe fn new_number_from_string(
         allocator: Option<&CFAllocator>,
         formatter: Option<&CFNumberFormatter>,
-        string: Option<&CFString>,
-        rangep: *mut CFRange,
+        string: &CFString,
+        rangep: &mut CFRange,
         options: CFOptionFlags,
     ) -> Option<CFRetained<CFNumber>> {
         extern "C-unwind" {
             fn CFNumberFormatterCreateNumberFromString(
                 allocator: Option<&CFAllocator>,
                 formatter: Option<&CFNumberFormatter>,
-                string: Option<&CFString>,
-                rangep: *mut CFRange,
+                string: &CFString,
+                rangep: &mut CFRange,
                 options: CFOptionFlags,
             ) -> Option<NonNull<CFNumber>>;
         }
@@ -260,7 +250,6 @@ impl CFNumberFormatter {
 
     /// # Safety
     ///
-    /// - `string` might not allow `None`.
     /// - `rangep` must be a valid pointer.
     /// - `value_ptr` must be a valid pointer.
     #[doc(alias = "CFNumberFormatterGetValueFromString")]
@@ -268,7 +257,7 @@ impl CFNumberFormatter {
     #[inline]
     pub unsafe fn value_from_string(
         &self,
-        string: Option<&CFString>,
+        string: &CFString,
         rangep: *mut CFRange,
         number_type: CFNumberType,
         value_ptr: *mut c_void,
@@ -276,7 +265,7 @@ impl CFNumberFormatter {
         extern "C-unwind" {
             fn CFNumberFormatterGetValueFromString(
                 formatter: &CFNumberFormatter,
-                string: Option<&CFString>,
+                string: &CFString,
                 rangep: *mut CFRange,
                 number_type: CFNumberType,
                 value_ptr: *mut c_void,
@@ -290,16 +279,14 @@ impl CFNumberFormatter {
 
     /// # Safety
     ///
-    /// - `key` might not allow `None`.
-    /// - `value` should be of the correct type.
-    /// - `value` might not allow `None`.
+    /// `value` should be of the correct type.
     #[doc(alias = "CFNumberFormatterSetProperty")]
     #[inline]
-    pub unsafe fn set_property(&self, key: Option<&CFNumberFormatterKey>, value: Option<&CFType>) {
+    pub unsafe fn set_property(&self, key: &CFNumberFormatterKey, value: Option<&CFType>) {
         extern "C-unwind" {
             fn CFNumberFormatterSetProperty(
                 formatter: &CFNumberFormatter,
-                key: Option<&CFNumberFormatterKey>,
+                key: &CFNumberFormatterKey,
                 value: Option<&CFType>,
             );
         }
@@ -580,23 +567,18 @@ unsafe impl RefEncode for CFNumberFormatterPadPosition {
 }
 
 impl CFNumberFormatter {
-    /// # Safety
-    ///
-    /// - `currency_code` might not allow `None`.
-    /// - `default_fraction_digits` must be a valid pointer.
-    /// - `rounding_increment` must be a valid pointer.
     #[doc(alias = "CFNumberFormatterGetDecimalInfoForCurrencyCode")]
     #[inline]
-    pub unsafe fn decimal_info_for_currency_code(
-        currency_code: Option<&CFString>,
-        default_fraction_digits: *mut i32,
-        rounding_increment: *mut c_double,
+    pub fn decimal_info_for_currency_code(
+        currency_code: &CFString,
+        default_fraction_digits: &mut i32,
+        rounding_increment: &mut c_double,
     ) -> bool {
         extern "C-unwind" {
             fn CFNumberFormatterGetDecimalInfoForCurrencyCode(
-                currency_code: Option<&CFString>,
-                default_fraction_digits: *mut i32,
-                rounding_increment: *mut c_double,
+                currency_code: &CFString,
+                default_fraction_digits: &mut i32,
+                rounding_increment: &mut c_double,
             ) -> Boolean;
         }
         let ret = unsafe {

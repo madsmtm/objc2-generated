@@ -72,11 +72,11 @@ impl CFFileSecurity {
     #[doc(alias = "CFFileSecurityCopyOwnerUUID")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub unsafe fn owner_uuid(&self, owner_uuid: *mut *const CFUUID) -> bool {
+    pub unsafe fn owner_uuid(&self, owner_uuid: &mut *const CFUUID) -> bool {
         extern "C-unwind" {
             fn CFFileSecurityCopyOwnerUUID(
                 file_sec: &CFFileSecurity,
-                owner_uuid: *mut *const CFUUID,
+                owner_uuid: &mut *const CFUUID,
             ) -> Boolean;
         }
         let ret = unsafe { CFFileSecurityCopyOwnerUUID(self, owner_uuid) };
@@ -103,11 +103,11 @@ impl CFFileSecurity {
     #[doc(alias = "CFFileSecurityCopyGroupUUID")]
     #[cfg(feature = "CFUUID")]
     #[inline]
-    pub unsafe fn group_uuid(&self, group_uuid: *mut *const CFUUID) -> bool {
+    pub unsafe fn group_uuid(&self, group_uuid: &mut *const CFUUID) -> bool {
         extern "C-unwind" {
             fn CFFileSecurityCopyGroupUUID(
                 file_sec: &CFFileSecurity,
-                group_uuid: *mut *const CFUUID,
+                group_uuid: &mut *const CFUUID,
             ) -> Boolean;
         }
         let ret = unsafe { CFFileSecurityCopyGroupUUID(self, group_uuid) };
@@ -128,17 +128,14 @@ impl CFFileSecurity {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `owner` must be a valid pointer.
     #[doc(alias = "CFFileSecurityGetOwner")]
     #[cfg(feature = "libc")]
     #[inline]
-    pub unsafe fn owner(&self, owner: *mut libc::uid_t) -> bool {
+    pub fn owner(&self, owner: &mut libc::uid_t) -> bool {
         extern "C-unwind" {
             fn CFFileSecurityGetOwner(
                 file_sec: &CFFileSecurity,
-                owner: *mut libc::uid_t,
+                owner: &mut libc::uid_t,
             ) -> Boolean;
         }
         let ret = unsafe { CFFileSecurityGetOwner(self, owner) };
@@ -156,17 +153,14 @@ impl CFFileSecurity {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `group` must be a valid pointer.
     #[doc(alias = "CFFileSecurityGetGroup")]
     #[cfg(feature = "libc")]
     #[inline]
-    pub unsafe fn group(&self, group: *mut libc::gid_t) -> bool {
+    pub fn group(&self, group: &mut libc::gid_t) -> bool {
         extern "C-unwind" {
             fn CFFileSecurityGetGroup(
                 file_sec: &CFFileSecurity,
-                group: *mut libc::gid_t,
+                group: &mut libc::gid_t,
             ) -> Boolean;
         }
         let ret = unsafe { CFFileSecurityGetGroup(self, group) };
@@ -184,15 +178,12 @@ impl CFFileSecurity {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// `mode` must be a valid pointer.
     #[doc(alias = "CFFileSecurityGetMode")]
     #[cfg(feature = "libc")]
     #[inline]
-    pub unsafe fn mode(&self, mode: *mut libc::mode_t) -> bool {
+    pub fn mode(&self, mode: &mut libc::mode_t) -> bool {
         extern "C-unwind" {
-            fn CFFileSecurityGetMode(file_sec: &CFFileSecurity, mode: *mut libc::mode_t)
+            fn CFFileSecurityGetMode(file_sec: &CFFileSecurity, mode: &mut libc::mode_t)
                 -> Boolean;
         }
         let ret = unsafe { CFFileSecurityGetMode(self, mode) };

@@ -92,15 +92,12 @@ impl CFCalendar {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `locale` might not allow `None`.
     #[doc(alias = "CFCalendarSetLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub unsafe fn set_locale(&self, locale: Option<&CFLocale>) {
+    pub unsafe fn set_locale(&self, locale: &CFLocale) {
         extern "C-unwind" {
-            fn CFCalendarSetLocale(calendar: &CFCalendar, locale: Option<&CFLocale>);
+            fn CFCalendarSetLocale(calendar: &CFCalendar, locale: &CFLocale);
         }
         unsafe { CFCalendarSetLocale(self, locale) }
     }
@@ -279,27 +276,23 @@ impl CFCalendar {
         unsafe { CFCalendarGetOrdinalityOfUnit(self, smaller_unit, bigger_unit, at) }
     }
 
-    /// # Safety
-    ///
-    /// - `startp` must be a valid pointer.
-    /// - `tip` must be a valid pointer.
     #[doc(alias = "CFCalendarGetTimeRangeOfUnit")]
     #[cfg(feature = "CFDate")]
     #[inline]
-    pub unsafe fn time_range_of_unit(
+    pub fn time_range_of_unit(
         &self,
         unit: CFCalendarUnit,
         at: CFAbsoluteTime,
-        startp: *mut CFAbsoluteTime,
-        tip: *mut CFTimeInterval,
+        startp: Option<&mut CFAbsoluteTime>,
+        tip: Option<&mut CFTimeInterval>,
     ) -> bool {
         extern "C-unwind" {
             fn CFCalendarGetTimeRangeOfUnit(
                 calendar: &CFCalendar,
                 unit: CFCalendarUnit,
                 at: CFAbsoluteTime,
-                startp: *mut CFAbsoluteTime,
-                tip: *mut CFTimeInterval,
+                startp: Option<&mut CFAbsoluteTime>,
+                tip: Option<&mut CFTimeInterval>,
             ) -> Boolean;
         }
         let ret = unsafe { CFCalendarGetTimeRangeOfUnit(self, unit, at, startp, tip) };

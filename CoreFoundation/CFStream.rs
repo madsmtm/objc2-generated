@@ -312,11 +312,13 @@ extern "C-unwind" {
     ///
     /// - `alloc` might not allow `None`.
     /// - `read_stream` must be a valid pointer.
+    /// - `read_stream` might not allow `None`.
     /// - `write_stream` must be a valid pointer.
+    /// - `write_stream` might not allow `None`.
     pub fn CFStreamCreateBoundPair(
         alloc: Option<&CFAllocator>,
-        read_stream: *mut *mut CFReadStream,
-        write_stream: *mut *mut CFWriteStream,
+        read_stream: Option<&mut *mut CFReadStream>,
+        write_stream: Option<&mut *mut CFWriteStream>,
         transfer_buffer_size: CFIndex,
     );
 }
@@ -438,14 +440,16 @@ extern "C-unwind" {
     ///
     /// - `alloc` might not allow `None`.
     /// - `read_stream` must be a valid pointer.
+    /// - `read_stream` might not allow `None`.
     /// - `write_stream` must be a valid pointer.
+    /// - `write_stream` might not allow `None`.
     #[cfg(feature = "CFSocket")]
     #[deprecated = "Use nw_connection_t in Network framework instead"]
     pub fn CFStreamCreatePairWithSocket(
         alloc: Option<&CFAllocator>,
         sock: CFSocketNativeHandle,
-        read_stream: *mut *mut CFReadStream,
-        write_stream: *mut *mut CFWriteStream,
+        read_stream: Option<&mut *mut CFReadStream>,
+        write_stream: Option<&mut *mut CFWriteStream>,
     );
 }
 
@@ -455,14 +459,16 @@ extern "C-unwind" {
     /// - `alloc` might not allow `None`.
     /// - `host` might not allow `None`.
     /// - `read_stream` must be a valid pointer.
+    /// - `read_stream` might not allow `None`.
     /// - `write_stream` must be a valid pointer.
+    /// - `write_stream` might not allow `None`.
     #[deprecated = "Use nw_connection_t in Network framework instead"]
     pub fn CFStreamCreatePairWithSocketToHost(
         alloc: Option<&CFAllocator>,
         host: Option<&CFString>,
         port: u32,
-        read_stream: *mut *mut CFReadStream,
-        write_stream: *mut *mut CFWriteStream,
+        read_stream: Option<&mut *mut CFReadStream>,
+        write_stream: Option<&mut *mut CFWriteStream>,
     );
 }
 
@@ -470,16 +476,19 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
-    /// - `signature` must be a valid pointer.
+    /// - `signature` struct field 4 must be a valid pointer.
+    /// - `signature` might not allow `None`.
     /// - `read_stream` must be a valid pointer.
+    /// - `read_stream` might not allow `None`.
     /// - `write_stream` must be a valid pointer.
+    /// - `write_stream` might not allow `None`.
     #[cfg(all(feature = "CFData", feature = "CFSocket"))]
     #[deprecated = "Use nw_connection_t in Network framework instead"]
     pub fn CFStreamCreatePairWithPeerSocketSignature(
         alloc: Option<&CFAllocator>,
-        signature: *const CFSocketSignature,
-        read_stream: *mut *mut CFReadStream,
-        write_stream: *mut *mut CFWriteStream,
+        signature: Option<&CFSocketSignature>,
+        read_stream: Option<&mut *mut CFReadStream>,
+        write_stream: Option<&mut *mut CFWriteStream>,
     );
 }
 
@@ -606,19 +615,19 @@ impl CFReadStream {
 
     /// # Safety
     ///
-    /// `num_bytes_read` must be a valid pointer.
+    /// `num_bytes_read` might not allow `None`.
     #[doc(alias = "CFReadStreamGetBuffer")]
     #[inline]
     pub unsafe fn buffer(
         &self,
         max_bytes_to_read: CFIndex,
-        num_bytes_read: *mut CFIndex,
+        num_bytes_read: Option<&mut CFIndex>,
     ) -> *const u8 {
         extern "C-unwind" {
             fn CFReadStreamGetBuffer(
                 stream: &CFReadStream,
                 max_bytes_to_read: CFIndex,
-                num_bytes_read: *mut CFIndex,
+                num_bytes_read: Option<&mut CFIndex>,
             ) -> *const u8;
         }
         unsafe { CFReadStreamGetBuffer(self, max_bytes_to_read, num_bytes_read) }
@@ -743,21 +752,25 @@ impl CFReadStream {
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
-    /// - `client_context` must be a valid pointer.
+    /// - `client_context` struct field 2 must be a valid pointer.
+    /// - `client_context` struct field 3 must be implemented correctly.
+    /// - `client_context` struct field 4 must be implemented correctly.
+    /// - `client_context` struct field 5 must be implemented correctly.
+    /// - `client_context` might not allow `None`.
     #[doc(alias = "CFReadStreamSetClient")]
     #[inline]
     pub unsafe fn set_client(
         &self,
         stream_events: CFOptionFlags,
         client_cb: CFReadStreamClientCallBack,
-        client_context: *mut CFStreamClientContext,
+        client_context: Option<&CFStreamClientContext>,
     ) -> bool {
         extern "C-unwind" {
             fn CFReadStreamSetClient(
                 stream: &CFReadStream,
                 stream_events: CFOptionFlags,
                 client_cb: CFReadStreamClientCallBack,
-                client_context: *mut CFStreamClientContext,
+                client_context: Option<&CFStreamClientContext>,
             ) -> Boolean;
         }
         let ret = unsafe { CFReadStreamSetClient(self, stream_events, client_cb, client_context) };
@@ -769,21 +782,25 @@ impl CFWriteStream {
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
-    /// - `client_context` must be a valid pointer.
+    /// - `client_context` struct field 2 must be a valid pointer.
+    /// - `client_context` struct field 3 must be implemented correctly.
+    /// - `client_context` struct field 4 must be implemented correctly.
+    /// - `client_context` struct field 5 must be implemented correctly.
+    /// - `client_context` might not allow `None`.
     #[doc(alias = "CFWriteStreamSetClient")]
     #[inline]
     pub unsafe fn set_client(
         &self,
         stream_events: CFOptionFlags,
         client_cb: CFWriteStreamClientCallBack,
-        client_context: *mut CFStreamClientContext,
+        client_context: Option<&CFStreamClientContext>,
     ) -> bool {
         extern "C-unwind" {
             fn CFWriteStreamSetClient(
                 stream: &CFWriteStream,
                 stream_events: CFOptionFlags,
                 client_cb: CFWriteStreamClientCallBack,
-                client_context: *mut CFStreamClientContext,
+                client_context: Option<&CFStreamClientContext>,
             ) -> Boolean;
         }
         let ret = unsafe { CFWriteStreamSetClient(self, stream_events, client_cb, client_context) };

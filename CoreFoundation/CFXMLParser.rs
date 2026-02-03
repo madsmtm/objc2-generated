@@ -249,8 +249,15 @@ impl CFXMLParser {
     /// - `allocator` might not allow `None`.
     /// - `xml_data` might not allow `None`.
     /// - `data_source` might not allow `None`.
-    /// - `call_backs` must be a valid pointer.
-    /// - `context` must be a valid pointer.
+    /// - `call_backs` struct field 2 must be implemented correctly.
+    /// - `call_backs` struct field 3 must be implemented correctly.
+    /// - `call_backs` struct field 4 must be implemented correctly.
+    /// - `call_backs` struct field 5 must be implemented correctly.
+    /// - `call_backs` struct field 6 must be implemented correctly.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFXMLParserCreate")]
     #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
@@ -261,8 +268,8 @@ impl CFXMLParser {
         data_source: Option<&CFURL>,
         parse_options: CFOptionFlags,
         version_of_nodes: CFIndex,
-        call_backs: *mut CFXMLParserCallBacks,
-        context: *mut CFXMLParserContext,
+        call_backs: &mut CFXMLParserCallBacks,
+        context: Option<&mut CFXMLParserContext>,
     ) -> Option<CFRetained<CFXMLParser>> {
         extern "C-unwind" {
             fn CFXMLParserCreate(
@@ -271,8 +278,8 @@ impl CFXMLParser {
                 data_source: Option<&CFURL>,
                 parse_options: CFOptionFlags,
                 version_of_nodes: CFIndex,
-                call_backs: *mut CFXMLParserCallBacks,
-                context: *mut CFXMLParserContext,
+                call_backs: &mut CFXMLParserCallBacks,
+                context: Option<&mut CFXMLParserContext>,
             ) -> Option<NonNull<CFXMLParser>>;
         }
         let ret = unsafe {
@@ -293,8 +300,15 @@ impl CFXMLParser {
     ///
     /// - `allocator` might not allow `None`.
     /// - `data_source` might not allow `None`.
-    /// - `call_backs` must be a valid pointer.
-    /// - `context` must be a valid pointer.
+    /// - `call_backs` struct field 2 must be implemented correctly.
+    /// - `call_backs` struct field 3 must be implemented correctly.
+    /// - `call_backs` struct field 4 must be implemented correctly.
+    /// - `call_backs` struct field 5 must be implemented correctly.
+    /// - `call_backs` struct field 6 must be implemented correctly.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFXMLParserCreateWithDataFromURL")]
     #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
@@ -304,8 +318,8 @@ impl CFXMLParser {
         data_source: Option<&CFURL>,
         parse_options: CFOptionFlags,
         version_of_nodes: CFIndex,
-        call_backs: *mut CFXMLParserCallBacks,
-        context: *mut CFXMLParserContext,
+        call_backs: &mut CFXMLParserCallBacks,
+        context: Option<&mut CFXMLParserContext>,
     ) -> Option<CFRetained<CFXMLParser>> {
         extern "C-unwind" {
             fn CFXMLParserCreateWithDataFromURL(
@@ -313,8 +327,8 @@ impl CFXMLParser {
                 data_source: Option<&CFURL>,
                 parse_options: CFOptionFlags,
                 version_of_nodes: CFIndex,
-                call_backs: *mut CFXMLParserCallBacks,
-                context: *mut CFXMLParserContext,
+                call_backs: &mut CFXMLParserCallBacks,
+                context: Option<&mut CFXMLParserContext>,
             ) -> Option<NonNull<CFXMLParser>>;
         }
         let ret = unsafe {
@@ -332,27 +346,38 @@ impl CFXMLParser {
 
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFXMLParserGetContext")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
-    pub unsafe fn context(&self, context: *mut CFXMLParserContext) {
+    pub unsafe fn context(&self, context: &mut CFXMLParserContext) {
         extern "C-unwind" {
-            fn CFXMLParserGetContext(parser: &CFXMLParser, context: *mut CFXMLParserContext);
+            fn CFXMLParserGetContext(parser: &CFXMLParser, context: &mut CFXMLParserContext);
         }
         unsafe { CFXMLParserGetContext(self, context) }
     }
 
     /// # Safety
     ///
-    /// `call_backs` must be a valid pointer.
+    /// - `call_backs` struct field 2 must be implemented correctly.
+    /// - `call_backs` struct field 3 must be implemented correctly.
+    /// - `call_backs` struct field 4 must be implemented correctly.
+    /// - `call_backs` struct field 5 must be implemented correctly.
+    /// - `call_backs` struct field 6 must be implemented correctly.
+    /// - `call_backs` might not allow `None`.
     #[doc(alias = "CFXMLParserGetCallBacks")]
     #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
-    pub unsafe fn call_backs(&self, call_backs: *mut CFXMLParserCallBacks) {
+    pub unsafe fn call_backs(&self, call_backs: Option<&mut CFXMLParserCallBacks>) {
         extern "C-unwind" {
-            fn CFXMLParserGetCallBacks(parser: &CFXMLParser, call_backs: *mut CFXMLParserCallBacks);
+            fn CFXMLParserGetCallBacks(
+                parser: &CFXMLParser,
+                call_backs: Option<&mut CFXMLParserCallBacks>,
+            );
         }
         unsafe { CFXMLParserGetCallBacks(self, call_backs) }
     }
@@ -500,6 +525,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromData(
 /// - `xml_data` might not allow `None`.
 /// - `data_source` might not allow `None`.
 /// - `error_dict` must be a valid pointer.
+/// - `error_dict` might not allow `None`.
 #[cfg(all(
     feature = "CFData",
     feature = "CFDictionary",
@@ -515,7 +541,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
     data_source: Option<&CFURL>,
     parse_options: CFOptionFlags,
     version_of_nodes: CFIndex,
-    error_dict: *mut *const CFDictionary,
+    error_dict: Option<&mut *const CFDictionary>,
 ) -> Option<CFRetained<CFXMLTree>> {
     extern "C-unwind" {
         fn CFXMLTreeCreateFromDataWithError(
@@ -524,7 +550,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
             data_source: Option<&CFURL>,
             parse_options: CFOptionFlags,
             version_of_nodes: CFIndex,
-            error_dict: *mut *const CFDictionary,
+            error_dict: Option<&mut *const CFDictionary>,
         ) -> Option<NonNull<CFXMLTree>>;
     }
     let ret = unsafe {

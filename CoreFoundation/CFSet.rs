@@ -291,21 +291,26 @@ impl CFSet {
     ///
     /// - `allocator` might not allow `None`.
     /// - `values` must be a valid pointer.
-    /// - `call_backs` must be a valid pointer.
+    /// - `call_backs` struct field 2 must be implemented correctly.
+    /// - `call_backs` struct field 3 must be implemented correctly.
+    /// - `call_backs` struct field 4 must be implemented correctly.
+    /// - `call_backs` struct field 5 must be implemented correctly.
+    /// - `call_backs` struct field 6 must be implemented correctly.
+    /// - `call_backs` might not allow `None`.
     #[doc(alias = "CFSetCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         values: *mut *const c_void,
         num_values: CFIndex,
-        call_backs: *const CFSetCallBacks,
+        call_backs: Option<&CFSetCallBacks>,
     ) -> Option<CFRetained<CFSet>> {
         extern "C-unwind" {
             fn CFSetCreate(
                 allocator: Option<&CFAllocator>,
                 values: *mut *const c_void,
                 num_values: CFIndex,
-                call_backs: *const CFSetCallBacks,
+                call_backs: Option<&CFSetCallBacks>,
             ) -> Option<NonNull<CFSet>>;
         }
         let ret = unsafe { CFSetCreate(allocator, values, num_values, call_backs) };
@@ -396,20 +401,25 @@ impl CFMutableSet {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `call_backs` must be a valid pointer.
+    /// - `call_backs` struct field 2 must be implemented correctly.
+    /// - `call_backs` struct field 3 must be implemented correctly.
+    /// - `call_backs` struct field 4 must be implemented correctly.
+    /// - `call_backs` struct field 5 must be implemented correctly.
+    /// - `call_backs` struct field 6 must be implemented correctly.
+    /// - `call_backs` might not allow `None`.
     /// - The returned generic must be of the correct type.
     #[doc(alias = "CFSetCreateMutable")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        call_backs: *const CFSetCallBacks,
+        call_backs: Option<&CFSetCallBacks>,
     ) -> Option<CFRetained<CFMutableSet>> {
         extern "C-unwind" {
             fn CFSetCreateMutable(
                 allocator: Option<&CFAllocator>,
                 capacity: CFIndex,
-                call_backs: *const CFSetCallBacks,
+                call_backs: Option<&CFSetCallBacks>,
             ) -> Option<NonNull<CFMutableSet>>;
         }
         let ret = unsafe { CFSetCreateMutable(allocator, capacity, call_backs) };
@@ -602,13 +612,13 @@ impl CFSet {
     pub unsafe fn value_if_present(
         &self,
         candidate: *const c_void,
-        value: *mut *const c_void,
+        value: Option<&mut *const c_void>,
     ) -> bool {
         extern "C-unwind" {
             fn CFSetGetValueIfPresent(
                 the_set: &CFSet,
                 candidate: *const c_void,
-                value: *mut *const c_void,
+                value: Option<&mut *const c_void>,
             ) -> Boolean;
         }
         let ret = unsafe { CFSetGetValueIfPresent(self, candidate, value) };

@@ -141,20 +141,19 @@ impl CFMutableData {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `the_data` might not allow `None`.
+    /// `allocator` might not allow `None`.
     #[doc(alias = "CFDataCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        the_data: Option<&CFData>,
+        the_data: &CFData,
     ) -> Option<CFRetained<CFMutableData>> {
         extern "C-unwind" {
             fn CFDataCreateMutableCopy(
                 allocator: Option<&CFAllocator>,
                 capacity: CFIndex,
-                the_data: Option<&CFData>,
+                the_data: &CFData,
             ) -> Option<NonNull<CFMutableData>>;
         }
         let ret = unsafe { CFDataCreateMutableCopy(allocator, capacity, the_data) };
@@ -305,21 +304,18 @@ unsafe impl RefEncode for CFDataSearchFlags {
 }
 
 impl CFData {
-    /// # Safety
-    ///
-    /// `data_to_find` might not allow `None`.
     #[doc(alias = "CFDataFind")]
     #[inline]
-    pub unsafe fn find(
+    pub fn find(
         &self,
-        data_to_find: Option<&CFData>,
+        data_to_find: &CFData,
         search_range: CFRange,
         compare_options: CFDataSearchFlags,
     ) -> CFRange {
         extern "C-unwind" {
             fn CFDataFind(
                 the_data: &CFData,
-                data_to_find: Option<&CFData>,
+                data_to_find: &CFData,
                 search_range: CFRange,
                 compare_options: CFDataSearchFlags,
             ) -> CFRange;

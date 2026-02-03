@@ -283,21 +283,15 @@ impl CFRunLoop {
     ///
     /// - `rl` possibly has additional threading requirements.
     /// - `mode` should be of the correct type.
-    /// - `mode` might not allow `None`.
-    /// - `block` might not allow `None`.
     #[doc(alias = "CFRunLoopPerformBlock")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn perform_block(
-        &self,
-        mode: Option<&CFType>,
-        block: Option<&block2::DynBlock<dyn Fn()>>,
-    ) {
+    pub unsafe fn perform_block(&self, mode: &CFType, block: &block2::DynBlock<dyn Fn()>) {
         extern "C-unwind" {
             fn CFRunLoopPerformBlock(
                 rl: &CFRunLoop,
-                mode: Option<&CFType>,
-                block: Option<&block2::DynBlock<dyn Fn()>>,
+                mode: &CFType,
+                block: &block2::DynBlock<dyn Fn()>,
             );
         }
         unsafe { CFRunLoopPerformBlock(self, mode, block) }
@@ -539,19 +533,27 @@ impl CFRunLoopSource {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field 6 must be implemented correctly.
+    /// - `context` struct field 7 must be implemented correctly.
+    /// - `context` struct field 8 must be implemented correctly.
+    /// - `context` struct field 9 must be implemented correctly.
+    /// - `context` struct field 10 must be implemented correctly.
     #[doc(alias = "CFRunLoopSourceCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         order: CFIndex,
-        context: *mut CFRunLoopSourceContext,
+        context: &CFRunLoopSourceContext,
     ) -> Option<CFRetained<CFRunLoopSource>> {
         extern "C-unwind" {
             fn CFRunLoopSourceCreate(
                 allocator: Option<&CFAllocator>,
                 order: CFIndex,
-                context: *mut CFRunLoopSourceContext,
+                context: &CFRunLoopSourceContext,
             ) -> Option<NonNull<CFRunLoopSource>>;
         }
         let ret = unsafe { CFRunLoopSourceCreate(allocator, order, context) };
@@ -588,14 +590,22 @@ impl CFRunLoopSource {
 
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field 6 must be implemented correctly.
+    /// - `context` struct field 7 must be implemented correctly.
+    /// - `context` struct field 8 must be implemented correctly.
+    /// - `context` struct field 9 must be implemented correctly.
+    /// - `context` struct field 10 must be implemented correctly.
     #[doc(alias = "CFRunLoopSourceGetContext")]
     #[inline]
-    pub unsafe fn context(&self, context: *mut CFRunLoopSourceContext) {
+    pub unsafe fn context(&self, context: &mut CFRunLoopSourceContext) {
         extern "C-unwind" {
             fn CFRunLoopSourceGetContext(
                 source: &CFRunLoopSource,
-                context: *mut CFRunLoopSourceContext,
+                context: &mut CFRunLoopSourceContext,
             );
         }
         unsafe { CFRunLoopSourceGetContext(self, context) }
@@ -662,7 +672,10 @@ impl CFRunLoopObserver {
     ///
     /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFRunLoopObserverCreate")]
     #[inline]
     pub unsafe fn new(
@@ -671,7 +684,7 @@ impl CFRunLoopObserver {
         repeats: bool,
         order: CFIndex,
         callout: CFRunLoopObserverCallBack,
-        context: *mut CFRunLoopObserverContext,
+        context: Option<&CFRunLoopObserverContext>,
     ) -> Option<CFRetained<CFRunLoopObserver>> {
         extern "C-unwind" {
             fn CFRunLoopObserverCreate(
@@ -680,7 +693,7 @@ impl CFRunLoopObserver {
                 repeats: Boolean,
                 order: CFIndex,
                 callout: CFRunLoopObserverCallBack,
-                context: *mut CFRunLoopObserverContext,
+                context: Option<&CFRunLoopObserverContext>,
             ) -> Option<NonNull<CFRunLoopObserver>>;
         }
         let ret = unsafe {
@@ -767,14 +780,17 @@ impl CFRunLoopObserver {
 
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFRunLoopObserverGetContext")]
     #[inline]
-    pub unsafe fn context(&self, context: *mut CFRunLoopObserverContext) {
+    pub unsafe fn context(&self, context: &mut CFRunLoopObserverContext) {
         extern "C-unwind" {
             fn CFRunLoopObserverGetContext(
                 observer: &CFRunLoopObserver,
-                context: *mut CFRunLoopObserverContext,
+                context: &mut CFRunLoopObserverContext,
             );
         }
         unsafe { CFRunLoopObserverGetContext(self, context) }
@@ -832,7 +848,10 @@ impl CFRunLoopTimer {
     ///
     /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFRunLoopTimerCreate")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -843,7 +862,7 @@ impl CFRunLoopTimer {
         flags: CFOptionFlags,
         order: CFIndex,
         callout: CFRunLoopTimerCallBack,
-        context: *mut CFRunLoopTimerContext,
+        context: Option<&CFRunLoopTimerContext>,
     ) -> Option<CFRetained<CFRunLoopTimer>> {
         extern "C-unwind" {
             fn CFRunLoopTimerCreate(
@@ -853,7 +872,7 @@ impl CFRunLoopTimer {
                 flags: CFOptionFlags,
                 order: CFIndex,
                 callout: CFRunLoopTimerCallBack,
-                context: *mut CFRunLoopTimerContext,
+                context: Option<&CFRunLoopTimerContext>,
             ) -> Option<NonNull<CFRunLoopTimer>>;
         }
         let ret = unsafe {
@@ -965,14 +984,17 @@ impl CFRunLoopTimer {
 
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFRunLoopTimerGetContext")]
     #[inline]
-    pub unsafe fn context(&self, context: *mut CFRunLoopTimerContext) {
+    pub unsafe fn context(&self, context: &mut CFRunLoopTimerContext) {
         extern "C-unwind" {
             fn CFRunLoopTimerGetContext(
                 timer: &CFRunLoopTimer,
-                context: *mut CFRunLoopTimerContext,
+                context: &mut CFRunLoopTimerContext,
             );
         }
         unsafe { CFRunLoopTimerGetContext(self, context) }

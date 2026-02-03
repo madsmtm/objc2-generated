@@ -226,19 +226,18 @@ impl CFNumber {
 
     /// # Safety
     ///
-    /// - `other_number` might not allow `None`.
-    /// - `context` must be a valid pointer.
+    /// `context` must be a valid pointer.
     #[doc(alias = "CFNumberCompare")]
     #[inline]
     pub unsafe fn compare(
         &self,
-        other_number: Option<&CFNumber>,
+        other_number: &CFNumber,
         context: *mut c_void,
     ) -> CFComparisonResult {
         extern "C-unwind" {
             fn CFNumberCompare(
                 number: &CFNumber,
-                other_number: Option<&CFNumber>,
+                other_number: &CFNumber,
                 context: *mut c_void,
             ) -> CFComparisonResult;
         }

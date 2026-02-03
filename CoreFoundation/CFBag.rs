@@ -160,21 +160,25 @@ impl CFBag {
     ///
     /// - `allocator` might not allow `None`.
     /// - `values` must be a valid pointer.
-    /// - `call_backs` must be a valid pointer.
+    /// - `call_backs` struct field 2 must be implemented correctly.
+    /// - `call_backs` struct field 3 must be implemented correctly.
+    /// - `call_backs` struct field 4 must be implemented correctly.
+    /// - `call_backs` struct field 5 must be implemented correctly.
+    /// - `call_backs` struct field 6 must be implemented correctly.
     #[doc(alias = "CFBagCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         values: *mut *const c_void,
         num_values: CFIndex,
-        call_backs: *const CFBagCallBacks,
+        call_backs: Option<&CFBagCallBacks>,
     ) -> Option<CFRetained<CFBag>> {
         extern "C-unwind" {
             fn CFBagCreate(
                 allocator: Option<&CFAllocator>,
                 values: *mut *const c_void,
                 num_values: CFIndex,
-                call_backs: *const CFBagCallBacks,
+                call_backs: Option<&CFBagCallBacks>,
             ) -> Option<NonNull<CFBag>>;
         }
         let ret = unsafe { CFBagCreate(allocator, values, num_values, call_backs) };
@@ -207,20 +211,24 @@ impl CFMutableBag {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `call_backs` must be a valid pointer.
+    /// - `call_backs` struct field 2 must be implemented correctly.
+    /// - `call_backs` struct field 3 must be implemented correctly.
+    /// - `call_backs` struct field 4 must be implemented correctly.
+    /// - `call_backs` struct field 5 must be implemented correctly.
+    /// - `call_backs` struct field 6 must be implemented correctly.
     /// - The returned generic must be of the correct type.
     #[doc(alias = "CFBagCreateMutable")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        call_backs: *const CFBagCallBacks,
+        call_backs: Option<&CFBagCallBacks>,
     ) -> Option<CFRetained<CFMutableBag>> {
         extern "C-unwind" {
             fn CFBagCreateMutable(
                 allocator: Option<&CFAllocator>,
                 capacity: CFIndex,
-                call_backs: *const CFBagCallBacks,
+                call_backs: Option<&CFBagCallBacks>,
             ) -> Option<NonNull<CFMutableBag>>;
         }
         let ret = unsafe { CFBagCreateMutable(allocator, capacity, call_backs) };
@@ -315,13 +323,13 @@ impl CFBag {
     pub unsafe fn value_if_present(
         &self,
         candidate: *const c_void,
-        value: *mut *const c_void,
+        value: Option<&mut *const c_void>,
     ) -> bool {
         extern "C-unwind" {
             fn CFBagGetValueIfPresent(
                 the_bag: &CFBag,
                 candidate: *const c_void,
-                value: *mut *const c_void,
+                value: Option<&mut *const c_void>,
             ) -> Boolean;
         }
         let ret = unsafe { CFBagGetValueIfPresent(self, candidate, value) };

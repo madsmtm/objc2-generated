@@ -290,19 +290,18 @@ impl CFLocale {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `dictionary` might not allow `None`.
+    /// `allocator` might not allow `None`.
     #[doc(alias = "CFLocaleCreateLocaleIdentifierFromComponents")]
     #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
     pub unsafe fn new_locale_identifier_from_components(
         allocator: Option<&CFAllocator>,
-        dictionary: Option<&CFDictionary<CFString, CFString>>,
+        dictionary: &CFDictionary<CFString, CFString>,
     ) -> Option<CFRetained<CFLocaleIdentifier>> {
         extern "C-unwind" {
             fn CFLocaleCreateLocaleIdentifierFromComponents(
                 allocator: Option<&CFAllocator>,
-                dictionary: Option<&CFDictionary<CFString, CFString>>,
+                dictionary: &CFDictionary<CFString, CFString>,
             ) -> Option<NonNull<CFLocaleIdentifier>>;
         }
         let ret = unsafe { CFLocaleCreateLocaleIdentifierFromComponents(allocator, dictionary) };

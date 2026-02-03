@@ -50,20 +50,17 @@ pub extern "C-unwind" fn CFPreferencesCopyAppValue(
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
 }
 
-/// # Safety
-///
-/// `key_exists_and_has_valid_format` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn CFPreferencesGetAppBooleanValue(
+pub extern "C-unwind" fn CFPreferencesGetAppBooleanValue(
     key: &CFString,
     application_id: &CFString,
-    key_exists_and_has_valid_format: *mut Boolean,
+    key_exists_and_has_valid_format: Option<&mut Boolean>,
 ) -> bool {
     extern "C-unwind" {
         fn CFPreferencesGetAppBooleanValue(
             key: &CFString,
             application_id: &CFString,
-            key_exists_and_has_valid_format: *mut Boolean,
+            key_exists_and_has_valid_format: Option<&mut Boolean>,
         ) -> Boolean;
     }
     let ret = unsafe {
@@ -72,15 +69,20 @@ pub unsafe extern "C-unwind" fn CFPreferencesGetAppBooleanValue(
     ret != 0
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `key_exists_and_has_valid_format` must be a valid pointer or null.
-    pub fn CFPreferencesGetAppIntegerValue(
-        key: &CFString,
-        application_id: &CFString,
-        key_exists_and_has_valid_format: *mut Boolean,
-    ) -> CFIndex;
+#[inline]
+pub extern "C-unwind" fn CFPreferencesGetAppIntegerValue(
+    key: &CFString,
+    application_id: &CFString,
+    key_exists_and_has_valid_format: Option<&mut Boolean>,
+) -> CFIndex {
+    extern "C-unwind" {
+        fn CFPreferencesGetAppIntegerValue(
+            key: &CFString,
+            application_id: &CFString,
+            key_exists_and_has_valid_format: Option<&mut Boolean>,
+        ) -> CFIndex;
+    }
+    unsafe { CFPreferencesGetAppIntegerValue(key, application_id, key_exists_and_has_valid_format) }
 }
 
 extern "C-unwind" {

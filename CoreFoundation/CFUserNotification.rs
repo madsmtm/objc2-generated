@@ -44,7 +44,7 @@ impl CFUserNotification {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     /// - `dictionary` generic should be of the correct type.
     /// - `dictionary` might not allow `None`.
     #[doc(alias = "CFUserNotificationCreate")]
@@ -54,7 +54,7 @@ impl CFUserNotification {
         allocator: Option<&CFAllocator>,
         timeout: CFTimeInterval,
         flags: CFOptionFlags,
-        error: *mut i32,
+        error: Option<&mut i32>,
         dictionary: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CFUserNotification>> {
         extern "C-unwind" {
@@ -62,7 +62,7 @@ impl CFUserNotification {
                 allocator: Option<&CFAllocator>,
                 timeout: CFTimeInterval,
                 flags: CFOptionFlags,
-                error: *mut i32,
+                error: Option<&mut i32>,
                 dictionary: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CFUserNotification>>;
         }
@@ -72,20 +72,20 @@ impl CFUserNotification {
 
     /// # Safety
     ///
-    /// `response_flags` must be a valid pointer.
+    /// `response_flags` might not allow `None`.
     #[doc(alias = "CFUserNotificationReceiveResponse")]
     #[cfg(feature = "CFDate")]
     #[inline]
     pub unsafe fn receive_response(
         &self,
         timeout: CFTimeInterval,
-        response_flags: *mut CFOptionFlags,
+        response_flags: Option<&mut CFOptionFlags>,
     ) -> i32 {
         extern "C-unwind" {
             fn CFUserNotificationReceiveResponse(
                 user_notification: &CFUserNotification,
                 timeout: CFTimeInterval,
-                response_flags: *mut CFOptionFlags,
+                response_flags: Option<&mut CFOptionFlags>,
             ) -> i32;
         }
         unsafe { CFUserNotificationReceiveResponse(self, timeout, response_flags) }
@@ -235,7 +235,7 @@ impl CFUserNotification {
     /// - `default_button_title` might not allow `None`.
     /// - `alternate_button_title` might not allow `None`.
     /// - `other_button_title` might not allow `None`.
-    /// - `response_flags` must be a valid pointer.
+    /// - `response_flags` might not allow `None`.
     #[doc(alias = "CFUserNotificationDisplayAlert")]
     #[cfg(all(feature = "CFDate", feature = "CFURL"))]
     #[inline]
@@ -250,7 +250,7 @@ impl CFUserNotification {
         default_button_title: Option<&CFString>,
         alternate_button_title: Option<&CFString>,
         other_button_title: Option<&CFString>,
-        response_flags: *mut CFOptionFlags,
+        response_flags: Option<&mut CFOptionFlags>,
     ) -> i32 {
         extern "C-unwind" {
             fn CFUserNotificationDisplayAlert(
@@ -264,7 +264,7 @@ impl CFUserNotification {
                 default_button_title: Option<&CFString>,
                 alternate_button_title: Option<&CFString>,
                 other_button_title: Option<&CFString>,
-                response_flags: *mut CFOptionFlags,
+                response_flags: Option<&mut CFOptionFlags>,
             ) -> i32;
         }
         unsafe {

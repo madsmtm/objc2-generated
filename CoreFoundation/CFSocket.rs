@@ -185,7 +185,11 @@ impl CFSocket {
     ///
     /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` might not allow `None`.
     #[doc(alias = "CFSocketCreate")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -196,7 +200,7 @@ impl CFSocket {
         protocol: i32,
         call_back_types: CFOptionFlags,
         callout: CFSocketCallBack,
-        context: *const CFSocketContext,
+        context: Option<&CFSocketContext>,
     ) -> Option<CFRetained<CFSocket>> {
         extern "C-unwind" {
             fn CFSocketCreate(
@@ -206,7 +210,7 @@ impl CFSocket {
                 protocol: i32,
                 call_back_types: CFOptionFlags,
                 callout: CFSocketCallBack,
-                context: *const CFSocketContext,
+                context: Option<&CFSocketContext>,
             ) -> Option<NonNull<CFSocket>>;
         }
         let ret = unsafe {
@@ -227,7 +231,11 @@ impl CFSocket {
     ///
     /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` might not allow `None`.
     #[doc(alias = "CFSocketCreateWithNative")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -236,7 +244,7 @@ impl CFSocket {
         sock: CFSocketNativeHandle,
         call_back_types: CFOptionFlags,
         callout: CFSocketCallBack,
-        context: *const CFSocketContext,
+        context: Option<&CFSocketContext>,
     ) -> Option<CFRetained<CFSocket>> {
         extern "C-unwind" {
             fn CFSocketCreateWithNative(
@@ -244,7 +252,7 @@ impl CFSocket {
                 sock: CFSocketNativeHandle,
                 call_back_types: CFOptionFlags,
                 callout: CFSocketCallBack,
-                context: *const CFSocketContext,
+                context: Option<&CFSocketContext>,
             ) -> Option<NonNull<CFSocket>>;
         }
         let ret =
@@ -255,26 +263,31 @@ impl CFSocket {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `signature` must be a valid pointer.
+    /// - `signature` struct field 4 must be a valid pointer.
+    /// - `signature` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` might not allow `None`.
     #[doc(alias = "CFSocketCreateWithSocketSignature")]
     #[cfg(feature = "CFData")]
     #[inline]
     pub unsafe fn with_socket_signature(
         allocator: Option<&CFAllocator>,
-        signature: *const CFSocketSignature,
+        signature: Option<&CFSocketSignature>,
         call_back_types: CFOptionFlags,
         callout: CFSocketCallBack,
-        context: *const CFSocketContext,
+        context: Option<&CFSocketContext>,
     ) -> Option<CFRetained<CFSocket>> {
         extern "C-unwind" {
             fn CFSocketCreateWithSocketSignature(
                 allocator: Option<&CFAllocator>,
-                signature: *const CFSocketSignature,
+                signature: Option<&CFSocketSignature>,
                 call_back_types: CFOptionFlags,
                 callout: CFSocketCallBack,
-                context: *const CFSocketContext,
+                context: Option<&CFSocketContext>,
             ) -> Option<NonNull<CFSocket>>;
         }
         let ret = unsafe {
@@ -292,27 +305,32 @@ impl CFSocket {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `signature` must be a valid pointer.
+    /// - `signature` struct field 4 must be a valid pointer.
+    /// - `signature` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` might not allow `None`.
     #[doc(alias = "CFSocketCreateConnectedToSocketSignature")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
     pub unsafe fn new_connected_to_socket_signature(
         allocator: Option<&CFAllocator>,
-        signature: *const CFSocketSignature,
+        signature: Option<&CFSocketSignature>,
         call_back_types: CFOptionFlags,
         callout: CFSocketCallBack,
-        context: *const CFSocketContext,
+        context: Option<&CFSocketContext>,
         timeout: CFTimeInterval,
     ) -> Option<CFRetained<CFSocket>> {
         extern "C-unwind" {
             fn CFSocketCreateConnectedToSocketSignature(
                 allocator: Option<&CFAllocator>,
-                signature: *const CFSocketSignature,
+                signature: Option<&CFSocketSignature>,
                 call_back_types: CFOptionFlags,
                 callout: CFSocketCallBack,
-                context: *const CFSocketContext,
+                context: Option<&CFSocketContext>,
                 timeout: CFTimeInterval,
             ) -> Option<NonNull<CFSocket>>;
         }
@@ -400,12 +418,15 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFSocketGetContext")]
     #[inline]
-    pub unsafe fn context(&self, context: *mut CFSocketContext) {
+    pub unsafe fn context(&self, context: &mut CFSocketContext) {
         extern "C-unwind" {
-            fn CFSocketGetContext(s: &CFSocket, context: *mut CFSocketContext);
+            fn CFSocketGetContext(s: &CFSocket, context: &mut CFSocketContext);
         }
         unsafe { CFSocketGetContext(self, context) }
     }
@@ -496,7 +517,7 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `name_server_signature` must be a valid pointer.
+    /// - `name_server_signature` struct field 4 must be a valid pointer.
     /// - `name` might not allow `None`.
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
@@ -504,14 +525,14 @@ impl CFSocket {
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
     pub unsafe fn register_value(
-        name_server_signature: *const CFSocketSignature,
+        name_server_signature: Option<&CFSocketSignature>,
         timeout: CFTimeInterval,
         name: Option<&CFString>,
         value: Option<&CFPropertyList>,
     ) -> CFSocketError {
         extern "C-unwind" {
             fn CFSocketRegisterValue(
-                name_server_signature: *const CFSocketSignature,
+                name_server_signature: Option<&CFSocketSignature>,
                 timeout: CFTimeInterval,
                 name: Option<&CFString>,
                 value: Option<&CFPropertyList>,
@@ -522,27 +543,29 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `name_server_signature` must be a valid pointer.
+    /// - `name_server_signature` struct field 4 must be a valid pointer.
     /// - `name` might not allow `None`.
     /// - `value` must be a valid pointer.
+    /// - `value` might not allow `None`.
     /// - `name_server_address` must be a valid pointer.
+    /// - `name_server_address` might not allow `None`.
     #[doc(alias = "CFSocketCopyRegisteredValue")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
     pub unsafe fn copy_registered_value(
-        name_server_signature: *const CFSocketSignature,
+        name_server_signature: Option<&CFSocketSignature>,
         timeout: CFTimeInterval,
         name: Option<&CFString>,
-        value: *mut *const CFPropertyList,
-        name_server_address: *mut *const CFData,
+        value: Option<&mut *const CFPropertyList>,
+        name_server_address: Option<&mut *const CFData>,
     ) -> CFSocketError {
         extern "C-unwind" {
             fn CFSocketCopyRegisteredValue(
-                name_server_signature: *const CFSocketSignature,
+                name_server_signature: Option<&CFSocketSignature>,
                 timeout: CFTimeInterval,
                 name: Option<&CFString>,
-                value: *mut *const CFPropertyList,
-                name_server_address: *mut *const CFData,
+                value: Option<&mut *const CFPropertyList>,
+                name_server_address: Option<&mut *const CFData>,
             ) -> CFSocketError;
         }
         unsafe {
@@ -558,24 +581,25 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `name_server_signature` must be a valid pointer.
+    /// - `name_server_signature` struct field 4 must be a valid pointer.
     /// - `name` might not allow `None`.
-    /// - `signature` must be a valid pointer.
+    /// - `signature` struct field 4 must be a valid pointer.
+    /// - `signature` might not allow `None`.
     #[doc(alias = "CFSocketRegisterSocketSignature")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
     pub unsafe fn register_socket_signature(
-        name_server_signature: *const CFSocketSignature,
+        name_server_signature: Option<&CFSocketSignature>,
         timeout: CFTimeInterval,
         name: Option<&CFString>,
-        signature: *const CFSocketSignature,
+        signature: Option<&CFSocketSignature>,
     ) -> CFSocketError {
         extern "C-unwind" {
             fn CFSocketRegisterSocketSignature(
-                name_server_signature: *const CFSocketSignature,
+                name_server_signature: Option<&CFSocketSignature>,
                 timeout: CFTimeInterval,
                 name: Option<&CFString>,
-                signature: *const CFSocketSignature,
+                signature: Option<&CFSocketSignature>,
             ) -> CFSocketError;
         }
         unsafe { CFSocketRegisterSocketSignature(name_server_signature, timeout, name, signature) }
@@ -583,27 +607,29 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `name_server_signature` must be a valid pointer.
+    /// - `name_server_signature` struct field 4 must be a valid pointer.
     /// - `name` might not allow `None`.
-    /// - `signature` must be a valid pointer.
+    /// - `signature` struct field 4 must be a valid pointer.
+    /// - `signature` might not allow `None`.
     /// - `name_server_address` must be a valid pointer.
+    /// - `name_server_address` might not allow `None`.
     #[doc(alias = "CFSocketCopyRegisteredSocketSignature")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
     pub unsafe fn copy_registered_socket_signature(
-        name_server_signature: *const CFSocketSignature,
+        name_server_signature: Option<&CFSocketSignature>,
         timeout: CFTimeInterval,
         name: Option<&CFString>,
-        signature: *mut CFSocketSignature,
-        name_server_address: *mut *const CFData,
+        signature: Option<&mut CFSocketSignature>,
+        name_server_address: Option<&mut *const CFData>,
     ) -> CFSocketError {
         extern "C-unwind" {
             fn CFSocketCopyRegisteredSocketSignature(
-                name_server_signature: *const CFSocketSignature,
+                name_server_signature: Option<&CFSocketSignature>,
                 timeout: CFTimeInterval,
                 name: Option<&CFString>,
-                signature: *mut CFSocketSignature,
-                name_server_address: *mut *const CFData,
+                signature: Option<&mut CFSocketSignature>,
+                name_server_address: Option<&mut *const CFData>,
             ) -> CFSocketError;
         }
         unsafe {
@@ -619,19 +645,19 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `name_server_signature` must be a valid pointer.
+    /// - `name_server_signature` struct field 4 must be a valid pointer.
     /// - `name` might not allow `None`.
     #[doc(alias = "CFSocketUnregister")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
     pub unsafe fn unregister(
-        name_server_signature: *const CFSocketSignature,
+        name_server_signature: Option<&CFSocketSignature>,
         timeout: CFTimeInterval,
         name: Option<&CFString>,
     ) -> CFSocketError {
         extern "C-unwind" {
             fn CFSocketUnregister(
-                name_server_signature: *const CFSocketSignature,
+                name_server_signature: Option<&CFSocketSignature>,
                 timeout: CFTimeInterval,
                 name: Option<&CFString>,
             ) -> CFSocketError;

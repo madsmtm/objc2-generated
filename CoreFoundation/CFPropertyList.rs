@@ -37,6 +37,7 @@ unsafe impl RefEncode for CFPropertyListMutabilityOptions {
 /// - `allocator` might not allow `None`.
 /// - `xml_data` might not allow `None`.
 /// - `error_string` must be a valid pointer.
+/// - `error_string` might not allow `None`.
 #[cfg(feature = "CFData")]
 #[deprecated = "Use CFPropertyListCreateWithData instead."]
 #[inline]
@@ -44,14 +45,14 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromXMLData(
     allocator: Option<&CFAllocator>,
     xml_data: Option<&CFData>,
     mutability_option: CFOptionFlags,
-    error_string: *mut *const CFString,
+    error_string: Option<&mut *const CFString>,
 ) -> Option<CFRetained<CFPropertyList>> {
     extern "C-unwind" {
         fn CFPropertyListCreateFromXMLData(
             allocator: Option<&CFAllocator>,
             xml_data: Option<&CFData>,
             mutability_option: CFOptionFlags,
-            error_string: *mut *const CFString,
+            error_string: Option<&mut *const CFString>,
         ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe {
@@ -149,13 +150,14 @@ extern "C-unwind" {
     /// - `property_list` should be of the correct type.
     /// - `stream` might not allow `None`.
     /// - `error_string` must be a valid pointer.
+    /// - `error_string` might not allow `None`.
     #[cfg(feature = "CFStream")]
     #[deprecated = "Use CFPropertyListWrite instead."]
     pub fn CFPropertyListWriteToStream(
         property_list: &CFPropertyList,
         stream: Option<&CFWriteStream>,
         format: CFPropertyListFormat,
-        error_string: *mut *const CFString,
+        error_string: Option<&mut *const CFString>,
     ) -> CFIndex;
 }
 
@@ -163,8 +165,9 @@ extern "C-unwind" {
 ///
 /// - `allocator` might not allow `None`.
 /// - `stream` might not allow `None`.
-/// - `format` must be a valid pointer.
+/// - `format` might not allow `None`.
 /// - `error_string` must be a valid pointer.
+/// - `error_string` might not allow `None`.
 #[cfg(feature = "CFStream")]
 #[deprecated = "Use CFPropertyListCreateWithStream instead."]
 #[inline]
@@ -173,8 +176,8 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromStream(
     stream: Option<&CFReadStream>,
     stream_length: CFIndex,
     mutability_option: CFOptionFlags,
-    format: *mut CFPropertyListFormat,
-    error_string: *mut *const CFString,
+    format: Option<&mut CFPropertyListFormat>,
+    error_string: Option<&mut *const CFString>,
 ) -> Option<CFRetained<CFPropertyList>> {
     extern "C-unwind" {
         fn CFPropertyListCreateFromStream(
@@ -182,8 +185,8 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromStream(
             stream: Option<&CFReadStream>,
             stream_length: CFIndex,
             mutability_option: CFOptionFlags,
-            format: *mut CFPropertyListFormat,
-            error_string: *mut *const CFString,
+            format: Option<&mut CFPropertyListFormat>,
+            error_string: Option<&mut *const CFString>,
         ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe {
@@ -212,24 +215,25 @@ pub const kCFPropertyListWriteStreamError: CFIndex = 3851;
 ///
 /// - `allocator` might not allow `None`.
 /// - `data` might not allow `None`.
-/// - `format` must be a valid pointer.
+/// - `format` might not allow `None`.
 /// - `error` must be a valid pointer.
+/// - `error` might not allow `None`.
 #[cfg(all(feature = "CFData", feature = "CFError"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListCreateWithData(
     allocator: Option<&CFAllocator>,
     data: Option<&CFData>,
     options: CFOptionFlags,
-    format: *mut CFPropertyListFormat,
-    error: *mut *mut CFError,
+    format: Option<&mut CFPropertyListFormat>,
+    error: Option<&mut *mut CFError>,
 ) -> Option<CFRetained<CFPropertyList>> {
     extern "C-unwind" {
         fn CFPropertyListCreateWithData(
             allocator: Option<&CFAllocator>,
             data: Option<&CFData>,
             options: CFOptionFlags,
-            format: *mut CFPropertyListFormat,
-            error: *mut *mut CFError,
+            format: Option<&mut CFPropertyListFormat>,
+            error: Option<&mut *mut CFError>,
         ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe { CFPropertyListCreateWithData(allocator, data, options, format, error) };
@@ -240,8 +244,9 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithData(
 ///
 /// - `allocator` might not allow `None`.
 /// - `stream` might not allow `None`.
-/// - `format` must be a valid pointer.
+/// - `format` might not allow `None`.
 /// - `error` must be a valid pointer.
+/// - `error` might not allow `None`.
 #[cfg(all(feature = "CFError", feature = "CFStream"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListCreateWithStream(
@@ -249,8 +254,8 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithStream(
     stream: Option<&CFReadStream>,
     stream_length: CFIndex,
     options: CFOptionFlags,
-    format: *mut CFPropertyListFormat,
-    error: *mut *mut CFError,
+    format: Option<&mut CFPropertyListFormat>,
+    error: Option<&mut *mut CFError>,
 ) -> Option<CFRetained<CFPropertyList>> {
     extern "C-unwind" {
         fn CFPropertyListCreateWithStream(
@@ -258,8 +263,8 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithStream(
             stream: Option<&CFReadStream>,
             stream_length: CFIndex,
             options: CFOptionFlags,
-            format: *mut CFPropertyListFormat,
-            error: *mut *mut CFError,
+            format: Option<&mut CFPropertyListFormat>,
+            error: Option<&mut *mut CFError>,
         ) -> Option<NonNull<CFPropertyList>>;
     }
     let ret = unsafe {
@@ -274,13 +279,14 @@ extern "C-unwind" {
     /// - `property_list` should be of the correct type.
     /// - `stream` might not allow `None`.
     /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[cfg(all(feature = "CFError", feature = "CFStream"))]
     pub fn CFPropertyListWrite(
         property_list: &CFPropertyList,
         stream: Option<&CFWriteStream>,
         format: CFPropertyListFormat,
         options: CFOptionFlags,
-        error: *mut *mut CFError,
+        error: Option<&mut *mut CFError>,
     ) -> CFIndex;
 }
 
@@ -290,6 +296,7 @@ extern "C-unwind" {
 /// - `property_list` should be of the correct type.
 /// - `property_list` might not allow `None`.
 /// - `error` must be a valid pointer.
+/// - `error` might not allow `None`.
 #[cfg(all(feature = "CFData", feature = "CFError"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CFPropertyListCreateData(
@@ -297,7 +304,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateData(
     property_list: Option<&CFPropertyList>,
     format: CFPropertyListFormat,
     options: CFOptionFlags,
-    error: *mut *mut CFError,
+    error: Option<&mut *mut CFError>,
 ) -> Option<CFRetained<CFData>> {
     extern "C-unwind" {
         fn CFPropertyListCreateData(
@@ -305,7 +312,7 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateData(
             property_list: Option<&CFPropertyList>,
             format: CFPropertyListFormat,
             options: CFOptionFlags,
-            error: *mut *mut CFError,
+            error: Option<&mut *mut CFError>,
         ) -> Option<NonNull<CFData>>;
     }
     let ret = unsafe { CFPropertyListCreateData(allocator, property_list, format, options, error) };

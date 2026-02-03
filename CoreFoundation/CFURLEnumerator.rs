@@ -155,20 +155,22 @@ impl CFURLEnumerator {
     /// # Safety
     ///
     /// - `url` must be a valid pointer.
+    /// - `url` might not allow `None`.
     /// - `error` must be a valid pointer.
+    /// - `error` might not allow `None`.
     #[doc(alias = "CFURLEnumeratorGetNextURL")]
     #[cfg(all(feature = "CFError", feature = "CFURL"))]
     #[inline]
     pub unsafe fn next_url(
         &self,
-        url: *mut *const CFURL,
-        error: *mut *mut CFError,
+        url: Option<&mut *const CFURL>,
+        error: Option<&mut *mut CFError>,
     ) -> CFURLEnumeratorResult {
         extern "C-unwind" {
             fn CFURLEnumeratorGetNextURL(
                 enumerator: &CFURLEnumerator,
-                url: *mut *const CFURL,
-                error: *mut *mut CFError,
+                url: Option<&mut *const CFURL>,
+                error: Option<&mut *mut CFError>,
             ) -> CFURLEnumeratorResult;
         }
         unsafe { CFURLEnumeratorGetNextURL(self, url, error) }

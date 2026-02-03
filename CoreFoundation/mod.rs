@@ -2005,17 +2005,25 @@ impl CFAllocator {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field 6 must be implemented correctly.
+    /// - `context` struct field 7 must be implemented correctly.
+    /// - `context` struct field 8 must be implemented correctly.
+    /// - `context` struct field 9 must be implemented correctly.
+    /// - `context` might not allow `None`.
     #[doc(alias = "CFAllocatorCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        context: *mut CFAllocatorContext,
+        context: Option<&CFAllocatorContext>,
     ) -> Option<CFRetained<CFAllocator>> {
         extern "C-unwind" {
             fn CFAllocatorCreate(
                 allocator: Option<&CFAllocator>,
-                context: *mut CFAllocatorContext,
+                context: Option<&CFAllocatorContext>,
             ) -> Option<NonNull<CFAllocator>>;
         }
         let ret = unsafe { CFAllocatorCreate(allocator, context) };
@@ -2203,14 +2211,25 @@ impl CFAllocator {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field 6 must be implemented correctly.
+    /// - `context` struct field 7 must be implemented correctly.
+    /// - `context` struct field 8 must be implemented correctly.
+    /// - `context` struct field 9 must be implemented correctly.
+    /// - `context` might not allow `None`.
     #[doc(alias = "CFAllocatorGetContext")]
     #[inline]
-    pub unsafe fn context(allocator: Option<&CFAllocator>, context: *mut CFAllocatorContext) {
+    pub unsafe fn context(
+        allocator: Option<&CFAllocator>,
+        context: Option<&mut CFAllocatorContext>,
+    ) {
         extern "C-unwind" {
             fn CFAllocatorGetContext(
                 allocator: Option<&CFAllocator>,
-                context: *mut CFAllocatorContext,
+                context: Option<&mut CFAllocatorContext>,
             );
         }
         unsafe { CFAllocatorGetContext(allocator, context) }

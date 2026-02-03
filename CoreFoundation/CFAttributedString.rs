@@ -63,21 +63,19 @@ impl CFAttributedString {
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
-    /// - `str` might not allow `None`.
     /// - `attributes` generic should be of the correct type.
-    /// - `attributes` might not allow `None`.
     #[doc(alias = "CFAttributedStringCreate")]
     #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
     pub unsafe fn new(
         alloc: Option<&CFAllocator>,
-        str: Option<&CFString>,
+        str: &CFString,
         attributes: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CFAttributedString>> {
         extern "C-unwind" {
             fn CFAttributedStringCreate(
                 alloc: Option<&CFAllocator>,
-                str: Option<&CFString>,
+                str: &CFString,
                 attributes: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CFAttributedString>>;
         }
@@ -151,23 +149,19 @@ impl CFAttributedString {
     /// Returns the attributes at the specified location. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same set of attributes apply. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributesAndLongestEffectiveRange().  It's a programming error for loc to specify a location outside the bounds of the attributed string.
     ///
     /// Note that the returned attribute dictionary might change in unpredictable ways from under the caller if the attributed string is edited after this call. If you wish to hang on to the dictionary long-term, you should make an actual copy of it rather than just retaining it.  Also, no assumptions should be made about the relationship of the actual CFDictionaryRef returned by this call and the dictionary originally used to set the attributes, other than the fact that the values stored in the dictionary will be identical (that is, ==) to those originally specified.
-    ///
-    /// # Safety
-    ///
-    /// `effective_range` must be a valid pointer.
     #[doc(alias = "CFAttributedStringGetAttributes")]
     #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
-    pub unsafe fn attributes(
+    pub fn attributes(
         &self,
         loc: CFIndex,
-        effective_range: *mut CFRange,
+        effective_range: Option<&mut CFRange>,
     ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CFAttributedStringGetAttributes(
                 a_str: &CFAttributedString,
                 loc: CFIndex,
-                effective_range: *mut CFRange,
+                effective_range: Option<&mut CFRange>,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CFAttributedStringGetAttributes(self, loc, effective_range) };
@@ -175,25 +169,20 @@ impl CFAttributedString {
     }
 
     /// Returns the value of a single attribute at the specified location. If the specified attribute doesn't exist at the location, returns NULL. If effectiveRange is not NULL, upon return *effectiveRange contains a range over which the exact same attribute value applies. Note that for performance reasons, the returned effectiveRange is not necessarily the maximal range - for that, use CFAttributedStringGetAttributeAndLongestEffectiveRange(). It's a programming error for loc to specify a location outside the bounds of the attributed string.
-    ///
-    /// # Safety
-    ///
-    /// - `attr_name` might not allow `None`.
-    /// - `effective_range` must be a valid pointer.
     #[doc(alias = "CFAttributedStringGetAttribute")]
     #[inline]
-    pub unsafe fn attribute(
+    pub fn attribute(
         &self,
         loc: CFIndex,
-        attr_name: Option<&CFString>,
-        effective_range: *mut CFRange,
+        attr_name: &CFString,
+        effective_range: Option<&mut CFRange>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CFAttributedStringGetAttribute(
                 a_str: &CFAttributedString,
                 loc: CFIndex,
-                attr_name: Option<&CFString>,
-                effective_range: *mut CFRange,
+                attr_name: &CFString,
+                effective_range: Option<&mut CFRange>,
             ) -> Option<NonNull<CFType>>;
         }
         let ret = unsafe { CFAttributedStringGetAttribute(self, loc, attr_name, effective_range) };
@@ -201,25 +190,21 @@ impl CFAttributedString {
     }
 
     /// Returns the attributes at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same set of attributes apply. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.
-    ///
-    /// # Safety
-    ///
-    /// `longest_effective_range` must be a valid pointer.
     #[doc(alias = "CFAttributedStringGetAttributesAndLongestEffectiveRange")]
     #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
-    pub unsafe fn attributes_and_longest_effective_range(
+    pub fn attributes_and_longest_effective_range(
         &self,
         loc: CFIndex,
         in_range: CFRange,
-        longest_effective_range: *mut CFRange,
+        longest_effective_range: Option<&mut CFRange>,
     ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CFAttributedStringGetAttributesAndLongestEffectiveRange(
                 a_str: &CFAttributedString,
                 loc: CFIndex,
                 in_range: CFRange,
-                longest_effective_range: *mut CFRange,
+                longest_effective_range: Option<&mut CFRange>,
             ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe {
@@ -234,27 +219,22 @@ impl CFAttributedString {
     }
 
     /// Returns the value of a single attribute at the specified location. If longestEffectiveRange is not NULL, upon return *longestEffectiveRange contains the maximal range within inRange over which the exact same attribute value applies. The returned range is clipped to inRange. It's a programming error for loc or inRange to specify locations outside the bounds of the attributed string.
-    ///
-    /// # Safety
-    ///
-    /// - `attr_name` might not allow `None`.
-    /// - `longest_effective_range` must be a valid pointer.
     #[doc(alias = "CFAttributedStringGetAttributeAndLongestEffectiveRange")]
     #[inline]
-    pub unsafe fn attribute_and_longest_effective_range(
+    pub fn attribute_and_longest_effective_range(
         &self,
         loc: CFIndex,
-        attr_name: Option<&CFString>,
+        attr_name: &CFString,
         in_range: CFRange,
-        longest_effective_range: *mut CFRange,
+        longest_effective_range: Option<&mut CFRange>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CFAttributedStringGetAttributeAndLongestEffectiveRange(
                 a_str: &CFAttributedString,
                 loc: CFIndex,
-                attr_name: Option<&CFString>,
+                attr_name: &CFString,
                 in_range: CFRange,
-                longest_effective_range: *mut CFRange,
+                longest_effective_range: Option<&mut CFRange>,
             ) -> Option<NonNull<CFType>>;
         }
         let ret = unsafe {
@@ -313,20 +293,19 @@ impl CFMutableAttributedString {
     ///
     /// # Safety
     ///
-    /// - `a_str` might not allow `None`.
-    /// - `replacement` might not allow `None`.
+    /// `a_str` might not allow `None`.
     #[doc(alias = "CFAttributedStringReplaceString")]
     #[inline]
     pub unsafe fn replace_string(
         a_str: Option<&CFMutableAttributedString>,
         range: CFRange,
-        replacement: Option<&CFString>,
+        replacement: &CFString,
     ) {
         extern "C-unwind" {
             fn CFAttributedStringReplaceString(
                 a_str: Option<&CFMutableAttributedString>,
                 range: CFRange,
-                replacement: Option<&CFString>,
+                replacement: &CFString,
             );
         }
         unsafe { CFAttributedStringReplaceString(a_str, range, replacement) }
@@ -355,21 +334,20 @@ impl CFMutableAttributedString {
     ///
     /// - `a_str` might not allow `None`.
     /// - `replacement` generic should be of the correct type.
-    /// - `replacement` might not allow `None`.
     #[doc(alias = "CFAttributedStringSetAttributes")]
     #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
     pub unsafe fn set_attributes(
         a_str: Option<&CFMutableAttributedString>,
         range: CFRange,
-        replacement: Option<&CFDictionary<CFString, CFType>>,
+        replacement: &CFDictionary<CFString, CFType>,
         clear_other_attributes: bool,
     ) {
         extern "C-unwind" {
             fn CFAttributedStringSetAttributes(
                 a_str: Option<&CFMutableAttributedString>,
                 range: CFRange,
-                replacement: Option<&CFDictionary<CFString, CFType>>,
+                replacement: &CFDictionary<CFString, CFType>,
                 clear_other_attributes: Boolean,
             );
         }
@@ -383,23 +361,21 @@ impl CFMutableAttributedString {
     /// # Safety
     ///
     /// - `a_str` might not allow `None`.
-    /// - `attr_name` might not allow `None`.
     /// - `value` should be of the correct type.
-    /// - `value` might not allow `None`.
     #[doc(alias = "CFAttributedStringSetAttribute")]
     #[inline]
     pub unsafe fn set_attribute(
         a_str: Option<&CFMutableAttributedString>,
         range: CFRange,
-        attr_name: Option<&CFString>,
-        value: Option<&CFType>,
+        attr_name: &CFString,
+        value: &CFType,
     ) {
         extern "C-unwind" {
             fn CFAttributedStringSetAttribute(
                 a_str: Option<&CFMutableAttributedString>,
                 range: CFRange,
-                attr_name: Option<&CFString>,
-                value: Option<&CFType>,
+                attr_name: &CFString,
+                value: &CFType,
             );
         }
         unsafe { CFAttributedStringSetAttribute(a_str, range, attr_name, value) }
@@ -409,20 +385,19 @@ impl CFMutableAttributedString {
     ///
     /// # Safety
     ///
-    /// - `a_str` might not allow `None`.
-    /// - `attr_name` might not allow `None`.
+    /// `a_str` might not allow `None`.
     #[doc(alias = "CFAttributedStringRemoveAttribute")]
     #[inline]
     pub unsafe fn remove_attribute(
         a_str: Option<&CFMutableAttributedString>,
         range: CFRange,
-        attr_name: Option<&CFString>,
+        attr_name: &CFString,
     ) {
         extern "C-unwind" {
             fn CFAttributedStringRemoveAttribute(
                 a_str: Option<&CFMutableAttributedString>,
                 range: CFRange,
-                attr_name: Option<&CFString>,
+                attr_name: &CFString,
             );
         }
         unsafe { CFAttributedStringRemoveAttribute(a_str, range, attr_name) }
@@ -432,20 +407,19 @@ impl CFMutableAttributedString {
     ///
     /// # Safety
     ///
-    /// - `a_str` might not allow `None`.
-    /// - `replacement` might not allow `None`.
+    /// `a_str` might not allow `None`.
     #[doc(alias = "CFAttributedStringReplaceAttributedString")]
     #[inline]
     pub unsafe fn replace_attributed_string(
         a_str: Option<&CFMutableAttributedString>,
         range: CFRange,
-        replacement: Option<&CFAttributedString>,
+        replacement: &CFAttributedString,
     ) {
         extern "C-unwind" {
             fn CFAttributedStringReplaceAttributedString(
                 a_str: Option<&CFMutableAttributedString>,
                 range: CFRange,
-                replacement: Option<&CFAttributedString>,
+                replacement: &CFAttributedString,
             );
         }
         unsafe { CFAttributedStringReplaceAttributedString(a_str, range, replacement) }

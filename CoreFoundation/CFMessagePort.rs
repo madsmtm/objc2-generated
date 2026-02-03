@@ -105,8 +105,10 @@ impl CFMessagePort {
     /// - `allocator` might not allow `None`.
     /// - `name` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer.
-    /// - `should_free_info` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFMessagePortCreateLocal")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -114,16 +116,16 @@ impl CFMessagePort {
         allocator: Option<&CFAllocator>,
         name: Option<&CFString>,
         callout: CFMessagePortCallBack,
-        context: *mut CFMessagePortContext,
-        should_free_info: *mut Boolean,
+        context: Option<&CFMessagePortContext>,
+        should_free_info: Option<&mut Boolean>,
     ) -> Option<CFRetained<CFMessagePort>> {
         extern "C-unwind" {
             fn CFMessagePortCreateLocal(
                 allocator: Option<&CFAllocator>,
                 name: Option<&CFString>,
                 callout: CFMessagePortCallBack,
-                context: *mut CFMessagePortContext,
-                should_free_info: *mut Boolean,
+                context: Option<&CFMessagePortContext>,
+                should_free_info: Option<&mut Boolean>,
             ) -> Option<NonNull<CFMessagePort>>;
         }
         let ret = unsafe {
@@ -180,12 +182,15 @@ impl CFMessagePort {
 
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFMessagePortGetContext")]
     #[inline]
-    pub unsafe fn context(&self, context: *mut CFMessagePortContext) {
+    pub unsafe fn context(&self, context: &mut CFMessagePortContext) {
         extern "C-unwind" {
-            fn CFMessagePortGetContext(ms: &CFMessagePort, context: *mut CFMessagePortContext);
+            fn CFMessagePortGetContext(ms: &CFMessagePort, context: &mut CFMessagePortContext);
         }
         unsafe { CFMessagePortGetContext(self, context) }
     }
@@ -237,30 +242,28 @@ impl CFMessagePort {
 
     /// # Safety
     ///
-    /// - `data` might not allow `None`.
-    /// - `reply_mode` might not allow `None`.
-    /// - `return_data` must be a valid pointer.
+    /// `return_data` must be a valid pointer.
     #[doc(alias = "CFMessagePortSendRequest")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
     #[inline]
     pub unsafe fn send_request(
         &self,
         msgid: i32,
-        data: Option<&CFData>,
+        data: &CFData,
         send_timeout: CFTimeInterval,
         rcv_timeout: CFTimeInterval,
         reply_mode: Option<&CFString>,
-        return_data: *mut *const CFData,
+        return_data: &mut *const CFData,
     ) -> i32 {
         extern "C-unwind" {
             fn CFMessagePortSendRequest(
                 remote: &CFMessagePort,
                 msgid: i32,
-                data: Option<&CFData>,
+                data: &CFData,
                 send_timeout: CFTimeInterval,
                 rcv_timeout: CFTimeInterval,
                 reply_mode: Option<&CFString>,
-                return_data: *mut *const CFData,
+                return_data: &mut *const CFData,
             ) -> i32;
         }
         unsafe {
@@ -297,8 +300,7 @@ impl CFMessagePort {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `queue` might not allow `None`.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "CFMessagePortSetDispatchQueue")]
     #[cfg(feature = "dispatch2")]
     #[inline]

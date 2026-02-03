@@ -84,7 +84,10 @@ impl CFFileDescriptor {
     ///
     /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFFileDescriptorCreate")]
     #[inline]
     pub unsafe fn new(
@@ -92,7 +95,7 @@ impl CFFileDescriptor {
         fd: CFFileDescriptorNativeDescriptor,
         close_on_invalidate: bool,
         callout: CFFileDescriptorCallBack,
-        context: *const CFFileDescriptorContext,
+        context: Option<&CFFileDescriptorContext>,
     ) -> Option<CFRetained<CFFileDescriptor>> {
         extern "C-unwind" {
             fn CFFileDescriptorCreate(
@@ -100,7 +103,7 @@ impl CFFileDescriptor {
                 fd: CFFileDescriptorNativeDescriptor,
                 close_on_invalidate: Boolean,
                 callout: CFFileDescriptorCallBack,
-                context: *const CFFileDescriptorContext,
+                context: Option<&CFFileDescriptorContext>,
             ) -> Option<NonNull<CFFileDescriptor>>;
         }
         let ret = unsafe {
@@ -122,14 +125,17 @@ impl CFFileDescriptor {
 
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFFileDescriptorGetContext")]
     #[inline]
-    pub unsafe fn context(&self, context: *mut CFFileDescriptorContext) {
+    pub unsafe fn context(&self, context: &mut CFFileDescriptorContext) {
         extern "C-unwind" {
             fn CFFileDescriptorGetContext(
                 f: &CFFileDescriptor,
-                context: *mut CFFileDescriptorContext,
+                context: &mut CFFileDescriptorContext,
             );
         }
         unsafe { CFFileDescriptorGetContext(self, context) }

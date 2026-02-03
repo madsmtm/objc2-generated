@@ -243,21 +243,24 @@ impl CFArray {
     ///
     /// - `allocator` might not allow `None`.
     /// - `values` must be a valid pointer.
-    /// - `call_backs` must be a valid pointer.
+    /// - `call_backs` struct field 2 must be implemented correctly.
+    /// - `call_backs` struct field 3 must be implemented correctly.
+    /// - `call_backs` struct field 4 must be implemented correctly.
+    /// - `call_backs` struct field 5 must be implemented correctly.
     #[doc(alias = "CFArrayCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         values: *mut *const c_void,
         num_values: CFIndex,
-        call_backs: *const CFArrayCallBacks,
+        call_backs: Option<&CFArrayCallBacks>,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CFArrayCreate(
                 allocator: Option<&CFAllocator>,
                 values: *mut *const c_void,
                 num_values: CFIndex,
-                call_backs: *const CFArrayCallBacks,
+                call_backs: Option<&CFArrayCallBacks>,
             ) -> Option<NonNull<CFArray>>;
         }
         let ret = unsafe { CFArrayCreate(allocator, values, num_values, call_backs) };
@@ -287,17 +290,16 @@ impl CFArray {
     ///
     /// - `allocator` might not allow `None`.
     /// - `the_array` generic must be of the correct type.
-    /// - `the_array` might not allow `None`.
     #[doc(alias = "CFArrayCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
-        the_array: Option<&CFArray>,
+        the_array: &CFArray,
     ) -> Option<CFRetained<CFArray>> {
         extern "C-unwind" {
             fn CFArrayCreateCopy(
                 allocator: Option<&CFAllocator>,
-                the_array: Option<&CFArray>,
+                the_array: &CFArray,
             ) -> Option<NonNull<CFArray>>;
         }
         let ret = unsafe { CFArrayCreateCopy(allocator, the_array) };
@@ -352,20 +354,23 @@ impl CFMutableArray {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `call_backs` must be a valid pointer.
+    /// - `call_backs` struct field 2 must be implemented correctly.
+    /// - `call_backs` struct field 3 must be implemented correctly.
+    /// - `call_backs` struct field 4 must be implemented correctly.
+    /// - `call_backs` struct field 5 must be implemented correctly.
     /// - The returned generic must be of the correct type.
     #[doc(alias = "CFArrayCreateMutable")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        call_backs: *const CFArrayCallBacks,
+        call_backs: Option<&CFArrayCallBacks>,
     ) -> Option<CFRetained<CFMutableArray>> {
         extern "C-unwind" {
             fn CFArrayCreateMutable(
                 allocator: Option<&CFAllocator>,
                 capacity: CFIndex,
-                call_backs: *const CFArrayCallBacks,
+                call_backs: Option<&CFArrayCallBacks>,
             ) -> Option<NonNull<CFMutableArray>>;
         }
         let ret = unsafe { CFArrayCreateMutable(allocator, capacity, call_backs) };
@@ -405,20 +410,19 @@ impl CFMutableArray {
     ///
     /// - `allocator` might not allow `None`.
     /// - `the_array` generic must be of the correct type.
-    /// - `the_array` might not allow `None`.
     /// - The returned generic must be of the correct type.
     #[doc(alias = "CFArrayCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        the_array: Option<&CFArray>,
+        the_array: &CFArray,
     ) -> Option<CFRetained<CFMutableArray>> {
         extern "C-unwind" {
             fn CFArrayCreateMutableCopy(
                 allocator: Option<&CFAllocator>,
                 capacity: CFIndex,
-                the_array: Option<&CFArray>,
+                the_array: &CFArray,
             ) -> Option<NonNull<CFMutableArray>>;
         }
         let ret = unsafe { CFArrayCreateMutableCopy(allocator, capacity, the_array) };
@@ -1103,18 +1107,17 @@ impl CFMutableArray {
     /// - `the_array` generic must be of the correct type.
     /// - `the_array` might not allow `None`.
     /// - `other_array` generic must be of the correct type.
-    /// - `other_array` might not allow `None`.
     #[doc(alias = "CFArrayAppendArray")]
     #[inline]
     pub unsafe fn append_array(
         the_array: Option<&CFMutableArray>,
-        other_array: Option<&CFArray>,
+        other_array: &CFArray,
         other_range: CFRange,
     ) {
         extern "C-unwind" {
             fn CFArrayAppendArray(
                 the_array: Option<&CFMutableArray>,
-                other_array: Option<&CFArray>,
+                other_array: &CFArray,
                 other_range: CFRange,
             );
         }

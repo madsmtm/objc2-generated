@@ -96,23 +96,28 @@ impl CFString {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `c_str` must be a valid pointer.
+    /// `alloc` might not allow `None`.
     #[doc(alias = "CFStringCreateWithCString")]
     #[inline]
     pub unsafe fn with_c_string(
         alloc: Option<&CFAllocator>,
-        c_str: *const c_char,
+        c_str: &CStr,
         encoding: CFStringEncoding,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFStringCreateWithCString(
                 alloc: Option<&CFAllocator>,
-                c_str: *const c_char,
+                c_str: NonNull<c_char>,
                 encoding: CFStringEncoding,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { CFStringCreateWithCString(alloc, c_str, encoding) };
+        let ret = unsafe {
+            CFStringCreateWithCString(
+                alloc,
+                NonNull::new(c_str.as_ptr().cast_mut()).unwrap(),
+                encoding,
+            )
+        };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -202,13 +207,13 @@ impl CFString {
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
-    /// - `c_str` must be a valid pointer.
+    /// - `c_str` might not allow `None`.
     /// - `contents_deallocator` might not allow `None`.
     #[doc(alias = "CFStringCreateWithCStringNoCopy")]
     #[inline]
     pub unsafe fn with_c_string_no_copy(
         alloc: Option<&CFAllocator>,
-        c_str: *const c_char,
+        c_str: Option<&CStr>,
         encoding: CFStringEncoding,
         contents_deallocator: Option<&CFAllocator>,
     ) -> Option<CFRetained<CFString>> {
@@ -221,7 +226,14 @@ impl CFString {
             ) -> Option<NonNull<CFString>>;
         }
         let ret = unsafe {
-            CFStringCreateWithCStringNoCopy(alloc, c_str, encoding, contents_deallocator)
+            CFStringCreateWithCStringNoCopy(
+                alloc,
+                c_str
+                    .map(|ptr| ptr.as_ptr())
+                    .unwrap_or_else(core::ptr::null),
+                encoding,
+                contents_deallocator,
+            )
         };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
@@ -514,8 +526,7 @@ impl CFString {
 
     /// # Safety
     ///
-    /// - `buffer` must be a valid pointer.
-    /// - `used_buf_len` must be a valid pointer.
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFStringGetBytes")]
     #[inline]
     pub unsafe fn bytes(
@@ -526,7 +537,7 @@ impl CFString {
         is_external_representation: bool,
         buffer: *mut u8,
         max_buf_len: CFIndex,
-        used_buf_len: *mut CFIndex,
+        used_buf_len: Option<&mut CFIndex>,
     ) -> CFIndex {
         extern "C-unwind" {
             fn CFStringGetBytes(
@@ -537,7 +548,7 @@ impl CFString {
                 is_external_representation: Boolean,
                 buffer: *mut u8,
                 max_buf_len: CFIndex,
-                used_buf_len: *mut CFIndex,
+                used_buf_len: Option<&mut CFIndex>,
             ) -> CFIndex;
         }
         unsafe {
@@ -669,12 +680,12 @@ impl CFString {
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
-    /// - `buffer` must be a valid pointer.
+    /// - `buffer` might not allow `None`.
     #[doc(alias = "CFStringCreateWithFileSystemRepresentation")]
     #[inline]
     pub unsafe fn with_file_system_representation(
         alloc: Option<&CFAllocator>,
-        buffer: *const c_char,
+        buffer: Option<&CStr>,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CFStringCreateWithFileSystemRepresentation(
@@ -682,7 +693,14 @@ impl CFString {
                 buffer: *const c_char,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { CFStringCreateWithFileSystemRepresentation(alloc, buffer) };
+        let ret = unsafe {
+            CFStringCreateWithFileSystemRepresentation(
+                alloc,
+                buffer
+                    .map(|ptr| ptr.as_ptr())
+                    .unwrap_or_else(core::ptr::null),
+            )
+        };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }
@@ -803,7 +821,6 @@ impl CFString {
     ///
     /// - `string_to_find` might not allow `None`.
     /// - `locale` might not allow `None`.
-    /// - `result` must be a valid pointer.
     #[doc(alias = "CFStringFindWithOptionsAndLocale")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -813,7 +830,7 @@ impl CFString {
         range_to_search: CFRange,
         search_options: CFStringCompareFlags,
         locale: Option<&CFLocale>,
-        result: *mut CFRange,
+        result: Option<&mut CFRange>,
     ) -> bool {
         extern "C-unwind" {
             fn CFStringFindWithOptionsAndLocale(
@@ -822,7 +839,7 @@ impl CFString {
                 range_to_search: CFRange,
                 search_options: CFStringCompareFlags,
                 locale: Option<&CFLocale>,
-                result: *mut CFRange,
+                result: Option<&mut CFRange>,
             ) -> Boolean;
         }
         let ret = unsafe {
@@ -840,8 +857,7 @@ impl CFString {
 
     /// # Safety
     ///
-    /// - `string_to_find` might not allow `None`.
-    /// - `result` must be a valid pointer.
+    /// `string_to_find` might not allow `None`.
     #[doc(alias = "CFStringFindWithOptions")]
     #[inline]
     pub unsafe fn find_with_options(
@@ -849,7 +865,7 @@ impl CFString {
         string_to_find: Option<&CFString>,
         range_to_search: CFRange,
         search_options: CFStringCompareFlags,
-        result: *mut CFRange,
+        result: Option<&mut CFRange>,
     ) -> bool {
         extern "C-unwind" {
             fn CFStringFindWithOptions(
@@ -857,7 +873,7 @@ impl CFString {
                 string_to_find: Option<&CFString>,
                 range_to_search: CFRange,
                 search_options: CFStringCompareFlags,
-                result: *mut CFRange,
+                result: Option<&mut CFRange>,
             ) -> Boolean;
         }
         let ret = unsafe {
@@ -1005,8 +1021,7 @@ impl CFString {
     ///
     /// # Safety
     ///
-    /// - `the_set` might not allow `None`.
-    /// - `result` must be a valid pointer.
+    /// `the_set` might not allow `None`.
     #[doc(alias = "CFStringFindCharacterFromSet")]
     #[cfg(feature = "CFCharacterSet")]
     #[inline]
@@ -1015,7 +1030,7 @@ impl CFString {
         the_set: Option<&CFCharacterSet>,
         range_to_search: CFRange,
         search_options: CFStringCompareFlags,
-        result: *mut CFRange,
+        result: Option<&mut CFRange>,
     ) -> bool {
         extern "C-unwind" {
             fn CFStringFindCharacterFromSet(
@@ -1023,7 +1038,7 @@ impl CFString {
                 the_set: Option<&CFCharacterSet>,
                 range_to_search: CFRange,
                 search_options: CFStringCompareFlags,
-                result: *mut CFRange,
+                result: Option<&mut CFRange>,
             ) -> Boolean;
         }
         let ret = unsafe {
@@ -1032,27 +1047,22 @@ impl CFString {
         ret != 0
     }
 
-    /// # Safety
-    ///
-    /// - `line_begin_index` must be a valid pointer.
-    /// - `line_end_index` must be a valid pointer.
-    /// - `contents_end_index` must be a valid pointer.
     #[doc(alias = "CFStringGetLineBounds")]
     #[inline]
-    pub unsafe fn line_bounds(
+    pub fn line_bounds(
         &self,
         range: CFRange,
-        line_begin_index: *mut CFIndex,
-        line_end_index: *mut CFIndex,
-        contents_end_index: *mut CFIndex,
+        line_begin_index: Option<&mut CFIndex>,
+        line_end_index: Option<&mut CFIndex>,
+        contents_end_index: Option<&mut CFIndex>,
     ) {
         extern "C-unwind" {
             fn CFStringGetLineBounds(
                 the_string: &CFString,
                 range: CFRange,
-                line_begin_index: *mut CFIndex,
-                line_end_index: *mut CFIndex,
-                contents_end_index: *mut CFIndex,
+                line_begin_index: Option<&mut CFIndex>,
+                line_end_index: Option<&mut CFIndex>,
+                contents_end_index: Option<&mut CFIndex>,
             );
         }
         unsafe {
@@ -1066,27 +1076,22 @@ impl CFString {
         }
     }
 
-    /// # Safety
-    ///
-    /// - `par_begin_index` must be a valid pointer.
-    /// - `par_end_index` must be a valid pointer.
-    /// - `contents_end_index` must be a valid pointer.
     #[doc(alias = "CFStringGetParagraphBounds")]
     #[inline]
-    pub unsafe fn paragraph_bounds(
+    pub fn paragraph_bounds(
         &self,
         range: CFRange,
-        par_begin_index: *mut CFIndex,
-        par_end_index: *mut CFIndex,
-        contents_end_index: *mut CFIndex,
+        par_begin_index: Option<&mut CFIndex>,
+        par_end_index: Option<&mut CFIndex>,
+        contents_end_index: Option<&mut CFIndex>,
     ) {
         extern "C-unwind" {
             fn CFStringGetParagraphBounds(
                 string: &CFString,
                 range: CFRange,
-                par_begin_index: *mut CFIndex,
-                par_end_index: *mut CFIndex,
-                contents_end_index: *mut CFIndex,
+                par_begin_index: Option<&mut CFIndex>,
+                par_end_index: Option<&mut CFIndex>,
+                contents_end_index: Option<&mut CFIndex>,
             );
         }
         unsafe {
@@ -1132,8 +1137,7 @@ impl CFString {
     ///
     /// # Safety
     ///
-    /// - `locale` might not allow `None`.
-    /// - `character` must be a valid pointer.
+    /// `locale` might not allow `None`.
     #[doc(alias = "CFStringGetHyphenationLocationBeforeIndex")]
     #[cfg(feature = "CFLocale")]
     #[inline]
@@ -1143,7 +1147,7 @@ impl CFString {
         limit_range: CFRange,
         options: CFOptionFlags,
         locale: Option<&CFLocale>,
-        character: *mut UTF32Char,
+        character: Option<&mut UTF32Char>,
     ) -> CFIndex {
         extern "C-unwind" {
             fn CFStringGetHyphenationLocationBeforeIndex(
@@ -1152,7 +1156,7 @@ impl CFString {
                 limit_range: CFRange,
                 options: CFOptionFlags,
                 locale: Option<&CFLocale>,
-                character: *mut UTF32Char,
+                character: Option<&mut UTF32Char>,
             ) -> CFIndex;
         }
         unsafe {
@@ -1303,12 +1307,12 @@ impl CFMutableString {
     /// # Safety
     ///
     /// - `the_string` might not allow `None`.
-    /// - `c_str` must be a valid pointer.
+    /// - `c_str` might not allow `None`.
     #[doc(alias = "CFStringAppendCString")]
     #[inline]
     pub unsafe fn append_c_string(
         the_string: Option<&CFMutableString>,
-        c_str: *const c_char,
+        c_str: Option<&CStr>,
         encoding: CFStringEncoding,
     ) {
         extern "C-unwind" {
@@ -1318,7 +1322,15 @@ impl CFMutableString {
                 encoding: CFStringEncoding,
             );
         }
-        unsafe { CFStringAppendCString(the_string, c_str, encoding) }
+        unsafe {
+            CFStringAppendCString(
+                the_string,
+                c_str
+                    .map(|ptr| ptr.as_ptr())
+                    .unwrap_or_else(core::ptr::null),
+                encoding,
+            )
+        }
     }
 
     /// # Safety
@@ -1620,20 +1632,19 @@ impl CFMutableString {
     /// # Safety
     ///
     /// - `string` might not allow `None`.
-    /// - `range` must be a valid pointer.
     /// - `transform` might not allow `None`.
     #[doc(alias = "CFStringTransform")]
     #[inline]
     pub unsafe fn transform(
         string: Option<&CFMutableString>,
-        range: *mut CFRange,
+        range: Option<&mut CFRange>,
         transform: Option<&CFString>,
         reverse: bool,
     ) -> bool {
         extern "C-unwind" {
             fn CFStringTransform(
                 string: Option<&CFMutableString>,
-                range: *mut CFRange,
+                range: Option<&mut CFRange>,
                 transform: Option<&CFString>,
                 reverse: Boolean,
             ) -> Boolean;
@@ -1860,9 +1871,9 @@ unsafe impl RefEncode for CFStringInlineBuffer {
 }
 
 impl CFString {
-    // TODO: pub fn CFStringInitInlineBuffer(str: &CFString,buf: *mut CFStringInlineBuffer,range: CFRange,);
+    // TODO: pub fn CFStringInitInlineBuffer(str: &CFString,buf: &mut CFStringInlineBuffer,range: CFRange,);
 
-    // TODO: pub fn CFStringGetCharacterFromInlineBuffer(buf: *mut CFStringInlineBuffer,idx: CFIndex,) -> UniChar;
+    // TODO: pub fn CFStringGetCharacterFromInlineBuffer(buf: &mut CFStringInlineBuffer,idx: CFIndex,) -> UniChar;
 
     // TODO: pub fn CFStringIsSurrogateHighCharacter(character: UniChar,) -> Boolean;
 

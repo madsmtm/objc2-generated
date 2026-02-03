@@ -82,22 +82,24 @@ impl CFMachPort {
     ///
     /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer.
-    /// - `should_free_info` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFMachPortCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         callout: CFMachPortCallBack,
-        context: *mut CFMachPortContext,
-        should_free_info: *mut Boolean,
+        context: Option<&CFMachPortContext>,
+        should_free_info: Option<&mut Boolean>,
     ) -> Option<CFRetained<CFMachPort>> {
         extern "C-unwind" {
             fn CFMachPortCreate(
                 allocator: Option<&CFAllocator>,
                 callout: CFMachPortCallBack,
-                context: *mut CFMachPortContext,
-                should_free_info: *mut Boolean,
+                context: Option<&CFMachPortContext>,
+                should_free_info: Option<&mut Boolean>,
             ) -> Option<NonNull<CFMachPort>>;
         }
         let ret = unsafe { CFMachPortCreate(allocator, callout, context, should_free_info) };
@@ -108,8 +110,10 @@ impl CFMachPort {
     ///
     /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` must be a valid pointer.
-    /// - `should_free_info` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFMachPortCreateWithPort")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -117,16 +121,16 @@ impl CFMachPort {
         allocator: Option<&CFAllocator>,
         port_num: libc::mach_port_t,
         callout: CFMachPortCallBack,
-        context: *mut CFMachPortContext,
-        should_free_info: *mut Boolean,
+        context: Option<&CFMachPortContext>,
+        should_free_info: Option<&mut Boolean>,
     ) -> Option<CFRetained<CFMachPort>> {
         extern "C-unwind" {
             fn CFMachPortCreateWithPort(
                 allocator: Option<&CFAllocator>,
                 port_num: libc::mach_port_t,
                 callout: CFMachPortCallBack,
-                context: *mut CFMachPortContext,
-                should_free_info: *mut Boolean,
+                context: Option<&CFMachPortContext>,
+                should_free_info: Option<&mut Boolean>,
             ) -> Option<NonNull<CFMachPort>>;
         }
         let ret = unsafe {
@@ -147,12 +151,15 @@ impl CFMachPort {
 
     /// # Safety
     ///
-    /// `context` must be a valid pointer.
+    /// - `context` struct field 2 must be a valid pointer.
+    /// - `context` struct field 3 must be implemented correctly.
+    /// - `context` struct field 4 must be implemented correctly.
+    /// - `context` struct field 5 must be implemented correctly.
     #[doc(alias = "CFMachPortGetContext")]
     #[inline]
-    pub unsafe fn context(&self, context: *mut CFMachPortContext) {
+    pub unsafe fn context(&self, context: &mut CFMachPortContext) {
         extern "C-unwind" {
-            fn CFMachPortGetContext(port: &CFMachPort, context: *mut CFMachPortContext);
+            fn CFMachPortGetContext(port: &CFMachPort, context: &mut CFMachPortContext);
         }
         unsafe { CFMachPortGetContext(self, context) }
     }

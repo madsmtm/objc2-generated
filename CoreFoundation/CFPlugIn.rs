@@ -300,20 +300,19 @@ pub type CFPlugInInstanceDeallocateInstanceDataFunction =
 impl CFPlugInInstance {
     /// # Safety
     ///
-    /// - `interface_name` might not allow `None`.
-    /// - `ftbl` must be a valid pointer.
+    /// `ftbl` must be a valid pointer.
     #[doc(alias = "CFPlugInInstanceGetInterfaceFunctionTable")]
     #[inline]
     pub unsafe fn interface_function_table(
         &self,
-        interface_name: Option<&CFString>,
-        ftbl: *mut *mut c_void,
+        interface_name: &CFString,
+        ftbl: &mut *mut c_void,
     ) -> bool {
         extern "C-unwind" {
             fn CFPlugInInstanceGetInterfaceFunctionTable(
                 instance: &CFPlugInInstance,
-                interface_name: Option<&CFString>,
-                ftbl: *mut *mut c_void,
+                interface_name: &CFString,
+                ftbl: &mut *mut c_void,
             ) -> Boolean;
         }
         let ret = unsafe { CFPlugInInstanceGetInterfaceFunctionTable(self, interface_name, ftbl) };
@@ -358,7 +357,6 @@ impl CFPlugInInstance {
     ///
     /// - `allocator` might not allow `None`.
     /// - `deallocate_instance_function` must be implemented correctly.
-    /// - `factory_name` might not allow `None`.
     /// - `get_interface_function` must be implemented correctly.
     #[doc(alias = "CFPlugInInstanceCreateWithInstanceDataSize")]
     #[inline]
@@ -366,7 +364,7 @@ impl CFPlugInInstance {
         allocator: Option<&CFAllocator>,
         instance_data_size: CFIndex,
         deallocate_instance_function: CFPlugInInstanceDeallocateInstanceDataFunction,
-        factory_name: Option<&CFString>,
+        factory_name: &CFString,
         get_interface_function: CFPlugInInstanceGetInterfaceFunction,
     ) -> Option<CFRetained<CFPlugInInstance>> {
         extern "C-unwind" {
@@ -374,7 +372,7 @@ impl CFPlugInInstance {
                 allocator: Option<&CFAllocator>,
                 instance_data_size: CFIndex,
                 deallocate_instance_function: CFPlugInInstanceDeallocateInstanceDataFunction,
-                factory_name: Option<&CFString>,
+                factory_name: &CFString,
                 get_interface_function: CFPlugInInstanceGetInterfaceFunction,
             ) -> Option<NonNull<CFPlugInInstance>>;
         }

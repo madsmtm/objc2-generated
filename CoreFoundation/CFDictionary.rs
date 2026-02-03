@@ -363,28 +363,35 @@ impl CFDictionary {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `keys` must be a valid pointer.
-    /// - `values` must be a valid pointer.
-    /// - `key_call_backs` must be a valid pointer.
-    /// - `value_call_backs` must be a valid pointer.
+    /// - `keys` must be a valid pointer or null.
+    /// - `values` must be a valid pointer or null.
+    /// - `key_call_backs` struct field 2 must be implemented correctly.
+    /// - `key_call_backs` struct field 3 must be implemented correctly.
+    /// - `key_call_backs` struct field 4 must be implemented correctly.
+    /// - `key_call_backs` struct field 5 must be implemented correctly.
+    /// - `key_call_backs` struct field 6 must be implemented correctly.
+    /// - `value_call_backs` struct field 2 must be implemented correctly.
+    /// - `value_call_backs` struct field 3 must be implemented correctly.
+    /// - `value_call_backs` struct field 4 must be implemented correctly.
+    /// - `value_call_backs` struct field 5 must be implemented correctly.
     #[doc(alias = "CFDictionaryCreate")]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        keys: *mut *const c_void,
-        values: *mut *const c_void,
+        keys: *const *const c_void,
+        values: *const *const c_void,
         num_values: CFIndex,
-        key_call_backs: *const CFDictionaryKeyCallBacks,
-        value_call_backs: *const CFDictionaryValueCallBacks,
+        key_call_backs: Option<&CFDictionaryKeyCallBacks>,
+        value_call_backs: Option<&CFDictionaryValueCallBacks>,
     ) -> Option<CFRetained<CFDictionary>> {
         extern "C-unwind" {
             fn CFDictionaryCreate(
                 allocator: Option<&CFAllocator>,
-                keys: *mut *const c_void,
-                values: *mut *const c_void,
+                keys: *const *const c_void,
+                values: *const *const c_void,
                 num_values: CFIndex,
-                key_call_backs: *const CFDictionaryKeyCallBacks,
-                value_call_backs: *const CFDictionaryValueCallBacks,
+                key_call_backs: Option<&CFDictionaryKeyCallBacks>,
+                value_call_backs: Option<&CFDictionaryValueCallBacks>,
             ) -> Option<NonNull<CFDictionary>>;
         }
         let ret = unsafe {
@@ -514,8 +521,15 @@ impl CFMutableDictionary {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `key_call_backs` must be a valid pointer.
-    /// - `value_call_backs` must be a valid pointer.
+    /// - `key_call_backs` struct field 2 must be implemented correctly.
+    /// - `key_call_backs` struct field 3 must be implemented correctly.
+    /// - `key_call_backs` struct field 4 must be implemented correctly.
+    /// - `key_call_backs` struct field 5 must be implemented correctly.
+    /// - `key_call_backs` struct field 6 must be implemented correctly.
+    /// - `value_call_backs` struct field 2 must be implemented correctly.
+    /// - `value_call_backs` struct field 3 must be implemented correctly.
+    /// - `value_call_backs` struct field 4 must be implemented correctly.
+    /// - `value_call_backs` struct field 5 must be implemented correctly.
     /// - The returned generic must be of the correct type.
     /// - The returned generic must be of the correct type.
     #[doc(alias = "CFDictionaryCreateMutable")]
@@ -523,15 +537,15 @@ impl CFMutableDictionary {
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        key_call_backs: *const CFDictionaryKeyCallBacks,
-        value_call_backs: *const CFDictionaryValueCallBacks,
+        key_call_backs: Option<&CFDictionaryKeyCallBacks>,
+        value_call_backs: Option<&CFDictionaryValueCallBacks>,
     ) -> Option<CFRetained<CFMutableDictionary>> {
         extern "C-unwind" {
             fn CFDictionaryCreateMutable(
                 allocator: Option<&CFAllocator>,
                 capacity: CFIndex,
-                key_call_backs: *const CFDictionaryKeyCallBacks,
-                value_call_backs: *const CFDictionaryValueCallBacks,
+                key_call_backs: Option<&CFDictionaryKeyCallBacks>,
+                value_call_backs: Option<&CFDictionaryValueCallBacks>,
             ) -> Option<NonNull<CFMutableDictionary>>;
         }
         let ret = unsafe {
@@ -803,12 +817,16 @@ impl CFDictionary {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetValueIfPresent")]
     #[inline]
-    pub unsafe fn value_if_present(&self, key: *const c_void, value: *mut *const c_void) -> bool {
+    pub unsafe fn value_if_present(
+        &self,
+        key: *const c_void,
+        value: Option<&mut *const c_void>,
+    ) -> bool {
         extern "C-unwind" {
             fn CFDictionaryGetValueIfPresent(
                 the_dict: &CFDictionary,
                 key: *const c_void,
-                value: *mut *const c_void,
+                value: Option<&mut *const c_void>,
             ) -> Boolean;
         }
         let ret = unsafe { CFDictionaryGetValueIfPresent(self, key, value) };

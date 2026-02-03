@@ -123,22 +123,20 @@ impl CFError {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `domain` might not allow `None`.
     /// - `user_info` generic should be of the correct type.
-    /// - `user_info` might not allow `None`.
     #[doc(alias = "CFErrorCreate")]
     #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        domain: Option<&CFErrorDomain>,
+        domain: &CFErrorDomain,
         code: CFIndex,
         user_info: Option<&CFDictionary<CFString, CFType>>,
     ) -> Option<CFRetained<CFError>> {
         extern "C-unwind" {
             fn CFErrorCreate(
                 allocator: Option<&CFAllocator>,
-                domain: Option<&CFErrorDomain>,
+                domain: &CFErrorDomain,
                 code: CFIndex,
                 user_info: Option<&CFDictionary<CFString, CFType>>,
             ) -> Option<NonNull<CFError>>;
@@ -167,14 +165,13 @@ impl CFError {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `domain` might not allow `None`.
     /// - `user_info_keys` must be a valid pointer.
     /// - `user_info_values` must be a valid pointer.
     #[doc(alias = "CFErrorCreateWithUserInfoKeysAndValues")]
     #[inline]
     pub unsafe fn with_user_info_keys_and_values(
         allocator: Option<&CFAllocator>,
-        domain: Option<&CFErrorDomain>,
+        domain: &CFErrorDomain,
         code: CFIndex,
         user_info_keys: *const *const c_void,
         user_info_values: *const *const c_void,
@@ -183,7 +180,7 @@ impl CFError {
         extern "C-unwind" {
             fn CFErrorCreateWithUserInfoKeysAndValues(
                 allocator: Option<&CFAllocator>,
-                domain: Option<&CFErrorDomain>,
+                domain: &CFErrorDomain,
                 code: CFIndex,
                 user_info_keys: *const *const c_void,
                 user_info_values: *const *const c_void,
