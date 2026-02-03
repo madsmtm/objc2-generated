@@ -476,7 +476,7 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `alloc` might not allow `None`.
-    /// - `signature` struct field 4 must be a valid pointer.
+    /// - `signature` struct field `address` must be a valid pointer.
     /// - `signature` might not allow `None`.
     /// - `read_stream` must be a valid pointer.
     /// - `read_stream` might not allow `None`.
@@ -752,10 +752,10 @@ impl CFReadStream {
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
-    /// - `client_context` struct field 2 must be a valid pointer.
-    /// - `client_context` struct field 3 must be implemented correctly.
-    /// - `client_context` struct field 4 must be implemented correctly.
-    /// - `client_context` struct field 5 must be implemented correctly.
+    /// - `client_context` struct field `info` must be a valid pointer.
+    /// - `client_context` struct field `retain` must be implemented correctly.
+    /// - `client_context` struct field `release` must be implemented correctly.
+    /// - `client_context` struct field `copyDescription` must be implemented correctly.
     /// - `client_context` might not allow `None`.
     #[doc(alias = "CFReadStreamSetClient")]
     #[inline]
@@ -782,10 +782,10 @@ impl CFWriteStream {
     /// # Safety
     ///
     /// - `client_cb` must be implemented correctly.
-    /// - `client_context` struct field 2 must be a valid pointer.
-    /// - `client_context` struct field 3 must be implemented correctly.
-    /// - `client_context` struct field 4 must be implemented correctly.
-    /// - `client_context` struct field 5 must be implemented correctly.
+    /// - `client_context` struct field `info` must be a valid pointer.
+    /// - `client_context` struct field `retain` must be implemented correctly.
+    /// - `client_context` struct field `release` must be implemented correctly.
+    /// - `client_context` struct field `copyDescription` must be implemented correctly.
     /// - `client_context` might not allow `None`.
     #[doc(alias = "CFWriteStreamSetClient")]
     #[inline]

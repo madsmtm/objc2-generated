@@ -91,13 +91,13 @@ impl CGPSConverter {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `callbacks` struct field 2 must be implemented correctly.
-    /// - `callbacks` struct field 3 must be implemented correctly.
-    /// - `callbacks` struct field 4 must be implemented correctly.
-    /// - `callbacks` struct field 5 must be implemented correctly.
-    /// - `callbacks` struct field 6 must be implemented correctly.
-    /// - `callbacks` struct field 7 must be implemented correctly.
-    /// - `callbacks` struct field 8 must be implemented correctly.
+    /// - `callbacks` struct field `beginDocument` must be implemented correctly.
+    /// - `callbacks` struct field `endDocument` must be implemented correctly.
+    /// - `callbacks` struct field `beginPage` must be implemented correctly.
+    /// - `callbacks` struct field `endPage` must be implemented correctly.
+    /// - `callbacks` struct field `noteProgress` must be implemented correctly.
+    /// - `callbacks` struct field `noteMessage` must be implemented correctly.
+    /// - `callbacks` struct field `releaseInfo` must be implemented correctly.
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     #[doc(alias = "CGPSConverterCreate")]

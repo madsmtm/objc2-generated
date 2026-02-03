@@ -535,15 +535,15 @@ unsafe impl RefEncode for NSMapTableValueCallBacks {
 
 /// # Safety
 ///
-/// - `key_call_backs` struct field 1 must be implemented correctly.
-/// - `key_call_backs` struct field 2 must be implemented correctly.
-/// - `key_call_backs` struct field 3 must be implemented correctly.
-/// - `key_call_backs` struct field 4 must be implemented correctly.
-/// - `key_call_backs` struct field 5 must be implemented correctly.
-/// - `key_call_backs` struct field 6 must be a valid pointer or null.
-/// - `value_call_backs` struct field 1 must be implemented correctly.
-/// - `value_call_backs` struct field 2 must be implemented correctly.
-/// - `value_call_backs` struct field 3 must be implemented correctly.
+/// - `key_call_backs` struct field `hash` must be implemented correctly.
+/// - `key_call_backs` struct field `isEqual` must be implemented correctly.
+/// - `key_call_backs` struct field `retain` must be implemented correctly.
+/// - `key_call_backs` struct field `release` must be implemented correctly.
+/// - `key_call_backs` struct field `describe` must be implemented correctly.
+/// - `key_call_backs` struct field `notAKeyMarker` must be a valid pointer or null.
+/// - `value_call_backs` struct field `retain` must be implemented correctly.
+/// - `value_call_backs` struct field `release` must be implemented correctly.
+/// - `value_call_backs` struct field `describe` must be implemented correctly.
 /// - `zone` must be a valid pointer or null.
 #[cfg(all(feature = "NSString", feature = "NSZone"))]
 #[inline]
@@ -568,15 +568,15 @@ pub unsafe extern "C-unwind" fn NSCreateMapTableWithZone(
 
 /// # Safety
 ///
-/// - `key_call_backs` struct field 1 must be implemented correctly.
-/// - `key_call_backs` struct field 2 must be implemented correctly.
-/// - `key_call_backs` struct field 3 must be implemented correctly.
-/// - `key_call_backs` struct field 4 must be implemented correctly.
-/// - `key_call_backs` struct field 5 must be implemented correctly.
-/// - `key_call_backs` struct field 6 must be a valid pointer or null.
-/// - `value_call_backs` struct field 1 must be implemented correctly.
-/// - `value_call_backs` struct field 2 must be implemented correctly.
-/// - `value_call_backs` struct field 3 must be implemented correctly.
+/// - `key_call_backs` struct field `hash` must be implemented correctly.
+/// - `key_call_backs` struct field `isEqual` must be implemented correctly.
+/// - `key_call_backs` struct field `retain` must be implemented correctly.
+/// - `key_call_backs` struct field `release` must be implemented correctly.
+/// - `key_call_backs` struct field `describe` must be implemented correctly.
+/// - `key_call_backs` struct field `notAKeyMarker` must be a valid pointer or null.
+/// - `value_call_backs` struct field `retain` must be implemented correctly.
+/// - `value_call_backs` struct field `release` must be implemented correctly.
+/// - `value_call_backs` struct field `describe` must be implemented correctly.
 #[cfg(feature = "NSString")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSCreateMapTable(

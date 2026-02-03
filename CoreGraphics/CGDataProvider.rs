@@ -133,10 +133,10 @@ impl CGDataProvider {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `callbacks` struct field 2 must be implemented correctly.
-    /// - `callbacks` struct field 3 must be implemented correctly.
-    /// - `callbacks` struct field 4 must be implemented correctly.
-    /// - `callbacks` struct field 5 must be implemented correctly.
+    /// - `callbacks` struct field `getBytes` must be implemented correctly.
+    /// - `callbacks` struct field `skipForward` must be implemented correctly.
+    /// - `callbacks` struct field `rewind` must be implemented correctly.
+    /// - `callbacks` struct field `releaseInfo` must be implemented correctly.
     #[doc(alias = "CGDataProviderCreateSequential")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -157,10 +157,10 @@ impl CGDataProvider {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `callbacks` struct field 2 must be implemented correctly.
-    /// - `callbacks` struct field 3 must be implemented correctly.
-    /// - `callbacks` struct field 4 must be implemented correctly.
-    /// - `callbacks` struct field 5 must be implemented correctly.
+    /// - `callbacks` struct field `getBytePointer` must be implemented correctly.
+    /// - `callbacks` struct field `releaseBytePointer` must be implemented correctly.
+    /// - `callbacks` struct field `getBytesAtPosition` must be implemented correctly.
+    /// - `callbacks` struct field `releaseInfo` must be implemented correctly.
     #[doc(alias = "CGDataProviderCreateDirect")]
     #[cfg(feature = "libc")]
     #[inline]

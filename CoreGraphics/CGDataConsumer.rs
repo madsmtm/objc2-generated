@@ -73,8 +73,8 @@ impl CGDataConsumer {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `cbks` struct field 1 must be implemented correctly.
-    /// - `cbks` struct field 2 must be implemented correctly.
+    /// - `cbks` struct field `putBytes` must be implemented correctly.
+    /// - `cbks` struct field `releaseConsumer` must be implemented correctly.
     #[doc(alias = "CGDataConsumerCreate")]
     #[inline]
     pub unsafe fn new(

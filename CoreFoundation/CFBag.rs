@@ -160,11 +160,11 @@ impl CFBag {
     ///
     /// - `allocator` might not allow `None`.
     /// - `values` must be a valid pointer.
-    /// - `call_backs` struct field 2 must be implemented correctly.
-    /// - `call_backs` struct field 3 must be implemented correctly.
-    /// - `call_backs` struct field 4 must be implemented correctly.
-    /// - `call_backs` struct field 5 must be implemented correctly.
-    /// - `call_backs` struct field 6 must be implemented correctly.
+    /// - `call_backs` struct field `retain` must be implemented correctly.
+    /// - `call_backs` struct field `release` must be implemented correctly.
+    /// - `call_backs` struct field `copyDescription` must be implemented correctly.
+    /// - `call_backs` struct field `equal` must be implemented correctly.
+    /// - `call_backs` struct field `hash` must be implemented correctly.
     #[doc(alias = "CFBagCreate")]
     #[inline]
     pub unsafe fn new(
@@ -211,11 +211,11 @@ impl CFMutableBag {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `call_backs` struct field 2 must be implemented correctly.
-    /// - `call_backs` struct field 3 must be implemented correctly.
-    /// - `call_backs` struct field 4 must be implemented correctly.
-    /// - `call_backs` struct field 5 must be implemented correctly.
-    /// - `call_backs` struct field 6 must be implemented correctly.
+    /// - `call_backs` struct field `retain` must be implemented correctly.
+    /// - `call_backs` struct field `release` must be implemented correctly.
+    /// - `call_backs` struct field `copyDescription` must be implemented correctly.
+    /// - `call_backs` struct field `equal` must be implemented correctly.
+    /// - `call_backs` struct field `hash` must be implemented correctly.
     /// - The returned generic must be of the correct type.
     #[doc(alias = "CFBagCreateMutable")]
     #[inline]

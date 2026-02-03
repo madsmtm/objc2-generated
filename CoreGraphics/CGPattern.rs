@@ -101,8 +101,8 @@ impl CGPattern {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `callbacks` struct field 2 must be implemented correctly.
-    /// - `callbacks` struct field 3 must be implemented correctly.
+    /// - `callbacks` struct field `drawPattern` must be implemented correctly.
+    /// - `callbacks` struct field `releaseInfo` must be implemented correctly.
     #[doc(alias = "CGPatternCreate")]
     #[cfg(feature = "CGContext")]
     #[inline]

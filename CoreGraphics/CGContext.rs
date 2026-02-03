@@ -1101,7 +1101,7 @@ impl CGContext {
 
     /// # Safety
     ///
-    /// `info` struct field 2 must be a valid pointer or null.
+    /// `info` struct field `options` must be a valid pointer or null.
     #[doc(alias = "CGContextSetContentToneMappingInfo")]
     #[cfg(feature = "CGToneMapping")]
     #[inline]

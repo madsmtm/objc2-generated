@@ -360,10 +360,10 @@ impl SCNetworkReachability {
     /// # Safety
     ///
     /// - `callout` must be implemented correctly.
-    /// - `context` struct field 2 must be a valid pointer or null.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer or null.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "SCNetworkReachabilitySetCallback")]
     #[deprecated]
     #[inline]

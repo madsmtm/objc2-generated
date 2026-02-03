@@ -175,10 +175,10 @@ impl CTRunDelegate {
     ///
     /// # Safety
     ///
-    /// - `callbacks` struct field 2 must be implemented correctly.
-    /// - `callbacks` struct field 3 must be implemented correctly.
-    /// - `callbacks` struct field 4 must be implemented correctly.
-    /// - `callbacks` struct field 5 must be implemented correctly.
+    /// - `callbacks` struct field `dealloc` must be implemented correctly.
+    /// - `callbacks` struct field `getAscent` must be implemented correctly.
+    /// - `callbacks` struct field `getDescent` must be implemented correctly.
+    /// - `callbacks` struct field `getWidth` must be implemented correctly.
     /// - `ref_con` must be a valid pointer or null.
     #[doc(alias = "CTRunDelegateCreate")]
     #[inline]

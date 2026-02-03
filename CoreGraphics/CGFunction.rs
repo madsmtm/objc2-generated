@@ -77,8 +77,8 @@ impl CGFunction {
     /// - `info` must be a valid pointer or null.
     /// - `domain` must be a valid pointer or null.
     /// - `range` must be a valid pointer or null.
-    /// - `callbacks` struct field 2 must be implemented correctly.
-    /// - `callbacks` struct field 3 must be implemented correctly.
+    /// - `callbacks` struct field `evaluate` must be implemented correctly.
+    /// - `callbacks` struct field `releaseInfo` must be implemented correctly.
     #[doc(alias = "CGFunctionCreate")]
     #[inline]
     pub unsafe fn new(

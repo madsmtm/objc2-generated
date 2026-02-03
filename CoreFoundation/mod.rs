@@ -2005,14 +2005,14 @@ impl CFAllocator {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
-    /// - `context` struct field 6 must be implemented correctly.
-    /// - `context` struct field 7 must be implemented correctly.
-    /// - `context` struct field 8 must be implemented correctly.
-    /// - `context` struct field 9 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
+    /// - `context` struct field `allocate` must be implemented correctly.
+    /// - `context` struct field `reallocate` must be implemented correctly.
+    /// - `context` struct field `deallocate` must be implemented correctly.
+    /// - `context` struct field `preferredSize` must be implemented correctly.
     /// - `context` might not allow `None`.
     #[doc(alias = "CFAllocatorCreate")]
     #[inline]
@@ -2211,14 +2211,14 @@ impl CFAllocator {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
-    /// - `context` struct field 6 must be implemented correctly.
-    /// - `context` struct field 7 must be implemented correctly.
-    /// - `context` struct field 8 must be implemented correctly.
-    /// - `context` struct field 9 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
+    /// - `context` struct field `allocate` must be implemented correctly.
+    /// - `context` struct field `reallocate` must be implemented correctly.
+    /// - `context` struct field `deallocate` must be implemented correctly.
+    /// - `context` struct field `preferredSize` must be implemented correctly.
     /// - `context` might not allow `None`.
     #[doc(alias = "CFAllocatorGetContext")]
     #[inline]

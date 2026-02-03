@@ -105,10 +105,10 @@ impl CFMessagePort {
     /// - `allocator` might not allow `None`.
     /// - `name` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFMessagePortCreateLocal")]
     #[cfg(feature = "CFData")]
     #[inline]
@@ -182,10 +182,10 @@ impl CFMessagePort {
 
     /// # Safety
     ///
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFMessagePortGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: &mut CFMessagePortContext) {

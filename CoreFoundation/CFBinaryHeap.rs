@@ -227,14 +227,14 @@ impl CFBinaryHeap {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `call_backs` struct field 2 must be implemented correctly.
-    /// - `call_backs` struct field 3 must be implemented correctly.
-    /// - `call_backs` struct field 4 must be implemented correctly.
-    /// - `call_backs` struct field 5 must be implemented correctly.
-    /// - `compare_context` struct field 2 must be a valid pointer.
-    /// - `compare_context` struct field 3 must be implemented correctly.
-    /// - `compare_context` struct field 4 must be implemented correctly.
-    /// - `compare_context` struct field 5 must be implemented correctly.
+    /// - `call_backs` struct field `retain` must be implemented correctly.
+    /// - `call_backs` struct field `release` must be implemented correctly.
+    /// - `call_backs` struct field `copyDescription` must be implemented correctly.
+    /// - `call_backs` struct field `compare` must be implemented correctly.
+    /// - `compare_context` struct field `info` must be a valid pointer.
+    /// - `compare_context` struct field `retain` must be implemented correctly.
+    /// - `compare_context` struct field `release` must be implemented correctly.
+    /// - `compare_context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFBinaryHeapCreate")]
     #[inline]
     pub unsafe fn new(

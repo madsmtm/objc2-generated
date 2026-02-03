@@ -185,10 +185,10 @@ impl CFSocket {
     ///
     /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     /// - `context` might not allow `None`.
     #[doc(alias = "CFSocketCreate")]
     #[cfg(feature = "CFData")]
@@ -231,10 +231,10 @@ impl CFSocket {
     ///
     /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     /// - `context` might not allow `None`.
     #[doc(alias = "CFSocketCreateWithNative")]
     #[cfg(feature = "CFData")]
@@ -263,13 +263,13 @@ impl CFSocket {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `signature` struct field 4 must be a valid pointer.
+    /// - `signature` struct field `address` must be a valid pointer.
     /// - `signature` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     /// - `context` might not allow `None`.
     #[doc(alias = "CFSocketCreateWithSocketSignature")]
     #[cfg(feature = "CFData")]
@@ -305,13 +305,13 @@ impl CFSocket {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `signature` struct field 4 must be a valid pointer.
+    /// - `signature` struct field `address` must be a valid pointer.
     /// - `signature` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     /// - `context` might not allow `None`.
     #[doc(alias = "CFSocketCreateConnectedToSocketSignature")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
@@ -418,10 +418,10 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFSocketGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: &mut CFSocketContext) {
@@ -517,7 +517,7 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `name_server_signature` struct field 4 must be a valid pointer.
+    /// - `name_server_signature` struct field `address` must be a valid pointer.
     /// - `name` might not allow `None`.
     /// - `value` should be of the correct type.
     /// - `value` might not allow `None`.
@@ -543,7 +543,7 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `name_server_signature` struct field 4 must be a valid pointer.
+    /// - `name_server_signature` struct field `address` must be a valid pointer.
     /// - `name` might not allow `None`.
     /// - `value` must be a valid pointer.
     /// - `value` might not allow `None`.
@@ -581,9 +581,9 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `name_server_signature` struct field 4 must be a valid pointer.
+    /// - `name_server_signature` struct field `address` must be a valid pointer.
     /// - `name` might not allow `None`.
-    /// - `signature` struct field 4 must be a valid pointer.
+    /// - `signature` struct field `address` must be a valid pointer.
     /// - `signature` might not allow `None`.
     #[doc(alias = "CFSocketRegisterSocketSignature")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]
@@ -607,9 +607,9 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `name_server_signature` struct field 4 must be a valid pointer.
+    /// - `name_server_signature` struct field `address` must be a valid pointer.
     /// - `name` might not allow `None`.
-    /// - `signature` struct field 4 must be a valid pointer.
+    /// - `signature` struct field `address` must be a valid pointer.
     /// - `signature` might not allow `None`.
     /// - `name_server_address` must be a valid pointer.
     /// - `name_server_address` might not allow `None`.
@@ -645,7 +645,7 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `name_server_signature` struct field 4 must be a valid pointer.
+    /// - `name_server_signature` struct field `address` must be a valid pointer.
     /// - `name` might not allow `None`.
     #[doc(alias = "CFSocketUnregister")]
     #[cfg(all(feature = "CFData", feature = "CFDate"))]

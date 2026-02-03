@@ -249,15 +249,15 @@ impl CFXMLParser {
     /// - `allocator` might not allow `None`.
     /// - `xml_data` might not allow `None`.
     /// - `data_source` might not allow `None`.
-    /// - `call_backs` struct field 2 must be implemented correctly.
-    /// - `call_backs` struct field 3 must be implemented correctly.
-    /// - `call_backs` struct field 4 must be implemented correctly.
-    /// - `call_backs` struct field 5 must be implemented correctly.
-    /// - `call_backs` struct field 6 must be implemented correctly.
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `call_backs` struct field `createXMLStructure` must be implemented correctly.
+    /// - `call_backs` struct field `addChild` must be implemented correctly.
+    /// - `call_backs` struct field `endXMLStructure` must be implemented correctly.
+    /// - `call_backs` struct field `resolveExternalEntity` must be implemented correctly.
+    /// - `call_backs` struct field `handleError` must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFXMLParserCreate")]
     #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
@@ -300,15 +300,15 @@ impl CFXMLParser {
     ///
     /// - `allocator` might not allow `None`.
     /// - `data_source` might not allow `None`.
-    /// - `call_backs` struct field 2 must be implemented correctly.
-    /// - `call_backs` struct field 3 must be implemented correctly.
-    /// - `call_backs` struct field 4 must be implemented correctly.
-    /// - `call_backs` struct field 5 must be implemented correctly.
-    /// - `call_backs` struct field 6 must be implemented correctly.
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `call_backs` struct field `createXMLStructure` must be implemented correctly.
+    /// - `call_backs` struct field `addChild` must be implemented correctly.
+    /// - `call_backs` struct field `endXMLStructure` must be implemented correctly.
+    /// - `call_backs` struct field `resolveExternalEntity` must be implemented correctly.
+    /// - `call_backs` struct field `handleError` must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFXMLParserCreateWithDataFromURL")]
     #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
@@ -346,10 +346,10 @@ impl CFXMLParser {
 
     /// # Safety
     ///
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFXMLParserGetContext")]
     #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
     #[inline]
@@ -362,11 +362,11 @@ impl CFXMLParser {
 
     /// # Safety
     ///
-    /// - `call_backs` struct field 2 must be implemented correctly.
-    /// - `call_backs` struct field 3 must be implemented correctly.
-    /// - `call_backs` struct field 4 must be implemented correctly.
-    /// - `call_backs` struct field 5 must be implemented correctly.
-    /// - `call_backs` struct field 6 must be implemented correctly.
+    /// - `call_backs` struct field `createXMLStructure` must be implemented correctly.
+    /// - `call_backs` struct field `addChild` must be implemented correctly.
+    /// - `call_backs` struct field `endXMLStructure` must be implemented correctly.
+    /// - `call_backs` struct field `resolveExternalEntity` must be implemented correctly.
+    /// - `call_backs` struct field `handleError` must be implemented correctly.
     /// - `call_backs` might not allow `None`.
     #[doc(alias = "CFXMLParserGetCallBacks")]
     #[cfg(all(feature = "CFData", feature = "CFURL", feature = "CFXMLNode"))]

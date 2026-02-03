@@ -533,15 +533,15 @@ impl CFRunLoopSource {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
-    /// - `context` struct field 6 must be implemented correctly.
-    /// - `context` struct field 7 must be implemented correctly.
-    /// - `context` struct field 8 must be implemented correctly.
-    /// - `context` struct field 9 must be implemented correctly.
-    /// - `context` struct field 10 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
+    /// - `context` struct field `equal` must be implemented correctly.
+    /// - `context` struct field `hash` must be implemented correctly.
+    /// - `context` struct field `schedule` must be implemented correctly.
+    /// - `context` struct field `cancel` must be implemented correctly.
+    /// - `context` struct field `perform` must be implemented correctly.
     #[doc(alias = "CFRunLoopSourceCreate")]
     #[inline]
     pub unsafe fn new(
@@ -590,15 +590,15 @@ impl CFRunLoopSource {
 
     /// # Safety
     ///
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
-    /// - `context` struct field 6 must be implemented correctly.
-    /// - `context` struct field 7 must be implemented correctly.
-    /// - `context` struct field 8 must be implemented correctly.
-    /// - `context` struct field 9 must be implemented correctly.
-    /// - `context` struct field 10 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
+    /// - `context` struct field `equal` must be implemented correctly.
+    /// - `context` struct field `hash` must be implemented correctly.
+    /// - `context` struct field `schedule` must be implemented correctly.
+    /// - `context` struct field `cancel` must be implemented correctly.
+    /// - `context` struct field `perform` must be implemented correctly.
     #[doc(alias = "CFRunLoopSourceGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: &mut CFRunLoopSourceContext) {
@@ -672,10 +672,10 @@ impl CFRunLoopObserver {
     ///
     /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFRunLoopObserverCreate")]
     #[inline]
     pub unsafe fn new(
@@ -780,10 +780,10 @@ impl CFRunLoopObserver {
 
     /// # Safety
     ///
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFRunLoopObserverGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: &mut CFRunLoopObserverContext) {
@@ -848,10 +848,10 @@ impl CFRunLoopTimer {
     ///
     /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFRunLoopTimerCreate")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -984,10 +984,10 @@ impl CFRunLoopTimer {
 
     /// # Safety
     ///
-    /// - `context` struct field 2 must be a valid pointer.
-    /// - `context` struct field 3 must be implemented correctly.
-    /// - `context` struct field 4 must be implemented correctly.
-    /// - `context` struct field 5 must be implemented correctly.
+    /// - `context` struct field `info` must be a valid pointer.
+    /// - `context` struct field `retain` must be implemented correctly.
+    /// - `context` struct field `release` must be implemented correctly.
+    /// - `context` struct field `copyDescription` must be implemented correctly.
     #[doc(alias = "CFRunLoopTimerGetContext")]
     #[inline]
     pub unsafe fn context(&self, context: &mut CFRunLoopTimerContext) {
