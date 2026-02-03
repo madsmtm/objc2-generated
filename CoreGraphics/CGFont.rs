@@ -346,6 +346,51 @@ impl CGFont {
         unsafe { CGFontCanCreatePostScriptSubset(self, format) }
     }
 
+    /// # Safety
+    ///
+    /// `glyphs` must be a valid pointer or null.
+    #[doc(alias = "CGFontCreatePostScriptSubset")]
+    #[inline]
+    pub unsafe fn post_script_subset(
+        &self,
+        subset_name: &CFString,
+        format: CGFontPostScriptFormat,
+        glyphs: *const CGGlyph,
+        count: usize,
+        encoding: Option<&mut [CGGlyph; 256]>,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn CGFontCreatePostScriptSubset(
+                font: &CGFont,
+                subset_name: &CFString,
+                format: CGFontPostScriptFormat,
+                glyphs: *const CGGlyph,
+                count: usize,
+                encoding: Option<&mut [CGGlyph; 256]>,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe {
+            CGFontCreatePostScriptSubset(self, subset_name, format, glyphs, count, encoding)
+        };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
+    #[doc(alias = "CGFontCreatePostScriptEncoding")]
+    #[inline]
+    pub fn post_script_encoding(
+        &self,
+        encoding: Option<&mut [CGGlyph; 256]>,
+    ) -> Option<CFRetained<CFData>> {
+        extern "C-unwind" {
+            fn CGFontCreatePostScriptEncoding(
+                font: &CGFont,
+                encoding: Option<&mut [CGGlyph; 256]>,
+            ) -> Option<NonNull<CFData>>;
+        }
+        let ret = unsafe { CGFontCreatePostScriptEncoding(self, encoding) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+    }
+
     #[doc(alias = "CGFontCopyTableTags")]
     #[inline]
     pub fn table_tags(&self) -> Option<CFRetained<CFArray>> {
