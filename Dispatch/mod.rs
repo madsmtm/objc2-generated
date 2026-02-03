@@ -72,17 +72,13 @@ impl DispatchTime {
     ///
     ///
     /// Returns: A new dispatch_time_t.
-    ///
-    /// # Safety
-    ///
-    /// `when` must be a valid pointer or null.
     #[doc(alias = "dispatch_walltime")]
     #[cfg(feature = "libc")]
     #[must_use]
     #[inline]
-    pub unsafe fn walltime(when: *const libc::timespec, delta: i64) -> DispatchTime {
+    pub fn walltime(when: Option<&libc::timespec>, delta: i64) -> DispatchTime {
         extern "C" {
-            fn dispatch_walltime(when: *const libc::timespec, delta: i64) -> DispatchTime;
+            fn dispatch_walltime(when: Option<&libc::timespec>, delta: i64) -> DispatchTime;
         }
         unsafe { dispatch_walltime(when, delta) }
     }
@@ -1098,12 +1094,14 @@ impl DispatchQueue {
     #[doc(alias = "dispatch_queue_get_label")]
     #[must_use]
     #[inline]
-    pub fn label(queue: Option<&DispatchQueue>) -> NonNull<c_char> {
+    pub fn label(queue: Option<&DispatchQueue>) -> &CStr {
         extern "C" {
             fn dispatch_queue_get_label(queue: Option<&DispatchQueue>) -> Option<NonNull<c_char>>;
         }
         let ret = unsafe { dispatch_queue_get_label(queue) };
-        ret.expect("function was marked as returning non-null, but actually returned NULL")
+        let ret =
+            ret.expect("function was marked as returning non-null, but actually returned NULL");
+        unsafe { CStr::from_ptr(ret.as_ptr()) }
     }
 
     /// Returns the QOS class and relative priority of the given queue.
@@ -1138,16 +1136,15 @@ impl DispatchQueue {
     ///
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `relative_priority_ptr` must be a valid pointer or null.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_queue_get_qos_class")]
     #[must_use]
     #[inline]
-    pub unsafe fn qos_class(&self, relative_priority_ptr: *mut c_int) -> DispatchQoS {
+    pub unsafe fn qos_class(&self, relative_priority_ptr: Option<&mut c_int>) -> DispatchQoS {
         extern "C" {
             fn dispatch_queue_get_qos_class(
                 queue: &DispatchQueue,
-                relative_priority_ptr: *mut c_int,
+                relative_priority_ptr: Option<&mut c_int>,
             ) -> DispatchQoS;
         }
         unsafe { dispatch_queue_get_qos_class(self, relative_priority_ptr) }
@@ -3336,21 +3333,20 @@ impl DispatchData {
     ///
     /// # Safety
     ///
-    /// - `buffer_ptr` must be a valid pointer or null.
-    /// - `size_ptr` must be a valid pointer or null.
+    /// `buffer_ptr` must be a valid pointer or null.
     #[doc(alias = "dispatch_data_create_map")]
     #[must_use]
     #[inline]
     pub unsafe fn map(
         &self,
-        buffer_ptr: *mut *const c_void,
-        size_ptr: *mut usize,
+        buffer_ptr: Option<&mut *const c_void>,
+        size_ptr: Option<&mut usize>,
     ) -> DispatchRetained<DispatchData> {
         extern "C" {
             fn dispatch_data_create_map(
                 data: &DispatchData,
-                buffer_ptr: *mut *const c_void,
-                size_ptr: *mut usize,
+                buffer_ptr: Option<&mut *const c_void>,
+                size_ptr: Option<&mut usize>,
             ) -> Option<NonNull<DispatchData>>;
         }
         let ret = unsafe { dispatch_data_create_map(self, buffer_ptr, size_ptr) };
@@ -3493,23 +3489,19 @@ impl DispatchData {
     /// start of the queried data object.
     ///
     /// Returns: A newly created dispatch data object.
-    ///
-    /// # Safety
-    ///
-    /// `offset_ptr` must be a valid pointer.
     #[doc(alias = "dispatch_data_copy_region")]
     #[must_use]
     #[inline]
-    pub unsafe fn region(
+    pub fn region(
         &self,
         location: usize,
-        offset_ptr: NonNull<usize>,
+        offset_ptr: &mut usize,
     ) -> DispatchRetained<DispatchData> {
         extern "C" {
             fn dispatch_data_copy_region(
                 data: &DispatchData,
                 location: usize,
-                offset_ptr: NonNull<usize>,
+                offset_ptr: &mut usize,
             ) -> Option<NonNull<DispatchData>>;
         }
         let ret = unsafe { dispatch_data_copy_region(self, location, offset_ptr) };
@@ -3712,15 +3704,14 @@ impl DispatchIO {
     ///
     /// # Safety
     ///
-    /// - `path` must be a valid pointer.
-    /// - `queue` possibly has additional threading requirements.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_io_create_with_path")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[must_use]
     #[inline]
     pub unsafe fn with_path(
         r#type: DispatchIOStreamType,
-        path: NonNull<c_char>,
+        path: &CStr,
         oflag: c_int,
         mode: libc::mode_t,
         queue: &DispatchQueue,
@@ -3737,7 +3728,14 @@ impl DispatchIO {
             ) -> Option<NonNull<DispatchIO>>;
         }
         let ret = unsafe {
-            dispatch_io_create_with_path(r#type, path, oflag, mode, queue, cleanup_handler)
+            dispatch_io_create_with_path(
+                r#type,
+                NonNull::new(path.as_ptr().cast_mut()).unwrap(),
+                oflag,
+                mode,
+                queue,
+                cleanup_handler,
+            )
         };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
