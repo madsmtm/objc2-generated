@@ -413,16 +413,6 @@ impl CGColorSpace {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    #[doc(alias = "CGColorSpaceGetName")]
-    #[inline]
-    pub fn get_name(&self) -> Option<CFRetained<CFString>> {
-        extern "C-unwind" {
-            fn CGColorSpaceGetName(space: &CGColorSpace) -> Option<NonNull<CFString>>;
-        }
-        let ret = unsafe { CGColorSpaceGetName(self) };
-        ret.map(|ret| unsafe { CFRetained::retain(ret) })
-    }
-
     #[doc(alias = "CGColorSpaceCopyName")]
     #[inline]
     pub fn name(&self) -> Option<CFRetained<CFString>> {
