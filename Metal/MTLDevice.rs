@@ -1173,7 +1173,7 @@ extern_protocol!(
             &self,
             descriptor: &MTLRenderPipelineDescriptor,
             options: MTLPipelineOption,
-            reflection: Option<&mut Option<Retained<MTLAutoreleasedRenderPipelineReflection>>>,
+            reflection: Option<&mut Option<Retained<MTLRenderPipelineReflection>>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
 
         #[cfg(all(
@@ -1245,7 +1245,7 @@ extern_protocol!(
             &self,
             compute_function: &ProtocolObject<dyn MTLFunction>,
             options: MTLPipelineOption,
-            reflection: Option<&mut Option<Retained<MTLAutoreleasedComputePipelineReflection>>>,
+            reflection: Option<&mut Option<Retained<MTLComputePipelineReflection>>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
 
         #[cfg(all(
@@ -1303,7 +1303,7 @@ extern_protocol!(
             &self,
             descriptor: &MTLComputePipelineDescriptor,
             options: MTLPipelineOption,
-            reflection: Option<&mut Option<Retained<MTLAutoreleasedComputePipelineReflection>>>,
+            reflection: Option<&mut Option<Retained<MTLComputePipelineReflection>>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLComputePipelineState>>, Retained<NSError>>;
 
         #[cfg(all(
@@ -1376,7 +1376,7 @@ extern_protocol!(
             &self,
             descriptor: &MTLTileRenderPipelineDescriptor,
             options: MTLPipelineOption,
-            reflection: Option<&mut Option<Retained<MTLAutoreleasedRenderPipelineReflection>>>,
+            reflection: Option<&mut Option<Retained<MTLRenderPipelineReflection>>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
 
         #[cfg(all(
@@ -1411,7 +1411,7 @@ extern_protocol!(
             &self,
             descriptor: &MTLMeshRenderPipelineDescriptor,
             options: MTLPipelineOption,
-            reflection: Option<&mut Option<Retained<MTLAutoreleasedRenderPipelineReflection>>>,
+            reflection: Option<&mut Option<Retained<MTLRenderPipelineReflection>>>,
         ) -> Result<Retained<ProtocolObject<dyn MTLRenderPipelineState>>, Retained<NSError>>;
 
         #[cfg(all(

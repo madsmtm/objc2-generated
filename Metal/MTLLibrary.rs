@@ -7,14 +7,6 @@ use objc2_foundation::*;
 
 use crate::*;
 
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedrenderpipelinereflection?language=objc)
-#[cfg(feature = "MTLRenderPipeline")]
-pub type MTLAutoreleasedRenderPipelineReflection = MTLRenderPipelineReflection;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedcomputepipelinereflection?language=objc)
-#[cfg(feature = "MTLComputePipeline")]
-pub type MTLAutoreleasedComputePipelineReflection = MTLComputePipelineReflection;
-
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewlibrarycompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLNewLibraryCompletionHandler =
@@ -70,11 +62,6 @@ pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut block2
 #[cfg(all(feature = "MTLDynamicLibrary", feature = "block2"))]
 pub type MTLNewDynamicLibraryCompletionHandler =
     *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLDynamicLibrary>, *mut NSError)>;
-
-/// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlautoreleasedargument?language=objc)
-#[deprecated = "Use MTLBinding and cast to specific Binding (MTLTextureBinding, MTLBufferBinding, .etc) instead"]
-#[cfg(feature = "MTLArgument")]
-pub type MTLAutoreleasedArgument = MTLArgument;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpatchtype?language=objc)
 // NS_ENUM
@@ -402,7 +389,7 @@ extern_protocol!(
         unsafe fn newArgumentEncoderWithBufferIndex_reflection(
             &self,
             buffer_index: NSUInteger,
-            reflection: Option<&mut Option<Retained<MTLAutoreleasedArgument>>>,
+            reflection: Option<&mut Option<Retained<MTLArgument>>>,
         ) -> Retained<ProtocolObject<dyn MTLArgumentEncoder>>;
 
         #[cfg(feature = "MTLFunctionDescriptor")]

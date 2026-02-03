@@ -991,12 +991,6 @@ pub use self::__MTLIntersectionFunctionTable::MTLIntersectionFunctionTable;
 pub use self::__MTLIntersectionFunctionTable::MTLIntersectionFunctionTableDescriptor;
 #[cfg(feature = "MTLLibrary")]
 pub use self::__MTLLibrary::MTLAttribute;
-#[cfg(all(feature = "MTLArgument", feature = "MTLLibrary"))]
-pub use self::__MTLLibrary::MTLAutoreleasedArgument;
-#[cfg(all(feature = "MTLComputePipeline", feature = "MTLLibrary"))]
-pub use self::__MTLLibrary::MTLAutoreleasedComputePipelineReflection;
-#[cfg(all(feature = "MTLLibrary", feature = "MTLRenderPipeline"))]
-pub use self::__MTLLibrary::MTLAutoreleasedRenderPipelineReflection;
 #[cfg(feature = "MTLLibrary")]
 pub use self::__MTLLibrary::MTLCompileOptions;
 #[cfg(feature = "MTLLibrary")]
