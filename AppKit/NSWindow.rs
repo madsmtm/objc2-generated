@@ -768,14 +768,14 @@ impl NSWindow {
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
-        pub fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSWindowDelegate>>>;
+        pub unsafe fn delegate(&self) -> Option<Retained<ProtocolObject<dyn NSWindowDelegate>>>;
 
         /// Setter for [`delegate`][Self::delegate].
         ///
         /// This is a [weak property][objc2::topics::weak_property].
         #[unsafe(method(setDelegate:))]
         #[unsafe(method_family = none)]
-        pub fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSWindowDelegate>>);
+        pub unsafe fn setDelegate(&self, delegate: Option<&ProtocolObject<dyn NSWindowDelegate>>);
 
         #[unsafe(method(windowNumber))]
         #[unsafe(method_family = none)]

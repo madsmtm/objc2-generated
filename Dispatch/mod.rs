@@ -2574,9 +2574,13 @@ impl DispatchSource {
     /// Parameter `handler`: The event handler function to submit to the source's target queue.
     /// The context parameter passed to the event handler function is the context of
     /// the dispatch source current at the time the event handler was set.
+    ///
+    /// # Safety
+    ///
+    /// `handler` must be implemented correctly.
     #[doc(alias = "dispatch_source_set_event_handler_f")]
     #[inline]
-    pub fn set_event_handler_f(&self, handler: dispatch_function_t) {
+    pub unsafe fn set_event_handler_f(&self, handler: dispatch_function_t) {
         extern "C" {
             fn dispatch_source_set_event_handler_f(
                 source: &DispatchSource,
@@ -2615,9 +2619,13 @@ impl DispatchSource {
     /// Parameter `handler`: The cancellation handler function to submit to the source's target queue.
     /// The context parameter passed to the event handler function is the current
     /// context of the dispatch source at the time the handler call is made.
+    ///
+    /// # Safety
+    ///
+    /// `handler` must be implemented correctly.
     #[doc(alias = "dispatch_source_set_cancel_handler_f")]
     #[inline]
-    pub fn set_cancel_handler_f(&self, handler: dispatch_function_t) {
+    pub unsafe fn set_cancel_handler_f(&self, handler: dispatch_function_t) {
         extern "C" {
             fn dispatch_source_set_cancel_handler_f(
                 source: &DispatchSource,
@@ -2877,9 +2885,13 @@ impl DispatchSource {
     /// Parameter `handler`: The registration handler function to submit to the source's target queue.
     /// The context parameter passed to the registration handler function is the
     /// current context of the dispatch source at the time the handler call is made.
+    ///
+    /// # Safety
+    ///
+    /// `handler` must be implemented correctly.
     #[doc(alias = "dispatch_source_set_registration_handler_f")]
     #[inline]
-    pub fn set_registration_handler_f(&self, handler: dispatch_function_t) {
+    pub unsafe fn set_registration_handler_f(&self, handler: dispatch_function_t) {
         extern "C" {
             fn dispatch_source_set_registration_handler_f(
                 source: &DispatchSource,
@@ -3786,11 +3798,15 @@ impl DispatchIO {
     ///
     /// Returns: The newly created dispatch I/O channel or NULL if an error
     /// occurred (invalid type specified).
+    ///
+    /// # Safety
+    ///
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_io_create_with_io")]
     #[cfg(feature = "block2")]
     #[must_use]
     #[inline]
-    pub fn with_io(
+    pub unsafe fn with_io(
         r#type: DispatchIOStreamType,
         io: &DispatchIO,
         queue: &DispatchQueue,

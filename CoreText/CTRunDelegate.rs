@@ -209,12 +209,11 @@ impl CTRunDelegate {
     /// Returns: The refCon value of the supplied run delegate.
     #[doc(alias = "CTRunDelegateGetRefCon")]
     #[inline]
-    pub unsafe fn ref_con(&self) -> NonNull<c_void> {
+    pub fn ref_con(&self) -> *mut c_void {
         extern "C-unwind" {
-            fn CTRunDelegateGetRefCon(run_delegate: &CTRunDelegate) -> Option<NonNull<c_void>>;
+            fn CTRunDelegateGetRefCon(run_delegate: &CTRunDelegate) -> *mut c_void;
         }
-        let ret = unsafe { CTRunDelegateGetRefCon(self) };
-        ret.expect("function was marked as returning non-null, but actually returned NULL")
+        unsafe { CTRunDelegateGetRefCon(self) }
     }
 }
 

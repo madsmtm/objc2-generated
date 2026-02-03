@@ -9888,10 +9888,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `class_name` must be a valid pointer.
+    /// `class_name` might not allow `None`.
     #[cfg(feature = "libc")]
-    pub fn IOObjectGetClass(object: io_object_t, class_name: *mut io_name_t)
-        -> libc::kern_return_t;
+    pub fn IOObjectGetClass(
+        object: io_object_t,
+        class_name: Option<&mut io_name_t>,
+    ) -> libc::kern_return_t;
 }
 
 /// Return the class name of an IOKit object.
@@ -9971,15 +9973,18 @@ pub unsafe extern "C-unwind" fn IOObjectCopyBundleIdentifierForClass(
 ///
 /// # Safety
 ///
-/// `class_name` must be a valid pointer.
+/// `class_name` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IOObjectConformsTo(
     object: io_object_t,
-    class_name: *mut io_name_t,
+    class_name: Option<&io_name_t>,
 ) -> bool {
     extern "C-unwind" {
-        fn IOObjectConformsTo(object: io_object_t, class_name: *mut io_name_t) -> libc::boolean_t;
+        fn IOObjectConformsTo(
+            object: io_object_t,
+            class_name: Option<&io_name_t>,
+        ) -> libc::boolean_t;
     }
     let ret = unsafe { IOObjectConformsTo(object, class_name) };
     ret != 0
@@ -10102,7 +10107,7 @@ pub extern "C-unwind" fn IOIteratorIsValid(iterator: io_iterator_t) -> bool {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `notification_type` must be a valid pointer.
+    /// - `notification_type` might not allow `None`.
     /// - `matching` generic must be of the correct type.
     /// - `matching` generic must be of the correct type.
     /// - `matching` might not allow `None`.
@@ -10111,7 +10116,7 @@ extern "C-unwind" {
     #[deprecated]
     pub fn IOServiceAddNotification(
         main_port: libc::mach_port_t,
-        notification_type: *mut io_name_t,
+        notification_type: Option<&io_name_t>,
         matching: Option<&CFDictionary>,
         wake_port: libc::mach_port_t,
         reference: usize,
@@ -10143,7 +10148,7 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `notify_port` must be a valid pointer.
-    /// - `interest_type` must be a valid pointer.
+    /// - `interest_type` might not allow `None`.
     /// - `callback` must be implemented correctly.
     /// - `ref_con` must be a valid pointer.
     /// - `notification` must be a valid pointer.
@@ -10151,7 +10156,7 @@ extern "C-unwind" {
     pub fn IOServiceAddInterestNotification(
         notify_port: IONotificationPortRef,
         service: io_service_t,
-        interest_type: *mut io_name_t,
+        interest_type: Option<&io_name_t>,
         callback: IOServiceInterestCallback,
         ref_con: *mut c_void,
         notification: *mut io_object_t,
@@ -10862,11 +10867,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `path` must be a valid pointer.
+    /// `path` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryFromPath(
         main_port: libc::mach_port_t,
-        path: *mut io_string_t,
+        path: Option<&io_string_t>,
     ) -> io_registry_entry_t;
 }
 
@@ -10915,12 +10920,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `plane` must be a valid pointer.
+    /// - `plane` might not allow `None`.
     /// - `iterator` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryCreateIterator(
         main_port: libc::mach_port_t,
-        plane: *mut io_name_t,
+        plane: Option<&io_name_t>,
         options: IOOptionBits,
         iterator: *mut io_iterator_t,
     ) -> libc::kern_return_t;
@@ -10943,12 +10948,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `plane` must be a valid pointer.
+    /// - `plane` might not allow `None`.
     /// - `iterator` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryCreateIterator(
         entry: io_registry_entry_t,
-        plane: *mut io_name_t,
+        plane: Option<&io_name_t>,
         options: IOOptionBits,
         iterator: *mut io_iterator_t,
     ) -> libc::kern_return_t;
@@ -10999,11 +11004,11 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `name` must be a valid pointer.
+    /// `name` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetName(
         entry: io_registry_entry_t,
-        name: *mut io_name_t,
+        name: Option<&mut io_name_t>,
     ) -> libc::kern_return_t;
 }
 
@@ -11022,13 +11027,13 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `plane` must be a valid pointer.
-    /// - `name` must be a valid pointer.
+    /// - `plane` might not allow `None`.
+    /// - `name` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetNameInPlane(
         entry: io_registry_entry_t,
-        plane: *mut io_name_t,
-        name: *mut io_name_t,
+        plane: Option<&io_name_t>,
+        name: Option<&mut io_name_t>,
     ) -> libc::kern_return_t;
 }
 
@@ -11047,13 +11052,13 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `plane` must be a valid pointer.
-    /// - `location` must be a valid pointer.
+    /// - `plane` might not allow `None`.
+    /// - `location` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetLocationInPlane(
         entry: io_registry_entry_t,
-        plane: *mut io_name_t,
-        location: *mut io_name_t,
+        plane: Option<&io_name_t>,
+        location: Option<&mut io_name_t>,
     ) -> libc::kern_return_t;
 }
 
@@ -11072,13 +11077,13 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `plane` must be a valid pointer.
-    /// - `path` must be a valid pointer.
+    /// - `plane` might not allow `None`.
+    /// - `path` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetPath(
         entry: io_registry_entry_t,
-        plane: *mut io_name_t,
-        path: *mut io_string_t,
+        plane: Option<&io_name_t>,
+        path: Option<&mut io_string_t>,
     ) -> libc::kern_return_t;
 }
 
@@ -11094,17 +11099,17 @@ extern "C-unwind" {
 ///
 /// # Safety
 ///
-/// `plane` must be a valid pointer.
+/// `plane` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntryCopyPath(
     entry: io_registry_entry_t,
-    plane: *mut io_name_t,
+    plane: Option<&io_name_t>,
 ) -> Option<CFRetained<CFString>> {
     extern "C-unwind" {
         fn IORegistryEntryCopyPath(
             entry: io_registry_entry_t,
-            plane: *mut io_name_t,
+            plane: Option<&io_name_t>,
         ) -> Option<NonNull<CFString>>;
     }
     let ret = unsafe { IORegistryEntryCopyPath(entry, plane) };
@@ -11217,14 +11222,14 @@ pub unsafe extern "C-unwind" fn IORegistryEntryCreateCFProperty(
 ///
 /// # Safety
 ///
-/// - `plane` must be a valid pointer.
+/// - `plane` might not allow `None`.
 /// - `key` might not allow `None`.
 /// - `allocator` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntrySearchCFProperty(
     entry: io_registry_entry_t,
-    plane: *mut io_name_t,
+    plane: Option<&io_name_t>,
     key: Option<&CFString>,
     allocator: Option<&CFAllocator>,
     options: IOOptionBits,
@@ -11232,7 +11237,7 @@ pub unsafe extern "C-unwind" fn IORegistryEntrySearchCFProperty(
     extern "C-unwind" {
         fn IORegistryEntrySearchCFProperty(
             entry: io_registry_entry_t,
-            plane: *mut io_name_t,
+            plane: Option<&io_name_t>,
             key: Option<&CFString>,
             allocator: Option<&CFAllocator>,
             options: IOOptionBits,
@@ -11245,14 +11250,14 @@ pub unsafe extern "C-unwind" fn IORegistryEntrySearchCFProperty(
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `property_name` must be a valid pointer.
-    /// - `buffer` must be a valid pointer.
+    /// - `property_name` might not allow `None`.
+    /// - `buffer` might not allow `None`.
     /// - `size` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetProperty(
         entry: io_registry_entry_t,
-        property_name: *mut io_name_t,
-        buffer: *mut io_struct_inband_t,
+        property_name: Option<&io_name_t>,
+        buffer: Option<&mut io_struct_inband_t>,
         size: *mut u32,
     ) -> libc::kern_return_t;
 }
@@ -11320,12 +11325,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `plane` must be a valid pointer.
+    /// - `plane` might not allow `None`.
     /// - `iterator` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetChildIterator(
         entry: io_registry_entry_t,
-        plane: *mut io_name_t,
+        plane: Option<&io_name_t>,
         iterator: *mut io_iterator_t,
     ) -> libc::kern_return_t;
 }
@@ -11345,12 +11350,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `plane` must be a valid pointer.
+    /// - `plane` might not allow `None`.
     /// - `child` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetChildEntry(
         entry: io_registry_entry_t,
-        plane: *mut io_name_t,
+        plane: Option<&io_name_t>,
         child: *mut io_registry_entry_t,
     ) -> libc::kern_return_t;
 }
@@ -11370,12 +11375,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `plane` must be a valid pointer.
+    /// - `plane` might not allow `None`.
     /// - `iterator` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetParentIterator(
         entry: io_registry_entry_t,
-        plane: *mut io_name_t,
+        plane: Option<&io_name_t>,
         iterator: *mut io_iterator_t,
     ) -> libc::kern_return_t;
 }
@@ -11395,12 +11400,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `plane` must be a valid pointer.
+    /// - `plane` might not allow `None`.
     /// - `parent` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryGetParentEntry(
         entry: io_registry_entry_t,
-        plane: *mut io_name_t,
+        plane: Option<&io_name_t>,
         parent: *mut io_registry_entry_t,
     ) -> libc::kern_return_t;
 }
@@ -11417,17 +11422,17 @@ extern "C-unwind" {
 ///
 /// # Safety
 ///
-/// `plane` must be a valid pointer.
+/// `plane` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntryInPlane(
     entry: io_registry_entry_t,
-    plane: *mut io_name_t,
+    plane: Option<&io_name_t>,
 ) -> bool {
     extern "C-unwind" {
         fn IORegistryEntryInPlane(
             entry: io_registry_entry_t,
-            plane: *mut io_name_t,
+            plane: Option<&io_name_t>,
         ) -> libc::boolean_t;
     }
     let ret = unsafe { IORegistryEntryInPlane(entry, plane) };
@@ -11567,14 +11572,14 @@ pub unsafe extern "C-unwind" fn IORegistryEntryIDMatching(
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `open_firmware_path` must be a valid pointer.
-    /// - `bsd_name` must be a valid pointer.
+    /// - `open_firmware_path` might not allow `None`.
+    /// - `bsd_name` might not allow `None`.
     #[cfg(feature = "libc")]
     #[deprecated]
     pub fn IOServiceOFPathToBSDName(
         main_port: libc::mach_port_t,
-        open_firmware_path: *mut io_name_t,
-        bsd_name: *mut io_name_t,
+        open_firmware_path: Option<&io_name_t>,
+        bsd_name: Option<&mut io_name_t>,
     ) -> libc::kern_return_t;
 }
 
@@ -11647,12 +11652,12 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `description` must be a valid pointer.
+    /// `description` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IOCatalogueTerminate(
         main_port: libc::mach_port_t,
         flag: u32,
-        description: *mut io_name_t,
+        description: Option<&mut io_name_t>,
     ) -> libc::kern_return_t;
 }
 
@@ -11673,11 +11678,11 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// `name` must be a valid pointer.
+    /// `name` might not allow `None`.
     #[cfg(feature = "libc")]
     pub fn IOCatalogueModuleLoaded(
         main_port: libc::mach_port_t,
-        name: *mut io_name_t,
+        name: Option<&mut io_name_t>,
     ) -> libc::kern_return_t;
 }
 
