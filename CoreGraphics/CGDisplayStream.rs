@@ -504,11 +504,11 @@ impl CGDisplayStream {
     #[cfg(feature = "CGError")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    pub fn start(display_stream: Option<&CGDisplayStream>) -> CGError {
+    pub fn start(&self) -> CGError {
         extern "C-unwind" {
-            fn CGDisplayStreamStart(display_stream: Option<&CGDisplayStream>) -> CGError;
+            fn CGDisplayStreamStart(display_stream: &CGDisplayStream) -> CGError;
         }
-        unsafe { CGDisplayStreamStart(display_stream) }
+        unsafe { CGDisplayStreamStart(self) }
     }
 
     /// End delivery of frame updates to the handler block.
@@ -524,11 +524,11 @@ impl CGDisplayStream {
     #[cfg(feature = "CGError")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    pub fn stop(display_stream: Option<&CGDisplayStream>) -> CGError {
+    pub fn stop(&self) -> CGError {
         extern "C-unwind" {
-            fn CGDisplayStreamStop(display_stream: Option<&CGDisplayStream>) -> CGError;
+            fn CGDisplayStreamStop(display_stream: &CGDisplayStream) -> CGError;
         }
-        unsafe { CGDisplayStreamStop(display_stream) }
+        unsafe { CGDisplayStreamStop(self) }
     }
 
     /// Return the singleton CFRunLoopSourceRef for a CGDisplayStream.
@@ -540,15 +540,13 @@ impl CGDisplayStream {
     #[doc(alias = "CGDisplayStreamGetRunLoopSource")]
     #[deprecated = "Please use ScreenCaptureKit instead."]
     #[inline]
-    pub unsafe fn run_loop_source(
-        display_stream: Option<&CGDisplayStream>,
-    ) -> Option<CFRetained<CFRunLoopSource>> {
+    pub unsafe fn run_loop_source(&self) -> Option<CFRetained<CFRunLoopSource>> {
         extern "C-unwind" {
             fn CGDisplayStreamGetRunLoopSource(
-                display_stream: Option<&CGDisplayStream>,
+                display_stream: &CGDisplayStream,
             ) -> Option<NonNull<CFRunLoopSource>>;
         }
-        let ret = unsafe { CGDisplayStreamGetRunLoopSource(display_stream) };
+        let ret = unsafe { CGDisplayStreamGetRunLoopSource(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 }

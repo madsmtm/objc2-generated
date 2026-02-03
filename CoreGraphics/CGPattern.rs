@@ -53,7 +53,7 @@ unsafe impl RefEncode for CGPatternTiling {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatterndrawpatterncallback?language=objc)
 #[cfg(feature = "CGContext")]
 pub type CGPatternDrawPatternCallback =
-    Option<unsafe extern "C-unwind" fn(*mut c_void, *mut CGContext)>;
+    Option<unsafe extern "C-unwind" fn(*mut c_void, NonNull<CGContext>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpatternreleaseinfocallback?language=objc)
 pub type CGPatternReleaseInfoCallback = Option<unsafe extern "C-unwind" fn(*mut c_void)>;
@@ -101,7 +101,7 @@ impl CGPattern {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `callbacks` must be a valid pointer or null.
+    /// - `callbacks` must be a valid pointer.
     #[doc(alias = "CGPatternCreate")]
     #[cfg(feature = "CGContext")]
     #[inline]
@@ -113,7 +113,7 @@ impl CGPattern {
         y_step: CGFloat,
         tiling: CGPatternTiling,
         is_colored: bool,
-        callbacks: *const CGPatternCallbacks,
+        callbacks: NonNull<CGPatternCallbacks>,
     ) -> Option<CFRetained<CGPattern>> {
         extern "C-unwind" {
             fn CGPatternCreate(
@@ -124,7 +124,7 @@ impl CGPattern {
                 y_step: CGFloat,
                 tiling: CGPatternTiling,
                 is_colored: bool,
-                callbacks: *const CGPatternCallbacks,
+                callbacks: NonNull<CGPatternCallbacks>,
             ) -> Option<NonNull<CGPattern>>;
         }
         let ret = unsafe {

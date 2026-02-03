@@ -41,7 +41,7 @@ impl CGPDFContentStream {
     ///
     /// - `stream` must be a valid pointer.
     /// - `stream_resources` must be a valid pointer.
-    /// - `parent` must be a valid pointer or null.
+    /// - `parent` must be a valid pointer.
     #[doc(alias = "CGPDFContentStreamCreateWithStream")]
     #[cfg(all(feature = "CGPDFDictionary", feature = "CGPDFStream"))]
     #[inline]

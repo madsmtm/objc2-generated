@@ -50,7 +50,7 @@ impl CGPDFScanner {
 
     /// # Safety
     ///
-    /// `scanner` must be a valid pointer or null.
+    /// `scanner` must be a valid pointer.
     #[doc(alias = "CGPDFScannerRetain")]
     #[inline]
     pub unsafe fn retain(scanner: CGPDFScannerRef) -> CGPDFScannerRef {
@@ -62,7 +62,7 @@ impl CGPDFScanner {
 
     /// # Safety
     ///
-    /// `scanner` must be a valid pointer or null.
+    /// `scanner` must be a valid pointer.
     #[doc(alias = "CGPDFScannerRelease")]
     #[inline]
     pub unsafe fn release(scanner: CGPDFScannerRef) {
@@ -74,7 +74,7 @@ impl CGPDFScanner {
 
     /// # Safety
     ///
-    /// `scanner` must be a valid pointer or null.
+    /// `scanner` must be a valid pointer.
     #[doc(alias = "CGPDFScannerScan")]
     #[inline]
     pub unsafe fn scan(scanner: CGPDFScannerRef) -> bool {

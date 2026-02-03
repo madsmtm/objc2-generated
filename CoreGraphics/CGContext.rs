@@ -230,105 +230,105 @@ impl CGContext {
     /// Graphics state functions. *
     #[doc(alias = "CGContextSaveGState")]
     #[inline]
-    pub fn save_g_state(c: Option<&CGContext>) {
+    pub fn save_g_state(&self) {
         extern "C-unwind" {
-            fn CGContextSaveGState(c: Option<&CGContext>);
+            fn CGContextSaveGState(c: &CGContext);
         }
-        unsafe { CGContextSaveGState(c) }
+        unsafe { CGContextSaveGState(self) }
     }
 
     #[doc(alias = "CGContextRestoreGState")]
     #[inline]
-    pub fn restore_g_state(c: Option<&CGContext>) {
+    pub fn restore_g_state(&self) {
         extern "C-unwind" {
-            fn CGContextRestoreGState(c: Option<&CGContext>);
+            fn CGContextRestoreGState(c: &CGContext);
         }
-        unsafe { CGContextRestoreGState(c) }
+        unsafe { CGContextRestoreGState(self) }
     }
 
     /// Coordinate space transformations. *
     #[doc(alias = "CGContextScaleCTM")]
     #[inline]
-    pub fn scale_ctm(c: Option<&CGContext>, sx: CGFloat, sy: CGFloat) {
+    pub fn scale_ctm(&self, sx: CGFloat, sy: CGFloat) {
         extern "C-unwind" {
-            fn CGContextScaleCTM(c: Option<&CGContext>, sx: CGFloat, sy: CGFloat);
+            fn CGContextScaleCTM(c: &CGContext, sx: CGFloat, sy: CGFloat);
         }
-        unsafe { CGContextScaleCTM(c, sx, sy) }
+        unsafe { CGContextScaleCTM(self, sx, sy) }
     }
 
     #[doc(alias = "CGContextTranslateCTM")]
     #[inline]
-    pub fn translate_ctm(c: Option<&CGContext>, tx: CGFloat, ty: CGFloat) {
+    pub fn translate_ctm(&self, tx: CGFloat, ty: CGFloat) {
         extern "C-unwind" {
-            fn CGContextTranslateCTM(c: Option<&CGContext>, tx: CGFloat, ty: CGFloat);
+            fn CGContextTranslateCTM(c: &CGContext, tx: CGFloat, ty: CGFloat);
         }
-        unsafe { CGContextTranslateCTM(c, tx, ty) }
+        unsafe { CGContextTranslateCTM(self, tx, ty) }
     }
 
     #[doc(alias = "CGContextRotateCTM")]
     #[inline]
-    pub fn rotate_ctm(c: Option<&CGContext>, angle: CGFloat) {
+    pub fn rotate_ctm(&self, angle: CGFloat) {
         extern "C-unwind" {
-            fn CGContextRotateCTM(c: Option<&CGContext>, angle: CGFloat);
+            fn CGContextRotateCTM(c: &CGContext, angle: CGFloat);
         }
-        unsafe { CGContextRotateCTM(c, angle) }
+        unsafe { CGContextRotateCTM(self, angle) }
     }
 
     #[doc(alias = "CGContextConcatCTM")]
     #[inline]
-    pub fn concat_ctm(c: Option<&CGContext>, transform: CGAffineTransform) {
+    pub fn concat_ctm(&self, transform: CGAffineTransform) {
         extern "C-unwind" {
-            fn CGContextConcatCTM(c: Option<&CGContext>, transform: CGAffineTransform);
+            fn CGContextConcatCTM(c: &CGContext, transform: CGAffineTransform);
         }
-        unsafe { CGContextConcatCTM(c, transform) }
+        unsafe { CGContextConcatCTM(self, transform) }
     }
 
     #[doc(alias = "CGContextGetCTM")]
     #[inline]
-    pub fn ctm(c: Option<&CGContext>) -> CGAffineTransform {
+    pub fn ctm(&self) -> CGAffineTransform {
         extern "C-unwind" {
-            fn CGContextGetCTM(c: Option<&CGContext>) -> CGAffineTransform;
+            fn CGContextGetCTM(c: &CGContext) -> CGAffineTransform;
         }
-        unsafe { CGContextGetCTM(c) }
+        unsafe { CGContextGetCTM(self) }
     }
 
     /// Drawing attribute functions. *
     #[doc(alias = "CGContextSetLineWidth")]
     #[inline]
-    pub fn set_line_width(c: Option<&CGContext>, width: CGFloat) {
+    pub fn set_line_width(&self, width: CGFloat) {
         extern "C-unwind" {
-            fn CGContextSetLineWidth(c: Option<&CGContext>, width: CGFloat);
+            fn CGContextSetLineWidth(c: &CGContext, width: CGFloat);
         }
-        unsafe { CGContextSetLineWidth(c, width) }
+        unsafe { CGContextSetLineWidth(self, width) }
     }
 
     #[doc(alias = "CGContextSetLineCap")]
     #[cfg(feature = "CGPath")]
     #[inline]
-    pub fn set_line_cap(c: Option<&CGContext>, cap: CGLineCap) {
+    pub fn set_line_cap(&self, cap: CGLineCap) {
         extern "C-unwind" {
-            fn CGContextSetLineCap(c: Option<&CGContext>, cap: CGLineCap);
+            fn CGContextSetLineCap(c: &CGContext, cap: CGLineCap);
         }
-        unsafe { CGContextSetLineCap(c, cap) }
+        unsafe { CGContextSetLineCap(self, cap) }
     }
 
     #[doc(alias = "CGContextSetLineJoin")]
     #[cfg(feature = "CGPath")]
     #[inline]
-    pub fn set_line_join(c: Option<&CGContext>, join: CGLineJoin) {
+    pub fn set_line_join(&self, join: CGLineJoin) {
         extern "C-unwind" {
-            fn CGContextSetLineJoin(c: Option<&CGContext>, join: CGLineJoin);
+            fn CGContextSetLineJoin(c: &CGContext, join: CGLineJoin);
         }
-        unsafe { CGContextSetLineJoin(c, join) }
+        unsafe { CGContextSetLineJoin(self, join) }
     }
 
     #[doc(alias = "CGContextSetMiterLimit")]
     #[inline]
-    pub fn set_miter_limit(c: Option<&CGContext>, limit: CGFloat) {
+    pub fn set_miter_limit(&self, limit: CGFloat) {
         extern "C-unwind" {
-            fn CGContextSetMiterLimit(c: Option<&CGContext>, limit: CGFloat);
+            fn CGContextSetMiterLimit(c: &CGContext, limit: CGFloat);
         }
-        unsafe { CGContextSetMiterLimit(c, limit) }
+        unsafe { CGContextSetMiterLimit(self, limit) }
     }
 
     /// # Safety
@@ -336,82 +336,77 @@ impl CGContext {
     /// `lengths` must be a valid pointer or null.
     #[doc(alias = "CGContextSetLineDash")]
     #[inline]
-    pub unsafe fn set_line_dash(
-        c: Option<&CGContext>,
-        phase: CGFloat,
-        lengths: *const CGFloat,
-        count: usize,
-    ) {
+    pub unsafe fn set_line_dash(&self, phase: CGFloat, lengths: *const CGFloat, count: usize) {
         extern "C-unwind" {
             fn CGContextSetLineDash(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 phase: CGFloat,
                 lengths: *const CGFloat,
                 count: usize,
             );
         }
-        unsafe { CGContextSetLineDash(c, phase, lengths, count) }
+        unsafe { CGContextSetLineDash(self, phase, lengths, count) }
     }
 
     #[doc(alias = "CGContextSetFlatness")]
     #[inline]
-    pub fn set_flatness(c: Option<&CGContext>, flatness: CGFloat) {
+    pub fn set_flatness(&self, flatness: CGFloat) {
         extern "C-unwind" {
-            fn CGContextSetFlatness(c: Option<&CGContext>, flatness: CGFloat);
+            fn CGContextSetFlatness(c: &CGContext, flatness: CGFloat);
         }
-        unsafe { CGContextSetFlatness(c, flatness) }
+        unsafe { CGContextSetFlatness(self, flatness) }
     }
 
     #[doc(alias = "CGContextSetAlpha")]
     #[inline]
-    pub fn set_alpha(c: Option<&CGContext>, alpha: CGFloat) {
+    pub fn set_alpha(&self, alpha: CGFloat) {
         extern "C-unwind" {
-            fn CGContextSetAlpha(c: Option<&CGContext>, alpha: CGFloat);
+            fn CGContextSetAlpha(c: &CGContext, alpha: CGFloat);
         }
-        unsafe { CGContextSetAlpha(c, alpha) }
+        unsafe { CGContextSetAlpha(self, alpha) }
     }
 
     #[doc(alias = "CGContextSetBlendMode")]
     #[inline]
-    pub fn set_blend_mode(c: Option<&CGContext>, mode: CGBlendMode) {
+    pub fn set_blend_mode(&self, mode: CGBlendMode) {
         extern "C-unwind" {
-            fn CGContextSetBlendMode(c: Option<&CGContext>, mode: CGBlendMode);
+            fn CGContextSetBlendMode(c: &CGContext, mode: CGBlendMode);
         }
-        unsafe { CGContextSetBlendMode(c, mode) }
+        unsafe { CGContextSetBlendMode(self, mode) }
     }
 
     /// Path construction functions. *
     #[doc(alias = "CGContextBeginPath")]
     #[inline]
-    pub fn begin_path(c: Option<&CGContext>) {
+    pub fn begin_path(&self) {
         extern "C-unwind" {
-            fn CGContextBeginPath(c: Option<&CGContext>);
+            fn CGContextBeginPath(c: &CGContext);
         }
-        unsafe { CGContextBeginPath(c) }
+        unsafe { CGContextBeginPath(self) }
     }
 
     #[doc(alias = "CGContextMoveToPoint")]
     #[inline]
-    pub fn move_to_point(c: Option<&CGContext>, x: CGFloat, y: CGFloat) {
+    pub fn move_to_point(&self, x: CGFloat, y: CGFloat) {
         extern "C-unwind" {
-            fn CGContextMoveToPoint(c: Option<&CGContext>, x: CGFloat, y: CGFloat);
+            fn CGContextMoveToPoint(c: &CGContext, x: CGFloat, y: CGFloat);
         }
-        unsafe { CGContextMoveToPoint(c, x, y) }
+        unsafe { CGContextMoveToPoint(self, x, y) }
     }
 
     #[doc(alias = "CGContextAddLineToPoint")]
     #[inline]
-    pub fn add_line_to_point(c: Option<&CGContext>, x: CGFloat, y: CGFloat) {
+    pub fn add_line_to_point(&self, x: CGFloat, y: CGFloat) {
         extern "C-unwind" {
-            fn CGContextAddLineToPoint(c: Option<&CGContext>, x: CGFloat, y: CGFloat);
+            fn CGContextAddLineToPoint(c: &CGContext, x: CGFloat, y: CGFloat);
         }
-        unsafe { CGContextAddLineToPoint(c, x, y) }
+        unsafe { CGContextAddLineToPoint(self, x, y) }
     }
 
     #[doc(alias = "CGContextAddCurveToPoint")]
     #[inline]
     pub fn add_curve_to_point(
-        c: Option<&CGContext>,
+        &self,
         cp1x: CGFloat,
         cp1y: CGFloat,
         cp2x: CGFloat,
@@ -421,7 +416,7 @@ impl CGContext {
     ) {
         extern "C-unwind" {
             fn CGContextAddCurveToPoint(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 cp1x: CGFloat,
                 cp1y: CGFloat,
                 cp2x: CGFloat,
@@ -430,47 +425,41 @@ impl CGContext {
                 y: CGFloat,
             );
         }
-        unsafe { CGContextAddCurveToPoint(c, cp1x, cp1y, cp2x, cp2y, x, y) }
+        unsafe { CGContextAddCurveToPoint(self, cp1x, cp1y, cp2x, cp2y, x, y) }
     }
 
     #[doc(alias = "CGContextAddQuadCurveToPoint")]
     #[inline]
-    pub fn add_quad_curve_to_point(
-        c: Option<&CGContext>,
-        cpx: CGFloat,
-        cpy: CGFloat,
-        x: CGFloat,
-        y: CGFloat,
-    ) {
+    pub fn add_quad_curve_to_point(&self, cpx: CGFloat, cpy: CGFloat, x: CGFloat, y: CGFloat) {
         extern "C-unwind" {
             fn CGContextAddQuadCurveToPoint(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 cpx: CGFloat,
                 cpy: CGFloat,
                 x: CGFloat,
                 y: CGFloat,
             );
         }
-        unsafe { CGContextAddQuadCurveToPoint(c, cpx, cpy, x, y) }
+        unsafe { CGContextAddQuadCurveToPoint(self, cpx, cpy, x, y) }
     }
 
     #[doc(alias = "CGContextClosePath")]
     #[inline]
-    pub fn close_path(c: Option<&CGContext>) {
+    pub fn close_path(&self) {
         extern "C-unwind" {
-            fn CGContextClosePath(c: Option<&CGContext>);
+            fn CGContextClosePath(c: &CGContext);
         }
-        unsafe { CGContextClosePath(c) }
+        unsafe { CGContextClosePath(self) }
     }
 
     /// Path construction convenience functions. *
     #[doc(alias = "CGContextAddRect")]
     #[inline]
-    pub fn add_rect(c: Option<&CGContext>, rect: CGRect) {
+    pub fn add_rect(&self, rect: CGRect) {
         extern "C-unwind" {
-            fn CGContextAddRect(c: Option<&CGContext>, rect: CGRect);
+            fn CGContextAddRect(c: &CGContext, rect: CGRect);
         }
-        unsafe { CGContextAddRect(c, rect) }
+        unsafe { CGContextAddRect(self, rect) }
     }
 
     /// # Safety
@@ -478,11 +467,11 @@ impl CGContext {
     /// `rects` must be a valid pointer or null.
     #[doc(alias = "CGContextAddRects")]
     #[inline]
-    pub unsafe fn add_rects(c: Option<&CGContext>, rects: *const CGRect, count: usize) {
+    pub unsafe fn add_rects(&self, rects: *const CGRect, count: usize) {
         extern "C-unwind" {
-            fn CGContextAddRects(c: Option<&CGContext>, rects: *const CGRect, count: usize);
+            fn CGContextAddRects(c: &CGContext, rects: *const CGRect, count: usize);
         }
-        unsafe { CGContextAddRects(c, rects, count) }
+        unsafe { CGContextAddRects(self, rects, count) }
     }
 
     /// # Safety
@@ -490,26 +479,26 @@ impl CGContext {
     /// `points` must be a valid pointer or null.
     #[doc(alias = "CGContextAddLines")]
     #[inline]
-    pub unsafe fn add_lines(c: Option<&CGContext>, points: *const CGPoint, count: usize) {
+    pub unsafe fn add_lines(&self, points: *const CGPoint, count: usize) {
         extern "C-unwind" {
-            fn CGContextAddLines(c: Option<&CGContext>, points: *const CGPoint, count: usize);
+            fn CGContextAddLines(c: &CGContext, points: *const CGPoint, count: usize);
         }
-        unsafe { CGContextAddLines(c, points, count) }
+        unsafe { CGContextAddLines(self, points, count) }
     }
 
     #[doc(alias = "CGContextAddEllipseInRect")]
     #[inline]
-    pub fn add_ellipse_in_rect(c: Option<&CGContext>, rect: CGRect) {
+    pub fn add_ellipse_in_rect(&self, rect: CGRect) {
         extern "C-unwind" {
-            fn CGContextAddEllipseInRect(c: Option<&CGContext>, rect: CGRect);
+            fn CGContextAddEllipseInRect(c: &CGContext, rect: CGRect);
         }
-        unsafe { CGContextAddEllipseInRect(c, rect) }
+        unsafe { CGContextAddEllipseInRect(self, rect) }
     }
 
     #[doc(alias = "CGContextAddArc")]
     #[inline]
     pub fn add_arc(
-        c: Option<&CGContext>,
+        &self,
         x: CGFloat,
         y: CGFloat,
         radius: CGFloat,
@@ -519,7 +508,7 @@ impl CGContext {
     ) {
         extern "C-unwind" {
             fn CGContextAddArc(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 x: CGFloat,
                 y: CGFloat,
                 radius: CGFloat,
@@ -528,13 +517,13 @@ impl CGContext {
                 clockwise: c_int,
             );
         }
-        unsafe { CGContextAddArc(c, x, y, radius, start_angle, end_angle, clockwise) }
+        unsafe { CGContextAddArc(self, x, y, radius, start_angle, end_angle, clockwise) }
     }
 
     #[doc(alias = "CGContextAddArcToPoint")]
     #[inline]
     pub fn add_arc_to_point(
-        c: Option<&CGContext>,
+        &self,
         x1: CGFloat,
         y1: CGFloat,
         x2: CGFloat,
@@ -543,7 +532,7 @@ impl CGContext {
     ) {
         extern "C-unwind" {
             fn CGContextAddArcToPoint(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 x1: CGFloat,
                 y1: CGFloat,
                 x2: CGFloat,
@@ -551,129 +540,125 @@ impl CGContext {
                 radius: CGFloat,
             );
         }
-        unsafe { CGContextAddArcToPoint(c, x1, y1, x2, y2, radius) }
+        unsafe { CGContextAddArcToPoint(self, x1, y1, x2, y2, radius) }
     }
 
     #[doc(alias = "CGContextAddPath")]
     #[cfg(feature = "CGPath")]
     #[inline]
-    pub fn add_path(c: Option<&CGContext>, path: Option<&CGPath>) {
+    pub fn add_path(&self, path: &CGPath) {
         extern "C-unwind" {
-            fn CGContextAddPath(c: Option<&CGContext>, path: Option<&CGPath>);
+            fn CGContextAddPath(c: &CGContext, path: &CGPath);
         }
-        unsafe { CGContextAddPath(c, path) }
+        unsafe { CGContextAddPath(self, path) }
     }
 
     #[doc(alias = "CGContextReplacePathWithStrokedPath")]
     #[inline]
-    pub fn replace_path_with_stroked_path(c: Option<&CGContext>) {
+    pub fn replace_path_with_stroked_path(&self) {
         extern "C-unwind" {
-            fn CGContextReplacePathWithStrokedPath(c: Option<&CGContext>);
+            fn CGContextReplacePathWithStrokedPath(c: &CGContext);
         }
-        unsafe { CGContextReplacePathWithStrokedPath(c) }
+        unsafe { CGContextReplacePathWithStrokedPath(self) }
     }
 
     /// Path information functions. *
     #[doc(alias = "CGContextIsPathEmpty")]
     #[inline]
-    pub fn is_path_empty(c: Option<&CGContext>) -> bool {
+    pub fn is_path_empty(&self) -> bool {
         extern "C-unwind" {
-            fn CGContextIsPathEmpty(c: Option<&CGContext>) -> bool;
+            fn CGContextIsPathEmpty(c: &CGContext) -> bool;
         }
-        unsafe { CGContextIsPathEmpty(c) }
+        unsafe { CGContextIsPathEmpty(self) }
     }
 
     #[doc(alias = "CGContextGetPathCurrentPoint")]
     #[inline]
-    pub fn path_current_point(c: Option<&CGContext>) -> CGPoint {
+    pub fn path_current_point(&self) -> CGPoint {
         extern "C-unwind" {
-            fn CGContextGetPathCurrentPoint(c: Option<&CGContext>) -> CGPoint;
+            fn CGContextGetPathCurrentPoint(c: &CGContext) -> CGPoint;
         }
-        unsafe { CGContextGetPathCurrentPoint(c) }
+        unsafe { CGContextGetPathCurrentPoint(self) }
     }
 
     #[doc(alias = "CGContextGetPathBoundingBox")]
     #[inline]
-    pub fn path_bounding_box(c: Option<&CGContext>) -> CGRect {
+    pub fn path_bounding_box(&self) -> CGRect {
         extern "C-unwind" {
-            fn CGContextGetPathBoundingBox(c: Option<&CGContext>) -> CGRect;
+            fn CGContextGetPathBoundingBox(c: &CGContext) -> CGRect;
         }
-        unsafe { CGContextGetPathBoundingBox(c) }
+        unsafe { CGContextGetPathBoundingBox(self) }
     }
 
     #[doc(alias = "CGContextCopyPath")]
     #[cfg(feature = "CGPath")]
     #[inline]
-    pub fn path(c: Option<&CGContext>) -> Option<CFRetained<CGPath>> {
+    pub fn path(&self) -> Option<CFRetained<CGPath>> {
         extern "C-unwind" {
-            fn CGContextCopyPath(c: Option<&CGContext>) -> Option<NonNull<CGPath>>;
+            fn CGContextCopyPath(c: &CGContext) -> Option<NonNull<CGPath>>;
         }
-        let ret = unsafe { CGContextCopyPath(c) };
+        let ret = unsafe { CGContextCopyPath(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     #[doc(alias = "CGContextPathContainsPoint")]
     #[inline]
-    pub fn path_contains_point(
-        c: Option<&CGContext>,
-        point: CGPoint,
-        mode: CGPathDrawingMode,
-    ) -> bool {
+    pub fn path_contains_point(&self, point: CGPoint, mode: CGPathDrawingMode) -> bool {
         extern "C-unwind" {
             fn CGContextPathContainsPoint(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 point: CGPoint,
                 mode: CGPathDrawingMode,
             ) -> bool;
         }
-        unsafe { CGContextPathContainsPoint(c, point, mode) }
+        unsafe { CGContextPathContainsPoint(self, point, mode) }
     }
 
     /// Path drawing functions. *
     #[doc(alias = "CGContextDrawPath")]
     #[inline]
-    pub fn draw_path(c: Option<&CGContext>, mode: CGPathDrawingMode) {
+    pub fn draw_path(&self, mode: CGPathDrawingMode) {
         extern "C-unwind" {
-            fn CGContextDrawPath(c: Option<&CGContext>, mode: CGPathDrawingMode);
+            fn CGContextDrawPath(c: &CGContext, mode: CGPathDrawingMode);
         }
-        unsafe { CGContextDrawPath(c, mode) }
+        unsafe { CGContextDrawPath(self, mode) }
     }
 
     /// Path drawing convenience functions. *
     #[doc(alias = "CGContextFillPath")]
     #[inline]
-    pub fn fill_path(c: Option<&CGContext>) {
+    pub fn fill_path(&self) {
         extern "C-unwind" {
-            fn CGContextFillPath(c: Option<&CGContext>);
+            fn CGContextFillPath(c: &CGContext);
         }
-        unsafe { CGContextFillPath(c) }
+        unsafe { CGContextFillPath(self) }
     }
 
     #[doc(alias = "CGContextEOFillPath")]
     #[inline]
-    pub fn eo_fill_path(c: Option<&CGContext>) {
+    pub fn eo_fill_path(&self) {
         extern "C-unwind" {
-            fn CGContextEOFillPath(c: Option<&CGContext>);
+            fn CGContextEOFillPath(c: &CGContext);
         }
-        unsafe { CGContextEOFillPath(c) }
+        unsafe { CGContextEOFillPath(self) }
     }
 
     #[doc(alias = "CGContextStrokePath")]
     #[inline]
-    pub fn stroke_path(c: Option<&CGContext>) {
+    pub fn stroke_path(&self) {
         extern "C-unwind" {
-            fn CGContextStrokePath(c: Option<&CGContext>);
+            fn CGContextStrokePath(c: &CGContext);
         }
-        unsafe { CGContextStrokePath(c) }
+        unsafe { CGContextStrokePath(self) }
     }
 
     #[doc(alias = "CGContextFillRect")]
     #[inline]
-    pub fn fill_rect(c: Option<&CGContext>, rect: CGRect) {
+    pub fn fill_rect(&self, rect: CGRect) {
         extern "C-unwind" {
-            fn CGContextFillRect(c: Option<&CGContext>, rect: CGRect);
+            fn CGContextFillRect(c: &CGContext, rect: CGRect);
         }
-        unsafe { CGContextFillRect(c, rect) }
+        unsafe { CGContextFillRect(self, rect) }
     }
 
     /// # Safety
@@ -681,56 +666,56 @@ impl CGContext {
     /// `rects` must be a valid pointer or null.
     #[doc(alias = "CGContextFillRects")]
     #[inline]
-    pub unsafe fn fill_rects(c: Option<&CGContext>, rects: *const CGRect, count: usize) {
+    pub unsafe fn fill_rects(&self, rects: *const CGRect, count: usize) {
         extern "C-unwind" {
-            fn CGContextFillRects(c: Option<&CGContext>, rects: *const CGRect, count: usize);
+            fn CGContextFillRects(c: &CGContext, rects: *const CGRect, count: usize);
         }
-        unsafe { CGContextFillRects(c, rects, count) }
+        unsafe { CGContextFillRects(self, rects, count) }
     }
 
     #[doc(alias = "CGContextStrokeRect")]
     #[inline]
-    pub fn stroke_rect(c: Option<&CGContext>, rect: CGRect) {
+    pub fn stroke_rect(&self, rect: CGRect) {
         extern "C-unwind" {
-            fn CGContextStrokeRect(c: Option<&CGContext>, rect: CGRect);
+            fn CGContextStrokeRect(c: &CGContext, rect: CGRect);
         }
-        unsafe { CGContextStrokeRect(c, rect) }
+        unsafe { CGContextStrokeRect(self, rect) }
     }
 
     #[doc(alias = "CGContextStrokeRectWithWidth")]
     #[inline]
-    pub fn stroke_rect_with_width(c: Option<&CGContext>, rect: CGRect, width: CGFloat) {
+    pub fn stroke_rect_with_width(&self, rect: CGRect, width: CGFloat) {
         extern "C-unwind" {
-            fn CGContextStrokeRectWithWidth(c: Option<&CGContext>, rect: CGRect, width: CGFloat);
+            fn CGContextStrokeRectWithWidth(c: &CGContext, rect: CGRect, width: CGFloat);
         }
-        unsafe { CGContextStrokeRectWithWidth(c, rect, width) }
+        unsafe { CGContextStrokeRectWithWidth(self, rect, width) }
     }
 
     #[doc(alias = "CGContextClearRect")]
     #[inline]
-    pub fn clear_rect(c: Option<&CGContext>, rect: CGRect) {
+    pub fn clear_rect(&self, rect: CGRect) {
         extern "C-unwind" {
-            fn CGContextClearRect(c: Option<&CGContext>, rect: CGRect);
+            fn CGContextClearRect(c: &CGContext, rect: CGRect);
         }
-        unsafe { CGContextClearRect(c, rect) }
+        unsafe { CGContextClearRect(self, rect) }
     }
 
     #[doc(alias = "CGContextFillEllipseInRect")]
     #[inline]
-    pub fn fill_ellipse_in_rect(c: Option<&CGContext>, rect: CGRect) {
+    pub fn fill_ellipse_in_rect(&self, rect: CGRect) {
         extern "C-unwind" {
-            fn CGContextFillEllipseInRect(c: Option<&CGContext>, rect: CGRect);
+            fn CGContextFillEllipseInRect(c: &CGContext, rect: CGRect);
         }
-        unsafe { CGContextFillEllipseInRect(c, rect) }
+        unsafe { CGContextFillEllipseInRect(self, rect) }
     }
 
     #[doc(alias = "CGContextStrokeEllipseInRect")]
     #[inline]
-    pub fn stroke_ellipse_in_rect(c: Option<&CGContext>, rect: CGRect) {
+    pub fn stroke_ellipse_in_rect(&self, rect: CGRect) {
         extern "C-unwind" {
-            fn CGContextStrokeEllipseInRect(c: Option<&CGContext>, rect: CGRect);
+            fn CGContextStrokeEllipseInRect(c: &CGContext, rect: CGRect);
         }
-        unsafe { CGContextStrokeEllipseInRect(c, rect) }
+        unsafe { CGContextStrokeEllipseInRect(self, rect) }
     }
 
     /// # Safety
@@ -738,38 +723,30 @@ impl CGContext {
     /// `points` must be a valid pointer or null.
     #[doc(alias = "CGContextStrokeLineSegments")]
     #[inline]
-    pub unsafe fn stroke_line_segments(
-        c: Option<&CGContext>,
-        points: *const CGPoint,
-        count: usize,
-    ) {
+    pub unsafe fn stroke_line_segments(&self, points: *const CGPoint, count: usize) {
         extern "C-unwind" {
-            fn CGContextStrokeLineSegments(
-                c: Option<&CGContext>,
-                points: *const CGPoint,
-                count: usize,
-            );
+            fn CGContextStrokeLineSegments(c: &CGContext, points: *const CGPoint, count: usize);
         }
-        unsafe { CGContextStrokeLineSegments(c, points, count) }
+        unsafe { CGContextStrokeLineSegments(self, points, count) }
     }
 
     /// Clipping functions. *
     #[doc(alias = "CGContextClip")]
     #[inline]
-    pub fn clip(c: Option<&CGContext>) {
+    pub fn clip(&self) {
         extern "C-unwind" {
-            fn CGContextClip(c: Option<&CGContext>);
+            fn CGContextClip(c: &CGContext);
         }
-        unsafe { CGContextClip(c) }
+        unsafe { CGContextClip(self) }
     }
 
     #[doc(alias = "CGContextEOClip")]
     #[inline]
-    pub fn eo_clip(c: Option<&CGContext>) {
+    pub fn eo_clip(&self) {
         extern "C-unwind" {
-            fn CGContextEOClip(c: Option<&CGContext>);
+            fn CGContextEOClip(c: &CGContext);
         }
-        unsafe { CGContextEOClip(c) }
+        unsafe { CGContextEOClip(self) }
     }
 
     #[doc(alias = "CGContextResetClip")]
@@ -784,30 +761,30 @@ impl CGContext {
     #[doc(alias = "CGContextClipToMask")]
     #[cfg(feature = "CGImage")]
     #[inline]
-    pub fn clip_to_mask(c: Option<&CGContext>, rect: CGRect, mask: Option<&CGImage>) {
+    pub fn clip_to_mask(&self, rect: CGRect, mask: &CGImage) {
         extern "C-unwind" {
-            fn CGContextClipToMask(c: Option<&CGContext>, rect: CGRect, mask: Option<&CGImage>);
+            fn CGContextClipToMask(c: &CGContext, rect: CGRect, mask: &CGImage);
         }
-        unsafe { CGContextClipToMask(c, rect, mask) }
+        unsafe { CGContextClipToMask(self, rect, mask) }
     }
 
     #[doc(alias = "CGContextGetClipBoundingBox")]
     #[inline]
-    pub fn clip_bounding_box(c: Option<&CGContext>) -> CGRect {
+    pub fn clip_bounding_box(&self) -> CGRect {
         extern "C-unwind" {
-            fn CGContextGetClipBoundingBox(c: Option<&CGContext>) -> CGRect;
+            fn CGContextGetClipBoundingBox(c: &CGContext) -> CGRect;
         }
-        unsafe { CGContextGetClipBoundingBox(c) }
+        unsafe { CGContextGetClipBoundingBox(self) }
     }
 
     /// Clipping convenience functions. *
     #[doc(alias = "CGContextClipToRect")]
     #[inline]
-    pub fn clip_to_rect(c: Option<&CGContext>, rect: CGRect) {
+    pub fn clip_to_rect(&self, rect: CGRect) {
         extern "C-unwind" {
-            fn CGContextClipToRect(c: Option<&CGContext>, rect: CGRect);
+            fn CGContextClipToRect(c: &CGContext, rect: CGRect);
         }
-        unsafe { CGContextClipToRect(c, rect) }
+        unsafe { CGContextClipToRect(self, rect) }
     }
 
     /// # Safety
@@ -815,178 +792,164 @@ impl CGContext {
     /// `rects` must be a valid pointer.
     #[doc(alias = "CGContextClipToRects")]
     #[inline]
-    pub unsafe fn clip_to_rects(c: Option<&CGContext>, rects: NonNull<CGRect>, count: usize) {
+    pub unsafe fn clip_to_rects(&self, rects: NonNull<CGRect>, count: usize) {
         extern "C-unwind" {
-            fn CGContextClipToRects(c: Option<&CGContext>, rects: NonNull<CGRect>, count: usize);
+            fn CGContextClipToRects(c: &CGContext, rects: NonNull<CGRect>, count: usize);
         }
-        unsafe { CGContextClipToRects(c, rects, count) }
+        unsafe { CGContextClipToRects(self, rects, count) }
     }
 
     /// Primitive color functions. *
     #[doc(alias = "CGContextSetFillColorWithColor")]
     #[cfg(feature = "CGColor")]
     #[inline]
-    pub fn set_fill_color_with_color(c: Option<&CGContext>, color: Option<&CGColor>) {
+    pub fn set_fill_color_with_color(&self, color: &CGColor) {
         extern "C-unwind" {
-            fn CGContextSetFillColorWithColor(c: Option<&CGContext>, color: Option<&CGColor>);
+            fn CGContextSetFillColorWithColor(c: &CGContext, color: &CGColor);
         }
-        unsafe { CGContextSetFillColorWithColor(c, color) }
+        unsafe { CGContextSetFillColorWithColor(self, color) }
     }
 
     #[doc(alias = "CGContextSetStrokeColorWithColor")]
     #[cfg(feature = "CGColor")]
     #[inline]
-    pub fn set_stroke_color_with_color(c: Option<&CGContext>, color: Option<&CGColor>) {
+    pub fn set_stroke_color_with_color(&self, color: &CGColor) {
         extern "C-unwind" {
-            fn CGContextSetStrokeColorWithColor(c: Option<&CGContext>, color: Option<&CGColor>);
+            fn CGContextSetStrokeColorWithColor(c: &CGContext, color: &CGColor);
         }
-        unsafe { CGContextSetStrokeColorWithColor(c, color) }
+        unsafe { CGContextSetStrokeColorWithColor(self, color) }
     }
 
     /// Color space functions. *
     #[doc(alias = "CGContextSetFillColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
-    pub fn set_fill_color_space(c: Option<&CGContext>, space: Option<&CGColorSpace>) {
+    pub fn set_fill_color_space(&self, space: &CGColorSpace) {
         extern "C-unwind" {
-            fn CGContextSetFillColorSpace(c: Option<&CGContext>, space: Option<&CGColorSpace>);
+            fn CGContextSetFillColorSpace(c: &CGContext, space: &CGColorSpace);
         }
-        unsafe { CGContextSetFillColorSpace(c, space) }
+        unsafe { CGContextSetFillColorSpace(self, space) }
     }
 
     #[doc(alias = "CGContextSetStrokeColorSpace")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
-    pub fn set_stroke_color_space(c: Option<&CGContext>, space: Option<&CGColorSpace>) {
+    pub fn set_stroke_color_space(&self, space: &CGColorSpace) {
         extern "C-unwind" {
-            fn CGContextSetStrokeColorSpace(c: Option<&CGContext>, space: Option<&CGColorSpace>);
+            fn CGContextSetStrokeColorSpace(c: &CGContext, space: &CGColorSpace);
         }
-        unsafe { CGContextSetStrokeColorSpace(c, space) }
+        unsafe { CGContextSetStrokeColorSpace(self, space) }
     }
 
     /// Color functions. *
     ///
     /// # Safety
     ///
-    /// `components` must be a valid pointer or null.
+    /// `components` must be a valid pointer.
     #[doc(alias = "CGContextSetFillColor")]
     #[inline]
-    pub unsafe fn set_fill_color(c: Option<&CGContext>, components: *const CGFloat) {
+    pub unsafe fn set_fill_color(&self, components: NonNull<CGFloat>) {
         extern "C-unwind" {
-            fn CGContextSetFillColor(c: Option<&CGContext>, components: *const CGFloat);
+            fn CGContextSetFillColor(c: &CGContext, components: NonNull<CGFloat>);
         }
-        unsafe { CGContextSetFillColor(c, components) }
+        unsafe { CGContextSetFillColor(self, components) }
     }
 
     /// # Safety
     ///
-    /// `components` must be a valid pointer or null.
+    /// `components` must be a valid pointer.
     #[doc(alias = "CGContextSetStrokeColor")]
     #[inline]
-    pub unsafe fn set_stroke_color(c: Option<&CGContext>, components: *const CGFloat) {
+    pub unsafe fn set_stroke_color(&self, components: NonNull<CGFloat>) {
         extern "C-unwind" {
-            fn CGContextSetStrokeColor(c: Option<&CGContext>, components: *const CGFloat);
+            fn CGContextSetStrokeColor(c: &CGContext, components: NonNull<CGFloat>);
         }
-        unsafe { CGContextSetStrokeColor(c, components) }
+        unsafe { CGContextSetStrokeColor(self, components) }
     }
 
     /// Pattern functions. *
     ///
     /// # Safety
     ///
-    /// `components` must be a valid pointer or null.
+    /// `components` must be a valid pointer.
     #[doc(alias = "CGContextSetFillPattern")]
     #[cfg(feature = "CGPattern")]
     #[inline]
-    pub unsafe fn set_fill_pattern(
-        c: Option<&CGContext>,
-        pattern: Option<&CGPattern>,
-        components: *const CGFloat,
-    ) {
+    pub unsafe fn set_fill_pattern(&self, pattern: &CGPattern, components: NonNull<CGFloat>) {
         extern "C-unwind" {
             fn CGContextSetFillPattern(
-                c: Option<&CGContext>,
-                pattern: Option<&CGPattern>,
-                components: *const CGFloat,
+                c: &CGContext,
+                pattern: &CGPattern,
+                components: NonNull<CGFloat>,
             );
         }
-        unsafe { CGContextSetFillPattern(c, pattern, components) }
+        unsafe { CGContextSetFillPattern(self, pattern, components) }
     }
 
     /// # Safety
     ///
-    /// `components` must be a valid pointer or null.
+    /// `components` must be a valid pointer.
     #[doc(alias = "CGContextSetStrokePattern")]
     #[cfg(feature = "CGPattern")]
     #[inline]
-    pub unsafe fn set_stroke_pattern(
-        c: Option<&CGContext>,
-        pattern: Option<&CGPattern>,
-        components: *const CGFloat,
-    ) {
+    pub unsafe fn set_stroke_pattern(&self, pattern: &CGPattern, components: NonNull<CGFloat>) {
         extern "C-unwind" {
             fn CGContextSetStrokePattern(
-                c: Option<&CGContext>,
-                pattern: Option<&CGPattern>,
-                components: *const CGFloat,
+                c: &CGContext,
+                pattern: &CGPattern,
+                components: NonNull<CGFloat>,
             );
         }
-        unsafe { CGContextSetStrokePattern(c, pattern, components) }
+        unsafe { CGContextSetStrokePattern(self, pattern, components) }
     }
 
     #[doc(alias = "CGContextSetPatternPhase")]
     #[inline]
-    pub fn set_pattern_phase(c: Option<&CGContext>, phase: CGSize) {
+    pub fn set_pattern_phase(&self, phase: CGSize) {
         extern "C-unwind" {
-            fn CGContextSetPatternPhase(c: Option<&CGContext>, phase: CGSize);
+            fn CGContextSetPatternPhase(c: &CGContext, phase: CGSize);
         }
-        unsafe { CGContextSetPatternPhase(c, phase) }
+        unsafe { CGContextSetPatternPhase(self, phase) }
     }
 
     /// Color convenience functions. *
     #[doc(alias = "CGContextSetGrayFillColor")]
     #[inline]
-    pub fn set_gray_fill_color(c: Option<&CGContext>, gray: CGFloat, alpha: CGFloat) {
+    pub fn set_gray_fill_color(&self, gray: CGFloat, alpha: CGFloat) {
         extern "C-unwind" {
-            fn CGContextSetGrayFillColor(c: Option<&CGContext>, gray: CGFloat, alpha: CGFloat);
+            fn CGContextSetGrayFillColor(c: &CGContext, gray: CGFloat, alpha: CGFloat);
         }
-        unsafe { CGContextSetGrayFillColor(c, gray, alpha) }
+        unsafe { CGContextSetGrayFillColor(self, gray, alpha) }
     }
 
     #[doc(alias = "CGContextSetGrayStrokeColor")]
     #[inline]
-    pub fn set_gray_stroke_color(c: Option<&CGContext>, gray: CGFloat, alpha: CGFloat) {
+    pub fn set_gray_stroke_color(&self, gray: CGFloat, alpha: CGFloat) {
         extern "C-unwind" {
-            fn CGContextSetGrayStrokeColor(c: Option<&CGContext>, gray: CGFloat, alpha: CGFloat);
+            fn CGContextSetGrayStrokeColor(c: &CGContext, gray: CGFloat, alpha: CGFloat);
         }
-        unsafe { CGContextSetGrayStrokeColor(c, gray, alpha) }
+        unsafe { CGContextSetGrayStrokeColor(self, gray, alpha) }
     }
 
     #[doc(alias = "CGContextSetRGBFillColor")]
     #[inline]
-    pub fn set_rgb_fill_color(
-        c: Option<&CGContext>,
-        red: CGFloat,
-        green: CGFloat,
-        blue: CGFloat,
-        alpha: CGFloat,
-    ) {
+    pub fn set_rgb_fill_color(&self, red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         extern "C-unwind" {
             fn CGContextSetRGBFillColor(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 red: CGFloat,
                 green: CGFloat,
                 blue: CGFloat,
                 alpha: CGFloat,
             );
         }
-        unsafe { CGContextSetRGBFillColor(c, red, green, blue, alpha) }
+        unsafe { CGContextSetRGBFillColor(self, red, green, blue, alpha) }
     }
 
     #[doc(alias = "CGContextSetRGBStrokeColor")]
     #[inline]
     pub fn set_rgb_stroke_color(
-        c: Option<&CGContext>,
+        &self,
         red: CGFloat,
         green: CGFloat,
         blue: CGFloat,
@@ -994,20 +957,20 @@ impl CGContext {
     ) {
         extern "C-unwind" {
             fn CGContextSetRGBStrokeColor(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 red: CGFloat,
                 green: CGFloat,
                 blue: CGFloat,
                 alpha: CGFloat,
             );
         }
-        unsafe { CGContextSetRGBStrokeColor(c, red, green, blue, alpha) }
+        unsafe { CGContextSetRGBStrokeColor(self, red, green, blue, alpha) }
     }
 
     #[doc(alias = "CGContextSetCMYKFillColor")]
     #[inline]
     pub fn set_cmyk_fill_color(
-        c: Option<&CGContext>,
+        &self,
         cyan: CGFloat,
         magenta: CGFloat,
         yellow: CGFloat,
@@ -1016,7 +979,7 @@ impl CGContext {
     ) {
         extern "C-unwind" {
             fn CGContextSetCMYKFillColor(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 cyan: CGFloat,
                 magenta: CGFloat,
                 yellow: CGFloat,
@@ -1024,13 +987,13 @@ impl CGContext {
                 alpha: CGFloat,
             );
         }
-        unsafe { CGContextSetCMYKFillColor(c, cyan, magenta, yellow, black, alpha) }
+        unsafe { CGContextSetCMYKFillColor(self, cyan, magenta, yellow, black, alpha) }
     }
 
     #[doc(alias = "CGContextSetCMYKStrokeColor")]
     #[inline]
     pub fn set_cmyk_stroke_color(
-        c: Option<&CGContext>,
+        &self,
         cyan: CGFloat,
         magenta: CGFloat,
         yellow: CGFloat,
@@ -1039,7 +1002,7 @@ impl CGContext {
     ) {
         extern "C-unwind" {
             fn CGContextSetCMYKStrokeColor(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 cyan: CGFloat,
                 magenta: CGFloat,
                 yellow: CGFloat,
@@ -1047,18 +1010,18 @@ impl CGContext {
                 alpha: CGFloat,
             );
         }
-        unsafe { CGContextSetCMYKStrokeColor(c, cyan, magenta, yellow, black, alpha) }
+        unsafe { CGContextSetCMYKStrokeColor(self, cyan, magenta, yellow, black, alpha) }
     }
 
     /// Rendering intent. *
     #[doc(alias = "CGContextSetRenderingIntent")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
-    pub fn set_rendering_intent(c: Option<&CGContext>, intent: CGColorRenderingIntent) {
+    pub fn set_rendering_intent(&self, intent: CGColorRenderingIntent) {
         extern "C-unwind" {
-            fn CGContextSetRenderingIntent(c: Option<&CGContext>, intent: CGColorRenderingIntent);
+            fn CGContextSetRenderingIntent(c: &CGContext, intent: CGColorRenderingIntent);
         }
-        unsafe { CGContextSetRenderingIntent(c, intent) }
+        unsafe { CGContextSetRenderingIntent(self, intent) }
     }
 
     #[doc(alias = "CGContextSetEDRTargetHeadroom")]
@@ -1083,25 +1046,21 @@ impl CGContext {
     #[doc(alias = "CGContextDrawImage")]
     #[cfg(feature = "CGImage")]
     #[inline]
-    pub fn draw_image(c: Option<&CGContext>, rect: CGRect, image: Option<&CGImage>) {
+    pub fn draw_image(&self, rect: CGRect, image: &CGImage) {
         extern "C-unwind" {
-            fn CGContextDrawImage(c: Option<&CGContext>, rect: CGRect, image: Option<&CGImage>);
+            fn CGContextDrawImage(c: &CGContext, rect: CGRect, image: &CGImage);
         }
-        unsafe { CGContextDrawImage(c, rect, image) }
+        unsafe { CGContextDrawImage(self, rect, image) }
     }
 
     #[doc(alias = "CGContextDrawTiledImage")]
     #[cfg(feature = "CGImage")]
     #[inline]
-    pub fn draw_tiled_image(c: Option<&CGContext>, rect: CGRect, image: Option<&CGImage>) {
+    pub fn draw_tiled_image(&self, rect: CGRect, image: &CGImage) {
         extern "C-unwind" {
-            fn CGContextDrawTiledImage(
-                c: Option<&CGContext>,
-                rect: CGRect,
-                image: Option<&CGImage>,
-            );
+            fn CGContextDrawTiledImage(c: &CGContext, rect: CGRect, image: &CGImage);
         }
-        unsafe { CGContextDrawTiledImage(c, rect, image) }
+        unsafe { CGContextDrawTiledImage(self, rect, image) }
     }
 
     /// # Safety
@@ -1155,82 +1114,74 @@ impl CGContext {
 
     #[doc(alias = "CGContextGetInterpolationQuality")]
     #[inline]
-    pub fn interpolation_quality(c: Option<&CGContext>) -> CGInterpolationQuality {
+    pub fn interpolation_quality(&self) -> CGInterpolationQuality {
         extern "C-unwind" {
-            fn CGContextGetInterpolationQuality(c: Option<&CGContext>) -> CGInterpolationQuality;
+            fn CGContextGetInterpolationQuality(c: &CGContext) -> CGInterpolationQuality;
         }
-        unsafe { CGContextGetInterpolationQuality(c) }
+        unsafe { CGContextGetInterpolationQuality(self) }
     }
 
     #[doc(alias = "CGContextSetInterpolationQuality")]
     #[inline]
-    pub fn set_interpolation_quality(c: Option<&CGContext>, quality: CGInterpolationQuality) {
+    pub fn set_interpolation_quality(&self, quality: CGInterpolationQuality) {
         extern "C-unwind" {
-            fn CGContextSetInterpolationQuality(
-                c: Option<&CGContext>,
-                quality: CGInterpolationQuality,
-            );
+            fn CGContextSetInterpolationQuality(c: &CGContext, quality: CGInterpolationQuality);
         }
-        unsafe { CGContextSetInterpolationQuality(c, quality) }
+        unsafe { CGContextSetInterpolationQuality(self, quality) }
     }
 
     #[doc(alias = "CGContextSetShadowWithColor")]
     #[cfg(feature = "CGColor")]
     #[inline]
-    pub fn set_shadow_with_color(
-        c: Option<&CGContext>,
-        offset: CGSize,
-        blur: CGFloat,
-        color: Option<&CGColor>,
-    ) {
+    pub fn set_shadow_with_color(&self, offset: CGSize, blur: CGFloat, color: Option<&CGColor>) {
         extern "C-unwind" {
             fn CGContextSetShadowWithColor(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 offset: CGSize,
                 blur: CGFloat,
                 color: Option<&CGColor>,
             );
         }
-        unsafe { CGContextSetShadowWithColor(c, offset, blur, color) }
+        unsafe { CGContextSetShadowWithColor(self, offset, blur, color) }
     }
 
     #[doc(alias = "CGContextSetShadow")]
     #[inline]
-    pub fn set_shadow(c: Option<&CGContext>, offset: CGSize, blur: CGFloat) {
+    pub fn set_shadow(&self, offset: CGSize, blur: CGFloat) {
         extern "C-unwind" {
-            fn CGContextSetShadow(c: Option<&CGContext>, offset: CGSize, blur: CGFloat);
+            fn CGContextSetShadow(c: &CGContext, offset: CGSize, blur: CGFloat);
         }
-        unsafe { CGContextSetShadow(c, offset, blur) }
+        unsafe { CGContextSetShadow(self, offset, blur) }
     }
 
     #[doc(alias = "CGContextDrawLinearGradient")]
     #[cfg(feature = "CGGradient")]
     #[inline]
     pub fn draw_linear_gradient(
-        c: Option<&CGContext>,
-        gradient: Option<&CGGradient>,
+        &self,
+        gradient: &CGGradient,
         start_point: CGPoint,
         end_point: CGPoint,
         options: CGGradientDrawingOptions,
     ) {
         extern "C-unwind" {
             fn CGContextDrawLinearGradient(
-                c: Option<&CGContext>,
-                gradient: Option<&CGGradient>,
+                c: &CGContext,
+                gradient: &CGGradient,
                 start_point: CGPoint,
                 end_point: CGPoint,
                 options: CGGradientDrawingOptions,
             );
         }
-        unsafe { CGContextDrawLinearGradient(c, gradient, start_point, end_point, options) }
+        unsafe { CGContextDrawLinearGradient(self, gradient, start_point, end_point, options) }
     }
 
     #[doc(alias = "CGContextDrawRadialGradient")]
     #[cfg(feature = "CGGradient")]
     #[inline]
     pub fn draw_radial_gradient(
-        c: Option<&CGContext>,
-        gradient: Option<&CGGradient>,
+        &self,
+        gradient: &CGGradient,
         start_center: CGPoint,
         start_radius: CGFloat,
         end_center: CGPoint,
@@ -1239,8 +1190,8 @@ impl CGContext {
     ) {
         extern "C-unwind" {
             fn CGContextDrawRadialGradient(
-                c: Option<&CGContext>,
-                gradient: Option<&CGGradient>,
+                c: &CGContext,
+                gradient: &CGGradient,
                 start_center: CGPoint,
                 start_radius: CGFloat,
                 end_center: CGPoint,
@@ -1250,7 +1201,7 @@ impl CGContext {
         }
         unsafe {
             CGContextDrawRadialGradient(
-                c,
+                self,
                 gradient,
                 start_center,
                 start_radius,
@@ -1284,120 +1235,120 @@ impl CGContext {
     #[doc(alias = "CGContextDrawShading")]
     #[cfg(feature = "CGShading")]
     #[inline]
-    pub fn draw_shading(c: Option<&CGContext>, shading: Option<&CGShading>) {
+    pub fn draw_shading(&self, shading: &CGShading) {
         extern "C-unwind" {
-            fn CGContextDrawShading(c: Option<&CGContext>, shading: Option<&CGShading>);
+            fn CGContextDrawShading(c: &CGContext, shading: &CGShading);
         }
-        unsafe { CGContextDrawShading(c, shading) }
+        unsafe { CGContextDrawShading(self, shading) }
     }
 
     /// Text functions. *
     #[doc(alias = "CGContextSetCharacterSpacing")]
     #[inline]
-    pub fn set_character_spacing(c: Option<&CGContext>, spacing: CGFloat) {
+    pub fn set_character_spacing(&self, spacing: CGFloat) {
         extern "C-unwind" {
-            fn CGContextSetCharacterSpacing(c: Option<&CGContext>, spacing: CGFloat);
+            fn CGContextSetCharacterSpacing(c: &CGContext, spacing: CGFloat);
         }
-        unsafe { CGContextSetCharacterSpacing(c, spacing) }
+        unsafe { CGContextSetCharacterSpacing(self, spacing) }
     }
 
     #[doc(alias = "CGContextSetTextPosition")]
     #[inline]
-    pub fn set_text_position(c: Option<&CGContext>, x: CGFloat, y: CGFloat) {
+    pub fn set_text_position(&self, x: CGFloat, y: CGFloat) {
         extern "C-unwind" {
-            fn CGContextSetTextPosition(c: Option<&CGContext>, x: CGFloat, y: CGFloat);
+            fn CGContextSetTextPosition(c: &CGContext, x: CGFloat, y: CGFloat);
         }
-        unsafe { CGContextSetTextPosition(c, x, y) }
+        unsafe { CGContextSetTextPosition(self, x, y) }
     }
 
     #[doc(alias = "CGContextGetTextPosition")]
     #[inline]
-    pub fn text_position(c: Option<&CGContext>) -> CGPoint {
+    pub fn text_position(&self) -> CGPoint {
         extern "C-unwind" {
-            fn CGContextGetTextPosition(c: Option<&CGContext>) -> CGPoint;
+            fn CGContextGetTextPosition(c: &CGContext) -> CGPoint;
         }
-        unsafe { CGContextGetTextPosition(c) }
+        unsafe { CGContextGetTextPosition(self) }
     }
 
     #[doc(alias = "CGContextSetTextMatrix")]
     #[inline]
-    pub fn set_text_matrix(c: Option<&CGContext>, t: CGAffineTransform) {
+    pub fn set_text_matrix(&self, t: CGAffineTransform) {
         extern "C-unwind" {
-            fn CGContextSetTextMatrix(c: Option<&CGContext>, t: CGAffineTransform);
+            fn CGContextSetTextMatrix(c: &CGContext, t: CGAffineTransform);
         }
-        unsafe { CGContextSetTextMatrix(c, t) }
+        unsafe { CGContextSetTextMatrix(self, t) }
     }
 
     #[doc(alias = "CGContextGetTextMatrix")]
     #[inline]
-    pub fn text_matrix(c: Option<&CGContext>) -> CGAffineTransform {
+    pub fn text_matrix(&self) -> CGAffineTransform {
         extern "C-unwind" {
-            fn CGContextGetTextMatrix(c: Option<&CGContext>) -> CGAffineTransform;
+            fn CGContextGetTextMatrix(c: &CGContext) -> CGAffineTransform;
         }
-        unsafe { CGContextGetTextMatrix(c) }
+        unsafe { CGContextGetTextMatrix(self) }
     }
 
     #[doc(alias = "CGContextSetTextDrawingMode")]
     #[inline]
-    pub fn set_text_drawing_mode(c: Option<&CGContext>, mode: CGTextDrawingMode) {
+    pub fn set_text_drawing_mode(&self, mode: CGTextDrawingMode) {
         extern "C-unwind" {
-            fn CGContextSetTextDrawingMode(c: Option<&CGContext>, mode: CGTextDrawingMode);
+            fn CGContextSetTextDrawingMode(c: &CGContext, mode: CGTextDrawingMode);
         }
-        unsafe { CGContextSetTextDrawingMode(c, mode) }
+        unsafe { CGContextSetTextDrawingMode(self, mode) }
     }
 
     #[doc(alias = "CGContextSetFont")]
     #[cfg(feature = "CGFont")]
     #[inline]
-    pub fn set_font(c: Option<&CGContext>, font: Option<&CGFont>) {
+    pub fn set_font(&self, font: &CGFont) {
         extern "C-unwind" {
-            fn CGContextSetFont(c: Option<&CGContext>, font: Option<&CGFont>);
+            fn CGContextSetFont(c: &CGContext, font: &CGFont);
         }
-        unsafe { CGContextSetFont(c, font) }
+        unsafe { CGContextSetFont(self, font) }
     }
 
     #[doc(alias = "CGContextSetFontSize")]
     #[inline]
-    pub fn set_font_size(c: Option<&CGContext>, size: CGFloat) {
+    pub fn set_font_size(&self, size: CGFloat) {
         extern "C-unwind" {
-            fn CGContextSetFontSize(c: Option<&CGContext>, size: CGFloat);
+            fn CGContextSetFontSize(c: &CGContext, size: CGFloat);
         }
-        unsafe { CGContextSetFontSize(c, size) }
+        unsafe { CGContextSetFontSize(self, size) }
     }
 
     /// # Safety
     ///
-    /// - `glyphs` must be a valid pointer or null.
-    /// - `lpositions` must be a valid pointer or null.
+    /// - `glyphs` must be a valid pointer.
+    /// - `lpositions` must be a valid pointer.
     #[doc(alias = "CGContextShowGlyphsAtPositions")]
     #[cfg(feature = "CGFont")]
     #[inline]
     pub unsafe fn show_glyphs_at_positions(
-        c: Option<&CGContext>,
-        glyphs: *const CGGlyph,
-        lpositions: *const CGPoint,
+        &self,
+        glyphs: NonNull<CGGlyph>,
+        lpositions: NonNull<CGPoint>,
         count: usize,
     ) {
         extern "C-unwind" {
             fn CGContextShowGlyphsAtPositions(
-                c: Option<&CGContext>,
-                glyphs: *const CGGlyph,
-                lpositions: *const CGPoint,
+                c: &CGContext,
+                glyphs: NonNull<CGGlyph>,
+                lpositions: NonNull<CGPoint>,
                 count: usize,
             );
         }
-        unsafe { CGContextShowGlyphsAtPositions(c, glyphs, lpositions, count) }
+        unsafe { CGContextShowGlyphsAtPositions(self, glyphs, lpositions, count) }
     }
 
     /// PDF functions. *
     #[doc(alias = "CGContextDrawPDFPage")]
     #[cfg(feature = "CGPDFPage")]
     #[inline]
-    pub fn draw_pdf_page(c: Option<&CGContext>, page: Option<&CGPDFPage>) {
+    pub fn draw_pdf_page(&self, page: &CGPDFPage) {
         extern "C-unwind" {
-            fn CGContextDrawPDFPage(c: Option<&CGContext>, page: Option<&CGPDFPage>);
+            fn CGContextDrawPDFPage(c: &CGContext, page: &CGPDFPage);
         }
-        unsafe { CGContextDrawPDFPage(c, page) }
+        unsafe { CGContextDrawPDFPage(self, page) }
     }
 
     /// Output page functions. *
@@ -1407,38 +1358,38 @@ impl CGContext {
     /// `media_box` must be a valid pointer or null.
     #[doc(alias = "CGContextBeginPage")]
     #[inline]
-    pub unsafe fn begin_page(c: Option<&CGContext>, media_box: *const CGRect) {
+    pub unsafe fn begin_page(&self, media_box: *const CGRect) {
         extern "C-unwind" {
-            fn CGContextBeginPage(c: Option<&CGContext>, media_box: *const CGRect);
+            fn CGContextBeginPage(c: &CGContext, media_box: *const CGRect);
         }
-        unsafe { CGContextBeginPage(c, media_box) }
+        unsafe { CGContextBeginPage(self, media_box) }
     }
 
     #[doc(alias = "CGContextEndPage")]
     #[inline]
-    pub fn end_page(c: Option<&CGContext>) {
+    pub fn end_page(&self) {
         extern "C-unwind" {
-            fn CGContextEndPage(c: Option<&CGContext>);
+            fn CGContextEndPage(c: &CGContext);
         }
-        unsafe { CGContextEndPage(c) }
+        unsafe { CGContextEndPage(self) }
     }
 
     #[doc(alias = "CGContextFlush")]
     #[inline]
-    pub fn flush(c: Option<&CGContext>) {
+    pub fn flush(&self) {
         extern "C-unwind" {
-            fn CGContextFlush(c: Option<&CGContext>);
+            fn CGContextFlush(c: &CGContext);
         }
-        unsafe { CGContextFlush(c) }
+        unsafe { CGContextFlush(self) }
     }
 
     #[doc(alias = "CGContextSynchronize")]
     #[inline]
-    pub fn synchronize(c: Option<&CGContext>) {
+    pub fn synchronize(&self) {
         extern "C-unwind" {
-            fn CGContextSynchronize(c: Option<&CGContext>);
+            fn CGContextSynchronize(c: &CGContext);
         }
-        unsafe { CGContextSynchronize(c) }
+        unsafe { CGContextSynchronize(self) }
     }
 
     #[doc(alias = "CGContextSynchronizeAttributes")]
@@ -1452,98 +1403,88 @@ impl CGContext {
 
     #[doc(alias = "CGContextSetShouldAntialias")]
     #[inline]
-    pub fn set_should_antialias(c: Option<&CGContext>, should_antialias: bool) {
+    pub fn set_should_antialias(&self, should_antialias: bool) {
         extern "C-unwind" {
-            fn CGContextSetShouldAntialias(c: Option<&CGContext>, should_antialias: bool);
+            fn CGContextSetShouldAntialias(c: &CGContext, should_antialias: bool);
         }
-        unsafe { CGContextSetShouldAntialias(c, should_antialias) }
+        unsafe { CGContextSetShouldAntialias(self, should_antialias) }
     }
 
     #[doc(alias = "CGContextSetAllowsAntialiasing")]
     #[inline]
-    pub fn set_allows_antialiasing(c: Option<&CGContext>, allows_antialiasing: bool) {
+    pub fn set_allows_antialiasing(&self, allows_antialiasing: bool) {
         extern "C-unwind" {
-            fn CGContextSetAllowsAntialiasing(c: Option<&CGContext>, allows_antialiasing: bool);
+            fn CGContextSetAllowsAntialiasing(c: &CGContext, allows_antialiasing: bool);
         }
-        unsafe { CGContextSetAllowsAntialiasing(c, allows_antialiasing) }
+        unsafe { CGContextSetAllowsAntialiasing(self, allows_antialiasing) }
     }
 
     #[doc(alias = "CGContextSetShouldSmoothFonts")]
     #[inline]
-    pub fn set_should_smooth_fonts(c: Option<&CGContext>, should_smooth_fonts: bool) {
+    pub fn set_should_smooth_fonts(&self, should_smooth_fonts: bool) {
         extern "C-unwind" {
-            fn CGContextSetShouldSmoothFonts(c: Option<&CGContext>, should_smooth_fonts: bool);
+            fn CGContextSetShouldSmoothFonts(c: &CGContext, should_smooth_fonts: bool);
         }
-        unsafe { CGContextSetShouldSmoothFonts(c, should_smooth_fonts) }
+        unsafe { CGContextSetShouldSmoothFonts(self, should_smooth_fonts) }
     }
 
     #[doc(alias = "CGContextSetAllowsFontSmoothing")]
     #[inline]
-    pub fn set_allows_font_smoothing(c: Option<&CGContext>, allows_font_smoothing: bool) {
+    pub fn set_allows_font_smoothing(&self, allows_font_smoothing: bool) {
         extern "C-unwind" {
-            fn CGContextSetAllowsFontSmoothing(c: Option<&CGContext>, allows_font_smoothing: bool);
+            fn CGContextSetAllowsFontSmoothing(c: &CGContext, allows_font_smoothing: bool);
         }
-        unsafe { CGContextSetAllowsFontSmoothing(c, allows_font_smoothing) }
+        unsafe { CGContextSetAllowsFontSmoothing(self, allows_font_smoothing) }
     }
 
     #[doc(alias = "CGContextSetShouldSubpixelPositionFonts")]
     #[inline]
-    pub fn set_should_subpixel_position_fonts(
-        c: Option<&CGContext>,
-        should_subpixel_position_fonts: bool,
-    ) {
+    pub fn set_should_subpixel_position_fonts(&self, should_subpixel_position_fonts: bool) {
         extern "C-unwind" {
             fn CGContextSetShouldSubpixelPositionFonts(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 should_subpixel_position_fonts: bool,
             );
         }
-        unsafe { CGContextSetShouldSubpixelPositionFonts(c, should_subpixel_position_fonts) }
+        unsafe { CGContextSetShouldSubpixelPositionFonts(self, should_subpixel_position_fonts) }
     }
 
     #[doc(alias = "CGContextSetAllowsFontSubpixelPositioning")]
     #[inline]
-    pub fn set_allows_font_subpixel_positioning(
-        c: Option<&CGContext>,
-        allows_font_subpixel_positioning: bool,
-    ) {
+    pub fn set_allows_font_subpixel_positioning(&self, allows_font_subpixel_positioning: bool) {
         extern "C-unwind" {
             fn CGContextSetAllowsFontSubpixelPositioning(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 allows_font_subpixel_positioning: bool,
             );
         }
-        unsafe { CGContextSetAllowsFontSubpixelPositioning(c, allows_font_subpixel_positioning) }
+        unsafe { CGContextSetAllowsFontSubpixelPositioning(self, allows_font_subpixel_positioning) }
     }
 
     #[doc(alias = "CGContextSetShouldSubpixelQuantizeFonts")]
     #[inline]
-    pub fn set_should_subpixel_quantize_fonts(
-        c: Option<&CGContext>,
-        should_subpixel_quantize_fonts: bool,
-    ) {
+    pub fn set_should_subpixel_quantize_fonts(&self, should_subpixel_quantize_fonts: bool) {
         extern "C-unwind" {
             fn CGContextSetShouldSubpixelQuantizeFonts(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 should_subpixel_quantize_fonts: bool,
             );
         }
-        unsafe { CGContextSetShouldSubpixelQuantizeFonts(c, should_subpixel_quantize_fonts) }
+        unsafe { CGContextSetShouldSubpixelQuantizeFonts(self, should_subpixel_quantize_fonts) }
     }
 
     #[doc(alias = "CGContextSetAllowsFontSubpixelQuantization")]
     #[inline]
-    pub fn set_allows_font_subpixel_quantization(
-        c: Option<&CGContext>,
-        allows_font_subpixel_quantization: bool,
-    ) {
+    pub fn set_allows_font_subpixel_quantization(&self, allows_font_subpixel_quantization: bool) {
         extern "C-unwind" {
             fn CGContextSetAllowsFontSubpixelQuantization(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 allows_font_subpixel_quantization: bool,
             );
         }
-        unsafe { CGContextSetAllowsFontSubpixelQuantization(c, allows_font_subpixel_quantization) }
+        unsafe {
+            CGContextSetAllowsFontSubpixelQuantization(self, allows_font_subpixel_quantization)
+        }
     }
 
     /// Transparency layer support. *
@@ -1554,17 +1495,14 @@ impl CGContext {
     /// - `auxiliary_info` generic must be of the correct type.
     #[doc(alias = "CGContextBeginTransparencyLayer")]
     #[inline]
-    pub unsafe fn begin_transparency_layer(
-        c: Option<&CGContext>,
-        auxiliary_info: Option<&CFDictionary>,
-    ) {
+    pub unsafe fn begin_transparency_layer(&self, auxiliary_info: Option<&CFDictionary>) {
         extern "C-unwind" {
             fn CGContextBeginTransparencyLayer(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 auxiliary_info: Option<&CFDictionary>,
             );
         }
-        unsafe { CGContextBeginTransparencyLayer(c, auxiliary_info) }
+        unsafe { CGContextBeginTransparencyLayer(self, auxiliary_info) }
     }
 
     /// # Safety
@@ -1574,155 +1512,152 @@ impl CGContext {
     #[doc(alias = "CGContextBeginTransparencyLayerWithRect")]
     #[inline]
     pub unsafe fn begin_transparency_layer_with_rect(
-        c: Option<&CGContext>,
+        &self,
         rect: CGRect,
         aux_info: Option<&CFDictionary>,
     ) {
         extern "C-unwind" {
             fn CGContextBeginTransparencyLayerWithRect(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 rect: CGRect,
                 aux_info: Option<&CFDictionary>,
             );
         }
-        unsafe { CGContextBeginTransparencyLayerWithRect(c, rect, aux_info) }
+        unsafe { CGContextBeginTransparencyLayerWithRect(self, rect, aux_info) }
     }
 
     #[doc(alias = "CGContextEndTransparencyLayer")]
     #[inline]
-    pub fn end_transparency_layer(c: Option<&CGContext>) {
+    pub fn end_transparency_layer(&self) {
         extern "C-unwind" {
-            fn CGContextEndTransparencyLayer(c: Option<&CGContext>);
+            fn CGContextEndTransparencyLayer(c: &CGContext);
         }
-        unsafe { CGContextEndTransparencyLayer(c) }
+        unsafe { CGContextEndTransparencyLayer(self) }
     }
 
     /// User space to device space tranformations. *
     #[doc(alias = "CGContextGetUserSpaceToDeviceSpaceTransform")]
     #[inline]
-    pub fn user_space_to_device_space_transform(c: Option<&CGContext>) -> CGAffineTransform {
+    pub fn user_space_to_device_space_transform(&self) -> CGAffineTransform {
         extern "C-unwind" {
-            fn CGContextGetUserSpaceToDeviceSpaceTransform(
-                c: Option<&CGContext>,
-            ) -> CGAffineTransform;
+            fn CGContextGetUserSpaceToDeviceSpaceTransform(c: &CGContext) -> CGAffineTransform;
         }
-        unsafe { CGContextGetUserSpaceToDeviceSpaceTransform(c) }
+        unsafe { CGContextGetUserSpaceToDeviceSpaceTransform(self) }
     }
 
     #[doc(alias = "CGContextConvertPointToDeviceSpace")]
     #[inline]
-    pub fn convert_point_to_device_space(c: Option<&CGContext>, point: CGPoint) -> CGPoint {
+    pub fn convert_point_to_device_space(&self, point: CGPoint) -> CGPoint {
         extern "C-unwind" {
-            fn CGContextConvertPointToDeviceSpace(c: Option<&CGContext>, point: CGPoint)
-                -> CGPoint;
+            fn CGContextConvertPointToDeviceSpace(c: &CGContext, point: CGPoint) -> CGPoint;
         }
-        unsafe { CGContextConvertPointToDeviceSpace(c, point) }
+        unsafe { CGContextConvertPointToDeviceSpace(self, point) }
     }
 
     #[doc(alias = "CGContextConvertPointToUserSpace")]
     #[inline]
-    pub fn convert_point_to_user_space(c: Option<&CGContext>, point: CGPoint) -> CGPoint {
+    pub fn convert_point_to_user_space(&self, point: CGPoint) -> CGPoint {
         extern "C-unwind" {
-            fn CGContextConvertPointToUserSpace(c: Option<&CGContext>, point: CGPoint) -> CGPoint;
+            fn CGContextConvertPointToUserSpace(c: &CGContext, point: CGPoint) -> CGPoint;
         }
-        unsafe { CGContextConvertPointToUserSpace(c, point) }
+        unsafe { CGContextConvertPointToUserSpace(self, point) }
     }
 
     #[doc(alias = "CGContextConvertSizeToDeviceSpace")]
     #[inline]
-    pub fn convert_size_to_device_space(c: Option<&CGContext>, size: CGSize) -> CGSize {
+    pub fn convert_size_to_device_space(&self, size: CGSize) -> CGSize {
         extern "C-unwind" {
-            fn CGContextConvertSizeToDeviceSpace(c: Option<&CGContext>, size: CGSize) -> CGSize;
+            fn CGContextConvertSizeToDeviceSpace(c: &CGContext, size: CGSize) -> CGSize;
         }
-        unsafe { CGContextConvertSizeToDeviceSpace(c, size) }
+        unsafe { CGContextConvertSizeToDeviceSpace(self, size) }
     }
 
     #[doc(alias = "CGContextConvertSizeToUserSpace")]
     #[inline]
-    pub fn convert_size_to_user_space(c: Option<&CGContext>, size: CGSize) -> CGSize {
+    pub fn convert_size_to_user_space(&self, size: CGSize) -> CGSize {
         extern "C-unwind" {
-            fn CGContextConvertSizeToUserSpace(c: Option<&CGContext>, size: CGSize) -> CGSize;
+            fn CGContextConvertSizeToUserSpace(c: &CGContext, size: CGSize) -> CGSize;
         }
-        unsafe { CGContextConvertSizeToUserSpace(c, size) }
+        unsafe { CGContextConvertSizeToUserSpace(self, size) }
     }
 
     #[doc(alias = "CGContextConvertRectToDeviceSpace")]
     #[inline]
-    pub fn convert_rect_to_device_space(c: Option<&CGContext>, rect: CGRect) -> CGRect {
+    pub fn convert_rect_to_device_space(&self, rect: CGRect) -> CGRect {
         extern "C-unwind" {
-            fn CGContextConvertRectToDeviceSpace(c: Option<&CGContext>, rect: CGRect) -> CGRect;
+            fn CGContextConvertRectToDeviceSpace(c: &CGContext, rect: CGRect) -> CGRect;
         }
-        unsafe { CGContextConvertRectToDeviceSpace(c, rect) }
+        unsafe { CGContextConvertRectToDeviceSpace(self, rect) }
     }
 
     #[doc(alias = "CGContextConvertRectToUserSpace")]
     #[inline]
-    pub fn convert_rect_to_user_space(c: Option<&CGContext>, rect: CGRect) -> CGRect {
+    pub fn convert_rect_to_user_space(&self, rect: CGRect) -> CGRect {
         extern "C-unwind" {
-            fn CGContextConvertRectToUserSpace(c: Option<&CGContext>, rect: CGRect) -> CGRect;
+            fn CGContextConvertRectToUserSpace(c: &CGContext, rect: CGRect) -> CGRect;
         }
-        unsafe { CGContextConvertRectToUserSpace(c, rect) }
+        unsafe { CGContextConvertRectToUserSpace(self, rect) }
     }
 
     /// # Safety
     ///
-    /// `name` must be a valid pointer or null.
+    /// `name` must be a valid pointer.
     #[doc(alias = "CGContextSelectFont")]
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn select_font(
-        c: Option<&CGContext>,
-        name: *const c_char,
+        &self,
+        name: NonNull<c_char>,
         size: CGFloat,
         text_encoding: CGTextEncoding,
     ) {
         extern "C-unwind" {
             fn CGContextSelectFont(
-                c: Option<&CGContext>,
-                name: *const c_char,
+                c: &CGContext,
+                name: NonNull<c_char>,
                 size: CGFloat,
                 text_encoding: CGTextEncoding,
             );
         }
-        unsafe { CGContextSelectFont(c, name, size, text_encoding) }
+        unsafe { CGContextSelectFont(self, name, size, text_encoding) }
     }
 
     /// # Safety
     ///
-    /// `string` must be a valid pointer or null.
+    /// `string` must be a valid pointer.
     #[doc(alias = "CGContextShowText")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn show_text(c: Option<&CGContext>, string: *const c_char, length: usize) {
+    pub unsafe fn show_text(&self, string: NonNull<c_char>, length: usize) {
         extern "C-unwind" {
-            fn CGContextShowText(c: Option<&CGContext>, string: *const c_char, length: usize);
+            fn CGContextShowText(c: &CGContext, string: NonNull<c_char>, length: usize);
         }
-        unsafe { CGContextShowText(c, string, length) }
+        unsafe { CGContextShowText(self, string, length) }
     }
 
     /// # Safety
     ///
-    /// `string` must be a valid pointer or null.
+    /// `string` must be a valid pointer.
     #[doc(alias = "CGContextShowTextAtPoint")]
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn show_text_at_point(
-        c: Option<&CGContext>,
+        &self,
         x: CGFloat,
         y: CGFloat,
-        string: *const c_char,
+        string: NonNull<c_char>,
         length: usize,
     ) {
         extern "C-unwind" {
             fn CGContextShowTextAtPoint(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 x: CGFloat,
                 y: CGFloat,
-                string: *const c_char,
+                string: NonNull<c_char>,
                 length: usize,
             );
         }
-        unsafe { CGContextShowTextAtPoint(c, x, y, string, length) }
+        unsafe { CGContextShowTextAtPoint(self, x, y, string, length) }
     }
 
     /// # Safety
@@ -1732,11 +1667,11 @@ impl CGContext {
     #[cfg(feature = "CGFont")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub unsafe fn show_glyphs(c: Option<&CGContext>, g: *const CGGlyph, count: usize) {
+    pub unsafe fn show_glyphs(&self, g: *const CGGlyph, count: usize) {
         extern "C-unwind" {
-            fn CGContextShowGlyphs(c: Option<&CGContext>, g: *const CGGlyph, count: usize);
+            fn CGContextShowGlyphs(c: &CGContext, g: *const CGGlyph, count: usize);
         }
-        unsafe { CGContextShowGlyphs(c, g, count) }
+        unsafe { CGContextShowGlyphs(self, g, count) }
     }
 
     /// # Safety
@@ -1747,7 +1682,7 @@ impl CGContext {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn show_glyphs_at_point(
-        c: Option<&CGContext>,
+        &self,
         x: CGFloat,
         y: CGFloat,
         glyphs: *const CGGlyph,
@@ -1755,14 +1690,14 @@ impl CGContext {
     ) {
         extern "C-unwind" {
             fn CGContextShowGlyphsAtPoint(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 x: CGFloat,
                 y: CGFloat,
                 glyphs: *const CGGlyph,
                 count: usize,
             );
         }
-        unsafe { CGContextShowGlyphsAtPoint(c, x, y, glyphs, count) }
+        unsafe { CGContextShowGlyphsAtPoint(self, x, y, glyphs, count) }
     }
 
     /// # Safety
@@ -1774,40 +1709,35 @@ impl CGContext {
     #[deprecated = "No longer supported"]
     #[inline]
     pub unsafe fn show_glyphs_with_advances(
-        c: Option<&CGContext>,
+        &self,
         glyphs: *const CGGlyph,
         advances: *const CGSize,
         count: usize,
     ) {
         extern "C-unwind" {
             fn CGContextShowGlyphsWithAdvances(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 glyphs: *const CGGlyph,
                 advances: *const CGSize,
                 count: usize,
             );
         }
-        unsafe { CGContextShowGlyphsWithAdvances(c, glyphs, advances, count) }
+        unsafe { CGContextShowGlyphsWithAdvances(self, glyphs, advances, count) }
     }
 
     #[doc(alias = "CGContextDrawPDFDocument")]
     #[cfg(feature = "CGPDFDocument")]
     #[deprecated = "No longer supported"]
     #[inline]
-    pub fn draw_pdf_document(
-        c: Option<&CGContext>,
-        rect: CGRect,
-        document: Option<&CGPDFDocument>,
-        page: c_int,
-    ) {
+    pub fn draw_pdf_document(&self, rect: CGRect, document: &CGPDFDocument, page: c_int) {
         extern "C-unwind" {
             fn CGContextDrawPDFDocument(
-                c: Option<&CGContext>,
+                c: &CGContext,
                 rect: CGRect,
-                document: Option<&CGPDFDocument>,
+                document: &CGPDFDocument,
                 page: c_int,
             );
         }
-        unsafe { CGContextDrawPDFDocument(c, rect, document, page) }
+        unsafe { CGContextDrawPDFDocument(self, rect, document, page) }
     }
 }

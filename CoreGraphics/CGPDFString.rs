@@ -29,7 +29,7 @@ pub type CGPDFStringRef = *mut CGPDFString;
 impl CGPDFString {
     /// # Safety
     ///
-    /// `string` must be a valid pointer or null.
+    /// `string` must be a valid pointer.
     #[doc(alias = "CGPDFStringGetLength")]
     #[inline]
     pub unsafe fn length(string: CGPDFStringRef) -> usize {
@@ -41,7 +41,7 @@ impl CGPDFString {
 
     /// # Safety
     ///
-    /// `string` must be a valid pointer or null.
+    /// `string` must be a valid pointer.
     #[doc(alias = "CGPDFStringGetBytePtr")]
     #[inline]
     pub unsafe fn byte_ptr(string: CGPDFStringRef) -> *const c_uchar {
@@ -53,7 +53,7 @@ impl CGPDFString {
 
     /// # Safety
     ///
-    /// `string` must be a valid pointer or null.
+    /// `string` must be a valid pointer.
     #[doc(alias = "CGPDFStringCopyTextString")]
     #[inline]
     pub unsafe fn text_string(string: CGPDFStringRef) -> Option<CFRetained<CFString>> {
@@ -66,7 +66,7 @@ impl CGPDFString {
 
     /// # Safety
     ///
-    /// `string` must be a valid pointer or null.
+    /// `string` must be a valid pointer.
     #[doc(alias = "CGPDFStringCopyDate")]
     #[inline]
     pub unsafe fn date(string: CGPDFStringRef) -> Option<CFRetained<CFDate>> {

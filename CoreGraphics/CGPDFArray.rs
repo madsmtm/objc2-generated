@@ -27,7 +27,7 @@ pub type CGPDFArrayRef = *mut CGPDFArray;
 impl CGPDFArray {
     /// # Safety
     ///
-    /// `array` must be a valid pointer or null.
+    /// `array` must be a valid pointer.
     #[doc(alias = "CGPDFArrayGetCount")]
     #[inline]
     pub unsafe fn count(array: CGPDFArrayRef) -> usize {
@@ -39,7 +39,7 @@ impl CGPDFArray {
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer or null.
+    /// - `array` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetObject")]
     #[cfg(feature = "CGPDFObject")]
@@ -57,7 +57,7 @@ impl CGPDFArray {
 
     /// # Safety
     ///
-    /// `array` must be a valid pointer or null.
+    /// `array` must be a valid pointer.
     #[doc(alias = "CGPDFArrayGetNull")]
     #[inline]
     pub unsafe fn null(array: CGPDFArrayRef, index: usize) -> bool {
@@ -69,7 +69,7 @@ impl CGPDFArray {
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer or null.
+    /// - `array` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetBoolean")]
     #[cfg(feature = "CGPDFObject")]
@@ -87,7 +87,7 @@ impl CGPDFArray {
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer or null.
+    /// - `array` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetInteger")]
     #[cfg(feature = "CGPDFObject")]
@@ -105,7 +105,7 @@ impl CGPDFArray {
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer or null.
+    /// - `array` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetNumber")]
     #[cfg(feature = "CGPDFObject")]
@@ -123,7 +123,7 @@ impl CGPDFArray {
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer or null.
+    /// - `array` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetName")]
     #[inline]
@@ -140,7 +140,7 @@ impl CGPDFArray {
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer or null.
+    /// - `array` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetString")]
     #[cfg(feature = "CGPDFString")]
@@ -158,7 +158,7 @@ impl CGPDFArray {
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer or null.
+    /// - `array` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetArray")]
     #[inline]
@@ -175,7 +175,7 @@ impl CGPDFArray {
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer or null.
+    /// - `array` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetDictionary")]
     #[cfg(feature = "CGPDFDictionary")]
@@ -197,7 +197,7 @@ impl CGPDFArray {
 
     /// # Safety
     ///
-    /// - `array` must be a valid pointer or null.
+    /// - `array` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayGetStream")]
     #[cfg(feature = "CGPDFStream")]
@@ -222,8 +222,8 @@ pub type CGPDFArrayApplierBlock =
 impl CGPDFArray {
     /// # Safety
     ///
-    /// - `array` must be a valid pointer or null.
-    /// - `block` must be a valid pointer or null.
+    /// - `array` must be a valid pointer.
+    /// - `block` must be a valid pointer.
     /// - `info` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayApplyBlock")]
     #[cfg(all(feature = "CGPDFObject", feature = "block2"))]

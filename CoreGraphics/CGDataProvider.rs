@@ -133,18 +133,18 @@ impl CGDataProvider {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `callbacks` must be a valid pointer or null.
+    /// - `callbacks` must be a valid pointer.
     #[doc(alias = "CGDataProviderCreateSequential")]
     #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn new_sequential(
         info: *mut c_void,
-        callbacks: *const CGDataProviderSequentialCallbacks,
+        callbacks: NonNull<CGDataProviderSequentialCallbacks>,
     ) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
             fn CGDataProviderCreateSequential(
                 info: *mut c_void,
-                callbacks: *const CGDataProviderSequentialCallbacks,
+                callbacks: NonNull<CGDataProviderSequentialCallbacks>,
             ) -> Option<NonNull<CGDataProvider>>;
         }
         let ret = unsafe { CGDataProviderCreateSequential(info, callbacks) };
@@ -154,20 +154,20 @@ impl CGDataProvider {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `callbacks` must be a valid pointer or null.
+    /// - `callbacks` must be a valid pointer.
     #[doc(alias = "CGDataProviderCreateDirect")]
     #[cfg(feature = "libc")]
     #[inline]
     pub unsafe fn new_direct(
         info: *mut c_void,
         size: libc::off_t,
-        callbacks: *const CGDataProviderDirectCallbacks,
+        callbacks: NonNull<CGDataProviderDirectCallbacks>,
     ) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
             fn CGDataProviderCreateDirect(
                 info: *mut c_void,
                 size: libc::off_t,
-                callbacks: *const CGDataProviderDirectCallbacks,
+                callbacks: NonNull<CGDataProviderDirectCallbacks>,
             ) -> Option<NonNull<CGDataProvider>>;
         }
         let ret = unsafe { CGDataProviderCreateDirect(info, size, callbacks) };
@@ -183,20 +183,20 @@ impl CGDataProvider {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `data` must be a valid pointer or null.
+    /// - `data` must be a valid pointer.
     /// - `release_data` must be implemented correctly.
     #[doc(alias = "CGDataProviderCreateWithData")]
     #[inline]
     pub unsafe fn with_data(
         info: *mut c_void,
-        data: *const c_void,
+        data: NonNull<c_void>,
         size: usize,
         release_data: CGDataProviderReleaseDataCallback,
     ) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
             fn CGDataProviderCreateWithData(
                 info: *mut c_void,
-                data: *const c_void,
+                data: NonNull<c_void>,
                 size: usize,
                 release_data: CGDataProviderReleaseDataCallback,
             ) -> Option<NonNull<CGDataProvider>>;
@@ -207,11 +207,9 @@ impl CGDataProvider {
 
     #[doc(alias = "CGDataProviderCreateWithCFData")]
     #[inline]
-    pub fn with_cf_data(data: Option<&CFData>) -> Option<CFRetained<CGDataProvider>> {
+    pub fn with_cf_data(data: &CFData) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
-            fn CGDataProviderCreateWithCFData(
-                data: Option<&CFData>,
-            ) -> Option<NonNull<CGDataProvider>>;
+            fn CGDataProviderCreateWithCFData(data: &CFData) -> Option<NonNull<CGDataProvider>>;
         }
         let ret = unsafe { CGDataProviderCreateWithCFData(data) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -219,9 +217,9 @@ impl CGDataProvider {
 
     #[doc(alias = "CGDataProviderCreateWithURL")]
     #[inline]
-    pub fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGDataProvider>> {
+    pub fn with_url(url: &CFURL) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
-            fn CGDataProviderCreateWithURL(url: Option<&CFURL>) -> Option<NonNull<CGDataProvider>>;
+            fn CGDataProviderCreateWithURL(url: &CFURL) -> Option<NonNull<CGDataProvider>>;
         }
         let ret = unsafe { CGDataProviderCreateWithURL(url) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -229,13 +227,13 @@ impl CGDataProvider {
 
     /// # Safety
     ///
-    /// `filename` must be a valid pointer or null.
+    /// `filename` must be a valid pointer.
     #[doc(alias = "CGDataProviderCreateWithFilename")]
     #[inline]
-    pub unsafe fn with_filename(filename: *const c_char) -> Option<CFRetained<CGDataProvider>> {
+    pub unsafe fn with_filename(filename: NonNull<c_char>) -> Option<CFRetained<CGDataProvider>> {
         extern "C-unwind" {
             fn CGDataProviderCreateWithFilename(
-                filename: *const c_char,
+                filename: NonNull<c_char>,
             ) -> Option<NonNull<CGDataProvider>>;
         }
         let ret = unsafe { CGDataProviderCreateWithFilename(filename) };
@@ -244,21 +242,20 @@ impl CGDataProvider {
 
     #[doc(alias = "CGDataProviderCopyData")]
     #[inline]
-    pub fn data(provider: Option<&CGDataProvider>) -> Option<CFRetained<CFData>> {
+    pub fn data(&self) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
-            fn CGDataProviderCopyData(provider: Option<&CGDataProvider>)
-                -> Option<NonNull<CFData>>;
+            fn CGDataProviderCopyData(provider: &CGDataProvider) -> Option<NonNull<CFData>>;
         }
-        let ret = unsafe { CGDataProviderCopyData(provider) };
+        let ret = unsafe { CGDataProviderCopyData(self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
     #[doc(alias = "CGDataProviderGetInfo")]
     #[inline]
-    pub fn info(provider: Option<&CGDataProvider>) -> *mut c_void {
+    pub fn info(&self) -> *mut c_void {
         extern "C-unwind" {
-            fn CGDataProviderGetInfo(provider: Option<&CGDataProvider>) -> *mut c_void;
+            fn CGDataProviderGetInfo(provider: &CGDataProvider) -> *mut c_void;
         }
-        unsafe { CGDataProviderGetInfo(provider) }
+        unsafe { CGDataProviderGetInfo(self) }
     }
 }

@@ -58,45 +58,45 @@ impl CGPDFPage {
     #[doc(alias = "CGPDFPageGetDocument")]
     #[cfg(feature = "CGPDFDocument")]
     #[inline]
-    pub fn document(page: Option<&CGPDFPage>) -> Option<CFRetained<CGPDFDocument>> {
+    pub fn document(&self) -> Option<CFRetained<CGPDFDocument>> {
         extern "C-unwind" {
-            fn CGPDFPageGetDocument(page: Option<&CGPDFPage>) -> Option<NonNull<CGPDFDocument>>;
+            fn CGPDFPageGetDocument(page: &CGPDFPage) -> Option<NonNull<CGPDFDocument>>;
         }
-        let ret = unsafe { CGPDFPageGetDocument(page) };
+        let ret = unsafe { CGPDFPageGetDocument(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
     #[doc(alias = "CGPDFPageGetPageNumber")]
     #[inline]
-    pub fn page_number(page: Option<&CGPDFPage>) -> usize {
+    pub fn page_number(&self) -> usize {
         extern "C-unwind" {
-            fn CGPDFPageGetPageNumber(page: Option<&CGPDFPage>) -> usize;
+            fn CGPDFPageGetPageNumber(page: &CGPDFPage) -> usize;
         }
-        unsafe { CGPDFPageGetPageNumber(page) }
+        unsafe { CGPDFPageGetPageNumber(self) }
     }
 
     #[doc(alias = "CGPDFPageGetBoxRect")]
     #[inline]
-    pub fn box_rect(page: Option<&CGPDFPage>, r#box: CGPDFBox) -> CGRect {
+    pub fn box_rect(&self, r#box: CGPDFBox) -> CGRect {
         extern "C-unwind" {
-            fn CGPDFPageGetBoxRect(page: Option<&CGPDFPage>, r#box: CGPDFBox) -> CGRect;
+            fn CGPDFPageGetBoxRect(page: &CGPDFPage, r#box: CGPDFBox) -> CGRect;
         }
-        unsafe { CGPDFPageGetBoxRect(page, r#box) }
+        unsafe { CGPDFPageGetBoxRect(self, r#box) }
     }
 
     #[doc(alias = "CGPDFPageGetRotationAngle")]
     #[inline]
-    pub fn rotation_angle(page: Option<&CGPDFPage>) -> c_int {
+    pub fn rotation_angle(&self) -> c_int {
         extern "C-unwind" {
-            fn CGPDFPageGetRotationAngle(page: Option<&CGPDFPage>) -> c_int;
+            fn CGPDFPageGetRotationAngle(page: &CGPDFPage) -> c_int;
         }
-        unsafe { CGPDFPageGetRotationAngle(page) }
+        unsafe { CGPDFPageGetRotationAngle(self) }
     }
 
     #[doc(alias = "CGPDFPageGetDrawingTransform")]
     #[inline]
     pub fn drawing_transform(
-        page: Option<&CGPDFPage>,
+        &self,
         r#box: CGPDFBox,
         rect: CGRect,
         rotate: c_int,
@@ -104,24 +104,24 @@ impl CGPDFPage {
     ) -> CGAffineTransform {
         extern "C-unwind" {
             fn CGPDFPageGetDrawingTransform(
-                page: Option<&CGPDFPage>,
+                page: &CGPDFPage,
                 r#box: CGPDFBox,
                 rect: CGRect,
                 rotate: c_int,
                 preserve_aspect_ratio: bool,
             ) -> CGAffineTransform;
         }
-        unsafe { CGPDFPageGetDrawingTransform(page, r#box, rect, rotate, preserve_aspect_ratio) }
+        unsafe { CGPDFPageGetDrawingTransform(self, r#box, rect, rotate, preserve_aspect_ratio) }
     }
 
     #[doc(alias = "CGPDFPageGetDictionary")]
     #[cfg(feature = "CGPDFDictionary")]
     #[inline]
-    pub fn dictionary(page: Option<&CGPDFPage>) -> CGPDFDictionaryRef {
+    pub fn dictionary(&self) -> CGPDFDictionaryRef {
         extern "C-unwind" {
-            fn CGPDFPageGetDictionary(page: Option<&CGPDFPage>) -> CGPDFDictionaryRef;
+            fn CGPDFPageGetDictionary(page: &CGPDFPage) -> CGPDFDictionaryRef;
         }
-        unsafe { CGPDFPageGetDictionary(page) }
+        unsafe { CGPDFPageGetDictionary(self) }
     }
 }
 

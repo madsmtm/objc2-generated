@@ -42,19 +42,19 @@ impl CGShading {
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
     pub fn new_axial(
-        space: Option<&CGColorSpace>,
+        space: &CGColorSpace,
         start: CGPoint,
         end: CGPoint,
-        function: Option<&CGFunction>,
+        function: &CGFunction,
         extend_start: bool,
         extend_end: bool,
     ) -> Option<CFRetained<CGShading>> {
         extern "C-unwind" {
             fn CGShadingCreateAxial(
-                space: Option<&CGColorSpace>,
+                space: &CGColorSpace,
                 start: CGPoint,
                 end: CGPoint,
-                function: Option<&CGFunction>,
+                function: &CGFunction,
                 extend_start: bool,
                 extend_end: bool,
             ) -> Option<NonNull<CGShading>>;
@@ -69,20 +69,20 @@ impl CGShading {
     #[inline]
     pub fn new_axial_with_content_headroom(
         headroom: c_float,
-        space: Option<&CGColorSpace>,
+        space: &CGColorSpace,
         start: CGPoint,
         end: CGPoint,
-        function: Option<&CGFunction>,
+        function: &CGFunction,
         extend_start: bool,
         extend_end: bool,
     ) -> Option<CFRetained<CGShading>> {
         extern "C-unwind" {
             fn CGShadingCreateAxialWithContentHeadroom(
                 headroom: c_float,
-                space: Option<&CGColorSpace>,
+                space: &CGColorSpace,
                 start: CGPoint,
                 end: CGPoint,
-                function: Option<&CGFunction>,
+                function: &CGFunction,
                 extend_start: bool,
                 extend_end: bool,
             ) -> Option<NonNull<CGShading>>;
@@ -105,23 +105,23 @@ impl CGShading {
     #[cfg(all(feature = "CGColorSpace", feature = "CGFunction"))]
     #[inline]
     pub fn new_radial(
-        space: Option<&CGColorSpace>,
+        space: &CGColorSpace,
         start: CGPoint,
         start_radius: CGFloat,
         end: CGPoint,
         end_radius: CGFloat,
-        function: Option<&CGFunction>,
+        function: &CGFunction,
         extend_start: bool,
         extend_end: bool,
     ) -> Option<CFRetained<CGShading>> {
         extern "C-unwind" {
             fn CGShadingCreateRadial(
-                space: Option<&CGColorSpace>,
+                space: &CGColorSpace,
                 start: CGPoint,
                 start_radius: CGFloat,
                 end: CGPoint,
                 end_radius: CGFloat,
-                function: Option<&CGFunction>,
+                function: &CGFunction,
                 extend_start: bool,
                 extend_end: bool,
             ) -> Option<NonNull<CGShading>>;
@@ -146,24 +146,24 @@ impl CGShading {
     #[inline]
     pub fn new_radial_with_content_headroom(
         headroom: c_float,
-        space: Option<&CGColorSpace>,
+        space: &CGColorSpace,
         start: CGPoint,
         start_radius: CGFloat,
         end: CGPoint,
         end_radius: CGFloat,
-        function: Option<&CGFunction>,
+        function: &CGFunction,
         extend_start: bool,
         extend_end: bool,
     ) -> Option<CFRetained<CGShading>> {
         extern "C-unwind" {
             fn CGShadingCreateRadialWithContentHeadroom(
                 headroom: c_float,
-                space: Option<&CGColorSpace>,
+                space: &CGColorSpace,
                 start: CGPoint,
                 start_radius: CGFloat,
                 end: CGPoint,
                 end_radius: CGFloat,
-                function: Option<&CGFunction>,
+                function: &CGFunction,
                 extend_start: bool,
                 extend_end: bool,
             ) -> Option<NonNull<CGShading>>;
@@ -186,10 +186,10 @@ impl CGShading {
 
     #[doc(alias = "CGShadingGetContentHeadroom")]
     #[inline]
-    pub fn content_headroom(shading: Option<&CGShading>) -> c_float {
+    pub fn content_headroom(&self) -> c_float {
         extern "C-unwind" {
-            fn CGShadingGetContentHeadroom(shading: Option<&CGShading>) -> c_float;
+            fn CGShadingGetContentHeadroom(shading: &CGShading) -> c_float;
         }
-        unsafe { CGShadingGetContentHeadroom(shading) }
+        unsafe { CGShadingGetContentHeadroom(self) }
     }
 }

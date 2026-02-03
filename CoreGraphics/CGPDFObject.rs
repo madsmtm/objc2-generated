@@ -73,7 +73,7 @@ unsafe impl RefEncode for CGPDFObjectType {
 impl CGPDFObject {
     /// # Safety
     ///
-    /// `object` must be a valid pointer or null.
+    /// `object` must be a valid pointer.
     #[doc(alias = "CGPDFObjectGetType")]
     #[inline]
     pub unsafe fn r#type(object: CGPDFObjectRef) -> CGPDFObjectType {
@@ -85,7 +85,7 @@ impl CGPDFObject {
 
     /// # Safety
     ///
-    /// - `object` must be a valid pointer or null.
+    /// - `object` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFObjectGetValue")]
     #[inline]

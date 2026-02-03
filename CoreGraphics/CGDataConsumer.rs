@@ -73,17 +73,17 @@ impl CGDataConsumer {
     /// # Safety
     ///
     /// - `info` must be a valid pointer or null.
-    /// - `cbks` must be a valid pointer or null.
+    /// - `cbks` must be a valid pointer.
     #[doc(alias = "CGDataConsumerCreate")]
     #[inline]
     pub unsafe fn new(
         info: *mut c_void,
-        cbks: *const CGDataConsumerCallbacks,
+        cbks: NonNull<CGDataConsumerCallbacks>,
     ) -> Option<CFRetained<CGDataConsumer>> {
         extern "C-unwind" {
             fn CGDataConsumerCreate(
                 info: *mut c_void,
-                cbks: *const CGDataConsumerCallbacks,
+                cbks: NonNull<CGDataConsumerCallbacks>,
             ) -> Option<NonNull<CGDataConsumer>>;
         }
         let ret = unsafe { CGDataConsumerCreate(info, cbks) };
@@ -92,9 +92,9 @@ impl CGDataConsumer {
 
     #[doc(alias = "CGDataConsumerCreateWithURL")]
     #[inline]
-    pub fn with_url(url: Option<&CFURL>) -> Option<CFRetained<CGDataConsumer>> {
+    pub fn with_url(url: &CFURL) -> Option<CFRetained<CGDataConsumer>> {
         extern "C-unwind" {
-            fn CGDataConsumerCreateWithURL(url: Option<&CFURL>) -> Option<NonNull<CGDataConsumer>>;
+            fn CGDataConsumerCreateWithURL(url: &CFURL) -> Option<NonNull<CGDataConsumer>>;
         }
         let ret = unsafe { CGDataConsumerCreateWithURL(url) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -102,10 +102,10 @@ impl CGDataConsumer {
 
     #[doc(alias = "CGDataConsumerCreateWithCFData")]
     #[inline]
-    pub fn with_cf_data(data: Option<&CFMutableData>) -> Option<CFRetained<CGDataConsumer>> {
+    pub fn with_cf_data(data: &CFMutableData) -> Option<CFRetained<CGDataConsumer>> {
         extern "C-unwind" {
             fn CGDataConsumerCreateWithCFData(
-                data: Option<&CFMutableData>,
+                data: &CFMutableData,
             ) -> Option<NonNull<CGDataConsumer>>;
         }
         let ret = unsafe { CGDataConsumerCreateWithCFData(data) };

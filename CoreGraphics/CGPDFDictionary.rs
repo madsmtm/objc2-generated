@@ -28,7 +28,7 @@ pub type CGPDFDictionaryRef = *mut CGPDFDictionary;
 impl CGPDFDictionary {
     /// # Safety
     ///
-    /// `dict` must be a valid pointer or null.
+    /// `dict` must be a valid pointer.
     #[doc(alias = "CGPDFDictionaryGetCount")]
     #[inline]
     pub unsafe fn count(dict: CGPDFDictionaryRef) -> usize {
@@ -40,7 +40,7 @@ impl CGPDFDictionary {
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer or null.
+    /// - `dict` must be a valid pointer.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetObject")]
@@ -63,7 +63,7 @@ impl CGPDFDictionary {
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer or null.
+    /// - `dict` must be a valid pointer.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetBoolean")]
@@ -86,7 +86,7 @@ impl CGPDFDictionary {
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer or null.
+    /// - `dict` must be a valid pointer.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetInteger")]
@@ -109,7 +109,7 @@ impl CGPDFDictionary {
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer or null.
+    /// - `dict` must be a valid pointer.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetNumber")]
@@ -132,7 +132,7 @@ impl CGPDFDictionary {
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer or null.
+    /// - `dict` must be a valid pointer.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetName")]
@@ -154,7 +154,7 @@ impl CGPDFDictionary {
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer or null.
+    /// - `dict` must be a valid pointer.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetString")]
@@ -177,7 +177,7 @@ impl CGPDFDictionary {
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer or null.
+    /// - `dict` must be a valid pointer.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetArray")]
@@ -200,7 +200,7 @@ impl CGPDFDictionary {
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer or null.
+    /// - `dict` must be a valid pointer.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetDictionary")]
@@ -222,7 +222,7 @@ impl CGPDFDictionary {
 
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer or null.
+    /// - `dict` must be a valid pointer.
     /// - `key` must be a valid pointer.
     /// - `value` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryGetStream")]
@@ -252,7 +252,7 @@ pub type CGPDFDictionaryApplierFunction =
 impl CGPDFDictionary {
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer or null.
+    /// - `dict` must be a valid pointer.
     /// - `function` must be implemented correctly.
     /// - `info` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryApplyFunction")]
@@ -282,8 +282,8 @@ pub type CGPDFDictionaryApplierBlock =
 impl CGPDFDictionary {
     /// # Safety
     ///
-    /// - `dict` must be a valid pointer or null.
-    /// - `block` must be a valid pointer or null.
+    /// - `dict` must be a valid pointer.
+    /// - `block` must be a valid pointer.
     /// - `info` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryApplyBlock")]
     #[cfg(all(feature = "CGPDFObject", feature = "block2"))]

@@ -66,13 +66,13 @@ impl CGColorConversionInfo {
     #[cfg(feature = "CGColorSpace")]
     #[inline]
     pub fn new(
-        src: Option<&CGColorSpace>,
-        dst: Option<&CGColorSpace>,
+        src: &CGColorSpace,
+        dst: &CGColorSpace,
     ) -> Option<CFRetained<CGColorConversionInfo>> {
         extern "C-unwind" {
             fn CGColorConversionInfoCreate(
-                src: Option<&CGColorSpace>,
-                dst: Option<&CGColorSpace>,
+                src: &CGColorSpace,
+                dst: &CGColorSpace,
             ) -> Option<NonNull<CGColorConversionInfo>>;
         }
         let ret = unsafe { CGColorConversionInfoCreate(src, dst) };

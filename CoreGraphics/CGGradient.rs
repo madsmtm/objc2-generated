@@ -64,21 +64,21 @@ unsafe impl ConcreteType for CGGradient {
 impl CGGradient {
     /// # Safety
     ///
-    /// - `components` must be a valid pointer or null.
+    /// - `components` must be a valid pointer.
     /// - `locations` must be a valid pointer or null.
     #[doc(alias = "CGGradientCreateWithColorComponents")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
     pub unsafe fn with_color_components(
-        space: Option<&CGColorSpace>,
-        components: *const CGFloat,
+        space: &CGColorSpace,
+        components: NonNull<CGFloat>,
         locations: *const CGFloat,
         count: usize,
     ) -> Option<CFRetained<CGGradient>> {
         extern "C-unwind" {
             fn CGGradientCreateWithColorComponents(
-                space: Option<&CGColorSpace>,
-                components: *const CGFloat,
+                space: &CGColorSpace,
+                components: NonNull<CGFloat>,
                 locations: *const CGFloat,
                 count: usize,
             ) -> Option<NonNull<CGGradient>>;
@@ -90,23 +90,23 @@ impl CGGradient {
 
     /// # Safety
     ///
-    /// - `components` must be a valid pointer or null.
+    /// - `components` must be a valid pointer.
     /// - `locations` must be a valid pointer or null.
     #[doc(alias = "CGGradientCreateWithContentHeadroom")]
     #[cfg(feature = "CGColorSpace")]
     #[inline]
     pub unsafe fn with_content_headroom(
         headroom: c_float,
-        space: Option<&CGColorSpace>,
-        components: *const CGFloat,
+        space: &CGColorSpace,
+        components: NonNull<CGFloat>,
         locations: *const CGFloat,
         count: usize,
     ) -> Option<CFRetained<CGGradient>> {
         extern "C-unwind" {
             fn CGGradientCreateWithContentHeadroom(
                 headroom: c_float,
-                space: Option<&CGColorSpace>,
-                components: *const CGFloat,
+                space: &CGColorSpace,
+                components: NonNull<CGFloat>,
                 locations: *const CGFloat,
                 count: usize,
             ) -> Option<NonNull<CGGradient>>;
@@ -125,13 +125,13 @@ impl CGGradient {
     #[inline]
     pub unsafe fn with_colors(
         space: Option<&CGColorSpace>,
-        colors: Option<&CFArray<CGColor>>,
+        colors: &CFArray<CGColor>,
         locations: *const CGFloat,
     ) -> Option<CFRetained<CGGradient>> {
         extern "C-unwind" {
             fn CGGradientCreateWithColors(
                 space: Option<&CGColorSpace>,
-                colors: Option<&CFArray<CGColor>>,
+                colors: &CFArray<CGColor>,
                 locations: *const CGFloat,
             ) -> Option<NonNull<CGGradient>>;
         }
@@ -141,10 +141,10 @@ impl CGGradient {
 
     #[doc(alias = "CGGradientGetContentHeadroom")]
     #[inline]
-    pub fn content_headroom(gradient: Option<&CGGradient>) -> c_float {
+    pub fn content_headroom(&self) -> c_float {
         extern "C-unwind" {
-            fn CGGradientGetContentHeadroom(gradient: Option<&CGGradient>) -> c_float;
+            fn CGGradientGetContentHeadroom(gradient: &CGGradient) -> c_float;
         }
-        unsafe { CGGradientGetContentHeadroom(gradient) }
+        unsafe { CGGradientGetContentHeadroom(self) }
     }
 }

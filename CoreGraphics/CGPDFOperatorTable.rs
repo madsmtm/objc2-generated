@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -40,7 +41,7 @@ impl CGPDFOperatorTable {
 
     /// # Safety
     ///
-    /// `table` must be a valid pointer or null.
+    /// `table` must be a valid pointer.
     #[doc(alias = "CGPDFOperatorTableRetain")]
     #[inline]
     pub unsafe fn retain(table: CGPDFOperatorTableRef) -> CGPDFOperatorTableRef {
@@ -52,7 +53,7 @@ impl CGPDFOperatorTable {
 
     /// # Safety
     ///
-    /// `table` must be a valid pointer or null.
+    /// `table` must be a valid pointer.
     #[doc(alias = "CGPDFOperatorTableRelease")]
     #[inline]
     pub unsafe fn release(table: CGPDFOperatorTableRef) {
@@ -64,21 +65,21 @@ impl CGPDFOperatorTable {
 
     /// # Safety
     ///
-    /// - `table` must be a valid pointer or null.
-    /// - `name` must be a valid pointer or null.
+    /// - `table` must be a valid pointer.
+    /// - `name` must be a valid pointer.
     /// - `callback` must be implemented correctly.
     #[doc(alias = "CGPDFOperatorTableSetCallback")]
     #[cfg(feature = "CGPDFScanner")]
     #[inline]
     pub unsafe fn set_callback(
         table: CGPDFOperatorTableRef,
-        name: *const c_char,
+        name: NonNull<c_char>,
         callback: CGPDFOperatorCallback,
     ) {
         extern "C-unwind" {
             fn CGPDFOperatorTableSetCallback(
                 table: CGPDFOperatorTableRef,
-                name: *const c_char,
+                name: NonNull<c_char>,
                 callback: CGPDFOperatorCallback,
             );
         }
