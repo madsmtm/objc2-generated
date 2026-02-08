@@ -237,17 +237,14 @@ impl NSTypesetter {
         pub fn setHardInvalidation_forGlyphRange(&self, flag: bool, glyph_range: NSRange);
 
         #[cfg(feature = "NSLayoutManager")]
-        /// # Safety
-        ///
-        /// `next_glyph` must be a valid pointer.
         #[unsafe(method(layoutGlyphsInLayoutManager:startingAtGlyphIndex:maxNumberOfLineFragments:nextGlyphIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutGlyphsInLayoutManager_startingAtGlyphIndex_maxNumberOfLineFragments_nextGlyphIndex(
+        pub fn layoutGlyphsInLayoutManager_startingAtGlyphIndex_maxNumberOfLineFragments_nextGlyphIndex(
             &self,
             layout_manager: &NSLayoutManager,
             start_glyph_index: NSUInteger,
             max_num_lines: NSUInteger,
-            next_glyph: NonNull<NSUInteger>,
+            next_glyph: &mut NSUInteger,
         );
 
         #[cfg(feature = "NSLayoutManager")]
@@ -328,7 +325,6 @@ impl NSTypesetter {
         ///
         /// - `line_rect` must be a valid pointer.
         /// - `used_rect` must be a valid pointer.
-        /// - `baseline_offset` must be a valid pointer.
         #[unsafe(method(willSetLineFragmentRect:forGlyphRange:usedRect:baselineOffset:))]
         #[unsafe(method_family = none)]
         pub unsafe fn willSetLineFragmentRect_forGlyphRange_usedRect_baselineOffset(
@@ -336,7 +332,7 @@ impl NSTypesetter {
             line_rect: NSRectPointer,
             glyph_range: NSRange,
             used_rect: NSRectPointer,
-            baseline_offset: NonNull<CGFloat>,
+            baseline_offset: &mut CGFloat,
         );
 
         #[unsafe(method(shouldBreakLineByWordBeforeCharacterAtIndex:))]

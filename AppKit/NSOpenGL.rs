@@ -52,25 +52,26 @@ pub extern "C-unwind" fn NSOpenGLSetOption(pname: NSOpenGLGlobalOption, param: G
     unsafe { NSOpenGLSetOption(pname, param) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `param` must be a valid pointer.
-    #[cfg(feature = "objc2-open-gl")]
-    #[cfg(target_vendor = "apple")]
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-    pub fn NSOpenGLGetOption(pname: NSOpenGLGlobalOption, param: NonNull<GLint>);
+#[cfg(feature = "objc2-open-gl")]
+#[cfg(target_vendor = "apple")]
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+#[inline]
+pub extern "C-unwind" fn NSOpenGLGetOption(pname: NSOpenGLGlobalOption, param: &mut GLint) {
+    extern "C-unwind" {
+        fn NSOpenGLGetOption(pname: NSOpenGLGlobalOption, param: &mut GLint);
+    }
+    unsafe { NSOpenGLGetOption(pname, param) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `major` must be a valid pointer or null.
-    /// - `minor` must be a valid pointer or null.
-    #[cfg(feature = "objc2-open-gl")]
-    #[cfg(target_vendor = "apple")]
-    #[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
-    pub fn NSOpenGLGetVersion(major: *mut GLint, minor: *mut GLint);
+#[cfg(feature = "objc2-open-gl")]
+#[cfg(target_vendor = "apple")]
+#[deprecated = "OpenGL API deprecated; please use Metal and MetalKit.  (Define GL_SILENCE_DEPRECATION to silence these warnings.)"]
+#[inline]
+pub extern "C-unwind" fn NSOpenGLGetVersion(major: Option<&mut GLint>, minor: Option<&mut GLint>) {
+    extern "C-unwind" {
+        fn NSOpenGLGetVersion(major: Option<&mut GLint>, minor: Option<&mut GLint>);
+    }
+    unsafe { NSOpenGLGetVersion(major, minor) }
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsopenglpfaallrenderers?language=objc)

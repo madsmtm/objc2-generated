@@ -141,19 +141,16 @@ impl NSSpellChecker {
         #[unsafe(method_family = none)]
         pub fn uniqueSpellDocumentTag() -> NSInteger;
 
-        /// # Safety
-        ///
-        /// `word_count` must be a valid pointer or null.
         #[unsafe(method(checkSpellingOfString:startingAt:language:wrap:inSpellDocumentWithTag:wordCount:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn checkSpellingOfString_startingAt_language_wrap_inSpellDocumentWithTag_wordCount(
+        pub fn checkSpellingOfString_startingAt_language_wrap_inSpellDocumentWithTag_wordCount(
             &self,
             string_to_check: &NSString,
             starting_offset: NSInteger,
             language: Option<&NSString>,
             wrap_flag: bool,
             tag: NSInteger,
-            word_count: *mut NSInteger,
+            word_count: Option<&mut NSInteger>,
         ) -> NSRange;
 
         #[unsafe(method(checkSpellingOfString:startingAt:))]
@@ -189,8 +186,7 @@ impl NSSpellChecker {
 
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `word_count` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:))]
         #[unsafe(method_family = none)]
         pub unsafe fn checkString_range_types_options_inSpellDocumentWithTag_orthography_wordCount(
@@ -201,7 +197,7 @@ impl NSSpellChecker {
             options: Option<&NSDictionary<NSTextCheckingOptionKey, AnyObject>>,
             tag: NSInteger,
             orthography: Option<&mut Option<Retained<NSOrthography>>>,
-            word_count: *mut NSInteger,
+            word_count: Option<&mut NSInteger>,
         ) -> Retained<NSArray<NSTextCheckingResult>>;
 
         #[cfg(feature = "block2")]

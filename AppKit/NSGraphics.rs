@@ -423,16 +423,13 @@ unsafe impl RefEncode for NSWindowDepth {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-/// # Safety
-///
-/// `exact_match` must be a valid pointer or null.
 #[inline]
-pub unsafe extern "C-unwind" fn NSBestDepth(
+pub extern "C-unwind" fn NSBestDepth(
     color_space: &NSColorSpaceName,
     bps: NSInteger,
     bpp: NSInteger,
     planar: bool,
-    exact_match: *mut Bool,
+    exact_match: Option<&mut Bool>,
 ) -> NSWindowDepth {
     extern "C-unwind" {
         fn NSBestDepth(
@@ -440,7 +437,7 @@ pub unsafe extern "C-unwind" fn NSBestDepth(
             bps: NSInteger,
             bpp: NSInteger,
             planar: Bool,
-            exact_match: *mut Bool,
+            exact_match: Option<&mut Bool>,
         ) -> NSWindowDepth;
     }
     unsafe { NSBestDepth(color_space, bps, bpp, Bool::new(planar), exact_match) }
@@ -832,14 +829,12 @@ pub extern "C-unwind" fn NSBeep() {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `virtual_memory` must be a valid pointer.
-    /// - `window_backing_memory` must be a valid pointer.
-    /// - `window_dump_string` must be a valid pointer.
+    /// `window_dump_string` must be a valid pointer.
     #[deprecated = "Doesn't return anything useful since 10.0"]
     pub fn NSGetWindowServerMemory(
         context: NSInteger,
-        virtual_memory: NonNull<NSInteger>,
-        window_backing_memory: NonNull<NSInteger>,
+        virtual_memory: &mut NSInteger,
+        window_backing_memory: &mut NSInteger,
         window_dump_string: NonNull<NonNull<NSString>>,
     ) -> NSInteger;
 }
@@ -955,12 +950,13 @@ extern "C-unwind" {
     );
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `count` must be a valid pointer.
-    #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
-    pub fn NSCountWindows(count: NonNull<NSInteger>);
+#[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
+#[inline]
+pub extern "C-unwind" fn NSCountWindows(count: &mut NSInteger) {
+    extern "C-unwind" {
+        fn NSCountWindows(count: &mut NSInteger);
+    }
+    unsafe { NSCountWindows(count) }
 }
 
 extern "C-unwind" {
@@ -971,12 +967,13 @@ extern "C-unwind" {
     pub fn NSWindowList(size: NSInteger, list: NonNull<NSInteger>);
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// `count` must be a valid pointer.
-    #[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
-    pub fn NSCountWindowsForContext(context: NSInteger, count: NonNull<NSInteger>);
+#[deprecated = "Use +[NSWindow windowNumbersWithOptions:] instead"]
+#[inline]
+pub extern "C-unwind" fn NSCountWindowsForContext(context: NSInteger, count: &mut NSInteger) {
+    extern "C-unwind" {
+        fn NSCountWindowsForContext(context: NSInteger, count: &mut NSInteger);
+    }
+    unsafe { NSCountWindowsForContext(context, count) }
 }
 
 extern "C-unwind" {

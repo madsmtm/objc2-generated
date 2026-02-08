@@ -381,16 +381,12 @@ impl NSMatrix {
         #[unsafe(method_family = none)]
         pub fn setState_atRow_column(&self, value: NSInteger, row: NSInteger, col: NSInteger);
 
-        /// # Safety
-        ///
-        /// - `row_count` must be a valid pointer or null.
-        /// - `col_count` must be a valid pointer or null.
         #[unsafe(method(getNumberOfRows:columns:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getNumberOfRows_columns(
+        pub fn getNumberOfRows_columns(
             &self,
-            row_count: *mut NSInteger,
-            col_count: *mut NSInteger,
+            row_count: Option<&mut NSInteger>,
+            col_count: Option<&mut NSInteger>,
         );
 
         #[unsafe(method(numberOfRows))]
@@ -411,29 +407,21 @@ impl NSMatrix {
         pub fn cellFrameAtRow_column(&self, row: NSInteger, col: NSInteger) -> NSRect;
 
         #[cfg(feature = "NSCell")]
-        /// # Safety
-        ///
-        /// - `row` must be a valid pointer.
-        /// - `col` must be a valid pointer.
         #[unsafe(method(getRow:column:ofCell:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getRow_column_ofCell(
+        pub fn getRow_column_ofCell(
             &self,
-            row: NonNull<NSInteger>,
-            col: NonNull<NSInteger>,
+            row: &mut NSInteger,
+            col: &mut NSInteger,
             cell: &NSCell,
         ) -> bool;
 
-        /// # Safety
-        ///
-        /// - `row` must be a valid pointer.
-        /// - `col` must be a valid pointer.
         #[unsafe(method(getRow:column:forPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getRow_column_forPoint(
+        pub fn getRow_column_forPoint(
             &self,
-            row: NonNull<NSInteger>,
-            col: NonNull<NSInteger>,
+            row: &mut NSInteger,
+            col: &mut NSInteger,
             point: NSPoint,
         ) -> bool;
 

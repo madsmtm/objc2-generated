@@ -362,16 +362,12 @@ impl NSBitmapImageRep {
         #[unsafe(method_family = none)]
         pub fn bitmapFormat(&self) -> NSBitmapFormat;
 
-        /// # Safety
-        ///
-        /// - `compression` must be a valid pointer or null.
-        /// - `factor` must be a valid pointer or null.
         #[unsafe(method(getCompression:factor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getCompression_factor(
+        pub fn getCompression_factor(
             &self,
-            compression: *mut NSTIFFCompression,
-            factor: *mut c_float,
+            compression: Option<&mut NSTIFFCompression>,
+            factor: Option<&mut c_float>,
         );
 
         #[unsafe(method(setCompression:factor:))]
@@ -406,13 +402,12 @@ impl NSBitmapImageRep {
 
         /// # Safety
         ///
-        /// - `list` must be a valid pointer.
-        /// - `num_types` must be a valid pointer.
+        /// `list` must be a valid pointer or null.
         #[unsafe(method(getTIFFCompressionTypes:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getTIFFCompressionTypes_count(
-            list: NonNull<*const NSTIFFCompression>,
-            num_types: NonNull<NSInteger>,
+            list: &mut *const NSTIFFCompression,
+            num_types: &mut NSInteger,
         );
 
         #[unsafe(method(localizedNameForTIFFCompressionType:))]

@@ -175,19 +175,14 @@ impl NSWorkspace {
             >,
         );
 
-        /// # Safety
-        ///
-        /// - `removable_flag` must be a valid pointer or null.
-        /// - `writable_flag` must be a valid pointer or null.
-        /// - `unmountable_flag` must be a valid pointer or null.
         #[unsafe(method(getFileSystemInfoForPath:isRemovable:isWritable:isUnmountable:description:type:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getFileSystemInfoForPath_isRemovable_isWritable_isUnmountable_description_type(
+        pub fn getFileSystemInfoForPath_isRemovable_isWritable_isUnmountable_description_type(
             &self,
             full_path: &NSString,
-            removable_flag: *mut Bool,
-            writable_flag: *mut Bool,
-            unmountable_flag: *mut Bool,
+            removable_flag: Option<&mut Bool>,
+            writable_flag: Option<&mut Bool>,
+            unmountable_flag: Option<&mut Bool>,
             description: Option<&mut Option<Retained<NSString>>>,
             file_system_type: Option<&mut Option<Retained<NSString>>>,
         ) -> bool;
@@ -1045,8 +1040,7 @@ impl NSWorkspace {
 
         /// # Safety
         ///
-        /// - `files` generic should be of the correct type.
-        /// - `tag` must be a valid pointer or null.
+        /// `files` generic should be of the correct type.
         #[deprecated]
         #[unsafe(method(performFileOperation:source:destination:files:tag:))]
         #[unsafe(method_family = none)]
@@ -1056,7 +1050,7 @@ impl NSWorkspace {
             source: &NSString,
             destination: &NSString,
             files: &NSArray,
-            tag: *mut NSInteger,
+            tag: Option<&mut NSInteger>,
         ) -> bool;
 
         #[deprecated = "Use -[NSWorkspace URLForApplicationToOpenURL:] to get the URL of an application that will open a given item, or -[NSURL getResourceValue:forKey:error:] with NSURLContentTypeKey to get the type of the given item."]

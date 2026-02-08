@@ -175,15 +175,9 @@ impl NSATSTypesetter {
         #[unsafe(method_family = none)]
         pub fn paragraphSeparatorGlyphRange(&self) -> NSRange;
 
-        /// # Safety
-        ///
-        /// `line_fragment_origin` must be a valid pointer.
         #[unsafe(method(layoutParagraphAtPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn layoutParagraphAtPoint(
-            &self,
-            line_fragment_origin: NonNull<NSPoint>,
-        ) -> NSUInteger;
+        pub fn layoutParagraphAtPoint(&self, line_fragment_origin: &mut NSPoint) -> NSUInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:))]
@@ -232,16 +226,12 @@ impl NSATSTypesetter {
         #[unsafe(method_family = none)]
         pub fn setHardInvalidation_forGlyphRange(&self, flag: bool, glyph_range: NSRange);
 
-        /// # Safety
-        ///
-        /// - `line_fragment_rect` must be a valid pointer.
-        /// - `line_fragment_used_rect` must be a valid pointer.
         #[unsafe(method(getLineFragmentRect:usedRect:forParagraphSeparatorGlyphRange:atProposedOrigin:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getLineFragmentRect_usedRect_forParagraphSeparatorGlyphRange_atProposedOrigin(
+        pub fn getLineFragmentRect_usedRect_forParagraphSeparatorGlyphRange_atProposedOrigin(
             &self,
-            line_fragment_rect: NonNull<NSRect>,
-            line_fragment_used_rect: NonNull<NSRect>,
+            line_fragment_rect: &mut NSRect,
+            line_fragment_used_rect: &mut NSRect,
             paragraph_separator_glyph_range: NSRange,
             line_origin: NSPoint,
         );
@@ -253,19 +243,14 @@ impl NSATSTypesetter {
 impl NSATSTypesetter {
     extern_methods!(
         #[cfg(feature = "objc2-core-foundation")]
-        /// # Safety
-        ///
-        /// - `line_rect` must be a valid pointer.
-        /// - `used_rect` must be a valid pointer.
-        /// - `baseline_offset` must be a valid pointer.
         #[unsafe(method(willSetLineFragmentRect:forGlyphRange:usedRect:baselineOffset:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn willSetLineFragmentRect_forGlyphRange_usedRect_baselineOffset(
+        pub fn willSetLineFragmentRect_forGlyphRange_usedRect_baselineOffset(
             &self,
-            line_rect: NonNull<NSRect>,
+            line_rect: &mut NSRect,
             glyph_range: NSRange,
-            used_rect: NonNull<NSRect>,
-            baseline_offset: NonNull<CGFloat>,
+            used_rect: &mut NSRect,
+            baseline_offset: &mut CGFloat,
         );
 
         #[unsafe(method(shouldBreakLineByWordBeforeCharacterAtIndex:))]

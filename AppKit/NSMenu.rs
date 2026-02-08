@@ -765,11 +765,11 @@ impl NSMenu {
 
         /// # Safety
         ///
-        /// `zone` must be a valid pointer.
+        /// `zone` might not allow `None`.
         #[deprecated]
         #[unsafe(method(setMenuZone:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMenuZone(zone: *mut NSZone, mtm: MainThreadMarker);
+        pub unsafe fn setMenuZone(zone: Option<&NSZone>, mtm: MainThreadMarker);
 
         #[deprecated]
         #[unsafe(method(attachedMenu))]

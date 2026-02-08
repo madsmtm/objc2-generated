@@ -262,14 +262,13 @@ impl NSView {
 
         /// # Safety
         ///
-        /// - `rects` must be a valid pointer or null.
-        /// - `count` must be a valid pointer or null.
+        /// `rects` must be a valid pointer or null.
         #[unsafe(method(getRectsBeingDrawn:count:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getRectsBeingDrawn_count(
             &self,
-            rects: *mut *const NSRect,
-            count: *mut NSInteger,
+            rects: Option<&mut *const NSRect>,
+            count: Option<&mut NSInteger>,
         );
 
         #[unsafe(method(needsToDrawRect:))]
@@ -1317,28 +1316,22 @@ impl NSView {
         pub fn widthAdjustLimit(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// # Safety
-        ///
-        /// `new_right` must be a valid pointer.
         #[unsafe(method(adjustPageWidthNew:left:right:limit:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn adjustPageWidthNew_left_right_limit(
+        pub fn adjustPageWidthNew_left_right_limit(
             &self,
-            new_right: NonNull<CGFloat>,
+            new_right: &mut CGFloat,
             old_left: CGFloat,
             old_right: CGFloat,
             right_limit: CGFloat,
         );
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// # Safety
-        ///
-        /// `new_bottom` must be a valid pointer.
         #[unsafe(method(adjustPageHeightNew:top:bottom:limit:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn adjustPageHeightNew_top_bottom_limit(
+        pub fn adjustPageHeightNew_top_bottom_limit(
             &self,
-            new_bottom: NonNull<CGFloat>,
+            new_bottom: &mut CGFloat,
             old_top: CGFloat,
             old_bottom: CGFloat,
             bottom_limit: CGFloat,

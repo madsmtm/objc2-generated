@@ -394,8 +394,7 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// - `item` should be of the correct type.
-        /// - `content_rect` must be a valid pointer.
+        /// `item` should be of the correct type.
         #[optional]
         #[unsafe(method(sharingService:transitionImageForShareItem:contentRect:))]
         #[unsafe(method_family = none)]
@@ -403,14 +402,13 @@ extern_protocol!(
             &self,
             sharing_service: &NSSharingService,
             item: &AnyObject,
-            content_rect: NonNull<NSRect>,
+            content_rect: &mut NSRect,
         ) -> Option<Retained<NSImage>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSWindow"))]
         /// # Safety
         ///
-        /// - `items` generic should be of the correct type.
-        /// - `sharing_content_scope` must be a valid pointer.
+        /// `items` generic should be of the correct type.
         #[optional]
         #[unsafe(method(sharingService:sourceWindowForShareItems:sharingContentScope:))]
         #[unsafe(method_family = none)]
@@ -418,26 +416,21 @@ extern_protocol!(
             &self,
             sharing_service: &NSSharingService,
             items: &NSArray,
-            sharing_content_scope: NonNull<NSSharingContentScope>,
+            sharing_content_scope: &mut NSSharingContentScope,
         ) -> Option<Retained<NSWindow>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// The following method is invoked when the service is performed and wants to display its contents in a popover. The delegate should return the view that will act as the anchor of the popover, along with the target rectangle within the bounds of that view and preferred edge of that rectangle for the popover to appear. The delegate may also return nil, indicating that there is no anchoring view currently available, in which case the service may attempt to display the service via some other means.
         ///
         /// The service named NSSharingServiceNameCloudSharing prefers to display itself using a popover anchored to an "Add People" or "Share" button. If no such button is available or visible, return nil.
-        ///
-        /// # Safety
-        ///
-        /// - `positioning_rect` must be a valid pointer.
-        /// - `preferred_edge` must be a valid pointer.
         #[optional]
         #[unsafe(method(anchoringViewForSharingService:showRelativeToRect:preferredEdge:))]
         #[unsafe(method_family = none)]
-        unsafe fn anchoringViewForSharingService_showRelativeToRect_preferredEdge(
+        fn anchoringViewForSharingService_showRelativeToRect_preferredEdge(
             &self,
             sharing_service: &NSSharingService,
-            positioning_rect: NonNull<NSRect>,
-            preferred_edge: NonNull<NSRectEdge>,
+            positioning_rect: &mut NSRect,
+            preferred_edge: &mut NSRectEdge,
         ) -> Option<Retained<NSView>>;
     }
 );

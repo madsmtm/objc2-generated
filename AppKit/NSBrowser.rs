@@ -547,16 +547,12 @@ impl NSBrowser {
         #[unsafe(method_family = none)]
         pub fn frameOfRow_inColumn(&self, row: NSInteger, column: NSInteger) -> NSRect;
 
-        /// # Safety
-        ///
-        /// - `row` must be a valid pointer or null.
-        /// - `column` must be a valid pointer or null.
         #[unsafe(method(getRow:column:forPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getRow_column_forPoint(
+        pub fn getRow_column_forPoint(
             &self,
-            row: *mut NSInteger,
-            column: *mut NSInteger,
+            row: Option<&mut NSInteger>,
+            column: Option<&mut NSInteger>,
             point: NSPoint,
         ) -> bool;
 
@@ -1067,21 +1063,16 @@ extern_protocol!(
             feature = "NSResponder",
             feature = "NSView"
         ))]
-        /// # Safety
-        ///
-        /// - `row` must be a valid pointer.
-        /// - `column` must be a valid pointer.
-        /// - `drop_operation` must be a valid pointer.
         #[optional]
         #[unsafe(method(browser:validateDrop:proposedRow:column:dropOperation:))]
         #[unsafe(method_family = none)]
-        unsafe fn browser_validateDrop_proposedRow_column_dropOperation(
+        fn browser_validateDrop_proposedRow_column_dropOperation(
             &self,
             browser: &NSBrowser,
             info: &ProtocolObject<dyn NSDraggingInfo>,
-            row: NonNull<NSInteger>,
-            column: NonNull<NSInteger>,
-            drop_operation: NonNull<NSBrowserDropOperation>,
+            row: &mut NSInteger,
+            column: &mut NSInteger,
+            drop_operation: &mut NSBrowserDropOperation,
         ) -> NSDragOperation;
 
         #[cfg(all(

@@ -768,15 +768,12 @@ impl NSTextView {
         #[unsafe(method_family = none)]
         pub fn rangeForUserCompletion(&self) -> NSRange;
 
-        /// # Safety
-        ///
-        /// `index` must be a valid pointer.
         #[unsafe(method(completionsForPartialWordRange:indexOfSelectedItem:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completionsForPartialWordRange_indexOfSelectedItem(
+        pub fn completionsForPartialWordRange_indexOfSelectedItem(
             &self,
             char_range: NSRange,
-            index: NonNull<NSInteger>,
+            index: &mut NSInteger,
         ) -> Option<Retained<NSArray<NSString>>>;
 
         #[unsafe(method(insertCompletion:forPartialWordRange:movement:isFinal:))]
@@ -2030,18 +2027,15 @@ extern_protocol!(
         ) -> Option<Retained<NSString>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        /// # Safety
-        ///
-        /// `index` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(textView:completions:forPartialWordRange:indexOfSelectedItem:))]
         #[unsafe(method_family = none)]
-        unsafe fn textView_completions_forPartialWordRange_indexOfSelectedItem(
+        fn textView_completions_forPartialWordRange_indexOfSelectedItem(
             &self,
             text_view: &NSTextView,
             words: &NSArray<NSString>,
             char_range: NSRange,
-            index: *mut NSInteger,
+            index: Option<&mut NSInteger>,
         ) -> Retained<NSArray<NSString>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
@@ -2103,8 +2097,7 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `checking_types` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[optional]
         #[unsafe(method(textView:willCheckTextInRange:options:types:))]
         #[unsafe(method_family = none)]
@@ -2113,7 +2106,7 @@ extern_protocol!(
             view: &NSTextView,
             range: NSRange,
             options: &NSDictionary<NSTextCheckingOptionKey, AnyObject>,
-            checking_types: NonNull<NSTextCheckingTypes>,
+            checking_types: &mut NSTextCheckingTypes,
         ) -> Retained<NSDictionary<NSTextCheckingOptionKey, AnyObject>>;
 
         #[cfg(all(

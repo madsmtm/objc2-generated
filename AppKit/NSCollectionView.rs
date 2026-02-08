@@ -1081,34 +1081,27 @@ extern_protocol!(
         ) -> Retained<NSImage>;
 
         #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-        /// # Safety
-        ///
-        /// `proposed_drop_operation` must be a valid pointer.
         #[optional]
         #[unsafe(method(collectionView:validateDrop:proposedIndexPath:dropOperation:))]
         #[unsafe(method_family = none)]
-        unsafe fn collectionView_validateDrop_proposedIndexPath_dropOperation(
+        fn collectionView_validateDrop_proposedIndexPath_dropOperation(
             &self,
             collection_view: &NSCollectionView,
             dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
             proposed_drop_index_path: &mut Retained<NSIndexPath>,
-            proposed_drop_operation: NonNull<NSCollectionViewDropOperation>,
+            proposed_drop_operation: &mut NSCollectionViewDropOperation,
         ) -> NSDragOperation;
 
         #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]
-        /// # Safety
-        ///
-        /// - `proposed_drop_index` must be a valid pointer.
-        /// - `proposed_drop_operation` must be a valid pointer.
         #[optional]
         #[unsafe(method(collectionView:validateDrop:proposedIndex:dropOperation:))]
         #[unsafe(method_family = none)]
-        unsafe fn collectionView_validateDrop_proposedIndex_dropOperation(
+        fn collectionView_validateDrop_proposedIndex_dropOperation(
             &self,
             collection_view: &NSCollectionView,
             dragging_info: &ProtocolObject<dyn NSDraggingInfo>,
-            proposed_drop_index: NonNull<NSInteger>,
-            proposed_drop_operation: NonNull<NSCollectionViewDropOperation>,
+            proposed_drop_index: &mut NSInteger,
+            proposed_drop_operation: &mut NSCollectionViewDropOperation,
         ) -> NSDragOperation;
 
         #[cfg(all(feature = "NSDragging", feature = "NSResponder", feature = "NSView"))]

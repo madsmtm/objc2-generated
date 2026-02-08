@@ -736,17 +736,9 @@ impl NSCell {
         #[unsafe(method_family = none)]
         pub fn mouseDownFlags(&self) -> NSInteger;
 
-        /// # Safety
-        ///
-        /// - `delay` must be a valid pointer.
-        /// - `interval` must be a valid pointer.
         #[unsafe(method(getPeriodicDelay:interval:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getPeriodicDelay_interval(
-            &self,
-            delay: NonNull<c_float>,
-            interval: NonNull<c_float>,
-        );
+        pub fn getPeriodicDelay_interval(&self, delay: &mut c_float, interval: &mut c_float);
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         #[unsafe(method(startTrackingAt:inView:))]

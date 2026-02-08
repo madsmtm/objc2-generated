@@ -190,12 +190,9 @@ impl NSBezierPath {
         #[unsafe(method_family = none)]
         pub fn strokeLineFromPoint_toPoint(point1: NSPoint, point2: NSPoint);
 
-        /// # Safety
-        ///
-        /// `packed_glyphs` must be a valid pointer.
         #[unsafe(method(drawPackedGlyphs:atPoint:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn drawPackedGlyphs_atPoint(packed_glyphs: NonNull<c_char>, point: NSPoint);
+        pub fn drawPackedGlyphs_atPoint(packed_glyphs: &CStr, point: NSPoint);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(defaultMiterLimit))]
@@ -370,16 +367,14 @@ impl NSBezierPath {
         #[cfg(feature = "objc2-core-foundation")]
         /// # Safety
         ///
-        /// - `pattern` must be a valid pointer or null.
-        /// - `count` must be a valid pointer or null.
-        /// - `phase` must be a valid pointer or null.
+        /// `pattern` must be a valid pointer or null.
         #[unsafe(method(getLineDash:count:phase:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getLineDash_count_phase(
             &self,
             pattern: *mut CGFloat,
-            count: *mut NSInteger,
-            phase: *mut CGFloat,
+            count: Option<&mut NSInteger>,
+            phase: Option<&mut CGFloat>,
         );
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -610,13 +605,10 @@ impl NSBezierPath {
             font: &NSFont,
         );
 
-        /// # Safety
-        ///
-        /// `packed_glyphs` must be a valid pointer.
         #[deprecated = "Use -appendBezierPathWithCGGlyphs:count:inFont: instead"]
         #[unsafe(method(appendBezierPathWithPackedGlyphs:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn appendBezierPathWithPackedGlyphs(&self, packed_glyphs: NonNull<c_char>);
+        pub fn appendBezierPathWithPackedGlyphs(&self, packed_glyphs: &CStr);
     );
 }
 

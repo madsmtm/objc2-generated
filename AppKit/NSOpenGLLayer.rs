@@ -108,7 +108,7 @@ impl NSOpenGLLayer {
         ))]
         /// # Safety
         ///
-        /// `ts` must be a valid pointer.
+        /// `ts` struct field `version` must be set correctly.
         #[unsafe(method(canDrawInOpenGLContext:pixelFormat:forLayerTime:displayTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canDrawInOpenGLContext_pixelFormat_forLayerTime_displayTime(
@@ -116,7 +116,7 @@ impl NSOpenGLLayer {
             context: &NSOpenGLContext,
             pixel_format: &NSOpenGLPixelFormat,
             t: CFTimeInterval,
-            ts: NonNull<CVTimeStamp>,
+            ts: &CVTimeStamp,
         ) -> bool;
 
         #[cfg(all(
@@ -126,7 +126,7 @@ impl NSOpenGLLayer {
         ))]
         /// # Safety
         ///
-        /// `ts` must be a valid pointer.
+        /// `ts` struct field `version` must be set correctly.
         #[unsafe(method(drawInOpenGLContext:pixelFormat:forLayerTime:displayTime:))]
         #[unsafe(method_family = none)]
         pub unsafe fn drawInOpenGLContext_pixelFormat_forLayerTime_displayTime(
@@ -134,7 +134,7 @@ impl NSOpenGLLayer {
             context: &NSOpenGLContext,
             pixel_format: &NSOpenGLPixelFormat,
             t: CFTimeInterval,
-            ts: NonNull<CVTimeStamp>,
+            ts: &CVTimeStamp,
         );
     );
 }

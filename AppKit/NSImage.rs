@@ -477,13 +477,12 @@ impl NSImage {
         #[cfg(target_vendor = "apple")]
         /// # Safety
         ///
-        /// - `proposed_dest_rect` must be a valid pointer or null.
-        /// - `hints` generic should be of the correct type.
+        /// `hints` generic should be of the correct type.
         #[unsafe(method(CGImageForProposedRect:context:hints:))]
         #[unsafe(method_family = none)]
         pub unsafe fn CGImageForProposedRect_context_hints(
             &self,
-            proposed_dest_rect: *mut NSRect,
+            proposed_dest_rect: Option<&mut NSRect>,
             reference_context: Option<&NSGraphicsContext>,
             hints: Option<&NSDictionary<NSImageHintKey, AnyObject>>,
         ) -> Option<Retained<CGImage>>;

@@ -340,18 +340,9 @@ impl NSButton {
         pub fn setPeriodicDelay_interval(&self, delay: c_float, interval: c_float);
 
         /// Gets the initial delay and repeat interval, in seconds, for repeated action messages sent when `continuous` is YES. Both parameters to this method must not be NULL.
-        ///
-        /// # Safety
-        ///
-        /// - `delay` must be a valid pointer.
-        /// - `interval` must be a valid pointer.
         #[unsafe(method(getPeriodicDelay:interval:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getPeriodicDelay_interval(
-            &self,
-            delay: NonNull<c_float>,
-            interval: NonNull<c_float>,
-        );
+        pub fn getPeriodicDelay_interval(&self, delay: &mut c_float, interval: &mut c_float);
 
         #[cfg(feature = "NSButtonCell")]
         /// The bezel style of the button, which provides a set of bezel artwork, layout metrics, and content styling from a set of system-provided styles. See the NSBezelStyle enumeration for a list of available styles. The bezel style is not used if the `bordered` property is set to `NO`.

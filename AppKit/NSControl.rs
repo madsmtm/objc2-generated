@@ -573,19 +573,16 @@ extern_protocol!(
             feature = "NSTextView",
             feature = "NSView"
         ))]
-        /// # Safety
-        ///
-        /// `index` must be a valid pointer.
         #[optional]
         #[unsafe(method(control:textView:completions:forPartialWordRange:indexOfSelectedItem:))]
         #[unsafe(method_family = none)]
-        unsafe fn control_textView_completions_forPartialWordRange_indexOfSelectedItem(
+        fn control_textView_completions_forPartialWordRange_indexOfSelectedItem(
             &self,
             control: &NSControl,
             text_view: &NSTextView,
             words: &NSArray<NSString>,
             char_range: NSRange,
-            index: NonNull<NSInteger>,
+            index: &mut NSInteger,
         ) -> Retained<NSArray<NSString>>;
     }
 );

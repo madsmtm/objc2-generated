@@ -249,8 +249,7 @@ extern_protocol!(
 
         /// # Safety
         ///
-        /// - `out_range` must be a valid pointer.
-        /// - `out_flag` must be a valid pointer.
+        /// `out_range` must be a valid pointer.
         #[optional]
         #[unsafe(method(stringAtIndex:effectiveRange:endsWithSearchBoundary:))]
         #[unsafe(method_family = none)]
@@ -258,7 +257,7 @@ extern_protocol!(
             &self,
             character_index: NSUInteger,
             out_range: NSRangePointer,
-            out_flag: NonNull<Bool>,
+            out_flag: &mut Bool,
         ) -> Retained<NSString>;
 
         #[optional]

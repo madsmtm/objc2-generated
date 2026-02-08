@@ -401,17 +401,9 @@ impl NSButtonCell {
         #[unsafe(method_family = none)]
         pub fn setPeriodicDelay_interval(&self, delay: c_float, interval: c_float);
 
-        /// # Safety
-        ///
-        /// - `delay` must be a valid pointer.
-        /// - `interval` must be a valid pointer.
         #[unsafe(method(getPeriodicDelay:interval:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getPeriodicDelay_interval(
-            &self,
-            delay: NonNull<c_float>,
-            interval: NonNull<c_float>,
-        );
+        pub fn getPeriodicDelay_interval(&self, delay: &mut c_float, interval: &mut c_float);
 
         /// # Safety
         ///

@@ -60,17 +60,14 @@ impl NSApplication {
             handler: &ProtocolObject<dyn NSUserInterfaceItemSearching>,
         );
 
-        /// # Safety
-        ///
-        /// `found_range` must be a valid pointer or null.
         #[unsafe(method(searchString:inUserInterfaceItemString:searchRange:foundRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn searchString_inUserInterfaceItemString_searchRange_foundRange(
+        pub fn searchString_inUserInterfaceItemString_searchRange_foundRange(
             &self,
             search_string: &NSString,
             string_to_search: &NSString,
             search_range: NSRange,
-            found_range: *mut NSRange,
+            found_range: Option<&mut NSRange>,
         ) -> bool;
     );
 }

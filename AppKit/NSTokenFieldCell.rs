@@ -246,19 +246,15 @@ extern_protocol!(
         /// Returns: An array of strings (`NSString`) that are possible completions
         ///
         /// If the delegate does not implement this method, no completions are provided
-        ///
-        /// # Safety
-        ///
-        /// `selected_index` must be a valid pointer.
         #[optional]
         #[unsafe(method(tokenFieldCell:completionsForSubstring:indexOfToken:indexOfSelectedItem:))]
         #[unsafe(method_family = none)]
-        unsafe fn tokenFieldCell_completionsForSubstring_indexOfToken_indexOfSelectedItem(
+        fn tokenFieldCell_completionsForSubstring_indexOfToken_indexOfSelectedItem(
             &self,
             token_field_cell: &NSTokenFieldCell,
             substring: &NSString,
             token_index: NSInteger,
-            selected_index: NonNull<NSInteger>,
+            selected_index: &mut NSInteger,
         ) -> Retained<NSArray>;
 
         #[cfg(all(

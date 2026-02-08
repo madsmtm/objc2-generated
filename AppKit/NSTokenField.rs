@@ -25,19 +25,15 @@ extern_protocol!(
         /// Returns: An array of strings (`NSString`) that are possible completions, or `nil` to provide no completions
         ///
         /// If the delegate does not implement this method, no completions are provided
-        ///
-        /// # Safety
-        ///
-        /// `selected_index` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(tokenField:completionsForSubstring:indexOfToken:indexOfSelectedItem:))]
         #[unsafe(method_family = none)]
-        unsafe fn tokenField_completionsForSubstring_indexOfToken_indexOfSelectedItem(
+        fn tokenField_completionsForSubstring_indexOfToken_indexOfSelectedItem(
             &self,
             token_field: &NSTokenField,
             substring: &NSString,
             token_index: NSInteger,
-            selected_index: *mut NSInteger,
+            selected_index: Option<&mut NSInteger>,
         ) -> Option<Retained<NSArray>>;
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]

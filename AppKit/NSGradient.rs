@@ -166,15 +166,12 @@ impl NSGradient {
         pub fn numberOfColorStops(&self) -> NSInteger;
 
         #[cfg(all(feature = "NSColor", feature = "objc2-core-foundation"))]
-        /// # Safety
-        ///
-        /// `location` must be a valid pointer or null.
         #[unsafe(method(getColor:location:atIndex:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getColor_location_atIndex(
+        pub fn getColor_location_atIndex(
             &self,
             color: Option<&mut Retained<NSColor>>,
-            location: *mut CGFloat,
+            location: Option<&mut CGFloat>,
             index: NSInteger,
         );
 

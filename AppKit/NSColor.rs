@@ -729,20 +729,14 @@ impl NSColor {
         pub fn blueComponent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// # Safety
-        ///
-        /// - `red` must be a valid pointer or null.
-        /// - `green` must be a valid pointer or null.
-        /// - `blue` must be a valid pointer or null.
-        /// - `alpha` must be a valid pointer or null.
         #[unsafe(method(getRed:green:blue:alpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getRed_green_blue_alpha(
+        pub fn getRed_green_blue_alpha(
             &self,
-            red: *mut CGFloat,
-            green: *mut CGFloat,
-            blue: *mut CGFloat,
-            alpha: *mut CGFloat,
+            red: Option<&mut CGFloat>,
+            green: Option<&mut CGFloat>,
+            blue: Option<&mut CGFloat>,
+            alpha: Option<&mut CGFloat>,
         );
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -761,20 +755,14 @@ impl NSColor {
         pub fn brightnessComponent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// # Safety
-        ///
-        /// - `hue` must be a valid pointer or null.
-        /// - `saturation` must be a valid pointer or null.
-        /// - `brightness` must be a valid pointer or null.
-        /// - `alpha` must be a valid pointer or null.
         #[unsafe(method(getHue:saturation:brightness:alpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getHue_saturation_brightness_alpha(
+        pub fn getHue_saturation_brightness_alpha(
             &self,
-            hue: *mut CGFloat,
-            saturation: *mut CGFloat,
-            brightness: *mut CGFloat,
-            alpha: *mut CGFloat,
+            hue: Option<&mut CGFloat>,
+            saturation: Option<&mut CGFloat>,
+            brightness: Option<&mut CGFloat>,
+            alpha: Option<&mut CGFloat>,
         );
 
         #[cfg(feature = "objc2-core-foundation")]
@@ -783,13 +771,9 @@ impl NSColor {
         pub fn whiteComponent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// # Safety
-        ///
-        /// - `white` must be a valid pointer or null.
-        /// - `alpha` must be a valid pointer or null.
         #[unsafe(method(getWhite:alpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getWhite_alpha(&self, white: *mut CGFloat, alpha: *mut CGFloat);
+        pub fn getWhite_alpha(&self, white: Option<&mut CGFloat>, alpha: Option<&mut CGFloat>);
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(cyanComponent))]
@@ -812,22 +796,15 @@ impl NSColor {
         pub fn blackComponent(&self) -> CGFloat;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// # Safety
-        ///
-        /// - `cyan` must be a valid pointer or null.
-        /// - `magenta` must be a valid pointer or null.
-        /// - `yellow` must be a valid pointer or null.
-        /// - `black` must be a valid pointer or null.
-        /// - `alpha` must be a valid pointer or null.
         #[unsafe(method(getCyan:magenta:yellow:black:alpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getCyan_magenta_yellow_black_alpha(
+        pub fn getCyan_magenta_yellow_black_alpha(
             &self,
-            cyan: *mut CGFloat,
-            magenta: *mut CGFloat,
-            yellow: *mut CGFloat,
-            black: *mut CGFloat,
-            alpha: *mut CGFloat,
+            cyan: Option<&mut CGFloat>,
+            magenta: Option<&mut CGFloat>,
+            yellow: Option<&mut CGFloat>,
+            black: Option<&mut CGFloat>,
+            alpha: Option<&mut CGFloat>,
         );
 
         #[cfg(feature = "NSColorSpace")]

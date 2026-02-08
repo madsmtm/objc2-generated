@@ -65,15 +65,14 @@ impl NSGlyphGenerator {
     extern_methods!(
         /// # Safety
         ///
-        /// - `glyph_index` must be a valid pointer or null.
-        /// - `char_index` must be a valid pointer or null.
+        /// `char_index` must be a valid pointer or null.
         #[unsafe(method(generateGlyphsForGlyphStorage:desiredNumberOfCharacters:glyphIndex:characterIndex:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateGlyphsForGlyphStorage_desiredNumberOfCharacters_glyphIndex_characterIndex(
             &self,
             glyph_storage: &ProtocolObject<dyn NSGlyphStorage>,
             n_chars: NSUInteger,
-            glyph_index: *mut NSUInteger,
+            glyph_index: Option<&mut NSUInteger>,
             char_index: *mut NSUInteger,
         );
 
