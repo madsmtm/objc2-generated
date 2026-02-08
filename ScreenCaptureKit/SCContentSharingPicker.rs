@@ -45,28 +45,14 @@ extern_class!(
     /// See also [Apple's documentation](https://developer.apple.com/documentation/screencapturekit/sccontentsharingpickerconfiguration?language=objc)
     #[unsafe(super(NSObject))]
     #[derive(Debug, PartialEq, Eq, Hash)]
-    pub struct SCContentSharingPickerConfiguration<NSCopying: ?Sized = AnyObject>;
+    pub struct SCContentSharingPickerConfiguration;
 );
-
-impl<NSCopying: ?Sized + Message> SCContentSharingPickerConfiguration<NSCopying> {
-    /// Unchecked conversion of the generic parameter.
-    ///
-    /// # Safety
-    ///
-    /// The generic must be valid to reinterpret as the given type.
-    #[inline]
-    pub unsafe fn cast_unchecked<NewNSCopying: ?Sized + Message>(
-        &self,
-    ) -> &SCContentSharingPickerConfiguration<NewNSCopying> {
-        unsafe { &*((self as *const Self).cast()) }
-    }
-}
 
 extern_conformance!(
-    unsafe impl<NSCopying: ?Sized> NSObjectProtocol for SCContentSharingPickerConfiguration<NSCopying> {}
+    unsafe impl NSObjectProtocol for SCContentSharingPickerConfiguration {}
 );
 
-impl<NSCopying: Message> SCContentSharingPickerConfiguration<NSCopying> {
+impl SCContentSharingPickerConfiguration {
     extern_methods!(
         /// allowedPickerModes Limits the type of selections available to the user when the picker is presented. Default is 0, no excluded picking modes
         #[unsafe(method(allowedPickerModes))]
@@ -117,7 +103,7 @@ impl<NSCopying: Message> SCContentSharingPickerConfiguration<NSCopying> {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl<NSCopying: Message> SCContentSharingPickerConfiguration<NSCopying> {
+impl SCContentSharingPickerConfiguration {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -167,10 +153,6 @@ impl SCContentSharingPicker {
         /// Setter for [`defaultConfiguration`][Self::defaultConfiguration].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `default_configuration` generic should be of the correct type.
         #[unsafe(method(setDefaultConfiguration:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDefaultConfiguration(
@@ -230,10 +212,6 @@ impl SCContentSharingPicker {
         /// Parameter `stream`: stream for optional picking configuration
         ///
         /// Sets optional configuration for the picker for a specific stream. If this is not set, the stream will use the defaultConfiguration instead
-        ///
-        /// # Safety
-        ///
-        /// `picker_config` generic should be of the correct type.
         #[unsafe(method(setConfiguration:forStream:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setConfiguration_forStream(
