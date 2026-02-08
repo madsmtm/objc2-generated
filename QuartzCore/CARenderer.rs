@@ -76,10 +76,14 @@ impl CARenderer {
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-video"))]
         /// # Safety
         ///
-        /// `ts` must be a valid pointer or null.
+        /// `ts` struct field `version` must be set correctly.
         #[unsafe(method(beginFrameAtTime:timeStamp:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn beginFrameAtTime_timeStamp(&self, t: CFTimeInterval, ts: *mut CVTimeStamp);
+        pub unsafe fn beginFrameAtTime_timeStamp(
+            &self,
+            t: CFTimeInterval,
+            ts: Option<&mut CVTimeStamp>,
+        );
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(updateBounds))]

@@ -69,7 +69,7 @@ impl CAOpenGLLayer {
         ///
         /// - `ctx` must be a valid pointer.
         /// - `pf` must be a valid pointer.
-        /// - `ts` must be a valid pointer or null.
+        /// - `ts` struct field `version` must be set correctly.
         #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(canDrawInCGLContext:pixelFormat:forLayerTime:displayTime:))]
         #[unsafe(method_family = none)]
@@ -78,7 +78,7 @@ impl CAOpenGLLayer {
             ctx: CGLContextObj,
             pf: CGLPixelFormatObj,
             t: CFTimeInterval,
-            ts: *const CVTimeStamp,
+            ts: Option<&CVTimeStamp>,
         ) -> bool;
 
         #[cfg(all(
@@ -91,7 +91,7 @@ impl CAOpenGLLayer {
         ///
         /// - `ctx` must be a valid pointer.
         /// - `pf` must be a valid pointer.
-        /// - `ts` must be a valid pointer or null.
+        /// - `ts` struct field `version` must be set correctly.
         #[deprecated = "OpenGL is deprecated. (Define GL_SILENCE_DEPRECATION to silence these warnings)"]
         #[unsafe(method(drawInCGLContext:pixelFormat:forLayerTime:displayTime:))]
         #[unsafe(method_family = none)]
@@ -100,7 +100,7 @@ impl CAOpenGLLayer {
             ctx: CGLContextObj,
             pf: CGLPixelFormatObj,
             t: CFTimeInterval,
-            ts: *const CVTimeStamp,
+            ts: Option<&CVTimeStamp>,
         );
 
         #[cfg(feature = "objc2-open-gl")]
