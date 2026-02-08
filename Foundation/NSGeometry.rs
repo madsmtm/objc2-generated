@@ -298,19 +298,25 @@ pub extern "C-unwind" fn NSOffsetRect(a_rect: NSRect, d_x: CGFloat, d_y: CGFloat
     unsafe { NSOffsetRect(a_rect, d_x, d_y) }
 }
 
-extern "C-unwind" {
-    /// # Safety
-    ///
-    /// - `slice` must be a valid pointer.
-    /// - `rem` must be a valid pointer.
-    #[cfg(feature = "objc2-core-foundation")]
-    pub fn NSDivideRect(
-        in_rect: NSRect,
-        slice: NonNull<NSRect>,
-        rem: NonNull<NSRect>,
-        amount: CGFloat,
-        edge: NSRectEdge,
-    );
+#[cfg(feature = "objc2-core-foundation")]
+#[inline]
+pub extern "C-unwind" fn NSDivideRect(
+    in_rect: NSRect,
+    slice: &mut NSRect,
+    rem: &mut NSRect,
+    amount: CGFloat,
+    edge: NSRectEdge,
+) {
+    extern "C-unwind" {
+        fn NSDivideRect(
+            in_rect: NSRect,
+            slice: &mut NSRect,
+            rem: &mut NSRect,
+            amount: CGFloat,
+            edge: NSRectEdge,
+        );
+    }
+    unsafe { NSDivideRect(in_rect, slice, rem, amount, edge) }
 }
 
 #[cfg(feature = "objc2-core-foundation")]

@@ -59,71 +59,52 @@ unsafe impl RefEncode for NSCalculationError {
 }
 
 impl NSDecimal {
-    // TODO: pub fn NSDecimalIsNotANumber(dcm: NonNull<NSDecimal>,) -> Bool;
+    // TODO: pub fn NSDecimalIsNotANumber(dcm: &NSDecimal,) -> Bool;
 
     /// *************    Operations        **********
-    ///
-    /// # Safety
-    ///
-    /// - `destination` must be a valid pointer.
-    /// - `source` must be a valid pointer.
     #[doc(alias = "NSDecimalCopy")]
     #[inline]
-    pub unsafe fn copy(destination: NonNull<NSDecimal>, source: NonNull<NSDecimal>) {
+    pub fn copy(destination: &mut NSDecimal, source: &NSDecimal) {
         extern "C-unwind" {
-            fn NSDecimalCopy(destination: NonNull<NSDecimal>, source: NonNull<NSDecimal>);
+            fn NSDecimalCopy(destination: &mut NSDecimal, source: &NSDecimal);
         }
         unsafe { NSDecimalCopy(destination, source) }
     }
 
-    /// # Safety
-    ///
-    /// `number` must be a valid pointer.
     #[doc(alias = "NSDecimalCompact")]
     #[inline]
-    pub unsafe fn compact(number: NonNull<NSDecimal>) {
+    pub fn compact(number: &mut NSDecimal) {
         extern "C-unwind" {
-            fn NSDecimalCompact(number: NonNull<NSDecimal>);
+            fn NSDecimalCompact(number: &mut NSDecimal);
         }
         unsafe { NSDecimalCompact(number) }
     }
 
-    /// # Safety
-    ///
-    /// - `left_operand` must be a valid pointer.
-    /// - `right_operand` must be a valid pointer.
     #[doc(alias = "NSDecimalCompare")]
     #[cfg(feature = "NSObjCRuntime")]
     #[inline]
-    pub unsafe fn compare(
-        left_operand: NonNull<NSDecimal>,
-        right_operand: NonNull<NSDecimal>,
-    ) -> NSComparisonResult {
+    pub fn compare(left_operand: &NSDecimal, right_operand: &NSDecimal) -> NSComparisonResult {
         extern "C-unwind" {
             fn NSDecimalCompare(
-                left_operand: NonNull<NSDecimal>,
-                right_operand: NonNull<NSDecimal>,
+                left_operand: &NSDecimal,
+                right_operand: &NSDecimal,
             ) -> NSComparisonResult;
         }
         unsafe { NSDecimalCompare(left_operand, right_operand) }
     }
 
-    /// # Safety
-    ///
-    /// - `result` must be a valid pointer.
-    /// - `number` must be a valid pointer.
     #[doc(alias = "NSDecimalRound")]
     #[inline]
-    pub unsafe fn round(
-        result: NonNull<NSDecimal>,
-        number: NonNull<NSDecimal>,
+    pub fn round(
+        result: &mut NSDecimal,
+        number: &NSDecimal,
         scale: NSInteger,
         rounding_mode: NSRoundingMode,
     ) {
         extern "C-unwind" {
             fn NSDecimalRound(
-                result: NonNull<NSDecimal>,
-                number: NonNull<NSDecimal>,
+                result: &mut NSDecimal,
+                number: &NSDecimal,
                 scale: NSInteger,
                 rounding_mode: NSRoundingMode,
             );
@@ -131,139 +112,111 @@ impl NSDecimal {
         unsafe { NSDecimalRound(result, number, scale, rounding_mode) }
     }
 
-    /// # Safety
-    ///
-    /// - `number1` must be a valid pointer.
-    /// - `number2` must be a valid pointer.
     #[doc(alias = "NSDecimalNormalize")]
     #[inline]
-    pub unsafe fn normalize(
-        number1: NonNull<NSDecimal>,
-        number2: NonNull<NSDecimal>,
+    pub fn normalize(
+        number1: &mut NSDecimal,
+        number2: &mut NSDecimal,
         rounding_mode: NSRoundingMode,
     ) -> NSCalculationError {
         extern "C-unwind" {
             fn NSDecimalNormalize(
-                number1: NonNull<NSDecimal>,
-                number2: NonNull<NSDecimal>,
+                number1: &mut NSDecimal,
+                number2: &mut NSDecimal,
                 rounding_mode: NSRoundingMode,
             ) -> NSCalculationError;
         }
         unsafe { NSDecimalNormalize(number1, number2, rounding_mode) }
     }
 
-    /// # Safety
-    ///
-    /// - `result` must be a valid pointer.
-    /// - `left_operand` must be a valid pointer.
-    /// - `right_operand` must be a valid pointer.
     #[doc(alias = "NSDecimalAdd")]
     #[inline]
-    pub unsafe fn add(
-        result: NonNull<NSDecimal>,
-        left_operand: NonNull<NSDecimal>,
-        right_operand: NonNull<NSDecimal>,
+    pub fn add(
+        result: &mut NSDecimal,
+        left_operand: &NSDecimal,
+        right_operand: &NSDecimal,
         rounding_mode: NSRoundingMode,
     ) -> NSCalculationError {
         extern "C-unwind" {
             fn NSDecimalAdd(
-                result: NonNull<NSDecimal>,
-                left_operand: NonNull<NSDecimal>,
-                right_operand: NonNull<NSDecimal>,
+                result: &mut NSDecimal,
+                left_operand: &NSDecimal,
+                right_operand: &NSDecimal,
                 rounding_mode: NSRoundingMode,
             ) -> NSCalculationError;
         }
         unsafe { NSDecimalAdd(result, left_operand, right_operand, rounding_mode) }
     }
 
-    /// # Safety
-    ///
-    /// - `result` must be a valid pointer.
-    /// - `left_operand` must be a valid pointer.
-    /// - `right_operand` must be a valid pointer.
     #[doc(alias = "NSDecimalSubtract")]
     #[inline]
-    pub unsafe fn subtract(
-        result: NonNull<NSDecimal>,
-        left_operand: NonNull<NSDecimal>,
-        right_operand: NonNull<NSDecimal>,
+    pub fn subtract(
+        result: &mut NSDecimal,
+        left_operand: &NSDecimal,
+        right_operand: &NSDecimal,
         rounding_mode: NSRoundingMode,
     ) -> NSCalculationError {
         extern "C-unwind" {
             fn NSDecimalSubtract(
-                result: NonNull<NSDecimal>,
-                left_operand: NonNull<NSDecimal>,
-                right_operand: NonNull<NSDecimal>,
+                result: &mut NSDecimal,
+                left_operand: &NSDecimal,
+                right_operand: &NSDecimal,
                 rounding_mode: NSRoundingMode,
             ) -> NSCalculationError;
         }
         unsafe { NSDecimalSubtract(result, left_operand, right_operand, rounding_mode) }
     }
 
-    /// # Safety
-    ///
-    /// - `result` must be a valid pointer.
-    /// - `left_operand` must be a valid pointer.
-    /// - `right_operand` must be a valid pointer.
     #[doc(alias = "NSDecimalMultiply")]
     #[inline]
-    pub unsafe fn multiply(
-        result: NonNull<NSDecimal>,
-        left_operand: NonNull<NSDecimal>,
-        right_operand: NonNull<NSDecimal>,
+    pub fn multiply(
+        result: &mut NSDecimal,
+        left_operand: &NSDecimal,
+        right_operand: &NSDecimal,
         rounding_mode: NSRoundingMode,
     ) -> NSCalculationError {
         extern "C-unwind" {
             fn NSDecimalMultiply(
-                result: NonNull<NSDecimal>,
-                left_operand: NonNull<NSDecimal>,
-                right_operand: NonNull<NSDecimal>,
+                result: &mut NSDecimal,
+                left_operand: &NSDecimal,
+                right_operand: &NSDecimal,
                 rounding_mode: NSRoundingMode,
             ) -> NSCalculationError;
         }
         unsafe { NSDecimalMultiply(result, left_operand, right_operand, rounding_mode) }
     }
 
-    /// # Safety
-    ///
-    /// - `result` must be a valid pointer.
-    /// - `left_operand` must be a valid pointer.
-    /// - `right_operand` must be a valid pointer.
     #[doc(alias = "NSDecimalDivide")]
     #[inline]
-    pub unsafe fn divide(
-        result: NonNull<NSDecimal>,
-        left_operand: NonNull<NSDecimal>,
-        right_operand: NonNull<NSDecimal>,
+    pub fn divide(
+        result: &mut NSDecimal,
+        left_operand: &NSDecimal,
+        right_operand: &NSDecimal,
         rounding_mode: NSRoundingMode,
     ) -> NSCalculationError {
         extern "C-unwind" {
             fn NSDecimalDivide(
-                result: NonNull<NSDecimal>,
-                left_operand: NonNull<NSDecimal>,
-                right_operand: NonNull<NSDecimal>,
+                result: &mut NSDecimal,
+                left_operand: &NSDecimal,
+                right_operand: &NSDecimal,
                 rounding_mode: NSRoundingMode,
             ) -> NSCalculationError;
         }
         unsafe { NSDecimalDivide(result, left_operand, right_operand, rounding_mode) }
     }
 
-    /// # Safety
-    ///
-    /// - `result` must be a valid pointer.
-    /// - `number` must be a valid pointer.
     #[doc(alias = "NSDecimalPower")]
     #[inline]
-    pub unsafe fn power(
-        result: NonNull<NSDecimal>,
-        number: NonNull<NSDecimal>,
+    pub fn power(
+        result: &mut NSDecimal,
+        number: &NSDecimal,
         power: NSUInteger,
         rounding_mode: NSRoundingMode,
     ) -> NSCalculationError {
         extern "C-unwind" {
             fn NSDecimalPower(
-                result: NonNull<NSDecimal>,
-                number: NonNull<NSDecimal>,
+                result: &mut NSDecimal,
+                number: &NSDecimal,
                 power: NSUInteger,
                 rounding_mode: NSRoundingMode,
             ) -> NSCalculationError;
@@ -271,22 +224,18 @@ impl NSDecimal {
         unsafe { NSDecimalPower(result, number, power, rounding_mode) }
     }
 
-    /// # Safety
-    ///
-    /// - `result` must be a valid pointer.
-    /// - `number` must be a valid pointer.
     #[doc(alias = "NSDecimalMultiplyByPowerOf10")]
     #[inline]
-    pub unsafe fn multiply_by_power_of10(
-        result: NonNull<NSDecimal>,
-        number: NonNull<NSDecimal>,
+    pub fn multiply_by_power_of10(
+        result: &mut NSDecimal,
+        number: &NSDecimal,
         power: c_short,
         rounding_mode: NSRoundingMode,
     ) -> NSCalculationError {
         extern "C-unwind" {
             fn NSDecimalMultiplyByPowerOf10(
-                result: NonNull<NSDecimal>,
-                number: NonNull<NSDecimal>,
+                result: &mut NSDecimal,
+                number: &NSDecimal,
                 power: c_short,
                 rounding_mode: NSRoundingMode,
             ) -> NSCalculationError;
@@ -296,20 +245,13 @@ impl NSDecimal {
 
     /// # Safety
     ///
-    /// - `dcm` must be a valid pointer.
-    /// - `locale` should be of the correct type.
+    /// `locale` should be of the correct type.
     #[doc(alias = "NSDecimalString")]
     #[cfg(feature = "NSString")]
     #[inline]
-    pub unsafe fn string(
-        dcm: NonNull<NSDecimal>,
-        locale: Option<&AnyObject>,
-    ) -> Retained<NSString> {
+    pub unsafe fn string(dcm: &NSDecimal, locale: Option<&AnyObject>) -> Retained<NSString> {
         extern "C-unwind" {
-            fn NSDecimalString(
-                dcm: NonNull<NSDecimal>,
-                locale: Option<&AnyObject>,
-            ) -> *mut NSString;
+            fn NSDecimalString(dcm: &NSDecimal, locale: Option<&AnyObject>) -> *mut NSString;
         }
         let ret = unsafe { NSDecimalString(dcm, locale) };
         unsafe { Retained::retain_autoreleased(ret) }

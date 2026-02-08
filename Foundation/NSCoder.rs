@@ -43,15 +43,10 @@ impl NSCoder {
     extern_methods!(
         /// # Safety
         ///
-        /// - `type` must be a valid pointer.
-        /// - `addr` must be a valid pointer.
+        /// `addr` must be a valid pointer.
         #[unsafe(method(encodeValueOfObjCType:at:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn encodeValueOfObjCType_at(
-            &self,
-            r#type: NonNull<c_char>,
-            addr: NonNull<c_void>,
-        );
+        pub unsafe fn encodeValueOfObjCType_at(&self, r#type: &CStr, addr: NonNull<c_void>);
 
         #[cfg(feature = "NSData")]
         #[unsafe(method(encodeDataObject:))]
@@ -65,13 +60,12 @@ impl NSCoder {
 
         /// # Safety
         ///
-        /// - `type` must be a valid pointer.
-        /// - `data` must be a valid pointer.
+        /// `data` must be a valid pointer.
         #[unsafe(method(decodeValueOfObjCType:at:size:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeValueOfObjCType_at_size(
             &self,
-            r#type: NonNull<c_char>,
+            r#type: &CStr,
             data: NonNull<c_void>,
             size: NSUInteger,
         );
@@ -136,13 +130,12 @@ impl NSCoder {
 
         /// # Safety
         ///
-        /// - `type` must be a valid pointer.
-        /// - `array` must be a valid pointer.
+        /// `array` must be a valid pointer.
         #[unsafe(method(encodeArrayOfObjCType:count:at:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeArrayOfObjCType_count_at(
             &self,
-            r#type: NonNull<c_char>,
+            r#type: &CStr,
             count: NSUInteger,
             array: NonNull<c_void>,
         );
@@ -167,26 +160,20 @@ impl NSCoder {
 
         /// # Safety
         ///
-        /// - `item_type` must be a valid pointer.
-        /// - `array` must be a valid pointer.
+        /// `array` must be a valid pointer.
         #[unsafe(method(decodeArrayOfObjCType:count:at:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeArrayOfObjCType_count_at(
             &self,
-            item_type: NonNull<c_char>,
+            item_type: &CStr,
             count: NSUInteger,
             array: NonNull<c_void>,
         );
 
-        /// # Safety
-        ///
-        /// `lengthp` must be a valid pointer.
         #[unsafe(method(decodeBytesWithReturnedLength:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decodeBytesWithReturnedLength(
-            &self,
-            lengthp: NonNull<NSUInteger>,
-        ) -> *mut c_void;
+        pub unsafe fn decodeBytesWithReturnedLength(&self, lengthp: &mut NSUInteger)
+            -> *mut c_void;
 
         /// # Safety
         ///
@@ -332,15 +319,12 @@ impl NSCoder {
         pub unsafe fn decodeDoubleForKey(&self, key: &NSString) -> c_double;
 
         #[cfg(feature = "NSString")]
-        /// # Safety
-        ///
-        /// `lengthp` must be a valid pointer or null.
         #[unsafe(method(decodeBytesForKey:returnedLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeBytesForKey_returnedLength(
             &self,
             key: &NSString,
-            lengthp: *mut NSUInteger,
+            lengthp: Option<&mut NSUInteger>,
         ) -> *const u8;
 
         /// Decode bytes from the decoder. The length of the bytes must be greater than or equal to the `length` parameter.
@@ -642,15 +626,10 @@ impl NSCoder {
     extern_methods!(
         /// # Safety
         ///
-        /// - `type` must be a valid pointer.
-        /// - `data` must be a valid pointer.
+        /// `data` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(decodeValueOfObjCType:at:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn decodeValueOfObjCType_at(
-            &self,
-            r#type: NonNull<c_char>,
-            data: NonNull<c_void>,
-        );
+        pub unsafe fn decodeValueOfObjCType_at(&self, r#type: &CStr, data: NonNull<c_void>);
     );
 }

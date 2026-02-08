@@ -347,14 +347,13 @@ impl NSDecimalNumber {
     extern_methods!(
         /// # Safety
         ///
-        /// - `value` must be a valid pointer.
-        /// - `type` must be a valid pointer.
+        /// `value` must be a valid pointer.
         #[unsafe(method(initWithBytes:objCType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_objCType(
             this: Allocated<Self>,
             value: NonNull<c_void>,
-            r#type: NonNull<c_char>,
+            r#type: &CStr,
         ) -> Retained<Self>;
     );
 }
@@ -478,11 +477,8 @@ impl NSNumber {
 impl NSScanner {
     extern_methods!(
         #[cfg(feature = "NSDecimal")]
-        /// # Safety
-        ///
-        /// `dcm` must be a valid pointer or null.
         #[unsafe(method(scanDecimal:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scanDecimal(&self, dcm: *mut NSDecimal) -> bool;
+        pub fn scanDecimal(&self, dcm: Option<&mut NSDecimal>) -> bool;
     );
 }

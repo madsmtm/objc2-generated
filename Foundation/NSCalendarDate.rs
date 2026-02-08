@@ -245,25 +245,17 @@ impl NSCalendarDate {
         #[unsafe(method_family = none)]
         pub fn setTimeZone(&self, a_time_zone: Option<&NSTimeZone>);
 
-        /// # Safety
-        ///
-        /// - `yp` must be a valid pointer or null.
-        /// - `mop` must be a valid pointer or null.
-        /// - `dp` must be a valid pointer or null.
-        /// - `hp` must be a valid pointer or null.
-        /// - `mip` must be a valid pointer or null.
-        /// - `sp` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(years:months:days:hours:minutes:seconds:sinceDate:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn years_months_days_hours_minutes_seconds_sinceDate(
+        pub fn years_months_days_hours_minutes_seconds_sinceDate(
             &self,
-            yp: *mut NSInteger,
-            mop: *mut NSInteger,
-            dp: *mut NSInteger,
-            hp: *mut NSInteger,
-            mip: *mut NSInteger,
-            sp: *mut NSInteger,
+            yp: Option<&mut NSInteger>,
+            mop: Option<&mut NSInteger>,
+            dp: Option<&mut NSInteger>,
+            hp: Option<&mut NSInteger>,
+            mip: Option<&mut NSInteger>,
+            sp: Option<&mut NSInteger>,
             date: &NSCalendarDate,
         );
 

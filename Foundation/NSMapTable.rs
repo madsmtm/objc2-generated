@@ -290,16 +290,15 @@ pub unsafe extern "C-unwind" fn NSCompareMapTables(
 
 /// # Safety
 ///
-/// - `table` generic should be of the correct type.
-/// - `zone` must be a valid pointer or null.
+/// `table` generic should be of the correct type.
 #[cfg(feature = "NSZone")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSCopyMapTableWithZone(
     table: &NSMapTable,
-    zone: *mut NSZone,
+    zone: Option<&NSZone>,
 ) -> Retained<NSMapTable> {
     extern "C-unwind" {
-        fn NSCopyMapTableWithZone(table: &NSMapTable, zone: *mut NSZone) -> *mut NSMapTable;
+        fn NSCopyMapTableWithZone(table: &NSMapTable, zone: Option<&NSZone>) -> *mut NSMapTable;
     }
     let ret = unsafe { NSCopyMapTableWithZone(table, zone) };
     unsafe { Retained::from_raw(ret) }
@@ -316,15 +315,15 @@ pub unsafe extern "C-unwind" fn NSCopyMapTableWithZone(
 pub unsafe extern "C-unwind" fn NSMapMember(
     table: &NSMapTable,
     key: NonNull<c_void>,
-    original_key: *mut *mut c_void,
-    value: *mut *mut c_void,
+    original_key: Option<&mut *mut c_void>,
+    value: Option<&mut *mut c_void>,
 ) -> bool {
     extern "C-unwind" {
         fn NSMapMember(
             table: &NSMapTable,
             key: NonNull<c_void>,
-            original_key: *mut *mut c_void,
-            value: *mut *mut c_void,
+            original_key: Option<&mut *mut c_void>,
+            value: Option<&mut *mut c_void>,
         ) -> Bool;
     }
     unsafe { NSMapMember(table, key, original_key, value) }.as_bool()
@@ -392,14 +391,14 @@ extern "C-unwind" {
 #[inline]
 pub unsafe extern "C-unwind" fn NSNextMapEnumeratorPair(
     enumerator: NonNull<NSMapEnumerator>,
-    key: *mut *mut c_void,
-    value: *mut *mut c_void,
+    key: Option<&mut *mut c_void>,
+    value: Option<&mut *mut c_void>,
 ) -> bool {
     extern "C-unwind" {
         fn NSNextMapEnumeratorPair(
             enumerator: NonNull<NSMapEnumerator>,
-            key: *mut *mut c_void,
-            value: *mut *mut c_void,
+            key: Option<&mut *mut c_void>,
+            value: Option<&mut *mut c_void>,
         ) -> Bool;
     }
     unsafe { NSNextMapEnumeratorPair(enumerator, key, value) }.as_bool()
@@ -544,21 +543,20 @@ unsafe impl RefEncode for NSMapTableValueCallBacks {
 /// - `value_call_backs` struct field `retain` must be implemented correctly.
 /// - `value_call_backs` struct field `release` must be implemented correctly.
 /// - `value_call_backs` struct field `describe` must be implemented correctly.
-/// - `zone` must be a valid pointer or null.
 #[cfg(all(feature = "NSString", feature = "NSZone"))]
 #[inline]
 pub unsafe extern "C-unwind" fn NSCreateMapTableWithZone(
     key_call_backs: NSMapTableKeyCallBacks,
     value_call_backs: NSMapTableValueCallBacks,
     capacity: NSUInteger,
-    zone: *mut NSZone,
+    zone: Option<&NSZone>,
 ) -> Retained<NSMapTable> {
     extern "C-unwind" {
         fn NSCreateMapTableWithZone(
             key_call_backs: NSMapTableKeyCallBacks,
             value_call_backs: NSMapTableValueCallBacks,
             capacity: NSUInteger,
-            zone: *mut NSZone,
+            zone: Option<&NSZone>,
         ) -> *mut NSMapTable;
     }
     let ret = unsafe { NSCreateMapTableWithZone(key_call_backs, value_call_backs, capacity, zone) };

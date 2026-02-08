@@ -597,18 +597,13 @@ impl NSString {
         pub fn capitalizedStringWithLocale(&self, locale: Option<&NSLocale>) -> Retained<NSString>;
 
         #[cfg(feature = "NSRange")]
-        /// # Safety
-        ///
-        /// - `start_ptr` must be a valid pointer or null.
-        /// - `line_end_ptr` must be a valid pointer or null.
-        /// - `contents_end_ptr` must be a valid pointer or null.
         #[unsafe(method(getLineStart:end:contentsEnd:forRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getLineStart_end_contentsEnd_forRange(
+        pub fn getLineStart_end_contentsEnd_forRange(
             &self,
-            start_ptr: *mut NSUInteger,
-            line_end_ptr: *mut NSUInteger,
-            contents_end_ptr: *mut NSUInteger,
+            start_ptr: Option<&mut NSUInteger>,
+            line_end_ptr: Option<&mut NSUInteger>,
+            contents_end_ptr: Option<&mut NSUInteger>,
             range: NSRange,
         );
 
@@ -618,18 +613,13 @@ impl NSString {
         pub fn lineRangeForRange(&self, range: NSRange) -> NSRange;
 
         #[cfg(feature = "NSRange")]
-        /// # Safety
-        ///
-        /// - `start_ptr` must be a valid pointer or null.
-        /// - `par_end_ptr` must be a valid pointer or null.
-        /// - `contents_end_ptr` must be a valid pointer or null.
         #[unsafe(method(getParagraphStart:end:contentsEnd:forRange:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getParagraphStart_end_contentsEnd_forRange(
+        pub fn getParagraphStart_end_contentsEnd_forRange(
             &self,
-            start_ptr: *mut NSUInteger,
-            par_end_ptr: *mut NSUInteger,
-            contents_end_ptr: *mut NSUInteger,
+            start_ptr: Option<&mut NSUInteger>,
+            par_end_ptr: Option<&mut NSUInteger>,
+            contents_end_ptr: Option<&mut NSUInteger>,
             range: NSRange,
         );
 
@@ -706,7 +696,6 @@ impl NSString {
         /// # Safety
         ///
         /// - `buffer` must be a valid pointer or null.
-        /// - `used_buffer_count` must be a valid pointer or null.
         /// - `leftover` must be a valid pointer or null.
         #[unsafe(method(getBytes:maxLength:usedLength:encoding:options:range:remainingRange:))]
         #[unsafe(method_family = none)]
@@ -714,7 +703,7 @@ impl NSString {
             &self,
             buffer: *mut c_void,
             max_buffer_count: NSUInteger,
-            used_buffer_count: *mut NSUInteger,
+            used_buffer_count: Option<&mut NSUInteger>,
             encoding: NSStringEncoding,
             options: NSStringEncodingConversionOptions,
             range: NSRange,
@@ -896,14 +885,11 @@ impl NSString {
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `null_terminated_c_string` must be a valid pointer.
         #[unsafe(method(initWithUTF8String:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithUTF8String(
+        pub fn initWithUTF8String(
             this: Allocated<Self>,
-            null_terminated_c_string: NonNull<c_char>,
+            null_terminated_c_string: &CStr,
         ) -> Option<Retained<Self>>;
 
         #[unsafe(method(initWithString:))]
@@ -976,33 +962,22 @@ impl NSString {
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `null_terminated_c_string` must be a valid pointer.
         #[unsafe(method(stringWithUTF8String:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringWithUTF8String(
-            null_terminated_c_string: NonNull<c_char>,
-        ) -> Option<Retained<Self>>;
+        pub fn stringWithUTF8String(null_terminated_c_string: &CStr) -> Option<Retained<Self>>;
 
-        /// # Safety
-        ///
-        /// `null_terminated_c_string` must be a valid pointer.
         #[unsafe(method(initWithCString:encoding:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCString_encoding(
+        pub fn initWithCString_encoding(
             this: Allocated<Self>,
-            null_terminated_c_string: NonNull<c_char>,
+            null_terminated_c_string: &CStr,
             encoding: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
-        /// # Safety
-        ///
-        /// `c_string` must be a valid pointer.
         #[unsafe(method(stringWithCString:encoding:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringWithCString_encoding(
-            c_string: NonNull<c_char>,
+        pub fn stringWithCString_encoding(
+            c_string: &CStr,
             enc: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
@@ -1041,49 +1016,37 @@ impl NSString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        /// # Safety
-        ///
-        /// `enc` must be a valid pointer or null.
         #[unsafe(method(initWithContentsOfURL:usedEncoding:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContentsOfURL_usedEncoding_error(
+        pub fn initWithContentsOfURL_usedEncoding_error(
             this: Allocated<Self>,
             url: &NSURL,
-            enc: *mut NSStringEncoding,
+            enc: Option<&mut NSStringEncoding>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        /// # Safety
-        ///
-        /// `enc` must be a valid pointer or null.
         #[unsafe(method(initWithContentsOfFile:usedEncoding:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContentsOfFile_usedEncoding_error(
+        pub fn initWithContentsOfFile_usedEncoding_error(
             this: Allocated<Self>,
             path: &NSString,
-            enc: *mut NSStringEncoding,
+            enc: Option<&mut NSStringEncoding>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        /// # Safety
-        ///
-        /// `enc` must be a valid pointer or null.
         #[unsafe(method(stringWithContentsOfURL:usedEncoding:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringWithContentsOfURL_usedEncoding_error(
+        pub fn stringWithContentsOfURL_usedEncoding_error(
             url: &NSURL,
-            enc: *mut NSStringEncoding,
+            enc: Option<&mut NSStringEncoding>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        /// # Safety
-        ///
-        /// `enc` must be a valid pointer or null.
         #[unsafe(method(stringWithContentsOfFile:usedEncoding:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringWithContentsOfFile_usedEncoding_error(
+        pub fn stringWithContentsOfFile_usedEncoding_error(
             path: &NSString,
-            enc: *mut NSStringEncoding,
+            enc: Option<&mut NSStringEncoding>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
     );
 }
@@ -1129,14 +1092,11 @@ impl NSMutableString {
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `null_terminated_c_string` must be a valid pointer.
         #[unsafe(method(initWithUTF8String:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithUTF8String(
+        pub fn initWithUTF8String(
             this: Allocated<Self>,
-            null_terminated_c_string: NonNull<c_char>,
+            null_terminated_c_string: &CStr,
         ) -> Option<Retained<Self>>;
 
         #[unsafe(method(initWithString:))]
@@ -1209,33 +1169,22 @@ impl NSMutableString {
             length: NSUInteger,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `null_terminated_c_string` must be a valid pointer.
         #[unsafe(method(stringWithUTF8String:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringWithUTF8String(
-            null_terminated_c_string: NonNull<c_char>,
-        ) -> Option<Retained<Self>>;
+        pub fn stringWithUTF8String(null_terminated_c_string: &CStr) -> Option<Retained<Self>>;
 
-        /// # Safety
-        ///
-        /// `null_terminated_c_string` must be a valid pointer.
         #[unsafe(method(initWithCString:encoding:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCString_encoding(
+        pub fn initWithCString_encoding(
             this: Allocated<Self>,
-            null_terminated_c_string: NonNull<c_char>,
+            null_terminated_c_string: &CStr,
             encoding: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
-        /// # Safety
-        ///
-        /// `c_string` must be a valid pointer.
         #[unsafe(method(stringWithCString:encoding:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringWithCString_encoding(
-            c_string: NonNull<c_char>,
+        pub fn stringWithCString_encoding(
+            c_string: &CStr,
             enc: NSStringEncoding,
         ) -> Option<Retained<Self>>;
 
@@ -1274,49 +1223,37 @@ impl NSMutableString {
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        /// # Safety
-        ///
-        /// `enc` must be a valid pointer or null.
         #[unsafe(method(initWithContentsOfURL:usedEncoding:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContentsOfURL_usedEncoding_error(
+        pub fn initWithContentsOfURL_usedEncoding_error(
             this: Allocated<Self>,
             url: &NSURL,
-            enc: *mut NSStringEncoding,
+            enc: Option<&mut NSStringEncoding>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        /// # Safety
-        ///
-        /// `enc` must be a valid pointer or null.
         #[unsafe(method(initWithContentsOfFile:usedEncoding:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithContentsOfFile_usedEncoding_error(
+        pub fn initWithContentsOfFile_usedEncoding_error(
             this: Allocated<Self>,
             path: &NSString,
-            enc: *mut NSStringEncoding,
+            enc: Option<&mut NSStringEncoding>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        /// # Safety
-        ///
-        /// `enc` must be a valid pointer or null.
         #[unsafe(method(stringWithContentsOfURL:usedEncoding:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringWithContentsOfURL_usedEncoding_error(
+        pub fn stringWithContentsOfURL_usedEncoding_error(
             url: &NSURL,
-            enc: *mut NSStringEncoding,
+            enc: Option<&mut NSStringEncoding>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        /// # Safety
-        ///
-        /// `enc` must be a valid pointer or null.
         #[unsafe(method(stringWithContentsOfFile:usedEncoding:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringWithContentsOfFile_usedEncoding_error(
+        pub fn stringWithContentsOfFile_usedEncoding_error(
             path: &NSString,
-            enc: *mut NSStringEncoding,
+            enc: Option<&mut NSStringEncoding>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
     );
 }
@@ -1372,15 +1309,14 @@ impl NSString {
         #[cfg(all(feature = "NSData", feature = "NSDictionary"))]
         /// # Safety
         ///
-        /// - `opts` generic should be of the correct type.
-        /// - `used_lossy_conversion` must be a valid pointer or null.
+        /// `opts` generic should be of the correct type.
         #[unsafe(method(stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stringEncodingForData_encodingOptions_convertedString_usedLossyConversion(
             data: &NSData,
             opts: Option<&NSDictionary<NSStringEncodingDetectionOptionsKey, AnyObject>>,
             string: Option<&mut Option<Retained<NSString>>>,
-            used_lossy_conversion: *mut Bool,
+            used_lossy_conversion: Option<&mut Bool>,
         ) -> NSStringEncoding;
     );
 }
@@ -1697,16 +1633,10 @@ impl NSString {
             length: NSUInteger,
         ) -> Option<Retained<Self>>;
 
-        /// # Safety
-        ///
-        /// `bytes` must be a valid pointer.
         #[deprecated = "Use -initWithCString:encoding: instead"]
         #[unsafe(method(initWithCString:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCString(
-            this: Allocated<Self>,
-            bytes: NonNull<c_char>,
-        ) -> Option<Retained<Self>>;
+        pub fn initWithCString(this: Allocated<Self>, bytes: &CStr) -> Option<Retained<Self>>;
 
         /// # Safety
         ///
@@ -1719,13 +1649,10 @@ impl NSString {
             length: NSUInteger,
         ) -> Option<Retained<AnyObject>>;
 
-        /// # Safety
-        ///
-        /// `bytes` must be a valid pointer.
         #[deprecated = "Use +stringWithCString:encoding: instead"]
         #[unsafe(method(stringWithCString:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stringWithCString(bytes: NonNull<c_char>) -> Option<Retained<AnyObject>>;
+        pub fn stringWithCString(bytes: &CStr) -> Option<Retained<AnyObject>>;
 
         /// # Safety
         ///
@@ -1780,16 +1707,10 @@ impl NSMutableString {
             length: NSUInteger,
         ) -> Option<Retained<Self>>;
 
-        /// # Safety
-        ///
-        /// `bytes` must be a valid pointer.
         #[deprecated = "Use -initWithCString:encoding: instead"]
         #[unsafe(method(initWithCString:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithCString(
-            this: Allocated<Self>,
-            bytes: NonNull<c_char>,
-        ) -> Option<Retained<Self>>;
+        pub fn initWithCString(this: Allocated<Self>, bytes: &CStr) -> Option<Retained<Self>>;
     );
 }
 

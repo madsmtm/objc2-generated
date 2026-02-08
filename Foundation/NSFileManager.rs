@@ -334,27 +334,21 @@ impl NSFileManager {
         ) -> Result<Retained<NSURL>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSURL"))]
-        /// # Safety
-        ///
-        /// `out_relationship` must be a valid pointer.
         #[unsafe(method(getRelationship:ofDirectoryAtURL:toItemAtURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getRelationship_ofDirectoryAtURL_toItemAtURL_error(
+        pub fn getRelationship_ofDirectoryAtURL_toItemAtURL_error(
             &self,
-            out_relationship: NonNull<NSURLRelationship>,
+            out_relationship: &mut NSURLRelationship,
             directory_url: &NSURL,
             other_url: &NSURL,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSPathUtilities", feature = "NSURL"))]
-        /// # Safety
-        ///
-        /// `out_relationship` must be a valid pointer.
         #[unsafe(method(getRelationship:ofDirectory:inDomain:toItemAtURL:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getRelationship_ofDirectory_inDomain_toItemAtURL_error(
+        pub fn getRelationship_ofDirectory_inDomain_toItemAtURL_error(
             &self,
-            out_relationship: NonNull<NSURLRelationship>,
+            out_relationship: &mut NSURLRelationship,
             directory: NSSearchPathDirectory,
             domain_mask: NSSearchPathDomainMask,
             url: &NSURL,
@@ -694,15 +688,12 @@ impl NSFileManager {
         pub fn fileExistsAtPath(&self, path: &NSString) -> bool;
 
         #[cfg(feature = "NSString")]
-        /// # Safety
-        ///
-        /// `is_directory` must be a valid pointer or null.
         #[unsafe(method(fileExistsAtPath:isDirectory:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileExistsAtPath_isDirectory(
+        pub fn fileExistsAtPath_isDirectory(
             &self,
             path: &NSString,
-            is_directory: *mut Bool,
+            is_directory: Option<&mut Bool>,
         ) -> bool;
 
         #[cfg(feature = "NSString")]

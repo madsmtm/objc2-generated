@@ -275,16 +275,15 @@ pub unsafe extern "C-unwind" fn NSCompareHashTables(
 
 /// # Safety
 ///
-/// - `table` generic should be of the correct type.
-/// - `zone` must be a valid pointer or null.
+/// `table` generic should be of the correct type.
 #[cfg(feature = "NSZone")]
 #[inline]
 pub unsafe extern "C-unwind" fn NSCopyHashTableWithZone(
     table: &NSHashTable,
-    zone: *mut NSZone,
+    zone: Option<&NSZone>,
 ) -> Retained<NSHashTable> {
     extern "C-unwind" {
-        fn NSCopyHashTableWithZone(table: &NSHashTable, zone: *mut NSZone) -> *mut NSHashTable;
+        fn NSCopyHashTableWithZone(table: &NSHashTable, zone: Option<&NSZone>) -> *mut NSHashTable;
     }
     let ret = unsafe { NSCopyHashTableWithZone(table, zone) };
     unsafe { Retained::from_raw(ret) }
@@ -454,19 +453,18 @@ unsafe impl RefEncode for NSHashTableCallBacks {
 /// - `call_backs` struct field `retain` must be implemented correctly.
 /// - `call_backs` struct field `release` must be implemented correctly.
 /// - `call_backs` struct field `describe` must be implemented correctly.
-/// - `zone` must be a valid pointer or null.
 #[cfg(all(feature = "NSString", feature = "NSZone"))]
 #[inline]
 pub unsafe extern "C-unwind" fn NSCreateHashTableWithZone(
     call_backs: NSHashTableCallBacks,
     capacity: NSUInteger,
-    zone: *mut NSZone,
+    zone: Option<&NSZone>,
 ) -> Retained<NSHashTable> {
     extern "C-unwind" {
         fn NSCreateHashTableWithZone(
             call_backs: NSHashTableCallBacks,
             capacity: NSUInteger,
-            zone: *mut NSZone,
+            zone: Option<&NSZone>,
         ) -> *mut NSHashTable;
     }
     let ret = unsafe { NSCreateHashTableWithZone(call_backs, capacity, zone) };

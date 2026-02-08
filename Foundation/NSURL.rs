@@ -1135,25 +1135,19 @@ impl NSURL {
         #[unsafe(method_family = none)]
         pub fn fileURLWithPath(path: &NSString) -> Retained<NSURL>;
 
-        /// # Safety
-        ///
-        /// `path` must be a valid pointer.
         #[unsafe(method(initFileURLWithFileSystemRepresentation:isDirectory:relativeToURL:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initFileURLWithFileSystemRepresentation_isDirectory_relativeToURL(
+        pub fn initFileURLWithFileSystemRepresentation_isDirectory_relativeToURL(
             this: Allocated<Self>,
-            path: NonNull<c_char>,
+            path: &CStr,
             is_dir: bool,
             base_url: Option<&NSURL>,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `path` must be a valid pointer.
         #[unsafe(method(fileURLWithFileSystemRepresentation:isDirectory:relativeToURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn fileURLWithFileSystemRepresentation_isDirectory_relativeToURL(
-            path: NonNull<c_char>,
+        pub fn fileURLWithFileSystemRepresentation_isDirectory_relativeToURL(
+            path: &CStr,
             is_dir: bool,
             base_url: Option<&NSURL>,
         ) -> Retained<NSURL>;
@@ -1458,30 +1452,24 @@ impl NSURL {
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
-        /// # Safety
-        ///
-        /// `is_stale` must be a valid pointer or null.
         #[unsafe(method(initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:_))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initByResolvingBookmarkData_options_relativeToURL_bookmarkDataIsStale_error(
+        pub fn initByResolvingBookmarkData_options_relativeToURL_bookmarkDataIsStale_error(
             this: Allocated<Self>,
             bookmark_data: &NSData,
             options: NSURLBookmarkResolutionOptions,
             relative_url: Option<&NSURL>,
-            is_stale: *mut Bool,
+            is_stale: Option<&mut Bool>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
-        /// # Safety
-        ///
-        /// `is_stale` must be a valid pointer or null.
         #[unsafe(method(URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn URLByResolvingBookmarkData_options_relativeToURL_bookmarkDataIsStale_error(
+        pub fn URLByResolvingBookmarkData_options_relativeToURL_bookmarkDataIsStale_error(
             bookmark_data: &NSData,
             options: NSURLBookmarkResolutionOptions,
             relative_url: Option<&NSURL>,
-            is_stale: *mut Bool,
+            is_stale: Option<&mut Bool>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
         #[cfg(all(

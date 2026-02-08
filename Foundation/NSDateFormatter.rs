@@ -103,15 +103,14 @@ impl NSDateFormatter {
         #[cfg(all(feature = "NSError", feature = "NSRange", feature = "NSString"))]
         /// # Safety
         ///
-        /// - `obj` should be of the correct type.
-        /// - `rangep` must be a valid pointer or null.
+        /// `obj` should be of the correct type.
         #[unsafe(method(getObjectValue:forString:range:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn getObjectValue_forString_range_error(
             &self,
             obj: Option<&mut Option<Retained<AnyObject>>>,
             string: &NSString,
-            rangep: *mut NSRange,
+            rangep: Option<&mut NSRange>,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(all(feature = "NSDate", feature = "NSString"))]

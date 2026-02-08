@@ -603,15 +603,12 @@ impl NSKeyedUnarchiver {
         pub unsafe fn decodeDoubleForKey(&self, key: &NSString) -> c_double;
 
         #[cfg(feature = "NSString")]
-        /// # Safety
-        ///
-        /// `lengthp` must be a valid pointer or null.
         #[unsafe(method(decodeBytesForKey:returnedLength:))]
         #[unsafe(method_family = none)]
         pub unsafe fn decodeBytesForKey_returnedLength(
             &self,
             key: &NSString,
-            lengthp: *mut NSUInteger,
+            lengthp: Option<&mut NSUInteger>,
         ) -> *const u8;
 
         #[unsafe(method(requiresSecureCoding))]

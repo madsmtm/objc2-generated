@@ -102,18 +102,15 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsspellserverdelegate?language=objc)
     pub unsafe trait NSSpellServerDelegate: NSObjectProtocol {
         #[cfg(all(feature = "NSRange", feature = "NSString"))]
-        /// # Safety
-        ///
-        /// `word_count` must be a valid pointer.
         #[optional]
         #[unsafe(method(spellServer:findMisspelledWordInString:language:wordCount:countOnly:))]
         #[unsafe(method_family = none)]
-        unsafe fn spellServer_findMisspelledWordInString_language_wordCount_countOnly(
+        fn spellServer_findMisspelledWordInString_language_wordCount_countOnly(
             &self,
             sender: &NSSpellServer,
             string_to_check: &NSString,
             language: &NSString,
-            word_count: NonNull<NSInteger>,
+            word_count: &mut NSInteger,
             count_only: bool,
         ) -> NSRange;
 
@@ -191,8 +188,7 @@ extern_protocol!(
         ))]
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `word_count` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[optional]
         #[unsafe(method(spellServer:checkString:offset:types:options:orthography:wordCount:))]
         #[unsafe(method_family = none)]
@@ -204,7 +200,7 @@ extern_protocol!(
             checking_types: NSTextCheckingTypes,
             options: Option<&NSDictionary<NSString, AnyObject>>,
             orthography: Option<&NSOrthography>,
-            word_count: NonNull<NSInteger>,
+            word_count: &mut NSInteger,
         ) -> Option<Retained<NSArray<NSTextCheckingResult>>>;
 
         #[cfg(feature = "NSString")]

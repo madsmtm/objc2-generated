@@ -116,15 +116,12 @@ impl NSEnergyFormatter {
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]
-        /// # Safety
-        ///
-        /// `unitp` must be a valid pointer or null.
         #[unsafe(method(unitStringFromJoules:usedUnit:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn unitStringFromJoules_usedUnit(
+        pub fn unitStringFromJoules_usedUnit(
             &self,
             number_in_joules: c_double,
-            unitp: *mut NSEnergyFormatterUnit,
+            unitp: Option<&mut NSEnergyFormatterUnit>,
         ) -> Retained<NSString>;
 
         #[cfg(feature = "NSString")]

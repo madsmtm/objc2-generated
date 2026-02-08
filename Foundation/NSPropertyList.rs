@@ -93,27 +93,21 @@ impl NSPropertyListSerialization {
         ) -> Result<Retained<NSData>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSError"))]
-        /// # Safety
-        ///
-        /// `format` must be a valid pointer or null.
         #[unsafe(method(propertyListWithData:options:format:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn propertyListWithData_options_format_error(
+        pub fn propertyListWithData_options_format_error(
             data: &NSData,
             opt: NSPropertyListReadOptions,
-            format: *mut NSPropertyListFormat,
+            format: Option<&mut NSPropertyListFormat>,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSError", feature = "NSStream"))]
-        /// # Safety
-        ///
-        /// `format` must be a valid pointer or null.
         #[unsafe(method(propertyListWithStream:options:format:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn propertyListWithStream_options_format_error(
+        pub fn propertyListWithStream_options_format_error(
             stream: &NSInputStream,
             opt: NSPropertyListReadOptions,
-            format: *mut NSPropertyListFormat,
+            format: Option<&mut NSPropertyListFormat>,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
         #[cfg(all(feature = "NSData", feature = "NSString"))]
@@ -133,15 +127,14 @@ impl NSPropertyListSerialization {
         #[cfg(all(feature = "NSData", feature = "NSString"))]
         /// # Safety
         ///
-        /// - `format` must be a valid pointer or null.
-        /// - `error_string` must be a valid pointer or null.
+        /// `error_string` must be a valid pointer or null.
         #[deprecated = "Use propertyListWithData:options:format:error: instead."]
         #[unsafe(method(propertyListFromData:mutabilityOption:format:errorDescription:))]
         #[unsafe(method_family = none)]
         pub unsafe fn propertyListFromData_mutabilityOption_format_errorDescription(
             data: &NSData,
             opt: NSPropertyListMutabilityOptions,
-            format: *mut NSPropertyListFormat,
+            format: Option<&mut NSPropertyListFormat>,
             error_string: *mut *mut NSString,
         ) -> Option<Retained<AnyObject>>;
     );

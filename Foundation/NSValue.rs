@@ -52,14 +52,13 @@ impl NSValue {
 
         /// # Safety
         ///
-        /// - `value` must be a valid pointer.
-        /// - `type` must be a valid pointer.
+        /// `value` must be a valid pointer.
         #[unsafe(method(initWithBytes:objCType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_objCType(
             this: Allocated<Self>,
             value: NonNull<c_void>,
-            r#type: NonNull<c_char>,
+            r#type: &CStr,
         ) -> Retained<Self>;
 
         #[cfg(feature = "NSCoder")]
@@ -80,24 +79,22 @@ impl NSValue {
     extern_methods!(
         /// # Safety
         ///
-        /// - `value` must be a valid pointer.
-        /// - `type` must be a valid pointer.
+        /// `value` must be a valid pointer.
         #[unsafe(method(valueWithBytes:objCType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithBytes_objCType(
             value: NonNull<c_void>,
-            r#type: NonNull<c_char>,
+            r#type: &CStr,
         ) -> Retained<NSValue>;
 
         /// # Safety
         ///
-        /// - `value` must be a valid pointer.
-        /// - `type` must be a valid pointer.
+        /// `value` must be a valid pointer.
         #[unsafe(method(value:withObjCType:))]
         #[unsafe(method_family = none)]
         pub unsafe fn value_withObjCType(
             value: NonNull<c_void>,
-            r#type: NonNull<c_char>,
+            r#type: &CStr,
         ) -> Retained<NSValue>;
     );
 }
@@ -341,14 +338,13 @@ impl NSNumber {
     extern_methods!(
         /// # Safety
         ///
-        /// - `value` must be a valid pointer.
-        /// - `type` must be a valid pointer.
+        /// `value` must be a valid pointer.
         #[unsafe(method(initWithBytes:objCType:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithBytes_objCType(
             this: Allocated<Self>,
             value: NonNull<c_void>,
-            r#type: NonNull<c_char>,
+            r#type: &CStr,
         ) -> Retained<Self>;
     );
 }

@@ -112,14 +112,11 @@ impl NSScriptCommandDescription {
         pub fn createCommandInstance(&self) -> Retained<NSScriptCommand>;
 
         #[cfg(all(feature = "NSScriptCommand", feature = "NSZone"))]
-        /// # Safety
-        ///
-        /// `zone` must be a valid pointer or null.
         #[unsafe(method(createCommandInstanceWithZone:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn createCommandInstanceWithZone(
+        pub fn createCommandInstanceWithZone(
             &self,
-            zone: *mut NSZone,
+            zone: Option<&NSZone>,
         ) -> Retained<NSScriptCommand>;
     );
 }

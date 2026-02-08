@@ -78,25 +78,19 @@ impl NSFileHandle {
         pub fn writeData_error(&self, data: &NSData) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        /// # Safety
-        ///
-        /// `offset_in_file` must be a valid pointer.
         #[unsafe(method(getOffset:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getOffset_error(
+        pub fn getOffset_error(
             &self,
-            offset_in_file: NonNull<c_ulonglong>,
+            offset_in_file: &mut c_ulonglong,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSError")]
-        /// # Safety
-        ///
-        /// `offset_in_file` must be a valid pointer or null.
         #[unsafe(method(seekToEndReturningOffset:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn seekToEndReturningOffset_error(
+        pub fn seekToEndReturningOffset_error(
             &self,
-            offset_in_file: *mut c_ulonglong,
+            offset_in_file: Option<&mut c_ulonglong>,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "NSError")]

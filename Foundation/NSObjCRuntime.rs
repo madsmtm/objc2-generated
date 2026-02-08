@@ -266,20 +266,18 @@ pub extern "C-unwind" fn NSProtocolFromString(namestr: &NSString) -> Option<Reta
 
 /// # Safety
 ///
-/// - `type_ptr` must be a valid pointer.
-/// - `sizep` must be a valid pointer or null.
-/// - `alignp` must be a valid pointer or null.
+/// `type_ptr` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn NSGetSizeAndAlignment(
     type_ptr: NonNull<c_char>,
-    sizep: *mut NSUInteger,
-    alignp: *mut NSUInteger,
+    sizep: Option<&mut NSUInteger>,
+    alignp: Option<&mut NSUInteger>,
 ) -> NonNull<c_char> {
     extern "C-unwind" {
         fn NSGetSizeAndAlignment(
             type_ptr: NonNull<c_char>,
-            sizep: *mut NSUInteger,
-            alignp: *mut NSUInteger,
+            sizep: Option<&mut NSUInteger>,
+            alignp: Option<&mut NSUInteger>,
         ) -> Option<NonNull<c_char>>;
     }
     let ret = unsafe { NSGetSizeAndAlignment(type_ptr, sizep, alignp) };

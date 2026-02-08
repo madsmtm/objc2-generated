@@ -222,14 +222,13 @@ impl NSInputStream {
 
         /// # Safety
         ///
-        /// - `buffer` must be a valid pointer.
-        /// - `len` must be a valid pointer.
+        /// `buffer` must be a valid pointer.
         #[unsafe(method(getBuffer:length:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getBuffer_length(
             &self,
             buffer: NonNull<*mut u8>,
-            len: NonNull<NSUInteger>,
+            len: &mut NSUInteger,
         ) -> bool;
 
         #[unsafe(method(hasBytesAvailable))]

@@ -90,15 +90,15 @@ impl NSAppleEventManager {
         #[cfg(target_vendor = "apple")]
         /// # Safety
         ///
-        /// - `the_apple_event` must be a valid pointer.
-        /// - `the_reply` must be a valid pointer.
+        /// - `the_apple_event` struct field `dataHandle` must be a valid pointer.
+        /// - `the_reply` struct field `dataHandle` must be a valid pointer.
         /// - `handler_ref_con` must be a valid pointer.
         #[unsafe(method(dispatchRawAppleEvent:withRawReply:handlerRefCon:))]
         #[unsafe(method_family = none)]
         pub unsafe fn dispatchRawAppleEvent_withRawReply_handlerRefCon(
             &self,
-            the_apple_event: NonNull<AppleEvent>,
-            the_reply: NonNull<AppleEvent>,
+            the_apple_event: &AppleEvent,
+            the_reply: &mut AppleEvent,
             handler_ref_con: SRefCon,
         ) -> OSErr;
 

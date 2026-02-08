@@ -10,13 +10,14 @@ extern_protocol!(
     pub unsafe trait NSFastEnumeration {
         /// # Safety
         ///
-        /// - `state` must be a valid pointer.
+        /// - `state` struct field `itemsPtr` must be a valid pointer or null.
+        /// - `state` struct field `mutationsPtr` must be a valid pointer or null.
         /// - `buffer` must be a valid pointer.
         #[unsafe(method(countByEnumeratingWithState:objects:count:))]
         #[unsafe(method_family = none)]
         unsafe fn countByEnumeratingWithState_objects_count(
             &self,
-            state: NonNull<NSFastEnumerationState>,
+            state: &mut NSFastEnumerationState,
             buffer: NonNull<*mut AnyObject>,
             len: NSUInteger,
         ) -> NSUInteger;
