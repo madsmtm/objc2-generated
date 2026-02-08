@@ -31,20 +31,20 @@ impl SCRecordingOutputConfiguration {
         /// Specifies output URL to save the recording.
         #[unsafe(method(outputURL))]
         #[unsafe(method_family = none)]
-        pub unsafe fn outputURL(&self) -> Retained<NSURL>;
+        pub fn outputURL(&self) -> Retained<NSURL>;
 
         /// Setter for [`outputURL`][Self::outputURL].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOutputURL:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOutputURL(&self, output_url: &NSURL);
+        pub fn setOutputURL(&self, output_url: &NSURL);
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Specifies video codec for the recording output, default is AVVideoCodecTypeH264, supported values can be obtained using availableVideoCodecTypes
         #[unsafe(method(videoCodecType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn videoCodecType(&self) -> Retained<AVVideoCodecType>;
+        pub fn videoCodecType(&self) -> Retained<AVVideoCodecType>;
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Setter for [`videoCodecType`][Self::videoCodecType].
@@ -52,13 +52,13 @@ impl SCRecordingOutputConfiguration {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setVideoCodecType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVideoCodecType(&self, video_codec_type: &AVVideoCodecType);
+        pub fn setVideoCodecType(&self, video_codec_type: &AVVideoCodecType);
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Specifies file type for the recording output, default is AVFileTypeMPEG4, supported values can be obtained using availableOutputFileTypes
         #[unsafe(method(outputFileType))]
         #[unsafe(method_family = none)]
-        pub unsafe fn outputFileType(&self) -> Retained<AVFileType>;
+        pub fn outputFileType(&self) -> Retained<AVFileType>;
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Setter for [`outputFileType`][Self::outputFileType].
@@ -66,20 +66,20 @@ impl SCRecordingOutputConfiguration {
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
         #[unsafe(method(setOutputFileType:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOutputFileType(&self, output_file_type: &AVFileType);
+        pub fn setOutputFileType(&self, output_file_type: &AVFileType);
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Returns an array of supported video codec formats that can be specified in SCRecordingOutputConfiguration for videoCodecType
         #[unsafe(method(availableVideoCodecTypes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn availableVideoCodecTypes(&self) -> Retained<NSArray<AVVideoCodecType>>;
+        pub fn availableVideoCodecTypes(&self) -> Retained<NSArray<AVVideoCodecType>>;
 
         #[cfg(feature = "objc2-av-foundation")]
         /// Returns an array of supported file types that can be specified in SCRecordingOutputConfiguration for outputFileType
         /// Provides the file types AVCaptureAudioFileOutput can write.
         #[unsafe(method(availableOutputFileTypes))]
         #[unsafe(method_family = none)]
-        pub unsafe fn availableOutputFileTypes(&self) -> Retained<NSArray<AVFileType>>;
+        pub fn availableOutputFileTypes(&self) -> Retained<NSArray<AVFileType>>;
     );
 }
 
@@ -88,12 +88,19 @@ impl SCRecordingOutputConfiguration {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for SCRecordingOutputConfiguration {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_protocol!(
@@ -109,7 +116,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(recordingOutputDidStartRecording:))]
         #[unsafe(method_family = none)]
-        unsafe fn recordingOutputDidStartRecording(&self, recording_output: &SCRecordingOutput);
+        fn recordingOutputDidStartRecording(&self, recording_output: &SCRecordingOutput);
 
         /// recordingOutput:didFailWithError:
         ///
@@ -121,7 +128,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(recordingOutput:didFailWithError:))]
         #[unsafe(method_family = none)]
-        unsafe fn recordingOutput_didFailWithError(
+        fn recordingOutput_didFailWithError(
             &self,
             recording_output: &SCRecordingOutput,
             error: &NSError,
@@ -133,7 +140,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(recordingOutputDidFinishRecording:))]
         #[unsafe(method_family = none)]
-        unsafe fn recordingOutputDidFinishRecording(&self, recording_output: &SCRecordingOutput);
+        fn recordingOutputDidFinishRecording(&self, recording_output: &SCRecordingOutput);
     }
 );
 
@@ -154,12 +161,12 @@ impl SCRecordingOutput {
         /// Indicates current duration of recording to the output file.
         #[unsafe(method(recordedDuration))]
         #[unsafe(method_family = none)]
-        pub unsafe fn recordedDuration(&self) -> CMTime;
+        pub fn recordedDuration(&self) -> CMTime;
 
         /// Indicates current size, in bytes, of the data recorded to the output file.
         #[unsafe(method(recordedFileSize))]
         #[unsafe(method_family = none)]
-        pub unsafe fn recordedFileSize(&self) -> NSInteger;
+        pub fn recordedFileSize(&self) -> NSInteger;
 
         /// initialize SCRecordingOutput object with SCRecordingOutputConfiguration and SCRecordingOutputDelegate
         ///
@@ -170,7 +177,7 @@ impl SCRecordingOutput {
         /// Client can create a SCRecordingOutput with this initializer and add to SCStream to record all captured media into one recording file given output url specified in recordingOutputConfig. The recording will be using H264 and file format is MPEG-4.
         #[unsafe(method(initWithConfiguration:delegate:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithConfiguration_delegate(
+        pub fn initWithConfiguration_delegate(
             this: Allocated<Self>,
             recording_output_configuration: &SCRecordingOutputConfiguration,
             delegate: &ProtocolObject<dyn SCRecordingOutputDelegate>,
@@ -183,10 +190,17 @@ impl SCRecordingOutput {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for SCRecordingOutput {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }

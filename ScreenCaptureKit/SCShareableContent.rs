@@ -53,18 +53,18 @@ impl SCRunningApplication {
         /// bundleIdentifier the bundleIdentifier for the SCRunningApplication
         #[unsafe(method(bundleIdentifier))]
         #[unsafe(method_family = none)]
-        pub unsafe fn bundleIdentifier(&self) -> Retained<NSString>;
+        pub fn bundleIdentifier(&self) -> Retained<NSString>;
 
         /// applicationName the application name for the SCRunningApplication
         #[unsafe(method(applicationName))]
         #[unsafe(method_family = none)]
-        pub unsafe fn applicationName(&self) -> Retained<NSString>;
+        pub fn applicationName(&self) -> Retained<NSString>;
 
         #[cfg(feature = "libc")]
         /// processID the SCRunningApplication
         #[unsafe(method(processID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn processID(&self) -> libc::pid_t;
+        pub fn processID(&self) -> libc::pid_t;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -93,38 +93,38 @@ impl SCWindow {
         /// windowID the CGWindowID for the SCWindow
         #[unsafe(method(windowID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn windowID(&self) -> CGWindowID;
+        pub fn windowID(&self) -> CGWindowID;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// frame the CGRect for the SCWindow
         #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
-        pub unsafe fn frame(&self) -> CGRect;
+        pub fn frame(&self) -> CGRect;
 
         /// title the window title for the SCWindow
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]
-        pub unsafe fn title(&self) -> Option<Retained<NSString>>;
+        pub fn title(&self) -> Option<Retained<NSString>>;
 
         /// windowLayer the window layer for the SCWindow
         #[unsafe(method(windowLayer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn windowLayer(&self) -> NSInteger;
+        pub fn windowLayer(&self) -> NSInteger;
 
         /// owningApplication is the SCRunningApplication that owns this SCWindow
         #[unsafe(method(owningApplication))]
         #[unsafe(method_family = none)]
-        pub unsafe fn owningApplication(&self) -> Option<Retained<SCRunningApplication>>;
+        pub fn owningApplication(&self) -> Option<Retained<SCRunningApplication>>;
 
         /// onScreen the bool property denoting of the SCWindow is on the screen
         #[unsafe(method(isOnScreen))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isOnScreen(&self) -> bool;
+        pub fn isOnScreen(&self) -> bool;
 
         /// active the bool property denoting of the SCWindow is active. with Stage Manager, SCWindow can be offScreen and active
         #[unsafe(method(isActive))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isActive(&self) -> bool;
+        pub fn isActive(&self) -> bool;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -153,23 +153,23 @@ impl SCDisplay {
         /// displayId the CGDirectDisplayID for the SCDisplay
         #[unsafe(method(displayID))]
         #[unsafe(method_family = none)]
-        pub unsafe fn displayID(&self) -> CGDirectDisplayID;
+        pub fn displayID(&self) -> CGDirectDisplayID;
 
         /// width the width, in points, for the SCDisplay
         #[unsafe(method(width))]
         #[unsafe(method_family = none)]
-        pub unsafe fn width(&self) -> NSInteger;
+        pub fn width(&self) -> NSInteger;
 
         /// height the height, in points, for the SCDisplay
         #[unsafe(method(height))]
         #[unsafe(method_family = none)]
-        pub unsafe fn height(&self) -> NSInteger;
+        pub fn height(&self) -> NSInteger;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// frame the CGRect frame for the SCDisplay
         #[unsafe(method(frame))]
         #[unsafe(method_family = none)]
-        pub unsafe fn frame(&self) -> CGRect;
+        pub fn frame(&self) -> CGRect;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -201,18 +201,18 @@ impl SCShareableContentInfo {
         /// style of stream
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]
-        pub unsafe fn style(&self) -> SCShareableContentStyle;
+        pub fn style(&self) -> SCShareableContentStyle;
 
         /// Pixel to points scaling factor
         #[unsafe(method(pointPixelScale))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pointPixelScale(&self) -> c_float;
+        pub fn pointPixelScale(&self) -> c_float;
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Size and location of content in points
         #[unsafe(method(contentRect))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contentRect(&self) -> CGRect;
+        pub fn contentRect(&self) -> CGRect;
     );
 }
 
@@ -221,12 +221,19 @@ impl SCShareableContentInfo {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
         #[unsafe(method(new))]
         #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        pub fn new() -> Retained<Self>;
     );
+}
+
+impl DefaultRetained for SCShareableContentInfo {
+    #[inline]
+    fn default_retained() -> Retained<Self> {
+        Self::new()
+    }
 }
 
 extern_class!(
@@ -250,7 +257,7 @@ impl SCShareableContent {
         /// this method will create a SCShareableContent object that is called on the supplied queue. The SCShareableContent will contain the windows, displays and applications that are available to capture
         #[unsafe(method(getShareableContentWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getShareableContentWithCompletionHandler(
+        pub fn getShareableContentWithCompletionHandler(
             completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,
         );
 
@@ -262,7 +269,7 @@ impl SCShareableContent {
         /// this method will create a SCShareableContent object that is called on the supplied queue. The SCShareableContent will contain redacted information about windows, displays and applications that are available to capture by current process without user consent via TCC
         #[unsafe(method(getCurrentProcessShareableContentWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getCurrentProcessShareableContentWithCompletionHandler(
+        pub fn getCurrentProcessShareableContentWithCompletionHandler(
             completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,
         );
 
@@ -278,7 +285,7 @@ impl SCShareableContent {
         /// this method will create a SCShareableContent object that is called on the supplied queue. The SCShareableContent will contain the windows, displays and applications that are available to capture
         #[unsafe(method(getShareableContentExcludingDesktopWindows:onScreenWindowsOnly:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnly_completionHandler(
+        pub fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnly_completionHandler(
             exclude_desktop_windows: bool,
             on_screen_windows_only: bool,
             completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,
@@ -296,7 +303,7 @@ impl SCShareableContent {
         /// this method will create a SCShareableContent object that is called on the supplied queue. The SCShareableContent will contain the windows, displays and applications that are available to capture
         #[unsafe(method(getShareableContentExcludingDesktopWindows:onScreenWindowsOnlyBelowWindow:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnlyBelowWindow_completionHandler(
+        pub fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnlyBelowWindow_completionHandler(
             exclude_desktop_windows: bool,
             window: &SCWindow,
             completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,
@@ -314,7 +321,7 @@ impl SCShareableContent {
         /// this method will create a SCShareableContent object that is called on the supplied queue. The SCShareableContent will contain the windows, displays and applications that are available to capture
         #[unsafe(method(getShareableContentExcludingDesktopWindows:onScreenWindowsOnlyAboveWindow:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnlyAboveWindow_completionHandler(
+        pub fn getShareableContentExcludingDesktopWindows_onScreenWindowsOnlyAboveWindow_completionHandler(
             exclude_desktop_windows: bool,
             window: &SCWindow,
             completion_handler: &block2::DynBlock<dyn Fn(*mut SCShareableContent, *mut NSError)>,
@@ -328,22 +335,22 @@ impl SCShareableContent {
         /// this method will create a SCShareableContentInformation object given a filter
         #[unsafe(method(infoForFilter:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn infoForFilter(filter: &SCContentFilter) -> Retained<SCShareableContentInfo>;
+        pub fn infoForFilter(filter: &SCContentFilter) -> Retained<SCShareableContentInfo>;
 
         /// windows SCShareableContent property that contains all the sharable SCWindows
         #[unsafe(method(windows))]
         #[unsafe(method_family = none)]
-        pub unsafe fn windows(&self) -> Retained<NSArray<SCWindow>>;
+        pub fn windows(&self) -> Retained<NSArray<SCWindow>>;
 
         /// displays SCShareableContent property that contains all the sharable SCDisplays
         #[unsafe(method(displays))]
         #[unsafe(method_family = none)]
-        pub unsafe fn displays(&self) -> Retained<NSArray<SCDisplay>>;
+        pub fn displays(&self) -> Retained<NSArray<SCDisplay>>;
 
         /// applications SCShareableContent property that contains all the sharable SCRunningApplications
         #[unsafe(method(applications))]
         #[unsafe(method_family = none)]
-        pub unsafe fn applications(&self) -> Retained<NSArray<SCRunningApplication>>;
+        pub fn applications(&self) -> Retained<NSArray<SCRunningApplication>>;
 
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
