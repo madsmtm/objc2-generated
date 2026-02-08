@@ -1765,17 +1765,12 @@ extern_protocol!(
         /// Parameter `cpuTimestamp`: The timestamp on the CPU
         ///
         /// Parameter `gpuTimestamp`: The timestamp on the GPU
-        ///
-        /// # Safety
-        ///
-        /// - `cpu_timestamp` must be a valid pointer.
-        /// - `gpu_timestamp` must be a valid pointer.
         #[unsafe(method(sampleTimestamps:gpuTimestamp:))]
         #[unsafe(method_family = none)]
-        unsafe fn sampleTimestamps_gpuTimestamp(
+        fn sampleTimestamps_gpuTimestamp(
             &self,
-            cpu_timestamp: NonNull<MTLTimestamp>,
-            gpu_timestamp: NonNull<MTLTimestamp>,
+            cpu_timestamp: &mut MTLTimestamp,
+            gpu_timestamp: &mut MTLTimestamp,
         );
 
         #[cfg(all(feature = "MTLArgument", feature = "MTLArgumentEncoder"))]
