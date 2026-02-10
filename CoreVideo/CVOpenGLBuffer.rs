@@ -69,8 +69,7 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `attributes` generic must be of the correct type.
-    /// - `attributes` generic must be of the correct type.
+    /// - `attributes` generic should be of the correct type.
     /// - `buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
@@ -78,7 +77,7 @@ extern "C-unwind" {
         allocator: Option<&CFAllocator>,
         width: usize,
         height: usize,
-        attributes: Option<&CFDictionary>,
+        attributes: Option<&CFDictionary<CFString, CFType>>,
         buffer_out: NonNull<*mut CVOpenGLBuffer>,
     ) -> CVReturn;
 }
@@ -91,11 +90,11 @@ extern "C-unwind" {
 #[inline]
 pub extern "C-unwind" fn CVOpenGLBufferGetAttributes(
     open_gl_buffer: &CVOpenGLBuffer,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn CVOpenGLBufferGetAttributes(
             open_gl_buffer: &CVOpenGLBuffer,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { CVOpenGLBufferGetAttributes(open_gl_buffer) };
     ret.map(|ret| unsafe { CFRetained::retain(ret) })

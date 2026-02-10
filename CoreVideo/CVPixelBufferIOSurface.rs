@@ -77,8 +77,7 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `pixel_buffer_attributes` generic must be of the correct type.
-    /// - `pixel_buffer_attributes` generic must be of the correct type.
+    /// - `pixel_buffer_attributes` generic should be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
     #[cfg(all(
         feature = "CVBuffer",
@@ -91,7 +90,7 @@ extern "C-unwind" {
     pub fn CVPixelBufferCreateWithIOSurface(
         allocator: Option<&CFAllocator>,
         surface: &IOSurfaceRef,
-        pixel_buffer_attributes: Option<&CFDictionary>,
+        pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
         pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
     ) -> CVReturn;
 }

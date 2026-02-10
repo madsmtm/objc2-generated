@@ -60,8 +60,7 @@ impl CVMetalBufferCache {
     ///
     /// # Safety
     ///
-    /// - `cache_attributes` generic must be of the correct type.
-    /// - `cache_attributes` generic must be of the correct type.
+    /// - `cache_attributes` generic should be of the correct type.
     /// - `cache_out` must be a valid pointer.
     #[doc(alias = "CVMetalBufferCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
@@ -69,14 +68,14 @@ impl CVMetalBufferCache {
     #[inline]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
-        cache_attributes: Option<&CFDictionary>,
+        cache_attributes: Option<&CFDictionary<CFString, CFType>>,
         metal_device: &ProtocolObject<dyn MTLDevice>,
         cache_out: NonNull<*mut CVMetalBufferCache>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVMetalBufferCacheCreate(
                 allocator: Option<&CFAllocator>,
-                cache_attributes: Option<&CFDictionary>,
+                cache_attributes: Option<&CFDictionary<CFString, CFType>>,
                 metal_device: &ProtocolObject<dyn MTLDevice>,
                 cache_out: NonNull<*mut CVMetalBufferCache>,
             ) -> CVReturn;

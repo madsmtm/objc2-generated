@@ -64,10 +64,8 @@ impl CVMetalTextureCache {
     ///
     /// # Safety
     ///
-    /// - `cache_attributes` generic must be of the correct type.
-    /// - `cache_attributes` generic must be of the correct type.
-    /// - `texture_attributes` generic must be of the correct type.
-    /// - `texture_attributes` generic must be of the correct type.
+    /// - `cache_attributes` generic should be of the correct type.
+    /// - `texture_attributes` generic should be of the correct type.
     /// - `cache_out` must be a valid pointer.
     #[doc(alias = "CVMetalTextureCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2", feature = "objc2-metal"))]
@@ -75,17 +73,17 @@ impl CVMetalTextureCache {
     #[inline]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
-        cache_attributes: Option<&CFDictionary>,
+        cache_attributes: Option<&CFDictionary<CFString, CFType>>,
         metal_device: &ProtocolObject<dyn MTLDevice>,
-        texture_attributes: Option<&CFDictionary>,
+        texture_attributes: Option<&CFDictionary<CFString, CFType>>,
         cache_out: NonNull<*mut CVMetalTextureCache>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVMetalTextureCacheCreate(
                 allocator: Option<&CFAllocator>,
-                cache_attributes: Option<&CFDictionary>,
+                cache_attributes: Option<&CFDictionary<CFString, CFType>>,
                 metal_device: &ProtocolObject<dyn MTLDevice>,
-                texture_attributes: Option<&CFDictionary>,
+                texture_attributes: Option<&CFDictionary<CFString, CFType>>,
                 cache_out: NonNull<*mut CVMetalTextureCache>,
             ) -> CVReturn;
         }
@@ -158,8 +156,7 @@ impl CVMetalTextureCache {
     ///
     /// # Safety
     ///
-    /// - `texture_attributes` generic must be of the correct type.
-    /// - `texture_attributes` generic must be of the correct type.
+    /// - `texture_attributes` generic should be of the correct type.
     /// - `texture_out` must be a valid pointer.
     #[doc(alias = "CVMetalTextureCacheCreateTextureFromImage")]
     #[cfg(all(
@@ -175,7 +172,7 @@ impl CVMetalTextureCache {
         allocator: Option<&CFAllocator>,
         texture_cache: &CVMetalTextureCache,
         source_image: &CVImageBuffer,
-        texture_attributes: Option<&CFDictionary>,
+        texture_attributes: Option<&CFDictionary<CFString, CFType>>,
         pixel_format: MTLPixelFormat,
         width: usize,
         height: usize,
@@ -187,7 +184,7 @@ impl CVMetalTextureCache {
                 allocator: Option<&CFAllocator>,
                 texture_cache: &CVMetalTextureCache,
                 source_image: &CVImageBuffer,
-                texture_attributes: Option<&CFDictionary>,
+                texture_attributes: Option<&CFDictionary<CFString, CFType>>,
                 pixel_format: MTLPixelFormat,
                 width: usize,
                 height: usize,

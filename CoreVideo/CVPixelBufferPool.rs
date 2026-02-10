@@ -60,25 +60,23 @@ impl CVPixelBufferPool {
     ///
     /// # Safety
     ///
-    /// - `pool_attributes` generic must be of the correct type.
-    /// - `pool_attributes` generic must be of the correct type.
-    /// - `pixel_buffer_attributes` generic must be of the correct type.
-    /// - `pixel_buffer_attributes` generic must be of the correct type.
+    /// - `pool_attributes` generic should be of the correct type.
+    /// - `pixel_buffer_attributes` generic should be of the correct type.
     /// - `pool_out` must be a valid pointer.
     #[doc(alias = "CVPixelBufferPoolCreate")]
     #[cfg(feature = "CVReturn")]
     #[inline]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
-        pool_attributes: Option<&CFDictionary>,
-        pixel_buffer_attributes: Option<&CFDictionary>,
+        pool_attributes: Option<&CFDictionary<CFString, CFType>>,
+        pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
         pool_out: NonNull<*mut CVPixelBufferPool>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVPixelBufferPoolCreate(
                 allocator: Option<&CFAllocator>,
-                pool_attributes: Option<&CFDictionary>,
-                pixel_buffer_attributes: Option<&CFDictionary>,
+                pool_attributes: Option<&CFDictionary<CFString, CFType>>,
+                pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
                 pool_out: NonNull<*mut CVPixelBufferPool>,
             ) -> CVReturn;
         }
@@ -99,11 +97,11 @@ impl CVPixelBufferPool {
     /// Returns: Returns the pool attributes dictionary, or NULL on failure.
     #[doc(alias = "CVPixelBufferPoolGetAttributes")]
     #[inline]
-    pub fn attributes(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn attributes(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CVPixelBufferPoolGetAttributes(
                 pool: &CVPixelBufferPool,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CVPixelBufferPoolGetAttributes(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -119,11 +117,11 @@ impl CVPixelBufferPool {
     /// Returns: Returns the pixel buffer attributes dictionary, or NULL on failure.
     #[doc(alias = "CVPixelBufferPoolGetPixelBufferAttributes")]
     #[inline]
-    pub fn pixel_buffer_attributes(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn pixel_buffer_attributes(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CVPixelBufferPoolGetPixelBufferAttributes(
                 pool: &CVPixelBufferPool,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CVPixelBufferPoolGetPixelBufferAttributes(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -171,8 +169,7 @@ impl CVPixelBufferPool {
 
     /// # Safety
     ///
-    /// - `aux_attributes` generic must be of the correct type.
-    /// - `aux_attributes` generic must be of the correct type.
+    /// - `aux_attributes` generic should be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
     #[doc(alias = "CVPixelBufferPoolCreatePixelBufferWithAuxAttributes")]
     #[cfg(all(
@@ -185,14 +182,14 @@ impl CVPixelBufferPool {
     pub unsafe fn create_pixel_buffer_with_aux_attributes(
         allocator: Option<&CFAllocator>,
         pixel_buffer_pool: &CVPixelBufferPool,
-        aux_attributes: Option<&CFDictionary>,
+        aux_attributes: Option<&CFDictionary<CFString, CFType>>,
         pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(
                 allocator: Option<&CFAllocator>,
                 pixel_buffer_pool: &CVPixelBufferPool,
-                aux_attributes: Option<&CFDictionary>,
+                aux_attributes: Option<&CFDictionary<CFString, CFType>>,
                 pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
             ) -> CVReturn;
         }

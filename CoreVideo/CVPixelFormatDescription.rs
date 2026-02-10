@@ -228,12 +228,12 @@ extern "C" {
 pub extern "C-unwind" fn CVPixelFormatDescriptionCreateWithPixelFormatType(
     allocator: Option<&CFAllocator>,
     pixel_format: OSType,
-) -> Option<CFRetained<CFDictionary>> {
+) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
     extern "C-unwind" {
         fn CVPixelFormatDescriptionCreateWithPixelFormatType(
             allocator: Option<&CFAllocator>,
             pixel_format: OSType,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { CVPixelFormatDescriptionCreateWithPixelFormatType(allocator, pixel_format) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -242,11 +242,11 @@ pub extern "C-unwind" fn CVPixelFormatDescriptionCreateWithPixelFormatType(
 #[inline]
 pub extern "C-unwind" fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(
     allocator: Option<&CFAllocator>,
-) -> Option<CFRetained<CFArray>> {
+) -> Option<CFRetained<CFArray<CFDictionary<CFString, CFType>>>> {
     extern "C-unwind" {
         fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(
             allocator: Option<&CFAllocator>,
-        ) -> Option<NonNull<CFArray>>;
+        ) -> Option<NonNull<CFArray<CFDictionary<CFString, CFType>>>>;
     }
     let ret = unsafe { CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTypes(allocator) };
     ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -255,10 +255,9 @@ pub extern "C-unwind" fn CVPixelFormatDescriptionArrayCreateWithAllPixelFormatTy
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `description` generic must be of the correct type.
-    /// - `description` generic must be of the correct type.
+    /// `description` generic should be of the correct type.
     pub fn CVPixelFormatDescriptionRegisterDescriptionWithPixelFormatType(
-        description: &CFDictionary,
+        description: &CFDictionary<CFString, CFType>,
         pixel_format: OSType,
     );
 }

@@ -451,16 +451,16 @@ impl CVDisplayLink {
     ///
     /// # Safety
     ///
-    /// `out_time` must be a valid pointer.
+    /// `out_time` struct field `version` must be set correctly.
     #[doc(alias = "CVDisplayLinkGetCurrentTime")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn current_time(&self, out_time: NonNull<CVTimeStamp>) -> CVReturn {
+    pub unsafe fn current_time(&self, out_time: &mut CVTimeStamp) -> CVReturn {
         extern "C-unwind" {
             fn CVDisplayLinkGetCurrentTime(
                 display_link: &CVDisplayLink,
-                out_time: NonNull<CVTimeStamp>,
+                out_time: &mut CVTimeStamp,
             ) -> CVReturn;
         }
         unsafe { CVDisplayLinkGetCurrentTime(self, out_time) }
@@ -481,22 +481,22 @@ impl CVDisplayLink {
     ///
     /// # Safety
     ///
-    /// - `in_time` must be a valid pointer.
-    /// - `out_time` must be a valid pointer.
+    /// - `in_time` struct field `version` must be set correctly.
+    /// - `out_time` struct field `version` must be set correctly.
     #[doc(alias = "CVDisplayLinkTranslateTime")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
     pub unsafe fn translate_time(
         &self,
-        in_time: NonNull<CVTimeStamp>,
-        out_time: NonNull<CVTimeStamp>,
+        in_time: &CVTimeStamp,
+        out_time: &mut CVTimeStamp,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVDisplayLinkTranslateTime(
                 display_link: &CVDisplayLink,
-                in_time: NonNull<CVTimeStamp>,
-                out_time: NonNull<CVTimeStamp>,
+                in_time: &CVTimeStamp,
+                out_time: &mut CVTimeStamp,
             ) -> CVReturn;
         }
         unsafe { CVDisplayLinkTranslateTime(self, in_time, out_time) }

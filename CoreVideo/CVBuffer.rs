@@ -122,23 +122,19 @@ impl CVBuffer {
     /// Parameter `attachmentMode`: Returns the mode of the attachment, if desired.  May be NULL.
     ///
     /// Returns: If found the attachment object
-    ///
-    /// # Safety
-    ///
-    /// `attachment_mode` must be a valid pointer or null.
     #[doc(alias = "CVBufferGetAttachment")]
     #[deprecated]
     #[inline]
-    pub unsafe fn get_attachment(
+    pub fn get_attachment(
         &self,
         key: &CFString,
-        attachment_mode: *mut CVAttachmentMode,
+        attachment_mode: Option<&mut CVAttachmentMode>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CVBufferGetAttachment(
                 buffer: &CVBuffer,
                 key: &CFString,
-                attachment_mode: *mut CVAttachmentMode,
+                attachment_mode: Option<&mut CVAttachmentMode>,
             ) -> Option<NonNull<CFType>>;
         }
         let ret = unsafe { CVBufferGetAttachment(self, key, attachment_mode) };
@@ -189,12 +185,12 @@ impl CVBuffer {
     pub fn get_attachments(
         &self,
         attachment_mode: CVAttachmentMode,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CVBufferGetAttachments(
                 buffer: &CVBuffer,
                 attachment_mode: CVAttachmentMode,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CVBufferGetAttachments(self, attachment_mode) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -208,19 +204,18 @@ impl CVBuffer {
     ///
     /// # Safety
     ///
-    /// - `the_attachments` generic must be of the correct type.
-    /// - `the_attachments` generic must be of the correct type.
+    /// `the_attachments` generic should be of the correct type.
     #[doc(alias = "CVBufferSetAttachments")]
     #[inline]
     pub unsafe fn set_attachments(
         &self,
-        the_attachments: &CFDictionary,
+        the_attachments: &CFDictionary<CFString, CFType>,
         attachment_mode: CVAttachmentMode,
     ) {
         extern "C-unwind" {
             fn CVBufferSetAttachments(
                 buffer: &CVBuffer,
-                the_attachments: &CFDictionary,
+                the_attachments: &CFDictionary<CFString, CFType>,
                 attachment_mode: CVAttachmentMode,
             );
         }
@@ -259,12 +254,12 @@ impl CVBuffer {
     pub fn attachments(
         &self,
         attachment_mode: CVAttachmentMode,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CVBufferCopyAttachments(
                 buffer: &CVBuffer,
                 attachment_mode: CVAttachmentMode,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CVBufferCopyAttachments(self, attachment_mode) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
@@ -281,22 +276,18 @@ impl CVBuffer {
     /// Parameter `attachmentMode`: Returns the mode of the attachment, if desired.  May be NULL.
     ///
     /// Returns: If found the attachment object, return the value; otherwize, return NULL.
-    ///
-    /// # Safety
-    ///
-    /// `attachment_mode` must be a valid pointer or null.
     #[doc(alias = "CVBufferCopyAttachment")]
     #[inline]
-    pub unsafe fn attachment(
+    pub fn attachment(
         &self,
         key: &CFString,
-        attachment_mode: *mut CVAttachmentMode,
+        attachment_mode: Option<&mut CVAttachmentMode>,
     ) -> Option<CFRetained<CFType>> {
         extern "C-unwind" {
             fn CVBufferCopyAttachment(
                 buffer: &CVBuffer,
                 key: &CFString,
-                attachment_mode: *mut CVAttachmentMode,
+                attachment_mode: Option<&mut CVAttachmentMode>,
             ) -> Option<NonNull<CFType>>;
         }
         let ret = unsafe { CVBufferCopyAttachment(self, key, attachment_mode) };

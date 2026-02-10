@@ -565,13 +565,13 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `attributes` generic must be of the correct type.
+    /// - `attributes` generic generic should be of the correct type.
     /// - `resolved_dictionary_out` must be a valid pointer.
     #[cfg(feature = "CVReturn")]
     pub fn CVPixelBufferCreateResolvedAttributesDictionary(
         allocator: Option<&CFAllocator>,
-        attributes: Option<&CFArray>,
-        resolved_dictionary_out: NonNull<*const CFDictionary>,
+        attributes: Option<&CFArray<CFDictionary<CFString, CFType>>>,
+        resolved_dictionary_out: NonNull<*const CFDictionary<CFString, CFType>>,
     ) -> CVReturn;
 }
 
@@ -594,8 +594,7 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `pixel_buffer_attributes` generic must be of the correct type.
-    /// - `pixel_buffer_attributes` generic must be of the correct type.
+    /// - `pixel_buffer_attributes` generic should be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreate(
@@ -603,7 +602,7 @@ extern "C-unwind" {
         width: usize,
         height: usize,
         pixel_format_type: OSType,
-        pixel_buffer_attributes: Option<&CFDictionary>,
+        pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
         pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
     ) -> CVReturn;
 }
@@ -642,8 +641,7 @@ extern "C-unwind" {
     /// - `base_address` must be a valid pointer.
     /// - `release_callback` must be implemented correctly.
     /// - `release_ref_con` must be a valid pointer or null.
-    /// - `pixel_buffer_attributes` generic must be of the correct type.
-    /// - `pixel_buffer_attributes` generic must be of the correct type.
+    /// - `pixel_buffer_attributes` generic should be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreateWithBytes(
@@ -655,7 +653,7 @@ extern "C-unwind" {
         bytes_per_row: usize,
         release_callback: CVPixelBufferReleaseBytesCallback,
         release_ref_con: *mut c_void,
-        pixel_buffer_attributes: Option<&CFDictionary>,
+        pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
         pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
     ) -> CVReturn;
 }
@@ -709,8 +707,7 @@ extern "C-unwind" {
     /// - `plane_bytes_per_row` must be a valid pointer.
     /// - `release_callback` must be implemented correctly.
     /// - `release_ref_con` must be a valid pointer or null.
-    /// - `pixel_buffer_attributes` generic must be of the correct type.
-    /// - `pixel_buffer_attributes` generic must be of the correct type.
+    /// - `pixel_buffer_attributes` generic should be of the correct type.
     /// - `pixel_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer", feature = "CVReturn"))]
     pub fn CVPixelBufferCreateWithPlanarBytes(
@@ -727,7 +724,7 @@ extern "C-unwind" {
         plane_bytes_per_row: NonNull<usize>,
         release_callback: CVPixelBufferReleasePlanarBytesCallback,
         release_ref_con: *mut c_void,
-        pixel_buffer_attributes: Option<&CFDictionary>,
+        pixel_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
         pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
     ) -> CVReturn;
 }
@@ -989,36 +986,47 @@ pub extern "C-unwind" fn CVPixelBufferGetBytesPerRowOfPlane(
     unsafe { CVPixelBufferGetBytesPerRowOfPlane(pixel_buffer, plane_index) }
 }
 
-extern "C-unwind" {
-    /// Returns the size of extended pixels of the PixelBuffer.
-    ///
-    /// On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
-    /// function with a non-planar buffer will have undefined behavior.
-    ///
-    /// Parameter `pixelBuffer`: Target PixelBuffer.
-    ///
-    /// Parameter `extraColumnsOnLeft`: Returns the pixel row padding to the left.  May be NULL.
-    ///
-    /// Parameter `extraRowsOnTop`: Returns the pixel row padding to the top.  May be NULL.
-    ///
-    /// Parameter `extraColumnsOnRight`: Returns the pixel row padding to the right. May be NULL.
-    ///
-    /// Parameter `extraRowsOnBottom`: Returns the pixel row padding to the bottom. May be NULL.
-    ///
-    /// # Safety
-    ///
-    /// - `extra_columns_on_left` must be a valid pointer or null.
-    /// - `extra_columns_on_right` must be a valid pointer or null.
-    /// - `extra_rows_on_top` must be a valid pointer or null.
-    /// - `extra_rows_on_bottom` must be a valid pointer or null.
-    #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
-    pub fn CVPixelBufferGetExtendedPixels(
-        pixel_buffer: &CVPixelBuffer,
-        extra_columns_on_left: *mut usize,
-        extra_columns_on_right: *mut usize,
-        extra_rows_on_top: *mut usize,
-        extra_rows_on_bottom: *mut usize,
-    );
+/// Returns the size of extended pixels of the PixelBuffer.
+///
+/// On OSX 10.10 and earlier, or iOS 8 and earlier, calling this
+/// function with a non-planar buffer will have undefined behavior.
+///
+/// Parameter `pixelBuffer`: Target PixelBuffer.
+///
+/// Parameter `extraColumnsOnLeft`: Returns the pixel row padding to the left.  May be NULL.
+///
+/// Parameter `extraRowsOnTop`: Returns the pixel row padding to the top.  May be NULL.
+///
+/// Parameter `extraColumnsOnRight`: Returns the pixel row padding to the right. May be NULL.
+///
+/// Parameter `extraRowsOnBottom`: Returns the pixel row padding to the bottom. May be NULL.
+#[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
+#[inline]
+pub extern "C-unwind" fn CVPixelBufferGetExtendedPixels(
+    pixel_buffer: &CVPixelBuffer,
+    extra_columns_on_left: Option<&mut usize>,
+    extra_columns_on_right: Option<&mut usize>,
+    extra_rows_on_top: Option<&mut usize>,
+    extra_rows_on_bottom: Option<&mut usize>,
+) {
+    extern "C-unwind" {
+        fn CVPixelBufferGetExtendedPixels(
+            pixel_buffer: &CVPixelBuffer,
+            extra_columns_on_left: Option<&mut usize>,
+            extra_columns_on_right: Option<&mut usize>,
+            extra_rows_on_top: Option<&mut usize>,
+            extra_rows_on_bottom: Option<&mut usize>,
+        );
+    }
+    unsafe {
+        CVPixelBufferGetExtendedPixels(
+            pixel_buffer,
+            extra_columns_on_left,
+            extra_columns_on_right,
+            extra_rows_on_top,
+            extra_rows_on_bottom,
+        )
+    }
 }
 
 /// Fills the extended pixels of the PixelBuffer.   This function replicates edge pixels to fill the entire extended region of the image.
@@ -1042,11 +1050,11 @@ pub extern "C-unwind" fn CVPixelBufferFillExtendedPixels(pixel_buffer: &CVPixelB
 #[inline]
 pub extern "C-unwind" fn CVPixelBufferCopyCreationAttributes(
     pixel_buffer: &CVPixelBuffer,
-) -> CFRetained<CFDictionary> {
+) -> CFRetained<CFDictionary<CFString, CFType>> {
     extern "C-unwind" {
         fn CVPixelBufferCopyCreationAttributes(
             pixel_buffer: &CVPixelBuffer,
-        ) -> Option<NonNull<CFDictionary>>;
+        ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
     }
     let ret = unsafe { CVPixelBufferCopyCreationAttributes(pixel_buffer) };
     let ret = ret.expect("function was marked as returning non-null, but actually returned NULL");
@@ -1061,18 +1069,17 @@ pub extern "C-unwind" fn CVPixelBufferCopyCreationAttributes(
 ///
 /// # Safety
 ///
-/// - `attributes` generic must be of the correct type.
-/// - `attributes` generic must be of the correct type.
+/// `attributes` generic should be of the correct type.
 #[cfg(all(feature = "CVBuffer", feature = "CVImageBuffer"))]
 #[inline]
 pub unsafe extern "C-unwind" fn CVPixelBufferIsCompatibleWithAttributes(
     pixel_buffer: &CVPixelBuffer,
-    attributes: Option<&CFDictionary>,
+    attributes: Option<&CFDictionary<CFString, CFType>>,
 ) -> bool {
     extern "C-unwind" {
         fn CVPixelBufferIsCompatibleWithAttributes(
             pixel_buffer: &CVPixelBuffer,
-            attributes: Option<&CFDictionary>,
+            attributes: Option<&CFDictionary<CFString, CFType>>,
         ) -> Boolean;
     }
     let ret = unsafe { CVPixelBufferIsCompatibleWithAttributes(pixel_buffer, attributes) };

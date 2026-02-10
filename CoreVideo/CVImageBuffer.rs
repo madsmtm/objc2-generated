@@ -339,12 +339,12 @@ extern "C" {
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpostdecodeprocessingsequencemetadatakey?language=objc)
-    pub static kCVImageBufferPostDecodeProcessingSequenceMetadataKey: Option<&'static CFString>;
+    pub static kCVImageBufferPostDecodeProcessingSequenceMetadataKey: &'static CFString;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/kcvimagebufferpostdecodeprocessingframemetadatakey?language=objc)
-    pub static kCVImageBufferPostDecodeProcessingFrameMetadataKey: Option<&'static CFString>;
+    pub static kCVImageBufferPostDecodeProcessingFrameMetadataKey: &'static CFString;
 }
 
 #[inline]
@@ -529,16 +529,15 @@ pub extern "C-unwind" fn CVImageBufferGetColorSpace(
 ///
 /// # Safety
 ///
-/// - `attachments` generic must be of the correct type.
-/// - `attachments` generic must be of the correct type.
+/// `attachments` generic should be of the correct type.
 #[cfg(feature = "objc2-core-graphics")]
 #[inline]
 pub unsafe extern "C-unwind" fn CVImageBufferCreateColorSpaceFromAttachments(
-    attachments: &CFDictionary,
+    attachments: &CFDictionary<CFString, CFType>,
 ) -> Option<CFRetained<CGColorSpace>> {
     extern "C-unwind" {
         fn CVImageBufferCreateColorSpaceFromAttachments(
-            attachments: &CFDictionary,
+            attachments: &CFDictionary<CFString, CFType>,
         ) -> Option<NonNull<CGColorSpace>>;
     }
     let ret = unsafe { CVImageBufferCreateColorSpaceFromAttachments(attachments) };

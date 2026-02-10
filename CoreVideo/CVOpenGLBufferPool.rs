@@ -65,10 +65,8 @@ impl CVOpenGLBufferPool {
     ///
     /// # Safety
     ///
-    /// - `pool_attributes` generic must be of the correct type.
-    /// - `pool_attributes` generic must be of the correct type.
-    /// - `open_gl_buffer_attributes` generic must be of the correct type.
-    /// - `open_gl_buffer_attributes` generic must be of the correct type.
+    /// - `pool_attributes` generic should be of the correct type.
+    /// - `open_gl_buffer_attributes` generic should be of the correct type.
     /// - `pool_out` must be a valid pointer.
     #[doc(alias = "CVOpenGLBufferPoolCreate")]
     #[cfg(feature = "CVReturn")]
@@ -76,15 +74,15 @@ impl CVOpenGLBufferPool {
     #[inline]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
-        pool_attributes: Option<&CFDictionary>,
-        open_gl_buffer_attributes: Option<&CFDictionary>,
+        pool_attributes: Option<&CFDictionary<CFString, CFType>>,
+        open_gl_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
         pool_out: NonNull<*mut CVOpenGLBufferPool>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVOpenGLBufferPoolCreate(
                 allocator: Option<&CFAllocator>,
-                pool_attributes: Option<&CFDictionary>,
-                open_gl_buffer_attributes: Option<&CFDictionary>,
+                pool_attributes: Option<&CFDictionary<CFString, CFType>>,
+                open_gl_buffer_attributes: Option<&CFDictionary<CFString, CFType>>,
                 pool_out: NonNull<*mut CVOpenGLBufferPool>,
             ) -> CVReturn;
         }
@@ -106,11 +104,11 @@ impl CVOpenGLBufferPool {
     #[doc(alias = "CVOpenGLBufferPoolGetAttributes")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    pub fn attributes(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn attributes(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CVOpenGLBufferPoolGetAttributes(
                 pool: &CVOpenGLBufferPool,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CVOpenGLBufferPoolGetAttributes(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
@@ -127,11 +125,11 @@ impl CVOpenGLBufferPool {
     #[doc(alias = "CVOpenGLBufferPoolGetOpenGLBufferAttributes")]
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
-    pub fn open_gl_buffer_attributes(&self) -> Option<CFRetained<CFDictionary>> {
+    pub fn open_gl_buffer_attributes(&self) -> Option<CFRetained<CFDictionary<CFString, CFType>>> {
         extern "C-unwind" {
             fn CVOpenGLBufferPoolGetOpenGLBufferAttributes(
                 pool: &CVOpenGLBufferPool,
-            ) -> Option<NonNull<CFDictionary>>;
+            ) -> Option<NonNull<CFDictionary<CFString, CFType>>>;
         }
         let ret = unsafe { CVOpenGLBufferPoolGetOpenGLBufferAttributes(self) };
         ret.map(|ret| unsafe { CFRetained::retain(ret) })

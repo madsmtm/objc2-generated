@@ -85,12 +85,10 @@ impl CVOpenGLTextureCache {
     ///
     /// # Safety
     ///
-    /// - `cache_attributes` generic must be of the correct type.
-    /// - `cache_attributes` generic must be of the correct type.
+    /// - `cache_attributes` generic should be of the correct type.
     /// - `cgl_context` must be a valid pointer.
     /// - `cgl_pixel_format` must be a valid pointer.
-    /// - `texture_attributes` generic must be of the correct type.
-    /// - `texture_attributes` generic must be of the correct type.
+    /// - `texture_attributes` generic should be of the correct type.
     /// - `cache_out` must be a valid pointer.
     #[doc(alias = "CVOpenGLTextureCacheCreate")]
     #[cfg(all(feature = "CVReturn", feature = "objc2-open-gl"))]
@@ -99,19 +97,19 @@ impl CVOpenGLTextureCache {
     #[inline]
     pub unsafe fn create(
         allocator: Option<&CFAllocator>,
-        cache_attributes: Option<&CFDictionary>,
+        cache_attributes: Option<&CFDictionary<CFString, CFType>>,
         cgl_context: CGLContextObj,
         cgl_pixel_format: CGLPixelFormatObj,
-        texture_attributes: Option<&CFDictionary>,
+        texture_attributes: Option<&CFDictionary<CFString, CFType>>,
         cache_out: NonNull<*mut CVOpenGLTextureCache>,
     ) -> CVReturn {
         extern "C-unwind" {
             fn CVOpenGLTextureCacheCreate(
                 allocator: Option<&CFAllocator>,
-                cache_attributes: Option<&CFDictionary>,
+                cache_attributes: Option<&CFDictionary<CFString, CFType>>,
                 cgl_context: CGLContextObj,
                 cgl_pixel_format: CGLPixelFormatObj,
-                texture_attributes: Option<&CFDictionary>,
+                texture_attributes: Option<&CFDictionary<CFString, CFType>>,
                 cache_out: NonNull<*mut CVOpenGLTextureCache>,
             ) -> CVReturn;
         }
@@ -143,8 +141,7 @@ impl CVOpenGLTextureCache {
     ///
     /// # Safety
     ///
-    /// - `attributes` generic must be of the correct type.
-    /// - `attributes` generic must be of the correct type.
+    /// - `attributes` generic should be of the correct type.
     /// - `texture_out` must be a valid pointer.
     #[doc(alias = "CVOpenGLTextureCacheCreateTextureFromImage")]
     #[cfg(all(
@@ -159,7 +156,7 @@ impl CVOpenGLTextureCache {
         allocator: Option<&CFAllocator>,
         texture_cache: &CVOpenGLTextureCache,
         source_image: &CVImageBuffer,
-        attributes: Option<&CFDictionary>,
+        attributes: Option<&CFDictionary<CFString, CFType>>,
         texture_out: NonNull<*mut CVOpenGLTexture>,
     ) -> CVReturn {
         extern "C-unwind" {
@@ -167,7 +164,7 @@ impl CVOpenGLTextureCache {
                 allocator: Option<&CFAllocator>,
                 texture_cache: &CVOpenGLTextureCache,
                 source_image: &CVImageBuffer,
-                attributes: Option<&CFDictionary>,
+                attributes: Option<&CFDictionary<CFString, CFType>>,
                 texture_out: NonNull<*mut CVOpenGLTexture>,
             ) -> CVReturn;
         }
