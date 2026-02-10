@@ -269,16 +269,14 @@ impl UIBezierPath {
         #[cfg(feature = "objc2-core-foundation")]
         /// # Safety
         ///
-        /// - `pattern` must be a valid pointer or null.
-        /// - `count` must be a valid pointer or null.
-        /// - `phase` must be a valid pointer or null.
+        /// `pattern` must be a valid pointer or null.
         #[unsafe(method(getLineDash:count:phase:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getLineDash_count_phase(
             &self,
             pattern: *mut CGFloat,
-            count: *mut NSInteger,
-            phase: *mut CGFloat,
+            count: Option<&mut NSInteger>,
+            phase: Option<&mut CGFloat>,
         );
 
         #[unsafe(method(fill))]

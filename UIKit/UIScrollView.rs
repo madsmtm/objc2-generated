@@ -875,17 +875,14 @@ extern_protocol!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        /// # Safety
-        ///
-        /// `target_content_offset` must be a valid pointer.
         #[optional]
         #[unsafe(method(scrollViewWillEndDragging:withVelocity:targetContentOffset:))]
         #[unsafe(method_family = none)]
-        unsafe fn scrollViewWillEndDragging_withVelocity_targetContentOffset(
+        fn scrollViewWillEndDragging_withVelocity_targetContentOffset(
             &self,
             scroll_view: &UIScrollView,
             velocity: CGPoint,
-            target_content_offset: NonNull<CGPoint>,
+            target_content_offset: &mut CGPoint,
         );
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]

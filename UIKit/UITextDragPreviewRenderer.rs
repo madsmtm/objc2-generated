@@ -76,18 +76,13 @@ impl UITextDragPreviewRenderer {
         pub fn lastLineRect(&self) -> CGRect;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// # Safety
-        ///
-        /// - `first_line_rect` must be a valid pointer.
-        /// - `body_rect` must be a valid pointer.
-        /// - `last_line_rect` must be a valid pointer.
         #[unsafe(method(adjustFirstLineRect:bodyRect:lastLineRect:textOrigin:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn adjustFirstLineRect_bodyRect_lastLineRect_textOrigin(
+        pub fn adjustFirstLineRect_bodyRect_lastLineRect_textOrigin(
             &self,
-            first_line_rect: NonNull<CGRect>,
-            body_rect: NonNull<CGRect>,
-            last_line_rect: NonNull<CGRect>,
+            first_line_rect: &mut CGRect,
+            body_rect: &mut CGRect,
+            last_line_rect: &mut CGRect,
             origin: CGPoint,
         );
     );

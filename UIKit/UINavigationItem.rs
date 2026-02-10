@@ -148,18 +148,14 @@ extern_protocol!(
 
         /// Called when we begin renaming. Implementing this method allows for customizing the initial text that will show up in the text field as well as the
         /// selected range of that text.
-        ///
-        /// # Safety
-        ///
-        /// `selected_range` must be a valid pointer.
         #[optional]
         #[unsafe(method(navigationItem:willBeginRenamingWithSuggestedTitle:selectedRange:))]
         #[unsafe(method_family = none)]
-        unsafe fn navigationItem_willBeginRenamingWithSuggestedTitle_selectedRange(
+        fn navigationItem_willBeginRenamingWithSuggestedTitle_selectedRange(
             &self,
             navigation_item: &UINavigationItem,
             title: &NSString,
-            selected_range: NonNull<NSRange>,
+            selected_range: &mut NSRange,
         ) -> Retained<NSString>;
 
         /// This method can be used to prevent renaming from happening. However there are cases (e.g. when a new navigation item is pushed on the navigation

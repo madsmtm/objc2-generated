@@ -94,18 +94,14 @@ impl NSTextContainer {
 
         #[cfg(all(feature = "NSText", feature = "objc2-core-foundation"))]
         /// ************************** Line fragments ***************************
-        ///
-        /// # Safety
-        ///
-        /// `remaining_rect` must be a valid pointer or null.
         #[unsafe(method(lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect(
+        pub fn lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect(
             &self,
             proposed_rect: CGRect,
             character_index: NSUInteger,
             base_writing_direction: NSWritingDirection,
-            remaining_rect: *mut CGRect,
+            remaining_rect: Option<&mut CGRect>,
         ) -> CGRect;
 
         #[unsafe(method(isSimpleRectangularTextContainer))]

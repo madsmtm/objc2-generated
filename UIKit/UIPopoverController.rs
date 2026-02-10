@@ -238,17 +238,14 @@ extern_protocol!(
             feature = "UIView",
             feature = "objc2-core-foundation"
         ))]
-        /// # Safety
-        ///
-        /// `rect` must be a valid pointer.
         #[deprecated]
         #[optional]
         #[unsafe(method(popoverController:willRepositionPopoverToRect:inView:))]
         #[unsafe(method_family = none)]
-        unsafe fn popoverController_willRepositionPopoverToRect_inView(
+        fn popoverController_willRepositionPopoverToRect_inView(
             &self,
             popover_controller: &UIPopoverController,
-            rect: NonNull<CGRect>,
+            rect: &mut CGRect,
             view: &mut Retained<UIView>,
         );
     }

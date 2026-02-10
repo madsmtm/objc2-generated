@@ -310,46 +310,34 @@ impl UIColor {
         pub fn setStroke(&self);
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// # Safety
-        ///
-        /// - `white` must be a valid pointer or null.
-        /// - `alpha` must be a valid pointer or null.
         #[unsafe(method(getWhite:alpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getWhite_alpha(&self, white: *mut CGFloat, alpha: *mut CGFloat) -> bool;
-
-        #[cfg(feature = "objc2-core-foundation")]
-        /// # Safety
-        ///
-        /// - `hue` must be a valid pointer or null.
-        /// - `saturation` must be a valid pointer or null.
-        /// - `brightness` must be a valid pointer or null.
-        /// - `alpha` must be a valid pointer or null.
-        #[unsafe(method(getHue:saturation:brightness:alpha:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn getHue_saturation_brightness_alpha(
+        pub fn getWhite_alpha(
             &self,
-            hue: *mut CGFloat,
-            saturation: *mut CGFloat,
-            brightness: *mut CGFloat,
-            alpha: *mut CGFloat,
+            white: Option<&mut CGFloat>,
+            alpha: Option<&mut CGFloat>,
         ) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
-        /// # Safety
-        ///
-        /// - `red` must be a valid pointer or null.
-        /// - `green` must be a valid pointer or null.
-        /// - `blue` must be a valid pointer or null.
-        /// - `alpha` must be a valid pointer or null.
+        #[unsafe(method(getHue:saturation:brightness:alpha:))]
+        #[unsafe(method_family = none)]
+        pub fn getHue_saturation_brightness_alpha(
+            &self,
+            hue: Option<&mut CGFloat>,
+            saturation: Option<&mut CGFloat>,
+            brightness: Option<&mut CGFloat>,
+            alpha: Option<&mut CGFloat>,
+        ) -> bool;
+
+        #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(getRed:green:blue:alpha:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn getRed_green_blue_alpha(
+        pub fn getRed_green_blue_alpha(
             &self,
-            red: *mut CGFloat,
-            green: *mut CGFloat,
-            blue: *mut CGFloat,
-            alpha: *mut CGFloat,
+            red: Option<&mut CGFloat>,
+            green: Option<&mut CGFloat>,
+            blue: Option<&mut CGFloat>,
+            alpha: Option<&mut CGFloat>,
         ) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]
