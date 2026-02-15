@@ -107,7 +107,7 @@ impl NEAppProxyFlow {
         #[unsafe(method_family = none)]
         pub unsafe fn openWithLocalEndpoint_completionHandler(
             &self,
-            local_endpoint: Option<&NWHostEndpoint>,
+            local_endpoint: Option<&NEHostEndpoint>,
             completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
@@ -265,11 +265,11 @@ impl NEProvider {
         #[unsafe(method_family = none)]
         pub unsafe fn createTCPConnectionToEndpoint_enableTLS_TLSParameters_delegate(
             &self,
-            remote_endpoint: &NWEndpoint,
+            remote_endpoint: &NEEndpoint,
             enable_tls: bool,
-            tls_parameters: Option<&NWTLSParameters>,
+            tls_parameters: Option<&NETLSParameters>,
             delegate: Option<&AnyObject>,
-        ) -> Retained<NWTCPConnection>;
+        ) -> Retained<NETCPConnection>;
 
         /// This function can be called by subclass implementations to create a UDP session between a local network endpoint and a remote network endpoint. This function should not be overridden by subclasses.
         ///
@@ -283,9 +283,9 @@ impl NEProvider {
         #[unsafe(method_family = none)]
         pub unsafe fn createUDPSessionToEndpoint_fromEndpoint(
             &self,
-            remote_endpoint: &NWEndpoint,
-            local_endpoint: Option<&NWHostEndpoint>,
-        ) -> Retained<NWUDPSession>;
+            remote_endpoint: &NEEndpoint,
+            local_endpoint: Option<&NEHostEndpoint>,
+        ) -> Retained<NEUDPSession>;
 
         #[cfg(feature = "block2")]
         /// This method can be called by subclass implementations to display a message to the user.
@@ -355,7 +355,7 @@ impl NEProvider {
         #[deprecated = "Use nw_path_monitor_t in Network framework instead"]
         #[unsafe(method(defaultPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn defaultPath(&self) -> Option<Retained<NWPath>>;
+        pub unsafe fn defaultPath(&self) -> Option<Retained<NEPath>>;
     );
 }
 
@@ -592,7 +592,7 @@ impl NEAppProxyProvider {
         pub unsafe fn handleNewUDPFlow_initialRemoteEndpoint(
             &self,
             flow: &NEAppProxyUDPFlow,
-            remote_endpoint: &NWEndpoint,
+            remote_endpoint: &NEEndpoint,
         ) -> bool;
     );
 }
@@ -1056,7 +1056,7 @@ impl NEAppProxyTCPFlow {
         #[deprecated]
         #[unsafe(method(remoteEndpoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn remoteEndpoint(&self) -> Retained<NWEndpoint>;
+        pub unsafe fn remoteEndpoint(&self) -> Retained<NEEndpoint>;
     );
 }
 
@@ -1102,7 +1102,7 @@ impl NEAppProxyUDPFlow {
         pub unsafe fn readDatagramsWithCompletionHandler(
             &self,
             completion_handler: &block2::DynBlock<
-                dyn Fn(*mut NSArray<NSData>, *mut NSArray<NWEndpoint>, *mut NSError),
+                dyn Fn(*mut NSArray<NSData>, *mut NSArray<NEEndpoint>, *mut NSError),
             >,
         );
 
@@ -1120,7 +1120,7 @@ impl NEAppProxyUDPFlow {
         pub unsafe fn writeDatagrams_sentByEndpoints_completionHandler(
             &self,
             datagrams: &NSArray<NSData>,
-            remote_endpoints: &NSArray<NWEndpoint>,
+            remote_endpoints: &NSArray<NEEndpoint>,
             completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
@@ -1128,7 +1128,7 @@ impl NEAppProxyUDPFlow {
         #[deprecated]
         #[unsafe(method(localEndpoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localEndpoint(&self) -> Option<Retained<NWEndpoint>>;
+        pub unsafe fn localEndpoint(&self) -> Option<Retained<NEEndpoint>>;
     );
 }
 
@@ -1496,7 +1496,7 @@ impl NEDNSProxyProvider {
         pub unsafe fn handleNewUDPFlow_initialRemoteEndpoint(
             &self,
             flow: &NEAppProxyUDPFlow,
-            remote_endpoint: &NWEndpoint,
+            remote_endpoint: &NEEndpoint,
         ) -> bool;
 
         /// The current system DNS settings. Use KVO to watch for changes.
@@ -2662,7 +2662,7 @@ impl NENetworkRule {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDestinationNetwork_prefix_protocol(
             this: Allocated<Self>,
-            network_endpoint: &NWHostEndpoint,
+            network_endpoint: &NEHostEndpoint,
             destination_prefix: NSUInteger,
             protocol: NENetworkRuleProtocol,
         ) -> Retained<Self>;
@@ -2695,7 +2695,7 @@ impl NENetworkRule {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDestinationHost_protocol(
             this: Allocated<Self>,
-            host_endpoint: &NWHostEndpoint,
+            host_endpoint: &NEHostEndpoint,
             protocol: NENetworkRuleProtocol,
         ) -> Retained<Self>;
 
@@ -2728,9 +2728,9 @@ impl NENetworkRule {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRemoteNetwork_remotePrefix_localNetwork_localPrefix_protocol_direction(
             this: Allocated<Self>,
-            remote_network: Option<&NWHostEndpoint>,
+            remote_network: Option<&NEHostEndpoint>,
             remote_prefix: NSUInteger,
-            local_network: Option<&NWHostEndpoint>,
+            local_network: Option<&NEHostEndpoint>,
             local_prefix: NSUInteger,
             protocol: NENetworkRuleProtocol,
             direction: NETrafficDirection,
@@ -2740,7 +2740,7 @@ impl NENetworkRule {
         #[deprecated]
         #[unsafe(method(matchRemoteEndpoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn matchRemoteEndpoint(&self) -> Option<Retained<NWHostEndpoint>>;
+        pub unsafe fn matchRemoteEndpoint(&self) -> Option<Retained<NEHostEndpoint>>;
 
         /// A number that specifies the remote sub-network that the rule matches. This property is set to NSNotFound for rules where matchRemoteEndpoint does not contain an IP address.
         #[unsafe(method(matchRemotePrefix))]
@@ -2751,7 +2751,7 @@ impl NENetworkRule {
         #[deprecated]
         #[unsafe(method(matchLocalNetwork))]
         #[unsafe(method_family = none)]
-        pub unsafe fn matchLocalNetwork(&self) -> Option<Retained<NWHostEndpoint>>;
+        pub unsafe fn matchLocalNetwork(&self) -> Option<Retained<NEHostEndpoint>>;
 
         /// A number that specifies the local sub-network that the rule matches. This property is set to NSNotFound for rules with a nil matchLocalNetwork property.
         #[unsafe(method(matchLocalPrefix))]
@@ -2974,7 +2974,7 @@ impl NEFilterSocketFlow {
         #[deprecated]
         #[unsafe(method(remoteEndpoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn remoteEndpoint(&self) -> Option<Retained<NWEndpoint>>;
+        pub unsafe fn remoteEndpoint(&self) -> Option<Retained<NEEndpoint>>;
 
         /// The flow's remote hostname. This property is only non-nil if the flow was created using Network.framework or NSURLSession.
         #[unsafe(method(remoteHostname))]
@@ -2986,7 +2986,7 @@ impl NEFilterSocketFlow {
         #[deprecated]
         #[unsafe(method(localEndpoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localEndpoint(&self) -> Option<Retained<NWEndpoint>>;
+        pub unsafe fn localEndpoint(&self) -> Option<Retained<NEEndpoint>>;
 
         /// Socket family of the socket flow, such as PF_INET.
         #[unsafe(method(socketFamily))]
@@ -5095,8 +5095,8 @@ impl NEHotspotHelperCommand {
         #[unsafe(method_family = none)]
         pub unsafe fn createTCPConnection(
             &self,
-            endpoint: &NWEndpoint,
-        ) -> Retained<NWTCPConnection>;
+            endpoint: &NEEndpoint,
+        ) -> Retained<NETCPConnection>;
 
         /// Create a new UDP session over the interface associated with the command.
         ///
@@ -5107,7 +5107,7 @@ impl NEHotspotHelperCommand {
         #[deprecated = "Use the `interface` property with `nw_parameters_require_interface`"]
         #[unsafe(method(createUDPSession:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn createUDPSession(&self, endpoint: &NWEndpoint) -> Retained<NWUDPSession>;
+        pub unsafe fn createUDPSession(&self, endpoint: &NEEndpoint) -> Retained<NEUDPSession>;
     );
 }
 
@@ -6898,11 +6898,11 @@ impl NEPacketTunnelProvider {
         #[unsafe(method_family = none)]
         pub unsafe fn createTCPConnectionThroughTunnelToEndpoint_enableTLS_TLSParameters_delegate(
             &self,
-            remote_endpoint: &NWEndpoint,
+            remote_endpoint: &NEEndpoint,
             enable_tls: bool,
-            tls_parameters: Option<&NWTLSParameters>,
+            tls_parameters: Option<&NETLSParameters>,
             delegate: Option<&AnyObject>,
-        ) -> Retained<NWTCPConnection>;
+        ) -> Retained<NETCPConnection>;
 
         /// This function can be called by subclass implementations to create a UDP session between a local network endpoint and a remote network endpoint, through the tunnel established by the provider. This function should not be overridden by subclasses.
         ///
@@ -6916,9 +6916,9 @@ impl NEPacketTunnelProvider {
         #[unsafe(method_family = none)]
         pub unsafe fn createUDPSessionThroughTunnelToEndpoint_fromEndpoint(
             &self,
-            remote_endpoint: &NWEndpoint,
-            local_endpoint: Option<&NWHostEndpoint>,
-        ) -> Retained<NWUDPSession>;
+            remote_endpoint: &NEEndpoint,
+            local_endpoint: Option<&NEHostEndpoint>,
+        ) -> Retained<NEUDPSession>;
     );
 }
 
@@ -9882,39 +9882,41 @@ impl NEAppPushProvider {
 extern_class!(
     /// NWEndpoint is a generic class to represent network endpoints, such as a port on a remote server.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwendpoint?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neendpoint?language=objc)
+    #[doc(alias = "NWEndpoint")]
     #[unsafe(super(NSObject))]
+    #[name = "NWEndpoint"]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use nw_endpoint_t in Network framework instead, see deprecation notice in <NetworkExtension/NWEndpoint.h>"]
-    pub struct NWEndpoint;
+    pub struct NEEndpoint;
 );
 
 extern_conformance!(
-    unsafe impl NSCoding for NWEndpoint {}
+    unsafe impl NSCoding for NEEndpoint {}
 );
 
 extern_conformance!(
-    unsafe impl NSCopying for NWEndpoint {}
+    unsafe impl NSCopying for NEEndpoint {}
 );
 
-unsafe impl CopyingHelper for NWEndpoint {
+unsafe impl CopyingHelper for NEEndpoint {
     type Result = Self;
 }
 
 extern_conformance!(
-    unsafe impl NSObjectProtocol for NWEndpoint {}
+    unsafe impl NSObjectProtocol for NEEndpoint {}
 );
 
 extern_conformance!(
-    unsafe impl NSSecureCoding for NWEndpoint {}
+    unsafe impl NSSecureCoding for NEEndpoint {}
 );
 
-impl NWEndpoint {
+impl NEEndpoint {
     extern_methods!();
 }
 
 /// Methods declared on superclass `NSObject`.
-impl NWEndpoint {
+impl NEEndpoint {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -9930,34 +9932,36 @@ extern_class!(
     /// NWHostEndpoint is a subclass of NWEndpoint. It represents an endpoint backed by a
     /// hostname and port. Note that a hostname string may be an IP or IPv6 address.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwhostendpoint?language=objc)
-    #[unsafe(super(NWEndpoint, NSObject))]
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehostendpoint?language=objc)
+    #[doc(alias = "NWHostEndpoint")]
+    #[unsafe(super(NEEndpoint, NSObject))]
+    #[name = "NWHostEndpoint"]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_endpoint_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWHostEndpoint.h>"]
-    pub struct NWHostEndpoint;
+    pub struct NEHostEndpoint;
 );
 
 extern_conformance!(
-    unsafe impl NSCoding for NWHostEndpoint {}
+    unsafe impl NSCoding for NEHostEndpoint {}
 );
 
 extern_conformance!(
-    unsafe impl NSCopying for NWHostEndpoint {}
+    unsafe impl NSCopying for NEHostEndpoint {}
 );
 
-unsafe impl CopyingHelper for NWHostEndpoint {
+unsafe impl CopyingHelper for NEHostEndpoint {
     type Result = Self;
 }
 
 extern_conformance!(
-    unsafe impl NSObjectProtocol for NWHostEndpoint {}
+    unsafe impl NSObjectProtocol for NEHostEndpoint {}
 );
 
 extern_conformance!(
-    unsafe impl NSSecureCoding for NWHostEndpoint {}
+    unsafe impl NSSecureCoding for NEHostEndpoint {}
 );
 
-impl NWHostEndpoint {
+impl NEHostEndpoint {
     extern_methods!(
         /// Parameter `hostname`: A string representation of the hostname or address, such as www.apple.com or 10.0.0.1.
         ///
@@ -9987,7 +9991,7 @@ impl NWHostEndpoint {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl NWHostEndpoint {
+impl NEHostEndpoint {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -10005,34 +10009,36 @@ extern_class!(
     /// Bonjour service MyMusicStudio._music._tcp.local. has the name "MyMusicStudio",
     /// the type "_music._tcp", and the domain "local".
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwbonjourserviceendpoint?language=objc)
-    #[unsafe(super(NWEndpoint, NSObject))]
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nebonjourserviceendpoint?language=objc)
+    #[doc(alias = "NWBonjourServiceEndpoint")]
+    #[unsafe(super(NEEndpoint, NSObject))]
+    #[name = "NWBonjourServiceEndpoint"]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_endpoint_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWBonjourServiceEndpoint.h>"]
-    pub struct NWBonjourServiceEndpoint;
+    pub struct NEBonjourServiceEndpoint;
 );
 
 extern_conformance!(
-    unsafe impl NSCoding for NWBonjourServiceEndpoint {}
+    unsafe impl NSCoding for NEBonjourServiceEndpoint {}
 );
 
 extern_conformance!(
-    unsafe impl NSCopying for NWBonjourServiceEndpoint {}
+    unsafe impl NSCopying for NEBonjourServiceEndpoint {}
 );
 
-unsafe impl CopyingHelper for NWBonjourServiceEndpoint {
+unsafe impl CopyingHelper for NEBonjourServiceEndpoint {
     type Result = Self;
 }
 
 extern_conformance!(
-    unsafe impl NSObjectProtocol for NWBonjourServiceEndpoint {}
+    unsafe impl NSObjectProtocol for NEBonjourServiceEndpoint {}
 );
 
 extern_conformance!(
-    unsafe impl NSSecureCoding for NWBonjourServiceEndpoint {}
+    unsafe impl NSSecureCoding for NEBonjourServiceEndpoint {}
 );
 
-impl NWBonjourServiceEndpoint {
+impl NEBonjourServiceEndpoint {
     extern_methods!(
         /// Parameter `name`: The Bonjour service name.
         ///
@@ -10071,7 +10077,7 @@ impl NWBonjourServiceEndpoint {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl NWBonjourServiceEndpoint {
+impl NEBonjourServiceEndpoint {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -10120,18 +10126,20 @@ extern_class!(
     /// properties of the path that a networking connection will take on the device. For example,
     /// if the path status is NWPathStatusSatisfied, then a connection could use that path.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwpath?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nepath?language=objc)
+    #[doc(alias = "NWPath")]
     #[unsafe(super(NSObject))]
+    #[name = "NWPath"]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_path_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
-    pub struct NWPath;
+    pub struct NEPath;
 );
 
 extern_conformance!(
-    unsafe impl NSObjectProtocol for NWPath {}
+    unsafe impl NSObjectProtocol for NEPath {}
 );
 
-impl NWPath {
+impl NEPath {
     extern_methods!(
         /// The evaluated NWPathStatus of the NWPath.
         #[deprecated = "Use `nw_path_get_status` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
@@ -10157,12 +10165,12 @@ impl NWPath {
         #[deprecated = "Use `nw_path_is_equal` in Network framework instead, see deprecation notice in <NetworkExtension/NWPath.h>"]
         #[unsafe(method(isEqualToPath:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn isEqualToPath(&self, path: &NWPath) -> bool;
+        pub unsafe fn isEqualToPath(&self, path: &NEPath) -> bool;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
-impl NWPath {
+impl NEPath {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -10220,18 +10228,20 @@ unsafe impl RefEncode for NWTCPConnectionState {
 extern_class!(
     /// Establish TCP connections to an endpoint, and send and receive data on the TCP connection.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtcpconnection?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netcpconnection?language=objc)
+    #[doc(alias = "NWTCPConnection")]
     #[unsafe(super(NSObject))]
+    #[name = "NWTCPConnection"]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_connection_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
-    pub struct NWTCPConnection;
+    pub struct NETCPConnection;
 );
 
 extern_conformance!(
-    unsafe impl NSObjectProtocol for NWTCPConnection {}
+    unsafe impl NSObjectProtocol for NETCPConnection {}
 );
 
-impl NWTCPConnection {
+impl NETCPConnection {
     extern_methods!(
         /// This convenience initializer can be used to create a new connection that would only
         /// be connected if there exists a better path (as determined by the system) to the destination
@@ -10258,7 +10268,7 @@ impl NWTCPConnection {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUpgradeForConnection(
             this: Allocated<Self>,
-            connection: &NWTCPConnection,
+            connection: &NETCPConnection,
         ) -> Retained<Self>;
 
         /// The status of the connection. Use KVO to watch this property to get updates.
@@ -10286,7 +10296,7 @@ impl NWTCPConnection {
         #[deprecated = "Use `nw_connection_copy_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
         #[unsafe(method(endpoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endpoint(&self) -> Retained<NWEndpoint>;
+        pub unsafe fn endpoint(&self) -> Retained<NEEndpoint>;
 
         /// The network path over which the connection was established. The caller can query
         /// additional properties from the NWPath object for more information.
@@ -10297,19 +10307,19 @@ impl NWTCPConnection {
         #[deprecated = "Use `nw_connection_copy_current_path` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
         #[unsafe(method(connectedPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn connectedPath(&self) -> Option<Retained<NWPath>>;
+        pub unsafe fn connectedPath(&self) -> Option<Retained<NEPath>>;
 
         /// The IP address endpoint from which the connection was connected.
         #[deprecated = "Use `nw_path_copy_effective_local_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
         #[unsafe(method(localAddress))]
         #[unsafe(method_family = none)]
-        pub unsafe fn localAddress(&self) -> Option<Retained<NWEndpoint>>;
+        pub unsafe fn localAddress(&self) -> Option<Retained<NEEndpoint>>;
 
         /// The IP address endpoint to which the connection was connected.
         #[deprecated = "Use `nw_path_copy_effective_remote_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWTCPConnection.h>"]
         #[unsafe(method(remoteAddress))]
         #[unsafe(method_family = none)]
-        pub unsafe fn remoteAddress(&self) -> Option<Retained<NWEndpoint>>;
+        pub unsafe fn remoteAddress(&self) -> Option<Retained<NEEndpoint>>;
 
         /// When the connection is connected to a Bonjour service endpoint, the TXT record associated
         /// with the Bonjour service is available via this property. Beware that the value comes from
@@ -10413,7 +10423,7 @@ impl NWTCPConnection {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl NWTCPConnection {
+impl NETCPConnection {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -10444,7 +10454,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(shouldProvideIdentityForConnection:))]
         #[unsafe(method_family = none)]
-        unsafe fn shouldProvideIdentityForConnection(&self, connection: &NWTCPConnection) -> bool;
+        unsafe fn shouldProvideIdentityForConnection(&self, connection: &NETCPConnection) -> bool;
 
         #[cfg(all(feature = "block2", feature = "objc2-security"))]
         /// The caller can implement this optional protocol method to provide the identity
@@ -10466,7 +10476,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn provideIdentityForConnection_completionHandler(
             &self,
-            connection: &NWTCPConnection,
+            connection: &NETCPConnection,
             completion: &block2::DynBlock<
                 dyn Fn(NonNull<SecIdentity>, NonNull<NSArray<AnyObject>>),
             >,
@@ -10485,7 +10495,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(shouldEvaluateTrustForConnection:))]
         #[unsafe(method_family = none)]
-        unsafe fn shouldEvaluateTrustForConnection(&self, connection: &NWTCPConnection) -> bool;
+        unsafe fn shouldEvaluateTrustForConnection(&self, connection: &NETCPConnection) -> bool;
 
         #[cfg(all(feature = "block2", feature = "objc2-security"))]
         /// The caller can implement this optional protocol method to set up custom policies
@@ -10511,7 +10521,7 @@ extern_protocol!(
         #[unsafe(method_family = none)]
         unsafe fn evaluateTrustForConnection_peerCertificateChain_completionHandler(
             &self,
-            connection: &NWTCPConnection,
+            connection: &NETCPConnection,
             peer_certificate_chain: &NSArray<AnyObject>,
             completion: &block2::DynBlock<dyn Fn(NonNull<SecTrust>)>,
         );
@@ -10561,18 +10571,20 @@ unsafe impl RefEncode for NWUDPSessionState {
 extern_class!(
     /// Open UDP datagram sessions to an endpoint, and send and receive datagrams.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwudpsession?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/neudpsession?language=objc)
+    #[doc(alias = "NWUDPSession")]
     #[unsafe(super(NSObject))]
+    #[name = "NWUDPSession"]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `nw_connection_t` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
-    pub struct NWUDPSession;
+    pub struct NEUDPSession;
 );
 
 extern_conformance!(
-    unsafe impl NSObjectProtocol for NWUDPSession {}
+    unsafe impl NSObjectProtocol for NEUDPSession {}
 );
 
-impl NWUDPSession {
+impl NEUDPSession {
     extern_methods!(
         /// This convenience initializer can be used to create a new session based on the
         /// original session's endpoint and parameters.
@@ -10594,7 +10606,7 @@ impl NWUDPSession {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithUpgradeForSession(
             this: Allocated<Self>,
-            session: &NWUDPSession,
+            session: &NEUDPSession,
         ) -> Retained<Self>;
 
         /// The current state of the UDP session. If the state is NWUDPSessionStateReady,
@@ -10610,13 +10622,13 @@ impl NWUDPSession {
         #[deprecated = "Use `nw_connection_copy_endpoint` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[unsafe(method(endpoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn endpoint(&self) -> Retained<NWEndpoint>;
+        pub unsafe fn endpoint(&self) -> Retained<NEEndpoint>;
 
         /// The currently targeted remote endpoint. Use KVO to watch for changes.
         #[deprecated = "Use `nw_connection_copy_current_path` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[unsafe(method(resolvedEndpoint))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resolvedEndpoint(&self) -> Option<Retained<NWEndpoint>>;
+        pub unsafe fn resolvedEndpoint(&self) -> Option<Retained<NEEndpoint>>;
 
         /// YES if the connection can read and write data, NO otherwise.
         /// Use KVO to watch this property.
@@ -10636,7 +10648,7 @@ impl NWUDPSession {
         #[deprecated = "Use `nw_connection_copy_current_path` in Network framework instead, see deprecation notice in <NetworkExtension/NWUDPSession.h>"]
         #[unsafe(method(currentPath))]
         #[unsafe(method_family = none)]
-        pub unsafe fn currentPath(&self) -> Option<Retained<NWPath>>;
+        pub unsafe fn currentPath(&self) -> Option<Retained<NEPath>>;
 
         /// Mark the current value of resolvedEndpoint as unusable, and try to switch to the
         /// next available endpoint. This should be used when the caller has attempted to communicate
@@ -10714,7 +10726,7 @@ impl NWUDPSession {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl NWUDPSession {
+impl NEUDPSession {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
@@ -10732,18 +10744,20 @@ extern_class!(
     /// NW object wrappers are hidden in Swift 6. To continue accessing them, you
     /// can prepend double underscores to the symbol name.
     ///
-    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwtlsparameters?language=objc)
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/netlsparameters?language=objc)
+    #[doc(alias = "NWTLSParameters")]
     #[unsafe(super(NSObject))]
+    #[name = "NWTLSParameters"]
     #[derive(Debug, PartialEq, Eq, Hash)]
     #[deprecated = "Use `sec_protocol_options_t` in Security framework instead, see deprecation notice in <NetworkExtension/NWTLSParameters.h>"]
-    pub struct NWTLSParameters;
+    pub struct NETLSParameters;
 );
 
 extern_conformance!(
-    unsafe impl NSObjectProtocol for NWTLSParameters {}
+    unsafe impl NSObjectProtocol for NETLSParameters {}
 );
 
-impl NWTLSParameters {
+impl NETLSParameters {
     extern_methods!(
         /// The session ID for the associated connection, used for TLS session resumption.
         /// This property is optional when using TLS.
@@ -10812,7 +10826,7 @@ impl NWTLSParameters {
 }
 
 /// Methods declared on superclass `NSObject`.
-impl NWTLSParameters {
+impl NETLSParameters {
     extern_methods!(
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
