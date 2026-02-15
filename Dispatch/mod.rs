@@ -17,7 +17,9 @@
 #![allow(rustdoc::bare_urls)]
 #![allow(rustdoc::invalid_html_tags)]
 
+use core::cell::UnsafeCell;
 use core::ffi::*;
+use core::marker::{PhantomData, PhantomPinned};
 use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
@@ -342,6 +344,39 @@ extern "C" {
     );
 }
 
+/// Dispatch queues invoke workitems submitted to them.
+///
+///
+/// Dispatch queues come in many flavors, the most common one being the dispatch
+/// serial queue (See dispatch_queue_serial_t).
+///
+/// The system manages a pool of threads which process dispatch queues and invoke
+/// workitems submitted to them.
+///
+/// Conceptually a dispatch queue may have its own thread of execution, and
+/// interaction between queues is highly asynchronous.
+///
+/// Dispatch queues are reference counted via calls to dispatch_retain() and
+/// dispatch_release(). Pending workitems submitted to a queue also hold a
+/// reference to the queue until they have finished. Once all references to a
+/// queue have been released, the queue will be deallocated by the system.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchqueue?language=objc)
+#[doc(alias = "dispatch_queue_t")]
+#[repr(C)]
+pub struct DispatchQueue {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+dispatch_object!(
+    unsafe impl DispatchQueue {}
+);
+
+unsafe impl Send for DispatchQueue {}
+
+unsafe impl Sync for DispatchQueue {}
+
 impl DispatchQueue {
     /// # Safety
     ///
@@ -653,6 +688,24 @@ impl DispatchQueue {
         unsafe { DispatchRetained::retain(ret) }
     }
 }
+
+/// Attribute for dispatch queues.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchqueueattr?language=objc)
+#[doc(alias = "dispatch_queue_attr_t")]
+#[repr(C)]
+pub struct DispatchQueueAttr {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+dispatch_object!(
+    unsafe impl DispatchQueueAttr {}
+);
+
+unsafe impl Send for DispatchQueueAttr {}
+
+unsafe impl Sync for DispatchQueueAttr {}
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_queue_attr_concurrent?language=objc)
@@ -2418,6 +2471,25 @@ extern "C" {
     pub fn dispatch_block_testcancel(block: dispatch_block_t) -> isize;
 }
 
+/// Dispatch sources are used to automatically submit event handler blocks to
+/// dispatch queues in response to external events.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchsource?language=objc)
+#[doc(alias = "dispatch_source_t")]
+#[repr(C)]
+pub struct DispatchSource {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+dispatch_object!(
+    unsafe impl DispatchSource {}
+);
+
+unsafe impl Send for DispatchSource {}
+
+unsafe impl Sync for DispatchSource {}
+
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_source_type_data_add?language=objc)
     pub static _dispatch_source_type_data_add: dispatch_source_type_s;
@@ -2902,6 +2974,24 @@ impl DispatchSource {
     }
 }
 
+/// A group of blocks submitted to queues for asynchronous invocation.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchgroup?language=objc)
+#[doc(alias = "dispatch_group_t")]
+#[repr(C)]
+pub struct DispatchGroup {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+dispatch_object!(
+    unsafe impl DispatchGroup {}
+);
+
+unsafe impl Send for DispatchGroup {}
+
+unsafe impl Sync for DispatchGroup {}
+
 impl DispatchGroup {
     /// Creates new group with which blocks may be associated.
     ///
@@ -3125,6 +3215,24 @@ impl DispatchGroup {
     }
 }
 
+/// A counting semaphore.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchsemaphore?language=objc)
+#[doc(alias = "dispatch_semaphore_t")]
+#[repr(C)]
+pub struct DispatchSemaphore {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+dispatch_object!(
+    unsafe impl DispatchSemaphore {}
+);
+
+unsafe impl Send for DispatchSemaphore {}
+
+unsafe impl Sync for DispatchSemaphore {}
+
 impl DispatchSemaphore {
     /// Creates new counting semaphore with an initial value.
     ///
@@ -3245,6 +3353,20 @@ impl DispatchOnce {
         unsafe { dispatch_once_f(predicate, context, function) }
     }
 }
+
+/// A dispatch object representing memory regions.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchdata?language=objc)
+#[doc(alias = "dispatch_data_t")]
+#[repr(C)]
+pub struct DispatchData {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+dispatch_object!(
+    unsafe impl DispatchData {}
+);
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_data_empty?language=objc)
@@ -3636,6 +3758,26 @@ extern "C" {
         handler: &block2::DynBlock<dyn Fn(*mut DispatchData, c_int)>,
     );
 }
+
+/// A dispatch I/O channel represents the asynchronous I/O policy applied to a
+/// file descriptor. I/O channels are first class dispatch objects and may be
+/// retained and released, suspended and resumed, etc.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchio?language=objc)
+#[doc(alias = "dispatch_io_t")]
+#[repr(C)]
+pub struct DispatchIO {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+dispatch_object!(
+    unsafe impl DispatchIO {}
+);
+
+unsafe impl Send for DispatchIO {}
+
+unsafe impl Sync for DispatchIO {}
 
 impl DispatchIO {
     /// Create a dispatch I/O channel associated with a file descriptor. The system
@@ -4159,6 +4301,47 @@ impl DispatchIO {
         unsafe { dispatch_io_set_interval(self, interval, flags) }
     }
 }
+
+/// Dispatch workloops invoke workitems submitted to them in priority order.
+///
+///
+/// A dispatch workloop is a flavor of dispatch_queue_t that is a priority
+/// ordered queue (using the QOS class of the submitted workitems as the
+/// ordering). Dispatch workloops are an exclusion context and it is guaranteed
+/// that only one work item submitted to the dispatch workloop will be invoked at
+/// a time.
+///
+/// Between each workitem invocation, the workloop will evaluate whether higher
+/// priority workitems have since been submitted, either directly to the
+/// workloop or to any queues that target the workloop, and execute these first.
+///
+/// Serial queues targeting a workloop maintain FIFO execution of their
+/// workitems. However, the workloop may reorder workitems submitted to
+/// independent serial queues targeting it with respect to each other,
+/// based on their priorities, while preserving FIFO execution with respect to
+/// each serial queue.
+///
+/// A dispatch workloop is a "subclass" of dispatch_queue_t which can be passed
+/// to all APIs accepting a dispatch queue, except for functions from the
+/// dispatch_sync() family. dispatch_async_and_wait() must be used for workloop
+/// objects. Functions from the dispatch_sync() family on queues targeting
+/// a workloop are still permitted but discouraged for performance reasons.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatchworkloop?language=objc)
+#[doc(alias = "dispatch_workloop_t")]
+#[repr(C)]
+pub struct DispatchWorkloop {
+    inner: [u8; 0],
+    _p: UnsafeCell<PhantomData<(*const UnsafeCell<()>, PhantomPinned)>>,
+}
+
+dispatch_object!(
+    unsafe impl DispatchWorkloop {}
+);
+
+unsafe impl Send for DispatchWorkloop {}
+
+unsafe impl Sync for DispatchWorkloop {}
 
 impl DispatchWorkloop {
     /// Creates a new dispatch workloop to which workitems may be submitted.
