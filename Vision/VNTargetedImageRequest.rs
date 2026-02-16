@@ -46,16 +46,7 @@ impl VNTargetedImageRequest {
     extern_methods!(
         // -init (unavailable)
 
-        #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
-        #[unsafe(method(initWithCompletionHandler:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCompletionHandler(
-            this: Allocated<Self>,
-            completion_handler: VNRequestCompletionHandler,
-        ) -> Retained<Self>;
+        // -initWithCompletionHandler: (unavailable)
 
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-video"))]
         /// Create a new request that targets an image in a pixel buffer.

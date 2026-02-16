@@ -148,13 +148,7 @@ impl NSDatePickerCell {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[cfg(feature = "NSImage")]
-        #[unsafe(method(initImageCell:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initImageCell(
-            this: Allocated<Self>,
-            image: Option<&NSImage>,
-        ) -> Retained<Self>;
+        // -initImageCell: (unavailable)
 
         #[unsafe(method(datePickerStyle))]
         #[unsafe(method_family = none)]

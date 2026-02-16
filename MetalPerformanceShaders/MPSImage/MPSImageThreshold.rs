@@ -100,12 +100,7 @@ impl MPSImageThresholdBinary {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// The threshold value used to init the threshold filter
         #[unsafe(method(thresholdValue))]
@@ -255,12 +250,7 @@ impl MPSImageThresholdBinaryInverse {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// The threshold value used to init the threshold filter
         #[unsafe(method(thresholdValue))]
@@ -407,12 +397,7 @@ impl MPSImageThresholdTruncate {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// The threshold value used to init the threshold filter
         #[unsafe(method(thresholdValue))]
@@ -529,12 +514,7 @@ impl MPSImageThresholdToZero {
             transform: *const c_float,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// NSSecureCoding compatability
         ///
@@ -701,12 +681,7 @@ impl MPSImageThresholdToZeroInverse {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// The threshold value used to init the threshold filter
         #[unsafe(method(thresholdValue))]

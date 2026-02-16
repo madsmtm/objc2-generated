@@ -231,30 +231,11 @@ impl CKShare {
 
         // +new (unavailable)
 
-        #[unsafe(method(initWithRecordType:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithRecordType(
-            this: Allocated<Self>,
-            record_type: &CKRecordType,
-        ) -> Retained<Self>;
+        // -initWithRecordType: (unavailable)
 
-        #[cfg(feature = "CKRecordID")]
-        #[unsafe(method(initWithRecordType:recordID:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithRecordType_recordID(
-            this: Allocated<Self>,
-            record_type: &CKRecordType,
-            record_id: &CKRecordID,
-        ) -> Retained<Self>;
+        // -initWithRecordType:recordID: (unavailable)
 
-        #[cfg(feature = "CKRecordZoneID")]
-        #[unsafe(method(initWithRecordType:zoneID:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithRecordType_zoneID(
-            this: Allocated<Self>,
-            record_type: &CKRecordType,
-            zone_id: &CKRecordZoneID,
-        ) -> Retained<Self>;
+        // -initWithRecordType:zoneID: (unavailable)
 
         #[cfg(feature = "CKShareAccessRequester")]
         /// A list of all uninvited users who have requested access to this share.

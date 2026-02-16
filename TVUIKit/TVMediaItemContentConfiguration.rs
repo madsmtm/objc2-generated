@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-quartz-core")]
 use objc2_quartz_core::*;
@@ -254,11 +252,6 @@ impl TVMediaItemContentView {
         #[unsafe(method(focusedFrameGuide))]
         #[unsafe(method_family = none)]
         pub unsafe fn focusedFrameGuide(&self) -> Retained<UILayoutGuide>;
-
-        #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method(initWithFrame:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
     );
 }
 

@@ -315,16 +315,6 @@ impl ASDiscoveredDisplayItem {
             product_image: &UIImage,
             accessory: &ASDiscoveredAccessory,
         ) -> Retained<Self>;
-
-        #[cfg(all(feature = "ASDiscoveryDescriptor", feature = "objc2-ui-kit"))]
-        #[unsafe(method(initWithName:productImage:descriptor:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithName_productImage_descriptor(
-            this: Allocated<Self>,
-            name: &NSString,
-            product_image: &UIImage,
-            descriptor: &ASDiscoveryDescriptor,
-        ) -> Retained<Self>;
     );
 }
 

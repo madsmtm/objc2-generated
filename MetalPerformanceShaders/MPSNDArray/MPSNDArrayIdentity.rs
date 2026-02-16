@@ -164,13 +164,7 @@ impl MPSNDArrayIdentity {
 ))]
 impl MPSNDArrayIdentity {
     extern_methods!(
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount: (unavailable)
 
         /// # Safety
         ///

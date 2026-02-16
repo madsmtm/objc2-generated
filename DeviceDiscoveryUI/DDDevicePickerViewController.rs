@@ -51,23 +51,9 @@ impl DDDevicePickerViewController {
 
         // -init (unavailable)
 
-        #[unsafe(method(initWithNibName:bundle:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
-            this: Allocated<Self>,
-            nib_name_or_nil: Option<&NSString>,
-            nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Retained<Self>;
+        // -initWithNibName:bundle: (unavailable)
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
+        // -initWithCoder: (unavailable)
 
         #[cfg(feature = "objc2-network")]
         #[unsafe(method(isSupportedForBrowseDescriptor:parameters:))]

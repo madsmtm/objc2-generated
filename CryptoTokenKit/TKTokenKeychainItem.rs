@@ -120,16 +120,7 @@ impl TKTokenKeychainCertificate {
             object_id: &TKTokenObjectID,
         ) -> Option<Retained<Self>>;
 
-        #[cfg(feature = "TKToken")]
-        /// # Safety
-        ///
-        /// `object_id` should be of the correct type.
-        #[unsafe(method(initWithObjectID:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithObjectID(
-            this: Allocated<Self>,
-            object_id: &TKTokenObjectID,
-        ) -> Retained<Self>;
+        // -initWithObjectID: (unavailable)
 
         /// Contains DER-encoded representation of an X.509 certificate.
         #[unsafe(method(data))]
@@ -183,16 +174,7 @@ impl TKTokenKeychainKey {
             object_id: &TKTokenObjectID,
         ) -> Option<Retained<Self>>;
 
-        #[cfg(feature = "TKToken")]
-        /// # Safety
-        ///
-        /// `object_id` should be of the correct type.
-        #[unsafe(method(initWithObjectID:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithObjectID(
-            this: Allocated<Self>,
-            object_id: &TKTokenObjectID,
-        ) -> Retained<Self>;
+        // -initWithObjectID: (unavailable)
 
         /// Type of the key, currently kSecAttrKeyTypeRSA and kSecAttrKeyTypeECSECPrimeRandom is supported).  The property is an equivalent to kSecAttrKeyType in SecItem.h
         #[unsafe(method(keyType))]

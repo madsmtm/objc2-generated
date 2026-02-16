@@ -810,20 +810,7 @@ impl MPSTemporaryMatrix {
             descriptor_list: &NSArray<MPSMatrixDescriptor>,
         );
 
-        /// *** unavailable
-        ///
-        /// # Safety
-        ///
-        /// - `buffer` may need to be synchronized.
-        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
-        /// - `buffer` contents should be of the correct type.
-        #[unsafe(method(initWithBuffer:descriptor:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithBuffer_descriptor(
-            this: Allocated<Self>,
-            buffer: &ProtocolObject<dyn MTLBuffer>,
-            descriptor: &MPSMatrixDescriptor,
-        ) -> Retained<Self>;
+        // -initWithBuffer:descriptor: (unavailable)
 
         /// The number of times a temporary matrix may be read by a MPSMatrix... kernel
         /// before its contents become undefined.
@@ -977,20 +964,7 @@ impl MPSTemporaryVector {
             descriptor_list: &NSArray<MPSVectorDescriptor>,
         );
 
-        /// *** unavailable
-        ///
-        /// # Safety
-        ///
-        /// - `buffer` may need to be synchronized.
-        /// - `buffer` may be unretained, you must ensure it is kept alive while in use.
-        /// - `buffer` contents should be of the correct type.
-        #[unsafe(method(initWithBuffer:descriptor:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithBuffer_descriptor(
-            this: Allocated<Self>,
-            buffer: &ProtocolObject<dyn MTLBuffer>,
-            descriptor: &MPSVectorDescriptor,
-        ) -> Retained<Self>;
+        // -initWithBuffer:descriptor: (unavailable)
 
         /// The number of times a temporary vector may be read by a MPSMatrix... kernel
         /// before its contents become undefined.

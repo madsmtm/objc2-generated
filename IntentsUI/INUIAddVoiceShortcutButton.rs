@@ -161,10 +161,7 @@ impl INUIAddVoiceShortcutButton {
 
         // -init (unavailable)
 
-        #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method(initWithFrame:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+        // -initWithFrame: (unavailable)
 
         #[unsafe(method(style))]
         #[unsafe(method_family = none)]

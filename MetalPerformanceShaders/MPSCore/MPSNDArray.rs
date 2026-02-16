@@ -814,14 +814,7 @@ impl MPSTemporaryNDArray {
             descriptor: &MPSNDArrayDescriptor,
         ) -> Retained<Self>;
 
-        /// Please use temporaryNDArrayWithCommandBuffer:descriptor: instead
-        #[unsafe(method(initWithDevice:descriptor:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_descriptor(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            descriptor: &MPSNDArrayDescriptor,
-        ) -> Retained<Self>;
+        // -initWithDevice:descriptor: (unavailable)
 
         /// The number of times a temporary MPSNDArray may be read by a MPSNDArray... kernel
         /// before its contents become undefined.

@@ -42,11 +42,7 @@ impl PHASEOccluder {
 
         // +new (unavailable)
 
-        #[cfg(feature = "PHASEEngine")]
-        #[unsafe(method(initWithEngine:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithEngine(this: Allocated<Self>, engine: &PHASEEngine)
-            -> Retained<Self>;
+        // -initWithEngine: (unavailable)
 
         #[cfg(all(feature = "PHASEEngine", feature = "PHASEShape"))]
         /// Initialize a new occluder with shapes.

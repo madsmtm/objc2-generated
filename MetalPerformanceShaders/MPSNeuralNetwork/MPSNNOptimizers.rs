@@ -286,12 +286,7 @@ impl MPSNNOptimizer {
         #[unsafe(method_family = none)]
         pub unsafe fn regularizationType(&self) -> MPSNNRegularizationType;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         #[unsafe(method(setLearningRate:))]
         #[unsafe(method_family = none)]
@@ -434,12 +429,7 @@ impl MPSNNOptimizerStochasticGradientDescent {
         #[unsafe(method_family = none)]
         pub unsafe fn useNestrovMomentum(&self) -> bool;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// Convenience initialization for the momentum update
         ///
@@ -822,12 +812,7 @@ impl MPSNNOptimizerRMSProp {
         #[unsafe(method_family = none)]
         pub unsafe fn epsilon(&self) -> c_float;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// Convenience initialization for the RMSProp update
         ///
@@ -1197,12 +1182,7 @@ impl MPSNNOptimizerAdam {
         #[unsafe(method_family = none)]
         pub unsafe fn setTimeStep(&self, time_step: NSUInteger);
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// Convenience initialization for the adam update
         ///

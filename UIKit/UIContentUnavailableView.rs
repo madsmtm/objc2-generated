@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-foundation")]
-use objc2_core_foundation::*;
 use objc2_foundation::*;
 #[cfg(feature = "objc2-quartz-core")]
 #[cfg(not(target_os = "watchos"))]
@@ -121,10 +119,7 @@ impl UIContentUnavailableView {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method(initWithFrame:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+        // -initWithFrame: (unavailable)
 
         // -init (unavailable)
 

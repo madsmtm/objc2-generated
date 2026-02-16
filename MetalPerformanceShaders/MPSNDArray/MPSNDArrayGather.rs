@@ -294,13 +294,7 @@ impl MPSNDArrayGather {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount: (unavailable)
 
         /// # Safety
         ///
@@ -447,14 +441,7 @@ impl MPSNDArrayGatherGradient {
 ))]
 impl MPSNDArrayGatherGradient {
     extern_methods!(
-        #[unsafe(method(initWithDevice:sourceCount:sourceGradientIndex:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount_sourceGradientIndex(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-            source_gradient_index: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount:sourceGradientIndex: (unavailable)
 
         #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
@@ -484,13 +471,8 @@ impl MPSNDArrayGatherGradient {
 ))]
 impl MPSNDArrayGatherGradient {
     extern_methods!(
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount: (unavailable)
+
     );
 }
 

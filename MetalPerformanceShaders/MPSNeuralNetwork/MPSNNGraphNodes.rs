@@ -2899,13 +2899,6 @@ impl MPSCNNNeuronPReLUNode {
         #[unsafe(method(nodeWithSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
-
-        #[unsafe(method(initWithSource:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithSource(
-            this: Allocated<Self>,
-            source_node: &MPSNNImageNode,
-        ) -> Retained<Self>;
     );
 }
 

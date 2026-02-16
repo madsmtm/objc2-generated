@@ -61,10 +61,7 @@ impl CXSetHeldCallAction {
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(initWithCallUUID:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCallUUID(this: Allocated<Self>, call_uuid: &NSUUID)
-            -> Retained<Self>;
+        // -initWithCallUUID: (unavailable)
 
         #[unsafe(method(isOnHold))]
         #[unsafe(method_family = none)]

@@ -194,13 +194,7 @@ impl UITextFormattingViewController {
         #[unsafe(method_family = init)]
         pub fn init(this: Allocated<Self>) -> Retained<Self>;
 
-        #[unsafe(method(initWithNibName:bundle:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
-            this: Allocated<Self>,
-            nib_name_or_nil: Option<&NSString>,
-            nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Retained<Self>;
+        // -initWithNibName:bundle: (unavailable)
 
         #[cfg(feature = "UITextFormattingViewControllerConfiguration")]
         #[unsafe(method(initWithConfiguration:))]

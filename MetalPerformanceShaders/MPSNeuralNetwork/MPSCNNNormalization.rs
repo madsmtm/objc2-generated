@@ -131,13 +131,6 @@ impl MPSCNNSpatialNormalization {
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -548,13 +541,6 @@ impl MPSCNNLocalContrastNormalization {
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -970,13 +956,6 @@ impl MPSCNNCrossChannelNormalization {
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 

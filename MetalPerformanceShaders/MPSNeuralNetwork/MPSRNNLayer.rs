@@ -1215,12 +1215,7 @@ impl MPSRNNImageInferenceLayer {
             rnn_descriptors: &NSArray<MPSRNNDescriptor>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
         /// Encode an MPSRNNImageInferenceLayer kernel (stack) for a sequence of inputs into a command buffer.
@@ -1768,12 +1763,7 @@ impl MPSRNNMatrixInferenceLayer {
             rnn_descriptors: &NSArray<MPSRNNDescriptor>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         #[cfg(all(feature = "MPSMatrix", feature = "MPSState"))]
         /// Encode an MPSRNNMatrixInferenceLayer kernel (stack) for a sequence of inputs into a command buffer.
@@ -2430,12 +2420,7 @@ impl MPSRNNMatrixTrainingLayer {
         #[unsafe(method_family = none)]
         pub unsafe fn createWeightMatrices(&self, matrices_out: &NSMutableArray<MPSMatrix>);
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         #[cfg(feature = "MPSMatrix")]
         /// Encode a copy kernel that copies one matrix from the trainable weight set to a matrix with standard layout,

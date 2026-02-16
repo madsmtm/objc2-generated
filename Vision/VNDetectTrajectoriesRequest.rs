@@ -40,17 +40,7 @@ extern_conformance!(
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 impl VNDetectTrajectoriesRequest {
     extern_methods!(
-        #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
-        #[unsafe(method(initWithFrameAnalysisSpacing:completionHandler:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
-            this: Allocated<Self>,
-            frame_analysis_spacing: CMTime,
-            completion_handler: VNRequestCompletionHandler,
-        ) -> Retained<Self>;
+        // -initWithFrameAnalysisSpacing:completionHandler: (unavailable)
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
         /// Create a new request that will detect the trajectory of a shape in motion.
@@ -155,16 +145,8 @@ impl VNDetectTrajectoriesRequest {
 
         // -init (unavailable)
 
-        #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
-        #[unsafe(method(initWithCompletionHandler:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCompletionHandler(
-            this: Allocated<Self>,
-            completion_handler: VNRequestCompletionHandler,
-        ) -> Retained<Self>;
+        // -initWithCompletionHandler: (unavailable)
+
     );
 }
 

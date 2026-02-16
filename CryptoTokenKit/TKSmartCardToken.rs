@@ -223,14 +223,6 @@ impl TKSmartCardToken {
         #[unsafe(method(AID))]
         #[unsafe(method_family = none)]
         pub unsafe fn AID(&self) -> Option<Retained<NSData>>;
-
-        #[unsafe(method(initWithTokenDriver:instanceID:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithTokenDriver_instanceID(
-            this: Allocated<Self>,
-            token_driver: &TKTokenDriver,
-            instance_id: &NSString,
-        ) -> Retained<Self>;
     );
 }
 

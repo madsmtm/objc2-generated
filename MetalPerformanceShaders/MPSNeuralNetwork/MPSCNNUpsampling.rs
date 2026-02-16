@@ -74,13 +74,6 @@ impl MPSCNNUpsampling {
         #[unsafe(method(alignCorners))]
         #[unsafe(method_family = none)]
         pub unsafe fn alignCorners(&self) -> bool;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -218,12 +211,8 @@ impl MPSCNNUpsamplingNearest {
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNUpsamplingNearest {
     extern_methods!(
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
+
     );
 }
 
@@ -383,12 +372,8 @@ impl MPSCNNUpsamplingBilinear {
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNUpsamplingBilinear {
     extern_methods!(
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
+
     );
 }
 
@@ -546,13 +531,6 @@ impl MPSCNNUpsamplingGradient {
         #[unsafe(method(scaleFactorY))]
         #[unsafe(method_family = none)]
         pub unsafe fn scaleFactorY(&self) -> c_double;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -696,12 +674,8 @@ impl MPSCNNUpsamplingNearestGradient {
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNUpsamplingNearestGradient {
     extern_methods!(
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
+
     );
 }
 
@@ -845,12 +819,8 @@ impl MPSCNNUpsamplingBilinearGradient {
 #[cfg(all(feature = "MPSCNNKernel", feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSCNNUpsamplingBilinearGradient {
     extern_methods!(
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
+
     );
 }
 

@@ -79,16 +79,9 @@ extern_conformance!(
 #[cfg(target_os = "macos")]
 impl LAAuthenticationView {
     extern_methods!(
-        #[unsafe(method(initWithFrame:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame_rect: NSRect) -> Retained<Self>;
+        // -initWithFrame: (unavailable)
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
+        // -initWithCoder: (unavailable)
 
         /// Creates a new view and pairs it with the specified authentication context.
         ///

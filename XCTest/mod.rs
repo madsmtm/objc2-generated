@@ -4390,12 +4390,7 @@ impl XCTKVOExpectation {
 
         // -init (unavailable)
 
-        #[unsafe(method(initWithDescription:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDescription(
-            this: Allocated<Self>,
-            expectation_description: &NSString,
-        ) -> Retained<Self>;
+        // -initWithDescription: (unavailable)
 
         /// Initializes an expectation that is fulfilled when a key value coding compliant change is made such
         /// that the specified key path of the observed object has the expected value.
@@ -4530,12 +4525,7 @@ impl XCTNSNotificationExpectation {
 
         // -init (unavailable)
 
-        #[unsafe(method(initWithDescription:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDescription(
-            this: Allocated<Self>,
-            expectation_description: &NSString,
-        ) -> Retained<Self>;
+        // -initWithDescription: (unavailable)
 
         /// Initializes an expectation that waits for an NSNotification to be posted by an optional object from
         /// a given notification center.
@@ -4647,12 +4637,7 @@ impl XCTNSPredicateExpectation {
 
         // -init (unavailable)
 
-        #[unsafe(method(initWithDescription:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDescription(
-            this: Allocated<Self>,
-            expectation_description: &NSString,
-        ) -> Retained<Self>;
+        // -initWithDescription: (unavailable)
 
         /// Initializes an expectation that waits for a predicate to evaluate as true with the provided object.
         ///
@@ -5075,12 +5060,7 @@ impl XCTDarwinNotificationExpectation {
 
         // -init (unavailable)
 
-        #[unsafe(method(initWithDescription:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDescription(
-            this: Allocated<Self>,
-            expectation_description: &NSString,
-        ) -> Retained<Self>;
+        // -initWithDescription: (unavailable)
 
         /// Initializes an expectation that waits for a Darwin notification to be posted.
         #[unsafe(method(initWithNotificationName:))]

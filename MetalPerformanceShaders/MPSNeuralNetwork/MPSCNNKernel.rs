@@ -2364,12 +2364,7 @@ impl MPSCNNMultiaryKernel {
             source_count: NSUInteger,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// The number of source images accepted by the kernel
         #[unsafe(method(sourceCount))]

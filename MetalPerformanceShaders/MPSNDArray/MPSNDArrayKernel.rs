@@ -129,12 +129,7 @@ impl MPSNDArrayMultiaryBase {
             destination_array_allocator: &ProtocolObject<dyn MPSNDArrayAllocator>,
         );
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// Initialize a MPSNDArrayMultiaryKernel
         ///
@@ -434,12 +429,8 @@ impl MPSNDArrayMultiaryKernel {
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayMultiaryKernel {
     extern_methods!(
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
+
     );
 }
 
@@ -518,13 +509,7 @@ extern_conformance!(
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayMultiaryGradientKernel {
     extern_methods!(
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount: (unavailable)
 
         /// # Safety
         ///
@@ -584,12 +569,8 @@ impl MPSNDArrayMultiaryGradientKernel {
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayMultiaryGradientKernel {
     extern_methods!(
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
+
     );
 }
 
@@ -721,13 +702,7 @@ impl MPSNDArrayUnaryKernel {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount: (unavailable)
 
         /// # Safety
         ///
@@ -905,14 +880,7 @@ impl MPSNDArrayUnaryGradientKernel {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithDevice:sourceCount:sourceGradientIndex:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount_sourceGradientIndex(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-            source_gradient_index: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount:sourceGradientIndex: (unavailable)
 
         /// # Safety
         ///
@@ -954,13 +922,8 @@ impl MPSNDArrayUnaryGradientKernel {
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayUnaryGradientKernel {
     extern_methods!(
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount: (unavailable)
+
     );
 }
 
@@ -1138,13 +1101,7 @@ impl MPSNDArrayBinaryKernel {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount: (unavailable)
 
         /// # Safety
         ///
@@ -1329,14 +1286,7 @@ extern_conformance!(
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayBinaryPrimaryGradientKernel {
     extern_methods!(
-        #[unsafe(method(initWithDevice:sourceCount:sourceGradientIndex:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount_sourceGradientIndex(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-            source_gradient_index: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount:sourceGradientIndex: (unavailable)
 
         #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
@@ -1387,13 +1337,8 @@ impl MPSNDArrayBinaryPrimaryGradientKernel {
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayBinaryPrimaryGradientKernel {
     extern_methods!(
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount: (unavailable)
+
     );
 }
 
@@ -1479,14 +1424,7 @@ extern_conformance!(
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayBinarySecondaryGradientKernel {
     extern_methods!(
-        #[unsafe(method(initWithDevice:sourceCount:sourceGradientIndex:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount_sourceGradientIndex(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-            source_gradient_index: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount:sourceGradientIndex: (unavailable)
 
         #[unsafe(method(initWithDevice:))]
         #[unsafe(method_family = init)]
@@ -1537,13 +1475,8 @@ impl MPSNDArrayBinarySecondaryGradientKernel {
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSNDArrayBinarySecondaryGradientKernel {
     extern_methods!(
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount: (unavailable)
+
     );
 }
 

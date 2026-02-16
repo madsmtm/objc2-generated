@@ -662,27 +662,5 @@ impl PHPickerViewController {
         #[unsafe(method(zoomOut))]
         #[unsafe(method_family = none)]
         pub unsafe fn zoomOut(&self);
-
-        // +new (unavailable)
-
-        // -init (unavailable)
-
-        #[unsafe(method(initWithNibName:bundle:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
-            this: Allocated<Self>,
-            nib_name_or_nil: Option<&NSNibName>,
-            nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Retained<Self>;
-
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            coder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }

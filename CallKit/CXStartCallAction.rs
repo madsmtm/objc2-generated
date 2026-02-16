@@ -62,10 +62,7 @@ impl CXStartCallAction {
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(initWithCallUUID:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCallUUID(this: Allocated<Self>, call_uuid: &NSUUID)
-            -> Retained<Self>;
+        // -initWithCallUUID: (unavailable)
 
         #[cfg(feature = "CXHandle")]
         /// Handle for the party to call

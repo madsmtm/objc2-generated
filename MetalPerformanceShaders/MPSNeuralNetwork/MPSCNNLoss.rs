@@ -838,12 +838,7 @@ impl MPSCNNLoss {
         #[unsafe(method_family = none)]
         pub unsafe fn reduceAcrossBatch(&self) -> bool;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// Initialize the loss filter with a loss descriptor.
         ///
@@ -1393,12 +1388,7 @@ impl MPSCNNYOLOLoss {
         #[unsafe(method_family = none)]
         pub unsafe fn reduceAcrossBatch(&self) -> bool;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// Initialize the loss filter with a loss descriptor.
         ///
@@ -1643,12 +1633,7 @@ impl MPSNNForwardLoss {
         #[unsafe(method_family = none)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// Initialize the loss forward pass filter with a loss descriptor.
         ///
@@ -1890,12 +1875,7 @@ impl MPSNNLossGradient {
         #[unsafe(method_family = none)]
         pub unsafe fn setComputeLabelGradients(&self, compute_label_gradients: bool);
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// Initialize the loss gradient filter with a loss descriptor.
         ///

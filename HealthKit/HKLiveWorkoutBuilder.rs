@@ -92,19 +92,7 @@ extern_conformance!(
 #[cfg(feature = "HKWorkoutBuilder")]
 impl HKLiveWorkoutBuilder {
     extern_methods!(
-        #[cfg(all(
-            feature = "HKDevice",
-            feature = "HKHealthStore",
-            feature = "HKWorkoutConfiguration"
-        ))]
-        #[unsafe(method(initWithHealthStore:configuration:device:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithHealthStore_configuration_device(
-            this: Allocated<Self>,
-            health_store: &HKHealthStore,
-            configuration: &HKWorkoutConfiguration,
-            device: Option<&HKDevice>,
-        ) -> Retained<Self>;
+        // -initWithHealthStore:configuration:device: (unavailable)
 
         /// The delegate object which will be notified of changes to collected data and elapsed workout time.
         #[unsafe(method(delegate))]

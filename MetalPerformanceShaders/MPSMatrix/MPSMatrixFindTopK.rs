@@ -169,13 +169,7 @@ impl MPSMatrixFindTopK {
             number_of_top_k_values: NSUInteger,
         ) -> Retained<Self>;
 
-        /// Use the above initialization method instead.
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// Encode a MPSMatrixFindTopK object to a command buffer.
         ///

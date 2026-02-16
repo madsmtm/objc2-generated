@@ -173,24 +173,6 @@ impl STWebpageController {
             &self,
             bundle_identifier: &NSString,
         ) -> Result<(), Retained<NSError>>;
-
-        #[unsafe(method(initWithNibName:bundle:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
-            this: Allocated<Self>,
-            nib_name_or_nil: Option<&NSString>,
-            nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Retained<Self>;
-
-        /// # Safety
-        ///
-        /// `a_decoder` possibly has further requirements.
-        #[unsafe(method(initWithCoder:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithCoder(
-            this: Allocated<Self>,
-            a_decoder: &NSCoder,
-        ) -> Option<Retained<Self>>;
     );
 }
 

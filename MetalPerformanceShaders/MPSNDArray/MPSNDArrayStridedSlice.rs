@@ -112,13 +112,7 @@ impl MPSNDArrayStridedSlice {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount: (unavailable)
 
         /// # Safety
         ///
@@ -272,14 +266,7 @@ impl MPSNDArrayStridedSliceGradient {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithDevice:sourceCount:sourceGradientIndex:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount_sourceGradientIndex(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-            source_gradient_index: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount:sourceGradientIndex: (unavailable)
 
         /// # Safety
         ///
@@ -302,13 +289,8 @@ impl MPSNDArrayStridedSliceGradient {
 ))]
 impl MPSNDArrayStridedSliceGradient {
     extern_methods!(
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            count: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount: (unavailable)
+
     );
 }
 

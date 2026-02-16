@@ -68,12 +68,7 @@ impl MPSNNResizeBilinear {
         #[unsafe(method_family = none)]
         pub unsafe fn alignCorners(&self) -> bool;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// Initialize the resize bilinear filter.
         ///
@@ -228,12 +223,7 @@ impl MPSNNCropAndResizeBilinear {
         #[unsafe(method_family = none)]
         pub unsafe fn regions(&self) -> NonNull<MPSRegion>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         #[cfg(feature = "MPSCoreTypes")]
         /// Initialize the crop and resize bilinear filter.

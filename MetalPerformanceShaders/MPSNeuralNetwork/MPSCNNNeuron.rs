@@ -360,12 +360,7 @@ impl MPSCNNNeuron {
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// Initialize the neuron filter with a neuron descriptor.
         ///
@@ -584,12 +579,7 @@ impl MPSCNNNeuronGradient {
         #[unsafe(method_family = none)]
         pub unsafe fn data(&self) -> Option<Retained<NSData>>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// Initialize the neuron gradient filter with a neuron descriptor.
         ///
@@ -733,13 +723,6 @@ impl MPSCNNNeuronLinear {
             device: &ProtocolObject<dyn MTLDevice>,
             a: c_float,
             b: c_float,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
     );
 }
@@ -893,13 +876,6 @@ impl MPSCNNNeuronReLU {
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             a: c_float,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
     );
 }
@@ -1063,13 +1039,6 @@ impl MPSCNNNeuronPReLU {
             device: &ProtocolObject<dyn MTLDevice>,
             a: NonNull<c_float>,
             count: NSUInteger,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
     );
 }
@@ -1365,13 +1334,6 @@ impl MPSCNNNeuronHardSigmoid {
             a: c_float,
             b: c_float,
         ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -1522,13 +1484,6 @@ impl MPSCNNNeuronTanH {
             device: &ProtocolObject<dyn MTLDevice>,
             a: c_float,
             b: c_float,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
     );
 }
@@ -1824,13 +1779,6 @@ impl MPSCNNNeuronSoftPlus {
             device: &ProtocolObject<dyn MTLDevice>,
             a: c_float,
             b: c_float,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
     );
 }
@@ -2128,13 +2076,6 @@ impl MPSCNNNeuronELU {
             device: &ProtocolObject<dyn MTLDevice>,
             a: c_float,
         ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -2293,13 +2234,6 @@ impl MPSCNNNeuronReLUN {
             a: c_float,
             b: c_float,
         ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -2453,13 +2387,6 @@ impl MPSCNNNeuronPower {
             a: c_float,
             b: c_float,
             c: c_float,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
     );
 }
@@ -2617,13 +2544,6 @@ impl MPSCNNNeuronExponential {
             b: c_float,
             c: c_float,
         ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -2779,13 +2699,6 @@ impl MPSCNNNeuronLogarithm {
             a: c_float,
             b: c_float,
             c: c_float,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
     );
 }

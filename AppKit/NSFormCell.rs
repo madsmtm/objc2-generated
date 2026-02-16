@@ -78,13 +78,7 @@ impl NSFormCell {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[cfg(feature = "NSImage")]
-        #[unsafe(method(initImageCell:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initImageCell(
-            this: Allocated<Self>,
-            image: Option<&NSImage>,
-        ) -> Retained<Self>;
+        // -initImageCell: (unavailable)
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(titleWidth:))]

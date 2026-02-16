@@ -37,12 +37,7 @@ impl NSTextListElement {
             children: Option<&NSArray<NSTextListElement>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithAttributedString:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithAttributedString(
-            this: Allocated<Self>,
-            attributed_string: Option<&NSAttributedString>,
-        ) -> Retained<Self>;
+        // -initWithAttributedString: (unavailable)
 
         #[cfg(feature = "NSTextList")]
         /// # Safety

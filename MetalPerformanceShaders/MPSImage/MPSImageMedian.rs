@@ -101,12 +101,7 @@ impl MPSImageMedian {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// The maximum diameter in pixels of the filter window supported by the median filter.
         #[unsafe(method(maxKernelDiameter))]

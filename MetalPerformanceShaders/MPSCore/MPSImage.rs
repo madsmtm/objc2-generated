@@ -1360,28 +1360,9 @@ impl MPSTemporaryImage {
             descriptor_list: &NSArray<MPSImageDescriptor>,
         );
 
-        /// Unavailable. Use temporaryImageForCommandBuffer:textureDescriptor: or -temporaryImageForCommandBuffer:imageDescriptor: instead.
-        ///
-        /// # Safety
-        ///
-        /// - `texture` may need to be synchronized.
-        /// - `texture` may be unretained, you must ensure it is kept alive while in use.
-        #[unsafe(method(initWithTexture:featureChannels:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithTexture_featureChannels(
-            this: Allocated<Self>,
-            texture: &ProtocolObject<dyn MTLTexture>,
-            feature_channels: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithTexture:featureChannels: (unavailable)
 
-        /// Unavailable. Use itemporaryImageForCommandBuffer:textureDescriptor: instead.
-        #[unsafe(method(initWithDevice:imageDescriptor:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_imageDescriptor(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            image_descriptor: &MPSImageDescriptor,
-        ) -> Retained<Self>;
+        // -initWithDevice:imageDescriptor: (unavailable)
 
         #[unsafe(method(readCount))]
         #[unsafe(method_family = none)]

@@ -95,12 +95,7 @@ impl MPSImageFindKeypoints {
             info: NonNull<MPSImageKeypointRangeInfo>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// NSSecureCoding compatability
         ///

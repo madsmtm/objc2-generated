@@ -48,18 +48,7 @@ impl MPSCNNBatchNormalizationState {
         #[unsafe(method_family = none)]
         pub unsafe fn batchNormalization(&self) -> Retained<MPSCNNBatchNormalization>;
 
-        /// Unavailable.  Use MPSCNNBatchNormalizationStatistics methods to initialize the state object.
-        ///
-        /// # Safety
-        ///
-        /// - `resource` may need to be synchronized.
-        /// - `resource` may be unretained, you must ensure it is kept alive while in use.
-        #[unsafe(method(initWithResource:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithResource(
-            this: Allocated<Self>,
-            resource: Option<&ProtocolObject<dyn MTLResource>>,
-        ) -> Retained<Self>;
+        // -initWithResource: (unavailable)
 
         /// Unavailable.  Use MPSCNNBatchNormalizationStatistics methods to create the temporary state object.
         #[unsafe(method(temporaryStateWithCommandBuffer:bufferSize:))]
@@ -749,13 +738,7 @@ impl MPSCNNBatchNormalization {
             fused_neuron_descriptor: Option<&MPSNNNeuronDescriptor>,
         ) -> Retained<Self>;
 
-        /// Use initWithDevice:dataSource instead
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// NSSecureCoding compatability
         ///

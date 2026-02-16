@@ -445,10 +445,7 @@ impl UIListContentView {
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
 
-        #[cfg(feature = "objc2-core-foundation")]
-        #[unsafe(method(initWithFrame:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrame(this: Allocated<Self>, frame: CGRect) -> Retained<Self>;
+        // -initWithFrame: (unavailable)
 
         // -init (unavailable)
 

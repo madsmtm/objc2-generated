@@ -1991,12 +1991,7 @@ impl MPSCNNConvolution {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         #[cfg(all(
             feature = "MPSImage",
@@ -2447,12 +2442,7 @@ impl MPSCNNConvolutionGradient {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// CPU side reload. Reload the updated weights and biases from data provider into internal weights and bias buffers. Weights and biases
         /// gradients needed for update are obtained from MPSCNNConvolutionGradientState object. Data provider passed in init call is used for this purpose.
@@ -2671,13 +2661,6 @@ impl MPSCNNFullyConnected {
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -2807,13 +2790,6 @@ impl MPSCNNFullyConnectedGradient {
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -3076,12 +3052,7 @@ impl MPSCNNConvolutionTranspose {
             weights: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// <NSSecureCoding
         /// > support
@@ -3500,12 +3471,7 @@ impl MPSCNNConvolutionTransposeGradient {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// CPU side reload. Reload the updated weights and biases from data provider into internal weights and bias buffers. Weights and biases
         /// gradients needed for update are obtained from MPSCNNConvolutionGradientState object. Data provider passed in init call is used for this purpose.
@@ -3802,13 +3768,6 @@ impl MPSCNNBinaryConvolution {
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -4027,13 +3986,6 @@ impl MPSCNNBinaryFullyConnected {
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 

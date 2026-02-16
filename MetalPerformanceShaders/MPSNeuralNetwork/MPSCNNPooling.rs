@@ -112,13 +112,6 @@ impl MPSCNNPooling {
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -269,13 +262,6 @@ impl MPSCNNPoolingMax {
             device: &ProtocolObject<dyn MTLDevice>,
             kernel_width: NSUInteger,
             kernel_height: NSUInteger,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
     );
 }
@@ -473,13 +459,6 @@ impl MPSCNNPoolingAverage {
             kernel_width: NSUInteger,
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -631,13 +610,6 @@ impl MPSCNNPoolingL2Norm {
             device: &ProtocolObject<dyn MTLDevice>,
             kernel_width: NSUInteger,
             kernel_height: NSUInteger,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
     );
 }
@@ -831,13 +803,6 @@ impl MPSCNNDilatedPoolingMax {
             stride_in_pixels_x: NSUInteger,
             stride_in_pixels_y: NSUInteger,
         ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -1016,12 +981,7 @@ impl MPSCNNPoolingGradient {
             stride_in_pixels_y: NSUInteger,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// NSSecureCoding compatability
         ///
@@ -1271,13 +1231,6 @@ impl MPSCNNPoolingAverageGradient {
             kernel_width: NSUInteger,
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -1469,13 +1422,6 @@ impl MPSCNNPoolingMaxGradient {
             kernel_width: NSUInteger,
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -1653,13 +1599,6 @@ impl MPSCNNPoolingL2NormGradient {
             kernel_width: NSUInteger,
             kernel_height: NSUInteger,
         ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -1779,16 +1718,7 @@ impl MPSCNNDilatedPoolingMaxGradient {
             stride_in_pixels_y: NSUInteger,
         ) -> Retained<Self>;
 
-        #[unsafe(method(initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_kernelWidth_kernelHeight_strideInPixelsX_strideInPixelsY(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            kernel_width: NSUInteger,
-            kernel_height: NSUInteger,
-            stride_in_pixels_x: NSUInteger,
-            stride_in_pixels_y: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:kernelWidth:kernelHeight:strideInPixelsX:strideInPixelsY: (unavailable)
 
         /// NSSecureCoding compatability
         ///
@@ -1833,13 +1763,6 @@ impl MPSCNNDilatedPoolingMaxGradient {
             device: &ProtocolObject<dyn MTLDevice>,
             kernel_width: NSUInteger,
             kernel_height: NSUInteger,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
         ) -> Retained<Self>;
     );
 }

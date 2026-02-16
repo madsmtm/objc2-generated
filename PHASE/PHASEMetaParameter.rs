@@ -224,36 +224,13 @@ impl PHASEMappedMetaParameterDefinition {
 
         // +new (unavailable)
 
-        #[unsafe(method(initWithValue:identifier:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithValue_identifier(
-            this: Allocated<Self>,
-            value: c_double,
-            identifier: &NSString,
-        ) -> Retained<Self>;
+        // -initWithValue:identifier: (unavailable)
 
-        #[unsafe(method(initWithValue:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithValue(this: Allocated<Self>, value: c_double) -> Retained<Self>;
+        // -initWithValue: (unavailable)
 
-        #[unsafe(method(initWithValue:minimum:maximum:identifier:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithValue_minimum_maximum_identifier(
-            this: Allocated<Self>,
-            value: c_double,
-            minimum: c_double,
-            maximum: c_double,
-            identifier: &NSString,
-        ) -> Retained<Self>;
+        // -initWithValue:minimum:maximum:identifier: (unavailable)
 
-        #[unsafe(method(initWithValue:minimum:maximum:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithValue_minimum_maximum(
-            this: Allocated<Self>,
-            value: c_double,
-            minimum: c_double,
-            maximum: c_double,
-        ) -> Retained<Self>;
+        // -initWithValue:minimum:maximum: (unavailable)
 
         #[cfg(feature = "PHASEEnvelope")]
         /// Create a new mapped range metaparameter definition

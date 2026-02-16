@@ -460,13 +460,6 @@ impl MPSImageBox {
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -622,13 +615,6 @@ impl MPSImageTent {
             a_decoder: &NSCoder,
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 
@@ -764,12 +750,7 @@ impl MPSImageGaussianBlur {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// Read-only sigma value with which filter was created
         #[unsafe(method(sigma))]

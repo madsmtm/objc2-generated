@@ -3,8 +3,6 @@
 use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-#[cfg(feature = "objc2-core-media")]
-use objc2_core_media::*;
 use objc2_foundation::*;
 
 use crate::*;
@@ -86,17 +84,7 @@ impl VNGeneratePersonSegmentationRequest {
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
-        #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
-        #[unsafe(method(initWithFrameAnalysisSpacing:completionHandler:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
-            this: Allocated<Self>,
-            frame_analysis_spacing: CMTime,
-            completion_handler: VNRequestCompletionHandler,
-        ) -> Retained<Self>;
+        // -initWithFrameAnalysisSpacing:completionHandler: (unavailable)
 
         /// The quality level selects which techniques will be used during the person segmentation. There are trade-offs between performance and accuracy.
         #[unsafe(method(qualityLevel))]

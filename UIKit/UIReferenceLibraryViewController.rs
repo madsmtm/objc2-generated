@@ -81,14 +81,6 @@ impl UIReferenceLibraryViewController {
         #[unsafe(method(initWithCoder:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
-
-        #[unsafe(method(initWithNibName:bundle:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
-            this: Allocated<Self>,
-            nib_name_or_nil: Option<&NSString>,
-            nib_bundle_or_nil: Option<&NSBundle>,
-        ) -> Retained<Self>;
     );
 }
 

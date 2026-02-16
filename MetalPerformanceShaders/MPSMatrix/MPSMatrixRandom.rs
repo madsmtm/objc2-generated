@@ -255,12 +255,7 @@ impl MPSMatrixRandom {
         #[unsafe(method_family = none)]
         pub unsafe fn setBatchSize(&self, batch_size: NSUInteger);
 
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// Encode a MPSMatrixRandom kernel into a command Buffer.
         ///

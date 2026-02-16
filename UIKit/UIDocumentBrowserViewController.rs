@@ -158,14 +158,7 @@ impl UIDocumentBrowserViewController {
             content_types: Option<&NSArray<UTType>>,
         ) -> Retained<Self>;
 
-        /// Please use the designated initializers above instead.
-        #[unsafe(method(initWithNibName:bundle:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithNibName_bundle(
-            this: Allocated<Self>,
-            nib_name: Option<&NSString>,
-            bundle: Option<&NSBundle>,
-        ) -> Retained<Self>;
+        // -initWithNibName:bundle: (unavailable)
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]

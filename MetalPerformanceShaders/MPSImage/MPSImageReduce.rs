@@ -72,13 +72,6 @@ impl MPSImageReduceUnary {
         #[unsafe(method(setClipRectSource:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setClipRectSource(&self, clip_rect_source: MTLRegion);
-
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
     );
 }
 

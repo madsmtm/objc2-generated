@@ -113,13 +113,7 @@ extern_conformance!(
 ))]
 impl MPSNDArrayQuantizedMatrixMultiplication {
     extern_methods!(
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            source_count: NSUInteger,
-        ) -> Retained<Self>;
+        // -initWithDevice:sourceCount: (unavailable)
 
         #[cfg(feature = "MPSNDArrayQuantization")]
         /// Initializes a quantized matrix multiplication kernel.
@@ -171,12 +165,8 @@ impl MPSNDArrayQuantizedMatrixMultiplication {
 ))]
 impl MPSNDArrayQuantizedMatrixMultiplication {
     extern_methods!(
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
+
     );
 }
 
@@ -304,14 +294,6 @@ impl MPSNDArrayLUTDequantize {
         pub unsafe fn initWithDevice(
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            source_count: NSUInteger,
         ) -> Retained<Self>;
     );
 }
@@ -478,14 +460,6 @@ impl MPSNDArrayVectorLUTDequantize {
             device: &ProtocolObject<dyn MTLDevice>,
             axis: NSUInteger,
         ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            source_count: NSUInteger,
-        ) -> Retained<Self>;
     );
 }
 
@@ -518,12 +492,8 @@ impl MPSNDArrayVectorLUTDequantize {
 ))]
 impl MPSNDArrayVectorLUTDequantize {
     extern_methods!(
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
+
     );
 }
 
@@ -644,12 +614,7 @@ extern_conformance!(
 ))]
 impl MPSNDArrayAffineInt4Dequantize {
     extern_methods!(
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         #[cfg(feature = "MPSNDArrayQuantization")]
         /// Initializes a kernel for 4-bit affine dequantization.
@@ -665,14 +630,6 @@ impl MPSNDArrayAffineInt4Dequantize {
             this: Allocated<Self>,
             device: &ProtocolObject<dyn MTLDevice>,
             quantization_descriptor: &MPSNDArrayAffineQuantizationDescriptor,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:sourceCount:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_sourceCount(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            source_count: NSUInteger,
         ) -> Retained<Self>;
     );
 }

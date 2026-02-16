@@ -88,36 +88,6 @@ impl MPSCNNInstanceNormalizationGradientState {
             cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
             buffer_size: usize,
         ) -> Retained<Self>;
-
-        /// Unavailable.  Use MPSCNNInstanceNormalization state creation methods.
-        #[unsafe(method(initWithDevice:textureDescriptor:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_textureDescriptor(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            descriptor: &MTLTextureDescriptor,
-        ) -> Retained<Self>;
-
-        /// Unavailable.  Use MPSCNNInstanceNormalization state creation methods.
-        ///
-        /// # Safety
-        ///
-        /// - `resource` may need to be synchronized.
-        /// - `resource` may be unretained, you must ensure it is kept alive while in use.
-        #[unsafe(method(initWithResource:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithResource(
-            this: Allocated<Self>,
-            resource: Option<&ProtocolObject<dyn MTLResource>>,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(initWithDevice:bufferSize:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice_bufferSize(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-            buffer_size: usize,
-        ) -> Retained<Self>;
     );
 }
 
@@ -438,13 +408,7 @@ impl MPSCNNInstanceNormalization {
             data_source: &ProtocolObject<dyn MPSCNNInstanceNormalizationDataSource>,
         ) -> Retained<Self>;
 
-        /// Use initWithDevice:dataSource instead
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         /// NSSecureCoding compatability
         ///

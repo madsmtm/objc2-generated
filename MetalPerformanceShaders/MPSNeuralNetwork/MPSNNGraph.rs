@@ -215,13 +215,7 @@ impl MPSNNGraph {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<Self>>;
 
-        /// Use initWithDevice:resultImage: instead
-        #[unsafe(method(initWithDevice:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initWithDevice(
-            this: Allocated<Self>,
-            device: &ProtocolObject<dyn MTLDevice>,
-        ) -> Retained<Self>;
+        // -initWithDevice: (unavailable)
 
         #[cfg(feature = "MPSNNGraphNodes")]
         /// Get a list of identifiers for source images needed to calculate the result image

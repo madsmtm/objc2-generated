@@ -85,13 +85,7 @@ impl MPSKeyedUnarchiver {
 
         // -init (unavailable)
 
-        #[unsafe(method(initForReadingFromData:error:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initForReadingFromData_error(
-            this: Allocated<Self>,
-            data: &NSData,
-            error: Option<&mut Option<Retained<NSError>>>,
-        ) -> Retained<Self>;
+        // -initForReadingFromData:error: (unavailable)
 
         #[unsafe(method(unarchiveObjectWithData:))]
         #[unsafe(method_family = none)]
@@ -123,12 +117,7 @@ impl MPSKeyedUnarchiver {
         #[unsafe(method_family = none)]
         pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Retained<AnyObject>>;
 
-        #[unsafe(method(initForReadingWithData:))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn initForReadingWithData(
-            this: Allocated<Self>,
-            data: &NSData,
-        ) -> Retained<Self>;
+        // -initForReadingWithData: (unavailable)
 
         #[deprecated]
         #[unsafe(method(unarchiveObjectWithFile:device:))]
