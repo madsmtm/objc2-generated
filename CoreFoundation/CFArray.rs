@@ -185,7 +185,7 @@ unsafe impl ConcreteType for CFArray {
     }
 }
 
-impl CFArray {
+impl<T: Sized> CFArray<T> {
     /// Creates a new immutable array with the given values.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -252,10 +252,10 @@ impl CFArray {
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        values: *mut *const c_void,
+        values: *mut *const T,
         num_values: CFIndex,
         call_backs: Option<&CFArrayCallBacks>,
-    ) -> Option<CFRetained<CFArray>> {
+    ) -> Option<CFRetained<CFArray<T>>> {
         extern "C-unwind" {
             fn CFArrayCreate(
                 allocator: Option<&CFAllocator>,
@@ -264,8 +264,8 @@ impl CFArray {
                 call_backs: Option<&CFArrayCallBacks>,
             ) -> Option<NonNull<CFArray>>;
         }
-        let ret = unsafe { CFArrayCreate(allocator, values, num_values, call_backs) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret = unsafe { CFArrayCreate(allocator, values.cast(), num_values, call_backs) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 
     /// Creates a new immutable array with the values from the given array.
@@ -295,20 +295,20 @@ impl CFArray {
     #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
-        the_array: &CFArray,
-    ) -> Option<CFRetained<CFArray>> {
+        the_array: &CFArray<T>,
+    ) -> Option<CFRetained<CFArray<T>>> {
         extern "C-unwind" {
             fn CFArrayCreateCopy(
                 allocator: Option<&CFAllocator>,
                 the_array: &CFArray,
             ) -> Option<NonNull<CFArray>>;
         }
-        let ret = unsafe { CFArrayCreateCopy(allocator, the_array) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret = unsafe { CFArrayCreateCopy(allocator, the_array.as_opaque()) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 }
 
-impl CFMutableArray {
+impl<T: Sized> CFMutableArray<T> {
     /// Creates a new empty mutable array.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -367,7 +367,7 @@ impl CFMutableArray {
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
         call_backs: Option<&CFArrayCallBacks>,
-    ) -> Option<CFRetained<CFMutableArray>> {
+    ) -> Option<CFRetained<CFMutableArray<T>>> {
         extern "C-unwind" {
             fn CFArrayCreateMutable(
                 allocator: Option<&CFAllocator>,
@@ -376,7 +376,7 @@ impl CFMutableArray {
             ) -> Option<NonNull<CFMutableArray>>;
         }
         let ret = unsafe { CFArrayCreateMutable(allocator, capacity, call_backs) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 
     /// Creates a new mutable array with the values from the given array.
@@ -419,7 +419,7 @@ impl CFMutableArray {
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
         the_array: &CFArray,
-    ) -> Option<CFRetained<CFMutableArray>> {
+    ) -> Option<CFRetained<CFMutableArray<T>>> {
         extern "C-unwind" {
             fn CFArrayCreateMutableCopy(
                 allocator: Option<&CFAllocator>,
@@ -428,11 +428,11 @@ impl CFMutableArray {
             ) -> Option<NonNull<CFMutableArray>>;
         }
         let ret = unsafe { CFArrayCreateMutableCopy(allocator, capacity, the_array) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 }
 
-impl CFArray {
+impl<T: Sized> CFArray<T> {
     /// Returns the number of values currently in the array.
     ///
     /// Parameter `theArray`: The array to be queried. If this parameter is not a valid
@@ -445,7 +445,7 @@ impl CFArray {
         extern "C-unwind" {
             fn CFArrayGetCount(the_array: &CFArray) -> CFIndex;
         }
-        unsafe { CFArrayGetCount(self) }
+        unsafe { CFArrayGetCount(self.as_opaque()) }
     }
 
     /// Counts the number of times the given value occurs in the array.
@@ -476,7 +476,7 @@ impl CFArray {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFArrayGetCountOfValue")]
     #[inline]
-    pub unsafe fn count_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
+    pub unsafe fn count_of_value(&self, range: CFRange, value: *const T) -> CFIndex {
         extern "C-unwind" {
             fn CFArrayGetCountOfValue(
                 the_array: &CFArray,
@@ -484,7 +484,7 @@ impl CFArray {
                 value: *const c_void,
             ) -> CFIndex;
         }
-        unsafe { CFArrayGetCountOfValue(self, range, value) }
+        unsafe { CFArrayGetCountOfValue(self.as_opaque(), range, value.cast()) }
     }
 
     /// Reports whether or not the value is in the array.
@@ -515,7 +515,7 @@ impl CFArray {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFArrayContainsValue")]
     #[inline]
-    pub unsafe fn contains_value(&self, range: CFRange, value: *const c_void) -> bool {
+    pub unsafe fn contains_value(&self, range: CFRange, value: *const T) -> bool {
         extern "C-unwind" {
             fn CFArrayContainsValue(
                 the_array: &CFArray,
@@ -523,7 +523,7 @@ impl CFArray {
                 value: *const c_void,
             ) -> Boolean;
         }
-        let ret = unsafe { CFArrayContainsValue(self, range, value) };
+        let ret = unsafe { CFArrayContainsValue(self.as_opaque(), range, value.cast()) };
         ret != 0
     }
 
@@ -544,11 +544,11 @@ impl CFArray {
     /// `the_array` generic must be of the correct type.
     #[doc(alias = "CFArrayGetValueAtIndex")]
     #[inline]
-    pub unsafe fn value_at_index(&self, idx: CFIndex) -> *const c_void {
+    pub unsafe fn value_at_index(&self, idx: CFIndex) -> *const T {
         extern "C-unwind" {
             fn CFArrayGetValueAtIndex(the_array: &CFArray, idx: CFIndex) -> *const c_void;
         }
-        unsafe { CFArrayGetValueAtIndex(self, idx) }
+        unsafe { CFArrayGetValueAtIndex(self.as_opaque(), idx) }.cast()
     }
 
     /// Fills the buffer with values from the array.
@@ -576,11 +576,11 @@ impl CFArray {
     /// - `values` must be a valid pointer.
     #[doc(alias = "CFArrayGetValues")]
     #[inline]
-    pub unsafe fn values(&self, range: CFRange, values: *mut *const c_void) {
+    pub unsafe fn values(&self, range: CFRange, values: *mut *const T) {
         extern "C-unwind" {
             fn CFArrayGetValues(the_array: &CFArray, range: CFRange, values: *mut *const c_void);
         }
-        unsafe { CFArrayGetValues(self, range, values) }
+        unsafe { CFArrayGetValues(self.as_opaque(), range, values.cast()) }
     }
 
     /// Calls a function once for each value in the array.
@@ -630,7 +630,7 @@ impl CFArray {
                 context: *mut c_void,
             );
         }
-        unsafe { CFArrayApplyFunction(self, range, applier, context) }
+        unsafe { CFArrayApplyFunction(self.as_opaque(), range, applier, context) }
     }
 
     /// Searches the array for the value.
@@ -663,7 +663,7 @@ impl CFArray {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFArrayGetFirstIndexOfValue")]
     #[inline]
-    pub unsafe fn first_index_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
+    pub unsafe fn first_index_of_value(&self, range: CFRange, value: *const T) -> CFIndex {
         extern "C-unwind" {
             fn CFArrayGetFirstIndexOfValue(
                 the_array: &CFArray,
@@ -671,7 +671,7 @@ impl CFArray {
                 value: *const c_void,
             ) -> CFIndex;
         }
-        unsafe { CFArrayGetFirstIndexOfValue(self, range, value) }
+        unsafe { CFArrayGetFirstIndexOfValue(self.as_opaque(), range, value.cast()) }
     }
 
     /// Searches the array for the value.
@@ -704,7 +704,7 @@ impl CFArray {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFArrayGetLastIndexOfValue")]
     #[inline]
-    pub unsafe fn last_index_of_value(&self, range: CFRange, value: *const c_void) -> CFIndex {
+    pub unsafe fn last_index_of_value(&self, range: CFRange, value: *const T) -> CFIndex {
         extern "C-unwind" {
             fn CFArrayGetLastIndexOfValue(
                 the_array: &CFArray,
@@ -712,7 +712,7 @@ impl CFArray {
                 value: *const c_void,
             ) -> CFIndex;
         }
-        unsafe { CFArrayGetLastIndexOfValue(self, range, value) }
+        unsafe { CFArrayGetLastIndexOfValue(self.as_opaque(), range, value.cast()) }
     }
 
     /// Searches the array for the value using a binary search algorithm.
@@ -766,7 +766,7 @@ impl CFArray {
     pub unsafe fn b_search_values(
         &self,
         range: CFRange,
-        value: *const c_void,
+        value: *const T,
         comparator: CFComparatorFunction,
         context: *mut c_void,
     ) -> CFIndex {
@@ -779,11 +779,11 @@ impl CFArray {
                 context: *mut c_void,
             ) -> CFIndex;
         }
-        unsafe { CFArrayBSearchValues(self, range, value, comparator, context) }
+        unsafe { CFArrayBSearchValues(self.as_opaque(), range, value.cast(), comparator, context) }
     }
 }
 
-impl CFMutableArray {
+impl<T: Sized> CFMutableArray<T> {
     /// Adds the value to the array giving it a new largest index.
     ///
     /// Parameter `theArray`: The array to which the value is to be added. If this
@@ -804,11 +804,11 @@ impl CFMutableArray {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFArrayAppendValue")]
     #[inline]
-    pub unsafe fn append_value(the_array: Option<&CFMutableArray>, value: *const c_void) {
+    pub unsafe fn append_value(the_array: Option<&CFMutableArray<T>>, value: *const T) {
         extern "C-unwind" {
             fn CFArrayAppendValue(the_array: Option<&CFMutableArray>, value: *const c_void);
         }
-        unsafe { CFArrayAppendValue(the_array, value) }
+        unsafe { CFArrayAppendValue(the_array.map(|obj| obj.as_opaque()), value.cast()) }
     }
 
     /// Adds the value to the array, giving it the given index.
@@ -838,9 +838,9 @@ impl CFMutableArray {
     #[doc(alias = "CFArrayInsertValueAtIndex")]
     #[inline]
     pub unsafe fn insert_value_at_index(
-        the_array: Option<&CFMutableArray>,
+        the_array: Option<&CFMutableArray<T>>,
         idx: CFIndex,
-        value: *const c_void,
+        value: *const T,
     ) {
         extern "C-unwind" {
             fn CFArrayInsertValueAtIndex(
@@ -849,7 +849,9 @@ impl CFMutableArray {
                 value: *const c_void,
             );
         }
-        unsafe { CFArrayInsertValueAtIndex(the_array, idx, value) }
+        unsafe {
+            CFArrayInsertValueAtIndex(the_array.map(|obj| obj.as_opaque()), idx, value.cast())
+        }
     }
 
     /// Changes the value with the given index in the array.
@@ -879,9 +881,9 @@ impl CFMutableArray {
     #[doc(alias = "CFArraySetValueAtIndex")]
     #[inline]
     pub unsafe fn set_value_at_index(
-        the_array: Option<&CFMutableArray>,
+        the_array: Option<&CFMutableArray<T>>,
         idx: CFIndex,
-        value: *const c_void,
+        value: *const T,
     ) {
         extern "C-unwind" {
             fn CFArraySetValueAtIndex(
@@ -890,7 +892,7 @@ impl CFMutableArray {
                 value: *const c_void,
             );
         }
-        unsafe { CFArraySetValueAtIndex(the_array, idx, value) }
+        unsafe { CFArraySetValueAtIndex(the_array.map(|obj| obj.as_opaque()), idx, value.cast()) }
     }
 
     /// Removes the value with the given index from the array.
@@ -910,11 +912,11 @@ impl CFMutableArray {
     /// - `the_array` might not allow `None`.
     #[doc(alias = "CFArrayRemoveValueAtIndex")]
     #[inline]
-    pub unsafe fn remove_value_at_index(the_array: Option<&CFMutableArray>, idx: CFIndex) {
+    pub unsafe fn remove_value_at_index(the_array: Option<&CFMutableArray<T>>, idx: CFIndex) {
         extern "C-unwind" {
             fn CFArrayRemoveValueAtIndex(the_array: Option<&CFMutableArray>, idx: CFIndex);
         }
-        unsafe { CFArrayRemoveValueAtIndex(the_array, idx) }
+        unsafe { CFArrayRemoveValueAtIndex(the_array.map(|obj| obj.as_opaque()), idx) }
     }
 
     /// Removes all the values from the array, making it empty.
@@ -924,11 +926,11 @@ impl CFMutableArray {
     /// the behavior is undefined.
     #[doc(alias = "CFArrayRemoveAllValues")]
     #[inline]
-    pub fn remove_all_values(the_array: Option<&CFMutableArray>) {
+    pub fn remove_all_values(the_array: Option<&CFMutableArray<T>>) {
         extern "C-unwind" {
             fn CFArrayRemoveAllValues(the_array: Option<&CFMutableArray>);
         }
-        unsafe { CFArrayRemoveAllValues(the_array) }
+        unsafe { CFArrayRemoveAllValues(the_array.map(|obj| obj.as_opaque())) }
     }
 
     /// Replaces a range of values in the array.
@@ -972,7 +974,7 @@ impl CFMutableArray {
     #[doc(alias = "CFArrayReplaceValues")]
     #[inline]
     pub unsafe fn replace_values(
-        the_array: Option<&CFMutableArray>,
+        the_array: Option<&CFMutableArray<T>>,
         range: CFRange,
         new_values: *mut *const c_void,
         new_count: CFIndex,
@@ -985,7 +987,14 @@ impl CFMutableArray {
                 new_count: CFIndex,
             );
         }
-        unsafe { CFArrayReplaceValues(the_array, range, new_values, new_count) }
+        unsafe {
+            CFArrayReplaceValues(
+                the_array.map(|obj| obj.as_opaque()),
+                range,
+                new_values,
+                new_count,
+            )
+        }
     }
 
     /// Exchanges the values at two indices of the array.
@@ -1011,7 +1020,7 @@ impl CFMutableArray {
     #[doc(alias = "CFArrayExchangeValuesAtIndices")]
     #[inline]
     pub unsafe fn exchange_values_at_indices(
-        the_array: Option<&CFMutableArray>,
+        the_array: Option<&CFMutableArray<T>>,
         idx1: CFIndex,
         idx2: CFIndex,
     ) {
@@ -1022,7 +1031,7 @@ impl CFMutableArray {
                 idx2: CFIndex,
             );
         }
-        unsafe { CFArrayExchangeValuesAtIndices(the_array, idx1, idx2) }
+        unsafe { CFArrayExchangeValuesAtIndices(the_array.map(|obj| obj.as_opaque()), idx1, idx2) }
     }
 
     /// Sorts the values in the array using the given comparison function.
@@ -1063,7 +1072,7 @@ impl CFMutableArray {
     #[doc(alias = "CFArraySortValues")]
     #[inline]
     pub unsafe fn sort_values(
-        the_array: Option<&CFMutableArray>,
+        the_array: Option<&CFMutableArray<T>>,
         range: CFRange,
         comparator: CFComparatorFunction,
         context: *mut c_void,
@@ -1076,7 +1085,14 @@ impl CFMutableArray {
                 context: *mut c_void,
             );
         }
-        unsafe { CFArraySortValues(the_array, range, comparator, context) }
+        unsafe {
+            CFArraySortValues(
+                the_array.map(|obj| obj.as_opaque()),
+                range,
+                comparator,
+                context,
+            )
+        }
     }
 
     /// Adds the values from an array to another array.
@@ -1112,7 +1128,7 @@ impl CFMutableArray {
     #[doc(alias = "CFArrayAppendArray")]
     #[inline]
     pub unsafe fn append_array(
-        the_array: Option<&CFMutableArray>,
+        the_array: Option<&CFMutableArray<T>>,
         other_array: &CFArray,
         other_range: CFRange,
     ) {
@@ -1123,6 +1139,12 @@ impl CFMutableArray {
                 other_range: CFRange,
             );
         }
-        unsafe { CFArrayAppendArray(the_array, other_array, other_range) }
+        unsafe {
+            CFArrayAppendArray(
+                the_array.map(|obj| obj.as_opaque()),
+                other_array,
+                other_range,
+            )
+        }
     }
 }

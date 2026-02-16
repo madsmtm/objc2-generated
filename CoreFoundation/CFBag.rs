@@ -155,7 +155,7 @@ unsafe impl ConcreteType for CFBag {
     }
 }
 
-impl CFBag {
+impl<T: Sized> CFBag<T> {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -170,10 +170,10 @@ impl CFBag {
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        values: *mut *const c_void,
+        values: *mut *const T,
         num_values: CFIndex,
         call_backs: Option<&CFBagCallBacks>,
-    ) -> Option<CFRetained<CFBag>> {
+    ) -> Option<CFRetained<CFBag<T>>> {
         extern "C-unwind" {
             fn CFBagCreate(
                 allocator: Option<&CFAllocator>,
@@ -182,8 +182,8 @@ impl CFBag {
                 call_backs: Option<&CFBagCallBacks>,
             ) -> Option<NonNull<CFBag>>;
         }
-        let ret = unsafe { CFBagCreate(allocator, values, num_values, call_backs) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret = unsafe { CFBagCreate(allocator, values.cast(), num_values, call_backs) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 
     /// # Safety
@@ -195,20 +195,20 @@ impl CFBag {
     #[inline]
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
-        the_bag: Option<&CFBag>,
-    ) -> Option<CFRetained<CFBag>> {
+        the_bag: Option<&CFBag<T>>,
+    ) -> Option<CFRetained<CFBag<T>>> {
         extern "C-unwind" {
             fn CFBagCreateCopy(
                 allocator: Option<&CFAllocator>,
                 the_bag: Option<&CFBag>,
             ) -> Option<NonNull<CFBag>>;
         }
-        let ret = unsafe { CFBagCreateCopy(allocator, the_bag) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret = unsafe { CFBagCreateCopy(allocator, the_bag.map(|obj| obj.as_opaque())) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 }
 
-impl CFMutableBag {
+impl<T: Sized> CFMutableBag<T> {
     /// # Safety
     ///
     /// - `allocator` might not allow `None`.
@@ -225,7 +225,7 @@ impl CFMutableBag {
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
         call_backs: Option<&CFBagCallBacks>,
-    ) -> Option<CFRetained<CFMutableBag>> {
+    ) -> Option<CFRetained<CFMutableBag<T>>> {
         extern "C-unwind" {
             fn CFBagCreateMutable(
                 allocator: Option<&CFAllocator>,
@@ -234,7 +234,7 @@ impl CFMutableBag {
             ) -> Option<NonNull<CFMutableBag>>;
         }
         let ret = unsafe { CFBagCreateMutable(allocator, capacity, call_backs) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 
     /// # Safety
@@ -249,7 +249,7 @@ impl CFMutableBag {
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
         the_bag: Option<&CFBag>,
-    ) -> Option<CFRetained<CFMutableBag>> {
+    ) -> Option<CFRetained<CFMutableBag<T>>> {
         extern "C-unwind" {
             fn CFBagCreateMutableCopy(
                 allocator: Option<&CFAllocator>,
@@ -258,11 +258,11 @@ impl CFMutableBag {
             ) -> Option<NonNull<CFMutableBag>>;
         }
         let ret = unsafe { CFBagCreateMutableCopy(allocator, capacity, the_bag) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 }
 
-impl CFBag {
+impl<T: Sized> CFBag<T> {
     /// # Safety
     ///
     /// `the_bag` generic must be of the correct type.
@@ -272,7 +272,7 @@ impl CFBag {
         extern "C-unwind" {
             fn CFBagGetCount(the_bag: &CFBag) -> CFIndex;
         }
-        unsafe { CFBagGetCount(self) }
+        unsafe { CFBagGetCount(self.as_opaque()) }
     }
 
     /// # Safety
@@ -281,11 +281,11 @@ impl CFBag {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFBagGetCountOfValue")]
     #[inline]
-    pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
+    pub unsafe fn count_of_value(&self, value: *const T) -> CFIndex {
         extern "C-unwind" {
             fn CFBagGetCountOfValue(the_bag: &CFBag, value: *const c_void) -> CFIndex;
         }
-        unsafe { CFBagGetCountOfValue(self, value) }
+        unsafe { CFBagGetCountOfValue(self.as_opaque(), value.cast()) }
     }
 
     /// # Safety
@@ -294,11 +294,11 @@ impl CFBag {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFBagContainsValue")]
     #[inline]
-    pub unsafe fn contains_value(&self, value: *const c_void) -> bool {
+    pub unsafe fn contains_value(&self, value: *const T) -> bool {
         extern "C-unwind" {
             fn CFBagContainsValue(the_bag: &CFBag, value: *const c_void) -> Boolean;
         }
-        let ret = unsafe { CFBagContainsValue(self, value) };
+        let ret = unsafe { CFBagContainsValue(self.as_opaque(), value.cast()) };
         ret != 0
     }
 
@@ -308,11 +308,11 @@ impl CFBag {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFBagGetValue")]
     #[inline]
-    pub unsafe fn value(&self, value: *const c_void) -> *const c_void {
+    pub unsafe fn value(&self, value: *const T) -> *const T {
         extern "C-unwind" {
             fn CFBagGetValue(the_bag: &CFBag, value: *const c_void) -> *const c_void;
         }
-        unsafe { CFBagGetValue(self, value) }
+        unsafe { CFBagGetValue(self.as_opaque(), value.cast()) }.cast()
     }
 
     /// # Safety
@@ -324,8 +324,8 @@ impl CFBag {
     #[inline]
     pub unsafe fn value_if_present(
         &self,
-        candidate: *const c_void,
-        value: Option<&mut *const c_void>,
+        candidate: *const T,
+        value: Option<&mut *const T>,
     ) -> bool {
         extern "C-unwind" {
             fn CFBagGetValueIfPresent(
@@ -334,7 +334,13 @@ impl CFBag {
                 value: Option<&mut *const c_void>,
             ) -> Boolean;
         }
-        let ret = unsafe { CFBagGetValueIfPresent(self, candidate, value) };
+        let ret = unsafe {
+            CFBagGetValueIfPresent(
+                self.as_opaque(),
+                candidate.cast(),
+                value.map(|x| std::mem::transmute(x)),
+            )
+        };
         ret != 0
     }
 
@@ -344,11 +350,11 @@ impl CFBag {
     /// - `values` must be a valid pointer.
     #[doc(alias = "CFBagGetValues")]
     #[inline]
-    pub unsafe fn values(&self, values: *mut *const c_void) {
+    pub unsafe fn values(&self, values: *mut *const T) {
         extern "C-unwind" {
             fn CFBagGetValues(the_bag: &CFBag, values: *mut *const c_void);
         }
-        unsafe { CFBagGetValues(self, values) }
+        unsafe { CFBagGetValues(self.as_opaque(), values.cast()) }
     }
 
     /// # Safety
@@ -366,11 +372,11 @@ impl CFBag {
                 context: *mut c_void,
             );
         }
-        unsafe { CFBagApplyFunction(self, applier, context) }
+        unsafe { CFBagApplyFunction(self.as_opaque(), applier, context) }
     }
 }
 
-impl CFMutableBag {
+impl<T: Sized> CFMutableBag<T> {
     /// # Safety
     ///
     /// - `the_bag` generic must be of the correct type.
@@ -378,11 +384,11 @@ impl CFMutableBag {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFBagAddValue")]
     #[inline]
-    pub unsafe fn add_value(the_bag: Option<&CFMutableBag>, value: *const c_void) {
+    pub unsafe fn add_value(the_bag: Option<&CFMutableBag<T>>, value: *const T) {
         extern "C-unwind" {
             fn CFBagAddValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
         }
-        unsafe { CFBagAddValue(the_bag, value) }
+        unsafe { CFBagAddValue(the_bag.map(|obj| obj.as_opaque()), value.cast()) }
     }
 
     /// # Safety
@@ -392,11 +398,11 @@ impl CFMutableBag {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFBagReplaceValue")]
     #[inline]
-    pub unsafe fn replace_value(the_bag: Option<&CFMutableBag>, value: *const c_void) {
+    pub unsafe fn replace_value(the_bag: Option<&CFMutableBag<T>>, value: *const T) {
         extern "C-unwind" {
             fn CFBagReplaceValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
         }
-        unsafe { CFBagReplaceValue(the_bag, value) }
+        unsafe { CFBagReplaceValue(the_bag.map(|obj| obj.as_opaque()), value.cast()) }
     }
 
     /// # Safety
@@ -406,11 +412,11 @@ impl CFMutableBag {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFBagSetValue")]
     #[inline]
-    pub unsafe fn set_value(the_bag: Option<&CFMutableBag>, value: *const c_void) {
+    pub unsafe fn set_value(the_bag: Option<&CFMutableBag<T>>, value: *const T) {
         extern "C-unwind" {
             fn CFBagSetValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
         }
-        unsafe { CFBagSetValue(the_bag, value) }
+        unsafe { CFBagSetValue(the_bag.map(|obj| obj.as_opaque()), value.cast()) }
     }
 
     /// # Safety
@@ -420,11 +426,11 @@ impl CFMutableBag {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFBagRemoveValue")]
     #[inline]
-    pub unsafe fn remove_value(the_bag: Option<&CFMutableBag>, value: *const c_void) {
+    pub unsafe fn remove_value(the_bag: Option<&CFMutableBag<T>>, value: *const T) {
         extern "C-unwind" {
             fn CFBagRemoveValue(the_bag: Option<&CFMutableBag>, value: *const c_void);
         }
-        unsafe { CFBagRemoveValue(the_bag, value) }
+        unsafe { CFBagRemoveValue(the_bag.map(|obj| obj.as_opaque()), value.cast()) }
     }
 
     /// # Safety
@@ -433,10 +439,10 @@ impl CFMutableBag {
     /// - `the_bag` might not allow `None`.
     #[doc(alias = "CFBagRemoveAllValues")]
     #[inline]
-    pub unsafe fn remove_all_values(the_bag: Option<&CFMutableBag>) {
+    pub unsafe fn remove_all_values(the_bag: Option<&CFMutableBag<T>>) {
         extern "C-unwind" {
             fn CFBagRemoveAllValues(the_bag: Option<&CFMutableBag>);
         }
-        unsafe { CFBagRemoveAllValues(the_bag) }
+        unsafe { CFBagRemoveAllValues(the_bag.map(|obj| obj.as_opaque())) }
     }
 }

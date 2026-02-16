@@ -178,7 +178,7 @@ unsafe impl ConcreteType for CFBinaryHeap {
     }
 }
 
-impl CFBinaryHeap {
+impl<T: Sized> CFBinaryHeap<T> {
     /// Creates a new mutable binary heap with the given values.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -244,7 +244,7 @@ impl CFBinaryHeap {
         capacity: CFIndex,
         call_backs: Option<&CFBinaryHeapCallBacks>,
         compare_context: Option<&CFBinaryHeapCompareContext>,
-    ) -> Option<CFRetained<CFBinaryHeap>> {
+    ) -> Option<CFRetained<CFBinaryHeap<T>>> {
         extern "C-unwind" {
             fn CFBinaryHeapCreate(
                 allocator: Option<&CFAllocator>,
@@ -254,7 +254,7 @@ impl CFBinaryHeap {
             ) -> Option<NonNull<CFBinaryHeap>>;
         }
         let ret = unsafe { CFBinaryHeapCreate(allocator, capacity, call_backs, compare_context) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 
     /// Creates a new mutable binary heap with the values from the given binary heap.
@@ -295,8 +295,8 @@ impl CFBinaryHeap {
     pub unsafe fn new_copy(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
-        heap: &CFBinaryHeap,
-    ) -> Option<CFRetained<CFBinaryHeap>> {
+        heap: &CFBinaryHeap<T>,
+    ) -> Option<CFRetained<CFBinaryHeap<T>>> {
         extern "C-unwind" {
             fn CFBinaryHeapCreateCopy(
                 allocator: Option<&CFAllocator>,
@@ -304,8 +304,8 @@ impl CFBinaryHeap {
                 heap: &CFBinaryHeap,
             ) -> Option<NonNull<CFBinaryHeap>>;
         }
-        let ret = unsafe { CFBinaryHeapCreateCopy(allocator, capacity, heap) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret = unsafe { CFBinaryHeapCreateCopy(allocator, capacity, heap.as_opaque()) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 
     /// Returns the number of values currently in the binary heap.
@@ -324,7 +324,7 @@ impl CFBinaryHeap {
         extern "C-unwind" {
             fn CFBinaryHeapGetCount(heap: &CFBinaryHeap) -> CFIndex;
         }
-        unsafe { CFBinaryHeapGetCount(self) }
+        unsafe { CFBinaryHeapGetCount(self.as_opaque()) }
     }
 
     /// Counts the number of times the given value occurs in the binary heap.
@@ -347,11 +347,11 @@ impl CFBinaryHeap {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFBinaryHeapGetCountOfValue")]
     #[inline]
-    pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
+    pub unsafe fn count_of_value(&self, value: *const T) -> CFIndex {
         extern "C-unwind" {
             fn CFBinaryHeapGetCountOfValue(heap: &CFBinaryHeap, value: *const c_void) -> CFIndex;
         }
-        unsafe { CFBinaryHeapGetCountOfValue(self, value) }
+        unsafe { CFBinaryHeapGetCountOfValue(self.as_opaque(), value.cast()) }
     }
 
     /// Reports whether or not the value is in the binary heap.
@@ -374,11 +374,11 @@ impl CFBinaryHeap {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFBinaryHeapContainsValue")]
     #[inline]
-    pub unsafe fn contains_value(&self, value: *const c_void) -> bool {
+    pub unsafe fn contains_value(&self, value: *const T) -> bool {
         extern "C-unwind" {
             fn CFBinaryHeapContainsValue(heap: &CFBinaryHeap, value: *const c_void) -> Boolean;
         }
-        let ret = unsafe { CFBinaryHeapContainsValue(self, value) };
+        let ret = unsafe { CFBinaryHeapContainsValue(self.as_opaque(), value.cast()) };
         ret != 0
     }
 
@@ -396,11 +396,11 @@ impl CFBinaryHeap {
     /// `heap` generic must be of the correct type.
     #[doc(alias = "CFBinaryHeapGetMinimum")]
     #[inline]
-    pub unsafe fn minimum(&self) -> *const c_void {
+    pub unsafe fn minimum(&self) -> *const T {
         extern "C-unwind" {
             fn CFBinaryHeapGetMinimum(heap: &CFBinaryHeap) -> *const c_void;
         }
-        unsafe { CFBinaryHeapGetMinimum(self) }
+        unsafe { CFBinaryHeapGetMinimum(self.as_opaque()) }.cast()
     }
 
     /// Returns the minimum value is in the binary heap, if present.  If the heap contains several equal
@@ -422,14 +422,16 @@ impl CFBinaryHeap {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFBinaryHeapGetMinimumIfPresent")]
     #[inline]
-    pub unsafe fn minimum_if_present(&self, value: &mut *const c_void) -> bool {
+    pub unsafe fn minimum_if_present(&self, value: &mut *const T) -> bool {
         extern "C-unwind" {
             fn CFBinaryHeapGetMinimumIfPresent(
                 heap: &CFBinaryHeap,
                 value: &mut *const c_void,
             ) -> Boolean;
         }
-        let ret = unsafe { CFBinaryHeapGetMinimumIfPresent(self, value) };
+        let ret = unsafe {
+            CFBinaryHeapGetMinimumIfPresent(self.as_opaque(), std::mem::transmute(value))
+        };
         ret != 0
     }
 
@@ -449,11 +451,11 @@ impl CFBinaryHeap {
     /// - `values` must be a valid pointer.
     #[doc(alias = "CFBinaryHeapGetValues")]
     #[inline]
-    pub unsafe fn values(&self, values: *mut *const c_void) {
+    pub unsafe fn values(&self, values: *mut *const T) {
         extern "C-unwind" {
             fn CFBinaryHeapGetValues(heap: &CFBinaryHeap, values: *mut *const c_void);
         }
-        unsafe { CFBinaryHeapGetValues(self, values) }
+        unsafe { CFBinaryHeapGetValues(self.as_opaque(), values.cast()) }
     }
 
     /// Calls a function once for each value in the binary heap.
@@ -493,7 +495,7 @@ impl CFBinaryHeap {
                 context: *mut c_void,
             );
         }
-        unsafe { CFBinaryHeapApplyFunction(self, applier, context) }
+        unsafe { CFBinaryHeapApplyFunction(self.as_opaque(), applier, context) }
     }
 
     /// Adds the value to the binary heap.
@@ -512,11 +514,11 @@ impl CFBinaryHeap {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFBinaryHeapAddValue")]
     #[inline]
-    pub unsafe fn add_value(&self, value: *const c_void) {
+    pub unsafe fn add_value(&self, value: *const T) {
         extern "C-unwind" {
             fn CFBinaryHeapAddValue(heap: &CFBinaryHeap, value: *const c_void);
         }
-        unsafe { CFBinaryHeapAddValue(self, value) }
+        unsafe { CFBinaryHeapAddValue(self.as_opaque(), value.cast()) }
     }
 
     /// Removes the minimum value from the binary heap.
@@ -533,7 +535,7 @@ impl CFBinaryHeap {
         extern "C-unwind" {
             fn CFBinaryHeapRemoveMinimumValue(heap: &CFBinaryHeap);
         }
-        unsafe { CFBinaryHeapRemoveMinimumValue(self) }
+        unsafe { CFBinaryHeapRemoveMinimumValue(self.as_opaque()) }
     }
 
     /// Removes all the values from the binary heap, making it empty.
@@ -551,6 +553,6 @@ impl CFBinaryHeap {
         extern "C-unwind" {
             fn CFBinaryHeapRemoveAllValues(heap: &CFBinaryHeap);
         }
-        unsafe { CFBinaryHeapRemoveAllValues(self) }
+        unsafe { CFBinaryHeapRemoveAllValues(self.as_opaque()) }
     }
 }

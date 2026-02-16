@@ -237,7 +237,7 @@ unsafe impl ConcreteType for CFSet {
     }
 }
 
-impl CFSet {
+impl<T: Sized> CFSet<T> {
     /// Creates a new immutable set with the given values.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -302,10 +302,10 @@ impl CFSet {
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        values: *mut *const c_void,
+        values: *mut *const T,
         num_values: CFIndex,
         call_backs: Option<&CFSetCallBacks>,
-    ) -> Option<CFRetained<CFSet>> {
+    ) -> Option<CFRetained<CFSet<T>>> {
         extern "C-unwind" {
             fn CFSetCreate(
                 allocator: Option<&CFAllocator>,
@@ -314,8 +314,8 @@ impl CFSet {
                 call_backs: Option<&CFSetCallBacks>,
             ) -> Option<NonNull<CFSet>>;
         }
-        let ret = unsafe { CFSetCreate(allocator, values, num_values, call_backs) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret = unsafe { CFSetCreate(allocator, values.cast(), num_values, call_backs) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 
     /// Creates a new immutable set with the values from the given set.
@@ -340,20 +340,20 @@ impl CFSet {
     #[inline]
     pub fn new_copy(
         allocator: Option<&CFAllocator>,
-        the_set: Option<&CFSet>,
-    ) -> Option<CFRetained<CFSet>> {
+        the_set: Option<&CFSet<T>>,
+    ) -> Option<CFRetained<CFSet<T>>> {
         extern "C-unwind" {
             fn CFSetCreateCopy(
                 allocator: Option<&CFAllocator>,
                 the_set: Option<&CFSet>,
             ) -> Option<NonNull<CFSet>>;
         }
-        let ret = unsafe { CFSetCreateCopy(allocator, the_set) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret = unsafe { CFSetCreateCopy(allocator, the_set.map(|obj| obj.as_opaque())) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 }
 
-impl CFMutableSet {
+impl<T: Sized> CFMutableSet<T> {
     /// Creates a new empty mutable set.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -416,7 +416,7 @@ impl CFMutableSet {
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
         call_backs: Option<&CFSetCallBacks>,
-    ) -> Option<CFRetained<CFMutableSet>> {
+    ) -> Option<CFRetained<CFMutableSet<T>>> {
         extern "C-unwind" {
             fn CFSetCreateMutable(
                 allocator: Option<&CFAllocator>,
@@ -425,7 +425,7 @@ impl CFMutableSet {
             ) -> Option<NonNull<CFMutableSet>>;
         }
         let ret = unsafe { CFSetCreateMutable(allocator, capacity, call_backs) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 
     /// Creates a new immutable set with the values from the given set.
@@ -469,7 +469,7 @@ impl CFMutableSet {
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
         the_set: Option<&CFSet>,
-    ) -> Option<CFRetained<CFMutableSet>> {
+    ) -> Option<CFRetained<CFMutableSet<T>>> {
         extern "C-unwind" {
             fn CFSetCreateMutableCopy(
                 allocator: Option<&CFAllocator>,
@@ -478,11 +478,11 @@ impl CFMutableSet {
             ) -> Option<NonNull<CFMutableSet>>;
         }
         let ret = unsafe { CFSetCreateMutableCopy(allocator, capacity, the_set) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 }
 
-impl CFSet {
+impl<T: Sized> CFSet<T> {
     /// Returns the number of values currently in the set.
     ///
     /// Parameter `theSet`: The set to be queried. If this parameter is not a valid
@@ -495,7 +495,7 @@ impl CFSet {
         extern "C-unwind" {
             fn CFSetGetCount(the_set: &CFSet) -> CFIndex;
         }
-        unsafe { CFSetGetCount(self) }
+        unsafe { CFSetGetCount(self.as_opaque()) }
     }
 
     /// Counts the number of times the given value occurs in the set. Since
@@ -520,11 +520,11 @@ impl CFSet {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetGetCountOfValue")]
     #[inline]
-    pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
+    pub unsafe fn count_of_value(&self, value: *const T) -> CFIndex {
         extern "C-unwind" {
             fn CFSetGetCountOfValue(the_set: &CFSet, value: *const c_void) -> CFIndex;
         }
-        unsafe { CFSetGetCountOfValue(self, value) }
+        unsafe { CFSetGetCountOfValue(self.as_opaque(), value.cast()) }
     }
 
     /// Reports whether or not the value is in the set.
@@ -547,11 +547,11 @@ impl CFSet {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetContainsValue")]
     #[inline]
-    pub unsafe fn contains_value(&self, value: *const c_void) -> bool {
+    pub unsafe fn contains_value(&self, value: *const T) -> bool {
         extern "C-unwind" {
             fn CFSetContainsValue(the_set: &CFSet, value: *const c_void) -> Boolean;
         }
-        let ret = unsafe { CFSetContainsValue(self, value) };
+        let ret = unsafe { CFSetContainsValue(self.as_opaque(), value.cast()) };
         ret != 0
     }
 
@@ -574,11 +574,11 @@ impl CFSet {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetGetValue")]
     #[inline]
-    pub unsafe fn value(&self, value: *const c_void) -> *const c_void {
+    pub unsafe fn value(&self, value: *const T) -> *const T {
         extern "C-unwind" {
             fn CFSetGetValue(the_set: &CFSet, value: *const c_void) -> *const c_void;
         }
-        unsafe { CFSetGetValue(self, value) }
+        unsafe { CFSetGetValue(self.as_opaque(), value.cast()) }.cast()
     }
 
     /// Retrieves a value in the set which hashes the same as the specified value,
@@ -613,8 +613,8 @@ impl CFSet {
     #[inline]
     pub unsafe fn value_if_present(
         &self,
-        candidate: *const c_void,
-        value: Option<&mut *const c_void>,
+        candidate: *const T,
+        value: Option<&mut *const T>,
     ) -> bool {
         extern "C-unwind" {
             fn CFSetGetValueIfPresent(
@@ -623,7 +623,13 @@ impl CFSet {
                 value: Option<&mut *const c_void>,
             ) -> Boolean;
         }
-        let ret = unsafe { CFSetGetValueIfPresent(self, candidate, value) };
+        let ret = unsafe {
+            CFSetGetValueIfPresent(
+                self.as_opaque(),
+                candidate.cast(),
+                value.map(|x| std::mem::transmute(x)),
+            )
+        };
         ret != 0
     }
 
@@ -644,11 +650,11 @@ impl CFSet {
     /// - `values` must be a valid pointer.
     #[doc(alias = "CFSetGetValues")]
     #[inline]
-    pub unsafe fn values(&self, values: *mut *const c_void) {
+    pub unsafe fn values(&self, values: *mut *const T) {
         extern "C-unwind" {
             fn CFSetGetValues(the_set: &CFSet, values: *mut *const c_void);
         }
-        unsafe { CFSetGetValues(self, values) }
+        unsafe { CFSetGetValues(self.as_opaque(), values.cast()) }
     }
 
     /// Calls a function once for each value in the set.
@@ -684,11 +690,11 @@ impl CFSet {
                 context: *mut c_void,
             );
         }
-        unsafe { CFSetApplyFunction(self, applier, context) }
+        unsafe { CFSetApplyFunction(self.as_opaque(), applier, context) }
     }
 }
 
-impl CFMutableSet {
+impl<T: Sized> CFMutableSet<T> {
     /// Adds the value to the set if it is not already present.
     ///
     /// Parameter `theSet`: The set to which the value is to be added. If this
@@ -708,11 +714,11 @@ impl CFMutableSet {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetAddValue")]
     #[inline]
-    pub unsafe fn add_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
+    pub unsafe fn add_value(the_set: Option<&CFMutableSet<T>>, value: *const T) {
         extern "C-unwind" {
             fn CFSetAddValue(the_set: Option<&CFMutableSet>, value: *const c_void);
         }
-        unsafe { CFSetAddValue(the_set, value) }
+        unsafe { CFSetAddValue(the_set.map(|obj| obj.as_opaque()), value.cast()) }
     }
 
     /// Replaces the value in the set if it is present.
@@ -738,11 +744,11 @@ impl CFMutableSet {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetReplaceValue")]
     #[inline]
-    pub unsafe fn replace_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
+    pub unsafe fn replace_value(the_set: Option<&CFMutableSet<T>>, value: *const T) {
         extern "C-unwind" {
             fn CFSetReplaceValue(the_set: Option<&CFMutableSet>, value: *const c_void);
         }
-        unsafe { CFSetReplaceValue(the_set, value) }
+        unsafe { CFSetReplaceValue(the_set.map(|obj| obj.as_opaque()), value.cast()) }
     }
 
     /// Replaces the value in the set if it is present, or adds the value to
@@ -769,11 +775,11 @@ impl CFMutableSet {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetSetValue")]
     #[inline]
-    pub unsafe fn set_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
+    pub unsafe fn set_value(the_set: Option<&CFMutableSet<T>>, value: *const T) {
         extern "C-unwind" {
             fn CFSetSetValue(the_set: Option<&CFMutableSet>, value: *const c_void);
         }
-        unsafe { CFSetSetValue(the_set, value) }
+        unsafe { CFSetSetValue(the_set.map(|obj| obj.as_opaque()), value.cast()) }
     }
 
     /// Removes the specified value from the set.
@@ -795,11 +801,11 @@ impl CFMutableSet {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFSetRemoveValue")]
     #[inline]
-    pub unsafe fn remove_value(the_set: Option<&CFMutableSet>, value: *const c_void) {
+    pub unsafe fn remove_value(the_set: Option<&CFMutableSet<T>>, value: *const T) {
         extern "C-unwind" {
             fn CFSetRemoveValue(the_set: Option<&CFMutableSet>, value: *const c_void);
         }
-        unsafe { CFSetRemoveValue(the_set, value) }
+        unsafe { CFSetRemoveValue(the_set.map(|obj| obj.as_opaque()), value.cast()) }
     }
 
     /// Removes all the values from the set, making it empty.
@@ -809,10 +815,10 @@ impl CFMutableSet {
     /// the behavior is undefined.
     #[doc(alias = "CFSetRemoveAllValues")]
     #[inline]
-    pub fn remove_all_values(the_set: Option<&CFMutableSet>) {
+    pub fn remove_all_values(the_set: Option<&CFMutableSet<T>>) {
         extern "C-unwind" {
             fn CFSetRemoveAllValues(the_set: Option<&CFMutableSet>);
         }
-        unsafe { CFSetRemoveAllValues(the_set) }
+        unsafe { CFSetRemoveAllValues(the_set.map(|obj| obj.as_opaque())) }
     }
 }

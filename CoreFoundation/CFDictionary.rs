@@ -272,7 +272,7 @@ unsafe impl ConcreteType for CFDictionary {
     }
 }
 
-impl CFDictionary {
+impl<K: Sized, V: Sized> CFDictionary<K, V> {
     /// Creates a new immutable dictionary with the given values.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -380,12 +380,12 @@ impl CFDictionary {
     #[inline]
     pub unsafe fn new(
         allocator: Option<&CFAllocator>,
-        keys: *const *const c_void,
-        values: *const *const c_void,
+        keys: *const *const K,
+        values: *const *const V,
         num_values: CFIndex,
         key_call_backs: Option<&CFDictionaryKeyCallBacks>,
         value_call_backs: Option<&CFDictionaryValueCallBacks>,
-    ) -> Option<CFRetained<CFDictionary>> {
+    ) -> Option<CFRetained<CFDictionary<K, V>>> {
         extern "C-unwind" {
             fn CFDictionaryCreate(
                 allocator: Option<&CFAllocator>,
@@ -399,14 +399,14 @@ impl CFDictionary {
         let ret = unsafe {
             CFDictionaryCreate(
                 allocator,
-                keys,
-                values,
+                keys.cast(),
+                values.cast(),
                 num_values,
                 key_call_backs,
                 value_call_backs,
             )
         };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 
     /// Creates a new immutable dictionary with the key-value pairs from
@@ -434,20 +434,20 @@ impl CFDictionary {
     #[inline]
     pub fn new_copy(
         allocator: Option<&CFAllocator>,
-        the_dict: Option<&CFDictionary>,
-    ) -> Option<CFRetained<CFDictionary>> {
+        the_dict: Option<&CFDictionary<K, V>>,
+    ) -> Option<CFRetained<CFDictionary<K, V>>> {
         extern "C-unwind" {
             fn CFDictionaryCreateCopy(
                 allocator: Option<&CFAllocator>,
                 the_dict: Option<&CFDictionary>,
             ) -> Option<NonNull<CFDictionary>>;
         }
-        let ret = unsafe { CFDictionaryCreateCopy(allocator, the_dict) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        let ret = unsafe { CFDictionaryCreateCopy(allocator, the_dict.map(|obj| obj.as_opaque())) };
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 }
 
-impl CFMutableDictionary {
+impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
     /// Creates a new mutable dictionary.
     ///
     /// Parameter `allocator`: The CFAllocator which should be used to allocate
@@ -543,7 +543,7 @@ impl CFMutableDictionary {
         capacity: CFIndex,
         key_call_backs: Option<&CFDictionaryKeyCallBacks>,
         value_call_backs: Option<&CFDictionaryValueCallBacks>,
-    ) -> Option<CFRetained<CFMutableDictionary>> {
+    ) -> Option<CFRetained<CFMutableDictionary<K, V>>> {
         extern "C-unwind" {
             fn CFDictionaryCreateMutable(
                 allocator: Option<&CFAllocator>,
@@ -555,7 +555,7 @@ impl CFMutableDictionary {
         let ret = unsafe {
             CFDictionaryCreateMutable(allocator, capacity, key_call_backs, value_call_backs)
         };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 
     /// Creates a new mutable dictionary with the key-value pairs from
@@ -604,7 +604,7 @@ impl CFMutableDictionary {
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
         the_dict: Option<&CFDictionary>,
-    ) -> Option<CFRetained<CFMutableDictionary>> {
+    ) -> Option<CFRetained<CFMutableDictionary<K, V>>> {
         extern "C-unwind" {
             fn CFDictionaryCreateMutableCopy(
                 allocator: Option<&CFAllocator>,
@@ -613,11 +613,11 @@ impl CFMutableDictionary {
             ) -> Option<NonNull<CFMutableDictionary>>;
         }
         let ret = unsafe { CFDictionaryCreateMutableCopy(allocator, capacity, the_dict) };
-        ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
+        ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 }
 
-impl CFDictionary {
+impl<K: Sized, V: Sized> CFDictionary<K, V> {
     /// Returns the number of values currently in the dictionary.
     ///
     /// Parameter `theDict`: The dictionary to be queried. If this parameter is
@@ -630,7 +630,7 @@ impl CFDictionary {
         extern "C-unwind" {
             fn CFDictionaryGetCount(the_dict: &CFDictionary) -> CFIndex;
         }
-        unsafe { CFDictionaryGetCount(self) }
+        unsafe { CFDictionaryGetCount(self.as_opaque()) }
     }
 
     /// Counts the number of times the given key occurs in the dictionary.
@@ -657,11 +657,11 @@ impl CFDictionary {
     /// - `key` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetCountOfKey")]
     #[inline]
-    pub unsafe fn count_of_key(&self, key: *const c_void) -> CFIndex {
+    pub unsafe fn count_of_key(&self, key: *const K) -> CFIndex {
         extern "C-unwind" {
             fn CFDictionaryGetCountOfKey(the_dict: &CFDictionary, key: *const c_void) -> CFIndex;
         }
-        unsafe { CFDictionaryGetCountOfKey(self, key) }
+        unsafe { CFDictionaryGetCountOfKey(self.as_opaque(), key.cast()) }
     }
 
     /// Counts the number of times the given value occurs in the dictionary.
@@ -685,14 +685,14 @@ impl CFDictionary {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetCountOfValue")]
     #[inline]
-    pub unsafe fn count_of_value(&self, value: *const c_void) -> CFIndex {
+    pub unsafe fn count_of_value(&self, value: *const V) -> CFIndex {
         extern "C-unwind" {
             fn CFDictionaryGetCountOfValue(
                 the_dict: &CFDictionary,
                 value: *const c_void,
             ) -> CFIndex;
         }
-        unsafe { CFDictionaryGetCountOfValue(self, value) }
+        unsafe { CFDictionaryGetCountOfValue(self.as_opaque(), value.cast()) }
     }
 
     /// Reports whether or not the key is in the dictionary.
@@ -718,11 +718,11 @@ impl CFDictionary {
     /// - `key` must be a valid pointer.
     #[doc(alias = "CFDictionaryContainsKey")]
     #[inline]
-    pub unsafe fn contains_ptr_key(&self, key: *const c_void) -> bool {
+    pub unsafe fn contains_ptr_key(&self, key: *const K) -> bool {
         extern "C-unwind" {
             fn CFDictionaryContainsKey(the_dict: &CFDictionary, key: *const c_void) -> Boolean;
         }
-        let ret = unsafe { CFDictionaryContainsKey(self, key) };
+        let ret = unsafe { CFDictionaryContainsKey(self.as_opaque(), key.cast()) };
         ret != 0
     }
 
@@ -747,11 +747,11 @@ impl CFDictionary {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionaryContainsValue")]
     #[inline]
-    pub unsafe fn contains_ptr_value(&self, value: *const c_void) -> bool {
+    pub unsafe fn contains_ptr_value(&self, value: *const V) -> bool {
         extern "C-unwind" {
             fn CFDictionaryContainsValue(the_dict: &CFDictionary, value: *const c_void) -> Boolean;
         }
-        let ret = unsafe { CFDictionaryContainsValue(self, value) };
+        let ret = unsafe { CFDictionaryContainsValue(self.as_opaque(), value.cast()) };
         ret != 0
     }
 
@@ -782,11 +782,11 @@ impl CFDictionary {
     /// - `key` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetValue")]
     #[inline]
-    pub unsafe fn value(&self, key: *const c_void) -> *const c_void {
+    pub unsafe fn value(&self, key: *const K) -> *const V {
         extern "C-unwind" {
             fn CFDictionaryGetValue(the_dict: &CFDictionary, key: *const c_void) -> *const c_void;
         }
-        unsafe { CFDictionaryGetValue(self, key) }
+        unsafe { CFDictionaryGetValue(self.as_opaque(), key.cast()) }.cast()
     }
 
     /// Retrieves the value associated with the given key.
@@ -821,11 +821,7 @@ impl CFDictionary {
     /// - `value` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetValueIfPresent")]
     #[inline]
-    pub unsafe fn value_if_present(
-        &self,
-        key: *const c_void,
-        value: Option<&mut *const c_void>,
-    ) -> bool {
+    pub unsafe fn value_if_present(&self, key: *const K, value: Option<&mut *const V>) -> bool {
         extern "C-unwind" {
             fn CFDictionaryGetValueIfPresent(
                 the_dict: &CFDictionary,
@@ -833,7 +829,13 @@ impl CFDictionary {
                 value: Option<&mut *const c_void>,
             ) -> Boolean;
         }
-        let ret = unsafe { CFDictionaryGetValueIfPresent(self, key, value) };
+        let ret = unsafe {
+            CFDictionaryGetValueIfPresent(
+                self.as_opaque(),
+                key.cast(),
+                value.map(|x| std::mem::transmute(x)),
+            )
+        };
         ret != 0
     }
 
@@ -866,7 +868,7 @@ impl CFDictionary {
     /// - `values` must be a valid pointer.
     #[doc(alias = "CFDictionaryGetKeysAndValues")]
     #[inline]
-    pub unsafe fn keys_and_values(&self, keys: *mut *const c_void, values: *mut *const c_void) {
+    pub unsafe fn keys_and_values(&self, keys: *mut *const K, values: *mut *const V) {
         extern "C-unwind" {
             fn CFDictionaryGetKeysAndValues(
                 the_dict: &CFDictionary,
@@ -874,7 +876,7 @@ impl CFDictionary {
                 values: *mut *const c_void,
             );
         }
-        unsafe { CFDictionaryGetKeysAndValues(self, keys, values) }
+        unsafe { CFDictionaryGetKeysAndValues(self.as_opaque(), keys.cast(), values.cast()) }
     }
 
     /// Calls a function once for each value in the dictionary.
@@ -915,11 +917,11 @@ impl CFDictionary {
                 context: *mut c_void,
             );
         }
-        unsafe { CFDictionaryApplyFunction(self, applier, context) }
+        unsafe { CFDictionaryApplyFunction(self.as_opaque(), applier, context) }
     }
 }
 
-impl CFMutableDictionary {
+impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
     /// Adds the key-value pair to the dictionary if no such key already exists.
     ///
     /// Parameter `theDict`: The dictionary to which the value is to be added. If this
@@ -948,9 +950,9 @@ impl CFMutableDictionary {
     #[doc(alias = "CFDictionaryAddValue")]
     #[inline]
     pub unsafe fn add_value(
-        the_dict: Option<&CFMutableDictionary>,
-        key: *const c_void,
-        value: *const c_void,
+        the_dict: Option<&CFMutableDictionary<K, V>>,
+        key: *const K,
+        value: *const V,
     ) {
         extern "C-unwind" {
             fn CFDictionaryAddValue(
@@ -959,7 +961,13 @@ impl CFMutableDictionary {
                 value: *const c_void,
             );
         }
-        unsafe { CFDictionaryAddValue(the_dict, key, value) }
+        unsafe {
+            CFDictionaryAddValue(
+                the_dict.map(|obj| obj.as_opaque()),
+                key.cast(),
+                value.cast(),
+            )
+        }
     }
 
     /// Sets the value of the key in the dictionary.
@@ -993,9 +1001,9 @@ impl CFMutableDictionary {
     #[doc(alias = "CFDictionarySetValue")]
     #[inline]
     pub unsafe fn set_value(
-        the_dict: Option<&CFMutableDictionary>,
-        key: *const c_void,
-        value: *const c_void,
+        the_dict: Option<&CFMutableDictionary<K, V>>,
+        key: *const K,
+        value: *const V,
     ) {
         extern "C-unwind" {
             fn CFDictionarySetValue(
@@ -1004,7 +1012,13 @@ impl CFMutableDictionary {
                 value: *const c_void,
             );
         }
-        unsafe { CFDictionarySetValue(the_dict, key, value) }
+        unsafe {
+            CFDictionarySetValue(
+                the_dict.map(|obj| obj.as_opaque()),
+                key.cast(),
+                value.cast(),
+            )
+        }
     }
 
     /// Replaces the value of the key in the dictionary.
@@ -1034,9 +1048,9 @@ impl CFMutableDictionary {
     #[doc(alias = "CFDictionaryReplaceValue")]
     #[inline]
     pub unsafe fn replace_value(
-        the_dict: Option<&CFMutableDictionary>,
-        key: *const c_void,
-        value: *const c_void,
+        the_dict: Option<&CFMutableDictionary<K, V>>,
+        key: *const K,
+        value: *const V,
     ) {
         extern "C-unwind" {
             fn CFDictionaryReplaceValue(
@@ -1045,7 +1059,13 @@ impl CFMutableDictionary {
                 value: *const c_void,
             );
         }
-        unsafe { CFDictionaryReplaceValue(the_dict, key, value) }
+        unsafe {
+            CFDictionaryReplaceValue(
+                the_dict.map(|obj| obj.as_opaque()),
+                key.cast(),
+                value.cast(),
+            )
+        }
     }
 
     /// Removes the value of the key from the dictionary.
@@ -1067,11 +1087,11 @@ impl CFMutableDictionary {
     /// - `key` must be a valid pointer.
     #[doc(alias = "CFDictionaryRemoveValue")]
     #[inline]
-    pub unsafe fn remove_value(the_dict: Option<&CFMutableDictionary>, key: *const c_void) {
+    pub unsafe fn remove_value(the_dict: Option<&CFMutableDictionary<K, V>>, key: *const K) {
         extern "C-unwind" {
             fn CFDictionaryRemoveValue(the_dict: Option<&CFMutableDictionary>, key: *const c_void);
         }
-        unsafe { CFDictionaryRemoveValue(the_dict, key) }
+        unsafe { CFDictionaryRemoveValue(the_dict.map(|obj| obj.as_opaque()), key.cast()) }
     }
 
     /// Removes all the values from the dictionary, making it empty.
@@ -1081,10 +1101,10 @@ impl CFMutableDictionary {
     /// CFDictionary, the behavior is undefined.
     #[doc(alias = "CFDictionaryRemoveAllValues")]
     #[inline]
-    pub fn remove_all_values(the_dict: Option<&CFMutableDictionary>) {
+    pub fn remove_all_values(the_dict: Option<&CFMutableDictionary<K, V>>) {
         extern "C-unwind" {
             fn CFDictionaryRemoveAllValues(the_dict: Option<&CFMutableDictionary>);
         }
-        unsafe { CFDictionaryRemoveAllValues(the_dict) }
+        unsafe { CFDictionaryRemoveAllValues(the_dict.map(|obj| obj.as_opaque())) }
     }
 }
