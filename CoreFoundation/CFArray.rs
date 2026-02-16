@@ -291,17 +291,14 @@ impl<T: Sized> CFArray<T> {
     /// `the_array` generic must be of the correct type.
     #[doc(alias = "CFArrayCreateCopy")]
     #[inline]
-    pub unsafe fn new_copy(
-        allocator: Option<&CFAllocator>,
-        the_array: &CFArray<T>,
-    ) -> Option<CFRetained<CFArray<T>>> {
+    pub unsafe fn copy(&self, allocator: Option<&CFAllocator>) -> Option<CFRetained<CFArray<T>>> {
         extern "C-unwind" {
             fn CFArrayCreateCopy(
                 allocator: Option<&CFAllocator>,
                 the_array: &CFArray,
             ) -> Option<NonNull<CFArray>>;
         }
-        let ret = unsafe { CFArrayCreateCopy(allocator, the_array.as_opaque()) };
+        let ret = unsafe { CFArrayCreateCopy(allocator, self.as_opaque()) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret.cast()) })
     }
 }

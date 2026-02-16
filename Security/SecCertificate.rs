@@ -939,8 +939,8 @@ impl SecCertificate {
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn long_description(
+        &self,
         alloc: Option<&CFAllocator>,
-        certificate: &SecCertificate,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
@@ -950,7 +950,7 @@ impl SecCertificate {
                 error: *mut *mut CFError,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { SecCertificateCopyLongDescription(alloc, certificate, error) };
+        let ret = unsafe { SecCertificateCopyLongDescription(alloc, self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -980,8 +980,8 @@ impl SecCertificate {
     #[cfg(feature = "SecBase")]
     #[inline]
     pub unsafe fn short_description(
+        &self,
         alloc: Option<&CFAllocator>,
-        certificate: &SecCertificate,
         error: *mut *mut CFError,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
@@ -991,7 +991,7 @@ impl SecCertificate {
                 error: *mut *mut CFError,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { SecCertificateCopyShortDescription(alloc, certificate, error) };
+        let ret = unsafe { SecCertificateCopyShortDescription(alloc, self, error) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 

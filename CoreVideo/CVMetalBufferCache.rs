@@ -113,8 +113,8 @@ impl CVMetalBufferCache {
     ))]
     #[inline]
     pub unsafe fn create_buffer_from_image(
+        &self,
         allocator: Option<&CFAllocator>,
-        buffer_cache: &CVMetalBufferCache,
         image_buffer: &CVImageBuffer,
         buffer_out: NonNull<*mut CVMetalBuffer>,
     ) -> CVReturn {
@@ -127,12 +127,7 @@ impl CVMetalBufferCache {
             ) -> CVReturn;
         }
         unsafe {
-            CVMetalBufferCacheCreateBufferFromImage(
-                allocator,
-                buffer_cache,
-                image_buffer,
-                buffer_out,
-            )
+            CVMetalBufferCacheCreateBufferFromImage(allocator, self, image_buffer, buffer_out)
         }
     }
 

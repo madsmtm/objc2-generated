@@ -279,8 +279,8 @@ impl CMTimebase {
     #[deprecated]
     #[inline]
     pub unsafe fn create_with_master_timebase(
+        &self,
         allocator: Option<&CFAllocator>,
-        master_timebase: &CMTimebase,
         timebase_out: NonNull<*mut CMTimebase>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -290,7 +290,7 @@ impl CMTimebase {
                 timebase_out: NonNull<*mut CMTimebase>,
             ) -> OSStatus;
         }
-        unsafe { CMTimebaseCreateWithMasterTimebase(allocator, master_timebase, timebase_out) }
+        unsafe { CMTimebaseCreateWithMasterTimebase(allocator, self, timebase_out) }
     }
 
     // TODO: pub fn CMTimebaseCreateWithSourceTimebase(allocator: Option<&CFAllocator>,source_timebase: &CMTimebase,timebase_out: NonNull<*mut CMTimebase>,) -> OSStatus;

@@ -169,8 +169,8 @@ impl CVMetalTextureCache {
     #[cfg(not(target_os = "watchos"))]
     #[inline]
     pub unsafe fn create_texture_from_image(
+        &self,
         allocator: Option<&CFAllocator>,
-        texture_cache: &CVMetalTextureCache,
         source_image: &CVImageBuffer,
         texture_attributes: Option<&CFDictionary<CFString, CFType>>,
         pixel_format: MTLPixelFormat,
@@ -195,7 +195,7 @@ impl CVMetalTextureCache {
         unsafe {
             CVMetalTextureCacheCreateTextureFromImage(
                 allocator,
-                texture_cache,
+                self,
                 source_image,
                 texture_attributes,
                 pixel_format,

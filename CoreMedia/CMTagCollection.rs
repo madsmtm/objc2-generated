@@ -627,8 +627,8 @@ impl CMTagCollection {
     #[cfg(all(feature = "CMBase", feature = "CMTag"))]
     #[inline]
     pub unsafe fn copy_tags_of_categories(
+        &self,
         allocator: Option<&CFAllocator>,
-        tag_collection: &CMTagCollection,
         categories: NonNull<CMTagCategory>,
         categories_count: CMItemCount,
         collection_with_tags_of_categories: NonNull<*const CMTagCollection>,
@@ -645,7 +645,7 @@ impl CMTagCollection {
         unsafe {
             CMTagCollectionCopyTagsOfCategories(
                 allocator,
-                tag_collection,
+                self,
                 categories,
                 categories_count,
                 collection_with_tags_of_categories,

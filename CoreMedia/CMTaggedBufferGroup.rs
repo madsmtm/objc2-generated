@@ -401,8 +401,8 @@ impl CMTaggedBufferGroup {
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
     pub unsafe fn format_description_create_for_tagged_buffer_group(
+        &self,
         allocator: Option<&CFAllocator>,
-        tagged_buffer_group: &CMTaggedBufferGroup,
         format_description_out: NonNull<*const CMTaggedBufferGroupFormatDescription>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -415,7 +415,7 @@ impl CMTaggedBufferGroup {
         unsafe {
             CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup(
                 allocator,
-                tagged_buffer_group,
+                self,
                 format_description_out,
             )
         }
@@ -448,8 +448,8 @@ impl CMTaggedBufferGroup {
     #[cfg(feature = "CMFormatDescription")]
     #[inline]
     pub unsafe fn format_description_create_for_tagged_buffer_group_with_extensions(
+        &self,
         allocator: Option<&CFAllocator>,
-        tagged_buffer_group: &CMTaggedBufferGroup,
         extensions: Option<&CFDictionary>,
         format_description_out: NonNull<*const CMTaggedBufferGroupFormatDescription>,
     ) -> OSStatus {
@@ -464,7 +464,7 @@ impl CMTaggedBufferGroup {
         unsafe {
             CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions(
                 allocator,
-                tagged_buffer_group,
+                self,
                 extensions,
                 format_description_out,
             )

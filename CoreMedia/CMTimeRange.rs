@@ -388,8 +388,8 @@ impl CMTimeRange {
     #[cfg(feature = "CMTime")]
     #[inline]
     pub unsafe fn description(
+        self,
         allocator: Option<&CFAllocator>,
-        range: CMTimeRange,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CMTimeRangeCopyDescription(
@@ -397,7 +397,7 @@ impl CMTimeRange {
                 range: CMTimeRange,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { CMTimeRangeCopyDescription(allocator, range) };
+        let ret = unsafe { CMTimeRangeCopyDescription(allocator, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -558,8 +558,8 @@ impl CMTimeMapping {
     #[cfg(feature = "CMTime")]
     #[inline]
     pub unsafe fn description(
+        self,
         allocator: Option<&CFAllocator>,
-        mapping: CMTimeMapping,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CMTimeMappingCopyDescription(
@@ -567,7 +567,7 @@ impl CMTimeMapping {
                 mapping: CMTimeMapping,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { CMTimeMappingCopyDescription(allocator, mapping) };
+        let ret = unsafe { CMTimeMappingCopyDescription(allocator, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 

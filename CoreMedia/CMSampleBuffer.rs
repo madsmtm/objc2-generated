@@ -911,8 +911,8 @@ impl CMSampleBuffer {
     #[doc(alias = "CMSampleBufferCreateCopy")]
     #[inline]
     pub unsafe fn create_copy(
+        &self,
         allocator: Option<&CFAllocator>,
-        sbuf: &CMSampleBuffer,
         sample_buffer_out: NonNull<*mut CMSampleBuffer>,
     ) -> OSStatus {
         extern "C-unwind" {
@@ -922,7 +922,7 @@ impl CMSampleBuffer {
                 sample_buffer_out: NonNull<*mut CMSampleBuffer>,
             ) -> OSStatus;
         }
-        unsafe { CMSampleBufferCreateCopy(allocator, sbuf, sample_buffer_out) }
+        unsafe { CMSampleBufferCreateCopy(allocator, self, sample_buffer_out) }
     }
 
     /// Creates a CMSampleBuffer with new timing information from another sample buffer.
@@ -942,8 +942,8 @@ impl CMSampleBuffer {
     #[cfg(all(feature = "CMBase", feature = "CMTime"))]
     #[inline]
     pub unsafe fn create_copy_with_new_timing(
+        &self,
         allocator: Option<&CFAllocator>,
-        original_s_buf: &CMSampleBuffer,
         num_sample_timing_entries: CMItemCount,
         sample_timing_array: *const CMSampleTimingInfo,
         sample_buffer_out: NonNull<*mut CMSampleBuffer>,
@@ -960,7 +960,7 @@ impl CMSampleBuffer {
         unsafe {
             CMSampleBufferCreateCopyWithNewTiming(
                 allocator,
-                original_s_buf,
+                self,
                 num_sample_timing_entries,
                 sample_timing_array,
                 sample_buffer_out,
@@ -978,8 +978,8 @@ impl CMSampleBuffer {
     #[doc(alias = "CMSampleBufferCopySampleBufferForRange")]
     #[inline]
     pub unsafe fn copy_sample_buffer_for_range(
+        &self,
         allocator: Option<&CFAllocator>,
-        sbuf: &CMSampleBuffer,
         sample_range: CFRange,
         sample_buffer_out: NonNull<*mut CMSampleBuffer>,
     ) -> OSStatus {
@@ -992,7 +992,7 @@ impl CMSampleBuffer {
             ) -> OSStatus;
         }
         unsafe {
-            CMSampleBufferCopySampleBufferForRange(allocator, sbuf, sample_range, sample_buffer_out)
+            CMSampleBufferCopySampleBufferForRange(allocator, self, sample_range, sample_buffer_out)
         }
     }
 }

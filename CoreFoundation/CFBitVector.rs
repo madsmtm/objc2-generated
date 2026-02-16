@@ -79,17 +79,14 @@ impl CFBitVector {
 
     #[doc(alias = "CFBitVectorCreateCopy")]
     #[inline]
-    pub fn new_copy(
-        allocator: Option<&CFAllocator>,
-        bv: &CFBitVector,
-    ) -> Option<CFRetained<CFBitVector>> {
+    pub fn copy(&self, allocator: Option<&CFAllocator>) -> Option<CFRetained<CFBitVector>> {
         extern "C-unwind" {
             fn CFBitVectorCreateCopy(
                 allocator: Option<&CFAllocator>,
                 bv: &CFBitVector,
             ) -> Option<NonNull<CFBitVector>>;
         }
-        let ret = unsafe { CFBitVectorCreateCopy(allocator, bv) };
+        let ret = unsafe { CFBitVectorCreateCopy(allocator, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }

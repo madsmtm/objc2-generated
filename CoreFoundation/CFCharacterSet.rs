@@ -254,17 +254,14 @@ impl CFCharacterSet {
     /// Returns: A reference to the new immutable CFCharacterSet.
     #[doc(alias = "CFCharacterSetCreateInvertedSet")]
     #[inline]
-    pub fn new_inverted_set(
-        alloc: Option<&CFAllocator>,
-        the_set: &CFCharacterSet,
-    ) -> Option<CFRetained<CFCharacterSet>> {
+    pub fn inverted_set(&self, alloc: Option<&CFAllocator>) -> Option<CFRetained<CFCharacterSet>> {
         extern "C-unwind" {
             fn CFCharacterSetCreateInvertedSet(
                 alloc: Option<&CFAllocator>,
                 the_set: &CFCharacterSet,
             ) -> Option<NonNull<CFCharacterSet>>;
         }
-        let ret = unsafe { CFCharacterSetCreateInvertedSet(alloc, the_set) };
+        let ret = unsafe { CFCharacterSetCreateInvertedSet(alloc, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
@@ -469,17 +466,14 @@ impl CFCharacterSet {
     #[doc(alias = "CFCharacterSetCreateBitmapRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
-    pub fn new_bitmap_representation(
-        alloc: Option<&CFAllocator>,
-        the_set: &CFCharacterSet,
-    ) -> Option<CFRetained<CFData>> {
+    pub fn bitmap_representation(&self, alloc: Option<&CFAllocator>) -> Option<CFRetained<CFData>> {
         extern "C-unwind" {
             fn CFCharacterSetCreateBitmapRepresentation(
                 alloc: Option<&CFAllocator>,
                 the_set: &CFCharacterSet,
             ) -> Option<NonNull<CFData>>;
         }
-        let ret = unsafe { CFCharacterSetCreateBitmapRepresentation(alloc, the_set) };
+        let ret = unsafe { CFCharacterSetCreateBitmapRepresentation(alloc, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }

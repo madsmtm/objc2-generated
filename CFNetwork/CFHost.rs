@@ -149,14 +149,14 @@ impl CFHost {
     #[doc(alias = "CFHostCreateCopy")]
     #[deprecated = "Use Network framework instead, see deprecation notice in <CFNetwork/CFHost.h>"]
     #[inline]
-    pub unsafe fn new_copy(alloc: Option<&CFAllocator>, host: &CFHost) -> CFRetained<CFHost> {
+    pub unsafe fn copy(&self, alloc: Option<&CFAllocator>) -> CFRetained<CFHost> {
         extern "C-unwind" {
             fn CFHostCreateCopy(
                 alloc: Option<&CFAllocator>,
                 host: &CFHost,
             ) -> Option<NonNull<CFHost>>;
         }
-        let ret = unsafe { CFHostCreateCopy(alloc, host) };
+        let ret = unsafe { CFHostCreateCopy(alloc, self) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { CFRetained::from_raw(ret) }

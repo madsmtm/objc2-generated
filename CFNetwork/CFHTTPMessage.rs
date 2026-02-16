@@ -159,17 +159,14 @@ impl CFHTTPMessage {
 
     #[doc(alias = "CFHTTPMessageCreateCopy")]
     #[inline]
-    pub unsafe fn new_copy(
-        alloc: Option<&CFAllocator>,
-        message: &CFHTTPMessage,
-    ) -> CFRetained<CFHTTPMessage> {
+    pub unsafe fn copy(&self, alloc: Option<&CFAllocator>) -> CFRetained<CFHTTPMessage> {
         extern "C-unwind" {
             fn CFHTTPMessageCreateCopy(
                 alloc: Option<&CFAllocator>,
                 message: &CFHTTPMessage,
             ) -> Option<NonNull<CFHTTPMessage>>;
         }
-        let ret = unsafe { CFHTTPMessageCreateCopy(alloc, message) };
+        let ret = unsafe { CFHTTPMessageCreateCopy(alloc, self) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { CFRetained::from_raw(ret) }

@@ -160,8 +160,8 @@ impl CVOpenGLBufferPool {
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
     pub unsafe fn create_open_gl_buffer(
+        &self,
         allocator: Option<&CFAllocator>,
-        open_gl_buffer_pool: &CVOpenGLBufferPool,
         open_gl_buffer_out: NonNull<*mut CVOpenGLBuffer>,
     ) -> CVReturn {
         extern "C-unwind" {
@@ -171,8 +171,6 @@ impl CVOpenGLBufferPool {
                 open_gl_buffer_out: NonNull<*mut CVOpenGLBuffer>,
             ) -> CVReturn;
         }
-        unsafe {
-            CVOpenGLBufferPoolCreateOpenGLBuffer(allocator, open_gl_buffer_pool, open_gl_buffer_out)
-        }
+        unsafe { CVOpenGLBufferPoolCreateOpenGLBuffer(allocator, self, open_gl_buffer_out) }
     }
 }

@@ -288,9 +288,9 @@ impl SCDynamicStore {
     /// You must release the returned value.
     #[doc(alias = "SCDynamicStoreCreateRunLoopSource")]
     #[inline]
-    pub fn new_run_loop_source(
+    pub fn run_loop_source(
+        &self,
         allocator: Option<&CFAllocator>,
-        store: &SCDynamicStore,
         order: CFIndex,
     ) -> Option<CFRetained<CFRunLoopSource>> {
         extern "C-unwind" {
@@ -300,7 +300,7 @@ impl SCDynamicStore {
                 order: CFIndex,
             ) -> Option<NonNull<CFRunLoopSource>>;
         }
-        let ret = unsafe { SCDynamicStoreCreateRunLoopSource(allocator, store, order) };
+        let ret = unsafe { SCDynamicStoreCreateRunLoopSource(allocator, self, order) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 

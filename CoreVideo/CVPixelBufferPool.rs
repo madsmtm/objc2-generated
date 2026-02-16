@@ -151,8 +151,8 @@ impl CVPixelBufferPool {
     ))]
     #[inline]
     pub unsafe fn create_pixel_buffer(
+        &self,
         allocator: Option<&CFAllocator>,
-        pixel_buffer_pool: &CVPixelBufferPool,
         pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
     ) -> CVReturn {
         extern "C-unwind" {
@@ -162,9 +162,7 @@ impl CVPixelBufferPool {
                 pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
             ) -> CVReturn;
         }
-        unsafe {
-            CVPixelBufferPoolCreatePixelBuffer(allocator, pixel_buffer_pool, pixel_buffer_out)
-        }
+        unsafe { CVPixelBufferPoolCreatePixelBuffer(allocator, self, pixel_buffer_out) }
     }
 
     /// # Safety
@@ -180,8 +178,8 @@ impl CVPixelBufferPool {
     ))]
     #[inline]
     pub unsafe fn create_pixel_buffer_with_aux_attributes(
+        &self,
         allocator: Option<&CFAllocator>,
-        pixel_buffer_pool: &CVPixelBufferPool,
         aux_attributes: Option<&CFDictionary<CFString, CFType>>,
         pixel_buffer_out: NonNull<*mut CVPixelBuffer>,
     ) -> CVReturn {
@@ -196,7 +194,7 @@ impl CVPixelBufferPool {
         unsafe {
             CVPixelBufferPoolCreatePixelBufferWithAuxAttributes(
                 allocator,
-                pixel_buffer_pool,
+                self,
                 aux_attributes,
                 pixel_buffer_out,
             )

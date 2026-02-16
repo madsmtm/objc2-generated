@@ -153,8 +153,8 @@ impl CVOpenGLTextureCache {
     #[deprecated = "OpenGL/OpenGLES is no longer supported. Use Metal APIs instead. (Define COREVIDEO_SILENCE_GL_DEPRECATION to silence these warnings)"]
     #[inline]
     pub unsafe fn create_texture_from_image(
+        &self,
         allocator: Option<&CFAllocator>,
-        texture_cache: &CVOpenGLTextureCache,
         source_image: &CVImageBuffer,
         attributes: Option<&CFDictionary<CFString, CFType>>,
         texture_out: NonNull<*mut CVOpenGLTexture>,
@@ -171,7 +171,7 @@ impl CVOpenGLTextureCache {
         unsafe {
             CVOpenGLTextureCacheCreateTextureFromImage(
                 allocator,
-                texture_cache,
+                self,
                 source_image,
                 attributes,
                 texture_out,

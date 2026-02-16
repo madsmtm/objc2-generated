@@ -615,8 +615,8 @@ impl CMTime {
     #[doc(alias = "CMTimeCopyDescription")]
     #[inline]
     pub unsafe fn description(
+        self,
         allocator: Option<&CFAllocator>,
-        time: CMTime,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CMTimeCopyDescription(
@@ -624,7 +624,7 @@ impl CMTime {
                 time: CMTime,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { CMTimeCopyDescription(allocator, time) };
+        let ret = unsafe { CMTimeCopyDescription(allocator, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 

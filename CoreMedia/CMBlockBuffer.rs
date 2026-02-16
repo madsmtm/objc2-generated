@@ -279,8 +279,8 @@ impl CMBlockBuffer {
     #[doc(alias = "CMBlockBufferCreateWithBufferReference")]
     #[inline]
     pub unsafe fn create_with_buffer_reference(
+        &self,
         structure_allocator: Option<&CFAllocator>,
-        buffer_reference: &CMBlockBuffer,
         offset_to_data: usize,
         data_length: usize,
         flags: CMBlockBufferFlags,
@@ -299,7 +299,7 @@ impl CMBlockBuffer {
         unsafe {
             CMBlockBufferCreateWithBufferReference(
                 structure_allocator,
-                buffer_reference,
+                self,
                 offset_to_data,
                 data_length,
                 flags,
@@ -349,8 +349,8 @@ impl CMBlockBuffer {
     #[doc(alias = "CMBlockBufferCreateContiguous")]
     #[inline]
     pub unsafe fn create_contiguous(
+        &self,
         structure_allocator: Option<&CFAllocator>,
-        source_buffer: &CMBlockBuffer,
         block_allocator: Option<&CFAllocator>,
         custom_block_source: *const CMBlockBufferCustomBlockSource,
         offset_to_data: usize,
@@ -373,7 +373,7 @@ impl CMBlockBuffer {
         unsafe {
             CMBlockBufferCreateContiguous(
                 structure_allocator,
-                source_buffer,
+                self,
                 block_allocator,
                 custom_block_source,
                 offset_to_data,

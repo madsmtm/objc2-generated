@@ -297,17 +297,14 @@ impl CFNetService {
     #[doc(alias = "CFNetServiceCreateCopy")]
     #[deprecated = "Use nw_browser_t or nw_listener_t in Network framework instead"]
     #[inline]
-    pub unsafe fn new_copy(
-        alloc: Option<&CFAllocator>,
-        service: &CFNetService,
-    ) -> CFRetained<CFNetService> {
+    pub unsafe fn copy(&self, alloc: Option<&CFAllocator>) -> CFRetained<CFNetService> {
         extern "C-unwind" {
             fn CFNetServiceCreateCopy(
                 alloc: Option<&CFAllocator>,
                 service: &CFNetService,
             ) -> Option<NonNull<CFNetService>>;
         }
-        let ret = unsafe { CFNetServiceCreateCopy(alloc, service) };
+        let ret = unsafe { CFNetServiceCreateCopy(alloc, self) };
         let ret =
             ret.expect("function was marked as returning non-null, but actually returned NULL");
         unsafe { CFRetained::from_raw(ret) }

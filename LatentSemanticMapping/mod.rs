@@ -293,9 +293,9 @@ impl LSMMap {
     /// `subset` generic must be of the correct type.
     #[doc(alias = "LSMMapCreateClusters")]
     #[inline]
-    pub unsafe fn new_clusters(
+    pub unsafe fn clusters(
+        &self,
         alloc: Option<&CFAllocator>,
-        mapref: &LSMMap,
         subset: Option<&CFArray>,
         num_clusters: CFIndex,
         flags: CFOptionFlags,
@@ -309,7 +309,7 @@ impl LSMMap {
                 flags: CFOptionFlags,
             ) -> Option<NonNull<CFArray>>;
         }
-        let ret = unsafe { LSMMapCreateClusters(alloc, mapref, subset, num_clusters, flags) };
+        let ret = unsafe { LSMMapCreateClusters(alloc, self, subset, num_clusters, flags) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 }

@@ -692,8 +692,8 @@ impl CMTag {
     #[doc(alias = "CMTagCopyDescription")]
     #[inline]
     pub unsafe fn description(
+        self,
         allocator: Option<&CFAllocator>,
-        tag: CMTag,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
             fn CMTagCopyDescription(
@@ -701,7 +701,7 @@ impl CMTag {
                 tag: CMTag,
             ) -> Option<NonNull<CFString>>;
         }
-        let ret = unsafe { CMTagCopyDescription(allocator, tag) };
+        let ret = unsafe { CMTagCopyDescription(allocator, self) };
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
