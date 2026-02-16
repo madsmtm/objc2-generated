@@ -3,6 +3,8 @@
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-network")]
+use objc2_network::*;
 
 use crate::*;
 
@@ -32,6 +34,18 @@ extern_conformance!(
 
 impl AVCustomDeviceRoute {
     extern_methods!(
+        #[cfg(feature = "objc2-network")]
+        /// A local or remote endpoint to connect to.
+        ///
+        /// This property is not atomic.
+        ///
+        /// # Safety
+        ///
+        /// This might not be thread-safe.
+        #[unsafe(method(networkEndpoint))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn networkEndpoint(&self) -> Option<Retained<NWEndpoint>>;
+
         /// An identifier to use to establish a connection to a Bluetooth device.
         ///
         /// This property is not atomic.

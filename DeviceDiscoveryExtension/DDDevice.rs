@@ -4,6 +4,8 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-network")]
+use objc2_network::*;
 #[cfg(feature = "objc2-uniform-type-identifiers")]
 use objc2_uniform_type_identifiers::*;
 
@@ -381,6 +383,18 @@ impl DDDevice {
         #[unsafe(method(setMediaContentSubtitle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMediaContentSubtitle(&self, media_content_subtitle: Option<&NSString>);
+
+        #[cfg(feature = "objc2-network")]
+        /// Endpoint to communicate with the device via networking.
+        #[unsafe(method(networkEndpoint))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn networkEndpoint(&self) -> Option<Retained<NWEndpoint>>;
+
+        #[cfg(feature = "objc2-network")]
+        /// Setter for [`networkEndpoint`][Self::networkEndpoint].
+        #[unsafe(method(setNetworkEndpoint:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setNetworkEndpoint(&self, network_endpoint: Option<&NWEndpoint>);
 
         /// Protocol of the device.
         #[unsafe(method(protocol))]

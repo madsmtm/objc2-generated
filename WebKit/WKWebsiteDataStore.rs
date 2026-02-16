@@ -4,6 +4,8 @@ use core::ffi::*;
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-network")]
+use objc2_network::*;
 
 use crate::*;
 
@@ -184,6 +186,22 @@ impl WKWebsiteDataStore {
         pub unsafe fn fetchAllDataStoreIdentifiers(
             completion_handler: &block2::DynBlock<dyn Fn(NonNull<NSArray<NSUUID>>)>,
             mtm: MainThreadMarker,
+        );
+
+        #[cfg(feature = "objc2-network")]
+        #[unsafe(method(proxyConfigurations))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn proxyConfigurations(&self) -> Option<Retained<NSArray<NWProxyConfig>>>;
+
+        #[cfg(feature = "objc2-network")]
+        /// Setter for [`proxyConfigurations`][Self::proxyConfigurations].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setProxyConfigurations:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setProxyConfigurations(
+            &self,
+            proxy_configurations: Option<&NSArray<NWProxyConfig>>,
         );
     );
 }

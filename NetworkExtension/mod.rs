@@ -29,6 +29,8 @@ use objc2::__framework_prelude::*;
 #[cfg(target_os = "ios")]
 use objc2_accessory_setup_kit::*;
 use objc2_foundation::*;
+#[cfg(feature = "objc2-network")]
+use objc2_network::*;
 #[cfg(feature = "objc2-security")]
 use objc2_security::*;
 
@@ -96,6 +98,20 @@ extern_conformance!(
 
 impl NEAppProxyFlow {
     extern_methods!(
+        #[cfg(all(feature = "block2", feature = "objc2-network"))]
+        /// This function is used by an NEProvider implementation to indicate that it is ready to handle flow data.
+        ///
+        /// Parameter `localEndpoint`: The address and port that should be used as the local endpoint of the socket associated with this flow. If the source application already specified a local endpoint by binding the socket then this parameter is ignored.
+        ///
+        /// Parameter `completionHandler`: A block that is called when the process of opening flow is complete. A nil value passed to this block indicates that the flow was opened successfully. A non-nil NSError value indicates that the flow failed to open successfully.
+        #[unsafe(method(openWithLocalFlowEndpoint:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn openWithLocalFlowEndpoint_completionHandler(
+            &self,
+            local_endpoint: Option<&NWEndpoint>,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
+        );
+
         #[cfg(feature = "block2")]
         /// This function is used by an NEProvider implementation to indicate that it is ready to handle flow data.
         ///
@@ -125,10 +141,34 @@ impl NEAppProxyFlow {
         #[unsafe(method_family = none)]
         pub unsafe fn closeWriteWithError(&self, error: Option<&NSError>);
 
+        #[cfg(feature = "objc2-network")]
+        /// Set the flow's NEFlowMetaData object in an nw_parameters_t object. The nw_parameters_t object can then be used to create a connection that transparently proxies the flow's
+        /// data, and provides accurate source app information to any subsequent NEAppProxyProvider instances that transparently proxy the flow.
+        ///
+        /// Parameter `parameters`: An nw_parameters_t object.
+        #[unsafe(method(setMetadata:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setMetadata(&self, parameters: &NWParameters);
+
         /// An NEFlowMetaData object containing meta data for the flow.
         #[unsafe(method(metaData))]
         #[unsafe(method_family = none)]
         pub unsafe fn metaData(&self) -> Retained<NEFlowMetaData>;
+
+        #[cfg(feature = "objc2-network")]
+        /// An nw_interface_t containing information about the network interface used by the flow. If the flow's data is transported using a different interface, this property
+        /// should be set to that interface.
+        #[unsafe(method(networkInterface))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn networkInterface(&self) -> Option<Retained<NWInterface>>;
+
+        #[cfg(feature = "objc2-network")]
+        /// Setter for [`networkInterface`][Self::networkInterface].
+        ///
+        /// This is [copied][objc2_foundation::NSCopying::copy] when set.
+        #[unsafe(method(setNetworkInterface:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setNetworkInterface(&self, network_interface: Option<&NWInterface>);
 
         /// If the flow was created by passing a hostname to a "connect by name" API such as NSURLSession or Network.framework, this property is set to the
         /// remote hostname.
@@ -574,6 +614,28 @@ impl NEAppProxyProvider {
         #[unsafe(method(handleNewFlow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleNewFlow(&self, flow: &NEAppProxyFlow) -> bool;
+
+        #[cfg(feature = "objc2-network")]
+        /// This function is called by the framework to deliver a new UDP data flow to the proxy provider implementation. Subclasses can override this method to perform whatever steps are necessary to ready the proxy to receive
+        /// data from the flow. The proxy provider implementation indicates that the proxy is ready to handle flow data by calling -[NEAppProxyFlow openWithLocalFlowEndpoint:completionHandler:] on the flow. If the proxy implementation decides
+        /// to not handle the flow and instead terminate it, the subclass implementation of this method should return NO. If the proxy implementation decides to handle the flow, the subclass implementation of this method should return YES.
+        /// In this case the proxy implementation is responsible for retaining the NEAppProxyUDPFlow object.
+        /// The default implementation of this method calls -[NEAppProxyProvider handleNewFlow:] and returns its result.
+        ///
+        /// See also: NEAppProxyUDPFlowHandling for Swift subclasses.
+        ///
+        /// Parameter `flow`: The new UDP flow
+        ///
+        /// Parameter `remoteEndpoint`: The initial remote endpoint provided by the proxied app when the flow was opened.
+        ///
+        /// Returns: YES if the proxy implementation has retained the flow and intends to handle the flow data. NO if the proxy implementation has not retained the flow and will not handle the flow data. In this case the flow is terminated.
+        #[unsafe(method(handleNewUDPFlow:initialRemoteFlowEndpoint:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn handleNewUDPFlow_initialRemoteFlowEndpoint(
+            &self,
+            flow: &NEAppProxyUDPFlow,
+            remote_endpoint: &NWEndpoint,
+        ) -> bool;
 
         /// This function is called by the framework to deliver a new UDP data flow to the proxy provider implementation. Subclasses can override this method to perform whatever steps are necessary to ready the proxy to receive
         /// data from the flow. The proxy provider implementation indicates that the proxy is ready to handle flow data by calling -[NEAppProxyFlow openWithLocalEndpoint:completionHandler:] on the flow. If the proxy implementation decides
@@ -1052,6 +1114,12 @@ impl NEAppProxyTCPFlow {
             completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
+        #[cfg(feature = "objc2-network")]
+        /// An `nw_endpoint_t` object containing information about the intended remote endpoint of the flow.
+        #[unsafe(method(remoteFlowEndpoint))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn remoteFlowEndpoint(&self) -> Retained<NWEndpoint>;
+
         /// An NWEndpoint object containing information about the intended remote endpoint of the flow.
         #[deprecated]
         #[unsafe(method(remoteEndpoint))]
@@ -1073,6 +1141,10 @@ impl NEAppProxyTCPFlow {
     );
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/networkextension/nwendpointarray?language=objc)
+#[cfg(feature = "objc2-network")]
+pub type NWEndpointArray = NSArray<NWEndpoint>;
+
 extern_class!(
     /// The NEAppProxyUDPFlow class declares the programmatic interface of an object that is used by NEAppProxyProvider implementations to proxy the payload of UDP datagrams.
     ///
@@ -1092,6 +1164,19 @@ extern_conformance!(
 
 impl NEAppProxyUDPFlow {
     extern_methods!(
+        #[cfg(all(feature = "block2", feature = "objc2-network"))]
+        /// Read datagrams from the flow.
+        ///
+        /// Parameter `completionHandler`: A block that will be executed when datagrams have been read from the flow. The block takes the datagrams that were read, the destination endpoints of the datagrams, and an NSError. If an error occurred while reading then the error parameter will be non-nil.
+        #[unsafe(method(readDatagramsAndFlowEndpointsWithCompletionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn readDatagramsAndFlowEndpointsWithCompletionHandler(
+            &self,
+            completion_handler: &block2::DynBlock<
+                dyn Fn(*mut NSArray<NSData>, *mut NWEndpointArray, *mut NSError),
+            >,
+        );
+
         #[cfg(feature = "block2")]
         /// Read datagrams from the flow.
         ///
@@ -1104,6 +1189,23 @@ impl NEAppProxyUDPFlow {
             completion_handler: &block2::DynBlock<
                 dyn Fn(*mut NSArray<NSData>, *mut NSArray<NEEndpoint>, *mut NSError),
             >,
+        );
+
+        #[cfg(all(feature = "block2", feature = "objc2-network"))]
+        /// Write datagrams to the flow.
+        ///
+        /// Parameter `datagrams`: An array of NSData objects containing the data to be written.
+        ///
+        /// Parameter `remoteEndpoints`: The source endpoints of the datagrams.
+        ///
+        /// Parameter `completionHandler`: A block that will be executed when the datagrams have been written to the corresponding socket's receive buffer.
+        #[unsafe(method(writeDatagrams:sentByFlowEndpoints:completionHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn writeDatagrams_sentByFlowEndpoints_completionHandler(
+            &self,
+            datagrams: &NSArray<NSData>,
+            remote_endpoints: &NWEndpointArray,
+            completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
 
         #[cfg(feature = "block2")]
@@ -1123,6 +1225,12 @@ impl NEAppProxyUDPFlow {
             remote_endpoints: &NSArray<NEEndpoint>,
             completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
+
+        #[cfg(feature = "objc2-network")]
+        /// An `nw_endpoint_t` object containing the local endpoint of the flow's corresponding socket.
+        #[unsafe(method(localFlowEndpoint))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn localFlowEndpoint(&self) -> Option<Retained<NWEndpoint>>;
 
         /// An NWEndpoint object containing the local endpoint of the flow's corresponding socket.
         #[deprecated]
@@ -1478,6 +1586,28 @@ impl NEDNSProxyProvider {
         #[unsafe(method(handleNewFlow:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleNewFlow(&self, flow: &NEAppProxyFlow) -> bool;
+
+        #[cfg(feature = "objc2-network")]
+        /// This function is called by the framework to deliver a new UDP data flow to the proxy provider implementation. Subclasses can override this method to perform whatever steps are necessary to ready the proxy to receive
+        /// data from the flow. The proxy provider implementation indicates that the proxy is ready to handle flow data by calling -[NEAppProxyFlow openWithLocalFlowEndpoint:completionHandler:] on the flow. If the proxy implementation decides
+        /// to not handle the flow and instead terminate it, the subclass implementation of this method should return NO. If the proxy implementation decides to handle the flow, the subclass implementation of this method should return YES.
+        /// In this case the proxy implementation is responsible for retaining the NEAppProxyUDPFlow object.
+        /// The default implementation of this method calls -[NEAppProxyProvider handleNewFlow:] and returns its result.
+        ///
+        /// See also: NEAppProxyUDPFlowHandling for Swift subclasses.
+        ///
+        /// Parameter `flow`: The new UDP flow
+        ///
+        /// Parameter `remoteEndpoint`: The initial remote endpoint provided by the proxied app when the flow was opened.
+        ///
+        /// Returns: YES if the proxy implementation has retained the flow and intends to handle the flow data. NO if the proxy implementation has not retained the flow and will not handle the flow data. In this case the flow is terminated.
+        #[unsafe(method(handleNewUDPFlow:initialRemoteFlowEndpoint:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn handleNewUDPFlow_initialRemoteFlowEndpoint(
+            &self,
+            flow: &NEAppProxyUDPFlow,
+            remote_endpoint: &NWEndpoint,
+        ) -> bool;
 
         /// This function is called by the framework to deliver a new UDP data flow to the proxy provider implementation. Subclasses can override this method to perform whatever steps are necessary to ready the proxy to receive
         /// data from the flow. The proxy provider implementation indicates that the proxy is ready to handle flow data by calling -[NEAppProxyFlow openWithLocalEndpoint:completionHandler:] on the flow. If the proxy implementation decides
@@ -2646,6 +2776,27 @@ extern_conformance!(
 
 impl NENetworkRule {
     extern_methods!(
+        #[cfg(feature = "objc2-network")]
+        /// Initialize a newly-allocated NENetworkRule object that matches network traffic destined for a host within a specific network.
+        ///
+        /// Parameter `networkEndpoint`: An endpoint object that contains the port and address or network that the rule matches. This endpoint must contain an address, not a hostname.
+        /// If the address is a wildcard address (0.0.0.0 or ::) then the rule will match all destinations except for loopback (127.0.0.1 or ::1). To match loopback traffic set the address to the loopback address.
+        /// If the port string of the endpoint is "0" or is the empty string, then the rule will match traffic on any port destined for the given address or network.
+        ///
+        /// Parameter `destinationPrefix`: An integer that in combination with the address in the endpoint specifies the destination network that the rule matches.
+        ///
+        /// Parameter `protocol`: A NENetworkRuleProtocol value indicating the protocol that the rule matches.
+        ///
+        /// Returns: The initialized NENetworkRule instance.
+        #[unsafe(method(initWithDestinationNetworkEndpoint:prefix:protocol:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithDestinationNetworkEndpoint_prefix_protocol(
+            this: Allocated<Self>,
+            network_endpoint: &NWEndpoint,
+            destination_prefix: NSUInteger,
+            protocol: NENetworkRuleProtocol,
+        ) -> Retained<Self>;
+
         /// Initialize a newly-allocated NENetworkRule object that matches network traffic destined for a host within a specific network.
         ///
         /// Parameter `networkEndpoint`: An endpoint object that contains the port and address or network that the rule matches. This endpoint must contain an address, not a hostname.
@@ -2664,6 +2815,30 @@ impl NENetworkRule {
             this: Allocated<Self>,
             network_endpoint: &NEHostEndpoint,
             destination_prefix: NSUInteger,
+            protocol: NENetworkRuleProtocol,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-network")]
+        /// Initialize a newly-allocated NENetworkRule object that matches network traffic destined for a host within a specific DNS domain.
+        ///
+        /// Parameter `hostEndpoint`: An endpoint object that contains the port and hostname or domain that the rule matches. This endpoint must contain a hostname, not an address.
+        /// If the port string of the `nw_endpoint_t` is "0" or is the empty string, then the rule will match traffic on any port destined for the given hostname or domain.
+        /// If the hostname string of the endpoint consists of a single label, then the rule will match traffic destined to the specific host with that single label as its name.
+        /// If the hostname string of the endpoint consists of 2 or more labels, then the rule will match traffic destined to hosts within the domain specified by the hostname string.
+        /// Examples:
+        /// [[NENetworkRule alloc] initWithDestinationHost:nw_endpoint_create_host("com", "0") protocol:NENetworkRuleProtocolAny] - matches all TCP and UDP traffic to the host named "com".
+        /// [[NENetworkRule alloc] initWithDestinationHost:nw_endpoint_create_host("example.com", "0") protocol:NENetworkRuleProtocolAny] - matches all TCP and UDP traffic to hosts in the "example.com" DNS domain, including all DNS queries for names in the example.com DNS domain.
+        /// [[NENetworkRule alloc] initWithDestinationHost:nw_endpoint_create_host("example.com", "53") protocol:NENetworkRuleProtocolAny] - matches all DNS queries/responses for hosts in the "example.com" domain.
+        /// [[NENetworkRule alloc] initWithDestinationHost:nw_endpoint_create_host("example.com", "443") protocol:NENetworkRuleProtocolTCP] - matches all TCP port 443 traffic to hosts in the "example.com" domain.
+        ///
+        /// Parameter `protocol`: A NENetworkRuleProtocol value indicating the protocol that the rule matches.
+        ///
+        /// Returns: The initialized NENetworkRule instance.
+        #[unsafe(method(initWithDestinationHostEndpoint:protocol:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithDestinationHostEndpoint_protocol(
+            this: Allocated<Self>,
+            host_endpoint: &NWEndpoint,
             protocol: NENetworkRuleProtocol,
         ) -> Retained<Self>;
 
@@ -2697,6 +2872,43 @@ impl NENetworkRule {
             this: Allocated<Self>,
             host_endpoint: &NEHostEndpoint,
             protocol: NENetworkRuleProtocol,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "objc2-network")]
+        /// Initialize a newly-allocated NENetworkRule object that matches traffic by remote network, local network, protocol, and direction. If both remoteNetwork and localNetwork are nil
+        /// then the rule will match all traffic of the given protocol and direction, except for loopback traffic. To match loopback traffic create a NENetworkRule with remoteNetwork and/or localNetwork properties that
+        /// explicitly match traffic to the loopback address (127.0.0.1 or ::1).
+        ///
+        /// Parameter `remoteNetwork`: An endpoint object that contains the remote port and the remote address or network that the rule matches. This endpoint must contain an address, not a hostname.
+        /// If the address is a wildcard address (0.0.0.0 or ::) then the rule will match all destinations except for loopback (127.0.0.1 or ::1). To match loopback traffic set the address to the loopback address.
+        /// If the port string of the endpoint is "0" or is the empty string, then the rule will match traffic on any port coming from the remote network.
+        /// Pass nil to cause the rule to match any remote network.
+        ///
+        /// Parameter `remotePrefix`: An integer that in combination with the address in remoteNetwork specifies the remote network that the rule matches.
+        ///
+        /// Parameter `localNetwork`: An endpoint object that contains the local port and the local address or network that the rule matches. This endpoint must contain an address, not a hostname.
+        /// If the address is a wildcard address (0.0.0.0 or ::) then the rule will match all local networks except for loopback (127.0.0.1 or ::1). To match loopback traffic set the address to the loopback address.
+        /// If the port string of the endpoint is "0" or is the empty string, then the rule will match traffic on any port coming from the local network.
+        /// Pass nil to cause the rule to match any local network.
+        ///
+        /// Parameter `localPrefix`: An integer that in combination with the address in localNetwork specifies the local network that the rule matches. This parameter
+        /// is ignored if localNetwork is nil.
+        ///
+        /// Parameter `protocol`: A NENetworkRuleProtocol value indicating the protocol that the rule matches.
+        ///
+        /// Parameter `direction`: A NETrafficDirection value indicating the direction of network traffic that the rule matches.
+        ///
+        /// Returns: The initialized NENetworkRule instance.
+        #[unsafe(method(initWithRemoteNetworkEndpoint:remotePrefix:localNetworkEndpoint:localPrefix:protocol:direction:))]
+        #[unsafe(method_family = init)]
+        pub unsafe fn initWithRemoteNetworkEndpoint_remotePrefix_localNetworkEndpoint_localPrefix_protocol_direction(
+            this: Allocated<Self>,
+            remote_network: Option<&NWEndpoint>,
+            remote_prefix: NSUInteger,
+            local_network: Option<&NWEndpoint>,
+            local_prefix: NSUInteger,
+            protocol: NENetworkRuleProtocol,
+            direction: NETrafficDirection,
         ) -> Retained<Self>;
 
         /// Initialize a newly-allocated NENetworkRule object that matches traffic by remote network, local network, protocol, and direction. If both remoteNetwork and localNetwork are nil
@@ -2736,6 +2948,12 @@ impl NENetworkRule {
             direction: NETrafficDirection,
         ) -> Retained<Self>;
 
+        #[cfg(feature = "objc2-network")]
+        /// The remote endpoint that the rule matches.
+        #[unsafe(method(matchRemoteHostOrNetworkEndpoint))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn matchRemoteHostOrNetworkEndpoint(&self) -> Option<Retained<NWEndpoint>>;
+
         /// The remote endpoint that the rule matches.
         #[deprecated]
         #[unsafe(method(matchRemoteEndpoint))]
@@ -2746,6 +2964,12 @@ impl NENetworkRule {
         #[unsafe(method(matchRemotePrefix))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchRemotePrefix(&self) -> NSUInteger;
+
+        #[cfg(feature = "objc2-network")]
+        /// The local network that the rule matches.
+        #[unsafe(method(matchLocalNetworkEndpoint))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn matchLocalNetworkEndpoint(&self) -> Option<Retained<NWEndpoint>>;
 
         /// The local network that the rule matches.
         #[deprecated]
@@ -2969,6 +3193,13 @@ extern_conformance!(
 
 impl NEFilterSocketFlow {
     extern_methods!(
+        #[cfg(feature = "objc2-network")]
+        /// The flow's remote endpoint. This endpoint object may be nil when [NEFilterDataProvider handleNewFlow:] is invoked and if so will be populated upon receiving network data.
+        /// In such a case, filtering on the flow may still be performed based on its socket type, socket family or socket protocol.
+        #[unsafe(method(remoteFlowEndpoint))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn remoteFlowEndpoint(&self) -> Option<Retained<NWEndpoint>>;
+
         /// The flow's remote endpoint. This endpoint object may be nil when [NEFilterDataProvider handleNewFlow:] is invoked and if so will be populated upon receiving network data.
         /// In such a case, filtering on the flow may still be performed based on its socket type, socket family or socket protocol.
         #[deprecated]
@@ -2980,6 +3211,13 @@ impl NEFilterSocketFlow {
         #[unsafe(method(remoteHostname))]
         #[unsafe(method_family = none)]
         pub unsafe fn remoteHostname(&self) -> Option<Retained<NSString>>;
+
+        #[cfg(feature = "objc2-network")]
+        /// The flow's local endpoint. This endpoint object may be nil when [NEFilterDataProvider handleNewFlow:] is invoked and if so will be populated upon receiving network data.
+        /// In such a case, filtering on the flow may still be performed based on its socket type, socket family or socket protocol.
+        #[unsafe(method(localFlowEndpoint))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn localFlowEndpoint(&self) -> Option<Retained<NWEndpoint>>;
 
         /// The flow's local endpoint. This endpoint object may be nil when [NEFilterDataProvider handleNewFlow:] is invoked and if so will be populated upon receiving network data.
         /// In such a case, filtering on the flow may still be performed based on its socket type, socket family or socket protocol.
@@ -4290,6 +4528,32 @@ unsafe impl RefEncode for NEFilterPacketProviderVerdict {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// A block that makes a filtering decision about a network packet.
+///
+/// Parameter `context`: The context of the current packet filter.
+///
+/// Parameter `interface`: The ingress or egress interface of the packet.
+///
+/// Parameter `direction`: The direction of the packet.
+///
+/// Parameter `packetBytes`: The packet bytes.
+///
+/// Parameter `packetLength`: The length of packetBytes.
+///
+/// Returns: A NEFilterPacketProviderVerdict. If the returned verdict is NEFilterPacketProviderVerdictDelay, then the framework assumes that the block already called -[NEFilterPacketProvider delayCurrentPacket] to obtain a reference to the packet.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpackethandler?language=objc)
+#[cfg(all(feature = "block2", feature = "objc2-network"))]
+pub type NEFilterPacketHandler = *mut block2::DynBlock<
+    dyn Fn(
+        NonNull<NEFilterPacketContext>,
+        NonNull<NWInterface>,
+        NETrafficDirection,
+        NonNull<c_void>,
+        usize,
+    ) -> NEFilterPacketProviderVerdict,
+>;
+
 extern_class!(
     /// The NEFilterPacketProvider class declares the programmatic interface for an object that evaluates network packets decisions about whether to block, allow, or delay the packets.
     ///
@@ -4305,6 +4569,33 @@ extern_conformance!(
 
 impl NEFilterPacketProvider {
     extern_methods!(
+        #[cfg(all(feature = "block2", feature = "objc2-network"))]
+        /// A block to be set to handle each packet received or to be sent.  A verdict
+        /// to allow, drop or delay must be returned to indicate the treatment of
+        /// the packet.  Since there may be multiple filtering sources presenting
+        /// frames to the provider, this packet handler may be executed by multiple
+        /// simultaneous threads.  This packet handler must be able to handle execution
+        /// in a multi-threaded environment.
+        ///
+        /// # Safety
+        ///
+        /// - The returned block's argument 1 must be a valid pointer.
+        /// - The returned block's argument 2 must be a valid pointer.
+        /// - The returned block's argument 4 must be a valid pointer.
+        #[unsafe(method(packetHandler))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn packetHandler(&self) -> NEFilterPacketHandler;
+
+        #[cfg(all(feature = "block2", feature = "objc2-network"))]
+        /// Setter for [`packetHandler`][Self::packetHandler].
+        ///
+        /// # Safety
+        ///
+        /// `packet_handler` must be a valid pointer or null.
+        #[unsafe(method(setPacketHandler:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn setPacketHandler(&self, packet_handler: NEFilterPacketHandler);
+
         /// This function is used to delay a packet currently presented by packetHandler.
         /// This function is only valid within the packetHandler block and a verdict of
         /// NEFilterPacketProviderVerdictDelay must be returned after a packet is delayed.  A delayed
@@ -5083,6 +5374,14 @@ impl NEHotspotHelperCommand {
             &self,
             result: NEHotspotHelperResult,
         ) -> Retained<NEHotspotHelperResponse>;
+
+        #[cfg(feature = "objc2-network")]
+        /// Network interface associated with the command.
+        ///
+        /// To create a connection over the hotspot, set the interface on the corresponding parameters using `nw_parameters_require_interface`.
+        #[unsafe(method(interface))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn interface(&self) -> Retained<NWInterface>;
 
         /// Create a new TCP connection over the interface associated with the command.
         ///
@@ -6877,6 +7176,14 @@ impl NEPacketTunnelProvider {
         #[unsafe(method(packetFlow))]
         #[unsafe(method_family = none)]
         pub unsafe fn packetFlow(&self) -> Retained<NEPacketTunnelFlow>;
+
+        #[cfg(feature = "objc2-network")]
+        /// The virtual network interface used to route packets to the packet tunnel provider.
+        ///
+        /// For NEPacketTunnelProvider sub-classes, this property will be non-nil when `-[NEPacketTunnelProvider startTunnelWithOptions:completionHandler:]` is called. For NEEthernetTunnelProvider sub-classes, this property will be non-nil when the completion handler passed to `-[NETunnelProvider setTunnelNetworkSettings:completionHandler:]` is executed. To create a connection through the tunnel, pass this interface to `nw_parameters_require_interface`.
+        #[unsafe(method(virtualInterface))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn virtualInterface(&self) -> Option<Retained<NWInterface>>;
 
         /// This function can be called by subclass implementations to create a TCP connection to a given network endpoint, through the tunnel established by the provider. This function should not be overridden by subclasses.
         ///
