@@ -35,19 +35,14 @@ impl DDMatch {
         #[unsafe(method(matchedString))]
         #[unsafe(method_family = none)]
         pub unsafe fn matchedString(&self) -> Retained<NSString>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl DDMatch {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -82,18 +77,16 @@ impl DDMatchLink {
 /// Methods declared on superclass `DDMatch`.
 impl DDMatchLink {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl DDMatchLink {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -132,18 +125,16 @@ impl DDMatchPhoneNumber {
 /// Methods declared on superclass `DDMatch`.
 impl DDMatchPhoneNumber {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl DDMatchPhoneNumber {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -182,18 +173,16 @@ impl DDMatchEmailAddress {
 /// Methods declared on superclass `DDMatch`.
 impl DDMatchEmailAddress {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl DDMatchEmailAddress {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -247,18 +236,16 @@ impl DDMatchPostalAddress {
 /// Methods declared on superclass `DDMatch`.
 impl DDMatchPostalAddress {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl DDMatchPostalAddress {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -312,18 +299,16 @@ impl DDMatchCalendarEvent {
 /// Methods declared on superclass `DDMatch`.
 impl DDMatchCalendarEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl DDMatchCalendarEvent {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -362,18 +347,16 @@ impl DDMatchShipmentTrackingNumber {
 /// Methods declared on superclass `DDMatch`.
 impl DDMatchShipmentTrackingNumber {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl DDMatchShipmentTrackingNumber {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -412,18 +395,16 @@ impl DDMatchFlightNumber {
 /// Methods declared on superclass `DDMatch`.
 impl DDMatchFlightNumber {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl DDMatchFlightNumber {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -463,17 +444,15 @@ impl DDMatchMoneyAmount {
 /// Methods declared on superclass `DDMatch`.
 impl DDMatchMoneyAmount {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl DDMatchMoneyAmount {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

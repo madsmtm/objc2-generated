@@ -83,16 +83,6 @@ impl MLModelCollection {
             identifier: &NSString,
             completion_handler: &block2::DynBlock<dyn Fn(Bool, *mut NSError)>,
         );
-
-        #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 

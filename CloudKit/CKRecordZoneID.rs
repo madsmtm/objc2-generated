@@ -35,14 +35,9 @@ extern_conformance!(
 
 impl CKRecordZoneID {
     extern_methods!(
-        /// Zone names must be 255 characters or less. Most UTF-8 characters are valid.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[unsafe(method(initWithZoneName:ownerName:))]
         #[unsafe(method_family = init)]

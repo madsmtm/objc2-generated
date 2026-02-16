@@ -98,8 +98,7 @@ impl VZGenericPlatformConfiguration {
 #[cfg(feature = "VZPlatformConfiguration")]
 impl VZGenericPlatformConfiguration {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

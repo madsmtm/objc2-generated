@@ -33,13 +33,9 @@ extern_conformance!(
 
 impl AVCaptureDataOutputSynchronizer {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVCaptureOutputBase")]
         /// Instantiates an AVCaptureDataOutputSynchronizer from one or more capture data outputs.
@@ -150,13 +146,9 @@ extern_conformance!(
 
 impl AVCaptureSynchronizedDataCollection {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVCaptureOutputBase")]
         /// Provides the synchronized data object for a given capture output.
@@ -218,13 +210,9 @@ extern_conformance!(
 
 impl AVCaptureSynchronizedData {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "objc2-core-media")]
         /// The time at which this synchronized data was captured.
@@ -286,13 +274,10 @@ impl AVCaptureSynchronizedSampleBufferData {
 /// Methods declared on superclass `AVCaptureSynchronizedData`.
 impl AVCaptureSynchronizedSampleBufferData {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -328,13 +313,10 @@ impl AVCaptureSynchronizedMetadataObjectData {
 /// Methods declared on superclass `AVCaptureSynchronizedData`.
 impl AVCaptureSynchronizedMetadataObjectData {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -387,12 +369,9 @@ impl AVCaptureSynchronizedDepthData {
 /// Methods declared on superclass `AVCaptureSynchronizedData`.
 impl AVCaptureSynchronizedDepthData {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

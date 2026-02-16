@@ -214,9 +214,7 @@ impl HKWorkoutSession {
             workout_configuration: &HKWorkoutConfiguration,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Prepares the workout session for starting.
         ///
@@ -383,9 +381,8 @@ impl HKWorkoutSession {
 /// Methods declared on superclass `NSObject`.
 impl HKWorkoutSession {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

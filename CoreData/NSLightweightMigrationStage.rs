@@ -26,9 +26,7 @@ impl NSLightweightMigrationStage {
         #[unsafe(method_family = none)]
         pub unsafe fn versionChecksums(&self) -> Retained<NSArray<NSString>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(initWithVersionChecksums:))]
         #[unsafe(method_family = init)]
@@ -43,8 +41,7 @@ impl NSLightweightMigrationStage {
 #[cfg(feature = "NSMigrationStage")]
 impl NSLightweightMigrationStage {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

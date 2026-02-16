@@ -43,9 +43,7 @@ impl CPRouteInformation {
             maneuver_travel_estimates: &CPTravelEstimates,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "CPManeuver")]
         /// maneuvers is an array of CPManeuver objects, each describes a single maneuver.
@@ -124,8 +122,7 @@ impl CPRouteInformation {
 /// Methods declared on superclass `NSObject`.
 impl CPRouteInformation {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

@@ -47,10 +47,7 @@ extern_conformance!(
 
 impl WKAudioFilePlayer {
     extern_methods!(
-        #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "WKAudioFilePlayerItem")]
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
@@ -111,9 +108,8 @@ impl WKAudioFilePlayer {
 /// Methods declared on superclass `NSObject`.
 impl WKAudioFilePlayer {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -177,10 +173,7 @@ impl WKAudioFileQueuePlayer {
 /// Methods declared on superclass `WKAudioFilePlayer`.
 impl WKAudioFileQueuePlayer {
     extern_methods!(
-        #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "WKAudioFilePlayerItem")]
         #[deprecated = "Use AVFoundation's AVPlayer and AVQueuePlayer instead"]
@@ -193,8 +186,7 @@ impl WKAudioFileQueuePlayer {
 /// Methods declared on superclass `NSObject`.
 impl WKAudioFileQueuePlayer {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

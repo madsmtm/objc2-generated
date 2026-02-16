@@ -107,13 +107,9 @@ impl CLSDataStore {
             delegate: Option<&ProtocolObject<dyn CLSDataStoreDelegate>>,
         );
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// Save changes made in the data store.

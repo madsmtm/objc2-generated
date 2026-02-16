@@ -37,13 +37,9 @@ impl CKSyncEngineConfiguration {
             delegate: &ProtocolObject<dyn CKSyncEngineDelegate>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "CKDatabase")]
         /// The database for this sync engine to sync with.

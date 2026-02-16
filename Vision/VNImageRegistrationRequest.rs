@@ -53,9 +53,7 @@ impl VNImageRegistrationRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 impl VNImageRegistrationRequest {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// # Safety
@@ -674,9 +672,8 @@ impl VNImageRegistrationRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 impl VNImageRegistrationRequest {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -731,9 +728,7 @@ impl VNTranslationalImageRegistrationRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 impl VNTranslationalImageRegistrationRequest {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// # Safety
@@ -1352,9 +1347,8 @@ impl VNTranslationalImageRegistrationRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 impl VNTranslationalImageRegistrationRequest {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1413,9 +1407,7 @@ impl VNHomographicImageRegistrationRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 impl VNHomographicImageRegistrationRequest {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// # Safety
@@ -2034,9 +2026,8 @@ impl VNHomographicImageRegistrationRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNTargetedImageRequest"))]
 impl VNHomographicImageRegistrationRequest {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

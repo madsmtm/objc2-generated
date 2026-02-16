@@ -59,11 +59,6 @@ impl MPSGraphTensor {
         #[unsafe(method(operation))]
         #[unsafe(method_family = none)]
         pub unsafe fn operation(&self) -> Retained<MPSGraphOperation>;
-
-        /// Unavailable, please utilize graph methods to create and initialize tensors.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -71,8 +66,7 @@ impl MPSGraphTensor {
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphTensor {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

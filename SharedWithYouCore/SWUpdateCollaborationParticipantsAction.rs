@@ -56,13 +56,5 @@ impl SWUpdateCollaborationParticipantsAction {
         #[unsafe(method(removedIdentities))]
         #[unsafe(method_family = none)]
         pub unsafe fn removedIdentities(&self) -> Retained<NSArray<SWPersonIdentity>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }

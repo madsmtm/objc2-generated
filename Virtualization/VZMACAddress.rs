@@ -34,13 +34,9 @@ extern_conformance!(
 
 impl VZMACAddress {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Initialize the VZMACAddress from a string representation of a MAC address.
         ///

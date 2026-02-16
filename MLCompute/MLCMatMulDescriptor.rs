@@ -31,15 +31,9 @@ extern_conformance!(
 
 impl MLCMatMulDescriptor {
     extern_methods!(
-        #[deprecated]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[deprecated]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// a scalar to scale the result in C=alpha x X x Y. Default = 1.0
         #[deprecated]

@@ -156,13 +156,9 @@ impl AVAssetDownloadTask {
         #[unsafe(method_family = none)]
         pub unsafe fn loadedTimeRanges(&self) -> Retained<NSArray<NSValue>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[unsafe(method(originalRequest))]
         #[unsafe(method_family = none)]
@@ -198,13 +194,9 @@ extern_conformance!(
 
 impl AVAssetDownloadConfiguration {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVAsset")]
         /// Creates and initializes a download configuration object.
@@ -424,15 +416,9 @@ impl AVAggregateAssetDownloadTask {
         #[unsafe(method_family = none)]
         pub unsafe fn URLAsset(&self) -> Retained<AVURLAsset>;
 
-        #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[deprecated = "Use assetDownloadTaskWithConfiguration: instead"]
         #[unsafe(method(originalRequest))]
@@ -738,13 +724,9 @@ impl AVAssetDownloadURLSession {
             download_configuration: &AVAssetDownloadConfiguration,
         ) -> Retained<AVAssetDownloadTask>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[unsafe(method(sharedSession))]
         #[unsafe(method_family = none)]

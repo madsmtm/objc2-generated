@@ -48,13 +48,9 @@ extern_conformance!(
 #[cfg(feature = "BADownload")]
 impl BAURLDownload {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Constructs a download object to represent the download of a asset located inside of the provided
         /// `request.`

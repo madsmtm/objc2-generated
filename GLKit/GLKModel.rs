@@ -154,10 +154,7 @@ extern_conformance!(
 
 impl GLKSubmesh {
     extern_methods!(
-        /// Must be initialized by a GLKMesh object
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-open-gl")]
         #[cfg(target_os = "macos")]
@@ -212,9 +209,8 @@ impl GLKSubmesh {
 /// Methods declared on superclass `NSObject`.
 impl GLKSubmesh {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -231,10 +227,7 @@ extern_conformance!(
 
 impl GLKMesh {
     extern_methods!(
-        /// Must initialize with a mesh
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-model-io")]
         /// Initialize the mesh and the mesh's submeshes
@@ -308,9 +301,8 @@ impl GLKMesh {
 /// Methods declared on superclass `NSObject`.
 impl GLKMesh {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

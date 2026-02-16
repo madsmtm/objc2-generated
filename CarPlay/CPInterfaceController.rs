@@ -28,13 +28,9 @@ extern_conformance!(
 
 impl CPInterfaceController {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
         /// The delegate for this interface controller.
         #[unsafe(method(delegate))]

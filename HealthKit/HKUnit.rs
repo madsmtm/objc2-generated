@@ -47,9 +47,7 @@ impl HKUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn unitString(&self) -> Retained<NSString>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(unitFromString:))]
         #[unsafe(method_family = none)]
@@ -94,9 +92,8 @@ impl HKUnit {
 /// Methods declared on superclass `NSObject`.
 impl HKUnit {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

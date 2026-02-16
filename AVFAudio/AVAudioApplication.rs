@@ -121,10 +121,7 @@ impl AVAudioApplication {
         #[unsafe(method_family = none)]
         pub unsafe fn sharedInstance() -> Retained<AVAudioApplication>;
 
-        /// See: `sharedInstance`
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Set the muted/unmuted state of the application's audio input. When set true, inputs
         /// (microphone etc.) of all audio clients relating to this application will have their samples zeroed out.
@@ -214,8 +211,7 @@ impl AVAudioApplication {
 /// Methods declared on superclass `NSObject`.
 impl AVAudioApplication {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

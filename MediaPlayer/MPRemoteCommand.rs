@@ -57,13 +57,9 @@ extern_conformance!(
 
 impl MPRemoteCommand {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Whether a button (for example) should be enabled and tappable for this
         /// particular command.
@@ -142,13 +138,10 @@ impl MPSkipIntervalCommand {
 /// Methods declared on superclass `MPRemoteCommand`.
 impl MPSkipIntervalCommand {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -208,13 +201,10 @@ impl MPFeedbackCommand {
 /// Methods declared on superclass `MPRemoteCommand`.
 impl MPFeedbackCommand {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -256,13 +246,10 @@ impl MPRatingCommand {
 /// Methods declared on superclass `MPRemoteCommand`.
 impl MPRatingCommand {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -300,13 +287,10 @@ impl MPChangePlaybackRateCommand {
 /// Methods declared on superclass `MPRemoteCommand`.
 impl MPChangePlaybackRateCommand {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -331,13 +315,10 @@ impl MPChangePlaybackPositionCommand {
 /// Methods declared on superclass `MPRemoteCommand`.
 impl MPChangePlaybackPositionCommand {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -376,13 +357,10 @@ impl MPChangeShuffleModeCommand {
 /// Methods declared on superclass `MPRemoteCommand`.
 impl MPChangeShuffleModeCommand {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -421,12 +399,9 @@ impl MPChangeRepeatModeCommand {
 /// Methods declared on superclass `MPRemoteCommand`.
 impl MPChangeRepeatModeCommand {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }

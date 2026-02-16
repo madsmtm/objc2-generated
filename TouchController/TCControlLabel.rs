@@ -121,9 +121,7 @@ impl TCControlLabel {
         #[unsafe(method_family = none)]
         pub unsafe fn directionPad() -> Retained<TCControlLabel>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Creates a new instance with the provided name and type.
         ///
@@ -154,8 +152,7 @@ impl TCControlLabel {
 /// Methods declared on superclass `NSObject`.
 impl TCControlLabel {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

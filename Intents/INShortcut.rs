@@ -56,15 +56,9 @@ impl INShortcut {
         #[unsafe(method_family = none)]
         pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
-        /// Note: Must be initilaized with either an intent or user activity, using those initializers.
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        /// Note: Must be initilaized with either an intent or user activity, using those initializers.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "INIntent")]
         /// Creates a shortcut with the given intent.

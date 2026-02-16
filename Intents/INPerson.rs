@@ -57,9 +57,7 @@ extern_conformance!(
 
 impl INPerson {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "INImage", feature = "INPersonHandle"))]
         #[unsafe(method(initWithPersonHandle:nameComponents:displayName:image:contactIdentifier:customIdentifier:))]
@@ -176,9 +174,8 @@ impl INPerson {
 /// Methods declared on superclass `NSObject`.
 impl INPerson {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

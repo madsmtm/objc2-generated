@@ -923,13 +923,9 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
             cell_provider: UICollectionViewDiffableDataSourceCellProvider,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(all(
             feature = "UICollectionView",
@@ -1192,13 +1188,9 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
             cell_provider: UITableViewDiffableDataSourceCellProvider,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
         #[unsafe(method(snapshot))]
         #[unsafe(method_family = none)]

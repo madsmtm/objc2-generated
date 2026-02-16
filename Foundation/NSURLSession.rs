@@ -977,14 +977,6 @@ impl NSURLSessionWebSocketMessage {
         #[unsafe(method(string))]
         #[unsafe(method_family = none)]
         pub fn string(&self) -> Option<Retained<NSString>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -1124,14 +1116,6 @@ impl NSURLSessionWebSocketTask {
         #[unsafe(method(closeReason))]
         #[unsafe(method_family = none)]
         pub fn closeReason(&self) -> Option<Retained<NSData>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 

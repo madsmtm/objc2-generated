@@ -21,9 +21,7 @@ extern_conformance!(
 
 impl FSTaskOptions {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// An array of strings that represent command-line options for the task.
         ///
@@ -51,8 +49,7 @@ impl FSTaskOptions {
 /// Methods declared on superclass `NSObject`.
 impl FSTaskOptions {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

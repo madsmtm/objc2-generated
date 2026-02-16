@@ -66,13 +66,9 @@ extern_conformance!(
 
 impl QLThumbnailGenerationRequest {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Parameter `url`: The url of the file on disk for which a thumbnail is requested.

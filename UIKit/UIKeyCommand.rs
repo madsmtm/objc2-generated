@@ -315,8 +315,7 @@ impl UIKeyCommand {
 #[cfg(all(feature = "UICommand", feature = "UIMenuElement"))]
 impl UIKeyCommand {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

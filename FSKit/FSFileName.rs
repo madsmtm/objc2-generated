@@ -77,9 +77,7 @@ impl FSFileName {
         #[unsafe(method_family = none)]
         pub unsafe fn debugDescription(&self) -> Retained<NSString>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Initializes a filename from a null-terminated character sequence.
         ///
@@ -186,8 +184,7 @@ impl FSFileName {
 /// Methods declared on superclass `NSObject`.
 impl FSFileName {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

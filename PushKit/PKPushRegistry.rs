@@ -223,20 +223,14 @@ impl PKPushRegistry {
             this: Allocated<Self>,
             queue: Option<&DispatchQueue>,
         ) -> Retained<Self>;
-
-        /// Unavailable, use -initWithQueue: instead.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl PKPushRegistry {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

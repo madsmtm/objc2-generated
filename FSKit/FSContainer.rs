@@ -82,9 +82,7 @@ impl FSContainerStatus {
         #[unsafe(method_family = none)]
         pub unsafe fn status(&self) -> Option<Retained<NSError>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// A status that represents an active container with no error.
         ///
@@ -133,9 +131,8 @@ impl FSContainerStatus {
 /// Methods declared on superclass `NSObject`.
 impl FSContainerStatus {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

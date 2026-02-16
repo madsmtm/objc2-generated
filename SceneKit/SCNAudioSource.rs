@@ -157,9 +157,7 @@ extern_conformance!(
 
 impl SCNAudioPlayer {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Init an audio player with a source. Most people should use audioPlayerWithSource as it permits to recycle previous players instead of creating new ones for each instance.
         #[unsafe(method(initWithSource:))]
@@ -239,9 +237,8 @@ impl SCNAudioPlayer {
 /// Methods declared on superclass `NSObject`.
 impl SCNAudioPlayer {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

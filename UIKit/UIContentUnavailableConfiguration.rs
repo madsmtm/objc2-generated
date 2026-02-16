@@ -79,13 +79,9 @@ impl UIContentUnavailableConfiguration {
         #[unsafe(method_family = none)]
         pub fn searchConfiguration(mtm: MainThreadMarker) -> Retained<Self>;
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "UIImage")]
         /// The image to display.

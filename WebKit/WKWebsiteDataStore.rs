@@ -48,13 +48,9 @@ impl WKWebsiteDataStore {
         pub unsafe fn nonPersistentDataStore(mtm: MainThreadMarker)
             -> Retained<WKWebsiteDataStore>;
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(&self) -> Retained<Self>;
+        // -new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Whether the data store is persistent or not.
         #[unsafe(method(isPersistent))]
@@ -209,8 +205,7 @@ impl WKWebsiteDataStore {
 /// Methods declared on superclass `NSObject`.
 impl WKWebsiteDataStore {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new_class(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

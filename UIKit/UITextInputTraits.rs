@@ -393,13 +393,9 @@ impl UITextInputPasswordRules {
         #[unsafe(method_family = none)]
         pub fn passwordRulesDescriptor(&self) -> Retained<NSString>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
         #[unsafe(method(passwordRulesWithDescriptor:))]
         #[unsafe(method_family = none)]

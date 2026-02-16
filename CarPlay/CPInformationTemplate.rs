@@ -141,13 +141,5 @@ impl CPInformationTemplate {
         #[unsafe(method(setActions:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActions(&self, actions: &NSArray<CPTextButton>);
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

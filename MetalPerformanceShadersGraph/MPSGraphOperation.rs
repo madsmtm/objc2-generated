@@ -64,11 +64,6 @@ impl MPSGraphOperation {
         #[unsafe(method(name))]
         #[unsafe(method_family = none)]
         pub unsafe fn name(&self) -> Retained<NSString>;
-
-        /// Unavailable, please utilize graph methods to create and initialize operations.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -76,8 +71,7 @@ impl MPSGraphOperation {
 #[cfg(feature = "MPSGraphCore")]
 impl MPSGraphOperation {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

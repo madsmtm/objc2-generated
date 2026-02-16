@@ -54,9 +54,7 @@ extern_conformance!(
 
 impl HMHome {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Delegate that receives updates on the state of the home.
         ///
@@ -147,9 +145,8 @@ impl HMHome {
 /// Methods declared on superclass `NSObject`.
 impl HMHome {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

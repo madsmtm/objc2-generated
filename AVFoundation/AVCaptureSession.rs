@@ -1019,13 +1019,9 @@ extern_conformance!(
 
 impl AVCaptureConnection {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(all(feature = "AVCaptureInput", feature = "AVCaptureOutputBase"))]
         /// Returns an AVCaptureConnection instance describing a connection between the specified inputPorts and the specified output.
@@ -1490,13 +1486,9 @@ extern_conformance!(
 
 impl AVCaptureAudioChannel {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// A measurement of the instantaneous average power level of the audio flowing through the receiver.
         ///

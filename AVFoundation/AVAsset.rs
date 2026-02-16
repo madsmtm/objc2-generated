@@ -850,13 +850,9 @@ extern_conformance!(
 
 impl AVURLAsset {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVMediaFormat")]
         /// Provides the file types the AVURLAsset class understands.
@@ -1122,13 +1118,9 @@ extern_conformance!(
 
 impl AVMediaExtensionProperties {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// The identifier of the Media Extension.
         ///
@@ -1364,13 +1356,9 @@ impl AVFragmentedAsset {
 /// Methods declared on superclass `AVURLAsset`.
 impl AVFragmentedAsset {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Returns an instance of AVURLAsset for inspection of a media resource.
         ///

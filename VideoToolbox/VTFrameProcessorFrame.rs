@@ -49,13 +49,9 @@ impl VTFrameProcessorFrame {
             presentation_time_stamp: CMTime,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "objc2-core-video")]
         /// Pixel buffer that you provided when you initialized the object.
@@ -109,13 +105,9 @@ impl VTFrameProcessorOpticalFlow {
             backward_flow: &CVPixelBuffer,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "objc2-core-video")]
         /// Returns the forward optical flow `CVPixelBuffer` that you provided when you initialized the object.

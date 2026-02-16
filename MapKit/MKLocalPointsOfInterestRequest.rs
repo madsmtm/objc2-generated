@@ -36,9 +36,7 @@ extern_conformance!(
 
 impl MKLocalPointsOfInterestRequest {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-core-location")]
         #[unsafe(method(initWithCenterCoordinate:radius:))]
@@ -93,8 +91,7 @@ impl MKLocalPointsOfInterestRequest {
 /// Methods declared on superclass `NSObject`.
 impl MKLocalPointsOfInterestRequest {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

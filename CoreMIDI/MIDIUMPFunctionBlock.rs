@@ -105,10 +105,6 @@ impl MIDIUMPFunctionBlock {
         #[unsafe(method(isEnabled))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -116,8 +112,7 @@ impl MIDIUMPFunctionBlock {
 #[cfg(feature = "objc2")]
 impl MIDIUMPFunctionBlock {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

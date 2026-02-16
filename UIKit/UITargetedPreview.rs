@@ -57,13 +57,9 @@ impl UIPreviewTarget {
             center: CGPoint,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(all(feature = "UIResponder", feature = "UIView"))]
         #[unsafe(method(container))]
@@ -136,13 +132,9 @@ impl UITargetedPreview {
         #[unsafe(method_family = init)]
         pub fn initWithView(this: Allocated<Self>, view: &UIView) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
         #[unsafe(method(target))]
         #[unsafe(method_family = none)]

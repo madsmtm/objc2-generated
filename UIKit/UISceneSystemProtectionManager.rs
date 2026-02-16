@@ -28,13 +28,9 @@ extern_conformance!(
 
 impl UISceneSystemProtectionManager {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
         /// `YES`if the system requires requires device owner authentication challenges to reveal the
         /// content of the scene associated with this manager, else

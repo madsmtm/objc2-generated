@@ -73,9 +73,7 @@ impl CXHandle {
             value: &NSString,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(isEqualToHandle:))]
         #[unsafe(method_family = none)]
@@ -86,8 +84,7 @@ impl CXHandle {
 /// Methods declared on superclass `NSObject`.
 impl CXHandle {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

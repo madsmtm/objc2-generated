@@ -126,13 +126,9 @@ extern_conformance!(
 
 impl AVPlayerItem {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
         /// Returns an instance of AVPlayerItem for playing a resource at the specified location.
         ///
@@ -1340,13 +1336,9 @@ extern_conformance!(
 
 impl AVPlayerItemAccessLog {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Serializes an AVPlayerItemAccessLog in the Extended Log File Format.
         ///
@@ -1421,13 +1413,9 @@ extern_conformance!(
 
 impl AVPlayerItemErrorLog {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Serializes an AVPlayerItemErrorLog in the Extended Log File Format.
         ///
@@ -1503,13 +1491,9 @@ extern_conformance!(
 
 impl AVPlayerItemAccessLogEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// A count of media segments downloaded.
         ///
@@ -1929,13 +1913,9 @@ extern_conformance!(
 
 impl AVPlayerItemErrorLogEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// The date and time when the error occured. Can be nil.
         ///

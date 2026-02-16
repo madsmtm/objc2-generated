@@ -156,13 +156,9 @@ impl NSUnit {
         #[unsafe(method_family = none)]
         pub fn symbol(&self) -> Retained<NSString>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -230,13 +226,9 @@ impl NSDimension {
 /// Methods declared on superclass `NSUnit`.
 impl NSDimension {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -313,13 +305,9 @@ impl NSUnitAcceleration {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitAcceleration {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -412,13 +400,9 @@ impl NSUnitAngle {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitAngle {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -543,13 +527,9 @@ impl NSUnitArea {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitArea {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -632,13 +612,9 @@ impl NSUnitConcentrationMass {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitConcentrationMass {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -711,13 +687,9 @@ impl NSUnitDispersion {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitDispersion {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -814,13 +786,9 @@ impl NSUnitDuration {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitDuration {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -913,13 +881,9 @@ impl NSUnitElectricCharge {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitElectricCharge {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -1008,13 +972,9 @@ impl NSUnitElectricCurrent {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitElectricCurrent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -1103,13 +1063,9 @@ impl NSUnitElectricPotentialDifference {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitElectricPotentialDifference {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -1198,13 +1154,9 @@ impl NSUnitElectricResistance {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitElectricResistance {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -1293,13 +1245,9 @@ impl NSUnitEnergy {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitEnergy {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -1404,13 +1352,9 @@ impl NSUnitFrequency {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitFrequency {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -1491,13 +1435,9 @@ impl NSUnitFuelEfficiency {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitFuelEfficiency {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -1706,13 +1646,9 @@ impl NSUnitInformationStorage {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitInformationStorage {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -1869,13 +1805,9 @@ impl NSUnitLength {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitLength {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -1948,13 +1880,9 @@ impl NSUnitIlluminance {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitIlluminance {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -2087,13 +2015,9 @@ impl NSUnitMass {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitMass {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -2206,13 +2130,9 @@ impl NSUnitPower {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitPower {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -2321,13 +2241,9 @@ impl NSUnitPressure {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitPressure {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -2412,13 +2328,9 @@ impl NSUnitSpeed {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitSpeed {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -2499,13 +2411,9 @@ impl NSUnitTemperature {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitTemperature {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]
@@ -2698,13 +2606,9 @@ impl NSUnitVolume {
 /// Methods declared on superclass `NSUnit`.
 impl NSUnitVolume {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithSymbol:))]

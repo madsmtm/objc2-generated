@@ -95,23 +95,14 @@ impl GSSyncedDirectoryVersion {
         #[unsafe(method(description))]
         #[unsafe(method_family = none)]
         pub unsafe fn description(&self) -> Retained<NSString>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(&self) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl GSSyncedDirectoryVersion {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new_class() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -164,23 +155,14 @@ impl GSSyncedDirectoryState {
         #[unsafe(method(error))]
         #[unsafe(method_family = none)]
         pub unsafe fn error(&self) -> Option<Retained<NSError>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(&self) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl GSSyncedDirectoryState {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new_class() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -293,22 +275,13 @@ impl GSSyncedDirectory {
         #[unsafe(method(directoryState))]
         #[unsafe(method_family = none)]
         pub unsafe fn directoryState(&self) -> Retained<GSSyncedDirectoryState>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(&self) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl GSSyncedDirectory {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new_class() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

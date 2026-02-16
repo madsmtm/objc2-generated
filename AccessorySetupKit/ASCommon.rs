@@ -64,22 +64,13 @@ impl ASPropertyCompareString {
             string: &NSString,
             compare_options: NSStringCompareOptions,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(&self) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl ASPropertyCompareString {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new_class() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

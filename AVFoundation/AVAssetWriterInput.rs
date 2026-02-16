@@ -36,13 +36,9 @@ extern_conformance!(
 
 impl AVAssetWriterInput {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVMediaFormat")]
         /// Creates a new input of the specified media type to receive sample buffers for writing to the output file.
@@ -754,13 +750,9 @@ extern_conformance!(
 
 impl AVAssetWriterInputPassDescription {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// An NSArray of NSValue objects wrapping CMTimeRange structures, each representing one source time range.
         ///
@@ -790,13 +782,9 @@ extern_conformance!(
 
 impl AVAssetWriterInputPixelBufferAdaptor {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Creates a new pixel buffer adaptor to receive pixel buffers for writing to the output file.
         ///
@@ -929,13 +917,9 @@ extern_conformance!(
 
 impl AVAssetWriterInputTaggedPixelBufferGroupAdaptor {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Creates a new tagged buffer adaptor to receive tagged buffer groups for writing to the output file.
         ///
@@ -1091,13 +1075,9 @@ extern_conformance!(
 
 impl AVAssetWriterInputMetadataAdaptor {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Creates a new timed metadata group adaptor to receive instances of AVTimedMetadataGroup for writing to the output file.
         ///
@@ -1179,13 +1159,9 @@ extern_conformance!(
 
 impl AVAssetWriterInputCaptionAdaptor {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Creates a new caption adaptor for writing to the specified asset writer input.
         #[unsafe(method(assetWriterInputCaptionAdaptorWithAssetWriterInput:))]

@@ -98,9 +98,7 @@ impl PKDeferredPaymentRequest {
             free_cancellation_date_time_zone: Option<&NSTimeZone>,
         );
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(
             feature = "PKDeferredPaymentSummaryItem",
@@ -120,8 +118,7 @@ impl PKDeferredPaymentRequest {
 /// Methods declared on superclass `NSObject`.
 impl PKDeferredPaymentRequest {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

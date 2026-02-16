@@ -26,13 +26,9 @@ extern_conformance!(
 
 impl AVSampleBufferGenerator {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(all(feature = "AVAsset", feature = "objc2-core-media"))]
         /// Creates an instance of AVSampleBufferGenerator to generate sample buffers from the specified asset.
@@ -205,13 +201,9 @@ extern_conformance!(
 
 impl AVSampleBufferRequest {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVSampleCursor")]
         #[unsafe(method(initWithStartCursor:))]
@@ -310,13 +302,9 @@ extern_conformance!(
 
 impl AVSampleBufferGeneratorBatch {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "block2")]
         /// Loads sample data asynchronously for all CMSampleBuffers within a batch.

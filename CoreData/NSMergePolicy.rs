@@ -87,19 +87,14 @@ impl NSMergeConflict {
             cachesnap: Option<&NSDictionary<NSString, AnyObject>>,
             persnap: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl NSMergeConflict {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -219,9 +214,7 @@ impl NSMergePolicy {
             ty: NSMergePolicyType,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// # Safety
         ///
@@ -252,8 +245,7 @@ impl NSMergePolicy {
 /// Methods declared on superclass `NSObject`.
 impl NSMergePolicy {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

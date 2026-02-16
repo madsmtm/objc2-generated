@@ -68,10 +68,6 @@ impl CXAnswerCallAction {
             this: Allocated<Self>,
             a_decoder: &NSCoder,
         ) -> Option<Retained<Self>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -79,8 +75,7 @@ impl CXAnswerCallAction {
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 impl CXAnswerCallAction {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

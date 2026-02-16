@@ -206,13 +206,9 @@ impl AVSpeechSynthesisProviderVoice {
             supported_languages: &NSArray<NSString>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// A call that indicates that a new voice or set of voices is available, or no longer available, for system use.
         ///
@@ -293,14 +289,6 @@ impl AVSpeechSynthesisProviderRequest {
             text: &NSString,
             voice: &AVSpeechSynthesisProviderVoice,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 

@@ -83,10 +83,7 @@ extern_conformance!(
 #[cfg(feature = "INIntentResponse")]
 impl INSearchCallHistoryIntentResponse {
     extern_methods!(
-        #[deprecated = "INSearchCallHistoryIntentResponse is deprecated. There is no replacement."]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[deprecated = "INSearchCallHistoryIntentResponse is deprecated. There is no replacement."]
         #[unsafe(method(initWithCode:userActivity:))]
@@ -121,8 +118,7 @@ impl INSearchCallHistoryIntentResponse {
 #[cfg(feature = "INIntentResponse")]
 impl INSearchCallHistoryIntentResponse {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

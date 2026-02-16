@@ -53,9 +53,7 @@ extern_conformance!(
 
 impl WKHTTPCookieStore {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// Fetches all stored cookies.
@@ -158,8 +156,7 @@ impl WKHTTPCookieStore {
 /// Methods declared on superclass `NSObject`.
 impl WKHTTPCookieStore {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

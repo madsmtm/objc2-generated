@@ -107,9 +107,7 @@ impl CHHapticEvent {
         #[unsafe(method_family = none)]
         pub unsafe fn setDuration(&self, duration: NSTimeInterval);
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         #[cfg(feature = "CHHapticParameter")]
         /// Initialize a new CHHapticEvent.  This can only be used to create Transient event types (which do not require a duration).
@@ -194,8 +192,7 @@ impl CHHapticEvent {
 /// Methods declared on superclass `NSObject`.
 impl CHHapticEvent {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

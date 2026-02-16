@@ -1053,10 +1053,7 @@ impl MPSRayIntersector {
         #[unsafe(method_family = none)]
         pub unsafe fn setRayMask(&self, ray_mask: c_uint);
 
-        #[deprecated]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Initialize the raytracer with a Metal device
         #[deprecated]
@@ -1483,8 +1480,7 @@ impl MPSRayIntersector {
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSRayIntersector {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

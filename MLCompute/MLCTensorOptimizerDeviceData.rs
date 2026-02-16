@@ -28,10 +28,8 @@ extern_conformance!(
 
 impl MLCTensorOptimizerDeviceData {
     extern_methods!(
-        #[deprecated]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

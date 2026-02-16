@@ -206,14 +206,6 @@ impl UIShape {
             &self,
             context: &UIShapeResolutionContext,
         ) -> Retained<UIResolvedShape>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -282,14 +274,6 @@ impl UIResolvedShape {
         #[unsafe(method(shapeByApplyingInset:))]
         #[unsafe(method_family = none)]
         pub fn shapeByApplyingInset(&self, inset: CGFloat) -> Retained<UIResolvedShape>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -316,13 +300,5 @@ impl UIShapeResolutionContext {
         #[unsafe(method(contentShape))]
         #[unsafe(method_family = none)]
         pub fn contentShape(&self) -> Retained<UIResolvedShape>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }

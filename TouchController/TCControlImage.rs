@@ -29,10 +29,7 @@ extern_conformance!(
 
 impl TCControlImage {
     extern_methods!(
-        /// Not available. Use designated initializer.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-metal"))]
         /// Creates a new image with the specified texture and size.
@@ -215,8 +212,7 @@ impl TCControlImage {
 /// Methods declared on superclass `NSObject`.
 impl TCControlImage {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

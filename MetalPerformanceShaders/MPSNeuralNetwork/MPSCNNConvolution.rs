@@ -978,9 +978,7 @@ impl MPSCNNConvolutionGradientState {
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         /// Initialize a non-temporary state to hold a number of textures and buffers
         ///
@@ -1034,9 +1032,8 @@ impl MPSCNNConvolutionGradientState {
 ))]
 impl MPSCNNConvolutionGradientState {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1180,9 +1177,7 @@ impl MPSCNNConvolutionTransposeGradientState {
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         /// Initialize a non-temporary state to hold a number of textures and buffers
         ///
@@ -1236,9 +1231,8 @@ impl MPSCNNConvolutionTransposeGradientState {
 ))]
 impl MPSCNNConvolutionTransposeGradientState {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1456,9 +1450,7 @@ impl MPSCNNConvolutionWeightsAndBiasesState {
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         /// Initialize a non-temporary state to hold a number of textures and buffers
         ///
@@ -1508,9 +1500,8 @@ impl MPSCNNConvolutionWeightsAndBiasesState {
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSCNNConvolutionWeightsAndBiasesState {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

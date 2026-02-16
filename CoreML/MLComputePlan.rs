@@ -59,13 +59,9 @@ extern_conformance!(
 
 impl MLComputePlan {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(all(feature = "MLModelConfiguration", feature = "block2"))]
         /// Construct the compute plan of a model asynchronously given the location of its on-disk representation.

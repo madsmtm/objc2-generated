@@ -19,13 +19,9 @@ extern_conformance!(
 
 impl CKAsset {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Initialize an asset to be saved with the content at the given file URL
         #[unsafe(method(initWithFileURL:))]

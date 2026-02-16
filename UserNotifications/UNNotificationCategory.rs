@@ -131,18 +131,13 @@ impl UNNotificationCategory {
             category_summary_format: Option<&NSString>,
             options: UNNotificationCategoryOptions,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl UNNotificationCategory {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

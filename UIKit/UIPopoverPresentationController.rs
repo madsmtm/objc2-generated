@@ -266,10 +266,6 @@ impl UIPopoverPresentationController {
             presented_view_controller: &UIViewController,
             presenting_view_controller: Option<&UIViewController>,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -277,8 +273,7 @@ impl UIPopoverPresentationController {
 #[cfg(feature = "UIPresentationController")]
 impl UIPopoverPresentationController {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

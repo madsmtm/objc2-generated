@@ -59,13 +59,9 @@ extern_conformance!(
 
 impl AVCaptionConversionValidator {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(all(
             feature = "AVCaption",
@@ -209,13 +205,9 @@ extern_conformance!(
 
 impl AVCaptionConversionWarning {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Indicates the type of warning provided by the receiver.
         #[unsafe(method(warningType))]
@@ -273,13 +265,9 @@ extern_conformance!(
 
 impl AVCaptionConversionAdjustment {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Indicates the type of adjustment described by the receiver.
         #[unsafe(method(adjustmentType))]
@@ -309,13 +297,9 @@ extern_conformance!(
 
 impl AVCaptionConversionTimeRangeAdjustment {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "objc2-core-media")]
         /// Indicates the amount by which the timeRange.start of the captions must be adjusted in order to correct a problem.

@@ -31,15 +31,9 @@ extern_conformance!(
 
 impl CLKGaugeProvider {
     extern_methods!(
-        #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "CLKDefines")]
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
@@ -125,15 +119,10 @@ impl CLKSimpleGaugeProvider {
 /// Methods declared on superclass `CLKGaugeProvider`.
 impl CLKSimpleGaugeProvider {
     extern_methods!(
-        #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -210,14 +199,9 @@ impl CLKTimeIntervalGaugeProvider {
 /// Methods declared on superclass `CLKGaugeProvider`.
 impl CLKTimeIntervalGaugeProvider {
     extern_methods!(
-        #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

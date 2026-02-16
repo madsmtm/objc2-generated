@@ -80,13 +80,9 @@ impl CLKComplicationDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn userActivity(&self) -> Option<Retained<NSUserActivity>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[deprecated = "On watchOS 9.0 or later, use WidgetKit instead"]
         #[unsafe(method(initWithIdentifier:displayName:supportedFamilies:))]

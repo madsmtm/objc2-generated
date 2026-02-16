@@ -30,14 +30,6 @@ impl UITabAccessory {
         #[unsafe(method(initWithContentView:))]
         #[unsafe(method_family = init)]
         pub fn initWithContentView(this: Allocated<Self>, content_view: &UIView) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 

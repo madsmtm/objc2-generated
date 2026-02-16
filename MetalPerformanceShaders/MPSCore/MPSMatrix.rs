@@ -512,9 +512,7 @@ impl MPSMatrix {
             descriptor: &MPSMatrixDescriptor,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Flush the underlying MTLBuffer from the device's caches, and invalidate any CPU caches if needed.
         ///
@@ -561,9 +559,8 @@ impl MPSMatrix {
 /// Methods declared on superclass `NSObject`.
 impl MPSMatrix {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -706,9 +703,7 @@ impl MPSVector {
             descriptor: &MPSVectorDescriptor,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Flush the underlying MTLBuffer from the device's caches, and invalidate any CPU caches if needed.
         ///
@@ -755,9 +750,8 @@ impl MPSVector {
 /// Methods declared on superclass `NSObject`.
 impl MPSVector {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -917,19 +911,14 @@ impl MPSTemporaryMatrix {
             device: &ProtocolObject<dyn MTLDevice>,
             descriptor: &MPSMatrixDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSTemporaryMatrix {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1088,18 +1077,13 @@ impl MPSTemporaryVector {
             device: &ProtocolObject<dyn MTLDevice>,
             descriptor: &MPSVectorDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSTemporaryVector {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

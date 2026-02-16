@@ -46,13 +46,9 @@ extern_conformance!(
 #[cfg(feature = "VNGeometry")]
 impl VNRecognizedPoint3D {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "VNTypes")]
         /// The is the identifier that provides context as to the kind of point that was recognized.

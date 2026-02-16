@@ -35,9 +35,7 @@ extern_conformance!(
 
 impl INSeat {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(initWithSeatSection:seatRow:seatNumber:seatingType:))]
         #[unsafe(method_family = init)]
@@ -70,8 +68,7 @@ impl INSeat {
 /// Methods declared on superclass `NSObject`.
 impl INSeat {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

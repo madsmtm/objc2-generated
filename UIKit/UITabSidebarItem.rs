@@ -114,14 +114,6 @@ impl UITabSidebarItem {
         #[unsafe(method(itemFromRequest:))]
         #[unsafe(method_family = none)]
         pub fn itemFromRequest(request: &UITabSidebarItemRequest) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -150,13 +142,5 @@ impl UITabSidebarItemRequest {
         #[unsafe(method(action))]
         #[unsafe(method_family = none)]
         pub fn action(&self) -> Option<Retained<UIAction>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

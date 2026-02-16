@@ -1516,14 +1516,6 @@ impl XCUIAccessibilityAuditIssue {
         #[unsafe(method(auditType))]
         #[unsafe(method_family = none)]
         pub fn auditType(&self) -> XCUIAccessibilityAuditType;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 

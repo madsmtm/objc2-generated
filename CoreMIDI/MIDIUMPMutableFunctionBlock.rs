@@ -40,9 +40,7 @@ impl MIDIUMPMutableFunctionBlock {
         #[unsafe(method_family = none)]
         pub unsafe fn UMPEndpoint(&self) -> Option<Retained<MIDIUMPMutableEndpoint>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "MIDIMessages", feature = "objc2-foundation"))]
         /// The initializer for constructing a Function Block.
@@ -152,8 +150,7 @@ impl MIDIUMPMutableFunctionBlock {
 #[cfg(all(feature = "MIDIUMPFunctionBlock", feature = "objc2"))]
 impl MIDIUMPMutableFunctionBlock {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

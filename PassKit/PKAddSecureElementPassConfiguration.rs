@@ -43,13 +43,9 @@ impl PKAddPassMetadataPreview {
             description: &NSString,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "objc2-core-graphics")]
         /// CGImage representing the pass in our provisioning UI.
@@ -81,13 +77,9 @@ extern_conformance!(
 
 impl PKAddSecureElementPassConfiguration {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[unsafe(method(issuerIdentifier))]
         #[unsafe(method_family = none)]

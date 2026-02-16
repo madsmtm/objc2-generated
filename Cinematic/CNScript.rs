@@ -259,14 +259,6 @@ impl CNScript {
         #[unsafe(method(addedDetectionTracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn addedDetectionTracks(&self) -> Retained<NSArray<CNDetectionTrack>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -317,14 +309,6 @@ impl CNScriptChanges {
         #[unsafe(method(addedDetectionTracks))]
         #[unsafe(method_family = none)]
         pub unsafe fn addedDetectionTracks(&self) -> Retained<NSArray<CNDetectionTrack>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -391,14 +375,6 @@ impl CNScriptFrame {
         #[unsafe(method(allDetections))]
         #[unsafe(method_family = none)]
         pub unsafe fn allDetections(&self) -> Retained<NSArray<CNDetection>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 

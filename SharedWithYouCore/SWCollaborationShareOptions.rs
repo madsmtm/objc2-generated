@@ -117,9 +117,7 @@ impl SWCollaborationShareOptions {
             options_groups: &NSArray<SWCollaborationOptionsGroup>,
         ) -> Retained<SWCollaborationShareOptions>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// # Safety
         ///
@@ -133,8 +131,7 @@ impl SWCollaborationShareOptions {
 /// Methods declared on superclass `NSObject`.
 impl SWCollaborationShareOptions {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

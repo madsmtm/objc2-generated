@@ -36,19 +36,5 @@ impl LASecret {
             &self,
             handler: &block2::DynBlock<dyn Fn(*mut NSData, *mut NSError)>,
         );
-
-        /// Clients cannot create
-        /// `LASecret`instances directly. They typically obtain them from a
-        /// `LAPersistedRight`instance.
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
-
-        /// Clients cannot create
-        /// `LASecret`instances directly. They typically obtain them from a
-        /// `LAPersistedRight`instance.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }

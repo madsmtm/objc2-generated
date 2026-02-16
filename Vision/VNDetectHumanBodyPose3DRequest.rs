@@ -93,9 +93,7 @@ impl VNDetectHumanBodyPose3DRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNStatefulRequest"))]
 impl VNDetectHumanBodyPose3DRequest {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(all(feature = "block2", feature = "objc2-core-media"))]
         /// Create a new video-based stateful request.

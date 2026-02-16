@@ -29,9 +29,7 @@ impl NSStagedMigrationManager {
         #[unsafe(method_family = none)]
         pub unsafe fn container(&self) -> Option<Retained<NSPersistentContainer>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "NSMigrationStage")]
         #[unsafe(method(initWithMigrationStages:))]
@@ -46,8 +44,7 @@ impl NSStagedMigrationManager {
 /// Methods declared on superclass `NSObject`.
 impl NSStagedMigrationManager {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

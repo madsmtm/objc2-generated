@@ -205,14 +205,6 @@ impl AXNumericDataAxisDescriptor {
             gridline_positions: Option<&NSArray<NSNumber>>,
             value_description_provider: &block2::DynBlock<dyn Fn(c_double) -> NonNull<NSString>>,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -271,14 +263,6 @@ impl AXCategoricalDataAxisDescriptor {
             attributed_title: &NSAttributedString,
             category_order: &NSArray<NSString>,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -334,14 +318,6 @@ impl AXDataPointValue {
         #[unsafe(method(valueWithCategory:))]
         #[unsafe(method_family = none)]
         pub unsafe fn valueWithCategory(category: &NSString) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -457,14 +433,6 @@ impl AXDataPoint {
             additional_values: Option<&NSArray<AXDataPointValue>>,
             label: Option<&NSString>,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -555,14 +523,6 @@ impl AXDataSeriesDescriptor {
             is_continuous: bool,
             data_points: &NSArray<AXDataPoint>,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -779,14 +739,6 @@ impl AXChartDescriptor {
             additional_axes: Option<&NSArray<ProtocolObject<dyn AXDataAxisDescriptor>>>,
             series: &NSArray<AXDataSeriesDescriptor>,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 

@@ -68,9 +68,7 @@ extern_conformance!(
 
 impl PHLivePhoto {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The dimensions of the live photo measured in pixels.
@@ -111,9 +109,8 @@ impl PHLivePhoto {
 /// Methods declared on superclass `NSObject`.
 impl PHLivePhoto {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

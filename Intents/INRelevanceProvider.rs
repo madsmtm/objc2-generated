@@ -105,19 +105,16 @@ extern_conformance!(
 
 impl INRelevanceProvider {
     extern_methods!(
-        /// Note: `INRelevanceProvider`should not be initilaized directly. Use one of the subclasses instead.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl INRelevanceProvider {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -180,19 +177,16 @@ impl INDateRelevanceProvider {
 /// Methods declared on superclass `INRelevanceProvider`.
 impl INDateRelevanceProvider {
     extern_methods!(
-        /// Note: `INRelevanceProvider`should not be initilaized directly. Use one of the subclasses instead.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl INDateRelevanceProvider {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -244,19 +238,16 @@ impl INLocationRelevanceProvider {
 /// Methods declared on superclass `INRelevanceProvider`.
 impl INLocationRelevanceProvider {
     extern_methods!(
-        /// Note: `INRelevanceProvider`should not be initilaized directly. Use one of the subclasses instead.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl INLocationRelevanceProvider {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -311,18 +302,15 @@ impl INDailyRoutineRelevanceProvider {
 /// Methods declared on superclass `INRelevanceProvider`.
 impl INDailyRoutineRelevanceProvider {
     extern_methods!(
-        /// Note: `INRelevanceProvider`should not be initilaized directly. Use one of the subclasses instead.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl INDailyRoutineRelevanceProvider {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

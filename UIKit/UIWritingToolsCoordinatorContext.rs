@@ -106,9 +106,7 @@ impl UIWritingToolsCoordinatorContext {
             range: NSRange,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// The portion of your view’s text to evaluate.
         ///
@@ -194,8 +192,7 @@ impl UIWritingToolsCoordinatorContext {
 /// Methods declared on superclass `NSObject`.
 impl UIWritingToolsCoordinatorContext {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

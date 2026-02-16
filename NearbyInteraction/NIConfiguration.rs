@@ -46,15 +46,6 @@ impl NIDiscoveryToken {
         #[unsafe(method_family = none)]
         pub unsafe fn deviceCapabilities(&self)
             -> Retained<ProtocolObject<dyn NIDeviceCapability>>;
-
-        /// Unavailable
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -89,14 +80,10 @@ extern_conformance!(
 
 impl NIConfiguration {
     extern_methods!(
-        /// Unavailable
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -183,15 +170,6 @@ impl NINearbyPeerConfiguration {
             &self,
             extended_distance_measurement_enabled: bool,
         );
-
-        /// Unavailable
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -280,15 +258,6 @@ impl NINearbyAccessoryConfiguration {
             accessory_data: &NSData,
             identifier: &NSUUID,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-
-        /// Unavailable
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -354,14 +323,5 @@ impl NIDLTDOAConfiguration {
             this: Allocated<Self>,
             network_identifier: NSInteger,
         ) -> Retained<Self>;
-
-        /// Unavailable
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }

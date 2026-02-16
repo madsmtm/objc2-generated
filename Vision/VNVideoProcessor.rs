@@ -72,9 +72,7 @@ extern_conformance!(
 
 impl VNVideoProcessorFrameRateCadence {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(initWithFrameRate:))]
         #[unsafe(method_family = init)]
@@ -92,9 +90,8 @@ impl VNVideoProcessorFrameRateCadence {
 /// Methods declared on superclass `NSObject`.
 impl VNVideoProcessorFrameRateCadence {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -121,9 +118,7 @@ extern_conformance!(
 
 impl VNVideoProcessorTimeIntervalCadence {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithTimeInterval:))]
@@ -143,9 +138,8 @@ impl VNVideoProcessorTimeIntervalCadence {
 /// Methods declared on superclass `NSObject`.
 impl VNVideoProcessorTimeIntervalCadence {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -218,9 +212,7 @@ extern_conformance!(
 
 impl VNVideoProcessor {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Creates a VNVideoProcessor to be used for performing requests against a video asset specified by it's URL.
         ///
@@ -323,8 +315,7 @@ impl VNVideoProcessor {
 /// Methods declared on superclass `NSObject`.
 impl VNVideoProcessor {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

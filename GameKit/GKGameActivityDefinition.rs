@@ -162,9 +162,7 @@ impl GKGameActivityDefinition {
         #[unsafe(method_family = none)]
         pub unsafe fn releaseState(&self) -> GKReleaseState;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "GKAchievementDescription", feature = "block2"))]
         /// Loads all associated achievements that have defined deep links to this game activity definition.
@@ -203,9 +201,8 @@ impl GKGameActivityDefinition {
 /// Methods declared on superclass `NSObject`.
 impl GKGameActivityDefinition {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

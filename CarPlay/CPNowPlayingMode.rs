@@ -253,14 +253,6 @@ impl CPNowPlayingSportsTeam {
         #[unsafe(method(isFavorite))]
         #[unsafe(method_family = none)]
         pub unsafe fn isFavorite(&self) -> bool;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -346,14 +338,6 @@ impl CPNowPlayingSportsEventStatus {
         #[unsafe(method(eventStatusImage))]
         #[unsafe(method_family = none)]
         pub unsafe fn eventStatusImage(&self) -> Option<Retained<UIImage>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -430,14 +414,6 @@ impl CPNowPlayingSportsClock {
         #[unsafe(method(countsUp))]
         #[unsafe(method_family = none)]
         pub unsafe fn countsUp(&self) -> bool;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -498,13 +474,5 @@ impl CPNowPlayingSportsTeamLogo {
         #[unsafe(method(initials))]
         #[unsafe(method_family = none)]
         pub unsafe fn initials(&self) -> Option<Retained<NSString>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

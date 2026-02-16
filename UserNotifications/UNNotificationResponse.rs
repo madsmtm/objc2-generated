@@ -53,19 +53,14 @@ impl UNNotificationResponse {
         #[unsafe(method(actionIdentifier))]
         #[unsafe(method_family = none)]
         pub fn actionIdentifier(&self) -> Retained<NSString>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl UNNotificationResponse {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -107,17 +102,15 @@ impl UNTextInputNotificationResponse {
 /// Methods declared on superclass `UNNotificationResponse`.
 impl UNTextInputNotificationResponse {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl UNTextInputNotificationResponse {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

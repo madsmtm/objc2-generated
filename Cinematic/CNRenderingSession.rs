@@ -71,14 +71,6 @@ impl CNRenderingSessionAttributes {
         #[unsafe(method(renderingVersion))]
         #[unsafe(method_family = none)]
         pub unsafe fn renderingVersion(&self) -> NSInteger;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -155,14 +147,6 @@ impl CNRenderingSessionFrameAttributes {
         #[unsafe(method(setFNumber:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFNumber(&self, f_number: c_float);
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -295,13 +279,5 @@ impl CNRenderingSession {
         #[unsafe(method(destinationPixelFormatTypes))]
         #[unsafe(method_family = none)]
         pub unsafe fn destinationPixelFormatTypes() -> Retained<NSArray<NSNumber>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }

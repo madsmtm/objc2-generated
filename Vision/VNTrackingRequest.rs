@@ -91,9 +91,7 @@ impl VNTrackingRequest {
         #[unsafe(method_family = none)]
         pub unsafe fn setLastFrame(&self, last_frame: bool);
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// # Safety
@@ -112,8 +110,7 @@ impl VNTrackingRequest {
 #[cfg(feature = "VNRequest")]
 impl VNTrackingRequest {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

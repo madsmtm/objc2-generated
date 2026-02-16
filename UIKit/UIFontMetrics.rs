@@ -33,9 +33,7 @@ impl UIFontMetrics {
         #[unsafe(method_family = none)]
         pub fn metricsForTextStyle(text_style: &UIFontTextStyle) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "UIFontDescriptor")]
         #[unsafe(method(initForTextStyle:))]
@@ -101,8 +99,7 @@ impl UIFontMetrics {
 /// Methods declared on superclass `NSObject`.
 impl UIFontMetrics {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

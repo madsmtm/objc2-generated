@@ -55,9 +55,7 @@ impl MIDI2DeviceInfo {
         #[unsafe(method_family = none)]
         pub unsafe fn revisionLevel(&self) -> MIDI2DeviceRevisionLevel;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "MIDIMessages", feature = "MIDIUMPCI"))]
         /// The initializer for constructing the MIDI2DeviceInfo object.
@@ -90,9 +88,8 @@ impl MIDI2DeviceInfo {
 #[cfg(feature = "objc2")]
 impl MIDI2DeviceInfo {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -238,10 +235,6 @@ impl MIDIUMPEndpoint {
         #[unsafe(method(setFunctionBlocks:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setFunctionBlocks(&self, function_blocks: &NSArray<MIDIUMPFunctionBlock>);
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -249,8 +242,7 @@ impl MIDIUMPEndpoint {
 #[cfg(feature = "objc2")]
 impl MIDIUMPEndpoint {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

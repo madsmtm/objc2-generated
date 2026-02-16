@@ -183,13 +183,10 @@ impl CPContactCallButton {
 #[cfg(feature = "CPButton")]
 impl CPContactCallButton {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -262,14 +259,6 @@ impl CPContactMessageButton {
             image: &UIImage,
             handler: Option<&block2::DynBlock<dyn Fn(NonNull<CPButton>)>>,
         ) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -316,12 +305,9 @@ impl CPContactDirectionsButton {
 #[cfg(feature = "CPButton")]
 impl CPContactDirectionsButton {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }

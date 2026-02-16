@@ -21,13 +21,9 @@ extern_conformance!(
 
 impl SKOverlayTransitionContext {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "block2")]
         /// Adds an animation that will be synchronized with an overlay's presentation/dismissal.

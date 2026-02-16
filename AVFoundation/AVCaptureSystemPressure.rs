@@ -109,13 +109,9 @@ extern_conformance!(
 
 impl AVCaptureSystemPressureState {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// An enumerated string value characterizing the pressure level to which the system is currently elevated.
         #[unsafe(method(level))]

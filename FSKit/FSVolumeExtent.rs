@@ -128,9 +128,7 @@ extern_conformance!(
 
 impl FSExtentPacker {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "FSResource", feature = "libc"))]
         /// Packs a single extent to send to the kernel.
@@ -158,9 +156,8 @@ impl FSExtentPacker {
 /// Methods declared on superclass `NSObject`.
 impl FSExtentPacker {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

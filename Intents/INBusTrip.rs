@@ -37,9 +37,7 @@ extern_conformance!(
 
 impl INBusTrip {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "INDateComponentsRange", feature = "objc2-core-location"))]
         #[unsafe(method(initWithProvider:busName:busNumber:tripDuration:departureBusStopLocation:departurePlatform:arrivalBusStopLocation:arrivalPlatform:))]
@@ -96,8 +94,7 @@ impl INBusTrip {
 /// Methods declared on superclass `NSObject`.
 impl INBusTrip {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

@@ -31,22 +31,13 @@ impl BETextSuggestion {
         #[unsafe(method(inputText))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputText(&self) -> Retained<NSString>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(&self) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl BETextSuggestion {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new_class() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

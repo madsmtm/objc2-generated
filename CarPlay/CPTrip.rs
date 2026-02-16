@@ -53,13 +53,9 @@ impl CPRouteChoice {
             selection_summary_variants: &NSArray<NSString>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// summaryVariants is an array of summary variants for this route choice, arranged from most to least preferred. You must provide at least one variant.
         /// The system will select the first variant that fits the available space. The variant strings should be provided as localized, displayable content.
@@ -132,13 +128,9 @@ impl CPTrip {
             route_choices: &NSArray<CPRouteChoice>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "objc2-map-kit")]
         /// `MKMapItem`representing the origin for the trip.

@@ -35,9 +35,7 @@ extern_conformance!(
 
 impl INFocusStatus {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(initWithIsFocused:))]
         #[unsafe(method_family = init)]
@@ -55,8 +53,7 @@ impl INFocusStatus {
 /// Methods declared on superclass `NSObject`.
 impl INFocusStatus {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

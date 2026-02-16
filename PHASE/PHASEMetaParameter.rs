@@ -29,13 +29,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEMetaParameterDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// The value of the metaparameter.
         #[unsafe(method(value))]
@@ -66,13 +62,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASENumberMetaParameterDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Create a new numeric metaparameter definition
         ///
@@ -171,13 +163,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEStringMetaParameterDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Create a new string metaparameter definition
         ///
@@ -232,13 +220,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEMappedMetaParameterDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[unsafe(method(initWithValue:identifier:))]
         #[unsafe(method_family = init)]
@@ -348,13 +332,9 @@ extern_conformance!(
 
 impl PHASEMetaParameter {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// The identifier that uniquely represents this metaparameter.
         #[unsafe(method(identifier))]
@@ -396,13 +376,9 @@ extern_conformance!(
 
 impl PHASENumberMetaParameter {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// The minimum value this metaparameter can be set to
         #[unsafe(method(minimum))]
@@ -444,12 +420,9 @@ extern_conformance!(
 
 impl PHASEStringMetaParameter {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

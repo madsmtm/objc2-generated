@@ -237,14 +237,6 @@ impl CKSyncEngineEvent {
         #[unsafe(method(didSendChangesEvent))]
         #[unsafe(method_family = none)]
         pub unsafe fn didSendChangesEvent(&self) -> Retained<CKSyncEngineDidSendChangesEvent>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -293,13 +285,10 @@ impl CKSyncEngineStateUpdateEvent {
 /// Methods declared on superclass `CKSyncEngineEvent`.
 impl CKSyncEngineStateUpdateEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -414,13 +403,10 @@ impl CKSyncEngineAccountChangeEvent {
 /// Methods declared on superclass `CKSyncEngineEvent`.
 impl CKSyncEngineAccountChangeEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -471,13 +457,10 @@ impl CKSyncEngineFetchedDatabaseChangesEvent {
 /// Methods declared on superclass `CKSyncEngineEvent`.
 impl CKSyncEngineFetchedDatabaseChangesEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -528,13 +511,10 @@ impl CKSyncEngineFetchedRecordZoneChangesEvent {
 /// Methods declared on superclass `CKSyncEngineEvent`.
 impl CKSyncEngineFetchedRecordZoneChangesEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -603,13 +583,10 @@ impl CKSyncEngineSentDatabaseChangesEvent {
 /// Methods declared on superclass `CKSyncEngineEvent`.
 impl CKSyncEngineSentDatabaseChangesEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -682,13 +659,10 @@ impl CKSyncEngineSentRecordZoneChangesEvent {
 /// Methods declared on superclass `CKSyncEngineEvent`.
 impl CKSyncEngineSentRecordZoneChangesEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -733,13 +707,10 @@ impl CKSyncEngineWillFetchChangesEvent {
 /// Methods declared on superclass `CKSyncEngineEvent`.
 impl CKSyncEngineWillFetchChangesEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -779,13 +750,10 @@ impl CKSyncEngineWillFetchRecordZoneChangesEvent {
 /// Methods declared on superclass `CKSyncEngineEvent`.
 impl CKSyncEngineWillFetchRecordZoneChangesEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -836,13 +804,10 @@ impl CKSyncEngineDidFetchRecordZoneChangesEvent {
 /// Methods declared on superclass `CKSyncEngineEvent`.
 impl CKSyncEngineDidFetchRecordZoneChangesEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -884,13 +849,10 @@ impl CKSyncEngineDidFetchChangesEvent {
 /// Methods declared on superclass `CKSyncEngineEvent`.
 impl CKSyncEngineDidFetchChangesEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -928,13 +890,10 @@ impl CKSyncEngineWillSendChangesEvent {
 /// Methods declared on superclass `CKSyncEngineEvent`.
 impl CKSyncEngineWillSendChangesEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -974,13 +933,10 @@ impl CKSyncEngineDidSendChangesEvent {
 /// Methods declared on superclass `CKSyncEngineEvent`.
 impl CKSyncEngineDidSendChangesEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1001,13 +957,9 @@ extern_conformance!(
 
 impl CKSyncEngineFetchedRecordDeletion {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "CKRecordID")]
         /// This property is not atomic.
@@ -1075,13 +1027,9 @@ extern_conformance!(
 
 impl CKSyncEngineFetchedZoneDeletion {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "CKRecordZoneID")]
         /// This property is not atomic.
@@ -1121,13 +1069,9 @@ extern_conformance!(
 
 impl CKSyncEngineFailedRecordSave {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "CKRecord")]
         /// This property is not atomic.
@@ -1167,13 +1111,9 @@ extern_conformance!(
 
 impl CKSyncEngineFailedZoneSave {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "CKRecordZone")]
         /// This property is not atomic.

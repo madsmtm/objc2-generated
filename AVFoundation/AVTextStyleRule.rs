@@ -27,13 +27,9 @@ extern_conformance!(
 
 impl AVTextStyleRule {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Converts an NSArray of AVTextStyleRules into a serializable property list that can be used for persistent storage.
         ///

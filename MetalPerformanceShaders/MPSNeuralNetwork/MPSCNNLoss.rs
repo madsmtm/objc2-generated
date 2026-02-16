@@ -74,9 +74,7 @@ impl MPSCNNLossDataDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setBytesPerImage(&self, bytes_per_image: NSUInteger);
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "MPSCore", feature = "MPSImage"))]
         /// Make a descriptor loss data. The bytesPerRow and bytesPerImage
@@ -104,9 +102,8 @@ impl MPSCNNLossDataDescriptor {
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNLossDataDescriptor {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -133,10 +130,7 @@ extern_conformance!(
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSCNNLossLabels {
     extern_methods!(
-        /// Use one of the interfaces below instead.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Set labels (aka targets, ground truth) for the MPSCNNLossLabels object.
         ///
@@ -389,9 +383,8 @@ impl MPSCNNLossLabels {
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSCNNLossLabels {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -558,9 +551,7 @@ impl MPSCNNLossDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setDelta(&self, delta: c_float);
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "MPSCNNTypes")]
         /// Make a descriptor for a MPSCNNLoss or MPSNNLossGradient object.
@@ -583,9 +574,8 @@ impl MPSCNNLossDescriptor {
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNLossDescriptor {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1261,9 +1251,7 @@ impl MPSCNNYOLOLossDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setAnchorBoxes(&self, anchor_boxes: &NSData);
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "MPSCNNTypes")]
         /// Make a descriptor for a MPSCNNYOLOLoss object.
@@ -1298,9 +1286,8 @@ impl MPSCNNYOLOLossDescriptor {
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNYOLOLossDescriptor {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

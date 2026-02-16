@@ -27,14 +27,6 @@ impl BEAutoFillTextSuggestion {
         #[unsafe(method(contents))]
         #[unsafe(method_family = none)]
         pub unsafe fn contents(&self) -> Retained<NSDictionary<UITextContentType, NSString>>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(&self) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -56,8 +48,7 @@ impl BEAutoFillTextSuggestion {
 #[cfg(feature = "BETextSuggestion")]
 impl BEAutoFillTextSuggestion {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new_class() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

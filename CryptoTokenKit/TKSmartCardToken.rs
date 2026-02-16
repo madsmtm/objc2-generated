@@ -165,10 +165,6 @@ impl TKSmartCardTokenSession {
         #[unsafe(method(initWithToken:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithToken(this: Allocated<Self>, token: &TKToken) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -176,9 +172,8 @@ impl TKSmartCardTokenSession {
 #[cfg(feature = "TKToken")]
 impl TKSmartCardTokenSession {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -243,9 +238,8 @@ impl TKSmartCardToken {
 #[cfg(feature = "TKToken")]
 impl TKSmartCardToken {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -253,9 +247,8 @@ impl TKSmartCardToken {
 #[cfg(feature = "TKToken")]
 impl TKSmartCardToken {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

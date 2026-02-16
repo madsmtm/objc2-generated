@@ -58,9 +58,7 @@ extern_conformance!(
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 impl HMCalendarEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Creates a calendar event
         ///
@@ -107,10 +105,8 @@ impl HMCalendarEvent {
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 impl HMCalendarEvent {
     extern_methods!(
-        #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -158,9 +154,7 @@ extern_conformance!(
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 impl HMMutableCalendarEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// The date component that specifies the time when the event is fired
         ///
@@ -215,9 +209,7 @@ impl HMMutableCalendarEvent {
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 impl HMMutableCalendarEvent {
     extern_methods!(
-        #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

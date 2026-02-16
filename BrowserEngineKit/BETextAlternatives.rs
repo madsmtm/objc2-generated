@@ -28,22 +28,13 @@ impl BETextAlternatives {
         #[unsafe(method(alternativeStrings))]
         #[unsafe(method_family = none)]
         pub unsafe fn alternativeStrings(&self) -> Retained<NSArray<NSString>>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(&self) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl BETextAlternatives {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new_class() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

@@ -87,9 +87,8 @@ impl CXSetGroupCallAction {
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 impl CXSetGroupCallAction {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -97,8 +96,7 @@ impl CXSetGroupCallAction {
 #[cfg(all(feature = "CXAction", feature = "CXCallAction"))]
 impl CXSetGroupCallAction {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

@@ -20,13 +20,9 @@ extern_conformance!(
 
 impl UIPointerLockState {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
         /// The status of the pointer lock for this scene as determined by the system.
         /// The preferred pointer lock value specified by a view controller is only a request, which may or may not be honored.

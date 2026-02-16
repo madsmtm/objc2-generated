@@ -33,13 +33,9 @@ impl WKApplication {
         #[unsafe(method_family = none)]
         pub unsafe fn sharedApplication(mtm: MainThreadMarker) -> Retained<WKApplication>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(&self) -> Retained<Self>;
+        // -new (unavailable)
 
         #[unsafe(method(openSystemURL:))]
         #[unsafe(method_family = none)]
@@ -105,9 +101,8 @@ impl WKApplication {
 /// Methods declared on superclass `NSObject`.
 impl WKApplication {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new_class(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

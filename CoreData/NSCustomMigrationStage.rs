@@ -107,9 +107,7 @@ impl NSCustomMigrationStage {
             >,
         );
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "NSManagedObjectModelReference")]
         #[unsafe(method(initWithCurrentModelReference:nextModelReference:))]
@@ -126,8 +124,7 @@ impl NSCustomMigrationStage {
 #[cfg(feature = "NSMigrationStage")]
 impl NSCustomMigrationStage {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

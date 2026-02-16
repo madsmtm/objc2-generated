@@ -44,13 +44,9 @@ extern_conformance!(
 
 impl VNFaceLandmarkRegion {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// pointCount returns the amount of points in a given region. This can be zero if no points for a region could be found.
         #[unsafe(method(pointCount))]
@@ -150,13 +146,10 @@ impl VNFaceLandmarkRegion2D {
 /// Methods declared on superclass `VNFaceLandmarkRegion`.
 impl VNFaceLandmarkRegion2D {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -196,9 +189,7 @@ extern_conformance!(
 
 impl VNFaceLandmarks {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "VNTypes")]
         /// a confidence estimate for the returned landmarks.
@@ -211,9 +202,8 @@ impl VNFaceLandmarks {
 /// Methods declared on superclass `NSObject`.
 impl VNFaceLandmarks {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -325,17 +315,15 @@ impl VNFaceLandmarks2D {
 /// Methods declared on superclass `VNFaceLandmarks`.
 impl VNFaceLandmarks2D {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl VNFaceLandmarks2D {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

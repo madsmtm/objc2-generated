@@ -551,13 +551,9 @@ extern_conformance!(
 
 impl METrackInfo {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-core-media")]
         /// Initializes a new METrackInfo instance.
@@ -1162,13 +1158,9 @@ extern_conformance!(
 
 impl MESampleCursorChunk {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "objc2-av-foundation", feature = "objc2-core-foundation"))]
         /// The initializer for the MESampleCursorChunk class.
@@ -1272,13 +1264,9 @@ extern_conformance!(
 
 impl MESampleLocation {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-av-foundation")]
         /// The initializer for the MESampleLocation class.
@@ -1348,13 +1336,9 @@ extern_conformance!(
 
 impl MEEstimatedSampleLocation {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-av-foundation")]
         /// The initializer for the MEEstimatedSampleLocation class.
@@ -1719,13 +1703,9 @@ extern_conformance!(
 
 impl MEByteSource {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// The name of a MEByteSource's file.
         ///

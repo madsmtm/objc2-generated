@@ -61,10 +61,7 @@ impl WCSession {
         #[unsafe(method_family = none)]
         pub unsafe fn defaultSession() -> Retained<WCSession>;
 
-        /// Use the default session instead.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// A delegate must exist before the session will allow sends.
         #[unsafe(method(delegate))]
@@ -242,9 +239,8 @@ impl WCSession {
 /// Methods declared on superclass `NSObject`.
 impl WCSession {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

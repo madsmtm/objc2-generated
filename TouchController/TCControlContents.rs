@@ -227,10 +227,7 @@ impl TCControlContents {
             controller: &TCTouchController,
         ) -> Retained<TCControlContents>;
 
-        /// Not available. Use `contentsWithImages:` to create a `TCControlContents`.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "TCControlImage")]
         /// The array of objects used to render the control.
@@ -243,8 +240,7 @@ impl TCControlContents {
 /// Methods declared on superclass `NSObject`.
 impl TCControlContents {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

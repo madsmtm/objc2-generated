@@ -22,13 +22,9 @@ extern_conformance!(
 
 impl AVAssetResourceLoader {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "dispatch2")]
         /// Sets the receiver's delegate that will mediate resource loading and the dispatch queue on which delegate methods will be invoked.
@@ -185,13 +181,9 @@ extern_conformance!(
 
 impl AVAssetResourceLoadingRequestor {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Whether the requestor provides expired session reports (see AVContentKeySession)
         #[unsafe(method(providesExpiredSessionReports))]
@@ -213,13 +205,9 @@ extern_conformance!(
 
 impl AVAssetResourceLoadingRequest {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// An NSURLRequest for the requested resource.
         #[unsafe(method(request))]
@@ -322,13 +310,10 @@ impl AVAssetResourceRenewalRequest {
 /// Methods declared on superclass `AVAssetResourceLoadingRequest`.
 impl AVAssetResourceRenewalRequest {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -345,13 +330,9 @@ extern_conformance!(
 
 impl AVAssetResourceLoadingContentInformationRequest {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// A UTI that indicates the type of data contained by the requested resource.
         ///
@@ -442,13 +423,9 @@ extern_conformance!(
 
 impl AVAssetResourceLoadingDataRequest {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// The position within the resource of the first byte requested.
         #[unsafe(method(requestedOffset))]

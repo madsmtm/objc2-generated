@@ -103,8 +103,7 @@ impl UIWindowSceneGeometryPreferencesVision {
 #[cfg(feature = "UIWindowSceneGeometryPreferences")]
 impl UIWindowSceneGeometryPreferencesVision {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

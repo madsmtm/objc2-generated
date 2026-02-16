@@ -24,9 +24,7 @@ extern_conformance!(
 
 impl VNCoreMLModel {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-core-ml")]
         /// Create a model container to be used with VNCoreMLRequest based on a Core ML model. This can fail if the model is not supported. Examples for a model that is not supported is a model that does not take an image as any of its inputs.
@@ -76,9 +74,8 @@ impl VNCoreMLModel {
 /// Methods declared on superclass `NSObject`.
 impl VNCoreMLModel {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -159,9 +156,7 @@ impl VNCoreMLRequest {
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// # Safety
@@ -180,9 +175,8 @@ impl VNCoreMLRequest {
 #[cfg(feature = "VNRequest")]
 impl VNCoreMLRequest {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

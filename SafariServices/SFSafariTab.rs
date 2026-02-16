@@ -36,13 +36,9 @@ extern_conformance!(
 
 impl SFSafariTab {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "SFSafariPage", feature = "block2"))]
         /// This calls the completion handler passing the active page in the tab.

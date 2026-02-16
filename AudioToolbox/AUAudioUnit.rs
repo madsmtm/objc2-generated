@@ -388,9 +388,7 @@ extern_conformance!(
 
 impl AUAudioUnit {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "AudioComponent")]
         /// Designated initializer.
@@ -1449,9 +1447,8 @@ impl AUAudioUnit {
 /// Methods declared on superclass `NSObject`.
 impl AUAudioUnit {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1681,9 +1678,7 @@ extern_conformance!(
 
 impl AUAudioUnitBusArray {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Initializes by making a copy of the supplied bus array.
         #[unsafe(method(initWithAudioUnit:busType:busses:))]
@@ -1777,9 +1772,8 @@ impl AUAudioUnitBusArray {
 /// Methods declared on superclass `NSObject`.
 impl AUAudioUnitBusArray {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

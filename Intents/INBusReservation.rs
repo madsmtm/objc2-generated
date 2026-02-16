@@ -42,9 +42,7 @@ extern_conformance!(
 #[cfg(feature = "INReservation")]
 impl INBusReservation {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(
             feature = "INBusTrip",
@@ -84,8 +82,7 @@ impl INBusReservation {
 #[cfg(feature = "INReservation")]
 impl INBusReservation {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

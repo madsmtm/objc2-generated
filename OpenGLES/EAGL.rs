@@ -101,9 +101,7 @@ extern_conformance!(
 
 impl EAGLContext {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         #[unsafe(method(initWithAPI:))]
         #[unsafe(method_family = init)]
@@ -161,8 +159,7 @@ impl EAGLContext {
 /// Methods declared on superclass `NSObject`.
 impl EAGLContext {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

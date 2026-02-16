@@ -147,13 +147,9 @@ impl CKSyncEngine {
             configuration: &CKSyncEngineConfiguration,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "CKDatabase")]
         /// The database this sync engine will sync with.
@@ -805,13 +801,9 @@ extern_conformance!(
 
 impl CKSyncEngineFetchChangesContext {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// The reason why the sync engine is attempting to fetch changes.
         #[unsafe(method(reason))]
@@ -849,13 +841,9 @@ extern_conformance!(
 
 impl CKSyncEngineSendChangesContext {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// The reason why the sync engine is attempting to send changes.
         #[unsafe(method(reason))]

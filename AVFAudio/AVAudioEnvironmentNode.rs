@@ -71,9 +71,7 @@ extern_conformance!(
 
 impl AVAudioEnvironmentDistanceAttenuationParameters {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Type of distance attenuation model
         ///
@@ -140,9 +138,8 @@ impl AVAudioEnvironmentDistanceAttenuationParameters {
 /// Methods declared on superclass `NSObject`.
 impl AVAudioEnvironmentDistanceAttenuationParameters {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -173,9 +170,7 @@ extern_conformance!(
 
 impl AVAudioEnvironmentReverbParameters {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Turns on/off the reverb
         ///
@@ -224,9 +219,8 @@ impl AVAudioEnvironmentReverbParameters {
 /// Methods declared on superclass `NSObject`.
 impl AVAudioEnvironmentReverbParameters {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

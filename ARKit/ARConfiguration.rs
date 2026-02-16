@@ -341,15 +341,6 @@ impl ARConfiguration {
         #[unsafe(method(setVideoHDRAllowed:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setVideoHDRAllowed(&self, video_hdr_allowed: bool);
-
-        /// Unavailable
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 

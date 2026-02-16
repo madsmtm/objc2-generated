@@ -165,9 +165,7 @@ extern_conformance!(
 
 impl UIApplicationShortcutItem {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// # Safety
         ///
@@ -222,9 +220,8 @@ impl UIApplicationShortcutItem {
 /// Methods declared on superclass `NSObject`.
 impl UIApplicationShortcutItem {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -344,9 +341,7 @@ impl UIMutableApplicationShortcutItem {
 /// Methods declared on superclass `UIApplicationShortcutItem`.
 impl UIMutableApplicationShortcutItem {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// # Safety
         ///
@@ -375,8 +370,7 @@ impl UIMutableApplicationShortcutItem {
 /// Methods declared on superclass `NSObject`.
 impl UIMutableApplicationShortcutItem {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

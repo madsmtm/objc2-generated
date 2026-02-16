@@ -77,13 +77,9 @@ impl WKExtension {
         #[unsafe(method_family = none)]
         pub unsafe fn sharedExtension(mtm: MainThreadMarker) -> Retained<WKExtension>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(&self) -> Retained<Self>;
+        // -new (unavailable)
 
         #[unsafe(method(openSystemURL:))]
         #[unsafe(method_family = none)]
@@ -162,9 +158,8 @@ impl WKExtension {
 /// Methods declared on superclass `NSObject`.
 impl WKExtension {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new_class(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

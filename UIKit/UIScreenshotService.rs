@@ -25,13 +25,9 @@ extern_conformance!(
 
 impl UIScreenshotService {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
         /// Assign a delegate in order to send PDF data to accompany the screenshot taken by the user
         #[unsafe(method(delegate))]

@@ -157,18 +157,16 @@ extern_conformance!(
 
 impl VNPoint3D {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl VNPoint3D {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -446,13 +444,9 @@ extern_conformance!(
 
 impl VNContour {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// The path to the target VNContour as it is stored in the owning VNContoursObservation's hierarchy of contours.
         #[unsafe(method(indexPath))]

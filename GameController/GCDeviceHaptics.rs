@@ -93,9 +93,7 @@ impl GCDeviceHaptics {
         #[unsafe(method_family = none)]
         pub unsafe fn supportedLocalities(&self) -> Retained<NSSet<GCHapticsLocality>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-core-haptics")]
         #[cfg(any(target_os = "ios", target_os = "tvos", target_os = "visionos"))]
@@ -125,8 +123,7 @@ impl GCDeviceHaptics {
 /// Methods declared on superclass `NSObject`.
 impl GCDeviceHaptics {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

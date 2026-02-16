@@ -101,13 +101,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASESoundEventNodeDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// The children of this node definition.
         #[unsafe(method(children))]
@@ -138,13 +134,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEGeneratorNodeDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "PHASETypes")]
         /// Set the generator's calibration mode and level.
@@ -272,13 +264,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASESamplerNodeDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "PHASEMixer")]
         /// Create a sampler node definition
@@ -437,13 +425,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEBlendNodeDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "PHASEMetaParameter")]
         /// Create a blend node definition
@@ -628,13 +612,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASESwitchNodeDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "PHASEMetaParameter")]
         /// Create a switch node definition
@@ -764,9 +744,8 @@ impl PHASERandomNodeDefinition {
 #[cfg(feature = "PHASEDefinition")]
 impl PHASERandomNodeDefinition {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -789,13 +768,9 @@ extern_conformance!(
 
 impl PHASEStreamNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "PHASEMetaParameter")]
         /// If specified during construction, the metaparameter for controlling gain will be available here
@@ -850,13 +825,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEPushStreamNodeDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(all(feature = "PHASEMixer", feature = "objc2-avf-audio"))]
         /// Create a push stream node definition
@@ -935,13 +906,9 @@ extern_conformance!(
 
 impl PHASEPushStreamNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "PHASEMetaParameter")]
         /// If specified during construction, the metaparameter for controlling gain will be available here
@@ -1115,13 +1082,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEPullStreamNodeDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(all(feature = "PHASEMixer", feature = "objc2-avf-audio"))]
         /// Create a pull stream node definition
@@ -1200,13 +1163,9 @@ extern_conformance!(
 
 impl PHASEPullStreamNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(all(
             feature = "block2",

@@ -89,10 +89,6 @@ impl UIReferenceLibraryViewController {
             nib_name_or_nil: Option<&NSString>,
             nib_bundle_or_nil: Option<&NSBundle>,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -100,8 +96,7 @@ impl UIReferenceLibraryViewController {
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 impl UIReferenceLibraryViewController {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

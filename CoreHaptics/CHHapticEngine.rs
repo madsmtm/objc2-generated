@@ -301,9 +301,7 @@ impl CHHapticEngine {
         #[unsafe(method_family = none)]
         pub unsafe fn setAutoShutdownEnabled(&self, auto_shutdown_enabled: bool);
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         /// Create an instance of the CHHapticEngine.
         ///
@@ -462,8 +460,7 @@ impl CHHapticEngine {
 /// Methods declared on superclass `NSObject`.
 impl CHHapticEngine {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

@@ -67,9 +67,7 @@ impl VNTrackObjectRequest {
             completion_handler: VNRequestCompletionHandler,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// # Safety
@@ -88,9 +86,8 @@ impl VNTrackObjectRequest {
 #[cfg(all(feature = "VNRequest", feature = "VNTrackingRequest"))]
 impl VNTrackObjectRequest {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

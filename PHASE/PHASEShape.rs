@@ -28,13 +28,9 @@ extern_conformance!(
 
 impl PHASEShapeElement {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "PHASEMaterial")]
         /// The shape's material defines the acoustical properties of this element.
@@ -77,13 +73,9 @@ extern_conformance!(
 
 impl PHASEShape {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(all(feature = "PHASEEngine", feature = "objc2-model-io"))]
         /// Initialize a shape from a mesh.

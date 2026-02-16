@@ -22,9 +22,7 @@ extern_conformance!(
 
 impl BEAccessibilityRemoteHostElement {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "libc")]
         /// Initializes a remote element in the hosting process.
@@ -63,9 +61,8 @@ impl BEAccessibilityRemoteHostElement {
 /// Methods declared on superclass `NSObject`.
 impl BEAccessibilityRemoteHostElement {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -84,9 +81,7 @@ extern_conformance!(
 
 impl BEAccessibilityRemoteElement {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "libc")]
         /// Initializes and registers a remote element. This element doesn't need to be returned anywhere.
@@ -107,8 +102,7 @@ impl BEAccessibilityRemoteElement {
 /// Methods declared on superclass `NSObject`.
 impl BEAccessibilityRemoteElement {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

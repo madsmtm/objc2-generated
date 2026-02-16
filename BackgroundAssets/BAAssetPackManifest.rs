@@ -33,9 +33,7 @@ impl BAAssetPackManifest {
         #[unsafe(method_family = none)]
         pub unsafe fn assetPacks(&self) -> Retained<NSSet<BAAssetPack>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Initializes a representation of a manifest in memory given a URL to the manifest’s representation as a JSON file on disk.
         /// - Parameters:
@@ -63,9 +61,7 @@ impl BAAssetPackManifest {
             application_group_identifier: &NSString,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "BADownload")]
         /// Creates download objects for every asset pack in this manifest.

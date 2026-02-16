@@ -183,9 +183,7 @@ impl HKDevice {
             udi_device_identifier: Option<&NSString>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Returns a device representing the host.
         ///
@@ -201,8 +199,7 @@ impl HKDevice {
 /// Methods declared on superclass `NSObject`.
 impl HKDevice {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

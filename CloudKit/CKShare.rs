@@ -227,14 +227,9 @@ impl CKShare {
             participant_id: &NSString,
         ) -> Option<Retained<NSURL>>;
 
-        /// These superclass-provided initializers are not allowed for CKShare
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[unsafe(method(initWithRecordType:))]
         #[unsafe(method_family = init)]

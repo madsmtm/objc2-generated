@@ -88,13 +88,9 @@ impl PTChannelManager {
             completion_handler: &block2::DynBlock<dyn Fn(*mut PTChannelManager, *mut NSError)>,
         );
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Only one channel can be active at a time -- this is the channel that will handle user events
         /// This being nonnull reflects whether the user can see this channel is active in the user interface

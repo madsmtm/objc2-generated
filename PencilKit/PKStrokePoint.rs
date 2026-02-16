@@ -37,9 +37,7 @@ extern_conformance!(
 
 impl PKStrokePoint {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-core-foundation")]
         /// Create a new point with the provided properties.
@@ -206,8 +204,7 @@ impl PKStrokePoint {
 /// Methods declared on superclass `NSObject`.
 impl PKStrokePoint {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

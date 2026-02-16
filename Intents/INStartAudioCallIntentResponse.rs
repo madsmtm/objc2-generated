@@ -86,10 +86,7 @@ extern_conformance!(
 #[cfg(feature = "INIntentResponse")]
 impl INStartAudioCallIntentResponse {
     extern_methods!(
-        #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[deprecated = "INStartAudioCallIntent is deprecated. Please adopt INStartCallIntent instead"]
         #[unsafe(method(initWithCode:userActivity:))]
@@ -111,8 +108,7 @@ impl INStartAudioCallIntentResponse {
 #[cfg(feature = "INIntentResponse")]
 impl INStartAudioCallIntentResponse {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

@@ -51,9 +51,7 @@ extern_conformance!(
 #[cfg(feature = "HMEvent")]
 impl HMPresenceEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "HMPresenceEventDefines")]
         /// Creates a presence based event.
@@ -104,10 +102,8 @@ impl HMPresenceEvent {
 #[cfg(feature = "HMEvent")]
 impl HMPresenceEvent {
     extern_methods!(
-        #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -155,9 +151,7 @@ extern_conformance!(
 #[cfg(feature = "HMEvent")]
 impl HMMutablePresenceEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "HMPresenceEventDefines")]
         /// presenceEventType The event type that will trigger the event.
@@ -234,9 +228,7 @@ impl HMMutablePresenceEvent {
 #[cfg(feature = "HMEvent")]
 impl HMMutablePresenceEvent {
     extern_methods!(
-        #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

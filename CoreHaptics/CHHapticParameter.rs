@@ -280,9 +280,7 @@ impl CHHapticEventParameter {
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: c_float);
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         #[unsafe(method(initWithParameterID:value:))]
         #[unsafe(method_family = init)]
@@ -297,9 +295,8 @@ impl CHHapticEventParameter {
 /// Methods declared on superclass `NSObject`.
 impl CHHapticEventParameter {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -346,9 +343,7 @@ impl CHHapticDynamicParameter {
         #[unsafe(method_family = none)]
         pub unsafe fn setRelativeTime(&self, relative_time: NSTimeInterval);
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         /// Initialize a CHHapticDynamicParameter with a parameter ID, value, and relative time.
         ///
@@ -371,9 +366,8 @@ impl CHHapticDynamicParameter {
 /// Methods declared on superclass `NSObject`.
 impl CHHapticDynamicParameter {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -413,9 +407,7 @@ impl CHHapticParameterCurveControlPoint {
         #[unsafe(method_family = none)]
         pub unsafe fn setValue(&self, value: c_float);
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         /// Initialize a CHHapticParameterCurveControlPoint with a relative time and value.
         ///
@@ -435,9 +427,8 @@ impl CHHapticParameterCurveControlPoint {
 /// Methods declared on superclass `NSObject`.
 impl CHHapticParameterCurveControlPoint {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -479,9 +470,7 @@ impl CHHapticParameterCurve {
         pub unsafe fn controlPoints(&self)
             -> Retained<NSArray<CHHapticParameterCurveControlPoint>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         /// Initialize a CHHapticParameterCurve with a parameter ID, time, and an array of CHHapticParameterCurveControlPoint.
         ///
@@ -505,8 +494,7 @@ impl CHHapticParameterCurve {
 /// Methods declared on superclass `NSObject`.
 impl CHHapticParameterCurve {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

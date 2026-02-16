@@ -55,13 +55,9 @@ impl CPActionSheetTemplate {
             actions: &NSArray<CPAlertAction>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]

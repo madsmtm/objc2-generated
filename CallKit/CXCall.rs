@@ -39,9 +39,7 @@ impl CXCall {
         #[unsafe(method_family = none)]
         pub unsafe fn hasEnded(&self) -> bool;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(isEqualToCall:))]
         #[unsafe(method_family = none)]
@@ -52,8 +50,7 @@ impl CXCall {
 /// Methods declared on superclass `NSObject`.
 impl CXCall {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

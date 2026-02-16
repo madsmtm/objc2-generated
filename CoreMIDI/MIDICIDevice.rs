@@ -84,10 +84,6 @@ impl MIDICIDevice {
         #[unsafe(method(profiles))]
         #[unsafe(method_family = none)]
         pub unsafe fn profiles(&self) -> Retained<NSArray<MIDIUMPCIProfile>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -95,8 +91,7 @@ impl MIDICIDevice {
 #[cfg(feature = "objc2")]
 impl MIDICIDevice {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

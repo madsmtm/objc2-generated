@@ -255,14 +255,6 @@ impl PHPickerFilter {
         #[unsafe(method(notFilterOfSubfilter:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notFilterOfSubfilter(subfilter: &PHPickerFilter) -> Retained<PHPickerFilter>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -526,14 +518,6 @@ impl PHPickerResult {
         #[unsafe(method(assetIdentifier))]
         #[unsafe(method_family = none)]
         pub unsafe fn assetIdentifier(&self) -> Option<Retained<NSString>>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -679,13 +663,9 @@ impl PHPickerViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn zoomOut(&self);
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]

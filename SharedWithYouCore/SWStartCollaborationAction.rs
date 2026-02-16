@@ -56,13 +56,5 @@ impl SWStartCollaborationAction {
             url: &NSURL,
             collaboration_identifier: &SWCollaborationIdentifier,
         );
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }

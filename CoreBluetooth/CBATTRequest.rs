@@ -22,9 +22,7 @@ extern_conformance!(
 
 impl CBATTRequest {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "CBCentral", feature = "CBPeer"))]
         /// The central that originated the request.
@@ -76,8 +74,7 @@ impl CBATTRequest {
 /// Methods declared on superclass `NSObject`.
 impl CBATTRequest {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

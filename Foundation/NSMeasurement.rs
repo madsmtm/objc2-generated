@@ -68,9 +68,7 @@ impl<UnitType: Message + AsRef<NSUnit>> NSMeasurement<UnitType> {
         #[unsafe(method_family = none)]
         pub fn doubleValue(&self) -> c_double;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(initWithDoubleValue:unit:))]
         #[unsafe(method_family = init)]
@@ -108,8 +106,7 @@ impl<UnitType: Message + AsRef<NSUnit>> NSMeasurement<UnitType> {
 #[cfg(feature = "NSUnit")]
 impl<UnitType: Message + AsRef<NSUnit>> NSMeasurement<UnitType> {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

@@ -39,13 +39,9 @@ extern_conformance!(
 
 impl CPNowPlayingButton {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// Initialize a now playing button with a handler. The handler will be called when the user
@@ -123,13 +119,9 @@ impl CPNowPlayingShuffleButton {
 /// Methods declared on superclass `CPNowPlayingButton`.
 impl CPNowPlayingShuffleButton {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// Initialize a now playing button with a handler. The handler will be called when the user
@@ -177,13 +169,9 @@ impl CPNowPlayingAddToLibraryButton {
 /// Methods declared on superclass `CPNowPlayingButton`.
 impl CPNowPlayingAddToLibraryButton {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// Initialize a now playing button with a handler. The handler will be called when the user
@@ -233,13 +221,9 @@ impl CPNowPlayingMoreButton {
 /// Methods declared on superclass `CPNowPlayingButton`.
 impl CPNowPlayingMoreButton {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// Initialize a now playing button with a handler. The handler will be called when the user
@@ -287,13 +271,9 @@ impl CPNowPlayingPlaybackRateButton {
 /// Methods declared on superclass `CPNowPlayingButton`.
 impl CPNowPlayingPlaybackRateButton {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// Initialize a now playing button with a handler. The handler will be called when the user
@@ -341,13 +321,9 @@ impl CPNowPlayingRepeatButton {
 /// Methods declared on superclass `CPNowPlayingButton`.
 impl CPNowPlayingRepeatButton {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// Initialize a now playing button with a handler. The handler will be called when the user
@@ -422,13 +398,9 @@ impl CPNowPlayingImageButton {
 /// Methods declared on superclass `CPNowPlayingButton`.
 impl CPNowPlayingImageButton {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         /// Initialize a now playing button with a handler. The handler will be called when the user

@@ -31,13 +31,9 @@ extern_conformance!(
 
 impl AVCaptureOutput {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVCaptureSession")]
         /// The connections that describe the flow of media data to the receiver from AVCaptureInputs.

@@ -31,15 +31,9 @@ extern_conformance!(
 
 impl LAEnvironmentState {
     extern_methods!(
-        /// Clients shall not create environment state.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        /// Clients shall not create environment state.
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(all(
             feature = "LAEnvironmentMechanism",

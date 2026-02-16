@@ -29,9 +29,7 @@ extern_conformance!(
 
 impl PKToolPickerItem {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// A string that identifies the item in the picker.
         /// For example, com.example.myapp.toolpicker.pencil.
@@ -51,8 +49,7 @@ impl PKToolPickerItem {
 /// Methods declared on superclass `NSObject`.
 impl PKToolPickerItem {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

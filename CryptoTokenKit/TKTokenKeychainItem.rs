@@ -37,9 +37,7 @@ impl TKTokenKeychainItem {
             object_id: &TKTokenObjectID,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "TKToken")]
         /// object ID for item identification
@@ -87,9 +85,8 @@ impl TKTokenKeychainItem {
 /// Methods declared on superclass `NSObject`.
 impl TKTokenKeychainItem {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -144,18 +141,16 @@ impl TKTokenKeychainCertificate {
 /// Methods declared on superclass `TKTokenKeychainItem`.
 impl TKTokenKeychainCertificate {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl TKTokenKeychainCertificate {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -302,18 +297,16 @@ impl TKTokenKeychainKey {
 /// Methods declared on superclass `TKTokenKeychainItem`.
 impl TKTokenKeychainKey {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl TKTokenKeychainKey {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -369,18 +362,13 @@ impl TKTokenKeychainContents {
             &self,
             object_id: &TKTokenObjectID,
         ) -> Result<Retained<TKTokenKeychainCertificate>, Retained<NSError>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl TKTokenKeychainContents {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

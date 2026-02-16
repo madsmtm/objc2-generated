@@ -69,15 +69,6 @@ impl ARSkeleton {
         #[unsafe(method(isJointTracked:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isJointTracked(&self, joint_index: NSInteger) -> bool;
-
-        /// Unavailable
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -106,14 +97,10 @@ extern_conformance!(
 #[cfg(feature = "objc2")]
 impl ARSkeleton3D {
     extern_methods!(
-        /// Unavailable
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -142,14 +129,10 @@ extern_conformance!(
 #[cfg(feature = "objc2")]
 impl ARSkeleton2D {
     extern_methods!(
-        /// Unavailable
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

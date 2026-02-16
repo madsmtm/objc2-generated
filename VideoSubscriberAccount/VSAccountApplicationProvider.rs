@@ -21,15 +21,9 @@ extern_conformance!(
 
 impl VSAccountApplicationProvider {
     extern_methods!(
-        /// Unavailable for this class.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        /// Unavailable for this class.
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Returns an application provider using a given display name and identifier.
         /// Both the localizedDisplayName and identifier parameters must be non-empty strings.

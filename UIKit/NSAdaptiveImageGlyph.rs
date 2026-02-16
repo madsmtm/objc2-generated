@@ -55,9 +55,7 @@ impl NSAdaptiveImageGlyph {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCoder(this: Allocated<Self>, coder: &NSCoder) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(imageContent))]
         #[unsafe(method_family = none)]
@@ -81,9 +79,8 @@ impl NSAdaptiveImageGlyph {
 /// Methods declared on superclass `NSObject`.
 impl NSAdaptiveImageGlyph {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

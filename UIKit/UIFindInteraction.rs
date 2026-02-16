@@ -175,13 +175,5 @@ impl UIFindInteraction {
         #[unsafe(method(updateResultCount))]
         #[unsafe(method_family = none)]
         pub fn updateResultCount(&self);
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }

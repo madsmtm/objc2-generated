@@ -33,13 +33,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEMixerDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Linear gain scalar.
         ///
@@ -96,13 +92,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASESpatialMixerDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "PHASESpatialPipeline")]
         /// Create a new PHASESpatialMixerDefinition
@@ -221,13 +213,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEAmbientMixerDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "objc2-avf-audio")]
         /// A readonly value of the input channel layout this mixer was initialized with.
@@ -263,13 +251,9 @@ extern_conformance!(
 #[cfg(feature = "PHASEDefinition")]
 impl PHASEChannelMixerDefinition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "objc2-avf-audio")]
         /// Create a new PHASEChannelMixerDefinition
@@ -331,13 +315,9 @@ extern_conformance!(
 
 impl PHASEMixer {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// The identifier that uniquely represents this mixer.
         #[unsafe(method(identifier))]

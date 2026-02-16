@@ -407,10 +407,7 @@ impl MPSAccelerationStructure {
         #[unsafe(method_family = none)]
         pub unsafe fn setUsage(&self, usage: MPSAccelerationStructureUsage);
 
-        #[deprecated]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Initialize the acceleration structure with a Metal device
         #[deprecated]
@@ -644,8 +641,7 @@ impl MPSAccelerationStructure {
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel"))]
 impl MPSAccelerationStructure {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

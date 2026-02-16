@@ -37,10 +37,7 @@ impl MPSAccelerationStructureGroup {
         #[unsafe(method_family = none)]
         pub unsafe fn device(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
-        #[deprecated]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[deprecated]
         #[unsafe(method(initWithDevice:))]
@@ -55,8 +52,7 @@ impl MPSAccelerationStructureGroup {
 /// Methods declared on superclass `NSObject`.
 impl MPSAccelerationStructureGroup {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

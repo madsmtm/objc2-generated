@@ -20,13 +20,9 @@ extern_conformance!(
 
 impl MPMusicPlayerControllerQueue {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "MPMediaEntity", feature = "MPMediaItem"))]
         #[unsafe(method(items))]
@@ -71,13 +67,10 @@ impl MPMusicPlayerControllerMutableQueue {
 /// Methods declared on superclass `MPMusicPlayerControllerQueue`.
 impl MPMusicPlayerControllerMutableQueue {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -121,13 +114,10 @@ impl MPMusicPlayerApplicationController {
 #[cfg(feature = "MPMusicPlayerController")]
 impl MPMusicPlayerApplicationController {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 

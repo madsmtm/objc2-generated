@@ -147,10 +147,7 @@ impl MPSNNNeuronDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn setData(&self, data: Option<&NSData>);
 
-        /// You must use one of the interfaces below instead.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "MPSCNNNeuronType")]
         /// Make a descriptor for a MPSCNNNeuron object.
@@ -246,9 +243,8 @@ impl MPSNNNeuronDescriptor {
 /// Methods declared on superclass `NSObject`.
 impl MPSNNNeuronDescriptor {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

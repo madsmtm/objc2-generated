@@ -153,13 +153,9 @@ impl VTMotionBlurConfiguration {
             revision: VTMotionBlurConfigurationRevision,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Width of source frame in pixels.
         ///
@@ -349,13 +345,9 @@ impl VTMotionBlurParameters {
             destination_frame: &VTFrameProcessorFrame,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "VTFrameProcessorFrame")]
         /// Current source frame, which must be non `nil`.

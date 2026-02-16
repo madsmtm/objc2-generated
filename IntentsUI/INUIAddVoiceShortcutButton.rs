@@ -159,9 +159,7 @@ impl INUIAddVoiceShortcutButton {
             style: INUIAddVoiceShortcutButtonStyle,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-core-foundation")]
         #[unsafe(method(initWithFrame:))]
@@ -367,8 +365,7 @@ impl INUIAddVoiceShortcutButton {
 #[cfg(target_os = "macos")]
 impl INUIAddVoiceShortcutButton {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

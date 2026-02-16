@@ -47,9 +47,7 @@ impl NSDraggingImageComponent {
             key: &NSDraggingImageComponentKey,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(key))]
         #[unsafe(method_family = none)]
@@ -89,9 +87,8 @@ impl NSDraggingImageComponent {
 /// Methods declared on superclass `NSObject`.
 impl NSDraggingImageComponent {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -116,9 +113,7 @@ impl NSDraggingItem {
             pasteboard_writer: &ProtocolObject<dyn NSPasteboardWriting>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(item))]
         #[unsafe(method_family = none)]
@@ -173,8 +168,7 @@ impl NSDraggingItem {
 /// Methods declared on superclass `NSObject`.
 impl NSDraggingItem {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

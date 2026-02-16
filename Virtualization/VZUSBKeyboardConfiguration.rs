@@ -46,8 +46,7 @@ impl VZUSBKeyboardConfiguration {
 #[cfg(feature = "VZKeyboardConfiguration")]
 impl VZUSBKeyboardConfiguration {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

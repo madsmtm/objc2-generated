@@ -106,19 +106,5 @@ impl LAPublicKey {
         #[unsafe(method(canVerifyUsingSecKeyAlgorithm:))]
         #[unsafe(method_family = none)]
         pub unsafe fn canVerifyUsingSecKeyAlgorithm(&self, algorithm: &SecKeyAlgorithm) -> bool;
-
-        /// Clients cannot create
-        /// `LAPublicKey`instances directly. They can only obtain them from a related
-        /// `LAPrivateKey`instance
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
-
-        /// Clients cannot create
-        /// `LAPublicKey`instances directly. They can only obtain them from a related
-        /// `LAPrivateKey`instance
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }

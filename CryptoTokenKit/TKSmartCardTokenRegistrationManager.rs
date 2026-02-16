@@ -40,9 +40,7 @@ impl TKSmartCardTokenRegistrationManager {
         #[unsafe(method_family = none)]
         pub unsafe fn registeredSmartCardTokens(&self) -> Retained<NSArray<NSString>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Registers a smartcard with a specific token ID.
         ///
@@ -81,8 +79,7 @@ impl TKSmartCardTokenRegistrationManager {
 /// Methods declared on superclass `NSObject`.
 impl TKSmartCardTokenRegistrationManager {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

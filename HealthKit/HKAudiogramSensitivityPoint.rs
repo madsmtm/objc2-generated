@@ -104,18 +104,13 @@ impl HKAudiogramSensitivityPoint {
             frequency: &HKQuantity,
             tests: &NSArray<HKAudiogramSensitivityTest>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl HKAudiogramSensitivityPoint {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

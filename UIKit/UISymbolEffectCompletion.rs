@@ -59,13 +59,5 @@ impl UISymbolEffectCompletionContext {
         #[unsafe(method(contentTransition))]
         #[unsafe(method_family = none)]
         pub fn contentTransition(&self) -> Option<Retained<NSSymbolContentTransition>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

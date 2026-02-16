@@ -52,13 +52,9 @@ extern_conformance!(
 
 impl AVMetricEventStream {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Returns an autoreleased instance.
         #[unsafe(method(eventStream))]
@@ -148,13 +144,9 @@ extern_conformance!(
 
 impl AVMetricEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Returns the date when the event occurred.
         #[unsafe(method(date))]
@@ -203,13 +195,9 @@ extern_conformance!(
 
 impl AVMetricErrorEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Returns whether the error was recoverable.
         #[unsafe(method(didRecover))]
@@ -252,13 +240,9 @@ extern_conformance!(
 
 impl AVMetricMediaResourceRequestEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Returns the URL of the resource request. If no value is available, returns nil.
         #[unsafe(method(url))]
@@ -342,13 +326,9 @@ extern_conformance!(
 
 impl AVMetricHLSPlaylistRequestEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Returns the URL of the playlist. If no value is available, returns nil.
         #[unsafe(method(url))]
@@ -404,13 +384,9 @@ extern_conformance!(
 
 impl AVMetricHLSMediaSegmentRequestEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Returns the URL of the media segment. If no value is available, returns nil.
         #[unsafe(method(url))]
@@ -481,13 +457,9 @@ extern_conformance!(
 
 impl AVMetricContentKeyRequestEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVContentKeySession")]
         /// Returns the content key specifier for the request.
@@ -544,13 +516,9 @@ extern_conformance!(
 
 impl AVMetricPlayerItemLikelyToKeepUpEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVAssetVariant")]
         /// Returns the variant selected at the time likely to keep up is achieved. If no value is present, returns nil.
@@ -601,13 +569,9 @@ extern_conformance!(
 
 impl AVMetricPlayerItemInitialLikelyToKeepUpEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Returns the playlist request events required to reach likely to keep up.
         #[unsafe(method(playlistRequestEvents))]
@@ -661,13 +625,9 @@ extern_conformance!(
 
 impl AVMetricPlayerItemRateChangeEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Returns the playback rate after the rate change event.
         #[unsafe(method(rate))]
@@ -716,13 +676,10 @@ extern_conformance!(
 
 impl AVMetricPlayerItemStallEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -755,13 +712,10 @@ extern_conformance!(
 
 impl AVMetricPlayerItemSeekEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -794,13 +748,9 @@ extern_conformance!(
 
 impl AVMetricPlayerItemSeekDidCompleteEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Returns whether the seek was performed within the available buffer.
         #[unsafe(method(didSeekInBuffer))]
@@ -834,13 +784,9 @@ extern_conformance!(
 
 impl AVMetricMediaRendition {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Provides ID corresponding to the rendition. This is equivalent to the
         /// STABLE-RENDITION-ID in the HLS playlist. If not available, value is nil.
@@ -885,13 +831,9 @@ extern_conformance!(
 
 impl AVMetricPlayerItemVariantSwitchEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVAssetVariant")]
         /// Returns the variant before the switch. If no value is available, returns nil
@@ -969,13 +911,9 @@ extern_conformance!(
 
 impl AVMetricPlayerItemVariantSwitchStartEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVAssetVariant")]
         /// Returns the variant from which the switch is attempted. If no value is available, returns nil
@@ -1042,13 +980,9 @@ extern_conformance!(
 
 impl AVMetricPlayerItemPlaybackSummaryEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Returns the error event if any. If no value is available, returns nil.
         #[unsafe(method(errorEvent))]
@@ -1131,13 +1065,9 @@ extern_conformance!(
 
 impl AVMetricDownloadSummaryEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Returns the error event if any. If no value is available, returns nil.
         #[unsafe(method(errorEvent))]

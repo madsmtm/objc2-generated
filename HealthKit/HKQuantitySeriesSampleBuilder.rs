@@ -63,9 +63,7 @@ impl HKQuantitySeriesSampleBuilder {
             device: Option<&HKDevice>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "HKObjectType")]
         #[unsafe(method(quantityType))]
@@ -240,8 +238,7 @@ impl HKQuantitySeriesSampleBuilder {
 /// Methods declared on superclass `NSObject`.
 impl HKQuantitySeriesSampleBuilder {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

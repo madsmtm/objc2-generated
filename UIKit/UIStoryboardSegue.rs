@@ -47,10 +47,7 @@ impl UIStoryboardSegue {
             destination: &UIViewController,
         ) -> Retained<Self>;
 
-        #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(identifier))]
@@ -81,9 +78,8 @@ impl UIStoryboardSegue {
 /// Methods declared on superclass `NSObject`.
 impl UIStoryboardSegue {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -104,9 +100,7 @@ extern_conformance!(
 
 impl UIStoryboardUnwindSegueSource {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
         #[unsafe(method(sourceViewController))]
@@ -126,8 +120,7 @@ impl UIStoryboardUnwindSegueSource {
 /// Methods declared on superclass `NSObject`.
 impl UIStoryboardUnwindSegueSource {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

@@ -90,13 +90,5 @@ impl CPTextButton {
         #[unsafe(method(setTextStyle:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTextStyle(&self, text_style: CPTextButtonStyle);
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }

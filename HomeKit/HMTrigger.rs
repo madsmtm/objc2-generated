@@ -30,9 +30,7 @@ extern_conformance!(
 
 impl HMTrigger {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Name of the trigger.
         ///
@@ -177,8 +175,7 @@ impl HMTrigger {
 /// Methods declared on superclass `NSObject`.
 impl HMTrigger {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

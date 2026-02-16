@@ -143,17 +143,5 @@ impl LARightStore {
             &self,
             handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
-
-        /// Clients should rely on the
-        /// `shared`instance instead
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
-
-        /// Clients should rely on the
-        /// `shared`instance instead
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }

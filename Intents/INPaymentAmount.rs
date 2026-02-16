@@ -35,9 +35,7 @@ extern_conformance!(
 
 impl INPaymentAmount {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "INAmountType", feature = "INCurrencyAmount"))]
         #[unsafe(method(initWithAmountType:amount:))]
@@ -63,8 +61,7 @@ impl INPaymentAmount {
 /// Methods declared on superclass `NSObject`.
 impl INPaymentAmount {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

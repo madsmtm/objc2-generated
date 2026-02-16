@@ -40,9 +40,7 @@ extern_conformance!(
 
 impl AVAudioChannelLayout {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-core-audio-types")]
         /// Initialize from a layout tag.
@@ -146,8 +144,7 @@ impl AVAudioChannelLayout {
 /// Methods declared on superclass `NSObject`.
 impl AVAudioChannelLayout {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

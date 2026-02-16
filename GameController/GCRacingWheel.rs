@@ -56,9 +56,7 @@ extern_conformance!(
 
 impl GCRacingWheel {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Get the collection of racing wheels currently attached to the system.
         ///
@@ -124,8 +122,7 @@ impl GCRacingWheel {
 /// Methods declared on superclass `NSObject`.
 impl GCRacingWheel {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

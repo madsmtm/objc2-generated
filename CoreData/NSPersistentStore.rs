@@ -54,9 +54,7 @@ impl NSPersistentStore {
             options: Option<&NSDictionary>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(loadMetadata:_))]
         #[unsafe(method_family = none)]
@@ -150,8 +148,7 @@ impl NSPersistentStore {
 /// Methods declared on superclass `NSObject`.
 impl NSPersistentStore {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

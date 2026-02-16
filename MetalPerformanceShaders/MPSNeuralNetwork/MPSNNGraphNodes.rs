@@ -168,9 +168,7 @@ impl MPSNNImageNode {
         #[unsafe(method_family = none)]
         pub unsafe fn exportedNodeWithHandle(handle: Option<&NSObject>) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// MPS resource identifier
         ///
@@ -279,9 +277,8 @@ impl MPSNNImageNode {
 /// Methods declared on superclass `NSObject`.
 impl MPSNNImageNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -306,9 +303,7 @@ extern_conformance!(
 
 impl MPSNNStateNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// MPS resource identification
         ///
@@ -364,9 +359,8 @@ impl MPSNNStateNode {
 /// Methods declared on superclass `NSObject`.
 impl MPSNNStateNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -400,18 +394,16 @@ impl MPSNNGradientStateNode {
 /// Methods declared on superclass `MPSNNStateNode`.
 impl MPSNNGradientStateNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNGradientStateNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -433,18 +425,16 @@ impl MPSCNNConvolutionGradientStateNode {
 /// Methods declared on superclass `MPSNNStateNode`.
 impl MPSCNNConvolutionGradientStateNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNConvolutionGradientStateNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -471,18 +461,16 @@ impl MPSCNNConvolutionTransposeGradientStateNode {
 /// Methods declared on superclass `MPSNNStateNode`.
 impl MPSCNNConvolutionTransposeGradientStateNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNConvolutionTransposeGradientStateNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -504,18 +492,16 @@ impl MPSNNBinaryGradientStateNode {
 /// Methods declared on superclass `MPSNNStateNode`.
 impl MPSNNBinaryGradientStateNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNBinaryGradientStateNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -537,18 +523,16 @@ impl MPSNNMultiaryGradientStateNode {
 /// Methods declared on superclass `MPSNNStateNode`.
 impl MPSNNMultiaryGradientStateNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNMultiaryGradientStateNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -570,18 +554,16 @@ impl MPSNNArithmeticGradientStateNode {
 /// Methods declared on superclass `MPSNNStateNode`.
 impl MPSNNArithmeticGradientStateNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNArithmeticGradientStateNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -641,9 +623,7 @@ extern_conformance!(
 
 impl MPSNNFilterNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Get the node representing the image result of the filter
         ///
@@ -836,9 +816,8 @@ impl MPSNNFilterNode {
 /// Methods declared on superclass `NSObject`.
 impl MPSNNFilterNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -901,18 +880,16 @@ impl MPSNNGradientFilterNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNGradientFilterNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNGradientFilterNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1018,18 +995,16 @@ impl MPSCNNConvolutionNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNConvolutionNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNConvolutionNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1092,18 +1067,16 @@ impl MPSCNNFullyConnectedNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNFullyConnectedNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNFullyConnectedNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1326,18 +1299,16 @@ impl MPSCNNBinaryConvolutionNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNBinaryConvolutionNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNBinaryConvolutionNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1558,18 +1529,16 @@ impl MPSCNNBinaryFullyConnectedNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNBinaryFullyConnectedNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNBinaryFullyConnectedNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1695,18 +1664,16 @@ impl MPSCNNConvolutionTransposeNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNConvolutionTransposeNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNConvolutionTransposeNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1783,18 +1750,16 @@ impl MPSCNNConvolutionGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNConvolutionGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNConvolutionGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1876,18 +1841,16 @@ impl MPSCNNFullyConnectedGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNFullyConnectedGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNFullyConnectedGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2025,18 +1988,16 @@ impl MPSCNNConvolutionTransposeGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNConvolutionTransposeGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNConvolutionTransposeGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2093,19 +2054,14 @@ impl MPSCNNNeuronNode {
         #[unsafe(method(c))]
         #[unsafe(method_family = none)]
         pub unsafe fn c(&self) -> c_float;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2160,19 +2116,14 @@ impl MPSCNNNeuronAbsoluteNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronAbsoluteNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2240,19 +2191,14 @@ impl MPSCNNNeuronELUNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronELUNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2324,19 +2270,14 @@ impl MPSCNNNeuronReLUNNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronReLUNNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2417,19 +2358,14 @@ impl MPSCNNNeuronLinearNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronLinearNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2500,19 +2436,14 @@ impl MPSCNNNeuronReLUNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronReLUNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2567,19 +2498,14 @@ impl MPSCNNNeuronSigmoidNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronSigmoidNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2660,19 +2586,14 @@ impl MPSCNNNeuronHardSigmoidNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronHardSigmoidNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2753,19 +2674,14 @@ impl MPSCNNNeuronSoftPlusNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronSoftPlusNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2820,19 +2736,14 @@ impl MPSCNNNeuronSoftSignNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronSoftSignNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2920,19 +2831,14 @@ impl MPSCNNNeuronTanHNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronTanHNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3014,19 +2920,14 @@ impl MPSCNNNeuronPReLUNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronPReLUNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3114,19 +3015,14 @@ impl MPSCNNNeuronPowerNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronPowerNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3214,19 +3110,14 @@ impl MPSCNNNeuronExponentialNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronExponentialNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3314,19 +3205,14 @@ impl MPSCNNNeuronLogarithmNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronLogarithmNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3379,19 +3265,14 @@ impl MPSCNNNeuronGeLUNode {
             source_node: &MPSNNImageNode,
             descriptor: &MPSNNNeuronDescriptor,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronGeLUNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3447,19 +3328,14 @@ impl MPSCNNNeuronGradientNode {
         #[unsafe(method(descriptor))]
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor(&self) -> Retained<MPSNNNeuronDescriptor>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNeuronGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3518,18 +3394,16 @@ impl MPSNNUnaryReductionNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNUnaryReductionNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNUnaryReductionNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3577,18 +3451,16 @@ impl MPSNNReductionRowMinNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionRowMinNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionRowMinNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3636,18 +3508,16 @@ impl MPSNNReductionColumnMinNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionColumnMinNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionColumnMinNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3695,18 +3565,16 @@ impl MPSNNReductionFeatureChannelsMinNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionFeatureChannelsMinNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionFeatureChannelsMinNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3754,18 +3622,16 @@ impl MPSNNReductionFeatureChannelsArgumentMinNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionFeatureChannelsArgumentMinNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionFeatureChannelsArgumentMinNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3813,18 +3679,16 @@ impl MPSNNReductionRowMaxNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionRowMaxNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionRowMaxNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3872,18 +3736,16 @@ impl MPSNNReductionColumnMaxNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionColumnMaxNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionColumnMaxNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3931,18 +3793,16 @@ impl MPSNNReductionFeatureChannelsMaxNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionFeatureChannelsMaxNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionFeatureChannelsMaxNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3990,18 +3850,16 @@ impl MPSNNReductionFeatureChannelsArgumentMaxNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionFeatureChannelsArgumentMaxNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionFeatureChannelsArgumentMaxNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -4049,18 +3907,16 @@ impl MPSNNReductionRowMeanNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionRowMeanNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionRowMeanNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -4108,18 +3964,16 @@ impl MPSNNReductionColumnMeanNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionColumnMeanNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionColumnMeanNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -4167,18 +4021,16 @@ impl MPSNNReductionFeatureChannelsMeanNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionFeatureChannelsMeanNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionFeatureChannelsMeanNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -4226,18 +4078,16 @@ impl MPSNNReductionSpatialMeanNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionSpatialMeanNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionSpatialMeanNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -4285,18 +4135,16 @@ impl MPSNNReductionRowSumNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionRowSumNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionRowSumNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -4344,18 +4192,16 @@ impl MPSNNReductionColumnSumNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionColumnSumNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionColumnSumNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -4413,18 +4259,16 @@ impl MPSNNReductionFeatureChannelsSumNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionFeatureChannelsSumNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionFeatureChannelsSumNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -4556,18 +4400,16 @@ impl MPSCNNPoolingNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNPoolingNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNPoolingNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -4686,18 +4528,16 @@ impl MPSCNNPoolingAverageNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNPoolingAverageNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNPoolingAverageNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -4816,18 +4656,16 @@ impl MPSCNNPoolingL2NormNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNPoolingL2NormNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNPoolingL2NormNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -4946,18 +4784,16 @@ impl MPSCNNPoolingMaxNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNPoolingMaxNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNPoolingMaxNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -5091,18 +4927,16 @@ impl MPSCNNDilatedPoolingMaxNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNDilatedPoolingMaxNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNDilatedPoolingMaxNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -5203,18 +5037,16 @@ impl MPSCNNPoolingGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNPoolingGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNPoolingGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -5309,18 +5141,16 @@ impl MPSCNNPoolingMaxGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNPoolingMaxGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNPoolingMaxGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -5415,18 +5245,16 @@ impl MPSCNNPoolingAverageGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNPoolingAverageGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNPoolingAverageGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -5521,18 +5349,16 @@ impl MPSCNNPoolingL2NormGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNPoolingL2NormGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNPoolingL2NormGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -5698,18 +5524,16 @@ impl MPSCNNDilatedPoolingMaxGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNDilatedPoolingMaxGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNDilatedPoolingMaxGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -5774,18 +5598,16 @@ impl MPSCNNNormalizationNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNNormalizationNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNNormalizationNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -5872,18 +5694,16 @@ impl MPSCNNSpatialNormalizationNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNSpatialNormalizationNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNSpatialNormalizationNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -5972,18 +5792,16 @@ impl MPSCNNSpatialNormalizationGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNSpatialNormalizationGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNSpatialNormalizationGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -6101,18 +5919,16 @@ impl MPSCNNLocalContrastNormalizationNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNLocalContrastNormalizationNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNLocalContrastNormalizationNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -6229,18 +6045,16 @@ impl MPSCNNLocalContrastNormalizationGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNLocalContrastNormalizationGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNLocalContrastNormalizationGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -6325,18 +6139,16 @@ impl MPSCNNCrossChannelNormalizationNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNCrossChannelNormalizationNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNCrossChannelNormalizationNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -6381,18 +6193,16 @@ impl MPSCNNCrossChannelNormalizationGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNCrossChannelNormalizationGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNCrossChannelNormalizationGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -6447,18 +6257,16 @@ impl MPSCNNInstanceNormalizationNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNInstanceNormalizationNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNInstanceNormalizationNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -6501,18 +6309,16 @@ impl MPSCNNInstanceNormalizationGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNInstanceNormalizationGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNInstanceNormalizationGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -6567,18 +6373,16 @@ impl MPSCNNGroupNormalizationNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNGroupNormalizationNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNGroupNormalizationNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -6621,18 +6425,16 @@ impl MPSCNNGroupNormalizationGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNGroupNormalizationGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNGroupNormalizationGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -6724,18 +6526,16 @@ impl MPSCNNBatchNormalizationNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNBatchNormalizationNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNBatchNormalizationNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -6785,18 +6585,16 @@ impl MPSCNNBatchNormalizationGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNBatchNormalizationGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNBatchNormalizationGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -6892,18 +6690,16 @@ impl MPSNNScaleNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNScaleNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNScaleNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -6993,18 +6789,16 @@ impl MPSNNBilinearScaleNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNBilinearScaleNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNBilinearScaleNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -7095,18 +6889,16 @@ impl MPSNNLanczosScaleNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNLanczosScaleNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNLanczosScaleNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -7299,18 +7091,16 @@ impl MPSNNBinaryArithmeticNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNBinaryArithmeticNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNBinaryArithmeticNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -7381,18 +7171,16 @@ impl MPSNNAdditionNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNAdditionNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNAdditionNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -7463,18 +7251,16 @@ impl MPSNNSubtractionNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNSubtractionNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNSubtractionNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -7545,18 +7331,16 @@ impl MPSNNMultiplicationNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNMultiplicationNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNMultiplicationNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -7627,18 +7411,16 @@ impl MPSNNDivisionNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNDivisionNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNDivisionNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -7722,18 +7504,16 @@ impl MPSNNComparisonNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNComparisonNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNComparisonNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -7895,18 +7675,16 @@ impl MPSNNArithmeticGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNArithmeticGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNArithmeticGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -8003,18 +7781,16 @@ impl MPSNNAdditionGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNAdditionGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNAdditionGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -8111,18 +7887,16 @@ impl MPSNNSubtractionGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNSubtractionGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNSubtractionGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -8219,18 +7993,16 @@ impl MPSNNMultiplicationGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNMultiplicationGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNMultiplicationGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -8309,18 +8081,16 @@ impl MPSCNNDropoutNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNDropoutNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNDropoutNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -8385,18 +8155,16 @@ impl MPSCNNDropoutGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNDropoutGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNDropoutGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -8426,18 +8194,16 @@ impl MPSNNLabelsNode {
 /// Methods declared on superclass `MPSNNStateNode`.
 impl MPSNNLabelsNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNLabelsNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -8501,18 +8267,16 @@ impl MPSCNNLossNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNLossNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNLossNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -8576,18 +8340,16 @@ impl MPSCNNYOLOLossNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNYOLOLossNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNYOLOLossNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -8696,18 +8458,16 @@ impl MPSNNConcatenationNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNConcatenationNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNConcatenationNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -8771,18 +8531,16 @@ impl MPSNNConcatenationGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNConcatenationGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNConcatenationGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -8847,18 +8605,16 @@ impl MPSNNReshapeNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReshapeNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReshapeNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -8911,18 +8667,16 @@ impl MPSNNReshapeGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReshapeGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReshapeGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -8975,18 +8729,16 @@ impl MPSNNReductionSpatialMeanGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNReductionSpatialMeanGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNReductionSpatialMeanGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -9081,18 +8833,16 @@ impl MPSNNPadNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNPadNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNPadNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -9145,18 +8895,16 @@ impl MPSNNPadGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNPadGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNPadGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -9201,18 +8949,16 @@ impl MPSCNNSoftMaxNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNSoftMaxNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNSoftMaxNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -9253,18 +8999,16 @@ impl MPSCNNSoftMaxGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNSoftMaxGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNSoftMaxGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -9309,18 +9053,16 @@ impl MPSCNNLogSoftMaxNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNLogSoftMaxNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNLogSoftMaxNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -9361,18 +9103,16 @@ impl MPSCNNLogSoftMaxGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNLogSoftMaxGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNLogSoftMaxGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -9439,18 +9179,16 @@ impl MPSCNNUpsamplingNearestNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNUpsamplingNearestNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNUpsamplingNearestNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -9562,18 +9300,16 @@ impl MPSCNNUpsamplingBilinearNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNUpsamplingBilinearNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNUpsamplingBilinearNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -9656,18 +9392,16 @@ impl MPSCNNUpsamplingNearestGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNUpsamplingNearestGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNUpsamplingNearestGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -9750,18 +9484,16 @@ impl MPSCNNUpsamplingBilinearGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSCNNUpsamplingBilinearGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSCNNUpsamplingBilinearGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -9884,18 +9616,16 @@ impl MPSNNGramMatrixCalculationNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNGramMatrixCalculationNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNGramMatrixCalculationNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -9961,18 +9691,16 @@ impl MPSNNGramMatrixCalculationGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNGramMatrixCalculationGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNGramMatrixCalculationGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -10172,18 +9900,16 @@ impl MPSNNForwardLossNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNForwardLossNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNForwardLossNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -10355,18 +10081,16 @@ impl MPSNNLossGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNLossGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNLossGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -10426,17 +10150,15 @@ impl MPSNNInitialGradientNode {
 /// Methods declared on superclass `MPSNNFilterNode`.
 impl MPSNNInitialGradientNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNNInitialGradientNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

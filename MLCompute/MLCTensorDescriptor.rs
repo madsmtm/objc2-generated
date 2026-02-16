@@ -82,15 +82,9 @@ impl MLCTensorDescriptor {
         #[unsafe(method_family = none)]
         pub unsafe fn batchSizePerSequenceStep(&self) -> Option<Retained<NSArray<NSNumber>>>;
 
-        #[deprecated]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[deprecated]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// The maximum number of tensor dimensions supported
         #[deprecated]

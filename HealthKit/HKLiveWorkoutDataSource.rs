@@ -26,9 +26,7 @@ extern_conformance!(
 
 impl HKLiveWorkoutDataSource {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "HKObjectType")]
         /// The quantity types the receiver is collecting.
@@ -84,8 +82,7 @@ impl HKLiveWorkoutDataSource {
 /// Methods declared on superclass `NSObject`.
 impl HKLiveWorkoutDataSource {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

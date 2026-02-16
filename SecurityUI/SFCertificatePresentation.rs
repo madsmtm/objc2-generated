@@ -31,14 +31,9 @@ impl SFCertificatePresentation {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTrust(this: Allocated<Self>, trust: &SecTrust) -> Retained<Self>;
 
-        /// Clients should use designated initializers.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]

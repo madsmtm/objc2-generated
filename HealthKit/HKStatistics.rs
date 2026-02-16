@@ -105,9 +105,7 @@ impl HKStatistics {
         #[unsafe(method_family = none)]
         pub unsafe fn sources(&self) -> Option<Retained<NSArray<HKSource>>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "HKQuantity", feature = "HKSource"))]
         /// Returns the average quantity for the given source in the time period represented by the receiver.
@@ -237,8 +235,7 @@ impl HKStatistics {
 /// Methods declared on superclass `NSObject`.
 impl HKStatistics {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

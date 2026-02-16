@@ -112,15 +112,6 @@ impl ARGeometrySource {
         #[unsafe(method(stride))]
         #[unsafe(method_family = none)]
         pub unsafe fn stride(&self) -> NSInteger;
-
-        /// Unavailable
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -246,15 +237,6 @@ impl ARGeometryElement {
         #[unsafe(method(primitiveType))]
         #[unsafe(method_family = none)]
         pub unsafe fn primitiveType(&self) -> ARGeometryPrimitiveType;
-
-        /// Unavailable
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -374,14 +356,5 @@ impl ARMeshGeometry {
         #[unsafe(method(classification))]
         #[unsafe(method_family = none)]
         pub unsafe fn classification(&self) -> Option<Retained<ARGeometrySource>>;
-
-        /// Unavailable
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }

@@ -70,9 +70,8 @@ impl WKInterfaceVolumeControl {
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceVolumeControl {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -80,8 +79,7 @@ impl WKInterfaceVolumeControl {
 #[cfg(feature = "WKInterfaceObject")]
 impl WKInterfaceVolumeControl {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

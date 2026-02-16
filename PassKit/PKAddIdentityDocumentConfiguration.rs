@@ -42,13 +42,9 @@ extern_conformance!(
 
 impl PKIdentityDocumentMetadata {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// credentialIdentifier: A unique identifier for provisioning credential data.
         #[unsafe(method(credentialIdentifier))]
@@ -144,13 +140,10 @@ impl PKAddIdentityDocumentMetadata {
 /// Methods declared on superclass `PKIdentityDocumentMetadata`.
 impl PKAddIdentityDocumentMetadata {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -244,13 +237,10 @@ impl PKJapanIndividualNumberCardMetadata {
 /// Methods declared on superclass `PKIdentityDocumentMetadata`.
 impl PKJapanIndividualNumberCardMetadata {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -295,12 +285,9 @@ impl PKAddIdentityDocumentConfiguration {
 #[cfg(feature = "PKAddSecureElementPassConfiguration")]
 impl PKAddIdentityDocumentConfiguration {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

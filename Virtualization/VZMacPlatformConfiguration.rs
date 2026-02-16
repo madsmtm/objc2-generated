@@ -107,8 +107,7 @@ impl VZMacPlatformConfiguration {
 #[cfg(feature = "VZPlatformConfiguration")]
 impl VZMacPlatformConfiguration {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

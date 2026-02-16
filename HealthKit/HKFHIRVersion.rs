@@ -94,9 +94,7 @@ impl HKFHIRVersion {
         #[unsafe(method_family = none)]
         pub unsafe fn stringRepresentation(&self) -> Retained<NSString>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(versionFromVersionString:error:_))]
         #[unsafe(method_family = none)]
@@ -117,8 +115,7 @@ impl HKFHIRVersion {
 /// Methods declared on superclass `NSObject`.
 impl HKFHIRVersion {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

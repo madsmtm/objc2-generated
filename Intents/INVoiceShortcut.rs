@@ -52,21 +52,5 @@ impl INVoiceShortcut {
         #[unsafe(method(shortcut))]
         #[unsafe(method_family = none)]
         pub unsafe fn shortcut(&self) -> Retained<INShortcut>;
-
-        /// An
-        /// `INVoiceShortcut`cannot be created directly. Instead, create an
-        /// `INShortcut,`and add it using
-        /// `INUIAddVoiceShortcutViewController.`
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        /// An
-        /// `INVoiceShortcut`cannot be created directly. Instead, create an
-        /// `INShortcut,`and add it using
-        /// `INUIAddVoiceShortcutViewController.`
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }

@@ -98,9 +98,7 @@ impl MPSNNGradientState {
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         /// Initialize a non-temporary state to hold a number of textures and buffers
         ///
@@ -150,9 +148,8 @@ impl MPSNNGradientState {
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSNNGradientState {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -251,9 +248,7 @@ impl MPSNNBinaryGradientState {
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         /// Initialize a non-temporary state to hold a number of textures and buffers
         ///
@@ -303,9 +298,8 @@ impl MPSNNBinaryGradientState {
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSNNBinaryGradientState {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -399,9 +393,7 @@ impl MPSNNMultiaryGradientState {
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         /// Initialize a non-temporary state to hold a number of textures and buffers
         ///
@@ -451,9 +443,8 @@ impl MPSNNMultiaryGradientState {
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSNNMultiaryGradientState {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

@@ -28,17 +28,9 @@ impl INVoiceShortcutCenter {
         #[unsafe(method_family = none)]
         pub unsafe fn sharedCenter() -> Retained<INVoiceShortcutCenter>;
 
-        /// Note: Use the
-        /// `sharedCenter`singleton.
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        /// Note: Use the
-        /// `sharedCenter`singleton.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "INVoiceShortcut", feature = "block2"))]
         /// Get all of the shortcuts associated with this app that have been added to Siri.

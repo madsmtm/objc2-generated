@@ -40,9 +40,7 @@ impl NSPersistentCloudKitContainerOptions {
         #[unsafe(method_family = none)]
         pub unsafe fn setDatabaseScope(&self, database_scope: CKDatabaseScope);
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(initWithContainerIdentifier:))]
         #[unsafe(method_family = init)]
@@ -56,8 +54,7 @@ impl NSPersistentCloudKitContainerOptions {
 /// Methods declared on superclass `NSObject`.
 impl NSPersistentCloudKitContainerOptions {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

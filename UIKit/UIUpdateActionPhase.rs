@@ -40,13 +40,9 @@ extern_conformance!(
 
 impl UIUpdateActionPhase {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Phase that runs after UI update was scheduled and its timing information is know. This is a good place for things
         /// that only rely on UI update timing and don't need user input events. Running at this stage allows to utilize time

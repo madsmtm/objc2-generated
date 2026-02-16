@@ -32,13 +32,9 @@ extern_conformance!(
 
 impl BELayerHierarchyHandle {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "libc")]
         /// Decodes a handle form a `mach_port_t` send right and its accompanying metadata.

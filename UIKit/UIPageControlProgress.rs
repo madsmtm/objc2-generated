@@ -221,13 +221,5 @@ impl UIPageControlTimerProgress {
         #[unsafe(method(durationForPage:))]
         #[unsafe(method_family = none)]
         pub fn durationForPage(&self, page: NSInteger) -> NSTimeInterval;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }

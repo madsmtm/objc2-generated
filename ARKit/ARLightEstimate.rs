@@ -64,15 +64,6 @@ impl ARLightEstimate {
         #[unsafe(method(ambientColorTemperature))]
         #[unsafe(method_family = none)]
         pub unsafe fn ambientColorTemperature(&self) -> CGFloat;
-
-        /// Unavailable
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -135,13 +126,9 @@ impl ARDirectionalLightEstimate {
 #[cfg(feature = "objc2")]
 impl ARDirectionalLightEstimate {
     extern_methods!(
-        /// Unavailable
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

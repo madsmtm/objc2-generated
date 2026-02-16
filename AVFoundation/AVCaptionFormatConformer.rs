@@ -22,13 +22,9 @@ extern_conformance!(
 
 impl AVCaptionFormatConformer {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVCaptionSettings")]
         /// Returns an instance of AVCaptionFormatConformer that can convert a canonical caption to conform to a specific format.

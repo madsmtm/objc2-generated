@@ -150,9 +150,7 @@ impl MPSCNNBatchNormalizationState {
             descriptor: &MTLTextureDescriptor,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         /// Initialize a non-temporary state to hold a number of textures and buffers
         ///
@@ -206,9 +204,8 @@ impl MPSCNNBatchNormalizationState {
 ))]
 impl MPSCNNBatchNormalizationState {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -354,9 +351,7 @@ impl MPSCNNNormalizationMeanAndVarianceState {
             resource: Option<&ProtocolObject<dyn MTLResource>>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Option<Retained<Self>>;
+        // -init (unavailable)
 
         /// Initialize a non-temporary state to hold a number of textures and buffers
         ///
@@ -406,9 +401,8 @@ impl MPSCNNNormalizationMeanAndVarianceState {
 #[cfg(all(feature = "MPSCore", feature = "MPSState"))]
 impl MPSCNNNormalizationMeanAndVarianceState {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

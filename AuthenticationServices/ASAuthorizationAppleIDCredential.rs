@@ -139,13 +139,5 @@ impl ASAuthorizationAppleIDCredential {
         #[unsafe(method(userAgeRange))]
         #[unsafe(method_family = none)]
         pub unsafe fn userAgeRange(&self) -> ASUserAgeRange;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }

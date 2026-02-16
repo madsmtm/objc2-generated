@@ -108,9 +108,7 @@ impl MIDIUMPCIProfile {
         #[unsafe(method_family = none)]
         pub unsafe fn isEnabled(&self) -> bool;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "MIDIMessages", feature = "objc2-foundation"))]
         /// Issue a Set Profile On or Set Profile Off request on this profile using the MIDI server's
@@ -144,8 +142,7 @@ impl MIDIUMPCIProfile {
 #[cfg(feature = "objc2")]
 impl MIDIUMPCIProfile {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

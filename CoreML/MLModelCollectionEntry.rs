@@ -37,15 +37,5 @@ impl MLModelCollectionEntry {
         #[unsafe(method(isEqualToModelCollectionEntry:))]
         #[unsafe(method_family = none)]
         pub unsafe fn isEqualToModelCollectionEntry(&self, entry: &MLModelCollectionEntry) -> bool;
-
-        #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[deprecated = "Use Background Assets or NSURLSession instead."]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }

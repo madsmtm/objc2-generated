@@ -32,13 +32,9 @@ impl UIMenuSystem {
         #[unsafe(method_family = none)]
         pub fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Trigger a rebuild of this system at a suitable time.
         #[unsafe(method(setNeedsRebuild))]
@@ -141,13 +137,5 @@ impl UIMenuSystemFindElementGroupConfiguration {
         #[unsafe(method(setStyle:))]
         #[unsafe(method_family = none)]
         pub fn setStyle(&self, style: UIMenuSystemFindElementGroupConfigurationStyle);
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

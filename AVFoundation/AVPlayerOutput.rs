@@ -34,13 +34,9 @@ extern_conformance!(
 
 impl AVPlayerVideoOutput {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Creates an instance of AVPlayerVideoOutput, initialized with the specified video output specification.
         ///
@@ -168,13 +164,9 @@ extern_conformance!(
 
 impl AVVideoOutputSpecification {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Creates an instance of AVVideoOutputSpecification initialized with the specified tag collections.
         ///
@@ -347,13 +339,9 @@ extern_conformance!(
 
 impl AVPlayerVideoOutputConfiguration {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVPlayerItem")]
         /// The AVPlayerItem which is the source of this configuration.

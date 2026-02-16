@@ -247,20 +247,14 @@ impl MPSNDArrayDescriptor {
         #[unsafe(method(reshapeWithShape:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reshapeWithShape(&self, shape: &NSArray<NSNumber>);
-
-        /// Use -descriptorWithDataType:... instead
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSNDArrayDescriptor {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -410,9 +404,7 @@ impl MPSNDArray {
         #[unsafe(method_family = none)]
         pub unsafe fn descriptor(&self) -> Retained<MPSNDArrayDescriptor>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Initialize an MPSNDArrayDescriptor object on a device
         /// for given dimension sizes in descriptor.
@@ -772,9 +764,8 @@ impl MPSNDArray {
 /// Methods declared on superclass `NSObject`.
 impl MPSNDArray {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -872,9 +863,7 @@ impl MPSTemporaryNDArray {
 /// Methods declared on superclass `MPSNDArray`.
 impl MPSTemporaryNDArray {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Create a 1-Dimensional length=1 NDArray to hold a scalar
         #[unsafe(method(initWithDevice:scalar:))]
@@ -916,8 +905,7 @@ impl MPSTemporaryNDArray {
 /// Methods declared on superclass `NSObject`.
 impl MPSTemporaryNDArray {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

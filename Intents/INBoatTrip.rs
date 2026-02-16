@@ -37,9 +37,7 @@ extern_conformance!(
 
 impl INBoatTrip {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "INDateComponentsRange", feature = "objc2-core-location"))]
         #[unsafe(method(initWithProvider:boatName:boatNumber:tripDuration:departureBoatTerminalLocation:arrivalBoatTerminalLocation:))]
@@ -86,8 +84,7 @@ impl INBoatTrip {
 /// Methods declared on superclass `NSObject`.
 impl INBoatTrip {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

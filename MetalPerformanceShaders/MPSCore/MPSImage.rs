@@ -762,9 +762,7 @@ impl MPSImage {
             feature_channels: NSUInteger,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Make a representation of a MPSImage (batch) as a MPSImageBatch
         ///
@@ -1139,9 +1137,8 @@ impl MPSImage {
 /// Methods declared on superclass `NSObject`.
 impl MPSImage {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -1424,18 +1421,13 @@ impl MPSTemporaryImage {
             slice_range: NSRange,
             feature_channels: NSUInteger,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl MPSTemporaryImage {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

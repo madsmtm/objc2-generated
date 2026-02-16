@@ -37,9 +37,7 @@ extern_conformance!(
 
 impl INTrainTrip {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "INDateComponentsRange", feature = "objc2-core-location"))]
         #[unsafe(method(initWithProvider:trainName:trainNumber:tripDuration:departureStationLocation:departurePlatform:arrivalStationLocation:arrivalPlatform:))]
@@ -96,8 +94,7 @@ impl INTrainTrip {
 /// Methods declared on superclass `NSObject`.
 impl INTrainTrip {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

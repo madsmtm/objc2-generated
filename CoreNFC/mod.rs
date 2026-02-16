@@ -278,19 +278,14 @@ impl NFCReaderSession {
         #[unsafe(method(sessionQueue))]
         #[unsafe(method_family = none)]
         pub unsafe fn sessionQueue(&self) -> Retained<DispatchQueue>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl NFCReaderSession {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -556,9 +551,7 @@ impl NFCTagReaderSession {
         #[unsafe(method_family = none)]
         pub unsafe fn connectedTag(&self) -> Option<Retained<ProtocolObject<dyn NFCTag>>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "dispatch2")]
         /// Parameter `pollingOption`: Configures the RF polling of the reader session; multiple options can be OR'ed together.  This option affects the possible NFC tag type discover.
@@ -630,9 +623,8 @@ impl NFCTagReaderSession {
 /// Methods declared on superclass `NSObject`.
 impl NFCTagReaderSession {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -754,9 +746,7 @@ extern_conformance!(
 
 impl NFCNDEFReaderSession {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "dispatch2")]
         /// Parameter `delegate`: The session will hold a weak ARC reference to this
@@ -849,9 +839,8 @@ impl NFCNDEFReaderSession {
 /// Methods declared on superclass `NSObject`.
 impl NFCNDEFReaderSession {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2073,10 +2062,7 @@ extern_conformance!(
 
 impl NFCISO15693ReaderSession {
     extern_methods!(
-        #[deprecated]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "dispatch2")]
         /// Parameter `delegate`: The session will hold a weak ARC reference to this
@@ -2122,9 +2108,8 @@ impl NFCISO15693ReaderSession {
 /// Methods declared on superclass `NSObject`.
 impl NFCISO15693ReaderSession {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2626,9 +2611,7 @@ impl NFCISO7816APDU {
         #[unsafe(method_family = none)]
         pub unsafe fn expectedResponseLength(&self) -> NSInteger;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Parameter `instructionClass`: Instruction class (CLA) byte
         ///
@@ -2679,9 +2662,8 @@ impl NFCISO7816APDU {
 /// Methods declared on superclass `NSObject`.
 impl NFCISO7816APDU {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -2969,9 +2951,7 @@ impl NFCNDEFPayload {
         #[unsafe(method_family = none)]
         pub unsafe fn setPayload(&self, payload: &NSData);
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Parameter `format`: NFCTypeNameFormat value.
         ///
@@ -3017,9 +2997,8 @@ impl NFCNDEFPayload {
 /// Methods declared on superclass `NSObject`.
 impl NFCNDEFPayload {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3118,9 +3097,7 @@ impl NFCNDEFMessage {
         #[unsafe(method_family = none)]
         pub unsafe fn length(&self) -> NSUInteger;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Parameter `records`: NSArray of NFCNDEFPayload object.  An empty array will create an empty NDEF message.
         #[unsafe(method(initWithNDEFRecords:))]
@@ -3141,9 +3118,8 @@ impl NFCNDEFMessage {
 /// Methods declared on superclass `NSObject`.
 impl NFCNDEFMessage {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3460,9 +3436,7 @@ extern_conformance!(
 
 impl NFCVASReaderSession {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "dispatch2")]
         /// Parameter `commandConfigurations`: NSArray of NFCVASCommandConfiguration objects.  Each NFCVASCommandConfiguration defines one GET VAS DATA command send to
@@ -3513,9 +3487,8 @@ impl NFCVASReaderSession {
 /// Methods declared on superclass `NSObject`.
 impl NFCVASReaderSession {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -3590,9 +3563,7 @@ impl NFCPaymentTagReaderSession {
 /// Methods declared on superclass `NFCTagReaderSession`.
 impl NFCPaymentTagReaderSession {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "dispatch2")]
         /// Parameter `pollingOption`: Configures the RF polling of the reader session; multiple options can be OR'ed together.  This option affects the possible NFC tag type discover.
@@ -3626,8 +3597,7 @@ impl NFCPaymentTagReaderSession {
 /// Methods declared on superclass `NSObject`.
 impl NFCPaymentTagReaderSession {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

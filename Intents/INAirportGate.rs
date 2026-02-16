@@ -35,9 +35,7 @@ extern_conformance!(
 
 impl INAirportGate {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "INAirport")]
         #[unsafe(method(initWithAirport:terminal:gate:))]
@@ -67,8 +65,7 @@ impl INAirportGate {
 /// Methods declared on superclass `NSObject`.
 impl INAirportGate {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

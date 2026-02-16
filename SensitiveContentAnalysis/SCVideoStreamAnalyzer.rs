@@ -175,13 +175,9 @@ impl SCVideoStreamAnalyzer {
             stream_direction: SCVideoStreamAnalyzerStreamDirection,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(&self) -> Retained<Self>;
+        // -new (unavailable)
 
         #[cfg(feature = "objc2-core-video")]
         /// Analyzes individual video-stream frames for sensitive content.
@@ -196,9 +192,8 @@ impl SCVideoStreamAnalyzer {
 /// Methods declared on superclass `NSObject`.
 impl SCVideoStreamAnalyzer {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new_class() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

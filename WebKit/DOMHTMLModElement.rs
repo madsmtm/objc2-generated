@@ -121,10 +121,8 @@ impl DOMHTMLModElement {
 ))]
 impl DOMHTMLModElement {
     extern_methods!(
-        #[deprecated]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -138,8 +136,7 @@ impl DOMHTMLModElement {
 ))]
 impl DOMHTMLModElement {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

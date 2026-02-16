@@ -84,22 +84,13 @@ impl BETextDocumentContext {
         #[unsafe(method(setAutocorrectedRanges:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAutocorrectedRanges(&self, autocorrected_ranges: &NSArray<NSValue>);
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(&self) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl BETextDocumentContext {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new_class() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

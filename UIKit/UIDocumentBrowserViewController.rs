@@ -545,9 +545,7 @@ extern_conformance!(
 
 impl UIDocumentBrowserTransitionController {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// An optional progress can be displayed on the document thumbnail while the document is loading (during opening).
         #[unsafe(method(loadingProgress))]
@@ -580,8 +578,7 @@ impl UIDocumentBrowserTransitionController {
 /// Methods declared on superclass `NSObject`.
 impl UIDocumentBrowserTransitionController {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

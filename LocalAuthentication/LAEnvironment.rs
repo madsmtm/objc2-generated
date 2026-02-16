@@ -19,17 +19,9 @@ extern_conformance!(
 
 impl LAEnvironment {
     extern_methods!(
-        /// The clients should use
-        /// `currentUser`class property.
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        /// The clients should use
-        /// `currentUser`class property.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Adds observer to monitor changes of the environment.
         ///

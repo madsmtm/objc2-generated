@@ -50,9 +50,7 @@ impl PHLivePhotoEditingContext {
             live_photo_input: &PHContentEditingInput,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-core-image")]
         /// The original full-size image from the input live photo
@@ -161,9 +159,8 @@ impl PHLivePhotoEditingContext {
 /// Methods declared on superclass `NSObject`.
 impl PHLivePhotoEditingContext {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

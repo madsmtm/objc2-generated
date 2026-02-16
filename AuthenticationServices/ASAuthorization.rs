@@ -44,13 +44,5 @@ impl ASAuthorization {
         #[unsafe(method(credential))]
         #[unsafe(method_family = none)]
         pub unsafe fn credential(&self) -> Retained<ProtocolObject<dyn ASAuthorizationCredential>>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }

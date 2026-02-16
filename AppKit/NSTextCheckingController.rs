@@ -28,9 +28,7 @@ impl NSTextCheckingController {
             client: &ProtocolObject<dyn NSTextCheckingClient>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "NSTextCheckingClient", feature = "NSTextInputClient"))]
         #[unsafe(method(client))]
@@ -155,8 +153,7 @@ impl NSTextCheckingController {
 /// Methods declared on superclass `NSObject`.
 impl NSTextCheckingController {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

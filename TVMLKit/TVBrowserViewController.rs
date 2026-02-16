@@ -221,9 +221,7 @@ impl TVBrowserViewController {
             mtm: MainThreadMarker,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(initWithNibName:bundle:))]
         #[unsafe(method_family = init)]
@@ -246,8 +244,7 @@ impl TVBrowserViewController {
 #[cfg(feature = "objc2-ui-kit")]
 impl TVBrowserViewController {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

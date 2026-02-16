@@ -82,13 +82,9 @@ extern_conformance!(
 
 impl AVCoordinatedPlaybackSuspension {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// The reason for the suspension. This will be communicated to other participants while coordination is suspended.
         #[unsafe(method(reason))]
@@ -155,13 +151,9 @@ extern_conformance!(
 
 impl AVPlaybackCoordinator {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// The playback states of the other participants in the group.
         ///
@@ -364,13 +356,9 @@ extern_conformance!(
 
 impl AVPlayerPlaybackCoordinator {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVPlayer")]
         /// The AVPlayer this coordinator is controlling.
@@ -635,13 +623,10 @@ impl AVDelegatingPlaybackCoordinator {
 /// Methods declared on superclass `AVPlaybackCoordinator`.
 impl AVDelegatingPlaybackCoordinator {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -760,13 +745,9 @@ extern_conformance!(
 
 impl AVDelegatingPlaybackCoordinatorPlaybackControlCommand {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// The participant causing this command to be issued.
         ///
@@ -821,13 +802,9 @@ extern_conformance!(
 
 impl AVDelegatingPlaybackCoordinatorPlayCommand {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Playback rate. Will always be non-zero.
         ///
@@ -895,13 +872,9 @@ extern_conformance!(
 
 impl AVDelegatingPlaybackCoordinatorBufferingCommand {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// The rate to prepare playback for.
         ///
@@ -955,13 +928,9 @@ extern_conformance!(
 
 impl AVDelegatingPlaybackCoordinatorPauseCommand {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Indicates that playback is anticipated and the player should begin buffering if necessary.
         ///
@@ -1012,13 +981,9 @@ extern_conformance!(
 
 impl AVDelegatingPlaybackCoordinatorSeekCommand {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "objc2-core-media")]
         /// The time to seek the currentItem to.

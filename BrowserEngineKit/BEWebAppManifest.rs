@@ -21,9 +21,7 @@ extern_conformance!(
 
 impl BEWebAppManifest {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Returns nil if manifestURL is invalid or jsonData cannot be parsed.
         #[unsafe(method(initWithJSONData:manifestURL:))]
@@ -47,8 +45,7 @@ impl BEWebAppManifest {
 /// Methods declared on superclass `NSObject`.
 impl BEWebAppManifest {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

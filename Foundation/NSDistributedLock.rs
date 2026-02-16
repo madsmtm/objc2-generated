@@ -28,9 +28,7 @@ impl NSDistributedLock {
         #[unsafe(method_family = none)]
         pub fn lockWithPath(path: &NSString) -> Option<Retained<NSDistributedLock>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithPath:))]
@@ -59,8 +57,7 @@ impl NSDistributedLock {
 /// Methods declared on superclass `NSObject`.
 impl NSDistributedLock {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

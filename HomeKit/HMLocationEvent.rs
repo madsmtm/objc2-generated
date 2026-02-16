@@ -54,9 +54,7 @@ extern_conformance!(
 #[cfg(feature = "HMEvent")]
 impl HMLocationEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-core-location")]
         /// Initializes a new location event object
@@ -108,10 +106,8 @@ impl HMLocationEvent {
 #[cfg(feature = "HMEvent")]
 impl HMLocationEvent {
     extern_methods!(
-        #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -160,9 +156,7 @@ extern_conformance!(
 #[cfg(feature = "HMEvent")]
 impl HMMutableLocationEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-core-location")]
         /// Region on which events are triggered based on the properties notifyOnEntry and notifyOnExit.
@@ -211,9 +205,7 @@ impl HMMutableLocationEvent {
 #[cfg(feature = "HMEvent")]
 impl HMMutableLocationEvent {
     extern_methods!(
-        #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

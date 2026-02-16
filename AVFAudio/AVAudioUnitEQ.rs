@@ -115,9 +115,7 @@ extern_conformance!(
 
 impl AVAudioUnitEQFilterParameters {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// AVAudioUnitEQFilterType
         ///
@@ -188,9 +186,8 @@ impl AVAudioUnitEQFilterParameters {
 /// Methods declared on superclass `NSObject`.
 impl AVAudioUnitEQFilterParameters {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

@@ -32,9 +32,7 @@ impl UIPreviewInteraction {
         #[unsafe(method_family = none)]
         pub fn view(&self) -> Option<Retained<UIView>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(delegate))]
         #[unsafe(method_family = none)]
@@ -69,9 +67,8 @@ impl UIPreviewInteraction {
 /// Methods declared on superclass `NSObject`.
 impl UIPreviewInteraction {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

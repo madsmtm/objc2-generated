@@ -51,9 +51,7 @@ extern_conformance!(
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 impl HMSignificantTimeEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "HMSignificantEvents")]
         /// Creates a significant time event.
@@ -107,10 +105,8 @@ impl HMSignificantTimeEvent {
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 impl HMSignificantTimeEvent {
     extern_methods!(
-        #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -208,9 +204,7 @@ impl HMMutableSignificantTimeEvent {
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 impl HMMutableSignificantTimeEvent {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "HMSignificantEvents")]
         /// Creates a significant time event.
@@ -239,9 +233,7 @@ impl HMMutableSignificantTimeEvent {
 #[cfg(all(feature = "HMEvent", feature = "HMTimeEvent"))]
 impl HMMutableSignificantTimeEvent {
     extern_methods!(
-        #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

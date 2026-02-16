@@ -266,10 +266,7 @@ impl NSSharingService {
             block: &block2::DynBlock<dyn Fn()>,
         ) -> Retained<Self>;
 
-        /// Use -initWithTitle:image:alternateImage:handler: instead
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Returns whether a service can do something with all the provided items. This can be used to validate a custom UI such as a dedicated Twitter button. If items is nil, the method will return YES when the service is configured. Therefore you could call it once at launch time with nil items to check whether to display the button or not, and then with real items to enable and disable the button depending on the context or selection.
         ///
@@ -302,9 +299,8 @@ impl NSSharingService {
 /// Methods declared on superclass `NSObject`.
 impl NSSharingService {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -600,10 +596,7 @@ impl NSSharingServicePicker {
         #[unsafe(method_family = init)]
         pub unsafe fn initWithItems(this: Allocated<Self>, items: &NSArray) -> Retained<Self>;
 
-        /// Use initWithItems: instead.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "NSResponder", feature = "NSView"))]
         /// Shows the picker, populated with sharing services related to the instance items. When the user selects one of the sharing services, the sharing service will be performed. Note that this method must be called on mouseDown.
@@ -632,9 +625,8 @@ impl NSSharingServicePicker {
 /// Methods declared on superclass `NSObject`.
 impl NSSharingServicePicker {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

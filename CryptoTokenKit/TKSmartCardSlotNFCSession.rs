@@ -41,10 +41,7 @@ impl TKSmartCardSlotNFCSession {
         #[unsafe(method_family = none)]
         pub unsafe fn slotName(&self) -> Option<Retained<NSString>>;
 
-        /// Clients should only receive the session
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Updates the message of the system-presented NFC UI.
         ///
@@ -70,8 +67,7 @@ impl TKSmartCardSlotNFCSession {
 /// Methods declared on superclass `NSObject`.
 impl TKSmartCardSlotNFCSession {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

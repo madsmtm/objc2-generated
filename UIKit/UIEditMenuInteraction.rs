@@ -90,14 +90,6 @@ impl UIEditMenuConfiguration {
             source_point: CGPoint,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -173,14 +165,6 @@ impl UIEditMenuInteraction {
         #[unsafe(method(locationInView:))]
         #[unsafe(method_family = none)]
         pub fn locationInView(&self, view: Option<&UIView>) -> CGPoint;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 

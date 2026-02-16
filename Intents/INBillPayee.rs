@@ -36,10 +36,7 @@ extern_conformance!(
 
 impl INBillPayee {
     extern_methods!(
-        #[deprecated = "INBillPayee is deprecated. There is no replacement."]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "INSpeakableString")]
         #[deprecated = "INBillPayee is deprecated. There is no replacement."]
@@ -74,8 +71,7 @@ impl INBillPayee {
 /// Methods declared on superclass `NSObject`.
 impl INBillPayee {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

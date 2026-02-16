@@ -221,10 +221,7 @@ impl TVApplicationController {
             delegate: Option<&ProtocolObject<dyn TVApplicationControllerDelegate>>,
         ) -> Retained<Self>;
 
-        #[deprecated = "Please use SwiftUI or UIKit"]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-ui-kit")]
         #[deprecated = "Please use SwiftUI or UIKit"]
@@ -287,8 +284,7 @@ impl TVApplicationController {
 /// Methods declared on superclass `NSObject`.
 impl TVApplicationController {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

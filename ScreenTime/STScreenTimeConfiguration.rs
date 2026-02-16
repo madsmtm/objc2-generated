@@ -28,14 +28,6 @@ impl STScreenTimeConfiguration {
         #[unsafe(method(enforcesChildRestrictions))]
         #[unsafe(method_family = none)]
         pub unsafe fn enforcesChildRestrictions(&self) -> bool;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }
 
@@ -90,13 +82,5 @@ impl STScreenTimeConfigurationObserver {
         #[unsafe(method(configuration))]
         #[unsafe(method_family = none)]
         pub unsafe fn configuration(&self) -> Option<Retained<STScreenTimeConfiguration>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }

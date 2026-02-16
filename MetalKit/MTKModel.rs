@@ -41,10 +41,7 @@ extern_conformance!(
 
 impl MTKMeshBufferAllocator {
     extern_methods!(
-        /// Must initialize with device
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Initialize the allocator with a device to be used to create buffers.
         ///
@@ -66,9 +63,8 @@ impl MTKMeshBufferAllocator {
 /// Methods declared on superclass `NSObject`.
 impl MTKMeshBufferAllocator {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -97,10 +93,7 @@ extern_conformance!(
 
 impl MTKMeshBuffer {
     extern_methods!(
-        /// Only an MTKMeshBufferAllocator object can initilize a MTKMeshBuffer object
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Size in bytes of the buffer allocation.
         #[unsafe(method(length))]
@@ -145,9 +138,8 @@ impl MTKMeshBuffer {
 /// Methods declared on superclass `NSObject`.
 impl MTKMeshBuffer {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -168,10 +160,7 @@ extern_conformance!(
 
 impl MTKSubmesh {
     extern_methods!(
-        /// Applicatiohs must not explicity allocate or initialize.  Must initialize as part of MTKMesh object.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Metal primitive type with which to draw this object.
         ///
@@ -227,9 +216,8 @@ impl MTKSubmesh {
 /// Methods declared on superclass `NSObject`.
 impl MTKSubmesh {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -248,10 +236,7 @@ extern_conformance!(
 
 impl MTKMesh {
     extern_methods!(
-        /// Cannot use default init.  Must initialize with mesh and metal device.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-model-io")]
         /// Initialize the mesh and the mesh's submeshes.
@@ -337,9 +322,8 @@ impl MTKMesh {
 /// Methods declared on superclass `NSObject`.
 impl MTKMesh {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

@@ -55,10 +55,8 @@ impl MPSGraphVariableOp {
 #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]
 impl MPSGraphVariableOp {
     extern_methods!(
-        /// Unavailable, please utilize graph methods to create and initialize operations.
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -66,9 +64,8 @@ impl MPSGraphVariableOp {
 #[cfg(all(feature = "MPSGraphCore", feature = "MPSGraphOperation"))]
 impl MPSGraphVariableOp {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

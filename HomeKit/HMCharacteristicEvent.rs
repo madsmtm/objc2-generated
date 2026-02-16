@@ -74,9 +74,7 @@ extern_conformance!(
 #[cfg(feature = "HMEvent")]
 impl<TriggerValueType: Message + NSCopying> HMCharacteristicEvent<TriggerValueType> {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "HMCharacteristic")]
         /// Initializes a new characteristic event object
@@ -151,10 +149,8 @@ impl<TriggerValueType: Message + NSCopying> HMCharacteristicEvent<TriggerValueTy
 #[cfg(feature = "HMEvent")]
 impl<TriggerValueType: Message + NSCopying> HMCharacteristicEvent<TriggerValueType> {
     extern_methods!(
-        #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -227,9 +223,7 @@ extern_conformance!(
 #[cfg(feature = "HMEvent")]
 impl<TriggerValueType: Message + NSCopying> HMMutableCharacteristicEvent<TriggerValueType> {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "HMCharacteristic")]
         /// The characteristic associated with the event.
@@ -310,9 +304,7 @@ impl<TriggerValueType: Message + NSCopying> HMMutableCharacteristicEvent<Trigger
 #[cfg(feature = "HMEvent")]
 impl<TriggerValueType: Message + NSCopying> HMMutableCharacteristicEvent<TriggerValueType> {
     extern_methods!(
-        #[deprecated = "HMEvent is abstract"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

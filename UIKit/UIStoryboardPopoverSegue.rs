@@ -61,11 +61,6 @@ impl UIStoryboardPopoverSegue {
             source: &UIViewController,
             destination: &UIViewController,
         ) -> Retained<Self>;
-
-        #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -73,8 +68,7 @@ impl UIStoryboardPopoverSegue {
 #[cfg(feature = "UIStoryboardSegue")]
 impl UIStoryboardPopoverSegue {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

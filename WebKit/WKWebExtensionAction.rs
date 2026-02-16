@@ -30,13 +30,9 @@ extern_conformance!(
 
 impl WKWebExtensionAction {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(&self) -> Retained<Self>;
+        // -new (unavailable)
 
         #[cfg(feature = "WKWebExtensionContext")]
         /// The extension context to which this action is related.
@@ -157,8 +153,7 @@ impl WKWebExtensionAction {
 /// Methods declared on superclass `NSObject`.
 impl WKWebExtensionAction {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new_class(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

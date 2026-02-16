@@ -70,9 +70,7 @@ impl INPersonHandle {
         #[unsafe(method_family = none)]
         pub unsafe fn label(&self) -> Option<Retained<INPersonHandleLabel>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "INPersonHandleLabel")]
         #[unsafe(method(initWithValue:type:label:))]
@@ -97,8 +95,7 @@ impl INPersonHandle {
 /// Methods declared on superclass `NSObject`.
 impl INPersonHandle {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

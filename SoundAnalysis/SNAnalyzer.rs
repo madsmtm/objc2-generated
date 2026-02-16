@@ -37,9 +37,7 @@ impl SNAudioStreamAnalyzer {
             format: &AVAudioFormat,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "SNRequest", feature = "SNResult"))]
         /// Adds a new analysis request to the analyzer
@@ -106,9 +104,8 @@ impl SNAudioStreamAnalyzer {
 /// Methods declared on superclass `NSObject`.
 impl SNAudioStreamAnalyzer {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -141,9 +138,7 @@ impl SNAudioFileAnalyzer {
             url: &NSURL,
         ) -> Result<Retained<Self>, Retained<NSError>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "SNRequest", feature = "SNResult"))]
         /// Adds a new analysis request to the analyzer
@@ -212,8 +207,7 @@ impl SNAudioFileAnalyzer {
 /// Methods declared on superclass `NSObject`.
 impl SNAudioFileAnalyzer {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

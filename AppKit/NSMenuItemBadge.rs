@@ -99,9 +99,7 @@ impl NSMenuItemBadge {
         #[unsafe(method_family = init)]
         pub fn initWithString(this: Allocated<Self>, string: &NSString) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// The count of items the badge displays. If a custom string was used
         /// to create a badge, the value is 0.
@@ -127,8 +125,7 @@ impl NSMenuItemBadge {
 /// Methods declared on superclass `NSObject`.
 impl NSMenuItemBadge {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

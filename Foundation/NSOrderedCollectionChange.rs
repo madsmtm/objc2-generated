@@ -85,9 +85,7 @@ impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
         #[unsafe(method_family = none)]
         pub fn associatedIndex(&self) -> NSUInteger;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(initWithObject:type:index:))]
         #[unsafe(method_family = init)]
@@ -113,8 +111,7 @@ impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
 /// Methods declared on superclass `NSObject`.
 impl<ObjectType: Message> NSOrderedCollectionChange<ObjectType> {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

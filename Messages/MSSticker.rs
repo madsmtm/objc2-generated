@@ -19,9 +19,7 @@ extern_conformance!(
 
 impl MSSticker {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Initializes a sticker with the contents of the URL and the localized description.
         ///
@@ -61,8 +59,7 @@ impl MSSticker {
 /// Methods declared on superclass `NSObject`.
 impl MSSticker {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

@@ -36,13 +36,9 @@ extern_conformance!(
 
 impl VZNetworkDeviceConfiguration {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "VZMACAddress")]
         /// The media access control address of the device. The default is a random, locally administered, unicast address.

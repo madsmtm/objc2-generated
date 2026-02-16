@@ -93,9 +93,7 @@ extern_conformance!(
 
 impl TKTokenKeyAlgorithm {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-security")]
         /// Checks if specified algorithm is base operation algorithm.
@@ -114,9 +112,8 @@ impl TKTokenKeyAlgorithm {
 /// Methods declared on superclass `NSObject`.
 impl TKTokenKeyAlgorithm {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -205,19 +202,14 @@ impl TKTokenSession {
             &self,
             delegate: Option<&ProtocolObject<dyn TKTokenSessionDelegate>>,
         );
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl TKTokenSession {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -423,19 +415,14 @@ impl TKToken {
         #[unsafe(method(keychainContents))]
         #[unsafe(method_family = none)]
         pub unsafe fn keychainContents(&self) -> Option<Retained<TKTokenKeychainContents>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl TKToken {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

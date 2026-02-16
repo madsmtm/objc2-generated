@@ -44,9 +44,7 @@ extern_conformance!(
 
 impl ASPasskeyCredentialRequestParameters {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// The relying party identifier for this request.
         ///
@@ -114,8 +112,7 @@ impl ASPasskeyCredentialRequestParameters {
 /// Methods declared on superclass `NSObject`.
 impl ASPasskeyCredentialRequestParameters {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

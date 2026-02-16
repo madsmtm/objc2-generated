@@ -76,15 +76,5 @@ impl SHMediaLibrary {
             media_items: &NSArray<SHMediaItem>,
             completion_handler: &block2::DynBlock<dyn Fn(*mut NSError)>,
         );
-
-        #[deprecated = "Use SHLibrary instead"]
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[deprecated = "Use SHLibrary instead"]
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }

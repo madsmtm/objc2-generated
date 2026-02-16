@@ -209,9 +209,7 @@ extern_conformance!(
 
 impl FSDirectoryEntryPacker {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "FSFileName", feature = "FSItem"))]
         /// Provides a directory entry during enumeration.
@@ -241,9 +239,8 @@ impl FSDirectoryEntryPacker {
 /// Methods declared on superclass `NSObject`.
 impl FSDirectoryEntryPacker {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -588,9 +585,7 @@ impl FSVolume {
         #[unsafe(method_family = none)]
         pub unsafe fn setName(&self, name: &FSFileName);
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "FSEntityIdentifier", feature = "FSFileName"))]
         /// Creates a volume with the given identifier and name.
@@ -610,9 +605,8 @@ impl FSVolume {
 /// Methods declared on superclass `NSObject`.
 impl FSVolume {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -890,19 +884,14 @@ impl FSStatFSResult {
             this: Allocated<Self>,
             file_system_type_name: &NSString,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl FSStatFSResult {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

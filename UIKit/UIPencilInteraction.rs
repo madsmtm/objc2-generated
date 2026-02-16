@@ -184,13 +184,9 @@ extern_conformance!(
 
 impl UIPencilHoverPose {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The hover location of the pencil in the interaction's view while performing the associated action. If the pencil is removed from hover range during a continuous interaction,
@@ -249,13 +245,9 @@ extern_conformance!(
 
 impl UIPencilInteractionTap {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// The time in seconds from system start up when this tap occured
         #[unsafe(method(timestamp))]
@@ -285,13 +277,9 @@ extern_conformance!(
 
 impl UIPencilInteractionSqueeze {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// The time in seconds from system start up when this squeeze occured
         #[unsafe(method(timestamp))]

@@ -91,9 +91,7 @@ impl FSResource {
         #[unsafe(method_family = none)]
         pub unsafe fn isRevoked(&self) -> bool;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Creates a proxy object of this resource.
         ///
@@ -115,9 +113,8 @@ impl FSResource {
 /// Methods declared on superclass `NSObject`.
 impl FSResource {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -199,19 +196,14 @@ impl FSMetadataRange {
             segment_length: u64,
             segment_count: u64,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl FSMetadataRange {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -281,9 +273,7 @@ impl FSBlockDeviceResource {
         #[unsafe(method_family = none)]
         pub unsafe fn physicalBlockSize(&self) -> u64;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(feature = "block2", feature = "libc"))]
         /// Reads data from the resource into a buffer and executes a block afterwards.
@@ -555,9 +545,8 @@ impl FSBlockDeviceResource {
 /// Methods declared on superclass `NSObject`.
 impl FSBlockDeviceResource {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -623,19 +612,14 @@ impl FSGenericURLResource {
         #[unsafe(method(initWithURL:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithURL(this: Allocated<Self>, url: &NSURL) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl FSGenericURLResource {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -682,9 +666,7 @@ impl FSPathURLResource {
             writable: bool,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// A Boolean value that indicates whether the file system supports writing to the contents of the path URL.
         #[unsafe(method(isWritable))]
@@ -696,9 +678,8 @@ impl FSPathURLResource {
 /// Methods declared on superclass `NSObject`.
 impl FSPathURLResource {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -813,9 +794,7 @@ impl FSProbeResult {
         #[unsafe(method_family = none)]
         pub unsafe fn containerID(&self) -> Option<Retained<FSContainerIdentifier>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// A probe result for an unrecognized file system.
         ///
@@ -876,8 +855,7 @@ impl FSProbeResult {
 /// Methods declared on superclass `NSObject`.
 impl FSProbeResult {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

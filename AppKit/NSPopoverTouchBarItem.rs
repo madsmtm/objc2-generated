@@ -146,10 +146,6 @@ impl NSPopoverTouchBarItem {
             this: Allocated<Self>,
             coder: &NSCoder,
         ) -> Option<Retained<Self>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -157,8 +153,7 @@ impl NSPopoverTouchBarItem {
 #[cfg(feature = "NSTouchBarItem")]
 impl NSPopoverTouchBarItem {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

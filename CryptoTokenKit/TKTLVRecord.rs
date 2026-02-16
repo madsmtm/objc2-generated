@@ -66,19 +66,14 @@ impl TKTLVRecord {
         pub unsafe fn sequenceOfRecordsFromData(
             data: &NSData,
         ) -> Option<Retained<NSArray<TKTLVRecord>>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl TKTLVRecord {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -151,19 +146,14 @@ impl TKBERTLVRecord {
         #[unsafe(method(recordFromData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordFromData(data: &NSData) -> Option<Retained<Self>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl TKBERTLVRecord {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -214,19 +204,14 @@ impl TKSimpleTLVRecord {
         #[unsafe(method(recordFromData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordFromData(data: &NSData) -> Option<Retained<Self>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl TKSimpleTLVRecord {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -279,18 +264,13 @@ impl TKCompactTLVRecord {
         #[unsafe(method(recordFromData:))]
         #[unsafe(method_family = none)]
         pub unsafe fn recordFromData(data: &NSData) -> Option<Retained<Self>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl TKCompactTLVRecord {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

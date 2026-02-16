@@ -131,13 +131,5 @@ impl HKGlassesLensSpecification {
             far_pupillary_distance: Option<&HKQuantity>,
             near_pupillary_distance: Option<&HKQuantity>,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
     );
 }

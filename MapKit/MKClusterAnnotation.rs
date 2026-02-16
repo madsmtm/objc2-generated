@@ -54,9 +54,7 @@ impl MKClusterAnnotation {
             &self,
         ) -> Retained<NSArray<ProtocolObject<dyn MKAnnotation>>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "MKAnnotation")]
         #[unsafe(method(initWithMemberAnnotations:))]
@@ -71,8 +69,7 @@ impl MKClusterAnnotation {
 /// Methods declared on superclass `NSObject`.
 impl MKClusterAnnotation {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

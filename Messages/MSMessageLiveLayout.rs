@@ -43,9 +43,7 @@ impl MSMessageLiveLayout {
             alternate_layout: &MSMessageTemplateLayout,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "MSMessageTemplateLayout")]
         /// The alternate layout of the message. This layout will be used on devices that don't support live layout or don't have the iMessage app installed.
@@ -59,8 +57,7 @@ impl MSMessageLiveLayout {
 #[cfg(feature = "MSMessageLayout")]
 impl MSMessageLiveLayout {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

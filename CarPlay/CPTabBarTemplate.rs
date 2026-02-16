@@ -34,13 +34,9 @@ extern_conformance!(
 #[cfg(feature = "CPTemplate")]
 impl CPTabBarTemplate {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
         /// Initialize the tab bar with an array of templates. Each template in the array
         /// becomes a tab on the tab bar.

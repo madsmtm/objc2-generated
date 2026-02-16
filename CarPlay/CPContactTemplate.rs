@@ -48,13 +48,9 @@ impl CPContactTemplate {
         pub unsafe fn initWithContact(this: Allocated<Self>, contact: &CPContact)
             -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "CPContact")]
         /// The contact currently displayed by this template. Assigning a new contact

@@ -57,19 +57,14 @@ impl UNNotificationAttachment {
             url: &NSURL,
             options: Option<&NSDictionary>,
         ) -> Result<Retained<Self>, Retained<NSError>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl UNNotificationAttachment {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

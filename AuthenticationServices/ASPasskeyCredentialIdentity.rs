@@ -44,9 +44,7 @@ extern_conformance!(
 
 impl ASPasskeyCredentialIdentity {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Initialize an instance of ASPasskeyCredentialIdentity.
         ///
@@ -148,8 +146,7 @@ impl ASPasskeyCredentialIdentity {
 /// Methods declared on superclass `NSObject`.
 impl ASPasskeyCredentialIdentity {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

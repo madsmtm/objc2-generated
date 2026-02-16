@@ -87,14 +87,6 @@ impl UIPointerStyle {
         #[unsafe(method(systemPointerStyle))]
         #[unsafe(method_family = none)]
         pub fn systemPointerStyle(mtm: MainThreadMarker) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -159,14 +151,6 @@ impl UIPointerEffect {
         #[unsafe(method(effectWithPreview:))]
         #[unsafe(method_family = none)]
         pub fn effectWithPreview(preview: &UITargetedPreview) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -216,14 +200,6 @@ impl UIPointerHighlightEffect {
         #[unsafe(method(effectWithPreview:))]
         #[unsafe(method_family = none)]
         pub fn effectWithPreview(preview: &UITargetedPreview) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -273,14 +249,6 @@ impl UIPointerLiftEffect {
         #[unsafe(method(effectWithPreview:))]
         #[unsafe(method_family = none)]
         pub fn effectWithPreview(preview: &UITargetedPreview) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -379,14 +347,6 @@ impl UIPointerHoverEffect {
         #[unsafe(method(effectWithPreview:))]
         #[unsafe(method_family = none)]
         pub fn effectWithPreview(preview: &UITargetedPreview) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -462,13 +422,5 @@ impl UIPointerShape {
             axis: UIAxis,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

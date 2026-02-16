@@ -45,9 +45,7 @@ impl INRidePartySizeOption {
             price_range: Option<&INPriceRange>,
         ) -> Retained<Self>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(partySizeRange))]
         #[unsafe(method_family = none)]
@@ -67,8 +65,7 @@ impl INRidePartySizeOption {
 /// Methods declared on superclass `NSObject`.
 impl INRidePartySizeOption {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

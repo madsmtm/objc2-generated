@@ -72,13 +72,9 @@ extern_conformance!(
 
 impl AVAssetWriter {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVMediaFormat")]
         /// Returns an instance of AVAssetWriter configured to write to a file in a specified container format.
@@ -607,13 +603,9 @@ extern_conformance!(
 #[cfg(feature = "AVMediaSelectionGroup")]
 impl AVAssetWriterInputGroup {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "AVAssetWriterInput")]
         #[unsafe(method(assetWriterInputGroupWithInputs:defaultInput:))]

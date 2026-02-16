@@ -38,9 +38,7 @@ extern_conformance!(
 
 impl NSInflectionRule {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(automaticRule))]
         #[unsafe(method_family = none)]
@@ -51,9 +49,8 @@ impl NSInflectionRule {
 /// Methods declared on superclass `NSObject`.
 impl NSInflectionRule {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -108,18 +105,16 @@ impl NSInflectionRuleExplicit {
 /// Methods declared on superclass `NSInflectionRule`.
 impl NSInflectionRuleExplicit {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
 /// Methods declared on superclass `NSObject`.
 impl NSInflectionRuleExplicit {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

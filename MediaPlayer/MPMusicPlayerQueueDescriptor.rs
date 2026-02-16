@@ -20,13 +20,10 @@ extern_conformance!(
 
 impl MPMusicPlayerQueueDescriptor {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -96,13 +93,10 @@ impl MPMusicPlayerMediaItemQueueDescriptor {
 /// Methods declared on superclass `MPMusicPlayerQueueDescriptor`.
 impl MPMusicPlayerMediaItemQueueDescriptor {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -169,13 +163,10 @@ impl MPMusicPlayerStoreQueueDescriptor {
 /// Methods declared on superclass `MPMusicPlayerQueueDescriptor`.
 impl MPMusicPlayerStoreQueueDescriptor {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -290,12 +281,9 @@ impl MPMusicPlayerPlayParametersQueueDescriptor {
 /// Methods declared on superclass `MPMusicPlayerQueueDescriptor`.
 impl MPMusicPlayerPlayParametersQueueDescriptor {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }

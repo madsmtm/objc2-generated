@@ -26,13 +26,9 @@ extern_conformance!(
 
 impl SFUniversalLink {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Initialize the receiver with a web URL that may or may not be a universal link.
         #[unsafe(method(initWithWebpageURL:))]

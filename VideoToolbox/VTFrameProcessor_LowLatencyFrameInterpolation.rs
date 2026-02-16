@@ -89,13 +89,9 @@ impl VTLowLatencyFrameInterpolationConfiguration {
             spatial_scale_factor: NSInteger,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         /// Width of source frames in pixels.
         ///
@@ -242,13 +238,9 @@ impl VTLowLatencyFrameInterpolationParameters {
             destination_frames: &NSArray<VTFrameProcessorFrame>,
         ) -> Option<Retained<Self>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
         #[cfg(feature = "VTFrameProcessorFrame")]
         /// Source frame that you provided when creating the low-latency frame interpolation parameters object.

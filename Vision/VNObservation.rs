@@ -1870,13 +1870,9 @@ extern_conformance!(
 
 impl VNRecognizedPointsObservation {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "VNTypes")]
         /// Returns all of the point group keys available in the observation.
@@ -2246,13 +2242,10 @@ impl VNAnimalBodyPoseObservation {
 /// Methods declared on superclass `VNRecognizedPointsObservation`.
 impl VNAnimalBodyPoseObservation {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -2300,13 +2293,9 @@ extern_conformance!(
 
 impl VNRecognizedPoints3DObservation {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "VNTypes")]
         /// Returns all of the point group keys available in the observation.
@@ -2535,13 +2524,10 @@ impl VNHumanBodyPose3DObservation {
 /// Methods declared on superclass `VNRecognizedPoints3DObservation`.
 impl VNHumanBodyPose3DObservation {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -2581,9 +2567,7 @@ extern_conformance!(
 
 impl VNImageAestheticsScoresObservation {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// A Boolean value that represents images that are not necessarily of poor image quality, but may not have memorable or exciting content.
         #[unsafe(method(isUtility))]
@@ -2602,8 +2586,7 @@ impl VNImageAestheticsScoresObservation {
 /// Methods declared on superclass `NSObject`.
 impl VNImageAestheticsScoresObservation {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

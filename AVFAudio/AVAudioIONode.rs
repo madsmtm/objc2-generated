@@ -275,9 +275,7 @@ extern_conformance!(
 #[cfg(feature = "AVAudioNode")]
 impl AVAudioInputNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(all(
             feature = "AVAudioFormat",
@@ -391,9 +389,8 @@ impl AVAudioInputNode {
 #[cfg(feature = "AVAudioNode")]
 impl AVAudioInputNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -429,9 +426,8 @@ extern_conformance!(
 #[cfg(feature = "AVAudioNode")]
 impl AVAudioOutputNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -439,8 +435,7 @@ impl AVAudioOutputNode {
 #[cfg(feature = "AVAudioNode")]
 impl AVAudioOutputNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

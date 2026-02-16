@@ -453,9 +453,7 @@ extern_conformance!(
 
 impl MDLMaterialProperty {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(initWithName:semantic:))]
         #[unsafe(method_family = init)]
@@ -613,9 +611,8 @@ impl MDLMaterialProperty {
 /// Methods declared on superclass `NSObject`.
 impl MDLMaterialProperty {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -637,9 +634,7 @@ extern_conformance!(
 
 impl MDLMaterialPropertyConnection {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         /// Connects the output to the input
         #[unsafe(method(initWithOutput:input:))]
@@ -663,9 +658,8 @@ impl MDLMaterialPropertyConnection {
 /// Methods declared on superclass `NSObject`.
 impl MDLMaterialPropertyConnection {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -687,9 +681,7 @@ extern_conformance!(
 
 impl MDLMaterialPropertyNode {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "block2")]
         #[unsafe(method(initWithInputs:outputs:evaluationFunction:))]
@@ -735,9 +727,8 @@ impl MDLMaterialPropertyNode {
 /// Methods declared on superclass `NSObject`.
 impl MDLMaterialPropertyNode {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -763,9 +754,7 @@ extern_conformance!(
 
 impl MDLMaterialPropertyGraph {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[unsafe(method(initWithNodes:connections:))]
         #[unsafe(method_family = init)]
@@ -807,9 +796,8 @@ impl MDLMaterialPropertyGraph {
 /// Methods declared on superclass `NSObject`.
 impl MDLMaterialPropertyGraph {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 

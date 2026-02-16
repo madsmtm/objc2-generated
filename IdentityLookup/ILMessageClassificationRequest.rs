@@ -36,10 +36,6 @@ impl ILMessageClassificationRequest {
         #[unsafe(method(messageCommunications))]
         #[unsafe(method_family = none)]
         pub unsafe fn messageCommunications(&self) -> Retained<NSArray<ILMessageCommunication>>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
     );
 }
 
@@ -47,8 +43,7 @@ impl ILMessageClassificationRequest {
 #[cfg(feature = "ILClassificationRequest")]
 impl ILMessageClassificationRequest {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

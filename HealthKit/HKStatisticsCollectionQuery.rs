@@ -24,9 +24,7 @@ extern_conformance!(
 
 impl HKStatisticsCollection {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "HKStatistics")]
         /// Returns the statistics object that this date is inside of
@@ -72,9 +70,8 @@ impl HKStatisticsCollection {
 /// Methods declared on superclass `NSObject`.
 impl HKStatisticsCollection {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -215,9 +212,8 @@ impl HKStatisticsCollectionQuery {
 #[cfg(feature = "HKQuery")]
 impl HKStatisticsCollectionQuery {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -225,8 +221,7 @@ impl HKStatisticsCollectionQuery {
 #[cfg(feature = "HKQuery")]
 impl HKStatisticsCollectionQuery {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

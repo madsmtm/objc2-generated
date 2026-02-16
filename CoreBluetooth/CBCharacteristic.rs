@@ -111,9 +111,8 @@ impl CBCharacteristic {
 #[cfg(feature = "CBAttribute")]
 impl CBCharacteristic {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -121,9 +120,8 @@ impl CBCharacteristic {
 #[cfg(feature = "CBAttribute")]
 impl CBCharacteristic {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
@@ -279,9 +277,8 @@ impl CBMutableCharacteristic {
 #[cfg(feature = "CBAttribute")]
 impl CBMutableCharacteristic {
     extern_methods!(
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
+
     );
 }
 
@@ -289,8 +286,7 @@ impl CBMutableCharacteristic {
 #[cfg(feature = "CBAttribute")]
 impl CBMutableCharacteristic {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }

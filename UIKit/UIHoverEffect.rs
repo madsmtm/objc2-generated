@@ -46,14 +46,6 @@ impl UIHoverHighlightEffect {
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
         pub fn effect(mtm: MainThreadMarker) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -88,14 +80,6 @@ impl UIHoverLiftEffect {
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
         pub fn effect(mtm: MainThreadMarker) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }
 
@@ -131,13 +115,5 @@ impl UIHoverAutomaticEffect {
         #[unsafe(method(effect))]
         #[unsafe(method_family = none)]
         pub fn effect(mtm: MainThreadMarker) -> Retained<Self>;
-
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new(mtm: MainThreadMarker) -> Retained<Self>;
     );
 }

@@ -365,9 +365,7 @@ impl NSCalendar {
             calendar_identifier_constant: &NSCalendarIdentifier,
         ) -> Option<Retained<NSCalendar>>;
 
-        #[unsafe(method(init))]
-        #[unsafe(method_family = init)]
-        pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
+        // -init (unavailable)
 
         #[cfg(feature = "NSString")]
         #[unsafe(method(initWithCalendarIdentifier:))]
@@ -851,9 +849,8 @@ impl NSCalendar {
 /// Methods declared on superclass `NSObject`.
 impl NSCalendar {
     extern_methods!(
-        #[unsafe(method(new))]
-        #[unsafe(method_family = new)]
-        pub unsafe fn new() -> Retained<Self>;
+        // +new (unavailable)
+
     );
 }
 
