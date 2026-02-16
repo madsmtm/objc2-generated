@@ -76,6 +76,7 @@ impl CFString {
     ///
     /// - `alloc` might not allow `None`.
     /// - `p_str` must be a valid pointer.
+    /// - `encoding` should be set correctly.
     #[doc(alias = "CFStringCreateWithPascalString")]
     #[inline]
     pub unsafe fn with_pascal_string(
@@ -96,7 +97,8 @@ impl CFString {
 
     /// # Safety
     ///
-    /// `alloc` might not allow `None`.
+    /// - `alloc` might not allow `None`.
+    /// - `encoding` should be set correctly.
     #[doc(alias = "CFStringCreateWithCString")]
     #[inline]
     pub unsafe fn with_c_string(
@@ -125,6 +127,7 @@ impl CFString {
     ///
     /// - `alloc` might not allow `None`.
     /// - `bytes` must be a valid pointer.
+    /// - `encoding` should be set correctly.
     #[doc(alias = "CFStringCreateWithBytes")]
     #[inline]
     pub unsafe fn with_bytes(
@@ -181,6 +184,7 @@ impl CFString {
     ///
     /// - `alloc` might not allow `None`.
     /// - `p_str` must be a valid pointer.
+    /// - `encoding` should be set correctly.
     /// - `contents_deallocator` might not allow `None`.
     #[doc(alias = "CFStringCreateWithPascalStringNoCopy")]
     #[inline]
@@ -208,6 +212,7 @@ impl CFString {
     ///
     /// - `alloc` might not allow `None`.
     /// - `c_str` might not allow `None`.
+    /// - `encoding` should be set correctly.
     /// - `contents_deallocator` might not allow `None`.
     #[doc(alias = "CFStringCreateWithCStringNoCopy")]
     #[inline]
@@ -242,6 +247,7 @@ impl CFString {
     ///
     /// - `alloc` might not allow `None`.
     /// - `bytes` must be a valid pointer.
+    /// - `encoding` should be set correctly.
     /// - `contents_deallocator` might not allow `None`.
     #[doc(alias = "CFStringCreateWithBytesNoCopy")]
     #[inline]
@@ -447,7 +453,8 @@ impl CFString {
 
     /// # Safety
     ///
-    /// `buffer` must be a valid pointer.
+    /// - `buffer` must be a valid pointer.
+    /// - `encoding` should be set correctly.
     #[doc(alias = "CFStringGetPascalString")]
     #[inline]
     pub unsafe fn pascal_string(
@@ -470,7 +477,8 @@ impl CFString {
 
     /// # Safety
     ///
-    /// `buffer` must be a valid pointer.
+    /// - `buffer` must be a valid pointer.
+    /// - `encoding` should be set correctly.
     #[doc(alias = "CFStringGetCString")]
     #[inline]
     pub unsafe fn c_string(
@@ -491,9 +499,12 @@ impl CFString {
         ret != 0
     }
 
+    /// # Safety
+    ///
+    /// `encoding` should be set correctly.
     #[doc(alias = "CFStringGetPascalStringPtr")]
     #[inline]
-    pub fn pascal_string_ptr(&self, encoding: CFStringEncoding) -> ConstStringPtr {
+    pub unsafe fn pascal_string_ptr(&self, encoding: CFStringEncoding) -> ConstStringPtr {
         extern "C-unwind" {
             fn CFStringGetPascalStringPtr(
                 the_string: &CFString,
@@ -503,9 +514,12 @@ impl CFString {
         unsafe { CFStringGetPascalStringPtr(self, encoding) }
     }
 
+    /// # Safety
+    ///
+    /// `encoding` should be set correctly.
     #[doc(alias = "CFStringGetCStringPtr")]
     #[inline]
-    pub fn c_string_ptr(&self, encoding: CFStringEncoding) -> *const c_char {
+    pub unsafe fn c_string_ptr(&self, encoding: CFStringEncoding) -> *const c_char {
         extern "C-unwind" {
             fn CFStringGetCStringPtr(
                 the_string: &CFString,
@@ -526,7 +540,8 @@ impl CFString {
 
     /// # Safety
     ///
-    /// `buffer` must be a valid pointer.
+    /// - `encoding` should be set correctly.
+    /// - `buffer` must be a valid pointer.
     #[doc(alias = "CFStringGetBytes")]
     #[inline]
     pub unsafe fn bytes(
@@ -633,9 +648,15 @@ impl CFString {
         unsafe { CFStringGetSystemEncoding() }
     }
 
+    /// # Safety
+    ///
+    /// `encoding` should be set correctly.
     #[doc(alias = "CFStringGetMaximumSizeForEncoding")]
     #[inline]
-    pub fn maximum_size_for_encoding(length: CFIndex, encoding: CFStringEncoding) -> CFIndex {
+    pub unsafe fn maximum_size_for_encoding(
+        length: CFIndex,
+        encoding: CFStringEncoding,
+    ) -> CFIndex {
         extern "C-unwind" {
             fn CFStringGetMaximumSizeForEncoding(
                 length: CFIndex,
@@ -1287,6 +1308,7 @@ impl CFMutableString {
     ///
     /// - `the_string` might not allow `None`.
     /// - `p_str` must be a valid pointer.
+    /// - `encoding` should be set correctly.
     #[doc(alias = "CFStringAppendPascalString")]
     #[inline]
     pub unsafe fn append_pascal_string(
@@ -1308,6 +1330,7 @@ impl CFMutableString {
     ///
     /// - `the_string` might not allow `None`.
     /// - `c_str` might not allow `None`.
+    /// - `encoding` should be set correctly.
     #[doc(alias = "CFStringAppendCString")]
     #[inline]
     pub unsafe fn append_c_string(
@@ -1765,9 +1788,12 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `encoding` should be set correctly.
     #[doc(alias = "CFStringConvertEncodingToNSStringEncoding")]
     #[inline]
-    pub fn convert_encoding_to_ns_string_encoding(encoding: CFStringEncoding) -> c_ulong {
+    pub unsafe fn convert_encoding_to_ns_string_encoding(encoding: CFStringEncoding) -> c_ulong {
         extern "C-unwind" {
             fn CFStringConvertEncodingToNSStringEncoding(encoding: CFStringEncoding) -> c_ulong;
         }
@@ -1783,9 +1809,12 @@ impl CFString {
         unsafe { CFStringConvertNSStringEncodingToEncoding(encoding) }
     }
 
+    /// # Safety
+    ///
+    /// `encoding` should be set correctly.
     #[doc(alias = "CFStringConvertEncodingToWindowsCodepage")]
     #[inline]
-    pub fn convert_encoding_to_windows_codepage(encoding: CFStringEncoding) -> u32 {
+    pub unsafe fn convert_encoding_to_windows_codepage(encoding: CFStringEncoding) -> u32 {
         extern "C-unwind" {
             fn CFStringConvertEncodingToWindowsCodepage(encoding: CFStringEncoding) -> u32;
         }
@@ -1810,9 +1839,12 @@ impl CFString {
         unsafe { CFStringConvertIANACharSetNameToEncoding(self) }
     }
 
+    /// # Safety
+    ///
+    /// `encoding` should be set correctly.
     #[doc(alias = "CFStringConvertEncodingToIANACharSetName")]
     #[inline]
-    pub fn convert_encoding_to_iana_char_set_name(
+    pub unsafe fn convert_encoding_to_iana_char_set_name(
         encoding: CFStringEncoding,
     ) -> Option<CFRetained<CFString>> {
         extern "C-unwind" {
@@ -1824,9 +1856,14 @@ impl CFString {
         ret.map(|ret| unsafe { CFRetained::retain(ret) })
     }
 
+    /// # Safety
+    ///
+    /// `encoding` should be set correctly.
     #[doc(alias = "CFStringGetMostCompatibleMacStringEncoding")]
     #[inline]
-    pub fn most_compatible_mac_string_encoding(encoding: CFStringEncoding) -> CFStringEncoding {
+    pub unsafe fn most_compatible_mac_string_encoding(
+        encoding: CFStringEncoding,
+    ) -> CFStringEncoding {
         extern "C-unwind" {
             fn CFStringGetMostCompatibleMacStringEncoding(
                 encoding: CFStringEncoding,

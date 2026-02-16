@@ -68,6 +68,7 @@ impl CFURL {
     ///
     /// - `allocator` might not allow `None`.
     /// - `url_bytes` must be a valid pointer.
+    /// - `encoding` should be set correctly.
     /// - `base_url` might not allow `None`.
     #[doc(alias = "CFURLCreateWithBytes")]
     #[cfg(feature = "CFString")]
@@ -135,6 +136,7 @@ impl CFURL {
     ///
     /// - `alloc` might not allow `None`.
     /// - `relative_url_bytes` must be a valid pointer.
+    /// - `encoding` should be set correctly.
     /// - `base_url` might not allow `None`.
     #[doc(alias = "CFURLCreateAbsoluteURLWithBytes")]
     #[cfg(feature = "CFString")]
@@ -715,6 +717,7 @@ impl CFURL {
     /// - `allocator` might not allow `None`.
     /// - `orig_string` might not allow `None`.
     /// - `chars_to_leave_escaped` might not allow `None`.
+    /// - `encoding` should be set correctly.
     #[doc(alias = "CFURLCreateStringByReplacingPercentEscapesUsingEncoding")]
     #[cfg(feature = "CFString")]
     #[deprecated = "Use [NSString stringByRemovingPercentEncoding] or CFURLCreateStringByReplacingPercentEscapes() instead, which always uses the recommended UTF-8 encoding."]
@@ -750,6 +753,7 @@ impl CFURL {
     /// - `original_string` might not allow `None`.
     /// - `characters_to_leave_unescaped` might not allow `None`.
     /// - `legal_url_characters_to_be_escaped` might not allow `None`.
+    /// - `encoding` should be set correctly.
     #[doc(alias = "CFURLCreateStringByAddingPercentEscapes")]
     #[cfg(feature = "CFString")]
     #[deprecated = "Use [NSString stringByAddingPercentEncodingWithAllowedCharacters:] instead, which always uses the recommended UTF-8 encoding, and which encodes for a specific URL component or subcomponent (since each URL component or subcomponent has different rules for what characters are valid)."]

@@ -78,6 +78,7 @@ extern "C-unwind" {
     /// # Safety
     ///
     /// - `image_description_data` must be a valid pointer.
+    /// - `string_encoding` should be set correctly.
     /// - `format_description_out` must be a valid pointer.
     #[cfg(feature = "CMFormatDescription")]
     pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionData(
@@ -106,7 +107,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `format_description_out` must be a valid pointer.
+    /// - `string_encoding` should be set correctly.
+    /// - `format_description_out` must be a valid pointer.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMVideoFormatDescriptionCreateFromBigEndianImageDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,
@@ -138,7 +140,8 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// `block_buffer_out` must be a valid pointer.
+    /// - `string_encoding` should be set correctly.
+    /// - `block_buffer_out` must be a valid pointer.
     #[cfg(all(feature = "CMBlockBuffer", feature = "CMFormatDescription"))]
     pub fn CMVideoFormatDescriptionCopyAsBigEndianImageDescriptionBlockBuffer(
         allocator: Option<&CFAllocator>,

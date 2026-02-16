@@ -21,10 +21,14 @@ impl SCPreferences {
     /// Parameter `nameEncoding`: The encoding associated with the computer name.
     ///
     /// Returns: Returns TRUE if successful; FALSE otherwise.
+    ///
+    /// # Safety
+    ///
+    /// `name_encoding` should be set correctly.
     #[doc(alias = "SCPreferencesSetComputerName")]
     #[cfg(feature = "SCPreferences")]
     #[inline]
-    pub fn set_computer_name(
+    pub unsafe fn set_computer_name(
         &self,
         name: Option<&CFString>,
         name_encoding: CFStringEncoding,

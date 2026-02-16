@@ -20,10 +20,14 @@ impl SCDynamicStore {
     /// Returns: Returns the current computer name;
     /// NULL if the name has not been set or if an error was encountered.
     /// You must release the returned value.
+    ///
+    /// # Safety
+    ///
+    /// `name_encoding` should be set correctly.
     #[doc(alias = "SCDynamicStoreCopyComputerName")]
     #[cfg(feature = "SCDynamicStore")]
     #[inline]
-    pub fn computer_name(
+    pub unsafe fn computer_name(
         store: Option<&SCDynamicStore>,
         name_encoding: Option<&mut CFStringEncoding>,
     ) -> Option<CFRetained<CFString>> {
