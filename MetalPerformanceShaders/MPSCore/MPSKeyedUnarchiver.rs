@@ -63,33 +63,15 @@ impl MPSKeyedUnarchiver {
         #[unsafe(method_family = none)]
         pub unsafe fn mpsMTLDevice(&self) -> Retained<ProtocolObject<dyn MTLDevice>>;
 
-        /// # Safety
-        ///
-        /// `classes` generic probably has further requirements.
-        #[unsafe(method(unarchivedObjectOfClasses:fromData:error:_))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn unarchivedObjectOfClasses_fromData_error(
-            classes: &NSSet<AnyClass>,
-            data: &NSData,
-        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
+        // +unarchivedObjectOfClasses:fromData:error: (unavailable)
 
-        /// # Safety
-        ///
-        /// `cls` probably has further requirements.
-        #[unsafe(method(unarchivedObjectOfClass:fromData:error:_))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn unarchivedObjectOfClass_fromData_error(
-            cls: &AnyClass,
-            data: &NSData,
-        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
+        // +unarchivedObjectOfClass:fromData:error: (unavailable)
 
         // -init (unavailable)
 
         // -initForReadingFromData:error: (unavailable)
 
-        #[unsafe(method(unarchiveObjectWithData:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn unarchiveObjectWithData(data: &NSData) -> Option<Retained<AnyObject>>;
+        // +unarchiveObjectWithData: (unavailable)
 
         #[deprecated]
         #[unsafe(method(unarchiveObjectWithData:device:))]
@@ -99,11 +81,7 @@ impl MPSKeyedUnarchiver {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Option<Retained<AnyObject>>;
 
-        #[unsafe(method(unarchiveTopLevelObjectWithData:error:_))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn unarchiveTopLevelObjectWithData_error(
-            data: &NSData,
-        ) -> Result<Retained<AnyObject>, Retained<NSError>>;
+        // +unarchiveTopLevelObjectWithData:error: (unavailable)
 
         #[deprecated]
         #[unsafe(method(unarchiveTopLevelObjectWithData:device:error:_))]
@@ -113,9 +91,7 @@ impl MPSKeyedUnarchiver {
             device: &ProtocolObject<dyn MTLDevice>,
         ) -> Result<Retained<AnyObject>, Retained<NSError>>;
 
-        #[unsafe(method(unarchiveObjectWithFile:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn unarchiveObjectWithFile(path: &NSString) -> Option<Retained<AnyObject>>;
+        // +unarchiveObjectWithFile: (unavailable)
 
         // -initForReadingWithData: (unavailable)
 

@@ -50,20 +50,9 @@ impl MPSCNNBatchNormalizationState {
 
         // -initWithResource: (unavailable)
 
-        /// Unavailable.  Use MPSCNNBatchNormalizationStatistics methods to create the temporary state object.
-        #[unsafe(method(temporaryStateWithCommandBuffer:bufferSize:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
-            cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
-            buffer_size: usize,
-        ) -> Retained<Self>;
+        // +temporaryStateWithCommandBuffer:bufferSize: (unavailable)
 
-        #[unsafe(method(temporaryStateWithCommandBuffer:textureDescriptor:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
-            cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
-            descriptor: &MTLTextureDescriptor,
-        ) -> Retained<Self>;
+        // +temporaryStateWithCommandBuffer:textureDescriptor: (unavailable)
 
         /// Reset any accumulated state data to its initial values.
         #[unsafe(method(reset))]
@@ -828,49 +817,13 @@ impl MPSCNNBatchNormalization {
             destination_images: &MPSImageBatch,
         );
 
-        #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
-        #[unsafe(method(encodeToCommandBuffer:sourceImage:destinationState:destinationImage:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeToCommandBuffer_sourceImage_destinationState_destinationImage(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            source_image: &MPSImage,
-            destination_state: &MPSState,
-            destination_image: &MPSImage,
-        );
+        // -encodeToCommandBuffer:sourceImage:destinationState:destinationImage: (unavailable)
 
-        #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
-        #[unsafe(method(encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeToCommandBuffer_sourceImage_destinationState_destinationStateIsTemporary(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            source_image: &MPSImage,
-            out_state: &mut Option<Retained<MPSState>>,
-            is_temporary: bool,
-        ) -> Retained<MPSImage>;
+        // -encodeToCommandBuffer:sourceImage:destinationState:destinationStateIsTemporary: (unavailable)
 
-        #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationImages:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationStates_destinationImages(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            source_images: &MPSImageBatch,
-            destination_states: Option<&MPSStateBatch>,
-            destination_images: &MPSImageBatch,
-        );
+        // -encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationImages: (unavailable)
 
-        #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationStates_destinationStateIsTemporary(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            source_images: &MPSImageBatch,
-            out_states: &mut Option<Retained<MPSStateBatch>>,
-            is_temporary: bool,
-        ) -> Retained<MPSImageBatch>;
+        // -encodeBatchToCommandBuffer:sourceImages:destinationStates:destinationStateIsTemporary: (unavailable)
 
         #[cfg(all(
             feature = "MPSImage",
@@ -1106,44 +1059,6 @@ impl MPSCNNBatchNormalizationStatistics {
             source_images: &MPSImageBatch,
             batch_normalization_state: &MPSCNNBatchNormalizationState,
         );
-
-        #[cfg(all(feature = "MPSImage", feature = "MPSNDArray"))]
-        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:destinationImages:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeBatchToCommandBuffer_sourceImages_destinationImages(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            source_images: &MPSImageBatch,
-            destination_images: &MPSImageBatch,
-        );
-
-        #[cfg(feature = "MPSImage")]
-        #[unsafe(method(encodeToCommandBuffer:sourceImage:destinationImage:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeToCommandBuffer_sourceImage_destinationImage(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            source_image: &MPSImage,
-            destination_image: &MPSImage,
-        );
-
-        #[cfg(feature = "MPSImage")]
-        #[unsafe(method(encodeToCommandBuffer:sourceImage:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeToCommandBuffer_sourceImage(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            source_image: &MPSImage,
-        ) -> Retained<MPSImage>;
-
-        #[cfg(all(feature = "MPSImage", feature = "MPSNDArray"))]
-        #[unsafe(method(encodeBatchToCommandBuffer:sourceImages:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeBatchToCommandBuffer_sourceImages(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            source_images: &MPSImageBatch,
-        ) -> Retained<MPSImageBatch>;
     );
 }
 
@@ -1386,48 +1301,6 @@ impl MPSCNNBatchNormalizationGradient {
             source_images: &MPSImageBatch,
             batch_normalization_state: &MPSCNNBatchNormalizationState,
         ) -> Retained<MPSImageBatch>;
-
-        #[cfg(feature = "MPSImage")]
-        #[unsafe(method(encodeToCommandBuffer:primaryImage:secondaryImage:destinationImage:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage_destinationImage(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            primary_image: &MPSImage,
-            secondary_image: &MPSImage,
-            destination_image: &MPSImage,
-        );
-
-        #[cfg(all(feature = "MPSImage", feature = "MPSNDArray"))]
-        #[unsafe(method(encodeBatchToCommandBuffer:primaryImages:secondaryImages:destinationImages:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeBatchToCommandBuffer_primaryImages_secondaryImages_destinationImages(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            primary_images: &MPSImageBatch,
-            secondary_images: &MPSImageBatch,
-            destination_images: &MPSImageBatch,
-        );
-
-        #[cfg(feature = "MPSImage")]
-        #[unsafe(method(encodeToCommandBuffer:primaryImage:secondaryImage:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeToCommandBuffer_primaryImage_secondaryImage(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            primary_image: &MPSImage,
-            secondary_image: &MPSImage,
-        ) -> Retained<MPSImage>;
-
-        #[cfg(all(feature = "MPSImage", feature = "MPSNDArray"))]
-        #[unsafe(method(encodeBatchToCommandBuffer:primaryImages:secondaryImages:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeBatchToCommandBuffer_primaryImages_secondaryImages(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            primary_image: &MPSImageBatch,
-            secondary_image: &MPSImageBatch,
-        ) -> Retained<MPSImageBatch>;
     );
 }
 
@@ -1615,52 +1488,6 @@ impl MPSCNNBatchNormalizationStatisticsGradient {
             source_gradients: &MPSImageBatch,
             source_images: &MPSImageBatch,
             batch_normalization_state: &MPSCNNBatchNormalizationState,
-        );
-
-        #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
-        #[unsafe(method(encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeToCommandBuffer_sourceGradient_sourceImage_gradientState(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            source_gradient: &MPSImage,
-            source_image: &MPSImage,
-            gradient_state: &MPSState,
-        ) -> Retained<MPSImage>;
-
-        #[cfg(all(feature = "MPSImage", feature = "MPSState"))]
-        #[unsafe(method(encodeToCommandBuffer:sourceGradient:sourceImage:gradientState:destinationGradient:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeToCommandBuffer_sourceGradient_sourceImage_gradientState_destinationGradient(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            source_gradient: &MPSImage,
-            source_image: &MPSImage,
-            gradient_state: &MPSState,
-            destination_gradient: &MPSImage,
-        );
-
-        #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[unsafe(method(encodeBatchToCommandBuffer:sourceGradients:sourceImages:gradientStates:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeBatchToCommandBuffer_sourceGradients_sourceImages_gradientStates(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            source_gradients: &MPSImageBatch,
-            source_images: &MPSImageBatch,
-            gradient_states: &MPSStateBatch,
-        ) -> Retained<MPSImageBatch>;
-
-        #[cfg(all(feature = "MPSImage", feature = "MPSNDArray", feature = "MPSState"))]
-        #[unsafe(method(encodeBatchToCommandBuffer:sourceGradients:sourceImages:gradientStates:destinationGradients:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeBatchToCommandBuffer_sourceGradients_sourceImages_gradientStates_destinationGradients(
-            &self,
-            command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
-            source_gradients: &MPSImageBatch,
-            source_images: &MPSImageBatch,
-            gradient_states: &MPSStateBatch,
-            destination_gradients: &MPSImageBatch,
         );
     );
 }

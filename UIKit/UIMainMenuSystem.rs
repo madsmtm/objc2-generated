@@ -46,14 +46,6 @@ impl UIMainMenuSystem {
                 &block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn UIMenuBuilder>>)>,
             >,
         );
-
-        #[unsafe(method(mainSystem))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn mainSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
-
-        #[unsafe(method(contextSystem))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
     );
 }
 

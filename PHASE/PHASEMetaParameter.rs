@@ -279,14 +279,6 @@ impl PHASEMappedMetaParameterDefinition {
         pub unsafe fn inputMetaParameterDefinition(
             &self,
         ) -> Retained<PHASENumberMetaParameterDefinition>;
-
-        #[unsafe(method(minimum))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn minimum(&self) -> c_double;
-
-        #[unsafe(method(maximum))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn maximum(&self) -> c_double;
     );
 }
 

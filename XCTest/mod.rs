@@ -4688,28 +4688,6 @@ impl XCTNSPredicateExpectation {
         #[unsafe(method(setHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setHandler(&self, handler: XCPredicateExpectationHandler);
-
-        /// Unavailable on this class; XCTNSPredicateExpectation repeatedly evaluates its predicate until it becomes
-        /// true. Once the predicate has become true, it is expected to remain true and will not be evaluated again.
-        /// Setting expectedFulfillmentCount has no impact on fulfillment of the expectation.
-        ///
-        /// This property is not atomic.
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(expectedFulfillmentCount))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn expectedFulfillmentCount(&self) -> NSUInteger;
-
-        /// Setter for [`expectedFulfillmentCount`][Self::expectedFulfillmentCount].
-        ///
-        /// # Safety
-        ///
-        /// This might not be thread-safe.
-        #[unsafe(method(setExpectedFulfillmentCount:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setExpectedFulfillmentCount(&self, expected_fulfillment_count: NSUInteger);
     );
 }
 

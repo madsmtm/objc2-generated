@@ -847,33 +847,14 @@ extern_conformance!(
 
 impl MPSNNGradientFilterNode {
     extern_methods!(
-        #[unsafe(method(gradientFilterWithSources:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn gradientFilterWithSources(
-            &self,
-            source_gradient: &NSArray<MPSNNImageNode>,
-        ) -> Retained<MPSNNGradientFilterNode>;
+        // -gradientFilterWithSources: (unavailable)
 
-        #[unsafe(method(gradientFiltersWithSources:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn gradientFiltersWithSources(
-            &self,
-            source_gradient: &NSArray<MPSNNImageNode>,
-        ) -> Retained<NSArray<MPSNNGradientFilterNode>>;
+        // -gradientFiltersWithSources: (unavailable)
 
-        #[unsafe(method(gradientFilterWithSource:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn gradientFilterWithSource(
-            &self,
-            source_gradient: &MPSNNImageNode,
-        ) -> Retained<MPSNNGradientFilterNode>;
+        // -gradientFilterWithSource: (unavailable)
 
-        #[unsafe(method(gradientFiltersWithSource:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn gradientFiltersWithSource(
-            &self,
-            source_gradient: &MPSNNImageNode,
-        ) -> Retained<NSArray<MPSNNGradientFilterNode>>;
+        // -gradientFiltersWithSource: (unavailable)
+
     );
 }
 
@@ -1244,13 +1225,6 @@ impl MPSCNNBinaryConvolutionNode {
             r#type: MPSCNNBinaryConvolutionType,
             flags: MPSCNNBinaryConvolutionFlags,
         ) -> Retained<Self>;
-
-        /// unavailable
-        #[unsafe(method(convolutionGradientState))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn convolutionGradientState(
-            &self,
-        ) -> Option<Retained<MPSCNNConvolutionGradientStateNode>>;
     );
 }
 
@@ -1609,13 +1583,6 @@ impl MPSCNNConvolutionTransposeNode {
             convolution_gradient_state: Option<&MPSCNNConvolutionGradientStateNode>,
             weights: &ProtocolObject<dyn MPSCNNConvolutionDataSource>,
         ) -> Retained<Self>;
-
-        /// unavailable
-        #[unsafe(method(convolutionGradientState))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn convolutionGradientState(
-            &self,
-        ) -> Option<Retained<MPSCNNConvolutionGradientStateNode>>;
     );
 }
 
@@ -2895,10 +2862,6 @@ impl MPSCNNNeuronPReLUNode {
             source_node: &MPSNNImageNode,
             a_data: &NSData,
         ) -> Retained<Self>;
-
-        #[unsafe(method(nodeWithSource:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn nodeWithSource(source_node: &MPSNNImageNode) -> Retained<Self>;
     );
 }
 
@@ -6956,12 +6919,7 @@ impl MPSNNBinaryArithmeticNode {
         #[unsafe(method_family = none)]
         pub unsafe fn gradientClass(&self) -> &'static AnyClass;
 
-        #[unsafe(method(gradientFilterWithSources:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn gradientFilterWithSources(
-            &self,
-            gradient_images: &NSArray<MPSNNImageNode>,
-        ) -> Retained<MPSNNGradientFilterNode>;
+        // -gradientFilterWithSources: (unavailable)
 
         /// create new arithmetic gradient nodes
         ///
@@ -8243,17 +8201,6 @@ impl MPSCNNLossNode {
         #[unsafe(method(inputLabels))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputLabels(&self) -> Retained<MPSNNLabelsNode>;
-
-        /// The loss filter is its own gradient filter and doesn't provide a corresponding gradient node.
-        ///
-        /// The image returned by the loss filter is the gradient image to be consumed by
-        /// the gradient filters corresponding to preceeding inference nodes.
-        #[unsafe(method(gradientFilterWithSources:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn gradientFilterWithSources(
-            &self,
-            gradient_images: &NSArray<MPSNNImageNode>,
-        ) -> Retained<MPSNNGradientFilterNode>;
     );
 }
 
@@ -8316,17 +8263,6 @@ impl MPSCNNYOLOLossNode {
         #[unsafe(method(inputLabels))]
         #[unsafe(method_family = none)]
         pub unsafe fn inputLabels(&self) -> Retained<MPSNNLabelsNode>;
-
-        /// The loss filter is its own gradient filter and doesn't provide a corresponding gradient node.
-        ///
-        /// The image returned by the loss filter is the gradient image to be consumed by
-        /// the gradient filters corresponding to preceeding inference nodes.
-        #[unsafe(method(gradientFilterWithSources:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn gradientFilterWithSources(
-            &self,
-            gradient_images: &NSArray<MPSNNImageNode>,
-        ) -> Retained<MPSNNGradientFilterNode>;
     );
 }
 
@@ -8437,14 +8373,6 @@ impl MPSNNConcatenationNode {
             this: Allocated<Self>,
             source_nodes: &NSArray<MPSNNImageNode>,
         ) -> Retained<Self>;
-
-        /// Concatenation returns multiple gradient filters. Use -gradientFiltersWithSources: instead.
-        #[unsafe(method(gradientFilterWithSources:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn gradientFilterWithSources(
-            &self,
-            gradient_images: &NSArray<MPSNNImageNode>,
-        ) -> Retained<MPSNNGradientFilterNode>;
     );
 }
 
@@ -10060,14 +9988,6 @@ impl MPSNNLossGradientNode {
             descriptor: &MPSCNNLossDescriptor,
             is_labels_gradient_filter: bool,
         ) -> Retained<Self>;
-
-        /// This is a gradient filter - there is no support gradients of gradients currently.
-        #[unsafe(method(gradientFilterWithSources:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn gradientFilterWithSources(
-            &self,
-            gradient_images: &NSArray<MPSNNImageNode>,
-        ) -> Retained<MPSNNGradientFilterNode>;
     );
 }
 
@@ -10129,14 +10049,6 @@ impl MPSNNInitialGradientNode {
             this: Allocated<Self>,
             source: &MPSNNImageNode,
         ) -> Retained<Self>;
-
-        /// The initial gradient filter is a gradient filter and we don't provide support for gradients of gradients currently.
-        #[unsafe(method(gradientFilterWithSources:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn gradientFilterWithSources(
-            &self,
-            gradient_images: &NSArray<MPSNNImageNode>,
-        ) -> Retained<MPSNNGradientFilterNode>;
     );
 }
 

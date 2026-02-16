@@ -91,17 +91,9 @@ impl CPWindow {
         #[unsafe(method_family = none)]
         pub unsafe fn mapButtonSafeAreaLayoutGuide(&self) -> Retained<UILayoutGuide>;
 
-        /// `windowScene`is not available for CPWindow's
-        #[unsafe(method(windowScene))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn windowScene(&self) -> Option<Retained<UIWindowScene>>;
+        // -windowScene (unavailable)
 
-        /// Setter for [`windowScene`][Self::windowScene].
-        ///
-        /// This is a [weak property][objc2::topics::weak_property].
-        #[unsafe(method(setWindowScene:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setWindowScene(&self, window_scene: Option<&UIWindowScene>);
+        // -setWindowScene: (unavailable)
 
         #[cfg(feature = "CPTemplateApplicationScene")]
         /// `back-reference`to the CPTemplateApplicationScene containing this CPWindow

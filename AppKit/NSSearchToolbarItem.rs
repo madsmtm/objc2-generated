@@ -65,17 +65,9 @@ impl NSSearchToolbarItem {
         #[unsafe(method_family = none)]
         pub fn setSearchField(&self, search_field: &NSSearchField);
 
-        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        /// The base view property is owned by the toolbar item and not available for customization.
-        #[unsafe(method(view))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn view(&self) -> Option<Retained<NSView>>;
+        // -view (unavailable)
 
-        #[cfg(all(feature = "NSResponder", feature = "NSView"))]
-        /// Setter for [`view`][Self::view].
-        #[unsafe(method(setView:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setView(&self, view: Option<&NSView>);
+        // -setView: (unavailable)
 
         /// When YES, the cancel button in the field resigns the first responder status of the search field as clearing the contents.
         /// The default is YES.

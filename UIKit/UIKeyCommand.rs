@@ -277,37 +277,6 @@ impl UIKeyCommand {
             discoverability_title: &NSString,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-
-        #[cfg(feature = "UIImage")]
-        /// # Safety
-        ///
-        /// - `action` must be a valid selector.
-        /// - `property_list` should be of the correct type.
-        #[unsafe(method(commandWithTitle:image:action:propertyList:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn commandWithTitle_image_action_propertyList(
-            title: &NSString,
-            image: Option<&UIImage>,
-            action: Sel,
-            property_list: Option<&AnyObject>,
-            mtm: MainThreadMarker,
-        ) -> Retained<Self>;
-
-        #[cfg(feature = "UIImage")]
-        /// # Safety
-        ///
-        /// - `action` must be a valid selector.
-        /// - `property_list` should be of the correct type.
-        #[unsafe(method(commandWithTitle:image:action:propertyList:alternates:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn commandWithTitle_image_action_propertyList_alternates(
-            title: &NSString,
-            image: Option<&UIImage>,
-            action: Sel,
-            property_list: Option<&AnyObject>,
-            alternates: &NSArray<UICommandAlternate>,
-            mtm: MainThreadMarker,
-        ) -> Retained<Self>;
     );
 }
 

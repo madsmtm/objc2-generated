@@ -106,31 +106,6 @@ impl UIWindowSceneActivationAction {
             configuration_provider: UIWindowSceneActivationActionConfigurationProvider,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
-
-        #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer.
-        #[unsafe(method(actionWithHandler:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn actionWithHandler(
-            handler: UIActionHandler,
-            mtm: MainThreadMarker,
-        ) -> Retained<Self>;
-
-        #[cfg(all(feature = "UIImage", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer.
-        #[unsafe(method(actionWithTitle:image:identifier:handler:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn actionWithTitle_image_identifier_handler(
-            title: &NSString,
-            image: Option<&UIImage>,
-            identifier: Option<&UIActionIdentifier>,
-            handler: UIActionHandler,
-            mtm: MainThreadMarker,
-        ) -> Retained<Self>;
     );
 }
 

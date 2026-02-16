@@ -461,25 +461,11 @@ impl NSOutlineView {
             new_parent: Option<&AnyObject>,
         );
 
-        #[unsafe(method(insertRowsAtIndexes:withAnimation:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn insertRowsAtIndexes_withAnimation(
-            &self,
-            indexes: &NSIndexSet,
-            animation_options: NSTableViewAnimationOptions,
-        );
+        // -insertRowsAtIndexes:withAnimation: (unavailable)
 
-        #[unsafe(method(removeRowsAtIndexes:withAnimation:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn removeRowsAtIndexes_withAnimation(
-            &self,
-            indexes: &NSIndexSet,
-            animation_options: NSTableViewAnimationOptions,
-        );
+        // -removeRowsAtIndexes:withAnimation: (unavailable)
 
-        #[unsafe(method(moveRowAtIndex:toIndex:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn moveRowAtIndex_toIndex(&self, old_index: NSInteger, new_index: NSInteger);
+        // -moveRowAtIndex:toIndex: (unavailable)
 
         #[cfg(feature = "NSUserInterfaceLayout")]
         #[unsafe(method(userInterfaceLayoutDirection))]

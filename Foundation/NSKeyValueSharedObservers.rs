@@ -92,20 +92,7 @@ impl NSKeyValueSharedObservers {
             context: *mut c_void,
         );
 
-        #[cfg(all(feature = "NSKeyValueObserving", feature = "NSString"))]
-        /// # Safety
-        ///
-        /// - `observer` should be of the correct type.
-        /// - `context` must be a valid pointer or null.
-        #[unsafe(method(addObserver:forKeyPath:options:context:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn addObserver_forKeyPath_options_context(
-            &self,
-            observer: &NSObject,
-            key_path: &NSString,
-            options: NSKeyValueObservingOptions,
-            context: *mut c_void,
-        );
+        // -addObserver:forKeyPath:options:context: (unavailable)
 
         /// A momentary snapshot of all observers added to the collection thus far, that
         /// can be assigned to an observable using ``-[NSObject setSharedObservers:]``

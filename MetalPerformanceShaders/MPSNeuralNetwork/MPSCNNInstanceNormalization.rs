@@ -67,27 +67,6 @@ impl MPSCNNInstanceNormalizationGradientState {
         #[unsafe(method(gradientForBeta))]
         #[unsafe(method_family = none)]
         pub unsafe fn gradientForBeta(&self) -> Retained<ProtocolObject<dyn MTLBuffer>>;
-
-        /// Unavailable.  Use MPSCNNInstanceNormalization state creation methods.
-        #[unsafe(method(temporaryStateWithCommandBuffer:textureDescriptor:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn temporaryStateWithCommandBuffer_textureDescriptor(
-            cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
-            descriptor: &MTLTextureDescriptor,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(temporaryStateWithCommandBuffer:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn temporaryStateWithCommandBuffer(
-            cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
-        ) -> Retained<Self>;
-
-        #[unsafe(method(temporaryStateWithCommandBuffer:bufferSize:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn temporaryStateWithCommandBuffer_bufferSize(
-            cmd_buf: &ProtocolObject<dyn MTLCommandBuffer>,
-            buffer_size: usize,
-        ) -> Retained<Self>;
     );
 }
 

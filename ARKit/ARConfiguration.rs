@@ -1199,15 +1199,9 @@ extern_conformance!(
 #[cfg(feature = "objc2")]
 impl ARGeoTrackingConfiguration {
     extern_methods!(
-        /// Unavailable
-        #[unsafe(method(worldAlignment))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn worldAlignment(&self) -> ARWorldAlignment;
+        // -worldAlignment (unavailable)
 
-        /// Setter for [`worldAlignment`][Self::worldAlignment].
-        #[unsafe(method(setWorldAlignment:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setWorldAlignment(&self, world_alignment: ARWorldAlignment);
+        // -setWorldAlignment: (unavailable)
 
         /// The mode of environment texturing to run.
         ///

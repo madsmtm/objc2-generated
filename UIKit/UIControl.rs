@@ -651,20 +651,6 @@ impl UIControl {
             configuration: &UIContextMenuConfiguration,
             animator: Option<&ProtocolObject<dyn UIContextMenuInteractionAnimating>>,
         );
-
-        #[cfg(all(
-            feature = "UIContextMenuConfiguration",
-            feature = "UIContextMenuInteraction"
-        ))]
-        /// UIControl based menus do not display previews, so this method will not be called even if implemented. UIControl does not have an implementation.
-        #[unsafe(method(contextMenuInteraction:willPerformPreviewActionForMenuWithConfiguration:animator:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn contextMenuInteraction_willPerformPreviewActionForMenuWithConfiguration_animator(
-            &self,
-            interaction: &UIContextMenuInteraction,
-            configuration: &UIContextMenuConfiguration,
-            animator: &ProtocolObject<dyn UIContextMenuInteractionCommitAnimating>,
-        );
     );
 }
 

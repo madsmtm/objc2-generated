@@ -131,18 +131,6 @@ impl CXCallDirectoryExtensionContext {
             &self,
             completion: Option<&block2::DynBlock<dyn Fn(Bool)>>,
         );
-
-        #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `items` generic should be of the correct type.
-        #[unsafe(method(completeRequestReturningItems:completionHandler:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn completeRequestReturningItems_completionHandler(
-            &self,
-            items: Option<&NSArray>,
-            completion_handler: Option<&block2::DynBlock<dyn Fn(Bool)>>,
-        );
     );
 }
 

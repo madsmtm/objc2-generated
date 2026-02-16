@@ -146,23 +146,5 @@ impl HKGlassesPrescription {
             device: Option<&HKDevice>,
             metadata: Option<&NSDictionary<NSString, AnyObject>>,
         ) -> Retained<Self>;
-
-        // -init (unavailable)
-
-        // +new (unavailable)
-
-        #[cfg(feature = "HKDevice")]
-        /// # Safety
-        ///
-        /// `metadata` generic should be of the correct type.
-        #[unsafe(method(prescriptionWithType:dateIssued:expirationDate:device:metadata:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn prescriptionWithType_dateIssued_expirationDate_device_metadata(
-            r#type: HKVisionPrescriptionType,
-            date_issued: &NSDate,
-            expiration_date: Option<&NSDate>,
-            device: Option<&HKDevice>,
-            metadata: Option<&NSDictionary<NSString, AnyObject>>,
-        ) -> Retained<Self>;
     );
 }

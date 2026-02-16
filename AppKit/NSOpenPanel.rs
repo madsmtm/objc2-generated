@@ -281,14 +281,10 @@ impl NSOpenPanel {
 ))]
 impl NSOpenPanel {
     extern_methods!(
-        #[unsafe(method(showsContentTypes))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn showsContentTypes(&self) -> bool;
+        // -showsContentTypes (unavailable)
 
-        /// Setter for [`showsContentTypes`][Self::showsContentTypes].
-        #[unsafe(method(setShowsContentTypes:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn setShowsContentTypes(&self, shows_content_types: bool);
+        // -setShowsContentTypes: (unavailable)
+
     );
 }
 

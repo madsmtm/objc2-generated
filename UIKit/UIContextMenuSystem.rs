@@ -28,14 +28,6 @@ impl UIContextMenuSystem {
         #[unsafe(method(sharedSystem))]
         #[unsafe(method_family = none)]
         pub fn sharedSystem(mtm: MainThreadMarker) -> Retained<UIContextMenuSystem>;
-
-        #[unsafe(method(mainSystem))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn mainSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
-
-        #[unsafe(method(contextSystem))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn contextSystem(mtm: MainThreadMarker) -> Retained<UIMenuSystem>;
     );
 }
 

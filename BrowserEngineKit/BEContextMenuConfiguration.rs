@@ -2,7 +2,6 @@
 //! DO NOT EDIT
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
-use objc2_foundation::*;
 use objc2_ui_kit::*;
 
 use crate::*;
@@ -45,22 +44,6 @@ impl BEContextMenuConfiguration {
         #[unsafe(method(init))]
         #[unsafe(method_family = init)]
         pub unsafe fn init(this: Allocated<Self>) -> Retained<Self>;
-
-        /// For a concrete configuration, use the parent `UIContextMenuConfiguration` class instead.
-        ///
-        /// # Safety
-        ///
-        /// - `identifier` should be of the correct type.
-        /// - `preview_provider` must be a valid pointer or null.
-        /// - `action_provider` must be a valid pointer or null.
-        #[unsafe(method(configurationWithIdentifier:previewProvider:actionProvider:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn configurationWithIdentifier_previewProvider_actionProvider(
-            identifier: Option<&ProtocolObject<dyn NSCopying>>,
-            preview_provider: UIContextMenuContentPreviewProvider,
-            action_provider: UIContextMenuActionProvider,
-            mtm: MainThreadMarker,
-        ) -> Retained<Self>;
     );
 }
 

@@ -99,12 +99,7 @@ impl LPLinkView {
     extern_methods!(
         // -initWithCoder: (unavailable)
 
-        /// # Safety
-        ///
-        /// `coder` possibly has further requirements.
-        #[unsafe(method(encodeWithCoder:))]
-        #[unsafe(method_family = none)]
-        pub unsafe fn encodeWithCoder(&self, coder: &NSCoder);
+        // -encodeWithCoder: (unavailable)
 
         /// Initializes a placeholder link view without metadata for a given URL.
         #[unsafe(method(initWithURL:))]
