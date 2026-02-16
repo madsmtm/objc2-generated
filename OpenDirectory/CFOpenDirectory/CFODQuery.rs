@@ -69,7 +69,6 @@ impl ODQueryRef {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `node` might not allow `None`.
     /// - `record_type_or_list` should be of the correct type.
     /// - `record_type_or_list` might not allow `None`.
@@ -155,7 +154,6 @@ impl ODQueryRef {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `record_type_or_list` should be of the correct type.
     /// - `record_type_or_list` might not allow `None`.
     /// - `attribute` might not allow `None`.

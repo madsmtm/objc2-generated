@@ -10,7 +10,6 @@ use crate::*;
 impl CFURL {
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `url` might not allow `None`.
     /// - `resource_data` must be a valid pointer.
     /// - `resource_data` might not allow `None`.
@@ -116,7 +115,6 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `url` might not allow `None`.
     /// - `property` might not allow `None`.
     /// - `error_code` might not allow `None`.

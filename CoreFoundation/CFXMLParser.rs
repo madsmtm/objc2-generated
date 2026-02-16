@@ -246,7 +246,6 @@ unsafe impl ConcreteType for CFXMLParser {
 impl CFXMLParser {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `xml_data` might not allow `None`.
     /// - `data_source` might not allow `None`.
     /// - `call_backs` struct field `version` must be set correctly.
@@ -300,7 +299,6 @@ impl CFXMLParser {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `data_source` might not allow `None`.
     /// - `call_backs` struct field `version` must be set correctly.
     /// - `call_backs` struct field `createXMLStructure` must be implemented correctly.
@@ -486,7 +484,6 @@ impl CFXMLParser {
 
 /// # Safety
 ///
-/// - `allocator` might not allow `None`.
 /// - `xml_data` might not allow `None`.
 /// - `data_source` might not allow `None`.
 #[cfg(all(
@@ -527,7 +524,6 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromData(
 
 /// # Safety
 ///
-/// - `allocator` might not allow `None`.
 /// - `xml_data` might not allow `None`.
 /// - `data_source` might not allow `None`.
 /// - `error_dict` must be a valid pointer.
@@ -574,8 +570,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateFromDataWithError(
 
 /// # Safety
 ///
-/// - `allocator` might not allow `None`.
-/// - `data_source` might not allow `None`.
+/// `data_source` might not allow `None`.
 #[cfg(all(feature = "CFTree", feature = "CFURL", feature = "CFXMLNode"))]
 #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
@@ -601,8 +596,7 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateWithDataFromURL(
 
 /// # Safety
 ///
-/// - `allocator` might not allow `None`.
-/// - `xml_tree` might not allow `None`.
+/// `xml_tree` might not allow `None`.
 #[cfg(all(feature = "CFData", feature = "CFTree", feature = "CFXMLNode"))]
 #[deprecated = "CFXMLParser is deprecated, use NSXMLParser, NSXMLDocument or libxml2 library instead"]
 #[inline]
@@ -622,7 +616,6 @@ pub unsafe extern "C-unwind" fn CFXMLTreeCreateXMLData(
 
 /// # Safety
 ///
-/// - `allocator` might not allow `None`.
 /// - `string` might not allow `None`.
 /// - `entities_dictionary` generic must be of the correct type.
 /// - `entities_dictionary` generic must be of the correct type.
@@ -648,7 +641,6 @@ pub unsafe extern "C-unwind" fn CFXMLCreateStringByEscapingEntities(
 
 /// # Safety
 ///
-/// - `allocator` might not allow `None`.
 /// - `string` might not allow `None`.
 /// - `entities_dictionary` generic must be of the correct type.
 /// - `entities_dictionary` generic must be of the correct type.

@@ -41,7 +41,6 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `session` might not allow `None`.
     /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeCreateWithNodeType")]
@@ -85,7 +84,6 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `session` might not allow `None`.
     /// - `node_name` might not allow `None`.
     /// - `error` must be a valid pointer.
@@ -125,7 +123,6 @@ impl ODNodeRef {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `node` might not allow `None`.
     /// - `error` must be a valid pointer.
     #[doc(alias = "ODNodeCreateCopy")]

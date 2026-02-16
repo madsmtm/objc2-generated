@@ -58,8 +58,7 @@ unsafe impl ConcreteType for CFBitVector {
 impl CFBitVector {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `bytes` must be a valid pointer.
+    /// `bytes` must be a valid pointer.
     #[doc(alias = "CFBitVectorCreate")]
     #[inline]
     pub unsafe fn new(
@@ -78,12 +77,9 @@ impl CFBitVector {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `allocator` might not allow `None`.
     #[doc(alias = "CFBitVectorCreateCopy")]
     #[inline]
-    pub unsafe fn new_copy(
+    pub fn new_copy(
         allocator: Option<&CFAllocator>,
         bv: &CFBitVector,
     ) -> Option<CFRetained<CFBitVector>> {
@@ -99,12 +95,9 @@ impl CFBitVector {
 }
 
 impl CFMutableBitVector {
-    /// # Safety
-    ///
-    /// `allocator` might not allow `None`.
     #[doc(alias = "CFBitVectorCreateMutable")]
     #[inline]
-    pub unsafe fn new(
+    pub fn new(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
     ) -> Option<CFRetained<CFMutableBitVector>> {
@@ -118,12 +111,9 @@ impl CFMutableBitVector {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `allocator` might not allow `None`.
     #[doc(alias = "CFBitVectorCreateMutableCopy")]
     #[inline]
-    pub unsafe fn new_copy(
+    pub fn new_copy(
         allocator: Option<&CFAllocator>,
         capacity: CFIndex,
         bv: &CFBitVector,

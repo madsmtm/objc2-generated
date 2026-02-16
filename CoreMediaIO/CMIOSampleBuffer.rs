@@ -572,7 +572,6 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `data_buffer` might not allow `None`.
     /// - `format_description` might not allow `None`.
     /// - `sample_timing_array` must be a valid pointer.
@@ -623,7 +622,6 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `image_buffer` might not allow `None`.
     /// - `format_description` might not allow `None`.
     /// - `sample_timing` must be a valid pointer.
@@ -659,7 +657,6 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `format_description` might not allow `None`.
     /// - `s_buf_out` must be a valid pointer.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
@@ -688,8 +685,7 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `sbuf` might not allow `None`.
+    /// `sbuf` might not allow `None`.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferSetSequenceNumber(
         allocator: Option<&CFAllocator>,
@@ -726,8 +722,7 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `sbuf` might not allow `None`.
+    /// `sbuf` might not allow `None`.
     #[cfg(all(feature = "objc2-core-foundation", feature = "objc2-core-media"))]
     pub fn CMIOSampleBufferSetDiscontinuityFlags(
         allocator: Option<&CFAllocator>,

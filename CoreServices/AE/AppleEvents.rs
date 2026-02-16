@@ -380,8 +380,7 @@ pub type AERemoteProcessResolverRef = *mut AERemoteProcessResolver;
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `url` might not allow `None`.
+    /// `url` might not allow `None`.
     pub fn AECreateRemoteProcessResolver(
         allocator: Option<&CFAllocator>,
         url: Option<&CFURL>,

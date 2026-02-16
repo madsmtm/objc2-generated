@@ -79,13 +79,10 @@ unsafe impl RefEncode for CFNumberFormatterStyle {
 }
 
 impl CFNumberFormatter {
-    /// # Safety
-    ///
-    /// `allocator` might not allow `None`.
     #[doc(alias = "CFNumberFormatterCreate")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub unsafe fn new(
+    pub fn new(
         allocator: Option<&CFAllocator>,
         locale: &CFLocale,
         style: CFNumberFormatterStyle,
@@ -146,8 +143,7 @@ impl CFNumberFormatter {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `formatter` might not allow `None`.
+    /// `formatter` might not allow `None`.
     #[doc(alias = "CFNumberFormatterCreateStringWithNumber")]
     #[cfg(feature = "CFNumber")]
     #[inline]
@@ -169,7 +165,6 @@ impl CFNumberFormatter {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `formatter` might not allow `None`.
     /// - `value_ptr` must be a valid pointer.
     #[doc(alias = "CFNumberFormatterCreateStringWithValue")]
@@ -221,8 +216,7 @@ unsafe impl RefEncode for CFNumberFormatterOptionFlags {
 impl CFNumberFormatter {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `formatter` might not allow `None`.
+    /// `formatter` might not allow `None`.
     #[doc(alias = "CFNumberFormatterCreateNumberFromString")]
     #[cfg(feature = "CFNumber")]
     #[inline]

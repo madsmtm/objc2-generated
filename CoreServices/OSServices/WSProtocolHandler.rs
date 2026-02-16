@@ -40,8 +40,7 @@ unsafe impl ConcreteType for WSProtocolHandler {
 impl WSProtocolHandler {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `protocol` might not allow `None`.
+    /// `protocol` might not allow `None`.
     #[doc(alias = "WSProtocolHandlerCreate")]
     #[deprecated = "No longer supported"]
     #[inline]

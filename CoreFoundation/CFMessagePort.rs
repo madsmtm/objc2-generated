@@ -102,7 +102,6 @@ unsafe impl ConcreteType for CFMessagePort {
 impl CFMessagePort {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `name` might not allow `None`.
     /// - `callout` must be implemented correctly.
     /// - `context` struct field `version` must be set correctly.

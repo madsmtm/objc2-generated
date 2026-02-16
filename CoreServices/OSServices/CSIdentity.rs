@@ -79,7 +79,6 @@ unsafe impl ConcreteType for CSIdentity {
 impl CSIdentity {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `full_name` might not allow `None`.
     /// - `posix_name` might not allow `None`.
     /// - `authority` might not allow `None`.
@@ -119,8 +118,7 @@ impl CSIdentity {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `identity` might not allow `None`.
+    /// `identity` might not allow `None`.
     #[doc(alias = "CSIdentityCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -277,8 +275,7 @@ impl CSIdentity {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `identity` might not allow `None`.
+    /// `identity` might not allow `None`.
     #[doc(alias = "CSIdentityCreatePersistentReference")]
     #[inline]
     pub unsafe fn new_persistent_reference(
@@ -334,8 +331,7 @@ impl CSIdentity {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `group` might not allow `None`.
+    /// `group` might not allow `None`.
     #[doc(alias = "CSIdentityCreateGroupMembershipQuery")]
     #[inline]
     pub unsafe fn new_group_membership_query(

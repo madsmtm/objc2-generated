@@ -29,8 +29,7 @@ extern "C-unwind" {
 ///
 /// # Safety
 ///
-/// - `alloc` might not allow `None`.
-/// - `string` must be a valid pointer.
+/// `string` must be a valid pointer.
 #[cfg(all(feature = "JSBase", feature = "objc2-core-foundation"))]
 #[inline]
 pub unsafe extern "C-unwind" fn JSStringCopyCFString(

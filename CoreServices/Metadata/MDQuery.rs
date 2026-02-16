@@ -105,7 +105,6 @@ impl MDQuery {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `query_string` might not allow `None`.
     /// - `value_list_attrs` generic must be of the correct type.
     /// - `value_list_attrs` might not allow `None`.
@@ -176,7 +175,6 @@ impl MDQuery {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `query` might not allow `None`.
     /// - `query_string` might not allow `None`.
     /// - `value_list_attrs` generic must be of the correct type.
@@ -255,7 +253,6 @@ impl MDQuery {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `query_string` might not allow `None`.
     /// - `value_list_attrs` generic must be of the correct type.
     /// - `value_list_attrs` might not allow `None`.

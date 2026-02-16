@@ -34,7 +34,6 @@ unsafe impl RefEncode for CFPropertyListMutabilityOptions {
 
 /// # Safety
 ///
-/// - `allocator` might not allow `None`.
 /// - `xml_data` might not allow `None`.
 /// - `error_string` must be a valid pointer.
 /// - `error_string` might not allow `None`.
@@ -63,7 +62,6 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateFromXMLData(
 
 /// # Safety
 ///
-/// - `allocator` might not allow `None`.
 /// - `property_list` should be of the correct type.
 /// - `property_list` might not allow `None`.
 #[cfg(feature = "CFData")]
@@ -85,7 +83,6 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateXMLData(
 
 /// # Safety
 ///
-/// - `allocator` might not allow `None`.
 /// - `property_list` should be of the correct type.
 /// - `property_list` might not allow `None`.
 #[inline]
@@ -163,7 +160,6 @@ extern "C-unwind" {
 
 /// # Safety
 ///
-/// - `allocator` might not allow `None`.
 /// - `stream` might not allow `None`.
 /// - `format` might not allow `None`.
 /// - `error_string` must be a valid pointer.
@@ -213,7 +209,6 @@ pub const kCFPropertyListWriteStreamError: CFIndex = 3851;
 
 /// # Safety
 ///
-/// - `allocator` might not allow `None`.
 /// - `data` might not allow `None`.
 /// - `format` might not allow `None`.
 /// - `error` must be a valid pointer.
@@ -242,7 +237,6 @@ pub unsafe extern "C-unwind" fn CFPropertyListCreateWithData(
 
 /// # Safety
 ///
-/// - `allocator` might not allow `None`.
 /// - `stream` might not allow `None`.
 /// - `format` might not allow `None`.
 /// - `error` must be a valid pointer.
@@ -292,7 +286,6 @@ extern "C-unwind" {
 
 /// # Safety
 ///
-/// - `allocator` might not allow `None`.
 /// - `property_list` should be of the correct type.
 /// - `property_list` might not allow `None`.
 /// - `error` must be a valid pointer.

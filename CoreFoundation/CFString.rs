@@ -74,7 +74,6 @@ impl CFString {
     ///
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `p_str` must be a valid pointer.
     /// - `encoding` should be set correctly.
     #[doc(alias = "CFStringCreateWithPascalString")]
@@ -97,8 +96,7 @@ impl CFString {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `encoding` should be set correctly.
+    /// `encoding` should be set correctly.
     #[doc(alias = "CFStringCreateWithCString")]
     #[inline]
     pub unsafe fn with_c_string(
@@ -125,7 +123,6 @@ impl CFString {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `bytes` must be a valid pointer.
     /// - `encoding` should be set correctly.
     #[doc(alias = "CFStringCreateWithBytes")]
@@ -160,8 +157,7 @@ impl CFString {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `chars` must be a valid pointer.
+    /// `chars` must be a valid pointer.
     #[doc(alias = "CFStringCreateWithCharacters")]
     #[inline]
     pub unsafe fn with_characters(
@@ -182,10 +178,8 @@ impl CFString {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `p_str` must be a valid pointer.
     /// - `encoding` should be set correctly.
-    /// - `contents_deallocator` might not allow `None`.
     #[doc(alias = "CFStringCreateWithPascalStringNoCopy")]
     #[inline]
     pub unsafe fn with_pascal_string_no_copy(
@@ -210,10 +204,8 @@ impl CFString {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `c_str` might not allow `None`.
     /// - `encoding` should be set correctly.
-    /// - `contents_deallocator` might not allow `None`.
     #[doc(alias = "CFStringCreateWithCStringNoCopy")]
     #[inline]
     pub unsafe fn with_c_string_no_copy(
@@ -245,10 +237,8 @@ impl CFString {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `bytes` must be a valid pointer.
     /// - `encoding` should be set correctly.
-    /// - `contents_deallocator` might not allow `None`.
     #[doc(alias = "CFStringCreateWithBytesNoCopy")]
     #[inline]
     pub unsafe fn with_bytes_no_copy(
@@ -284,9 +274,7 @@ impl CFString {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `chars` must be a valid pointer.
-    /// - `contents_deallocator` might not allow `None`.
+    /// `chars` must be a valid pointer.
     #[doc(alias = "CFStringCreateWithCharactersNoCopy")]
     #[inline]
     pub unsafe fn with_characters_no_copy(
@@ -311,8 +299,7 @@ impl CFString {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `str` might not allow `None`.
+    /// `str` might not allow `None`.
     #[doc(alias = "CFStringCreateWithSubstring")]
     #[inline]
     pub unsafe fn with_substring(
@@ -385,9 +372,7 @@ impl CFMutableString {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `chars` must be a valid pointer.
-    /// - `external_characters_allocator` might not allow `None`.
+    /// `chars` must be a valid pointer.
     #[doc(alias = "CFStringCreateMutableWithExternalCharactersNoCopy")]
     #[inline]
     pub unsafe fn with_external_characters_no_copy(
@@ -700,8 +685,7 @@ impl CFString {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `buffer` might not allow `None`.
+    /// `buffer` might not allow `None`.
     #[doc(alias = "CFStringCreateWithFileSystemRepresentation")]
     #[inline]
     pub unsafe fn with_file_system_representation(
@@ -911,7 +895,6 @@ impl CFString {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `the_string` might not allow `None`.
     /// - `string_to_find` might not allow `None`.
     #[doc(alias = "CFStringCreateArrayWithFindResults")]
@@ -1207,7 +1190,6 @@ impl CFString {
     ///
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `the_array` might not allow `None`.
     /// - `separator_string` might not allow `None`.
     #[doc(alias = "CFStringCreateByCombiningStrings")]

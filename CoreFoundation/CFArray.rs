@@ -241,7 +241,6 @@ impl<T: Sized> CFArray<T> {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `values` must be a valid pointer.
     /// - `call_backs` struct field `version` must be set correctly.
     /// - `call_backs` struct field `retain` must be implemented correctly.
@@ -289,8 +288,7 @@ impl<T: Sized> CFArray<T> {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `the_array` generic must be of the correct type.
+    /// `the_array` generic must be of the correct type.
     #[doc(alias = "CFArrayCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -354,7 +352,6 @@ impl<T: Sized> CFMutableArray<T> {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `call_backs` struct field `version` must be set correctly.
     /// - `call_backs` struct field `retain` must be implemented correctly.
     /// - `call_backs` struct field `release` must be implemented correctly.
@@ -410,7 +407,6 @@ impl<T: Sized> CFMutableArray<T> {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `the_array` generic must be of the correct type.
     /// - The returned generic must be of the correct type.
     #[doc(alias = "CFArrayCreateMutableCopy")]

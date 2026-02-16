@@ -30,13 +30,10 @@ cf_objc2_type!(
 );
 
 impl CFDateFormatter {
-    /// # Safety
-    ///
-    /// `allocator` might not allow `None`.
     #[doc(alias = "CFDateFormatterCreateDateFormatFromTemplate")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub unsafe fn new_date_format_from_template(
+    pub fn new_date_format_from_template(
         allocator: Option<&CFAllocator>,
         tmplate: &CFString,
         options: CFOptionFlags,
@@ -145,12 +142,9 @@ unsafe impl RefEncode for CFISO8601DateFormatOptions {
 }
 
 impl CFDateFormatter {
-    /// # Safety
-    ///
-    /// `allocator` might not allow `None`.
     #[doc(alias = "CFDateFormatterCreateISO8601Formatter")]
     #[inline]
-    pub unsafe fn new_iso_8601_formatter(
+    pub fn new_iso_8601_formatter(
         allocator: Option<&CFAllocator>,
         format_options: CFISO8601DateFormatOptions,
     ) -> Option<CFRetained<CFDateFormatter>> {
@@ -164,13 +158,10 @@ impl CFDateFormatter {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `allocator` might not allow `None`.
     #[doc(alias = "CFDateFormatterCreate")]
     #[cfg(feature = "CFLocale")]
     #[inline]
-    pub unsafe fn new(
+    pub fn new(
         allocator: Option<&CFAllocator>,
         locale: &CFLocale,
         date_style: CFDateFormatterStyle,
@@ -238,8 +229,7 @@ impl CFDateFormatter {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `formatter` might not allow `None`.
+    /// `formatter` might not allow `None`.
     #[doc(alias = "CFDateFormatterCreateStringWithDate")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -261,8 +251,7 @@ impl CFDateFormatter {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `formatter` might not allow `None`.
+    /// `formatter` might not allow `None`.
     #[doc(alias = "CFDateFormatterCreateStringWithAbsoluteTime")]
     #[cfg(feature = "CFDate")]
     #[inline]
@@ -284,8 +273,7 @@ impl CFDateFormatter {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `formatter` might not allow `None`.
+    /// `formatter` might not allow `None`.
     #[doc(alias = "CFDateFormatterCreateDateFromString")]
     #[cfg(feature = "CFDate")]
     #[inline]

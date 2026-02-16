@@ -288,13 +288,10 @@ impl CFLocale {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `allocator` might not allow `None`.
     #[doc(alias = "CFLocaleCreateLocaleIdentifierFromComponents")]
     #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
-    pub unsafe fn new_locale_identifier_from_components(
+    pub fn new_locale_identifier_from_components(
         allocator: Option<&CFAllocator>,
         dictionary: &CFDictionary<CFString, CFString>,
     ) -> Option<CFRetained<CFLocaleIdentifier>> {

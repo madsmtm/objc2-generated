@@ -149,7 +149,6 @@ impl CFTree {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.

@@ -226,7 +226,6 @@ impl<T: Sized> CFBinaryHeap<T> {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `call_backs` struct field `version` must be set correctly.
     /// - `call_backs` struct field `retain` must be implemented correctly.
     /// - `call_backs` struct field `release` must be implemented correctly.
@@ -288,8 +287,7 @@ impl<T: Sized> CFBinaryHeap<T> {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `heap` generic must be of the correct type.
+    /// `heap` generic must be of the correct type.
     #[doc(alias = "CFBinaryHeapCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(

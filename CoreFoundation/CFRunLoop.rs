@@ -532,7 +532,6 @@ unsafe impl ConcreteType for CFRunLoopSource {
 impl CFRunLoopSource {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -672,7 +671,6 @@ unsafe impl ConcreteType for CFRunLoopObserver {
 impl CFRunLoopObserver {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
@@ -707,8 +705,7 @@ impl CFRunLoopObserver {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `block` might not allow `None`.
+    /// `block` might not allow `None`.
     #[doc(alias = "CFRunLoopObserverCreateWithHandler")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -850,7 +847,6 @@ unsafe impl ConcreteType for CFRunLoopTimer {
 impl CFRunLoopTimer {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
@@ -890,8 +886,7 @@ impl CFRunLoopTimer {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `block` might not allow `None`.
+    /// `block` might not allow `None`.
     #[doc(alias = "CFRunLoopTimerCreateWithHandler")]
     #[cfg(all(feature = "CFDate", feature = "block2"))]
     #[inline]

@@ -11154,8 +11154,7 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `properties` must be a valid pointer.
-    /// - `allocator` might not allow `None`.
+    /// `properties` must be a valid pointer.
     #[cfg(feature = "libc")]
     pub fn IORegistryEntryCreateCFProperties(
         entry: io_registry_entry_t,
@@ -11181,8 +11180,7 @@ extern "C-unwind" {
 ///
 /// # Safety
 ///
-/// - `key` might not allow `None`.
-/// - `allocator` might not allow `None`.
+/// `key` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntryCreateCFProperty(
@@ -11224,7 +11222,6 @@ pub unsafe extern "C-unwind" fn IORegistryEntryCreateCFProperty(
 ///
 /// - `plane` might not allow `None`.
 /// - `key` might not allow `None`.
-/// - `allocator` might not allow `None`.
 #[cfg(feature = "libc")]
 #[inline]
 pub unsafe extern "C-unwind" fn IORegistryEntrySearchCFProperty(
@@ -12010,7 +12007,6 @@ pub unsafe extern "C-unwind" fn IOCFSerialize(
 
 /// # Safety
 ///
-/// - `alloc` might not allow `None`.
 /// - `url` might not allow `None`.
 /// - `property` might not allow `None`.
 /// - `error_code` must be a valid pointer.
@@ -12035,7 +12031,6 @@ pub unsafe extern "C-unwind" fn IOURLCreatePropertyFromResource(
 
 /// # Safety
 ///
-/// - `alloc` might not allow `None`.
 /// - `url` might not allow `None`.
 /// - `resource_data` must be a valid pointer.
 /// - `properties` must be a valid pointer.
@@ -12181,7 +12176,6 @@ pub const kIOCatalogServiceTerminate: c_uint = 3;
 /// # Safety
 ///
 /// - `buffer` must be a valid pointer.
-/// - `allocator` might not allow `None`.
 /// - `error_string` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IOCFUnserialize(
@@ -12205,7 +12199,6 @@ pub unsafe extern "C-unwind" fn IOCFUnserialize(
 /// # Safety
 ///
 /// - `buffer` must be a valid pointer.
-/// - `allocator` might not allow `None`.
 /// - `error_string` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IOCFUnserializeBinary(
@@ -12232,7 +12225,6 @@ pub unsafe extern "C-unwind" fn IOCFUnserializeBinary(
 /// # Safety
 ///
 /// - `buffer` must be a valid pointer.
-/// - `allocator` might not allow `None`.
 /// - `error_string` must be a valid pointer.
 #[inline]
 pub unsafe extern "C-unwind" fn IOCFUnserializeWithSize(

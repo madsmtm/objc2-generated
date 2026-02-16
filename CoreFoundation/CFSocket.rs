@@ -183,7 +183,6 @@ unsafe impl ConcreteType for CFSocket {
 impl CFSocket {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
@@ -230,7 +229,6 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
@@ -264,7 +262,6 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `signature` struct field `address` must be a valid pointer.
     /// - `signature` might not allow `None`.
     /// - `callout` must be implemented correctly.
@@ -307,7 +304,6 @@ impl CFSocket {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `signature` struct field `address` must be a valid pointer.
     /// - `signature` might not allow `None`.
     /// - `callout` must be implemented correctly.

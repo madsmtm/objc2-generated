@@ -82,7 +82,6 @@ unsafe impl ConcreteType for CFFileDescriptor {
 impl CFFileDescriptor {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `callout` must be implemented correctly.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.

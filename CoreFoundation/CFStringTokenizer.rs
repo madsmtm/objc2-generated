@@ -191,7 +191,6 @@ impl CFStringTokenizer {
     ///
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `string` might not allow `None`.
     /// - `locale` might not allow `None`.
     #[doc(alias = "CFStringTokenizerCreate")]

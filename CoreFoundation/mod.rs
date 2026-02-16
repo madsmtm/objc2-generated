@@ -2004,7 +2004,6 @@ impl CFAllocator {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.
@@ -2033,8 +2032,7 @@ impl CFAllocator {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `zone` must be a valid pointer.
+    /// `zone` must be a valid pointer.
     #[doc(alias = "CFAllocatorCreateWithZone")]
     #[cfg(feature = "libc")]
     #[inline]
@@ -2052,12 +2050,9 @@ impl CFAllocator {
         ret.map(|ret| unsafe { CFRetained::from_raw(ret) })
     }
 
-    /// # Safety
-    ///
-    /// `allocator` might not allow `None`.
     #[doc(alias = "CFAllocatorAllocateTyped")]
     #[inline]
-    pub unsafe fn allocate_typed(
+    pub fn allocate_typed(
         allocator: Option<&CFAllocator>,
         size: CFIndex,
         descriptor: CFAllocatorTypeID,
@@ -2076,8 +2071,7 @@ impl CFAllocator {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `ptr` must be a valid pointer.
+    /// `ptr` must be a valid pointer.
     #[doc(alias = "CFAllocatorReallocateTyped")]
     #[inline]
     pub unsafe fn reallocate_typed(
@@ -2118,8 +2112,7 @@ impl CFAllocator {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `ptr` must be a valid pointer.
+    /// `ptr` must be a valid pointer.
     #[doc(alias = "CFAllocatorReallocateBytes")]
     #[inline]
     pub unsafe fn reallocate_bytes(
@@ -2158,8 +2151,7 @@ impl CFAllocator {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `ptr` must be a valid pointer.
+    /// `ptr` must be a valid pointer.
     #[doc(alias = "CFAllocatorReallocate")]
     #[inline]
     pub unsafe fn reallocate(
@@ -2181,8 +2173,7 @@ impl CFAllocator {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `ptr` must be a valid pointer.
+    /// `ptr` must be a valid pointer.
     #[doc(alias = "CFAllocatorDeallocate")]
     #[inline]
     pub unsafe fn deallocate(allocator: Option<&CFAllocator>, ptr: *mut c_void) {
@@ -2211,7 +2202,6 @@ impl CFAllocator {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `context` struct field `version` must be set correctly.
     /// - `context` struct field `info` must be a valid pointer.
     /// - `context` struct field `retain` must be implemented correctly.

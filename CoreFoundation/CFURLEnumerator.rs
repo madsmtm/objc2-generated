@@ -75,7 +75,6 @@ unsafe impl RefEncode for CFURLEnumeratorOptions {
 impl CFURLEnumerator {
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `directory_url` might not allow `None`.
     /// - `property_keys` might not allow `None`.
     #[doc(alias = "CFURLEnumeratorCreateForDirectoryURL")]
@@ -103,8 +102,7 @@ impl CFURLEnumerator {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `property_keys` might not allow `None`.
+    /// `property_keys` might not allow `None`.
     #[doc(alias = "CFURLEnumeratorCreateForMountedVolumes")]
     #[cfg(all(feature = "CFArray", feature = "CFString"))]
     #[inline]

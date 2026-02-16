@@ -185,7 +185,6 @@ impl ODRecordRef {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `record` might not allow `None`.
     /// - `error` must be a valid pointer.
     #[doc(alias = "ODRecordCopyPasswordPolicy")]

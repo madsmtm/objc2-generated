@@ -122,8 +122,7 @@ impl CFError {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `user_info` generic should be of the correct type.
+    /// `user_info` generic should be of the correct type.
     #[doc(alias = "CFErrorCreate")]
     #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
@@ -164,7 +163,6 @@ impl CFError {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `user_info_keys` must be a valid pointer.
     /// - `user_info_values` must be a valid pointer.
     #[doc(alias = "CFErrorCreateWithUserInfoKeysAndValues")]

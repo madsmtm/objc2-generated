@@ -140,7 +140,6 @@ impl MDLabel {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `display_name` might not allow `None`.
     /// - `kind` might not allow `None`.
     #[doc(alias = "MDLabelCreate")]

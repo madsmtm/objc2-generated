@@ -100,7 +100,6 @@ impl CFTimeZone {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `name` might not allow `None`.
     /// - `data` might not allow `None`.
     #[doc(alias = "CFTimeZoneCreate")]

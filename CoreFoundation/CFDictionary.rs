@@ -362,7 +362,6 @@ impl<K: Sized, V: Sized> CFDictionary<K, V> {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `keys` must be a valid pointer or null.
     /// - `values` must be a valid pointer or null.
     /// - `key_call_backs` struct field `version` must be set correctly.
@@ -522,7 +521,6 @@ impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `key_call_backs` struct field `version` must be set correctly.
     /// - `key_call_backs` struct field `retain` must be implemented correctly.
     /// - `key_call_backs` struct field `release` must be implemented correctly.
@@ -592,7 +590,6 @@ impl<K: Sized, V: Sized> CFMutableDictionary<K, V> {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` generic must be of the correct type.
     /// - `the_dict` might not allow `None`.

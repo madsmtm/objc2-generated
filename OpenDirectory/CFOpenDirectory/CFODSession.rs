@@ -56,7 +56,6 @@ impl ODSessionRef {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
     /// - `options` might not allow `None`.
@@ -94,7 +93,6 @@ impl ODSessionRef {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `session` might not allow `None`.
     /// - `error` must be a valid pointer.
     #[doc(alias = "ODSessionCopyNodeNames")]

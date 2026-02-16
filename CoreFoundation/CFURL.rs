@@ -66,7 +66,6 @@ unsafe impl ConcreteType for CFURL {
 impl CFURL {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `url_bytes` must be a valid pointer.
     /// - `encoding` should be set correctly.
     /// - `base_url` might not allow `None`.
@@ -134,7 +133,6 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `relative_url_bytes` must be a valid pointer.
     /// - `encoding` should be set correctly.
     /// - `base_url` might not allow `None`.
@@ -196,8 +194,7 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `buffer` must be a valid pointer.
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFURLCreateFromFileSystemRepresentation")]
     #[inline]
     pub unsafe fn from_file_system_representation(
@@ -252,7 +249,6 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `buffer` must be a valid pointer.
     /// - `base_url` might not allow `None`.
     #[doc(alias = "CFURLCreateFromFileSystemRepresentationRelativeToBase")]
@@ -714,7 +710,6 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `orig_string` might not allow `None`.
     /// - `chars_to_leave_escaped` might not allow `None`.
     /// - `encoding` should be set correctly.
@@ -749,7 +744,6 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `original_string` might not allow `None`.
     /// - `characters_to_leave_unescaped` might not allow `None`.
     /// - `legal_url_characters_to_be_escaped` might not allow `None`.
@@ -798,7 +792,6 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `url` might not allow `None`.
     /// - `error` must be a valid pointer.
     /// - `error` might not allow `None`.
@@ -823,7 +816,6 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `url` might not allow `None`.
     /// - `error` must be a valid pointer.
     /// - `error` might not allow `None`.
@@ -1753,7 +1745,6 @@ pub type CFURLBookmarkFileCreationOptions = CFOptionFlags;
 impl CFURL {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `url` might not allow `None`.
     /// - `resource_properties_to_include` might not allow `None`.
     /// - `relative_to_url` might not allow `None`.
@@ -1800,7 +1791,6 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `bookmark` might not allow `None`.
     /// - `relative_to_url` might not allow `None`.
     /// - `resource_properties_to_include` might not allow `None`.
@@ -1851,7 +1841,6 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `resource_properties_to_return` might not allow `None`.
     /// - `bookmark` might not allow `None`.
     #[doc(alias = "CFURLCreateResourcePropertiesForKeysFromBookmarkData")]
@@ -1886,7 +1875,6 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `resource_property_key` might not allow `None`.
     /// - `bookmark` might not allow `None`.
     #[doc(alias = "CFURLCreateResourcePropertyForKeyFromBookmarkData")]
@@ -1916,7 +1904,6 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `file_url` might not allow `None`.
     /// - `error_ref` must be a valid pointer.
     /// - `error_ref` might not allow `None`.
@@ -1969,8 +1956,7 @@ impl CFURL {
 
     /// # Safety
     ///
-    /// - `allocator_ref` might not allow `None`.
-    /// - `alias_record_data_ref` might not allow `None`.
+    /// `alias_record_data_ref` might not allow `None`.
     #[doc(alias = "CFURLCreateBookmarkDataFromAliasRecord")]
     #[cfg(feature = "CFData")]
     #[deprecated = "The Carbon Alias Manager is deprecated. This function should only be used to convert Carbon AliasRecords to bookmark data."]

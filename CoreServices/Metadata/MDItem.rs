@@ -56,8 +56,7 @@ impl MDItem {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `path` might not allow `None`.
+    /// `path` might not allow `None`.
     #[doc(alias = "MDItemCreate")]
     #[inline]
     pub unsafe fn new(
@@ -89,8 +88,7 @@ impl MDItem {
     ///
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
-    /// - `url` might not allow `None`.
+    /// `url` might not allow `None`.
     #[doc(alias = "MDItemCreateWithURL")]
     #[inline]
     pub unsafe fn with_url(
@@ -120,7 +118,6 @@ impl MDItem {
 ///
 /// # Safety
 ///
-/// - `allocator` might not allow `None`.
 /// - `urls` generic must be of the correct type.
 /// - `urls` might not allow `None`.
 #[inline]

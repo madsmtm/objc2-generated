@@ -43,7 +43,6 @@ unsafe impl ConcreteType for CFUserNotification {
 impl CFUserNotification {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `error` might not allow `None`.
     /// - `dictionary` generic should be of the correct type.
     /// - `dictionary` might not allow `None`.
@@ -160,7 +159,6 @@ impl CFUserNotification {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `user_notification` might not allow `None`.
     /// - `callout` must be implemented correctly.
     #[doc(alias = "CFUserNotificationCreateRunLoopSource")]

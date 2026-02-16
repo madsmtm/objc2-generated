@@ -44,7 +44,6 @@ unsafe impl ConcreteType for QLThumbnail {
 impl QLThumbnail {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `url` might not allow `None`.
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.

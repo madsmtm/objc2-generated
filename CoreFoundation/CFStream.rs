@@ -204,9 +204,7 @@ extern "C" {
 impl CFReadStream {
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `bytes` must be a valid pointer.
-    /// - `bytes_deallocator` might not allow `None`.
+    /// `bytes` must be a valid pointer.
     #[doc(alias = "CFReadStreamCreateWithBytesNoCopy")]
     #[inline]
     pub unsafe fn with_bytes_no_copy(
@@ -232,8 +230,7 @@ impl CFReadStream {
 impl CFWriteStream {
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `buffer` must be a valid pointer.
+    /// `buffer` must be a valid pointer.
     #[doc(alias = "CFWriteStreamCreateWithBuffer")]
     #[inline]
     pub unsafe fn with_buffer(
@@ -310,7 +307,6 @@ impl CFWriteStream {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `read_stream` must be a valid pointer.
     /// - `read_stream` might not allow `None`.
     /// - `write_stream` must be a valid pointer.
@@ -438,7 +434,6 @@ extern "C" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `read_stream` must be a valid pointer.
     /// - `read_stream` might not allow `None`.
     /// - `write_stream` must be a valid pointer.
@@ -456,7 +451,6 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `host` might not allow `None`.
     /// - `read_stream` must be a valid pointer.
     /// - `read_stream` might not allow `None`.
@@ -475,7 +469,6 @@ extern "C-unwind" {
 extern "C-unwind" {
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
     /// - `signature` struct field `address` must be a valid pointer.
     /// - `signature` might not allow `None`.
     /// - `read_stream` must be a valid pointer.

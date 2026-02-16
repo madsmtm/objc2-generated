@@ -355,7 +355,6 @@ unsafe impl ConcreteType for CFPlugInInstance {
 impl CFPlugInInstance {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `deallocate_instance_function` must be implemented correctly.
     /// - `get_interface_function` must be implemented correctly.
     #[doc(alias = "CFPlugInInstanceCreateWithInstanceDataSize")]

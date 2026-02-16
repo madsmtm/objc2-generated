@@ -62,8 +62,7 @@ impl CFAttributedString {
     ///
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `attributes` generic should be of the correct type.
+    /// `attributes` generic should be of the correct type.
     #[doc(alias = "CFAttributedStringCreate")]
     #[cfg(all(feature = "CFDictionary", feature = "CFString"))]
     #[inline]
@@ -87,8 +86,7 @@ impl CFAttributedString {
     ///
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `a_str` might not allow `None`.
+    /// `a_str` might not allow `None`.
     #[doc(alias = "CFAttributedStringCreateWithSubstring")]
     #[inline]
     pub unsafe fn with_substring(

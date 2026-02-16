@@ -158,7 +158,6 @@ unsafe impl ConcreteType for CFBag {
 impl<T: Sized> CFBag<T> {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `values` must be a valid pointer.
     /// - `call_backs` struct field `version` must be set correctly.
     /// - `call_backs` struct field `retain` must be implemented correctly.
@@ -188,7 +187,6 @@ impl<T: Sized> CFBag<T> {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `the_bag` generic must be of the correct type.
     /// - `the_bag` might not allow `None`.
     #[doc(alias = "CFBagCreateCopy")]
@@ -211,7 +209,6 @@ impl<T: Sized> CFBag<T> {
 impl<T: Sized> CFMutableBag<T> {
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `call_backs` struct field `version` must be set correctly.
     /// - `call_backs` struct field `retain` must be implemented correctly.
     /// - `call_backs` struct field `release` must be implemented correctly.
@@ -239,7 +236,6 @@ impl<T: Sized> CFMutableBag<T> {
 
     /// # Safety
     ///
-    /// - `allocator` might not allow `None`.
     /// - `the_bag` generic must be of the correct type.
     /// - `the_bag` might not allow `None`.
     /// - The returned generic must be of the correct type.

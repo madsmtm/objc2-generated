@@ -151,13 +151,9 @@ impl CFCharacterSet {
     /// point, the behavior is undefined.
     ///
     /// Returns: A reference to the new immutable CFCharacterSet.
-    ///
-    /// # Safety
-    ///
-    /// `alloc` might not allow `None`.
     #[doc(alias = "CFCharacterSetCreateWithCharactersInRange")]
     #[inline]
-    pub unsafe fn with_characters_in_range(
+    pub fn with_characters_in_range(
         alloc: Option<&CFAllocator>,
         the_range: CFRange,
     ) -> Option<CFRetained<CFCharacterSet>> {
@@ -185,13 +181,9 @@ impl CFCharacterSet {
     /// is undefined.
     ///
     /// Returns: A reference to the new immutable CFCharacterSet.
-    ///
-    /// # Safety
-    ///
-    /// `alloc` might not allow `None`.
     #[doc(alias = "CFCharacterSetCreateWithCharactersInString")]
     #[inline]
-    pub unsafe fn with_characters_in_string(
+    pub fn with_characters_in_string(
         alloc: Option<&CFAllocator>,
         the_string: &CFString,
     ) -> Option<CFRetained<CFCharacterSet>> {
@@ -230,14 +222,10 @@ impl CFCharacterSet {
     /// (1 to 16), the behavior is undefined.
     ///
     /// Returns: A reference to the new immutable CFCharacterSet.
-    ///
-    /// # Safety
-    ///
-    /// `alloc` might not allow `None`.
     #[doc(alias = "CFCharacterSetCreateWithBitmapRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
-    pub unsafe fn with_bitmap_representation(
+    pub fn with_bitmap_representation(
         alloc: Option<&CFAllocator>,
         the_data: &CFData,
     ) -> Option<CFRetained<CFCharacterSet>> {
@@ -264,13 +252,9 @@ impl CFCharacterSet {
     /// undefined.
     ///
     /// Returns: A reference to the new immutable CFCharacterSet.
-    ///
-    /// # Safety
-    ///
-    /// `alloc` might not allow `None`.
     #[doc(alias = "CFCharacterSetCreateInvertedSet")]
     #[inline]
-    pub unsafe fn new_inverted_set(
+    pub fn new_inverted_set(
         alloc: Option<&CFAllocator>,
         the_set: &CFCharacterSet,
     ) -> Option<CFRetained<CFCharacterSet>> {
@@ -336,13 +320,9 @@ impl CFMutableCharacterSet {
     /// CFAllocator, the behavior is undefined.
     ///
     /// Returns: A reference to the new mutable CFCharacterSet.
-    ///
-    /// # Safety
-    ///
-    /// `alloc` might not allow `None`.
     #[doc(alias = "CFCharacterSetCreateMutable")]
     #[inline]
-    pub unsafe fn new(alloc: Option<&CFAllocator>) -> Option<CFRetained<CFMutableCharacterSet>> {
+    pub fn new(alloc: Option<&CFAllocator>) -> Option<CFRetained<CFMutableCharacterSet>> {
         extern "C-unwind" {
             fn CFCharacterSetCreateMutable(
                 alloc: Option<&CFAllocator>,
@@ -370,8 +350,7 @@ impl CFCharacterSet {
     ///
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `the_set` might not allow `None`.
+    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetCreateCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -406,8 +385,7 @@ impl CFMutableCharacterSet {
     ///
     /// # Safety
     ///
-    /// - `alloc` might not allow `None`.
-    /// - `the_set` might not allow `None`.
+    /// `the_set` might not allow `None`.
     #[doc(alias = "CFCharacterSetCreateMutableCopy")]
     #[inline]
     pub unsafe fn new_copy(
@@ -488,14 +466,10 @@ impl CFCharacterSet {
     /// behavior is undefined.
     ///
     /// Returns: A reference to the new immutable CFData.
-    ///
-    /// # Safety
-    ///
-    /// `alloc` might not allow `None`.
     #[doc(alias = "CFCharacterSetCreateBitmapRepresentation")]
     #[cfg(feature = "CFData")]
     #[inline]
-    pub unsafe fn new_bitmap_representation(
+    pub fn new_bitmap_representation(
         alloc: Option<&CFAllocator>,
         the_set: &CFCharacterSet,
     ) -> Option<CFRetained<CFData>> {
