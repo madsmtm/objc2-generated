@@ -830,7 +830,7 @@ impl<K: Sized, V: Sized> CFDictionary<K, V> {
             CFDictionaryGetValueIfPresent(
                 self.as_opaque(),
                 key.cast(),
-                value.map(|x| std::mem::transmute(x)),
+                value.map(|x| core::mem::transmute(x)),
             )
         };
         ret != 0

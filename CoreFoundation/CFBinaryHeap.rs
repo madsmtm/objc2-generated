@@ -428,7 +428,7 @@ impl<T: Sized> CFBinaryHeap<T> {
             ) -> Boolean;
         }
         let ret = unsafe {
-            CFBinaryHeapGetMinimumIfPresent(self.as_opaque(), std::mem::transmute(value))
+            CFBinaryHeapGetMinimumIfPresent(self.as_opaque(), core::mem::transmute(value))
         };
         ret != 0
     }

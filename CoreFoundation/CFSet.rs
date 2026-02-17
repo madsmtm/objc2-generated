@@ -624,7 +624,7 @@ impl<T: Sized> CFSet<T> {
             CFSetGetValueIfPresent(
                 self.as_opaque(),
                 candidate.cast(),
-                value.map(|x| std::mem::transmute(x)),
+                value.map(|x| core::mem::transmute(x)),
             )
         };
         ret != 0

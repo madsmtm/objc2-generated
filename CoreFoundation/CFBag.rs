@@ -334,7 +334,7 @@ impl<T: Sized> CFBag<T> {
             CFBagGetValueIfPresent(
                 self.as_opaque(),
                 candidate.cast(),
-                value.map(|x| std::mem::transmute(x)),
+                value.map(|x| core::mem::transmute(x)),
             )
         };
         ret != 0
