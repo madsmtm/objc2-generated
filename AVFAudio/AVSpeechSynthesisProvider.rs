@@ -300,7 +300,7 @@ impl AVSpeechSynthesisProviderRequest {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideroutputblock?language=objc)
 #[cfg(all(feature = "AVSpeechSynthesis", feature = "block2"))]
-pub type AVSpeechSynthesisProviderOutputBlock = *mut block2::DynBlock<
+pub type AVSpeechSynthesisProviderOutputBlock = block2::DynBlock<
     dyn Fn(NonNull<NSArray<AVSpeechSynthesisMarker>>, NonNull<AVSpeechSynthesisProviderRequest>),
 >;
 
@@ -354,21 +354,17 @@ impl AVSpeechSynthesisProviderAudioUnit {
         #[unsafe(method_family = none)]
         pub unsafe fn speechSynthesisOutputMetadataBlock(
             &self,
-        ) -> AVSpeechSynthesisProviderOutputBlock;
+        ) -> *mut AVSpeechSynthesisProviderOutputBlock;
 
         #[cfg(all(feature = "AVSpeechSynthesis", feature = "block2"))]
         /// Setter for [`speechSynthesisOutputMetadataBlock`][Self::speechSynthesisOutputMetadataBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `speech_synthesis_output_metadata_block` must be a valid pointer or null.
         #[unsafe(method(setSpeechSynthesisOutputMetadataBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSpeechSynthesisOutputMetadataBlock(
             &self,
-            speech_synthesis_output_metadata_block: AVSpeechSynthesisProviderOutputBlock,
+            speech_synthesis_output_metadata_block: Option<&AVSpeechSynthesisProviderOutputBlock>,
         );
 
         /// Sends a new speech request to be synthesized

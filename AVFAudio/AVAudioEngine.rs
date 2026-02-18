@@ -169,7 +169,7 @@ unsafe impl RefEncode for AVAudioEngineManualRenderingMode {
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AVAudioEngineManualRenderingBlock = *mut block2::DynBlock<
+pub type AVAudioEngineManualRenderingBlock = block2::DynBlock<
     dyn Fn(
         AVAudioFrameCount,
         NonNull<AudioBufferList>,
@@ -709,7 +709,7 @@ impl AVAudioEngine {
         /// - The returned block's argument 3 must be a valid pointer or null.
         #[unsafe(method(manualRenderingBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn manualRenderingBlock(&self) -> AVAudioEngineManualRenderingBlock;
+        pub unsafe fn manualRenderingBlock(&self) -> NonNull<AVAudioEngineManualRenderingBlock>;
 
         /// Whether or not the engine is operating in manual rendering mode, i.e. not connected
         /// to an audio device and rendering in response to the requests from the client
@@ -786,10 +786,6 @@ impl AVAudioEngine {
         ///
         /// Any client installed block on the source node's audio unit `AUMIDIOutputEventBlock`
         /// will be overwritten when making the MIDI connection.
-        ///
-        /// # Safety
-        ///
-        /// `tap_block` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(connectMIDI:to:format:block:))]
         #[unsafe(method_family = none)]
@@ -798,7 +794,7 @@ impl AVAudioEngine {
             source_node: &AVAudioNode,
             destination_node: &AVAudioNode,
             format: Option<&AVAudioFormat>,
-            tap_block: AUMIDIOutputEventBlock,
+            tap_block: Option<&AUMIDIOutputEventBlock>,
         );
 
         #[cfg(all(
@@ -838,10 +834,6 @@ impl AVAudioEngine {
         ///
         /// Any client installed block on the source node's audio unit `AUMIDIOutputEventBlock`
         /// will be overwritten when making the MIDI connection.
-        ///
-        /// # Safety
-        ///
-        /// `tap_block` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(connectMIDI:toNodes:format:block:))]
         #[unsafe(method_family = none)]
@@ -850,7 +842,7 @@ impl AVAudioEngine {
             source_node: &AVAudioNode,
             destination_nodes: &NSArray<AVAudioNode>,
             format: Option<&AVAudioFormat>,
-            tap_block: AUMIDIOutputEventBlock,
+            tap_block: Option<&AUMIDIOutputEventBlock>,
         );
 
         #[cfg(feature = "AVAudioNode")]

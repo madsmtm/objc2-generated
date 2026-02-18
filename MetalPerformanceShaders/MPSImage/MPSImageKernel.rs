@@ -10,7 +10,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpscopyallocator?language=objc)
 #[cfg(all(feature = "MPSCore", feature = "MPSKernel", feature = "block2"))]
-pub type MPSCopyAllocator = *mut block2::DynBlock<
+pub type MPSCopyAllocator = block2::DynBlock<
     dyn Fn(
         NonNull<MPSKernel>,
         NonNull<ProtocolObject<dyn MTLCommandBuffer>>,
@@ -251,14 +251,14 @@ impl MPSUnaryImageKernel {
         /// # Safety
         ///
         /// - `texture` must be a valid pointer.
-        /// - `copy_allocator` must be a valid pointer or null.
+        /// - `copy_allocator` block's return must be a valid pointer.
         #[unsafe(method(encodeToCommandBuffer:inPlaceTexture:fallbackCopyAllocator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inPlaceTexture_fallbackCopyAllocator(
             &self,
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             texture: NonNull<NonNull<ProtocolObject<dyn MTLTexture>>>,
-            copy_allocator: MPSCopyAllocator,
+            copy_allocator: Option<&MPSCopyAllocator>,
         ) -> bool;
 
         /// Encode a MPSKernel into a command Buffer.  The operation shall proceed out-of-place.
@@ -610,7 +610,7 @@ impl MPSBinaryImageKernel {
         /// - `primary_texture` may need to be synchronized.
         /// - `primary_texture` may be unretained, you must ensure it is kept alive while in use.
         /// - `in_place_secondary_texture` must be a valid pointer.
-        /// - `copy_allocator` must be a valid pointer or null.
+        /// - `copy_allocator` block's return must be a valid pointer.
         #[unsafe(method(encodeToCommandBuffer:primaryTexture:inPlaceSecondaryTexture:fallbackCopyAllocator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_primaryTexture_inPlaceSecondaryTexture_fallbackCopyAllocator(
@@ -618,7 +618,7 @@ impl MPSBinaryImageKernel {
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             primary_texture: &ProtocolObject<dyn MTLTexture>,
             in_place_secondary_texture: NonNull<NonNull<ProtocolObject<dyn MTLTexture>>>,
-            copy_allocator: MPSCopyAllocator,
+            copy_allocator: Option<&MPSCopyAllocator>,
         ) -> bool;
 
         #[cfg(feature = "block2")]
@@ -683,7 +683,7 @@ impl MPSBinaryImageKernel {
         /// - `in_place_primary_texture` must be a valid pointer.
         /// - `secondary_texture` may need to be synchronized.
         /// - `secondary_texture` may be unretained, you must ensure it is kept alive while in use.
-        /// - `copy_allocator` must be a valid pointer or null.
+        /// - `copy_allocator` block's return must be a valid pointer.
         #[unsafe(method(encodeToCommandBuffer:inPlacePrimaryTexture:secondaryTexture:fallbackCopyAllocator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn encodeToCommandBuffer_inPlacePrimaryTexture_secondaryTexture_fallbackCopyAllocator(
@@ -691,7 +691,7 @@ impl MPSBinaryImageKernel {
             command_buffer: &ProtocolObject<dyn MTLCommandBuffer>,
             in_place_primary_texture: NonNull<NonNull<ProtocolObject<dyn MTLTexture>>>,
             secondary_texture: &ProtocolObject<dyn MTLTexture>,
-            copy_allocator: MPSCopyAllocator,
+            copy_allocator: Option<&MPSCopyAllocator>,
         ) -> bool;
 
         /// Encode a MPSKernel into a command Buffer.  The operation shall proceed out-of-place.

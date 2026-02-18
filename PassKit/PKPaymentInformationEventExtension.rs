@@ -9,12 +9,12 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkinformationrequestcompletionblock?language=objc)
 #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
 pub type PKInformationRequestCompletionBlock =
-    *mut block2::DynBlock<dyn Fn(NonNull<PKBarcodeEventMetadataResponse>)>;
+    block2::DynBlock<dyn Fn(NonNull<PKBarcodeEventMetadataResponse>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pksignaturerequestcompletionblock?language=objc)
 #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
 pub type PKSignatureRequestCompletionBlock =
-    *mut block2::DynBlock<dyn Fn(NonNull<PKBarcodeEventSignatureResponse>)>;
+    block2::DynBlock<dyn Fn(NonNull<PKBarcodeEventSignatureResponse>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentinformationeventextension?language=objc)
@@ -48,27 +48,21 @@ extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/passkit/pkpaymentinformationrequesthandling?language=objc)
     pub unsafe trait PKPaymentInformationRequestHandling {
         #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` must be a valid pointer.
         #[unsafe(method(handleInformationRequest:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleInformationRequest_completion(
             &self,
             info_request: &PKBarcodeEventMetadataRequest,
-            completion: PKInformationRequestCompletionBlock,
+            completion: &PKInformationRequestCompletionBlock,
         );
 
         #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` must be a valid pointer.
         #[unsafe(method(handleSignatureRequest:completion:))]
         #[unsafe(method_family = none)]
         unsafe fn handleSignatureRequest_completion(
             &self,
             signature_request: &PKBarcodeEventSignatureRequest,
-            completion: PKSignatureRequestCompletionBlock,
+            completion: &PKSignatureRequestCompletionBlock,
         );
 
         #[cfg(all(feature = "PKBarcodeEventMetadataRequest", feature = "block2"))]

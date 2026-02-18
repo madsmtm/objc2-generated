@@ -124,7 +124,7 @@ impl UICollectionViewCompositionalLayoutConfiguration {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcompositionallayoutsectionprovider?language=objc)
 #[cfg(feature = "block2")]
-pub type UICollectionViewCompositionalLayoutSectionProvider = *mut block2::DynBlock<
+pub type UICollectionViewCompositionalLayoutSectionProvider = block2::DynBlock<
     dyn Fn(
         NSInteger,
         NonNull<ProtocolObject<dyn NSCollectionLayoutEnvironment>>,
@@ -171,23 +171,23 @@ impl UICollectionViewCompositionalLayout {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `section_provider` must be a valid pointer.
+        /// `section_provider` block's return must be a valid pointer or null.
         #[unsafe(method(initWithSectionProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSectionProvider(
             this: Allocated<Self>,
-            section_provider: UICollectionViewCompositionalLayoutSectionProvider,
+            section_provider: &UICollectionViewCompositionalLayoutSectionProvider,
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `section_provider` must be a valid pointer.
+        /// `section_provider` block's return must be a valid pointer or null.
         #[unsafe(method(initWithSectionProvider:configuration:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSectionProvider_configuration(
             this: Allocated<Self>,
-            section_provider: UICollectionViewCompositionalLayoutSectionProvider,
+            section_provider: &UICollectionViewCompositionalLayoutSectionProvider,
             configuration: &UICollectionViewCompositionalLayoutConfiguration,
         ) -> Retained<Self>;
 
@@ -263,7 +263,7 @@ unsafe impl RefEncode for UICollectionLayoutSectionOrthogonalScrollingBehavior {
     feature = "block2",
     feature = "objc2-core-foundation"
 ))]
-pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = *mut block2::DynBlock<
+pub type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = block2::DynBlock<
     dyn Fn(
         NonNull<NSArray<ProtocolObject<dyn NSCollectionLayoutVisibleItem>>>,
         CGPoint,
@@ -509,7 +509,7 @@ impl NSCollectionLayoutSection {
         #[unsafe(method_family = none)]
         pub unsafe fn visibleItemsInvalidationHandler(
             &self,
-        ) -> NSCollectionLayoutSectionVisibleItemsInvalidationHandler;
+        ) -> *mut NSCollectionLayoutSectionVisibleItemsInvalidationHandler;
 
         #[cfg(all(
             feature = "UIDynamicBehavior",
@@ -519,15 +519,13 @@ impl NSCollectionLayoutSection {
         /// Setter for [`visibleItemsInvalidationHandler`][Self::visibleItemsInvalidationHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `visible_items_invalidation_handler` must be a valid pointer or null.
         #[unsafe(method(setVisibleItemsInvalidationHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setVisibleItemsInvalidationHandler(
+        pub fn setVisibleItemsInvalidationHandler(
             &self,
-            visible_items_invalidation_handler: NSCollectionLayoutSectionVisibleItemsInvalidationHandler,
+            visible_items_invalidation_handler: Option<
+                &NSCollectionLayoutSectionVisibleItemsInvalidationHandler,
+            >,
         );
 
         #[unsafe(method(decorationItems))]
@@ -668,7 +666,7 @@ impl NSCollectionLayoutGroupCustomItem {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/nscollectionlayoutgroupcustomitemprovider?language=objc)
 #[cfg(feature = "block2")]
-pub type NSCollectionLayoutGroupCustomItemProvider = *mut block2::DynBlock<
+pub type NSCollectionLayoutGroupCustomItemProvider = block2::DynBlock<
     dyn Fn(
         NonNull<ProtocolObject<dyn NSCollectionLayoutEnvironment>>,
     ) -> NonNull<NSArray<NSCollectionLayoutGroupCustomItem>>,
@@ -747,12 +745,12 @@ impl NSCollectionLayoutGroup {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `item_provider` must be a valid pointer.
+        /// `item_provider` block's return must be a valid pointer.
         #[unsafe(method(customGroupWithLayoutSize:itemProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn customGroupWithLayoutSize_itemProvider(
             layout_size: &NSCollectionLayoutSize,
-            item_provider: NSCollectionLayoutGroupCustomItemProvider,
+            item_provider: &NSCollectionLayoutGroupCustomItemProvider,
         ) -> Retained<Self>;
 
         // -init (unavailable)

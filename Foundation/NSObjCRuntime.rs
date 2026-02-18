@@ -287,7 +287,7 @@ pub unsafe extern "C-unwind" fn NSGetSizeAndAlignment(
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nscomparator?language=objc)
 #[cfg(feature = "block2")]
 pub type NSComparator =
-    *mut block2::DynBlock<dyn Fn(NonNull<AnyObject>, NonNull<AnyObject>) -> NSComparisonResult>;
+    block2::DynBlock<dyn Fn(NonNull<AnyObject>, NonNull<AnyObject>) -> NSComparisonResult>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsenumerationoptions?language=objc)
 // NS_OPTIONS

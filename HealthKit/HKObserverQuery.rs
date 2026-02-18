@@ -9,7 +9,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkobserverquerycompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type HKObserverQueryCompletionHandler = *mut block2::DynBlock<dyn Fn()>;
+pub type HKObserverQueryCompletionHandler = block2::DynBlock<dyn Fn()>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/healthkit/hkobserverquery?language=objc)
@@ -50,7 +50,11 @@ impl HKObserverQuery {
             sample_type: &HKSampleType,
             predicate: Option<&NSPredicate>,
             update_handler: &block2::DynBlock<
-                dyn Fn(NonNull<HKObserverQuery>, HKObserverQueryCompletionHandler, *mut NSError),
+                dyn Fn(
+                    NonNull<HKObserverQuery>,
+                    NonNull<HKObserverQueryCompletionHandler>,
+                    *mut NSError,
+                ),
             >,
         ) -> Retained<Self>;
 
@@ -81,7 +85,7 @@ impl HKObserverQuery {
                 dyn Fn(
                     NonNull<HKObserverQuery>,
                     *mut NSSet<HKSampleType>,
-                    HKObserverQueryCompletionHandler,
+                    NonNull<HKObserverQueryCompletionHandler>,
                     *mut NSError,
                 ),
             >,

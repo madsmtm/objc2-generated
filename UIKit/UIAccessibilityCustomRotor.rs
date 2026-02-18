@@ -83,7 +83,7 @@ unsafe impl RefEncode for UIAccessibilityCustomSystemRotorType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomrotorsearch?language=objc)
 #[cfg(feature = "block2")]
-pub type UIAccessibilityCustomRotorSearch = *mut block2::DynBlock<
+pub type UIAccessibilityCustomRotorSearch = block2::DynBlock<
     dyn Fn(
         NonNull<UIAccessibilityCustomRotorSearchPredicate>,
     ) -> *mut UIAccessibilityCustomRotorItemResult,
@@ -92,7 +92,7 @@ pub type UIAccessibilityCustomRotorSearch = *mut block2::DynBlock<
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axcustomrotorsreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXCustomRotorsReturnBlock =
-    *mut block2::DynBlock<dyn Fn() -> *mut NSArray<UIAccessibilityCustomRotor>>;
+    block2::DynBlock<dyn Fn() -> *mut NSArray<UIAccessibilityCustomRotor>>;
 
 mod private_NSObjectUIAccessibilityCustomRotor {
     pub trait Sealed {}
@@ -126,7 +126,7 @@ pub unsafe trait NSObjectUIAccessibilityCustomRotor:
         fn accessibilityCustomRotorsBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXCustomRotorsReturnBlock;
+        ) -> *mut AXCustomRotorsReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityCustomRotorsBlock`][Self::accessibilityCustomRotorsBlock].
@@ -135,12 +135,12 @@ pub unsafe trait NSObjectUIAccessibilityCustomRotor:
         ///
         /// # Safety
         ///
-        /// `accessibility_custom_rotors_block` must be a valid pointer or null.
+        /// `accessibility_custom_rotors_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityCustomRotorsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCustomRotorsBlock(
             &self,
-            accessibility_custom_rotors_block: AXCustomRotorsReturnBlock,
+            accessibility_custom_rotors_block: Option<&AXCustomRotorsReturnBlock>,
             mtm: MainThreadMarker,
         );
     );
@@ -213,37 +213,37 @@ impl UIAccessibilityCustomRotor {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `item_search_block` must be a valid pointer.
+        /// `item_search_block` block's return must be a valid pointer or null.
         #[unsafe(method(initWithName:itemSearchBlock:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithName_itemSearchBlock(
             this: Allocated<Self>,
             name: &NSString,
-            item_search_block: UIAccessibilityCustomRotorSearch,
+            item_search_block: &UIAccessibilityCustomRotorSearch,
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `item_search_block` must be a valid pointer.
+        /// `item_search_block` block's return must be a valid pointer or null.
         #[unsafe(method(initWithAttributedName:itemSearchBlock:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithAttributedName_itemSearchBlock(
             this: Allocated<Self>,
             attributed_name: &NSAttributedString,
-            item_search_block: UIAccessibilityCustomRotorSearch,
+            item_search_block: &UIAccessibilityCustomRotorSearch,
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `item_search_block` must be a valid pointer.
+        /// `item_search_block` block's return must be a valid pointer or null.
         #[unsafe(method(initWithSystemType:itemSearchBlock:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithSystemType_itemSearchBlock(
             this: Allocated<Self>,
             r#type: UIAccessibilityCustomSystemRotorType,
-            item_search_block: UIAccessibilityCustomRotorSearch,
+            item_search_block: &UIAccessibilityCustomRotorSearch,
         ) -> Retained<Self>;
 
         #[unsafe(method(name))]
@@ -274,7 +274,7 @@ impl UIAccessibilityCustomRotor {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(itemSearchBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn itemSearchBlock(&self) -> UIAccessibilityCustomRotorSearch;
+        pub unsafe fn itemSearchBlock(&self) -> NonNull<UIAccessibilityCustomRotorSearch>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`itemSearchBlock`][Self::itemSearchBlock].
@@ -283,12 +283,12 @@ impl UIAccessibilityCustomRotor {
         ///
         /// # Safety
         ///
-        /// `item_search_block` must be a valid pointer.
+        /// `item_search_block` block's return must be a valid pointer or null.
         #[unsafe(method(setItemSearchBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemSearchBlock(
             &self,
-            item_search_block: UIAccessibilityCustomRotorSearch,
+            item_search_block: &UIAccessibilityCustomRotorSearch,
         );
 
         #[unsafe(method(systemRotorType))]

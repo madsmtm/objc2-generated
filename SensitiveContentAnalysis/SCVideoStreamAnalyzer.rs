@@ -69,7 +69,7 @@ unsafe impl RefEncode for SCVideoStreamAnalyzerStreamDirection {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/sensitivecontentanalysis/scvideostreamanalysischangehandler?language=objc)
 #[cfg(all(feature = "SCSensitivityAnalysis", feature = "block2"))]
 pub type SCVideoStreamAnalysisChangeHandler =
-    *mut block2::DynBlock<dyn Fn(*mut SCSensitivityAnalysis, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut SCSensitivityAnalysis, *mut NSError)>;
 
 extern_class!(
     /// Monitors a stream of video by analyzing frames for sensitive content.
@@ -143,21 +143,17 @@ impl SCVideoStreamAnalyzer {
         /// - The returned block's argument 2 must be a valid pointer or null.
         #[unsafe(method(analysisChangedHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn analysisChangedHandler(&self) -> SCVideoStreamAnalysisChangeHandler;
+        pub unsafe fn analysisChangedHandler(&self) -> *mut SCVideoStreamAnalysisChangeHandler;
 
         #[cfg(all(feature = "SCSensitivityAnalysis", feature = "block2"))]
         /// Setter for [`analysisChangedHandler`][Self::analysisChangedHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `analysis_changed_handler` must be a valid pointer or null.
         #[unsafe(method(setAnalysisChangedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setAnalysisChangedHandler(
             &self,
-            analysis_changed_handler: SCVideoStreamAnalysisChangeHandler,
+            analysis_changed_handler: Option<&SCVideoStreamAnalysisChangeHandler>,
         );
 
         /// Creates a video stream analyzer for the given call participant and stream option.

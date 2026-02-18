@@ -17,7 +17,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactiontimingfunction?language=objc)
 #[cfg(feature = "block2")]
-pub type SCNActionTimingFunction = *mut block2::DynBlock<dyn Fn(c_float) -> c_float>;
+pub type SCNActionTimingFunction = block2::DynBlock<dyn Fn(c_float) -> c_float>;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnactionable?language=objc)
@@ -142,17 +142,13 @@ impl SCNAction {
         /// See: SCNActionTimingFunction
         #[unsafe(method(timingFunction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn timingFunction(&self) -> SCNActionTimingFunction;
+        pub unsafe fn timingFunction(&self) -> *mut SCNActionTimingFunction;
 
         #[cfg(feature = "block2")]
         /// Setter for [`timingFunction`][Self::timingFunction].
-        ///
-        /// # Safety
-        ///
-        /// `timing_function` must be a valid pointer or null.
         #[unsafe(method(setTimingFunction:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTimingFunction(&self, timing_function: SCNActionTimingFunction);
+        pub unsafe fn setTimingFunction(&self, timing_function: Option<&SCNActionTimingFunction>);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// A speed factor that modifies how fast an action runs. Defaults to 1.

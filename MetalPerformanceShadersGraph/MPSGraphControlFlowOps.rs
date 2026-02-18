@@ -17,7 +17,7 @@ use crate::*;
     feature = "block2"
 ))]
 pub type MPSGraphControlFlowDependencyBlock =
-    *mut block2::DynBlock<dyn Fn() -> NonNull<NSArray<MPSGraphTensor>>>;
+    block2::DynBlock<dyn Fn() -> NonNull<NSArray<MPSGraphTensor>>>;
 
 /// A block of operations executed under either the if or else condition.
 ///
@@ -30,8 +30,7 @@ pub type MPSGraphControlFlowDependencyBlock =
     feature = "MPSGraphTensor",
     feature = "block2"
 ))]
-pub type MPSGraphIfThenElseBlock =
-    *mut block2::DynBlock<dyn Fn() -> NonNull<NSArray<MPSGraphTensor>>>;
+pub type MPSGraphIfThenElseBlock = block2::DynBlock<dyn Fn() -> NonNull<NSArray<MPSGraphTensor>>>;
 
 /// The block that executes before the condition evaluates for each iteration.
 ///
@@ -46,7 +45,7 @@ pub type MPSGraphIfThenElseBlock =
     feature = "MPSGraphTensor",
     feature = "block2"
 ))]
-pub type MPSGraphWhileBeforeBlock = *mut block2::DynBlock<
+pub type MPSGraphWhileBeforeBlock = block2::DynBlock<
     dyn Fn(
         NonNull<NSArray<MPSGraphTensor>>,
         NonNull<NSMutableArray<MPSGraphTensor>>,
@@ -65,9 +64,8 @@ pub type MPSGraphWhileBeforeBlock = *mut block2::DynBlock<
     feature = "MPSGraphTensor",
     feature = "block2"
 ))]
-pub type MPSGraphWhileAfterBlock = *mut block2::DynBlock<
-    dyn Fn(NonNull<NSArray<MPSGraphTensor>>) -> NonNull<NSArray<MPSGraphTensor>>,
->;
+pub type MPSGraphWhileAfterBlock =
+    block2::DynBlock<dyn Fn(NonNull<NSArray<MPSGraphTensor>>) -> NonNull<NSArray<MPSGraphTensor>>>;
 
 /// A block for the body in the for loop.
 ///
@@ -82,7 +80,7 @@ pub type MPSGraphWhileAfterBlock = *mut block2::DynBlock<
     feature = "MPSGraphTensor",
     feature = "block2"
 ))]
-pub type MPSGraphForLoopBodyBlock = *mut block2::DynBlock<
+pub type MPSGraphForLoopBodyBlock = block2::DynBlock<
     dyn Fn(
         NonNull<MPSGraphTensor>,
         NonNull<NSArray<MPSGraphTensor>>,
@@ -110,13 +108,13 @@ impl MPSGraph {
         ///
         /// # Safety
         ///
-        /// `dependent_block` must be a valid pointer.
+        /// `dependent_block` block's return must be a valid pointer.
         #[unsafe(method(controlDependencyWithOperations:dependentBlock:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn controlDependencyWithOperations_dependentBlock_name(
             &self,
             operations: &NSArray<MPSGraphOperation>,
-            dependent_block: MPSGraphControlFlowDependencyBlock,
+            dependent_block: &MPSGraphControlFlowDependencyBlock,
             name: Option<&NSString>,
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
@@ -133,15 +131,15 @@ impl MPSGraph {
         ///
         /// # Safety
         ///
-        /// - `then_block` must be a valid pointer.
-        /// - `else_block` must be a valid pointer or null.
+        /// - `then_block` block's return must be a valid pointer.
+        /// - `else_block` block's return must be a valid pointer.
         #[unsafe(method(ifWithPredicateTensor:thenBlock:elseBlock:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn ifWithPredicateTensor_thenBlock_elseBlock_name(
             &self,
             predicate_tensor: &MPSGraphTensor,
-            then_block: MPSGraphIfThenElseBlock,
-            else_block: MPSGraphIfThenElseBlock,
+            then_block: &MPSGraphIfThenElseBlock,
+            else_block: Option<&MPSGraphIfThenElseBlock>,
             name: Option<&NSString>,
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
@@ -157,15 +155,15 @@ impl MPSGraph {
         ///
         /// # Safety
         ///
-        /// - `before` must be a valid pointer.
-        /// - `after` must be a valid pointer.
+        /// - `before` block's return must be a valid pointer.
+        /// - `after` block's return must be a valid pointer.
         #[unsafe(method(whileWithInitialInputs:before:after:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn whileWithInitialInputs_before_after_name(
             &self,
             initial_inputs: &NSArray<MPSGraphTensor>,
-            before: MPSGraphWhileBeforeBlock,
-            after: MPSGraphWhileAfterBlock,
+            before: &MPSGraphWhileBeforeBlock,
+            after: &MPSGraphWhileAfterBlock,
             name: Option<&NSString>,
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
@@ -183,7 +181,7 @@ impl MPSGraph {
         ///
         /// # Safety
         ///
-        /// `body` must be a valid pointer.
+        /// `body` block's return must be a valid pointer.
         #[unsafe(method(forLoopWithLowerBound:upperBound:step:initialBodyArguments:body:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn forLoopWithLowerBound_upperBound_step_initialBodyArguments_body_name(
@@ -192,7 +190,7 @@ impl MPSGraph {
             upper_bound: &MPSGraphTensor,
             step: &MPSGraphTensor,
             initial_body_arguments: &NSArray<MPSGraphTensor>,
-            body: MPSGraphForLoopBodyBlock,
+            body: &MPSGraphForLoopBodyBlock,
             name: Option<&NSString>,
         ) -> Retained<NSArray<MPSGraphTensor>>;
 
@@ -208,14 +206,14 @@ impl MPSGraph {
         ///
         /// # Safety
         ///
-        /// `body` must be a valid pointer.
+        /// `body` block's return must be a valid pointer.
         #[unsafe(method(forLoopWithNumberOfIterations:initialBodyArguments:body:name:))]
         #[unsafe(method_family = none)]
         pub unsafe fn forLoopWithNumberOfIterations_initialBodyArguments_body_name(
             &self,
             number_of_iterations: &MPSGraphTensor,
             initial_body_arguments: &NSArray<MPSGraphTensor>,
-            body: MPSGraphForLoopBodyBlock,
+            body: &MPSGraphForLoopBodyBlock,
             name: Option<&NSString>,
         ) -> Retained<NSArray<MPSGraphTensor>>;
     );

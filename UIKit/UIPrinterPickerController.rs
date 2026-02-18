@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterpickercompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type UIPrinterPickerCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<UIPrinterPickerController>, Bool, *mut NSError)>;
+    block2::DynBlock<dyn Fn(NonNull<UIPrinterPickerController>, Bool, *mut NSError)>;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprinterpickercontrollerdelegate?language=objc)
@@ -137,15 +137,12 @@ impl UIPrinterPickerController {
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` must be a valid pointer or null.
         #[unsafe(method(presentAnimated:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn presentAnimated_completionHandler(
+        pub fn presentAnimated_completionHandler(
             &self,
             animated: bool,
-            completion: UIPrinterPickerCompletionHandler,
+            completion: Option<&UIPrinterPickerCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(
@@ -154,30 +151,24 @@ impl UIPrinterPickerController {
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
-        /// # Safety
-        ///
-        /// `completion` must be a valid pointer or null.
         #[unsafe(method(presentFromRect:inView:animated:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn presentFromRect_inView_animated_completionHandler(
+        pub fn presentFromRect_inView_animated_completionHandler(
             &self,
             rect: CGRect,
             view: &UIView,
             animated: bool,
-            completion: UIPrinterPickerCompletionHandler,
+            completion: Option<&UIPrinterPickerCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` must be a valid pointer or null.
         #[unsafe(method(presentFromBarButtonItem:animated:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn presentFromBarButtonItem_animated_completionHandler(
+        pub fn presentFromBarButtonItem_animated_completionHandler(
             &self,
             item: &UIBarButtonItem,
             animated: bool,
-            completion: UIPrinterPickerCompletionHandler,
+            completion: Option<&UIPrinterPickerCompletionHandler>,
         ) -> bool;
 
         #[unsafe(method(dismissAnimated:))]

@@ -13,7 +13,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clgeocodecompletionhandler?language=objc)
 #[cfg(all(feature = "CLPlacemark", feature = "block2"))]
 pub type CLGeocodeCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut NSArray<CLPlacemark>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut NSArray<CLPlacemark>, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/corelocation/clgeocoder?language=objc)
@@ -35,22 +35,16 @@ impl CLGeocoder {
         pub unsafe fn isGeocoding(&self) -> bool;
 
         #[cfg(all(feature = "CLLocation", feature = "CLPlacemark", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[deprecated = "Use MKReverseGeocodingRequest"]
         #[unsafe(method(reverseGeocodeLocation:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn reverseGeocodeLocation_completionHandler(
             &self,
             location: &CLLocation,
-            completion_handler: CLGeocodeCompletionHandler,
+            completion_handler: &CLGeocodeCompletionHandler,
         );
 
         #[cfg(all(feature = "CLLocation", feature = "CLPlacemark", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[deprecated = "Use MKReverseGeocodingRequest"]
         #[unsafe(method(reverseGeocodeLocation:preferredLocale:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -58,40 +52,33 @@ impl CLGeocoder {
             &self,
             location: &CLLocation,
             locale: Option<&NSLocale>,
-            completion_handler: CLGeocodeCompletionHandler,
+            completion_handler: &CLGeocodeCompletionHandler,
         );
 
         #[cfg(all(feature = "CLPlacemark", feature = "block2"))]
         /// # Safety
         ///
-        /// - `address_dictionary` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer.
+        /// `address_dictionary` generic should be of the correct type.
         #[deprecated = "Use MKReverseGeocodingRequest"]
         #[unsafe(method(geocodeAddressDictionary:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geocodeAddressDictionary_completionHandler(
             &self,
             address_dictionary: &NSDictionary,
-            completion_handler: CLGeocodeCompletionHandler,
+            completion_handler: &CLGeocodeCompletionHandler,
         );
 
         #[cfg(all(feature = "CLPlacemark", feature = "CLRegion", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(geocodeAddressString:inRegion:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geocodeAddressString_inRegion_completionHandler(
             &self,
             address_string: &NSString,
             region: Option<&CLRegion>,
-            completion_handler: CLGeocodeCompletionHandler,
+            completion_handler: &CLGeocodeCompletionHandler,
         );
 
         #[cfg(all(feature = "CLPlacemark", feature = "CLRegion", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[deprecated = "Use MKGeocodingRequest"]
         #[unsafe(method(geocodeAddressString:inRegion:preferredLocale:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -100,13 +87,10 @@ impl CLGeocoder {
             address_string: &NSString,
             region: Option<&CLRegion>,
             locale: Option<&NSLocale>,
-            completion_handler: CLGeocodeCompletionHandler,
+            completion_handler: &CLGeocodeCompletionHandler,
         );
 
         #[cfg(all(feature = "CLLocation", feature = "CLPlacemark", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[deprecated = "Use MKGeocodingRequest"]
         #[unsafe(method(geocodeAddressString:inRegionCenteredAt:inRegionRadius:preferredLocale:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -116,20 +100,17 @@ impl CLGeocoder {
             centroid: CLLocationCoordinate2D,
             radius: CLLocationDistance,
             locale: Option<&NSLocale>,
-            completion_handler: CLGeocodeCompletionHandler,
+            completion_handler: &CLGeocodeCompletionHandler,
         );
 
         #[cfg(all(feature = "CLPlacemark", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[deprecated = "Use MKGeocodingRequest"]
         #[unsafe(method(geocodeAddressString:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geocodeAddressString_completionHandler(
             &self,
             address_string: &NSString,
-            completion_handler: CLGeocodeCompletionHandler,
+            completion_handler: &CLGeocodeCompletionHandler,
         );
 
         #[deprecated = "Use MKGeocodingRequest"]
@@ -162,16 +143,13 @@ impl CLGeocoder {
             feature = "objc2-contacts"
         ))]
         #[cfg(not(target_os = "tvos"))]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[deprecated = "Use MKReverseGeocodingRequest"]
         #[unsafe(method(geocodePostalAddress:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn geocodePostalAddress_completionHandler(
             &self,
             postal_address: &CNPostalAddress,
-            completion_handler: CLGeocodeCompletionHandler,
+            completion_handler: &CLGeocodeCompletionHandler,
         );
 
         #[cfg(all(
@@ -180,9 +158,6 @@ impl CLGeocoder {
             feature = "objc2-contacts"
         ))]
         #[cfg(not(target_os = "tvos"))]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[deprecated = "Use MKReverseGeocodingRequest"]
         #[unsafe(method(geocodePostalAddress:preferredLocale:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -190,7 +165,7 @@ impl CLGeocoder {
             &self,
             postal_address: &CNPostalAddress,
             locale: Option<&NSLocale>,
-            completion_handler: CLGeocodeCompletionHandler,
+            completion_handler: &CLGeocodeCompletionHandler,
         );
     );
 }

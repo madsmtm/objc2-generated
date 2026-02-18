@@ -17,7 +17,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmousemoved?language=objc)
 #[cfg(all(feature = "GCPhysicalInputProfile", feature = "block2"))]
-pub type GCMouseMoved = *mut block2::DynBlock<dyn Fn(NonNull<GCMouseInput>, c_float, c_float)>;
+pub type GCMouseMoved = block2::DynBlock<dyn Fn(NonNull<GCMouseInput>, c_float, c_float)>;
 
 extern_class!(
     /// Mouse profile that represent a physical mouse object with two axis cursor, two axis scroll,
@@ -47,19 +47,15 @@ impl GCMouseInput {
         /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(mouseMovedHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn mouseMovedHandler(&self) -> GCMouseMoved;
+        pub unsafe fn mouseMovedHandler(&self) -> *mut GCMouseMoved;
 
         #[cfg(feature = "block2")]
         /// Setter for [`mouseMovedHandler`][Self::mouseMovedHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `mouse_moved_handler` must be a valid pointer or null.
         #[unsafe(method(setMouseMovedHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setMouseMovedHandler(&self, mouse_moved_handler: GCMouseMoved);
+        pub unsafe fn setMouseMovedHandler(&self, mouse_moved_handler: Option<&GCMouseMoved>);
 
         #[cfg(all(
             feature = "GCControllerDirectionPad",

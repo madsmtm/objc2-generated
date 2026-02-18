@@ -21,7 +21,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4commitfeedbackhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTL4CommitFeedbackHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn MTL4CommitFeedback>>)>;
+    block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn MTL4CommitFeedback>>)>;
 
 extern_protocol!(
     /// Describes an object containing debug information from Metal to your app after completing a workload.

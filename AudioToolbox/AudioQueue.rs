@@ -443,7 +443,7 @@ unsafe impl RefEncode for AudioQueueChannelAssignment {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueoutputcallbackblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-audio-types"))]
 pub type AudioQueueOutputCallbackBlock =
-    *mut block2::DynBlock<dyn Fn(AudioQueueRef, AudioQueueBufferRef)>;
+    block2::DynBlock<dyn Fn(AudioQueueRef, AudioQueueBufferRef)>;
 
 /// Defines a pointer to a block that is called when a recording audio
 /// queue has finished filling a buffer.
@@ -469,7 +469,7 @@ pub type AudioQueueOutputCallbackBlock =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/audioqueueinputcallbackblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-audio-types"))]
-pub type AudioQueueInputCallbackBlock = *mut block2::DynBlock<
+pub type AudioQueueInputCallbackBlock = block2::DynBlock<
     dyn Fn(
         AudioQueueRef,
         AudioQueueBufferRef,
@@ -793,7 +793,6 @@ extern "C-unwind" {
     /// - `out_aq` must be a valid pointer.
     /// - `in_format` must be a valid pointer.
     /// - `in_callback_dispatch_queue` possibly has additional threading requirements.
-    /// - `in_callback_block` must be a valid pointer.
     #[cfg(all(
         feature = "block2",
         feature = "dispatch2",
@@ -804,7 +803,7 @@ extern "C-unwind" {
         in_format: NonNull<AudioStreamBasicDescription>,
         in_flags: u32,
         in_callback_dispatch_queue: &DispatchQueue,
-        in_callback_block: AudioQueueOutputCallbackBlock,
+        in_callback_block: &AudioQueueOutputCallbackBlock,
     ) -> OSStatus;
 }
 
@@ -839,7 +838,6 @@ extern "C-unwind" {
     /// - `out_aq` must be a valid pointer.
     /// - `in_format` must be a valid pointer.
     /// - `in_callback_dispatch_queue` possibly has additional threading requirements.
-    /// - `in_callback_block` must be a valid pointer.
     #[cfg(all(
         feature = "block2",
         feature = "dispatch2",
@@ -850,7 +848,7 @@ extern "C-unwind" {
         in_format: NonNull<AudioStreamBasicDescription>,
         in_flags: u32,
         in_callback_dispatch_queue: &DispatchQueue,
-        in_callback_block: AudioQueueInputCallbackBlock,
+        in_callback_block: &AudioQueueInputCallbackBlock,
     ) -> OSStatus;
 }
 

@@ -316,7 +316,7 @@ impl VTDecompressionSession {
     feature = "objc2-core-video"
 ))]
 pub type VTDecompressionOutputHandler =
-    *mut block2::DynBlock<dyn Fn(OSStatus, VTDecodeInfoFlags, *mut CVImageBuffer, CMTime, CMTime)>;
+    block2::DynBlock<dyn Fn(OSStatus, VTDecodeInfoFlags, *mut CVImageBuffer, CMTime, CMTime)>;
 
 impl VTDecompressionSession {
     /// Decompresses a video frame.
@@ -349,8 +349,7 @@ impl VTDecompressionSession {
     ///
     /// # Safety
     ///
-    /// - `info_flags_out` must be a valid pointer or null.
-    /// - `output_handler` must be a valid pointer.
+    /// `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -364,7 +363,7 @@ impl VTDecompressionSession {
         sample_buffer: &CMSampleBuffer,
         decode_flags: VTDecodeFrameFlags,
         info_flags_out: *mut VTDecodeInfoFlags,
-        output_handler: VTDecompressionOutputHandler,
+        output_handler: &VTDecompressionOutputHandler,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTDecompressionSessionDecodeFrameWithOutputHandler(
@@ -372,7 +371,7 @@ impl VTDecompressionSession {
                 sample_buffer: &CMSampleBuffer,
                 decode_flags: VTDecodeFrameFlags,
                 info_flags_out: *mut VTDecodeInfoFlags,
-                output_handler: VTDecompressionOutputHandler,
+                output_handler: &VTDecompressionOutputHandler,
             ) -> OSStatus;
         }
         unsafe {
@@ -616,7 +615,7 @@ impl VTDecompressionSession {
     feature = "objc2-core-media",
     feature = "objc2-core-video"
 ))]
-pub type VTDecompressionMultiImageCapableOutputHandler = *mut block2::DynBlock<
+pub type VTDecompressionMultiImageCapableOutputHandler = block2::DynBlock<
     dyn Fn(
         OSStatus,
         VTDecodeInfoFlags,
@@ -659,8 +658,7 @@ impl VTDecompressionSession {
     ///
     /// # Safety
     ///
-    /// - `info_flags_out` must be a valid pointer or null.
-    /// - `multi_image_capable_output_handler` must be a valid pointer.
+    /// `info_flags_out` must be a valid pointer or null.
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -674,7 +672,7 @@ impl VTDecompressionSession {
         sample_buffer: &CMSampleBuffer,
         decode_flags: VTDecodeFrameFlags,
         info_flags_out: *mut VTDecodeInfoFlags,
-        multi_image_capable_output_handler: VTDecompressionMultiImageCapableOutputHandler,
+        multi_image_capable_output_handler: &VTDecompressionMultiImageCapableOutputHandler,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTDecompressionSessionDecodeFrameWithMultiImageCapableOutputHandler(
@@ -682,7 +680,7 @@ impl VTDecompressionSession {
                 sample_buffer: &CMSampleBuffer,
                 decode_flags: VTDecodeFrameFlags,
                 info_flags_out: *mut VTDecodeInfoFlags,
-                multi_image_capable_output_handler: VTDecompressionMultiImageCapableOutputHandler,
+                multi_image_capable_output_handler: &VTDecompressionMultiImageCapableOutputHandler,
             ) -> OSStatus;
         }
         unsafe {
@@ -803,7 +801,6 @@ impl VTDecompressionSession {
     /// - `frame_options` generic must be of the correct type.
     /// - `frame_options` generic must be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
-    /// - `output_handler` must be a valid pointer.
     #[doc(alias = "VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -818,7 +815,7 @@ impl VTDecompressionSession {
         decode_flags: VTDecodeFrameFlags,
         frame_options: Option<&CFDictionary>,
         info_flags_out: *mut VTDecodeInfoFlags,
-        output_handler: VTDecompressionOutputHandler,
+        output_handler: &VTDecompressionOutputHandler,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTDecompressionSessionDecodeFrameWithOptionsAndOutputHandler(
@@ -827,7 +824,7 @@ impl VTDecompressionSession {
                 decode_flags: VTDecodeFrameFlags,
                 frame_options: Option<&CFDictionary>,
                 info_flags_out: *mut VTDecodeInfoFlags,
-                output_handler: VTDecompressionOutputHandler,
+                output_handler: &VTDecompressionOutputHandler,
             ) -> OSStatus;
         }
         unsafe {

@@ -161,7 +161,7 @@ impl UIBackgroundConfiguration {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(backgroundColorTransformer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn backgroundColorTransformer(&self) -> UIConfigurationColorTransformer;
+        pub unsafe fn backgroundColorTransformer(&self) -> *mut UIConfigurationColorTransformer;
 
         #[cfg(all(
             feature = "UIColor",
@@ -174,12 +174,12 @@ impl UIBackgroundConfiguration {
         ///
         /// # Safety
         ///
-        /// `background_color_transformer` must be a valid pointer or null.
+        /// `background_color_transformer` block's return must be a valid pointer.
         #[unsafe(method(setBackgroundColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setBackgroundColorTransformer(
             &self,
-            background_color_transformer: UIConfigurationColorTransformer,
+            background_color_transformer: Option<&UIConfigurationColorTransformer>,
         );
 
         #[cfg(feature = "UIColor")]
@@ -253,7 +253,7 @@ impl UIBackgroundConfiguration {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(strokeColorTransformer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn strokeColorTransformer(&self) -> UIConfigurationColorTransformer;
+        pub unsafe fn strokeColorTransformer(&self) -> *mut UIConfigurationColorTransformer;
 
         #[cfg(all(
             feature = "UIColor",
@@ -266,12 +266,12 @@ impl UIBackgroundConfiguration {
         ///
         /// # Safety
         ///
-        /// `stroke_color_transformer` must be a valid pointer or null.
+        /// `stroke_color_transformer` block's return must be a valid pointer.
         #[unsafe(method(setStrokeColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeColorTransformer(
             &self,
-            stroke_color_transformer: UIConfigurationColorTransformer,
+            stroke_color_transformer: Option<&UIConfigurationColorTransformer>,
         );
 
         #[cfg(feature = "UIColor")]

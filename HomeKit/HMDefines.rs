@@ -9,4 +9,4 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/homekit/hmerrorblock?language=objc)
 #[cfg(feature = "block2")]
-pub type HMErrorBlock = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
+pub type HMErrorBlock = block2::DynBlock<dyn Fn(*mut NSError)>;

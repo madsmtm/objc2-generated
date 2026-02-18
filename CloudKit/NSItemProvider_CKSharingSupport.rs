@@ -9,13 +9,12 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharepreparationcompletionhandler?language=objc)
 #[cfg(all(feature = "CKRecord", feature = "CKShare", feature = "block2"))]
-pub type CKSharePreparationCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut CKShare, *mut NSError)>;
+pub type CKSharePreparationCompletionHandler = block2::DynBlock<dyn Fn(*mut CKShare, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/cloudkit/cksharepreparationhandler?language=objc)
 #[cfg(all(feature = "CKRecord", feature = "CKShare", feature = "block2"))]
 pub type CKSharePreparationHandler =
-    *mut block2::DynBlock<dyn Fn(CKSharePreparationCompletionHandler)>;
+    block2::DynBlock<dyn Fn(NonNull<CKSharePreparationCompletionHandler>)>;
 
 mod private_NSItemProviderCKSharingSupport {
     pub trait Sealed {}
@@ -48,14 +47,15 @@ pub unsafe trait NSItemProviderCKSharingSupport:
         ///
         /// # Safety
         ///
-        /// `preparation_handler` must be a valid pointer.
+        /// - `preparation_handler` block's argument block's argument 1 must be a valid pointer or null.
+        /// - `preparation_handler` block's argument block's argument 2 must be a valid pointer or null.
         #[unsafe(method(registerCKShareWithContainer:allowedSharingOptions:preparationHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn registerCKShareWithContainer_allowedSharingOptions_preparationHandler(
             &self,
             container: &CKContainer,
             allowed_options: &CKAllowedSharingOptions,
-            preparation_handler: CKSharePreparationHandler,
+            preparation_handler: &CKSharePreparationHandler,
         );
 
         #[cfg(all(

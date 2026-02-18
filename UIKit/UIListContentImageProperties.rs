@@ -86,7 +86,7 @@ impl UIListContentImageProperties {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(tintColorTransformer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tintColorTransformer(&self) -> UIConfigurationColorTransformer;
+        pub unsafe fn tintColorTransformer(&self) -> *mut UIConfigurationColorTransformer;
 
         #[cfg(all(
             feature = "UIColor",
@@ -99,12 +99,12 @@ impl UIListContentImageProperties {
         ///
         /// # Safety
         ///
-        /// `tint_color_transformer` must be a valid pointer or null.
+        /// `tint_color_transformer` block's return must be a valid pointer.
         #[unsafe(method(setTintColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTintColorTransformer(
             &self,
-            tint_color_transformer: UIConfigurationColorTransformer,
+            tint_color_transformer: Option<&UIConfigurationColorTransformer>,
         );
 
         #[cfg(feature = "UIColor")]
@@ -220,7 +220,7 @@ impl UIListContentImageProperties {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(strokeColorTransformer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn strokeColorTransformer(&self) -> UIConfigurationColorTransformer;
+        pub unsafe fn strokeColorTransformer(&self) -> *mut UIConfigurationColorTransformer;
 
         #[cfg(all(
             feature = "UIColor",
@@ -233,12 +233,12 @@ impl UIListContentImageProperties {
         ///
         /// # Safety
         ///
-        /// `stroke_color_transformer` must be a valid pointer or null.
+        /// `stroke_color_transformer` block's return must be a valid pointer.
         #[unsafe(method(setStrokeColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setStrokeColorTransformer(
             &self,
-            stroke_color_transformer: UIConfigurationColorTransformer,
+            stroke_color_transformer: Option<&UIConfigurationColorTransformer>,
         );
 
         #[cfg(feature = "UIColor")]

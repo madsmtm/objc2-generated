@@ -224,10 +224,6 @@ impl IOUSBHostPipe {
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueControlRequest:data:completionTimeout:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueControlRequest_data_completionTimeout_error_completionHandler(
@@ -236,7 +232,7 @@ impl IOUSBHostPipe {
             data: Option<&NSMutableData>,
             completion_timeout: NSTimeInterval,
             error: Option<&mut Option<Retained<NSError>>>,
-            completion_handler: IOUSBHostCompletionHandler,
+            completion_handler: Option<&IOUSBHostCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(
@@ -258,10 +254,6 @@ impl IOUSBHostPipe {
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueControlRequest:data:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueControlRequest_data_error_completionHandler(
@@ -269,7 +261,7 @@ impl IOUSBHostPipe {
             request: IOUSBDeviceRequest,
             data: Option<&NSMutableData>,
             error: Option<&mut Option<Retained<NSError>>>,
-            completion_handler: IOUSBHostCompletionHandler,
+            completion_handler: Option<&IOUSBHostCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(
@@ -289,17 +281,13 @@ impl IOUSBHostPipe {
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueControlRequest:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueControlRequest_error_completionHandler(
             &self,
             request: IOUSBDeviceRequest,
             error: Option<&mut Option<Retained<NSError>>>,
-            completion_handler: IOUSBHostCompletionHandler,
+            completion_handler: Option<&IOUSBHostCompletionHandler>,
         ) -> bool;
 
         #[cfg(feature = "IOUSBHostDefinitions")]
@@ -385,10 +373,6 @@ impl IOUSBHostPipe {
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueIORequestWithData:completionTimeout:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueIORequestWithData_completionTimeout_error_completionHandler(
@@ -396,7 +380,7 @@ impl IOUSBHostPipe {
             data: Option<&NSMutableData>,
             completion_timeout: NSTimeInterval,
             error: Option<&mut Option<Retained<NSError>>>,
-            completion_handler: IOUSBHostCompletionHandler,
+            completion_handler: Option<&IOUSBHostCompletionHandler>,
         ) -> bool;
 
         #[cfg(feature = "IOUSBHostDefinitions")]
@@ -485,8 +469,7 @@ impl IOUSBHostPipe {
         ///
         /// # Safety
         ///
-        /// - `frame_list` must be a valid pointer.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// `frame_list` must be a valid pointer.
         #[deprecated]
         #[unsafe(method(enqueueIORequestWithData:frameList:frameListCount:firstFrameNumber:error:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -497,7 +480,7 @@ impl IOUSBHostPipe {
             frame_list_count: NSUInteger,
             first_frame_number: u64,
             error: Option<&mut Option<Retained<NSError>>>,
-            completion_handler: IOUSBHostIsochronousCompletionHandler,
+            completion_handler: Option<&IOUSBHostIsochronousCompletionHandler>,
         ) -> bool;
 
         #[cfg(feature = "IOUSBHostDefinitions")]
@@ -597,8 +580,7 @@ impl IOUSBHostPipe {
         ///
         /// # Safety
         ///
-        /// - `transaction_list` must be a valid pointer.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// `transaction_list` must be a valid pointer.
         #[unsafe(method(enqueueIORequestWithData:transactionList:transactionListCount:firstFrameNumber:options:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueIORequestWithData_transactionList_transactionListCount_firstFrameNumber_options_error_completionHandler(
@@ -609,7 +591,7 @@ impl IOUSBHostPipe {
             first_frame_number: u64,
             options: IOUSBHostIsochronousTransferOptions,
             error: Option<&mut Option<Retained<NSError>>>,
-            completion_handler: IOUSBHostIsochronousTransactionCompletionHandler,
+            completion_handler: Option<&IOUSBHostIsochronousTransactionCompletionHandler>,
         ) -> bool;
 
         /// Enable streams for the IOUSBHostPipe

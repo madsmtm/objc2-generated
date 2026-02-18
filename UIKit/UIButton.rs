@@ -79,7 +79,7 @@ unsafe impl RefEncode for UIButtonRole {
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UIButtonPointerStyleProvider = *mut block2::DynBlock<
+pub type UIButtonPointerStyleProvider = block2::DynBlock<
     dyn Fn(
         NonNull<UIButton>,
         NonNull<UIPointerEffect>,
@@ -94,7 +94,7 @@ pub type UIButtonPointerStyleProvider = *mut block2::DynBlock<
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UIButtonConfigurationUpdateHandler = *mut block2::DynBlock<dyn Fn(NonNull<UIButton>)>;
+pub type UIButtonConfigurationUpdateHandler = block2::DynBlock<dyn Fn(NonNull<UIButton>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibutton?language=objc)
@@ -332,21 +332,17 @@ impl UIButton {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(configurationUpdateHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn configurationUpdateHandler(&self) -> UIButtonConfigurationUpdateHandler;
+        pub unsafe fn configurationUpdateHandler(&self) -> *mut UIButtonConfigurationUpdateHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`configurationUpdateHandler`][Self::configurationUpdateHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `configuration_update_handler` must be a valid pointer or null.
         #[unsafe(method(setConfigurationUpdateHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setConfigurationUpdateHandler(
+        pub fn setConfigurationUpdateHandler(
             &self,
-            configuration_update_handler: UIButtonConfigurationUpdateHandler,
+            configuration_update_handler: Option<&UIButtonConfigurationUpdateHandler>,
         );
 
         /// When YES, the button will automatically call -updatedConfigurationForButton: on its `configuration ` when the button's state changes, and apply the updated configuration to the button. The default value is YES.
@@ -428,7 +424,7 @@ impl UIButton {
         /// - The returned block's argument 3 must be a valid pointer.
         #[unsafe(method(pointerStyleProvider))]
         #[unsafe(method_family = none)]
-        pub unsafe fn pointerStyleProvider(&self) -> UIButtonPointerStyleProvider;
+        pub unsafe fn pointerStyleProvider(&self) -> *mut UIButtonPointerStyleProvider;
 
         #[cfg(all(
             feature = "UIHoverStyle",
@@ -441,12 +437,12 @@ impl UIButton {
         ///
         /// # Safety
         ///
-        /// `pointer_style_provider` must be a valid pointer or null.
+        /// `pointer_style_provider` block's return must be a valid pointer or null.
         #[unsafe(method(setPointerStyleProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPointerStyleProvider(
             &self,
-            pointer_style_provider: UIButtonPointerStyleProvider,
+            pointer_style_provider: Option<&UIButtonPointerStyleProvider>,
         );
 
         #[cfg(all(feature = "UIMenu", feature = "UIMenuElement"))]

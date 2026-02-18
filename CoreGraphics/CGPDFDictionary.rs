@@ -287,26 +287,25 @@ impl CGPDFDictionary {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfdictionaryapplierblock?language=objc)
 #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
 pub type CGPDFDictionaryApplierBlock =
-    *mut block2::DynBlock<dyn Fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void) -> bool>;
+    block2::DynBlock<dyn Fn(NonNull<c_char>, CGPDFObjectRef, *mut c_void) -> bool>;
 
 impl CGPDFDictionary {
     /// # Safety
     ///
     /// - `dict` must be a valid pointer.
-    /// - `block` must be a valid pointer.
     /// - `info` must be a valid pointer or null.
     #[doc(alias = "CGPDFDictionaryApplyBlock")]
     #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
     #[inline]
     pub unsafe fn apply_block(
         dict: CGPDFDictionaryRef,
-        block: CGPDFDictionaryApplierBlock,
+        block: &CGPDFDictionaryApplierBlock,
         info: *mut c_void,
     ) {
         extern "C-unwind" {
             fn CGPDFDictionaryApplyBlock(
                 dict: CGPDFDictionaryRef,
-                block: CGPDFDictionaryApplierBlock,
+                block: &CGPDFDictionaryApplierBlock,
                 info: *mut c_void,
             );
         }

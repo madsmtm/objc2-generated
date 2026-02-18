@@ -131,7 +131,7 @@ unsafe impl RefEncode for AUParameterAutomationEvent {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterobserver?language=objc)
 #[cfg(feature = "block2")]
-pub type AUParameterObserver = *mut block2::DynBlock<dyn Fn(AUParameterAddress, AUValue)>;
+pub type AUParameterObserver = block2::DynBlock<dyn Fn(AUParameterAddress, AUValue)>;
 
 /// A block called to record parameter changes as automation events.
 ///
@@ -144,7 +144,7 @@ pub type AUParameterObserver = *mut block2::DynBlock<dyn Fn(AUParameterAddress, 
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterrecordingobserver?language=objc)
 #[cfg(feature = "block2")]
 pub type AUParameterRecordingObserver =
-    *mut block2::DynBlock<dyn Fn(NSInteger, NonNull<AURecordedParameterEvent>)>;
+    block2::DynBlock<dyn Fn(NSInteger, NonNull<AURecordedParameterEvent>)>;
 
 /// A block called to record parameter changes as automation events.
 ///
@@ -157,7 +157,7 @@ pub type AUParameterRecordingObserver =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auparameterautomationobserver?language=objc)
 #[cfg(feature = "block2")]
 pub type AUParameterAutomationObserver =
-    *mut block2::DynBlock<dyn Fn(NSInteger, NonNull<AUParameterAutomationEvent>)>;
+    block2::DynBlock<dyn Fn(NSInteger, NonNull<AUParameterAutomationEvent>)>;
 
 /// A token representing an installed AUParameterObserver, AUParameterRecordingObserver,
 /// or AUParameterAutomationObserver.
@@ -240,15 +240,11 @@ impl AUParameterNode {
         /// Parameter `observer`: A block to call after the value of a parameter has changed.
         ///
         /// Returns: A token which can be passed to removeParameterObserver: or to -[AUParameter setValue:originator:]
-        ///
-        /// # Safety
-        ///
-        /// `observer` must be a valid pointer.
         #[unsafe(method(tokenByAddingParameterObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokenByAddingParameterObserver(
             &self,
-            observer: AUParameterObserver,
+            observer: &AUParameterObserver,
         ) -> AUParameterObserverToken;
 
         #[cfg(feature = "block2")]
@@ -259,15 +255,11 @@ impl AUParameterNode {
         ///
         /// This will be deprecated in favor of tokenByAddingParameterAutomationObserver in a future
         /// release.
-        ///
-        /// # Safety
-        ///
-        /// `observer` must be a valid pointer.
         #[unsafe(method(tokenByAddingParameterRecordingObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokenByAddingParameterRecordingObserver(
             &self,
-            observer: AUParameterRecordingObserver,
+            observer: &AUParameterRecordingObserver,
         ) -> AUParameterObserverToken;
 
         #[cfg(feature = "block2")]
@@ -290,15 +282,11 @@ impl AUParameterNode {
         ///
         /// Returns: A token which can be passed to removeParameterObserver: or to -[AUParameter
         /// setValue:originator:]
-        ///
-        /// # Safety
-        ///
-        /// `observer` must be a valid pointer.
         #[unsafe(method(tokenByAddingParameterAutomationObserver:))]
         #[unsafe(method_family = none)]
         pub unsafe fn tokenByAddingParameterAutomationObserver(
             &self,
-            observer: AUParameterAutomationObserver,
+            observer: &AUParameterAutomationObserver,
         ) -> AUParameterObserverToken;
 
         /// Remove an observer created with tokenByAddingParameterObserver,

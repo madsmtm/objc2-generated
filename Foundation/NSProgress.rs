@@ -23,12 +23,12 @@ pub type NSProgressFileOperationKind = NSString;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogressunpublishinghandler?language=objc)
 #[cfg(feature = "block2")]
-pub type NSProgressUnpublishingHandler = *mut block2::DynBlock<dyn Fn()>;
+pub type NSProgressUnpublishingHandler = block2::DynBlock<dyn Fn()>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogresspublishinghandler?language=objc)
 #[cfg(feature = "block2")]
 pub type NSProgressPublishingHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSProgress>) -> NSProgressUnpublishingHandler>;
+    block2::DynBlock<dyn Fn(NonNull<NSProgress>) -> *mut NSProgressUnpublishingHandler>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsprogress?language=objc)
@@ -388,12 +388,12 @@ impl NSProgress {
         #[cfg(all(feature = "NSURL", feature = "block2"))]
         /// # Safety
         ///
-        /// `publishing_handler` must be a valid pointer.
+        /// `publishing_handler` block must be sendable.
         #[unsafe(method(addSubscriberForFileURL:withPublishingHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addSubscriberForFileURL_withPublishingHandler(
             url: &NSURL,
-            publishing_handler: NSProgressPublishingHandler,
+            publishing_handler: &NSProgressPublishingHandler,
         ) -> Retained<AnyObject>;
 
         /// # Safety

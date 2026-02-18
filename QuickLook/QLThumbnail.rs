@@ -105,7 +105,7 @@ impl QLThumbnail {
     ///
     /// - `queue` possibly has additional threading requirements.
     /// - `queue` might not allow `None`.
-    /// - `completion` must be a valid pointer.
+    /// - `completion` might not allow `None`.
     #[doc(alias = "QLThumbnailDispatchAsync")]
     #[cfg(feature = "dispatch2")]
     #[deprecated = "Use QLThumbnailGenerator in QuickLookThumbnailing to generate thumbnails."]
@@ -113,13 +113,13 @@ impl QLThumbnail {
     pub unsafe fn dispatch_async(
         &self,
         queue: Option<&DispatchQueue>,
-        completion: dispatch_block_t,
+        completion: Option<&dispatch_block_t>,
     ) {
         extern "C-unwind" {
             fn QLThumbnailDispatchAsync(
                 thumbnail: &QLThumbnail,
                 queue: Option<&DispatchQueue>,
-                completion: dispatch_block_t,
+                completion: Option<&dispatch_block_t>,
             );
         }
         unsafe { QLThumbnailDispatchAsync(self, queue, completion) }

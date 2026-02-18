@@ -14,7 +14,7 @@ use crate::*;
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UICollectionViewCellRegistrationConfigurationHandler = *mut block2::DynBlock<
+pub type UICollectionViewCellRegistrationConfigurationHandler = block2::DynBlock<
     dyn Fn(NonNull<UICollectionViewCell>, NonNull<NSIndexPath>, NonNull<AnyObject>),
 >;
 
@@ -40,13 +40,12 @@ impl UICollectionViewCellRegistration {
         ))]
         /// # Safety
         ///
-        /// - `cell_class` probably has further requirements.
-        /// - `configuration_handler` must be a valid pointer.
+        /// `cell_class` probably has further requirements.
         #[unsafe(method(registrationWithCellClass:configurationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registrationWithCellClass_configurationHandler(
             cell_class: &AnyClass,
-            configuration_handler: UICollectionViewCellRegistrationConfigurationHandler,
+            configuration_handler: &UICollectionViewCellRegistrationConfigurationHandler,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
@@ -57,15 +56,12 @@ impl UICollectionViewCellRegistration {
             feature = "UIView",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `configuration_handler` must be a valid pointer.
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(registrationWithCellNib:configurationHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registrationWithCellNib_configurationHandler(
+        pub fn registrationWithCellNib_configurationHandler(
             cell_nib: &UINib,
-            configuration_handler: UICollectionViewCellRegistrationConfigurationHandler,
+            configuration_handler: &UICollectionViewCellRegistrationConfigurationHandler,
         ) -> Retained<Self>;
 
         #[unsafe(method(cellClass))]
@@ -92,7 +88,7 @@ impl UICollectionViewCellRegistration {
         #[unsafe(method_family = none)]
         pub unsafe fn configurationHandler(
             &self,
-        ) -> UICollectionViewCellRegistrationConfigurationHandler;
+        ) -> NonNull<UICollectionViewCellRegistrationConfigurationHandler>;
     );
 }
 
@@ -116,7 +112,7 @@ impl UICollectionViewCellRegistration {
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UICollectionViewSupplementaryRegistrationConfigurationHandler = *mut block2::DynBlock<
+pub type UICollectionViewSupplementaryRegistrationConfigurationHandler = block2::DynBlock<
     dyn Fn(NonNull<UICollectionReusableView>, NonNull<NSString>, NonNull<NSIndexPath>),
 >;
 
@@ -142,14 +138,13 @@ impl UICollectionViewSupplementaryRegistration {
         ))]
         /// # Safety
         ///
-        /// - `supplementary_class` probably has further requirements.
-        /// - `configuration_handler` must be a valid pointer.
+        /// `supplementary_class` probably has further requirements.
         #[unsafe(method(registrationWithSupplementaryClass:elementKind:configurationHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registrationWithSupplementaryClass_elementKind_configurationHandler(
             supplementary_class: &AnyClass,
             element_kind: &NSString,
-            configuration_handler: UICollectionViewSupplementaryRegistrationConfigurationHandler,
+            configuration_handler: &UICollectionViewSupplementaryRegistrationConfigurationHandler,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
@@ -160,16 +155,13 @@ impl UICollectionViewSupplementaryRegistration {
             feature = "UIView",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `configuration_handler` must be a valid pointer.
         #[deprecated = "Loading Interface Builder products will not be supported in a future version of visionOS."]
         #[unsafe(method(registrationWithSupplementaryNib:elementKind:configurationHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn registrationWithSupplementaryNib_elementKind_configurationHandler(
+        pub fn registrationWithSupplementaryNib_elementKind_configurationHandler(
             supplementary_nib: &UINib,
             element_kind: &NSString,
-            configuration_handler: UICollectionViewSupplementaryRegistrationConfigurationHandler,
+            configuration_handler: &UICollectionViewSupplementaryRegistrationConfigurationHandler,
         ) -> Retained<Self>;
 
         #[unsafe(method(supplementaryClass))]
@@ -200,7 +192,7 @@ impl UICollectionViewSupplementaryRegistration {
         #[unsafe(method_family = none)]
         pub unsafe fn configurationHandler(
             &self,
-        ) -> UICollectionViewSupplementaryRegistrationConfigurationHandler;
+        ) -> NonNull<UICollectionViewSupplementaryRegistrationConfigurationHandler>;
     );
 }
 

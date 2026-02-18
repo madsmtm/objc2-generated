@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphonedevicemotionhandler?language=objc)
 #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem", feature = "block2"))]
 pub type CMHeadphoneDeviceMotionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut CMDeviceMotion, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut CMDeviceMotion, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphonemotionmanager?language=objc)
@@ -72,14 +72,13 @@ impl CMHeadphoneMotionManager {
         #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem", feature = "block2"))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(startDeviceMotionUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDeviceMotionUpdatesToQueue_withHandler(
             &self,
             queue: &NSOperationQueue,
-            handler: CMHeadphoneDeviceMotionHandler,
+            handler: &CMHeadphoneDeviceMotionHandler,
         );
 
         #[unsafe(method(stopDeviceMotionUpdates))]

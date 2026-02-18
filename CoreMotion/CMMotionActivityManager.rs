@@ -13,7 +13,7 @@ use crate::*;
     feature = "CMMotionActivity",
     feature = "block2"
 ))]
-pub type CMMotionActivityHandler = *mut block2::DynBlock<dyn Fn(*mut CMMotionActivity)>;
+pub type CMMotionActivityHandler = block2::DynBlock<dyn Fn(*mut CMMotionActivity)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivityqueryhandler?language=objc)
 #[cfg(all(
@@ -22,7 +22,7 @@ pub type CMMotionActivityHandler = *mut block2::DynBlock<dyn Fn(*mut CMMotionAct
     feature = "block2"
 ))]
 pub type CMMotionActivityQueryHandler =
-    *mut block2::DynBlock<dyn Fn(*mut NSArray<CMMotionActivity>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut NSArray<CMMotionActivity>, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionactivitymanager?language=objc)
@@ -53,8 +53,7 @@ impl CMMotionActivityManager {
         ))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(queryActivityStartingFromDate:toDate:toQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryActivityStartingFromDate_toDate_toQueue_withHandler(
@@ -62,7 +61,7 @@ impl CMMotionActivityManager {
             start: &NSDate,
             end: &NSDate,
             queue: &NSOperationQueue,
-            handler: CMMotionActivityQueryHandler,
+            handler: &CMMotionActivityQueryHandler,
         );
 
         #[cfg(all(
@@ -72,14 +71,13 @@ impl CMMotionActivityManager {
         ))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(startActivityUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startActivityUpdatesToQueue_withHandler(
             &self,
             queue: &NSOperationQueue,
-            handler: CMMotionActivityHandler,
+            handler: &CMMotionActivityHandler,
         );
 
         #[unsafe(method(stopActivityUpdates))]

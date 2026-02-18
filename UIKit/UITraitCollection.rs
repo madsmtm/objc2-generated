@@ -773,30 +773,23 @@ extern_protocol!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitmutations?language=objc)
 #[cfg(feature = "block2")]
-pub type UITraitMutations =
-    *mut block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn UIMutableTraits>>)>;
+pub type UITraitMutations = block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn UIMutableTraits>>)>;
 
 impl UITraitCollection {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `mutations` must be a valid pointer.
         #[unsafe(method(traitCollectionWithTraits:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn traitCollectionWithTraits(
-            mutations: UITraitMutations,
+        pub fn traitCollectionWithTraits(
+            mutations: &UITraitMutations,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `mutations` must be a valid pointer.
         #[unsafe(method(traitCollectionByModifyingTraits:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn traitCollectionByModifyingTraits(
+        pub fn traitCollectionByModifyingTraits(
             &self,
-            mutations: UITraitMutations,
+            mutations: &UITraitMutations,
         ) -> Retained<UITraitCollection>;
 
         #[cfg(all(feature = "UITrait", feature = "objc2-core-foundation"))]
@@ -926,7 +919,7 @@ extern_protocol!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitraitchangehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type UITraitChangeHandler = *mut block2::DynBlock<
+pub type UITraitChangeHandler = block2::DynBlock<
     dyn Fn(NonNull<ProtocolObject<dyn UITraitEnvironment>>, NonNull<UITraitCollection>),
 >;
 

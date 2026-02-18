@@ -684,7 +684,7 @@ pub type AudioObjectPropertyListenerProc = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audioobjectpropertylistenerblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AudioObjectPropertyListenerBlock =
-    *mut block2::DynBlock<dyn Fn(u32, NonNull<AudioObjectPropertyAddress>)>;
+    block2::DynBlock<dyn Fn(u32, NonNull<AudioObjectPropertyAddress>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreaudio/kaudioobjectpropertycreator?language=objc)
 pub const kAudioObjectPropertyCreator: AudioObjectPropertySelector = 0x6f706c67;
@@ -946,13 +946,12 @@ extern "C-unwind" {
     ///
     /// - `in_address` must be a valid pointer.
     /// - `in_dispatch_queue` possibly has additional threading requirements.
-    /// - `in_listener` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn AudioObjectAddPropertyListenerBlock(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
         in_dispatch_queue: Option<&DispatchQueue>,
-        in_listener: AudioObjectPropertyListenerBlock,
+        in_listener: &AudioObjectPropertyListenerBlock,
     ) -> OSStatus;
 }
 
@@ -975,13 +974,12 @@ extern "C-unwind" {
     ///
     /// - `in_address` must be a valid pointer.
     /// - `in_dispatch_queue` possibly has additional threading requirements.
-    /// - `in_listener` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn AudioObjectRemovePropertyListenerBlock(
         in_object_id: AudioObjectID,
         in_address: NonNull<AudioObjectPropertyAddress>,
         in_dispatch_queue: Option<&DispatchQueue>,
-        in_listener: AudioObjectPropertyListenerBlock,
+        in_listener: &AudioObjectPropertyListenerBlock,
     ) -> OSStatus;
 }
 
@@ -1231,7 +1229,7 @@ pub type AudioDeviceIOProc = Option<
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coreaudio/audiodeviceioblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-audio-types"))]
-pub type AudioDeviceIOBlock = *mut block2::DynBlock<
+pub type AudioDeviceIOBlock = block2::DynBlock<
     dyn Fn(
         NonNull<AudioTimeStamp>,
         NonNull<AudioBufferList>,
@@ -1493,7 +1491,6 @@ extern "C-unwind" {
     ///
     /// - `out_io_proc_id` must be a valid pointer.
     /// - `in_dispatch_queue` possibly has additional threading requirements.
-    /// - `in_io_block` must be a valid pointer.
     #[cfg(all(
         feature = "block2",
         feature = "dispatch2",
@@ -1503,7 +1500,7 @@ extern "C-unwind" {
         out_io_proc_id: NonNull<AudioDeviceIOProcID>,
         in_device: AudioObjectID,
         in_dispatch_queue: Option<&DispatchQueue>,
-        in_io_block: AudioDeviceIOBlock,
+        in_io_block: &AudioDeviceIOBlock,
     ) -> OSStatus;
 }
 

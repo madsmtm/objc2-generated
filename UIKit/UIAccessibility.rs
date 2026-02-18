@@ -44,72 +44,71 @@ pub extern "C-unwind" fn UIAccessibilityConvertPathToScreenCoordinates(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axboolreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXBoolReturnBlock = *mut block2::DynBlock<dyn Fn() -> Bool>;
+pub type AXBoolReturnBlock = block2::DynBlock<dyn Fn() -> Bool>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axstringreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXStringReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut NSString>;
+pub type AXStringReturnBlock = block2::DynBlock<dyn Fn() -> *mut NSString>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axstringarrayreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXStringArrayReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut NSArray<NSString>>;
+pub type AXStringArrayReturnBlock = block2::DynBlock<dyn Fn() -> *mut NSArray<NSString>>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axattributedstringreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXAttributedStringReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut NSAttributedString>;
+pub type AXAttributedStringReturnBlock = block2::DynBlock<dyn Fn() -> *mut NSAttributedString>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axattributedstringarrayreturnblock?language=objc)
 #[cfg(feature = "block2")]
 pub type AXAttributedStringArrayReturnBlock =
-    *mut block2::DynBlock<dyn Fn() -> *mut NSArray<NSAttributedString>>;
+    block2::DynBlock<dyn Fn() -> *mut NSArray<NSAttributedString>>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axrectreturnblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-pub type AXRectReturnBlock = *mut block2::DynBlock<dyn Fn() -> CGRect>;
+pub type AXRectReturnBlock = block2::DynBlock<dyn Fn() -> CGRect>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axpathreturnblock?language=objc)
 #[cfg(all(feature = "UIBezierPath", feature = "block2"))]
-pub type AXPathReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut UIBezierPath>;
+pub type AXPathReturnBlock = block2::DynBlock<dyn Fn() -> *mut UIBezierPath>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axpointreturnblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-pub type AXPointReturnBlock = *mut block2::DynBlock<dyn Fn() -> CGPoint>;
+pub type AXPointReturnBlock = block2::DynBlock<dyn Fn() -> CGPoint>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axobjectreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXObjectReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut AnyObject>;
+pub type AXObjectReturnBlock = block2::DynBlock<dyn Fn() -> *mut AnyObject>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axarrayreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXArrayReturnBlock = *mut block2::DynBlock<dyn Fn() -> *mut NSArray>;
+pub type AXArrayReturnBlock = block2::DynBlock<dyn Fn() -> *mut NSArray>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axvoidreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXVoidReturnBlock = *mut block2::DynBlock<dyn Fn()>;
+pub type AXVoidReturnBlock = block2::DynBlock<dyn Fn()>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axtraitsreturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
-pub type AXTraitsReturnBlock = *mut block2::DynBlock<dyn Fn() -> UIAccessibilityTraits>;
+pub type AXTraitsReturnBlock = block2::DynBlock<dyn Fn() -> UIAccessibilityTraits>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axnavigationstylereturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
 pub type AXNavigationStyleReturnBlock =
-    *mut block2::DynBlock<dyn Fn() -> UIAccessibilityNavigationStyle>;
+    block2::DynBlock<dyn Fn() -> UIAccessibilityNavigationStyle>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axcontainertypereturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
-pub type AXContainerTypeReturnBlock =
-    *mut block2::DynBlock<dyn Fn() -> UIAccessibilityContainerType>;
+pub type AXContainerTypeReturnBlock = block2::DynBlock<dyn Fn() -> UIAccessibilityContainerType>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axtextualcontextreturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
 pub type AXTextualContextReturnBlock =
-    *mut block2::DynBlock<dyn Fn() -> *mut UIAccessibilityTextualContext>;
+    block2::DynBlock<dyn Fn() -> *mut UIAccessibilityTextualContext>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axcustomactionsreturnblock?language=objc)
 #[cfg(all(feature = "UIAccessibilityCustomAction", feature = "block2"))]
 pub type AXCustomActionsReturnBlock =
-    *mut block2::DynBlock<dyn Fn() -> *mut NSArray<UIAccessibilityCustomAction>>;
+    block2::DynBlock<dyn Fn() -> *mut NSArray<UIAccessibilityCustomAction>>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/axuitextinputreturnblock?language=objc)
 #[cfg(all(
@@ -118,7 +117,7 @@ pub type AXCustomActionsReturnBlock =
     feature = "block2"
 ))]
 pub type AXUITextInputReturnBlock =
-    *mut block2::DynBlock<dyn Fn() -> *mut ProtocolObject<dyn UITextInput>>;
+    block2::DynBlock<dyn Fn() -> *mut ProtocolObject<dyn UITextInput>>;
 
 mod private_NSObjectUIAccessibility {
     pub trait Sealed {}
@@ -493,28 +492,24 @@ pub unsafe trait NSObjectUIAccessibility:
         #[cfg(feature = "block2")]
         #[unsafe(method(isAccessibilityElementBlock))]
         #[unsafe(method_family = none)]
-        fn isAccessibilityElementBlock(&self, mtm: MainThreadMarker) -> AXBoolReturnBlock;
+        fn isAccessibilityElementBlock(&self, mtm: MainThreadMarker) -> *mut AXBoolReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`isAccessibilityElementBlock`][Self::isAccessibilityElementBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `is_accessibility_element_block` must be a valid pointer or null.
         #[unsafe(method(setIsAccessibilityElementBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setIsAccessibilityElementBlock(
+        fn setIsAccessibilityElementBlock(
             &self,
-            is_accessibility_element_block: AXBoolReturnBlock,
+            is_accessibility_element_block: Option<&AXBoolReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(accessibilityLabelBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityLabelBlock(&self, mtm: MainThreadMarker) -> AXStringReturnBlock;
+        fn accessibilityLabelBlock(&self, mtm: MainThreadMarker) -> *mut AXStringReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityLabelBlock`][Self::accessibilityLabelBlock].
@@ -523,19 +518,19 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_label_block` must be a valid pointer or null.
+        /// `accessibility_label_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityLabelBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLabelBlock(
             &self,
-            accessibility_label_block: AXStringReturnBlock,
+            accessibility_label_block: Option<&AXStringReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(accessibilityValueBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityValueBlock(&self, mtm: MainThreadMarker) -> AXStringReturnBlock;
+        fn accessibilityValueBlock(&self, mtm: MainThreadMarker) -> *mut AXStringReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityValueBlock`][Self::accessibilityValueBlock].
@@ -544,19 +539,19 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_value_block` must be a valid pointer or null.
+        /// `accessibility_value_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityValueBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityValueBlock(
             &self,
-            accessibility_value_block: AXStringReturnBlock,
+            accessibility_value_block: Option<&AXStringReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(accessibilityHintBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityHintBlock(&self, mtm: MainThreadMarker) -> AXStringReturnBlock;
+        fn accessibilityHintBlock(&self, mtm: MainThreadMarker) -> *mut AXStringReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityHintBlock`][Self::accessibilityHintBlock].
@@ -565,40 +560,36 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_hint_block` must be a valid pointer or null.
+        /// `accessibility_hint_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityHintBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHintBlock(
             &self,
-            accessibility_hint_block: AXStringReturnBlock,
+            accessibility_hint_block: Option<&AXStringReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         #[unsafe(method(accessibilityTraitsBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityTraitsBlock(&self, mtm: MainThreadMarker) -> AXTraitsReturnBlock;
+        fn accessibilityTraitsBlock(&self, mtm: MainThreadMarker) -> *mut AXTraitsReturnBlock;
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityTraitsBlock`][Self::accessibilityTraitsBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `accessibility_traits_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityTraitsBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccessibilityTraitsBlock(
+        fn setAccessibilityTraitsBlock(
             &self,
-            accessibility_traits_block: AXTraitsReturnBlock,
+            accessibility_traits_block: Option<&AXTraitsReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(accessibilityIdentifierBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityIdentifierBlock(&self, mtm: MainThreadMarker) -> AXStringReturnBlock;
+        fn accessibilityIdentifierBlock(&self, mtm: MainThreadMarker) -> *mut AXStringReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityIdentifierBlock`][Self::accessibilityIdentifierBlock].
@@ -607,19 +598,22 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_identifier_block` must be a valid pointer or null.
+        /// `accessibility_identifier_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityIdentifierBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityIdentifierBlock(
             &self,
-            accessibility_identifier_block: AXStringReturnBlock,
+            accessibility_identifier_block: Option<&AXStringReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(accessibilityHeaderElementsBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityHeaderElementsBlock(&self, mtm: MainThreadMarker) -> AXArrayReturnBlock;
+        fn accessibilityHeaderElementsBlock(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> *mut AXArrayReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityHeaderElementsBlock`][Self::accessibilityHeaderElementsBlock].
@@ -628,12 +622,12 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_header_elements_block` must be a valid pointer or null.
+        /// `accessibility_header_elements_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityHeaderElementsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityHeaderElementsBlock(
             &self,
-            accessibility_header_elements_block: AXArrayReturnBlock,
+            accessibility_header_elements_block: Option<&AXArrayReturnBlock>,
             mtm: MainThreadMarker,
         );
 
@@ -643,7 +637,7 @@ pub unsafe trait NSObjectUIAccessibility:
         fn accessibilityAttributedLabelBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXAttributedStringReturnBlock;
+        ) -> *mut AXAttributedStringReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityAttributedLabelBlock`][Self::accessibilityAttributedLabelBlock].
@@ -652,12 +646,12 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_attributed_label_block` must be a valid pointer or null.
+        /// `accessibility_attributed_label_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityAttributedLabelBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedLabelBlock(
             &self,
-            accessibility_attributed_label_block: AXAttributedStringReturnBlock,
+            accessibility_attributed_label_block: Option<&AXAttributedStringReturnBlock>,
             mtm: MainThreadMarker,
         );
 
@@ -667,7 +661,7 @@ pub unsafe trait NSObjectUIAccessibility:
         fn accessibilityAttributedHintBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXAttributedStringReturnBlock;
+        ) -> *mut AXAttributedStringReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityAttributedHintBlock`][Self::accessibilityAttributedHintBlock].
@@ -676,19 +670,19 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_attributed_hint_block` must be a valid pointer or null.
+        /// `accessibility_attributed_hint_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityAttributedHintBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedHintBlock(
             &self,
-            accessibility_attributed_hint_block: AXAttributedStringReturnBlock,
+            accessibility_attributed_hint_block: Option<&AXAttributedStringReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(accessibilityLanguageBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityLanguageBlock(&self, mtm: MainThreadMarker) -> AXStringReturnBlock;
+        fn accessibilityLanguageBlock(&self, mtm: MainThreadMarker) -> *mut AXStringReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityLanguageBlock`][Self::accessibilityLanguageBlock].
@@ -697,12 +691,12 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_language_block` must be a valid pointer or null.
+        /// `accessibility_language_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityLanguageBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityLanguageBlock(
             &self,
-            accessibility_language_block: AXStringReturnBlock,
+            accessibility_language_block: Option<&AXStringReturnBlock>,
             mtm: MainThreadMarker,
         );
 
@@ -712,7 +706,7 @@ pub unsafe trait NSObjectUIAccessibility:
         fn accessibilityTextualContextBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXTextualContextReturnBlock;
+        ) -> *mut AXTextualContextReturnBlock;
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityTextualContextBlock`][Self::accessibilityTextualContextBlock].
@@ -721,12 +715,12 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_textual_context_block` must be a valid pointer or null.
+        /// `accessibility_textual_context_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityTextualContextBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTextualContextBlock(
             &self,
-            accessibility_textual_context_block: AXTextualContextReturnBlock,
+            accessibility_textual_context_block: Option<&AXTextualContextReturnBlock>,
             mtm: MainThreadMarker,
         );
 
@@ -736,7 +730,7 @@ pub unsafe trait NSObjectUIAccessibility:
         fn accessibilityUserInputLabelsBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXStringArrayReturnBlock;
+        ) -> *mut AXStringArrayReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityUserInputLabelsBlock`][Self::accessibilityUserInputLabelsBlock].
@@ -745,12 +739,12 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_user_input_labels_block` must be a valid pointer or null.
+        /// `accessibility_user_input_labels_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityUserInputLabelsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityUserInputLabelsBlock(
             &self,
-            accessibility_user_input_labels_block: AXStringArrayReturnBlock,
+            accessibility_user_input_labels_block: Option<&AXStringArrayReturnBlock>,
             mtm: MainThreadMarker,
         );
 
@@ -760,7 +754,7 @@ pub unsafe trait NSObjectUIAccessibility:
         fn accessibilityAttributedUserInputLabelsBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXAttributedStringArrayReturnBlock;
+        ) -> *mut AXAttributedStringArrayReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityAttributedUserInputLabelsBlock`][Self::accessibilityAttributedUserInputLabelsBlock].
@@ -769,12 +763,14 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_attributed_user_input_labels_block` must be a valid pointer or null.
+        /// `accessibility_attributed_user_input_labels_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityAttributedUserInputLabelsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedUserInputLabelsBlock(
             &self,
-            accessibility_attributed_user_input_labels_block: AXAttributedStringArrayReturnBlock,
+            accessibility_attributed_user_input_labels_block: Option<
+                &AXAttributedStringArrayReturnBlock,
+            >,
             mtm: MainThreadMarker,
         );
 
@@ -784,7 +780,7 @@ pub unsafe trait NSObjectUIAccessibility:
         fn accessibilityAttributedValueBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXAttributedStringReturnBlock;
+        ) -> *mut AXAttributedStringReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityAttributedValueBlock`][Self::accessibilityAttributedValueBlock].
@@ -793,33 +789,30 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_attributed_value_block` must be a valid pointer or null.
+        /// `accessibility_attributed_value_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityAttributedValueBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityAttributedValueBlock(
             &self,
-            accessibility_attributed_value_block: AXAttributedStringReturnBlock,
+            accessibility_attributed_value_block: Option<&AXAttributedStringReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(accessibilityElementsHiddenBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityElementsHiddenBlock(&self, mtm: MainThreadMarker) -> AXBoolReturnBlock;
+        fn accessibilityElementsHiddenBlock(&self, mtm: MainThreadMarker)
+            -> *mut AXBoolReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityElementsHiddenBlock`][Self::accessibilityElementsHiddenBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `accessibility_elements_hidden_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityElementsHiddenBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccessibilityElementsHiddenBlock(
+        fn setAccessibilityElementsHiddenBlock(
             &self,
-            accessibility_elements_hidden_block: AXBoolReturnBlock,
+            accessibility_elements_hidden_block: Option<&AXBoolReturnBlock>,
             mtm: MainThreadMarker,
         );
 
@@ -829,42 +822,34 @@ pub unsafe trait NSObjectUIAccessibility:
         fn accessibilityRespondsToUserInteractionBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXBoolReturnBlock;
+        ) -> *mut AXBoolReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityRespondsToUserInteractionBlock`][Self::accessibilityRespondsToUserInteractionBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `accessibility_responds_to_user_interaction_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityRespondsToUserInteractionBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccessibilityRespondsToUserInteractionBlock(
+        fn setAccessibilityRespondsToUserInteractionBlock(
             &self,
-            accessibility_responds_to_user_interaction_block: AXBoolReturnBlock,
+            accessibility_responds_to_user_interaction_block: Option<&AXBoolReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(accessibilityViewIsModalBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityViewIsModalBlock(&self, mtm: MainThreadMarker) -> AXBoolReturnBlock;
+        fn accessibilityViewIsModalBlock(&self, mtm: MainThreadMarker) -> *mut AXBoolReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityViewIsModalBlock`][Self::accessibilityViewIsModalBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `accessibility_view_is_modal_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityViewIsModalBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccessibilityViewIsModalBlock(
+        fn setAccessibilityViewIsModalBlock(
             &self,
-            accessibility_view_is_modal_block: AXBoolReturnBlock,
+            accessibility_view_is_modal_block: Option<&AXBoolReturnBlock>,
             mtm: MainThreadMarker,
         );
 
@@ -874,21 +859,17 @@ pub unsafe trait NSObjectUIAccessibility:
         fn accessibilityShouldGroupAccessibilityChildrenBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXBoolReturnBlock;
+        ) -> *mut AXBoolReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityShouldGroupAccessibilityChildrenBlock`][Self::accessibilityShouldGroupAccessibilityChildrenBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `accessibility_should_group_accessibility_children_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityShouldGroupAccessibilityChildrenBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccessibilityShouldGroupAccessibilityChildrenBlock(
+        fn setAccessibilityShouldGroupAccessibilityChildrenBlock(
             &self,
-            accessibility_should_group_accessibility_children_block: AXBoolReturnBlock,
+            accessibility_should_group_accessibility_children_block: Option<&AXBoolReturnBlock>,
             mtm: MainThreadMarker,
         );
 
@@ -917,7 +898,7 @@ pub unsafe trait NSObjectUIAccessibility:
         #[cfg(feature = "block2")]
         #[unsafe(method(accessibilityElementsBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityElementsBlock(&self, mtm: MainThreadMarker) -> AXArrayReturnBlock;
+        fn accessibilityElementsBlock(&self, mtm: MainThreadMarker) -> *mut AXArrayReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityElementsBlock`][Self::accessibilityElementsBlock].
@@ -926,19 +907,19 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_elements_block` must be a valid pointer or null.
+        /// `accessibility_elements_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityElementsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityElementsBlock(
             &self,
-            accessibility_elements_block: AXArrayReturnBlock,
+            accessibility_elements_block: Option<&AXArrayReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(automationElementsBlock))]
         #[unsafe(method_family = none)]
-        fn automationElementsBlock(&self, mtm: MainThreadMarker) -> AXArrayReturnBlock;
+        fn automationElementsBlock(&self, mtm: MainThreadMarker) -> *mut AXArrayReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`automationElementsBlock`][Self::automationElementsBlock].
@@ -947,12 +928,12 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `automation_elements_block` must be a valid pointer or null.
+        /// `automation_elements_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAutomationElementsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAutomationElementsBlock(
             &self,
-            automation_elements_block: AXArrayReturnBlock,
+            automation_elements_block: Option<&AXArrayReturnBlock>,
             mtm: MainThreadMarker,
         );
 
@@ -962,63 +943,54 @@ pub unsafe trait NSObjectUIAccessibility:
         fn accessibilityContainerTypeBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXContainerTypeReturnBlock;
+        ) -> *mut AXContainerTypeReturnBlock;
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityContainerTypeBlock`][Self::accessibilityContainerTypeBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `accessibility_container_type_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityContainerTypeBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccessibilityContainerTypeBlock(
+        fn setAccessibilityContainerTypeBlock(
             &self,
-            accessibility_container_type_block: AXContainerTypeReturnBlock,
+            accessibility_container_type_block: Option<&AXContainerTypeReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[unsafe(method(accessibilityActivationPointBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityActivationPointBlock(&self, mtm: MainThreadMarker) -> AXPointReturnBlock;
+        fn accessibilityActivationPointBlock(
+            &self,
+            mtm: MainThreadMarker,
+        ) -> *mut AXPointReturnBlock;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Setter for [`accessibilityActivationPointBlock`][Self::accessibilityActivationPointBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `accessibility_activation_point_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityActivationPointBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccessibilityActivationPointBlock(
+        fn setAccessibilityActivationPointBlock(
             &self,
-            accessibility_activation_point_block: AXPointReturnBlock,
+            accessibility_activation_point_block: Option<&AXPointReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         #[unsafe(method(accessibilityFrameBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityFrameBlock(&self, mtm: MainThreadMarker) -> AXRectReturnBlock;
+        fn accessibilityFrameBlock(&self, mtm: MainThreadMarker) -> *mut AXRectReturnBlock;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
         /// Setter for [`accessibilityFrameBlock`][Self::accessibilityFrameBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `accessibility_frame_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityFrameBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccessibilityFrameBlock(
+        fn setAccessibilityFrameBlock(
             &self,
-            accessibility_frame_block: AXRectReturnBlock,
+            accessibility_frame_block: Option<&AXRectReturnBlock>,
             mtm: MainThreadMarker,
         );
 
@@ -1028,28 +1000,24 @@ pub unsafe trait NSObjectUIAccessibility:
         fn accessibilityNavigationStyleBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXNavigationStyleReturnBlock;
+        ) -> *mut AXNavigationStyleReturnBlock;
 
         #[cfg(all(feature = "UIAccessibilityConstants", feature = "block2"))]
         /// Setter for [`accessibilityNavigationStyleBlock`][Self::accessibilityNavigationStyleBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `accessibility_navigation_style_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityNavigationStyleBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccessibilityNavigationStyleBlock(
+        fn setAccessibilityNavigationStyleBlock(
             &self,
-            accessibility_navigation_style_block: AXNavigationStyleReturnBlock,
+            accessibility_navigation_style_block: Option<&AXNavigationStyleReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(all(feature = "UIBezierPath", feature = "block2"))]
         #[unsafe(method(accessibilityPathBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityPathBlock(&self, mtm: MainThreadMarker) -> AXPathReturnBlock;
+        fn accessibilityPathBlock(&self, mtm: MainThreadMarker) -> *mut AXPathReturnBlock;
 
         #[cfg(all(feature = "UIBezierPath", feature = "block2"))]
         /// Setter for [`accessibilityPathBlock`][Self::accessibilityPathBlock].
@@ -1058,117 +1026,97 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_path_block` must be a valid pointer or null.
+        /// `accessibility_path_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityPathBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPathBlock(
             &self,
-            accessibility_path_block: AXPathReturnBlock,
+            accessibility_path_block: Option<&AXPathReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(accessibilityActivateBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityActivateBlock(&self, mtm: MainThreadMarker) -> AXBoolReturnBlock;
+        fn accessibilityActivateBlock(&self, mtm: MainThreadMarker) -> *mut AXBoolReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityActivateBlock`][Self::accessibilityActivateBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `accessibility_activate_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityActivateBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccessibilityActivateBlock(
+        fn setAccessibilityActivateBlock(
             &self,
-            accessibility_activate_block: AXBoolReturnBlock,
+            accessibility_activate_block: Option<&AXBoolReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(accessibilityIncrementBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityIncrementBlock(&self, mtm: MainThreadMarker) -> AXVoidReturnBlock;
+        fn accessibilityIncrementBlock(&self, mtm: MainThreadMarker) -> *mut AXVoidReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityIncrementBlock`][Self::accessibilityIncrementBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `accessibility_increment_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityIncrementBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccessibilityIncrementBlock(
+        fn setAccessibilityIncrementBlock(
             &self,
-            accessibility_increment_block: AXVoidReturnBlock,
+            accessibility_increment_block: Option<&AXVoidReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(accessibilityDecrementBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityDecrementBlock(&self, mtm: MainThreadMarker) -> AXVoidReturnBlock;
+        fn accessibilityDecrementBlock(&self, mtm: MainThreadMarker) -> *mut AXVoidReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityDecrementBlock`][Self::accessibilityDecrementBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `accessibility_decrement_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityDecrementBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccessibilityDecrementBlock(
+        fn setAccessibilityDecrementBlock(
             &self,
-            accessibility_decrement_block: AXVoidReturnBlock,
+            accessibility_decrement_block: Option<&AXVoidReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(accessibilityPerformEscapeBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityPerformEscapeBlock(&self, mtm: MainThreadMarker) -> AXBoolReturnBlock;
+        fn accessibilityPerformEscapeBlock(&self, mtm: MainThreadMarker) -> *mut AXBoolReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityPerformEscapeBlock`][Self::accessibilityPerformEscapeBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `accessibility_perform_escape_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityPerformEscapeBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccessibilityPerformEscapeBlock(
+        fn setAccessibilityPerformEscapeBlock(
             &self,
-            accessibility_perform_escape_block: AXBoolReturnBlock,
+            accessibility_perform_escape_block: Option<&AXBoolReturnBlock>,
             mtm: MainThreadMarker,
         );
 
         #[cfg(feature = "block2")]
         #[unsafe(method(accessibilityMagicTapBlock))]
         #[unsafe(method_family = none)]
-        fn accessibilityMagicTapBlock(&self, mtm: MainThreadMarker) -> AXBoolReturnBlock;
+        fn accessibilityMagicTapBlock(&self, mtm: MainThreadMarker) -> *mut AXBoolReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityMagicTapBlock`][Self::accessibilityMagicTapBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `accessibility_magic_tap_block` must be a valid pointer or null.
         #[unsafe(method(setAccessibilityMagicTapBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setAccessibilityMagicTapBlock(
+        fn setAccessibilityMagicTapBlock(
             &self,
-            accessibility_magic_tap_block: AXBoolReturnBlock,
+            accessibility_magic_tap_block: Option<&AXBoolReturnBlock>,
             mtm: MainThreadMarker,
         );
 
@@ -1178,7 +1126,7 @@ pub unsafe trait NSObjectUIAccessibility:
         fn accessibilityCustomActionsBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXCustomActionsReturnBlock;
+        ) -> *mut AXCustomActionsReturnBlock;
 
         #[cfg(all(feature = "UIAccessibilityCustomAction", feature = "block2"))]
         /// Setter for [`accessibilityCustomActionsBlock`][Self::accessibilityCustomActionsBlock].
@@ -1187,12 +1135,12 @@ pub unsafe trait NSObjectUIAccessibility:
         ///
         /// # Safety
         ///
-        /// `accessibility_custom_actions_block` must be a valid pointer or null.
+        /// `accessibility_custom_actions_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityCustomActionsBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCustomActionsBlock(
             &self,
-            accessibility_custom_actions_block: AXCustomActionsReturnBlock,
+            accessibility_custom_actions_block: Option<&AXCustomActionsReturnBlock>,
             mtm: MainThreadMarker,
         );
     );
@@ -1528,7 +1476,7 @@ pub unsafe trait NSObjectUIAccessibilityTextNavigation:
         fn accessibilityPreviousTextNavigationElementBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXObjectReturnBlock;
+        ) -> *mut AXObjectReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityPreviousTextNavigationElementBlock`][Self::accessibilityPreviousTextNavigationElementBlock].
@@ -1537,12 +1485,12 @@ pub unsafe trait NSObjectUIAccessibilityTextNavigation:
         ///
         /// # Safety
         ///
-        /// `accessibility_previous_text_navigation_element_block` must be a valid pointer or null.
+        /// `accessibility_previous_text_navigation_element_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityPreviousTextNavigationElementBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityPreviousTextNavigationElementBlock(
             &self,
-            accessibility_previous_text_navigation_element_block: AXObjectReturnBlock,
+            accessibility_previous_text_navigation_element_block: Option<&AXObjectReturnBlock>,
             mtm: MainThreadMarker,
         );
 
@@ -1552,7 +1500,7 @@ pub unsafe trait NSObjectUIAccessibilityTextNavigation:
         fn accessibilityNextTextNavigationElementBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXObjectReturnBlock;
+        ) -> *mut AXObjectReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityNextTextNavigationElementBlock`][Self::accessibilityNextTextNavigationElementBlock].
@@ -1561,12 +1509,12 @@ pub unsafe trait NSObjectUIAccessibilityTextNavigation:
         ///
         /// # Safety
         ///
-        /// `accessibility_next_text_navigation_element_block` must be a valid pointer or null.
+        /// `accessibility_next_text_navigation_element_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityNextTextNavigationElementBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityNextTextNavigationElementBlock(
             &self,
-            accessibility_next_text_navigation_element_block: AXObjectReturnBlock,
+            accessibility_next_text_navigation_element_block: Option<&AXObjectReturnBlock>,
             mtm: MainThreadMarker,
         );
     );
@@ -1615,7 +1563,7 @@ pub unsafe trait NSObjectUIAccessibilityTextOperations:
         fn accessibilityTextInputResponderBlock(
             &self,
             mtm: MainThreadMarker,
-        ) -> AXUITextInputReturnBlock;
+        ) -> *mut AXUITextInputReturnBlock;
 
         #[cfg(all(
             feature = "UITextInput",
@@ -1628,12 +1576,12 @@ pub unsafe trait NSObjectUIAccessibilityTextOperations:
         ///
         /// # Safety
         ///
-        /// `accessibility_text_input_responder_block` must be a valid pointer or null.
+        /// `accessibility_text_input_responder_block` block's return must be a valid pointer or null.
         #[unsafe(method(setAccessibilityTextInputResponderBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityTextInputResponderBlock(
             &self,
-            accessibility_text_input_responder_block: AXUITextInputReturnBlock,
+            accessibility_text_input_responder_block: Option<&AXUITextInputReturnBlock>,
             mtm: MainThreadMarker,
         );
     );

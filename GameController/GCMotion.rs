@@ -156,7 +156,7 @@ unsafe impl RefEncode for GCQuaternion {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmotionvaluechangedhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type GCMotionValueChangedHandler = *mut block2::DynBlock<dyn Fn(NonNull<GCMotion>)>;
+pub type GCMotionValueChangedHandler = block2::DynBlock<dyn Fn(NonNull<GCMotion>)>;
 
 extern_class!(
     /// A profile for getting motion input from a controller that has the ability to measure acceleration
@@ -196,21 +196,17 @@ impl GCMotion {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(valueChangedHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueChangedHandler(&self) -> GCMotionValueChangedHandler;
+        pub unsafe fn valueChangedHandler(&self) -> *mut GCMotionValueChangedHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `value_changed_handler` must be a valid pointer or null.
         #[unsafe(method(setValueChangedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueChangedHandler(
             &self,
-            value_changed_handler: GCMotionValueChangedHandler,
+            value_changed_handler: Option<&GCMotionValueChangedHandler>,
         );
 
         /// If this property is returns YES, you are responsible for setting sensorsActive to YES when you need motion data from the controller.

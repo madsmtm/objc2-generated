@@ -63,16 +63,13 @@ impl CPMessageComposeBarButton {
 impl CPMessageComposeBarButton {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(initWithType:handler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_handler(
             this: Allocated<Self>,
             r#type: CPBarButtonType,
-            handler: CPBarButtonHandler,
+            handler: Option<&CPBarButtonHandler>,
         ) -> Retained<Self>;
     );
 }

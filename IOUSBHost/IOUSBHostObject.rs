@@ -14,7 +14,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/iousbhost/iousbhostinteresthandler?language=objc)
 #[cfg(feature = "block2")]
 pub type IOUSBHostInterestHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<IOUSBHostObject>, u32, *mut c_void)>;
+    block2::DynBlock<dyn Fn(NonNull<IOUSBHostObject>, u32, *mut c_void)>;
 
 extern_class!(
     /// The Abstract class IOUSBHostDevice and IOUSBHostInterface derive from.
@@ -72,8 +72,7 @@ impl IOUSBHostObject {
         ///
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `interest_handler` must be a valid pointer or null.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithIOService:options:queue:error:interestHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIOService_options_queue_error_interestHandler(
@@ -82,7 +81,7 @@ impl IOUSBHostObject {
             options: IOUSBHostObjectInitOptions,
             queue: Option<&DispatchQueue>,
             error: Option<&mut Option<Retained<NSError>>>,
-            interest_handler: IOUSBHostInterestHandler,
+            interest_handler: Option<&IOUSBHostInterestHandler>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2", feature = "objc2-io-kit"))]
@@ -113,8 +112,7 @@ impl IOUSBHostObject {
         ///
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `interest_handler` must be a valid pointer or null.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithIOService:queue:error:interestHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIOService_queue_error_interestHandler(
@@ -122,7 +120,7 @@ impl IOUSBHostObject {
             io_service: io_service_t,
             queue: Option<&DispatchQueue>,
             error: Option<&mut Option<Retained<NSError>>>,
-            interest_handler: IOUSBHostInterestHandler,
+            interest_handler: Option<&IOUSBHostInterestHandler>,
         ) -> Option<Retained<Self>>;
 
         /// Removes underlying allocations of the IOUSBHostObject object along with user client
@@ -260,10 +258,6 @@ impl IOUSBHostObject {
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueDeviceRequest:data:completionTimeout:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueDeviceRequest_data_completionTimeout_error_completionHandler(
@@ -272,7 +266,7 @@ impl IOUSBHostObject {
             data: Option<&NSMutableData>,
             completion_timeout: NSTimeInterval,
             error: Option<&mut Option<Retained<NSError>>>,
-            completion_handler: IOUSBHostCompletionHandler,
+            completion_handler: Option<&IOUSBHostCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(
@@ -291,10 +285,6 @@ impl IOUSBHostObject {
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueDeviceRequest:data:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueDeviceRequest_data_error_completionHandler(
@@ -302,7 +292,7 @@ impl IOUSBHostObject {
             request: IOUSBDeviceRequest,
             data: Option<&NSMutableData>,
             error: Option<&mut Option<Retained<NSError>>>,
-            completion_handler: IOUSBHostCompletionHandler,
+            completion_handler: Option<&IOUSBHostCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(
@@ -320,17 +310,13 @@ impl IOUSBHostObject {
         /// Parameter `completionHandler`: an IOUSBHostCompletionHandler
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueDeviceRequest:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueDeviceRequest_error_completionHandler(
             &self,
             request: IOUSBDeviceRequest,
             error: Option<&mut Option<Retained<NSError>>>,
-            completion_handler: IOUSBHostCompletionHandler,
+            completion_handler: Option<&IOUSBHostCompletionHandler>,
         ) -> bool;
 
         #[cfg(feature = "IOUSBHostDefinitions")]

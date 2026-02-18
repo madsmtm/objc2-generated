@@ -95,7 +95,7 @@ unsafe impl RefEncode for UICollectionViewSelfSizingInvalidation {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewlayoutinteractivetransitioncompletion?language=objc)
 #[cfg(feature = "block2")]
 pub type UICollectionViewLayoutInteractiveTransitionCompletion =
-    *mut block2::DynBlock<dyn Fn(Bool, Bool)>;
+    block2::DynBlock<dyn Fn(Bool, Bool)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewfocusupdatecontext?language=objc)
@@ -1376,15 +1376,12 @@ impl UICollectionView {
             feature = "UICollectionViewTransitionLayout",
             feature = "block2"
         ))]
-        /// # Safety
-        ///
-        /// `completion` must be a valid pointer or null.
         #[unsafe(method(startInteractiveTransitionToCollectionViewLayout:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn startInteractiveTransitionToCollectionViewLayout_completion(
+        pub fn startInteractiveTransitionToCollectionViewLayout_completion(
             &self,
             layout: &UICollectionViewLayout,
-            completion: UICollectionViewLayoutInteractiveTransitionCompletion,
+            completion: Option<&UICollectionViewLayoutInteractiveTransitionCompletion>,
         ) -> Retained<UICollectionViewTransitionLayout>;
 
         #[unsafe(method(finishInteractiveTransition))]

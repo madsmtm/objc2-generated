@@ -9,21 +9,19 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmaccelerometerhandler?language=objc)
 #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem", feature = "block2"))]
-pub type CMAccelerometerHandler =
-    *mut block2::DynBlock<dyn Fn(*mut CMAccelerometerData, *mut NSError)>;
+pub type CMAccelerometerHandler = block2::DynBlock<dyn Fn(*mut CMAccelerometerData, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmgyrohandler?language=objc)
 #[cfg(all(feature = "CMGyro", feature = "CMLogItem", feature = "block2"))]
-pub type CMGyroHandler = *mut block2::DynBlock<dyn Fn(*mut CMGyroData, *mut NSError)>;
+pub type CMGyroHandler = block2::DynBlock<dyn Fn(*mut CMGyroData, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmdevicemotionhandler?language=objc)
 #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem", feature = "block2"))]
-pub type CMDeviceMotionHandler = *mut block2::DynBlock<dyn Fn(*mut CMDeviceMotion, *mut NSError)>;
+pub type CMDeviceMotionHandler = block2::DynBlock<dyn Fn(*mut CMDeviceMotion, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmagnetometerhandler?language=objc)
 #[cfg(all(feature = "CMLogItem", feature = "CMMagnetometer", feature = "block2"))]
-pub type CMMagnetometerHandler =
-    *mut block2::DynBlock<dyn Fn(*mut CMMagnetometerData, *mut NSError)>;
+pub type CMMagnetometerHandler = block2::DynBlock<dyn Fn(*mut CMMagnetometerData, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmmotionmanager?language=objc)
@@ -70,14 +68,13 @@ impl CMMotionManager {
         #[cfg(all(feature = "CMAccelerometer", feature = "CMLogItem", feature = "block2"))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(startAccelerometerUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startAccelerometerUpdatesToQueue_withHandler(
             &self,
             queue: &NSOperationQueue,
-            handler: CMAccelerometerHandler,
+            handler: &CMAccelerometerHandler,
         );
 
         #[unsafe(method(stopAccelerometerUpdates))]
@@ -113,14 +110,13 @@ impl CMMotionManager {
         #[cfg(all(feature = "CMGyro", feature = "CMLogItem", feature = "block2"))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(startGyroUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startGyroUpdatesToQueue_withHandler(
             &self,
             queue: &NSOperationQueue,
-            handler: CMGyroHandler,
+            handler: &CMGyroHandler,
         );
 
         #[unsafe(method(stopGyroUpdates))]
@@ -159,14 +155,13 @@ impl CMMotionManager {
         #[cfg(all(feature = "CMLogItem", feature = "CMMagnetometer", feature = "block2"))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(startMagnetometerUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startMagnetometerUpdatesToQueue_withHandler(
             &self,
             queue: &NSOperationQueue,
-            handler: CMMagnetometerHandler,
+            handler: &CMMagnetometerHandler,
         );
 
         #[unsafe(method(stopMagnetometerUpdates))]
@@ -215,14 +210,13 @@ impl CMMotionManager {
         #[cfg(all(feature = "CMDeviceMotion", feature = "CMLogItem", feature = "block2"))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(startDeviceMotionUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDeviceMotionUpdatesToQueue_withHandler(
             &self,
             queue: &NSOperationQueue,
-            handler: CMDeviceMotionHandler,
+            handler: &CMDeviceMotionHandler,
         );
 
         #[cfg(feature = "CMAttitude")]
@@ -241,15 +235,14 @@ impl CMMotionManager {
         ))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(startDeviceMotionUpdatesUsingReferenceFrame:toQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startDeviceMotionUpdatesUsingReferenceFrame_toQueue_withHandler(
             &self,
             reference_frame: CMAttitudeReferenceFrame,
             queue: &NSOperationQueue,
-            handler: CMDeviceMotionHandler,
+            handler: &CMDeviceMotionHandler,
         );
 
         #[unsafe(method(stopDeviceMotionUpdates))]

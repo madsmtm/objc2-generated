@@ -32,12 +32,12 @@ unsafe impl RefEncode for UIActivitySectionTypes {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontrollercompletionhandler?language=objc)
 #[cfg(all(feature = "UIActivity", feature = "block2"))]
 pub type UIActivityViewControllerCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut UIActivityType, Bool)>;
+    block2::DynBlock<dyn Fn(*mut UIActivityType, Bool)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontrollercompletionwithitemshandler?language=objc)
 #[cfg(all(feature = "UIActivity", feature = "block2"))]
 pub type UIActivityViewControllerCompletionWithItemsHandler =
-    *mut block2::DynBlock<dyn Fn(*mut UIActivityType, Bool, *mut NSArray, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut UIActivityType, Bool, *mut NSArray, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller?language=objc)
@@ -122,22 +122,18 @@ impl UIActivityViewController {
         #[deprecated]
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completionHandler(&self) -> UIActivityViewControllerCompletionHandler;
+        pub unsafe fn completionHandler(&self) -> *mut UIActivityViewControllerCompletionHandler;
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
         /// Setter for [`completionHandler`][Self::completionHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCompletionHandler(
+        pub fn setCompletionHandler(
             &self,
-            completion_handler: UIActivityViewControllerCompletionHandler,
+            completion_handler: Option<&UIActivityViewControllerCompletionHandler>,
         );
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
@@ -150,21 +146,19 @@ impl UIActivityViewController {
         #[unsafe(method_family = none)]
         pub unsafe fn completionWithItemsHandler(
             &self,
-        ) -> UIActivityViewControllerCompletionWithItemsHandler;
+        ) -> *mut UIActivityViewControllerCompletionWithItemsHandler;
 
         #[cfg(all(feature = "UIActivity", feature = "block2"))]
         /// Setter for [`completionWithItemsHandler`][Self::completionWithItemsHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `completion_with_items_handler` must be a valid pointer or null.
         #[unsafe(method(setCompletionWithItemsHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCompletionWithItemsHandler(
+        pub fn setCompletionWithItemsHandler(
             &self,
-            completion_with_items_handler: UIActivityViewControllerCompletionWithItemsHandler,
+            completion_with_items_handler: Option<
+                &UIActivityViewControllerCompletionWithItemsHandler,
+            >,
         );
 
         #[cfg(feature = "UIActivity")]

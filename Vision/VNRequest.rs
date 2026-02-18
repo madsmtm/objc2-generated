@@ -21,8 +21,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestcompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type VNRequestCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<VNRequest>, *mut NSError)>;
+pub type VNRequestCompletionHandler = block2::DynBlock<dyn Fn(NonNull<VNRequest>, *mut NSError)>;
 
 extern_class!(
     /// VNRequest objects describe the operation to be performed as well as act as the recipient of the operation's resultant observations.
@@ -59,15 +58,11 @@ impl VNRequest {
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
 
         /// A hint used to minimize the resource burden of the request. Memory footprint, processing footprint and/or CPU/GPU contention will be reduced (depending on the request), at the potential cost of longer execution time. This can help, for example, with ensuring UI updates and rendering are not getting blocked by Vision processing.
@@ -109,7 +104,7 @@ impl VNRequest {
         /// - The returned block's argument 2 must be a valid pointer or null.
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completionHandler(&self) -> VNRequestCompletionHandler;
+        pub unsafe fn completionHandler(&self) -> *mut VNRequestCompletionHandler;
 
         /// The specific algorithm or implementation revision that is to be used to perform the request.
         #[unsafe(method(revision))]
@@ -269,15 +264,11 @@ impl VNImageBasedRequest {
         ///
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithCompletionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCompletionHandler(
             this: Allocated<Self>,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
     );
 }
@@ -304,7 +295,7 @@ impl VNImageBasedRequest {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type VNRequestProgressHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<VNRequest>, c_double, *mut NSError)>;
+    block2::DynBlock<dyn Fn(NonNull<VNRequest>, c_double, *mut NSError)>;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/vision/vnrequestprogressproviding?language=objc)
@@ -321,19 +312,15 @@ extern_protocol!(
         /// - The returned block's argument 3 must be a valid pointer or null.
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
-        unsafe fn progressHandler(&self) -> VNRequestProgressHandler;
+        unsafe fn progressHandler(&self) -> NonNull<VNRequestProgressHandler>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `progress_handler` must be a valid pointer.
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn setProgressHandler(&self, progress_handler: VNRequestProgressHandler);
+        unsafe fn setProgressHandler(&self, progress_handler: &VNRequestProgressHandler);
 
         /// If a request cannot determine its progress in fractions completed, this property will be set.
         ///

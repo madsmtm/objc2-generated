@@ -9,7 +9,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitextattributesconversionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type UITextAttributesConversionHandler = *mut block2::DynBlock<
+pub type UITextAttributesConversionHandler = block2::DynBlock<
     dyn Fn(
         NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
     ) -> NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
@@ -251,13 +251,13 @@ extern_protocol!(
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `conversion_handler` must be a valid pointer.
+        /// `conversion_handler` block's return must be a valid pointer.
         #[optional]
         #[unsafe(method(updateTextAttributesWithConversionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn updateTextAttributesWithConversionHandler(
             &self,
-            conversion_handler: UITextAttributesConversionHandler,
+            conversion_handler: &UITextAttributesConversionHandler,
         );
 
         /// # Safety

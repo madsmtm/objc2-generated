@@ -15,12 +15,12 @@ extern_protocol!(
         #[cfg(all(feature = "UIResponder", feature = "block2"))]
         /// # Safety
         ///
-        /// `conversion_handler` must be a valid pointer.
+        /// `conversion_handler` block's return must be a valid pointer.
         #[unsafe(method(updateTextAttributesWithConversionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn updateTextAttributesWithConversionHandler(
             &self,
-            conversion_handler: UITextAttributesConversionHandler,
+            conversion_handler: &UITextAttributesConversionHandler,
         );
     }
 );

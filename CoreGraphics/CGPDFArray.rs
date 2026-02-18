@@ -3,6 +3,7 @@
 use core::cell::UnsafeCell;
 use core::ffi::*;
 use core::marker::{PhantomData, PhantomPinned};
+use core::ptr::NonNull;
 #[cfg(feature = "objc2")]
 use objc2::__framework_prelude::*;
 
@@ -246,26 +247,25 @@ impl CGPDFArray {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpdfarrayapplierblock?language=objc)
 #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
 pub type CGPDFArrayApplierBlock =
-    *mut block2::DynBlock<dyn Fn(usize, CGPDFObjectRef, *mut c_void) -> bool>;
+    block2::DynBlock<dyn Fn(usize, CGPDFObjectRef, *mut c_void) -> bool>;
 
 impl CGPDFArray {
     /// # Safety
     ///
     /// - `array` must be a valid pointer.
-    /// - `block` must be a valid pointer.
     /// - `info` must be a valid pointer or null.
     #[doc(alias = "CGPDFArrayApplyBlock")]
     #[cfg(all(feature = "CGPDFObject", feature = "block2"))]
     #[inline]
     pub unsafe fn apply_block(
         array: CGPDFArrayRef,
-        block: CGPDFArrayApplierBlock,
+        block: &CGPDFArrayApplierBlock,
         info: *mut c_void,
     ) {
         extern "C-unwind" {
             fn CGPDFArrayApplyBlock(
                 array: CGPDFArrayRef,
-                block: CGPDFArrayApplierBlock,
+                block: &CGPDFArrayApplierBlock,
                 info: *mut c_void,
             );
         }

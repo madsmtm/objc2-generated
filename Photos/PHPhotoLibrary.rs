@@ -145,26 +145,20 @@ impl PHPhotoLibrary {
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
-        /// # Safety
-        ///
-        /// `change_block` must be a valid pointer.
         #[unsafe(method(performChanges:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn performChanges_completionHandler(
             &self,
-            change_block: dispatch_block_t,
+            change_block: &dispatch_block_t,
             completion_handler: Option<&block2::DynBlock<dyn Fn(Bool, *mut NSError)>>,
         );
 
         #[cfg(feature = "dispatch2")]
-        /// # Safety
-        ///
-        /// `change_block` must be a valid pointer.
         #[unsafe(method(performChangesAndWait:error:_))]
         #[unsafe(method_family = none)]
         pub unsafe fn performChangesAndWait_error(
             &self,
-            change_block: dispatch_block_t,
+            change_block: &dispatch_block_t,
         ) -> Result<(), Retained<NSError>>;
 
         #[unsafe(method(registerChangeObserver:))]

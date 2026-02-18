@@ -9,7 +9,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicontextualactionhandler?language=objc)
 #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
-pub type UIContextualActionHandler = *mut block2::DynBlock<
+pub type UIContextualActionHandler = block2::DynBlock<
     dyn Fn(NonNull<UIContextualAction>, NonNull<UIView>, NonNull<block2::DynBlock<dyn Fn(Bool)>>),
 >;
 
@@ -48,15 +48,12 @@ extern_conformance!(
 impl UIContextualAction {
     extern_methods!(
         #[cfg(all(feature = "UIResponder", feature = "UIView", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer.
         #[unsafe(method(contextualActionWithStyle:title:handler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn contextualActionWithStyle_title_handler(
+        pub fn contextualActionWithStyle_title_handler(
             style: UIContextualActionStyle,
             title: Option<&NSString>,
-            handler: UIContextualActionHandler,
+            handler: &UIContextualActionHandler,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
@@ -72,7 +69,7 @@ impl UIContextualAction {
         /// - The returned block's argument 3 must be a valid pointer.
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn handler(&self) -> UIContextualActionHandler;
+        pub unsafe fn handler(&self) -> NonNull<UIContextualActionHandler>;
 
         #[unsafe(method(title))]
         #[unsafe(method_family = none)]

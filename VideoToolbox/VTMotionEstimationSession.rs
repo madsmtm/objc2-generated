@@ -210,7 +210,7 @@ impl VTMotionEstimationSession {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtmotionestimationoutputhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
-pub type VTMotionEstimationOutputHandler = *mut block2::DynBlock<
+pub type VTMotionEstimationOutputHandler = block2::DynBlock<
     dyn Fn(OSStatus, VTMotionEstimationInfoFlags, *const CFDictionary, *mut CVPixelBuffer),
 >;
 
@@ -236,7 +236,6 @@ impl VTMotionEstimationSession {
     ///
     /// - `additional_frame_options` generic must be of the correct type.
     /// - `additional_frame_options` generic must be of the correct type.
-    /// - `output_handler` must be a valid pointer.
     #[doc(alias = "VTMotionEstimationSessionEstimateMotionVectors")]
     #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
     #[inline]
@@ -246,7 +245,7 @@ impl VTMotionEstimationSession {
         current_image: &CVPixelBuffer,
         motion_estimation_frame_flags: VTMotionEstimationFrameFlags,
         additional_frame_options: Option<&CFDictionary>,
-        output_handler: VTMotionEstimationOutputHandler,
+        output_handler: &VTMotionEstimationOutputHandler,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTMotionEstimationSessionEstimateMotionVectors(
@@ -255,7 +254,7 @@ impl VTMotionEstimationSession {
                 current_image: &CVPixelBuffer,
                 motion_estimation_frame_flags: VTMotionEstimationFrameFlags,
                 additional_frame_options: Option<&CFDictionary>,
-                output_handler: VTMotionEstimationOutputHandler,
+                output_handler: &VTMotionEstimationOutputHandler,
             ) -> OSStatus;
         }
         unsafe {

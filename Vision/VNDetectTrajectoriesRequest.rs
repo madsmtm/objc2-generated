@@ -51,17 +51,13 @@ impl VNDetectTrajectoriesRequest {
         /// Parameter `trajectoryLength`: The number of points required to analyze a parabola that indicates a trajectory. Must be at least 5.
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithFrameAnalysisSpacing:trajectoryLength:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_trajectoryLength_completionHandler(
             this: Allocated<Self>,
             frame_analysis_spacing: CMTime,
             trajectory_length: NSInteger,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
 
         /// The number of points required to analyze a parabola that indicates a trajectory.

@@ -268,7 +268,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message> DefaultRetaine
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UICollectionViewDiffableDataSourceCellProvider = *mut block2::DynBlock<
+pub type UICollectionViewDiffableDataSourceCellProvider = block2::DynBlock<
     dyn Fn(
         NonNull<UICollectionView>,
         NonNull<NSIndexPath>,
@@ -285,7 +285,7 @@ pub type UICollectionViewDiffableDataSourceCellProvider = *mut block2::DynBlock<
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UICollectionViewDiffableDataSourceSupplementaryViewProvider = *mut block2::DynBlock<
+pub type UICollectionViewDiffableDataSourceSupplementaryViewProvider = block2::DynBlock<
     dyn Fn(
         NonNull<UICollectionView>,
         NonNull<NSString>,
@@ -914,13 +914,13 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         ))]
         /// # Safety
         ///
-        /// `cell_provider` must be a valid pointer.
+        /// `cell_provider` block's return must be a valid pointer or null.
         #[unsafe(method(initWithCollectionView:cellProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithCollectionView_cellProvider(
             this: Allocated<Self>,
             collection_view: &UICollectionView,
-            cell_provider: UICollectionViewDiffableDataSourceCellProvider,
+            cell_provider: &UICollectionViewDiffableDataSourceCellProvider,
         ) -> Retained<Self>;
 
         // -init (unavailable)
@@ -944,7 +944,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         #[unsafe(method_family = none)]
         pub unsafe fn supplementaryViewProvider(
             &self,
-        ) -> UICollectionViewDiffableDataSourceSupplementaryViewProvider;
+        ) -> *mut UICollectionViewDiffableDataSourceSupplementaryViewProvider;
 
         #[cfg(all(
             feature = "UICollectionView",
@@ -960,12 +960,14 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         ///
         /// # Safety
         ///
-        /// `supplementary_view_provider` must be a valid pointer or null.
+        /// `supplementary_view_provider` block's return must be a valid pointer or null.
         #[unsafe(method(setSupplementaryViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupplementaryViewProvider(
             &self,
-            supplementary_view_provider: UICollectionViewDiffableDataSourceSupplementaryViewProvider,
+            supplementary_view_provider: Option<
+                &UICollectionViewDiffableDataSourceSupplementaryViewProvider,
+            >,
         );
 
         #[unsafe(method(snapshot))]
@@ -1115,7 +1117,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
     feature = "UIView",
     feature = "block2"
 ))]
-pub type UITableViewDiffableDataSourceCellProvider = *mut block2::DynBlock<
+pub type UITableViewDiffableDataSourceCellProvider = block2::DynBlock<
     dyn Fn(NonNull<UITableView>, NonNull<NSIndexPath>, NonNull<AnyObject>) -> *mut UITableViewCell,
 >;
 
@@ -1179,13 +1181,13 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         ))]
         /// # Safety
         ///
-        /// `cell_provider` must be a valid pointer.
+        /// `cell_provider` block's return must be a valid pointer or null.
         #[unsafe(method(initWithTableView:cellProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTableView_cellProvider(
             this: Allocated<Self>,
             table_view: &UITableView,
-            cell_provider: UITableViewDiffableDataSourceCellProvider,
+            cell_provider: &UITableViewDiffableDataSourceCellProvider,
         ) -> Retained<Self>;
 
         // -init (unavailable)

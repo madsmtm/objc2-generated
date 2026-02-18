@@ -349,7 +349,7 @@ impl GKAchievement {
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
 pub type GKChallengeComposeCompletionBlock =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<NSString>)>;
+    block2::DynBlock<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<NSString>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/gamekit/gkchallengecomposehandler?language=objc)
 #[deprecated]
@@ -361,7 +361,7 @@ pub type GKChallengeComposeCompletionBlock =
 ))]
 #[cfg(target_os = "macos")]
 pub type GKChallengeComposeHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<GKPlayer>)>;
+    block2::DynBlock<dyn Fn(NonNull<NSViewController>, Bool, *mut NSArray<GKPlayer>)>;
 
 /// GKChallengeUI.
 #[cfg(feature = "GKScore")]
@@ -374,9 +374,6 @@ impl GKScore {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(challengeComposeControllerWithMessage:players:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -384,7 +381,7 @@ impl GKScore {
             &self,
             message: Option<&NSString>,
             players: Option<&NSArray<GKPlayer>>,
-            completion_handler: GKChallengeComposeCompletionBlock,
+            completion_handler: Option<&GKChallengeComposeCompletionBlock>,
             mtm: MainThreadMarker,
         ) -> Retained<NSViewController>;
 
@@ -395,9 +392,6 @@ impl GKScore {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(challengeComposeControllerWithMessage:players:completion:))]
         #[unsafe(method_family = none)]
@@ -405,7 +399,7 @@ impl GKScore {
             &self,
             message: Option<&NSString>,
             players: Option<&NSArray<GKPlayer>>,
-            completion_handler: GKChallengeComposeHandler,
+            completion_handler: Option<&GKChallengeComposeHandler>,
             mtm: MainThreadMarker,
         ) -> Retained<NSViewController>;
     );
@@ -422,9 +416,6 @@ impl GKLeaderboardEntry {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(challengeComposeControllerWithMessage:players:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -432,7 +423,7 @@ impl GKLeaderboardEntry {
             &self,
             message: Option<&NSString>,
             players: Option<&NSArray<GKPlayer>>,
-            completion_handler: GKChallengeComposeCompletionBlock,
+            completion_handler: Option<&GKChallengeComposeCompletionBlock>,
             mtm: MainThreadMarker,
         ) -> Retained<NSViewController>;
 
@@ -443,9 +434,6 @@ impl GKLeaderboardEntry {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(challengeComposeControllerWithMessage:players:completion:))]
         #[unsafe(method_family = none)]
@@ -453,7 +441,7 @@ impl GKLeaderboardEntry {
             &self,
             message: Option<&NSString>,
             players: Option<&NSArray<GKPlayer>>,
-            completion_handler: GKChallengeComposeHandler,
+            completion_handler: Option<&GKChallengeComposeHandler>,
             mtm: MainThreadMarker,
         ) -> Retained<NSViewController>;
     );
@@ -470,9 +458,6 @@ impl GKAchievement {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(challengeComposeControllerWithMessage:players:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -480,7 +465,7 @@ impl GKAchievement {
             &self,
             message: Option<&NSString>,
             players: &NSArray<GKPlayer>,
-            completion_handler: GKChallengeComposeCompletionBlock,
+            completion_handler: Option<&GKChallengeComposeCompletionBlock>,
             mtm: MainThreadMarker,
         ) -> Retained<NSViewController>;
 
@@ -491,9 +476,6 @@ impl GKAchievement {
             feature = "objc2-app-kit"
         ))]
         #[cfg(target_os = "macos")]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(challengeComposeControllerWithMessage:players:completion:))]
         #[unsafe(method_family = none)]
@@ -501,7 +483,7 @@ impl GKAchievement {
             &self,
             message: Option<&NSString>,
             players: &NSArray<GKPlayer>,
-            completion_handler: GKChallengeComposeHandler,
+            completion_handler: Option<&GKChallengeComposeHandler>,
             mtm: MainThreadMarker,
         ) -> Retained<NSViewController>;
     );
@@ -514,17 +496,13 @@ impl GKScore {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// * This method is obsolete. Calling this method does nothing and will return nil **
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(challengeComposeControllerWithPlayers:message:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn challengeComposeControllerWithPlayers_message_completionHandler(
             &self,
             player_i_ds: Option<&NSArray<NSString>>,
             message: Option<&NSString>,
-            completion_handler: GKChallengeComposeCompletionBlock,
+            completion_handler: Option<&GKChallengeComposeCompletionBlock>,
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSViewController>>;
     );
@@ -537,17 +515,13 @@ impl GKAchievement {
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         #[cfg(target_os = "macos")]
         /// * This method is obsolete. Calling this method does nothing and will return nil **
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(challengeComposeControllerWithPlayers:message:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn challengeComposeControllerWithPlayers_message_completionHandler(
             &self,
             player_i_ds: Option<&NSArray<NSString>>,
             message: Option<&NSString>,
-            completion_handler: GKChallengeComposeCompletionBlock,
+            completion_handler: Option<&GKChallengeComposeCompletionBlock>,
             mtm: MainThreadMarker,
         ) -> Option<Retained<NSViewController>>;
     );

@@ -25,7 +25,7 @@ use crate::*;
     feature = "block2",
     feature = "objc2-core-foundation"
 ))]
-pub type GCKeyboardValueChangedHandler = *mut block2::DynBlock<
+pub type GCKeyboardValueChangedHandler = block2::DynBlock<
     dyn Fn(NonNull<GCKeyboardInput>, NonNull<GCControllerButtonInput>, GCKeyCode, Bool),
 >;
 
@@ -62,7 +62,7 @@ impl GCKeyboardInput {
         /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(keyChangedHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keyChangedHandler(&self) -> GCKeyboardValueChangedHandler;
+        pub unsafe fn keyChangedHandler(&self) -> *mut GCKeyboardValueChangedHandler;
 
         #[cfg(all(
             feature = "GCControllerButtonInput",
@@ -74,15 +74,11 @@ impl GCKeyboardInput {
         /// Setter for [`keyChangedHandler`][Self::keyChangedHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `key_changed_handler` must be a valid pointer or null.
         #[unsafe(method(setKeyChangedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setKeyChangedHandler(
             &self,
-            key_changed_handler: GCKeyboardValueChangedHandler,
+            key_changed_handler: Option<&GCKeyboardValueChangedHandler>,
         );
 
         /// Before querying any key for a value it might be useful to check if any key is actually pressed

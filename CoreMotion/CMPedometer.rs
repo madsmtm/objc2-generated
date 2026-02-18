@@ -161,12 +161,11 @@ impl CMPedometerEvent {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometerhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMPedometerHandler = *mut block2::DynBlock<dyn Fn(*mut CMPedometerData, *mut NSError)>;
+pub type CMPedometerHandler = block2::DynBlock<dyn Fn(*mut CMPedometerData, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometereventhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMPedometerEventHandler =
-    *mut block2::DynBlock<dyn Fn(*mut CMPedometerEvent, *mut NSError)>;
+pub type CMPedometerEventHandler = block2::DynBlock<dyn Fn(*mut CMPedometerEvent, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmpedometer?language=objc)
@@ -211,28 +210,22 @@ impl CMPedometer {
         pub unsafe fn authorizationStatus() -> CMAuthorizationStatus;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer.
         #[unsafe(method(queryPedometerDataFromDate:toDate:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryPedometerDataFromDate_toDate_withHandler(
             &self,
             start: &NSDate,
             end: &NSDate,
-            handler: CMPedometerHandler,
+            handler: &CMPedometerHandler,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer.
         #[unsafe(method(startPedometerUpdatesFromDate:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startPedometerUpdatesFromDate_withHandler(
             &self,
             start: &NSDate,
-            handler: CMPedometerHandler,
+            handler: &CMPedometerHandler,
         );
 
         #[unsafe(method(stopPedometerUpdates))]
@@ -240,14 +233,11 @@ impl CMPedometer {
         pub unsafe fn stopPedometerUpdates(&self);
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer.
         #[unsafe(method(startPedometerEventUpdatesWithHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startPedometerEventUpdatesWithHandler(
             &self,
-            handler: CMPedometerEventHandler,
+            handler: &CMPedometerEventHandler,
         );
 
         #[unsafe(method(stopPedometerEventUpdates))]

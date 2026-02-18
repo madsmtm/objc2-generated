@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintinteractioncompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type UIPrintInteractionCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<UIPrintInteractionController>, Bool, *mut NSError)>;
+    block2::DynBlock<dyn Fn(NonNull<UIPrintInteractionController>, Bool, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiprintercutterbehavior?language=objc)
 // NS_ENUM
@@ -202,15 +202,12 @@ impl UIPrintInteractionController {
         pub unsafe fn setPrintingItems(&self, printing_items: Option<&NSArray>);
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` must be a valid pointer or null.
         #[unsafe(method(presentAnimated:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn presentAnimated_completionHandler(
+        pub fn presentAnimated_completionHandler(
             &self,
             animated: bool,
-            completion: UIPrintInteractionCompletionHandler,
+            completion: Option<&UIPrintInteractionCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(
@@ -219,46 +216,36 @@ impl UIPrintInteractionController {
             feature = "block2",
             feature = "objc2-core-foundation"
         ))]
-        /// # Safety
-        ///
-        /// `completion` must be a valid pointer or null.
         #[unsafe(method(presentFromRect:inView:animated:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn presentFromRect_inView_animated_completionHandler(
+        pub fn presentFromRect_inView_animated_completionHandler(
             &self,
             rect: CGRect,
             view: &UIView,
             animated: bool,
-            completion: UIPrintInteractionCompletionHandler,
+            completion: Option<&UIPrintInteractionCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` must be a valid pointer or null.
         #[unsafe(method(presentFromBarButtonItem:animated:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn presentFromBarButtonItem_animated_completionHandler(
+        pub fn presentFromBarButtonItem_animated_completionHandler(
             &self,
             item: &UIBarButtonItem,
             animated: bool,
-            completion: UIPrintInteractionCompletionHandler,
+            completion: Option<&UIPrintInteractionCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(feature = "UIPrinter", feature = "block2"))]
         /// Use to print without showing the standard print panel. Use with a
         /// UIPrinter found using the UIPrinterPickerController.
         /// The value for the duplex property on printInfo will be ignored.
-        ///
-        /// # Safety
-        ///
-        /// `completion` must be a valid pointer or null.
         #[unsafe(method(printToPrinter:completionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn printToPrinter_completionHandler(
+        pub fn printToPrinter_completionHandler(
             &self,
             printer: &UIPrinter,
-            completion: UIPrintInteractionCompletionHandler,
+            completion: Option<&UIPrintInteractionCompletionHandler>,
         ) -> bool;
 
         #[unsafe(method(dismissAnimated:))]

@@ -2356,7 +2356,7 @@ cf_objc2_type!(
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiduserdevicesetreportblock?language=objc)
 #[cfg(all(feature = "block2", feature = "hid"))]
 pub type IOHIDUserDeviceSetReportBlock =
-    *mut block2::DynBlock<dyn Fn(IOHIDReportType, u32, NonNull<u8>, CFIndex) -> IOReturn>;
+    block2::DynBlock<dyn Fn(IOHIDReportType, u32, NonNull<u8>, CFIndex) -> IOReturn>;
 
 /// The type block used for IOHIDUserDevice get report calls.
 ///
@@ -2377,7 +2377,7 @@ pub type IOHIDUserDeviceSetReportBlock =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/iokit/iohiduserdevicegetreportblock?language=objc)
 #[cfg(all(feature = "block2", feature = "hid"))]
 pub type IOHIDUserDeviceGetReportBlock =
-    *mut block2::DynBlock<dyn Fn(IOHIDReportType, u32, NonNull<u8>, NonNull<CFIndex>) -> IOReturn>;
+    block2::DynBlock<dyn Fn(IOHIDReportType, u32, NonNull<u8>, NonNull<CFIndex>) -> IOReturn>;
 
 /// Enumerator of IOHIDUserDeviceOptions to be passed in to
 /// IOHIDUserDeviceCreateWithOptions.
@@ -2476,18 +2476,14 @@ impl IOHIDUserDevice {
     ///
     ///
     /// Parameter `block`: The block to be invoked for get report calls.
-    ///
-    /// # Safety
-    ///
-    /// `block` must be a valid pointer.
     #[doc(alias = "IOHIDUserDeviceRegisterGetReportBlock")]
     #[cfg(all(feature = "block2", feature = "hid"))]
     #[inline]
-    pub unsafe fn register_get_report_block(&self, block: IOHIDUserDeviceGetReportBlock) {
+    pub fn register_get_report_block(&self, block: &IOHIDUserDeviceGetReportBlock) {
         extern "C-unwind" {
             fn IOHIDUserDeviceRegisterGetReportBlock(
                 device: &IOHIDUserDevice,
-                block: IOHIDUserDeviceGetReportBlock,
+                block: &IOHIDUserDeviceGetReportBlock,
             );
         }
         unsafe { IOHIDUserDeviceRegisterGetReportBlock(self, block) }
@@ -2505,18 +2501,14 @@ impl IOHIDUserDevice {
     ///
     ///
     /// Parameter `block`: The block to be invoked for set report calls.
-    ///
-    /// # Safety
-    ///
-    /// `block` must be a valid pointer.
     #[doc(alias = "IOHIDUserDeviceRegisterSetReportBlock")]
     #[cfg(all(feature = "block2", feature = "hid"))]
     #[inline]
-    pub unsafe fn register_set_report_block(&self, block: IOHIDUserDeviceSetReportBlock) {
+    pub fn register_set_report_block(&self, block: &IOHIDUserDeviceSetReportBlock) {
         extern "C-unwind" {
             fn IOHIDUserDeviceRegisterSetReportBlock(
                 device: &IOHIDUserDevice,
-                block: IOHIDUserDeviceSetReportBlock,
+                block: &IOHIDUserDeviceSetReportBlock,
             );
         }
         unsafe { IOHIDUserDeviceRegisterSetReportBlock(self, block) }
@@ -2576,16 +2568,15 @@ impl IOHIDUserDevice {
     ///
     ///
     /// Parameter `handler`: The cancellation handler block to be associated with the dispatch queue.
-    ///
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer.
     #[doc(alias = "IOHIDUserDeviceSetCancelHandler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn set_cancel_handler(&self, handler: dispatch_block_t) {
+    pub fn set_cancel_handler(&self, handler: &dispatch_block_t) {
         extern "C-unwind" {
-            fn IOHIDUserDeviceSetCancelHandler(device: &IOHIDUserDevice, handler: dispatch_block_t);
+            fn IOHIDUserDeviceSetCancelHandler(
+                device: &IOHIDUserDevice,
+                handler: &dispatch_block_t,
+            );
         }
         unsafe { IOHIDUserDeviceSetCancelHandler(self, handler) }
     }

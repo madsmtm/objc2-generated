@@ -40,12 +40,11 @@ unsafe impl RefEncode for EKSpan {
     feature = "EKObject",
     feature = "block2"
 ))]
-pub type EKEventSearchCallback = *mut block2::DynBlock<dyn Fn(NonNull<EKEvent>, NonNull<Bool>)>;
+pub type EKEventSearchCallback = block2::DynBlock<dyn Fn(NonNull<EKEvent>, NonNull<Bool>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/eventkit/ekeventstorerequestaccesscompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type EKEventStoreRequestAccessCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
+pub type EKEventStoreRequestAccessCompletionHandler = block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
 
 extern_class!(
     /// The EKEventStore class provides an interface for accessing and manipulating calendar events and reminders.
@@ -112,49 +111,37 @@ impl EKEventStore {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` must be a valid pointer.
         #[unsafe(method(requestFullAccessToEventsWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestFullAccessToEventsWithCompletion(
             &self,
-            completion: EKEventStoreRequestAccessCompletionHandler,
+            completion: &EKEventStoreRequestAccessCompletionHandler,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` must be a valid pointer.
         #[unsafe(method(requestWriteOnlyAccessToEventsWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestWriteOnlyAccessToEventsWithCompletion(
             &self,
-            completion: EKEventStoreRequestAccessCompletionHandler,
+            completion: &EKEventStoreRequestAccessCompletionHandler,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion` must be a valid pointer.
         #[unsafe(method(requestFullAccessToRemindersWithCompletion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestFullAccessToRemindersWithCompletion(
             &self,
-            completion: EKEventStoreRequestAccessCompletionHandler,
+            completion: &EKEventStoreRequestAccessCompletionHandler,
         );
 
         #[cfg(all(feature = "EKTypes", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion` must be a valid pointer.
         #[deprecated = "Use -requestFullAccessToEventsWithCompletion:, -requestWriteOnlyAccessToEventsWithCompletion:, or -requestFullAccessToRemindersWithCompletion:"]
         #[unsafe(method(requestAccessToEntityType:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAccessToEntityType_completion(
             &self,
             entity_type: EKEntityType,
-            completion: EKEventStoreRequestAccessCompletionHandler,
+            completion: &EKEventStoreRequestAccessCompletionHandler,
         );
 
         /// Returns a unique identifier string representing this calendar store.
@@ -443,16 +430,12 @@ impl EKEventStore {
         ///
         /// Parameter `block`: The block to call for each event. Your block should return YES in the stop
         /// parameter to stop iterating.
-        ///
-        /// # Safety
-        ///
-        /// `block` must be a valid pointer.
         #[unsafe(method(enumerateEventsMatchingPredicate:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateEventsMatchingPredicate_usingBlock(
             &self,
             predicate: &NSPredicate,
-            block: EKEventSearchCallback,
+            block: &EKEventSearchCallback,
         );
 
         #[cfg(all(feature = "EKCalendar", feature = "EKObject"))]

@@ -277,7 +277,7 @@ impl CPListImageRowItem {
         pub unsafe fn handler(
             &self,
         ) -> *mut block2::DynBlock<
-            dyn Fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, dispatch_block_t),
+            dyn Fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, NonNull<dispatch_block_t>),
         >;
 
         #[cfg(all(feature = "CPListItemTypes", feature = "block2", feature = "dispatch2"))]
@@ -290,7 +290,10 @@ impl CPListImageRowItem {
             &self,
             handler: Option<
                 &block2::DynBlock<
-                    dyn Fn(NonNull<ProtocolObject<dyn CPSelectableListItem>>, dispatch_block_t),
+                    dyn Fn(
+                        NonNull<ProtocolObject<dyn CPSelectableListItem>>,
+                        NonNull<dispatch_block_t>,
+                    ),
                 >,
             >,
         );
@@ -400,7 +403,9 @@ impl CPListImageRowItem {
         #[unsafe(method_family = none)]
         pub unsafe fn listImageRowHandler(
             &self,
-        ) -> *mut block2::DynBlock<dyn Fn(NonNull<CPListImageRowItem>, NSInteger, dispatch_block_t)>;
+        ) -> *mut block2::DynBlock<
+            dyn Fn(NonNull<CPListImageRowItem>, NSInteger, NonNull<dispatch_block_t>),
+        >;
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// Setter for [`listImageRowHandler`][Self::listImageRowHandler].
@@ -411,7 +416,9 @@ impl CPListImageRowItem {
         pub unsafe fn setListImageRowHandler(
             &self,
             list_image_row_handler: Option<
-                &block2::DynBlock<dyn Fn(NonNull<CPListImageRowItem>, NSInteger, dispatch_block_t)>,
+                &block2::DynBlock<
+                    dyn Fn(NonNull<CPListImageRowItem>, NSInteger, NonNull<dispatch_block_t>),
+                >,
             >,
         );
 

@@ -32,7 +32,7 @@ use crate::*;
     feature = "block2"
 ))]
 pub type IOUSBHostControllerInterfaceCommandHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<IOUSBHostControllerInterface>, IOUSBHostCIMessage)>;
+    block2::DynBlock<dyn Fn(NonNull<IOUSBHostControllerInterface>, IOUSBHostCIMessage)>;
 
 /// Client-supplied block to handle IOUSBHostCIDoorbell messages
 ///
@@ -44,7 +44,7 @@ pub type IOUSBHostControllerInterfaceCommandHandler =
     feature = "IOUSBHostControllerInterfaceDefinitions",
     feature = "block2"
 ))]
-pub type IOUSBHostControllerInterfaceDoorbellHandler = *mut block2::DynBlock<
+pub type IOUSBHostControllerInterfaceDoorbellHandler = block2::DynBlock<
     dyn Fn(NonNull<IOUSBHostControllerInterface>, NonNull<IOUSBHostCIDoorbell>, u32),
 >;
 
@@ -96,8 +96,6 @@ impl IOUSBHostControllerInterface {
         /// # Safety
         ///
         /// - `queue` possibly has additional threading requirements.
-        /// - `command_handler` must be a valid pointer.
-        /// - `doorbell_handler` must be a valid pointer.
         /// - `interest_handler` must be implemented correctly.
         #[unsafe(method(initWithCapabilities:queue:interruptRateHz:error:commandHandler:doorbellHandler:interestHandler:))]
         #[unsafe(method_family = init)]
@@ -107,8 +105,8 @@ impl IOUSBHostControllerInterface {
             queue: Option<&DispatchQueue>,
             interrupt_rate_hz: NSUInteger,
             error: Option<&mut Option<Retained<NSError>>>,
-            command_handler: IOUSBHostControllerInterfaceCommandHandler,
-            doorbell_handler: IOUSBHostControllerInterfaceDoorbellHandler,
+            command_handler: &IOUSBHostControllerInterfaceCommandHandler,
+            doorbell_handler: &IOUSBHostControllerInterfaceDoorbellHandler,
             interest_handler: IOServiceInterestCallback,
         ) -> Option<Retained<Self>>;
 

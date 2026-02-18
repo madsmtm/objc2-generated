@@ -163,7 +163,7 @@ impl DefaultRetained for MTL4CompilerTaskOptions {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtl4newbinaryfunctioncompletionhandler?language=objc)
 #[cfg(all(feature = "MTL4BinaryFunction", feature = "block2"))]
 pub type MTL4NewBinaryFunctionCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTL4BinaryFunction>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTL4BinaryFunction>, *mut NSError)>;
 
 /// Provides a signature for a callback block that Metal calls when the compiler finishes a build task for a machine learning pipeline state.
 ///
@@ -173,7 +173,7 @@ pub type MTL4NewBinaryFunctionCompletionHandler =
     feature = "MTLAllocation",
     feature = "block2"
 ))]
-pub type MTL4NewMachineLearningPipelineStateCompletionHandler = *mut block2::DynBlock<
+pub type MTL4NewMachineLearningPipelineStateCompletionHandler = block2::DynBlock<
     dyn Fn(*mut ProtocolObject<dyn MTL4MachineLearningPipelineState>, *mut NSError),
 >;
 
@@ -416,16 +416,12 @@ extern_protocol!(
         /// - completionHandler: A block Metal calls when it finishes the build task.
         ///
         /// - Returns: a compiler task representing the asynchronous compilation task.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newLibraryWithDescriptor:completionHandler:))]
         #[unsafe(method_family = new)]
-        unsafe fn newLibraryWithDescriptor_completionHandler(
+        fn newLibraryWithDescriptor_completionHandler(
             &self,
             descriptor: &MTL4LibraryDescriptor,
-            completion_handler: MTLNewLibraryCompletionHandler,
+            completion_handler: &MTLNewLibraryCompletionHandler,
         ) -> Retained<ProtocolObject<dyn MTL4CompilerTask>>;
 
         #[cfg(all(
@@ -441,16 +437,12 @@ extern_protocol!(
         /// - completionHandler: A block Metal calls when it finishes the build task.
         ///
         /// - Returns: A compiler task representing the asynchronous compilation task.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newDynamicLibrary:completionHandler:))]
         #[unsafe(method_family = new)]
-        unsafe fn newDynamicLibrary_completionHandler(
+        fn newDynamicLibrary_completionHandler(
             &self,
             library: &ProtocolObject<dyn MTLLibrary>,
-            completion_handler: MTLNewDynamicLibraryCompletionHandler,
+            completion_handler: &MTLNewDynamicLibraryCompletionHandler,
         ) -> Retained<ProtocolObject<dyn MTL4CompilerTask>>;
 
         #[cfg(all(
@@ -466,16 +458,12 @@ extern_protocol!(
         /// - completionHandler: A block Metal calls when it finishes the build task.
         ///
         /// - Returns: a compiler task representing the asynchronous compilation task.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newDynamicLibraryWithURL:completionHandler:))]
         #[unsafe(method_family = new)]
-        unsafe fn newDynamicLibraryWithURL_completionHandler(
+        fn newDynamicLibraryWithURL_completionHandler(
             &self,
             url: &NSURL,
-            completion_handler: MTLNewDynamicLibraryCompletionHandler,
+            completion_handler: &MTLNewDynamicLibraryCompletionHandler,
         ) -> Retained<ProtocolObject<dyn MTL4CompilerTask>>;
 
         #[cfg(all(
@@ -496,17 +484,13 @@ extern_protocol!(
         /// - completionHandler: A block Metal calls when it finishes the build task.
         ///
         /// - Returns: a compiler task representing the asynchronous compilation task.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newComputePipelineStateWithDescriptor:compilerTaskOptions:completionHandler:))]
         #[unsafe(method_family = new)]
-        unsafe fn newComputePipelineStateWithDescriptor_compilerTaskOptions_completionHandler(
+        fn newComputePipelineStateWithDescriptor_compilerTaskOptions_completionHandler(
             &self,
             descriptor: &MTL4ComputePipelineDescriptor,
             compiler_task_options: Option<&MTL4CompilerTaskOptions>,
-            completion_handler: MTLNewComputePipelineStateCompletionHandler,
+            completion_handler: &MTLNewComputePipelineStateCompletionHandler,
         ) -> Retained<ProtocolObject<dyn MTL4CompilerTask>>;
 
         #[cfg(all(
@@ -529,18 +513,14 @@ extern_protocol!(
         /// - completionHandler: A block Metal calls when it finishes the build task.
         ///
         /// - Returns: a compiler task representing the asynchronous compilation task.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newComputePipelineStateWithDescriptor:dynamicLinkingDescriptor:compilerTaskOptions:completionHandler:))]
         #[unsafe(method_family = new)]
-        unsafe fn newComputePipelineStateWithDescriptor_dynamicLinkingDescriptor_compilerTaskOptions_completionHandler(
+        fn newComputePipelineStateWithDescriptor_dynamicLinkingDescriptor_compilerTaskOptions_completionHandler(
             &self,
             descriptor: &MTL4ComputePipelineDescriptor,
             dynamic_linking_descriptor: Option<&MTL4PipelineStageDynamicLinkingDescriptor>,
             compiler_task_options: Option<&MTL4CompilerTaskOptions>,
-            completion_handler: MTLNewComputePipelineStateCompletionHandler,
+            completion_handler: &MTLNewComputePipelineStateCompletionHandler,
         ) -> Retained<ProtocolObject<dyn MTL4CompilerTask>>;
 
         #[cfg(all(
@@ -565,17 +545,13 @@ extern_protocol!(
         /// - completionHandler: A block Metal calls when it finishes the build task.
         ///
         /// - Returns: a compiler task representing the asynchronous compilation task.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newRenderPipelineStateWithDescriptor:compilerTaskOptions:completionHandler:))]
         #[unsafe(method_family = new)]
-        unsafe fn newRenderPipelineStateWithDescriptor_compilerTaskOptions_completionHandler(
+        fn newRenderPipelineStateWithDescriptor_compilerTaskOptions_completionHandler(
             &self,
             descriptor: &MTL4PipelineDescriptor,
             compiler_task_options: Option<&MTL4CompilerTaskOptions>,
-            completion_handler: MTLNewRenderPipelineStateCompletionHandler,
+            completion_handler: &MTLNewRenderPipelineStateCompletionHandler,
         ) -> Retained<ProtocolObject<dyn MTL4CompilerTask>>;
 
         #[cfg(all(
@@ -602,18 +578,14 @@ extern_protocol!(
         /// - completionHandler: A block Metal calls when it finishes the build task.
         ///
         /// - Returns: a compiler task representing the asynchronous compilation task.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newRenderPipelineStateWithDescriptor:dynamicLinkingDescriptor:compilerTaskOptions:completionHandler:))]
         #[unsafe(method_family = new)]
-        unsafe fn newRenderPipelineStateWithDescriptor_dynamicLinkingDescriptor_compilerTaskOptions_completionHandler(
+        fn newRenderPipelineStateWithDescriptor_dynamicLinkingDescriptor_compilerTaskOptions_completionHandler(
             &self,
             descriptor: &MTL4PipelineDescriptor,
             dynamic_linking_descriptor: Option<&MTL4RenderPipelineDynamicLinkingDescriptor>,
             compiler_task_options: Option<&MTL4CompilerTaskOptions>,
-            completion_handler: MTLNewRenderPipelineStateCompletionHandler,
+            completion_handler: &MTLNewRenderPipelineStateCompletionHandler,
         ) -> Retained<ProtocolObject<dyn MTL4CompilerTask>>;
 
         #[cfg(all(
@@ -641,17 +613,13 @@ extern_protocol!(
         /// - completionHandler: A block Metal calls when it finishes the build task.
         ///
         /// - Returns: a compiler task representing the asynchronous compilation task.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(newRenderPipelineStateBySpecializationWithDescriptor:pipeline:completionHandler:))]
         #[unsafe(method_family = new)]
-        unsafe fn newRenderPipelineStateBySpecializationWithDescriptor_pipeline_completionHandler(
+        fn newRenderPipelineStateBySpecializationWithDescriptor_pipeline_completionHandler(
             &self,
             descriptor: &MTL4PipelineDescriptor,
             pipeline: &ProtocolObject<dyn MTLRenderPipelineState>,
-            completion_handler: MTLNewRenderPipelineStateCompletionHandler,
+            completion_handler: &MTLNewRenderPipelineStateCompletionHandler,
         ) -> Retained<ProtocolObject<dyn MTL4CompilerTask>>;
 
         #[cfg(all(
@@ -672,14 +640,14 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer.
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(newBinaryFunctionWithDescriptor:compilerTaskOptions:completionHandler:))]
         #[unsafe(method_family = new)]
         unsafe fn newBinaryFunctionWithDescriptor_compilerTaskOptions_completionHandler(
             &self,
             descriptor: &MTL4BinaryFunctionDescriptor,
             compiler_task_options: Option<&MTL4CompilerTaskOptions>,
-            completion_handler: MTL4NewBinaryFunctionCompletionHandler,
+            completion_handler: &MTL4NewBinaryFunctionCompletionHandler,
         ) -> Retained<ProtocolObject<dyn MTL4CompilerTask>>;
 
         #[cfg(all(
@@ -718,13 +686,13 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `completion_handler` must be a valid pointer.
+        /// `completion_handler` block must be sendable.
         #[unsafe(method(newMachineLearningPipelineStateWithDescriptor:completionHandler:))]
         #[unsafe(method_family = new)]
         unsafe fn newMachineLearningPipelineStateWithDescriptor_completionHandler(
             &self,
             descriptor: &MTL4MachineLearningPipelineDescriptor,
-            completion_handler: MTL4NewMachineLearningPipelineStateCompletionHandler,
+            completion_handler: &MTL4NewMachineLearningPipelineStateCompletionHandler,
         ) -> Retained<ProtocolObject<dyn MTL4CompilerTask>>;
     }
 );

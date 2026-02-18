@@ -23,7 +23,7 @@ use crate::*;
     feature = "block2"
 ))]
 pub type MPSGraphExecutableCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSArray<MPSGraphTensorData>>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(NonNull<NSArray<MPSGraphTensorData>>, *mut NSError)>;
 
 /// A notification when graph executable execution schedules.
 ///
@@ -38,7 +38,7 @@ pub type MPSGraphExecutableCompletionHandler =
     feature = "block2"
 ))]
 pub type MPSGraphExecutableScheduledHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSArray<MPSGraphTensorData>>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(NonNull<NSArray<MPSGraphTensorData>>, *mut NSError)>;
 
 extern_class!(
     /// A class that consists of all the levers  to synchronize and schedule executable execution.
@@ -79,19 +79,15 @@ impl MPSGraphExecutableExecutionDescriptor {
         /// - The returned block's argument 2 must be a valid pointer or null.
         #[unsafe(method(scheduledHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scheduledHandler(&self) -> MPSGraphExecutableScheduledHandler;
+        pub unsafe fn scheduledHandler(&self) -> NonNull<MPSGraphExecutableScheduledHandler>;
 
         #[cfg(all(feature = "MPSGraphTensorData", feature = "block2"))]
         /// Setter for [`scheduledHandler`][Self::scheduledHandler].
-        ///
-        /// # Safety
-        ///
-        /// `scheduled_handler` must be a valid pointer.
         #[unsafe(method(setScheduledHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setScheduledHandler(
             &self,
-            scheduled_handler: MPSGraphExecutableScheduledHandler,
+            scheduled_handler: &MPSGraphExecutableScheduledHandler,
         );
 
         #[cfg(all(feature = "MPSGraphTensorData", feature = "block2"))]
@@ -105,19 +101,15 @@ impl MPSGraphExecutableExecutionDescriptor {
         /// - The returned block's argument 2 must be a valid pointer or null.
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn completionHandler(&self) -> MPSGraphExecutableCompletionHandler;
+        pub unsafe fn completionHandler(&self) -> NonNull<MPSGraphExecutableCompletionHandler>;
 
         #[cfg(all(feature = "MPSGraphTensorData", feature = "block2"))]
         /// Setter for [`completionHandler`][Self::completionHandler].
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCompletionHandler(
             &self,
-            completion_handler: MPSGraphExecutableCompletionHandler,
+            completion_handler: &MPSGraphExecutableCompletionHandler,
         );
 
         /// Flag for the graph executable to wait till the execution has completed.

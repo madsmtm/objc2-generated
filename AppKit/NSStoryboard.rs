@@ -15,7 +15,7 @@ pub type NSStoryboardSceneIdentifier = NSString;
 /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboardcontrollercreator?language=objc)
 #[cfg(feature = "block2")]
 pub type NSStoryboardControllerCreator =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSCoder>) -> *mut AnyObject>;
+    block2::DynBlock<dyn Fn(NonNull<NSCoder>) -> *mut AnyObject>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/appkit/nsstoryboard?language=objc)
@@ -48,12 +48,12 @@ impl NSStoryboard {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `block` must be a valid pointer or null.
+        /// `block` block's return must be a valid pointer or null.
         #[unsafe(method(instantiateInitialControllerWithCreator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateInitialControllerWithCreator(
             &self,
-            block: NSStoryboardControllerCreator,
+            block: Option<&NSStoryboardControllerCreator>,
         ) -> Option<Retained<AnyObject>>;
 
         #[unsafe(method(instantiateControllerWithIdentifier:))]
@@ -66,13 +66,13 @@ impl NSStoryboard {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// `block` must be a valid pointer or null.
+        /// `block` block's return must be a valid pointer or null.
         #[unsafe(method(instantiateControllerWithIdentifier:creator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateControllerWithIdentifier_creator(
             &self,
             identifier: &NSStoryboardSceneIdentifier,
-            block: NSStoryboardControllerCreator,
+            block: Option<&NSStoryboardControllerCreator>,
         ) -> Retained<AnyObject>;
     );
 }

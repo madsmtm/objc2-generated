@@ -11,7 +11,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationtextattributestransformer?language=objc)
 #[cfg(feature = "block2")]
-pub type UIConfigurationTextAttributesTransformer = *mut block2::DynBlock<
+pub type UIConfigurationTextAttributesTransformer = block2::DynBlock<
     dyn Fn(
         NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
     ) -> NonNull<NSDictionary<NSAttributedStringKey, AnyObject>>,
@@ -343,7 +343,7 @@ impl UIButtonConfiguration {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(imageColorTransformer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageColorTransformer(&self) -> UIConfigurationColorTransformer;
+        pub unsafe fn imageColorTransformer(&self) -> *mut UIConfigurationColorTransformer;
 
         #[cfg(all(
             feature = "UIColor",
@@ -356,12 +356,12 @@ impl UIButtonConfiguration {
         ///
         /// # Safety
         ///
-        /// `image_color_transformer` must be a valid pointer or null.
+        /// `image_color_transformer` block's return must be a valid pointer.
         #[unsafe(method(setImageColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setImageColorTransformer(
             &self,
-            image_color_transformer: UIConfigurationColorTransformer,
+            image_color_transformer: Option<&UIConfigurationColorTransformer>,
         );
 
         #[cfg(all(
@@ -424,7 +424,9 @@ impl UIButtonConfiguration {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(activityIndicatorColorTransformer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activityIndicatorColorTransformer(&self) -> UIConfigurationColorTransformer;
+        pub unsafe fn activityIndicatorColorTransformer(
+            &self,
+        ) -> *mut UIConfigurationColorTransformer;
 
         #[cfg(all(
             feature = "UIColor",
@@ -437,12 +439,12 @@ impl UIButtonConfiguration {
         ///
         /// # Safety
         ///
-        /// `activity_indicator_color_transformer` must be a valid pointer or null.
+        /// `activity_indicator_color_transformer` block's return must be a valid pointer.
         #[unsafe(method(setActivityIndicatorColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setActivityIndicatorColorTransformer(
             &self,
-            activity_indicator_color_transformer: UIConfigurationColorTransformer,
+            activity_indicator_color_transformer: Option<&UIConfigurationColorTransformer>,
         );
 
         #[unsafe(method(title))]
@@ -475,7 +477,7 @@ impl UIButtonConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn titleTextAttributesTransformer(
             &self,
-        ) -> UIConfigurationTextAttributesTransformer;
+        ) -> *mut UIConfigurationTextAttributesTransformer;
 
         #[cfg(feature = "block2")]
         /// Setter for [`titleTextAttributesTransformer`][Self::titleTextAttributesTransformer].
@@ -484,12 +486,12 @@ impl UIButtonConfiguration {
         ///
         /// # Safety
         ///
-        /// `title_text_attributes_transformer` must be a valid pointer or null.
+        /// `title_text_attributes_transformer` block's return must be a valid pointer.
         #[unsafe(method(setTitleTextAttributesTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTitleTextAttributesTransformer(
             &self,
-            title_text_attributes_transformer: UIConfigurationTextAttributesTransformer,
+            title_text_attributes_transformer: Option<&UIConfigurationTextAttributesTransformer>,
         );
 
         #[cfg(feature = "NSParagraphStyle")]
@@ -534,7 +536,7 @@ impl UIButtonConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn subtitleTextAttributesTransformer(
             &self,
-        ) -> UIConfigurationTextAttributesTransformer;
+        ) -> *mut UIConfigurationTextAttributesTransformer;
 
         #[cfg(feature = "block2")]
         /// Setter for [`subtitleTextAttributesTransformer`][Self::subtitleTextAttributesTransformer].
@@ -543,12 +545,12 @@ impl UIButtonConfiguration {
         ///
         /// # Safety
         ///
-        /// `subtitle_text_attributes_transformer` must be a valid pointer or null.
+        /// `subtitle_text_attributes_transformer` block's return must be a valid pointer.
         #[unsafe(method(setSubtitleTextAttributesTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSubtitleTextAttributesTransformer(
             &self,
-            subtitle_text_attributes_transformer: UIConfigurationTextAttributesTransformer,
+            subtitle_text_attributes_transformer: Option<&UIConfigurationTextAttributesTransformer>,
         );
 
         #[cfg(feature = "NSParagraphStyle")]
@@ -583,7 +585,7 @@ impl UIButtonConfiguration {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(indicatorColorTransformer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indicatorColorTransformer(&self) -> UIConfigurationColorTransformer;
+        pub unsafe fn indicatorColorTransformer(&self) -> *mut UIConfigurationColorTransformer;
 
         #[cfg(all(
             feature = "UIColor",
@@ -596,12 +598,12 @@ impl UIButtonConfiguration {
         ///
         /// # Safety
         ///
-        /// `indicator_color_transformer` must be a valid pointer or null.
+        /// `indicator_color_transformer` block's return must be a valid pointer.
         #[unsafe(method(setIndicatorColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setIndicatorColorTransformer(
             &self,
-            indicator_color_transformer: UIConfigurationColorTransformer,
+            indicator_color_transformer: Option<&UIConfigurationColorTransformer>,
         );
 
         #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]

@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/quicklookui/qlpreviewitemloadingblock?language=objc)
 #[deprecated = "Use void (^)(NSError * _Nullable) instead"]
 #[cfg(feature = "block2")]
-pub type QLPreviewItemLoadingBlock = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
+pub type QLPreviewItemLoadingBlock = block2::DynBlock<dyn Fn(*mut NSError)>;
 
 extern_protocol!(
     /// A protocol for implementing a custom controller to create previews of files.

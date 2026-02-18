@@ -119,7 +119,7 @@ unsafe impl RefEncode for CGDisplayStreamFrameStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgdisplaystreamframeavailablehandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-io-surface"))]
 #[cfg(not(target_os = "watchos"))]
-pub type CGDisplayStreamFrameAvailableHandler = *mut block2::DynBlock<
+pub type CGDisplayStreamFrameAvailableHandler = block2::DynBlock<
     dyn Fn(CGDisplayStreamFrameStatus, u64, *mut IOSurfaceRef, *const CGDisplayStreamUpdate),
 >;
 
@@ -374,8 +374,7 @@ impl CGDisplayStream {
     ///
     /// # Safety
     ///
-    /// - `properties` generic should be of the correct type.
-    /// - `handler` must be a valid pointer or null.
+    /// `properties` generic should be of the correct type.
     #[doc(alias = "CGDisplayStreamCreate")]
     #[cfg(all(
         feature = "CGDirectDisplay",
@@ -391,7 +390,7 @@ impl CGDisplayStream {
         output_height: usize,
         pixel_format: i32,
         properties: Option<&CFDictionary<CFString, CFType>>,
-        handler: CGDisplayStreamFrameAvailableHandler,
+        handler: Option<&CGDisplayStreamFrameAvailableHandler>,
     ) -> Option<CFRetained<CGDisplayStream>> {
         extern "C-unwind" {
             fn CGDisplayStreamCreate(
@@ -400,7 +399,7 @@ impl CGDisplayStream {
                 output_height: usize,
                 pixel_format: i32,
                 properties: Option<&CFDictionary<CFString, CFType>>,
-                handler: CGDisplayStreamFrameAvailableHandler,
+                handler: Option<&CGDisplayStreamFrameAvailableHandler>,
             ) -> Option<NonNull<CGDisplayStream>>;
         }
         let ret = unsafe {
@@ -441,7 +440,6 @@ impl CGDisplayStream {
     ///
     /// - `properties` generic should be of the correct type.
     /// - `queue` possibly has additional threading requirements.
-    /// - `handler` must be a valid pointer or null.
     #[doc(alias = "CGDisplayStreamCreateWithDispatchQueue")]
     #[cfg(all(
         feature = "CGDirectDisplay",
@@ -459,7 +457,7 @@ impl CGDisplayStream {
         pixel_format: i32,
         properties: Option<&CFDictionary<CFString, CFType>>,
         queue: &DispatchQueue,
-        handler: CGDisplayStreamFrameAvailableHandler,
+        handler: Option<&CGDisplayStreamFrameAvailableHandler>,
     ) -> Option<CFRetained<CGDisplayStream>> {
         extern "C-unwind" {
             fn CGDisplayStreamCreateWithDispatchQueue(
@@ -469,7 +467,7 @@ impl CGDisplayStream {
                 pixel_format: i32,
                 properties: Option<&CFDictionary<CFString, CFType>>,
                 queue: &DispatchQueue,
-                handler: CGDisplayStreamFrameAvailableHandler,
+                handler: Option<&CGDisplayStreamFrameAvailableHandler>,
             ) -> Option<NonNull<CGDisplayStream>>;
         }
         let ret = unsafe {

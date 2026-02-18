@@ -409,16 +409,12 @@ impl SCNTechnique {
         /// Parameter `block`: The block to call to bind the specified symbol.
         ///
         /// The block will be called at every frame for every pass referencing the specified symbol.
-        ///
-        /// # Safety
-        ///
-        /// `block` must be a valid pointer or null.
         #[unsafe(method(handleBindingOfSymbol:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleBindingOfSymbol_usingBlock(
             &self,
             symbol: &NSString,
-            block: SCNBindingBlock,
+            block: Option<&SCNBindingBlock>,
         );
 
         /// Returns the dictionary representation of the technique.

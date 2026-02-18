@@ -9,12 +9,11 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirectionshandler?language=objc)
 #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
-pub type MKDirectionsHandler =
-    *mut block2::DynBlock<dyn Fn(*mut MKDirectionsResponse, *mut NSError)>;
+pub type MKDirectionsHandler = block2::DynBlock<dyn Fn(*mut MKDirectionsResponse, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mketahandler?language=objc)
 #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
-pub type MKETAHandler = *mut block2::DynBlock<dyn Fn(*mut MKETAResponse, *mut NSError)>;
+pub type MKETAHandler = block2::DynBlock<dyn Fn(*mut MKETAResponse, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkdirections?language=objc)
@@ -38,23 +37,17 @@ impl MKDirections {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(calculateDirectionsWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn calculateDirectionsWithCompletionHandler(
             &self,
-            completion_handler: MKDirectionsHandler,
+            completion_handler: &MKDirectionsHandler,
         );
 
         #[cfg(all(feature = "MKDirectionsResponse", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(calculateETAWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn calculateETAWithCompletionHandler(&self, completion_handler: MKETAHandler);
+        pub unsafe fn calculateETAWithCompletionHandler(&self, completion_handler: &MKETAHandler);
 
         #[unsafe(method(cancel))]
         #[unsafe(method_family = none)]

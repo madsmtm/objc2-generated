@@ -595,7 +595,7 @@ impl MPSNNArithmeticGradientStateNode {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsgradientnodeblock?language=objc)
 #[cfg(feature = "block2")]
-pub type MPSGradientNodeBlock = *mut block2::DynBlock<
+pub type MPSGradientNodeBlock = block2::DynBlock<
     dyn Fn(
         NonNull<MPSNNFilterNode>,
         NonNull<MPSNNFilterNode>,
@@ -799,16 +799,12 @@ impl MPSNNFilterNode {
         /// Returns: The list of new MPSNNFilterNode training graph termini. These MPSNNFilterNodes
         /// are not necessarily all MPSNNGradientFilterNodes. To build a full list of nodes
         /// created, use a custom nodeHandler. If no nodes are created nil is returned.
-        ///
-        /// # Safety
-        ///
-        /// `node_handler` must be a valid pointer or null.
         #[unsafe(method(trainingGraphWithSourceGradient:nodeHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn trainingGraphWithSourceGradient_nodeHandler(
             &self,
             gradient_image: Option<&MPSNNImageNode>,
-            node_handler: MPSGradientNodeBlock,
+            node_handler: Option<&MPSGradientNodeBlock>,
         ) -> Option<Retained<NSArray<MPSNNFilterNode>>>;
     );
 }

@@ -100,7 +100,7 @@ unsafe impl RefEncode for AVAssetImageGeneratorResult {
     feature = "objc2-core-graphics",
     feature = "objc2-core-media"
 ))]
-pub type AVAssetImageGeneratorCompletionHandler = *mut block2::DynBlock<
+pub type AVAssetImageGeneratorCompletionHandler = block2::DynBlock<
     dyn Fn(CMTime, *mut CGImage, CMTime, AVAssetImageGeneratorResult, *mut NSError),
 >;
 
@@ -329,13 +329,13 @@ impl AVAssetImageGenerator {
         ///
         /// # Safety
         ///
-        /// `handler` must be a valid pointer.
+        /// `handler` block must be sendable.
         #[unsafe(method(generateCGImagesAsynchronouslyForTimes:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn generateCGImagesAsynchronouslyForTimes_completionHandler(
             &self,
             requested_times: &NSArray<NSValue>,
-            handler: AVAssetImageGeneratorCompletionHandler,
+            handler: &AVAssetImageGeneratorCompletionHandler,
         );
 
         #[cfg(all(

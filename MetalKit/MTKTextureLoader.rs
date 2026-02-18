@@ -169,12 +169,12 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloadercallback?language=objc)
 #[cfg(feature = "block2")]
 pub type MTKTextureLoaderCallback =
-    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLTexture>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLTexture>, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metalkit/mtktextureloaderarraycallback?language=objc)
 #[cfg(feature = "block2")]
 pub type MTKTextureLoaderArrayCallback =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSArray<ProtocolObject<dyn MTLTexture>>>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(NonNull<NSArray<ProtocolObject<dyn MTLTexture>>>, *mut NSError)>;
 
 extern_class!(
     /// Load Metal textures from files with the device specified at initialization
@@ -219,15 +219,14 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTextureWithContentsOfURL:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithContentsOfURL_options_completionHandler(
             &self,
             url: &NSURL,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-            completion_handler: MTKTextureLoaderCallback,
+            completion_handler: &MTKTextureLoaderCallback,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
@@ -258,8 +257,7 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTextureWithName:scaleFactor:bundle:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithName_scaleFactor_bundle_options_completionHandler(
@@ -268,7 +266,7 @@ impl MTKTextureLoader {
             scale_factor: CGFloat,
             bundle: Option<&NSBundle>,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-            completion_handler: MTKTextureLoaderCallback,
+            completion_handler: &MTKTextureLoaderCallback,
         );
 
         #[cfg(all(
@@ -310,8 +308,7 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTextureWithName:scaleFactor:displayGamut:bundle:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler(
@@ -321,7 +318,7 @@ impl MTKTextureLoader {
             display_gamut: NSDisplayGamut,
             bundle: Option<&NSBundle>,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-            completion_handler: MTKTextureLoaderCallback,
+            completion_handler: &MTKTextureLoaderCallback,
         );
 
         #[cfg(feature = "block2")]
@@ -335,15 +332,14 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTexturesWithContentsOfURLs:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTexturesWithContentsOfURLs_options_completionHandler(
             &self,
             ur_ls: &NSArray<NSURL>,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-            completion_handler: MTKTextureLoaderArrayCallback,
+            completion_handler: &MTKTextureLoaderArrayCallback,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
@@ -378,8 +374,7 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTexturesWithNames:scaleFactor:bundle:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTexturesWithNames_scaleFactor_bundle_options_completionHandler(
@@ -388,7 +383,7 @@ impl MTKTextureLoader {
             scale_factor: CGFloat,
             bundle: Option<&NSBundle>,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-            completion_handler: MTKTextureLoaderArrayCallback,
+            completion_handler: &MTKTextureLoaderArrayCallback,
         );
 
         #[cfg(all(
@@ -438,8 +433,7 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTexturesWithNames:scaleFactor:displayGamut:bundle:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTexturesWithNames_scaleFactor_displayGamut_bundle_options_completionHandler(
@@ -449,7 +443,7 @@ impl MTKTextureLoader {
             display_gamut: NSDisplayGamut,
             bundle: Option<&NSBundle>,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-            completion_handler: MTKTextureLoaderArrayCallback,
+            completion_handler: &MTKTextureLoaderArrayCallback,
         );
 
         #[cfg(feature = "block2")]
@@ -463,15 +457,14 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTextureWithData:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithData_options_completionHandler(
             &self,
             data: &NSData,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-            completion_handler: MTKTextureLoaderCallback,
+            completion_handler: &MTKTextureLoaderCallback,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-core-graphics"))]
@@ -485,15 +478,14 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTextureWithCGImage:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithCGImage_options_completionHandler(
             &self,
             cg_image: &CGImage,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-            completion_handler: MTKTextureLoaderCallback,
+            completion_handler: &MTKTextureLoaderCallback,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-model-io"))]
@@ -507,15 +499,14 @@ impl MTKTextureLoader {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(newTextureWithMDLTexture:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn newTextureWithMDLTexture_options_completionHandler(
             &self,
             texture: &MDLTexture,
             options: Option<&NSDictionary<MTKTextureLoaderOption, AnyObject>>,
-            completion_handler: MTKTextureLoaderCallback,
+            completion_handler: &MTKTextureLoaderCallback,
         );
 
         /// Synchronously create a Metal texture and load image data from the file at URL

@@ -234,7 +234,7 @@ pub type MIDINotifyProc =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midinotifyblock?language=objc)
 #[cfg(feature = "block2")]
-pub type MIDINotifyBlock = *mut block2::DynBlock<dyn Fn(NonNull<MIDINotification>)>;
+pub type MIDINotifyBlock = block2::DynBlock<dyn Fn(NonNull<MIDINotification>)>;
 
 /// A block receiving MIDI input.
 ///
@@ -253,7 +253,7 @@ pub type MIDINotifyBlock = *mut block2::DynBlock<dyn Fn(NonNull<MIDINotification
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midireceiveblock?language=objc)
 #[cfg(feature = "block2")]
-pub type MIDIReceiveBlock = *mut block2::DynBlock<dyn Fn(NonNull<MIDIEventList>, *mut c_void)>;
+pub type MIDIReceiveBlock = block2::DynBlock<dyn Fn(NonNull<MIDIEventList>, *mut c_void)>;
 
 /// A function receiving MIDI input.
 ///
@@ -296,7 +296,7 @@ pub type MIDIReadProc =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midireadblock?language=objc)
 #[deprecated = "use MIDIReceiveBlock and MIDIEventLists"]
 #[cfg(feature = "block2")]
-pub type MIDIReadBlock = *mut block2::DynBlock<dyn Fn(NonNull<MIDIPacketList>, *mut c_void)>;
+pub type MIDIReadBlock = block2::DynBlock<dyn Fn(NonNull<MIDIPacketList>, *mut c_void)>;
 
 /// A function called when a system-exclusive event has been completely sent.
 ///
@@ -1578,13 +1578,12 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `out_client` must be a valid pointer.
-    /// - `notify_block` must be a valid pointer or null.
+    /// `out_client` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn MIDIClientCreateWithBlock(
         name: &CFString,
         out_client: NonNull<MIDIClientRef>,
-        notify_block: MIDINotifyBlock,
+        notify_block: Option<&MIDINotifyBlock>,
     ) -> OSStatus;
 }
 
@@ -1634,15 +1633,14 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `out_port` must be a valid pointer.
-    /// - `receive_block` must be a valid pointer.
+    /// `out_port` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn MIDIInputPortCreateWithProtocol(
         client: MIDIClientRef,
         port_name: &CFString,
         protocol: MIDIProtocolID,
         out_port: NonNull<MIDIPortRef>,
-        receive_block: MIDIReceiveBlock,
+        receive_block: &MIDIReceiveBlock,
     ) -> OSStatus;
 }
 
@@ -1712,15 +1710,14 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `out_port` must be a valid pointer.
-    /// - `read_block` must be a valid pointer.
+    /// `out_port` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     #[deprecated]
     pub fn MIDIInputPortCreateWithBlock(
         client: MIDIClientRef,
         port_name: &CFString,
         out_port: NonNull<MIDIPortRef>,
-        read_block: MIDIReadBlock,
+        read_block: &MIDIReadBlock,
     ) -> OSStatus;
 }
 
@@ -2040,15 +2037,14 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `out_dest` must be a valid pointer.
-    /// - `read_block` must be a valid pointer.
+    /// `out_dest` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     pub fn MIDIDestinationCreateWithProtocol(
         client: MIDIClientRef,
         name: &CFString,
         protocol: MIDIProtocolID,
         out_dest: NonNull<MIDIEndpointRef>,
-        read_block: MIDIReceiveBlock,
+        read_block: &MIDIReceiveBlock,
     ) -> OSStatus;
 }
 
@@ -2134,15 +2130,14 @@ extern "C-unwind" {
     ///
     /// # Safety
     ///
-    /// - `out_dest` must be a valid pointer.
-    /// - `read_block` must be a valid pointer.
+    /// `out_dest` must be a valid pointer.
     #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
     #[deprecated]
     pub fn MIDIDestinationCreateWithBlock(
         client: MIDIClientRef,
         name: &CFString,
         out_dest: NonNull<MIDIEndpointRef>,
-        read_block: MIDIReadBlock,
+        read_block: &MIDIReadBlock,
     ) -> OSStatus;
 }
 

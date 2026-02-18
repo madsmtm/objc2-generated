@@ -58,7 +58,7 @@ unsafe impl RefEncode for SKActionTimingMode {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/spritekit/skactiontimingfunction?language=objc)
 #[cfg(feature = "block2")]
-pub type SKActionTimingFunction = *mut block2::DynBlock<dyn Fn(c_float) -> c_float>;
+pub type SKActionTimingFunction = block2::DynBlock<dyn Fn(c_float) -> c_float>;
 
 extern_class!(
     /// An SKAction object is an action that is executed by a node in the scene.
@@ -123,17 +123,13 @@ impl SKAction {
         /// See: SKActionTimingFunction
         #[unsafe(method(timingFunction))]
         #[unsafe(method_family = none)]
-        pub unsafe fn timingFunction(&self) -> SKActionTimingFunction;
+        pub unsafe fn timingFunction(&self) -> NonNull<SKActionTimingFunction>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`timingFunction`][Self::timingFunction].
-        ///
-        /// # Safety
-        ///
-        /// `timing_function` must be a valid pointer.
         #[unsafe(method(setTimingFunction:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTimingFunction(&self, timing_function: SKActionTimingFunction);
+        pub unsafe fn setTimingFunction(&self, timing_function: &SKActionTimingFunction);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// A speed factor that modifies how fast an action runs. Default value is 1.0
@@ -900,13 +896,9 @@ impl SKAction {
         /// Creates an action that executes a block
         ///
         /// Parameter `block`: The block to run
-        ///
-        /// # Safety
-        ///
-        /// `block` must be a valid pointer.
         #[unsafe(method(runBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runBlock(block: dispatch_block_t) -> Retained<SKAction>;
+        pub unsafe fn runBlock(block: &dispatch_block_t) -> Retained<SKAction>;
 
         #[cfg(feature = "dispatch2")]
         /// Creates an action that executes a block
@@ -917,12 +909,11 @@ impl SKAction {
         ///
         /// # Safety
         ///
-        /// - `block` must be a valid pointer.
-        /// - `queue` possibly has additional threading requirements.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(runBlock:queue:))]
         #[unsafe(method_family = none)]
         pub unsafe fn runBlock_queue(
-            block: dispatch_block_t,
+            block: &dispatch_block_t,
             queue: &DispatchQueue,
         ) -> Retained<SKAction>;
 

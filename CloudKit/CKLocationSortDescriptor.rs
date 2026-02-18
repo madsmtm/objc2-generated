@@ -105,27 +105,21 @@ impl CKLocationSortDescriptor {
             selector: Option<Sel>,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `cmptr` must be a valid pointer.
         #[unsafe(method(sortDescriptorWithKey:ascending:comparator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sortDescriptorWithKey_ascending_comparator(
             key: Option<&NSString>,
             ascending: bool,
-            cmptr: NSComparator,
+            cmptr: &NSComparator,
         ) -> Retained<Self>;
 
-        /// # Safety
-        ///
-        /// `cmptr` must be a valid pointer.
         #[unsafe(method(initWithKey:ascending:comparator:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithKey_ascending_comparator(
             this: Allocated<Self>,
             key: Option<&NSString>,
             ascending: bool,
-            cmptr: NSComparator,
+            cmptr: &NSComparator,
         ) -> Retained<Self>;
     );
 }

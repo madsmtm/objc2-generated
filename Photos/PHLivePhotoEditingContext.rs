@@ -19,7 +19,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/photos/phlivephotoframeprocessingblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
-pub type PHLivePhotoFrameProcessingBlock = *mut block2::DynBlock<
+pub type PHLivePhotoFrameProcessingBlock = block2::DynBlock<
     dyn Fn(NonNull<ProtocolObject<dyn PHLivePhotoFrame>>, NonNull<*mut NSError>) -> *mut CIImage,
 >;
 
@@ -80,7 +80,7 @@ impl PHLivePhotoEditingContext {
         /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(frameProcessor))]
         #[unsafe(method_family = none)]
-        pub unsafe fn frameProcessor(&self) -> PHLivePhotoFrameProcessingBlock;
+        pub unsafe fn frameProcessor(&self) -> *mut PHLivePhotoFrameProcessingBlock;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-image"))]
         /// Setter for [`frameProcessor`][Self::frameProcessor].
@@ -89,10 +89,13 @@ impl PHLivePhotoEditingContext {
         ///
         /// # Safety
         ///
-        /// `frame_processor` must be a valid pointer or null.
+        /// `frame_processor` block's return must be a valid pointer or null.
         #[unsafe(method(setFrameProcessor:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setFrameProcessor(&self, frame_processor: PHLivePhotoFrameProcessingBlock);
+        pub unsafe fn setFrameProcessor(
+            &self,
+            frame_processor: Option<&PHLivePhotoFrameProcessingBlock>,
+        );
 
         /// Specify the audio volume of the edited live photo
         /// Must be between 0.0 and 1.0

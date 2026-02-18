@@ -76,7 +76,7 @@ extern "C" {
     feature = "block2"
 ))]
 pub type GCMicroGamepadValueChangedHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<GCMicroGamepad>, NonNull<GCControllerElement>)>;
+    block2::DynBlock<dyn Fn(NonNull<GCMicroGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcmicrogamepad?language=objc)
@@ -107,21 +107,17 @@ impl GCMicroGamepad {
         /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(valueChangedHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueChangedHandler(&self) -> GCMicroGamepadValueChangedHandler;
+        pub unsafe fn valueChangedHandler(&self) -> *mut GCMicroGamepadValueChangedHandler;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
         /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `value_changed_handler` must be a valid pointer or null.
         #[unsafe(method(setValueChangedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueChangedHandler(
             &self,
-            value_changed_handler: GCMicroGamepadValueChangedHandler,
+            value_changed_handler: Option<&GCMicroGamepadValueChangedHandler>,
         );
 
         #[cfg(feature = "GCMicroGamepadSnapshot")]

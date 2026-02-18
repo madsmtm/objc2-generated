@@ -99,8 +99,7 @@ impl AXCustomContent {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontentreturnblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AXCustomContentReturnBlock =
-    *mut block2::DynBlock<dyn Fn() -> *mut NSArray<AXCustomContent>>;
+pub type AXCustomContentReturnBlock = block2::DynBlock<dyn Fn() -> *mut NSArray<AXCustomContent>>;
 
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/accessibility/axcustomcontentprovider?language=objc)
@@ -123,7 +122,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(accessibilityCustomContentBlock))]
         #[unsafe(method_family = none)]
-        unsafe fn accessibilityCustomContentBlock(&self) -> AXCustomContentReturnBlock;
+        unsafe fn accessibilityCustomContentBlock(&self) -> *mut AXCustomContentReturnBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`accessibilityCustomContentBlock`][Self::accessibilityCustomContentBlock].
@@ -132,13 +131,13 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `accessibility_custom_content_block` must be a valid pointer or null.
+        /// `accessibility_custom_content_block` block's return must be a valid pointer or null.
         #[optional]
         #[unsafe(method(setAccessibilityCustomContentBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn setAccessibilityCustomContentBlock(
             &self,
-            accessibility_custom_content_block: AXCustomContentReturnBlock,
+            accessibility_custom_content_block: Option<&AXCustomContentReturnBlock>,
         );
     }
 );

@@ -31,7 +31,7 @@ unsafe impl RefEncode for WKAlertActionStyle {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertactionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type WKAlertActionHandler = *mut block2::DynBlock<dyn Fn()>;
+pub type WKAlertActionHandler = block2::DynBlock<dyn Fn()>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/watchkit/wkalertaction?language=objc)
@@ -47,15 +47,12 @@ extern_conformance!(
 impl WKAlertAction {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer.
         #[unsafe(method(actionWithTitle:style:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionWithTitle_style_handler(
             title: &NSString,
             style: WKAlertActionStyle,
-            handler: WKAlertActionHandler,
+            handler: &WKAlertActionHandler,
         ) -> Retained<Self>;
     );
 }

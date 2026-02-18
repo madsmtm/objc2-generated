@@ -41,7 +41,7 @@ unsafe impl RefEncode for PGDisplayCoord_t {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaymodechangehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type PGDisplayModeChangeHandler = *mut block2::DynBlock<dyn Fn(PGDisplayCoord_t, OSType)>;
+pub type PGDisplayModeChangeHandler = block2::DynBlock<dyn Fn(PGDisplayCoord_t, OSType)>;
 
 /// A block that will be invoked to notify client of availability of new Guest compositor frame to be further processed.
 ///
@@ -49,7 +49,7 @@ pub type PGDisplayModeChangeHandler = *mut block2::DynBlock<dyn Fn(PGDisplayCoor
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaynewframeeventhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type PGDisplayNewFrameEventHandler = *mut block2::DynBlock<dyn Fn()>;
+pub type PGDisplayNewFrameEventHandler = block2::DynBlock<dyn Fn()>;
 
 /// A block that will be invoked to handle cursor glyph updates.
 ///
@@ -60,7 +60,7 @@ pub type PGDisplayNewFrameEventHandler = *mut block2::DynBlock<dyn Fn()>;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaycursorglyphhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 pub type PGDisplayCursorGlyphHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSBitmapImageRep>, PGDisplayCoord_t)>;
+    block2::DynBlock<dyn Fn(NonNull<NSBitmapImageRep>, PGDisplayCoord_t)>;
 
 /// A block that will be invoked to handle cursor show/hide updates.
 ///
@@ -68,13 +68,13 @@ pub type PGDisplayCursorGlyphHandler =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaycursorshowhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type PGDisplayCursorShowHandler = *mut block2::DynBlock<dyn Fn(Bool)>;
+pub type PGDisplayCursorShowHandler = block2::DynBlock<dyn Fn(Bool)>;
 
 /// A block that will be invoked to handle cursor movement.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/paravirtualizedgraphics/pgdisplaycursormovehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type PGDisplayCursorMoveHandler = *mut block2::DynBlock<dyn Fn()>;
+pub type PGDisplayCursorMoveHandler = block2::DynBlock<dyn Fn()>;
 
 extern_class!(
     /// Descriptor to facilitate creation of PGDisplay.
@@ -143,19 +143,18 @@ impl PGDisplayDescriptor {
         /// Handler invocation indicative of display mode change.
         #[unsafe(method(modeChangeHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn modeChangeHandler(&self) -> PGDisplayModeChangeHandler;
+        pub unsafe fn modeChangeHandler(&self) -> *mut PGDisplayModeChangeHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`modeChangeHandler`][Self::modeChangeHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `mode_change_handler` must be a valid pointer or null.
         #[unsafe(method(setModeChangeHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setModeChangeHandler(&self, mode_change_handler: PGDisplayModeChangeHandler);
+        pub unsafe fn setModeChangeHandler(
+            &self,
+            mode_change_handler: Option<&PGDisplayModeChangeHandler>,
+        );
 
         #[cfg(feature = "block2")]
         /// The block to invoke to handle notification of the presence of a new Guest compositor frame.
@@ -163,21 +162,17 @@ impl PGDisplayDescriptor {
         /// Handler invocation indicates presence of new frame to be processed for display.  Only one of newFrameEventHandler or presentHandler may be non-nil.
         #[unsafe(method(newFrameEventHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn newFrameEventHandler(&self) -> PGDisplayNewFrameEventHandler;
+        pub unsafe fn newFrameEventHandler(&self) -> *mut PGDisplayNewFrameEventHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`newFrameEventHandler`][Self::newFrameEventHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `new_frame_event_handler` must be a valid pointer or null.
         #[unsafe(method(setNewFrameEventHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setNewFrameEventHandler(
             &self,
-            new_frame_event_handler: PGDisplayNewFrameEventHandler,
+            new_frame_event_handler: Option<&PGDisplayNewFrameEventHandler>,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
@@ -190,21 +185,17 @@ impl PGDisplayDescriptor {
         /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(cursorGlyphHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cursorGlyphHandler(&self) -> PGDisplayCursorGlyphHandler;
+        pub unsafe fn cursorGlyphHandler(&self) -> *mut PGDisplayCursorGlyphHandler;
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         /// Setter for [`cursorGlyphHandler`][Self::cursorGlyphHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `cursor_glyph_handler` must be a valid pointer or null.
         #[unsafe(method(setCursorGlyphHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCursorGlyphHandler(
             &self,
-            cursor_glyph_handler: PGDisplayCursorGlyphHandler,
+            cursor_glyph_handler: Option<&PGDisplayCursorGlyphHandler>,
         );
 
         #[cfg(feature = "block2")]
@@ -213,19 +204,18 @@ impl PGDisplayDescriptor {
         /// Handler invocation indicative of hide/show of cursor glyph.  If this block is not set, cursor will be precomposited in presented image.
         #[unsafe(method(cursorShowHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cursorShowHandler(&self) -> PGDisplayCursorShowHandler;
+        pub unsafe fn cursorShowHandler(&self) -> *mut PGDisplayCursorShowHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`cursorShowHandler`][Self::cursorShowHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `cursor_show_handler` must be a valid pointer or null.
         #[unsafe(method(setCursorShowHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCursorShowHandler(&self, cursor_show_handler: PGDisplayCursorShowHandler);
+        pub unsafe fn setCursorShowHandler(
+            &self,
+            cursor_show_handler: Option<&PGDisplayCursorShowHandler>,
+        );
 
         #[cfg(feature = "block2")]
         /// The block to invoke to handle cursor movement.
@@ -233,19 +223,18 @@ impl PGDisplayDescriptor {
         /// Handler invocation indicative of movement.  Handler should resampling via PGDisplay::cursorPosition.
         #[unsafe(method(cursorMoveHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn cursorMoveHandler(&self) -> PGDisplayCursorMoveHandler;
+        pub unsafe fn cursorMoveHandler(&self) -> *mut PGDisplayCursorMoveHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`cursorMoveHandler`][Self::cursorMoveHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `cursor_move_handler` must be a valid pointer or null.
         #[unsafe(method(setCursorMoveHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setCursorMoveHandler(&self, cursor_move_handler: PGDisplayCursorMoveHandler);
+        pub unsafe fn setCursorMoveHandler(
+            &self,
+            cursor_move_handler: Option<&PGDisplayCursorMoveHandler>,
+        );
     );
 }
 
@@ -346,7 +335,7 @@ extern_protocol!(
         /// The block to invoke to handle display mode change.
         #[unsafe(method(modeChangeHandler))]
         #[unsafe(method_family = none)]
-        unsafe fn modeChangeHandler(&self) -> PGDisplayModeChangeHandler;
+        unsafe fn modeChangeHandler(&self) -> *mut PGDisplayModeChangeHandler;
 
         #[cfg(feature = "block2")]
         /// The block to invoke to notify presence of new Guest frame to be processed.
@@ -354,7 +343,7 @@ extern_protocol!(
         /// See encodeCurrentFrameToCommandBuffer:texture:region: below to get further processing underway.
         #[unsafe(method(newFrameEventHandler))]
         #[unsafe(method_family = none)]
-        unsafe fn newFrameEventHandler(&self) -> PGDisplayNewFrameEventHandler;
+        unsafe fn newFrameEventHandler(&self) -> *mut PGDisplayNewFrameEventHandler;
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
         /// The block to invoke to handle cursor glyph updates.
@@ -364,19 +353,19 @@ extern_protocol!(
         /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(cursorGlyphHandler))]
         #[unsafe(method_family = none)]
-        unsafe fn cursorGlyphHandler(&self) -> PGDisplayCursorGlyphHandler;
+        unsafe fn cursorGlyphHandler(&self) -> *mut PGDisplayCursorGlyphHandler;
 
         #[cfg(feature = "block2")]
         /// The block to invoke to handle cursor show/hide updates.
         #[unsafe(method(cursorShowHandler))]
         #[unsafe(method_family = none)]
-        unsafe fn cursorShowHandler(&self) -> PGDisplayCursorShowHandler;
+        unsafe fn cursorShowHandler(&self) -> *mut PGDisplayCursorShowHandler;
 
         #[cfg(feature = "block2")]
         /// The block to invoke to handle cursor movement.
         #[unsafe(method(cursorMoveHandler))]
         #[unsafe(method_family = none)]
-        unsafe fn cursorMoveHandler(&self) -> PGDisplayCursorMoveHandler;
+        unsafe fn cursorMoveHandler(&self) -> *mut PGDisplayCursorMoveHandler;
 
         /// Top,left display relative position of cursor hotSpot.
         ///

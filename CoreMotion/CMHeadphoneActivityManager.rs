@@ -30,7 +30,7 @@ unsafe impl RefEncode for CMHeadphoneActivityStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphoneactivitystatushandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMHeadphoneActivityStatusHandler =
-    *mut block2::DynBlock<dyn Fn(CMHeadphoneActivityStatus, *mut NSError)>;
+    block2::DynBlock<dyn Fn(CMHeadphoneActivityStatus, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphoneactivityhandler?language=objc)
 #[cfg(all(
@@ -38,8 +38,7 @@ pub type CMHeadphoneActivityStatusHandler =
     feature = "CMMotionActivity",
     feature = "block2"
 ))]
-pub type CMHeadphoneActivityHandler =
-    *mut block2::DynBlock<dyn Fn(*mut CMMotionActivity, *mut NSError)>;
+pub type CMHeadphoneActivityHandler = block2::DynBlock<dyn Fn(*mut CMMotionActivity, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager?language=objc)
@@ -82,14 +81,13 @@ impl CMHeadphoneActivityManager {
         ))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(startActivityUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startActivityUpdatesToQueue_withHandler(
             &self,
             queue: &NSOperationQueue,
-            handler: CMHeadphoneActivityHandler,
+            handler: &CMHeadphoneActivityHandler,
         );
 
         #[unsafe(method(stopActivityUpdates))]
@@ -99,14 +97,13 @@ impl CMHeadphoneActivityManager {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(startStatusUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startStatusUpdatesToQueue_withHandler(
             &self,
             queue: &NSOperationQueue,
-            handler: CMHeadphoneActivityStatusHandler,
+            handler: &CMHeadphoneActivityStatusHandler,
         );
 
         #[unsafe(method(stopStatusUpdates))]

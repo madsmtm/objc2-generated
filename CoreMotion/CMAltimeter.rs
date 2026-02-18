@@ -9,7 +9,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmaltitudehandler?language=objc)
 #[cfg(all(feature = "CMAltitude", feature = "CMLogItem", feature = "block2"))]
-pub type CMAltitudeHandler = *mut block2::DynBlock<dyn Fn(*mut CMAltitudeData, *mut NSError)>;
+pub type CMAltitudeHandler = block2::DynBlock<dyn Fn(*mut CMAltitudeData, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmabsolutealtitudehandler?language=objc)
 #[cfg(all(
@@ -18,7 +18,7 @@ pub type CMAltitudeHandler = *mut block2::DynBlock<dyn Fn(*mut CMAltitudeData, *
     feature = "block2"
 ))]
 pub type CMAbsoluteAltitudeHandler =
-    *mut block2::DynBlock<dyn Fn(*mut CMAbsoluteAltitudeData, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut CMAbsoluteAltitudeData, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmaltimeter?language=objc)
@@ -45,14 +45,13 @@ impl CMAltimeter {
         #[cfg(all(feature = "CMAltitude", feature = "CMLogItem", feature = "block2"))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(startRelativeAltitudeUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startRelativeAltitudeUpdatesToQueue_withHandler(
             &self,
             queue: &NSOperationQueue,
-            handler: CMAltitudeHandler,
+            handler: &CMAltitudeHandler,
         );
 
         #[unsafe(method(stopRelativeAltitudeUpdates))]
@@ -70,14 +69,13 @@ impl CMAltimeter {
         ))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(startAbsoluteAltitudeUpdatesToQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startAbsoluteAltitudeUpdatesToQueue_withHandler(
             &self,
             queue: &NSOperationQueue,
-            handler: CMAbsoluteAltitudeHandler,
+            handler: &CMAbsoluteAltitudeHandler,
         );
 
         #[unsafe(method(stopAbsoluteAltitudeUpdates))]

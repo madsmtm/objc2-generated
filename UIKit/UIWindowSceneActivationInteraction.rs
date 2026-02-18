@@ -23,7 +23,7 @@ use crate::*;
     feature = "block2",
     feature = "objc2-core-foundation"
 ))]
-pub type UIWindowSceneActivationInteractionConfigurationProvider = *mut block2::DynBlock<
+pub type UIWindowSceneActivationInteractionConfigurationProvider = block2::DynBlock<
     dyn Fn(
         NonNull<UIWindowSceneActivationInteraction>,
         CGPoint,
@@ -67,12 +67,12 @@ impl UIWindowSceneActivationInteraction {
         ///
         /// # Safety
         ///
-        /// `configuration_provider` must be a valid pointer.
+        /// `configuration_provider` block's return must be a valid pointer or null.
         #[unsafe(method(initWithConfigurationProvider:errorHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithConfigurationProvider_errorHandler(
             this: Allocated<Self>,
-            configuration_provider: UIWindowSceneActivationInteractionConfigurationProvider,
+            configuration_provider: &UIWindowSceneActivationInteractionConfigurationProvider,
             error_handler: &block2::DynBlock<dyn Fn(NonNull<NSError>)>,
         ) -> Retained<Self>;
     );

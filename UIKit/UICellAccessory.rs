@@ -969,7 +969,7 @@ unsafe impl RefEncode for UICellAccessoryPlacement {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicellaccessoryposition?language=objc)
 #[cfg(feature = "block2")]
 pub type UICellAccessoryPosition =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSArray<UICellAccessory>>) -> NSUInteger>;
+    block2::DynBlock<dyn Fn(NonNull<NSArray<UICellAccessory>>) -> NSUInteger>;
 
 impl UICellAccessory {
     /// Positions the accessory before the accessory matching the class specified, or at the beginning if not found.
@@ -983,13 +983,14 @@ impl UICellAccessory {
     #[inline]
     pub unsafe fn position_before_accessory_of_class(
         accessory_class: &AnyClass,
-    ) -> UICellAccessoryPosition {
+    ) -> NonNull<UICellAccessoryPosition> {
         extern "C-unwind" {
             fn UICellAccessoryPositionBeforeAccessoryOfClass(
                 accessory_class: &AnyClass,
-            ) -> UICellAccessoryPosition;
+            ) -> Option<NonNull<UICellAccessoryPosition>>;
         }
-        unsafe { UICellAccessoryPositionBeforeAccessoryOfClass(accessory_class) }
+        let ret = unsafe { UICellAccessoryPositionBeforeAccessoryOfClass(accessory_class) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 
     /// Positions the accessory after the accessory matching the class specified, or at the end if not found.
@@ -1003,13 +1004,14 @@ impl UICellAccessory {
     #[inline]
     pub unsafe fn position_after_accessory_of_class(
         accessory_class: &AnyClass,
-    ) -> UICellAccessoryPosition {
+    ) -> NonNull<UICellAccessoryPosition> {
         extern "C-unwind" {
             fn UICellAccessoryPositionAfterAccessoryOfClass(
                 accessory_class: &AnyClass,
-            ) -> UICellAccessoryPosition;
+            ) -> Option<NonNull<UICellAccessoryPosition>>;
         }
-        unsafe { UICellAccessoryPositionAfterAccessoryOfClass(accessory_class) }
+        let ret = unsafe { UICellAccessoryPositionAfterAccessoryOfClass(accessory_class) };
+        ret.expect("function was marked as returning non-null, but actually returned NULL")
     }
 }
 
@@ -1084,19 +1086,15 @@ impl UICellAccessoryCustomView {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(position))]
         #[unsafe(method_family = none)]
-        pub unsafe fn position(&self) -> UICellAccessoryPosition;
+        pub unsafe fn position(&self) -> NonNull<UICellAccessoryPosition>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`position`][Self::position].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `position` must be a valid pointer.
         #[unsafe(method(setPosition:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPosition(&self, position: UICellAccessoryPosition);
+        pub fn setPosition(&self, position: Option<&UICellAccessoryPosition>);
 
         /// # Safety
         ///

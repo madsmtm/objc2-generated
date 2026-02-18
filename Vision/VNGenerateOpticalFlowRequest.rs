@@ -190,15 +190,14 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCVPixelBuffer:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_options_completionHandler(
             this: Allocated<Self>,
             pixel_buffer: &CVPixelBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
 
         #[cfg(all(
@@ -246,8 +245,7 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCVPixelBuffer:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCVPixelBuffer_orientation_options_completionHandler(
@@ -255,7 +253,7 @@ impl VNGenerateOpticalFlowRequest {
             pixel_buffer: &CVPixelBuffer,
             orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-graphics"))]
@@ -293,15 +291,14 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCGImage:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_options_completionHandler(
             this: Allocated<Self>,
             cg_image: &CGImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
 
         #[cfg(all(
@@ -349,8 +346,7 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCGImage:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCGImage_orientation_options_completionHandler(
@@ -358,7 +354,7 @@ impl VNGenerateOpticalFlowRequest {
             cg_image: &CGImage,
             orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-image"))]
@@ -396,15 +392,14 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCIImage:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_options_completionHandler(
             this: Allocated<Self>,
             ci_image: &CIImage,
             options: &NSDictionary<VNImageOption, AnyObject>,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
 
         #[cfg(all(
@@ -452,8 +447,7 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCIImage:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCIImage_orientation_options_completionHandler(
@@ -461,7 +455,7 @@ impl VNGenerateOpticalFlowRequest {
             ci_image: &CIImage,
             orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "VNRequestHandler")]
@@ -495,15 +489,14 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageURL:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_options_completionHandler(
             this: Allocated<Self>,
             image_url: &NSURL,
             options: &NSDictionary<VNImageOption, AnyObject>,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-image-io"))]
@@ -546,8 +539,7 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageURL:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageURL_orientation_options_completionHandler(
@@ -555,7 +547,7 @@ impl VNGenerateOpticalFlowRequest {
             image_url: &NSURL,
             orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "VNRequestHandler")]
@@ -589,15 +581,14 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageData:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_options_completionHandler(
             this: Allocated<Self>,
             image_data: &NSData,
             options: &NSDictionary<VNImageOption, AnyObject>,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-image-io"))]
@@ -640,8 +631,7 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedImageData:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedImageData_orientation_options_completionHandler(
@@ -649,7 +639,7 @@ impl VNGenerateOpticalFlowRequest {
             image_data: &NSData,
             orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "VNRequestHandler", feature = "objc2-core-media"))]
@@ -687,15 +677,14 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCMSampleBuffer:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_options_completionHandler(
             this: Allocated<Self>,
             sample_buffer: &CMSampleBuffer,
             options: &NSDictionary<VNImageOption, AnyObject>,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
 
         #[cfg(all(
@@ -743,8 +732,7 @@ impl VNGenerateOpticalFlowRequest {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(initWithTargetedCMSampleBuffer:orientation:options:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTargetedCMSampleBuffer_orientation_options_completionHandler(
@@ -752,7 +740,7 @@ impl VNGenerateOpticalFlowRequest {
             sample_buffer: &CMSampleBuffer,
             orientation: CGImagePropertyOrientation,
             options: &NSDictionary<VNImageOption, AnyObject>,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
     );
 }

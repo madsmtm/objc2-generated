@@ -31,21 +31,21 @@ unsafe impl RefEncode for ACAccountCredentialRenewResult {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstoresavecompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type ACAccountStoreSaveCompletionHandler = *mut block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
+pub type ACAccountStoreSaveCompletionHandler = block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstoreremovecompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type ACAccountStoreRemoveCompletionHandler = *mut block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
+pub type ACAccountStoreRemoveCompletionHandler = block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstorerequestaccesscompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type ACAccountStoreRequestAccessCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
+    block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstorecredentialrenewalhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type ACAccountStoreCredentialRenewalHandler =
-    *mut block2::DynBlock<dyn Fn(ACAccountCredentialRenewResult, *mut NSError)>;
+    block2::DynBlock<dyn Fn(ACAccountCredentialRenewResult, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/accounts/acaccountstore?language=objc)
@@ -106,28 +106,28 @@ impl ACAccountStore {
         /// # Safety
         ///
         /// - `account` might not allow `None`.
-        /// - `completion_handler` must be a valid pointer.
+        /// - `completion_handler` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(saveAccount:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn saveAccount_withCompletionHandler(
             &self,
             account: Option<&ACAccount>,
-            completion_handler: ACAccountStoreSaveCompletionHandler,
+            completion_handler: Option<&ACAccountStoreSaveCompletionHandler>,
         );
 
         #[cfg(all(feature = "ACAccountType", feature = "block2"))]
         /// # Safety
         ///
         /// - `account_type` might not allow `None`.
-        /// - `handler` must be a valid pointer.
+        /// - `handler` might not allow `None`.
         #[deprecated]
         #[unsafe(method(requestAccessToAccountsWithType:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestAccessToAccountsWithType_withCompletionHandler(
             &self,
             account_type: Option<&ACAccountType>,
-            handler: ACAccountStoreRequestAccessCompletionHandler,
+            handler: Option<&ACAccountStoreRequestAccessCompletionHandler>,
         );
 
         #[cfg(all(feature = "ACAccountType", feature = "block2"))]
@@ -136,7 +136,7 @@ impl ACAccountStore {
         /// - `account_type` might not allow `None`.
         /// - `options` generic should be of the correct type.
         /// - `options` might not allow `None`.
-        /// - `completion` must be a valid pointer.
+        /// - `completion` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(requestAccessToAccountsWithType:options:completion:))]
         #[unsafe(method_family = none)]
@@ -144,35 +144,35 @@ impl ACAccountStore {
             &self,
             account_type: Option<&ACAccountType>,
             options: Option<&NSDictionary>,
-            completion: ACAccountStoreRequestAccessCompletionHandler,
+            completion: Option<&ACAccountStoreRequestAccessCompletionHandler>,
         );
 
         #[cfg(all(feature = "ACAccount", feature = "block2"))]
         /// # Safety
         ///
         /// - `account` might not allow `None`.
-        /// - `completion_handler` must be a valid pointer.
+        /// - `completion_handler` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(renewCredentialsForAccount:completion:))]
         #[unsafe(method_family = none)]
         pub unsafe fn renewCredentialsForAccount_completion(
             &self,
             account: Option<&ACAccount>,
-            completion_handler: ACAccountStoreCredentialRenewalHandler,
+            completion_handler: Option<&ACAccountStoreCredentialRenewalHandler>,
         );
 
         #[cfg(all(feature = "ACAccount", feature = "block2"))]
         /// # Safety
         ///
         /// - `account` might not allow `None`.
-        /// - `completion_handler` must be a valid pointer.
+        /// - `completion_handler` might not allow `None`.
         #[deprecated = "Use appropriate non-Apple SDK corresponding to the type of account you want to reference instead"]
         #[unsafe(method(removeAccount:withCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn removeAccount_withCompletionHandler(
             &self,
             account: Option<&ACAccount>,
-            completion_handler: ACAccountStoreRemoveCompletionHandler,
+            completion_handler: Option<&ACAccountStoreRemoveCompletionHandler>,
         );
     );
 }

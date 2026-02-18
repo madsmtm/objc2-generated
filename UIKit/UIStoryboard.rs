@@ -13,7 +13,7 @@ use crate::*;
     feature = "block2"
 ))]
 pub type UIStoryboardViewControllerCreator =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSCoder>) -> *mut UIViewController>;
+    block2::DynBlock<dyn Fn(NonNull<NSCoder>) -> *mut UIViewController>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uistoryboard?language=objc)
@@ -52,12 +52,12 @@ impl UIStoryboard {
         ))]
         /// # Safety
         ///
-        /// `block` must be a valid pointer or null.
+        /// `block` block's return must be a valid pointer or null.
         #[unsafe(method(instantiateInitialViewControllerWithCreator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateInitialViewControllerWithCreator(
             &self,
-            block: UIStoryboardViewControllerCreator,
+            block: Option<&UIStoryboardViewControllerCreator>,
         ) -> Option<Retained<UIViewController>>;
 
         #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
@@ -76,13 +76,13 @@ impl UIStoryboard {
         ))]
         /// # Safety
         ///
-        /// `block` must be a valid pointer or null.
+        /// `block` block's return must be a valid pointer or null.
         #[unsafe(method(instantiateViewControllerWithIdentifier:creator:))]
         #[unsafe(method_family = none)]
         pub unsafe fn instantiateViewControllerWithIdentifier_creator(
             &self,
             identifier: &NSString,
-            block: UIStoryboardViewControllerCreator,
+            block: Option<&UIStoryboardViewControllerCreator>,
         ) -> Retained<UIViewController>;
     );
 }

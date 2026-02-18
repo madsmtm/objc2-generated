@@ -129,7 +129,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticleeventblock?language=objc)
 #[cfg(feature = "block2")]
 pub type SCNParticleEventBlock =
-    *mut block2::DynBlock<dyn Fn(NonNull<NonNull<c_void>>, NonNull<usize>, *mut u32, NSInteger)>;
+    block2::DynBlock<dyn Fn(NonNull<NonNull<c_void>>, NonNull<usize>, *mut u32, NSInteger)>;
 
 /// Parameter `data`: array of particle properties data stripes, ordered by the given NSArray of properties name in [- handleEvent:forProperties:withBlock:]
 ///
@@ -160,7 +160,7 @@ pub type SCNParticleEventBlock =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnparticlemodifierblock?language=objc)
 #[cfg(feature = "block2")]
-pub type SCNParticleModifierBlock = *mut block2::DynBlock<
+pub type SCNParticleModifierBlock = block2::DynBlock<
     dyn Fn(NonNull<NonNull<c_void>>, NonNull<usize>, NSInteger, NSInteger, c_float),
 >;
 
@@ -1249,29 +1249,23 @@ impl SCNParticleSystem {
         pub unsafe fn reset(&self);
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `block` must be a valid pointer.
         #[unsafe(method(handleEvent:forProperties:withBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleEvent_forProperties_withBlock(
             &self,
             event: SCNParticleEvent,
             properties: &NSArray<SCNParticleProperty>,
-            block: SCNParticleEventBlock,
+            block: &SCNParticleEventBlock,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `block` must be a valid pointer.
         #[unsafe(method(addModifierForProperties:atStage:withBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn addModifierForProperties_atStage_withBlock(
             &self,
             properties: &NSArray<SCNParticleProperty>,
             stage: SCNParticleModifierStage,
-            block: SCNParticleModifierBlock,
+            block: &SCNParticleModifierBlock,
         );
 
         #[unsafe(method(removeModifiersOfStage:))]

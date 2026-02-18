@@ -345,7 +345,7 @@ impl VTCompressionSession {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtcompressionoutputhandler?language=objc)
 #[cfg(all(feature = "VTErrors", feature = "block2", feature = "objc2-core-media"))]
 pub type VTCompressionOutputHandler =
-    *mut block2::DynBlock<dyn Fn(OSStatus, VTEncodeInfoFlags, *mut CMSampleBuffer)>;
+    block2::DynBlock<dyn Fn(OSStatus, VTEncodeInfoFlags, *mut CMSampleBuffer)>;
 
 impl VTCompressionSession {
     /// Call this function to present frames to the compression session.
@@ -384,7 +384,6 @@ impl VTCompressionSession {
     /// - `frame_properties` generic must be of the correct type.
     /// - `frame_properties` generic must be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
-    /// - `output_handler` must be a valid pointer.
     #[doc(alias = "VTCompressionSessionEncodeFrameWithOutputHandler")]
     #[cfg(all(
         feature = "VTErrors",
@@ -400,7 +399,7 @@ impl VTCompressionSession {
         duration: CMTime,
         frame_properties: Option<&CFDictionary>,
         info_flags_out: *mut VTEncodeInfoFlags,
-        output_handler: VTCompressionOutputHandler,
+        output_handler: &VTCompressionOutputHandler,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTCompressionSessionEncodeFrameWithOutputHandler(
@@ -410,7 +409,7 @@ impl VTCompressionSession {
                 duration: CMTime,
                 frame_properties: Option<&CFDictionary>,
                 info_flags_out: *mut VTEncodeInfoFlags,
-                output_handler: VTCompressionOutputHandler,
+                output_handler: &VTCompressionOutputHandler,
             ) -> OSStatus;
         }
         unsafe {
@@ -567,7 +566,6 @@ impl VTCompressionSession {
     /// - `frame_properties` generic must be of the correct type.
     /// - `frame_properties` generic must be of the correct type.
     /// - `info_flags_out` must be a valid pointer or null.
-    /// - `output_handler` must be a valid pointer.
     #[doc(alias = "VTCompressionSessionEncodeMultiImageFrameWithOutputHandler")]
     #[cfg(all(feature = "VTErrors", feature = "block2", feature = "objc2-core-media"))]
     #[inline]
@@ -578,7 +576,7 @@ impl VTCompressionSession {
         duration: CMTime,
         frame_properties: Option<&CFDictionary>,
         info_flags_out: *mut VTEncodeInfoFlags,
-        output_handler: VTCompressionOutputHandler,
+        output_handler: &VTCompressionOutputHandler,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTCompressionSessionEncodeMultiImageFrameWithOutputHandler(
@@ -588,7 +586,7 @@ impl VTCompressionSession {
                 duration: CMTime,
                 frame_properties: Option<&CFDictionary>,
                 info_flags_out: *mut VTEncodeInfoFlags,
-                output_handler: VTCompressionOutputHandler,
+                output_handler: &VTCompressionOutputHandler,
             ) -> OSStatus;
         }
         unsafe {

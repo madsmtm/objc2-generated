@@ -15,7 +15,7 @@ use crate::*;
     feature = "NSView",
     feature = "block2"
 ))]
-pub type NSTableViewDiffableDataSourceCellProvider = *mut block2::DynBlock<
+pub type NSTableViewDiffableDataSourceCellProvider = block2::DynBlock<
     dyn Fn(
         NonNull<NSTableView>,
         NonNull<NSTableColumn>,
@@ -33,7 +33,7 @@ pub type NSTableViewDiffableDataSourceCellProvider = *mut block2::DynBlock<
     feature = "NSView",
     feature = "block2"
 ))]
-pub type NSTableViewDiffableDataSourceRowProvider = *mut block2::DynBlock<
+pub type NSTableViewDiffableDataSourceRowProvider = block2::DynBlock<
     dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSTableRowView>,
 >;
 
@@ -45,7 +45,7 @@ pub type NSTableViewDiffableDataSourceRowProvider = *mut block2::DynBlock<
     feature = "NSView",
     feature = "block2"
 ))]
-pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider = *mut block2::DynBlock<
+pub type NSTableViewDiffableDataSourceSectionHeaderViewProvider = block2::DynBlock<
     dyn Fn(NonNull<NSTableView>, NSInteger, NonNull<AnyObject>) -> NonNull<NSView>,
 >;
 
@@ -107,13 +107,13 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         ))]
         /// # Safety
         ///
-        /// `cell_provider` must be a valid pointer.
+        /// `cell_provider` block's return must be a valid pointer.
         #[unsafe(method(initWithTableView:cellProvider:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTableView_cellProvider(
             this: Allocated<Self>,
             table_view: &NSTableView,
-            cell_provider: NSTableViewDiffableDataSourceCellProvider,
+            cell_provider: &NSTableViewDiffableDataSourceCellProvider,
         ) -> Retained<Self>;
 
         // -init (unavailable)
@@ -182,7 +182,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         pub unsafe fn rowViewProvider(
             &self,
             mtm: MainThreadMarker,
-        ) -> NSTableViewDiffableDataSourceRowProvider;
+        ) -> *mut NSTableViewDiffableDataSourceRowProvider;
 
         #[cfg(all(
             feature = "NSControl",
@@ -198,12 +198,12 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         ///
         /// # Safety
         ///
-        /// `row_view_provider` must be a valid pointer or null.
+        /// `row_view_provider` block's return must be a valid pointer.
         #[unsafe(method(setRowViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setRowViewProvider(
             &self,
-            row_view_provider: NSTableViewDiffableDataSourceRowProvider,
+            row_view_provider: Option<&NSTableViewDiffableDataSourceRowProvider>,
         );
 
         #[cfg(all(
@@ -222,7 +222,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         pub unsafe fn sectionHeaderViewProvider(
             &self,
             mtm: MainThreadMarker,
-        ) -> NSTableViewDiffableDataSourceSectionHeaderViewProvider;
+        ) -> *mut NSTableViewDiffableDataSourceSectionHeaderViewProvider;
 
         #[cfg(all(
             feature = "NSControl",
@@ -237,12 +237,14 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         ///
         /// # Safety
         ///
-        /// `section_header_view_provider` must be a valid pointer or null.
+        /// `section_header_view_provider` block's return must be a valid pointer.
         #[unsafe(method(setSectionHeaderViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSectionHeaderViewProvider(
             &self,
-            section_header_view_provider: NSTableViewDiffableDataSourceSectionHeaderViewProvider,
+            section_header_view_provider: Option<
+                &NSTableViewDiffableDataSourceSectionHeaderViewProvider,
+            >,
         );
 
         #[cfg(feature = "NSTableView")]

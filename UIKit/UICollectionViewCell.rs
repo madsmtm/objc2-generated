@@ -204,7 +204,7 @@ impl UICollectionReusableView {
     feature = "block2"
 ))]
 pub type UICollectionViewCellConfigurationUpdateHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<UICollectionViewCell>, NonNull<UICellConfigurationState>)>;
+    block2::DynBlock<dyn Fn(NonNull<UICollectionViewCell>, NonNull<UICellConfigurationState>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionviewcell?language=objc)
@@ -335,7 +335,7 @@ impl UICollectionViewCell {
         #[unsafe(method_family = none)]
         pub unsafe fn configurationUpdateHandler(
             &self,
-        ) -> UICollectionViewCellConfigurationUpdateHandler;
+        ) -> *mut UICollectionViewCellConfigurationUpdateHandler;
 
         #[cfg(all(
             feature = "UICellConfigurationState",
@@ -345,15 +345,11 @@ impl UICollectionViewCell {
         /// Setter for [`configurationUpdateHandler`][Self::configurationUpdateHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `configuration_update_handler` must be a valid pointer or null.
         #[unsafe(method(setConfigurationUpdateHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setConfigurationUpdateHandler(
+        pub fn setConfigurationUpdateHandler(
             &self,
-            configuration_update_handler: UICollectionViewCellConfigurationUpdateHandler,
+            configuration_update_handler: Option<&UICollectionViewCellConfigurationUpdateHandler>,
         );
 
         #[cfg(feature = "UIContentConfiguration")]

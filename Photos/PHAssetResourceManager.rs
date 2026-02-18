@@ -15,7 +15,7 @@ pub static PHInvalidAssetResourceDataRequestID: PHAssetResourceDataRequestID = 0
 
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourceprogresshandler?language=objc)
 #[cfg(feature = "block2")]
-pub type PHAssetResourceProgressHandler = *mut block2::DynBlock<dyn Fn(c_double)>;
+pub type PHAssetResourceProgressHandler = block2::DynBlock<dyn Fn(c_double)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetresourcerequestoptions?language=objc)
@@ -50,19 +50,18 @@ impl PHAssetResourceRequestOptions {
         #[cfg(feature = "block2")]
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progressHandler(&self) -> PHAssetResourceProgressHandler;
+        pub unsafe fn progressHandler(&self) -> *mut PHAssetResourceProgressHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `progress_handler` must be a valid pointer or null.
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetResourceProgressHandler);
+        pub unsafe fn setProgressHandler(
+            &self,
+            progress_handler: Option<&PHAssetResourceProgressHandler>,
+        );
     );
 }
 

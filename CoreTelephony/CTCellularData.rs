@@ -31,7 +31,7 @@ unsafe impl RefEncode for CTCellularDataRestrictedState {
 /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/cellulardatarestrictiondidupdatenotifier?language=objc)
 #[cfg(feature = "block2")]
 pub type CellularDataRestrictionDidUpdateNotifier =
-    *mut block2::DynBlock<dyn Fn(CTCellularDataRestrictedState)>;
+    block2::DynBlock<dyn Fn(CTCellularDataRestrictedState)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coretelephony/ctcellulardata?language=objc)
@@ -51,21 +51,19 @@ impl CTCellularData {
         #[unsafe(method_family = none)]
         pub unsafe fn cellularDataRestrictionDidUpdateNotifier(
             &self,
-        ) -> CellularDataRestrictionDidUpdateNotifier;
+        ) -> *mut CellularDataRestrictionDidUpdateNotifier;
 
         #[cfg(feature = "block2")]
         /// Setter for [`cellularDataRestrictionDidUpdateNotifier`][Self::cellularDataRestrictionDidUpdateNotifier].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `cellular_data_restriction_did_update_notifier` must be a valid pointer or null.
         #[unsafe(method(setCellularDataRestrictionDidUpdateNotifier:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setCellularDataRestrictionDidUpdateNotifier(
             &self,
-            cellular_data_restriction_did_update_notifier: CellularDataRestrictionDidUpdateNotifier,
+            cellular_data_restriction_did_update_notifier: Option<
+                &CellularDataRestrictionDidUpdateNotifier,
+            >,
         );
 
         #[unsafe(method(restrictedState))]

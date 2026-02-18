@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearchcompletionhandler?language=objc)
 #[cfg(all(feature = "MKLocalSearchResponse", feature = "block2"))]
 pub type MKLocalSearchCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut MKLocalSearchResponse, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut MKLocalSearchResponse, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mklocalsearch?language=objc)
@@ -42,14 +42,11 @@ impl MKLocalSearch {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKLocalSearchResponse", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(startWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(
             &self,
-            completion_handler: MKLocalSearchCompletionHandler,
+            completion_handler: &MKLocalSearchCompletionHandler,
         );
 
         #[unsafe(method(cancel))]

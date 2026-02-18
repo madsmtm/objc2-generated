@@ -9,12 +9,11 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmstepqueryhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMStepQueryHandler = *mut block2::DynBlock<dyn Fn(NSInteger, *mut NSError)>;
+pub type CMStepQueryHandler = block2::DynBlock<dyn Fn(NSInteger, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmstepupdatehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMStepUpdateHandler =
-    *mut block2::DynBlock<dyn Fn(NSInteger, NonNull<NSDate>, *mut NSError)>;
+pub type CMStepUpdateHandler = block2::DynBlock<dyn Fn(NSInteger, NonNull<NSDate>, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coremotion/cmstepcounter?language=objc)
@@ -36,8 +35,7 @@ impl CMStepCounter {
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(queryStepCountStartingFrom:to:toQueue:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn queryStepCountStartingFrom_to_toQueue_withHandler(
@@ -45,21 +43,20 @@ impl CMStepCounter {
             start: &NSDate,
             end: &NSDate,
             queue: &NSOperationQueue,
-            handler: CMStepQueryHandler,
+            handler: &CMStepQueryHandler,
         );
 
         #[cfg(feature = "block2")]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(startStepCountingUpdatesToQueue:updateOn:withHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startStepCountingUpdatesToQueue_updateOn_withHandler(
             &self,
             queue: &NSOperationQueue,
             step_counts: NSInteger,
-            handler: CMStepUpdateHandler,
+            handler: &CMStepUpdateHandler,
         );
 
         #[unsafe(method(stopStepCountingUpdates))]

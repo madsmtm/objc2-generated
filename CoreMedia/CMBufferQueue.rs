@@ -75,7 +75,7 @@ pub type CMBufferGetTimeCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergettimehandler?language=objc)
 #[cfg(all(feature = "CMTime", feature = "block2"))]
-pub type CMBufferGetTimeHandler = *mut block2::DynBlock<dyn Fn(NonNull<CMBuffer>) -> CMTime>;
+pub type CMBufferGetTimeHandler = block2::DynBlock<dyn Fn(NonNull<CMBuffer>) -> CMTime>;
 
 /// Client callback that returns a Boolean from a CMBufferRef
 ///
@@ -91,7 +91,7 @@ pub type CMBufferGetBooleanCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetbooleanhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMBufferGetBooleanHandler = *mut block2::DynBlock<dyn Fn(NonNull<CMBuffer>) -> Boolean>;
+pub type CMBufferGetBooleanHandler = block2::DynBlock<dyn Fn(NonNull<CMBuffer>) -> Boolean>;
 
 /// Client callback that compares one CMBufferRef with another.
 ///
@@ -111,7 +111,7 @@ pub type CMBufferCompareCallback = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffercomparehandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMBufferCompareHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<CMBuffer>, NonNull<CMBuffer>) -> CFComparisonResult>;
+    block2::DynBlock<dyn Fn(NonNull<CMBuffer>, NonNull<CMBuffer>) -> CFComparisonResult>;
 
 /// Client callback that returns a size_t from a CMBufferRef
 ///
@@ -127,7 +127,7 @@ pub type CMBufferGetSizeCallback =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffergetsizehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMBufferGetSizeHandler = *mut block2::DynBlock<dyn Fn(NonNull<CMBuffer>) -> usize>;
+pub type CMBufferGetSizeHandler = block2::DynBlock<dyn Fn(NonNull<CMBuffer>) -> usize>;
 
 /// Callbacks provided to CMBufferQueueCreate, for use by the queue in interrogating the buffers that it will see.
 ///
@@ -219,7 +219,7 @@ pub struct CMBufferHandlers {
     /// in the buffer, this block should return the minimum decode timestamp
     /// in the buffer. Can be NULL (CMBufferQueueGetFirstDecodeTimeStamp and
     /// CMBufferQueueGetMinDecodeTimeStamp will return kCMTimeInvalid).
-    pub getDecodeTimeStamp: CMBufferGetTimeHandler,
+    pub getDecodeTimeStamp: *mut CMBufferGetTimeHandler,
     /// This block is called from CMBufferQueueGetFirstPresentationTimeStamp
     /// (once) and from CMBufferQueueGetMinPresentationTimeStamp (multiple times).
     /// It should return the presentation timestamp of the buffer.  If there are
@@ -227,24 +227,24 @@ pub struct CMBufferHandlers {
     /// presentation timestamp in the buffer. Can be NULL
     /// (CMBufferQueueGetFirstPresentationTimeStamp and
     /// CMBufferQueueGetMinPresentationTimeStamp will return kCMTimeInvalid).
-    pub getPresentationTimeStamp: CMBufferGetTimeHandler,
+    pub getPresentationTimeStamp: *mut CMBufferGetTimeHandler,
     /// This block is called (once) during enqueue and dequeue operations to
     /// update the total duration of the queue.  Must not be NULL.
-    pub getDuration: CMBufferGetTimeHandler,
+    pub getDuration: NonNull<CMBufferGetTimeHandler>,
     /// This block is called from CMBufferQueueDequeueIfDataReadyAndRetain, to
     /// ask if the buffer that is about to be dequeued is ready.  Can be NULL
     /// (data will be assumed to be ready).
-    pub isDataReady: CMBufferGetBooleanHandler,
+    pub isDataReady: *mut CMBufferGetBooleanHandler,
     /// This block is called (multiple times) from CMBufferQueueEnqueue, to
     /// perform an insertion sort. Can be NULL (queue will be FIFO).
-    pub compare: CMBufferCompareHandler,
+    pub compare: *mut CMBufferCompareHandler,
     /// If triggers of type kCMBufferQueueTrigger_WhenDataBecomesReady are installed,
     /// the queue will listen for this notification on the head buffer.
     /// Can be NULL (then the queue won't listen for it).
     pub dataBecameReadyNotification: *const CFString,
     /// This block is called (once) during enqueue and dequeue operation to
     /// update the total size of the queue. Can be NULL.
-    pub getSize: CMBufferGetSizeHandler,
+    pub getSize: *mut CMBufferGetSizeHandler,
 }
 
 #[cfg(all(feature = "CMTime", feature = "block2", feature = "objc2"))]
@@ -253,13 +253,13 @@ unsafe impl Encode for CMBufferHandlers {
         "?",
         &[
             <usize>::ENCODING,
-            <CMBufferGetTimeHandler>::ENCODING,
-            <CMBufferGetTimeHandler>::ENCODING,
-            <CMBufferGetTimeHandler>::ENCODING,
-            <CMBufferGetBooleanHandler>::ENCODING,
-            <CMBufferCompareHandler>::ENCODING,
+            <*mut CMBufferGetTimeHandler>::ENCODING,
+            <*mut CMBufferGetTimeHandler>::ENCODING,
+            <NonNull<CMBufferGetTimeHandler>>::ENCODING,
+            <*mut CMBufferGetBooleanHandler>::ENCODING,
+            <*mut CMBufferCompareHandler>::ENCODING,
             <*const CFString>::ENCODING,
-            <CMBufferGetSizeHandler>::ENCODING,
+            <*mut CMBufferGetSizeHandler>::ENCODING,
         ],
     );
 }
@@ -743,7 +743,7 @@ pub type CMBufferQueueTriggerCallback =
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbufferqueuetriggerhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMBufferQueueTriggerHandler = *mut block2::DynBlock<dyn Fn(CMBufferQueueTriggerToken)>;
+pub type CMBufferQueueTriggerHandler = block2::DynBlock<dyn Fn(CMBufferQueueTriggerToken)>;
 
 /// A condition to be associated with a CMBufferQueueTrigger.
 ///
@@ -877,8 +877,7 @@ impl CMBufferQueue {
     ///
     /// # Safety
     ///
-    /// - `trigger_token_out` must be a valid pointer or null.
-    /// - `handler` must be a valid pointer or null.
+    /// `trigger_token_out` must be a valid pointer or null.
     #[doc(alias = "CMBufferQueueInstallTriggerHandler")]
     #[cfg(all(feature = "CMTime", feature = "block2"))]
     #[inline]
@@ -887,7 +886,7 @@ impl CMBufferQueue {
         condition: CMBufferQueueTriggerCondition,
         time: CMTime,
         trigger_token_out: *mut CMBufferQueueTriggerToken,
-        handler: CMBufferQueueTriggerHandler,
+        handler: Option<&CMBufferQueueTriggerHandler>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBufferQueueInstallTriggerHandler(
@@ -895,7 +894,7 @@ impl CMBufferQueue {
                 condition: CMBufferQueueTriggerCondition,
                 time: CMTime,
                 trigger_token_out: *mut CMBufferQueueTriggerToken,
-                handler: CMBufferQueueTriggerHandler,
+                handler: Option<&CMBufferQueueTriggerHandler>,
             ) -> OSStatus;
         }
         unsafe {
@@ -910,8 +909,7 @@ impl CMBufferQueue {
     ///
     /// # Safety
     ///
-    /// - `trigger_token_out` must be a valid pointer or null.
-    /// - `handler` must be a valid pointer or null.
+    /// `trigger_token_out` must be a valid pointer or null.
     #[doc(alias = "CMBufferQueueInstallTriggerHandlerWithIntegerThreshold")]
     #[cfg(all(feature = "CMBase", feature = "block2"))]
     #[inline]
@@ -920,7 +918,7 @@ impl CMBufferQueue {
         condition: CMBufferQueueTriggerCondition,
         threshold: CMItemCount,
         trigger_token_out: *mut CMBufferQueueTriggerToken,
-        handler: CMBufferQueueTriggerHandler,
+        handler: Option<&CMBufferQueueTriggerHandler>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMBufferQueueInstallTriggerHandlerWithIntegerThreshold(
@@ -928,7 +926,7 @@ impl CMBufferQueue {
                 condition: CMBufferQueueTriggerCondition,
                 threshold: CMItemCount,
                 trigger_token_out: *mut CMBufferQueueTriggerToken,
-                handler: CMBufferQueueTriggerHandler,
+                handler: Option<&CMBufferQueueTriggerHandler>,
             ) -> OSStatus;
         }
         unsafe {
@@ -1037,7 +1035,7 @@ pub type CMBufferValidationCallback = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmbuffervalidationhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMBufferValidationHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<CMBufferQueue>, NonNull<CMBuffer>) -> OSStatus>;
+    block2::DynBlock<dyn Fn(NonNull<CMBufferQueue>, NonNull<CMBuffer>) -> OSStatus>;
 
 impl CMBufferQueue {
     /// Sets a function that CMBufferQueueEnqueue will call to validate buffers before adding them to the queue.
@@ -1068,18 +1066,14 @@ impl CMBufferQueue {
     /// Both a validation callback and a validation handler can be set at the
     /// same time, in which case they will both be called when enqueueing
     /// buffers. They both need to return noErr for the buffer to be enqueued.
-    ///
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer.
     #[doc(alias = "CMBufferQueueSetValidationHandler")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn set_validation_handler(&self, handler: CMBufferValidationHandler) -> OSStatus {
+    pub unsafe fn set_validation_handler(&self, handler: &CMBufferValidationHandler) -> OSStatus {
         extern "C-unwind" {
             fn CMBufferQueueSetValidationHandler(
                 queue: &CMBufferQueue,
-                handler: CMBufferValidationHandler,
+                handler: &CMBufferValidationHandler,
             ) -> OSStatus;
         }
         unsafe { CMBufferQueueSetValidationHandler(self, handler) }

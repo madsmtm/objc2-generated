@@ -9,14 +9,14 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformer?language=objc)
 #[cfg(all(feature = "UIColor", feature = "block2"))]
 pub type UIConfigurationColorTransformer =
-    *mut block2::DynBlock<dyn Fn(NonNull<UIColor>) -> NonNull<UIColor>>;
+    block2::DynBlock<dyn Fn(NonNull<UIColor>) -> NonNull<UIColor>>;
 
 extern "C" {
     /// A color transformer that returns a grayscale version of the color.
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformergrayscale?language=objc)
     #[cfg(all(feature = "UIColor", feature = "block2"))]
-    pub static UIConfigurationColorTransformerGrayscale: UIConfigurationColorTransformer;
+    pub static UIConfigurationColorTransformerGrayscale: &'static UIConfigurationColorTransformer;
 }
 
 extern "C" {
@@ -27,7 +27,8 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformerpreferredtint?language=objc)
     #[cfg(all(feature = "UIColor", feature = "block2"))]
-    pub static UIConfigurationColorTransformerPreferredTint: UIConfigurationColorTransformer;
+    pub static UIConfigurationColorTransformerPreferredTint:
+        &'static UIConfigurationColorTransformer;
 }
 
 extern "C" {
@@ -36,5 +37,6 @@ extern "C" {
     ///
     /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiconfigurationcolortransformermonochrometint?language=objc)
     #[cfg(all(feature = "UIColor", feature = "block2"))]
-    pub static UIConfigurationColorTransformerMonochromeTint: UIConfigurationColorTransformer;
+    pub static UIConfigurationColorTransformerMonochromeTint:
+        &'static UIConfigurationColorTransformer;
 }

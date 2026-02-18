@@ -99,17 +99,13 @@ impl IOUSBHostStream {
         /// Parameter `data`: pointer containing the buffer to use for the transfer
         ///
         /// Returns: YES on success, an IOReturn error code will be reported on failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(enqueueIORequestWithData:error:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enqueueIORequestWithData_error_completionHandler(
             &self,
             data: Option<&NSMutableData>,
             error: Option<&mut Option<Retained<NSError>>>,
-            completion_handler: IOUSBHostCompletionHandler,
+            completion_handler: Option<&IOUSBHostCompletionHandler>,
         ) -> bool;
     );
 }

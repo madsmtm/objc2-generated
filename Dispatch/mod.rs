@@ -129,7 +129,7 @@ impl DispatchTime {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_block_t?language=objc)
 #[cfg(feature = "block2")]
-pub type dispatch_block_t = *mut block2::DynBlock<dyn Fn()>;
+pub type dispatch_block_t = block2::DynBlock<dyn Fn()>;
 
 extern "C" {
     /// Increment the reference count of a dispatch object.
@@ -380,14 +380,13 @@ unsafe impl Sync for DispatchQueue {}
 impl DispatchQueue {
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` must be a valid pointer.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_async")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn exec_async_with_block(&self, block: dispatch_block_t) {
+    pub unsafe fn exec_async_with_block(&self, block: &dispatch_block_t) {
         extern "C" {
-            fn dispatch_async(queue: &DispatchQueue, block: dispatch_block_t);
+            fn dispatch_async(queue: &DispatchQueue, block: &dispatch_block_t);
         }
         unsafe { dispatch_async(self, block) }
     }
@@ -432,14 +431,13 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` must be a valid pointer.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_sync")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn exec_sync_with_block(&self, block: dispatch_block_t) {
+    pub unsafe fn exec_sync_with_block(&self, block: &dispatch_block_t) {
         extern "C" {
-            fn dispatch_sync(queue: &DispatchQueue, block: dispatch_block_t);
+            fn dispatch_sync(queue: &DispatchQueue, block: &dispatch_block_t);
         }
         unsafe { dispatch_sync(self, block) }
     }
@@ -482,14 +480,13 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` must be a valid pointer.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_async_and_wait")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn exec_sync_and_wait_with_block(&self, block: dispatch_block_t) {
+    pub unsafe fn exec_sync_and_wait_with_block(&self, block: &dispatch_block_t) {
         extern "C" {
-            fn dispatch_async_and_wait(queue: &DispatchQueue, block: dispatch_block_t);
+            fn dispatch_async_and_wait(queue: &DispatchQueue, block: &dispatch_block_t);
         }
         unsafe { dispatch_async_and_wait(self, block) }
     }
@@ -1276,18 +1273,17 @@ extern "C" {
 impl DispatchQueue {
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` must be a valid pointer.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_after")]
     #[cfg(feature = "block2")]
     #[inline]
     pub unsafe fn exec_after_with_block(
         when: DispatchTime,
         queue: &DispatchQueue,
-        block: dispatch_block_t,
+        block: &dispatch_block_t,
     ) {
         extern "C" {
-            fn dispatch_after(when: DispatchTime, queue: &DispatchQueue, block: dispatch_block_t);
+            fn dispatch_after(when: DispatchTime, queue: &DispatchQueue, block: &dispatch_block_t);
         }
         unsafe { dispatch_after(when, queue, block) }
     }
@@ -1339,14 +1335,13 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` must be a valid pointer.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_barrier_async")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn barrier_async_with_block(&self, block: dispatch_block_t) {
+    pub unsafe fn barrier_async_with_block(&self, block: &dispatch_block_t) {
         extern "C" {
-            fn dispatch_barrier_async(queue: &DispatchQueue, block: dispatch_block_t);
+            fn dispatch_barrier_async(queue: &DispatchQueue, block: &dispatch_block_t);
         }
         unsafe { dispatch_barrier_async(self, block) }
     }
@@ -1396,14 +1391,13 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` must be a valid pointer.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_barrier_sync")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn barrier_sync_with_block(&self, block: dispatch_block_t) {
+    pub unsafe fn barrier_sync_with_block(&self, block: &dispatch_block_t) {
         extern "C" {
-            fn dispatch_barrier_sync(queue: &DispatchQueue, block: dispatch_block_t);
+            fn dispatch_barrier_sync(queue: &DispatchQueue, block: &dispatch_block_t);
         }
         unsafe { dispatch_barrier_sync(self, block) }
     }
@@ -1449,14 +1443,13 @@ impl DispatchQueue {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` must be a valid pointer.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_barrier_async_and_wait")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn barrier_async_and_wait_with_block(&self, block: dispatch_block_t) {
+    pub unsafe fn barrier_async_and_wait_with_block(&self, block: &dispatch_block_t) {
         extern "C" {
-            fn dispatch_barrier_async_and_wait(queue: &DispatchQueue, block: dispatch_block_t);
+            fn dispatch_barrier_async_and_wait(queue: &DispatchQueue, block: &dispatch_block_t);
         }
         unsafe { dispatch_barrier_async_and_wait(self, block) }
     }
@@ -2164,216 +2157,227 @@ unsafe impl RefEncode for dispatch_block_flags_t {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
-extern "C" {
-    /// Create a new dispatch block object on the heap from an existing block and
-    /// the given flags.
-    ///
-    ///
-    /// The provided block is Block_copy'ed to the heap and retained by the newly
-    /// created dispatch block object.
-    ///
-    /// The returned dispatch block object is intended to be submitted to a dispatch
-    /// queue with dispatch_async() and related functions, but may also be invoked
-    /// directly. Both operations can be performed an arbitrary number of times but
-    /// only the first completed execution of a dispatch block object can be waited
-    /// on with dispatch_block_wait() or observed with dispatch_block_notify().
-    ///
-    /// If the returned dispatch block object is submitted to a dispatch queue, the
-    /// submitted block instance will be associated with the QOS class current at the
-    /// time of submission, unless one of the following flags assigned a specific QOS
-    /// class (or no QOS class) at the time of block creation:
-    /// - DISPATCH_BLOCK_ASSIGN_CURRENT
-    /// - DISPATCH_BLOCK_NO_QOS_CLASS
-    /// - DISPATCH_BLOCK_DETACHED
-    /// The QOS class the block object will be executed with also depends on the QOS
-    /// class assigned to the queue and which of the following flags was specified or
-    /// defaulted to:
-    /// - DISPATCH_BLOCK_INHERIT_QOS_CLASS (default for asynchronous execution)
-    /// - DISPATCH_BLOCK_ENFORCE_QOS_CLASS (default for synchronous execution)
-    /// See description of dispatch_block_flags_t for details.
-    ///
-    /// If the returned dispatch block object is submitted directly to a serial queue
-    /// and is configured to execute with a specific QOS class, the system will make
-    /// a best effort to apply the necessary QOS overrides to ensure that blocks
-    /// submitted earlier to the serial queue are executed at that same QOS class or
-    /// higher.
-    ///
-    ///
-    /// Parameter `flags`: Configuration flags for the block object.
-    /// Passing a value that is not a bitwise OR of flags from dispatch_block_flags_t
-    /// results in NULL being returned.
-    ///
-    ///
-    /// Parameter `block`: The block to create the dispatch block object from.
-    ///
-    ///
-    /// Returns: The newly created dispatch block object, or NULL.
-    /// When not building with Objective-C ARC, must be released with a -[release]
-    /// message or the Block_release() function.
-    ///
-    /// # Safety
-    ///
-    /// `block` must be a valid pointer.
-    #[cfg(feature = "block2")]
-    #[must_use]
-    pub fn dispatch_block_create(
-        flags: dispatch_block_flags_t,
-        block: dispatch_block_t,
-    ) -> dispatch_block_t;
+/// Create a new dispatch block object on the heap from an existing block and
+/// the given flags.
+///
+///
+/// The provided block is Block_copy'ed to the heap and retained by the newly
+/// created dispatch block object.
+///
+/// The returned dispatch block object is intended to be submitted to a dispatch
+/// queue with dispatch_async() and related functions, but may also be invoked
+/// directly. Both operations can be performed an arbitrary number of times but
+/// only the first completed execution of a dispatch block object can be waited
+/// on with dispatch_block_wait() or observed with dispatch_block_notify().
+///
+/// If the returned dispatch block object is submitted to a dispatch queue, the
+/// submitted block instance will be associated with the QOS class current at the
+/// time of submission, unless one of the following flags assigned a specific QOS
+/// class (or no QOS class) at the time of block creation:
+/// - DISPATCH_BLOCK_ASSIGN_CURRENT
+/// - DISPATCH_BLOCK_NO_QOS_CLASS
+/// - DISPATCH_BLOCK_DETACHED
+/// The QOS class the block object will be executed with also depends on the QOS
+/// class assigned to the queue and which of the following flags was specified or
+/// defaulted to:
+/// - DISPATCH_BLOCK_INHERIT_QOS_CLASS (default for asynchronous execution)
+/// - DISPATCH_BLOCK_ENFORCE_QOS_CLASS (default for synchronous execution)
+/// See description of dispatch_block_flags_t for details.
+///
+/// If the returned dispatch block object is submitted directly to a serial queue
+/// and is configured to execute with a specific QOS class, the system will make
+/// a best effort to apply the necessary QOS overrides to ensure that blocks
+/// submitted earlier to the serial queue are executed at that same QOS class or
+/// higher.
+///
+///
+/// Parameter `flags`: Configuration flags for the block object.
+/// Passing a value that is not a bitwise OR of flags from dispatch_block_flags_t
+/// results in NULL being returned.
+///
+///
+/// Parameter `block`: The block to create the dispatch block object from.
+///
+///
+/// Returns: The newly created dispatch block object, or NULL.
+/// When not building with Objective-C ARC, must be released with a -[release]
+/// message or the Block_release() function.
+#[cfg(feature = "block2")]
+#[must_use]
+#[inline]
+pub extern "C" fn dispatch_block_create(
+    flags: dispatch_block_flags_t,
+    block: &dispatch_block_t,
+) -> NonNull<dispatch_block_t> {
+    extern "C" {
+        fn dispatch_block_create(
+            flags: dispatch_block_flags_t,
+            block: &dispatch_block_t,
+        ) -> Option<NonNull<dispatch_block_t>>;
+    }
+    let ret = unsafe { dispatch_block_create(flags, block) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C" {
-    /// Create a new dispatch block object on the heap from an existing block and
-    /// the given flags, and assign it the specified QOS class and relative priority.
-    ///
-    ///
-    /// The provided block is Block_copy'ed to the heap and retained by the newly
-    /// created dispatch block object.
-    ///
-    /// The returned dispatch block object is intended to be submitted to a dispatch
-    /// queue with dispatch_async() and related functions, but may also be invoked
-    /// directly. Both operations can be performed an arbitrary number of times but
-    /// only the first completed execution of a dispatch block object can be waited
-    /// on with dispatch_block_wait() or observed with dispatch_block_notify().
-    ///
-    /// If invoked directly, the returned dispatch block object will be executed with
-    /// the assigned QOS class as long as that does not result in a lower QOS class
-    /// than what is current on the calling thread.
-    ///
-    /// If the returned dispatch block object is submitted to a dispatch queue, the
-    /// QOS class it will be executed with depends on the QOS class assigned to the
-    /// block, the QOS class assigned to the queue and which of the following flags
-    /// was specified or defaulted to:
-    /// - DISPATCH_BLOCK_INHERIT_QOS_CLASS: default for asynchronous execution
-    /// - DISPATCH_BLOCK_ENFORCE_QOS_CLASS: default for synchronous execution
-    /// See description of dispatch_block_flags_t for details.
-    ///
-    /// If the returned dispatch block object is submitted directly to a serial queue
-    /// and is configured to execute with a specific QOS class, the system will make
-    /// a best effort to apply the necessary QOS overrides to ensure that blocks
-    /// submitted earlier to the serial queue are executed at that same QOS class or
-    /// higher.
-    ///
-    ///
-    /// Parameter `flags`: Configuration flags for the new block object.
-    /// Passing a value that is not a bitwise OR of flags from dispatch_block_flags_t
-    /// results in NULL being returned.
-    ///
-    ///
-    /// Parameter `qos_class`: A QOS class value:
-    /// - QOS_CLASS_USER_INTERACTIVE
-    /// - QOS_CLASS_USER_INITIATED
-    /// - QOS_CLASS_DEFAULT
-    /// - QOS_CLASS_UTILITY
-    /// - QOS_CLASS_BACKGROUND
-    /// - QOS_CLASS_UNSPECIFIED
-    /// Passing QOS_CLASS_UNSPECIFIED is equivalent to specifying the
-    /// DISPATCH_BLOCK_NO_QOS_CLASS flag. Passing any other value results in NULL
-    /// being returned.
-    ///
-    ///
-    /// Parameter `relative_priority`: A relative priority within the QOS class. This value is a negative
-    /// offset from the maximum supported scheduler priority for the given class.
-    /// Passing a value greater than zero or less than QOS_MIN_RELATIVE_PRIORITY
-    /// results in NULL being returned.
-    ///
-    ///
-    /// Parameter `block`: The block to create the dispatch block object from.
-    ///
-    ///
-    /// Returns: The newly created dispatch block object, or NULL.
-    /// When not building with Objective-C ARC, must be released with a -[release]
-    /// message or the Block_release() function.
-    ///
-    /// # Safety
-    ///
-    /// `block` must be a valid pointer.
-    #[cfg(feature = "block2")]
-    #[must_use]
-    pub fn dispatch_block_create_with_qos_class(
-        flags: dispatch_block_flags_t,
-        qos_class: DispatchQoS,
-        relative_priority: c_int,
-        block: dispatch_block_t,
-    ) -> dispatch_block_t;
+/// Create a new dispatch block object on the heap from an existing block and
+/// the given flags, and assign it the specified QOS class and relative priority.
+///
+///
+/// The provided block is Block_copy'ed to the heap and retained by the newly
+/// created dispatch block object.
+///
+/// The returned dispatch block object is intended to be submitted to a dispatch
+/// queue with dispatch_async() and related functions, but may also be invoked
+/// directly. Both operations can be performed an arbitrary number of times but
+/// only the first completed execution of a dispatch block object can be waited
+/// on with dispatch_block_wait() or observed with dispatch_block_notify().
+///
+/// If invoked directly, the returned dispatch block object will be executed with
+/// the assigned QOS class as long as that does not result in a lower QOS class
+/// than what is current on the calling thread.
+///
+/// If the returned dispatch block object is submitted to a dispatch queue, the
+/// QOS class it will be executed with depends on the QOS class assigned to the
+/// block, the QOS class assigned to the queue and which of the following flags
+/// was specified or defaulted to:
+/// - DISPATCH_BLOCK_INHERIT_QOS_CLASS: default for asynchronous execution
+/// - DISPATCH_BLOCK_ENFORCE_QOS_CLASS: default for synchronous execution
+/// See description of dispatch_block_flags_t for details.
+///
+/// If the returned dispatch block object is submitted directly to a serial queue
+/// and is configured to execute with a specific QOS class, the system will make
+/// a best effort to apply the necessary QOS overrides to ensure that blocks
+/// submitted earlier to the serial queue are executed at that same QOS class or
+/// higher.
+///
+///
+/// Parameter `flags`: Configuration flags for the new block object.
+/// Passing a value that is not a bitwise OR of flags from dispatch_block_flags_t
+/// results in NULL being returned.
+///
+///
+/// Parameter `qos_class`: A QOS class value:
+/// - QOS_CLASS_USER_INTERACTIVE
+/// - QOS_CLASS_USER_INITIATED
+/// - QOS_CLASS_DEFAULT
+/// - QOS_CLASS_UTILITY
+/// - QOS_CLASS_BACKGROUND
+/// - QOS_CLASS_UNSPECIFIED
+/// Passing QOS_CLASS_UNSPECIFIED is equivalent to specifying the
+/// DISPATCH_BLOCK_NO_QOS_CLASS flag. Passing any other value results in NULL
+/// being returned.
+///
+///
+/// Parameter `relative_priority`: A relative priority within the QOS class. This value is a negative
+/// offset from the maximum supported scheduler priority for the given class.
+/// Passing a value greater than zero or less than QOS_MIN_RELATIVE_PRIORITY
+/// results in NULL being returned.
+///
+///
+/// Parameter `block`: The block to create the dispatch block object from.
+///
+///
+/// Returns: The newly created dispatch block object, or NULL.
+/// When not building with Objective-C ARC, must be released with a -[release]
+/// message or the Block_release() function.
+#[cfg(feature = "block2")]
+#[must_use]
+#[inline]
+pub extern "C" fn dispatch_block_create_with_qos_class(
+    flags: dispatch_block_flags_t,
+    qos_class: DispatchQoS,
+    relative_priority: c_int,
+    block: &dispatch_block_t,
+) -> NonNull<dispatch_block_t> {
+    extern "C" {
+        fn dispatch_block_create_with_qos_class(
+            flags: dispatch_block_flags_t,
+            qos_class: DispatchQoS,
+            relative_priority: c_int,
+            block: &dispatch_block_t,
+        ) -> Option<NonNull<dispatch_block_t>>;
+    }
+    let ret =
+        unsafe { dispatch_block_create_with_qos_class(flags, qos_class, relative_priority, block) };
+    ret.expect("function was marked as returning non-null, but actually returned NULL")
 }
 
-extern "C" {
-    /// Create, synchronously execute and release a dispatch block object from the
-    /// specified block and flags.
-    ///
-    ///
-    /// Behaves identically to the sequence
-    /// <code>
-    /// dispatch_block_t b = dispatch_block_create(flags, block);
-    /// b();
-    /// Block_release(b);
-    /// </code>
-    /// but may be implemented more efficiently internally by not requiring a copy
-    /// to the heap of the specified block or the allocation of a new block object.
-    ///
-    ///
-    /// Parameter `flags`: Configuration flags for the temporary block object.
-    /// The result of passing a value that is not a bitwise OR of flags from
-    /// dispatch_block_flags_t is undefined.
-    ///
-    ///
-    /// Parameter `block`: The block to create the temporary block object from.
-    ///
-    /// # Safety
-    ///
-    /// `block` must be a valid pointer.
-    #[cfg(feature = "block2")]
-    pub fn dispatch_block_perform(flags: dispatch_block_flags_t, block: dispatch_block_t);
+/// Create, synchronously execute and release a dispatch block object from the
+/// specified block and flags.
+///
+///
+/// Behaves identically to the sequence
+/// <code>
+/// dispatch_block_t b = dispatch_block_create(flags, block);
+/// b();
+/// Block_release(b);
+/// </code>
+/// but may be implemented more efficiently internally by not requiring a copy
+/// to the heap of the specified block or the allocation of a new block object.
+///
+///
+/// Parameter `flags`: Configuration flags for the temporary block object.
+/// The result of passing a value that is not a bitwise OR of flags from
+/// dispatch_block_flags_t is undefined.
+///
+///
+/// Parameter `block`: The block to create the temporary block object from.
+#[cfg(feature = "block2")]
+#[inline]
+pub extern "C" fn dispatch_block_perform(flags: dispatch_block_flags_t, block: &dispatch_block_t) {
+    extern "C" {
+        fn dispatch_block_perform(flags: dispatch_block_flags_t, block: &dispatch_block_t);
+    }
+    unsafe { dispatch_block_perform(flags, block) }
 }
 
-extern "C" {
-    /// Wait synchronously until execution of the specified dispatch block object has
-    /// completed or until the specified timeout has elapsed.
-    ///
-    ///
-    /// This function will return immediately if execution of the block object has
-    /// already completed.
-    ///
-    /// It is not possible to wait for multiple executions of the same block object
-    /// with this interface; use dispatch_group_wait() for that purpose. A single
-    /// dispatch block object may either be waited on once and executed once,
-    /// or it may be executed any number of times. The behavior of any other
-    /// combination is undefined. Submission to a dispatch queue counts as an
-    /// execution, even if cancellation (dispatch_block_cancel) means the block's
-    /// code never runs.
-    ///
-    /// The result of calling this function from multiple threads simultaneously
-    /// with the same dispatch block object is undefined, but note that doing so
-    /// would violate the rules described in the previous paragraph.
-    ///
-    /// If this function returns indicating that the specified timeout has elapsed,
-    /// then that invocation does not count as the one allowed wait.
-    ///
-    /// If at the time this function is called, the specified dispatch block object
-    /// has been submitted directly to a serial queue, the system will make a best
-    /// effort to apply the necessary QOS overrides to ensure that the block and any
-    /// blocks submitted earlier to that serial queue are executed at the QOS class
-    /// (or higher) of the thread calling dispatch_block_wait().
-    ///
-    ///
-    /// Parameter `block`: The dispatch block object to wait on.
-    /// The result of passing NULL or a block object not returned by one of the
-    /// dispatch_block_create* functions is undefined.
-    ///
-    ///
-    /// Parameter `timeout`: When to timeout (see dispatch_time). As a convenience, there are the
-    /// DISPATCH_TIME_NOW and DISPATCH_TIME_FOREVER constants.
-    ///
-    ///
-    /// Returns: Returns zero on success (the dispatch block object completed within the
-    /// specified timeout) or non-zero on error (i.e. timed out).
-    ///
-    /// # Safety
-    ///
-    /// `block` must be a valid pointer.
-    #[cfg(feature = "block2")]
-    pub fn dispatch_block_wait(block: dispatch_block_t, timeout: DispatchTime) -> isize;
+/// Wait synchronously until execution of the specified dispatch block object has
+/// completed or until the specified timeout has elapsed.
+///
+///
+/// This function will return immediately if execution of the block object has
+/// already completed.
+///
+/// It is not possible to wait for multiple executions of the same block object
+/// with this interface; use dispatch_group_wait() for that purpose. A single
+/// dispatch block object may either be waited on once and executed once,
+/// or it may be executed any number of times. The behavior of any other
+/// combination is undefined. Submission to a dispatch queue counts as an
+/// execution, even if cancellation (dispatch_block_cancel) means the block's
+/// code never runs.
+///
+/// The result of calling this function from multiple threads simultaneously
+/// with the same dispatch block object is undefined, but note that doing so
+/// would violate the rules described in the previous paragraph.
+///
+/// If this function returns indicating that the specified timeout has elapsed,
+/// then that invocation does not count as the one allowed wait.
+///
+/// If at the time this function is called, the specified dispatch block object
+/// has been submitted directly to a serial queue, the system will make a best
+/// effort to apply the necessary QOS overrides to ensure that the block and any
+/// blocks submitted earlier to that serial queue are executed at the QOS class
+/// (or higher) of the thread calling dispatch_block_wait().
+///
+///
+/// Parameter `block`: The dispatch block object to wait on.
+/// The result of passing NULL or a block object not returned by one of the
+/// dispatch_block_create* functions is undefined.
+///
+///
+/// Parameter `timeout`: When to timeout (see dispatch_time). As a convenience, there are the
+/// DISPATCH_TIME_NOW and DISPATCH_TIME_FOREVER constants.
+///
+///
+/// Returns: Returns zero on success (the dispatch block object completed within the
+/// specified timeout) or non-zero on error (i.e. timed out).
+#[cfg(feature = "block2")]
+#[inline]
+pub extern "C" fn dispatch_block_wait(block: &dispatch_block_t, timeout: DispatchTime) -> isize {
+    extern "C" {
+        fn dispatch_block_wait(block: &dispatch_block_t, timeout: DispatchTime) -> isize;
+    }
+    unsafe { dispatch_block_wait(block, timeout) }
 }
 
 extern "C" {
@@ -2411,64 +2415,62 @@ extern "C" {
     ///
     /// # Safety
     ///
-    /// - `block` must be a valid pointer.
-    /// - `queue` possibly has additional threading requirements.
-    /// - `notification_block` must be a valid pointer.
+    /// `queue` possibly has additional threading requirements.
     #[cfg(feature = "block2")]
     pub fn dispatch_block_notify(
-        block: dispatch_block_t,
+        block: &dispatch_block_t,
         queue: &DispatchQueue,
-        notification_block: dispatch_block_t,
+        notification_block: &dispatch_block_t,
     );
 }
 
-extern "C" {
-    /// Asynchronously cancel the specified dispatch block object.
-    ///
-    ///
-    /// Cancellation causes any future execution of the dispatch block object to
-    /// return immediately, but does not affect any execution of the block object
-    /// that is already in progress.
-    ///
-    /// Release of any resources associated with the block object will be delayed
-    /// until execution of the block object is next attempted (or any execution
-    /// already in progress completes).
-    ///
-    /// NOTE: care needs to be taken to ensure that a block object that may be
-    /// canceled does not capture any resources that require execution of the
-    /// block body in order to be released (e.g. memory allocated with
-    /// malloc(3) that the block body calls free(3) on). Such resources will
-    /// be leaked if the block body is never executed due to cancellation.
-    ///
-    ///
-    /// Parameter `block`: The dispatch block object to cancel.
-    /// The result of passing NULL or a block object not returned by one of the
-    /// dispatch_block_create* functions is undefined.
-    ///
-    /// # Safety
-    ///
-    /// `block` must be a valid pointer.
-    #[cfg(feature = "block2")]
-    pub fn dispatch_block_cancel(block: dispatch_block_t);
+/// Asynchronously cancel the specified dispatch block object.
+///
+///
+/// Cancellation causes any future execution of the dispatch block object to
+/// return immediately, but does not affect any execution of the block object
+/// that is already in progress.
+///
+/// Release of any resources associated with the block object will be delayed
+/// until execution of the block object is next attempted (or any execution
+/// already in progress completes).
+///
+/// NOTE: care needs to be taken to ensure that a block object that may be
+/// canceled does not capture any resources that require execution of the
+/// block body in order to be released (e.g. memory allocated with
+/// malloc(3) that the block body calls free(3) on). Such resources will
+/// be leaked if the block body is never executed due to cancellation.
+///
+///
+/// Parameter `block`: The dispatch block object to cancel.
+/// The result of passing NULL or a block object not returned by one of the
+/// dispatch_block_create* functions is undefined.
+#[cfg(feature = "block2")]
+#[inline]
+pub extern "C" fn dispatch_block_cancel(block: &dispatch_block_t) {
+    extern "C" {
+        fn dispatch_block_cancel(block: &dispatch_block_t);
+    }
+    unsafe { dispatch_block_cancel(block) }
 }
 
-extern "C" {
-    /// Tests whether the given dispatch block object has been canceled.
-    ///
-    ///
-    /// Parameter `block`: The dispatch block object to test.
-    /// The result of passing NULL or a block object not returned by one of the
-    /// dispatch_block_create* functions is undefined.
-    ///
-    ///
-    /// Returns: Non-zero if canceled and zero if not canceled.
-    ///
-    /// # Safety
-    ///
-    /// `block` must be a valid pointer.
-    #[cfg(feature = "block2")]
-    #[must_use]
-    pub fn dispatch_block_testcancel(block: dispatch_block_t) -> isize;
+/// Tests whether the given dispatch block object has been canceled.
+///
+///
+/// Parameter `block`: The dispatch block object to test.
+/// The result of passing NULL or a block object not returned by one of the
+/// dispatch_block_create* functions is undefined.
+///
+///
+/// Returns: Non-zero if canceled and zero if not canceled.
+#[cfg(feature = "block2")]
+#[must_use]
+#[inline]
+pub extern "C" fn dispatch_block_testcancel(block: &dispatch_block_t) -> isize {
+    extern "C" {
+        fn dispatch_block_testcancel(block: &dispatch_block_t) -> isize;
+    }
+    unsafe { dispatch_block_testcancel(block) }
 }
 
 /// Dispatch sources are used to automatically submit event handler blocks to
@@ -2620,17 +2622,14 @@ impl DispatchSource {
         unsafe { DispatchRetained::from_raw(ret) }
     }
 
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer or null.
     #[doc(alias = "dispatch_source_set_event_handler")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn set_event_handler_with_block(&self, handler: dispatch_block_t) {
+    pub unsafe fn set_event_handler_with_block(&self, handler: Option<&dispatch_block_t>) {
         extern "C" {
             fn dispatch_source_set_event_handler(
                 source: &DispatchSource,
-                handler: dispatch_block_t,
+                handler: Option<&dispatch_block_t>,
             );
         }
         unsafe { dispatch_source_set_event_handler(self, handler) }
@@ -2662,17 +2661,14 @@ impl DispatchSource {
         unsafe { dispatch_source_set_event_handler_f(self, handler) }
     }
 
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer or null.
     #[doc(alias = "dispatch_source_set_cancel_handler")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn set_cancel_handler_with_block(&self, handler: dispatch_block_t) {
+    pub unsafe fn set_cancel_handler_with_block(&self, handler: Option<&dispatch_block_t>) {
         extern "C" {
             fn dispatch_source_set_cancel_handler(
                 source: &DispatchSource,
-                handler: dispatch_block_t,
+                handler: Option<&dispatch_block_t>,
             );
         }
         unsafe { dispatch_source_set_cancel_handler(self, handler) }
@@ -2928,17 +2924,14 @@ impl DispatchSource {
         unsafe { dispatch_source_set_timer(self, start, interval, leeway) }
     }
 
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer or null.
     #[doc(alias = "dispatch_source_set_registration_handler")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn set_registration_handler_with_block(&self, handler: dispatch_block_t) {
+    pub unsafe fn set_registration_handler_with_block(&self, handler: Option<&dispatch_block_t>) {
         extern "C" {
             fn dispatch_source_set_registration_handler(
                 source: &DispatchSource,
-                handler: dispatch_block_t,
+                handler: Option<&dispatch_block_t>,
             );
         }
         unsafe { dispatch_source_set_registration_handler(self, handler) }
@@ -3017,17 +3010,16 @@ impl DispatchGroup {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` must be a valid pointer.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_group_async")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn exec_async_with_block(&self, queue: &DispatchQueue, block: dispatch_block_t) {
+    pub unsafe fn exec_async_with_block(&self, queue: &DispatchQueue, block: &dispatch_block_t) {
         extern "C" {
             fn dispatch_group_async(
                 group: &DispatchGroup,
                 queue: &DispatchQueue,
-                block: dispatch_block_t,
+                block: &dispatch_block_t,
             );
         }
         unsafe { dispatch_group_async(self, queue, block) }
@@ -3119,17 +3111,16 @@ impl DispatchGroup {
 
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `block` must be a valid pointer.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_group_notify")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn notify_with_block(&self, queue: &DispatchQueue, block: dispatch_block_t) {
+    pub unsafe fn notify_with_block(&self, queue: &DispatchQueue, block: &dispatch_block_t) {
         extern "C" {
             fn dispatch_group_notify(
                 group: &DispatchGroup,
                 queue: &DispatchQueue,
-                block: dispatch_block_t,
+                block: &dispatch_block_t,
             );
         }
         unsafe { dispatch_group_notify(self, queue, block) }
@@ -3319,14 +3310,13 @@ pub type dispatch_once_t = isize;
 impl DispatchOnce {
     /// # Safety
     ///
-    /// - `predicate` must be a valid pointer.
-    /// - `block` must be a valid pointer.
+    /// `predicate` must be a valid pointer.
     #[doc(alias = "dispatch_once")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn once_with_block(predicate: NonNull<dispatch_once_t>, block: dispatch_block_t) {
+    pub unsafe fn once_with_block(predicate: NonNull<dispatch_once_t>, block: &dispatch_block_t) {
         extern "C" {
-            fn dispatch_once(predicate: NonNull<dispatch_once_t>, block: dispatch_block_t);
+            fn dispatch_once(predicate: NonNull<dispatch_once_t>, block: &dispatch_block_t);
         }
         unsafe { dispatch_once(predicate, block) }
     }
@@ -3376,13 +3366,13 @@ extern "C" {
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_data_destructor_free?language=objc)
     #[cfg(feature = "block2")]
-    pub static _dispatch_data_destructor_free: dispatch_block_t;
+    pub static _dispatch_data_destructor_free: &'static dispatch_block_t;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/dispatch/_dispatch_data_destructor_munmap?language=objc)
     #[cfg(feature = "block2")]
-    pub static _dispatch_data_destructor_munmap: dispatch_block_t;
+    pub static _dispatch_data_destructor_munmap: &'static dispatch_block_t;
 }
 
 impl DispatchData {
@@ -3414,7 +3404,6 @@ impl DispatchData {
     ///
     /// - `buffer` must be a valid pointer.
     /// - `queue` possibly has additional threading requirements.
-    /// - `destructor` must be a valid pointer or null.
     #[doc(alias = "dispatch_data_create")]
     #[cfg(feature = "block2")]
     #[must_use]
@@ -3423,14 +3412,14 @@ impl DispatchData {
         buffer: NonNull<c_void>,
         size: usize,
         queue: Option<&DispatchQueue>,
-        destructor: dispatch_block_t,
+        destructor: Option<&dispatch_block_t>,
     ) -> DispatchRetained<DispatchData> {
         extern "C" {
             fn dispatch_data_create(
                 buffer: NonNull<c_void>,
                 size: usize,
                 queue: Option<&DispatchQueue>,
-                destructor: dispatch_block_t,
+                destructor: Option<&dispatch_block_t>,
             ) -> Option<NonNull<DispatchData>>;
         }
         let ret = unsafe { dispatch_data_create(buffer, size, queue, destructor) };
@@ -3582,7 +3571,7 @@ impl DispatchData {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_data_applier_t?language=objc)
 #[cfg(feature = "block2")]
 pub type dispatch_data_applier_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<DispatchData>, usize, NonNull<c_void>, usize) -> bool>;
+    block2::DynBlock<dyn Fn(NonNull<DispatchData>, usize, NonNull<c_void>, usize) -> bool>;
 
 impl DispatchData {
     /// Traverse the memory regions represented by the specified dispatch data object
@@ -3605,16 +3594,12 @@ impl DispatchData {
     ///
     /// Returns: A Boolean indicating whether traversal completed
     /// successfully.
-    ///
-    /// # Safety
-    ///
-    /// `applier` must be a valid pointer.
     #[doc(alias = "dispatch_data_apply")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn apply(&self, applier: dispatch_data_applier_t) -> bool {
+    pub fn apply(&self, applier: &dispatch_data_applier_t) -> bool {
         extern "C" {
-            fn dispatch_data_apply(data: &DispatchData, applier: dispatch_data_applier_t) -> bool;
+            fn dispatch_data_apply(data: &DispatchData, applier: &dispatch_data_applier_t) -> bool;
         }
         unsafe { dispatch_data_apply(self, applier) }
     }
@@ -3980,7 +3965,7 @@ impl DispatchIO {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/dispatch/dispatch_io_handler_t?language=objc)
 #[cfg(feature = "block2")]
-pub type dispatch_io_handler_t = *mut block2::DynBlock<dyn Fn(bool, *mut DispatchData, c_int)>;
+pub type dispatch_io_handler_t = block2::DynBlock<dyn Fn(bool, *mut DispatchData, c_int)>;
 
 impl DispatchIO {
     /// Schedule a read operation for asynchronous execution on the specified I/O
@@ -4030,8 +4015,7 @@ impl DispatchIO {
     ///
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `io_handler` must be a valid pointer.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_io_read")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[inline]
@@ -4040,7 +4024,7 @@ impl DispatchIO {
         offset: libc::off_t,
         length: usize,
         queue: &DispatchQueue,
-        io_handler: dispatch_io_handler_t,
+        io_handler: &dispatch_io_handler_t,
     ) {
         extern "C" {
             fn dispatch_io_read(
@@ -4048,7 +4032,7 @@ impl DispatchIO {
                 offset: libc::off_t,
                 length: usize,
                 queue: &DispatchQueue,
-                io_handler: dispatch_io_handler_t,
+                io_handler: &dispatch_io_handler_t,
             );
         }
         unsafe { dispatch_io_read(self, offset, length, queue, io_handler) }
@@ -4102,8 +4086,7 @@ impl DispatchIO {
     ///
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `io_handler` must be a valid pointer.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "dispatch_io_write")]
     #[cfg(all(feature = "block2", feature = "libc"))]
     #[inline]
@@ -4112,7 +4095,7 @@ impl DispatchIO {
         offset: libc::off_t,
         data: &DispatchData,
         queue: &DispatchQueue,
-        io_handler: dispatch_io_handler_t,
+        io_handler: &dispatch_io_handler_t,
     ) {
         extern "C" {
             fn dispatch_io_write(
@@ -4120,7 +4103,7 @@ impl DispatchIO {
                 offset: libc::off_t,
                 data: &DispatchData,
                 queue: &DispatchQueue,
-                io_handler: dispatch_io_handler_t,
+                io_handler: &dispatch_io_handler_t,
             );
         }
         unsafe { dispatch_io_write(self, offset, data, queue, io_handler) }
@@ -4171,16 +4154,12 @@ impl DispatchIO {
     /// Parameter `channel`: The dispatch I/O channel to schedule the barrier on.
     ///
     /// Parameter `barrier`: The barrier block.
-    ///
-    /// # Safety
-    ///
-    /// `barrier` must be a valid pointer.
     #[doc(alias = "dispatch_io_barrier")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn barrier(&self, barrier: dispatch_block_t) {
+    pub fn barrier(&self, barrier: &dispatch_block_t) {
         extern "C" {
-            fn dispatch_io_barrier(channel: &DispatchIO, barrier: dispatch_block_t);
+            fn dispatch_io_barrier(channel: &DispatchIO, barrier: &dispatch_block_t);
         }
         unsafe { dispatch_io_barrier(self, barrier) }
     }

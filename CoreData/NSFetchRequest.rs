@@ -354,7 +354,7 @@ impl<ResultType: Message + NSFetchRequestResult> NSFetchRequest<ResultType> {
 /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nspersistentstoreasynchronousfetchresultcompletionblock?language=objc)
 #[cfg(all(feature = "NSPersistentStoreResult", feature = "block2"))]
 pub type NSPersistentStoreAsynchronousFetchResultCompletionBlock =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSAsynchronousFetchResult>)>;
+    block2::DynBlock<dyn Fn(NonNull<NSAsynchronousFetchResult>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coredata/nsasynchronousfetchrequest?language=objc)
@@ -417,7 +417,7 @@ impl<ResultType: Message + NSFetchRequestResult> NSAsynchronousFetchRequest<Resu
         #[unsafe(method_family = none)]
         pub unsafe fn completionBlock(
             &self,
-        ) -> NSPersistentStoreAsynchronousFetchResultCompletionBlock;
+        ) -> *mut NSPersistentStoreAsynchronousFetchResultCompletionBlock;
 
         #[unsafe(method(estimatedResultCount))]
         #[unsafe(method_family = none)]

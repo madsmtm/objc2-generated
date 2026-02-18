@@ -279,8 +279,7 @@ impl GLKTextureInfo {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloadercallback?language=objc)
 #[cfg(feature = "block2")]
-pub type GLKTextureLoaderCallback =
-    *mut block2::DynBlock<dyn Fn(*mut GLKTextureInfo, *mut NSError)>;
+pub type GLKTextureLoaderCallback = block2::DynBlock<dyn Fn(*mut GLKTextureInfo, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/glkit/glktextureloader?language=objc)
@@ -370,8 +369,7 @@ impl GLKTextureLoader {
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(textureWithContentsOfFile:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfFile_options_queue_completionHandler(
@@ -379,14 +377,13 @@ impl GLKTextureLoader {
             path: &NSString,
             options: Option<&NSDictionary<NSString, NSNumber>>,
             queue: Option<&DispatchQueue>,
-            block: GLKTextureLoaderCallback,
+            block: &GLKTextureLoaderCallback,
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(textureWithContentsOfURL:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfURL_options_queue_completionHandler(
@@ -394,7 +391,7 @@ impl GLKTextureLoader {
             url: &NSURL,
             options: Option<&NSDictionary<NSString, NSNumber>>,
             queue: Option<&DispatchQueue>,
-            block: GLKTextureLoaderCallback,
+            block: &GLKTextureLoaderCallback,
         );
 
         #[cfg(all(
@@ -404,8 +401,7 @@ impl GLKTextureLoader {
         ))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(textureWithName:scaleFactor:bundle:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithName_scaleFactor_bundle_options_queue_completionHandler(
@@ -415,14 +411,13 @@ impl GLKTextureLoader {
             bundle: Option<&NSBundle>,
             options: Option<&NSDictionary<NSString, NSNumber>>,
             queue: Option<&DispatchQueue>,
-            block: GLKTextureLoaderCallback,
+            block: &GLKTextureLoaderCallback,
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(textureWithContentsOfData:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithContentsOfData_options_queue_completionHandler(
@@ -430,7 +425,7 @@ impl GLKTextureLoader {
             data: &NSData,
             options: Option<&NSDictionary<NSString, NSNumber>>,
             queue: Option<&DispatchQueue>,
-            block: GLKTextureLoaderCallback,
+            block: &GLKTextureLoaderCallback,
         );
 
         #[cfg(all(
@@ -440,8 +435,7 @@ impl GLKTextureLoader {
         ))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(textureWithCGImage:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn textureWithCGImage_options_queue_completionHandler(
@@ -449,7 +443,7 @@ impl GLKTextureLoader {
             cg_image: &CGImage,
             options: Option<&NSDictionary<NSString, NSNumber>>,
             queue: Option<&DispatchQueue>,
-            block: GLKTextureLoaderCallback,
+            block: &GLKTextureLoaderCallback,
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
@@ -457,7 +451,6 @@ impl GLKTextureLoader {
         ///
         /// - `paths` generic should be of the correct type.
         /// - `queue` possibly has additional threading requirements.
-        /// - `block` must be a valid pointer.
         #[unsafe(method(cubeMapWithContentsOfFiles:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfFiles_options_queue_completionHandler(
@@ -465,14 +458,13 @@ impl GLKTextureLoader {
             paths: &NSArray<AnyObject>,
             options: Option<&NSDictionary<NSString, NSNumber>>,
             queue: Option<&DispatchQueue>,
-            block: GLKTextureLoaderCallback,
+            block: &GLKTextureLoaderCallback,
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(cubeMapWithContentsOfFile:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfFile_options_queue_completionHandler(
@@ -480,14 +472,13 @@ impl GLKTextureLoader {
             path: &NSString,
             options: Option<&NSDictionary<NSString, NSNumber>>,
             queue: Option<&DispatchQueue>,
-            block: GLKTextureLoaderCallback,
+            block: &GLKTextureLoaderCallback,
         );
 
         #[cfg(all(feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(cubeMapWithContentsOfURL:options:queue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn cubeMapWithContentsOfURL_options_queue_completionHandler(
@@ -495,7 +486,7 @@ impl GLKTextureLoader {
             url: &NSURL,
             options: Option<&NSDictionary<NSString, NSNumber>>,
             queue: Option<&DispatchQueue>,
-            block: GLKTextureLoaderCallback,
+            block: &GLKTextureLoaderCallback,
         );
     );
 }

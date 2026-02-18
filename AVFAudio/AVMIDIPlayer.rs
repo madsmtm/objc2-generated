@@ -11,7 +11,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avmidiplayercompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type AVMIDIPlayerCompletionHandler = *mut block2::DynBlock<dyn Fn()>;
+pub type AVMIDIPlayerCompletionHandler = block2::DynBlock<dyn Fn()>;
 
 extern_class!(
     /// A player for music file formats (MIDI, iMelody).
@@ -63,13 +63,9 @@ impl AVMIDIPlayer {
 
         #[cfg(feature = "block2")]
         /// Play the sequence.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(play:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn play(&self, completion_handler: AVMIDIPlayerCompletionHandler);
+        pub unsafe fn play(&self, completion_handler: Option<&AVMIDIPlayerCompletionHandler>);
 
         /// Stop playing the sequence.
         #[unsafe(method(stop))]

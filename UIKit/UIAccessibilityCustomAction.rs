@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomactionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type UIAccessibilityCustomActionHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<UIAccessibilityCustomAction>) -> Bool>;
+    block2::DynBlock<dyn Fn(NonNull<UIAccessibilityCustomAction>) -> Bool>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaccessibilitycustomaction?language=objc)
@@ -83,53 +83,41 @@ impl UIAccessibilityCustomAction {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `action_handler` must be a valid pointer.
         #[unsafe(method(initWithName:actionHandler:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithName_actionHandler(
+        pub fn initWithName_actionHandler(
             this: Allocated<Self>,
             name: &NSString,
-            action_handler: UIAccessibilityCustomActionHandler,
+            action_handler: &UIAccessibilityCustomActionHandler,
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `action_handler` must be a valid pointer.
         #[unsafe(method(initWithAttributedName:actionHandler:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithAttributedName_actionHandler(
+        pub fn initWithAttributedName_actionHandler(
             this: Allocated<Self>,
             attributed_name: &NSAttributedString,
-            action_handler: UIAccessibilityCustomActionHandler,
+            action_handler: &UIAccessibilityCustomActionHandler,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `action_handler` must be a valid pointer.
         #[unsafe(method(initWithName:image:actionHandler:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithName_image_actionHandler(
+        pub fn initWithName_image_actionHandler(
             this: Allocated<Self>,
             name: &NSString,
             image: Option<&UIImage>,
-            action_handler: UIAccessibilityCustomActionHandler,
+            action_handler: &UIAccessibilityCustomActionHandler,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `action_handler` must be a valid pointer.
         #[unsafe(method(initWithAttributedName:image:actionHandler:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithAttributedName_image_actionHandler(
+        pub fn initWithAttributedName_image_actionHandler(
             this: Allocated<Self>,
             attributed_name: &NSAttributedString,
             image: Option<&UIImage>,
-            action_handler: UIAccessibilityCustomActionHandler,
+            action_handler: &UIAccessibilityCustomActionHandler,
         ) -> Retained<Self>;
 
         #[unsafe(method(name))]
@@ -203,19 +191,15 @@ impl UIAccessibilityCustomAction {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(actionHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn actionHandler(&self) -> UIAccessibilityCustomActionHandler;
+        pub unsafe fn actionHandler(&self) -> *mut UIAccessibilityCustomActionHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`actionHandler`][Self::actionHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `action_handler` must be a valid pointer or null.
         #[unsafe(method(setActionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setActionHandler(&self, action_handler: UIAccessibilityCustomActionHandler);
+        pub fn setActionHandler(&self, action_handler: Option<&UIAccessibilityCustomActionHandler>);
 
         #[unsafe(method(category))]
         #[unsafe(method_family = none)]

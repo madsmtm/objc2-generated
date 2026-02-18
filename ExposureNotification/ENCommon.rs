@@ -321,7 +321,7 @@ pub const ENRiskWeightMaxV2: c_uint = 250;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enerrorhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type ENErrorHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
+pub type ENErrorHandler = block2::DynBlock<dyn Fn(*mut NSError)>;
 
 extern_class!(
     /// Configuration parameters for exposure detection.

@@ -204,7 +204,7 @@ unsafe impl RefEncode for AVAudioConverterOutputStatus {
     feature = "AVAudioTypes",
     feature = "block2"
 ))]
-pub type AVAudioConverterInputBlock = *mut block2::DynBlock<
+pub type AVAudioConverterInputBlock = block2::DynBlock<
     dyn Fn(AVAudioPacketCount, NonNull<AVAudioConverterInputStatus>) -> *mut AVAudioBuffer,
 >;
 
@@ -573,14 +573,14 @@ impl AVAudioConverter {
         ///
         /// # Safety
         ///
-        /// `input_block` must be a valid pointer.
+        /// `input_block` block must be sendable.
         #[unsafe(method(convertToBuffer:error:withInputFromBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn convertToBuffer_error_withInputFromBlock(
             &self,
             output_buffer: &AVAudioBuffer,
             out_error: Option<&mut Option<Retained<NSError>>>,
-            input_block: AVAudioConverterInputBlock,
+            input_block: &AVAudioConverterInputBlock,
         ) -> AVAudioConverterOutputStatus;
     );
 }

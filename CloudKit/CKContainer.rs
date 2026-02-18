@@ -262,35 +262,29 @@ unsafe impl RefEncode for CKApplicationPermissionStatus {
 #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
 #[cfg(feature = "block2")]
 pub type CKApplicationPermissionBlock =
-    *mut block2::DynBlock<dyn Fn(CKApplicationPermissionStatus, *mut NSError)>;
+    block2::DynBlock<dyn Fn(CKApplicationPermissionStatus, *mut NSError)>;
 
 /// ApplicationPermission.
 impl CKContainer {
     extern_methods!(
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(statusForApplicationPermission:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn statusForApplicationPermission_completionHandler(
             &self,
             application_permission: CKApplicationPermissions,
-            completion_handler: CKApplicationPermissionBlock,
+            completion_handler: &CKApplicationPermissionBlock,
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[deprecated = "No longer supported. Please see Sharing CloudKit Data with Other iCloud Users."]
         #[unsafe(method(requestApplicationPermission:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestApplicationPermission_completionHandler(
             &self,
             application_permission: CKApplicationPermissions,
-            completion_handler: CKApplicationPermissionBlock,
+            completion_handler: &CKApplicationPermissionBlock,
         );
     );
 }

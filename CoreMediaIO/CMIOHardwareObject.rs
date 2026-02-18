@@ -125,7 +125,7 @@ pub type CMIOObjectPropertyListenerProc = Option<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremediaio/cmioobjectpropertylistenerblock?language=objc)
 #[cfg(feature = "block2")]
 pub type CMIOObjectPropertyListenerBlock =
-    *mut block2::DynBlock<dyn Fn(u32, *mut CMIOObjectPropertyAddress)>;
+    block2::DynBlock<dyn Fn(u32, *mut CMIOObjectPropertyAddress)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremediaio/kcmioobjectpropertyscopeglobal?language=objc)
 pub const kCMIOObjectPropertyScopeGlobal: c_uint = 0x676c6f62;
@@ -394,13 +394,13 @@ extern "C-unwind" {
     /// - `address` must be a valid pointer.
     /// - `dispatch_queue` possibly has additional threading requirements.
     /// - `dispatch_queue` might not allow `None`.
-    /// - `listener` must be a valid pointer.
+    /// - `listener` might not allow `None`.
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn CMIOObjectAddPropertyListenerBlock(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
         dispatch_queue: Option<&DispatchQueue>,
-        listener: CMIOObjectPropertyListenerBlock,
+        listener: Option<&CMIOObjectPropertyListenerBlock>,
     ) -> OSStatus;
 }
 
@@ -424,12 +424,12 @@ extern "C-unwind" {
     /// - `address` must be a valid pointer.
     /// - `dispatch_queue` possibly has additional threading requirements.
     /// - `dispatch_queue` might not allow `None`.
-    /// - `listener` must be a valid pointer.
+    /// - `listener` might not allow `None`.
     #[cfg(all(feature = "block2", feature = "dispatch2"))]
     pub fn CMIOObjectRemovePropertyListenerBlock(
         object_id: CMIOObjectID,
         address: *const CMIOObjectPropertyAddress,
         dispatch_queue: Option<&DispatchQueue>,
-        listener: CMIOObjectPropertyListenerBlock,
+        listener: Option<&CMIOObjectPropertyListenerBlock>,
     ) -> OSStatus;
 }

@@ -46,7 +46,7 @@ pub type CVDisplayLinkOutputCallback = Option<
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corevideo/cvdisplaylinkoutputhandler?language=objc)
 #[cfg(all(feature = "CVBase", feature = "CVReturn", feature = "block2"))]
-pub type CVDisplayLinkOutputHandler = *mut block2::DynBlock<
+pub type CVDisplayLinkOutputHandler = block2::DynBlock<
     dyn Fn(
         NonNull<CVDisplayLink>,
         NonNull<CVTimeStamp>,
@@ -309,19 +309,15 @@ impl CVDisplayLink {
     /// Parameter `handler`: CVDisplayLinkOutputHandler block
     ///
     /// Returns: CVReturn. kCVReturnSuccess if successful.
-    ///
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer.
     #[doc(alias = "CVDisplayLinkSetOutputHandler")]
     #[cfg(all(feature = "CVBase", feature = "CVReturn", feature = "block2"))]
     #[deprecated = "use NSView.displayLink(target:selector:), NSWindow.displayLink(target:selector:), or NSScreen.displayLink(target:selector:) "]
     #[inline]
-    pub unsafe fn set_output_handler(&self, handler: CVDisplayLinkOutputHandler) -> CVReturn {
+    pub fn set_output_handler(&self, handler: &CVDisplayLinkOutputHandler) -> CVReturn {
         extern "C-unwind" {
             fn CVDisplayLinkSetOutputHandler(
                 display_link: &CVDisplayLink,
-                handler: CVDisplayLinkOutputHandler,
+                handler: &CVDisplayLinkOutputHandler,
             ) -> CVReturn;
         }
         unsafe { CVDisplayLinkSetOutputHandler(self, handler) }

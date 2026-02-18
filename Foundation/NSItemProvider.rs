@@ -122,7 +122,7 @@ extern_protocol!(
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemprovidercompletionhandler?language=objc)
 #[cfg(all(feature = "NSError", feature = "NSObject", feature = "block2"))]
 pub type NSItemProviderCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn NSSecureCoding>, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/foundation/nsitemproviderloadhandler?language=objc)
 #[cfg(all(
@@ -131,8 +131,8 @@ pub type NSItemProviderCompletionHandler =
     feature = "NSObject",
     feature = "block2"
 ))]
-pub type NSItemProviderLoadHandler = *mut block2::DynBlock<
-    dyn Fn(NSItemProviderCompletionHandler, *const AnyClass, *mut NSDictionary),
+pub type NSItemProviderLoadHandler = block2::DynBlock<
+    dyn Fn(*mut NSItemProviderCompletionHandler, *const AnyClass, *mut NSDictionary),
 >;
 
 extern_class!(
@@ -394,13 +394,13 @@ impl NSItemProvider {
         ))]
         /// # Safety
         ///
-        /// `load_handler` must be a valid pointer.
+        /// `load_handler` block must be sendable.
         #[unsafe(method(registerItemForTypeIdentifier:loadHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerItemForTypeIdentifier_loadHandler(
             &self,
             type_identifier: &NSString,
-            load_handler: NSItemProviderLoadHandler,
+            load_handler: &NSItemProviderLoadHandler,
         );
 
         #[cfg(all(
@@ -413,14 +413,14 @@ impl NSItemProvider {
         /// # Safety
         ///
         /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer or null.
+        /// - `completion_handler` block must be sendable.
         #[unsafe(method(loadItemForTypeIdentifier:options:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadItemForTypeIdentifier_options_completionHandler(
             &self,
             type_identifier: &NSString,
             options: Option<&NSDictionary>,
-            completion_handler: NSItemProviderCompletionHandler,
+            completion_handler: Option<&NSItemProviderCompletionHandler>,
         );
     );
 }
@@ -461,7 +461,7 @@ impl NSItemProvider {
         /// The returned block must be sendable.
         #[unsafe(method(previewImageHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn previewImageHandler(&self) -> NSItemProviderLoadHandler;
+        pub unsafe fn previewImageHandler(&self) -> *mut NSItemProviderLoadHandler;
 
         #[cfg(all(
             feature = "NSDictionary",
@@ -475,12 +475,12 @@ impl NSItemProvider {
         ///
         /// # Safety
         ///
-        /// `preview_image_handler` must be a valid pointer or null.
+        /// `preview_image_handler` block must be sendable.
         #[unsafe(method(setPreviewImageHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setPreviewImageHandler(
             &self,
-            preview_image_handler: NSItemProviderLoadHandler,
+            preview_image_handler: Option<&NSItemProviderLoadHandler>,
         );
 
         #[cfg(all(
@@ -493,13 +493,14 @@ impl NSItemProvider {
         ///
         /// - `options` generic should be of the correct type.
         /// - `options` might not allow `None`.
-        /// - `completion_handler` must be a valid pointer.
+        /// - `completion_handler` block must be sendable.
+        /// - `completion_handler` might not allow `None`.
         #[unsafe(method(loadPreviewImageWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn loadPreviewImageWithOptions_completionHandler(
             &self,
             options: Option<&NSDictionary>,
-            completion_handler: NSItemProviderCompletionHandler,
+            completion_handler: Option<&NSItemProviderCompletionHandler>,
         );
     );
 }

@@ -210,7 +210,7 @@ pub type SecTransformStringOrAttribute = CFType;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformactionblock?language=objc)
 #[deprecated = "SecTransform is no longer supported"]
 #[cfg(feature = "block2")]
-pub type SecTransformActionBlock = *mut block2::DynBlock<dyn Fn() -> *const CFType>;
+pub type SecTransformActionBlock = block2::DynBlock<dyn Fn() -> *const CFType>;
 
 /// A block used to override the default attribute handling
 /// for when an attribute is set.
@@ -236,7 +236,7 @@ pub type SecTransformActionBlock = *mut block2::DynBlock<dyn Fn() -> *const CFTy
 #[deprecated = "SecTransform is no longer supported"]
 #[cfg(feature = "block2")]
 pub type SecTransformAttributeActionBlock =
-    *mut block2::DynBlock<dyn Fn(NonNull<SecTransformAttribute>, NonNull<CFType>) -> *const CFType>;
+    block2::DynBlock<dyn Fn(NonNull<SecTransformAttribute>, NonNull<CFType>) -> *const CFType>;
 
 /// A block used to override the default data handling
 /// for a transform.
@@ -266,7 +266,7 @@ pub type SecTransformAttributeActionBlock =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransformdatablock?language=objc)
 #[cfg(feature = "block2")]
-pub type SecTransformDataBlock = *mut block2::DynBlock<dyn Fn(NonNull<CFType>) -> *const CFType>;
+pub type SecTransformDataBlock = block2::DynBlock<dyn Fn(NonNull<CFType>) -> *const CFType>;
 
 /// This is the block that is returned from an
 /// implementation of a CreateTransform function.
@@ -282,7 +282,7 @@ pub type SecTransformDataBlock = *mut block2::DynBlock<dyn Fn(NonNull<CFType>) -
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectransforminstanceblock?language=objc)
 #[cfg(feature = "block2")]
-pub type SecTransformInstanceBlock = *mut block2::DynBlock<dyn Fn() -> *mut CFError>;
+pub type SecTransformInstanceBlock = block2::DynBlock<dyn Fn() -> *mut CFError>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/security/opaquesectransformimplementation?language=objc)
 #[repr(C)]
@@ -356,7 +356,7 @@ pub type SecTransformImplementationRef = *const OpaqueSecTransformImplementation
 ///
 /// - `ref` must be a valid pointer.
 /// - `attribute` should be of the correct type.
-/// - `new_action` must be a valid pointer.
+/// - `new_action` block's return must be a valid pointer or null.
 #[cfg(feature = "block2")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
@@ -364,14 +364,14 @@ pub unsafe extern "C-unwind" fn SecTransformSetAttributeAction(
     r#ref: SecTransformImplementationRef,
     action: &CFString,
     attribute: Option<&SecTransformStringOrAttribute>,
-    new_action: SecTransformAttributeActionBlock,
+    new_action: &SecTransformAttributeActionBlock,
 ) -> Option<CFRetained<CFError>> {
     extern "C-unwind" {
         fn SecTransformSetAttributeAction(
             r#ref: SecTransformImplementationRef,
             action: &CFString,
             attribute: Option<&SecTransformStringOrAttribute>,
-            new_action: SecTransformAttributeActionBlock,
+            new_action: &SecTransformAttributeActionBlock,
         ) -> Option<NonNull<CFError>>;
     }
     let ret = unsafe { SecTransformSetAttributeAction(r#ref, action, attribute, new_action) };
@@ -430,20 +430,20 @@ pub unsafe extern "C-unwind" fn SecTransformSetAttributeAction(
 /// # Safety
 ///
 /// - `ref` must be a valid pointer.
-/// - `new_action` must be a valid pointer.
+/// - `new_action` block's return must be a valid pointer or null.
 #[cfg(feature = "block2")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformSetDataAction(
     r#ref: SecTransformImplementationRef,
     action: &CFString,
-    new_action: SecTransformDataBlock,
+    new_action: &SecTransformDataBlock,
 ) -> Option<CFRetained<CFError>> {
     extern "C-unwind" {
         fn SecTransformSetDataAction(
             r#ref: SecTransformImplementationRef,
             action: &CFString,
-            new_action: SecTransformDataBlock,
+            new_action: &SecTransformDataBlock,
         ) -> Option<NonNull<CFError>>;
     }
     let ret = unsafe { SecTransformSetDataAction(r#ref, action, new_action) };
@@ -453,20 +453,20 @@ pub unsafe extern "C-unwind" fn SecTransformSetDataAction(
 /// # Safety
 ///
 /// - `ref` must be a valid pointer.
-/// - `new_action` must be a valid pointer.
+/// - `new_action` block's return must be a valid pointer or null.
 #[cfg(feature = "block2")]
 #[deprecated = "SecTransform is no longer supported"]
 #[inline]
 pub unsafe extern "C-unwind" fn SecTransformSetTransformAction(
     r#ref: SecTransformImplementationRef,
     action: &CFString,
-    new_action: SecTransformActionBlock,
+    new_action: &SecTransformActionBlock,
 ) -> Option<CFRetained<CFError>> {
     extern "C-unwind" {
         fn SecTransformSetTransformAction(
             r#ref: SecTransformImplementationRef,
             action: &CFString,
-            new_action: SecTransformActionBlock,
+            new_action: &SecTransformActionBlock,
         ) -> Option<NonNull<CFError>>;
     }
     let ret = unsafe { SecTransformSetTransformAction(r#ref, action, new_action) };
@@ -680,7 +680,7 @@ pub type SecTransformCreateFP = Option<
         NonNull<CFString>,
         NonNull<SecTransform>,
         SecTransformImplementationRef,
-    ) -> SecTransformInstanceBlock,
+    ) -> NonNull<SecTransformInstanceBlock>,
 >;
 
 extern "C" {

@@ -368,18 +368,14 @@ impl UIImageView {
             feature = "objc2-symbols"
         ))]
         /// Adds a symbol effect to the image view with specified options, animation, and completion handler.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(addSymbolEffect:options:animated:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addSymbolEffect_options_animated_completion(
+        pub fn addSymbolEffect_options_animated_completion(
             &self,
             symbol_effect: &NSSymbolEffect,
             options: &NSSymbolEffectOptions,
             animated: bool,
-            completion_handler: UISymbolEffectCompletion,
+            completion_handler: Option<&UISymbolEffectCompletion>,
         );
 
         #[cfg(feature = "objc2-symbols")]
@@ -415,18 +411,14 @@ impl UIImageView {
             feature = "objc2-symbols"
         ))]
         /// Removes from the image view the symbol effect matching the type of effect passed in, with specified options, animation, and completion handler.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(removeSymbolEffectOfType:options:animated:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn removeSymbolEffectOfType_options_animated_completion(
+        pub fn removeSymbolEffectOfType_options_animated_completion(
             &self,
             symbol_effect: &NSSymbolEffect,
             options: &NSSymbolEffectOptions,
             animated: bool,
-            completion_handler: UISymbolEffectCompletion,
+            completion_handler: Option<&UISymbolEffectCompletion>,
         );
 
         /// Removes all symbol effects from the image view with default options and animation.
@@ -481,18 +473,14 @@ impl UIImageView {
         ))]
         /// Sets the symbol image on the image view with a symbol content transition, options, and completion handler.
         /// Passing in a non-symbol image will result in undefined behavior.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(setSymbolImage:withContentTransition:options:completion:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setSymbolImage_withContentTransition_options_completion(
+        pub fn setSymbolImage_withContentTransition_options_completion(
             &self,
             symbol_image: &UIImage,
             transition: &NSSymbolContentTransition,
             options: &NSSymbolEffectOptions,
-            completion_handler: UISymbolEffectCompletion,
+            completion_handler: Option<&UISymbolEffectCompletion>,
         );
     );
 }

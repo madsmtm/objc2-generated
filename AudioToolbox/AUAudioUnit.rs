@@ -88,7 +88,7 @@ unsafe impl RefEncode for AUAudioUnitBusType {
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AURenderPullInputBlock = *mut block2::DynBlock<
+pub type AURenderPullInputBlock = block2::DynBlock<
     dyn Fn(
         NonNull<AudioUnitRenderActionFlags>,
         NonNull<AudioTimeStamp>,
@@ -134,14 +134,14 @@ pub type AURenderPullInputBlock = *mut block2::DynBlock<
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AURenderBlock = *mut block2::DynBlock<
+pub type AURenderBlock = block2::DynBlock<
     dyn Fn(
         NonNull<AudioUnitRenderActionFlags>,
         NonNull<AudioTimeStamp>,
         AUAudioFrameCount,
         NSInteger,
         NonNull<AudioBufferList>,
-        AURenderPullInputBlock,
+        *mut AURenderPullInputBlock,
     ) -> AUAudioUnitStatus,
 >;
 
@@ -159,7 +159,7 @@ pub type AURenderBlock = *mut block2::DynBlock<
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AURenderObserver = *mut block2::DynBlock<
+pub type AURenderObserver = block2::DynBlock<
     dyn Fn(AudioUnitRenderActionFlags, NonNull<AudioTimeStamp>, AUAudioFrameCount, NSInteger),
 >;
 
@@ -189,9 +189,8 @@ pub type AURenderObserver = *mut block2::DynBlock<
     feature = "AudioUnitProperties",
     feature = "block2"
 ))]
-pub type AUScheduleParameterBlock = *mut block2::DynBlock<
-    dyn Fn(AUEventSampleTime, AUAudioFrameCount, AUParameterAddress, AUValue),
->;
+pub type AUScheduleParameterBlock =
+    block2::DynBlock<dyn Fn(AUEventSampleTime, AUAudioFrameCount, AUParameterAddress, AUValue)>;
 
 /// Block to schedule MIDI events.
 ///
@@ -210,7 +209,7 @@ pub type AUScheduleParameterBlock = *mut block2::DynBlock<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auschedulemidieventblock?language=objc)
 #[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
 pub type AUScheduleMIDIEventBlock =
-    *mut block2::DynBlock<dyn Fn(AUEventSampleTime, u8, NSInteger, NonNull<u8>)>;
+    block2::DynBlock<dyn Fn(AUEventSampleTime, u8, NSInteger, NonNull<u8>)>;
 
 /// Block to provide MIDI output events to the host.
 ///
@@ -226,7 +225,7 @@ pub type AUScheduleMIDIEventBlock =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidioutputeventblock?language=objc)
 #[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
 pub type AUMIDIOutputEventBlock =
-    *mut block2::DynBlock<dyn Fn(AUEventSampleTime, u8, NSInteger, NonNull<u8>) -> OSStatus>;
+    block2::DynBlock<dyn Fn(AUEventSampleTime, u8, NSInteger, NonNull<u8>) -> OSStatus>;
 
 /// Block by which hosts provide musical tempo, time signature, and beat position.
 ///
@@ -254,7 +253,7 @@ pub type AUMIDIOutputEventBlock =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhostmusicalcontextblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AUHostMusicalContextBlock = *mut block2::DynBlock<
+pub type AUHostMusicalContextBlock = block2::DynBlock<
     dyn Fn(
         *mut c_double,
         *mut c_double,
@@ -279,7 +278,7 @@ pub type AUHostMusicalContextBlock = *mut block2::DynBlock<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/aumidiciprofilechangedblock?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-midi"))]
 pub type AUMIDICIProfileChangedBlock =
-    *mut block2::DynBlock<dyn Fn(u8, MIDIChannelNumber, NonNull<MIDICIProfile>, Bool)>;
+    block2::DynBlock<dyn Fn(u8, MIDIChannelNumber, NonNull<MIDICIProfile>, Bool)>;
 
 /// Flags describing the host's transport state.
 ///
@@ -340,7 +339,7 @@ unsafe impl RefEncode for AUHostTransportStateFlags {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/auhosttransportstateblock?language=objc)
 #[cfg(feature = "block2")]
-pub type AUHostTransportStateBlock = *mut block2::DynBlock<
+pub type AUHostTransportStateBlock = block2::DynBlock<
     dyn Fn(*mut AUHostTransportStateFlags, *mut c_double, *mut c_double, *mut c_double) -> Bool,
 >;
 
@@ -567,7 +566,7 @@ impl AUAudioUnit {
         /// - The returned block's argument 6 must be a valid pointer or null.
         #[unsafe(method(renderBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn renderBlock(&self) -> AURenderBlock;
+        pub unsafe fn renderBlock(&self) -> NonNull<AURenderBlock>;
 
         #[cfg(all(
             feature = "AUParameters",
@@ -588,7 +587,7 @@ impl AUAudioUnit {
         /// Bridged to the v2 API AudioUnitScheduleParameters().
         #[unsafe(method(scheduleParameterBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scheduleParameterBlock(&self) -> AUScheduleParameterBlock;
+        pub unsafe fn scheduleParameterBlock(&self) -> NonNull<AUScheduleParameterBlock>;
 
         #[cfg(all(
             feature = "AUComponent",
@@ -607,13 +606,9 @@ impl AUAudioUnit {
         /// Parameter `observer`: The block to call.
         ///
         /// Returns: A token to be used when removing the observer.
-        ///
-        /// # Safety
-        ///
-        /// `observer` must be a valid pointer.
         #[unsafe(method(tokenByAddingRenderObserver:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn tokenByAddingRenderObserver(&self, observer: AURenderObserver) -> NSInteger;
+        pub unsafe fn tokenByAddingRenderObserver(&self, observer: &AURenderObserver) -> NSInteger;
 
         /// Remove an observer block added via tokenByAddingRenderObserver:
         ///
@@ -735,7 +730,7 @@ impl AUAudioUnit {
         /// The returned block's argument 4 must be a valid pointer.
         #[unsafe(method(scheduleMIDIEventBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn scheduleMIDIEventBlock(&self) -> AUScheduleMIDIEventBlock;
+        pub unsafe fn scheduleMIDIEventBlock(&self) -> *mut AUScheduleMIDIEventBlock;
 
         /// Count, and names of, a plug-in's MIDI outputs.
         ///
@@ -781,21 +776,17 @@ impl AUAudioUnit {
         /// The returned block's argument 4 must be a valid pointer.
         #[unsafe(method(MIDIOutputEventBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn MIDIOutputEventBlock(&self) -> AUMIDIOutputEventBlock;
+        pub unsafe fn MIDIOutputEventBlock(&self) -> *mut AUMIDIOutputEventBlock;
 
         #[cfg(all(feature = "AudioUnitProperties", feature = "block2"))]
         /// Setter for [`MIDIOutputEventBlock`][Self::MIDIOutputEventBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `midi_output_event_block` must be a valid pointer or null.
         #[unsafe(method(setMIDIOutputEventBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMIDIOutputEventBlock(
             &self,
-            midi_output_event_block: AUMIDIOutputEventBlock,
+            midi_output_event_block: Option<&AUMIDIOutputEventBlock>,
         );
 
         #[cfg(feature = "objc2-core-midi")]
@@ -1224,21 +1215,17 @@ impl AUAudioUnit {
         /// - The returned block's argument 6 must be a valid pointer or null.
         #[unsafe(method(musicalContextBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn musicalContextBlock(&self) -> AUHostMusicalContextBlock;
+        pub unsafe fn musicalContextBlock(&self) -> *mut AUHostMusicalContextBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`musicalContextBlock`][Self::musicalContextBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `musical_context_block` must be a valid pointer or null.
         #[unsafe(method(setMusicalContextBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setMusicalContextBlock(
             &self,
-            musical_context_block: AUHostMusicalContextBlock,
+            musical_context_block: Option<&AUHostMusicalContextBlock>,
         );
 
         #[cfg(feature = "block2")]
@@ -1258,21 +1245,17 @@ impl AUAudioUnit {
         /// - The returned block's argument 4 must be a valid pointer or null.
         #[unsafe(method(transportStateBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn transportStateBlock(&self) -> AUHostTransportStateBlock;
+        pub unsafe fn transportStateBlock(&self) -> *mut AUHostTransportStateBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`transportStateBlock`][Self::transportStateBlock].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `transport_state_block` must be a valid pointer or null.
         #[unsafe(method(setTransportStateBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTransportStateBlock(
             &self,
-            transport_state_block: AUHostTransportStateBlock,
+            transport_state_block: Option<&AUHostTransportStateBlock>,
         );
 
         /// Information about the host context in which the audio unit is connected, for display
@@ -1409,19 +1392,15 @@ impl AUAudioUnit {
         /// The returned block's argument 3 must be a valid pointer.
         #[unsafe(method(profileChangedBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn profileChangedBlock(&self) -> AUMIDICIProfileChangedBlock;
+        pub unsafe fn profileChangedBlock(&self) -> *mut AUMIDICIProfileChangedBlock;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-midi"))]
         /// Setter for [`profileChangedBlock`][Self::profileChangedBlock].
-        ///
-        /// # Safety
-        ///
-        /// `profile_changed_block` must be a valid pointer or null.
         #[unsafe(method(setProfileChangedBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProfileChangedBlock(
             &self,
-            profile_changed_block: AUMIDICIProfileChangedBlock,
+            profile_changed_block: Option<&AUMIDICIProfileChangedBlock>,
         );
 
         /// Returns an object for bidirectional communication between an Audio Unit and its host.
@@ -1473,7 +1452,7 @@ impl AUAudioUnit {
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AUInputHandler = *mut block2::DynBlock<
+pub type AUInputHandler = block2::DynBlock<
     dyn Fn(
         NonNull<AudioUnitRenderActionFlags>,
         NonNull<AudioTimeStamp>,
@@ -1541,7 +1520,7 @@ impl AUAudioUnit {
         /// - The returned block's argument 5 must be a valid pointer.
         #[unsafe(method(outputProvider))]
         #[unsafe(method_family = none)]
-        pub unsafe fn outputProvider(&self) -> AURenderPullInputBlock;
+        pub unsafe fn outputProvider(&self) -> *mut AURenderPullInputBlock;
 
         #[cfg(all(
             feature = "AUComponent",
@@ -1551,13 +1530,9 @@ impl AUAudioUnit {
         /// Setter for [`outputProvider`][Self::outputProvider].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `output_provider` must be a valid pointer or null.
         #[unsafe(method(setOutputProvider:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setOutputProvider(&self, output_provider: AURenderPullInputBlock);
+        pub unsafe fn setOutputProvider(&self, output_provider: Option<&AURenderPullInputBlock>);
 
         #[cfg(all(
             feature = "AUComponent",
@@ -1574,7 +1549,7 @@ impl AUAudioUnit {
         /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(inputHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn inputHandler(&self) -> AUInputHandler;
+        pub unsafe fn inputHandler(&self) -> *mut AUInputHandler;
 
         #[cfg(all(
             feature = "AUComponent",
@@ -1584,13 +1559,9 @@ impl AUAudioUnit {
         /// Setter for [`inputHandler`][Self::inputHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `input_handler` must be a valid pointer or null.
         #[unsafe(method(setInputHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInputHandler(&self, input_handler: AUInputHandler);
+        pub unsafe fn setInputHandler(&self, input_handler: Option<&AUInputHandler>);
 
         /// Get the I/O hardware device.
         #[unsafe(method(deviceID))]
@@ -2004,8 +1975,7 @@ impl AUAudioUnitPreset {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/audiotoolbox/callhostblock?language=objc)
 #[cfg(feature = "block2")]
-pub type CallHostBlock =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSDictionary>) -> NonNull<NSDictionary>>;
+pub type CallHostBlock = block2::DynBlock<dyn Fn(NonNull<NSDictionary>) -> NonNull<NSDictionary>>;
 
 extern_protocol!(
     /// The protocol which objects returned from `[AUAudioUnit messageChannelFor:]` have to conform to.
@@ -2045,7 +2015,7 @@ extern_protocol!(
         #[optional]
         #[unsafe(method(callHostBlock))]
         #[unsafe(method_family = none)]
-        unsafe fn callHostBlock(&self) -> CallHostBlock;
+        unsafe fn callHostBlock(&self) -> *mut CallHostBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`callHostBlock`][Self::callHostBlock].
@@ -2054,11 +2024,11 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `call_host_block` must be a valid pointer or null.
+        /// `call_host_block` block's return must be a valid pointer.
         #[optional]
         #[unsafe(method(setCallHostBlock:))]
         #[unsafe(method_family = none)]
-        unsafe fn setCallHostBlock(&self, call_host_block: CallHostBlock);
+        unsafe fn setCallHostBlock(&self, call_host_block: Option<&CallHostBlock>);
     }
 );
 

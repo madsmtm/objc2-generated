@@ -1046,7 +1046,7 @@ impl PHASEPushStreamNode {
     feature = "objc2-avf-audio",
     feature = "objc2-core-audio-types"
 ))]
-pub type PHASEPullStreamRenderBlock = *mut block2::DynBlock<
+pub type PHASEPullStreamRenderBlock = block2::DynBlock<
     dyn Fn(
         NonNull<Bool>,
         NonNull<AudioTimeStamp>,
@@ -1184,7 +1184,7 @@ impl PHASEPullStreamNode {
         /// - The returned block's argument 4 must be a valid pointer.
         #[unsafe(method(renderBlock))]
         #[unsafe(method_family = none)]
-        pub unsafe fn renderBlock(&self) -> PHASEPullStreamRenderBlock;
+        pub unsafe fn renderBlock(&self) -> NonNull<PHASEPullStreamRenderBlock>;
 
         #[cfg(all(
             feature = "block2",
@@ -1192,12 +1192,8 @@ impl PHASEPullStreamNode {
             feature = "objc2-core-audio-types"
         ))]
         /// Setter for [`renderBlock`][Self::renderBlock].
-        ///
-        /// # Safety
-        ///
-        /// `render_block` must be a valid pointer.
         #[unsafe(method(setRenderBlock:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setRenderBlock(&self, render_block: PHASEPullStreamRenderBlock);
+        pub unsafe fn setRenderBlock(&self, render_block: &PHASEPullStreamRenderBlock);
     );
 }

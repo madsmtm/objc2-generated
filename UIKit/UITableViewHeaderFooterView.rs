@@ -19,7 +19,7 @@ use crate::*;
     feature = "UIViewConfigurationState",
     feature = "block2"
 ))]
-pub type UITableViewHeaderFooterViewConfigurationUpdateHandler = *mut block2::DynBlock<
+pub type UITableViewHeaderFooterViewConfigurationUpdateHandler = block2::DynBlock<
     dyn Fn(NonNull<UITableViewHeaderFooterView>, NonNull<UIViewConfigurationState>),
 >;
 
@@ -159,21 +159,19 @@ impl UITableViewHeaderFooterView {
         #[unsafe(method_family = none)]
         pub unsafe fn configurationUpdateHandler(
             &self,
-        ) -> UITableViewHeaderFooterViewConfigurationUpdateHandler;
+        ) -> *mut UITableViewHeaderFooterViewConfigurationUpdateHandler;
 
         #[cfg(all(feature = "UIViewConfigurationState", feature = "block2"))]
         /// Setter for [`configurationUpdateHandler`][Self::configurationUpdateHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `configuration_update_handler` must be a valid pointer or null.
         #[unsafe(method(setConfigurationUpdateHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setConfigurationUpdateHandler(
+        pub fn setConfigurationUpdateHandler(
             &self,
-            configuration_update_handler: UITableViewHeaderFooterViewConfigurationUpdateHandler,
+            configuration_update_handler: Option<
+                &UITableViewHeaderFooterViewConfigurationUpdateHandler,
+            >,
         );
 
         #[cfg(feature = "UIListContentConfiguration")]

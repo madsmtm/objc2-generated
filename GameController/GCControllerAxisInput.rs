@@ -16,7 +16,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrolleraxisvaluechangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerAxisValueChangedHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<GCControllerAxisInput>, c_float)>;
+    block2::DynBlock<dyn Fn(NonNull<GCControllerAxisInput>, c_float)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrolleraxisinput?language=objc)
@@ -40,21 +40,17 @@ impl GCControllerAxisInput {
         /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(valueChangedHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueChangedHandler(&self) -> GCControllerAxisValueChangedHandler;
+        pub unsafe fn valueChangedHandler(&self) -> *mut GCControllerAxisValueChangedHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `value_changed_handler` must be a valid pointer or null.
         #[unsafe(method(setValueChangedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueChangedHandler(
             &self,
-            value_changed_handler: GCControllerAxisValueChangedHandler,
+            value_changed_handler: Option<&GCControllerAxisValueChangedHandler>,
         );
 
         /// A normalized value for the input, between -1 and 1 for axis inputs. The values are deadzoned and saturated before they are returned

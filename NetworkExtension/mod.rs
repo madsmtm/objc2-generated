@@ -4544,7 +4544,7 @@ unsafe impl RefEncode for NEFilterPacketProviderVerdict {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nefilterpackethandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-network"))]
-pub type NEFilterPacketHandler = *mut block2::DynBlock<
+pub type NEFilterPacketHandler = block2::DynBlock<
     dyn Fn(
         NonNull<NEFilterPacketContext>,
         NonNull<NWInterface>,
@@ -4584,17 +4584,13 @@ impl NEFilterPacketProvider {
         /// - The returned block's argument 4 must be a valid pointer.
         #[unsafe(method(packetHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn packetHandler(&self) -> NEFilterPacketHandler;
+        pub unsafe fn packetHandler(&self) -> *mut NEFilterPacketHandler;
 
         #[cfg(all(feature = "block2", feature = "objc2-network"))]
         /// Setter for [`packetHandler`][Self::packetHandler].
-        ///
-        /// # Safety
-        ///
-        /// `packet_handler` must be a valid pointer or null.
         #[unsafe(method(setPacketHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setPacketHandler(&self, packet_handler: NEFilterPacketHandler);
+        pub unsafe fn setPacketHandler(&self, packet_handler: Option<&NEFilterPacketHandler>);
 
         /// This function is used to delay a packet currently presented by packetHandler.
         /// This function is only valid within the packetHandler block and a verdict of
@@ -5491,7 +5487,7 @@ impl NEHotspotHelperResponse {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/networkextension/nehotspothelperhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type NEHotspotHelperHandler = *mut block2::DynBlock<dyn Fn(NonNull<NEHotspotHelperCommand>)>;
+pub type NEHotspotHelperHandler = block2::DynBlock<dyn Fn(NonNull<NEHotspotHelperCommand>)>;
 
 extern "C" {
     /// The string displayed in Wi-Fi Settings for a network handled by
@@ -5565,14 +5561,13 @@ impl NEHotspotHelper {
         ///
         /// - `options` generic should be of the correct type.
         /// - `queue` possibly has additional threading requirements.
-        /// - `handler` must be a valid pointer.
         #[deprecated = "Use NEHotspotManager API"]
         #[unsafe(method(registerWithOptions:queue:handler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn registerWithOptions_queue_handler(
             options: Option<&NSDictionary<NSString, NSObject>>,
             queue: &DispatchQueue,
-            handler: NEHotspotHelperHandler,
+            handler: &NEHotspotHelperHandler,
         ) -> bool;
 
         /// Terminate the authentication session.

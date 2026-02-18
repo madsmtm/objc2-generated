@@ -342,8 +342,7 @@ extern "C-unwind" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/authorizationasynccallback?language=objc)
 #[cfg(feature = "block2")]
-pub type AuthorizationAsyncCallback =
-    *mut block2::DynBlock<dyn Fn(OSStatus, *mut AuthorizationRights)>;
+pub type AuthorizationAsyncCallback = block2::DynBlock<dyn Fn(OSStatus, *mut AuthorizationRights)>;
 
 extern "C-unwind" {
     /// An asynchronous version of AuthorizationCopyRights.
@@ -356,14 +355,13 @@ extern "C-unwind" {
     /// - `authorization` must be a valid pointer.
     /// - `rights` must be a valid pointer.
     /// - `environment` must be a valid pointer or null.
-    /// - `callback_block` must be a valid pointer.
     #[cfg(feature = "block2")]
     pub fn AuthorizationCopyRightsAsync(
         authorization: AuthorizationRef,
         rights: NonNull<AuthorizationRights>,
         environment: *const AuthorizationEnvironment,
         flags: AuthorizationFlags,
-        callback_block: AuthorizationAsyncCallback,
+        callback_block: &AuthorizationAsyncCallback,
     );
 }
 

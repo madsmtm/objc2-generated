@@ -41,7 +41,7 @@ use crate::*;
     feature = "objc2-core-audio-types"
 ))]
 pub type AVAudioIONodeInputBlock =
-    *mut block2::DynBlock<dyn Fn(AVAudioFrameCount) -> *const AudioBufferList>;
+    block2::DynBlock<dyn Fn(AVAudioFrameCount) -> *const AudioBufferList>;
 
 /// Types of speech activity events.
 ///
@@ -299,13 +299,13 @@ impl AVAudioInputNode {
         ///
         /// # Safety
         ///
-        /// `block` must be a valid pointer.
+        /// `block` block's return must be a valid pointer or null.
         #[unsafe(method(setManualRenderingInputPCMFormat:inputBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setManualRenderingInputPCMFormat_inputBlock(
             &self,
             format: &AVAudioFormat,
-            block: AVAudioIONodeInputBlock,
+            block: &AVAudioIONodeInputBlock,
         ) -> bool;
 
         /// Bypass all processing for microphone uplink done by the voice processing unit.

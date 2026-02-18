@@ -32,7 +32,7 @@ extern "C" {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/webkit/nsattributedstringcompletionhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
 #[cfg(target_os = "macos")]
-pub type NSAttributedStringCompletionHandler = *mut block2::DynBlock<
+pub type NSAttributedStringCompletionHandler = block2::DynBlock<
     dyn Fn(
         *mut NSAttributedString,
         *mut NSDictionary<NSAttributedStringDocumentAttributeKey, AnyObject>,
@@ -74,14 +74,13 @@ pub unsafe trait NSAttributedStringWebKitAdditions:
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(loadFromHTMLWithRequest:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFromHTMLWithRequest_options_completionHandler(
             request: &NSURLRequest,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
-            completion_handler: NSAttributedStringCompletionHandler,
+            completion_handler: &NSAttributedStringCompletionHandler,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
@@ -103,14 +102,13 @@ pub unsafe trait NSAttributedStringWebKitAdditions:
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(loadFromHTMLWithFileURL:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFromHTMLWithFileURL_options_completionHandler(
             file_url: &NSURL,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
-            completion_handler: NSAttributedStringCompletionHandler,
+            completion_handler: &NSAttributedStringCompletionHandler,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
@@ -131,14 +129,13 @@ pub unsafe trait NSAttributedStringWebKitAdditions:
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(loadFromHTMLWithString:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFromHTMLWithString_options_completionHandler(
             string: &NSString,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
-            completion_handler: NSAttributedStringCompletionHandler,
+            completion_handler: &NSAttributedStringCompletionHandler,
         );
 
         #[cfg(all(feature = "block2", feature = "objc2-app-kit"))]
@@ -159,14 +156,13 @@ pub unsafe trait NSAttributedStringWebKitAdditions:
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `completion_handler` must be a valid pointer.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(loadFromHTMLWithData:options:completionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn loadFromHTMLWithData_options_completionHandler(
             data: &NSData,
             options: &NSDictionary<NSAttributedStringDocumentReadingOptionKey, AnyObject>,
-            completion_handler: NSAttributedStringCompletionHandler,
+            completion_handler: &NSAttributedStringCompletionHandler,
         );
     );
 }

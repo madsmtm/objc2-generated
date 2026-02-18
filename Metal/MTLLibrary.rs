@@ -10,7 +10,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewlibrarycompletionhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLNewLibraryCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLLibrary>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLLibrary>, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewrenderpipelinestatecompletionhandler?language=objc)
 #[cfg(all(
@@ -19,7 +19,7 @@ pub type MTLNewLibraryCompletionHandler =
     feature = "block2"
 ))]
 pub type MTLNewRenderPipelineStateCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLRenderPipelineState>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLRenderPipelineState>, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewrenderpipelinestatewithreflectioncompletionhandler?language=objc)
 #[cfg(all(
@@ -27,7 +27,7 @@ pub type MTLNewRenderPipelineStateCompletionHandler =
     feature = "MTLRenderPipeline",
     feature = "block2"
 ))]
-pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = *mut block2::DynBlock<
+pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = block2::DynBlock<
     dyn Fn(
         *mut ProtocolObject<dyn MTLRenderPipelineState>,
         *mut MTLRenderPipelineReflection,
@@ -42,7 +42,7 @@ pub type MTLNewRenderPipelineStateWithReflectionCompletionHandler = *mut block2:
     feature = "block2"
 ))]
 pub type MTLNewComputePipelineStateCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLComputePipelineState>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLComputePipelineState>, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewcomputepipelinestatewithreflectioncompletionhandler?language=objc)
 #[cfg(all(
@@ -50,7 +50,7 @@ pub type MTLNewComputePipelineStateCompletionHandler =
     feature = "MTLComputePipeline",
     feature = "block2"
 ))]
-pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut block2::DynBlock<
+pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = block2::DynBlock<
     dyn Fn(
         *mut ProtocolObject<dyn MTLComputePipelineState>,
         *mut MTLComputePipelineReflection,
@@ -61,7 +61,7 @@ pub type MTLNewComputePipelineStateWithReflectionCompletionHandler = *mut block2
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlnewdynamiclibrarycompletionhandler?language=objc)
 #[cfg(all(feature = "MTLDynamicLibrary", feature = "block2"))]
 pub type MTLNewDynamicLibraryCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLDynamicLibrary>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut ProtocolObject<dyn MTLDynamicLibrary>, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/metal/mtlpatchtype?language=objc)
 // NS_ENUM

@@ -110,28 +110,22 @@ impl NSSortDescriptor {
         pub fn allowEvaluation(&self);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `cmptr` must be a valid pointer.
         #[unsafe(method(sortDescriptorWithKey:ascending:comparator:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sortDescriptorWithKey_ascending_comparator(
+        pub fn sortDescriptorWithKey_ascending_comparator(
             key: Option<&NSString>,
             ascending: bool,
-            cmptr: NSComparator,
+            cmptr: &NSComparator,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSString", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `cmptr` must be a valid pointer.
         #[unsafe(method(initWithKey:ascending:comparator:))]
         #[unsafe(method_family = init)]
-        pub unsafe fn initWithKey_ascending_comparator(
+        pub fn initWithKey_ascending_comparator(
             this: Allocated<Self>,
             key: Option<&NSString>,
             ascending: bool,
-            cmptr: NSComparator,
+            cmptr: &NSComparator,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
@@ -141,7 +135,7 @@ impl NSSortDescriptor {
         /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(comparator))]
         #[unsafe(method_family = none)]
-        pub unsafe fn comparator(&self) -> NSComparator;
+        pub unsafe fn comparator(&self) -> NonNull<NSComparator>;
 
         #[cfg(feature = "NSObjCRuntime")]
         /// # Safety

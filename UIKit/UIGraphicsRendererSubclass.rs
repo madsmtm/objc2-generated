@@ -11,8 +11,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsdrawingactions?language=objc)
 #[cfg(all(feature = "UIGraphicsRenderer", feature = "block2"))]
-pub type UIGraphicsDrawingActions =
-    *mut block2::DynBlock<dyn Fn(NonNull<UIGraphicsRendererContext>)>;
+pub type UIGraphicsDrawingActions = block2::DynBlock<dyn Fn(NonNull<UIGraphicsRendererContext>)>;
 
 /// UIGraphicsRendererProtected.
 #[cfg(feature = "UIGraphicsRenderer")]
@@ -37,16 +36,12 @@ impl UIGraphicsRenderer {
         );
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// - `drawing_actions` must be a valid pointer.
-        /// - `completion_actions` must be a valid pointer or null.
         #[unsafe(method(runDrawingActions:completionActions:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn runDrawingActions_completionActions_error(
+        pub fn runDrawingActions_completionActions_error(
             &self,
-            drawing_actions: UIGraphicsDrawingActions,
-            completion_actions: UIGraphicsDrawingActions,
+            drawing_actions: &UIGraphicsDrawingActions,
+            completion_actions: Option<&UIGraphicsDrawingActions>,
         ) -> Result<(), Retained<NSError>>;
     );
 }

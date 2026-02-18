@@ -46,7 +46,7 @@ unsafe impl RefEncode for GCTouchState {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollertouchpadhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerTouchpadHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<GCControllerTouchpad>, c_float, c_float, c_float, Bool)>;
+    block2::DynBlock<dyn Fn(NonNull<GCControllerTouchpad>, c_float, c_float, c_float, Bool)>;
 
 extern_class!(
     /// A touchpad is a touch-based two axis input with a notion of "touch state". It keeps track of
@@ -82,19 +82,15 @@ impl GCControllerTouchpad {
         /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(touchDown))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchDown(&self) -> GCControllerTouchpadHandler;
+        pub unsafe fn touchDown(&self) -> *mut GCControllerTouchpadHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`touchDown`][Self::touchDown].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `touch_down` must be a valid pointer or null.
         #[unsafe(method(setTouchDown:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTouchDown(&self, touch_down: GCControllerTouchpadHandler);
+        pub unsafe fn setTouchDown(&self, touch_down: Option<&GCControllerTouchpadHandler>);
 
         #[cfg(feature = "block2")]
         /// Called when a touch event continues on the touchpad, but not when it begins or ends.
@@ -104,19 +100,15 @@ impl GCControllerTouchpad {
         /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(touchMoved))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchMoved(&self) -> GCControllerTouchpadHandler;
+        pub unsafe fn touchMoved(&self) -> *mut GCControllerTouchpadHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`touchMoved`][Self::touchMoved].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `touch_moved` must be a valid pointer or null.
         #[unsafe(method(setTouchMoved:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTouchMoved(&self, touch_moved: GCControllerTouchpadHandler);
+        pub unsafe fn setTouchMoved(&self, touch_moved: Option<&GCControllerTouchpadHandler>);
 
         #[cfg(feature = "block2")]
         /// Called when a touch event ends on the touchpad.
@@ -126,19 +118,15 @@ impl GCControllerTouchpad {
         /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(touchUp))]
         #[unsafe(method_family = none)]
-        pub unsafe fn touchUp(&self) -> GCControllerTouchpadHandler;
+        pub unsafe fn touchUp(&self) -> *mut GCControllerTouchpadHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`touchUp`][Self::touchUp].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `touch_up` must be a valid pointer or null.
         #[unsafe(method(setTouchUp:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setTouchUp(&self, touch_up: GCControllerTouchpadHandler);
+        pub unsafe fn setTouchUp(&self, touch_up: Option<&GCControllerTouchpadHandler>);
 
         #[cfg(feature = "GCControllerDirectionPad")]
         /// The touch surface is a 2-axis control that represents the position of a touch event on the touchpad.

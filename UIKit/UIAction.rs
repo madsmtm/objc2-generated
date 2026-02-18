@@ -40,7 +40,7 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiactionhandler?language=objc)
 #[cfg(all(feature = "UIMenuElement", feature = "block2"))]
-pub type UIActionHandler = *mut block2::DynBlock<dyn Fn(NonNull<UIAction>)>;
+pub type UIActionHandler = block2::DynBlock<dyn Fn(NonNull<UIAction>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiaction?language=objc)
@@ -160,14 +160,10 @@ impl UIAction {
         ///
         ///
         /// Returns: A new UIAction.
-        ///
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer.
         #[unsafe(method(actionWithHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn actionWithHandler(
-            handler: UIActionHandler,
+        pub fn actionWithHandler(
+            handler: &UIActionHandler,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
 
@@ -185,17 +181,13 @@ impl UIAction {
         ///
         ///
         /// Returns: A new UIAction.
-        ///
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer.
         #[unsafe(method(actionWithTitle:image:identifier:handler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn actionWithTitle_image_identifier_handler(
+        pub fn actionWithTitle_image_identifier_handler(
             title: &NSString,
             image: Option<&UIImage>,
             identifier: Option<&UIActionIdentifier>,
-            handler: UIActionHandler,
+            handler: &UIActionHandler,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
     );

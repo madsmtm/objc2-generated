@@ -235,7 +235,7 @@ extern "C" {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustcallback?language=objc)
 #[cfg(feature = "block2")]
-pub type SecTrustCallback = *mut block2::DynBlock<dyn Fn(NonNull<SecTrust>, SecTrustResultType)>;
+pub type SecTrustCallback = block2::DynBlock<dyn Fn(NonNull<SecTrust>, SecTrustResultType)>;
 
 unsafe impl ConcreteType for SecTrust {
     /// Returns the type identifier of SecTrust instances.
@@ -590,7 +590,7 @@ impl SecTrust {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/security/sectrustwitherrorcallback?language=objc)
 #[cfg(feature = "block2")]
 pub type SecTrustWithErrorCallback =
-    *mut block2::DynBlock<dyn Fn(NonNull<SecTrust>, bool, *mut CFError)>;
+    block2::DynBlock<dyn Fn(NonNull<SecTrust>, bool, *mut CFError)>;
 
 impl SecTrust {
     /// Parameter `trust`: A reference to a trust object.

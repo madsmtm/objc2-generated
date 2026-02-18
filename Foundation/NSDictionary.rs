@@ -304,26 +304,20 @@ impl<KeyType: Message, ObjectType: Message> NSDictionary<KeyType, ObjectType> {
         );
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `cmptr` must be a valid pointer.
         #[unsafe(method(keysSortedByValueUsingComparator:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keysSortedByValueUsingComparator(
+        pub fn keysSortedByValueUsingComparator(
             &self,
-            cmptr: NSComparator,
+            cmptr: &NSComparator,
         ) -> Retained<NSArray<KeyType>>;
 
         #[cfg(all(feature = "NSArray", feature = "NSObjCRuntime", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `cmptr` must be a valid pointer.
         #[unsafe(method(keysSortedByValueWithOptions:usingComparator:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn keysSortedByValueWithOptions_usingComparator(
+        pub fn keysSortedByValueWithOptions_usingComparator(
             &self,
             opts: NSSortOptions,
-            cmptr: NSComparator,
+            cmptr: &NSComparator,
         ) -> Retained<NSArray<KeyType>>;
 
         #[cfg(all(feature = "NSSet", feature = "block2"))]

@@ -93,8 +93,7 @@ impl IOUSBHostInterface {
         ///
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `interest_handler` must be a valid pointer or null.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithIOService:options:queue:error:interestHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIOService_options_queue_error_interestHandler(
@@ -103,7 +102,7 @@ impl IOUSBHostInterface {
             options: IOUSBHostObjectInitOptions,
             queue: Option<&DispatchQueue>,
             error: Option<&mut Option<Retained<NSError>>>,
-            interest_handler: IOUSBHostInterestHandler,
+            interest_handler: Option<&IOUSBHostInterestHandler>,
         ) -> Option<Retained<Self>>;
 
         /// Retrieve the current idle suspend timeout.
@@ -239,8 +238,7 @@ impl IOUSBHostInterface {
         ///
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `interest_handler` must be a valid pointer or null.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithIOService:queue:error:interestHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIOService_queue_error_interestHandler(
@@ -248,7 +246,7 @@ impl IOUSBHostInterface {
             io_service: io_service_t,
             queue: Option<&DispatchQueue>,
             error: Option<&mut Option<Retained<NSError>>>,
-            interest_handler: IOUSBHostInterestHandler,
+            interest_handler: Option<&IOUSBHostInterestHandler>,
         ) -> Option<Retained<Self>>;
     );
 }

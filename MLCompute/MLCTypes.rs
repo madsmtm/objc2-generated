@@ -12,7 +12,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/mlcompute/mlcgraphcompletionhandler?language=objc)
 #[cfg(all(feature = "MLCTensor", feature = "block2"))]
 pub type MLCGraphCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut MLCTensor, *mut NSError, NSTimeInterval)>;
+    block2::DynBlock<dyn Fn(*mut MLCTensor, *mut NSError, NSTimeInterval)>;
 
 /// A tensor data type.
 ///

@@ -22,7 +22,7 @@ use crate::*;
     feature = "block2"
 ))]
 pub type GCExtendedGamepadValueChangedHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<GCExtendedGamepad>, NonNull<GCControllerElement>)>;
+    block2::DynBlock<dyn Fn(NonNull<GCExtendedGamepad>, NonNull<GCControllerElement>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad?language=objc)
@@ -53,21 +53,17 @@ impl GCExtendedGamepad {
         /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(valueChangedHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueChangedHandler(&self) -> GCExtendedGamepadValueChangedHandler;
+        pub unsafe fn valueChangedHandler(&self) -> *mut GCExtendedGamepadValueChangedHandler;
 
         #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
         /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `value_changed_handler` must be a valid pointer or null.
         #[unsafe(method(setValueChangedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueChangedHandler(
             &self,
-            value_changed_handler: GCExtendedGamepadValueChangedHandler,
+            value_changed_handler: Option<&GCExtendedGamepadValueChangedHandler>,
         );
 
         #[cfg(feature = "GCExtendedGamepadSnapshot")]

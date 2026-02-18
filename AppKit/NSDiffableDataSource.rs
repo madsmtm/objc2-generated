@@ -250,7 +250,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message> DefaultRetaine
     feature = "NSView",
     feature = "block2"
 ))]
-pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = *mut block2::DynBlock<
+pub type NSCollectionViewDiffableDataSourceSupplementaryViewProvider = block2::DynBlock<
     dyn Fn(NonNull<NSCollectionView>, NonNull<NSString>, NonNull<NSIndexPath>) -> *mut NSView,
 >;
 
@@ -342,7 +342,7 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         pub unsafe fn supplementaryViewProvider(
             &self,
             mtm: MainThreadMarker,
-        ) -> NSCollectionViewDiffableDataSourceSupplementaryViewProvider;
+        ) -> *mut NSCollectionViewDiffableDataSourceSupplementaryViewProvider;
 
         #[cfg(all(
             feature = "NSCollectionView",
@@ -356,12 +356,14 @@ impl<SectionIdentifierType: Message, ItemIdentifierType: Message>
         ///
         /// # Safety
         ///
-        /// `supplementary_view_provider` must be a valid pointer or null.
+        /// `supplementary_view_provider` block's return must be a valid pointer or null.
         #[unsafe(method(setSupplementaryViewProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setSupplementaryViewProvider(
             &self,
-            supplementary_view_provider: NSCollectionViewDiffableDataSourceSupplementaryViewProvider,
+            supplementary_view_provider: Option<
+                &NSCollectionViewDiffableDataSourceSupplementaryViewProvider,
+            >,
         );
     );
 }

@@ -202,7 +202,7 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudiosequencerusercallback?language=objc)
 #[cfg(all(feature = "AVAudioTypes", feature = "block2"))]
 pub type AVAudioSequencerUserCallback =
-    *mut block2::DynBlock<dyn Fn(NonNull<AVMusicTrack>, NonNull<NSData>, AVMusicTimeStamp)>;
+    block2::DynBlock<dyn Fn(NonNull<AVMusicTrack>, NonNull<NSData>, AVMusicTimeStamp)>;
 
 extern_class!(
     /// A collection of MIDI events organized into AVMusicTracks, plus a player to play back the events.
@@ -340,13 +340,9 @@ impl AVAudioSequencer {
         /// The same callback is called for events which occur on any track in the sequencer.
         ///
         /// Set the block to nil to disable it.
-        ///
-        /// # Safety
-        ///
-        /// `user_callback` must be a valid pointer or null.
         #[unsafe(method(setUserCallback:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setUserCallback(&self, user_callback: AVAudioSequencerUserCallback);
+        pub unsafe fn setUserCallback(&self, user_callback: Option<&AVAudioSequencerUserCallback>);
 
         /// An NSArray containing all the AVMusicTracks in the sequence
         ///
@@ -693,7 +689,7 @@ impl AVMusicTrack {
     feature = "block2"
 ))]
 pub type AVMusicEventEnumerationBlock =
-    *mut block2::DynBlock<dyn Fn(NonNull<AVMusicEvent>, NonNull<AVMusicTimeStamp>, NonNull<Bool>)>;
+    block2::DynBlock<dyn Fn(NonNull<AVMusicEvent>, NonNull<AVMusicTimeStamp>, NonNull<Bool>)>;
 
 /// AVMusicTrackEditor.
 impl AVMusicTrack {
@@ -831,16 +827,12 @@ impl AVMusicTrack {
         ///
         /// The event objects returned via the block will not be the same instances
         /// which were added to the AVMusicTrack, though their contents will be identical.
-        ///
-        /// # Safety
-        ///
-        /// `block` must be a valid pointer.
         #[unsafe(method(enumerateEventsInRange:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn enumerateEventsInRange_usingBlock(
             &self,
             range: AVBeatRange,
-            block: AVMusicEventEnumerationBlock,
+            block: &AVMusicEventEnumerationBlock,
         );
     );
 }

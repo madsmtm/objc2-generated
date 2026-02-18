@@ -207,9 +207,8 @@ impl NWTxtRecord {
 /// want to return true if the operation succeeds.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_txt_record_access_key_t?language=objc)
-pub type nw_txt_record_access_key_t = *mut block2::DynBlock<
-    dyn Fn(NonNull<c_char>, nw_txt_record_find_key_t, *const u8, usize) -> bool,
->;
+pub type nw_txt_record_access_key_t =
+    block2::DynBlock<dyn Fn(NonNull<c_char>, nw_txt_record_find_key_t, *const u8, usize) -> bool>;
 
 impl NWTxtRecord {
     /// Access a value in the TXT record object with its key. Attempts to access
@@ -224,18 +223,14 @@ impl NWTxtRecord {
     ///
     /// Returns: The return value of the access_value block. This is an arbitrary return
     /// value defined by the user.
-    ///
-    /// # Safety
-    ///
-    /// `access_value` must be a valid pointer.
     #[doc(alias = "nw_txt_record_access_key")]
     #[inline]
-    pub unsafe fn access_key(&self, key: &CStr, access_value: nw_txt_record_access_key_t) -> bool {
+    pub fn access_key(&self, key: &CStr, access_value: &nw_txt_record_access_key_t) -> bool {
         extern "C-unwind" {
             fn nw_txt_record_access_key(
                 txt_record: &NWTxtRecord,
                 key: NonNull<c_char>,
-                access_value: nw_txt_record_access_key_t,
+                access_value: &nw_txt_record_access_key_t,
             ) -> bool;
         }
         unsafe {
@@ -350,7 +345,7 @@ impl NWTxtRecord {
 /// boolean indicating if the operation succeeds.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_txt_record_access_bytes_t?language=objc)
-pub type nw_txt_record_access_bytes_t = *mut block2::DynBlock<dyn Fn(NonNull<u8>, usize) -> bool>;
+pub type nw_txt_record_access_bytes_t = block2::DynBlock<dyn Fn(NonNull<u8>, usize) -> bool>;
 
 impl NWTxtRecord {
     /// Access the raw TXT record inside the TXT record object.
@@ -366,17 +361,13 @@ impl NWTxtRecord {
     /// Returns: The return value of the access_bytes block, which is defined by the user.
     /// For example, the user may want to return a boolean indicating if the
     /// operation succeeds.
-    ///
-    /// # Safety
-    ///
-    /// `access_bytes` must be a valid pointer.
     #[doc(alias = "nw_txt_record_access_bytes")]
     #[inline]
-    pub unsafe fn access_bytes(&self, access_bytes: nw_txt_record_access_bytes_t) -> bool {
+    pub fn access_bytes(&self, access_bytes: &nw_txt_record_access_bytes_t) -> bool {
         extern "C-unwind" {
             fn nw_txt_record_access_bytes(
                 txt_record: &NWTxtRecord,
-                access_bytes: nw_txt_record_access_bytes_t,
+                access_bytes: &nw_txt_record_access_bytes_t,
             ) -> bool;
         }
         unsafe { nw_txt_record_access_bytes(self, access_bytes) }
@@ -406,9 +397,8 @@ impl NWTxtRecord {
 /// Returns: A boolean indicating whether iteration should continue.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_txt_record_applier_t?language=objc)
-pub type nw_txt_record_applier_t = *mut block2::DynBlock<
-    dyn Fn(NonNull<c_char>, nw_txt_record_find_key_t, NonNull<u8>, usize) -> bool,
->;
+pub type nw_txt_record_applier_t =
+    block2::DynBlock<dyn Fn(NonNull<c_char>, nw_txt_record_find_key_t, NonNull<u8>, usize) -> bool>;
 
 impl NWTxtRecord {
     /// Apply the block to every key-value pair in the TXT record object.
@@ -423,17 +413,13 @@ impl NWTxtRecord {
     /// Returns: A boolean indicating whether iteration of the TXT record object
     /// completed successfully. Iteration will only fail if the applier block
     /// returns false.
-    ///
-    /// # Safety
-    ///
-    /// `applier` must be a valid pointer.
     #[doc(alias = "nw_txt_record_apply")]
     #[inline]
-    pub unsafe fn apply(&self, applier: nw_txt_record_applier_t) -> bool {
+    pub fn apply(&self, applier: &nw_txt_record_applier_t) -> bool {
         extern "C-unwind" {
             fn nw_txt_record_apply(
                 txt_record: &NWTxtRecord,
-                applier: nw_txt_record_applier_t,
+                applier: &nw_txt_record_applier_t,
             ) -> bool;
         }
         unsafe { nw_txt_record_apply(self, applier) }
@@ -1836,7 +1822,7 @@ impl NWProxyConfig {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_proxy_domain_enumerator_t?language=objc)
-pub type nw_proxy_domain_enumerator_t = *mut block2::DynBlock<dyn Fn(NonNull<c_char>)>;
+pub type nw_proxy_domain_enumerator_t = block2::DynBlock<dyn Fn(NonNull<c_char>)>;
 
 impl NWProxyConfig {
     /// Enumerate all match domains set on the proxy configuration.
@@ -1846,17 +1832,13 @@ impl NWProxyConfig {
     ///
     ///
     /// Parameter `enumerator`: A block that will get invoked for every domain that was added to the proxy configuration.
-    ///
-    /// # Safety
-    ///
-    /// `enumerator` must be a valid pointer.
     #[doc(alias = "nw_proxy_config_enumerate_match_domains")]
     #[inline]
-    pub unsafe fn enumerate_match_domains(&self, enumerator: nw_proxy_domain_enumerator_t) {
+    pub fn enumerate_match_domains(&self, enumerator: &nw_proxy_domain_enumerator_t) {
         extern "C-unwind" {
             fn nw_proxy_config_enumerate_match_domains(
                 config: &NWProxyConfig,
-                enumerator: nw_proxy_domain_enumerator_t,
+                enumerator: &nw_proxy_domain_enumerator_t,
             );
         }
         unsafe { nw_proxy_config_enumerate_match_domains(self, enumerator) }
@@ -1869,17 +1851,13 @@ impl NWProxyConfig {
     ///
     ///
     /// Parameter `enumerator`: A block that will get invoked for every domain that was added to the proxy configuration.
-    ///
-    /// # Safety
-    ///
-    /// `enumerator` must be a valid pointer.
     #[doc(alias = "nw_proxy_config_enumerate_excluded_domains")]
     #[inline]
-    pub unsafe fn enumerate_excluded_domains(&self, enumerator: nw_proxy_domain_enumerator_t) {
+    pub fn enumerate_excluded_domains(&self, enumerator: &nw_proxy_domain_enumerator_t) {
         extern "C-unwind" {
             fn nw_proxy_config_enumerate_excluded_domains(
                 config: &NWProxyConfig,
-                enumerator: nw_proxy_domain_enumerator_t,
+                enumerator: &nw_proxy_domain_enumerator_t,
             );
         }
         unsafe { nw_proxy_config_enumerate_excluded_domains(self, enumerator) }
@@ -2065,17 +2043,18 @@ nw_object!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_parameters_configure_protocol_block_t?language=objc)
 pub type nw_parameters_configure_protocol_block_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWProtocolOptions>)>;
+    block2::DynBlock<dyn Fn(NonNull<NWProtocolOptions>)>;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/network/_nw_parameters_configure_protocol_default_configuration?language=objc)
     pub static _nw_parameters_configure_protocol_default_configuration:
-        nw_parameters_configure_protocol_block_t;
+        &'static nw_parameters_configure_protocol_block_t;
 }
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/network/_nw_parameters_configure_protocol_disable?language=objc)
-    pub static _nw_parameters_configure_protocol_disable: nw_parameters_configure_protocol_block_t;
+    pub static _nw_parameters_configure_protocol_disable:
+        &'static nw_parameters_configure_protocol_block_t;
 }
 
 impl NWParameters {
@@ -2100,21 +2079,16 @@ impl NWParameters {
     /// Callers are responsible for deallocating using nw_release(obj) or [obj release].
     /// These objects support ARC.
     /// Returns NULL on failure. Fails due to invalid parameters.
-    ///
-    /// # Safety
-    ///
-    /// - `configure_tls` must be a valid pointer.
-    /// - `configure_tcp` must be a valid pointer.
     #[doc(alias = "nw_parameters_create_secure_tcp")]
     #[inline]
-    pub unsafe fn new_secure_tcp(
-        configure_tls: nw_parameters_configure_protocol_block_t,
-        configure_tcp: nw_parameters_configure_protocol_block_t,
+    pub fn new_secure_tcp(
+        configure_tls: &nw_parameters_configure_protocol_block_t,
+        configure_tcp: &nw_parameters_configure_protocol_block_t,
     ) -> NWRetained<NWParameters> {
         extern "C-unwind" {
             fn nw_parameters_create_secure_tcp(
-                configure_tls: nw_parameters_configure_protocol_block_t,
-                configure_tcp: nw_parameters_configure_protocol_block_t,
+                configure_tls: &nw_parameters_configure_protocol_block_t,
+                configure_tcp: &nw_parameters_configure_protocol_block_t,
             ) -> Option<NonNull<NWParameters>>;
         }
         let ret = unsafe { nw_parameters_create_secure_tcp(configure_tls, configure_tcp) };
@@ -2144,21 +2118,16 @@ impl NWParameters {
     /// Callers are responsible for deallocating using nw_release(obj) or [obj release].
     /// These objects support ARC.
     /// Returns NULL on failure. Fails due to invalid parameters.
-    ///
-    /// # Safety
-    ///
-    /// - `configure_dtls` must be a valid pointer.
-    /// - `configure_udp` must be a valid pointer.
     #[doc(alias = "nw_parameters_create_secure_udp")]
     #[inline]
-    pub unsafe fn new_secure_udp(
-        configure_dtls: nw_parameters_configure_protocol_block_t,
-        configure_udp: nw_parameters_configure_protocol_block_t,
+    pub fn new_secure_udp(
+        configure_dtls: &nw_parameters_configure_protocol_block_t,
+        configure_udp: &nw_parameters_configure_protocol_block_t,
     ) -> NWRetained<NWParameters> {
         extern "C-unwind" {
             fn nw_parameters_create_secure_udp(
-                configure_dtls: nw_parameters_configure_protocol_block_t,
-                configure_udp: nw_parameters_configure_protocol_block_t,
+                configure_dtls: &nw_parameters_configure_protocol_block_t,
+                configure_udp: &nw_parameters_configure_protocol_block_t,
             ) -> Option<NonNull<NWParameters>>;
         }
         let ret = unsafe { nw_parameters_create_secure_udp(configure_dtls, configure_udp) };
@@ -2191,20 +2160,16 @@ impl NWParameters {
     /// Callers are responsible for deallocating using nw_release(obj) or [obj release].
     /// These objects support ARC.
     /// Returns NULL on failure. Fails due to invalid parameters.
-    ///
-    /// # Safety
-    ///
-    /// `configure_ip` must be a valid pointer.
     #[doc(alias = "nw_parameters_create_custom_ip")]
     #[inline]
-    pub unsafe fn new_custom_ip(
+    pub fn new_custom_ip(
         custom_ip_protocol_number: u8,
-        configure_ip: nw_parameters_configure_protocol_block_t,
+        configure_ip: &nw_parameters_configure_protocol_block_t,
     ) -> NWRetained<NWParameters> {
         extern "C-unwind" {
             fn nw_parameters_create_custom_ip(
                 custom_ip_protocol_number: u8,
-                configure_ip: nw_parameters_configure_protocol_block_t,
+                configure_ip: &nw_parameters_configure_protocol_block_t,
             ) -> Option<NonNull<NWParameters>>;
         }
         let ret =
@@ -2226,18 +2191,14 @@ impl NWParameters {
     /// Callers are responsible for deallocating using nw_release(obj) or [obj release].
     /// These objects support ARC.
     /// Returns NULL on failure. Fails due to invalid parameters.
-    ///
-    /// # Safety
-    ///
-    /// `configure_quic` must be a valid pointer.
     #[doc(alias = "nw_parameters_create_quic")]
     #[inline]
-    pub unsafe fn new_quic(
-        configure_quic: nw_parameters_configure_protocol_block_t,
+    pub fn new_quic(
+        configure_quic: &nw_parameters_configure_protocol_block_t,
     ) -> NWRetained<NWParameters> {
         extern "C-unwind" {
             fn nw_parameters_create_quic(
-                configure_quic: nw_parameters_configure_protocol_block_t,
+                configure_quic: &nw_parameters_configure_protocol_block_t,
             ) -> Option<NonNull<NWParameters>>;
         }
         let ret = unsafe { nw_parameters_create_quic(configure_quic) };
@@ -2472,7 +2433,7 @@ impl NWParameters {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_parameters_iterate_interfaces_block_t?language=objc)
 pub type nw_parameters_iterate_interfaces_block_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWInterface>) -> bool>;
+    block2::DynBlock<dyn Fn(NonNull<NWInterface>) -> bool>;
 
 impl NWParameters {
     /// List all prohibited network interfaces.
@@ -2484,20 +2445,16 @@ impl NWParameters {
     /// Parameter `iterate_block`: A block that will return the interfaces prohibited by the parameters. Returning
     /// true from the block will continue to iterate, and returning false will stop
     /// iterating.
-    ///
-    /// # Safety
-    ///
-    /// `iterate_block` must be a valid pointer.
     #[doc(alias = "nw_parameters_iterate_prohibited_interfaces")]
     #[inline]
-    pub unsafe fn iterate_prohibited_interfaces(
+    pub fn iterate_prohibited_interfaces(
         &self,
-        iterate_block: nw_parameters_iterate_interfaces_block_t,
+        iterate_block: &nw_parameters_iterate_interfaces_block_t,
     ) {
         extern "C-unwind" {
             fn nw_parameters_iterate_prohibited_interfaces(
                 parameters: &NWParameters,
-                iterate_block: nw_parameters_iterate_interfaces_block_t,
+                iterate_block: &nw_parameters_iterate_interfaces_block_t,
             );
         }
         unsafe { nw_parameters_iterate_prohibited_interfaces(self, iterate_block) }
@@ -2578,7 +2535,7 @@ impl NWParameters {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_parameters_iterate_interface_types_block_t?language=objc)
 pub type nw_parameters_iterate_interface_types_block_t =
-    *mut block2::DynBlock<dyn Fn(nw_interface_type_t) -> bool>;
+    block2::DynBlock<dyn Fn(nw_interface_type_t) -> bool>;
 
 impl NWParameters {
     /// List all prohibited network interface types.
@@ -2590,20 +2547,16 @@ impl NWParameters {
     /// Parameter `iterate_block`: A block that will return the interface types prohibited by the parameters. Returning
     /// true from the block will continue to iterate, and returning false will stop
     /// iterating.
-    ///
-    /// # Safety
-    ///
-    /// `iterate_block` must be a valid pointer.
     #[doc(alias = "nw_parameters_iterate_prohibited_interface_types")]
     #[inline]
-    pub unsafe fn iterate_prohibited_interface_types(
+    pub fn iterate_prohibited_interface_types(
         &self,
-        iterate_block: nw_parameters_iterate_interface_types_block_t,
+        iterate_block: &nw_parameters_iterate_interface_types_block_t,
     ) {
         extern "C-unwind" {
             fn nw_parameters_iterate_prohibited_interface_types(
                 parameters: &NWParameters,
-                iterate_block: nw_parameters_iterate_interface_types_block_t,
+                iterate_block: &nw_parameters_iterate_interface_types_block_t,
             );
         }
         unsafe { nw_parameters_iterate_prohibited_interface_types(self, iterate_block) }
@@ -3095,7 +3048,7 @@ impl NWProtocolStack {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_protocol_stack_iterate_protocols_block_t?language=objc)
 pub type nw_protocol_stack_iterate_protocols_block_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWProtocolOptions>)>;
+    block2::DynBlock<dyn Fn(NonNull<NWProtocolOptions>)>;
 
 impl NWProtocolStack {
     /// List all application protocols attached to a protocol stack.
@@ -3105,20 +3058,16 @@ impl NWProtocolStack {
     ///
     ///
     /// Parameter `iterate_block`: A block that will return the protocols attached to the stack.
-    ///
-    /// # Safety
-    ///
-    /// `iterate_block` must be a valid pointer.
     #[doc(alias = "nw_protocol_stack_iterate_application_protocols")]
     #[inline]
-    pub unsafe fn iterate_application_protocols(
+    pub fn iterate_application_protocols(
         &self,
-        iterate_block: nw_protocol_stack_iterate_protocols_block_t,
+        iterate_block: &nw_protocol_stack_iterate_protocols_block_t,
     ) {
         extern "C-unwind" {
             fn nw_protocol_stack_iterate_application_protocols(
                 stack: &NWProtocolStack,
-                iterate_block: nw_protocol_stack_iterate_protocols_block_t,
+                iterate_block: &nw_protocol_stack_iterate_protocols_block_t,
             );
         }
         unsafe { nw_protocol_stack_iterate_application_protocols(self, iterate_block) }
@@ -3705,7 +3654,7 @@ impl NWBrowseResult {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_browse_result_enumerate_interface_t?language=objc)
 pub type nw_browse_result_enumerate_interface_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWInterface>) -> bool>;
+    block2::DynBlock<dyn Fn(NonNull<NWInterface>) -> bool>;
 
 impl NWBrowseResult {
     /// Enumerates the list of interfaces on this browse result.
@@ -3715,17 +3664,13 @@ impl NWBrowseResult {
     ///
     ///
     /// Parameter `enumerator`: The enumerator block.
-    ///
-    /// # Safety
-    ///
-    /// `enumerator` must be a valid pointer.
     #[doc(alias = "nw_browse_result_enumerate_interfaces")]
     #[inline]
-    pub unsafe fn enumerate_interfaces(&self, enumerator: nw_browse_result_enumerate_interface_t) {
+    pub fn enumerate_interfaces(&self, enumerator: &nw_browse_result_enumerate_interface_t) {
         extern "C-unwind" {
             fn nw_browse_result_enumerate_interfaces(
                 result: &NWBrowseResult,
-                enumerator: nw_browse_result_enumerate_interface_t,
+                enumerator: &nw_browse_result_enumerate_interface_t,
             );
         }
         unsafe { nw_browse_result_enumerate_interfaces(self, enumerator) }
@@ -3989,7 +3934,7 @@ impl NWBrowser {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_browser_browse_results_changed_handler_t?language=objc)
 pub type nw_browser_browse_results_changed_handler_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWBrowseResult>, NonNull<NWBrowseResult>, bool)>;
+    block2::DynBlock<dyn Fn(NonNull<NWBrowseResult>, NonNull<NWBrowseResult>, bool)>;
 
 impl NWBrowser {
     /// Sets a callback handler to be invoked when the browser gets an update
@@ -4002,20 +3947,16 @@ impl NWBrowser {
     ///
     /// Parameter `handler`: The callback handler that fires when the browser gets an update for a
     /// changed browse result.
-    ///
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer or null.
     #[doc(alias = "nw_browser_set_browse_results_changed_handler")]
     #[inline]
-    pub unsafe fn set_browse_results_changed_handler(
+    pub fn set_browse_results_changed_handler(
         &self,
-        handler: nw_browser_browse_results_changed_handler_t,
+        handler: Option<&nw_browser_browse_results_changed_handler_t>,
     ) {
         extern "C-unwind" {
             fn nw_browser_set_browse_results_changed_handler(
                 browser: &NWBrowser,
-                handler: nw_browser_browse_results_changed_handler_t,
+                handler: Option<&nw_browser_browse_results_changed_handler_t>,
             );
         }
         unsafe { nw_browser_set_browse_results_changed_handler(self, handler) }
@@ -4034,7 +3975,7 @@ impl NWBrowser {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_browser_state_changed_handler_t?language=objc)
 pub type nw_browser_state_changed_handler_t =
-    *mut block2::DynBlock<dyn Fn(nw_browser_state_t, *mut NWError)>;
+    block2::DynBlock<dyn Fn(nw_browser_state_t, *mut NWError)>;
 
 impl NWBrowser {
     /// Sets the state changed handler. For clients that need to perform cleanup
@@ -4048,20 +3989,16 @@ impl NWBrowser {
     ///
     /// Parameter `state_changed_handler`: The state changed handler to call when the browser state changes.
     /// Pass NULL to remove the event handler.
-    ///
-    /// # Safety
-    ///
-    /// `state_changed_handler` must be a valid pointer or null.
     #[doc(alias = "nw_browser_set_state_changed_handler")]
     #[inline]
-    pub unsafe fn set_state_changed_handler(
+    pub fn set_state_changed_handler(
         &self,
-        state_changed_handler: nw_browser_state_changed_handler_t,
+        state_changed_handler: Option<&nw_browser_state_changed_handler_t>,
     ) {
         extern "C-unwind" {
             fn nw_browser_set_state_changed_handler(
                 browser: &NWBrowser,
-                state_changed_handler: nw_browser_state_changed_handler_t,
+                state_changed_handler: Option<&nw_browser_state_changed_handler_t>,
             );
         }
         unsafe { nw_browser_set_state_changed_handler(self, state_changed_handler) }
@@ -4251,7 +4188,7 @@ impl NWPath {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_path_enumerate_interfaces_block_t?language=objc)
 pub type nw_path_enumerate_interfaces_block_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWInterface>) -> bool>;
+    block2::DynBlock<dyn Fn(NonNull<NWInterface>) -> bool>;
 
 impl NWPath {
     /// List all interfaces associated with the path.
@@ -4263,20 +4200,13 @@ impl NWPath {
     /// Parameter `enumerate_block`: A block that will return the interfaces associated with the path. Returning
     /// true from the block will continue to enumerate, and returning false will stop
     /// enumerating.
-    ///
-    /// # Safety
-    ///
-    /// `enumerate_block` must be a valid pointer.
     #[doc(alias = "nw_path_enumerate_interfaces")]
     #[inline]
-    pub unsafe fn enumerate_interfaces(
-        &self,
-        enumerate_block: nw_path_enumerate_interfaces_block_t,
-    ) {
+    pub fn enumerate_interfaces(&self, enumerate_block: &nw_path_enumerate_interfaces_block_t) {
         extern "C-unwind" {
             fn nw_path_enumerate_interfaces(
                 path: &NWPath,
-                enumerate_block: nw_path_enumerate_interfaces_block_t,
+                enumerate_block: &nw_path_enumerate_interfaces_block_t,
             );
         }
         unsafe { nw_path_enumerate_interfaces(self, enumerate_block) }
@@ -4470,8 +4400,7 @@ impl NWPath {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_path_enumerate_gateways_block_t?language=objc)
-pub type nw_path_enumerate_gateways_block_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWEndpoint>) -> bool>;
+pub type nw_path_enumerate_gateways_block_t = block2::DynBlock<dyn Fn(NonNull<NWEndpoint>) -> bool>;
 
 impl NWPath {
     /// List the IP addresses of the routers acting as the gateways for the path.
@@ -4483,17 +4412,13 @@ impl NWPath {
     /// Parameter `enumerate_block`: A block that will return the gateways associated with the path. Returning
     /// true from the block will continue to enumerate, and returning false will stop
     /// enumerating.
-    ///
-    /// # Safety
-    ///
-    /// `enumerate_block` must be a valid pointer.
     #[doc(alias = "nw_path_enumerate_gateways")]
     #[inline]
-    pub unsafe fn enumerate_gateways(&self, enumerate_block: nw_path_enumerate_gateways_block_t) {
+    pub fn enumerate_gateways(&self, enumerate_block: &nw_path_enumerate_gateways_block_t) {
         extern "C-unwind" {
             fn nw_path_enumerate_gateways(
                 path: &NWPath,
-                enumerate_block: nw_path_enumerate_gateways_block_t,
+                enumerate_block: &nw_path_enumerate_gateways_block_t,
             );
         }
         unsafe { nw_path_enumerate_gateways(self, enumerate_block) }
@@ -4944,7 +4869,7 @@ impl NWConnection {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_state_changed_handler_t?language=objc)
 pub type nw_connection_state_changed_handler_t =
-    *mut block2::DynBlock<dyn Fn(nw_connection_state_t, *mut NWError)>;
+    block2::DynBlock<dyn Fn(nw_connection_state_t, *mut NWError)>;
 
 impl NWConnection {
     /// Sets the state change handler. For clients that need to perform cleanup when the
@@ -4957,17 +4882,16 @@ impl NWConnection {
     ///
     /// Parameter `handler`: The state changed handler to call when the connection state changes.
     /// Pass NULL to remove the state changed handler.
-    ///
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer or null.
     #[doc(alias = "nw_connection_set_state_changed_handler")]
     #[inline]
-    pub unsafe fn set_state_changed_handler(&self, handler: nw_connection_state_changed_handler_t) {
+    pub fn set_state_changed_handler(
+        &self,
+        handler: Option<&nw_connection_state_changed_handler_t>,
+    ) {
         extern "C-unwind" {
             fn nw_connection_set_state_changed_handler(
                 connection: &NWConnection,
-                handler: nw_connection_state_changed_handler_t,
+                handler: Option<&nw_connection_state_changed_handler_t>,
             );
         }
         unsafe { nw_connection_set_state_changed_handler(self, handler) }
@@ -4975,7 +4899,7 @@ impl NWConnection {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_boolean_event_handler_t?language=objc)
-pub type nw_connection_boolean_event_handler_t = *mut block2::DynBlock<dyn Fn(bool)>;
+pub type nw_connection_boolean_event_handler_t = block2::DynBlock<dyn Fn(bool)>;
 
 impl NWConnection {
     /// Define a callback to be fired when the viability of the connection changes.
@@ -4989,20 +4913,16 @@ impl NWConnection {
     /// Parameter `handler`: The event handler to call when the connection viability changes. The value will
     /// be true when the connection is viable, and false otherwise.
     /// Pass NULL to remove the event handler.
-    ///
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer or null.
     #[doc(alias = "nw_connection_set_viability_changed_handler")]
     #[inline]
-    pub unsafe fn set_viability_changed_handler(
+    pub fn set_viability_changed_handler(
         &self,
-        handler: nw_connection_boolean_event_handler_t,
+        handler: Option<&nw_connection_boolean_event_handler_t>,
     ) {
         extern "C-unwind" {
             fn nw_connection_set_viability_changed_handler(
                 connection: &NWConnection,
-                handler: nw_connection_boolean_event_handler_t,
+                handler: Option<&nw_connection_boolean_event_handler_t>,
             );
         }
         unsafe { nw_connection_set_viability_changed_handler(self, handler) }
@@ -5019,20 +4939,16 @@ impl NWConnection {
     /// Parameter `handler`: The event handler to call when the better path availability changes. The value
     /// will be true when a better path is available, and false otherwise.
     /// Pass NULL to remove the event handler.
-    ///
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer or null.
     #[doc(alias = "nw_connection_set_better_path_available_handler")]
     #[inline]
-    pub unsafe fn set_better_path_available_handler(
+    pub fn set_better_path_available_handler(
         &self,
-        handler: nw_connection_boolean_event_handler_t,
+        handler: Option<&nw_connection_boolean_event_handler_t>,
     ) {
         extern "C-unwind" {
             fn nw_connection_set_better_path_available_handler(
                 connection: &NWConnection,
-                handler: nw_connection_boolean_event_handler_t,
+                handler: Option<&nw_connection_boolean_event_handler_t>,
             );
         }
         unsafe { nw_connection_set_better_path_available_handler(self, handler) }
@@ -5040,7 +4956,7 @@ impl NWConnection {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_path_event_handler_t?language=objc)
-pub type nw_connection_path_event_handler_t = *mut block2::DynBlock<dyn Fn(NonNull<NWPath>)>;
+pub type nw_connection_path_event_handler_t = block2::DynBlock<dyn Fn(NonNull<NWPath>)>;
 
 impl NWConnection {
     /// Define a callback to be fired when the connection's path changes.
@@ -5051,17 +4967,13 @@ impl NWConnection {
     ///
     /// Parameter `handler`: The event handler to call when the connection's path changes.
     /// Pass NULL to remove the event handler.
-    ///
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer or null.
     #[doc(alias = "nw_connection_set_path_changed_handler")]
     #[inline]
-    pub unsafe fn set_path_changed_handler(&self, handler: nw_connection_path_event_handler_t) {
+    pub fn set_path_changed_handler(&self, handler: Option<&nw_connection_path_event_handler_t>) {
         extern "C-unwind" {
             fn nw_connection_set_path_changed_handler(
                 connection: &NWConnection,
-                handler: nw_connection_path_event_handler_t,
+                handler: Option<&nw_connection_path_event_handler_t>,
             );
         }
         unsafe { nw_connection_set_path_changed_handler(self, handler) }
@@ -5225,7 +5137,7 @@ impl NWConnection {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_receive_completion_t?language=objc)
 #[cfg(feature = "dispatch2")]
 pub type nw_connection_receive_completion_t =
-    *mut block2::DynBlock<dyn Fn(*mut DispatchData, *mut NWContentContext, bool, *mut NWError)>;
+    block2::DynBlock<dyn Fn(*mut DispatchData, *mut NWContentContext, bool, *mut NWError)>;
 
 impl NWConnection {
     /// Receive data from a connection. This may be called before the connection
@@ -5251,25 +5163,21 @@ impl NWConnection {
     ///
     ///
     /// Parameter `completion`: A callback to be called when content has been received.
-    ///
-    /// # Safety
-    ///
-    /// `completion` must be a valid pointer.
     #[doc(alias = "nw_connection_receive")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn receive(
+    pub fn receive(
         &self,
         minimum_incomplete_length: u32,
         maximum_length: u32,
-        completion: nw_connection_receive_completion_t,
+        completion: &nw_connection_receive_completion_t,
     ) {
         extern "C-unwind" {
             fn nw_connection_receive(
                 connection: &NWConnection,
                 minimum_incomplete_length: u32,
                 maximum_length: u32,
-                completion: nw_connection_receive_completion_t,
+                completion: &nw_connection_receive_completion_t,
             );
         }
         unsafe {
@@ -5288,18 +5196,14 @@ impl NWConnection {
     ///
     /// Parameter `completion`: A callback to be called when the message has been received, or an error
     /// has occurred.
-    ///
-    /// # Safety
-    ///
-    /// `completion` must be a valid pointer.
     #[doc(alias = "nw_connection_receive_message")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn receive_message(&self, completion: nw_connection_receive_completion_t) {
+    pub fn receive_message(&self, completion: &nw_connection_receive_completion_t) {
         extern "C-unwind" {
             fn nw_connection_receive_message(
                 connection: &NWConnection,
-                completion: nw_connection_receive_completion_t,
+                completion: &nw_connection_receive_completion_t,
             );
         }
         unsafe { nw_connection_receive_message(self, completion) }
@@ -5317,11 +5221,11 @@ impl NWConnection {
 /// is cancelled.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_send_completion_t?language=objc)
-pub type nw_connection_send_completion_t = *mut block2::DynBlock<dyn Fn(*mut NWError)>;
+pub type nw_connection_send_completion_t = block2::DynBlock<dyn Fn(*mut NWError)>;
 
 extern "C" {
     /// [Apple's documentation](https://developer.apple.com/documentation/network/_nw_connection_send_idempotent_content?language=objc)
-    pub static _nw_connection_send_idempotent_content: nw_connection_send_completion_t;
+    pub static _nw_connection_send_idempotent_content: &'static nw_connection_send_completion_t;
 }
 
 extern "C" {
@@ -5412,19 +5316,15 @@ impl NWConnection {
     /// This callback does not indicate that the remote side has acknowledged the data.
     /// This callback does indicate that the data has either been sent or it has been
     /// enqueued to be sent.
-    ///
-    /// # Safety
-    ///
-    /// `completion` must be a valid pointer.
     #[doc(alias = "nw_connection_send")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn send(
+    pub fn send(
         &self,
         content: Option<&DispatchData>,
         context: &NWContentContext,
         is_complete: bool,
-        completion: nw_connection_send_completion_t,
+        completion: &nw_connection_send_completion_t,
     ) {
         extern "C-unwind" {
             fn nw_connection_send(
@@ -5432,7 +5332,7 @@ impl NWConnection {
                 content: Option<&DispatchData>,
                 context: &NWContentContext,
                 is_complete: bool,
-                completion: nw_connection_send_completion_t,
+                completion: &nw_connection_send_completion_t,
             );
         }
         unsafe { nw_connection_send(self, content, context, is_complete, completion) }
@@ -5450,16 +5350,12 @@ impl NWConnection {
     /// The client may call nw_connection_send() or nw_connection_receive()
     /// multiple times within the block, and the connection will attempt to
     /// batch these operations when the block returns.
-    ///
-    /// # Safety
-    ///
-    /// `batch_block` must be a valid pointer.
     #[doc(alias = "nw_connection_batch")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn batch(&self, batch_block: dispatch_block_t) {
+    pub fn batch(&self, batch_block: &dispatch_block_t) {
         extern "C-unwind" {
-            fn nw_connection_batch(connection: &NWConnection, batch_block: dispatch_block_t);
+            fn nw_connection_batch(connection: &NWConnection, batch_block: &dispatch_block_t);
         }
         unsafe { nw_connection_batch(self, batch_block) }
     }
@@ -5652,7 +5548,7 @@ impl NWGroupDescriptor {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_group_descriptor_enumerate_endpoints_block_t?language=objc)
 pub type nw_group_descriptor_enumerate_endpoints_block_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWEndpoint>) -> bool>;
+    block2::DynBlock<dyn Fn(NonNull<NWEndpoint>) -> bool>;
 
 impl NWGroupDescriptor {
     /// List all endpoints associated with the group descriptor.
@@ -5664,20 +5560,16 @@ impl NWGroupDescriptor {
     /// Parameter `enumerate_block`: A block to which the endpoints associated with the descriptor will be passed.
     /// Returning true from the block will continue to enumerate, and returning false will stop
     /// enumerating.
-    ///
-    /// # Safety
-    ///
-    /// `enumerate_block` must be a valid pointer.
     #[doc(alias = "nw_group_descriptor_enumerate_endpoints")]
     #[inline]
-    pub unsafe fn enumerate_endpoints(
+    pub fn enumerate_endpoints(
         &self,
-        enumerate_block: nw_group_descriptor_enumerate_endpoints_block_t,
+        enumerate_block: &nw_group_descriptor_enumerate_endpoints_block_t,
     ) {
         extern "C-unwind" {
             fn nw_group_descriptor_enumerate_endpoints(
                 descriptor: &NWGroupDescriptor,
-                enumerate_block: nw_group_descriptor_enumerate_endpoints_block_t,
+                enumerate_block: &nw_group_descriptor_enumerate_endpoints_block_t,
             );
         }
         unsafe { nw_group_descriptor_enumerate_endpoints(self, enumerate_block) }
@@ -5903,7 +5795,7 @@ impl NWConnectionGroup {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_group_state_changed_handler_t?language=objc)
 pub type nw_connection_group_state_changed_handler_t =
-    *mut block2::DynBlock<dyn Fn(nw_connection_group_state_t, *mut NWError)>;
+    block2::DynBlock<dyn Fn(nw_connection_group_state_t, *mut NWError)>;
 
 impl NWConnectionGroup {
     /// Sets the state changed handler. For clients that need to perform cleanup
@@ -5916,20 +5808,16 @@ impl NWConnectionGroup {
     ///
     /// Parameter `state_changed_handler`: The state changed handler to call when the connection group state changes.
     /// Pass NULL to remove the event handler.
-    ///
-    /// # Safety
-    ///
-    /// `state_changed_handler` must be a valid pointer or null.
     #[doc(alias = "nw_connection_group_set_state_changed_handler")]
     #[inline]
-    pub unsafe fn set_state_changed_handler(
+    pub fn set_state_changed_handler(
         &self,
-        state_changed_handler: nw_connection_group_state_changed_handler_t,
+        state_changed_handler: Option<&nw_connection_group_state_changed_handler_t>,
     ) {
         extern "C-unwind" {
             fn nw_connection_group_set_state_changed_handler(
                 group: &NWConnectionGroup,
-                state_changed_handler: nw_connection_group_state_changed_handler_t,
+                state_changed_handler: Option<&nw_connection_group_state_changed_handler_t>,
             );
         }
         unsafe { nw_connection_group_set_state_changed_handler(self, state_changed_handler) }
@@ -5960,7 +5848,7 @@ impl NWConnectionGroup {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_group_receive_handler_t?language=objc)
 #[cfg(feature = "dispatch2")]
 pub type nw_connection_group_receive_handler_t =
-    *mut block2::DynBlock<dyn Fn(*mut DispatchData, NonNull<NWContentContext>, bool)>;
+    block2::DynBlock<dyn Fn(*mut DispatchData, NonNull<NWContentContext>, bool)>;
 
 impl NWConnectionGroup {
     /// Sets the handler to be invoked whenever a new inbound message
@@ -5984,25 +5872,21 @@ impl NWConnectionGroup {
     ///
     /// Parameter `receive_handler`: The handler to call upon arrival of a new inbound message.
     /// Pass NULL to remove the handler.
-    ///
-    /// # Safety
-    ///
-    /// `receive_handler` must be a valid pointer or null.
     #[doc(alias = "nw_connection_group_set_receive_handler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn set_receive_handler(
+    pub fn set_receive_handler(
         &self,
         maximum_message_size: u32,
         reject_oversized_messages: bool,
-        receive_handler: nw_connection_group_receive_handler_t,
+        receive_handler: Option<&nw_connection_group_receive_handler_t>,
     ) {
         extern "C-unwind" {
             fn nw_connection_group_set_receive_handler(
                 group: &NWConnectionGroup,
                 maximum_message_size: u32,
                 reject_oversized_messages: bool,
-                receive_handler: nw_connection_group_receive_handler_t,
+                receive_handler: Option<&nw_connection_group_receive_handler_t>,
             );
         }
         unsafe {
@@ -6311,7 +6195,7 @@ impl NWConnectionGroup {
 /// is cancelled.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_group_send_completion_t?language=objc)
-pub type nw_connection_group_send_completion_t = *mut block2::DynBlock<dyn Fn(*mut NWError)>;
+pub type nw_connection_group_send_completion_t = block2::DynBlock<dyn Fn(*mut NWError)>;
 
 impl NWConnectionGroup {
     /// Send data that is not in response to an inbound message. This outgoing
@@ -6351,19 +6235,15 @@ impl NWConnectionGroup {
     /// This callback does not indicate that the remote side has acknowledged the data.
     /// This callback does indicate that the data has either been sent or it has been
     /// enqueued to be sent.
-    ///
-    /// # Safety
-    ///
-    /// `completion` must be a valid pointer.
     #[doc(alias = "nw_connection_group_send_message")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn send_message(
+    pub fn send_message(
         &self,
         content: Option<&DispatchData>,
         endpoint: Option<&NWEndpoint>,
         context: &NWContentContext,
-        completion: nw_connection_group_send_completion_t,
+        completion: &nw_connection_group_send_completion_t,
     ) {
         extern "C-unwind" {
             fn nw_connection_group_send_message(
@@ -6371,7 +6251,7 @@ impl NWConnectionGroup {
                 content: Option<&DispatchData>,
                 endpoint: Option<&NWEndpoint>,
                 context: &NWContentContext,
-                completion: nw_connection_group_send_completion_t,
+                completion: &nw_connection_group_send_completion_t,
             );
         }
         unsafe { nw_connection_group_send_message(self, content, endpoint, context, completion) }
@@ -6394,7 +6274,7 @@ impl NWConnectionGroup {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_connection_group_new_connection_handler_t?language=objc)
 pub type nw_connection_group_new_connection_handler_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWConnection>)>;
+    block2::DynBlock<dyn Fn(NonNull<NWConnection>)>;
 
 impl NWConnectionGroup {
     /// Sets the new connection handler to be invoked whenever a new inbound connection
@@ -6407,20 +6287,16 @@ impl NWConnectionGroup {
     ///
     /// Parameter `new_connection_handler`: The new connection handler to call upon receipt of a new inbound connection.
     /// Pass NULL to remove the handler.
-    ///
-    /// # Safety
-    ///
-    /// `new_connection_handler` must be a valid pointer or null.
     #[doc(alias = "nw_connection_group_set_new_connection_handler")]
     #[inline]
-    pub unsafe fn set_new_connection_handler(
+    pub fn set_new_connection_handler(
         &self,
-        new_connection_handler: nw_connection_group_new_connection_handler_t,
+        new_connection_handler: Option<&nw_connection_group_new_connection_handler_t>,
     ) {
         extern "C-unwind" {
             fn nw_connection_group_set_new_connection_handler(
                 group: &NWConnectionGroup,
-                new_connection_handler: nw_connection_group_new_connection_handler_t,
+                new_connection_handler: Option<&nw_connection_group_new_connection_handler_t>,
             );
         }
         unsafe { nw_connection_group_set_new_connection_handler(self, new_connection_handler) }
@@ -6468,7 +6344,7 @@ nw_object!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_establishment_report_access_block_t?language=objc)
 pub type nw_establishment_report_access_block_t =
-    *mut block2::DynBlock<dyn Fn(*mut NWEstablishmentReport)>;
+    block2::DynBlock<dyn Fn(*mut NWEstablishmentReport)>;
 
 impl NWConnection {
     /// Access the establishment report for a connection. The report will be
@@ -6488,21 +6364,20 @@ impl NWConnection {
     ///
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `access_block` must be a valid pointer.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "nw_connection_access_establishment_report")]
     #[cfg(feature = "dispatch2")]
     #[inline]
     pub unsafe fn access_establishment_report(
         &self,
         queue: &DispatchQueue,
-        access_block: nw_establishment_report_access_block_t,
+        access_block: &nw_establishment_report_access_block_t,
     ) {
         extern "C-unwind" {
             fn nw_connection_access_establishment_report(
                 connection: &NWConnection,
                 queue: &DispatchQueue,
-                access_block: nw_establishment_report_access_block_t,
+                access_block: &nw_establishment_report_access_block_t,
             );
         }
         unsafe { nw_connection_access_establishment_report(self, queue, access_block) }
@@ -6818,7 +6693,7 @@ impl NWResolutionReport {
 }
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_report_resolution_enumerator_t?language=objc)
-pub type nw_report_resolution_enumerator_t = *mut block2::DynBlock<
+pub type nw_report_resolution_enumerator_t = block2::DynBlock<
     dyn Fn(
         nw_report_resolution_source_t,
         u64,
@@ -6849,17 +6724,13 @@ impl NWEstablishmentReport {
     ///
     /// Returning true from the block indicates that the enumeration should continue.
     /// Returning false indicates that the enumeration should stop.
-    ///
-    /// # Safety
-    ///
-    /// `enumerate_block` must be a valid pointer.
     #[doc(alias = "nw_establishment_report_enumerate_resolutions")]
     #[inline]
-    pub unsafe fn enumerate_resolutions(&self, enumerate_block: nw_report_resolution_enumerator_t) {
+    pub fn enumerate_resolutions(&self, enumerate_block: &nw_report_resolution_enumerator_t) {
         extern "C-unwind" {
             fn nw_establishment_report_enumerate_resolutions(
                 report: &NWEstablishmentReport,
-                enumerate_block: nw_report_resolution_enumerator_t,
+                enumerate_block: &nw_report_resolution_enumerator_t,
             );
         }
         unsafe { nw_establishment_report_enumerate_resolutions(self, enumerate_block) }
@@ -6868,7 +6739,7 @@ impl NWEstablishmentReport {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_report_resolution_report_enumerator_t?language=objc)
 pub type nw_report_resolution_report_enumerator_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWResolutionReport>) -> bool>;
+    block2::DynBlock<dyn Fn(NonNull<NWResolutionReport>) -> bool>;
 
 impl NWEstablishmentReport {
     /// Enumerate the steps of connection establishment that involved endpoint
@@ -6887,20 +6758,16 @@ impl NWEstablishmentReport {
     ///
     /// Returning true from the block indicates that the enumeration should continue.
     /// Returning false indicates that the enumeration should stop.
-    ///
-    /// # Safety
-    ///
-    /// `enumerate_block` must be a valid pointer.
     #[doc(alias = "nw_establishment_report_enumerate_resolution_reports")]
     #[inline]
-    pub unsafe fn enumerate_resolution_reports(
+    pub fn enumerate_resolution_reports(
         &self,
-        enumerate_block: nw_report_resolution_report_enumerator_t,
+        enumerate_block: &nw_report_resolution_report_enumerator_t,
     ) {
         extern "C-unwind" {
             fn nw_establishment_report_enumerate_resolution_reports(
                 report: &NWEstablishmentReport,
-                enumerate_block: nw_report_resolution_report_enumerator_t,
+                enumerate_block: &nw_report_resolution_report_enumerator_t,
             );
         }
         unsafe { nw_establishment_report_enumerate_resolution_reports(self, enumerate_block) }
@@ -6909,7 +6776,7 @@ impl NWEstablishmentReport {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_report_protocol_enumerator_t?language=objc)
 pub type nw_report_protocol_enumerator_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWProtocolDefinition>, u64, u64) -> bool>;
+    block2::DynBlock<dyn Fn(NonNull<NWProtocolDefinition>, u64, u64) -> bool>;
 
 impl NWEstablishmentReport {
     /// Enumerate the protocols used in the established connection.
@@ -6929,17 +6796,13 @@ impl NWEstablishmentReport {
     ///
     /// Returning true from the block indicates that the enumeration should continue.
     /// Returning false indicates that the enumeration should stop.
-    ///
-    /// # Safety
-    ///
-    /// `enumerate_block` must be a valid pointer.
     #[doc(alias = "nw_establishment_report_enumerate_protocols")]
     #[inline]
-    pub unsafe fn enumerate_protocols(&self, enumerate_block: nw_report_protocol_enumerator_t) {
+    pub fn enumerate_protocols(&self, enumerate_block: &nw_report_protocol_enumerator_t) {
         extern "C-unwind" {
             fn nw_establishment_report_enumerate_protocols(
                 report: &NWEstablishmentReport,
-                enumerate_block: nw_report_protocol_enumerator_t,
+                enumerate_block: &nw_report_protocol_enumerator_t,
             );
         }
         unsafe { nw_establishment_report_enumerate_protocols(self, enumerate_block) }
@@ -7037,7 +6900,7 @@ impl NWDataTransferReport {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_data_transfer_report_collect_block_t?language=objc)
 pub type nw_data_transfer_report_collect_block_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWDataTransferReport>)>;
+    block2::DynBlock<dyn Fn(NonNull<NWDataTransferReport>)>;
 
 impl NWDataTransferReport {
     /// Mark a data transfer report as complete, and request collection of
@@ -7059,21 +6922,20 @@ impl NWDataTransferReport {
     ///
     /// # Safety
     ///
-    /// - `queue` possibly has additional threading requirements.
-    /// - `collect_block` must be a valid pointer.
+    /// `queue` possibly has additional threading requirements.
     #[doc(alias = "nw_data_transfer_report_collect")]
     #[cfg(feature = "dispatch2")]
     #[inline]
     pub unsafe fn collect(
         &self,
         queue: &DispatchQueue,
-        collect_block: nw_data_transfer_report_collect_block_t,
+        collect_block: &nw_data_transfer_report_collect_block_t,
     ) {
         extern "C-unwind" {
             fn nw_data_transfer_report_collect(
                 report: &NWDataTransferReport,
                 queue: &DispatchQueue,
-                collect_block: nw_data_transfer_report_collect_block_t,
+                collect_block: &nw_data_transfer_report_collect_block_t,
             );
         }
         unsafe { nw_data_transfer_report_collect(self, queue, collect_block) }
@@ -7659,7 +7521,7 @@ impl NWEthernetChannel {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_ethernet_channel_state_changed_handler_t?language=objc)
 pub type nw_ethernet_channel_state_changed_handler_t =
-    *mut block2::DynBlock<dyn Fn(nw_ethernet_channel_state_t, *mut NWError)>;
+    block2::DynBlock<dyn Fn(nw_ethernet_channel_state_t, *mut NWError)>;
 
 impl NWEthernetChannel {
     /// Sets the state change handler. For clients that need to perform cleanup when the
@@ -7672,20 +7534,16 @@ impl NWEthernetChannel {
     ///
     /// Parameter `handler`: The state changed handler to call when the channel state changes.
     /// Pass NULL to remove the state changed handler.
-    ///
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer or null.
     #[doc(alias = "nw_ethernet_channel_set_state_changed_handler")]
     #[inline]
-    pub unsafe fn set_state_changed_handler(
+    pub fn set_state_changed_handler(
         &self,
-        handler: nw_ethernet_channel_state_changed_handler_t,
+        handler: Option<&nw_ethernet_channel_state_changed_handler_t>,
     ) {
         extern "C-unwind" {
             fn nw_ethernet_channel_set_state_changed_handler(
                 ethernet_channel: &NWEthernetChannel,
-                handler: nw_ethernet_channel_state_changed_handler_t,
+                handler: Option<&nw_ethernet_channel_state_changed_handler_t>,
             );
         }
         unsafe { nw_ethernet_channel_set_state_changed_handler(self, handler) }
@@ -7797,7 +7655,7 @@ pub type NWEthernetAddress = [c_uchar; 6];
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_ethernet_channel_receive_handler_t?language=objc)
 #[cfg(feature = "dispatch2")]
-pub type nw_ethernet_channel_receive_handler_t = *mut block2::DynBlock<
+pub type nw_ethernet_channel_receive_handler_t = block2::DynBlock<
     dyn Fn(NonNull<DispatchData>, u16, NonNull<NWEthernetAddress>, NonNull<NWEthernetAddress>),
 >;
 
@@ -7810,18 +7668,14 @@ impl NWEthernetChannel {
     ///
     /// Parameter `handler`: The event handler to call when the Ethernet channel receives a new frame.
     /// Pass NULL to remove the receive handler.
-    ///
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer or null.
     #[doc(alias = "nw_ethernet_channel_set_receive_handler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn set_receive_handler(&self, handler: nw_ethernet_channel_receive_handler_t) {
+    pub fn set_receive_handler(&self, handler: Option<&nw_ethernet_channel_receive_handler_t>) {
         extern "C-unwind" {
             fn nw_ethernet_channel_set_receive_handler(
                 ethernet_channel: &NWEthernetChannel,
-                handler: nw_ethernet_channel_receive_handler_t,
+                handler: Option<&nw_ethernet_channel_receive_handler_t>,
             );
         }
         unsafe { nw_ethernet_channel_set_receive_handler(self, handler) }
@@ -7839,7 +7693,7 @@ impl NWEthernetChannel {
 /// is cancelled.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_ethernet_channel_send_completion_t?language=objc)
-pub type nw_ethernet_channel_send_completion_t = *mut block2::DynBlock<dyn Fn(*mut NWError)>;
+pub type nw_ethernet_channel_send_completion_t = block2::DynBlock<dyn Fn(*mut NWError)>;
 
 impl NWEthernetChannel {
     /// Send an Ethernet frame on a channel.  This must be called after the channel
@@ -7867,19 +7721,15 @@ impl NWEthernetChannel {
     /// Parameter `completion`: A callback to be called when the data has been sent, or an error has occurred.
     /// This callback does not indicate that the remote side has acknowledged the data.
     /// This callback does indicate that the data has been sent.
-    ///
-    /// # Safety
-    ///
-    /// `completion` must be a valid pointer.
     #[doc(alias = "nw_ethernet_channel_send")]
     #[cfg(feature = "dispatch2")]
     #[inline]
-    pub unsafe fn send(
+    pub fn send(
         &self,
         content: &DispatchData,
         vlan_tag: u16,
         remote_address: &mut NWEthernetAddress,
-        completion: nw_ethernet_channel_send_completion_t,
+        completion: &nw_ethernet_channel_send_completion_t,
     ) {
         extern "C-unwind" {
             fn nw_ethernet_channel_send(
@@ -7887,7 +7737,7 @@ impl NWEthernetChannel {
                 content: &DispatchData,
                 vlan_tag: u16,
                 remote_address: &mut NWEthernetAddress,
-                completion: nw_ethernet_channel_send_completion_t,
+                completion: &nw_ethernet_channel_send_completion_t,
             );
         }
         unsafe { nw_ethernet_channel_send(self, content, vlan_tag, remote_address, completion) }
@@ -7993,7 +7843,7 @@ impl NWFramer {
 /// Parameter `value`: A pointer to the stored message value.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_message_dispose_value_t?language=objc)
-pub type nw_framer_message_dispose_value_t = *mut block2::DynBlock<dyn Fn(NonNull<c_void>)>;
+pub type nw_framer_message_dispose_value_t = block2::DynBlock<dyn Fn(NonNull<c_void>)>;
 
 impl NWFramerMessage {
     /// Set a key-value pair on a framer message, with a custom
@@ -8013,22 +7863,21 @@ impl NWFramerMessage {
     ///
     /// # Safety
     ///
-    /// - `value` must be a valid pointer or null.
-    /// - `dispose_value` must be a valid pointer or null.
+    /// `value` must be a valid pointer or null.
     #[doc(alias = "nw_framer_message_set_value")]
     #[inline]
     pub unsafe fn framer_set_value(
         message: &NWFramerMessage,
         key: &CStr,
         value: *mut c_void,
-        dispose_value: nw_framer_message_dispose_value_t,
+        dispose_value: Option<&nw_framer_message_dispose_value_t>,
     ) {
         extern "C-unwind" {
             fn nw_framer_message_set_value(
                 message: &NWFramerMessage,
                 key: NonNull<c_char>,
                 value: *mut c_void,
-                dispose_value: nw_framer_message_dispose_value_t,
+                dispose_value: Option<&nw_framer_message_dispose_value_t>,
             );
         }
         unsafe {
@@ -8190,7 +8039,7 @@ unsafe impl RefEncode for nw_framer_start_result_t {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_start_handler_t?language=objc)
 pub type nw_framer_start_handler_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWFramer>) -> nw_framer_start_result_t>;
+    block2::DynBlock<dyn Fn(NonNull<NWFramer>) -> nw_framer_start_result_t>;
 
 impl NWProtocolDefinition {
     /// Create a protocol definition for a custom framer protocol.
@@ -8210,22 +8059,18 @@ impl NWProtocolDefinition {
     ///
     /// Returns: Returns a retained protocol definition that can be used with protocol
     /// options and metadata.
-    ///
-    /// # Safety
-    ///
-    /// `start_handler` must be a valid pointer.
     #[doc(alias = "nw_framer_create_definition")]
     #[inline]
-    pub unsafe fn framer(
+    pub fn framer(
         identifier: &CStr,
         flags: u32,
-        start_handler: nw_framer_start_handler_t,
+        start_handler: &nw_framer_start_handler_t,
     ) -> NWRetained<NWProtocolDefinition> {
         extern "C-unwind" {
             fn nw_framer_create_definition(
                 identifier: NonNull<c_char>,
                 flags: u32,
-                start_handler: nw_framer_start_handler_t,
+                start_handler: &nw_framer_start_handler_t,
             ) -> Option<NonNull<NWProtocolDefinition>>;
         }
         let ret = unsafe {
@@ -8352,7 +8197,7 @@ impl NWProtocolOptions {
 /// that the handler should be invoked once any data is available.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_input_handler_t?language=objc)
-pub type nw_framer_input_handler_t = *mut block2::DynBlock<dyn Fn(NonNull<NWFramer>) -> usize>;
+pub type nw_framer_input_handler_t = block2::DynBlock<dyn Fn(NonNull<NWFramer>) -> usize>;
 
 impl NWFramer {
     /// Set a handler block to be invoked whenever new input
@@ -8376,17 +8221,13 @@ impl NWFramer {
     ///
     ///
     /// Parameter `input_handler`: The block to invoke whenever new input data is available.
-    ///
-    /// # Safety
-    ///
-    /// `input_handler` must be a valid pointer.
     #[doc(alias = "nw_framer_set_input_handler")]
     #[inline]
-    pub unsafe fn set_input_handler(&self, input_handler: nw_framer_input_handler_t) {
+    pub fn set_input_handler(&self, input_handler: &nw_framer_input_handler_t) {
         extern "C-unwind" {
             fn nw_framer_set_input_handler(
                 framer: &NWFramer,
-                input_handler: nw_framer_input_handler_t,
+                input_handler: &nw_framer_input_handler_t,
             );
         }
         unsafe { nw_framer_set_input_handler(self, input_handler) }
@@ -8420,7 +8261,7 @@ impl NWFramer {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_output_handler_t?language=objc)
 pub type nw_framer_output_handler_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWFramer>, NonNull<NWFramerMessage>, usize, bool)>;
+    block2::DynBlock<dyn Fn(NonNull<NWFramer>, NonNull<NWFramerMessage>, usize, bool)>;
 
 impl NWFramer {
     /// Set a handler block to be invoked whenever an output
@@ -8438,17 +8279,13 @@ impl NWFramer {
     ///
     /// Parameter `output_handler`: The block to invoke whenever a new output message is ready
     /// to be sent.
-    ///
-    /// # Safety
-    ///
-    /// `output_handler` must be a valid pointer.
     #[doc(alias = "nw_framer_set_output_handler")]
     #[inline]
-    pub unsafe fn set_output_handler(&self, output_handler: nw_framer_output_handler_t) {
+    pub fn set_output_handler(&self, output_handler: &nw_framer_output_handler_t) {
         extern "C-unwind" {
             fn nw_framer_set_output_handler(
                 framer: &NWFramer,
-                output_handler: nw_framer_output_handler_t,
+                output_handler: &nw_framer_output_handler_t,
             );
         }
         unsafe { nw_framer_set_output_handler(self, output_handler) }
@@ -8463,7 +8300,7 @@ impl NWFramer {
 /// Parameter `framer`: The instance of the framer protocol.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_wakeup_handler_t?language=objc)
-pub type nw_framer_wakeup_handler_t = *mut block2::DynBlock<dyn Fn(NonNull<NWFramer>)>;
+pub type nw_framer_wakeup_handler_t = block2::DynBlock<dyn Fn(NonNull<NWFramer>)>;
 
 impl NWFramer {
     /// Set a handler block to be invoked whenever the wakeup timer
@@ -8480,17 +8317,13 @@ impl NWFramer {
     ///
     /// Parameter `wakeup_handler`: The block to invoke whenever the timeout set by
     /// nw_framer_schedule_wakeup() is reached.
-    ///
-    /// # Safety
-    ///
-    /// `wakeup_handler` must be a valid pointer.
     #[doc(alias = "nw_framer_set_wakeup_handler")]
     #[inline]
-    pub unsafe fn set_wakeup_handler(&self, wakeup_handler: nw_framer_wakeup_handler_t) {
+    pub fn set_wakeup_handler(&self, wakeup_handler: &nw_framer_wakeup_handler_t) {
         extern "C-unwind" {
             fn nw_framer_set_wakeup_handler(
                 framer: &NWFramer,
-                wakeup_handler: nw_framer_wakeup_handler_t,
+                wakeup_handler: &nw_framer_wakeup_handler_t,
             );
         }
         unsafe { nw_framer_set_wakeup_handler(self, wakeup_handler) }
@@ -8511,7 +8344,7 @@ impl NWFramer {
 /// call nw_framer_mark_failed_with_error().
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_stop_handler_t?language=objc)
-pub type nw_framer_stop_handler_t = *mut block2::DynBlock<dyn Fn(NonNull<NWFramer>) -> bool>;
+pub type nw_framer_stop_handler_t = block2::DynBlock<dyn Fn(NonNull<NWFramer>) -> bool>;
 
 impl NWFramer {
     /// Set a handler block to be invoked when the connection
@@ -8527,17 +8360,13 @@ impl NWFramer {
     ///
     ///
     /// Parameter `stop_handler`: The block to invoke when the connection is disconnected.
-    ///
-    /// # Safety
-    ///
-    /// `stop_handler` must be a valid pointer.
     #[doc(alias = "nw_framer_set_stop_handler")]
     #[inline]
-    pub unsafe fn set_stop_handler(&self, stop_handler: nw_framer_stop_handler_t) {
+    pub fn set_stop_handler(&self, stop_handler: &nw_framer_stop_handler_t) {
         extern "C-unwind" {
             fn nw_framer_set_stop_handler(
                 framer: &NWFramer,
-                stop_handler: nw_framer_stop_handler_t,
+                stop_handler: &nw_framer_stop_handler_t,
             );
         }
         unsafe { nw_framer_set_stop_handler(self, stop_handler) }
@@ -8553,7 +8382,7 @@ impl NWFramer {
 /// Parameter `framer`: The instance of the framer protocol.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_cleanup_handler_t?language=objc)
-pub type nw_framer_cleanup_handler_t = *mut block2::DynBlock<dyn Fn(NonNull<NWFramer>)>;
+pub type nw_framer_cleanup_handler_t = block2::DynBlock<dyn Fn(NonNull<NWFramer>)>;
 
 impl NWFramer {
     /// Set a handler block to be invoked when the protocol stack
@@ -8570,17 +8399,13 @@ impl NWFramer {
     ///
     ///
     /// Parameter `cleanup_handler`: The block to invoke when the protocol stack is being deallocated.
-    ///
-    /// # Safety
-    ///
-    /// `cleanup_handler` must be a valid pointer.
     #[doc(alias = "nw_framer_set_cleanup_handler")]
     #[inline]
-    pub unsafe fn set_cleanup_handler(&self, cleanup_handler: nw_framer_cleanup_handler_t) {
+    pub fn set_cleanup_handler(&self, cleanup_handler: &nw_framer_cleanup_handler_t) {
         extern "C-unwind" {
             fn nw_framer_set_cleanup_handler(
                 framer: &NWFramer,
-                cleanup_handler: nw_framer_cleanup_handler_t,
+                cleanup_handler: &nw_framer_cleanup_handler_t,
             );
         }
         unsafe { nw_framer_set_cleanup_handler(self, cleanup_handler) }
@@ -8702,8 +8527,7 @@ impl NWFramer {
 /// need to parse more.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_parse_completion_t?language=objc)
-pub type nw_framer_parse_completion_t =
-    *mut block2::DynBlock<dyn Fn(*mut u8, usize, bool) -> usize>;
+pub type nw_framer_parse_completion_t = block2::DynBlock<dyn Fn(*mut u8, usize, bool) -> usize>;
 
 impl NWFramer {
     /// Parse currently available input from the location of the input
@@ -8748,8 +8572,7 @@ impl NWFramer {
     ///
     /// # Safety
     ///
-    /// - `temp_buffer` must be a valid pointer or null.
-    /// - `parse` must be a valid pointer.
+    /// `temp_buffer` must be a valid pointer or null.
     #[doc(alias = "nw_framer_parse_input")]
     #[inline]
     pub unsafe fn parse_input(
@@ -8757,7 +8580,7 @@ impl NWFramer {
         minimum_incomplete_length: usize,
         maximum_length: usize,
         temp_buffer: *mut u8,
-        parse: nw_framer_parse_completion_t,
+        parse: &nw_framer_parse_completion_t,
     ) -> bool {
         extern "C-unwind" {
             fn nw_framer_parse_input(
@@ -8765,7 +8588,7 @@ impl NWFramer {
                 minimum_incomplete_length: usize,
                 maximum_length: usize,
                 temp_buffer: *mut u8,
-                parse: nw_framer_parse_completion_t,
+                parse: &nw_framer_parse_completion_t,
             ) -> bool;
         }
         unsafe {
@@ -8937,8 +8760,7 @@ impl NWFramer {
     ///
     /// # Safety
     ///
-    /// - `temp_buffer` must be a valid pointer or null.
-    /// - `parse` must be a valid pointer.
+    /// `temp_buffer` must be a valid pointer or null.
     #[doc(alias = "nw_framer_parse_output")]
     #[inline]
     pub unsafe fn parse_output(
@@ -8946,7 +8768,7 @@ impl NWFramer {
         minimum_incomplete_length: usize,
         maximum_length: usize,
         temp_buffer: *mut u8,
-        parse: nw_framer_parse_completion_t,
+        parse: &nw_framer_parse_completion_t,
     ) -> bool {
         extern "C-unwind" {
             fn nw_framer_parse_output(
@@ -8954,7 +8776,7 @@ impl NWFramer {
                 minimum_incomplete_length: usize,
                 maximum_length: usize,
                 temp_buffer: *mut u8,
-                parse: nw_framer_parse_completion_t,
+                parse: &nw_framer_parse_completion_t,
             ) -> bool;
         }
         unsafe {
@@ -9121,7 +8943,7 @@ impl NWFramer {
 /// A block to perform actions on a framer's scheduling context.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_framer_block_t?language=objc)
-pub type nw_framer_block_t = *mut block2::DynBlock<dyn Fn()>;
+pub type nw_framer_block_t = block2::DynBlock<dyn Fn()>;
 
 impl NWFramer {
     /// Schedule a block asynchronously on the framer instance. This
@@ -9135,15 +8957,11 @@ impl NWFramer {
     ///
     /// Parameter `async_block`: A block to execute on the correct scheduling context for the
     /// framer instance.
-    ///
-    /// # Safety
-    ///
-    /// `async_block` must be a valid pointer.
     #[doc(alias = "nw_framer_async")]
     #[inline]
-    pub unsafe fn r#async(&self, async_block: nw_framer_block_t) {
+    pub fn r#async(&self, async_block: &nw_framer_block_t) {
         extern "C-unwind" {
-            fn nw_framer_async(framer: &NWFramer, async_block: nw_framer_block_t);
+            fn nw_framer_async(framer: &NWFramer, async_block: &nw_framer_block_t);
         }
         unsafe { nw_framer_async(self, async_block) }
     }
@@ -9820,7 +9638,7 @@ impl NWListener {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/network/nw_listener_state_changed_handler_t?language=objc)
 pub type nw_listener_state_changed_handler_t =
-    *mut block2::DynBlock<dyn Fn(nw_listener_state_t, *mut NWError)>;
+    block2::DynBlock<dyn Fn(nw_listener_state_t, *mut NWError)>;
 
 impl NWListener {
     /// Sets the state change handler. For clients that need to perform cleanup when the
@@ -9833,17 +9651,13 @@ impl NWListener {
     ///
     /// Parameter `handler`: The state changed handler to call when the listener state changes.
     /// Pass NULL to remove the event handler.
-    ///
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer or null.
     #[doc(alias = "nw_listener_set_state_changed_handler")]
     #[inline]
-    pub unsafe fn set_state_changed_handler(&self, handler: nw_listener_state_changed_handler_t) {
+    pub fn set_state_changed_handler(&self, handler: Option<&nw_listener_state_changed_handler_t>) {
         extern "C-unwind" {
             fn nw_listener_set_state_changed_handler(
                 listener: &NWListener,
-                handler: nw_listener_state_changed_handler_t,
+                handler: Option<&nw_listener_state_changed_handler_t>,
             );
         }
         unsafe { nw_listener_set_state_changed_handler(self, handler) }
@@ -9857,8 +9671,7 @@ impl NWListener {
 /// event handler and other settings on the connection before calling start.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_listener_new_connection_handler_t?language=objc)
-pub type nw_listener_new_connection_handler_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWConnection>)>;
+pub type nw_listener_new_connection_handler_t = block2::DynBlock<dyn Fn(NonNull<NWConnection>)>;
 
 impl NWListener {
     /// Sets the client new connection handler. Must be called before
@@ -9870,17 +9683,16 @@ impl NWListener {
     ///
     /// Parameter `handler`: The event handler to call when the listener receives a new connection.
     /// Pass NULL to remove the new connection handler.
-    ///
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer or null.
     #[doc(alias = "nw_listener_set_new_connection_handler")]
     #[inline]
-    pub unsafe fn set_new_connection_handler(&self, handler: nw_listener_new_connection_handler_t) {
+    pub fn set_new_connection_handler(
+        &self,
+        handler: Option<&nw_listener_new_connection_handler_t>,
+    ) {
         extern "C-unwind" {
             fn nw_listener_set_new_connection_handler(
                 listener: &NWListener,
-                handler: nw_listener_new_connection_handler_t,
+                handler: Option<&nw_listener_new_connection_handler_t>,
             );
         }
         unsafe { nw_listener_set_new_connection_handler(self, handler) }
@@ -9895,7 +9707,7 @@ impl NWListener {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_listener_new_connection_group_handler_t?language=objc)
 pub type nw_listener_new_connection_group_handler_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWConnectionGroup>)>;
+    block2::DynBlock<dyn Fn(NonNull<NWConnectionGroup>)>;
 
 impl NWListener {
     /// Sets a new connection group handler to be called upon receiving an incoming
@@ -9911,20 +9723,16 @@ impl NWListener {
     ///
     /// Parameter `handler`: The event handler to call when the listener receives a new connection group.
     /// Pass NULL to remove the new connection group handler.
-    ///
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer or null.
     #[doc(alias = "nw_listener_set_new_connection_group_handler")]
     #[inline]
-    pub unsafe fn set_new_connection_group_handler(
+    pub fn set_new_connection_group_handler(
         &self,
-        handler: nw_listener_new_connection_group_handler_t,
+        handler: Option<&nw_listener_new_connection_group_handler_t>,
     ) {
         extern "C-unwind" {
             fn nw_listener_set_new_connection_group_handler(
                 listener: &NWListener,
-                handler: nw_listener_new_connection_group_handler_t,
+                handler: Option<&nw_listener_new_connection_group_handler_t>,
             );
         }
         unsafe { nw_listener_set_new_connection_group_handler(self, handler) }
@@ -10015,7 +9823,7 @@ impl NWListener {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_listener_advertised_endpoint_changed_handler_t?language=objc)
 pub type nw_listener_advertised_endpoint_changed_handler_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWEndpoint>, bool)>;
+    block2::DynBlock<dyn Fn(NonNull<NWEndpoint>, bool)>;
 
 impl NWListener {
     /// Sets the client advertised endpoint changed handler. The handler will be
@@ -10027,20 +9835,16 @@ impl NWListener {
     ///
     /// Parameter `handler`: The event handler to call when the listener adds or removes an advertised endpoint.
     /// Pass NULL to remove the handler.
-    ///
-    /// # Safety
-    ///
-    /// `handler` must be a valid pointer or null.
     #[doc(alias = "nw_listener_set_advertised_endpoint_changed_handler")]
     #[inline]
-    pub unsafe fn set_advertised_endpoint_changed_handler(
+    pub fn set_advertised_endpoint_changed_handler(
         &self,
-        handler: nw_listener_advertised_endpoint_changed_handler_t,
+        handler: Option<&nw_listener_advertised_endpoint_changed_handler_t>,
     ) {
         extern "C-unwind" {
             fn nw_listener_set_advertised_endpoint_changed_handler(
                 listener: &NWListener,
-                handler: nw_listener_advertised_endpoint_changed_handler_t,
+                handler: Option<&nw_listener_advertised_endpoint_changed_handler_t>,
             );
         }
         unsafe { nw_listener_set_advertised_endpoint_changed_handler(self, handler) }
@@ -10199,7 +10003,7 @@ impl NWPathMonitor {
 /// association with the path monitor.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_path_monitor_cancel_handler_t?language=objc)
-pub type nw_path_monitor_cancel_handler_t = *mut block2::DynBlock<dyn Fn()>;
+pub type nw_path_monitor_cancel_handler_t = block2::DynBlock<dyn Fn()>;
 
 impl NWPathMonitor {
     /// Set a handler to be called on the queue provided to nw_path_monitor_set_queue
@@ -10211,17 +10015,13 @@ impl NWPathMonitor {
     ///
     ///
     /// Parameter `cancel_handler`: The block to call upon cancellation. Pass NULL to remove the cancel handler.
-    ///
-    /// # Safety
-    ///
-    /// `cancel_handler` must be a valid pointer.
     #[doc(alias = "nw_path_monitor_set_cancel_handler")]
     #[inline]
-    pub unsafe fn set_cancel_handler(&self, cancel_handler: nw_path_monitor_cancel_handler_t) {
+    pub fn set_cancel_handler(&self, cancel_handler: &nw_path_monitor_cancel_handler_t) {
         extern "C-unwind" {
             fn nw_path_monitor_set_cancel_handler(
                 monitor: &NWPathMonitor,
-                cancel_handler: nw_path_monitor_cancel_handler_t,
+                cancel_handler: &nw_path_monitor_cancel_handler_t,
             );
         }
         unsafe { nw_path_monitor_set_cancel_handler(self, cancel_handler) }
@@ -10232,7 +10032,7 @@ impl NWPathMonitor {
 /// This will be called one or more times after calling nw_path_monitor_start.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_path_monitor_update_handler_t?language=objc)
-pub type nw_path_monitor_update_handler_t = *mut block2::DynBlock<dyn Fn(NonNull<NWPath>)>;
+pub type nw_path_monitor_update_handler_t = block2::DynBlock<dyn Fn(NonNull<NWPath>)>;
 
 impl NWPathMonitor {
     /// Sets the client update handler. This block will be called with the
@@ -10243,17 +10043,13 @@ impl NWPathMonitor {
     ///
     ///
     /// Parameter `update_handler`: The block to call when the path changes.
-    ///
-    /// # Safety
-    ///
-    /// `update_handler` must be a valid pointer.
     #[doc(alias = "nw_path_monitor_set_update_handler")]
     #[inline]
-    pub unsafe fn set_update_handler(&self, update_handler: nw_path_monitor_update_handler_t) {
+    pub fn set_update_handler(&self, update_handler: &nw_path_monitor_update_handler_t) {
         extern "C-unwind" {
             fn nw_path_monitor_set_update_handler(
                 monitor: &NWPathMonitor,
-                update_handler: nw_path_monitor_update_handler_t,
+                update_handler: &nw_path_monitor_update_handler_t,
             );
         }
         unsafe { nw_path_monitor_set_update_handler(self, update_handler) }
@@ -12208,7 +12004,7 @@ impl NWProtocolMetadata {
 /// pong reply is received.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_ws_pong_handler_t?language=objc)
-pub type nw_ws_pong_handler_t = *mut block2::DynBlock<dyn Fn(*mut NWError)>;
+pub type nw_ws_pong_handler_t = block2::DynBlock<dyn Fn(*mut NWError)>;
 
 impl NWProtocolMetadata {
     /// Set a callback that will notify the client when a pong message has been
@@ -12226,21 +12022,20 @@ impl NWProtocolMetadata {
     ///
     /// # Safety
     ///
-    /// - `client_queue` possibly has additional threading requirements.
-    /// - `pong_handler` must be a valid pointer.
+    /// `client_queue` possibly has additional threading requirements.
     #[doc(alias = "nw_ws_metadata_set_pong_handler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
     pub unsafe fn ws_set_pong_handler(
         &self,
         client_queue: &DispatchQueue,
-        pong_handler: nw_ws_pong_handler_t,
+        pong_handler: &nw_ws_pong_handler_t,
     ) {
         extern "C-unwind" {
             fn nw_ws_metadata_set_pong_handler(
                 metadata: &NWProtocolMetadata,
                 client_queue: &DispatchQueue,
-                pong_handler: nw_ws_pong_handler_t,
+                pong_handler: &nw_ws_pong_handler_t,
             );
         }
         unsafe { nw_ws_metadata_set_pong_handler(self, client_queue, pong_handler) }
@@ -12269,7 +12064,7 @@ nw_object!(
 /// Returns: A boolean value that indicating if enumeration should continue.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_ws_subprotocol_enumerator_t?language=objc)
-pub type nw_ws_subprotocol_enumerator_t = *mut block2::DynBlock<dyn Fn(NonNull<c_char>) -> bool>;
+pub type nw_ws_subprotocol_enumerator_t = block2::DynBlock<dyn Fn(NonNull<c_char>) -> bool>;
 
 impl NWWsRequest {
     /// Enumerates the list of subprotocols on the client's request.
@@ -12282,20 +12077,13 @@ impl NWWsRequest {
     ///
     ///
     /// Returns: Whether the enumeration completed.
-    ///
-    /// # Safety
-    ///
-    /// `enumerator` must be a valid pointer.
     #[doc(alias = "nw_ws_request_enumerate_subprotocols")]
     #[inline]
-    pub unsafe fn enumerate_subprotocols(
-        &self,
-        enumerator: nw_ws_subprotocol_enumerator_t,
-    ) -> bool {
+    pub fn enumerate_subprotocols(&self, enumerator: &nw_ws_subprotocol_enumerator_t) -> bool {
         extern "C-unwind" {
             fn nw_ws_request_enumerate_subprotocols(
                 request: &NWWsRequest,
-                enumerator: nw_ws_subprotocol_enumerator_t,
+                enumerator: &nw_ws_subprotocol_enumerator_t,
             ) -> bool;
         }
         unsafe { nw_ws_request_enumerate_subprotocols(self, enumerator) }
@@ -12313,7 +12101,7 @@ impl NWWsRequest {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_ws_additional_header_enumerator_t?language=objc)
 pub type nw_ws_additional_header_enumerator_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<c_char>, NonNull<c_char>) -> bool>;
+    block2::DynBlock<dyn Fn(NonNull<c_char>, NonNull<c_char>) -> bool>;
 
 impl NWWsRequest {
     /// Enumerates the list of additional headers on the client's request.
@@ -12326,20 +12114,16 @@ impl NWWsRequest {
     ///
     ///
     /// Returns: Whether the enumeration completed.
-    ///
-    /// # Safety
-    ///
-    /// `enumerator` must be a valid pointer.
     #[doc(alias = "nw_ws_request_enumerate_additional_headers")]
     #[inline]
-    pub unsafe fn enumerate_additional_headers(
+    pub fn enumerate_additional_headers(
         &self,
-        enumerator: nw_ws_additional_header_enumerator_t,
+        enumerator: &nw_ws_additional_header_enumerator_t,
     ) -> bool {
         extern "C-unwind" {
             fn nw_ws_request_enumerate_additional_headers(
                 request: &NWWsRequest,
-                enumerator: nw_ws_additional_header_enumerator_t,
+                enumerator: &nw_ws_additional_header_enumerator_t,
             ) -> bool;
         }
         unsafe { nw_ws_request_enumerate_additional_headers(self, enumerator) }
@@ -12532,20 +12316,16 @@ impl NWWsResponse {
     ///
     ///
     /// Returns: Whether the enumeration completed.
-    ///
-    /// # Safety
-    ///
-    /// `enumerator` must be a valid pointer.
     #[doc(alias = "nw_ws_response_enumerate_additional_headers")]
     #[inline]
-    pub unsafe fn enumerate_additional_headers(
+    pub fn enumerate_additional_headers(
         &self,
-        enumerator: nw_ws_additional_header_enumerator_t,
+        enumerator: &nw_ws_additional_header_enumerator_t,
     ) -> bool {
         extern "C-unwind" {
             fn nw_ws_response_enumerate_additional_headers(
                 response: &NWWsResponse,
-                enumerator: nw_ws_additional_header_enumerator_t,
+                enumerator: &nw_ws_additional_header_enumerator_t,
             ) -> bool;
         }
         unsafe { nw_ws_response_enumerate_additional_headers(self, enumerator) }
@@ -12563,7 +12343,7 @@ impl NWWsResponse {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/network/nw_ws_client_request_handler_t?language=objc)
 pub type nw_ws_client_request_handler_t =
-    *mut block2::DynBlock<dyn Fn(NonNull<NWWsRequest>) -> NonNull<NWWsResponse>>;
+    block2::DynBlock<dyn Fn(NonNull<NWWsRequest>) -> NonNull<NWWsResponse>>;
 
 impl NWProtocolOptions {
     /// Set callback handler to be invoked when a WebSocket server receives a
@@ -12581,20 +12361,20 @@ impl NWProtocolOptions {
     /// # Safety
     ///
     /// - `client_queue` possibly has additional threading requirements.
-    /// - `handler` must be a valid pointer.
+    /// - `handler` block's return must be a valid pointer.
     #[doc(alias = "nw_ws_options_set_client_request_handler")]
     #[cfg(feature = "dispatch2")]
     #[inline]
     pub unsafe fn ws_set_client_request_handler(
         &self,
         client_queue: &DispatchQueue,
-        handler: nw_ws_client_request_handler_t,
+        handler: &nw_ws_client_request_handler_t,
     ) {
         extern "C-unwind" {
             fn nw_ws_options_set_client_request_handler(
                 options: &NWProtocolOptions,
                 client_queue: &DispatchQueue,
-                handler: nw_ws_client_request_handler_t,
+                handler: &nw_ws_client_request_handler_t,
             );
         }
         unsafe { nw_ws_options_set_client_request_handler(self, client_queue, handler) }

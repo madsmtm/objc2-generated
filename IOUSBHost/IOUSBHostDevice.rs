@@ -186,8 +186,7 @@ impl IOUSBHostDevice {
         ///
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `interest_handler` must be a valid pointer or null.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithIOService:options:queue:error:interestHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIOService_options_queue_error_interestHandler(
@@ -196,7 +195,7 @@ impl IOUSBHostDevice {
             options: IOUSBHostObjectInitOptions,
             queue: Option<&DispatchQueue>,
             error: Option<&mut Option<Retained<NSError>>>,
-            interest_handler: IOUSBHostInterestHandler,
+            interest_handler: Option<&IOUSBHostInterestHandler>,
         ) -> Option<Retained<Self>>;
 
         #[cfg(all(feature = "block2", feature = "dispatch2", feature = "objc2-io-kit"))]
@@ -227,8 +226,7 @@ impl IOUSBHostDevice {
         ///
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `interest_handler` must be a valid pointer or null.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(initWithIOService:queue:error:interestHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithIOService_queue_error_interestHandler(
@@ -236,7 +234,7 @@ impl IOUSBHostDevice {
             io_service: io_service_t,
             queue: Option<&DispatchQueue>,
             error: Option<&mut Option<Retained<NSError>>>,
-            interest_handler: IOUSBHostInterestHandler,
+            interest_handler: Option<&IOUSBHostInterestHandler>,
         ) -> Option<Retained<Self>>;
     );
 }

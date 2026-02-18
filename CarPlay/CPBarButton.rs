@@ -57,7 +57,7 @@ unsafe impl RefEncode for CPBarButtonType {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpbarbuttonhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CPBarButtonHandler = *mut block2::DynBlock<dyn Fn(NonNull<CPBarButton>)>;
+pub type CPBarButtonHandler = block2::DynBlock<dyn Fn(NonNull<CPBarButton>)>;
 
 extern_class!(
     /// A button for placement in a navigation bar.
@@ -88,30 +88,22 @@ impl CPBarButton {
 
         #[cfg(all(feature = "block2", feature = "objc2-ui-kit"))]
         /// Convenience initializer that creates a bar button that renders with an image.
-        ///
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer or null.
         #[unsafe(method(initWithImage:handler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithImage_handler(
             this: Allocated<Self>,
             image: &UIImage,
-            handler: CPBarButtonHandler,
+            handler: Option<&CPBarButtonHandler>,
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
         /// Convenience initializer that creates a bar button that displays a text label.
-        ///
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer or null.
         #[unsafe(method(initWithTitle:handler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_handler(
             this: Allocated<Self>,
             title: &NSString,
-            handler: CPBarButtonHandler,
+            handler: Option<&CPBarButtonHandler>,
         ) -> Retained<Self>;
 
         /// A Boolean value indicating whether the button is enabled.
@@ -179,16 +171,13 @@ impl CPBarButton {
         pub unsafe fn setTitle(&self, title: Option<&NSString>);
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(initWithType:handler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithType_handler(
             this: Allocated<Self>,
             r#type: CPBarButtonType,
-            handler: CPBarButtonHandler,
+            handler: Option<&CPBarButtonHandler>,
         ) -> Retained<Self>;
 
         #[deprecated]

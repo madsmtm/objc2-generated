@@ -54,7 +54,7 @@ impl DDEventType {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/devicediscoveryextension/ddeventhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type DDEventHandler = *mut block2::DynBlock<dyn Fn(NonNull<DDDeviceEvent>)>;
+pub type DDEventHandler = block2::DynBlock<dyn Fn(NonNull<DDDeviceEvent>)>;
 
 extern_class!(
     /// Device-related event (e.g. found, lost).

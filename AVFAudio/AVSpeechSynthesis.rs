@@ -126,12 +126,12 @@ extern "C" {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizerbuffercallback?language=objc)
 #[cfg(all(feature = "AVAudioBuffer", feature = "block2"))]
-pub type AVSpeechSynthesizerBufferCallback = *mut block2::DynBlock<dyn Fn(NonNull<AVAudioBuffer>)>;
+pub type AVSpeechSynthesizerBufferCallback = block2::DynBlock<dyn Fn(NonNull<AVAudioBuffer>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizermarkercallback?language=objc)
 #[cfg(feature = "block2")]
 pub type AVSpeechSynthesizerMarkerCallback =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSArray<AVSpeechSynthesisMarker>>)>;
+    block2::DynBlock<dyn Fn(NonNull<NSArray<AVSpeechSynthesisMarker>>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesispersonalvoiceauthorizationstatus?language=objc)
 // NS_ENUM
@@ -559,32 +559,24 @@ impl AVSpeechSynthesizer {
         pub unsafe fn speakUtterance(&self, utterance: &AVSpeechUtterance);
 
         #[cfg(all(feature = "AVAudioBuffer", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `buffer_callback` must be a valid pointer.
         #[unsafe(method(writeUtterance:toBufferCallback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeUtterance_toBufferCallback(
             &self,
             utterance: &AVSpeechUtterance,
-            buffer_callback: AVSpeechSynthesizerBufferCallback,
+            buffer_callback: &AVSpeechSynthesizerBufferCallback,
         );
 
         #[cfg(all(feature = "AVAudioBuffer", feature = "block2"))]
         /// Use this method to receive audio buffers and associated metadata that can be used to store or further process synthesized speech.
         /// The dictionary provided by -[AVSpeechSynthesisVoice audioFileSettings] can be used to create an AVAudioFile.
-        ///
-        /// # Safety
-        ///
-        /// - `buffer_callback` must be a valid pointer.
-        /// - `marker_callback` must be a valid pointer.
         #[unsafe(method(writeUtterance:toBufferCallback:toMarkerCallback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeUtterance_toBufferCallback_toMarkerCallback(
             &self,
             utterance: &AVSpeechUtterance,
-            buffer_callback: AVSpeechSynthesizerBufferCallback,
-            marker_callback: AVSpeechSynthesizerMarkerCallback,
+            buffer_callback: &AVSpeechSynthesizerBufferCallback,
+            marker_callback: &AVSpeechSynthesizerMarkerCallback,
         );
 
         #[unsafe(method(stopSpeakingAtBoundary:))]

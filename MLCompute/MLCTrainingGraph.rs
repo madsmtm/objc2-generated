@@ -318,10 +318,6 @@ impl MLCTrainingGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:batchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -332,7 +328,7 @@ impl MLCTrainingGraph {
             loss_label_weights_data: Option<&NSDictionary<NSString, MLCTensorData>>,
             batch_size: NSUInteger,
             options: MLCExecutionOptions,
-            completion_handler: MLCGraphCompletionHandler,
+            completion_handler: Option<&MLCGraphCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(
@@ -358,10 +354,6 @@ impl MLCTrainingGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeWithInputsData:lossLabelsData:lossLabelWeightsData:outputsData:batchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -373,7 +365,7 @@ impl MLCTrainingGraph {
             outputs_data: Option<&NSDictionary<NSString, MLCTensorData>>,
             batch_size: NSUInteger,
             options: MLCExecutionOptions,
-            completion_handler: MLCGraphCompletionHandler,
+            completion_handler: Option<&MLCGraphCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes", feature = "block2"))]
@@ -386,10 +378,6 @@ impl MLCTrainingGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeForwardWithBatchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -397,7 +385,7 @@ impl MLCTrainingGraph {
             &self,
             batch_size: NSUInteger,
             options: MLCExecutionOptions,
-            completion_handler: MLCGraphCompletionHandler,
+            completion_handler: Option<&MLCGraphCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(
@@ -417,10 +405,6 @@ impl MLCTrainingGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeForwardWithBatchSize:options:outputsData:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -429,7 +413,7 @@ impl MLCTrainingGraph {
             batch_size: NSUInteger,
             options: MLCExecutionOptions,
             outputs_data: Option<&NSDictionary<NSString, MLCTensorData>>,
-            completion_handler: MLCGraphCompletionHandler,
+            completion_handler: Option<&MLCGraphCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes", feature = "block2"))]
@@ -442,10 +426,6 @@ impl MLCTrainingGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeGradientWithBatchSize:options:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -453,7 +433,7 @@ impl MLCTrainingGraph {
             &self,
             batch_size: NSUInteger,
             options: MLCExecutionOptions,
-            completion_handler: MLCGraphCompletionHandler,
+            completion_handler: Option<&MLCGraphCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(
@@ -473,10 +453,6 @@ impl MLCTrainingGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeGradientWithBatchSize:options:outputsData:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -485,7 +461,7 @@ impl MLCTrainingGraph {
             batch_size: NSUInteger,
             options: MLCExecutionOptions,
             outputs_data: Option<&NSDictionary<NSString, MLCTensorData>>,
-            completion_handler: MLCGraphCompletionHandler,
+            completion_handler: Option<&MLCGraphCompletionHandler>,
         ) -> bool;
 
         #[cfg(all(feature = "MLCTensor", feature = "MLCTypes", feature = "block2"))]
@@ -496,17 +472,13 @@ impl MLCTrainingGraph {
         /// Parameter `completionHandler`: The completion handler
         ///
         /// Returns: A boolean indicating success or failure
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[deprecated]
         #[unsafe(method(executeOptimizerUpdateWithOptions:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeOptimizerUpdateWithOptions_completionHandler(
             &self,
             options: MLCExecutionOptions,
-            completion_handler: MLCGraphCompletionHandler,
+            completion_handler: Option<&MLCGraphCompletionHandler>,
         ) -> bool;
 
         /// Synchronize updates (weights/biases from convolution, fully connected and LSTM layers, tensor parameters)

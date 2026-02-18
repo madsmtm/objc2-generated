@@ -16,7 +16,7 @@ use crate::*;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metalperformanceshaders/mpsnngraphcompletionhandler?language=objc)
 #[cfg(all(feature = "MPSCore", feature = "MPSImage", feature = "block2"))]
-pub type MPSNNGraphCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut MPSImage, *mut NSError)>;
+pub type MPSNNGraphCompletionHandler = block2::DynBlock<dyn Fn(*mut MPSImage, *mut NSError)>;
 
 extern_class!(
     /// Optimized representation of a graph of MPSNNImageNodes and MPSNNFilterNodes
@@ -533,16 +533,12 @@ impl MPSNNGraph {
         ///
         /// Returns: A MPSImage to receive the result. The data in the image will not be valid until
         /// the completionHandler is called.
-        ///
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer.
         #[unsafe(method(executeAsyncWithSourceImages:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn executeAsyncWithSourceImages_completionHandler(
             &self,
             source_images: &NSArray<MPSImage>,
-            handler: MPSNNGraphCompletionHandler,
+            handler: &MPSNNGraphCompletionHandler,
         ) -> Retained<MPSImage>;
 
         /// Find the number of times a image will be read by the graph *

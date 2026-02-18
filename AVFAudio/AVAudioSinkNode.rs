@@ -29,7 +29,7 @@ use crate::*;
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AVAudioSinkNodeReceiverBlock = *mut block2::DynBlock<
+pub type AVAudioSinkNodeReceiverBlock = block2::DynBlock<
     dyn Fn(NonNull<AudioTimeStamp>, AVAudioFrameCount, NonNull<AudioBufferList>) -> OSStatus,
 >;
 
@@ -85,15 +85,11 @@ impl AVAudioSinkNode {
         /// to another node.
         ///
         /// The audio format for the data received by the block will be set to the node's input format.
-        ///
-        /// # Safety
-        ///
-        /// `block` must be a valid pointer.
         #[unsafe(method(initWithReceiverBlock:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithReceiverBlock(
             this: Allocated<Self>,
-            block: AVAudioSinkNodeReceiverBlock,
+            block: &AVAudioSinkNodeReceiverBlock,
         ) -> Retained<Self>;
     );
 }

@@ -121,7 +121,7 @@ impl UIListContentTextProperties {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(colorTransformer))]
         #[unsafe(method_family = none)]
-        pub unsafe fn colorTransformer(&self) -> UIConfigurationColorTransformer;
+        pub unsafe fn colorTransformer(&self) -> *mut UIConfigurationColorTransformer;
 
         #[cfg(all(
             feature = "UIColor",
@@ -134,12 +134,12 @@ impl UIListContentTextProperties {
         ///
         /// # Safety
         ///
-        /// `color_transformer` must be a valid pointer or null.
+        /// `color_transformer` block's return must be a valid pointer.
         #[unsafe(method(setColorTransformer:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setColorTransformer(
             &self,
-            color_transformer: UIConfigurationColorTransformer,
+            color_transformer: Option<&UIConfigurationColorTransformer>,
         );
 
         #[cfg(feature = "UIColor")]

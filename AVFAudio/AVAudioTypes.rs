@@ -37,7 +37,7 @@ pub type AVAudioChannelCount = u32;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/avfaudio/avaudionodecompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type AVAudioNodeCompletionHandler = *mut block2::DynBlock<dyn Fn()>;
+pub type AVAudioNodeCompletionHandler = block2::DynBlock<dyn Fn()>;
 
 /// The index of a bus on an AVAudioNode.
 ///

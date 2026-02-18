@@ -85,7 +85,7 @@ unsafe impl RefEncode for PHImageRequestOptionsResizeMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetimageprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type PHAssetImageProgressHandler =
-    *mut block2::DynBlock<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
+    block2::DynBlock<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phimagerequestoptions?language=objc)
@@ -172,19 +172,18 @@ impl PHImageRequestOptions {
         /// - The returned block's argument 4 must be a valid pointer or null.
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progressHandler(&self) -> PHAssetImageProgressHandler;
+        pub unsafe fn progressHandler(&self) -> *mut PHAssetImageProgressHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `progress_handler` must be a valid pointer or null.
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetImageProgressHandler);
+        pub unsafe fn setProgressHandler(
+            &self,
+            progress_handler: Option<&PHAssetImageProgressHandler>,
+        );
 
         #[unsafe(method(allowSecondaryDegradedImage))]
         #[unsafe(method_family = none)]
@@ -266,19 +265,18 @@ impl PHLivePhotoRequestOptions {
         /// - The returned block's argument 4 must be a valid pointer or null.
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progressHandler(&self) -> PHAssetImageProgressHandler;
+        pub unsafe fn progressHandler(&self) -> *mut PHAssetImageProgressHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `progress_handler` must be a valid pointer or null.
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetImageProgressHandler);
+        pub unsafe fn setProgressHandler(
+            &self,
+            progress_handler: Option<&PHAssetImageProgressHandler>,
+        );
     );
 }
 
@@ -342,7 +340,7 @@ unsafe impl RefEncode for PHVideoRequestOptionsDeliveryMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/photos/phassetvideoprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type PHAssetVideoProgressHandler =
-    *mut block2::DynBlock<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
+    block2::DynBlock<dyn Fn(c_double, *mut NSError, NonNull<Bool>, *mut NSDictionary)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/photos/phvideorequestoptions?language=objc)
@@ -400,19 +398,18 @@ impl PHVideoRequestOptions {
         /// - The returned block's argument 4 must be a valid pointer or null.
         #[unsafe(method(progressHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn progressHandler(&self) -> PHAssetVideoProgressHandler;
+        pub unsafe fn progressHandler(&self) -> *mut PHAssetVideoProgressHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`progressHandler`][Self::progressHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `progress_handler` must be a valid pointer or null.
         #[unsafe(method(setProgressHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setProgressHandler(&self, progress_handler: PHAssetVideoProgressHandler);
+        pub unsafe fn setProgressHandler(
+            &self,
+            progress_handler: Option<&PHAssetVideoProgressHandler>,
+        );
     );
 }
 

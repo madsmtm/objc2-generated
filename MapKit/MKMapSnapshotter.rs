@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsnapshotcompletionhandler?language=objc)
 #[cfg(all(feature = "MKMapSnapshot", feature = "block2"))]
 pub type MKMapSnapshotCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut MKMapSnapshot, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut MKMapSnapshot, *mut NSError)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/mapkit/mkmapsnapshotter?language=objc)
@@ -36,27 +36,23 @@ impl MKMapSnapshotter {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "MKMapSnapshot", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(startWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(
             &self,
-            completion_handler: MKMapSnapshotCompletionHandler,
+            completion_handler: &MKMapSnapshotCompletionHandler,
         );
 
         #[cfg(all(feature = "MKMapSnapshot", feature = "block2", feature = "dispatch2"))]
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `completion_handler` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(startWithQueue:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithQueue_completionHandler(
             &self,
             queue: &DispatchQueue,
-            completion_handler: MKMapSnapshotCompletionHandler,
+            completion_handler: &MKMapSnapshotCompletionHandler,
         );
 
         #[unsafe(method(cancel))]

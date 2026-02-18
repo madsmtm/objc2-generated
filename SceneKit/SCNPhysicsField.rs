@@ -37,7 +37,7 @@ unsafe impl RefEncode for SCNPhysicsFieldScope {
     feature = "block2",
     feature = "objc2-core-foundation"
 ))]
-pub type SCNFieldForceEvaluator = *mut block2::DynBlock<
+pub type SCNFieldForceEvaluator = block2::DynBlock<
     dyn Fn(SCNVector3, SCNVector3, c_float, c_float, NSTimeInterval) -> SCNVector3,
 >;
 
@@ -260,14 +260,10 @@ impl SCNPhysicsField {
             feature = "objc2-core-foundation"
         ))]
         /// A field force with a custom force evaluator.
-        ///
-        /// # Safety
-        ///
-        /// `block` must be a valid pointer.
         #[unsafe(method(customFieldWithEvaluationBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn customFieldWithEvaluationBlock(
-            block: SCNFieldForceEvaluator,
+            block: &SCNFieldForceEvaluator,
         ) -> Retained<SCNPhysicsField>;
     );
 }

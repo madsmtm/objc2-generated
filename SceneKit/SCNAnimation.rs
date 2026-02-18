@@ -21,13 +21,12 @@ extern_protocol!(
 
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimationdidstartblock?language=objc)
 #[cfg(feature = "block2")]
-pub type SCNAnimationDidStartBlock = *mut block2::DynBlock<
-    dyn Fn(NonNull<SCNAnimation>, NonNull<ProtocolObject<dyn SCNAnimatable>>),
->;
+pub type SCNAnimationDidStartBlock =
+    block2::DynBlock<dyn Fn(NonNull<SCNAnimation>, NonNull<ProtocolObject<dyn SCNAnimatable>>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimationdidstopblock?language=objc)
 #[cfg(feature = "block2")]
-pub type SCNAnimationDidStopBlock = *mut block2::DynBlock<
+pub type SCNAnimationDidStopBlock = block2::DynBlock<
     dyn Fn(NonNull<SCNAnimation>, NonNull<ProtocolObject<dyn SCNAnimatable>>, Bool),
 >;
 
@@ -470,19 +469,18 @@ impl SCNAnimation {
         /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(animationDidStart))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animationDidStart(&self) -> SCNAnimationDidStartBlock;
+        pub unsafe fn animationDidStart(&self) -> *mut SCNAnimationDidStartBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`animationDidStart`][Self::animationDidStart].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `animation_did_start` must be a valid pointer or null.
         #[unsafe(method(setAnimationDidStart:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnimationDidStart(&self, animation_did_start: SCNAnimationDidStartBlock);
+        pub unsafe fn setAnimationDidStart(
+            &self,
+            animation_did_start: Option<&SCNAnimationDidStartBlock>,
+        );
 
         #[cfg(feature = "block2")]
         /// Called when the animation either completes its active duration or
@@ -495,19 +493,18 @@ impl SCNAnimation {
         /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(animationDidStop))]
         #[unsafe(method_family = none)]
-        pub unsafe fn animationDidStop(&self) -> SCNAnimationDidStopBlock;
+        pub unsafe fn animationDidStop(&self) -> *mut SCNAnimationDidStopBlock;
 
         #[cfg(feature = "block2")]
         /// Setter for [`animationDidStop`][Self::animationDidStop].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `animation_did_stop` must be a valid pointer or null.
         #[unsafe(method(setAnimationDidStop:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setAnimationDidStop(&self, animation_did_stop: SCNAnimationDidStopBlock);
+        pub unsafe fn setAnimationDidStop(
+            &self,
+            animation_did_stop: Option<&SCNAnimationDidStopBlock>,
+        );
 
         /// Specifies the animation events attached to the receiver.
         ///
@@ -686,7 +683,7 @@ impl SCNAnimationPlayer {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnanimationeventblock?language=objc)
 #[cfg(feature = "block2")]
-pub type SCNAnimationEventBlock = *mut block2::DynBlock<
+pub type SCNAnimationEventBlock = block2::DynBlock<
     dyn Fn(NonNull<ProtocolObject<dyn SCNAnimationProtocol>>, NonNull<AnyObject>, Bool),
 >;
 
@@ -713,15 +710,11 @@ impl SCNAnimationEvent {
         /// Parameter `eventBlock`: The block to call when the event is triggered.
         ///
         /// "time" is relative to animation duration and therefor it has to be a value in the range [0,1].
-        ///
-        /// # Safety
-        ///
-        /// `event_block` must be a valid pointer.
         #[unsafe(method(animationEventWithKeyTime:block:))]
         #[unsafe(method_family = none)]
         pub unsafe fn animationEventWithKeyTime_block(
             time: CGFloat,
-            event_block: SCNAnimationEventBlock,
+            event_block: &SCNAnimationEventBlock,
         ) -> Retained<Self>;
     );
 }

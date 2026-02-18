@@ -88,7 +88,7 @@ unsafe impl RefEncode for ENActivityFlags {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/enactivityhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type ENActivityHandler = *mut block2::DynBlock<dyn Fn(ENActivityFlags)>;
+pub type ENActivityHandler = block2::DynBlock<dyn Fn(ENActivityFlags)>;
 
 /// Invoked when getDiagnosisKeysWithCompletionHandler completes.
 /// If it completes successfully, keys will contain the Diagnosis Keys for this device and error will be nil.
@@ -97,7 +97,7 @@ pub type ENActivityHandler = *mut block2::DynBlock<dyn Fn(ENActivityFlags)>;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetdiagnosiskeyshandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENGetDiagnosisKeysHandler =
-    *mut block2::DynBlock<dyn Fn(*mut NSArray<ENTemporaryExposureKey>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut NSArray<ENTemporaryExposureKey>, *mut NSError)>;
 
 /// Invoked when detecting exposures completes. It provides a summary of exposures.
 /// If it completes successfully, summary will contain a summary of exposures and error will be nil.
@@ -106,12 +106,12 @@ pub type ENGetDiagnosisKeysHandler =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endetectexposureshandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENDetectExposuresHandler =
-    *mut block2::DynBlock<dyn Fn(*mut ENExposureDetectionSummary, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut ENExposureDetectionSummary, *mut NSError)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/endiagnosiskeysavailablehandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENDiagnosisKeysAvailableHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSArray<ENTemporaryExposureKey>>)>;
+    block2::DynBlock<dyn Fn(NonNull<NSArray<ENTemporaryExposureKey>>)>;
 
 /// Invoked when getting exposures completes. It provides info about each exposure.
 /// If it completes successfully, exposures will contain info about each exposure and error will be nil.
@@ -120,7 +120,7 @@ pub type ENDiagnosisKeysAvailableHandler =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetexposureinfohandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENGetExposureInfoHandler =
-    *mut block2::DynBlock<dyn Fn(*mut NSArray<ENExposureInfo>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut NSArray<ENExposureInfo>, *mut NSError)>;
 
 /// Invoked when getExposureWindows completes. It provides info about each exposure window.
 /// If it completes successfully, exposureWindows will non-nil and error will be nil.
@@ -129,13 +129,13 @@ pub type ENGetExposureInfoHandler =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetexposurewindowshandler?language=objc)
 #[cfg(all(feature = "ENCommon", feature = "block2"))]
 pub type ENGetExposureWindowsHandler =
-    *mut block2::DynBlock<dyn Fn(*mut NSArray<ENExposureWindow>, *mut NSError)>;
+    block2::DynBlock<dyn Fn(*mut NSArray<ENExposureWindow>, *mut NSError)>;
 
 /// Invoked when getUserTraveled completes.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/exposurenotification/engetusertraveledhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type ENGetUserTraveledHandler = *mut block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
+pub type ENGetUserTraveledHandler = block2::DynBlock<dyn Fn(Bool, *mut NSError)>;
 
 extern_class!(
     /// Manages Exposure Notification functionality.
@@ -157,19 +157,15 @@ impl ENManager {
         /// When the app is launched, it should create an ENManager instance, set this handler, and then activate the manager.
         #[unsafe(method(activityHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activityHandler(&self) -> ENActivityHandler;
+        pub unsafe fn activityHandler(&self) -> *mut ENActivityHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`activityHandler`][Self::activityHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `activity_handler` must be a valid pointer or null.
         #[unsafe(method(setActivityHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setActivityHandler(&self, activity_handler: ENActivityHandler);
+        pub unsafe fn setActivityHandler(&self, activity_handler: Option<&ENActivityHandler>);
 
         #[cfg(feature = "dispatch2")]
         #[unsafe(method(dispatchQueue))]
@@ -195,29 +191,24 @@ impl ENManager {
         /// Invoked exactly once when invalidation completes. This property is cleared before it's invoked to break retain cycles.
         #[unsafe(method(invalidationHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn invalidationHandler(&self) -> dispatch_block_t;
+        pub unsafe fn invalidationHandler(&self) -> *mut dispatch_block_t;
 
         #[cfg(feature = "dispatch2")]
         /// Setter for [`invalidationHandler`][Self::invalidationHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `invalidation_handler` must be a valid pointer or null.
         #[unsafe(method(setInvalidationHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setInvalidationHandler(&self, invalidation_handler: dispatch_block_t);
+        pub unsafe fn setInvalidationHandler(
+            &self,
+            invalidation_handler: Option<&dispatch_block_t>,
+        );
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Activates the object to prepare it for use. Properties may not be usable until the completion handler reports success.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(activateWithCompletionHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn activateWithCompletionHandler(&self, completion_handler: ENErrorHandler);
+        pub unsafe fn activateWithCompletionHandler(&self, completion_handler: &ENErrorHandler);
 
         /// Stops any outstanding operations and invalidates this object. Once this is called, the object can no longer be used.
         /// To start using ENManager again, a new instance of the class must be created and activated.
@@ -227,15 +218,11 @@ impl ENManager {
 
         #[cfg(feature = "block2")]
         /// Reports if the user traveled within an exposure period (e.g. 14 days).
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(getUserTraveledWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getUserTraveledWithCompletionHandler(
             &self,
-            completion_handler: ENGetUserTraveledHandler,
+            completion_handler: &ENGetUserTraveledHandler,
         );
 
         #[cfg(feature = "ENCommon")]
@@ -258,59 +245,43 @@ impl ENManager {
         /// If not previously authorized, this shows a user dialog for consent to enable Exposure Notification.
         /// Note: Disabling stops Bluetooth advertising and scanning related to Exposure Notification, but the
         /// Diagnosis Keys and data will remain.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(setExposureNotificationEnabled:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setExposureNotificationEnabled_completionHandler(
             &self,
             enabled: bool,
-            completion_handler: ENErrorHandler,
+            completion_handler: &ENErrorHandler,
         );
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Detects exposures using the specified configuration to control the scoring algorithm.
         /// This uses the diagnosis keys already known to the system.
         /// Only available to apps with ENAPIVersion 2 or higher.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(detectExposuresWithConfiguration:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectExposuresWithConfiguration_completionHandler(
             &self,
             configuration: &ENExposureConfiguration,
-            completion_handler: ENDetectExposuresHandler,
+            completion_handler: &ENDetectExposuresHandler,
         ) -> Retained<NSProgress>;
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Detects exposures using the specified configuration to control the scoring algorithm and URLs to specify the
         /// files containing diagnosis keys the app has downloaded. The diagnosis key files must be signed appropriately.
         /// When the app's ENAPIVersion is 2 or higher, keys already known to the system are included in the analysis.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(detectExposuresWithConfiguration:diagnosisKeyURLs:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn detectExposuresWithConfiguration_diagnosisKeyURLs_completionHandler(
             &self,
             configuration: &ENExposureConfiguration,
             diagnosis_key_ur_ls: &NSArray<NSURL>,
-            completion_handler: ENDetectExposuresHandler,
+            completion_handler: &ENDetectExposuresHandler,
         ) -> Retained<NSProgress>;
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Gets info about each exposure from the summary provided when exposure detection completes.
         /// Using this API will inform the user that their exposure details have been revealed to the app.
         /// The user explanation string will be displayed as part of the UI to inform the user of using this API.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[deprecated = "Use getExposureWindowsFromSummary, if needed."]
         #[unsafe(method(getExposureInfoFromSummary:userExplanation:completionHandler:))]
         #[unsafe(method_family = none)]
@@ -318,35 +289,27 @@ impl ENManager {
             &self,
             summary: &ENExposureDetectionSummary,
             user_explanation: &NSString,
-            completion_handler: ENGetExposureInfoHandler,
+            completion_handler: &ENGetExposureInfoHandler,
         ) -> Retained<NSProgress>;
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Gets info about each exposure window from the summary provided when exposure detection completes.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(getExposureWindowsFromSummary:completionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getExposureWindowsFromSummary_completionHandler(
             &self,
             summary: &ENExposureDetectionSummary,
-            completion_handler: ENGetExposureWindowsHandler,
+            completion_handler: &ENGetExposureWindowsHandler,
         ) -> Retained<NSProgress>;
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Requests the temporary exposure keys used by this device to share with a server.
         /// Each use of this API will present the user with system UI to authorize it.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(getDiagnosisKeysWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getDiagnosisKeysWithCompletionHandler(
             &self,
-            completion_handler: ENGetDiagnosisKeysHandler,
+            completion_handler: &ENGetDiagnosisKeysHandler,
         );
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
@@ -354,15 +317,11 @@ impl ENManager {
         /// Each use of this API will present the user with system UI to authorize it.
         /// WARNING: This API is only for use by developers. It requires a special entitlement that is not allowed in the app store.
         /// It's only intended to allow developers to test without needing to wait 24 hours for a key to be released.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(getTestDiagnosisKeysWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn getTestDiagnosisKeysWithCompletionHandler(
             &self,
-            completion_handler: ENGetDiagnosisKeysHandler,
+            completion_handler: &ENGetDiagnosisKeysHandler,
         );
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
@@ -373,51 +332,39 @@ impl ENManager {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(diagnosisKeysAvailableHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn diagnosisKeysAvailableHandler(&self) -> ENDiagnosisKeysAvailableHandler;
+        pub unsafe fn diagnosisKeysAvailableHandler(&self) -> *mut ENDiagnosisKeysAvailableHandler;
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Setter for [`diagnosisKeysAvailableHandler`][Self::diagnosisKeysAvailableHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `diagnosis_keys_available_handler` must be a valid pointer or null.
         #[unsafe(method(setDiagnosisKeysAvailableHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setDiagnosisKeysAvailableHandler(
             &self,
-            diagnosis_keys_available_handler: ENDiagnosisKeysAvailableHandler,
+            diagnosis_keys_available_handler: Option<&ENDiagnosisKeysAvailableHandler>,
         );
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Authorizes a one-time, future release of diagnosis keys without a user prompt at the time of release.
         /// This allows the user to authorize ahead of time in case they are unable to approve at the time of positive diagnosis.
         /// WARNING: Application should be in foreground to request the authorization
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(preAuthorizeDiagnosisKeysWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn preAuthorizeDiagnosisKeysWithCompletionHandler(
             &self,
-            completion_handler: ENErrorHandler,
+            completion_handler: &ENErrorHandler,
         );
 
         #[cfg(all(feature = "ENCommon", feature = "block2"))]
         /// Requests diagnosis keys after previously using preAuthorizeDiagnosisKeys successfully.
         /// This will display a notification to the user for the user to know the keys will be returned.
         /// Keys are returned by invoking diagnosisKeysAvailable, which must be set before calling this.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(requestPreAuthorizedDiagnosisKeysWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn requestPreAuthorizedDiagnosisKeysWithCompletionHandler(
             &self,
-            completion_handler: ENErrorHandler,
+            completion_handler: &ENErrorHandler,
         );
     );
 }

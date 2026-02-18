@@ -44,7 +44,7 @@ cf_objc2_type!(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingparameterchangehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type VTRAWProcessingParameterChangeHandler = *mut block2::DynBlock<dyn Fn(*const CFArray)>;
+pub type VTRAWProcessingParameterChangeHandler = block2::DynBlock<dyn Fn(*const CFArray)>;
 
 impl VTRAWProcessingSession {
     /// Creates a RAW video frame processing session.
@@ -141,41 +141,34 @@ impl VTRAWProcessingSession {
     ///
     /// Parameter `parameterChangeHandler`: A VTRAWProcessingParameterChangeHandler block which will be called when the set of processing parameters changes, or the value of a parameter changes without the client explicitly requesting it.
     /// Setting this to NULL removes the current handler.
-    ///
-    /// # Safety
-    ///
-    /// `parameter_change_handler` must be a valid pointer or null.
     #[doc(alias = "VTRAWProcessingSessionSetParameterChangedHandler")]
     #[cfg(feature = "block2")]
     #[inline]
     pub unsafe fn set_parameter_changed_handler(
         &self,
-        parameter_change_handler: VTRAWProcessingParameterChangeHandler,
+        parameter_change_handler: Option<&VTRAWProcessingParameterChangeHandler>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTRAWProcessingSessionSetParameterChangedHandler(
                 session: &VTRAWProcessingSession,
-                parameter_change_handler: VTRAWProcessingParameterChangeHandler,
+                parameter_change_handler: Option<&VTRAWProcessingParameterChangeHandler>,
             ) -> OSStatus;
         }
         unsafe { VTRAWProcessingSessionSetParameterChangedHandler(self, parameter_change_handler) }
     }
 
-    /// # Safety
-    ///
-    /// `parameter_change_handler` must be a valid pointer or null.
     #[doc(alias = "VTRAWProcessingSessionSetParameterChangedHander")]
     #[cfg(feature = "block2")]
     #[deprecated]
     #[inline]
     pub unsafe fn set_parameter_changed_hander(
         &self,
-        parameter_change_handler: VTRAWProcessingParameterChangeHandler,
+        parameter_change_handler: Option<&VTRAWProcessingParameterChangeHandler>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTRAWProcessingSessionSetParameterChangedHander(
                 session: &VTRAWProcessingSession,
-                parameter_change_handler: VTRAWProcessingParameterChangeHandler,
+                parameter_change_handler: Option<&VTRAWProcessingParameterChangeHandler>,
             ) -> OSStatus;
         }
         unsafe { VTRAWProcessingSessionSetParameterChangedHander(self, parameter_change_handler) }
@@ -193,7 +186,7 @@ impl VTRAWProcessingSession {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/videotoolbox/vtrawprocessingoutputhandler?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
-pub type VTRAWProcessingOutputHandler = *mut block2::DynBlock<dyn Fn(OSStatus, *mut CVPixelBuffer)>;
+pub type VTRAWProcessingOutputHandler = block2::DynBlock<dyn Fn(OSStatus, *mut CVPixelBuffer)>;
 
 impl VTRAWProcessingSession {
     /// Call this function to submit RAW frames for format-specific processing using sequence and frame level parameters.
@@ -219,7 +212,6 @@ impl VTRAWProcessingSession {
     ///
     /// - `frame_options` generic must be of the correct type.
     /// - `frame_options` generic must be of the correct type.
-    /// - `output_handler` must be a valid pointer.
     #[doc(alias = "VTRAWProcessingSessionProcessFrame")]
     #[cfg(all(feature = "block2", feature = "objc2-core-video"))]
     #[inline]
@@ -227,14 +219,14 @@ impl VTRAWProcessingSession {
         &self,
         input_pixel_buffer: &CVPixelBuffer,
         frame_options: Option<&CFDictionary>,
-        output_handler: VTRAWProcessingOutputHandler,
+        output_handler: &VTRAWProcessingOutputHandler,
     ) -> OSStatus {
         extern "C-unwind" {
             fn VTRAWProcessingSessionProcessFrame(
                 session: &VTRAWProcessingSession,
                 input_pixel_buffer: &CVPixelBuffer,
                 frame_options: Option<&CFDictionary>,
-                output_handler: VTRAWProcessingOutputHandler,
+                output_handler: &VTRAWProcessingOutputHandler,
             ) -> OSStatus;
         }
         unsafe {

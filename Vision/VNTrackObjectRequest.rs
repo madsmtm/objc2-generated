@@ -55,16 +55,12 @@ impl VNTrackObjectRequest {
         /// Parameter `observation`: Detected object observation with bounding box info.
         ///
         /// Parameter `completionHandler`: The block that is invoked when the request has been performed.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithDetectedObjectObservation:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithDetectedObjectObservation_completionHandler(
             this: Allocated<Self>,
             observation: &VNDetectedObjectObservation,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
     );
 }

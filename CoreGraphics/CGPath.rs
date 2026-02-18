@@ -701,18 +701,15 @@ impl CGPath {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coregraphics/cgpathapplyblock?language=objc)
 #[cfg(feature = "block2")]
-pub type CGPathApplyBlock = *mut block2::DynBlock<dyn Fn(NonNull<CGPathElement>)>;
+pub type CGPathApplyBlock = block2::DynBlock<dyn Fn(NonNull<CGPathElement>)>;
 
 impl CGPath {
-    /// # Safety
-    ///
-    /// `block` must be a valid pointer.
     #[doc(alias = "CGPathApplyWithBlock")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn apply_with_block(&self, block: CGPathApplyBlock) {
+    pub fn apply_with_block(&self, block: &CGPathApplyBlock) {
         extern "C-unwind" {
-            fn CGPathApplyWithBlock(path: &CGPath, block: CGPathApplyBlock);
+            fn CGPathApplyWithBlock(path: &CGPath, block: &CGPathApplyBlock);
         }
         unsafe { CGPathApplyWithBlock(self, block) }
     }

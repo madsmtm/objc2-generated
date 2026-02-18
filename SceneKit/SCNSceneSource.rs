@@ -324,7 +324,7 @@ unsafe impl RefEncode for SCNSceneSourceStatus {
 /// [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnscenesourcestatushandler?language=objc)
 #[cfg(feature = "block2")]
 pub type SCNSceneSourceStatusHandler =
-    *mut block2::DynBlock<dyn Fn(c_float, SCNSceneSourceStatus, *mut NSError, NonNull<Bool>)>;
+    block2::DynBlock<dyn Fn(c_float, SCNSceneSourceStatus, *mut NSError, NonNull<Bool>)>;
 
 extern_class!(
     /// SCNSceneSource objects, abstract the data-reading task. A scene source can read scene data from a URL or a NSData object.
@@ -431,14 +431,13 @@ impl SCNSceneSource {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `status_handler` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(sceneWithOptions:statusHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn sceneWithOptions_statusHandler(
             &self,
             options: Option<&NSDictionary<SCNSceneSourceLoadingOption, AnyObject>>,
-            status_handler: SCNSceneSourceStatusHandler,
+            status_handler: Option<&SCNSceneSourceStatusHandler>,
         ) -> Option<Retained<SCNScene>>;
 
         #[cfg(feature = "SCNScene")]

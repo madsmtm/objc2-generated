@@ -919,7 +919,7 @@ impl CGMutableImageMetadata {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/imageio/cgimagemetadatatagblock?language=objc)
 #[cfg(feature = "block2")]
 pub type CGImageMetadataTagBlock =
-    *mut block2::DynBlock<dyn Fn(NonNull<CFString>, NonNull<CGImageMetadataTag>) -> bool>;
+    block2::DynBlock<dyn Fn(NonNull<CFString>, NonNull<CGImageMetadataTag>) -> bool>;
 
 impl CGImageMetadata {
     /// Executes a given block using each tag in the metadata
@@ -947,7 +947,6 @@ impl CGImageMetadata {
     ///
     /// - `options` generic must be of the correct type.
     /// - `options` generic must be of the correct type.
-    /// - `block` must be a valid pointer.
     #[doc(alias = "CGImageMetadataEnumerateTagsUsingBlock")]
     #[cfg(feature = "block2")]
     #[inline]
@@ -955,14 +954,14 @@ impl CGImageMetadata {
         &self,
         root_path: Option<&CFString>,
         options: Option<&CFDictionary>,
-        block: CGImageMetadataTagBlock,
+        block: &CGImageMetadataTagBlock,
     ) {
         extern "C-unwind" {
             fn CGImageMetadataEnumerateTagsUsingBlock(
                 metadata: &CGImageMetadata,
                 root_path: Option<&CFString>,
                 options: Option<&CFDictionary>,
-                block: CGImageMetadataTagBlock,
+                block: &CGImageMetadataTagBlock,
             );
         }
         unsafe { CGImageMetadataEnumerateTagsUsingBlock(self, root_path, options, block) }

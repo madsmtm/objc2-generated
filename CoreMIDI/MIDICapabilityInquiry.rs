@@ -358,7 +358,7 @@ impl MIDICIProfileState {
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilechangedblock?language=objc)
 #[deprecated = "No longer supported for CoreMIDI"]
 #[cfg(all(feature = "MIDIMessages", feature = "block2", feature = "objc2"))]
-pub type MIDICIProfileChangedBlock = *mut block2::DynBlock<
+pub type MIDICIProfileChangedBlock = block2::DynBlock<
     dyn Fn(NonNull<MIDICISession>, MIDIChannelNumber, NonNull<MIDICIProfile>, Bool),
 >;
 
@@ -366,7 +366,7 @@ pub type MIDICIProfileChangedBlock = *mut block2::DynBlock<
 #[deprecated = "No longer supported for CoreMIDI"]
 #[cfg(all(feature = "block2", feature = "objc2", feature = "objc2-foundation"))]
 pub type MIDICISessionDisconnectBlock =
-    *mut block2::DynBlock<dyn Fn(NonNull<MIDICISession>, NonNull<NSError>)>;
+    block2::DynBlock<dyn Fn(NonNull<MIDICISession>, NonNull<NSError>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiciprofilespecificdatablock?language=objc)
 #[deprecated = "No longer supported for CoreMIDI"]
@@ -376,7 +376,7 @@ pub type MIDICISessionDisconnectBlock =
     feature = "objc2",
     feature = "objc2-foundation"
 ))]
-pub type MIDICIProfileSpecificDataBlock = *mut block2::DynBlock<
+pub type MIDICIProfileSpecificDataBlock = block2::DynBlock<
     dyn Fn(NonNull<MIDICISession>, MIDIChannelNumber, NonNull<MIDICIProfile>, NonNull<NSData>),
 >;
 
@@ -384,7 +384,7 @@ pub type MIDICIProfileSpecificDataBlock = *mut block2::DynBlock<
 #[deprecated = "No longer supported for CoreMIDI"]
 #[cfg(all(feature = "block2", feature = "objc2", feature = "objc2-foundation"))]
 pub type MIDICIDiscoveryResponseBlock =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSArray<MIDICIDiscoveredNode>>)>;
+    block2::DynBlock<dyn Fn(NonNull<NSArray<MIDICIDiscoveredNode>>)>;
 
 #[cfg(feature = "objc2")]
 extern_class!(
@@ -407,9 +407,6 @@ impl MIDICISession {
         // -init (unavailable)
 
         #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
-        /// # Safety
-        ///
-        /// `disconnect_handler` must be a valid pointer.
         #[deprecated = "No longer supported for CoreMIDI"]
         #[unsafe(method(initWithDiscoveredNode:dataReadyHandler:disconnectHandler:))]
         #[unsafe(method_family = init)]
@@ -417,7 +414,7 @@ impl MIDICISession {
             this: Allocated<Self>,
             discovered_node: &MIDICIDiscoveredNode,
             handler: &block2::DynBlock<dyn Fn()>,
-            disconnect_handler: MIDICISessionDisconnectBlock,
+            disconnect_handler: &MIDICISessionDisconnectBlock,
         ) -> Retained<Self>;
 
         #[cfg(feature = "MIDIServices")]
@@ -500,22 +497,18 @@ impl MIDICISession {
         #[deprecated = "No longer supported for CoreMIDI"]
         #[unsafe(method(profileChangedCallback))]
         #[unsafe(method_family = none)]
-        pub unsafe fn profileChangedCallback(&self) -> MIDICIProfileChangedBlock;
+        pub unsafe fn profileChangedCallback(&self) -> *mut MIDICIProfileChangedBlock;
 
         #[cfg(all(feature = "MIDIMessages", feature = "block2"))]
         /// Setter for [`profileChangedCallback`][Self::profileChangedCallback].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `profile_changed_callback` must be a valid pointer or null.
         #[deprecated = "No longer supported for CoreMIDI"]
         #[unsafe(method(setProfileChangedCallback:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProfileChangedCallback(
             &self,
-            profile_changed_callback: MIDICIProfileChangedBlock,
+            profile_changed_callback: Option<&MIDICIProfileChangedBlock>,
         );
 
         #[cfg(all(
@@ -531,7 +524,7 @@ impl MIDICISession {
         #[deprecated = "No longer supported for CoreMIDI"]
         #[unsafe(method(profileSpecificDataHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn profileSpecificDataHandler(&self) -> MIDICIProfileSpecificDataBlock;
+        pub unsafe fn profileSpecificDataHandler(&self) -> *mut MIDICIProfileSpecificDataBlock;
 
         #[cfg(all(
             feature = "MIDIMessages",
@@ -541,16 +534,12 @@ impl MIDICISession {
         /// Setter for [`profileSpecificDataHandler`][Self::profileSpecificDataHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `profile_specific_data_handler` must be a valid pointer or null.
         #[deprecated = "No longer supported for CoreMIDI"]
         #[unsafe(method(setProfileSpecificDataHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setProfileSpecificDataHandler(
             &self,
-            profile_specific_data_handler: MIDICIProfileSpecificDataBlock,
+            profile_specific_data_handler: Option<&MIDICIProfileSpecificDataBlock>,
         );
     );
 }
@@ -588,13 +577,10 @@ impl MIDICIDiscoveryManager {
         pub unsafe fn sharedInstance() -> Retained<MIDICIDiscoveryManager>;
 
         #[cfg(all(feature = "block2", feature = "objc2-foundation"))]
-        /// # Safety
-        ///
-        /// `completed_handler` must be a valid pointer.
         #[deprecated = "No longer supported for CoreMIDI"]
         #[unsafe(method(discoverWithHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn discoverWithHandler(&self, completed_handler: MIDICIDiscoveryResponseBlock);
+        pub unsafe fn discoverWithHandler(&self, completed_handler: &MIDICIDiscoveryResponseBlock);
     );
 }
 

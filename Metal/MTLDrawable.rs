@@ -15,7 +15,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/metal/mtldrawablepresentedhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type MTLDrawablePresentedHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn MTLDrawable>>)>;
+    block2::DynBlock<dyn Fn(NonNull<ProtocolObject<dyn MTLDrawable>>)>;
 
 extern_protocol!(
     /// All "drawable" objects (such as those coming from CAMetalLayer) are expected to conform to this protocol
@@ -44,10 +44,10 @@ extern_protocol!(
         ///
         /// # Safety
         ///
-        /// `block` must be a valid pointer.
+        /// `block` block must be sendable.
         #[unsafe(method(addPresentedHandler:))]
         #[unsafe(method_family = none)]
-        unsafe fn addPresentedHandler(&self, block: MTLDrawablePresentedHandler);
+        unsafe fn addPresentedHandler(&self, block: &MTLDrawablePresentedHandler);
 
         #[cfg(feature = "objc2-core-foundation")]
         /// The host time that this drawable was presented on screen.

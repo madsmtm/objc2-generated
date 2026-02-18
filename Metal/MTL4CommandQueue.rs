@@ -80,10 +80,10 @@ impl MTL4CommitOptions {
         ///
         /// # Safety
         ///
-        /// `block` must be a valid pointer.
+        /// `block` block must be sendable.
         #[unsafe(method(addFeedbackHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn addFeedbackHandler(&self, block: MTL4CommitFeedbackHandler);
+        pub unsafe fn addFeedbackHandler(&self, block: &MTL4CommitFeedbackHandler);
     );
 }
 

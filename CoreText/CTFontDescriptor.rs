@@ -823,25 +823,22 @@ extern "C" {
 /// [Apple's documentation](https://developer.apple.com/documentation/coretext/ctfontdescriptorprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CTFontDescriptorProgressHandler =
-    *mut block2::DynBlock<dyn Fn(CTFontDescriptorMatchingState, NonNull<CFDictionary>) -> bool>;
+    block2::DynBlock<dyn Fn(CTFontDescriptorMatchingState, NonNull<CFDictionary>) -> bool>;
 
 impl CTFontDescriptor {
-    /// # Safety
-    ///
-    /// `progress_block` must be a valid pointer.
     #[doc(alias = "CTFontDescriptorMatchFontDescriptorsWithProgressHandler")]
     #[cfg(feature = "block2")]
     #[inline]
-    pub unsafe fn match_font_descriptors_with_progress_handler(
+    pub fn match_font_descriptors_with_progress_handler(
         descriptors: &CFArray<CTFontDescriptor>,
         mandatory_attributes: Option<&CFSet<CFString>>,
-        progress_block: CTFontDescriptorProgressHandler,
+        progress_block: &CTFontDescriptorProgressHandler,
     ) -> bool {
         extern "C-unwind" {
             fn CTFontDescriptorMatchFontDescriptorsWithProgressHandler(
                 descriptors: &CFArray<CTFontDescriptor>,
                 mandatory_attributes: Option<&CFSet<CFString>>,
-                progress_block: CTFontDescriptorProgressHandler,
+                progress_block: &CTFontDescriptorProgressHandler,
             ) -> bool;
         }
         unsafe {

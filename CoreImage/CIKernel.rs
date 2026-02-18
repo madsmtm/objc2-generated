@@ -13,7 +13,7 @@ use crate::*;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cikernelroicallback?language=objc)
 #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-pub type CIKernelROICallback = *mut block2::DynBlock<dyn Fn(c_int, CGRect) -> CGRect>;
+pub type CIKernelROICallback = block2::DynBlock<dyn Fn(c_int, CGRect) -> CGRect>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/coreimage/cikernel?language=objc)
@@ -87,14 +87,13 @@ impl CIKernel {
         ))]
         /// # Safety
         ///
-        /// - `callback` must be a valid pointer.
-        /// - `args` generic should be of the correct type.
+        /// `args` generic should be of the correct type.
         #[unsafe(method(applyWithExtent:roiCallback:arguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyWithExtent_roiCallback_arguments(
             &self,
             extent: CGRect,
-            callback: CIKernelROICallback,
+            callback: &CIKernelROICallback,
             args: &NSArray<AnyObject>,
         ) -> Option<Retained<CIImage>>;
     );
@@ -212,14 +211,13 @@ impl CIWarpKernel {
         ))]
         /// # Safety
         ///
-        /// - `callback` must be a valid pointer.
-        /// - `args` generic should be of the correct type.
+        /// `args` generic should be of the correct type.
         #[unsafe(method(applyWithExtent:roiCallback:inputImage:arguments:))]
         #[unsafe(method_family = none)]
         pub unsafe fn applyWithExtent_roiCallback_inputImage_arguments(
             &self,
             extent: CGRect,
-            callback: CIKernelROICallback,
+            callback: &CIKernelROICallback,
             image: &CIImage,
             args: &NSArray<AnyObject>,
         ) -> Option<Retained<CIImage>>;

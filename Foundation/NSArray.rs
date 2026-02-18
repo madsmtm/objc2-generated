@@ -465,40 +465,31 @@ impl<ObjectType: Message> NSArray<ObjectType> {
         ) -> Retained<NSIndexSet>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `cmptr` must be a valid pointer.
         #[unsafe(method(sortedArrayUsingComparator:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sortedArrayUsingComparator(
+        pub fn sortedArrayUsingComparator(
             &self,
-            cmptr: NSComparator,
+            cmptr: &NSComparator,
         ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `cmptr` must be a valid pointer.
         #[unsafe(method(sortedArrayWithOptions:usingComparator:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sortedArrayWithOptions_usingComparator(
+        pub fn sortedArrayWithOptions_usingComparator(
             &self,
             opts: NSSortOptions,
-            cmptr: NSComparator,
+            cmptr: &NSComparator,
         ) -> Retained<NSArray<ObjectType>>;
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "NSRange", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `cmp` must be a valid pointer.
         #[unsafe(method(indexOfObject:inSortedRange:options:usingComparator:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn indexOfObject_inSortedRange_options_usingComparator(
+        pub fn indexOfObject_inSortedRange_options_usingComparator(
             &self,
             obj: &ObjectType,
             r: NSRange,
             opts: NSBinarySearchingOptions,
-            cmp: NSComparator,
+            cmp: &NSComparator,
         ) -> NSUInteger;
     );
 }
@@ -980,24 +971,14 @@ impl<ObjectType: Message> NSMutableArray<ObjectType> {
         pub fn setObject_atIndexedSubscript(&self, obj: &ObjectType, idx: NSUInteger);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `cmptr` must be a valid pointer.
         #[unsafe(method(sortUsingComparator:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sortUsingComparator(&self, cmptr: NSComparator);
+        pub fn sortUsingComparator(&self, cmptr: &NSComparator);
 
         #[cfg(all(feature = "NSObjCRuntime", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `cmptr` must be a valid pointer.
         #[unsafe(method(sortWithOptions:usingComparator:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn sortWithOptions_usingComparator(
-            &self,
-            opts: NSSortOptions,
-            cmptr: NSComparator,
-        );
+        pub fn sortWithOptions_usingComparator(&self, opts: NSSortOptions, cmptr: &NSComparator);
     );
 }
 

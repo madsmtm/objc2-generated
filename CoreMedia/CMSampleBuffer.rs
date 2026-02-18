@@ -130,7 +130,7 @@ pub type CMSampleBufferMakeDataReadyCallback =
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebuffermakedatareadyhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CMSampleBufferMakeDataReadyHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>) -> OSStatus>;
+    block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>) -> OSStatus>;
 
 impl CMSampleBuffer {
     /// Creates a CMSampleBuffer.
@@ -329,7 +329,6 @@ impl CMSampleBuffer {
     /// - `sample_timing_array` must be a valid pointer or null.
     /// - `sample_size_array` must be a valid pointer or null.
     /// - `sample_buffer_out` must be a valid pointer.
-    /// - `make_data_ready_handler` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferCreateWithMakeDataReadyHandler")]
     #[cfg(all(
         feature = "CMBase",
@@ -350,7 +349,7 @@ impl CMSampleBuffer {
         num_sample_size_entries: CMItemCount,
         sample_size_array: *const usize,
         sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-        make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
+        make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferCreateWithMakeDataReadyHandler(
@@ -364,7 +363,7 @@ impl CMSampleBuffer {
                 num_sample_size_entries: CMItemCount,
                 sample_size_array: *const usize,
                 sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-                make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
+                make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
             ) -> OSStatus;
         }
         unsafe {
@@ -633,7 +632,6 @@ pub unsafe extern "C-unwind" fn CMAudioSampleBufferCreateWithPacketDescriptions(
 ///
 /// - `packet_descriptions` must be a valid pointer or null.
 /// - `sample_buffer_out` must be a valid pointer.
-/// - `make_data_ready_handler` must be a valid pointer or null.
 #[cfg(all(
     feature = "CMBase",
     feature = "CMBlockBuffer",
@@ -652,7 +650,7 @@ pub unsafe extern "C-unwind" fn CMAudioSampleBufferCreateWithPacketDescriptionsA
     presentation_time_stamp: CMTime,
     packet_descriptions: *const AudioStreamPacketDescription,
     sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-    make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
+    make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
 ) -> OSStatus {
     extern "C-unwind" {
         fn CMAudioSampleBufferCreateWithPacketDescriptionsAndMakeDataReadyHandler(
@@ -664,7 +662,7 @@ pub unsafe extern "C-unwind" fn CMAudioSampleBufferCreateWithPacketDescriptionsA
             presentation_time_stamp: CMTime,
             packet_descriptions: *const AudioStreamPacketDescription,
             sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-            make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
+            make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
         ) -> OSStatus;
     }
     unsafe {
@@ -793,7 +791,6 @@ impl CMSampleBuffer {
     ///
     /// - `sample_timing` must be a valid pointer.
     /// - `sample_buffer_out` must be a valid pointer.
-    /// - `make_data_ready_handler` must be a valid pointer or null.
     #[doc(alias = "CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler")]
     #[cfg(all(
         feature = "CMFormatDescription",
@@ -809,7 +806,7 @@ impl CMSampleBuffer {
         format_description: &CMVideoFormatDescription,
         sample_timing: NonNull<CMSampleTimingInfo>,
         sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-        make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
+        make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferCreateForImageBufferWithMakeDataReadyHandler(
@@ -819,7 +816,7 @@ impl CMSampleBuffer {
                 format_description: &CMVideoFormatDescription,
                 sample_timing: NonNull<CMSampleTimingInfo>,
                 sample_buffer_out: NonNull<*mut CMSampleBuffer>,
-                make_data_ready_handler: CMSampleBufferMakeDataReadyHandler,
+                make_data_ready_handler: Option<&CMSampleBufferMakeDataReadyHandler>,
             ) -> OSStatus;
         }
         unsafe {
@@ -1428,28 +1425,24 @@ impl CMSampleBuffer {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremedia/cmsamplebufferinvalidatehandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CMSampleBufferInvalidateHandler = *mut block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>)>;
+pub type CMSampleBufferInvalidateHandler = block2::DynBlock<dyn Fn(NonNull<CMSampleBuffer>)>;
 
 impl CMSampleBuffer {
     /// Sets the sample buffer's invalidation handler block, which is called during CMSampleBufferInvalidate.
     ///
     /// A sample buffer can only have one invalidation callback.
     /// The invalidation callback is NOT called during ordinary sample buffer finalization.
-    ///
-    /// # Safety
-    ///
-    /// `invalidate_handler` must be a valid pointer.
     #[doc(alias = "CMSampleBufferSetInvalidateHandler")]
     #[cfg(feature = "block2")]
     #[inline]
     pub unsafe fn set_invalidate_handler(
         &self,
-        invalidate_handler: CMSampleBufferInvalidateHandler,
+        invalidate_handler: &CMSampleBufferInvalidateHandler,
     ) -> OSStatus {
         extern "C-unwind" {
             fn CMSampleBufferSetInvalidateHandler(
                 sbuf: &CMSampleBuffer,
-                invalidate_handler: CMSampleBufferInvalidateHandler,
+                invalidate_handler: &CMSampleBufferInvalidateHandler,
             ) -> OSStatus;
         }
         unsafe { CMSampleBufferSetInvalidateHandler(self, invalidate_handler) }

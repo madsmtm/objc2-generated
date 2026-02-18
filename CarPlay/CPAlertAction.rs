@@ -33,7 +33,7 @@ unsafe impl RefEncode for CPAlertActionStyle {
 
 /// [Apple's documentation](https://developer.apple.com/documentation/carplay/cpalertactionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CPAlertActionHandler = *mut block2::DynBlock<dyn Fn(NonNull<CPAlertAction>)>;
+pub type CPAlertActionHandler = block2::DynBlock<dyn Fn(NonNull<CPAlertAction>)>;
 
 extern_class!(
     /// `CPAlertAction`represents a single action that appears inside of a
@@ -73,17 +73,13 @@ impl CPAlertAction {
         #[cfg(feature = "block2")]
         /// Create an alert action with a title, display style, and a callback handler that is invoked
         /// when the user taps this action.
-        ///
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer.
         #[unsafe(method(initWithTitle:style:handler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_style_handler(
             this: Allocated<Self>,
             title: &NSString,
             style: CPAlertActionStyle,
-            handler: CPAlertActionHandler,
+            handler: &CPAlertActionHandler,
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "block2", feature = "objc2-ui-kit"))]
@@ -94,17 +90,13 @@ impl CPAlertAction {
         /// If the provided color does not meet contrast requirements, the system default will be used.
         /// Font color will automatically be adjusted by the system to correspond with this color.
         /// Alpha values will be ignored.
-        ///
-        /// # Safety
-        ///
-        /// `handler` must be a valid pointer.
         #[unsafe(method(initWithTitle:color:handler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithTitle_color_handler(
             this: Allocated<Self>,
             title: &NSString,
             color: &UIColor,
-            handler: CPAlertActionHandler,
+            handler: &CPAlertActionHandler,
         ) -> Retained<Self>;
 
         #[unsafe(method(title))]
@@ -121,7 +113,7 @@ impl CPAlertAction {
         /// The returned block's argument must be a valid pointer.
         #[unsafe(method(handler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn handler(&self) -> CPAlertActionHandler;
+        pub unsafe fn handler(&self) -> NonNull<CPAlertActionHandler>;
 
         #[cfg(feature = "objc2-ui-kit")]
         #[unsafe(method(color))]

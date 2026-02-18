@@ -92,9 +92,8 @@ pub type AUEventListenerRef = AUParameterListenerRef;
     feature = "AudioComponent",
     feature = "block2"
 ))]
-pub type AUParameterListenerBlock = *mut block2::DynBlock<
-    dyn Fn(*mut c_void, NonNull<AudioUnitParameter>, AudioUnitParameterValue),
->;
+pub type AUParameterListenerBlock =
+    block2::DynBlock<dyn Fn(*mut c_void, NonNull<AudioUnitParameter>, AudioUnitParameterValue)>;
 
 /// A function called when a parameter value changes.
 ///
@@ -141,7 +140,6 @@ extern "C-unwind" {
     ///
     /// - `out_listener` must be a valid pointer.
     /// - `in_dispatch_queue` possibly has additional threading requirements.
-    /// - `in_block` must be a valid pointer.
     #[cfg(all(
         feature = "AUComponent",
         feature = "AudioComponent",
@@ -152,7 +150,7 @@ extern "C-unwind" {
         out_listener: NonNull<AUParameterListenerRef>,
         in_notification_interval: f32,
         in_dispatch_queue: &DispatchQueue,
-        in_block: AUParameterListenerBlock,
+        in_block: &AUParameterListenerBlock,
     ) -> OSStatus;
 }
 

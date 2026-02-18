@@ -85,7 +85,7 @@ unsafe impl RefEncode for UICollectionLayoutListFooterMode {
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistswipeactionsconfigurationprovider?language=objc)
 #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
 pub type UICollectionLayoutListSwipeActionsConfigurationProvider =
-    *mut block2::DynBlock<dyn Fn(NonNull<NSIndexPath>) -> *mut UISwipeActionsConfiguration>;
+    block2::DynBlock<dyn Fn(NonNull<NSIndexPath>) -> *mut UISwipeActionsConfiguration>;
 
 /// A block that is executed by list sections to provide granular control over separator appearance.
 ///
@@ -101,7 +101,7 @@ pub type UICollectionLayoutListSwipeActionsConfigurationProvider =
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uicollectionlayoutlistitemseparatorhandler?language=objc)
 #[cfg(all(feature = "UIListSeparatorConfiguration", feature = "block2"))]
-pub type UICollectionLayoutListItemSeparatorHandler = *mut block2::DynBlock<
+pub type UICollectionLayoutListItemSeparatorHandler = block2::DynBlock<
     dyn Fn(
         NonNull<NSIndexPath>,
         NonNull<UIListSeparatorConfiguration>,
@@ -212,7 +212,9 @@ impl UICollectionLayoutListConfiguration {
         /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(itemSeparatorHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn itemSeparatorHandler(&self) -> UICollectionLayoutListItemSeparatorHandler;
+        pub unsafe fn itemSeparatorHandler(
+            &self,
+        ) -> *mut UICollectionLayoutListItemSeparatorHandler;
 
         #[cfg(all(feature = "UIListSeparatorConfiguration", feature = "block2"))]
         /// Setter for [`itemSeparatorHandler`][Self::itemSeparatorHandler].
@@ -221,12 +223,12 @@ impl UICollectionLayoutListConfiguration {
         ///
         /// # Safety
         ///
-        /// `item_separator_handler` must be a valid pointer or null.
+        /// `item_separator_handler` block's return must be a valid pointer.
         #[unsafe(method(setItemSeparatorHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setItemSeparatorHandler(
             &self,
-            item_separator_handler: UICollectionLayoutListItemSeparatorHandler,
+            item_separator_handler: Option<&UICollectionLayoutListItemSeparatorHandler>,
         );
 
         #[cfg(feature = "UIColor")]
@@ -253,7 +255,7 @@ impl UICollectionLayoutListConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn leadingSwipeActionsConfigurationProvider(
             &self,
-        ) -> UICollectionLayoutListSwipeActionsConfigurationProvider;
+        ) -> *mut UICollectionLayoutListSwipeActionsConfigurationProvider;
 
         #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
         /// Setter for [`leadingSwipeActionsConfigurationProvider`][Self::leadingSwipeActionsConfigurationProvider].
@@ -262,12 +264,14 @@ impl UICollectionLayoutListConfiguration {
         ///
         /// # Safety
         ///
-        /// `leading_swipe_actions_configuration_provider` must be a valid pointer or null.
+        /// `leading_swipe_actions_configuration_provider` block's return must be a valid pointer or null.
         #[unsafe(method(setLeadingSwipeActionsConfigurationProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setLeadingSwipeActionsConfigurationProvider(
             &self,
-            leading_swipe_actions_configuration_provider: UICollectionLayoutListSwipeActionsConfigurationProvider,
+            leading_swipe_actions_configuration_provider: Option<
+                &UICollectionLayoutListSwipeActionsConfigurationProvider,
+            >,
         );
 
         #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
@@ -281,7 +285,7 @@ impl UICollectionLayoutListConfiguration {
         #[unsafe(method_family = none)]
         pub unsafe fn trailingSwipeActionsConfigurationProvider(
             &self,
-        ) -> UICollectionLayoutListSwipeActionsConfigurationProvider;
+        ) -> *mut UICollectionLayoutListSwipeActionsConfigurationProvider;
 
         #[cfg(all(feature = "UISwipeActionsConfiguration", feature = "block2"))]
         /// Setter for [`trailingSwipeActionsConfigurationProvider`][Self::trailingSwipeActionsConfigurationProvider].
@@ -290,12 +294,14 @@ impl UICollectionLayoutListConfiguration {
         ///
         /// # Safety
         ///
-        /// `trailing_swipe_actions_configuration_provider` must be a valid pointer or null.
+        /// `trailing_swipe_actions_configuration_provider` block's return must be a valid pointer or null.
         #[unsafe(method(setTrailingSwipeActionsConfigurationProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setTrailingSwipeActionsConfigurationProvider(
             &self,
-            trailing_swipe_actions_configuration_provider: UICollectionLayoutListSwipeActionsConfigurationProvider,
+            trailing_swipe_actions_configuration_provider: Option<
+                &UICollectionLayoutListSwipeActionsConfigurationProvider,
+            >,
         );
 
         /// Defines whether the section has a header. Defaults to UICollectionLayoutListHeaderModeNone.

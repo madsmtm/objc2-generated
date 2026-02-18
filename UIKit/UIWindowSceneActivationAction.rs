@@ -20,7 +20,7 @@ use crate::*;
     feature = "UIWindowSceneActivationConfiguration",
     feature = "block2"
 ))]
-pub type UIWindowSceneActivationActionConfigurationProvider = *mut block2::DynBlock<
+pub type UIWindowSceneActivationActionConfigurationProvider = block2::DynBlock<
     dyn Fn(NonNull<UIWindowSceneActivationAction>) -> *mut UIWindowSceneActivationConfiguration,
 >;
 
@@ -97,13 +97,13 @@ impl UIWindowSceneActivationAction {
         ///
         /// # Safety
         ///
-        /// `configuration_provider` must be a valid pointer.
+        /// `configuration_provider` block's return must be a valid pointer or null.
         #[unsafe(method(actionWithIdentifier:alternateAction:configurationProvider:))]
         #[unsafe(method_family = none)]
         pub unsafe fn actionWithIdentifier_alternateAction_configurationProvider(
             identifier: Option<&UIActionIdentifier>,
             alternate_action: Option<&UIAction>,
-            configuration_provider: UIWindowSceneActivationActionConfigurationProvider,
+            configuration_provider: &UIWindowSceneActivationActionConfigurationProvider,
             mtm: MainThreadMarker,
         ) -> Retained<Self>;
     );

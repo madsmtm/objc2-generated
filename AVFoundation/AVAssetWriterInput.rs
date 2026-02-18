@@ -700,14 +700,13 @@ impl AVAssetWriterInput {
         ///
         /// # Safety
         ///
-        /// - `queue` possibly has additional threading requirements.
-        /// - `block` must be a valid pointer.
+        /// `queue` possibly has additional threading requirements.
         #[unsafe(method(respondToEachPassDescriptionOnQueue:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn respondToEachPassDescriptionOnQueue_usingBlock(
             &self,
             queue: &DispatchQueue,
-            block: dispatch_block_t,
+            block: &dispatch_block_t,
         );
 
         /// Instructs the receiver to analyze the media data that has been appended and determine whether the results could be improved by re-encoding certain segments.

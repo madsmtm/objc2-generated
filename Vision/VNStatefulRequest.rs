@@ -51,16 +51,12 @@ impl VNStatefulRequest {
         /// Parameter `frameAnalysisSpacing`: The reciprocal of maximum rate at which buffers will be processed. The request will not process buffers that fall within the frameAnalysisSpacing after it has performed the analysis. The analysis is not done by wall time but by analysis of of the time stamps of the samplebuffers being processed.
         ///
         /// Parameter `completionHandler`: The block to be invoked after the request has completed its processing. The completion handler gets executed on the same dispatch queue as the request being executed.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(initWithFrameAnalysisSpacing:completionHandler:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFrameAnalysisSpacing_completionHandler(
             this: Allocated<Self>,
             frame_analysis_spacing: CMTime,
-            completion_handler: VNRequestCompletionHandler,
+            completion_handler: Option<&VNRequestCompletionHandler>,
         ) -> Retained<Self>;
 
         /// The minimum number of frames that the request has to process on before reporting back any observation. This information is provided by the request once initialized with its required paramters.

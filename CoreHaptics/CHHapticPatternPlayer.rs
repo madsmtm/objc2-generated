@@ -79,8 +79,7 @@ extern_protocol!(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticadvancedpatternplayercompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CHHapticAdvancedPatternPlayerCompletionHandler =
-    *mut block2::DynBlock<dyn Fn(*mut NSError)>;
+pub type CHHapticAdvancedPatternPlayerCompletionHandler = block2::DynBlock<dyn Fn(*mut NSError)>;
 
 extern_protocol!(
     /// A protocol which defines operations for pausing, resuming, seeking, and sending parameters to a pattern player.
@@ -173,19 +172,17 @@ extern_protocol!(
         /// The returned block's argument must be a valid pointer or null.
         #[unsafe(method(completionHandler))]
         #[unsafe(method_family = none)]
-        unsafe fn completionHandler(&self) -> CHHapticAdvancedPatternPlayerCompletionHandler;
+        unsafe fn completionHandler(
+            &self,
+        ) -> NonNull<CHHapticAdvancedPatternPlayerCompletionHandler>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`completionHandler`][Self::completionHandler].
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer.
         #[unsafe(method(setCompletionHandler:))]
         #[unsafe(method_family = none)]
         unsafe fn setCompletionHandler(
             &self,
-            completion_handler: CHHapticAdvancedPatternPlayerCompletionHandler,
+            completion_handler: &CHHapticAdvancedPatternPlayerCompletionHandler,
         );
     }
 );

@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspdfdrawingactions?language=objc)
 #[cfg(all(feature = "UIGraphicsRenderer", feature = "block2"))]
 pub type UIGraphicsPDFDrawingActions =
-    *mut block2::DynBlock<dyn Fn(NonNull<UIGraphicsPDFRendererContext>)>;
+    block2::DynBlock<dyn Fn(NonNull<UIGraphicsPDFRendererContext>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicspdfrendererformat?language=objc)
@@ -196,27 +196,19 @@ impl UIGraphicsPDFRenderer {
         ) -> Retained<Self>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `actions` must be a valid pointer.
         #[unsafe(method(writePDFToURL:withActions:error:_))]
         #[unsafe(method_family = none)]
-        pub unsafe fn writePDFToURL_withActions_error(
+        pub fn writePDFToURL_withActions_error(
             &self,
             url: &NSURL,
-            actions: UIGraphicsPDFDrawingActions,
+            actions: &UIGraphicsPDFDrawingActions,
         ) -> Result<(), Retained<NSError>>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `actions` must be a valid pointer.
         #[unsafe(method(PDFDataWithActions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn PDFDataWithActions(
-            &self,
-            actions: UIGraphicsPDFDrawingActions,
-        ) -> Retained<NSData>;
+        pub fn PDFDataWithActions(&self, actions: &UIGraphicsPDFDrawingActions)
+            -> Retained<NSData>;
     );
 }
 

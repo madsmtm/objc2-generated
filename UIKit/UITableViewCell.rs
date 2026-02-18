@@ -206,7 +206,7 @@ unsafe impl RefEncode for UITableViewCellDragState {
     feature = "block2"
 ))]
 pub type UITableViewCellConfigurationUpdateHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<UITableViewCell>, NonNull<UICellConfigurationState>)>;
+    block2::DynBlock<dyn Fn(NonNull<UITableViewCell>, NonNull<UICellConfigurationState>)>;
 
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uitableviewcell?language=objc)
@@ -364,7 +364,7 @@ impl UITableViewCell {
         #[unsafe(method_family = none)]
         pub unsafe fn configurationUpdateHandler(
             &self,
-        ) -> UITableViewCellConfigurationUpdateHandler;
+        ) -> *mut UITableViewCellConfigurationUpdateHandler;
 
         #[cfg(all(
             feature = "UICellConfigurationState",
@@ -374,15 +374,11 @@ impl UITableViewCell {
         /// Setter for [`configurationUpdateHandler`][Self::configurationUpdateHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `configuration_update_handler` must be a valid pointer or null.
         #[unsafe(method(setConfigurationUpdateHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setConfigurationUpdateHandler(
+        pub fn setConfigurationUpdateHandler(
             &self,
-            configuration_update_handler: UITableViewCellConfigurationUpdateHandler,
+            configuration_update_handler: Option<&UITableViewCellConfigurationUpdateHandler>,
         );
 
         #[cfg(feature = "UIListContentConfiguration")]

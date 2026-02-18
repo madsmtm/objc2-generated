@@ -23,7 +23,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnsceneexportprogresshandler?language=objc)
 #[cfg(feature = "block2")]
 pub type SCNSceneExportProgressHandler =
-    *mut block2::DynBlock<dyn Fn(c_float, *mut NSError, NonNull<Bool>)>;
+    block2::DynBlock<dyn Fn(c_float, *mut NSError, NonNull<Bool>)>;
 
 extern "C" {
     /// Specifies the final destination (as a NSURL) of the scene being exported.
@@ -226,8 +226,7 @@ impl SCNScene {
         ///
         /// # Safety
         ///
-        /// - `options` generic should be of the correct type.
-        /// - `progress_handler` must be a valid pointer or null.
+        /// `options` generic should be of the correct type.
         #[unsafe(method(writeToURL:options:delegate:progressHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn writeToURL_options_delegate_progressHandler(
@@ -235,7 +234,7 @@ impl SCNScene {
             url: &NSURL,
             options: Option<&NSDictionary<NSString, AnyObject>>,
             delegate: Option<&ProtocolObject<dyn SCNSceneExportDelegate>>,
-            progress_handler: SCNSceneExportProgressHandler,
+            progress_handler: Option<&SCNSceneExportProgressHandler>,
         ) -> bool;
 
         #[cfg(feature = "objc2-core-foundation")]

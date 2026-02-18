@@ -18,7 +18,7 @@ use crate::*;
 /// See also [Apple's documentation](https://developer.apple.com/documentation/gamecontroller/gccontrollerdirectionpadvaluechangedhandler?language=objc)
 #[cfg(all(feature = "GCControllerElement", feature = "block2"))]
 pub type GCControllerDirectionPadValueChangedHandler =
-    *mut block2::DynBlock<dyn Fn(NonNull<GCControllerDirectionPad>, c_float, c_float)>;
+    block2::DynBlock<dyn Fn(NonNull<GCControllerDirectionPad>, c_float, c_float)>;
 
 extern_class!(
     /// A direction pad is a common grouping of 2 axis inputs where the input can also be interpreted as 2 sets of mutually exclusive button pairs.
@@ -45,21 +45,19 @@ impl GCControllerDirectionPad {
         /// The returned block's argument 1 must be a valid pointer.
         #[unsafe(method(valueChangedHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn valueChangedHandler(&self) -> GCControllerDirectionPadValueChangedHandler;
+        pub unsafe fn valueChangedHandler(
+            &self,
+        ) -> *mut GCControllerDirectionPadValueChangedHandler;
 
         #[cfg(feature = "block2")]
         /// Setter for [`valueChangedHandler`][Self::valueChangedHandler].
         ///
         /// This is [copied][objc2_foundation::NSCopying::copy] when set.
-        ///
-        /// # Safety
-        ///
-        /// `value_changed_handler` must be a valid pointer or null.
         #[unsafe(method(setValueChangedHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn setValueChangedHandler(
             &self,
-            value_changed_handler: GCControllerDirectionPadValueChangedHandler,
+            value_changed_handler: Option<&GCControllerDirectionPadValueChangedHandler>,
         );
 
         #[cfg(feature = "GCControllerAxisInput")]

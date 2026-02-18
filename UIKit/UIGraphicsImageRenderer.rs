@@ -12,7 +12,7 @@ use crate::*;
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagedrawingactions?language=objc)
 #[cfg(all(feature = "UIGraphicsRenderer", feature = "block2"))]
 pub type UIGraphicsImageDrawingActions =
-    *mut block2::DynBlock<dyn Fn(NonNull<UIGraphicsImageRendererContext>)>;
+    block2::DynBlock<dyn Fn(NonNull<UIGraphicsImageRendererContext>)>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uigraphicsimagerendererformatrange?language=objc)
 // NS_ENUM
@@ -238,37 +238,28 @@ impl UIGraphicsImageRenderer {
         ) -> Retained<Self>;
 
         #[cfg(all(feature = "UIImage", feature = "block2"))]
-        /// # Safety
-        ///
-        /// `actions` must be a valid pointer.
         #[unsafe(method(imageWithActions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn imageWithActions(
+        pub fn imageWithActions(
             &self,
-            actions: UIGraphicsImageDrawingActions,
+            actions: &UIGraphicsImageDrawingActions,
         ) -> Retained<UIImage>;
 
         #[cfg(feature = "block2")]
-        /// # Safety
-        ///
-        /// `actions` must be a valid pointer.
         #[unsafe(method(PNGDataWithActions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn PNGDataWithActions(
+        pub fn PNGDataWithActions(
             &self,
-            actions: UIGraphicsImageDrawingActions,
+            actions: &UIGraphicsImageDrawingActions,
         ) -> Retained<NSData>;
 
         #[cfg(all(feature = "block2", feature = "objc2-core-foundation"))]
-        /// # Safety
-        ///
-        /// `actions` must be a valid pointer.
         #[unsafe(method(JPEGDataWithCompressionQuality:actions:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn JPEGDataWithCompressionQuality_actions(
+        pub fn JPEGDataWithCompressionQuality_actions(
             &self,
             compression_quality: CGFloat,
-            actions: UIGraphicsImageDrawingActions,
+            actions: &UIGraphicsImageDrawingActions,
         ) -> Retained<NSData>;
     );
 }

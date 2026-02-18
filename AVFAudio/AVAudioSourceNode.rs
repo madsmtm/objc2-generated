@@ -36,7 +36,7 @@ use crate::*;
     feature = "block2",
     feature = "objc2-core-audio-types"
 ))]
-pub type AVAudioSourceNodeRenderBlock = *mut block2::DynBlock<
+pub type AVAudioSourceNodeRenderBlock = block2::DynBlock<
     dyn Fn(
         NonNull<Bool>,
         NonNull<AudioTimeStamp>,
@@ -102,15 +102,11 @@ impl AVAudioSourceNode {
         ///
         /// The audio format for the block will be set to the node's output format. If node is
         /// reconnected with a different output format, the audio format for the block will also change.
-        ///
-        /// # Safety
-        ///
-        /// `block` must be a valid pointer.
         #[unsafe(method(initWithRenderBlock:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithRenderBlock(
             this: Allocated<Self>,
-            block: AVAudioSourceNodeRenderBlock,
+            block: &AVAudioSourceNodeRenderBlock,
         ) -> Retained<Self>;
 
         #[cfg(all(
@@ -133,16 +129,12 @@ impl AVAudioSourceNode {
         ///
         /// AVAudioSourceNode supports different audio formats for the block and output, but only
         /// Linear PCM conversions are supported (sample rate, bit depth, interleaving).
-        ///
-        /// # Safety
-        ///
-        /// `block` must be a valid pointer.
         #[unsafe(method(initWithFormat:renderBlock:))]
         #[unsafe(method_family = init)]
         pub unsafe fn initWithFormat_renderBlock(
             this: Allocated<Self>,
             format: &AVAudioFormat,
-            block: AVAudioSourceNodeRenderBlock,
+            block: &AVAudioSourceNodeRenderBlock,
         ) -> Retained<Self>;
     );
 }

@@ -19,7 +19,7 @@ pub const CHHapticTimeImmediate: NSTimeInterval = 0.0;
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticcompletionhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CHHapticCompletionHandler = *mut block2::DynBlock<dyn Fn(*mut NSError)>;
+pub type CHHapticCompletionHandler = block2::DynBlock<dyn Fn(*mut NSError)>;
 
 /// Constants indicating what the engine should do in response to the finished handler being called.
 ///
@@ -59,7 +59,7 @@ unsafe impl RefEncode for CHHapticEngineFinishedAction {
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticenginefinishedhandler?language=objc)
 #[cfg(feature = "block2")]
 pub type CHHapticEngineFinishedHandler =
-    *mut block2::DynBlock<dyn Fn(*mut NSError) -> CHHapticEngineFinishedAction>;
+    block2::DynBlock<dyn Fn(*mut NSError) -> CHHapticEngineFinishedAction>;
 
 /// Constants indicating the reason why the CHHapticEngine has stopped.
 ///
@@ -124,7 +124,7 @@ unsafe impl RefEncode for CHHapticEngineStoppedReason {
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticenginestoppedhandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CHHapticEngineStoppedHandler = *mut block2::DynBlock<dyn Fn(CHHapticEngineStoppedReason)>;
+pub type CHHapticEngineStoppedHandler = block2::DynBlock<dyn Fn(CHHapticEngineStoppedReason)>;
 
 /// A block which is called asynchronously if the haptic engine has reset itself due a server failure.
 ///
@@ -134,7 +134,7 @@ pub type CHHapticEngineStoppedHandler = *mut block2::DynBlock<dyn Fn(CHHapticEng
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticengineresethandler?language=objc)
 #[cfg(feature = "block2")]
-pub type CHHapticEngineResetHandler = *mut block2::DynBlock<dyn Fn()>;
+pub type CHHapticEngineResetHandler = block2::DynBlock<dyn Fn()>;
 
 /// [Apple's documentation](https://developer.apple.com/documentation/corehaptics/chhapticaudioresourcekey?language=objc)
 pub type CHHapticAudioResourceKey = NSString;
@@ -199,17 +199,13 @@ impl CHHapticEngine {
         /// it in a thread-safe manner.
         #[unsafe(method(stoppedHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn stoppedHandler(&self) -> CHHapticEngineStoppedHandler;
+        pub unsafe fn stoppedHandler(&self) -> NonNull<CHHapticEngineStoppedHandler>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`stoppedHandler`][Self::stoppedHandler].
-        ///
-        /// # Safety
-        ///
-        /// `stopped_handler` must be a valid pointer.
         #[unsafe(method(setStoppedHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setStoppedHandler(&self, stopped_handler: CHHapticEngineStoppedHandler);
+        pub unsafe fn setStoppedHandler(&self, stopped_handler: &CHHapticEngineStoppedHandler);
 
         #[cfg(feature = "block2")]
         /// This block will called asynchronously if the haptic engine has to reset itself after a server failure.
@@ -220,17 +216,13 @@ impl CHHapticEngine {
         /// it in a thread-safe manner.
         #[unsafe(method(resetHandler))]
         #[unsafe(method_family = none)]
-        pub unsafe fn resetHandler(&self) -> CHHapticEngineResetHandler;
+        pub unsafe fn resetHandler(&self) -> NonNull<CHHapticEngineResetHandler>;
 
         #[cfg(feature = "block2")]
         /// Setter for [`resetHandler`][Self::resetHandler].
-        ///
-        /// # Safety
-        ///
-        /// `reset_handler` must be a valid pointer.
         #[unsafe(method(setResetHandler:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn setResetHandler(&self, reset_handler: CHHapticEngineResetHandler);
+        pub unsafe fn setResetHandler(&self, reset_handler: &CHHapticEngineResetHandler);
 
         /// If set to YES, the CHHapticEngine will ignore all events of type CHHapticEventTypeAudio and play only haptic events.
         ///
@@ -337,15 +329,11 @@ impl CHHapticEngine {
         /// Asynchronously start the engine. The handler will be called when the operation completes.
         ///
         /// The handler is guaranteed to be called on either success or failure.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(startWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn startWithCompletionHandler(
             &self,
-            completion_handler: CHHapticCompletionHandler,
+            completion_handler: Option<&CHHapticCompletionHandler>,
         );
 
         /// Start the engine and block until the engine has started.
@@ -359,15 +347,11 @@ impl CHHapticEngine {
         /// Asynchronously stop the engine.  The handler will be called when the operation completes.
         ///
         /// The handler is guaranteed to be called on either success or failure.
-        ///
-        /// # Safety
-        ///
-        /// `completion_handler` must be a valid pointer or null.
         #[unsafe(method(stopWithCompletionHandler:))]
         #[unsafe(method_family = none)]
         pub unsafe fn stopWithCompletionHandler(
             &self,
-            completion_handler: CHHapticCompletionHandler,
+            completion_handler: Option<&CHHapticCompletionHandler>,
         );
 
         #[cfg(feature = "block2")]
@@ -379,15 +363,11 @@ impl CHHapticEngine {
         ///
         /// If additional players are started after this call is made, they will delay the callback.
         /// If no players are active or the engine is stopped, the callback will happen immediately.
-        ///
-        /// # Safety
-        ///
-        /// `finished_handler` must be a valid pointer.
         #[unsafe(method(notifyWhenPlayersFinished:))]
         #[unsafe(method_family = none)]
         pub unsafe fn notifyWhenPlayersFinished(
             &self,
-            finished_handler: CHHapticEngineFinishedHandler,
+            finished_handler: &CHHapticEngineFinishedHandler,
         );
 
         #[cfg(all(feature = "CHHapticPattern", feature = "CHHapticPatternPlayer"))]

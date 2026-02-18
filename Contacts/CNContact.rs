@@ -273,7 +273,9 @@ impl CNContact {
         /// - The returned block's argument 2 must be a valid pointer.
         #[unsafe(method(comparatorForNameSortOrder:))]
         #[unsafe(method_family = none)]
-        pub unsafe fn comparatorForNameSortOrder(sort_order: CNContactSortOrder) -> NSComparator;
+        pub unsafe fn comparatorForNameSortOrder(
+            sort_order: CNContactSortOrder,
+        ) -> NonNull<NSComparator>;
 
         /// Use to fetch all contact keys required for the contact sort comparator.
         #[unsafe(method(descriptorForAllComparatorKeys))]

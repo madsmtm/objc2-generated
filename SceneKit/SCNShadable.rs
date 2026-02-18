@@ -66,7 +66,7 @@ extern_protocol!(
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbufferbindingblock?language=objc)
 #[cfg(all(feature = "SCNNode", feature = "SCNRenderer", feature = "block2"))]
-pub type SCNBufferBindingBlock = *mut block2::DynBlock<
+pub type SCNBufferBindingBlock = block2::DynBlock<
     dyn Fn(
         NonNull<ProtocolObject<dyn SCNBufferStream>>,
         NonNull<SCNNode>,
@@ -88,7 +88,7 @@ pub type SCNBufferBindingBlock = *mut block2::DynBlock<
 /// See also [Apple's documentation](https://developer.apple.com/documentation/scenekit/scnbindingblock?language=objc)
 #[cfg(all(feature = "SCNNode", feature = "SCNRenderer", feature = "block2"))]
 pub type SCNBindingBlock =
-    *mut block2::DynBlock<dyn Fn(c_uint, c_uint, *mut SCNNode, NonNull<SCNRenderer>)>;
+    block2::DynBlock<dyn Fn(c_uint, c_uint, *mut SCNNode, NonNull<SCNRenderer>)>;
 
 extern_protocol!(
     /// The SCNShadable protocol defines an object that is rendered with shaders.
@@ -117,17 +117,13 @@ extern_protocol!(
         /// Parameter `block`: The block to call to bind the specified symbol.
         ///
         /// This method can only be used with OpenGL and OpenGLES based programs.
-        ///
-        /// # Safety
-        ///
-        /// `block` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(handleBindingOfSymbol:usingBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn handleBindingOfSymbol_usingBlock(
             &self,
             symbol: &NSString,
-            block: SCNBindingBlock,
+            block: Option<&SCNBindingBlock>,
         );
 
         #[cfg(all(feature = "SCNNode", feature = "SCNRenderer", feature = "block2"))]
@@ -138,17 +134,13 @@ extern_protocol!(
         /// Parameter `block`: The block to call to unbind the specified symbol.
         ///
         /// This method can only be used with OpenGL and OpenGLES based programs.
-        ///
-        /// # Safety
-        ///
-        /// `block` must be a valid pointer or null.
         #[optional]
         #[unsafe(method(handleUnbindingOfSymbol:usingBlock:))]
         #[unsafe(method_family = none)]
         unsafe fn handleUnbindingOfSymbol_usingBlock(
             &self,
             symbol: &NSString,
-            block: SCNBindingBlock,
+            block: Option<&SCNBindingBlock>,
         );
 
         /// Dictionary of shader modifiers snippets, targeting entry points. The valid keys are the entry points described in the "Shader Modifier Entry Point" constants. The values are the code snippets formatted as described below.
@@ -466,17 +458,13 @@ impl SCNProgram {
         /// Parameter `block`: The block that binds the buffer.
         ///
         /// This method can only be used with Metal based programs.
-        ///
-        /// # Safety
-        ///
-        /// `block` must be a valid pointer.
         #[unsafe(method(handleBindingOfBufferNamed:frequency:usingBlock:))]
         #[unsafe(method_family = none)]
         pub unsafe fn handleBindingOfBufferNamed_frequency_usingBlock(
             &self,
             name: &NSString,
             frequency: SCNBufferFrequency,
-            block: SCNBufferBindingBlock,
+            block: &SCNBufferBindingBlock,
         );
 
         /// Determines the receiver's fragment are opaque or not. Defaults to YES.
