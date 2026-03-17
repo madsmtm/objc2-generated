@@ -60,7 +60,7 @@ impl CWConfiguration {
         /// The order of the ordered set corresponds to the order the preferred networks list.
         #[unsafe(method(networkProfiles))]
         #[unsafe(method_family = none)]
-        pub unsafe fn networkProfiles(&self) -> Retained<NSOrderedSet<CWNetworkProfile>>;
+        pub unsafe fn networkProfiles(&self) -> Option<Retained<NSOrderedSet<CWNetworkProfile>>>;
 
         /// Returns: YES if the preference is enabled, NO otherwise.
         ///
